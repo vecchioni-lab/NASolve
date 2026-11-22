@@ -4,7 +4,7 @@
   "updated": "2026-11-22",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "1eb58fac2771f8d2bc07fbfd90e366583ad00be6",
+  "audited_code_commit": "761f43982fe1bec85e119c64277abccaeda6dda2",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -278,7 +278,8 @@
         "W219 performs the requested true10Acentroid stress once. Source/content/data survive but five-cycle recovery fails sugar handedness and large local geometry/R gates. Preserve the rejected endpoint; shorter link distances alone are not closure.",
         "W220 preserves sugar signs on five fixed whole-residue poses. W221 resolves all24 raw derivative discrepancies through the existing Cedar plane correction; actual refinement already uses it. No new optimizer, accepted large repair or ordinary activation.",
         "W222qualifies live corrected forces; W223capped6Dgeometry warm-start plus W224matched5cycle receiving retains126sugarsigns and recovers synthetic data, with explicit remaining moving outliers. W225necessary fixed-flank path bound motivates window feasibility before larger targets.",
-        "W226 maintains the bounded6Ddriver with exact points/units, accepted-step history, hard callback budgets, derivative/restoration gates and installed-native parity. It does not write/qualify rounded coordinates or grant ordinary/scientific permission."
+        "W226 maintains the bounded6Ddriver with exact points/units, accepted-step history, hard callback budgets, derivative/restoration gates and installed-native parity. It does not write/qualify rounded coordinates or grant ordinary/scientific permission.",
+        "W227keeps a declared measurement core stable inside a larger complete motion mask; bounds/fixed atoms remain checked across all editable atoms.392/392tests and saved-endpoint parity; no expanded-window execution."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
@@ -371,15 +372,16 @@
         "E_COLLECTIVE_WARMSTART",
         "E_STAGED_RECOVERY",
         "E_CENTROID_PATH_BOUND",
-        "E_NATIVE_COLLECTIVE_TRIAL"
+        "E_NATIVE_COLLECTIVE_TRIAL",
+        "E_CORE_DISPLACEMENT_SUBSET"
       ],
       "last_audit": {
         "date": "2026-11-22",
-        "human_update": 226,
-        "code_commit": "1eb58fac2771f8d2bc07fbfd90e366583ad00be6",
+        "human_update": 227,
+        "code_commit": "761f43982fe1bec85e119c64277abccaeda6dda2",
         "reviewer": "Linden",
-        "scope": "Installed driver parity plus existing staged synthetic recovery; scientific milestone remains partial",
-        "basis": "378 source/378 installed tests and26cold native checks; no additional fit and no full suite this slice."
+        "scope": "Explicit core metric qualified; independent deformation and scientific closure remain partial",
+        "basis": "392source/392installed and21cold saved-endpoint checks in each of three contexts; no new native call."
       }
     },
     {
@@ -670,7 +672,8 @@
         "W219 performs the requested true10Acentroid stress once. Source/content/data survive but five-cycle recovery fails sugar handedness and large local geometry/R gates. Preserve the rejected endpoint; shorter link distances alone are not closure.",
         "W220 preserves sugar signs on five fixed whole-residue poses. W221 resolves all24 raw derivative discrepancies through the existing Cedar plane correction; actual refinement already uses it. No new optimizer, accepted large repair or ordinary activation.",
         "W222qualifies live corrected forces; W223capped6Dgeometry warm-start plus W224matched5cycle receiving retains126sugarsigns and recovers synthetic data, with explicit remaining moving outliers. W225necessary fixed-flank path bound motivates window feasibility before larger targets.",
-        "W226 maintains the bounded6Ddriver with exact points/units, accepted-step history, hard callback budgets, derivative/restoration gates and installed-native parity. It does not write/qualify rounded coordinates or grant ordinary/scientific permission."
+        "W226 maintains the bounded6Ddriver with exact points/units, accepted-step history, hard callback budgets, derivative/restoration gates and installed-native parity. It does not write/qualify rounded coordinates or grant ordinary/scientific permission.",
+        "W227keeps a declared measurement core stable inside a larger complete motion mask; bounds/fixed atoms remain checked across all editable atoms.392/392tests and saved-endpoint parity; no expanded-window execution."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -798,15 +801,16 @@
         "E_COLLECTIVE_WARMSTART",
         "E_STAGED_RECOVERY",
         "E_CENTROID_PATH_BOUND",
-        "E_NATIVE_COLLECTIVE_TRIAL"
+        "E_NATIVE_COLLECTIVE_TRIAL",
+        "E_CORE_DISPLACEMENT_SUBSET"
       ],
       "last_audit": {
         "date": "2026-11-22",
-        "human_update": 226,
-        "code_commit": "1eb58fac2771f8d2bc07fbfd90e366583ad00be6",
+        "human_update": 227,
+        "code_commit": "761f43982fe1bec85e119c64277abccaeda6dda2",
         "reviewer": "Linden",
-        "scope": "Installed driver parity plus existing staged synthetic recovery; scientific milestone remains partial",
-        "basis": "378 source/378 installed tests and26cold native checks; no additional fit and no full suite this slice."
+        "scope": "Explicit core metric qualified; independent deformation and scientific closure remain partial",
+        "basis": "392source/392installed and21cold saved-endpoint checks in each of three contexts; no new native call."
       }
     },
     {
@@ -5846,6 +5850,41 @@
           "size": 537
         }
       ]
+    },
+    "E_CORE_DISPLACEMENT_SUBSET": {
+      "kind": "Measure an explicit core inside the full validated motion mask",
+      "date": "2026-11-22",
+      "human_update": 227,
+      "code_commit": "761f43982fe1bec85e119c64277abccaeda6dda2",
+      "reference": "docs/topostitch-preview.md#keep-the-measured-core-fixed-when-a-window-expands-w227",
+      "result": "14fail-before cases;392source/392relocated-installed passes.21readback checks each in source,installed3.12andPhenix3.11. Four saved endpoints retain exact default/core reports; W219core205atoms10Aversus whole287atoms7.142857A. Full mask and fixed-coordinate checks remain active.",
+      "limitation": "Read-only metrics, not automatic window expansion, physical feasibility, motion permission, axis definition or a new repair. No force/native call; prior W226native qualification retains its frozen installation. Complete suite deferred to merge gate.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w227-core-measurement/install/installed-check.json",
+          "sha256": "235743e167b2c686d66f48900fe8d9882aaf38ac10196af026f820fee1c3931a",
+          "size": 1409
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w227-core-measurement/source-review.json",
+          "sha256": "fc86994ef80c504300d90d641491d05752338ce9f680cca04b8deda8190334b4",
+          "size": 103089
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w227-core-measurement/installed-review.json",
+          "sha256": "7ce78caa3324f8c32c4470be4918ceb79fb701d51ede1b383398a3bd6d60c324",
+          "size": 103092
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w227-core-measurement/installed311-review.json",
+          "sha256": "84a36241d5d80980c9ca15a79c22710cf7671b1d870cbbc1b94f745d6f498090",
+          "size": 103103
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -6011,8 +6050,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 226,
-    "next": 227,
+    "current": 227,
+    "next": 228,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -7178,6 +7217,12 @@
         "title": "Qualify the installed bounded collective-motion trial driver",
         "state": "RECORDED",
         "code_commit": "1eb58fac2771f8d2bc07fbfd90e366583ad00be6"
+      },
+      {
+        "number": 227,
+        "title": "Keep core displacement comparable across editable windows",
+        "state": "RECORDED",
+        "code_commit": "761f43982fe1bec85e119c64277abccaeda6dda2"
       }
     ]
   },

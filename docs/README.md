@@ -7,7 +7,10 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Current code: W226.** [Bounded collective-motion trials](topostitch-preview.md#run-a-bounded-collective-trial-w226)
+- **Current code: W227.** [Stable core measurements](topostitch-preview.md#keep-the-measured-core-fixed-when-a-window-expands-w227)
+  remain comparable when the editable window expands, with complete-mask checks:
+  392 source/392 installed tests and three saved-endpoint readback contexts.
+- **Reusable optimizer: W226.** [Bounded collective-motion trials](topostitch-preview.md#run-a-bounded-collective-trial-w226)
   qualify six-parameter optimization with exact points, physical units, hard
   budgets and accepted-step/derivative/restoration records: 378 source/378
   installed tests and 26 installed-native checks. No ordinary activation.
@@ -25,7 +28,7 @@ current instructions; other branches retain their own status and validation pins
   The failed direct result and three remaining moving-region outliers stay
   explicit. This is same-family synthetic recovery, not general experimental repair.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W226, next W227:
+  [generated human view](topostitch-roadmap.md). Current W227, next W228:
   qualify feasible editable windows and independently supported bending/straightening.
   Keep the successful synthetic receiving comparison closed. The 5 Å centerline target is separate.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and

@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current audit and maintained implementation: W226, 2026-11-22.**
+**Current audit and maintained implementation: W227, 2026-11-22.**
 The existing native input binder now accepts an explicitly selected dictionary-only
 parent policy from Cedar C526. Default literal inputs still require compiled
 restraints. W214 binds a real X11_22 PostMR checkpoint and original observations;
@@ -42,6 +42,14 @@ W218 adds [explicit displacement summaries](topostitch-preview.md#measure-explic
 to the existing mask: 310 source/310 relocated installed tests and identical
 saved-endpoint measurements in Python 3.12/Phenix 3.11. Centroid/RMS/max remain
 separate; no centerline, correspondence or frame is inferred.
+
+W227 adds [an explicit measurement subset](topostitch-preview.md#keep-the-measured-core-fixed-when-a-window-expands-w227)
+inside the unchanged complete-motion validation: 392 source/392 installed tests,
+21 saved-endpoint checks in each of source, installed 3.12 and Phenix 3.11.
+This prevents changing the scientific target by including newly editable flanks:
+the saved core's 10 Å becomes 7.143 Å if the unchanged flanks are averaged in.
+No window expansion or new recovery was executed; default reports and motion
+arithmetic remain unchanged.
 
 ## Current development edge
 
@@ -94,7 +102,8 @@ not replaced by a clean full-suite claim.
 The next experiment must answer a new question, not repeat W224:
 
 1. **Feasible window:** declare source, intended endpoint/image, ordered pairs,
-   fixed flanks and protected junctions. Apply W225's necessary center-path
+   fixed flanks, protected junctions and a stable measurement core distinct
+   from the editable window. Apply W225's necessary center-path
    bound before fitting; allow only predeclared window expansion up to those
    hard stops. This bound cannot certify DNA curvature, stacking or torsion.
 2. **Independent placement:** qualify the unchanged reference and freeze a
