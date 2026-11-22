@@ -94,6 +94,14 @@ the underlying evidence. Retain the established clean map presentation, explicit
 model-assisted-map limits and science-only captions; visual polish does not imply
 scientific acceptance.
 
+For molecular comparison figures, retain the approved constellation style:
+show surrounding bases as small, faint grey atoms joined by fine light bonds,
+with the pair under refinement and its metal sites clearly highlighted above
+that context. Use a dark grey background and restrained labels. When comparing
+stages, keep the same orientation, scale and context selection across panels so
+movement is easy to read. The 22 November FT_Hg coupled-placement checkout is
+the visual reference; this preference does not imply acceptance of its geometry.
+
 ## Prior work before new diagnosis
 
 For a long-running or context-consolidated project, check for previous work on

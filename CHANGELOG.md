@@ -10,6 +10,8 @@ entries are reconstructed from repository history.
 
 ### Record the FT_Hg coupled-placement comparison
 
+- Preserve the approved molecular-report style: faint constellation-like bases
+  behind a highlighted refinement pair, with consistent comparison views.
 - Close the bounded pair/flank starting-pose experiment: healthy initial geometry
   returns to stretched DF and bent Hg during matched open XYZ/group-B refinement.
   Preserve exact target/identity checks, maps, B/Q/f″ limits and failed-export evidence.
