@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W217 — Verify maintained shoulder seeds in native recovery
+
+- Complete one matched preflight/five-cycle recovery using installed W216 seeds,
+  original source chemistry, fixed surroundings and unchanged work/Free data.
+- Reproduce the prior local phosphate repair after saved-PDB rounding; all four
+  bonds and six P-centered angles at each repaired site remain within two native
+  sigmas. Preserve synthetic-only and whole-model limitations.
+- Evidence/docs only; no runtime/default/schema/dependency changes or migration.
+  Scientific inputs and results remain local.
+
 ### W216 — Propose explicit local phosphate-shoulder alternatives
 
 - Add a source-bound canonical P–O5′–C5′–C4′ proposal with fixed P/C4′ and

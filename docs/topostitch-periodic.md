@@ -12345,3 +12345,59 @@ Git. Source policy is opt-in; old callers, CLI, result shape and dependency
 requirements retain their meanings. No migration, ordinary dispatch, invented
 motion or scientific acceptance follows. Next: finish Cedar's receiving scope
 and independently maintain the queued intrinsic local proposal consumer.
+
+
+## W217 — Recover installed local proposals after PDB rounding
+
+One new matched receiving check uses installed W216 to generate the declared
+A11 reflection/+60° and A14 reflection/+90° proposals from the saved W211
+starting PDB. It changes four permitted local atoms before serialization;
+three serialized atoms differ from the older W212 combined initializer by at
+most 0.002237 Å. No candidate grid, Free-R scoring or map selection is repeated.
+The existing W212 worker, native recipe and earlier unchanged/combined controls
+are reused with their exact input and code pins.
+
+Phenix **2.2.1-6174** completed one zero-cycle preflight and one five-cycle
+XYZ recovery (68.04 seconds, one CPU, 100-iteration cap per minimizer). Both
+owned processes stopped. The fixed original 205/654 mask, 859 atoms/B/Q,
+38 backbone links, 213 explicit geometry terms, 126 sugar-volume signs and all
+7554 observations/389 original Free flags survive. Source interpretation and
+candidate transfer happen once per phase; native geometry definitions,
+exclusions and initial candidate diffraction are retained. The preflight has
+24 cold checks and recovery has 25; no second fit or parameter search.
+
+| Final result | Unchanged recovery W211 | Private combined seeds W212 | Maintained seeds W217 |
+| --- | ---: | ---: | ---: |
+| A11 OP2–P–O5′ angle | 76.83° | 107.96° | 108.10° |
+| A14 OP2–P–O5′ angle | 81.39° | 103.06° | 102.87° |
+| A11 O5′–C5′ bond | 1.369 Å | 1.398 Å | 1.400 Å |
+| A14 O5′–C5′ bond | 1.275 Å | 1.455 Å | 1.454 Å |
+| Maximum residual to synthetic generator | 0.890 Å | 0.121 Å | 0.118 Å |
+
+The maintained result is within 0.01361 Å maximum coordinate difference of the
+private combined result. Its Rwork/Rfree are 0.007198/0.007267 on the same
+synthetic data. Small statistical differences do not establish superiority.
+The complete local readback checks all four P-centered bonds and six angles at
+each repaired site: largest absolute native Z is 1.77, with the original
+restraint targets retained. Residual A14 and inherited whole-model defects
+remain; this is not general/experimental acceptance or an ordinary workflow.
+The bounded question closes: the maintained seed survives saved-PDB rounding
+and reaches the prior local recovery behavior.
+
+Exact local commands (NASolve environment, `-B`):
+
+```bash
+python -B branch-artifacts/willow/runners/w217-maintained-recovery.py plan
+python -B branch-artifacts/willow/runners/w217-maintained-recovery.py preflight
+python -B branch-artifacts/willow/runners/w217-review.py preflight
+python -B branch-artifacts/willow/runners/w217-maintained-recovery.py refine
+python -B branch-artifacts/willow/runners/w217-review.py refine
+python -B branch-artifacts/willow/runners/w217-phosphate-readback.py
+```
+
+The controller refuses an existing output and binds all native commands before
+execution. Receipts stay under `NASolve:branch-artifacts/willow/w217-maintained-shoulder-recovery/`.
+This is evidence/documentation after the installed W216 patch, not another code,
+CLI, schema or dependency change. Raw science is excluded from Git. Next work
+qualifies explicit displacement measurements before the separately requested
+centroid/centerline stress tests; neither target is claimed by these results.

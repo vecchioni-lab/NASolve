@@ -272,14 +272,15 @@
         "W209/W210 separate local torsional alternatives from a straight interpolation path. Frozen chemistry/work-only scoring gives A11 joint improvement and an unresolved A14 tradeoff; no automatic selection or general repair claim.",
         "W211/W212 four matched five-cycle arms show both intrinsic shoulder seeds survive together; residual geometry remains explicit. W213 separates genuine construct/motion/source identity from absent ordinary checkpoint ancestry. No new product runtime or ordinary authority.",
         "W214 binds a genuine canonical PostMR root but finds no independently declared motion. W215 explicitly binds dictionary-only native source with225/225focused tests and19real-source checks; no dummy restraint or ordinary execution authority.",
-        "W216 maintains explicit intrinsic O5/C5 proposals about fixed P/C4 anchors, exact endpoint serialization and relative sugar-hand checks;247/247 tests and48-state saved-PDB replay. Ordinary motion/admission remains separate."
+        "W216 maintains explicit intrinsic O5/C5 proposals about fixed P/C4 anchors, exact endpoint serialization and relative sugar-hand checks;247/247 tests and48-state saved-PDB replay. Ordinary motion/admission remains separate.",
+        "W217 completes one matched installed-seed receiving fit. Both local corrections survive saved-PDB rounding with original chemistry/data/fixed context retained; full local P-centered bond/angle readback within1.77native sigmas. Global scientific closure remains open."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "One bounded W212-protocol recovery receiving check for maintained W216 seeds after PDB rounding. Reuse exact unchanged controls and native owners; no angle sweep or new ancestry inference. Rowan owns ordinary integration.",
+      "next_action": "Qualify explicit centroid/RMS/max displacement measurement before the separately planned stress targets. Preserve registered endpoints, atom correspondence and common frame; centerline remains undefined. Rowan owns ordinary integration; do not repeat closed W217 recovery.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -355,14 +356,15 @@
         "E_ORDINARY_BINDING_TRACE",
         "E_REAL_CANONICAL_PARENT",
         "E_DICTIONARY_PARENT_BINDING",
-        "E_LOCAL_PROPOSAL_CONSUMER"
+        "E_LOCAL_PROPOSAL_CONSUMER",
+        "E_MAINTAINED_LOCAL_RECOVERY"
       ],
       "last_audit": {
         "date": "2026-11-22",
-        "human_update": 216,
+        "human_update": 217,
         "code_commit": "5d64849a1cec8b87fd127b78d292cfc6e97fd8e9",
         "reviewer": "Linden",
-        "scope": "Maintained local proposal and compatibility; native recovery receiving check next"
+        "scope": "Completed bounded maintained-seed recovery; no general/experimental acceptance"
       }
     },
     {
@@ -431,14 +433,15 @@
         "W209/W210 separate local torsional alternatives from a straight interpolation path. Frozen chemistry/work-only scoring gives A11 joint improvement and an unresolved A14 tradeoff; no automatic selection or general repair claim.",
         "W211/W212 four matched five-cycle arms show both intrinsic shoulder seeds survive together; residual geometry remains explicit. W213 separates genuine construct/motion/source identity from absent ordinary checkpoint ancestry. No new product runtime or ordinary authority.",
         "W214 binds a genuine canonical PostMR root but finds no independently declared motion. W215 explicitly binds dictionary-only native source with225/225focused tests and19real-source checks; no dummy restraint or ordinary execution authority.",
-        "W216 maintains explicit intrinsic O5/C5 proposals about fixed P/C4 anchors, exact endpoint serialization and relative sugar-hand checks;247/247 tests and48-state saved-PDB replay. Ordinary motion/admission remains separate."
+        "W216 maintains explicit intrinsic O5/C5 proposals about fixed P/C4 anchors, exact endpoint serialization and relative sugar-hand checks;247/247 tests and48-state saved-PDB replay. Ordinary motion/admission remains separate.",
+        "W217 completes one matched installed-seed receiving fit. Both local corrections survive saved-PDB rounding with original chemistry/data/fixed context retained; full local P-centered bond/angle readback within1.77native sigmas. Global scientific closure remains open."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "One bounded W212-protocol recovery receiving check for maintained W216 seeds after PDB rounding. Reuse exact unchanged controls and native owners; no angle sweep or new ancestry inference. Rowan owns ordinary integration.",
+      "next_action": "Qualify explicit centroid/RMS/max displacement measurement before the separately planned stress targets. Preserve registered endpoints, atom correspondence and common frame; centerline remains undefined. Rowan owns ordinary integration; do not repeat closed W217 recovery.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -557,14 +560,15 @@
         "E_ORDINARY_BINDING_TRACE",
         "E_REAL_CANONICAL_PARENT",
         "E_DICTIONARY_PARENT_BINDING",
-        "E_LOCAL_PROPOSAL_CONSUMER"
+        "E_LOCAL_PROPOSAL_CONSUMER",
+        "E_MAINTAINED_LOCAL_RECOVERY"
       ],
       "last_audit": {
         "date": "2026-11-22",
-        "human_update": 216,
+        "human_update": 217,
         "code_commit": "5d64849a1cec8b87fd127b78d292cfc6e97fd8e9",
         "reviewer": "Linden",
-        "scope": "Maintained local proposal and compatibility; native recovery receiving check next"
+        "scope": "Completed bounded maintained-seed recovery; no general/experimental acceptance"
       }
     },
     {
@@ -633,7 +637,8 @@
         "Read-only W207 saved-map inspection passes46 checks on2 arrays/44 backbone atoms, preserving7554 F/SIGF/Free tuples and389 Free flags. A11 O5-prime generator/recovered difference samples+0.948/-0.215 own-map sigma;A14+8.268/+0.982. Ordinary-map samples are higher at both misplaced sites. Red-at-atom alone misses important local geometry; no detector threshold or experimental claim.",
         "W209/W210 separate local torsional alternatives from a straight interpolation path. Frozen chemistry/work-only scoring gives A11 joint improvement and an unresolved A14 tradeoff; no automatic selection or general repair claim.",
         "W211/W212 four matched five-cycle arms show both intrinsic shoulder seeds survive together; residual geometry remains explicit. W213 separates genuine construct/motion/source identity from absent ordinary checkpoint ancestry. No new product runtime or ordinary authority.",
-        "W214 binds a genuine canonical PostMR root but finds no independently declared motion. W215 explicitly binds dictionary-only native source with225/225focused tests and19real-source checks; no dummy restraint or ordinary execution authority."
+        "W214 binds a genuine canonical PostMR root but finds no independently declared motion. W215 explicitly binds dictionary-only native source with225/225focused tests and19real-source checks; no dummy restraint or ordinary execution authority.",
+        "W217 completes one matched installed-seed receiving fit. Both local corrections survive saved-PDB rounding with original chemistry/data/fixed context retained; full local P-centered bond/angle readback within1.77native sigmas. Global scientific closure remains open."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -644,7 +649,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "One bounded W212-protocol recovery receiving check for maintained W216 seeds after PDB rounding. Reuse exact unchanged controls and native owners; no angle sweep or new ancestry inference. Rowan owns ordinary integration.",
+      "next_action": "Qualify explicit centroid/RMS/max displacement measurement before the separately planned stress targets. Preserve registered endpoints, atom correspondence and common frame; centerline remains undefined. Rowan owns ordinary integration; do not repeat closed W217 recovery.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -752,14 +757,15 @@
         "E_LOCAL_SEEDED_RECOVERY",
         "E_ORDINARY_BINDING_TRACE",
         "E_REAL_CANONICAL_PARENT",
-        "E_DICTIONARY_PARENT_BINDING"
+        "E_DICTIONARY_PARENT_BINDING",
+        "E_MAINTAINED_LOCAL_RECOVERY"
       ],
       "last_audit": {
         "date": "2026-11-22",
-        "code_commit": "81bf2fbe3d374be77563b192009797e3db2a0c78",
+        "human_update": 217,
+        "code_commit": "5d64849a1cec8b87fd127b78d292cfc6e97fd8e9",
         "reviewer": "Linden",
-        "scope": "Exact real parent/source and installed opt-in binder; no scientific milestone closure",
-        "human_update": 215
+        "scope": "Completed bounded maintained-seed recovery; no general/experimental acceptance"
       }
     },
     {
@@ -794,7 +800,7 @@
         "Show actual before/after coordinates, moved/fixed sites, mates, geometry and matched refinement deltas. Test stale evidence, interruption, relocation and explicit keep/reject/use decisions.",
         "For final B09 review, show source, proposed and refined geotest coordinates with the intended periodic mates and per-member pass/review/failure evidence."
       ],
-      "next_action": "One bounded W212-protocol recovery receiving check for maintained W216 seeds after PDB rounding. Reuse exact unchanged controls and native owners; no angle sweep or new ancestry inference. Rowan owns ordinary integration.",
+      "next_action": "Qualify explicit centroid/RMS/max displacement measurement before the separately planned stress targets. Preserve registered endpoints, atom correspondence and common frame; centerline remains undefined. Rowan owns ordinary integration; do not repeat closed W217 recovery.",
       "evidence": [
         "E_SOFTWARE",
         "E_VIEW",
@@ -5485,6 +5491,41 @@
           "size": 76636
         }
       ]
+    },
+    "E_MAINTAINED_LOCAL_RECOVERY": {
+      "kind": "Installed local seed native recovery receiving check",
+      "date": "2026-11-22",
+      "human_update": 217,
+      "code_commit": "5d64849a1cec8b87fd127b78d292cfc6e97fd8e9",
+      "reference": "docs/topostitch-periodic.md#w217--recover-installed-local-proposals-after-pdb-rounding",
+      "result": "One completed zero-cycle preflight/one five-cycle fit;24/25cold checks. A11/A14 angles108.10/102.87degrees, O5-C5 lengths1.400/1.454A. All4P bonds/6P angles per site within1.77native sigmas.859atoms,205/654mask,38links,213terms,126sugar signs,7554/389data retained. Final RMS/max residual0.02783/0.11760A to synthetic generator.",
+      "limitation": "Canonical same-ASU synthetic receiving diagnostic, not a new angle sweep, experimental ranking, ordinary workflow or whole-model acceptance. Initial PDB difference0.002237A and final difference0.01361A from private W212 combined control; no superiority claim from tiny R changes.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w217-maintained-shoulder-recovery/declaration.json",
+          "sha256": "3cf268cb27da7aba306846b5dfb47a64075cd6a79fdd3e832cee0f1966e78a22",
+          "size": 1902
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w217-maintained-shoulder-recovery/preflight-review.json",
+          "sha256": "7766318de0533bb71b1c98400e349325f463c3fa3f6b40ba6175d9f5f148041b",
+          "size": 24484
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w217-maintained-shoulder-recovery/refine-review.json",
+          "sha256": "f4f98a18f717c4f11ec13972f96d7ec668528a427386313a10a9de09782bd7af",
+          "size": 24609
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w217-maintained-shoulder-recovery/phosphate-readback.json",
+          "sha256": "9f293c300b746358a73d0991e82715eb5dd32022239dda25310bcfb29975bb83",
+          "size": 34571
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -5650,8 +5691,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 216,
-    "next": 217,
+    "current": 217,
+    "next": 218,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -6755,6 +6796,12 @@
       {
         "number": 216,
         "title": "Maintain intrinsic two-atom shoulder proposals with fixed local anchors",
+        "state": "RECORDED",
+        "code_commit": "5d64849a1cec8b87fd127b78d292cfc6e97fd8e9"
+      },
+      {
+        "number": 217,
+        "title": "Recover installed local shoulder seeds through the matched native protocol",
         "state": "RECORDED",
         "code_commit": "5d64849a1cec8b87fd127b78d292cfc6e97fd8e9"
       }

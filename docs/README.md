@@ -10,7 +10,7 @@ current instructions; other branches retain their own status and validation pins
 W214/W215 bind a [real PostMR parent and dictionary-only native source](topostitch-periodic.md#w214w215--real-checkpoint-and-dictionary-only-parent-binding).
 The [explicit new binder policy](topostitch-preview.md#bind-a-dictionary-only-native-parent-w215)
 passes 225 source/225 relocated installed tests. No pairing or movement intent
-is invented. W216 now maintains the [local shoulder proposal](topostitch-preview.md#propose-an-intrinsic-local-backbone-orientation-w216), qualified by 247 source/247 relocated installed tests; its native recovery receiving check is next.
+is invented. W216 now maintains the [local shoulder proposal](topostitch-preview.md#propose-an-intrinsic-local-backbone-orientation-w216), qualified by 247 source/247 relocated installed tests; W217 [native recovery receiving check](topostitch-periodic.md#w217--recover-installed-local-proposals-after-pdb-rounding) now reproduces the earlier local repair with unchanged chemistry/data.
 
 W211/W212 [four matched recovery arms](topostitch-periodic.md#w211w212--local-corrections-survive-matched-refinement) show both local phosphate corrections surviving refinement. W213 [receiving trace](topostitch-periodic.md#w213--trace-the-ordinary-receiving-boundary-without-invented-ancestry) replays exact source/motion but finds no genuine campaign checkpoint ancestry. The experiment is closed; ordinary integration remains open with Rowan.
 
@@ -147,8 +147,8 @@ modified frames, axis radii and matched-state summaries remain open.
   Willow owns periodic helpers/cold reporting,
   Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
 - **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W216;
-  the next substantial audit is W217. Do not restart completed probes merely
+  [machine-readable source](topostitch-roadmap.json). Current human update is W217;
+  the next substantial audit is W218. Do not restart completed probes merely
   because a handoff is shorter.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview ledger](topostitch-preview.md). These preserve commands, failed

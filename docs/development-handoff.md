@@ -1,20 +1,18 @@
 # NASolve development handoff — Willow
 
-**Current audit: W216, 2026-11-22. Maintained implementation: W216.**
+**Current audit: W217, 2026-11-22. Maintained implementation: W216.**
 The existing native input binder now accepts an explicitly selected dictionary-only
 parent policy from Cedar C526. Default literal inputs still require compiled
 restraints. W214 binds a real X11_22 PostMR checkpoint and original observations;
 W215 binds that exact model, original native observation and four reader controls
 without inventing pair restraints. S04/S05/S06 remain PARTIAL.
 
-**Latest science:** Four matched five-cycle arms show that intrinsic A11/A14
-local-chain seeds each repair their own phosphate shoulder and survive together.
-Combined angles are 107.96° / 103.06° (108° target); maximum residual to the
-synthetic generator falls from 0.890 Å to 0.121 Å versus unchanged recovery.
-All four bonds and six angles at each repaired phosphate are within two native
-restraint sigmas. Original content, chemistry, observations/Free and fixed surroundings remain.
-A14 and inherited geometry remain imperfect; this is not whole-model acceptance.
-[Measurements and controls](topostitch-periodic.md#w211w212--local-corrections-survive-matched-refinement).
+**Latest science:** W217 closes the installed-seed receiving check. One five-cycle
+fit recovers A11/A14 angles to 108.10°/102.87° and O5′–C5′ lengths to
+1.400/1.454 Å. All four P-centered bonds and six angles at both sites are within
+1.77 native sigmas. Original atoms, chemistry, data and fixed context survive.
+This reproduces W212 local behavior after PDB rounding; residual whole-model
+and synthetic-only limitations remain. [Measurements/controls](topostitch-periodic.md#w217--recover-installed-local-proposals-after-pdb-rounding).
 
 **Receiving boundary:** W213's private motion fixture has no campaign ancestry.
 W214 now supplies a different, genuine current PostMR parent (2603 atoms, 128
@@ -74,9 +72,10 @@ No clean full-suite or skipped-case qualification is claimed; no suite rerun.
 
 ## Next bounded work
 
-Run one bounded W212-protocol recovery receiving check for maintained W216
-seeds after PDB rounding. Reuse existing controls/native owners, with no new
-angle sweep. Keep local proposals separate from registered whole-pair previews. Do not repeat missing-intent searches
+Qualify explicit centroid/RMS/max displacement measurements before larger
+stress targets. Keep source/target atom correspondence and physical frame
+bound. Centerline remains unqualified. W217 receiving recovery is closed;
+do not repeat it or its angle grid. Do not repeat missing-intent searches
 or invent a target on the real X11_22 root. Rowan owns ordinary receiving and
 native qualification of the one shared W215 dictionary-parent artifact.
 
