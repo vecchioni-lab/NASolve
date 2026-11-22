@@ -12297,3 +12297,51 @@ comparison script. ChimeraX **1.12** headless validation opens all three
 first harness read hit ChimeraX's ASCII locale after opening the models; its
 UTF-8 read was made explicit and the complete check passed. The viewer uses
 gray background, soft lighting, silhouettes and thin nucleic rings.
+
+
+## W214/W215 — Real checkpoint and dictionary-only parent binding
+
+W214 reopens the retained W187 root-only replay of the real X11_22 PostMR model.
+The original run report and registry match the frozen inventory. Original
+selection remains refine-001; the isolated root replay selects postmr. This is
+not portability of the complete historical refinement tree. The parent has
+2603 atoms/128 canonical residues, exact original atom/occupancy/B bytes, and
+original observations. Eighteen cold checks bind that ancestry and unchanged
+source. There is no prospective child or registered motion; the private W208
+859-atom parent is unrelated.
+
+The frozen configuration contains only nonstandard mode, an explicit model and
+empty OP3 sites. Saved sequences/mutations are empty, standard_pair is null and
+there is no sequence file. PostMR records 55 NARestraints-guessed pairs but no
+restraint file. Those coordinate-derived guesses are not independent design
+intent. The earlier E9–E13 inspection window likewise grants no pairing/motion
+permission. This absence is recorded once, scoped to these exact saved records;
+no claim is made about all external design documents or other parents.
+
+The existing literal compiler correctly refused controls-only inputs. Cedar
+C526 and Willow W215 now support an explicit separate dictionary-parent policy,
+with no fake pair or dummy restraint. One new completed Phenix 2.2.1-6174 native
+interpretation captured the same 2603 atoms with all four reader controls False.
+It made no coordinate changes, refinement or checkpoint writes. Cedar's one
+shared typed artifact binds that original observation; Willow source/installed
+readback passes 19 checks, including old-path-gone relocation and altered-control
+refusal. Phenix Python 3.11 agrees after verified dependency bootstrap.
+[API, exact test command and compatibility](topostitch-preview.md#bind-a-dictionary-only-native-parent-w215).
+
+W215 has 225 focused source and 225 relocated installed passes. The user's
+supplied contract also requested a complete suite: one run completed with
+1947 passed, 131 skipped, 51 failures and 234 passing subtests. The failures show
+missing optional Gemmi or sandbox-denied process inspection/cleanup. This is not
+a clean full-suite claim. A first failed-node replay parsed parameter IDs with
+spaces incorrectly and collected no tests; the corrected focused environment
+replay passes all **51 tests** in 4.70 seconds with Gemmi 0.7.5 and permission
+for the tests’ own process inspection/cleanup. No product change was needed.
+This does not rerun the 131 skipped cases or replace an integration full-suite gate.
+
+Local receipts remain under `NASolve:branch-artifacts/willow/w214-canonical-parent-binding/`
+and `NASolve:branch-artifacts/willow/w215-dictionary-parent-binding/`, with exact
+pins in the roadmap. Raw science and temporary build trees are excluded from
+Git. Source policy is opt-in; old callers, CLI, result shape and dependency
+requirements retain their meanings. No migration, ordinary dispatch, invented
+motion or scientific acceptance follows. Next: finish Cedar's receiving scope
+and independently maintain the queued intrinsic local proposal consumer.

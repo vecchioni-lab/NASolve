@@ -1,11 +1,11 @@
 # NASolve development handoff — Willow
 
-**Current science: W212 closed; W213 receiving trace recorded, 2026-11-22.**
-**Maintained Willow implementation: W208.** The installed one-shot preparation context now
-carries admitted candidate → original parent geometry → candidate coordinates
-through the installed Cedar C512 service and maintained Willow builder, with
-explicit source-qualified worker observation readers. No ordinary execution-policy or
-CLI activation follows. S04/S05/S06 remain PARTIAL.
+**Current audit: W215, 2026-11-22. Maintained implementation: W215.**
+The existing native input binder now accepts an explicitly selected dictionary-only
+parent policy from Cedar C526. Default literal inputs still require compiled
+restraints. W214 binds a real X11_22 PostMR checkpoint and original observations;
+W215 binds that exact model, original native observation and four reader controls
+without inventing pair restraints. S04/S05/S06 remain PARTIAL.
 
 **Latest science:** Four matched five-cycle arms show that intrinsic A11/A14
 local-chain seeds each repair their own phosphate shoulder and survive together.
@@ -16,12 +16,12 @@ restraint sigmas. Original content, chemistry, observations/Free and fixed surro
 A14 and inherited geometry remain imperfect; this is not whole-model acceptance.
 [Measurements and controls](topostitch-periodic.md#w211w212--local-corrections-survive-matched-refinement).
 
-**Receiving trace W213:** exact registered motion and typed source do join on
-the retained canonical parent, but its construct registration is not campaign
-checkpoint ancestry. There is no saved run report/registry; the actual checkpoint
-reader refuses. No history is fabricated. Current Cedar ordinary owner functions
-match W201, so its missing typed-parent-role finding stands without rerunning
-controls. [Next gate](topostitch-periodic.md#w213--trace-the-ordinary-receiving-boundary-without-invented-ancestry).
+**Receiving boundary:** W213's private motion fixture has no campaign ancestry.
+W214 now supplies a different, genuine current PostMR parent (2603 atoms, 128
+canonical residues), but its frozen recipe declares no pairing or movable region.
+The saved 55 NARestraints guesses are retrospective evidence, not independent
+intent. W215 closes controls-only source binding; neither step creates motion or
+ordinary dispatch. [Evidence and limits](topostitch-periodic.md#w214w215--real-checkpoint-and-dictionary-only-parent-binding).
 
 Start with the [machine roadmap](topostitch-roadmap.json) and
 [human roadmap](topostitch-roadmap.md). Detailed failed attempts, exact commands
@@ -33,6 +33,7 @@ The longer pre-consolidation handoff is preserved at Git `86e7489c2314f738bd7fe1
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
+| W214/W215 real parent + typed binding | Exact real checkpoint/data; 225 source/225 relocated installed, 19 real-source checks, Phenix Python 3.11 parity | Independent intended motion, Cedar ordinary request/dispatch and chemical admission |
 | W208 maintained parent builder |217 source/217 relocated installed;54 actual-native cold checks, exact W207 prepared state and disposable post-parent failure | Cedar-owned versioned ordinary request/dispatch; C516 early entry qualified |
 | W211/W212 intrinsic local recovery | Four matched arms, 38/40 checks per pair and 28 cross-arm; both seeds survive, original chemistry/data retained | General/experimental recovery, residual stereochemistry and maintained proposal consumer |
 | W213 source/motion trace | Exact same-parent preview and typed source replay; 18 cold checks | Genuine checkpoint ancestry and Cedar ordinary receiving route |
@@ -59,7 +60,19 @@ retained-input/process lifetime, native binding cleanup and failed-model disposa
 No returned boolean/None or coordinate mapping alone is chemical authority.
 [Contract](topostitch-preview.md#prepare-parent-geometry-once-w200).
 
+W215 broader validation: one complete-suite attempt yielded 1947 passed,
+131 skipped, 51 environment failures and 234 passing subtests. All 51 failures
+pass on a focused replay with optional Gemmi and permitted test-process cleanup.
+No clean full-suite or skipped-case qualification is claimed; no suite rerun.
+
 ## Next bounded work
+
+Advance the already queued intrinsic two-atom shoulder proposal consumer using
+W210/W211/W212 evidence, exact identities and fixed endpoints. Keep it separate
+from registered whole-pair bend previews. Do not repeat missing-intent searches
+or invent a target on the real X11_22 root. Rowan owns ordinary receiving and
+native qualification of the one shared W215 dictionary-parent artifact.
+
 
 **Ordinary integration remains Cedar-owned:** the versioned request must carry the
 bound geometry-parent/source and admitted candidate motion. Rowan's **C516**
