@@ -7,156 +7,27 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-W214/W215 bind a [real PostMR parent and dictionary-only native source](topostitch-periodic.md#w214w215--real-checkpoint-and-dictionary-only-parent-binding).
-The [explicit new binder policy](topostitch-preview.md#bind-a-dictionary-only-native-parent-w215)
-passes 225 source/225 relocated installed tests. No pairing or movement intent
-is invented. W216 now maintains the [local shoulder proposal](topostitch-preview.md#propose-an-intrinsic-local-backbone-orientation-w216), qualified by 247 source/247 relocated installed tests; W217 [native recovery receiving check](topostitch-periodic.md#w217--recover-installed-local-proposals-after-pdb-rounding) now reproduces the earlier local repair with unchanged chemistry/data.
-
-W211/W212 [four matched recovery arms](topostitch-periodic.md#w211w212--local-corrections-survive-matched-refinement) show both local phosphate corrections surviving refinement. W213 [receiving trace](topostitch-periodic.md#w213--trace-the-ordinary-receiving-boundary-without-invented-ancestry) replays exact source/motion but finds no genuine campaign checkpoint ancestry. The experiment is closed; ordinary integration remains open with Rowan.
-
-W201 records the [versioned execution/input contract](topostitch.md#versioned-parent-preparation-execution-contract-w201):
-five cold controls identify the missing geometry-only parent role while old v3
-captures/defaults remain valid. The named opt-in route is proposed, not registered.
-W202 qualifies the installed Cedar live collector with authenticated reader controls
-in a fresh dry-run/failure pair (84 checks); the shared-owner boundary is agreed.
-W203 adds the [immutable typed input binding](topostitch-preview.md#bind-typed-native-preparation-inputs-w203)
-with 175 source/175 installed tests and exact real-source readback in Python 3.12/3.11.
-W204 now composes that single Cedar-owned service with Willow transfer: 99 cold
-checks on a completed dry-run and intentional pre-transfer failure reproduce the
-previous geometry and diffraction exactly. W205 joins original source definitions and eight restraint families to that
-transfer in the same interpretation (72 checks). W206 binds original native
-bytes in the existing input bundle (191 source/191 installed checks); ordinary
-immutable inputs and future compressed/budgeted sessions keep distinct owners.
-W207 tests 4.96 Å maximum-atom motion with fixed flanks: strong recovery but
-A11/A14 defects remained in that frozen run; W211/W212 now test separate local repairs. W208 now supplies the [maintained source-bound builder](topostitch-preview.md#maintained-source-bound-parent-builder-w208):
-217 source/217 relocated installed tests and 54 actual-native cold checks.
-It reproduces W207 exactly and safely refuses a post-parent transfer. Cedar C516
-now qualifies the early native ordering with the same evidence; the remaining gate is
-the versioned ordinary source/motion request and dispatch integration.
-
-W200 adds the [maintained one-shot preparation context](topostitch-preview.md#prepare-parent-geometry-once-w200):
-160 source/160 installed tests and an actual success/failure pair preserve the
-exact atom-order handoff and prior prepared state. Ordinary Cedar
-execution-policy integration remains separate; no additional refinement or user-facing activation.
-W198/W199's cold/live qualification and limitations remain in the handoff/ledger.
-
-W197 adds a [matched signed fixed-frame recovery control](topostitch-periodic.md#w197--recover-a-signed-interior-window-with-fixed-end-frames):
-interior displacement and boundary bonds recover while a local phosphate-angle
-cost remains. Ordinary retained-parent integration and general repair stay open.
-
-W196 returns to S04 with [registered interior paired previews](topostitch-preview.md#registered-interior-paired-windows-w196):
-nonuniform declared weights and two fixed flanks through the existing motion
-reader. Native retention and successful repair remain separate gates.
-
-W195 adds [declared regional step summaries](topostitch-preview.md#summarize-declared-regional-twist-w195)
-with explicit coverage and signed-repeat limits. Next work returns to the local
-repair/admission gate; no additional export layer is queued.
-
-W191 adds the [shared paired-phosphate reader](topostitch-preview.md#measure-declared-paired-phosphates-w191),
-with [machine-readable helix milestones](helical-geometry-plan.json). W190's
-derived source connectivity remains distinct from checked chemistry. See the
-handoff for the next bounded work and roadmap for remaining motion gates.
-W194 adds [explicit named-state comparisons](topostitch-preview.md#compare-declared-helix-states-w194),
-with missing matches and signed local changes retained.
-W193 implements [canonical simple-step twist](topostitch-preview.md#measure-canonical-simple-step-twist-w193)
-against W192’s exact reference convention. Historical 7SDG publication provenance,
-modified frames, axis radii and matched-state summaries remain open.
-
-- **Willow queue:** [Development handoff](development-handoff.md). W128–W138
-  qualify explicit bounded ordinary counted-pair execution, compatible registered
-  continuation and actual final-writer pair readback, including the opt-in 100-cap
-  route. W139's completed matched native/zero/full control demonstrates local
-  pair improvement. W140 adds existing-backbone support checks and signed saved-map
-  samples: the C102 phosphate feature persists despite better pairing. These
-  ordinary ML maps include test reflections; no automatic density policy follows.
-  Small R/clash changes are context, while line-search stops remain a separate
-  numerical limitation. General repair and W122 user-facing activation remain open.
-  W141 independently qualifies Alder's shared grid sampler in a relocated wheel;
-  its full Alder regression is now complete. W142 closes C402/C404 qualification
-  and records the next read-only map-source/frame boundary. W143 adds a local
-  3D backbone-density presentation study; its final contrast/contour revision
-  is user-reviewed and chosen as NASolve's shared dynamic inspector direction;
-  cross-stage integration remains planned.
-  W144 binds an ordinary checkpoint to the diagnostic maps and qualifies
-  explicit source-frame sampling across R3 images. W145 adds structured map
-  selection ancestry through the existing view resolver; standalone full/installed
-  gates pass, combined qualification remains pending. W146 adds the read-only
-  measured inspection snapshot, with full/relocated installed and real-data owner
-  compatibility checks. W147 extracts exact native coefficient selection and
-  descriptive headers with source/installed and saved-preview parity; the worker
-  adapter remains separate from frozen integration. Producer/frame assessment
-  and the detector remain separate.
-  W148 completes one idealized matching-diffraction backbone recovery control:
-  0.917→0.029 Å selected-region RMS, with native geometry and independent review.
-  Its local four-model checkout separates recovery from imperfect source geometry;
-  experimental repair and density calibration remain open.
-  W149 packages the shared offline renderer and displays both saved density and
-  W148's actual recovery through the same installed API. Source/full/installed
-  gates pass; stage integration, frame proof and browser/GPU review remain separate.
-  W150 qualifies a temporary shared-base composition for receiving-owner review;
-  W151 confirms deposited sequence continuity across B107/B111 while preserving
-  the reference geometry/lineage caveat. Neither closes general repair.
-  W152 adds independent opposite-direction/no-op synthetic recovery; W153's real
-  diffraction counterpart records reference drift and a geometry/density tradeoff,
-  including adaptive work filtering. W154 labels map sources independently from
-  coordinate states. These do not close general repair or stage integration.
-  W155 records prescribed displacement/Q/B density counterexamples, with its
-  original version-capture limitation; experimental attribution remains open.
-  W156 records a recovery window before judging post-deformation Rfree;
-  this is planning, with no new native run or acceptance implementation.
-  W157 audits saved scaling/XYZ histories and adds a stage plot to the existing
-  experimental report, without another refinement or convergence claim.
-  W159 completes the ordinary-recipe baseline diagnostic without resolving drift
-  or phosphate density; complete ordinary lineage and repair remain open.
-  W158 records the original comparison plan; its separate model-assisted density
-  counterexample panel is completed by W160, including near-zero normalization
-  ambiguity. No noisy/experimental detector is qualified.
-  W161 localizes mixed recovery and binds the known native-screening fallback;
-  W162 records the bounded actual-state profile limit without another selector trial.
-  W163–W164 add larger matched synthetic recovery, declared-link retention and
-  an explicit remaining local distortion despite low Rfree. W166 qualifies
-  geometry-only parent-manager transport without raising the production link
-  cutoff; diffraction-state/execution integration remains open. W167 aligns
-  the planned cluster-placement/coupled-DNA-opening contract with Alder and Cedar;
-  it adds no width-changing runtime or experiment.
-  W168 retains parent chemistry in a private child-diffraction recovery diagnostic;
-  W169 verifies existing coordinate-only admission owners. W170 completes the
-  remaining B2/A13 saved-map review. W171 adds optional current-parent snapshot
-  binding to the existing saved-motion loader; ordinary native integration and
-  general repair remain open. W172 tests the private declared-topology admission
-  boundary before/after a small transfer; legacy SS policy remains under review
-  and ordinary retained-manager lifecycle integration stays open. W173 adds
-  exact selected-checkpoint/input binding with changed-parent and relocated
-  installation checks. W174 joins Cedar frozen child inputs with explicit
-  parent/candidate roles. W175 checks the private moving/boundary/fixed context
-  and identifies existing first-capture producers; ordinary chemical provenance
-  and native transfer remain separate. W176 adds a maintained complete fixed-parent
-  reading. W177 reuses Cedar checked publication/complete results to report
-  available authority for an exact preparation. W178 binds original source intent
-  through the existing literal producer and records the remaining native/ordinary
-  provenance boundary. W179 adds the genuine original-intent capture and isolates
-  the producer control-role gap; no motion policy is broadened.
-  W180–W182 preserve typed capture roles and identify their ordinary owner.
-  W186 delivers that explicit handoff on Cedar with source/relocated-install checks
-  and a fixed native capture. W187 qualifies a separate genuine canonical PostMR
-  root through normal writing and protected cold reopening; original compiled
-  intent and retained-manager motion remain open.
-  W188 adds exact native support reporting around a declared ordinary-parent
-  atom window, preserving boundary multiplicity and missing intent. No motion
-  or chemical acceptance follows from the measured support.
-  Willow owns periodic helpers/cold reporting,
-  Cedar execution, and Alder the maintained metal map boundary. The ledgers retain exact pins and failures.
-- **Audited milestones:** [Generated roadmap](topostitch-roadmap.md) and its
-  [machine-readable source](topostitch-roadmap.json). Current human update is W217;
-  the next substantial audit is W218. Do not restart completed probes merely
-  because a handoff is shorter.
+- **Current code: W218.** [Explicit displacement metrics](topostitch-preview.md#measure-explicit-region-displacement-w218)
+  separate centroid shift, weighted RMS and maximum atom motion (310 source/310
+  relocated installed tests). No helix-centerline or frame/identity inference.
+- **Current science: W217.** [Maintained local proposals survive native recovery](topostitch-periodic.md#w217--recover-installed-local-proposals-after-pdb-rounding),
+  with original source chemistry, atom content, fixed context and data retained.
+  Both local phosphate sites finish within two native sigmas; general repair,
+  residual whole-model geometry and experimental qualification remain open.
+- **Ordinary integration:** W214/W215 bind a real PostMR root and an explicit
+  dictionary-only native source; no pairing/motion intent is invented. Cedar
+  owns the receiving request and native lifecycle. Read the [current handoff](development-handoff.md).
+- **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
+  [generated human view](topostitch-roadmap.md). Current W218, next W219:
+  predeclare a single 10 Å centroid stress case, with starting link geometry
+  and bounded native recovery. The 5 Å centerline target remains separate.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
-  [preview ledger](topostitch-preview.md). These preserve commands, failed
-  attempts, compatibility pins and limits; they are not duplicate action queues.
+  [preview/API guide](topostitch-preview.md) retain commands, failed attempts,
+  compatibility pins and limits. Do not repeat closed probes because this index
+  is shorter; Git and those evidence records retain the earlier W-number history.
 - **Other branches:** inspect current Pine/Cedar/Alder handoffs before integration.
-  The [October Pine handoff](history/development-handoff-2026-10-08-pre-consolidation.md)
-  and [modified-pair ledger](native-modified-pair-live-validation.md) retain earlier
-  chemistry evidence, not a claim about today's other-branch implementation.
+  Willow owns periodic helpers and cold reporting, Cedar execution, and Alder
+  the maintained metal/map boundary. No implicit merge follows from compatibility.
 
 ## Publication demonstration plan
 

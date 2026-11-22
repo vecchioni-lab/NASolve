@@ -4,7 +4,7 @@
   "updated": "2026-11-22",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "5d64849a1cec8b87fd127b78d292cfc6e97fd8e9",
+  "audited_code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -273,14 +273,15 @@
         "W211/W212 four matched five-cycle arms show both intrinsic shoulder seeds survive together; residual geometry remains explicit. W213 separates genuine construct/motion/source identity from absent ordinary checkpoint ancestry. No new product runtime or ordinary authority.",
         "W214 binds a genuine canonical PostMR root but finds no independently declared motion. W215 explicitly binds dictionary-only native source with225/225focused tests and19real-source checks; no dummy restraint or ordinary execution authority.",
         "W216 maintains explicit intrinsic O5/C5 proposals about fixed P/C4 anchors, exact endpoint serialization and relative sugar-hand checks;247/247 tests and48-state saved-PDB replay. Ordinary motion/admission remains separate.",
-        "W217 completes one matched installed-seed receiving fit. Both local corrections survive saved-PDB rounding with original chemistry/data/fixed context retained; full local P-centered bond/angle readback within1.77native sigmas. Global scientific closure remains open."
+        "W217 completes one matched installed-seed receiving fit. Both local corrections survive saved-PDB rounding with original chemistry/data/fixed context retained; full local P-centered bond/angle readback within1.77native sigmas. Global scientific closure remains open.",
+        "W218 maintains explicit selected-region displacement summaries with separate centroid/RMS/max and optional positive weights.310/310 tests and exact cross-Python saved-endpoint metrics; no centerline or achieved stress target."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "Qualify explicit centroid/RMS/max displacement measurement before the separately planned stress targets. Preserve registered endpoints, atom correspondence and common frame; centerline remains undefined. Rowan owns ordinary integration; do not repeat closed W217 recovery.",
+      "next_action": "Freeze one10Aselected-region centroid stress request with explicit existing registered pairs, source/candidate correspondence and common frame; measure largest local motion and starting link geometry before one preflight/one bounded recovery. No amplitude sweep. Keep5Acenterline target separate and Rowan ordinary integration independent.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -357,14 +358,15 @@
         "E_REAL_CANONICAL_PARENT",
         "E_DICTIONARY_PARENT_BINDING",
         "E_LOCAL_PROPOSAL_CONSUMER",
-        "E_MAINTAINED_LOCAL_RECOVERY"
+        "E_MAINTAINED_LOCAL_RECOVERY",
+        "E_EXPLICIT_DISPLACEMENT_METRICS"
       ],
       "last_audit": {
         "date": "2026-11-22",
-        "human_update": 217,
-        "code_commit": "5d64849a1cec8b87fd127b78d292cfc6e97fd8e9",
+        "human_update": 218,
+        "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7",
         "reviewer": "Linden",
-        "scope": "Completed bounded maintained-seed recovery; no general/experimental acceptance"
+        "scope": "Measurement prerequisite for larger stress case; no new deformation or scientific closure"
       }
     },
     {
@@ -441,7 +443,7 @@
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Qualify explicit centroid/RMS/max displacement measurement before the separately planned stress targets. Preserve registered endpoints, atom correspondence and common frame; centerline remains undefined. Rowan owns ordinary integration; do not repeat closed W217 recovery.",
+      "next_action": "Freeze one10Aselected-region centroid stress request with explicit existing registered pairs, source/candidate correspondence and common frame; measure largest local motion and starting link geometry before one preflight/one bounded recovery. No amplitude sweep. Keep5Acenterline target separate and Rowan ordinary integration independent.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -649,7 +651,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Qualify explicit centroid/RMS/max displacement measurement before the separately planned stress targets. Preserve registered endpoints, atom correspondence and common frame; centerline remains undefined. Rowan owns ordinary integration; do not repeat closed W217 recovery.",
+      "next_action": "Freeze one10Aselected-region centroid stress request with explicit existing registered pairs, source/candidate correspondence and common frame; measure largest local motion and starting link geometry before one preflight/one bounded recovery. No amplitude sweep. Keep5Acenterline target separate and Rowan ordinary integration independent.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -800,7 +802,7 @@
         "Show actual before/after coordinates, moved/fixed sites, mates, geometry and matched refinement deltas. Test stale evidence, interruption, relocation and explicit keep/reject/use decisions.",
         "For final B09 review, show source, proposed and refined geotest coordinates with the intended periodic mates and per-member pass/review/failure evidence."
       ],
-      "next_action": "Qualify explicit centroid/RMS/max displacement measurement before the separately planned stress targets. Preserve registered endpoints, atom correspondence and common frame; centerline remains undefined. Rowan owns ordinary integration; do not repeat closed W217 recovery.",
+      "next_action": "Freeze one10Aselected-region centroid stress request with explicit existing registered pairs, source/candidate correspondence and common frame; measure largest local motion and starting link geometry before one preflight/one bounded recovery. No amplitude sweep. Keep5Acenterline target separate and Rowan ordinary integration independent.",
       "evidence": [
         "E_SOFTWARE",
         "E_VIEW",
@@ -5526,6 +5528,41 @@
           "size": 34571
         }
       ]
+    },
+    "E_EXPLICIT_DISPLACEMENT_METRICS": {
+      "kind": "Maintained explicit weighted displacement measurement",
+      "date": "2026-11-22",
+      "human_update": 218,
+      "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7",
+      "reference": "docs/topostitch-preview.md#measure-explicit-region-displacement-w218",
+      "result": "310source/310relocated installed tests.18source/19installed/19PhenixPython3.11saved-endpoint checks; serialized summaries identical. W207 start centroid0.25302A vsRMS1.76560A/max4.96184A. Existing masks/bounds/fixed atoms retained; explicit positive weights supported.",
+      "limitation": "Read-only arithmetic requires caller-bound identity and common physical frame. No alignment, crystallographic unwrapping, mass/pair inference or centerline. Neither stress target has run.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w218-displacement-summary/install/installed-check.json",
+          "sha256": "c60d1cd985961afafcd5a6127b6b3a778cb542e8866145319bf91522ffca8138",
+          "size": 1173
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w218-displacement-summary/source-review.json",
+          "sha256": "11d3f8e13671be5ca667a8357fe5ebecafa8d2d3acf363c41984ab4b8b8d3c3c",
+          "size": 73308
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w218-displacement-summary/installed-review.json",
+          "sha256": "4658d7104014b4f6ab1cb15ef34427fce9e8f25caf1ffcd316a98612471fd80a",
+          "size": 73407
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w218-displacement-summary/python311-review.json",
+          "sha256": "effca277d406e59b8af30f80a399f7a13837665f593ea4c51287d0c4ae232074",
+          "size": 73415
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -5691,8 +5728,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 217,
-    "next": 218,
+    "current": 218,
+    "next": 219,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -6804,6 +6841,12 @@
         "title": "Recover installed local shoulder seeds through the matched native protocol",
         "state": "RECORDED",
         "code_commit": "5d64849a1cec8b87fd127b78d292cfc6e97fd8e9"
+      },
+      {
+        "number": 218,
+        "title": "Separate explicit region-centroid, RMS and maximum atom displacement",
+        "state": "RECORDED",
+        "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7"
       }
     ]
   },
@@ -6829,7 +6872,7 @@
       "Retain fixed flanks/protected junctions; predeclare any expanded editable window, matched controls and bounded recovery protocol.",
       "Local geometry and supported diffraction both matter; no acceptance solely from Rfree or arbitrary per-step limits."
     ],
-    "current_evidence": "W207 maximum individual atom displacement4.96 A does not establish either requested stress target.",
+    "current_evidence": "W218 qualifies explicit region metrics; W207 maximum atom4.96A corresponds to0.253Acentroid shift. A10Acentroid stress declaration is next; no centerline qualification.",
     "W207_metric_distinction": {
       "definition": "Unweighted arithmetic mean of explicitly selected present PDB atoms; serialized Cartesian coordinates in the unchanged crystal frame. No alignment, mass weighting or helix-axis fit.",
       "whole_movable_region_centroid_displacement_angstrom": 0.25302167499848144,

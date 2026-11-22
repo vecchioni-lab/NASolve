@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current audit: W217, 2026-11-22. Maintained implementation: W216.**
+**Current audit: W218, 2026-11-22. Maintained implementation: W218.**
 The existing native input binder now accepts an explicitly selected dictionary-only
 parent policy from Cedar C526. Default literal inputs still require compiled
 restraints. W214 binds a real X11_22 PostMR checkpoint and original observations;
@@ -33,6 +33,11 @@ O5′/C5′ around fixed P/C4′, retaining local distances and relative C4′ h
 Source-PDB precision limits historical parity to 0.001830 Å. Cross-Python
 regeneration changes last bits; frozen points replay exact endpoint audits.
 No motion permission, scientific acceptance or ordinary workflow follows.
+
+W218 adds [explicit displacement summaries](topostitch-preview.md#measure-explicit-region-displacement-w218)
+to the existing mask: 310 source/310 relocated installed tests and identical
+saved-endpoint measurements in Python 3.12/Phenix 3.11. Centroid/RMS/max remain
+separate; no centerline, correspondence or frame is inferred.
 
 ## Current development edge
 
@@ -72,10 +77,11 @@ No clean full-suite or skipped-case qualification is claimed; no suite rerun.
 
 ## Next bounded work
 
-Qualify explicit centroid/RMS/max displacement measurements before larger
-stress targets. Keep source/target atom correspondence and physical frame
-bound. Centerline remains unqualified. W217 receiving recovery is closed;
-do not repeat it or its angle grid. Do not repeat missing-intent searches
+Freeze one 10 Å selected-region centroid stress request using the existing
+registered paired window and fixed flanks. Measure maximum local displacement
+and starting link geometry before one preflight/one bounded recovery. No amplitude
+sweep. The 5 Å centerline target remains separate and unqualified. W217 receiving
+recovery is closed; do not repeat it or its angle grid. Do not repeat missing-intent searches
 or invent a target on the real X11_22 root. Rowan owns ordinary receiving and
 native qualification of the one shared W215 dictionary-parent artifact.
 
