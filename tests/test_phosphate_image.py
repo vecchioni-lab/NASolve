@@ -1,5 +1,6 @@
 """The named O3' image can be a nonbonded neighbour, even with P/OP1/OP2."""
 import json
+from pathlib import Path
 
 import pytest
 
@@ -133,6 +134,20 @@ def test_plain_ambiguous_report_names_both_copies(tmp_path, capsys):
                  "--nearest-image", "--geometry", str(geo)]) == 0
     output = capsys.readouterr().out
     assert "x-1,y,z" in output and "x,y,z" in output and "--o3-image" in output
+
+
+def test_5w6w_declared_edge_moves_phosphorus_and_doctor_moves_oxygen():
+    gemmi = pytest.importorskip("gemmi")
+    from nasolve.cif_phosphate_image import inspect_phosphate_image
+    root = Path(__file__).resolve().parents[1]
+    edge, = json.loads((root/"docs/recipes/5w6w-central-continuation.json").read_text())
+    report = inspect_phosphate_image(root/"MR_frames/5W6W/C_G.pdb", phosphate=edge["target_site"],
+                                     o3=edge["source_site"], nearest_image=True)
+    assert (edge["source_site"], edge["target_site"]) == ("B:7", "B:1")
+    assert gemmi.Op(edge["target_operator_xyz"]).inverse().triplet() == report["o3_image"] == "-x+y,-x,z"
+    assert report["distance_A"] == pytest.approx(2.794915,abs=.00001)
+    assert all(report["phosphate_atoms"][name] for name in ("P","OP1","OP2"))
+    assert report["phosphate_atoms"]["OP3"] is None
 
 
 def test_checkpoint_follows_its_own_model_and_geometry_after_relocation(tmp_path, capsys, monkeypatch):

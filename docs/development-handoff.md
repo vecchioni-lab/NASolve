@@ -1,7 +1,28 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-22, C535 separating base orientation from propynyl geometry — Rowan**.
+Updated **2026-11-22, C536 replaying the registered 5W6W central strand — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+C536 gives Pine's existing directed-boundary reader a
+[small reusable 5W6W declaration](recipes/5w6w-central-continuation.json).
+Use `-y,x-y,z` on the target B:1 P when holding B:7 O3′ fixed. Cedar
+uses the reciprocal `-x+y,-x,z` on O3′ when holding P fixed. The shipped
+`MR_frames/5W6W/C_G.pdb` has the same bytes as C518's starting frame.
+The registered seven-site strand and Cedar independently measure 2.794915 Å;
+the direct asymmetric-unit distance is 21.894628 Å. B:1 contains P, OP1
+and OP2. The 716 atoms outside those seven sites stayed in place.
+The generic W-metal sequence differs from this C_G frame at B:3 and B:4.
+Its target overlay belongs to this coordinate model. The covalent end
+convention applies to variants retaining the central strand.
+
+The W218 installed wheel built and reopened the identity-representation
+packet using `python -B c536_pine.py C534_JSON NASOLVE_ROOT NEW_DIRECTORY`.
+The standalone final inputs and compact science record share the existing
+C528 folder. The two directed operations are verified on the shipped model
+by `tests/test_phosphate_image.py`. The focused phosphate, periodic graph
+and sequence reference files passed 76 tests and 25 subtests in both source
+and relocated Cedar installations. No refinement, coordinate edit, new
+schema or default recipe change accompanies this example.
 
 C535 tested the C290-built orientations on the original no-mercury PDU pair.
 The existing graph-based rotation moved ten base atoms per residue about

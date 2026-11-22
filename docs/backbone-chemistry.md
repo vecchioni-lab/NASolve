@@ -95,6 +95,15 @@ To check the image in a saved model, run
 `nasolve cif-doctor phosphate-image MODEL.pdb --phosphate B:1 --o3 B:7 --nearest-image`.
 Use the remapped site labels when the construct's numbering has changed.
 
+Pine records a directed backbone edge from the 3′ oxygen to the receiving
+phosphorus. Its [5W6W continuation declaration](recipes/5w6w-central-continuation.json)
+therefore uses the inverse operation, `-y,x-y,z`, on **B:1 P** while B:7 O3′
+stays fixed. Both descriptions give 2.795 Å in the project's
+[`C_G.pdb` starting frame](../MR_frames/5W6W/C_G.pdb). This declaration
+requires the two registered B-strand ends to be representation boundaries.
+It describes the seven-site central strand. Other strands and their nicks
+can be declared separately.
+
 In the controlled PDU:PDU fit, a distance alone closed the gap but left the
 two O3′–P–OP angles at 84.5° and 129.3°. With angle and torsion forces evaluated
 in the named mate they reached 107.5° and 110.5° after five Phenix cycles.

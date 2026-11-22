@@ -129,6 +129,12 @@ C534 makes the image comparison available on an explicit model or saved
 checkpoint. It reproduces all four C528 nearest and next-nearest distances
 when supplied with the two confirmed sites. Ambiguous positions leave the
 choice open. Pine retains the declaration.
+C536 exercised that division on the shipped `MR_frames/5W6W/C_G.pdb`.
+Pine registered the seven central sites and read the directed B:7→B:1
+edge; Cedar independently found the reciprocal operation with P fixed.
+Both measured 2.795 Å. The other 716 atoms were outside the declared
+strand, with every coordinate preserved. The [reusable declaration](recipes/5w6w-central-continuation.json)
+supplies no refinement forces. Its use at an ordinary restart remains open.
 
 In C531, two historical PHIL edits completely masked the source-supported
 PDU target change from 1.607 to 1.470 Å. Updating both site-specific targets
