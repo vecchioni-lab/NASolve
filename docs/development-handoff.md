@@ -131,6 +131,10 @@ intent (`9d5030fbc06f436f428ec2cb88308e73c72b8c74`,
 `-y,x-y,z`, reciprocal `-x+y,-x,z`. It is a closed periodic strand, so an identity
 ASU representative can retain the cycle; do not force every connection into a
 single image-spanning tree. Preserve B1 P/OP1/OP2 and separate D1 terminal intent.
+The W196/W219 interior fixture fixes A9/B7 and A15/B1 as its two flanks:
+its mask cannot close the B7–image(B1) gap. C539 supplies connectivity intent,
+not permission to release those anchors. Declare a separate terminal/coupled
+window and its partner/junction context before a seam-placement experiment.
 That exact declared source must be verified before any new run; no missing-intent
 search or invented X11_22 motion is permitted. This note does not qualify a new
 native seam restraint or all three junction closures.

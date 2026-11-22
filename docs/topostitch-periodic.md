@@ -12634,7 +12634,10 @@ C539 retains `runtime_authority=false` and `scientific_approval=NOT_ASSESSED`.
 Willow's relabel/physical-boundary packet, numerical forces and native lifecycle
 are unchanged. This does not qualify a proposed recut frame, seam chemistry,
 all junctions or automatic adoption. The original source registration is not
-silently rebound to a different checkpoint.
+silently rebound to a different checkpoint. The existing W196/W219 interior
+window fixes both B7 and B1 in its flanks; it therefore cannot place this seam.
+A separate permitted terminal/coupled window is required, with explicit partner
+and protected-junction context. The graph declaration does not release anchors.
 
 The read-only controllers are
 `NASolve:branch-artifacts/willow/runners/w228-c539-review.py` and
