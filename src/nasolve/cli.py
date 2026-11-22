@@ -328,6 +328,8 @@ def build_parser() -> argparse.ArgumentParser:
     cif_assess.add_argument("--run", type=Path, help="assess a completed run's frozen checkpoint bundle")
     cif_assess.add_argument("--bundle", type=Path, help="assess an activated portable runtime bundle")
     cif_assess.add_argument("--checkpoint", help="checkpoint ID/bookmark (requires --run)")
+    cif_assess.add_argument("--bond-targets", nargs="?", const=True, type=Path, metavar="GEO",
+                            help="compare the bond lengths and sigmas Phenix requested with the supplied CIFs; give a GEO with --model, or use the recorded geometry with --run")
     cif_assess.add_argument("--b-factors-at", action="append", metavar="CHAIN:NUMBER",
                             help="read a residue's saved B factors and occupancies and compare them with the refinement parent (requires --run)")
     cif_assess.add_argument(
@@ -1983,22 +1985,39 @@ def _cif_doctor(args: argparse.Namespace) -> int:
             if args.refined_links and args.run is None:
                 raise ValueError("--refined-links requires --run")
             if args.bundle is not None:
+                if args.bond_targets is not None:
+                    raise ValueError("Bond target inspection needs a numbered run or an explicit model and GEO")
                 if args.run is not None or args.dictionaries or args.model is not None or args.checkpoint is not None or args.stage != "standalone":
                     raise ValueError("--bundle selects its frozen model/resources; omit --run, dictionaries, --model, --checkpoint and --stage")
                 from .cif_runtime_bundle import assess_runtime_bundle
                 payload = assess_runtime_bundle(args.bundle)
             elif args.run is not None:
+                if args.bond_targets is not None and args.bond_targets is not True:
+                    raise ValueError("--run uses its recorded geometry. Give --bond-targets without a GEO path.")
                 if args.dictionaries or args.model is not None or args.stage != "standalone":
                     raise ValueError("--run selects its frozen model/bundle; omit dictionaries, --model and --stage")
                 payload = assess_run(args.run, checkpoint=args.checkpoint, refined_planes=args.refined_planes,
                                      refined_links=args.refined_links, contact_sites=args.contacts_at,
-                                     b_factor_sites=args.b_factors_at)
+                                     b_factor_sites=args.b_factors_at, bond_targets=args.bond_targets is True)
             else:
                 if not args.dictionaries or args.checkpoint is not None:
                     raise ValueError("Provide dictionary paths, or --run with an optional --checkpoint")
                 paths = [path.expanduser().resolve() for path in args.dictionaries]
                 model = args.model.expanduser().resolve() if args.model is not None else None
+                if args.bond_targets is not None and (model is None or args.bond_targets is True):
+                    raise ValueError("Standalone --bond-targets requires a GEO path and --model PDB")
                 payload = assess_dictionaries(paths, stage=args.stage, model=model)
+                if args.bond_targets is not None:
+                    from .model_assessment import file_sha256
+                    from .refinement_component_bonds import apply_bond_target_review, read_component_bond_targets
+                    geometry = args.bond_targets.expanduser()
+                    bonds = read_component_bond_targets(model, geometry, payload["components"])
+                    if (payload["model"].get("sha256") != bonds["model_sha256"]
+                            or any(file_sha256(path) != item["sha256"] for path, item in zip(paths, payload["inputs"], strict=True))):
+                        raise ValueError("Model or dictionary changed during the bond target comparison")
+                    bonds["geometry"] = {"anchor": "geometry-input", "relative_path": geometry.name, "sha256": bonds["geometry_sha256"]}
+                    payload["refined_bond_targets"] = bonds
+                    apply_bond_target_review(payload)
                 root = Path(os.path.commonpath([str(path.parent) for path in paths]))
                 for item, path in zip(payload["inputs"], paths):
                     item.update({"anchor": "inputs", "relative_path": path.relative_to(root).as_posix()})
@@ -2021,6 +2040,22 @@ def _cif_doctor(args: argparse.Namespace) -> int:
             print(text, end="")
         else:
             print(f"CIF Doctor: {payload.get('status', 'PREPARED')}")
+            for field, stage in (("preflight_bond_targets", "Preflight"), ("refined_bond_targets", "Final")):
+                if field not in payload:
+                    continue
+                bonds = payload[field]
+                if bonds is None or bonds["counts"] is None:
+                    detail = (bonds.get("reason") or bonds["status"]) if bonds else "no recorded geometry"
+                    print(f"{stage} bond target comparison unavailable ({detail}).")
+                    continue
+                counts = bonds["counts"]
+                changes = sum(n for kind, n in counts.items() if kind in {"TARGET_DIFFERS", "TARGET_AND_SIGMA_DIFFER"})
+                changed_sigma = counts.get("SIGMA_DIFFERS", 0) + counts.get("TARGET_AND_SIGMA_DIFFER", 0)
+                print(f"{stage} bond targets in supplied components  {sum(counts.values())} printed bonds, "
+                      f"{changes} different lengths, {changed_sigma} different sigmas.")
+                for row in [r for r in bonds["observations"] if r["comparison"] in {"TARGET_DIFFERS", "TARGET_AND_SIGMA_DIFFER"}][:8]:
+                    print(f"  {row['site']} {row['component']} {'–'.join(row['atoms'])}  CIF {row['dictionary_ideal_A']:.3f} Å, "
+                          f"Phenix {row['printed_ideal_A']:.3f} Å ({row['origin']}), model {row['model_A']:.3f} Å.")
             if "b_factors" in payload:
                 for site, group in payload["b_factors"]["sites"].items():
                     if group.get("b_change_range_A2") is not None:

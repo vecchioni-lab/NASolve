@@ -137,7 +137,7 @@ def read_checkpoint_phosphate_image(run: Path, *, checkpoint: str, phosphate: st
 def assess_run(
     run: Path, *, checkpoint: str | None = None, refined_planes: bool = False,
     refined_links: bool = False, contact_sites: list[str] | tuple[str, ...] | None = None,
-    b_factor_sites: list[str] | tuple[str, ...] | None = None,
+    b_factor_sites: list[str] | tuple[str, ...] | None = None, bond_targets: bool = False,
 ) -> dict[str, object]:
     """Assess a selected run/checkpoint without creating or modifying artifacts.
 
@@ -152,6 +152,8 @@ def assess_run(
         raise ValueError("The refined plane option must be boolean")
     if type(refined_links) is not bool:
         raise ValueError("The refined link option must be boolean")
+    if type(bond_targets) is not bool:
+        raise ValueError("The bond target option must be boolean")
     if contact_sites is not None:
         from .refinement_contact_geometry import read_refined_contacts, validate_contact_sites
         validate_contact_sites(contact_sites)
@@ -198,7 +200,7 @@ def assess_run(
     model_descriptor["frozen_reference"] = dict(model_ref)
 
     outputs = selected.get("outputs", {})
-    if (refined_planes or refined_links or contact_sites) and not isinstance(outputs, Mapping):
+    if (refined_planes or refined_links or contact_sites or bond_targets) and not isinstance(outputs, Mapping):
         raise CheckpointError("Malformed checkpoint output references")
     if refined_planes:
         receipt["refined_planes"] = None
@@ -239,7 +241,7 @@ def assess_run(
         context = _preparation_context(run, registry, verified, selected)
         metrics = selected.get("metrics", {})
         recorded = isinstance(metrics, Mapping) and "inter_residue_bonds" in metrics
-    if refined_links or contact_sites:
+    if refined_links or contact_sites or bond_targets:
         from .refinement_link_geometry import preflight_link_inputs
         initial_files = preflight_link_inputs(run, selected)
         geometry = _final_geometry(run, selected)
@@ -249,6 +251,8 @@ def assess_run(
                 receipt[stage + "_links"] = None
             if contact_sites:
                 receipt[stage + "_contacts"] = None
+            if bond_targets:
+                receipt[stage + "_bond_targets"] = None
             if files is None:
                 continue
             (coords, coords_ref), (geo, geo_ref) = files
@@ -257,6 +261,9 @@ def assess_run(
                 observations_at_stage["links"] = read_prepared_link_geometry(context, coords, geo, allow_unassessed=recorded)
             if contact_sites:
                 observations_at_stage["contacts"] = read_refined_contacts(coords, geo, contact_sites)
+            if bond_targets:
+                from .refinement_component_bonds import read_component_bond_targets
+                observations_at_stage["bond_targets"] = read_component_bond_targets(coords, geo, receipt["components"])
             for kind, observed in observations_at_stage.items():
                 if (observed["model_sha256"] != coords_ref["sha256"].casefold()
                         or observed["geometry_sha256"] != geo_ref["sha256"].casefold()):
@@ -283,6 +290,9 @@ def assess_run(
             receipt["status"] = "UNASSESSED"
     if registry_ref is not None:
         tracked.append((existing_registry, registry_ref))
+    if bond_targets:
+        from .refinement_component_bonds import apply_bond_target_review
+        apply_bond_target_review(receipt)
     _require_registry_unchanged(existing_registry, registry_ref)
     if isinstance(phase, Path) and phase_ref is not None:
         tracked.append((phase, phase_ref))

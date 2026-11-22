@@ -78,8 +78,8 @@ def _values(header, line):
     return tokens, image
 
 
-def _printed_rows(text, labels):
-    """Consume every four-line bond block, including unknown native origins."""
+def _printed_rows(text, labels, *, intra_components=()):
+    """Read every bond section. Keep intramonomer rows for requested components."""
     sections = {}
     links = []
     origin = None
@@ -116,7 +116,7 @@ def _printed_rows(text, labels):
         numbers, image = _values(header, values)
         count += 1
         _require(count <= expected, "more bonds than declared in the header")
-        if image is None and left[0] == right[0]:
+        if image is None and left[0] == right[0] and left[1] not in intra_components:
             continue
         if image is None:
             model_distance = dist(xyz_left, xyz_right)

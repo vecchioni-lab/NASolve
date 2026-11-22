@@ -131,6 +131,9 @@ PDU target change from 1.607 to 1.470 Å. Updating both site-specific targets
 at the existing strength produced 1.472/1.468 Å in the written model, with
 the tips still 1.57/1.74 Å out of plane. Check the active native targets
 and original ring-plane coverage before changing either restraint strength.
+C532 now compares printed native bond targets to all supplied component CIFs
+at an ordinary checkpoint or on an explicit model/GEO pair. The old edits
+are visible without knowing the PDU atom names in advance.
 
 Q07 now has a fresh nine-pair model. Twelve ordinary mutations succeeded
 after correcting the orientation of DP and IMC from their source graphs.

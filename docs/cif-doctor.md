@@ -1,5 +1,27 @@
 # CIF Doctor
 
+## Checking which bond target reached Phenix
+
+A model can contain a corrected residue dictionary and a site instruction that
+still asks Phenix for the older bond length. To compare the input CIFs with
+the native printed targets, inspect a checkpoint or supply the exact files.
+
+```sh
+nasolve cif-doctor assess --run dataset/AutoMR/run_001 --checkpoint refine-002 --bond-targets
+nasolve cif-doctor assess PDU.cif --model refined_001.pdb --bond-targets refined_001_final.geo
+```
+
+Doctor compares the ideal length and sigma of each printed within-residue bond
+in the supplied components, at the precision of the GEO. It shows the printed
+origin and achieved model distance. A checkpoint can also provide its recorded
+preflight for comparison. In the original PDU pair the corrected CIF said
+1.470 Å, while two user-supplied restraints still said 1.607 Å. The model
+finished at 1.610 and 1.594 Å. A difference requests review of the effective
+inputs. An intentional site edit or a polymer-link modification can explain it.
+Use `--json` for sigma differences, explicit edits, and ambiguous or missing
+source rows. Chemical acceptance and any choice to edit restraints stay with
+the operator.
+
 ## Inspecting a phosphate at a crystal boundary
 
 When a strand may continue into the next crystal copy, identify the phosphorus,

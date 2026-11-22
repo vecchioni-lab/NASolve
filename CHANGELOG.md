@@ -8,6 +8,11 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `cif-doctor assess --bond-targets` compares the bond lengths and sigmas
+  Phenix used with the explicitly supplied residue dictionaries. It works on
+  saved checkpoints or a model and GEO, and preserves the separate dictionary
+  verdict when a native target differs.
+
 - The backbone guide records the standard 5W6W B:7 O3′–B:1 P symmetry
   connection and its operator, with the separate D:1 terminal phosphate.
 

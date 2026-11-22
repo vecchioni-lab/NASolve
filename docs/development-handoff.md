@@ -1,7 +1,19 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-22, C531 tracing an older site instruction that defeats a CIF repair — Rowan**.
+Updated **2026-11-22, C532 checking which dictionary bond targets reached refinement — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+C532 adds [bond-target inspection](cif-doctor.md#checking-which-bond-target-reached-phenix)
+to the existing CIF Doctor assessment. `refinement_component_bonds` reuses
+Doctor's parsed CIF inventory and the Phenix bond reader. `cif_doctor_run`
+reuses the selected checkpoint's verified preflight and final files. Four
+initial regression cases failed before the change. The focused source and
+relocated wheel each passed 115 tests and 7 subtests with
+`python -B -m pytest -q -p no:cacheprovider tests/test_refinement_component_bonds.py tests/test_refinement_link_geometry.py tests/test_cif_doctor.py tests/test_cif_doctor_run.py tests/test_phosphate_image.py`
+and `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src` (the relocated run used the
+installed wheel). The wheel independently reproduced the C531 measurements.
+The optional observation adds `bond_target_status` and per-stage readings.
+Existing saved runs need no migration. Full regression remains deferred.
 
 C531 changed only the PDU terminal carbon bond in the historical CIF, using
 the existing source-graph and Phenix energy-library comparison from C401.
