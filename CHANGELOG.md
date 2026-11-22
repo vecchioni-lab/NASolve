@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W218 — Distinguish region-centroid, RMS and maximum atom displacement
+
+- Add a read-only displacement summary to the existing coordinate mask with
+  explicit indices/positive weights and preserved fixed-atom/bound checks.
+- Keep centroid cancellation distinct from individual motion; do not infer
+  alignment, atom correspondence, crystal images, masses or a helix centerline.
+- Existing endpoint/preview/native formats and behavior remain unchanged. No
+  dependency, CLI/default or migration changes; 310 source/310 relocated
+  installed tests and exact saved-endpoint checks qualify the new method.
+
 ### W217 — Verify maintained shoulder seeds in native recovery
 
 - Complete one matched preflight/five-cycle recovery using installed W216 seeds,

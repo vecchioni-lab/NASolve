@@ -233,6 +233,56 @@ class CoordinateMask:
         self.expand(delta)  # Same finite-motion policy in both directions.
         return delta
 
+    def displacement_summary(self, points, *, weights=None):
+        """Measure one explicit region in an unchanged, caller-bound frame.
+
+        Weights follow ``indices`` exactly; None means equal weight per selected
+        atom, not mass or pair weighting. Every explicit weight must be finite
+        and positive, so no selected atom silently disappears. Return centroid
+        shift, weighted per-atom RMS and maximum displacement separately: a
+        bending region can move substantially while its centroid hardly moves.
+
+        Existing mask bounds and fixed-coordinate checks still apply. This
+        arithmetic does not authenticate atom correspondence, register a model,
+        align structures, unwrap crystal images or define a helix centerline.
+        Bind both endpoints, indices and the physical Cartesian frame before use.
+        Existing endpoint/preview audit formats and digests are not changed.
+        """
+        points=tuple(_vector(p)for p in points)
+        delta=self.displacements(points)
+        if weights is None:
+            values=(1.,)*len(self.indices)
+        else:
+            values=tuple(weights)
+            if len(values)!=len(self.indices) or any(type(w)not in (int,float)for w in values):
+                raise ValueError('Require one explicit numeric weight per selected atom')
+            try:values=tuple(float(w)for w in values)
+            except (OverflowError,ValueError)as exc:
+                raise ValueError('Require finite positive atom weights')from exc
+            if any(not math.isfinite(w)or w<=0 for w in values):
+                raise ValueError('Require finite positive atom weights')
+        peak=max(values)
+        scaled=tuple(w/peak for w in values)
+        total=math.fsum(scaled)
+        normalized=tuple(w/total for w in scaled)
+        # Reject dynamic ranges that erase an explicitly selected contribution.
+        if any(w==0 for w in normalized):
+            raise ValueError('Atom weight range loses a selected contribution')
+        def centroid(xyz):
+            return _vector(tuple(math.fsum(w*xyz[i][a]for i,w in zip(self.indices,normalized))for a in range(3)))
+        vectors=tuple(delta[i:i+3]for i in range(0,len(delta),3))
+        shift=_vector(tuple(math.fsum(w*v[a]for w,v in zip(normalized,vectors))for a in range(3)))
+        distances=tuple(math.hypot(*v)for v in vectors)
+        return dict(atom_indices=self.indices,normalized_weights=normalized,
+            weighting='uniform_atoms'if weights is None else'explicit',
+            reference_centroid_angstrom=centroid(self.reference),
+            candidate_centroid_angstrom=centroid(points),
+            centroid_displacement_vector_angstrom=shift,
+            centroid_displacement_angstrom=math.hypot(*shift),
+            weighted_rms_atom_displacement_angstrom=math.hypot(*(math.sqrt(w)*d for w,d in zip(normalized,distances))),
+            max_atom_displacement_angstrom=max(distances),
+            frame_identity_verified=False,centerline_measured=False)
+
     def project(self, gradients):
         gradients = tuple(_vector(g) for g in gradients)
         if len(gradients) != len(self.reference):

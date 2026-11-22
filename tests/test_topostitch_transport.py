@@ -240,3 +240,63 @@ def test_pivoted_rotation_refuses_improper_rotation_and_overflow():
         CartesianImage.around_pivot(((-1.,0.,0.),(0.,1.,0.),(0.,0.,1.)),(1.,2.,3.))
     with pytest.raises(ValueError,match='finite'):
         CartesianImage.around_pivot(((-1.,0.,0.),(0.,-1.,0.),(0.,0.,1.)),(1e308,0.,0.))
+
+
+
+def test_displacement_summary_distinguishes_cancelled_centroid_from_real_motion():
+    from nasolve.topostitch_transport import CoordinateMask
+    mask=CoordinateMask(((-1,0,0),(1,0,0),(9,9,9)),(0,1),3)
+    result=mask.displacement_summary(((-2,0,0),(2,0,0),(9,9,9)))
+    assert result['centroid_displacement_angstrom']==0
+    assert result['weighted_rms_atom_displacement_angstrom']==1
+    assert result['max_atom_displacement_angstrom']==1
+    assert result['atom_indices']==(0,1) and result['normalized_weights']==(.5,.5)
+    assert not result['frame_identity_verified'] and not result['centerline_measured']
+
+
+def test_displacement_summary_explicit_weights_follow_mask_order():
+    from nasolve.topostitch_transport import CoordinateMask
+    mask=CoordinateMask(((0,0,0),(10,0,0),(99,0,0)),(1,0),3)
+    result=mask.displacement_summary(((2,0,0),(8,0,0),(99,0,0)),weights=(3,1))
+    assert result['reference_centroid_angstrom']==(7.5,0,0)
+    assert result['candidate_centroid_angstrom']==(6.5,0,0)
+    assert result['centroid_displacement_vector_angstrom']==(-1,0,0)
+    assert result['centroid_displacement_angstrom']==1
+    assert result['weighted_rms_atom_displacement_angstrom']==2
+    assert result['max_atom_displacement_angstrom']==2
+    assert result['weighting']=='explicit'
+
+
+def test_displacement_summary_common_translation_and_frame_rotation():
+    from nasolve.topostitch_transport import CoordinateMask
+    reference=((1,2,3),(4,5,6));points=tuple(tuple(a+b for a,b in zip(p,(2,3,6)))for p in reference)
+    result=CoordinateMask(reference,(0,1),8).displacement_summary(points)
+    assert result['centroid_displacement_vector_angstrom']==(2,3,6)
+    for key in ('centroid_displacement_angstrom','weighted_rms_atom_displacement_angstrom','max_atom_displacement_angstrom'):assert result[key]==pytest.approx(7)
+    image=CartesianImage(((0.,-1.,0.),(1.,0.,0.),(0.,0.,1.)),(100,200,300))
+    transformed=CoordinateMask(tuple(map(image.apply,reference)),(0,1),8).displacement_summary(tuple(map(image.apply,points)))
+    assert transformed['centroid_displacement_vector_angstrom']==(-3,2,6)
+    for key in ('centroid_displacement_angstrom','weighted_rms_atom_displacement_angstrom','max_atom_displacement_angstrom'):assert transformed[key]==pytest.approx(result[key])
+
+
+@pytest.mark.parametrize('weights',[(0,1),(-1,1),(True,1),(float('nan'),1),(1,),(1,float('inf')),(1e-308,1e308)])
+def test_displacement_summary_refuses_ambiguous_weights(weights):
+    from nasolve.topostitch_transport import CoordinateMask
+    mask=CoordinateMask(((0,0,0),(1,0,0)),(0,1),2)
+    with pytest.raises(ValueError):mask.displacement_summary(mask.reference,weights=weights)
+
+
+def test_displacement_summary_retains_mask_bounds_and_fixed_atoms():
+    from nasolve.topostitch_transport import CoordinateMask
+    mask=CoordinateMask(((0,0,0),(1,0,0)),(0,),2)
+    with pytest.raises(ValueError,match='Fixed ASU'):mask.displacement_summary(((0,0,0),(1,0,1)))
+    with pytest.raises(ValueError,match='exceeds'):mask.displacement_summary(((3,0,0),(1,0,0)))
+
+
+def test_displacement_summary_large_finite_weights_are_normalized_without_overflow():
+    from nasolve.topostitch_transport import CoordinateMask
+    mask=CoordinateMask(((0,0,0),(1,0,0)),(0,1),2)
+    weights=[1e308,1e308];r=mask.displacement_summary(((1,0,0),(2,0,0)),weights=weights)
+    weights[0]=0
+    assert r['normalized_weights']==(.5,.5) and r['centroid_displacement_angstrom']==1
+    assert mask.reference==((0.,0.,0.),(1.,0.,0.))

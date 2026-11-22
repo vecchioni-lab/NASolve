@@ -3007,3 +3007,62 @@ part of this replay. Local install/replay runners and receipts live under
 `NASolve:branch-artifacts/willow/` in `runners/w216-*.py` and
 `w216-local-shoulder-proposals/`; the roadmap pins evidence. W211/W212 remain
 the separate prior recovery evidence, including residual geometry limitations.
+
+
+## Measure explicit region displacement (W218)
+
+Use the existing `CoordinateMask` for a read-only summary after binding atom
+correspondence and a common physical Cartesian frame:
+
+```python
+summary = mask.displacement_summary(candidate_points)
+# Optional positive weights follow mask.indices exactly:
+weighted = mask.displacement_summary(candidate_points, weights=atom_weights)
+```
+
+The default is an equal-weight centroid of the selected present atoms. Explicit
+weights may implement a separately declared scientific convention; no mass or
+base-pair weighting is inferred. The result records exact indices, normalized
+weights, both centroids, the weighted mean displacement vector and its length,
+weighted per-atom RMS, and maximum atom displacement. Opposite displacements can
+cancel in the centroid while RMS/max remain large. The vector is evaluated from
+individual differences to avoid subtracting large nearly equal centroid values.
+
+All weights must be finite and positive; wrong counts, booleans, zero/negative
+weights and numerical underflow that erases a selected contribution refuse.
+Normalization avoids overflow for large finite weights. Existing finite bounds,
+coordinate count and fixed-atom checks remain active. Results are detached.
+There is no alignment, symmetry unwrapping, radius or centerline fit, and no
+model/sequence/registration authority. Callers must prove exact source and
+endpoint identities and the common frame; the returned flags make that limit
+explicit. Existing motion, endpoint, preview and native schemas/hashes are
+unchanged. No CLI/default/dependency/migration change.
+
+Twelve new cases include independent cancellation/weighted/translation examples,
+frame rotation, weight rejection/overflow, exact fixed atoms and bounds. Eleven
+initial cases fail before the method exists. **310 focused source +310 relocated
+installed tests pass**, using optional Gemmi 0.7.5 for existing image tests; the
+metric itself has no new dependency. Run the W216 six-file command plus
+`tests/test_topostitch_transport.py`. The install test removes its build source
+and original installation first; local recipe: `runners/w218-install.py` under
+`NASolve:branch-artifacts/willow/`.
+
+The exact already-bound W207/W217 endpoint pairs pass 18 source and 19 installed
+checks; Phenix 2.2.1-6174 Python 3.11 produces the same serialized metrics
+(19 checks). An initial comparison mixed in-memory tuples with saved JSON lists;
+canonical JSON comparison corrected that harness check without a source change.
+No native calculation or refinement is repeated. The older independent W207
+centroid measurement agrees within 1e-12 Å:
+
+| Selected-region motion from the original model | Centroid shift | Atom RMS | Maximum atom motion |
+| --- | ---: | ---: | ---: |
+| W207 initial bend | 0.2530 Å | 1.7656 Å | 4.9618 Å |
+| W217 maintained seed | 0.00505 Å | 0.05695 Å | 0.33260 Å |
+| W217 recovered | 0.00287 Å | 0.02783 Å | 0.11760 Å |
+
+All rows use the same explicit 205 present-atom region in its original crystal
+frame. These numbers do not measure displacement from a helix centerline and do
+not meet either requested stress target. Receipts and source bindings stay in
+`NASolve:branch-artifacts/willow/w218-displacement-summary/`; the roadmap pins
+them. The next stress declaration must name its centroid weights/vector and
+initializer/recovery bounds before coordinates are generated.
