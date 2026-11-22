@@ -10,6 +10,7 @@ entries are reconstructed from repository history.
 
 ### Clarify DF sulfur-angle provenance
 
+- Add the independently verified free 2-thiothymine experimental comparator; retain the separate metal-bound chemical-state gate and unchanged restraints.
 - Distinguish regenerated eLBOW targets, native restraint delivery and independent chemical evidence; record the observed C2 distortion and existing-fragment readback. Chemical target review precedes another recovery experiment.
 - Documentation only; no restraint, runtime, schema or coordinate changes, new native run or full suite.
 

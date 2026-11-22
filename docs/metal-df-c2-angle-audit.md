@@ -36,9 +36,19 @@ DOI 10.1107/S205322961701542X.
 These are neutral free bases, not Hg-bound DF nucleotides. The comparison flags
 both the final 135°/109° split and the generated 127°/116° targets for chemical
 review; it does not establish the correct metal-bound targets or restraint widths.
-The closer 2-thiothymine small-molecule report was located (Matković-Čalogović
-et al., 2002, DOI 10.1107/S010827010201315X), but its full angle table/CIF could
-not be retrieved in this audit. Do not quote its unverified numerical angles.
+The closer independent free **2-thiothymine** comparator was subsequently
+recovered through the authors’ publicly indexed full text, following Cedar’s
+pointer: Matković-Čalogović, Bešić and Sanković (2002), Table 1 and supporting
+information sup-3, DOI 10.1107/S010827010201315X. It gives **N1–C2–S
+122.57(9)°, N3–C2–S 122.80(9)°, N1–C2–N3 114.63(10)°**, and C2=S
+**1.6735(13) Å**. The reported refinement uses 1,801 independent reflections
+and zero restraints. This is independent small-molecule evidence for a near
+symmetric sulfur direction in the neutral free base; its uncertainties are
+measurement uncertainties, not proposed refinement restraint widths. It still
+does not assign targets for N3–Hg DF.
+[Author-provided paper and supporting information](https://www.researchgate.net/publication/11184095_5-Methyl-2-thiouracil).
+Direct publisher retrieval failed; the numerical table and refinement details
+were verified in the indexed author full text. No local CIF was obtained.
 
 ## Actual numerical generator
 
