@@ -768,9 +768,12 @@ chemistry and its lifecycle. The single-bond experiment stays diagnostic.
 
 C520 found two matching intact DA→DC links from the same native capture. Their
 one bond, four angles and three torsions have identical targets, weights and
-torsion periodicities. The next distinct consumer check is delivery of these
-source-bound terms to the specified image, including torsion forces and local
-exclusions. A match between references cannot identify the covalent partner.
+torsion periodicities. C521 used both sets of original Phenix terms on separate
+coordinates at the proposed image. The bond, angle and torsion derivatives
+all matched finite differences on 24 coordinate axes. The next distinct
+consumer check is delivery of the seven missing terms alongside the image
+bond and its exclusion shells, including native selection, rebuild and reload.
+Partner identity remains an explicit Pine decision.
 
 | Job | In laboratory terms | What still closes it |
 | --- | --- | --- |

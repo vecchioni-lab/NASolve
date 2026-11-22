@@ -121563,5 +121563,31 @@
     "full_suite_run": false,
     "automatic_adoption": false,
     "local_reproduction": {"anchor": "NASolve_checkout", "path": "branch-artifacts/cedar/c520-phosphate-references/c520-science.json", "sha256": "2a8c955a1e605fec0084b5cf3c303778c7a0586d1acf7f41e9a188d4b9fba8b0"}
+  },
+  "source_phosphate_image_forces_2026_11_22": {
+    "milestone": "C521",
+    "branch_parent": "1ee28e42",
+    "native": "Phenix 2.2.1-6174 / cctbx unit-cell image, actual refinement-driver preparation",
+    "reference_sources": [["A:16", "A:17"], ["B:5", "B:6"]],
+    "source_chemistry_sha256": "20306d3d54021322c095d6cce324aa8091174f02cf984e36b0148c6468cff34d",
+    "at_candidate": "B:1 P to B:7 O3′, image -x+y,-x,z of the B:7 residue",
+    "source_term_counts": {"bond": 1, "angles": 4, "torsions": 3},
+    "numerical": "Each native reference proxy kept its original parameters. Eight distinct atoms were evaluated in an independent Cartesian array. Analytic gradients were rotated back to the written coordinates and checked on all 24 Cartesian axes at both central-difference steps.",
+    "steps_A": [0.0001, 1e-05],
+    "raw_energies": {"bond_simple": 10290.253408212151, "angle": 638.5984439222497, "dihedral": 7.928514769250759},
+    "raw_energies_at_original_reference": [{"bond_simple": 0.003100205200198832, "angle": 1.4156327564534408, "dihedral": 3.4333409673124478}, {"bond_simple": 0.08371448123705923, "angle": 0.06234058990740652, "dihedral": 3.6582392188595034}],
+    "max_absolute_gradient_error_at_1e_5": {"bond_simple": 6.274894985835999e-07, "angle": 6.777116823286633e-08, "dihedral": 7.516627320569569e-10},
+    "deliberately_unrotated_gradient_max_error": {"bond_simple": 25525.747546353097, "angle": 1139.8697599592183, "dihedral": 8.826882166611234},
+    "unchanged_atom_count": 862,
+    "unchanged_selected_amplitudes": 1909,
+    "unchanged_measured_free": 124,
+    "native_manager_unchanged": true,
+    "full_suite_run": false,
+    "refinement_cycles": 0,
+    "active_force_installed": false,
+    "physical_partner_assigned": false,
+    "reproduction": {"worker_sha256": "ad6fba3a10940c5bd8dfbfe30546daae4379fe163e438333b8b521cad836a648", "controller_sha256": "4873db8b2300e6203cb90eeda5efe5013f49f1c7dbb6c5515a7faad5f76cdfdd", "receipt_sha256": "8f3ed650506e37991e574cd5c4fc9785dab5c04e9f183d3f351adcbcc70e15e3"},
+    "next": "Deliver missing terms exactly once with the effective exclusion shells and the active manager at rebuild/reload. Preserve declared partner authority in Pine.",
+    "local_reproduction": {"anchor": "NASolve_checkout", "path": "branch-artifacts/cedar/c521-phosphate-image-forces/c521-science.json", "sha256": "bbf5db1508c0737cddba2b12c68c3a5e3060647bf0295bc653ab1c246cebc5b7"}
   }
 }

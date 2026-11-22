@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-22, C520 finding intact phosphate references in the same model — Rowan**.
+Updated **2026-11-22, C521 measuring all eight source terms across the crystal boundary — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
 **Q06, original PDU:PDU.** The molecule on the other side of B:1 looks close in
@@ -22,12 +22,22 @@ refinement that preserves it. Willow W68 already checked image-aware angle
 energies and gradients and found that native angle serialization loses the images.
 
 C520 found two ordinary DA→DC links in the historical capture, A:16→A:17 and
-B:5→B:6. Their local dictionaries match B:7/B:1, and all eight recorded
-cross-residue covalent terms agree: one bond, four angles and three torsions.
+B:5→B:6. Their local dictionaries match B:7/B:1, and their one bond, four
+angles and three torsions agree in both identity and numerical parameters.
 D:1's terminal dictionary matched neither example. The optional native receipt
 reading generalizes this lookup to other matching monomer definitions. It keeps
 competing examples separate. The intact references supply candidates for an
 image-aware force check, while Pine owns the identity of the intended connection.
+
+C521 checked those eight terms against the actual crystal mate. Both references
+gave the same energy for each family. Moving each of the eight atoms a small
+distance along each Cartesian axis confirmed all three force calculations.
+At a 0.00001 Å step the largest discrepancy was 6.3 × 10⁻⁷ in raw
+Phenix derivative units. Leaving out the rotation produced large errors in
+every family. The experiment used a separate coordinate array. The native
+model, geometry inventory and diffraction observations stayed unchanged. The
+next force test is to count the missing angles and torsions exactly once in a
+live manager, together with its changed exclusions, through rebuilding and reload.
 
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in
