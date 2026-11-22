@@ -540,3 +540,156 @@ def test_live_policy_invalid_dependency_refuses_before_sdk_import(arguments):
         NativeMaskedObjective(None,None,b'',None,movable_indices=[],expected_native_signature='',
             correction=None,native_audit=None,tether_sigma_angstrom=1,max_displacement_angstrom=1,
             max_evaluations=100,**arguments)
+
+
+def motion_case():
+    from nasolve.topostitch_transport import TaperedMotion
+    motion=TaperedMotion(CoordinateMask(((1.,0.,0.),(0.,0.,0.)),(0,),2.),
+        (0.,0.,0.),(1.,0.),source_model_sha256='a'*64)
+    calls=[]
+    def evaluate(parameters):
+        calls.append(tuple(parameters));target=sum((x-y)**2 for x,y in zip(parameters,(0.,0.,0.,.3,0.,0.)))
+        return dict(target=target,gradient=tuple(2*(x-y)for x,y in zip(parameters,(0.,0.,0.,.3,0.,0.))),
+            points=motion.mask.expand(motion.displacements(list(parameters))))
+    return motion,evaluate,calls
+
+
+def motion_optimizer(lbfgs, *, failed=False, rejected=False, corrupt_source=False):
+    def run(*,target_evaluator,log,**kwargs):
+        target_evaluator.x[:]=[0.,0.,0.,.2004,0.,0.]
+        target_evaluator.compute_functional_and_gradients()
+        target_evaluator.callback_after_step(SimpleNamespace(iter=lambda:1,nfun=lambda:1))
+        if rejected:
+            target_evaluator.x[:]=[0.,0.,0.,.3,0.,0.]
+            target_evaluator.compute_functional_and_gradients()
+        if corrupt_source:
+            from pathlib import Path
+            Path(lbfgs.__file__).write_text('# changed optimizer\n')
+        if failed:raise RuntimeError('native line search failed')
+        log.write('lbfgs minimizer stop: max_iterations\n')
+        return SimpleNamespace(error=None,iter=lambda:1,nfun=lambda:2 if rejected else 1)
+    lbfgs.run=run
+
+
+def test_motion_trial_keeps_units_exact_points_and_capped_outcome(fake_optimizer):
+    from nasolve.topostitch_trial import run_native_motion_trial
+    motion,evaluate,calls=motion_case();motion_optimizer(fake_optimizer)
+    result=run_native_motion_trial(evaluate,motion,initial_parameters=[0.]*6,
+        max_iterations=1,max_optimizer_calls=5,max_evaluations=58)
+    assert result['status']=='ENDPOINT_DERIVATIVES_PASS'
+    assert result['stopping']['reason']=='max_iterations'and not result['stopping']['native_criterion_met']
+    assert result['callback_evaluations']==len(calls)==54
+    assert result['initial_derivatives']['evaluation_calls']==26
+    assert result['full_precision_derivatives']['evaluation_calls']==26
+    assert result['parameter_units']==['degree']*3+['angstrom']*3
+    assert all('step_angstrom'not in r and r['step']in (1e-4,1e-5)
+        for r in result['initial_derivatives']['derivatives'])
+    assert result['baseline_restoration']['status']=='EXACT_REPEAT'
+    assert calls[-1]==(0.,)*6
+    assert result['full_precision_derivatives']['baseline']['points'][1]==(0.,0.,0.)
+    assert not result['serialized_endpoint_qualified']and not result['scientific_acceptance']
+    assert not result['coordinate_writer_called']and not result['automatic_adoption']
+
+
+def test_motion_trial_failure_never_promotes_lower_rejected_step(fake_optimizer):
+    from nasolve.topostitch_trial import run_native_motion_trial
+    motion,evaluate,calls=motion_case();motion_optimizer(fake_optimizer,failed=True,rejected=True)
+    result=run_native_motion_trial(evaluate,motion,initial_parameters=[0.]*6,
+        max_iterations=2,max_optimizer_calls=5,max_evaluations=58)
+    assert result['status']=='FAILED'and result['error']=='RuntimeError: native line search failed'
+    assert result['trace'][1]['target']<result['trace'][0]['target']
+    assert result['accepted_steps']==[dict(iteration=1,calls=1,trace_index=0)]
+    assert 'full_precision_derivatives'not in result
+    assert result['baseline_restoration']['status']=='EXACT_REPEAT'
+    assert len(calls)==29
+
+
+@pytest.mark.parametrize('failure',['points','gradient','target','wrong_gradient','changed_repeat'])
+def test_motion_trial_refuses_bad_callback_before_optimizer(fake_optimizer,failure):
+    from nasolve.topostitch_trial import run_native_motion_trial
+    motion,evaluate,calls=motion_case();motion_optimizer(fake_optimizer)
+    def bad(p):
+        row=evaluate(p)
+        if failure=='points':row['points']=((99.,0.,0.),(0.,0.,0.))
+        elif failure=='gradient':row['gradient']=[0.]*5
+        elif failure=='target':row['target']=float('nan')
+        elif failure=='wrong_gradient':row['gradient']=[0.]*6
+        else:row['target']+=len(calls)*1e-3
+        return row
+    result=run_native_motion_trial(bad,motion,initial_parameters=[0.]*6,
+        max_iterations=2,max_optimizer_calls=5,max_evaluations=58)
+    assert not result['optimization_started']
+    assert result['status']in ('FAILED','INITIAL_DERIVATIVE_REVIEW')
+    assert not result['trace']and not result['automatic_adoption']
+
+
+@pytest.mark.parametrize('options',[
+    {'max_iterations':True},{'max_optimizer_calls':0},{'max_evaluations':57},
+    {'initial_parameters':[0.]*5},{'initial_parameters':[0.,0.,0.,3.,0.,0.]}])
+def test_motion_trial_bad_declaration_has_no_callback(options):
+    from nasolve.topostitch_trial import run_native_motion_trial
+    motion,evaluate,calls=motion_case();kwargs=dict(initial_parameters=[0.]*6,
+        max_iterations=2,max_optimizer_calls=5,max_evaluations=58);kwargs.update(options)
+    with pytest.raises(ValueError):run_native_motion_trial(evaluate,motion,**kwargs)
+    assert not calls
+
+
+def test_motion_trial_requires_a_source_bound_motion():
+    from nasolve.topostitch_trial import run_native_motion_trial
+    from nasolve.topostitch_transport import TaperedMotion
+    motion,evaluate,calls=motion_case();unbound=TaperedMotion(motion.mask,motion.origin,motion.weights)
+    with pytest.raises(ValueError,match='source-bound'):
+        run_native_motion_trial(evaluate,unbound,initial_parameters=[0.]*6,
+            max_iterations=2,max_optimizer_calls=5,max_evaluations=58)
+    assert not calls
+
+
+def test_motion_trial_optimizer_source_drift_keeps_failure(fake_optimizer):
+    from nasolve.topostitch_trial import run_native_motion_trial
+    motion,evaluate,calls=motion_case();motion_optimizer(fake_optimizer,corrupt_source=True)
+    result=run_native_motion_trial(evaluate,motion,initial_parameters=[0.]*6,
+        max_iterations=1,max_optimizer_calls=5,max_evaluations=58)
+    assert result['status']=='FAILED'and 'sources changed'in result['error']
+    assert result['baseline_restoration']['status']=='EXACT_REPEAT'
+
+
+def test_motion_trial_restoration_failure_cannot_leave_a_pass(fake_optimizer):
+    from nasolve.topostitch_trial import run_native_motion_trial
+    motion,evaluate,calls=motion_case();motion_optimizer(fake_optimizer)
+    def changed(p):
+        row=evaluate(p)
+        if len(calls)==54:row['target']+=1
+        return row
+    result=run_native_motion_trial(changed,motion,initial_parameters=[0.]*6,
+        max_iterations=1,max_optimizer_calls=5,max_evaluations=58)
+    assert result['status']=='FAILED'and result['baseline_restoration']['status']=='FAILED'
+    assert 'restor'in result['error'].lower()
+
+
+def test_motion_trial_checks_optimizer_pins_after_restoration(fake_optimizer):
+    from nasolve.topostitch_trial import run_native_motion_trial
+    from pathlib import Path
+    motion,evaluate,calls=motion_case();motion_optimizer(fake_optimizer)
+    def changed(p):
+        row=evaluate(p)
+        if len(calls)==54:Path(fake_optimizer.__file__).write_text('# changed during restore\n')
+        return row
+    result=run_native_motion_trial(changed,motion,initial_parameters=[0.]*6,
+        max_iterations=1,max_optimizer_calls=5,max_evaluations=58)
+    assert result['status']=='FAILED'and 'sources changed'in result['error']
+    assert result['baseline_restoration']['status']=='EXACT_REPEAT'
+
+
+@pytest.mark.parametrize('error,calls,iterations', [('native error',1,1),(None,2,1),(None,1,3)])
+def test_motion_trial_rejects_native_error_and_unaccounted_counts(fake_optimizer,error,calls,iterations):
+    from nasolve.topostitch_trial import run_native_motion_trial
+    motion,evaluate,seen=motion_case();motion_optimizer(fake_optimizer)
+    original=fake_optimizer.run
+    def changed(**kw):
+        original(**kw);return SimpleNamespace(error=error,nfun=lambda:calls,iter=lambda:iterations)
+    fake_optimizer.run=changed
+    result=run_native_motion_trial(evaluate,motion,initial_parameters=[0.]*6,
+        max_iterations=1,max_optimizer_calls=5,max_evaluations=58)
+    assert result['status']=='FAILED'and result['error']
+    assert 'full_precision_derivatives'not in result
+    assert result['baseline_restoration']['status']=='EXACT_REPEAT'

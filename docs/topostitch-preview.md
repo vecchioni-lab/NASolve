@@ -3066,3 +3066,86 @@ not meet either requested stress target. Receipts and source bindings stay in
 `NASolve:branch-artifacts/willow/w218-displacement-summary/`; the roadmap pins
 them. The next stress declaration must name its centroid weights/vector and
 initializer/recovery bounds before coordinates are generated.
+
+## Run a bounded collective trial (W226)
+
+`nasolve.topostitch_trial.run_native_motion_trial` adds an explicit six-parameter
+optimizer driver alongside the unchanged Cartesian `run_native_masked_trial`.
+It consumes a source-bound `TaperedMotion` and a caller-qualified callback,
+for example `lambda p: objective.evaluate_motion(motion, p)` on an already
+qualified `NativeMaskedObjective`. Native construction, original chemistry,
+corrected forces, neighbor policy and model/process lifetime stay with their
+existing owners. Supplying a digest is not independent source authentication.
+
+```python
+from nasolve.topostitch_trial import run_native_motion_trial
+
+report = run_native_motion_trial(
+    lambda p: objective.evaluate_motion(motion, p),
+    motion,
+    initial_parameters=[0, 0, 0, 0, 0, 0],
+    max_iterations=20,
+    max_optimizer_calls=100,
+    max_evaluations=153,
+)
+```
+
+Parameters and gradients use three rotation-vector components in **degrees**
+and three translations in **Å**; there is no hidden rescaling. The driver checks
+that every callback returns the exact prescribed complete points, a finite
+scalar and six finite gradients. It counts attempted callbacks, including failed
+ones. The total budget reserves two 26-call derivative audits plus one baseline
+restoration: `max_evaluations >= 53 + max_optimizer_calls`. The underlying
+objective must separately have enough remaining budget; this driver cannot
+grant extra native evaluations. Callback counts are not a count of any hidden
+native work inside a supplied callback.
+
+The installed scitbx optimizer is byte-pinned. Initial/final derivatives reuse
+the existing two-step absolute 0.001 policy with correct per-variable unit
+labels. Accepted-step history remains distinct from evaluated/rejected trials.
+Errors, count mismatches, source drift and failed restoration cannot leave a
+successful result. The reported stop reason and convergence criterion remain
+separate from `ENDPOINT_DERIVATIVES_PASS`; an iteration cap is not convergence.
+An interrupted run does not start an extra restoration callback.
+
+The additive schema-1 `topostitch-bounded-native-motion-trial` report contains
+bindings, limits, compact trace, accepted steps, derivative audits, stopping and
+restoration evidence. It writes no coordinates and grants no geometry/adoption
+permission. **No PDB-rounding qualification is claimed.** Rounding generally
+moves an endpoint off the exact six-parameter surface; use the existing masked
+byte audit and qualified native receiving/geometry checks separately. Existing
+Cartesian reports, CLI/defaults, dependencies and ordinary execution are unchanged.
+
+W226 qualification: **378 focused source tests and 378 relocated-installed
+passes**, including 19 new protocol regressions. The first 15 new cases failed
+before the implementation. The clean wheel was built offline; its build source
+and original install path were removed before testing the relocated install.
+Wheel SHA256:
+`ed39b27fb3219982e12295c01d901d1b181ea34c9a080d867869a0877cd3dc65`.
+The eight test files are `test_topostitch_{trial,transport,local,endpoint,
+preparation,native_window,checkpoint,execution}.py`, run with
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src` and `python -B -m pytest -q -p
+no:cacheprovider` (the installed run substitutes the relocated package path).
+
+One actual **Phenix 2.2.1-6174** installed-driver qualification completed a
+zero-cycle preparation and read-only geometry optimization, **not refinement**.
+All 24 optimizer evaluations, 20 accepted steps and final coordinates/energies
+match W223 exactly; the stop remains the declared 20-iteration cap. Both endpoint
+derivative audits pass the unchanged absolute 0.001 bound (maximum error
+0.000850484). The driver counts **77 callbacks**; the observer counts **80 native
+geometry evaluations**, including its three separate baseline/endpoint checks.
+There are no coordinate writes, diffraction scores, fits or automatic adoption.
+All source chemistry, data and hooks survive/restored; **26 cold checks pass**.
+A redundant post-driver gradient readback differs by at most 3.93e-13, within
+its 1e-10 comparison; the optimizer trajectory itself matches exactly. The
+first cold reader's overly strict equality assumption is preserved locally.
+
+Local receipts use the `NASolve` anchor under
+`branch-artifacts/willow/w226-collective-trial/`: `install/installed-check.json`,
+`native-review.json`, and the frozen native request/execution/record. Reproduction
+controllers live under the same anchor's `branch-artifacts/willow/runners/`:
+`w226-install.py`, `w226-native-parity.py`, `w226-native-observer.py`, and
+`w226-review.py`. These generated science/installation artifacts are excluded
+from Git. They qualify this frozen synthetic trajectory, not general scientific
+repair or ordinary integration. **The complete suite is deferred to the merge
+gate under Rowan's direction for tonight's focused run; it is not claimed passed.**

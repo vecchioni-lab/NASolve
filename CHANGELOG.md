@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W226 — Bound native collective-motion trials explicitly
+
+- Add a six-parameter trial driver beside the unchanged Cartesian API, using
+  source-bound motion and caller-qualified native callbacks.
+- Retain physical units, exact prescribed points, hard evaluation limits,
+  accepted/rejected step distinctions, derivative audits, optimizer source pins
+  and baseline restoration; preserve capped/failed outcomes without adoption.
+- Add a detached report schema; no coordinate writer, PDB-rounding claim,
+  CLI/default/dependency change or migration of existing reports.
+
 ### W222–W225 — Qualify staged recovery of a large synthetic perturbation
 
 - Qualify the existing live corrected collective force callback, then record a
