@@ -780,6 +780,44 @@ has yet been qualified. Reuse shared geometry/movement owners rather than a
 second structural engine. Geometry-changing branch points use protected-parent
 retention; only qualified cheap frozen increments receive lean retention.
 
+### Cluster orientation controls and exploratory relaxation (22 November intent)
+
+Before a de novo cluster search, use the supplied human-solved cluster models as
+explicitly reference-seeded diagnostic fixtures. Rotate the whole cluster within
+and partly outside its DNA pocket, retaining an unchanged control. Compare DNA
+anchor contacts, cluster shape, local base/frame and backbone accommodation,
+ordinary/anomalous maps and occupancy-aware cluster-total f″ after the same
+open XYZ/B → branch-specific environmental B → frozen f″/Q sequence. Stored
+reference f″ may be absent or belong to another refinement stage; it is not
+assumed truth. These experiments test the mechanics and response, not A07
+reconstruction with limited prior knowledge.
+
+Include a symmetry/permutation null control first. For an exact polyhedral
+symmetry that maps the occupied metal positions onto themselves, identical
+scatterers with matching Q, B/tensors and anomalous parameters have the same
+calculated scattering. Reassign atom labels and every associated restraint/recipe
+edge consistently when testing relabelling invariance. Record the actual site
+correspondence and numerical tolerance. A distorted cluster, unequal site
+properties, a non-equivalent pocket orientation or an element-changing
+permutation is not this null control; such changes can have a real effect.
+This distinguishes bookkeeping failures from physical orientation sensitivity.
+
+Later, freeze a de novo request and generate/test count and pose alternatives
+through the general construction and anomalous mechanics, with solved coordinates
+withheld. Compare the independently frozen candidates against the references
+only afterward. Do not turn the reference-seeded diagnostic into a reconstruction
+success claim or an unstated dataset-specific recipe.
+
+**Exploratory question, not a feature commitment:** could restrained energy
+minimization or short molecular-dynamics sampling supply useful additional poses?
+Geometry minimization and trajectory sampling are distinct. Any feasibility
+study must qualify the metal–metal/ligand model, charge/redox assumptions and
+DNA/environment treatment; lower calculated energy alone is not crystallographic
+validation. Compare against the simpler rigid-pose/refinement baseline and retain
+only a demonstrated scientific benefit. QM/MM is a possible research route,
+not an installed capability or present A01–A08 completion requirement. No new
+engine, simulation run or molecular-dynamics feature is authorized by this note.
+
 ## Local chemistry-aware target suggestions
 
 The default ligand state comes from the effective NARestraints, CIF Doctor and

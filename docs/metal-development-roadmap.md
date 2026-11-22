@@ -1,6 +1,6 @@
 # Post-merge metal-coordination roadmap
 
-Updated **21 November 2026**. Working branch **Alder**. The feature milestones
+Updated **22 November 2026**. Working branch **Alder**. The feature milestones
 below are numbered **A01–A09** and are explicitly **post-merge work**. A09 is
 further deferred until after the main build and core A01–A08 work. These are
 not prerequisites for merging the current experimental implementation.
@@ -242,66 +242,23 @@ lower the target with essentially unchanged attachment angles. These are
 completed diagnostics, not accepted models. Small fractional deviations are
 descriptive; broad geometry and combined scientific evidence guide review.
 
-1. **A01:** the matched small-movement continuation is complete. Both arms
-   improve final Rwork/Rfree to about 0.28/0.29, but reach essentially identical
-   DF attachment lengths and retain bent Hg coordination/negative difference
-   density. No preferred endpoint or new f″ parent is selected. Close this
-   subgoal; reuse the recorded delivery/derivative/weight controls rather than
-   repeating them. The completed saved-model review finds both compressed donor
-   span and off-line Hg placement: continued N3 spans are 3.49–3.52 Å, with Hg
-   about 1.03–1.07 Å off the donor line and nearly centered axially. Parent and
-   human-reference C1′ spans agree near 10.40 Å despite different donor spans;
-   local base pose matters, not just opening the DNA. The human reference is
-   descriptive and has a short DF attachment itself. No recipe or coordinates
-   changed. The later actual-state diagnostic separates the conflict: phased
-   likelihood opposes tested Hg-only straightening while recipe and nonbonded
-   geometry favour it; finite Hg movements worsen the combined target. The
-   base-opening finite profile is withheld after one predeclared numerical check
-   misses tolerance. Do not repeat or loosen that check. The explicit local
-   coordination alternative is now complete: replacing the donor-vertex 0° term
-   with a stronger metal-centred 180° term opens the bridge to 154.5°, but leaves
-   a 1.686 Å Hg–O4 contact and 1.642 Å DF attachment, with Rwork/Rfree
-   0.3057/0.3338 versus 0.2802/0.2902 in the unchanged continuation. Native delivery
-   and 263 cold checks pass; this is an unselected result, not an adopted recipe.
-   B/scaling differ, so the reduced negative Hg map signal is not independent
-   occupancy evidence. Close this angle subgoal. Next scope a bounded linked
-   base/metal pose proposal through existing owners, preserving covalent geometry
-   and polymer links; no new mover or f″ parent is yet qualified. The coordinated
-   reuse audit finds rigid fragment/pair arithmetic and an exact byte/mask guard,
-   but no qualified modified-donor/metal move with both junctions closed. Extend
-   the shared admission/chemistry boundary deliberately; do not duplicate a B/Q
-   guard or treat canonical displacement evidence as metal qualification.
-   The read-only movement-region substep is now complete: explicit prepared
-   contexts and the full C410 native capture identify 41 FT_Hg atoms, four fixed
-   flanks and 36 crossing bonded terms. Saved-model junctions and native target
-   delivery are checked without new refinement. This is an inventory ingredient,
-   not closure, source authentication, modified-mover admission or A01 completion.
-   A private 25-case fixed-endpoint donor study now reuses shared motion
-   arithmetic: all four bond lengths stay exact, with at most 2.27° junction-angle
-   change and 0.730 Å atom movement. Donor spans remain 3.379–3.938 Å, short of
-   the tested idealized 4.20 Å linear-contact span, and inherited attachment
-   strain remains. No candidate or native fit is selected. Close this numerical
-   substep; do not repeat its grid. Next separate donor/Hg pose choices, review
-   crossing geometry/packing and qualify source-bound modified-metal admission,
-   protected B/Q and fresh child diffraction through the shared owners.
-   The 21 November selective attachment-stiffness control is also complete:
-   halving DF C1′–N1 sigma shortens it to 1.534 Å, but stretches N1–C2 to
-   1.547 Å and leaves Rwork/Rfree at 0.3060/0.3391, with different final B/scaling.
-   It supplies no new default or accepted endpoint. Saved maps/contact tables
-   do not support direct attachment crowding or independent occupancy inference.
-   Close this control, retain its evidence, and scope coherent source-bound
-   base/sugar/neighbor placement. Reuse the already correct initial constructor;
-   do not confuse rigid transport of a strained residue with internal repair.
-   Reuse Cedar's related placement and Willow's
-   transport pieces without claiming modified-metal qualification. The
-   [current A01 science record](metal-development-handoff.md#a01-current-science-attachment-stiffness-transfers-strain)
-   records exact values, checks, missing evidence and the next admission boundary.
-   The later saved-state B review finds preserved DF/DT base–scaffold offsets.
-   One explicit 45-versus-43-group native comparison releases those offsets,
-   but leaves DF attachment at 1.610 Å, Hg–O4 at 1.436 Å and Rwork/Rfree
-   0.3053/0.3349. Close that distinct control as well; no new B-group default,
-   reset grid or f″ parent is selected. Reuse its actual native membership and
-   written-state evidence before considering further ADP changes.
+1. **A01:** the source-consistent coupled pair/flank starting-pose experiment is
+   complete. Six rigid residues and Hg preserve eight polymer-link lengths and
+   internal geometry before a matched five-cycle native fit. Open refinement
+   returns to a 1.674 Å DF attachment, 116.95° Hg bridge and 1.322 Å Hg–O4
+   contact, with Rwork/Rfree 0.3066/0.3431. All original effective targets remain
+   delivered; maps resemble the original fit. No accepted endpoint or f″ parent
+   is selected. Close this subgoal and reuse the completed small-movement,
+   target-force, local-angle, pivot, attachment-stiffness and split-B controls;
+   the [current A01 record](metal-development-handoff.md#a01-current-science-coupled-placement-does-not-survive-open-refinement)
+   keeps their evidence and limits. Next qualify an exact native-state observation
+   for one predefined coordinated displacement, separating work-only diffraction
+   from chemistry/overlap forces with unchanged scales, MLHL state and B/Q.
+   The final live target was not saved; map coefficients and the pre-ADP last-XYZ
+   observer cannot substitute for it. Scope the missing capture/replay through
+   existing shared owners before another fit. Preserve identity-keyed writing,
+   fixed atoms, complete crossing terms, numerical refusal and modified-metal
+   admission boundaries. No new geometry engine, repeated grid or default follows.
 2. **A01 → A02:** qualify an open XYZ/B endpoint through local chemistry,
    coordination, Rwork/Rfree, stopping evidence and maps. Derive environmental
    metal B from the actual refined donors/base-only atoms, report disagreement
@@ -481,7 +438,7 @@ count/identity as an unstated input, or encode dataset-name-specific answers.
 General recipe families and chemical knowledge are allowed; reference-derived
 case-specific geometry is not evidence of reconstruction with limited priors.
 
-Keep human solutions for **endpoint comparison only**. Their XYZ/Q/B snapshots
+For A07 reconstruction qualification, keep human solutions for **endpoint comparison only**. Their XYZ/Q/B snapshots
 may be useful, but their stored f″ values may be absent or reflect a later
 refinement stage and must not be treated as fitted truth. Coordinate comparisons
 must respect symmetry and atom correspondence. Compare local chemistry,
@@ -489,6 +446,14 @@ coordination, metal placement/count/identity where identifiable, Q/B plausibilit
 f″ response, ordinary/anomalous maps and the recorded Rwork/Rfree context.
 Rwork below 0.30 is the existing target, not sufficient scientific acceptance;
 never change Free-R membership to improve a result.
+
+A separate, explicitly reference-seeded cluster diagnostic may start from the
+supplied solved structures to test rigid pocket rotations, a symmetry/permutation
+null control and coupled DNA accommodation before re-evaluating f″. This is an
+A03/A02 mechanics test, not A07 reconstruction evidence. The
+[orientation-control contract](metal-restraint-builder.md#cluster-orientation-controls-and-exploratory-relaxation-22-november-intent)
+records this distinction and a separate noncommitted MD/relaxation feasibility
+question. De novo cluster qualification continues to withhold solved coordinates.
 
 The panel starts with **FT_Hg** and **FF_AuAg**, then covers **7CCA_Ag4**,
 **7CCA_Ag6**, **FF_3Ag**, **iCiU_Ag**, and **PP_Hg** when its PDU ligand gate is

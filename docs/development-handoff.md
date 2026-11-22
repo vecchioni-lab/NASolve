@@ -59,6 +59,15 @@ tests require explicit native opt-in. The source/installed gates do not execute
 a new scientific Phenix refinement. These records remain distinct from separate
 historical Alder and Cedar full passes.
 
+The 22 November A01 coupled pair/flank placement comparison is complete:
+source-consistent starting geometry does not survive the matched open XYZ/group-B
+fit. The [current metal science record](metal-development-handoff.md#a01-current-science-coupled-placement-does-not-survive-open-refinement)
+owns geometry/maps, the preserved exporter refusal, exact validation and the next
+fixed-state force diagnostic. A01 remains partial and A02 gated; runtime and
+integration qualification below are unchanged. The compact report is
+`ScienceCheckouts/Hazel/2026-11-22_ft-coupled-placement/index.html` beside the
+repositories; no models/maps are copied into that report or committed.
+
 Today's scientific readback and small storage rehearsal are in the
 [metal handoff](metal-development-handoff.md). A01 remains partial, A02 gated,
 and A04 partial. The afternoon checkout at

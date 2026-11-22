@@ -8,6 +8,25 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record the FT_Hg coupled-placement comparison
+
+- Close the bounded pair/flank starting-pose experiment: healthy initial geometry
+  returns to stretched DF and bent Hg during matched open XYZ/group-B refinement.
+  Preserve exact target/identity checks, maps, B/Q/f″ limits and failed-export evidence.
+- Refresh the A01 handoff and roadmap around one scoped exact-state force diagnostic;
+  retain completed controls as evidence rather than a repeat queue. A01 stays partial,
+  A02 gated. No runtime/schema/default change, new f″ parent, full suite or data pruning.
+- Keep a compact local visual checkout; generated scientific inputs/outputs stay out of Git.
+
+### Record staged cluster orientation experiments
+
+- Distinguish reference-seeded pocket-rotation diagnostics and exact
+  symmetry/permutation null controls from A07 reconstruction with references
+  withheld; preserve branch-specific XYZ/B and anomalous comparison order.
+- Record MD/relaxation as an exploratory feasibility question, not a new engine,
+  feature commitment or completion gate. Design documentation only; no runtime,
+  schema/default changes, simulation execution or scientific data inclusion.
+
 ### Record inherited FT_Hg B offsets and one explicit group comparison
 
 - Document unchanged base–scaffold B differences across four saved controls.
