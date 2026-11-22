@@ -126,6 +126,12 @@ also applies to derivatives retaining that junction. All four models choose `-x+
 places the first two images 2.824 and 22.867 Å away. Pine has the editable
 construct decision. Registered, restartable use of its restraints remains open.
 
+In C531, two historical PHIL edits completely masked the source-supported
+PDU target change from 1.607 to 1.470 Å. Updating both site-specific targets
+at the existing strength produced 1.472/1.468 Å in the written model, with
+the tips still 1.57/1.74 Å out of plane. Check the active native targets
+and original ring-plane coverage before changing either restraint strength.
+
 Q07 now has a fresh nine-pair model. Twelve ordinary mutations succeeded
 after correcting the orientation of DP and IMC from their source graphs.
 A separate placement retained all four ATL sugar centres. Phenix applied

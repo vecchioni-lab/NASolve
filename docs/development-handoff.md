@@ -1,7 +1,29 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-22, C530 reading native angles and torsions in the crystal mate — Rowan**.
+Updated **2026-11-22, C531 tracing an older site instruction that defeats a CIF repair — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+C531 changed only the PDU terminal carbon bond in the historical CIF, using
+the existing source-graph and Phenix energy-library comparison from C401.
+The checked target changed from 1.607 to 1.470 Å with its 0.020 Å sigma.
+Two older site-specific PHIL edits still requested 1.607 Å with 0.010 Å sigma
+at A:12 and B:4. After five actual cycles, the repaired CIF plus those old
+edits gave the **same final PDB and GEO bytes** as the historical CIF, and
+the same numbers in all MTZ columns. Correcting the two PHIL target values
+while keeping their existing strength gave 1.472/1.468 Å. Removing those
+two edits exposed the CIF's 0.020 Å sigma and gave 1.481/1.417 Å. The four
+controls used identical initial coordinates, reflection inputs, neighbour
+restraints, seed and refinement settings. Each retained 1,778 working and
+124 free observations. The ring-to-tip heights in the corrected-PHIL arm
+were still 1.57/1.74 Å. The bond target alone left the arms bent.
+
+The historical PDU pair supplied an independent test of superseding inputs.
+Its compact evidence and scripts are in
+`NASolve:branch-artifacts/cedar/c531-pdu-site-overrides`. Phenix 2.2.1-6174
+ran three new five-cycle trials against the previously verified C528 control.
+Each used `python -B start_native_variant.py PLAN NEW_ATTEMPT INSTALLED_CEDAR PHENIX_INSTALLATION`.
+Both the initial and final GEO and the written PDB were read independently.
+Existing run formats and ordinary refinement settings remain compatible.
 
 **Standing 5W6W scaffold convention, confirmed on 22 November.** Simon confirms
 that B:7 O3′ and B:1 P are covalently connected in this scaffold family and
