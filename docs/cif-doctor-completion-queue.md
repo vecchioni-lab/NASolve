@@ -117,6 +117,10 @@ Pine, and carry eligible source terms through a registered continuation.
 The diagnostic alone authorizes no new default. C529 now checks the four
 printed angles against both coordinate frames at a named model or checkpoint.
 All four angles in the C528 image-aware GEO match the asymmetric unit alone.
+C530 obtained a separate native GEO for all seven crossing terms by passing
+the cell to the final model's angular printer. The written PDB independently
+agrees with all four angles and three torsions. Preserve this observation for
+an explicitly declared link and its registered, restartable continuation.
 
 Q07 now has a fresh nine-pair model. Twelve ordinary mutations succeeded
 after correcting the orientation of DP and IMC from their source graphs.

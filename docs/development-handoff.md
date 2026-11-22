@@ -1,7 +1,24 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-22, C529 reading the angles Phenix actually printed — Rowan**.
+Updated **2026-11-22, C530 reading native angles and torsions in the crystal mate — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+C530 repeated C528's five-cycle fit and asked Phenix's own angle and torsion
+printer to use the unit cell on the seven crossing terms after the fit.
+Its separate 1.8 kB GEO now names the crystal image on the correct atoms.
+C529 finds all four printed angles consistent with the mate. The three
+torsions from the live model are −151.18°, −51.81° and 11.37°.
+Independent measurements from the rounded PDB differ by at most 0.057°,
+within the coordinate precision for each torsion. The refined PDB and
+original GEO are byte-identical to C528. All 16 MTZ columns match exactly
+across all 2,848 rows, including map coefficients and missing values.
+This separate observation neither installs a printer in the SDK nor changes
+the ordinary output contract. It can accompany a future registered link.
+The local C528 checkout holds `native-image-terms.geo`, `c530-science.json`,
+the pinned plan and scripts. The complete native check used Phenix 2.2.1-6174
+and `python -B start_native_variant.py PLAN NEW_ATTEMPT INSTALLED_CEDAR PHENIX_INSTALLATION`.
+Verify with `python -B c530_checkout.py C528_MATCHED_PARENT NEW_ATTEMPT NEW_RESULT`.
+No full regression ran for this evidence-only step.
 
 C529 adds `printed_geometry.angles` to the read-only phosphate inspection in
 `cif_phosphate_image`, `cif_phosphate_angles` and the CLI. The real five-cycle
