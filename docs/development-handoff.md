@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-22, C522 correcting the torsion force across a crystal boundary — Rowan**.
+Updated **2026-11-22, C523 distinguishing an ordinary phosphate reference from an edited link — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
 **Q06, original PDU:PDU.** The molecule on the other side of B:1 looks close in
@@ -52,6 +52,15 @@ kept their unnormalized gradients. The native bond and exclusions stayed active.
 The diagnostic took zero refinement cycles. The next gate is recovery of the
 same terms through a real selection, rebuild and checkpoint handoff with
 declared partner identity. Q06 remains open.
+
+C523 corrected the intact-reference reader. It had skipped all bond records
+outside the standard covalent origin, including a second user-added bond
+between the same two residues. It now flags that example as ambiguous and
+recognizes hydrogen bonds by the installation's recorded origin. The two
+original PDU:PDU reference links and their measured terms are unchanged.
+Focused source checks passed 44 tests and 21 subtests. The relocated wheel
+passed 30 tests and seven subtests and gave the same readout on the archived
+capture. Existing models, dictionaries and checkpoint schemas remain compatible.
 
 Last standalone full-qualified runtime **`58965920`** passes
 **12,043 tests and 293 subtests**, with two existing native opt-in skips, in

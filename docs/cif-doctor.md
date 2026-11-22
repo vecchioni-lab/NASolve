@@ -25,9 +25,11 @@ If an original, complete CIF Doctor native capture exists for this model, add
 `--native-receipt PATH/TO/native_receipt.json`. Doctor finds intact O3′–P bonds
 elsewhere in that model whose two effective monomer dictionaries and chemical
 modifications match the proposed ends. It groups the examples by their exact
-recorded covalent terms, including torsions and their periodicity. Multiple
-covalent bonds between the same two residues make a reference ambiguous. Different
-targets in otherwise matched examples remain visible. The comparison concerns
+recorded covalent terms, including torsions and their periodicity. An additional
+bond, including a user edit or a distance of unknown origin, makes a reference
+ambiguous. Doctor recognizes ordinary hydrogen bonds by the origin recorded by
+that Phenix installation. Conflicting targets in otherwise matched examples
+remain visible. The comparison concerns
 terms confined to those two residues. Older captures omit per-atom images for
 angles and torsions, so applying those terms across a crystal boundary needs its
 own check.

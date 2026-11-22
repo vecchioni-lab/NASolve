@@ -91,3 +91,29 @@ def test_additional_crosslink_and_missing_torsion_parameter_remain_visible():
     del details["dihedral"][1]["periodicity"]
     with pytest.raises(ValueError, match="periodicity"):
         read(native)
+
+
+@pytest.mark.parametrize("kind", ["bond_simple", "bond_asu"])
+@pytest.mark.parametrize("hydrogen_origin, expected", [(None, "ONE_REFERENCE"), (7, "ONE_REFERENCE"), (42, "AGREEING_REFERENCES")])
+def test_extra_distance_needs_a_known_hydrogen_bond_origin_to_leave_a_reference_clean(kind, hydrogen_origin, expected):
+    native = capture()
+    if hydrogen_origin is not None:
+        native["restraint_policy"] = {"origin_ids": {"hydrogen bonds": hydrogen_origin}}
+    else:
+        native["restraint_policy"] = None
+    rows = native["geometry"]["proxy_details"]
+    extra = dict(rows["bond_simple"][0], origin_id=42, i_seqs=[0, 3],
+                 atoms=[native["atoms"][i]["label"] for i in (0, 3)],
+                 symmetry_operation="x,y+1,z" if kind == "bond_asu" else None)
+    rows[kind].append(extra)
+    native["geometry"]["proxy_counts"][kind] += 1
+    result = read(native)
+    assert result["status"] == expected
+    assert result["excluded_multiple_bonds"] == ([] if hydrogen_origin == 42 else [["A:1", "A:2"]])
+
+
+def test_missing_origin_cannot_identify_a_reference_bond():
+    native = capture()
+    native["geometry"]["proxy_details"]["bond_simple"][0]["origin_id"] = False
+    with pytest.raises(ValueError, match="bond origin"):
+        read(native)

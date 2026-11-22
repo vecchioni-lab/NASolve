@@ -71,9 +71,17 @@ def reference_link_terms(native, *, phosphate, o3):
              for i, a in atoms.items()}
     references = {}
     between = Counter()
+    policy = native.get("restraint_policy")
+    origins = policy.get("origin_ids") if isinstance(policy, dict) else None
+    hydrogen_origin = origins.get("hydrogen bonds") if isinstance(origins, dict) else None
     for kind in ("bond_simple", "bond_asu"):
         for row in details[kind]:
-            if row["origin_id"] != 0:
+            origin = row["origin_id"]
+            if type(origin) is not int or origin < 0:
+                raise ValueError("Invalid recorded bond origin")
+            # Phenix stores recognised hydrogen bonds in these same bond arrays.
+            # An unclassified distance or an explicit bond edit may change link geometry.
+            if type(hydrogen_origin) is int and hydrogen_origin > 0 and origin == hydrogen_origin:
                 continue
             indices, named = _bound_proxy_endpoints(row, atoms, names)
             if len(indices) != 2:
@@ -84,7 +92,7 @@ def reference_link_terms(native, *, phosphate, o3):
                 indices = indices[::-1]
             source, target = left[0], right[0]
             between[frozenset((source, target))] += 1
-            if (kind == "bond_simple" and row["symmetry_operation"] in (None, "x,y,z") and row["weight"] > 0
+            if (origin == 0 and kind == "bond_simple" and row["symmetry_operation"] in (None, "x,y,z") and row["weight"] > 0
                     and (left[1], right[1]) == ("O3'", "P") and source != target
                     and [atoms[i]["element"].strip().upper() for i in indices] == ["O", "P"]
                     and (source, target) != (o3, phosphate)
