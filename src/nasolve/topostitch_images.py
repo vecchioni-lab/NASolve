@@ -15,7 +15,7 @@ from pathlib import Path
 
 from .topostitch_coordinates import _read_atoms, _residue, _Unassessed
 from .topostitch_periodic import (
-    _crystal, _fractional_bounds, _image_record, _lattice_box, _op_key, inspect_periodic_end_assignments,
+    _crystal, _image_record, _op_key, inspect_periodic_end_assignments,
 )
 
 _PADDING = 1e-7
@@ -49,6 +49,26 @@ def _fractional(xyz, cell, gemmi):
     if any(not math.isfinite(v) or abs(v) > 1e6 for v in point):
         raise ValueError('Fractional atom coordinates exceed the supported numerical range')
     return point
+
+
+def _fractional_bounds(cell, radius):
+    """Bound each fractional component of a displacement inside a Cartesian sphere."""
+    bounds = [(radius + _PADDING) * math.hypot(*row) + 1e-9 for row in cell.frac.mat.tolist()]
+    if any(not math.isfinite(b) for b in bounds):
+        raise ValueError("Search radius exceeds the supported numerical range")
+    return bounds
+
+
+def _lattice_box(fixed, transformed, bounds):
+    """Count possible translations before evaluating distances for this atom pair."""
+    ranges = []
+    count = 1
+    for a, b, bound in zip(fixed, transformed, bounds, strict=True):
+        centre = a - b
+        lo, hi = math.ceil(centre - bound), math.floor(centre + bound)
+        count *= max(0, hi - lo + 1)
+        ranges.append(range(lo, hi + 1))
+    return ranges, count
 
 
 def _append(rows, value):

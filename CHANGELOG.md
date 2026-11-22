@@ -10,7 +10,9 @@ entries are reconstructed from repository history.
 
 - `cif-doctor phosphate-image --nearest-image` reports the two closest
   crystal copies of a named O3′ to a named phosphorus in a model or
-  checkpoint. Ambiguity at PDB coordinate precision stays visible.
+  checkpoint. Ambiguity at PDB coordinate precision stays visible. The
+  qualified periodic module used by frozen refinement workers keeps its
+  original bytes.
 
 - `cif-doctor assess --bond-targets` compares the bond lengths and sigmas
   Phenix used with the explicitly supplied residue dictionaries. It works on

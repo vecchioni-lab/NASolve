@@ -62,6 +62,13 @@ with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src` for the source. The wheel ran
 with its original build and installation paths removed. No native program
 or full regression was needed for this coordinate inspection.
 
+The wider refinement checks subsequently caught a C534 compatibility
+regression. The periodic search module is an exact frozen input for earlier
+counted workers. Its qualified `971d91c0` bytes are restored. The new search
+shares bounds with TopoStitch's atom-image inspection in a separate module.
+The historical worker replay, phosphate and periodic-image checks passed
+111 tests; existing requests and their fingerprints need no migration.
+
 C533 used the existing source-guided ring-plane repair on the original
 no-mercury PDU:PDU pair. It added the first propynyl carbon, C5A, to the
 existing ring plane with the corroborating dictionary's 0.020 Å sigma.
