@@ -5,6 +5,8 @@ Pine and the separate Cedar/Willow branches are not changed by this integration.
 combines the existing metal feature with the qualified shared chemistry, native
 observation and storage owners; it introduces no new scientific policy.
 
+Late A01 read-only follow-up: [DF sulfur-angle provenance and comparator](metal-df-c2-angle-audit.md). No runtime or scientific target changes; A01 partial/A02 gated.
+
 ## Qualified integration checkpoint — test-only amendment
 
 The integrated candidate `1acc7892d2bc19d5572d46f430b27515a7ea6301` combines

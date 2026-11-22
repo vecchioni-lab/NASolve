@@ -12,6 +12,8 @@ the [anomalous workflow](metal-anomalous-doctor.md) and [restraint design](metal
 own scientific contracts. A mechanism passing tests does not close its scientific
 gate. Update milestone status, evidence, limitations and next action together.
 
+A01 next-input review now includes [DF C2 chemical target provenance](metal-df-c2-angle-audit.md). A source-consistent fragment is available, but its eLBOW angles are not independent chemistry authority. Validate donor state and coupled targets before transport/recovery; no automatic 120° substitution.
+
 The latest independent FT source audit leaves two precise input boundaries:
 B:1 now has an investigator-declared B:7→B:1 symmetry continuation; its exact
 operator realization/native enforcement still needs qualification. The investigator

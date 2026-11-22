@@ -8,6 +8,11 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Clarify DF sulfur-angle provenance
+
+- Distinguish regenerated eLBOW targets, native restraint delivery and independent chemical evidence; record the observed C2 distortion and existing-fragment readback. Chemical target review precedes another recovery experiment.
+- Documentation only; no restraint, runtime, schema or coordinate changes, new native run or full suite.
+
 ### Record joint attachment-target feasibility and its limits
 
 - Qualify simultaneous FT_Hg source-distance/angle correction in the existing

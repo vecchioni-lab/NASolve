@@ -11,6 +11,8 @@ not a second queue.
 
 <a id="a01-current-science-coupled-placement-does-not-survive-open-refinement"></a>
 
+**Late chemical-provenance clarification:** the [DF C2-angle audit](metal-df-c2-angle-audit.md) separates eLBOW source consistency from independent chemical validation. The final sulfur-angle split is 135.3°/108.7°; even the generated targets require donor-state review. A retained base fragment exists (124 read-only checks), but no replacement or target change is admitted.
+
 ## A01 current science: final-state forces and a contact-preserving comparison
 
 **22 November evening; bounded diagnostics complete, A01 partial and A02 gated.**
