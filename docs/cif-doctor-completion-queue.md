@@ -137,6 +137,13 @@ Both measured 2.795 Å. The other 716 atoms were outside the declared
 strand, with every coordinate preserved. The [reusable declaration](recipes/5w6w-central-continuation.json)
 supplies no refinement forces. Its use at an ordinary restart remains open.
 
+C539 carries the named continuation into the existing read-only inspection
+of an ordinary checkpoint. On the historical PDU:PDU `refine-005`, it
+recovered the registered sites, the nonbonded contact at 2.825 Å and both
+agreeing intact reference links. The matched image-aware model contained
+one printed bond at 1.628 Å. The next runtime step is to carry the verified
+terms through an ordinary refinement restart and prove they are applied once.
+
 In C531, two historical PHIL edits completely masked the source-supported
 PDU target change from 1.607 to 1.470 Å. Updating both site-specific targets
 at the existing strength produced 1.472/1.468 Å in the written model, with

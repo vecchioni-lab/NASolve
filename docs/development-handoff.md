@@ -1,7 +1,34 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-22, C538 testing the diffraction evidence for the two PDU orientations — Rowan**.
+Updated **2026-11-22, C539 reading the registered 5W6W connection at a checkpoint — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+C539 lets [phosphate inspection](cif-doctor.md#inspecting-a-phosphate-at-a-crystal-boundary)
+take the same registration, end-discovery file and declared continuations
+as Pine's periodic graph. It resolves the logical endpoints in the exact
+source model, checks the raw input hashes and converts the target-P operation
+to the reciprocal O3′ operation. The optional `registered_continuation` JSON
+retains the declaration when an atom is unavailable. Existing manual/image
+commands and checkpoint formats need no migration. The new
+`cif_phosphate_continuation` adapter, phosphate reader, CLI, checkpoint reader
+and `test_phosphate_continuation` changed. No native force is installed.
+
+On the shipped 5W6W frame the measurement was 2.794915 Å. On the actual
+archived PDU:PDU `refine-005` it was 2.824291 Å, with zero printed bonds
+and a nonbonded contact at 2.825 Å. The archived native capture recovered
+the same A:16→A:17 and B:5→B:6 references as C520, each supplying one
+bond, four angles and three torsions. The separate five-cycle image-aware
+comparison had a printed bond at 1.628458 Å. Asking the same question of
+the mixed `refine-002` correctly left the length unmeasured because its
+B:1 lacked phosphorus. That was a counterfactual read of the mixed model.
+The original selections and files were preserved. Phenix 2.2.1-6174 supplied
+the saved geometry. This readback ran zero new refinement cycles.
+
+Eight cases failed before implementation. The ten focused files passed 219
+tests and 7 subtests in source and relocated installed checkouts. Use the
+same Python and pytest options as C537 below with
+`tests/test_phosphate_continuation.py tests/test_phosphate_image.py tests/test_topostitch_graph.py tests/test_topostitch_periodic.py tests/test_topostitch_images.py tests/test_topostitch_registration.py tests/test_cif_doctor_run.py tests/test_cif_doctor_cli.py tests/test_final_pair_geometry_integration.py tests/test_refinement_declared_sites.py`.
+Compact records and replay instructions live with C528's phosphate evidence.
 
 C538 removed both entire PDU bases from each C535 starting model. The four
 arms then gave identical bytes for all 840 remaining atoms. Their working

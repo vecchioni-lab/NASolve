@@ -8,6 +8,11 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `cif-doctor phosphate-image --registered-continuation ID` reads a named
+  O3′–P connection from a construct registration and reports what the exact
+  model or refinement checkpoint contains. A missing coordinate endpoint
+  leaves the declared connection available for review.
+
 - `cif-doctor assess --refined-planes` now shows which modeled atoms Phenix
   included with positive weight in a residue's own plane. It can read an
   explicit model, CIF and GEO, or both saved stages of a numbered refinement.

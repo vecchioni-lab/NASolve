@@ -43,7 +43,25 @@ def _printed_evidence(kind, text, labels, endpoints, images, gemmi, members, dis
                 matches=matches if sections else None)
 
 
-def inspect_phosphate_image(model, *, phosphate, o3, o3_image=None, nearest_image=False, geometry=None, native_receipt=None):
+class PhosphateEndpointUnavailable(ValueError):
+    """The coordinate identities or an endpoint prevent a phosphate measurement."""
+
+
+def inspect_phosphate_image(model, *, phosphate=None, o3=None, o3_image=None, nearest_image=False, geometry=None,
+                            native_receipt=None, registered=None):
+    """Inspect a manual pair or resolve an explicit registered continuation on this model."""
+    if registered is not None:
+        from .cif_phosphate_continuation import inspect_registered_continuation
+        if any(value is not None for value in (phosphate, o3, o3_image)) or nearest_image:
+            raise ValueError("A registered continuation supplies both endpoints and the image")
+        return inspect_registered_continuation(model, registered, geometry=geometry, native_receipt=native_receipt)
+    if not phosphate or not o3:
+        raise ValueError("Manual phosphate inspection requires both --phosphate and --o3")
+    return _inspect_coordinates(model, phosphate=phosphate, o3=o3, o3_image=o3_image, nearest_image=nearest_image,
+                                geometry=geometry, native_receipt=native_receipt)
+
+
+def _inspect_coordinates(model, *, phosphate, o3, o3_image=None, nearest_image=False, geometry=None, native_receipt=None):
     """Compare coordinates and optional printed terms without assigning a partner.
 
     Apply the full image (including its cell translation) to O3' and its C3'.
@@ -53,7 +71,10 @@ def inspect_phosphate_image(model, *, phosphate, o3, o3_image=None, nearest_imag
     if (o3_image is not None) == nearest_image:
         raise ValueError("Choose either one explicit O3' image or the nearest-image comparison")
     model = Path(model)
-    raw, labels = _model_labels(model)
+    try:
+        raw, labels = _model_labels(model)
+    except ValueError as exc:
+        raise PhosphateEndpointUnavailable(str(exc)) from exc
     gemmi, cell, group = crystal_from_pdb_bytes(raw)
     spacegroup = gemmi.find_spacegroup_by_name(group)
     members = {_op_key(op) for op in spacegroup.operations()}
@@ -77,7 +98,7 @@ def inspect_phosphate_image(model, *, phosphate, o3, o3_image=None, nearest_imag
         atom = atoms.get((site, name))
         if atom is None or atom[2] != element or atom[3] == 0:
             if required:
-                raise ValueError(f"Require an occupied {element} atom named {name} at {site}")
+                raise PhosphateEndpointUnavailable(f"Require an occupied {element} atom named {name} at {site}")
             return None
         if apply_image:
             if op is None:

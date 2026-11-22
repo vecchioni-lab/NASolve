@@ -287,11 +287,16 @@ def build_parser() -> argparse.ArgumentParser:
     phosphate_image = cif_sub.add_parser("phosphate-image", help="inspect a named O3' crystal image at a phosphate (requires NASolve[topology])")
     phosphate_image.add_argument("model", type=Path, metavar="PDB_OR_RUN", help="exact written PDB with CRYST1, or a numbered run with --checkpoint")
     phosphate_image.add_argument("--checkpoint", help="read this checkpoint ID or bookmark and its recorded final geometry")
-    phosphate_image.add_argument("--phosphate", required=True, metavar="CHAIN:NUMBER", help="site containing the phosphorus")
-    phosphate_image.add_argument("--o3", required=True, metavar="CHAIN:NUMBER", help="site containing the candidate O3' atom")
+    phosphate_image.add_argument("--phosphate", metavar="CHAIN:NUMBER", help="coordinate site containing P for an explicit or nearest-image inspection")
+    phosphate_image.add_argument("--o3", metavar="CHAIN:NUMBER", help="coordinate site containing O3' for an explicit or nearest-image inspection")
     image_choice = phosphate_image.add_mutually_exclusive_group(required=True)
     image_choice.add_argument("--o3-image", metavar="XYZ", help="full fractional operation applied to O3', including any cell translation")
     image_choice.add_argument("--nearest-image", action="store_true", help="compare the closest two crystal copies of the named O3' to the named P")
+    image_choice.add_argument("--registered-continuation", type=int, metavar="ID",
+                              help="read this declared O3'-to-P connection in its registered source frame")
+    phosphate_image.add_argument("--registration", type=Path, help="construct registration for --registered-continuation")
+    phosphate_image.add_argument("--discovery-input", type=Path, help="registered end-discovery input for --registered-continuation")
+    phosphate_image.add_argument("--backbone-continuations", type=Path, help="explicit directed backbone connections for --registered-continuation")
     phosphate_image.add_argument("--geometry", type=Path, help="optional matching Phenix GEO with printed bonds and nonbonded contacts")
     phosphate_image.add_argument("--native-receipt", type=Path, help="optional preserved linked native capture for intact backbone references in the same model")
     phosphate_image.add_argument("--json", action="store_true", help="include exact inputs, atom inventory and printed terms")
@@ -1706,16 +1711,24 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
     from .cif_phosphate_image import inspect_phosphate_image
 
     try:
+        registered = None
+        source_paths = (args.registration, args.discovery_input, args.backbone_continuations)
+        if args.registered_continuation is not None:
+            from .cif_phosphate_continuation import RegisteredContinuation
+            if None in source_paths:
+                raise ValueError("A registered continuation needs --registration, --discovery-input and --backbone-continuations")
+            registered = RegisteredContinuation(args.registered_continuation, *source_paths)
+        elif any(path is not None for path in source_paths):
+            raise ValueError("Topology input files require --registered-continuation ID")
+        options = dict(phosphate=args.phosphate, o3=args.o3, o3_image=args.o3_image,
+                       nearest_image=args.nearest_image, native_receipt=args.native_receipt, registered=registered)
         if args.checkpoint is None:
-            result = inspect_phosphate_image(args.model, phosphate=args.phosphate, o3=args.o3,
-                                             o3_image=args.o3_image, nearest_image=args.nearest_image,
-                                             geometry=args.geometry, native_receipt=args.native_receipt)
+            result = inspect_phosphate_image(args.model, geometry=args.geometry, **options)
         else:
             from .cif_doctor_run import read_checkpoint_phosphate_image
             if args.geometry is not None:
                 raise ValueError("Checkpoint inspection uses its recorded geometry. To supply a GEO, give a PDB path without --checkpoint.")
-            result = read_checkpoint_phosphate_image(args.model, checkpoint=args.checkpoint, phosphate=args.phosphate,
-                o3=args.o3, o3_image=args.o3_image, nearest_image=args.nearest_image, native_receipt=args.native_receipt)
+            result = read_checkpoint_phosphate_image(args.model, checkpoint=args.checkpoint, **options)
     except (OSError, ValueError, RuntimeError) as exc:
         print(f"CIF Doctor: {exc}", file=sys.stderr)
         return 1
@@ -1726,6 +1739,14 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
             print(f"Checkpoint {result['checkpoint']['id']}.")
             if result["printed_geometry"] is None:
                 print("This checkpoint has no recorded final geometry. Measurements use its saved coordinates.")
+        declared = result.get("registered_continuation")
+        if declared is not None:
+            donor, acceptor = declared["source"], declared["target"]
+            print(f"Registered continuation {declared['continuation_id']} from {donor['logical_site']} O3' "
+                  f"to {acceptor['logical_site']} P in image {declared['target_operator_xyz']}.")
+            if declared["measurement_status"] == "UNRESOLVED":
+                print(f"Coordinate measurement unavailable. {declared['reason']}.")
+                return 0
         ranking = result.get("image_ranking")
         if ranking is not None:
             for label, row in zip(("Nearest", "Next nearest"), ranking["closest_two"]):
@@ -1733,7 +1754,7 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
             if result["o3_image"] is None:
                 print("The saved coordinate precision leaves the image ambiguous. Supply --o3-image to inspect a chosen copy.")
                 return 0
-        print(f"{args.phosphate} P to {args.o3} O3' in image {result['o3_image']} measures {result['distance_A']:.3f} Å.")
+        print(f"{result['phosphate'][0]} P to {result['o3'][0]} O3' in image {result['o3_image']} measures {result['distance_A']:.3f} Å.")
         present = [name for name, atom in result["phosphate_atoms"].items() if atom is not None]
         print("Phosphate site contains " + ", ".join(present) + ".")
         print("Angles from the written coordinates")

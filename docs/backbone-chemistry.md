@@ -104,6 +104,11 @@ requires the two registered B-strand ends to be representation boundaries.
 It describes the seven-site central strand. Other strands and their nicks
 can be declared separately.
 
+Doctor can [read that registration on an exact checkpoint](cif-doctor.md#inspecting-a-phosphate-at-a-crystal-boundary).
+The archived PDU:PDU `refine-005` retained B:1 P and reported B:7 O3′ only
+as a nonbonded neighbour. If a different test model lacks B:1 P, the reader
+keeps the supplied declaration and reports that the distance is unavailable.
+
 In the controlled PDU:PDU fit, a distance alone closed the gap but left the
 two O3′–P–OP angles at 84.5° and 129.3°. With angle and torsion forces evaluated
 in the named mate they reached 107.5° and 110.5° after five Phenix cycles.

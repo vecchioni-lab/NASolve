@@ -98,8 +98,9 @@ def _final_geometry(run, selected):
     return _ref_path(reference, "final geometry", run), reference
 
 
-def read_checkpoint_phosphate_image(run: Path, *, checkpoint: str, phosphate: str, o3: str, o3_image: str | None = None,
-                                   nearest_image: bool = False, native_receipt: Path | None = None):
+def read_checkpoint_phosphate_image(run: Path, *, checkpoint: str, phosphate: str | None = None, o3: str | None = None,
+                                   o3_image: str | None = None, nearest_image: bool = False,
+                                   native_receipt: Path | None = None, registered=None):
     """Inspect only the named checkpoint's model and its own optional final GEO."""
     from .cif_numerical_replay import numerical_replay_scope
     from .cif_phosphate_image import inspect_phosphate_image
@@ -119,7 +120,7 @@ def read_checkpoint_phosphate_image(run: Path, *, checkpoint: str, phosphate: st
     final_geometry = _final_geometry(run, selected)
     geo, geo_ref = final_geometry if final_geometry is not None else (None, None)
     result = inspect_phosphate_image(model, phosphate=phosphate, o3=o3, o3_image=o3_image, nearest_image=nearest_image,
-                                     geometry=geo, native_receipt=native_receipt)
+                                     geometry=geo, native_receipt=native_receipt, registered=registered)
     model_ref = _reference(model, run)
     geometry_ref = _reference(geo, run) if geo is not None else None
     if result["model_sha256"] != model_ref["sha256"] or (expected_model is not None and model_ref["sha256"] != expected_model.casefold()):

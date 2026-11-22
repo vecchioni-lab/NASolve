@@ -65,6 +65,24 @@ of these atoms; the construct supplies their chemical connection.
 For the [central strand of 5W6W](backbone-chemistry.md#the-central-strand-in-the-5w6w-scaffold),
 the two closest copies in the starting frame are 2.795 and 21.895 Å away.
 
+When Pine has registered the source model, Doctor can read the named connection
+directly. Supply the construct registration and end-discovery files for the
+exact saved model, together with its directed backbone declarations.
+
+```sh
+nasolve cif-doctor phosphate-image RUN --checkpoint refine-005 \
+  --registered-continuation 1 --registration registration.json \
+  --discovery-input discovery.json --backbone-continuations docs/recipes/5w6w-central-continuation.json
+```
+
+The source and target in the declaration are logical sequence sites. Pine's
+mapping locates their actual PDB residues. The declared operation moves P with
+O3′ fixed. Doctor inverts it to inspect O3′ with P fixed. A nearer copy cannot
+replace a declared one. If a mapped atom is missing, the JSON retains the
+connection and explains why its length is unavailable. A registration for
+different coordinate bytes is refused. This command reads the registered
+source frame and the checkpoint's own GEO. It adds no forces.
+
 The operation acts on O3′ and its C3′. The report gives the P–O3′ distance, the
 available backbone angles from the coordinates and the named phosphate atoms
 present. With a GEO file it shows each printed bond and nonbonded contact for that
