@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current audit: W215, 2026-11-22. Maintained implementation: W215.**
+**Current audit: W216, 2026-11-22. Maintained implementation: W216.**
 The existing native input binder now accepts an explicitly selected dictionary-only
 parent policy from Cedar C526. Default literal inputs still require compiled
 restraints. W214 binds a real X11_22 PostMR checkpoint and original observations;
@@ -28,6 +28,13 @@ Start with the [machine roadmap](topostitch-roadmap.json) and
 and past interpretations remain in [periodic/native evidence](topostitch-periodic.md)
 and [preview/API documentation](topostitch-preview.md), not a second action queue.
 The longer pre-consolidation handoff is preserved at Git `86e7489c2314f738bd7fe14f611bddcde7642199`.
+
+W216 now supplies the queued [intrinsic local shoulder proposal](topostitch-preview.md#propose-an-intrinsic-local-backbone-orientation-w216):
+247 source/247 relocated installed tests and 48-state real replay. It moves only
+O5′/C5′ around fixed P/C4′, retaining local distances and relative C4′ handedness.
+Source-PDB precision limits historical parity to 0.001830 Å. Cross-Python
+regeneration changes last bits; frozen points replay exact endpoint audits.
+No motion permission, scientific acceptance or ordinary workflow follows.
 
 ## Current development edge
 
@@ -67,9 +74,9 @@ No clean full-suite or skipped-case qualification is claimed; no suite rerun.
 
 ## Next bounded work
 
-Advance the already queued intrinsic two-atom shoulder proposal consumer using
-W210/W211/W212 evidence, exact identities and fixed endpoints. Keep it separate
-from registered whole-pair bend previews. Do not repeat missing-intent searches
+Run one bounded W212-protocol recovery receiving check for maintained W216
+seeds after PDB rounding. Reuse existing controls/native owners, with no new
+angle sweep. Keep local proposals separate from registered whole-pair previews. Do not repeat missing-intent searches
 or invent a target on the real X11_22 root. Rowan owns ordinary receiving and
 native qualification of the one shared W215 dictionary-parent artifact.
 

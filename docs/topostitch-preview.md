@@ -2997,8 +2997,12 @@ orientations, retaining 857 fixed atoms per proposal and relative C4′ signs.
 Maximum difference from historical full-native coordinates is **0.001830 Å**:
 this API starts from saved three-decimal PDB coordinates. This is measured
 precision agreement, not identical historical inputs or renewed scientific
-acceptance. Source and installed outputs agree exactly; Phenix Python 3.11
-readback is recorded separately. No new native interpretation or refinement is
+acceptance. Source and installed Python 3.12 outputs agree exactly. Regenerating in Phenix
+Python 3.11 changes last-bit full-precision arithmetic (maximum 2.56e-15 Å),
+so an initial strict report-hash comparison refuses. All 48 serialized PDBs
+are identical, and handing over the frozen 3.12 points reproduces every endpoint
+audit exactly in 3.11. Preserve those bound points across interpreters instead
+of assuming independently regenerated report hashes will match. No new native interpretation or refinement is
 part of this replay. Local install/replay runners and receipts live under
 `NASolve:branch-artifacts/willow/` in `runners/w216-*.py` and
 `w216-local-shoulder-proposals/`; the roadmap pins evidence. W211/W212 remain
