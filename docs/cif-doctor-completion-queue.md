@@ -780,6 +780,13 @@ check. C524 reconstructed the terms on real Phenix selections, including the
 ordinary worker adoption and checkpoint restoration on a genuinely registered
 parent. Partner identity remains an explicit Pine decision.
 
+C525 makes a single frozen checkpoint available for on-demand phosphate
+inspection. Opening the large thirteen-substitution archive from a fresh
+installed process took about 5 min 39 s for `refine-002` during overlapping
+reads on the development Mac. For Q16, measure that cost on a representative
+campaign and test whether one validated read can serve several requested
+sites while rechecking the frozen files before return.
+
 | Job | In laboratory terms | What still closes it |
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |
