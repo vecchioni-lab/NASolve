@@ -150,6 +150,16 @@ order and D:1 terminal protection recovered the same native reference forces
 as the exported handoff. No coordinates moved in this check. Further work
 can start at application of the verified forces.
 
+C541 verified a five-cycle experimental application with the ordinary adaptive
+settings. The two O3′–P–OP angles improved from 72.0°/139.1° to 103.2°/115.7°.
+C542 isolated the remaining failure. A written child reopened with the seven
+inherited inputs retained the coordinates but rebuilt a 3.4 Å nonbonded target
+at the junction. Explicitly restoring the distance still left all four angles
+and three torsions absent. Its fresh registration and native capture recovered
+both intact source links. Implement a checked, child-bound restoration of the
+complete neighbourhood and prove single application on a numbered restart.
+Reuse these paired controls.
+
 In C531, two historical PHIL edits completely masked the source-supported
 PDU target change from 1.607 to 1.470 Å. Updating both site-specific targets
 at the existing strength produced 1.472/1.468 Å in the written model, with

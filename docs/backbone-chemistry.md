@@ -112,8 +112,13 @@ keeps the supplied declaration and reports that the distance is unavailable.
 In the controlled PDU:PDU fit, a distance alone closed the gap but left the
 two O3′–P–OP angles at 84.5° and 129.3°. With angle and torsion forces evaluated
 in the named mate they reached 107.5° and 110.5° after five Phenix cycles.
-Pine owns editable connection intent. An ordinary restart still needs to
-recover the verified restraint neighbourhood. [Cedar completion queue](cif-doctor-completion-queue.md#pipeline-position).
+The ordinary adaptive refinement settings also improved the angles in a
+separate five-cycle comparison, from 72.0°/139.1° to 103.2°/115.7°.
+When Phenix reopened that written model with only its seven inherited inputs,
+it treated the 1.620 Å junction as a nonbonded contact. Supplying the distance
+alone still left the crossing angles and torsions absent. Pine owns editable
+connection intent. Routine continuation must carry both the written child
+and the complete local restraints. [Cedar completion queue](cif-doctor-completion-queue.md#pipeline-position).
 
 In the separate FT_Hg construct, the investigator declared the central B
 continuation and confirmed the C/D crossover. A runs from 1 to 21 in each of

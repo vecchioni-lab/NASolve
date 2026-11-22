@@ -1,13 +1,49 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-22, C540 checking what Phenix inherits from the 5W6W checkpoint — Rowan**.
+Updated **2026-11-22, C542 reopening the written 5W6W phosphate after ordinary-recipe refinement — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+C541 tested the [declared 5W6W junction](backbone-chemistry.md#the-central-strand-in-the-5w6w-scaffold)
+through two actual five-cycle Phenix 2.2.1-6174 refinements. Both used the
+registered PDU `refine-005` inputs, the ordinary AutoRefine recipe with
+adaptive weights, and the same corrected parallelity driver. An experimental
+worker supplied the phosphate forces. With just the distance, the written
+P–O3′ bond was 1.612 Å and the two O3′–P–OP angles were 72.0° and 139.1°.
+With four image angles and three torsions, the bond was 1.620 Å and the angles
+were 103.2° and 115.7° against 108° targets. Both runs retained the same
+1,778 working and 124 free observations. The seven rejected reflections all
+belonged to the working set. The image-aware angles improved less than in the
+fixed-weight C528 experiment. Separate PDU side-arm repairs were outside this
+comparison. The angles quoted here come from the written coordinates and the
+named crystal mate. Phenix's printed final angle rows used the asymmetric unit.
+
+C542 then opened that result in three fresh, zero-cycle native processes.
+The emitted `refined_002.def` selected the **original** 2.824 Å coordinates,
+retained the added bond and restored zero crossing angles or torsions.
+Explicitly selecting the written child gave the correct 1.620 Å coordinates.
+Adding the distance file restored one bond. With only the usual inherited
+inputs, the child had zero bonds at the junction and a nonbonded contact
+with a 3.4 Å van der Waals target. Both child readings restored zero crossing
+angles or torsions. All three used the same observations and flags.
+A freshly registered seven-site child and an independent native dictionary
+capture recovered the same two intact DA→DC references and numerical terms.
+The next implementation must use the recorded child, bind the declaration
+to its current frame, and reinstall the complete local forces once in the
+new driver. The original numbered run and its selection stayed intact.
+Routine automatic restart and Q06 remain open.
+
+The local C528 evidence folder holds `c541-science.json`, `c542-science.json`
+and `c541-c542-replay.zip`. Each script has its invocation in the module
+docstring. The cold checks compare written models, GEO, native gradients,
+individual exclusions, source hashes and Free-R assignments. No user-facing
+schema or default changed. Full regression remains deferred.
 
 C540 reopened the actual PDU:PDU `refine-005` through AutoRefine's parent,
 reflection and command builders. The ordinary recipe inherits the same seven
 restraint files as the old exported handoff, in a different order. It also
-requests real-space sites and occupancies and uses a coordinate weight scale
-of 0.5. The exported comparison used 0.01. Both routes kept the six D:1
+requests real-space sites and occupancies, with a starting coordinate weight
+scale of 0.5 and automatic weight optimization. The exported comparison used
+a fixed 0.01. Both routes kept the six D:1
 terminal angles and all 124 measured free reflections.
 
 Phenix 2.2.1-6174 passed its ordinary command-line preflight. A separate
