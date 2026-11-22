@@ -1,7 +1,42 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-22, C527 checking Phenix's actual dictionary-only parent geometry — Rowan**.
+Updated **2026-11-22, C528 testing a phosphate across a crystal boundary in native refinement — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+**C528, five actual diffraction cycles.** On the historical no-Hg PDU:PDU
+scaffold, both arms started from the same 862 atoms and a 2.824 Å gap. Both
+specified B:7 O3′ in image `-x+y,-x,z` as a possible partner for B:1 P.
+The distance alone finished at 1.611 Å. The O3′–P–OP1 and O3′–P–OP2 angles
+were 84.5° and 129.3°. Supplying the four angles and three torsions from the
+two matching intact links, with forces rotated back to each original atom,
+gave 1.628 Å and 107.5°/110.5° against 108°/108°. C3′–O3′–P was 120.8°
+against 119.7°. Both runs kept 1,778 working and 124 free observations and
+rejected the same seven working reflections. Rwork/Rfree were 0.2659/0.3447
+and 0.2506/0.3266. The propynyl tips still stood 1.64 and 2.17 Å off their
+base rings in the image-aware run with the historical PDU dictionary.
+
+Phenix 2.2.1-6174 omits the unit cell at the ordinary angular energy call
+and in its final angle table here. Four image angles and three torsions were
+counted once in each owning geometry manager. Replacing just their no-cell
+energy and forces also updated the corresponding native family totals.
+Finite differences on 24 Cartesian coordinates had a maximum discrepancy
+of 3.84 × 10⁻⁷ in native derivative units. The final GEO still prints OP1
+and OP2 angles of 58.85° and 63.29° measured in the asymmetric unit.
+The program’s output and the saved coordinates have to be read independently.
+
+This is a controlled comparison of the proposed geometry. The deposited
+structure also places the atoms close, and the original triangle design has
+a nick in its central strand. Pine still needs the operator’s actual
+connection and nick intent before adopting any crystal bond.
+[5W6W](https://www.rcsb.org/structure/5W6W) and
+[original triangle study](https://pmc.ncbi.nlm.nih.gov/articles/PMC6660133/).
+The compact local checkout is
+`NASolve:branch-artifacts/cedar/c528-phosphate-refinement/c528-science.json`.
+From the retained C524 source, use
+`python -B start_c528.py C524_SELECTED_002 INSTALLED_CEDAR NEW_ATTEMPT PHENIX_INSTALLATION MODE 5`
+with `bond-only` and `image-aware` in independent directories. The checkout
+also records the one-cycle controls and the stopped native check. Existing
+run formats and ordinary refinement settings are unchanged.
 
 **C526, Cedar and Willow.** W214 identifies a real current PostMR parent with
 128 canonical residues and no inherited pair or stacking instructions. The

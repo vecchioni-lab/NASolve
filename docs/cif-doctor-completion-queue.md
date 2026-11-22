@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current work order, 2026-11-21.** This is the one unfinished-work queue. The
+**Current work order, 2026-11-22.** This is the one unfinished-work queue. The
 [capability table](cif-doctor.md#current-capability-boundary) records demonstrated
 support; the [handoff](development-handoff.md) says where work stopped. Old notes
 record what was known then. They do not create a second set of instructions.
@@ -106,6 +106,15 @@ the same 2,603 atoms in an actual Phenix parent interpretation. Enabling an
 additional secondary-structure setting was caught before geometry construction.
 A prospective motion needs its own registered intent before the ordinary worker
 can accept its coordinates.
+
+C528 tested five diffraction cycles on the historical PDU:PDU model with a
+provisional B:7 crystal partner for B:1. Both arms closed the distance. Only
+the image-aware angular forces brought the two phosphate oxygen angles close
+to their 108° reference, at 107.5° and 110.5°. The historical PDU side arms
+still stand well off their base rings. Check written coordinates against any
+printed image angles, establish the central strand's nick and ownership in
+Pine, and carry eligible source terms through a registered continuation.
+The diagnostic alone authorizes no new default.
 
 Q07 now has a fresh nine-pair model. Twelve ordinary mutations succeeded
 after correcting the orientation of DP and IMC from their source graphs.
