@@ -20,6 +20,9 @@ current instructions; other branches retain their own status and validation pins
   with original source chemistry, atom content, fixed context and data retained.
   Both local phosphate sites finish within two native sigmas; general repair,
   residual whole-model geometry and experimental qualification remain open.
+- **Shared connection readback: W228.** [Cedar's registered phosphate adapter](topostitch-periodic.md#w228--review-the-shared-registered-phosphate-reader)
+  passes 36 independent cold checks; declared bonds, measured symmetry distances
+  and actually printed native restraints stay separate. No force or recut grant.
 - **Ordinary integration:** W214/W215 bind a real PostMR root and an explicit
   dictionary-only native source; no pairing/motion intent is invented. Cedar
   owns the receiving request and native lifecycle. Read the [current handoff](development-handoff.md).
@@ -28,7 +31,7 @@ current instructions; other branches retain their own status and validation pins
   The failed direct result and three remaining moving-region outliers stay
   explicit. This is same-family synthetic recovery, not general experimental repair.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W227, next W228:
+  [generated human view](topostitch-roadmap.md). Current W228, next W229:
   qualify feasible editable windows and independently supported bending/straightening.
   Keep the successful synthetic receiving comparison closed. The 5 Å centerline target is separate.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and

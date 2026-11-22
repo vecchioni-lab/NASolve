@@ -455,7 +455,8 @@
         "W219 performs the requested true10Acentroid stress once. Source/content/data survive but five-cycle recovery fails sugar handedness and large local geometry/R gates. Preserve the rejected endpoint; shorter link distances alone are not closure.",
         "W220 preserves sugar signs on five fixed whole-residue poses. W221 resolves all24 raw derivative discrepancies through the existing Cedar plane correction; actual refinement already uses it. No new optimizer, accepted large repair or ordinary activation.",
         "W222qualifies live corrected forces; W223capped6Dgeometry warm-start plus W224matched5cycle receiving retains126sugarsigns and recovers synthetic data, with explicit remaining moving outliers. W225necessary fixed-flank path bound motivates window feasibility before larger targets.",
-        "W226 maintains the bounded6Ddriver with exact points/units, accepted-step history, hard callback budgets, derivative/restoration gates and installed-native parity. It does not write/qualify rounded coordinates or grant ordinary/scientific permission."
+        "W226 maintains the bounded6Ddriver with exact points/units, accepted-step history, hard callback budgets, derivative/restoration gates and installed-native parity. It does not write/qualify rounded coordinates or grant ordinary/scientific permission.",
+        "W228independently reviews CedarC539 consuming the shared registered graph for a named source-frame phosphate continuation:36cold checks, exact mapped labels/operators and checkpoint evidence. Intended topology remains distinct from actually printed restraints; no force or recut qualification."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
@@ -590,15 +591,16 @@
         "E_COLLECTIVE_WARMSTART",
         "E_STAGED_RECOVERY",
         "E_CENTROID_PATH_BOUND",
-        "E_NATIVE_COLLECTIVE_TRIAL"
+        "E_NATIVE_COLLECTIVE_TRIAL",
+        "E_REGISTERED_PHOSPHATE_READER"
       ],
       "last_audit": {
         "date": "2026-11-22",
-        "human_update": 226,
-        "code_commit": "1eb58fac2771f8d2bc07fbfd90e366583ad00be6",
+        "human_update": 228,
+        "code_commit": "761f43982fe1bec85e119c64277abccaeda6dda2",
         "reviewer": "Linden",
-        "scope": "Installed driver parity plus existing staged synthetic recovery; scientific milestone remains partial",
-        "basis": "378 source/378 installed tests and26cold native checks; no additional fit and no full suite this slice."
+        "scope": "Read-only cross-owner source-frame observation; milestone remains partial",
+        "basis": "20canonical and16exact-checkpoint checks against Cedar7bc491ac; no new native execution or merged source."
       }
     },
     {
@@ -921,7 +923,8 @@
         "W49 checks explicit representative-image relabeling with complete source replay, exact noncommuting edge transformation, root-loop conjugacy and inverse graph recovery.",
         "W52 composes the fresh registered graph, all-present atom observations and exact image transport into a source-bound in-memory whole-residue preview, preserving fixed context and checking graph-edge geometry.",
         "W56 freezes explicit image proposals with unchanged source/discovery/registration and anchored artifacts; full replay verifies derived observations after relocation. This is a durable review input, not editable chemical intent, a new ASU or graphical approval.",
-        "W67 resolves explicitly declared directed representation-boundary partners through existing graph and schema-2 proposal owners. Strict endpoint/capacity/intent checks, exact images and winding survive replay; no partner inference, atom editing or native enforcement."
+        "W67 resolves explicitly declared directed representation-boundary partners through existing graph and schema-2 proposal owners. Strict endpoint/capacity/intent checks, exact images and winding survive replay; no partner inference, atom editing or native enforcement.",
+        "W228independently reviews CedarC539 consuming the shared registered graph for a named source-frame phosphate continuation:36cold checks, exact mapped labels/operators and checkpoint evidence. Intended topology remains distinct from actually printed restraints; no force or recut qualification."
       ],
       "acceptance": [
         "Retain covalent routes, pairing, stacking and symmetry correspondence as distinct edges, with true nicks, seams, junction passages and unknown coverage explicit.",
@@ -935,14 +938,16 @@
         "E_GRAPH_RELABEL",
         "E_REGISTERED_RELABEL_PREVIEW",
         "E_REPRESENTATIVE_BUNDLE",
-        "E_EXPLICIT_CONTINUATIONS"
+        "E_EXPLICIT_CONTINUATIONS",
+        "E_REGISTERED_PHOSPHATE_READER"
       ],
       "last_audit": {
-        "date": "2026-11-15",
-        "code_commit": "baac9850e2a8df086fd6cbe236c5ff31e00930aa",
+        "date": "2026-11-22",
+        "human_update": 228,
+        "code_commit": "761f43982fe1bec85e119c64277abccaeda6dda2",
         "reviewer": "Linden",
-        "human_update": 67,
-        "scope": "Explicit boundary partners only; partial topology, physical identity, rendered review and complete seam enforcement remain open"
+        "scope": "Read-only cross-owner source-frame observation; milestone remains partial",
+        "basis": "20canonical and16exact-checkpoint checks against Cedar7bc491ac; no new native execution or merged source."
       }
     },
     {
@@ -5885,6 +5890,30 @@
           "size": 103103
         }
       ]
+    },
+    "E_REGISTERED_PHOSPHATE_READER": {
+      "kind": "Cedar registered continuation observation through the shared graph owner",
+      "date": "2026-11-22",
+      "human_update": 228,
+      "code_commit": "761f43982fe1bec85e119c64277abccaeda6dda2",
+      "cedar_code_commit": "7bc491ac13e255c724073136c1ca1e85c19f8266",
+      "reference": "docs/topostitch-periodic.md#w228--review-the-shared-registered-phosphate-reader",
+      "result": "20canonical and16original-checkpoint cold checks. Declared forward/inverse symmetry distances agree; shipped frame2.794915Aversus directASU21.894628A. Original run_002/refine-0052.824291Aand its own2.825Anonbonded-only record remain separate; native reference groups and all source hashes/timestamps unchanged.",
+      "limitation": "Cedar source-frame observation only. No Willow product patch/merge, native calculation, coordinate change, force or recut-frame qualification, chemical admission or automatic adoption.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w228-registered-phosphate-review/canonical-review.json",
+          "sha256": "05460bb7aebcc1e4fe0458e50e797d1cc98816dd6b95b6bb8a23f28146a3fdda",
+          "size": 6422
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w228-registered-phosphate-review/checkpoint-review.json",
+          "sha256": "49ea3b389e3f8b2f013aee10410ebd315e4291b4bc08ebf98c03742d7ac0a05b",
+          "size": 14013
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -6050,8 +6079,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 227,
-    "next": 228,
+    "current": 228,
+    "next": 229,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -7221,6 +7250,12 @@
       {
         "number": 227,
         "title": "Keep core displacement comparable across editable windows",
+        "state": "RECORDED",
+        "code_commit": "761f43982fe1bec85e119c64277abccaeda6dda2"
+      },
+      {
+        "number": 228,
+        "title": "Review the shared registered phosphate reader in exact source frames",
         "state": "RECORDED",
         "code_commit": "761f43982fe1bec85e119c64277abccaeda6dda2"
       }

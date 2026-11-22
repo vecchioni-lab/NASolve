@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W228 — Cross-check Cedar's registered symmetry-connection reader
+
+- Independently replay the shared source-frame graph adapter on the canonical
+  scaffold and original numbered checkpoint; preserve intended connectivity,
+  measured image geometry and actually printed native restraints separately.
+- Evidence/docs only in Willow: no force, coordinate, runtime, schema or default
+  change; generated crystallographic inputs and review receipts remain local.
+
 ### W227 — Keep a core measurement fixed while the editable window expands
 
 - Add optional `measurement_indices` to the existing displacement summary;

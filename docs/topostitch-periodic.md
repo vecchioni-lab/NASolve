@@ -12600,3 +12600,48 @@ closed trajectory to tune a result. Next: specify the maintained six-parameter
 trial's source/units/budget/stopping/rounding contract using existing owners;
 then qualify feasible windows and general data-supported deformation/stacking,
 including independent forward/reverse cases and eventual periodic closure.
+
+
+## W228 — Review the shared registered phosphate reader
+
+Cedar **C539**, commit `7bc491ac13e255c724073136c1ca1e85c19f8266`, now lets its
+existing phosphate-image reader consume the shared registered periodic graph
+for one named continuation. Willow independently reviewed the source and
+replayed the exact retained inputs: **20 canonical-frame checks and 16 original
+numbered-checkpoint checks pass**, with no new native calculation, coordinate
+write, registration change or refinement. This is Cedar's source-frame reader,
+not a Willow implementation or a merge of the branches.
+
+The declaration fixes B7 O3′ and applies `-y,x-y,z` to B1 P. Doctor instead fixes
+P and applies the inverse `-x+y,-x,z` to O3′ and C3′. Direct fractional-coordinate
+readback independently gives **2.794915 Å** in the shipped C_G model, versus
+**21.894628 Å** in the untransformed ASU. The seven-site registered strand keeps
+its periodic cycle and 716 unrepresented context atoms. Logical-to-coordinate
+mapping, the exact three input-file hashes and unresolved endpoints remain
+explicit; proximity does not replace a declared operator.
+
+The separate original no-metal PDU `run_002/refine-005` source gives
+**2.824291 Å** from its coordinates. Its own Phenix 2.2.1-6174 GEO records a
+**2.825 Å nonbonded contact**, no matching bond and no matching angle entries.
+P/OP1/OP2 are present and OP3 absent. The registered claim and existing native
+reference groups reproduce exactly; the registry/model/GEO/declaration/native
+receipt hashes and timestamps stay unchanged. Thus a confirmed chemical intent
+and retained phosphate atoms do **not** imply that this historical refinement
+restrained the intended symmetry bond. The later matched image-force fit is a
+separate Cedar result, not this original checkpoint.
+
+C539 retains `runtime_authority=false` and `scientific_approval=NOT_ASSESSED`.
+Willow's relabel/physical-boundary packet, numerical forces and native lifecycle
+are unchanged. This does not qualify a proposed recut frame, seam chemistry,
+all junctions or automatic adoption. The original source registration is not
+silently rebound to a different checkpoint.
+
+The read-only controllers are
+`NASolve:branch-artifacts/willow/runners/w228-c539-review.py` and
+`w228-checkpoint-review.py`, run with the NASolve Python using
+`PYTHONDONTWRITEBYTECODE=1`, optional Gemmi 0.7.5 and `-B`. Their immutable
+`canonical-review.json` and `checkpoint-review.json` receipts live under
+`NASolve:branch-artifacts/willow/w228-registered-phosphate-review/` and pin the
+exact Cedar owners and input artifacts. Generated scientific inputs stay local.
+No source tests, installation or native run were repeated for this independent
+cold review; C539's own focused/relocated qualification remains Cedar-owned.

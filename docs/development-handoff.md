@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current audit and maintained implementation: W227, 2026-11-22.**
+**Current audit: W228, 2026-11-22. Maintained implementation: W227.**
 The existing native input binder now accepts an explicitly selected dictionary-only
 parent policy from Cedar C526. Default literal inputs still require compiled
 restraints. W214 binds a real X11_22 PostMR checkpoint and original observations;
@@ -50,6 +50,13 @@ This prevents changing the scientific target by including newly editable flanks:
 the saved core's 10 Å becomes 7.143 Å if the unchanged flanks are averaged in.
 No window expansion or new recovery was executed; default reports and motion
 arithmetic remain unchanged.
+
+W228 independently qualifies the Willow-facing boundary of Cedar C539's
+[registered phosphate reader](topostitch-periodic.md#w228--review-the-shared-registered-phosphate-reader):
+20 canonical/16 exact-checkpoint cold checks, no new native call. It reuses the
+shared graph, resolves actual coordinate labels and the reciprocal image, and
+keeps chemical intent distinct from the original checkpoint's nonbonded-only
+record. This source-frame observation is not a recut, force grant or branch merge.
 
 ## Current development edge
 
