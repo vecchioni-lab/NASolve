@@ -1,7 +1,40 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-22, C536 replaying the registered 5W6W central strand — Rowan**.
+Updated **2026-11-22, C537 checking the plane members Phenix used — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+C537 extends the existing [plane reading](cif-doctor.md#checking-which-atoms-phenix-put-in-a-residue-plane)
+to a model, CIF and ordinary Phenix GEO, including the saved preflight and
+final GEO of a registered checkpoint. Earlier selected-site measurements
+still use their original capture. The optional JSON fields are
+`preflight_printed_planes` and `refined_printed_planes`. Existing run files
+need no migration. The CLI, run reader, new `refinement_component_planes`
+reader and two focused test files changed. No model or reflection file ships
+with this change.
+
+Nine regression cases failed before their respective fixes. The following focused
+command passed 258 tests and 7 subtests from source and from the relocated wheel
+after removing its original build and installation paths.
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider \
+  tests/test_refinement_component_planes.py tests/test_refinement_component_bonds.py \
+  tests/test_refinement_plane_departures.py tests/test_cif_doctor_cli.py \
+  tests/test_cif_doctor_run.py tests/test_cif_doctor.py tests/test_cif_printed_parallelity.py \
+  tests/test_refinement_parallelity.py tests/test_final_pair_geometry_integration.py \
+  tests/test_refinement_declared_sites.py
+```
+
+Cold readback reopened four historical PDU comparisons and the C505
+`refine-002` checkpoint. Phenix 2.2.1-6174 printed C5A in the repaired
+plane at both sites. The mixed scaffold had sixteen exact modeled planes
+and four hydrogen-dependent planes with only two modeled atoms, in both
+saved stages. The registry and report retained their hashes and timestamps.
+The compact checkout in the C531 evidence folder runs as
+`python -B c537_checkout.py historical ATTEMPT_PARENT NEW_JSON` or
+`python -B c537_checkout.py checkpoint RUN NEW_JSON`.
+These are readbacks of completed native refinements. Full regression remains
+deferred.
 
 C536 gives Pine's existing directed-boundary reader a
 [small reusable 5W6W declaration](recipes/5w6w-central-continuation.json).
@@ -1423,10 +1456,11 @@ Alder; coordinate before shared-source or native work. Do not duplicate their ru
   use remain open. PDU→DT→DY and the reverse preserve the shared
   scaffold under the explicit deoxy rule. Broader sugar-family placement and DY
   pairing semantics remain separate; do not invent NARestraints relationships.
-- **Phosphates:** original PDU:PDU B:1 is incoming symmetry continuation with
-  P/OP1/OP2 and no OP3, superseding the earlier free-OH answer. B:7 O3′ is a candidate
-  partner, not confirmed linkage. D:1 terminal protection is separate. Remove OP3
-  only with proven incoming bonding; no blanket removal or invented symmetry angles.
+- **Phosphates.** The [standing 5W6W convention](backbone-chemistry.md#the-central-strand-in-the-5w6w-scaffold)
+  is B:7 O3′ bonded across symmetry to B:1 P. B:1 retains P, OP1 and OP2.
+  D:1 has separate terminal-phosphate protection. For a resliced or renumbered
+  model, carry the declared endpoints into the new frame. An explicitly
+  modified construct can have a different junction.
 - **ReadySet:** C323 traced the old 1.607 Å target to upstream RM1/GDIIS output after
   nonconvergence; ReadySet retained the supplied dictionary. Prefer source-faithful,
   independently checked repair over repeating the same generation for longer.

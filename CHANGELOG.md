@@ -8,6 +8,11 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `cif-doctor assess --refined-planes` now shows which modeled atoms Phenix
+  included with positive weight in a residue's own plane. It can read an
+  explicit model, CIF and GEO, or both saved stages of a numbered refinement.
+  The existing selected-site measurements remain available.
+
 - `cif-doctor phosphate-image --nearest-image` reports the two closest
   crystal copies of a named O3′ to a named phosphorus in a model or
   checkpoint. Ambiguity at PDB coordinate precision stays visible. The

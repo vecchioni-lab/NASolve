@@ -241,7 +241,7 @@ def assess_run(
         context = _preparation_context(run, registry, verified, selected)
         metrics = selected.get("metrics", {})
         recorded = isinstance(metrics, Mapping) and "inter_residue_bonds" in metrics
-    if refined_links or contact_sites or bond_targets:
+    if refined_links or contact_sites or bond_targets or refined_planes:
         from .refinement_link_geometry import preflight_link_inputs
         initial_files = preflight_link_inputs(run, selected)
         geometry = _final_geometry(run, selected)
@@ -253,6 +253,8 @@ def assess_run(
                 receipt[stage + "_contacts"] = None
             if bond_targets:
                 receipt[stage + "_bond_targets"] = None
+            if refined_planes:
+                receipt[stage + "_printed_planes"] = None
             if files is None:
                 continue
             (coords, coords_ref), (geo, geo_ref) = files
@@ -264,6 +266,9 @@ def assess_run(
             if bond_targets:
                 from .refinement_component_bonds import read_component_bond_targets
                 observations_at_stage["bond_targets"] = read_component_bond_targets(coords, geo, receipt["components"])
+            if refined_planes:
+                from .refinement_component_planes import read_component_planes
+                observations_at_stage["printed_planes"] = read_component_planes(coords, geo, receipt["components"])
             for kind, observed in observations_at_stage.items():
                 if (observed["model_sha256"] != coords_ref["sha256"].casefold()
                         or observed["geometry_sha256"] != geo_ref["sha256"].casefold()):

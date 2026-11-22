@@ -22,6 +22,27 @@ Use `--json` for sigma differences, explicit edits, and ambiguous or missing
 source rows. Chemical acceptance and any choice to edit restraints stay with
 the operator.
 
+## Checking which atoms Phenix put in a residue plane
+
+To see whether a base substituent actually reached a ring-plane restraint,
+give Doctor the residue dictionary, the written model and its matching GEO.
+For a numbered refinement, Doctor reads the recorded preflight and final
+geometry independently.
+
+```sh
+nasolve cif-doctor assess PDU.cif --model refined_001.pdb --refined-planes refined_001_final.geo
+nasolve cif-doctor assess --run dataset/AutoMR/run_001 --checkpoint refine-002 --refined-planes --json
+```
+
+An exact match means that one within-residue covalent plane has precisely
+the modeled dictionary members at positive weight. The JSON also lists atoms
+absent from the model and the sigma, weight and displacement printed by Phenix.
+An amino group with two heavy atoms and two unmodeled hydrogens, for instance,
+has too few modeled members to establish a plane. Inter-residue pairing planes
+have a separate purpose. The selected-site geometry reading, when recorded,
+still gives the side arm's actual height relative to its ring. Membership alone
+does not measure that height.
+
 ## Inspecting a phosphate at a crystal boundary
 
 When a strand may continue into the next crystal copy, identify the phosphorus,

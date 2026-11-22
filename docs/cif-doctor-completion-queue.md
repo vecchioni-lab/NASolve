@@ -36,8 +36,9 @@ ordinary and trial models, including when the tip has no recorded plane.
 C484 held the coordinate weight at 1 through all five cycles in the independent
 A:PDU comparison. The ordinary and added-plane tip heights were 0.466
 and 0.304 Å. Rfree was 0.2501 and 0.2500. The adaptive run favored the
-ordinary arm by this measurement. Keep the soft plane experimental. The distinct PDU:PDU
-symmetry-linked phosphate case still requires a verified incoming link.
+ordinary arm by this measurement. Keep the soft plane experimental. For the distinct
+PDU:PDU phosphate, the [central link is confirmed](backbone-chemistry.md#the-central-strand-in-the-5w6w-scaffold).
+The ordinary refinement route still needs to preserve its image-aware restraints on restart.
 For the explicitly phosphorylated D:1 on the host control, C504 accounts for
 all eleven local Phenix restraints, including the last angle before the next
 table. The DY starting geometry warrants review and its two refined controls
@@ -162,6 +163,14 @@ and preserved the six sugar signs after five cycles. A:12's glycosidic
 angle moved by 32.5° and B:4's by 0.1° or less. The alternative archived
 orientation still had the lower global R-free. A single global score
 cannot select the local orientation on these results alone.
+
+C537 checks which modeled atoms actually reached a native covalent plane.
+The historical GEO omitted C5A at both PDU sites. The corrected GEO included
+it at both. In the registered thirteen-change scaffold, sixteen dictionary
+planes matched their modeled atoms before and after refinement. Four amino
+planes had two modeled heavy atoms each and two absent hydrogens. Use the
+[printed plane reading](cif-doctor.md#checking-which-atoms-phenix-put-in-a-residue-plane)
+alongside the existing ring-height measurement when assessing survival.
 
 Q07 now has a fresh nine-pair model. Twelve ordinary mutations succeeded
 after correcting the orientation of DP and IMC from their source graphs.
@@ -1463,9 +1472,12 @@ old construction flip. It stops before dictionary repair at the previously known
 raw-W B:1 incomplete-phosphate ambiguity. C295 records Simon's correction:
 B:1 is intended to continue covalently through symmetry, retaining P/OP1/OP2
 without OP3; his earlier free-OH answer is superseded. The nearest observed
-candidate is B:7 O3′ under `-x+y,-x,z`, 3.34019 Å in original/prepared models.
-Neither chemical partner identity nor a formed bond follows from proximity alone.
-No atom edits, native link enforcement or PDU refinement-survival claim.
+candidate in that experiment was B:7 O3′ under `-x+y,-x,z`, 3.34019 Å
+in the original/prepared models. Simon subsequently confirmed B:7 and B:1
+as the covalent endpoints on the retained central strand. The
+[scaffold convention](backbone-chemistry.md#the-central-strand-in-the-5w6w-scaffold)
+records that decision and the independent image check. C290 itself made
+no atom edit or native link.
 
 **Pine/Cedar convergence (Simon and Linden, 2026-11-14):** Pine owns editable
 declared topology beyond the asymmetric unit: atom identities, exact operators

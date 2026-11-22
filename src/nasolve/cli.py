@@ -335,8 +335,8 @@ def build_parser() -> argparse.ArgumentParser:
     cif_assess.add_argument("--b-factors-at", action="append", metavar="CHAIN:NUMBER",
                             help="read a residue's saved B factors and occupancies and compare them with the refinement parent (requires --run)")
     cif_assess.add_argument(
-        "--refined-planes", action="store_true",
-        help="measure atoms against the other plane members and compare ring-bound alkyne tips and terminal bonds before and after refinement (requires --run)",
+        "--refined-planes", nargs="?", const=True, type=Path, metavar="GEO",
+        help="inspect printed component planes with --model PDB and a GEO, or read recorded planes, ring-tip heights and terminal bonds with --run",
     )
     cif_assess.add_argument(
         "--refined-links", action="store_true",
@@ -1986,8 +1986,8 @@ def _cif_doctor(args: argparse.Namespace) -> int:
             }
             receipt = args.output.expanduser() if args.output is not None else None
         else:
-            if args.refined_planes and args.run is None:
-                raise ValueError("--refined-planes requires --run")
+            if args.refined_planes is True and args.run is None:
+                raise ValueError("--refined-planes requires --run or an explicit GEO path with --model PDB")
             if args.contacts_at and args.run is None:
                 raise ValueError("--contacts-at requires --run")
             if args.b_factors_at and args.run is None:
@@ -1995,6 +1995,8 @@ def _cif_doctor(args: argparse.Namespace) -> int:
             if args.refined_links and args.run is None:
                 raise ValueError("--refined-links requires --run")
             if args.bundle is not None:
+                if args.refined_planes is not None:
+                    raise ValueError("Printed planes need a numbered run or an explicit model and GEO")
                 if args.bond_targets is not None:
                     raise ValueError("Bond target inspection needs a numbered run or an explicit model and GEO")
                 if args.run is not None or args.dictionaries or args.model is not None or args.checkpoint is not None or args.stage != "standalone":
@@ -2002,11 +2004,13 @@ def _cif_doctor(args: argparse.Namespace) -> int:
                 from .cif_runtime_bundle import assess_runtime_bundle
                 payload = assess_runtime_bundle(args.bundle)
             elif args.run is not None:
+                if args.refined_planes is not None and args.refined_planes is not True:
+                    raise ValueError("--run uses its recorded geometry. Give --refined-planes without a GEO path.")
                 if args.bond_targets is not None and args.bond_targets is not True:
                     raise ValueError("--run uses its recorded geometry. Give --bond-targets without a GEO path.")
                 if args.dictionaries or args.model is not None or args.stage != "standalone":
                     raise ValueError("--run selects its frozen model/bundle; omit dictionaries, --model and --stage")
-                payload = assess_run(args.run, checkpoint=args.checkpoint, refined_planes=args.refined_planes,
+                payload = assess_run(args.run, checkpoint=args.checkpoint, refined_planes=bool(args.refined_planes),
                                      refined_links=args.refined_links, contact_sites=args.contacts_at,
                                      b_factor_sites=args.b_factors_at, bond_targets=args.bond_targets is True)
             else:
@@ -2016,18 +2020,30 @@ def _cif_doctor(args: argparse.Namespace) -> int:
                 model = args.model.expanduser().resolve() if args.model is not None else None
                 if args.bond_targets is not None and (model is None or args.bond_targets is True):
                     raise ValueError("Standalone --bond-targets requires a GEO path and --model PDB")
+                if args.refined_planes is not None and model is None:
+                    raise ValueError("Standalone --refined-planes requires a GEO path and --model PDB")
                 payload = assess_dictionaries(paths, stage=args.stage, model=model)
-                if args.bond_targets is not None:
+                if args.bond_targets is not None or args.refined_planes is not None:
                     from .model_assessment import file_sha256
                     from .refinement_component_bonds import apply_bond_target_review, read_component_bond_targets
-                    geometry = args.bond_targets.expanduser()
-                    bonds = read_component_bond_targets(model, geometry, payload["components"])
-                    if (payload["model"].get("sha256") != bonds["model_sha256"]
-                            or any(file_sha256(path) != item["sha256"] for path, item in zip(paths, payload["inputs"], strict=True))):
-                        raise ValueError("Model or dictionary changed during the bond target comparison")
-                    bonds["geometry"] = {"anchor": "geometry-input", "relative_path": geometry.name, "sha256": bonds["geometry_sha256"]}
-                    payload["refined_bond_targets"] = bonds
-                    apply_bond_target_review(payload)
+                    from .refinement_component_planes import read_component_planes
+                    readings = (
+                        ("refined_bond_targets", args.bond_targets, read_component_bond_targets),
+                        ("refined_printed_planes", args.refined_planes, read_component_planes),
+                    )
+                    for key, requested, reader in readings:
+                        if requested is None:
+                            continue
+                        geometry = requested.expanduser()
+                        observed = reader(model, geometry, payload["components"])
+                        if observed["model_sha256"] != payload["model"].get("sha256"):
+                            raise ValueError("Model changed during printed geometry inspection")
+                        observed["geometry"] = {"anchor": "geometry-input", "relative_path": geometry.name, "sha256": observed["geometry_sha256"]}
+                        payload[key] = observed
+                    if any(file_sha256(path) != item["sha256"] for path, item in zip(paths, payload["inputs"], strict=True)):
+                        raise ValueError("Dictionary changed during printed geometry inspection")
+                    if args.bond_targets is not None:
+                        apply_bond_target_review(payload)
                 root = Path(os.path.commonpath([str(path.parent) for path in paths]))
                 for item, path in zip(payload["inputs"], paths):
                     item.update({"anchor": "inputs", "relative_path": path.relative_to(root).as_posix()})
@@ -2050,6 +2066,25 @@ def _cif_doctor(args: argparse.Namespace) -> int:
             print(text, end="")
         else:
             print(f"CIF Doctor: {payload.get('status', 'PREPARED')}")
+            for field, stage in (("preflight_printed_planes", "Preflight"), ("refined_printed_planes", "Final")):
+                if field not in payload:
+                    continue
+                reading = payload[field]
+                if not reading or reading["sites"] is None:
+                    reason = (reading["reason"] or reading["status"]) if reading else "no recorded GEO"
+                    print(f"{stage} printed component planes unavailable ({reason}).")
+                    continue
+                sites = reading["sites"]
+                sources = [(site, plane) for site in sites for plane in site["dictionary_planes"] or []]
+                mismatches = [(site, plane) for site, plane in sources if plane["status"] != "EXACT_MODELED_MEMBERS"]
+                print(f"{stage} covalent planes  {len(sources) - len(mismatches)} of {len(sources)} CIF planes "
+                      f"have exactly the modeled atoms as positive-weight members.")
+                if any(s["dictionary_planes"] is None for s in sites):
+                    print("Conflicting CIF definitions leave additional sites unassessed.")
+                for site, plane in mismatches[:8]:
+                    missing = plane["modeled_atoms_without_positive_covalent_plane"]
+                    detail = "  No positive covalent plane contains " + ", ".join(missing) + "." if missing else ""
+                    print(f"  {site['site']} {site['component']} {plane['plane_id']}  {plane['status']}.{detail}")
             for field, stage in (("preflight_bond_targets", "Preflight"), ("refined_bond_targets", "Final")):
                 if field not in payload:
                     continue
