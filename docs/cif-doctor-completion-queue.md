@@ -98,6 +98,13 @@ in a versioned ordinary request. Modified and
 metal-containing parents still need separate evidence. The independent
 PDU and DF chemical scope stays open.
 
+Willow W214 found a genuine canonical PostMR checkpoint with no extra restraint
+files. C526 can preserve a fresh dictionary-only observation for that case.
+The ordinary literal-input route still requires an explicitly supplied restraint.
+Next compare the original and freshly interpreted geometry of this parent,
+including every native pair restraint. A prospective motion needs its own
+registered intent before the ordinary worker can accept its coordinates.
+
 Q07 now has a fresh nine-pair model. Twelve ordinary mutations succeeded
 after correcting the orientation of DP and IMC from their source graphs.
 A separate placement retained all four ATL sugar centres. Phenix applied

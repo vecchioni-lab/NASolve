@@ -106,18 +106,20 @@ def prepare_literal_na_inputs(model, native_receipt, output):
 
 def read_literal_na_inputs(directory):
     """Reconstruct every compiled byte without writes, execution or old paths."""
-    from .cif_literal_na_controls import POLICY_ID as TYPED_POLICY_ID, _typed_payload
+    from .cif_literal_na_controls import DICTIONARY_PARENT_POLICY_ID, POLICY_ID as TYPED_POLICY_ID, _typed_payload
     root = Path(directory).absolute(); tree = _exact_tree(root)
     _need(MANIFEST in tree, 'Missing literal-input manifest')
     report = _json(tree[MANIFEST])
     _need(isinstance(report,dict) and type(report.get('schema_version')) is int
-          and report['schema_version'] == 1 and report.get('policy_id') in {POLICY_ID,SOURCE_POLICY_ID,TYPED_POLICY_ID},
+          and report['schema_version'] == 1
+          and report.get('policy_id') in (POLICY_ID, SOURCE_POLICY_ID, TYPED_POLICY_ID, DICTIONARY_PARENT_POLICY_ID),
           'Unsupported literal-input artifact')
     if report['policy_id']==POLICY_ID:
         expected,files=_payload(root/'model.pdb',root/'native/native_receipt.json')
-    elif report['policy_id']==TYPED_POLICY_ID:
+    elif report['policy_id'] in (TYPED_POLICY_ID, DICTIONARY_PARENT_POLICY_ID):
         expected,files=_typed_payload(root/'model.pdb',root/'native/native_receipt.json',
-            report.get('phil_roles'), report.get('native_receipt',{}).get('sha256'))
+            report.get('phil_roles'), report.get('native_receipt',{}).get('sha256'),
+            source_policy=report['policy_id'])
     else:
         from .cif_explicit_na_policy import _CODE
         originals=report.get('original_phils');sources=report.get('source_components')

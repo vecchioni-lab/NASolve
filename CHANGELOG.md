@@ -8,6 +8,11 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- A geometry-parent capture can explicitly record use of the installed Phenix
+  dictionaries and four verified reader settings with zero added restraint
+  files. This gives a canonical model with no declared pairing a reproducible
+  source. Existing explicit pair and stacking inputs keep their original format.
+
 - CIF Doctor can measure a named crystal-image O3′ against a phosphate and show
   whether Phenix printed that pair as a bond or a nonbonded contact. The
   read-only `cif-doctor phosphate-image` command uses the optional topology

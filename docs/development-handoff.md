@@ -1,7 +1,24 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-22, C525 inspecting the phosphate at an exact NASolve checkpoint — Rowan**.
+Updated **2026-11-22, C526 preserving the geometry of a parent with no supplied restraints — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+**C526, Cedar and Willow.** W214 identifies a real current PostMR parent with
+128 canonical residues and no inherited pair or stacking instructions. The
+previous literal compiler required at least one geometric instruction. The new
+explicit `cif-typed-native-dictionary-parent-v1` source in
+`cif_literal_na_controls` records only the installed dictionary capture and all
+four reader controls. `cif_literal_na_inputs` reopens it after relocation.
+`cif_complete_request._compiler_input("native_dictionary_parent", ...)` keeps
+models, geometric restraints and reader controls separate. The schema remains
+version 1 with a distinct policy identifier, empty compiled files and null
+compilation and restraint context. Existing requests and checkpoints need no
+migration. No new native process or refinement was used for these software
+checks. With `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`, run
+`python -B -m pytest -q -p no:cacheprovider tests/test_cif_literal_na_controls.py tests/test_cif_literal_na_inputs.py tests/test_cif_reader_control_handoff.py`.
+Four new cases failed before the change. All 118 focused tests passed afterward.
+Raw captures stay local. The next check compares this source with the geometry
+Phenix actually constructs from the registered parent.
 
 **Q06, original PDU:PDU.** The molecule on the other side of B:1 looks close in
 the archived no-mercury refinement. Its native GEO lists B:7 O3′ at 2.825 Å

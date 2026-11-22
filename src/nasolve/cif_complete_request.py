@@ -136,10 +136,11 @@ def _compiler_input(kind, directory, selected_sources=None, *, reader_control_po
     """Resolve an existing compiler artifact; never compile or guess new intent."""
     if reader_control_policy is not None:
         from .cif_interpretation_controls import POLICY_ID as control_policy
-        _need(reader_control_policy == control_policy and kind == 'literal_na_inputs',
+        _need(reader_control_policy == control_policy and kind in ('literal_na_inputs', 'native_dictionary_parent'),
               'Reader-control handoff requires typed literal inputs and its explicit policy')
-        from .cif_literal_na_controls import inspect_typed_literal_na_inputs
-        result = inspect_typed_literal_na_inputs(directory)
+        from .cif_literal_na_controls import DICTIONARY_PARENT_POLICY_ID, POLICY_ID, inspect_typed_literal_na_inputs
+        source_policy = DICTIONARY_PARENT_POLICY_ID if kind == 'native_dictionary_parent' else POLICY_ID
+        result = inspect_typed_literal_na_inputs(directory, source_policy=source_policy)
         return dict(result, phils=result['compiled_restraint_phils'])
     if kind == 'literal_na_inputs':
         result=resolve_literal_na_inputs(directory)

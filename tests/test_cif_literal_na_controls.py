@@ -33,6 +33,64 @@ def prepare(case,output,**kwargs):
         expected_receipt_sha256=sha256(receipt.read_bytes()).hexdigest(),**kwargs)
 
 
+def dictionary_parent_capture(root, controls=CONTROLS):
+    """Installed dictionaries with one declared reader-controls file and no geometric edits."""
+    text = '\n'.join(key + ' = False' for key in controls) + '\n'
+    model, receipt = capture(root, phil_text=text)
+    def declare_controls(record):
+        record['native_validation']['phil_adaptations'][0].update(
+            policy=record['phil_namespace_policy'], definitions_preserved=len(controls),
+            field_mapping=[dict(source=k, interpreter=k, value_tokens=['False']) for k in controls])
+    rebind(receipt, declare_controls)
+    row = json.loads(receipt.read_bytes())['inputs'][1]
+    return model, receipt, [dict(input_index=row['input_index'], sha256=row['sha256'],
+                                role='interpretation_controls')]
+
+
+def test_dictionary_parent_carries_only_declared_controls_after_relocation(tmp_path):
+    from nasolve.cif_complete_request import _compiler_input
+    from nasolve.cif_interpretation_controls import POLICY_ID as reader
+    from nasolve.cif_literal_na_inputs import read_literal_na_inputs, resolve_literal_na_inputs
+    source_policy = 'cif-typed-native-dictionary-parent-v1'
+    case = dictionary_parent_capture(tmp_path/'capture')
+    old = tmp_path/'original'
+    with pytest.raises(ValueError, match='both literal'):
+        prepare(case, old)
+    report = prepare(case, old, source_policy=source_policy)
+    assert report['policy_id'] == source_policy and report['compiled_phils'] == []
+    assert report['compilation'] is None and report['restraint_context'] is None
+    assert report['execution_context']['ordinary_handoff_allowed'] is False
+    moved = old.rename(tmp_path/'moved')
+    shutil.rmtree(tmp_path/'capture')
+    before = inventory(moved)
+    with patch('subprocess.Popen', side_effect=AssertionError('Cold read launched an external process')):
+        assert read_literal_na_inputs(moved) == report
+        inputs = _compiler_input('native_dictionary_parent', moved, reader_control_policy=reader)
+        assert inputs['model'] == moved/'model.pdb'
+        assert inputs['phils'] == inputs['compiled_restraint_phils'] == []
+        assert [p.read_text() for p in inputs['interpretation_control_phils']] == [TEXT]
+        for old_reader in (lambda: resolve_literal_na_inputs(moved),
+                           lambda: _compiler_input('literal_na_inputs', moved, reader_control_policy=reader),
+                           lambda: _compiler_input('native_dictionary_parent', moved)):
+            with pytest.raises(ValueError):
+                old_reader()
+    assert inventory(moved) == before
+
+
+@pytest.mark.parametrize('defect', ['incomplete_controls', 'literal_input', 'source_edit'])
+def test_dictionary_parent_refuses_unaccounted_chemistry_before_freezing(tmp_path, defect):
+    if defect == 'literal_input':
+        case = setup(tmp_path)
+    else:
+        case = dictionary_parent_capture(tmp_path/'source', CONTROLS[:-1] if defect == 'incomplete_controls' else CONTROLS)
+        if defect == 'source_edit':
+            rebind(case[1], lambda r: r['native_validation']['geometry']['custom_proxy_requests'].append(
+                {'kind':'bond', 'atoms':['P','O']}))
+    with pytest.raises(ValueError):
+        prepare(case, tmp_path/'frozen', source_policy='cif-typed-native-dictionary-parent-v1')
+    assert not (tmp_path/'frozen').exists()
+
+
 def test_typed_artifact_binds_roles_controls_and_refuses_execution(tmp_path):
     from nasolve.cif_literal_na_inputs import read_literal_na_inputs,resolve_literal_na_inputs
     from nasolve.cif_literal_na_controls import inspect_typed_literal_na_inputs
