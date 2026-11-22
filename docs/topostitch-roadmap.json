@@ -275,14 +275,15 @@
         "W216 maintains explicit intrinsic O5/C5 proposals about fixed P/C4 anchors, exact endpoint serialization and relative sugar-hand checks;247/247 tests and48-state saved-PDB replay. Ordinary motion/admission remains separate.",
         "W217 completes one matched installed-seed receiving fit. Both local corrections survive saved-PDB rounding with original chemistry/data/fixed context retained; full local P-centered bond/angle readback within1.77native sigmas. Global scientific closure remains open.",
         "W218 maintains explicit selected-region displacement summaries with separate centroid/RMS/max and optional positive weights.310/310 tests and exact cross-Python saved-endpoint metrics; no centerline or achieved stress target.",
-        "W219 performs the requested true10Acentroid stress once. Source/content/data survive but five-cycle recovery fails sugar handedness and large local geometry/R gates. Preserve the rejected endpoint; shorter link distances alone are not closure."
+        "W219 performs the requested true10Acentroid stress once. Source/content/data survive but five-cycle recovery fails sugar handedness and large local geometry/R gates. Preserve the rejected endpoint; shorter link distances alone are not closure.",
+        "W220 preserves sugar signs on five fixed whole-residue poses. W221 resolves all24 raw derivative discrepancies through the existing Cedar plane correction; actual refinement already uses it. No new optimizer, accepted large repair or ordinary activation."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
         "Qualify whole-pair window expansion, nonuniform curvature and finite failure without crossing protected junctions. A fixed taper is initialization, not measured conformation.",
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient."
       ],
-      "next_action": "Read-only native-geometry examination of the existing constrained whole-residue motion before considering another diffraction fit. Preserve W85small-motion/W209derivative limits. No retry/amplitude sweep under W219;5Acenterline remains separate. Rowan owns ordinary integration.",
+      "next_action": "Qualify a live corrected collective-motion callback using existing owners before an optimizer/new fit. W221 explains the raw force discrepancy; W219 remains a rejected stress recovery. Check feasible window/stacking before another large move; centerline target is separate.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -361,14 +362,17 @@
         "E_LOCAL_PROPOSAL_CONSUMER",
         "E_MAINTAINED_LOCAL_RECOVERY",
         "E_EXPLICIT_DISPLACEMENT_METRICS",
-        "E_CENTROID_STRESS_FAILURE"
+        "E_CENTROID_STRESS_FAILURE",
+        "E_COLLECTIVE_PATH",
+        "E_CORRECTED_FORCE_READBACK"
       ],
       "last_audit": {
         "date": "2026-11-22",
         "human_update": 219,
         "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7",
         "reviewer": "Linden",
-        "scope": "Bounded negative stress result, no scientific closure"
+        "scope": "Bounded negative stress result, no scientific closure",
+        "basis": "28cold integrity checks and24/24 corrected saved-plane derivative comparisons; live collective callback remains unqualified."
       }
     },
     {
@@ -439,14 +443,15 @@
         "W214 binds a genuine canonical PostMR root but finds no independently declared motion. W215 explicitly binds dictionary-only native source with225/225focused tests and19real-source checks; no dummy restraint or ordinary execution authority.",
         "W216 maintains explicit intrinsic O5/C5 proposals about fixed P/C4 anchors, exact endpoint serialization and relative sugar-hand checks;247/247 tests and48-state saved-PDB replay. Ordinary motion/admission remains separate.",
         "W217 completes one matched installed-seed receiving fit. Both local corrections survive saved-PDB rounding with original chemistry/data/fixed context retained; full local P-centered bond/angle readback within1.77native sigmas. Global scientific closure remains open.",
-        "W219 performs the requested true10Acentroid stress once. Source/content/data survive but five-cycle recovery fails sugar handedness and large local geometry/R gates. Preserve the rejected endpoint; shorter link distances alone are not closure."
+        "W219 performs the requested true10Acentroid stress once. Source/content/data survive but five-cycle recovery fails sugar handedness and large local geometry/R gates. Preserve the rejected endpoint; shorter link distances alone are not closure.",
+        "W220 preserves sugar signs on five fixed whole-residue poses. W221 resolves all24 raw derivative discrepancies through the existing Cedar plane correction; actual refinement already uses it. No new optimizer, accepted large repair or ordinary activation."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Read-only native-geometry examination of the existing constrained whole-residue motion before considering another diffraction fit. Preserve W85small-motion/W209derivative limits. No retry/amplitude sweep under W219;5Acenterline remains separate. Rowan owns ordinary integration.",
+      "next_action": "Qualify a live corrected collective-motion callback using existing owners before an optimizer/new fit. W221 explains the raw force discrepancy; W219 remains a rejected stress recovery. Check feasible window/stacking before another large move; centerline target is separate.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -567,14 +572,17 @@
         "E_DICTIONARY_PARENT_BINDING",
         "E_LOCAL_PROPOSAL_CONSUMER",
         "E_MAINTAINED_LOCAL_RECOVERY",
-        "E_CENTROID_STRESS_FAILURE"
+        "E_CENTROID_STRESS_FAILURE",
+        "E_COLLECTIVE_PATH",
+        "E_CORRECTED_FORCE_READBACK"
       ],
       "last_audit": {
         "date": "2026-11-22",
         "human_update": 219,
         "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7",
         "reviewer": "Linden",
-        "scope": "Bounded negative stress result, no scientific closure"
+        "scope": "Bounded negative stress result, no scientific closure",
+        "basis": "28cold integrity checks and24/24 corrected saved-plane derivative comparisons; live collective callback remains unqualified."
       }
     },
     {
@@ -645,7 +653,8 @@
         "W211/W212 four matched five-cycle arms show both intrinsic shoulder seeds survive together; residual geometry remains explicit. W213 separates genuine construct/motion/source identity from absent ordinary checkpoint ancestry. No new product runtime or ordinary authority.",
         "W214 binds a genuine canonical PostMR root but finds no independently declared motion. W215 explicitly binds dictionary-only native source with225/225focused tests and19real-source checks; no dummy restraint or ordinary execution authority.",
         "W217 completes one matched installed-seed receiving fit. Both local corrections survive saved-PDB rounding with original chemistry/data/fixed context retained; full local P-centered bond/angle readback within1.77native sigmas. Global scientific closure remains open.",
-        "W219 performs the requested true10Acentroid stress once. Source/content/data survive but five-cycle recovery fails sugar handedness and large local geometry/R gates. Preserve the rejected endpoint; shorter link distances alone are not closure."
+        "W219 performs the requested true10Acentroid stress once. Source/content/data survive but five-cycle recovery fails sugar handedness and large local geometry/R gates. Preserve the rejected endpoint; shorter link distances alone are not closure.",
+        "W220 preserves sugar signs on five fixed whole-residue poses. W221 resolves all24 raw derivative discrepancies through the existing Cedar plane correction; actual refinement already uses it. No new optimizer, accepted large repair or ordinary activation."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -656,7 +665,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Read-only native-geometry examination of the existing constrained whole-residue motion before considering another diffraction fit. Preserve W85small-motion/W209derivative limits. No retry/amplitude sweep under W219;5Acenterline remains separate. Rowan owns ordinary integration.",
+      "next_action": "Qualify a live corrected collective-motion callback using existing owners before an optimizer/new fit. W221 explains the raw force discrepancy; W219 remains a rejected stress recovery. Check feasible window/stacking before another large move; centerline target is separate.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -766,14 +775,17 @@
         "E_REAL_CANONICAL_PARENT",
         "E_DICTIONARY_PARENT_BINDING",
         "E_MAINTAINED_LOCAL_RECOVERY",
-        "E_CENTROID_STRESS_FAILURE"
+        "E_CENTROID_STRESS_FAILURE",
+        "E_COLLECTIVE_PATH",
+        "E_CORRECTED_FORCE_READBACK"
       ],
       "last_audit": {
         "date": "2026-11-22",
         "human_update": 219,
         "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7",
         "reviewer": "Linden",
-        "scope": "Bounded negative stress result, no scientific closure"
+        "scope": "Bounded negative stress result, no scientific closure",
+        "basis": "28cold integrity checks and24/24 corrected saved-plane derivative comparisons; live collective callback remains unqualified."
       }
     },
     {
@@ -808,7 +820,7 @@
         "Show actual before/after coordinates, moved/fixed sites, mates, geometry and matched refinement deltas. Test stale evidence, interruption, relocation and explicit keep/reject/use decisions.",
         "For final B09 review, show source, proposed and refined geotest coordinates with the intended periodic mates and per-member pass/review/failure evidence."
       ],
-      "next_action": "Read-only native-geometry examination of the existing constrained whole-residue motion before considering another diffraction fit. Preserve W85small-motion/W209derivative limits. No retry/amplitude sweep under W219;5Acenterline remains separate. Rowan owns ordinary integration.",
+      "next_action": "Qualify a live corrected collective-motion callback using existing owners before an optimizer/new fit. W221 explains the raw force discrepancy; W219 remains a rejected stress recovery. Check feasible window/stacking before another large move; centerline target is separate.",
       "evidence": [
         "E_SOFTWARE",
         "E_VIEW",
@@ -5616,6 +5628,58 @@
           "size": 29851
         }
       ]
+    },
+    "E_COLLECTIVE_PATH": {
+      "kind": "Read-only collective path with explicit raw derivative failure",
+      "date": "2026-11-22",
+      "human_update": 220,
+      "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7",
+      "reference": "docs/topostitch-periodic.md#w220w221--whole-residue-path-and-the-existing-corrected-force-owner",
+      "result": "55read-only calls,one zero-cycle native preparation;126 sugar signs retained over five poses; raw energy2.378e6 to12518 and max chain link10.285 to1.620A;28cold checks.",
+      "limitation": "24raw derivative comparisons fail; no optimizer, fit, new coordinate write or accepted repair.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w220-collective-geometry/declaration.json",
+          "sha256": "155299931812183e0cb0f16776aa7803cbed5139a0af2550b8a5f12f01e8c405",
+          "size": 1887
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w220-collective-geometry/review.json",
+          "sha256": "c825d2c7d1475fb98561176309b86782e7e661e0dbf2142d20567fa10f6fb8c9",
+          "size": 24355
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w220-collective-geometry/planning-repair.json",
+          "sha256": "0613087e5203beb9de0677feed58df6fc4ce0077e1dc10c408b6fa4a4cc66aff",
+          "size": 297
+        }
+      ]
+    },
+    "E_CORRECTED_FORCE_READBACK": {
+      "kind": "Existing corrected plane forces explain raw diagnostic discrepancy",
+      "date": "2026-11-22",
+      "human_update": 221,
+      "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7",
+      "reference": "docs/topostitch-periodic.md#w220w221--whole-residue-path-and-the-existing-corrected-force-owner",
+      "result": "Exact saved plane proxies/source-native mapping and existing both-first-planes correction resolve24/24 endpoint comparisons at unchanged tolerances; max error0.000851.",
+      "limitation": "Cold saved-plane reconstruction only. Actual refinement already uses correction; no product defect/fix or live collective optimizer qualification. W209 raw record preserved.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w221-plane-force-readback/declaration.json",
+          "sha256": "50fd50cfc220f178bd73d3ee63de53b574acd9d5a193985fefe1d9bc689dec94",
+          "size": 1836
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w221-plane-force-readback/readback.json",
+          "sha256": "d500454318f19fbf37a7de87665f2145394fc1823b40daa348031a16d112576a",
+          "size": 11481
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -5781,8 +5845,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 219,
-    "next": 220,
+    "current": 221,
+    "next": 222,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -6904,6 +6968,18 @@
       {
         "number": 219,
         "title": "Record failed recovery of a true10Aregion-centroid stress case",
+        "state": "RECORDED",
+        "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7"
+      },
+      {
+        "number": 220,
+        "title": "Read-only collective path with explicit raw derivative failure",
+        "state": "RECORDED",
+        "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7"
+      },
+      {
+        "number": 221,
+        "title": "Existing corrected plane forces explain raw diagnostic discrepancy",
         "state": "RECORDED",
         "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7"
       }

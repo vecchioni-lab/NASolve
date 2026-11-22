@@ -1,19 +1,20 @@
 # NASolve development handoff — Willow
 
-**Current audit: W219, 2026-11-22. Maintained implementation: W218.**
+**Current audit: W221, 2026-11-22. Maintained implementation: W218.**
 The existing native input binder now accepts an explicitly selected dictionary-only
 parent policy from Cedar C526. Default literal inputs still require compiled
 restraints. W214 binds a real X11_22 PostMR checkpoint and original observations;
 W215 binds that exact model, original native observation and four reader controls
 without inventing pair restraints. S04/S05/S06 remain PARTIAL.
 
-**Latest science:** W219 closes one true 10 Å centroid stress experiment with a
-**negative recovery**. Five cycles shorten the four boundary links, but A11 C1′
-inverts; worst chain bond/angle deviations are 18.92σ/32.19σ. Final centroid
-remains 7.776 Å away, maximum atom motion is 18.486 Å, and Rwork/Rfree are
-0.3670/0.4148. Source chemistry/content/data survive; no accepted closure or retry.
-[Exact negative evidence](topostitch-periodic.md#w219--a-true-10-a-centroid-stress-case-fails-bounded-recovery).
-W217 remains the separate successful small local-repair receiving control.
+**Latest science:** W219's true 10 Å centroid stress fails recovery: an A11
+C1′ inversion, 18.92σ/32.19σ worst chain bond/angle errors and final Rwork/Rfree
+0.3670/0.4148. W220's whole-residue return path preserves all 126 sugar signs,
+but its raw force diagnostic fails. W221 explains all 24 derivative differences
+using Cedar's **existing** corrected plane-force owner, with unchanged energies
+and tolerances. Actual refinement already uses that correction. No product fix,
+optimizer or accepted large repair follows. W217 remains the separate successful
+small local-repair receiving control. [Exact force boundary and evidence](topostitch-periodic.md#w220w221--whole-residue-path-and-the-existing-corrected-force-owner).
 
 **Receiving boundary:** W213's private motion fixture has no campaign ancestry.
 W214 now supplies a different, genuine current PostMR parent (2603 atoms, 128
@@ -78,14 +79,14 @@ No clean full-suite or skipped-case qualification is claimed; no suite rerun.
 
 ## Next bounded work
 
-Examine the existing constrained whole-residue motion against saved/native
-geometry before considering another diffraction fit. W219 is a closed negative
-control, not a reason for an undeclared retry or amplitude sweep. W85 only
-qualified small-motion derivatives; W209's broad-direction discrepancy remains.
-The 5 Å centerline target is still open. Do not repeat missing-intent searches
-or invent a target on the real X11_22 root. Rowan owns ordinary receiving and
-native qualification of the one shared W215 dictionary-parent artifact.
-
+Qualify the live corrected collective-motion callback before a six-parameter
+optimizer or another diffraction fit. Reuse `TaperedMotion` and Cedar's force
+owner; W221's saved-plane projection is not a live optimizer qualification.
+W219 is a closed negative control, not permission for a retry/amplitude sweep.
+The 5 Å centerline target is separate and unrun. Check feasible window length
+and preserved stacking before prescribing another large fixed-flank move.
+Do not repeat missing-intent searches or invent a target on the real X11_22 root.
+Rowan owns ordinary receiving and the shared W215 dictionary-parent artifact.
 
 **Ordinary integration remains Cedar-owned:** the versioned request must carry the
 bound geometry-parent/source and admitted candidate motion. Rowan's **C516**
@@ -108,8 +109,8 @@ benchmarks are separately **10 Å segment-centroid displacement** and **5 Å fro
 a declared helix centerline**, not maximum atom displacement or P–P span. W207
 actually shifts the unweighted 205-atom centroid 0.253 Å (largest pair centroid
 0.885 Å); no local helix centerline is measured. Define
-and qualify those measurements and bounded recovery before running them. No
-such stress test has run. W206 opt-in bytes must be non-None and source MATCH
+and qualify those measurements before claiming either target. W219 has now
+run and rejected the centroid stress recovery; the centerline test remains unrun. W206 opt-in bytes must be non-None and source MATCH
 must precede movement; ordinary immutable round ownership remains separate from
 Alder's frozen-metal budgets and Cedar's counted prepared/native scope.
 

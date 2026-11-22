@@ -12455,3 +12455,63 @@ record the retained failure. All paths are beneath
 This is science/documentation only; no runtime/schema/default/dependency change,
 migration, ordinary activation or raw-data publication. The 5 Å centerline test
 remains unrun, and S04/S05/S06 remain PARTIAL.
+
+
+## W220–W221 — Whole-residue path and the existing corrected force owner
+
+W219's inverted sugar motivates a constrained-motion check before another
+Cartesian recovery. W220 reuses the unchanged six-parameter `TaperedMotion`,
+original source chemistry, 205 movable/654 fixed atoms, and exact crystal frame.
+One Phenix **2.2.1-6174 zero-cycle preparation** makes 55 read-only geometry
+calls: five fixed path fractions, two endpoint derivative panels at steps
+1e-4/1e-5 in degrees or Å, and restored rounded-start observations. No refinement,
+optimizer, candidate coordinate write or diffraction ranking is performed.
+The observed model, complete source chemistry, original data/Free, native hooks
+and rounded-start energy/gradient restore unchanged; 28 cold integrity checks pass.
+
+All 126 sugar handedness signs survive the five poses. Raw geometric energy
+falls from 2,377,991 to 12,518 along the known-source return path; maximum
+chain-link distance falls from 10.285 to 1.620 Å. This is a descriptive path,
+not a discovered repair or proof of a continuous low-energy route. The large
+translation stretches connections between whole residues despite preserving
+individual sugar shape. The source itself retains nonzero geometric strain.
+
+**The raw derivative panel fails all 24 comparisons.** Signed discrepancies
+are nearly identical at source and displaced endpoints. Before adding another
+force owner, W221 checks the existing Cedar correction. The observation is made
+*after* `run_compatible_refinement` restores the original native parallelity
+function; actual refinement uses `ParallelityKernel` while its context is active.
+The maintained `NativeMaskedObjective.evaluate_motion` likewise consumes the
+existing corrected evaluator. A raw post-program gradient is not that force.
+
+W221 reconstructs the exact saved native plane proxies and atom order at both
+endpoints, applies the existing `native-parallelity-both-first-planes-v1`
+correction, and projects corrected-minus-native forces through the unchanged
+motion. **All 24 comparisons then pass the original tolerances**, with maximum
+absolute error 0.000851 (mixed physical units; individual tolerances are retained).
+Native residuals are unchanged. There are zero new native preparations, full
+geometry calls, refinements or model writes. This explains W220's discrepancy;
+it does not retrospectively change W209's raw receipt or qualify every direction.
+No Cedar defect, new force implementation or tolerance adjustment is claimed.
+
+Commands from the NASolve root (all scripts under `branch-artifacts/willow/runners/`):
+
+```text
+.venv/bin/python -B branch-artifacts/willow/runners/w220-collective-geometry.py plan
+.venv/bin/python -B branch-artifacts/willow/runners/w220-collective-geometry.py run
+.venv/bin/python -B branch-artifacts/willow/runners/w220-review.py
+.venv/bin/python -B branch-artifacts/willow/runners/w221-plane-force-readback.py plan
+<Phenix 2.2.1-6174>/bin/phenix.python -B branch-artifacts/willow/runners/w221-plane-force-readback.py readback
+```
+
+The first W220 planning import exposed that the frozen endpoint-only package
+has no preview loader; planning stopped before any native execution. The repair
+uses the hash-verified W218 installed preview owner, as W219 did, and preserves
+that planning note. Frozen native transport bytes remain unchanged.
+Local receipts are in `NASolve:branch-artifacts/willow/w220-collective-geometry/`
+and `w221-plane-force-readback/`, with anchors/checksums in the roadmap.
+Next qualify the live corrected collective callback before any optimizer or
+new recovery. The existing Cartesian trial API remains 3N; do not relabel it
+as a six-parameter optimizer. Source-informed return paths are diagnostics,
+not data-selected solutions. S04/S05/S06 remain PARTIAL. Evidence/docs only;
+no runtime/schema/default/dependency change, migration or scientific upload.

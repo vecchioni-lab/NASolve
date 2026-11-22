@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W220–W221 — Distinguish raw diagnostic and corrected collective forces
+
+- Preserve whole-residue sugar geometry along five frozen stress-path poses;
+  record stretched connections and 24 failed raw derivative comparisons.
+- Reuse Cedar's existing plane correction to explain all 24 differences with
+  unchanged energy/tolerances. Actual refinement already uses that owner.
+- Evidence/docs only; no force patch, runtime/schema/default/dependency change
+  or migration. Local science remains excluded from Git.
+
 - Record the investigator's editable 5W6W central-strand covalent default,
   with construct-specific nick overrides, endpoint remapping and a reference
   to Cedar's canonical chemistry guide. Keep image evidence separate from intent;
