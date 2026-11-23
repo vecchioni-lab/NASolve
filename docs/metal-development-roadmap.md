@@ -266,6 +266,15 @@ This closes a mechanical sensitivity question, not A01 or an f″ parent gate.
 Audit the remaining contact and existing controls before one new recovery step;
 do not repeat the same arm or promote a weight/default by R statistics alone.
 
+The subsequent four-donor-approach hypothesis is also complete: Hg–O4 reaches
+2.390 Å and the bridge163.2° with attachment1.551 Å. Final Rwork/Rfree are
+0.3115/0.3454; exact final-scale audit explains much of the written-B contrast
+and records where the R separation emerges. This improves local geometry without
+scientific admission. See the [completed control and scale frames](metal-development-handoff.md#completed-outcome-and-scale-frame-distinction).
+No angle/weight grid follows. One unchanged continuation on this new geometry
+may answer retention/stability; preserve the earlier runs and do not claim a
+matched-budget comparison. Donor-state automation remains deferred.
+
 1. **A01:** the coupled starting-pose and exact final-state force questions are
    complete. A matched native capture reproduces the noon model byte-for-byte;
    saved replay qualifies 26 target/force samples with complete native pair constants.

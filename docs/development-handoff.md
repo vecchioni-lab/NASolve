@@ -9,6 +9,8 @@ Late A01 read-only follow-up: [DF sulfur-angle provenance and comparator](metal-
 
 Latest A01 native diagnostic: [coherent base/attachment retention](metal-development-handoff.md#a01-connected-base-retention--23-november) improves geometry and Rwork/Rfree to 0.2841/0.2925 with unchanged targets, but a short Hg–O4 contact, negative difference density and optimizer limits keep A01 partial/A02 gated. Phenix 2.2.1-6174 completed/stopped; 5,238 cold checks. Compact checkout: `ScienceCheckouts/Hazel/2026-11-23_ft-base-retention/index.html`. No runtime/schema/default change or full suite.
 
+A second completed A01 control adds exactly four source-H direction hypotheses around the N3 donors. Hg–O4 improves to2.390 Å and the bridge to163.2°, but final Rwork/Rfree0.3115/0.3454 and unresolved stopping/chemical scope preserve the gate. A21-check final-scale audit distinguishes written B from its83 Å² export offset;5,253 cold result checks pass. Latest private report: `ScienceCheckouts/Hazel/2026-11-23_ft-donor-approach/index.html`, with a scale-frame addendum. No runtime or default change.
+
 ## Qualified integration checkpoint — test-only amendment
 
 The integrated candidate `1acc7892d2bc19d5572d46f430b27515a7ea6301` combines

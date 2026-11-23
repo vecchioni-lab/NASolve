@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Document donor-approach sensitivity and final scaling frames
+
+- Trace the short Hg–O4 contact to an ordinary retained1–4 repulsion proxy, with
+  no independent O4 bond or full exclusion. Reuse earlier angle controls.
+- Record one exact four-angle source-direction hypothesis: local contact/bridge
+  geometry improves, while final R/statistical and chemical acceptance stays open.
+- Bind5,253 cold result checks and21 scale-frame checks; distinguish written B,
+  approximate final-offset subtraction and invariant local contrasts. Publish
+  compact private geometry/maps and retain original report versions. Documentation
+  only; no product/schema/default change, f″ parent selection or full suite.
+
+
 ### Record coherent connected-base retention during open refinement
 
 - Document the single 26-term DF sensitivity control, exact native transfer and

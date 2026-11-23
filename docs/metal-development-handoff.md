@@ -80,6 +80,94 @@ Do not repeat the base-weight arm or infer acceptance from R improvement alone.
 Cedar owns general chemical target plausibility; Willow owns editable coupled
 windows/stacking. Routine donor-state integration remains explicitly deferred.
 
+## Donor-approach control and scaling audit — 23 November
+
+The remaining contact audit is complete: Hg–N3(B:4)–C4–O4 is a three-bond path.
+The exact final native Hg/O4 proxy is ordinary nonbonded (2.016 Å threshold),
+not a metal bond, angle or full exclusion. Saved native shells place it only in
+shell three; the retained 1–4 distance multiplier is 0.8. This threshold is a
+repulsion parameter, not a proposed Hg–O ideal. Native lookup tables do not
+survive serialization; the audit does not use them or rebuild a pair cache.
+The full captured proxy is the distance authority. Quartic raw repulsion falls
+23.217 → 16.781 between the preceding arms, while the contact remains short.
+
+The existing recipe has two Hg–N3 distances and the historical **Hg(M:1)–N3(A:12)–N3(B:4)**
+0°/σ2° term, whose vertex is A:12 N3. It does not constrain either local
+C2/C4–N3–Hg approach. Achieved C2/C4 approach angles in the retained-base arm
+are DF 140.0°/83.5° and DT 168.8°/61.5°. The already-completed metal-centered180°
+comparison is evidence, not a repeat queue. No O4 bond or exclusion is introduced.
+
+One bounded child adds four angle hypotheses: replace only the H3 endpoint by Hg
+in each source C2/C4–N3–H3 angle, with that source target/width. A hydrogen direction
+is not independently calibrated Hg chemistry. Both arms retain the same ×4 base
+weights, original0° term, all other inputs, five cycles and open XYZ/group B.
+Native preflight confirms **exactly four added angles**, identical initial859
+XYZ/scattering states and no unrelated full-inventory change. One owned native
+refinement completed/stopped in540.31s within its1,200s cap. Final review reports the historical0° term's actual angle/residual alongside all four
+approach angles, original-width base/attachment/sugar deviations, Hg/O4,
+B/maps/R, matched work/free sets and stopping. No donor graph/charge workflow,
+scientific adoption or f″ job. Rowan reviewed this scope.
+
+Evidence: `Alder/a01-contact-topology-20261123-01/` (41 cold checks; native shell
+reader completed/stopped) and `Alder/a01-donor-approach-20261123-01/` at the local
+artifact anchor. The failed Gemmi-row slicing reader is preserved; its successor
+uses indexed access. Source `a57cf5a9`; commands `runners/A534_review_contact_topology.py`,
+`runners/A535_prepare_donor_approach.py`, `runners/A536_run_donor_approach.py pair_flanks`.
+No production source or schema changed; no full suite. A01 partial/A02 gated.
+
+### Completed outcome and scale-frame distinction
+
+The four local directions relieve the severe Hg–O4 overlap **1.376 → 2.390 Å**
+and open the Hg bridge **120.8 → 163.2°**. DF attachment remains **1.545 → 1.551 Å**.
+DF C2/C4–N3–Hg angles change **140.0/83.5 → 121.6/107.1°**; DT changes
+**168.8/61.5 → 124.7/101.4°**. The historical donor-vertex0° term improves too:
+observed **29.40 → 8.33°**, raw penalty **216.02 → 17.36**. Its existence is not
+an export bug or evidence that it dominates the remaining mismatch. Original-σ
+RMS base/attachment improve **0.685/0.931 → 0.633/0.898**, while sugar/scaffold
+rises slightly **2.309 → 2.372**. No calibrated chemical target is inferred.
+
+Final Rwork/Rfree worsen **0.2841/0.2925 → 0.3115/0.3454**. However, just before
+final scaling the values are **0.3082/0.3416 versus0.3110/0.3438**. The native
+final stage resets scales, transfers **+83.02 versus0.00 Å²** to all atoms, then
+optimizes bulk solvent/scaling. Do not assign all its R changes solely to B.
+
+| B frame / Å² | Retained-base arm: DF / DT / Hg | Donor-approach arm: DF / DT / Hg |
+| --- | --- | --- |
+| Actual written B |119.07 /171.05 /149.59 |40.41 /91.01 /57.96 |
+| Written minus printed final transfer |36.05 /88.03 /66.57 |40.41 /91.01 /57.96 |
+
+The second row is an approximate export-offset diagnostic, **not an exact
+captured pre-scaling state or a full common physical scale**. The transfer and
+PDB B round to0.01 Å²; prior ADP/scaling trajectories also differ. Uniform-shift
+invariant Hg-minus-equal-base-mean is **+4.53 versus−7.75 Å²**; the inter-base
+mismatch is **51.98 versus50.60 Å²**. Thus the dramatic written-B contrast is
+mostly a final global offset. Selected XYZ data weights by cycle are
+**15.564,17.195,16.439,16.846,14.217** versus **15.914,8,10,17.586,14.741**;
+these precede later ADP/scaling and are not final combined-objective weights.
+Hg difference density weakens **−4.98 → −2.40σ**, but geometry/B/scales change
+at fixedQ=1, so this is not an independent occupancy result.
+
+**5,253 cold checks** validate the final model/paired maps, original-scale
+metrics, unchanged input data/flags, exact four additions, retained original
+terms, B/Q/f″, chirality, native readers and stopped processes. All105 recorded
+optimizer calls hit iteration limits. A separate **21-check** cold audit binds
+all four printed final scale stages, transfer convention, shift-invariant local
+B contrasts and five selected XYZ weights. No full suite, new default, schema
+change or selected f″ parent. Native version **Phenix2.2.1-6174**, complete
+execution, not merely a dry run. No native process remains active.
+
+Readback commands: `runners/A537_review_donor_approach.py`,
+`runners/A540_run_donor_figures.py`, `runners/A542_audit_final_scale_frames.py`.
+The same artifact directory holds `science-comparison.json`, `final-scale-audit.json`,
+exact `pair_flanks/execution.json`, hash-bound figure review and publication receipts.
+The compact report is `ScienceCheckouts/Hazel/2026-11-23_ft-donor-approach/index.html`
+with `scale-audit.html` (1,028,581 bytes total); first report versions are preserved,
+and scientific payloads remain linked. This result closes the donor-direction
+sensitivity question. A further unchanged continuation of this **new** geometry
+may test retention/stability after this audit; it would not be a matched-budget
+causal comparison or a repeat of the old neutral-parent continuations. No new
+recipe/weight grid, O4 bond/exclusion or anomalous trial is justified by this alone.
+
 ## A01 current science: final-state forces and a contact-preserving comparison
 
 **22 November evening; bounded diagnostics complete, A01 partial and A02 gated.**
