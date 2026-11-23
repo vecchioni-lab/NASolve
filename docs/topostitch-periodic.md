@@ -13211,3 +13211,95 @@ This does not authorize deleting phosphate atoms or inventing another construct'
 connection. An averaged ASU repeat boundary is not itself a chemical nick; actual
 strand termini/cuts need construct-specific correspondence. W240 does not implement
 automatic fallback selection or claim the live manuscript repair as a Pine replay.
+
+
+## W241 — Compare geometry-seeded and direct native receiving
+
+The queued initialization question now has two complete five-cycle refinements
+through the installed W240 entry. Both use the same explicit continuation,
+six-atom mask, held B/Q/context, seven ordinary restraint/dictionary files,
+100-iteration cap per cycle, random seed 15403, one CPU and requested
+`wxc_scale=0.5`. No new chemistry implementation or partner inference.
+Compared with W236's frozen preparation, **outlier rejection is now explicitly
+False in both arms**, so original observation membership is mandatory. New
+preflights were therefore appropriate. The historical W236/W239 preparations
+remain unchanged and were not relabelled as completed native runs.
+
+| After five cycles | Original pose start | W235 geometry-seed start |
+| --- | ---: | ---: |
+| O3′–P connection, Å | 1.819145 | 1.613075 |
+| O3′–P–OP1 / OP2, degrees | 74.607 / 149.406 | 107.179 / 109.761 |
+| P–OP2 bond, Å | 2.002509 | 1.482122 |
+| Maximum local bond / angle deviation, native σ | 26.125 / 8.341 | 0.398 / 1.614 |
+| Maximum image angle / torsion deviation, native σ | 13.802 / 1.845 | 0.742 / 2.955 |
+| Rwork / Rfree | 0.314296 / 0.363045 | 0.311730 / 0.368844 |
+| Maximum movement from that arm's start, Å | 0.690984 | 0.006580 |
+| Complete seven-term gradient calls | 148 | 139 |
+
+All 862 atoms, 856 held coordinates and source B/Q survive. Exact initial native
+arrays, all 1909 ordered indices and 124 Free-R assignments match between arms;
+final arrays retain those indices/flags with only the audited common F/SIG scale.
+Both runs use identical runtime source hashes and seven image terms, retain the
+native bond/second-shell exclusions, restore hooks and stop their workers. All
+three measured source-relative sugar/phosphate handedness checks remain positive
+in all four states. Those checks are not a new phosphorus stereochemical assignment.
+The table uses source-preserving written coordinates, with full-precision endpoints
+retained separately. No automatic checkpoint adoption or scientific acceptance.
+
+**Interpretation:** the geometry seed survives the native recipe with good local
+bond/oxygen-angle geometry. Direct refinement of the poor pose remains badly
+strained. The seeded torsions still reach 2.955 native σ, both Rwork values remain
+above 0.3, and seeded Rfree is slightly worse. This closes the narrow question of
+whether the local seed survives five receiving cycles, not the general repair,
+density support, convergence or end-to-end campaign gate.
+
+**Important native-weight confound:** same requested protocol did not mean a
+fixed objective. First-cycle native `wxc` is 618.328357 for the original versus
+1.171254 for the seed; with scale 0.5 the effective printed diffraction factors
+are 309.164 versus 0.585627. Fifth-cycle factors are approximately 143.624 versus
+0.332522. The seed moves only 0.00658 Å. We therefore cannot attribute the outcome
+solely to an initialization/basin effect or claim that strong diffraction forces
+were resisted by the seed.
+
+Read-only inspection of the installed Phenix **2.2.1-6174**
+`mmtbx/refinement/weights.py` explains this: with `fix_wxc=None`, native weighting
+uses the chemical/data gradient norm ratio. At 3.5–4.5 Å resolution after cycle 1
+(this data set is 4.19 Å), it also adjusts `wxc_scale` using the angle between
+those gradients. `optimize_xyz_weight=False` disables the optimization search,
+not either of these native operations. Exact printed cycle values, source hash
+and line references are in `weight-audit.json`; no SDK or default was patched.
+There was no Free-R-driven search or extra refinement after this finding.
+
+**Validation/evidence:** two complete Phenix 2.2.1-6174 preflights plus two complete
+five-cycle fits through `nasolve-topostitch-fit native-phosphate`, with the W240
+CLI flags and respective predeclared requests. No software change, installation
+repeat or full suite. Reuse the already qualified W239 local-term measurement
+arithmetic: 29 source-native terms per state (116 values over original, seed and
+two returns), plus 12 handedness checks. The matched input/return checks and exact
+source references are recorded in `geometry-review.json`. A new independent
+NASolve-anchor directory `branch-artifacts/willow/w241-seeded-receiving/` contains
+`plan.json`, `original-request.json`, `geometry_seed-request.json`, independent
+`original/` and `geometry_seed/` jobs, logs, native state/stop receipts, geometry
+and weight audits. The prior preparations and all raw input bytes are preserved.
+Generated data stay local and excluded from Git.
+
+**Inspection:** the compact GitHub-sibling checkout
+`ScienceCheckouts/Linden/2026-11-23_seeded-receiving/index.html` links a simple
+Python-openable ChimeraX comparison and the existing offline density inspector.
+The latter reuses W237's exact 31 saved contour meshes and crystal image: no FFT,
+new map, alignment or exaggerated motion. Obsolete atom samples were removed
+rather than carried across changed coordinates. It holds the original
+model-assisted map fixed; Free-R reflections are included, so it is diagnostic,
+not independent evidence. Both full source-preserving final PDBs are linked by
+verified relative paths/hashes, not copied into the checkout. The bond/angle
+figure was rendered and visually checked. ChimeraX **1.12** headless opening and
+initial comparison pass; interactive browser/GUI behavior was not retested here.
+
+**Next bounded question:** qualify and expose the effective native weight policy
+before treating a paired run as a fixed-objective comparison. If a mechanistic
+control is then justified, predeclare one common native `fix_wxc`, keep the same
+models/observations/mask and inspect geometry plus maps; do not choose that value
+by looking for a lower Free-R. Native already provides this option: do not write
+a second weighting engine. No extra fit or weight sweep is authorized by the
+ledger itself. Density-supported repair, stacking recovery and broader bending
+remain their existing separate milestones.

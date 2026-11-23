@@ -3425,6 +3425,10 @@ exact image must already describe the requested construct.
 
 The bounded route permits 1–5 cycles, 1–200 iterations, 0–10 Å maximum endpoint
 motion (strictly positive), positive `wxc_scale` up to 10, and 1–30 restraint files.
+`wxc_scale` is the requested initial scale, not a fixed diffraction weight.
+Phenix can estimate `wxc` and adapt its scale even with the weight-optimization
+search disabled; compare the native logs before calling two objectives matched.
+[W241 records the observed distinction](topostitch-periodic.md#w241--compare-geometry-seeded-and-direct-native-receiving).
 Timeout is 1–3600 seconds **per phase**, default 1200. It freezes inputs and native
 capture into a new job directory, records source hashes/native version, then runs
 one preflight and one coordinate-only fit in separate owned processes. Changed

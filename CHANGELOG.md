@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W241 — Measure seeded receiving and audit native weighting
+
+- Record two matched-protocol five-cycle native fits: the geometry seed retains
+  healthy local bond/oxygen-angle geometry; the original start remains strained.
+- Keep the strong native adaptive-weight difference explicit. Identical requested
+  settings are not fixed-objective evidence; torsions, density and R statistics
+  remain under review. Reuse the existing density/ChimeraX inspection owners.
+- Evidence/docs only; no new force, default, schema or generated scientific data
+  in Git. Qualify explicit weight policy before a mechanistic comparison.
+
+
 ### W240 — Expose bounded registered-phosphate refinement
 
 - Add opt-in `nasolve-topostitch-fit native-phosphate` and its schema-1 request,
