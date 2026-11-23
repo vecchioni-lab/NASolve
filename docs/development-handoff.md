@@ -1,6 +1,23 @@
 # NASolve development handoff — Willow
 
-**Current audit: W247; maintained implementation: W245, 2026-11-23.**
+**Current audit and maintained implementation: W248, 2026-11-23.**
+[W248 makes exported-model inspection reusable](topostitch-preview.md#inspect-a-serialized-recut-against-its-saved-source-w248):
+237 source/237 relocated installed checks; all 12 W247 cases replay identically,
+including the two expected default-mmCIF tensor-precision failures. Complete
+identity permutations, thermal state, parsed crystal and numerical precision are
+bound to both saved receipt and export. External links remain separate from file
+annotations. All 60 backbone links are measured: recutting makes two old seams
+local and introduces six image-spanning seams elsewhere. Export must carry the
+whole boundary graph. P03 remains partial; no writer, new native fit or acceptance.
+Next reuse Cedar's deposition-link reader to qualify annotation/polymer mapping.
+The full-suite attempt was interrupted by coordination after sandbox process-control
+failures; no full pass is claimed. Scientific files remain local.
+
+Queued with Cedar: review OP1/OP2 orientation in the named local duplex before/after
+filling or bending. A112 in 5LNA motivates the question, but its source provenance
+is still under investigation. Preserve alternatives/nicks; chemistry and correction
+stay with Rowan. A pure recut must preserve relative orientation.
+
 [W247 qualifies serialization precision](topostitch-periodic.md#w247--qualify-serialization-precision-before-a-recut-writer):
 12 Gemmi/12 independent Phenix readbacks retain all ordered atoms and thermal
 inventory. Default mmCIF rounds rotated U beyond the planned bound; the separate

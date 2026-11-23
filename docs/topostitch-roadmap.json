@@ -4,7 +4,7 @@
   "updated": "2026-11-23",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "b86ffd5391e453da20533d4e90355f41a60938a4",
+  "audited_code_commit": "3f8627b62dd5e594390b525823d973555a383905",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -493,7 +493,7 @@
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Scheduled phosphate follow-up stage 4: qualify the combined two-cut geometry only after source intent and pure-recut invariance pass; Cedar remains the sole force owner. Reuse W239–W244 and existing rotated/screw/gap controls; preserve nick and ambiguous-partner negatives. Schedule and ownership: docs/topostitch.md#coordinated-phosphate-recut-follow-up. Planning only; no immediate native rerun. Use W242 for saved-log weight evidence; do not re-run W241. Coordinate any explicit fixed-objective control with Cedar counted/native scope owners: one fixed-unit counted cycle does not qualify five-cycle six-atom/bulk-scaling behavior. Predeclare common weight, both starts and unchanged observations/mask/BQ before execution; no Free-R-driven tuning. Continue residual torsion/density review and preserve broader bending/stacking/ASU gates.",
+      "next_action": "Queued from Rowan/Simon: inspect OP1/OP2 orientation relative to a qualified local duplex in its named image before/after gap filling or deformation; good bond lengths and conventional phosphate handedness alone are insufficient. Preserve genuine alternatives and true nicks; unresolved duplex correspondence remains unresolved. Cedar owns source-provenance diagnosis and correction, with no new force or immediate trial here. Scheduled phosphate follow-up stage 4: qualify the combined two-cut geometry only after source intent and pure-recut invariance pass; Cedar remains the sole force owner. Reuse W239–W244 and existing rotated/screw/gap controls; preserve nick and ambiguous-partner negatives. Schedule and ownership: docs/topostitch.md#coordinated-phosphate-recut-follow-up. Planning only; no immediate native rerun. Use W242 for saved-log weight evidence; do not re-run W241. Coordinate any explicit fixed-objective control with Cedar counted/native scope owners: one fixed-unit counted cycle does not qualify five-cycle six-atom/bulk-scaling behavior. Predeclare common weight, both starts and unchanged observations/mask/BQ before execution; no Free-R-driven tuning. Continue residual torsion/density review and preserve broader bending/stacking/ASU gates.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -638,8 +638,8 @@
         "date": "2026-11-23",
         "code_commit": "5f5c129b439452256e71d3e03dc6bcbeb10404b8",
         "reviewer": "Linden",
-        "human_update": 244,
-        "scope": "Four independently source-bound coordinated native results; healthy local cut controls only, milestone remains partial"
+        "human_update": 248,
+        "scope": "Downstream phosphate-orientation review queued from Cedar; prior native geometry scope unchanged, no new chemistry qualification"
       }
     },
     {
@@ -1083,13 +1083,14 @@
         "W239 composes the existing registered preview, continuation-phosphate observer and saved ReferenceFrame in a synthetic one-pair stagger across both strands, with P43/R3:H coordinate/tensor round trips. Explicit intent only; no automatic duplex choice or native writer.",
         "W245 binds the existing independent sampled scattering owner to an exact saved recut receipt, deriving verified explicit/forest images and declared continuations. 208 source/208 installed; six new boundary regressions, relocation and unchanged source. No new scattering engine, serialization or whole-ASU acceptance.",
         "W246 composes the installed saved-cut observer with both declared R3 routes and existing orbit/intent owners: four read-only controls, all source atoms and supplied HKLs, near-roundoff scattering differences and unchanged bond image geometry. Only 82 atoms change representatives per source; no physical bend, coordinate export or coupled refinement.",
-        "W247 measures default PDB/mmCIF precision and exact represented-state full-precision CIF control, then independently rereads all12 outputs with Phenix/cctbx. Full ordered inventory and both externally declared links retained. Writer defaults are not invariance: default rotated U formatting fails the planned bound; first failures remain. No production writer or new native fit."
+        "W247 measures default PDB/mmCIF precision and exact represented-state full-precision CIF control, then independently rereads all12 outputs with Phenix/cctbx. Full ordered inventory and both externally declared links retained. Writer defaults are not invariance: default rotated U formatting fails the planned bound; first failures remain. No production writer or new native fit.",
+        "W248 maintains a read-only exact-receipt/export-bound PDB/mmCIF inspector: complete identity permutation, explicit coordinate/U precision and separate external-link geometry.237 source/237 relocated installed;12 real-model source/installed replays agree and retain both default-writer precision failures. No production writer or annotation/physical acceptance."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "Add the minimal exact-source/receipt-bound read-only serialized-model observer identified by W247: complete labelled mapping, declared precision, all Cartesian U and ADP modes, unchanged B/Q/cell/group, external graph intent separated from file annotations. Reuse existing readers and W245; do not join independently sorted objects by index. Preserve authoritative native cell and full native precision separately from CRYST1/Gemmi rounding. Qualify connection and polymer/entity/sequence semantics before a production whole-ASU writer. Keep scheduled stage 3 ahead of coupled refinement (docs/topostitch.md#coordinated-phosphate-recut-follow-up); reuse rotated/screw/gap and special-position panels. Require P02 graphical review, complete physical inventory and independent unrefined reciprocal-space equivalence. Bind refined children afresh through checkpoint lineage; standalone export, inverse-mapped edits and whole native-model copying remain separate gates. Keep the private live repair separate from maintained Pine replay.",
+      "next_action": "Reuse W248 to observe pinned exports rather than repeating ad hoc readback. Next inspect the existing Cedar cif_deposition_links consumer before adding any annotation owner: carry the complete relabelled boundary graph, not just requested joins (W248:60 links;2 old seams local,6 new image-spanning links). Qualify polymer/entity/sequence mapping and all directed annotations before a production whole-ASU writer. Preserve native full precision and authoritative cell separately from CRYST1/Gemmi rounding. Pure recuts must preserve phosphate orientation relative to the same qualified local duplex in its named image; source defects are not recut damage. Keep scheduled stage3 before coupled refinement; P02 graphical review, complete physical inventory, independent reciprocal-space/special-position checks, fresh child binding and inverse edit import remain gates.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -1100,14 +1101,15 @@
         "E_STAGGERED_DUPLEX_RECUT",
         "E_SAVED_SCATTERING_BINDING",
         "E_TWO_ROUTE_REPRESENTATIVE_OBSERVATION",
-        "E_SERIALIZATION_READBACK_OBSERVATION"
+        "E_SERIALIZATION_READBACK_OBSERVATION",
+        "E_SERIALIZED_RECUT_OBSERVER"
       ],
       "last_audit": {
         "date": "2026-11-23",
-        "code_commit": "b86ffd5391e453da20533d4e90355f41a60938a4",
+        "code_commit": "3f8627b62dd5e594390b525823d973555a383905",
         "reviewer": "Linden",
-        "human_update": 247,
-        "scope": "Existing-writer precision plus independent native readback; retained failures and separate external graph/native-source precision gates"
+        "human_update": 248,
+        "scope": "Maintained serialization observation and two-source installed replay; full boundary metadata and native full-precision gates remain"
       }
     },
     {
@@ -6402,6 +6404,53 @@
           "size": 8988
         }
       ]
+    },
+    "E_SERIALIZED_RECUT_OBSERVER": {
+      "kind": "Maintained exact-bound serialized-model observation",
+      "date": "2026-11-23",
+      "human_update": 248,
+      "code_commit": "3f8627b62dd5e594390b525823d973555a383905",
+      "reference": "docs/topostitch-preview.md#inspect-a-serialized-recut-against-its-saved-source-w248",
+      "result": "237 focused source/237 relocated installed checks;29 new cases,24 initial fail-before. Exact receipt/export pins, complete identity permutation, explicit numeric precision, B/Q/modes/cell and separate declared-link geometry. All12 W247 cases reproduce exactly between source and installed, including2 expected default-mmCIF tensor-bound failures. All60 backbone links are observed: old2 image joins become local and6 other links acquire image offsets in each recut.",
+      "limitation": "Read-only schema1 observation; no writer, structural/scattering acceptance, connection-table verification, polymer/entity/sequence or native full-precision authority. W247 independent Phenix readback reused unchanged; no new native fits. Full-suite attempt interrupted by coordinator:285passed/1skipped,5 sandbox process-control failures, no full pass or rerun.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w248-serialization-observer/validation.json",
+          "sha256": "85d9f41b9182d3a7ed1b23a4d19e503d5ce359e1f1d2042c934aacdb4934f373",
+          "size": 1750
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w248-serialization-observer/source-replay.json",
+          "sha256": "beaba92b6a542ce02fbe4a73e68453e4a4d614f75dba0389aa8c573afb90147a",
+          "size": 630800
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w248-serialization-observer/installed-replay.json",
+          "sha256": "beaba92b6a542ce02fbe4a73e68453e4a4d614f75dba0389aa8c573afb90147a",
+          "size": 630800
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w248-serialization-observer/source-tests.log",
+          "sha256": "038cacbb9411e0f1a2e0137bd944ae6145d62183e5295585d6403d684e80a512",
+          "size": 1085
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w248-serialization-observer/full-source-tests.log",
+          "sha256": "488518c31421c305f2bf38dd02e898f73cc9257df9918f6f1eed5d316153b0a1",
+          "size": 32103
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w248-serialization-observer/relocated/installed-tests.log",
+          "sha256": "2a395462571ec4bdef9f0c52cb12a23c358782cb9b4c7fa3445c6cfab239f10f",
+          "size": 341
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -6567,8 +6616,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 247,
-    "next": 248,
+    "current": 248,
+    "next": 249,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -7860,6 +7909,12 @@
         "title": "Qualify recut serialization precision and independent native readback",
         "state": "RECORDED",
         "code_commit": "b86ffd5391e453da20533d4e90355f41a60938a4"
+      },
+      {
+        "number": 248,
+        "title": "Inspect exported recuts with full identity and explicit precision",
+        "state": "RECORDED",
+        "code_commit": "3f8627b62dd5e594390b525823d973555a383905"
       }
     ]
   },

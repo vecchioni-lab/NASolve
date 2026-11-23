@@ -1885,3 +1885,17 @@ does not close W241's different original-start versus geometry-seed question.
 Keep W241/W242 and S06's common-policy, residual torsion, density and matched
 recovery comparison open. No weights are selected from Rfree, and no new
 supported fixed-weight mode is implied by this schedule.
+
+
+### Local phosphate orientation in the named duplex
+
+**Queued with Cedar, 2026-11-23; no new implementation or force.** Simon/Rowan
+identified inward-facing OP1/OP2 at 5LNA A111→A112 despite near-1.6 Å bond lengths
+and conventional phosphate handedness; source provenance is still being tested.
+Cedar owns that diagnosis and any correction. The downstream S05 review should
+inspect local duplex-relative OP orientation before/after filling or deforming a
+backbone, using explicit sequence/pair correspondence and named crystal images.
+Do not infer a universal outward rule, relabel OP atoms merely to improve a score,
+or reject legitimate alternative rotamers/nicks. Missing or ambiguous duplex
+correspondence remains unresolved. For P03 pure recuts, this relative orientation
+must remain invariant; a pre-existing source defect is distinct from recut damage.

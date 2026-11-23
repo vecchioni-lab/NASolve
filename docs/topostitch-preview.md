@@ -3741,6 +3741,15 @@ interrupt. Its partial log is retained; **there is no full-suite pass**. The
 confirmed pytest process and recorded fixture-worker PIDs had exited. Complete
 integration testing remains a pre-merge gate, not a claim made by this patch.
 
+**Frozen real-model replay:** the maintained source and installed APIs return
+identical reports for all twelve W247 files, including both expected default-mmCIF
+tensor-bound failures. File hashes bind W247's unchanged independent Phenix
+readback; no native fit or repeated Fcalc run is needed. All 60 declared backbone
+links per model are measured. The two original image-spanning joins become local
+in the compound recut, while six formerly ordinary links become image-spanning.
+This is preserved topology in different representatives, not six new chemical
+breaks; a future exporter must carry every boundary connection.
+
 Generated observations, install receipts and logs remain under NASolve anchor
 `branch-artifacts/willow/w248-serialization-observer/`. No datasets, coordinate
 exports or scientific reports are committed. P03 stays partial: production writer,
