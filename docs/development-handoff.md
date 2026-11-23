@@ -193,6 +193,12 @@ image forces, exact six-atom mask, identical data/Free and unchanged source B/Q.
 No fits yet; Rowan holds the native fitting window for a separate deposition
 repair. Reuse v3 preflights when cleared. W237 completes the fixed original-map
 inspection; do not repeat it or present geometry-only coordinates as density-refined.
+The local W239 controller is prepared against those unchanged v3 inputs (seven
+cold preparation checks, zero native calls); its live assertions remain untested
+until the two fits run. Native nonbonded observations stay separate from the
+seven-force composition until both receipts establish that contract. This
+preparation is not a new completed milestone or authorization to bypass Rowan's
+resource hold.
 
 The next experiment must answer a new question, not repeat W224:
 
