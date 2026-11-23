@@ -43,14 +43,29 @@ places three *exact* ideals just 0.011 Å beyond the cap; illustrative soft-targ
 envelopes fit. That tiny discrepancy is not a meaningful physical impossibility
 claim. Significant residual angles and attachment geometry remain the concern.
 
-**Next bounded work:** review chemical placement against the fixed sugar frames
-and existing source restraints. W254 now observes future rejected proposals; it
-does not alter the numerical policy or recover the old missing point.
-Select a new initialization/motion experiment prospectively; do not infer a
-larger mask or automatic bound increase from this stop. No retry, weight grid or
-new native work tonight. W241's adaptive-weight confound and full integration
-suite remain open. Rowan reconfirmed Simon's light branch-specific checkout scope
-for this window; full suite is a pending pre-merge gate, not a reported pass.
+**Next-session experiment, coordinated with Rowan:** one original-parent
+geometry-plus-tether comparison changes **only the displacement budget from
+1.5 to 2.0 Å**. This is an explicit cap-adequacy experiment, not a conclusion that
+a larger domain is necessary. Keep original `7aade3c4…` parent and zero start,
+the same six roles/held rings, 0.5 Å tether, source dictionaries/native image terms,
+100 iterations, 300 optimizer calls, 600 total evaluations and 600-second wall cap.
+Bind W254 reporting and verify all numerically relevant owner/input hashes against
+W253 before launch; a changed chemistry/runtime owner requires review first.
+
+Require accepted-step provenance, full/rounded derivative and live-state checks,
+then independent inspection of the phosphate, **both sugar attachments, nearby
+packing and the fixed Hg site**. Record the stopping reason and gradient; a cap
+or guard stop is not a constrained optimum. If a shorter bond damages either
+flank, retain the failed result, return to the original geometry and inspect the
+competing local terms before another fit. No second cap escalation, weight grid,
+mask expansion or automatic adoption. No diffraction refinement until that
+independent geometry review warrants it. W254 should record a future rejected
+proposal; W253's actual rejected atom remains unknown.
+
+This plan has **not run**. There is no more native work tonight. W241's adaptive-
+weight confound and full integration suite remain open. Rowan reconfirmed Simon's
+light branch-specific checkout scope for this window; full suite is a pending
+pre-merge gate, not a reported pass.
 
 The diagnostic explicitly freezes Alder's optional `native_crystal` owner alongside
 Willow's installed execution and Cedar's phosphate owner. No branch was merged;
