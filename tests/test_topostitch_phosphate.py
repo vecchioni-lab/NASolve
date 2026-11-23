@@ -115,7 +115,7 @@ def test_legacy_geometric_fit_dispatch_preserves_arguments(monkeypatch,capsys):
     assert 'UNCHANGED_GEOMETRIC_ROUTE' in capsys.readouterr().out
 
 
-@pytest.mark.parametrize('mode', ['complete', 'failed_preflight', 'changed_plan'])
+@pytest.mark.parametrize('mode', ['complete', 'preflight_only', 'failed_preflight', 'changed_plan'])
 def test_owned_execution_requires_qualified_preflight_and_unchanged_plan(tmp_path, monkeypatch, mode):
     from contextlib import contextmanager
     from types import SimpleNamespace
@@ -154,8 +154,12 @@ def test_owned_execution_requires_qualified_preflight_and_unchanged_plan(tmp_pat
     def selected_owner(*args): yield cedar
     monkeypatch.setattr(owners, '_cedar', selected_owner)
     out=tmp_path/'out'
-    if mode == 'complete':
-        result=job.run_registered_phosphate_refinement(path,out,phenix='unused')
+    if mode in ('complete','preflight_only'):
+        result=job.run_registered_phosphate_refinement(path,out,phenix='unused',preflight_only=mode=='preflight_only')
+        if mode=='preflight_only':
+            assert phases==['preflight'] and result['status']=='PREFLIGHT_COMPLETE_REQUIRES_REVIEW'
+            assert 'candidate' not in result and not (out/'fit').exists()
+            return
         assert phases == ['preflight','fit'] and result['status'] == 'REFINED_FOR_REVIEW'
         assert result['candidate']['anchor'] == 'run'
         assert not result['scientific_acceptance'] and not result['checkpoint_created']
@@ -220,3 +224,244 @@ def test_six_component_conversion_retains_shear_and_physical_units():
     assert job._cartesian_adp([1.,2.,3.,0.,0.,0.],[[2.,1.,0.],[0.,3.,0.],[0.,0.,4.]])==(6.,18.,48.,6.,0.,0.)
     with pytest.raises(ValueError,match='both native'):
         job._verify_return(states(),states(),{'moving'},observations(),observations(),initial_frame=hex_frame())
+
+
+def phased_request(tmp_path):
+    from nasolve.topostitch_recipe import model_atom_rows
+    path, spec = request(tmp_path)
+    raw = (pdb_record('ATOM',1,'P','DA','B',1,x=1,y=2,z=3,element='P') +
+           pdb_record('HETATM',2,'HG','HG','M',1,x=4,y=5,z=6,element='HG')).encode()
+    (tmp_path/'model').write_bytes(raw)
+    spec['inputs']['model']['sha256'] = sha256(raw).hexdigest()
+    spec['diffraction'] = dict(target='mlhl',phase_labels=['HLA','HLB','HLC','HLD'],
+        fixed_scattering_groups=[dict(selection='element P',f_prime=.1,f_double_prime=0),
+                                 dict(selection='element Hg',f_prime=-8.,f_double_prime=0)])
+    scattering=dict(schema_version=1,kind='topostitch-fixed-scattering',model_sha256=sha256(raw).hexdigest(),
+        atoms=[dict(identity=r,f_prime=v,f_double_prime=0)
+               for r,v in zip(model_atom_rows(raw),(.1,-8.))])
+    for name,data in [('phases',b'phase-mtz'),('scattering',json.dumps(scattering).encode())]:
+        (tmp_path/name).write_bytes(data)
+        spec['inputs'][name]=dict(path=name,sha256=sha256(data).hexdigest())
+    path.write_text(json.dumps(spec))
+    return path,spec,scattering
+
+
+def test_explicit_phased_intake_preserves_legacy_and_relocates_every_pin(tmp_path):
+    old=tmp_path/'old';old.mkdir();path,spec,scattering=phased_request(old)
+    new=tmp_path/'moved';old.rename(new)
+    value,files,snapshots=job._request(new/path.name)
+    assert value==spec and set(files)==set(spec['inputs'])|{'restraint_0'}
+    assert all(p.is_relative_to(new) for p in files.values())
+    assert json.loads(snapshots[files['scattering']])==scattering
+    (new/'phases').write_bytes(b'drift')
+    with pytest.raises(ValueError,match='checksum'):job._request(new/path.name)
+
+
+@pytest.mark.parametrize('change', ['target','quartet','duplicate_label','missing_phase',
+    'missing_scattering','nan_fp','nonzero_fdp','bool_fp','multiline_selection','unexpected_field'])
+def test_phased_request_rejects_incomplete_or_unsafe_policy_before_output(tmp_path,change):
+    path,spec,_=phased_request(tmp_path);d=spec['diffraction']
+    if change=='target':d['target']='ml'
+    if change=='quartet':d['phase_labels'].pop()
+    if change=='duplicate_label':d['phase_labels'][-1]=d['phase_labels'][0]
+    if change=='missing_phase':spec['inputs'].pop('phases')
+    if change=='missing_scattering':spec['inputs'].pop('scattering')
+    if change=='nan_fp':d['fixed_scattering_groups'][0]['f_prime']=float('nan')
+    if change=='nonzero_fdp':d['fixed_scattering_groups'][0]['f_double_prime']=1
+    if change=='bool_fp':d['fixed_scattering_groups'][0]['f_prime']=True
+    if change=='multiline_selection':d['fixed_scattering_groups'][0]['selection']='all\nmain.nproc=8'
+    if change=='unexpected_field':d['infer_phases']=True
+    path.write_text(json.dumps(spec))
+    with pytest.raises(ValueError):job._request(path)
+
+
+@pytest.mark.parametrize('change',['source','missing','reorder','identity','nonzero_fdp','nan'])
+def test_atom_keyed_scattering_requires_the_whole_exact_parent(tmp_path,change):
+    path,spec,packet=phased_request(tmp_path)
+    if change=='source':packet['model_sha256']='0'*64
+    if change=='missing':packet['atoms'].pop()
+    if change=='reorder':packet['atoms'].reverse()
+    if change=='identity':packet['atoms'][1]['identity']['residue_number']=2
+    if change=='nonzero_fdp':packet['atoms'][1]['f_double_prime']=.1
+    if change=='nan':packet['atoms'][1]['f_prime']=float('nan')
+    raw=json.dumps(packet).encode();(tmp_path/'scattering').write_bytes(raw)
+    spec['inputs']['scattering']['sha256']=sha256(raw).hexdigest();path.write_text(json.dumps(spec))
+    with pytest.raises(ValueError):job._request(path)
+
+
+def phased_states():
+    reference=dict(hl=[[[1,0,0],[2,0,0]],[[1.,2.,3.,4.],[5.,6.,7.,8.]]],
+        flags=[[[1,0,0],[2,0,0]],[False,True]],
+        scattering=[dict(identity={'label':'ligand'},f_prime=-8.,f_double_prime=0.)])
+    native=dict(**deepcopy(reference),target='mlhl',anomalous=False,use_experimental_phases=True,
+                strategy=['individual_sites'],refining_scattering=False)
+    return reference,native
+
+
+@pytest.mark.parametrize('change',['ML','disabled','anomalous','strategy','group_refine','HL','HL_index',
+    'HL_duplicate','HL_missing','HL_nan','free','fp','fdp','atom','missing_atom'])
+def test_effective_phased_native_state_cannot_hide_drift_behind_declared_policy(change):
+    from nasolve.topostitch_phased import compare_native_state
+    reference,state=phased_states()
+    if change=='ML':state['target']='ml'
+    if change=='disabled':state['use_experimental_phases']=False
+    if change=='anomalous':state['anomalous']=True
+    if change=='strategy':state['strategy'].append('group_anomalous')
+    if change=='group_refine':state['refining_scattering']=True
+    if change=='HL':state['hl'][1][0][0]+=.001
+    if change=='HL_index':state['hl'][0][0]=[3,0,0]
+    if change=='HL_duplicate':state['hl'][0][0]=[2,0,0]
+    if change=='HL_missing':state['hl'][0].pop();state['hl'][1].pop()
+    if change=='HL_nan':state['hl'][1][0][0]=float('nan')
+    if change=='free':state['flags'][1].reverse()
+    if change=='fp':state['scattering'][0]['f_prime']+=.01
+    if change=='fdp':state['scattering'][0]['f_double_prime']=1.
+    if change=='atom':state['scattering'][0]['identity']['label']='other'
+    if change=='missing_atom':state['scattering'].clear()
+    with pytest.raises(ValueError):compare_native_state(reference,state)
+
+
+def test_phase_coefficients_and_original_flags_are_compared_by_index():
+    from nasolve.topostitch_phased import compare_native_state
+    reference,state=phased_states()
+    for key in ('hl','flags'):
+        state[key][0].reverse();state[key][1].reverse()
+    result=compare_native_state(reference,state)
+    assert result['source_hl_exact'] and result['source_flags_exact'] and result['fixed_scattering_exact']
+    assert result['phase_count']==2 and result['atom_count']==1
+
+
+def test_phase_policy_does_not_inject_phases_as_restraints_or_refine_scattering(tmp_path):
+    from nasolve.topostitch_phased import policy_text
+    _,spec,_=phased_request(tmp_path)
+    policy=policy_text(spec['diffraction'],'../inputs/phases.mtz')
+    assert 'target = mlhl' in policy and 'use_experimental_phases = True' in policy
+    assert policy.count('refine = None')==2
+    assert 'experimental_phases' in policy and 'find_automatically = False' in policy
+    assert 'group_anomalous' not in policy.split('refine {',1)[1]
+
+
+@pytest.mark.parametrize('change', ['none','overlap','uncovered','empty','extra_group','group_refine',
+    'group_value','fm_value','source_value','scattering_species','scatterer_identity','phase_change','source_amplitude','native_cell','native_source'])
+def test_initialized_guard_checks_both_managers_and_group_coverage(tmp_path,monkeypatch,change):
+    from types import SimpleNamespace as N
+    from nasolve.topostitch_phased import NativePhasedGuard
+    from nasolve import topostitch_native_recipe
+    _,spec,packet=phased_request(tmp_path)
+    guard=object.__new__(NativePhasedGuard)
+    guard.spec=spec['diffraction'];guard.scattering=packet;guard.source=(tmp_path/'model').read_bytes()
+    guard._native_sources={};guard._native_hashes={}
+    rows=[a['identity'] for a in packet['atoms']]
+    monkeypatch.setattr(topostitch_native_recipe,'native_atom_identities',lambda h:rows)
+    cell=[100.,100.,80.,90.,90.,120.]
+    crystal=N(space_group=lambda:'R3',unit_cell=lambda:N(parameters=lambda:cell))
+    guard.crystal=crystal
+    obs=observations();indices=[r[0] for r in obs]
+    guard.observations=deepcopy(obs)
+    hl=[[1.,2.,3.,4.],[5.,6.,7.,8.]]
+    guard.reference=dict(hl=[indices,deepcopy(hl)],flags=[indices,[False,True]],scattering=packet['atoms'])
+    class Atom:
+        def __init__(self,label):self.label=label
+        def id_str(self):return self.label
+    atoms=[Atom('P'),Atom('Hg')]
+    def scatters():return [N(label='P',fp=.1,fdp=0,scattering_type='P'),N(label='Hg',fp=-8.,fdp=0,scattering_type='Hg')]
+    sc,fs=scatters(),scatters()
+    live_cell=list(cell)
+    xs=N(scatterers=lambda:sc,space_group=lambda:'R3',unit_cell=lambda:N(parameters=lambda:live_cell))
+    fx=N(scatterers=lambda:fs,space_group=lambda:'R3',unit_cell=crystal.unit_cell)
+    masks={'element P':[True,False],'element Hg':[False,True]}
+    groups=[N(selection_string=g['selection'],iselection=[i],f_prime=g['f_prime'],f_double_prime=0,
+              refine_f_prime=False,refine_f_double_prime=False) for i,g in enumerate(guard.spec['fixed_scattering_groups'])]
+    model=N(get_hierarchy=lambda:N(atoms=lambda:atoms),get_xray_structure=lambda:xs,
+            selection=lambda s:masks[s],get_anomalous_scatterer_groups=lambda:groups)
+    fo=N(indices=lambda:indices,data=lambda:[r[1] for r in obs],sigmas=lambda:[r[2] for r in obs],anomalous_flag=lambda:False)
+    flags=N(indices=lambda:indices,data=lambda:[False,True])
+    fm=N(xray_structure=fx,target_name='mlhl',hl_coeffs=lambda:N(indices=lambda:indices,data=lambda:hl),
+         f_obs=lambda:fo,r_free_flags=lambda:flags)
+    params=N(main=N(use_experimental_phases=True),refine=N(strategy=['individual_sites']))
+    if change=='overlap':masks['element Hg']=[True,True];groups[1].iselection=[0,1]
+    if change=='uncovered':masks['element Hg']=[True,False];groups[1].iselection=[0];groups[1].f_prime=.1;guard.spec['fixed_scattering_groups'][1]['f_prime']=.1
+    if change=='empty':masks['element Hg']=[False,False];groups[1].iselection=[]
+    if change=='extra_group':groups.append(groups[0])
+    if change=='group_refine':groups[1].refine_f_prime=True
+    if change=='group_value':groups[1].f_prime=0
+    if change=='fm_value':fs[1].fp=0
+    if change=='source_value':sc[1].fp=fs[1].fp=0
+    if change=='scattering_species':fs[1].scattering_type='Hg2+'
+    if change=='scatterer_identity':fs[1].label='other'
+    if change=='phase_change':hl[0][0]+=.01
+    if change=='source_amplitude':obs[0][1]+=1
+    if change=='native_cell':live_cell[0]+=.01
+    if change=='native_source':
+        source=tmp_path/'native.py';source.write_text('before')
+        guard._native_sources={'native':source};guard._native_hashes={'native':sha256(source.read_bytes()).hexdigest()}
+        source.write_text('after')
+    if change=='none':
+        state,audit=guard.observe(model,fm,params)
+        assert state['target']=='mlhl' and audit['source_observations']['observations_exact']
+    else:
+        with pytest.raises(ValueError):guard.observe(model,fm,params)
+
+
+@pytest.mark.parametrize('change',['none','ML','absent_HL','different_HL','different_flags','different_data','different_manager','ADP','phase_order'])
+def test_actual_coordinate_target_is_checked_not_only_its_manager_name(monkeypatch,change):
+    from types import SimpleNamespace as N
+    from nasolve.topostitch_phased import NativePhasedGuard
+    guard=object.__new__(NativePhasedGuard);reference,_=phased_states();guard.reference=reference
+    guard.observations=observations();indices=reference['hl'][0];coeffs=deepcopy(reference['hl'][1]);flags=[False,True]
+    phase_indices=deepcopy(indices)
+    fo=N(indices=lambda:indices,data=lambda:[r[1] for r in guard.observations],sigmas=lambda:[1.,1.])
+    phases=N(indices=lambda:phase_indices,data=lambda:coeffs)
+    core=N(spacialization='hl',experimental_phases=phases,f_obs=fo,
+           r_free_flags=N(indices=lambda:indices,data=lambda:flags))
+    fm=N(target_name='mlhl');functor=N(manager=fm,core=core)
+    minimizer=N(fmodels=N(fmodel_xray=lambda:fm,target_functor_xray=functor),model=object(),refine_xyz=True,refine_adp=False)
+    calls=[];monkeypatch.setattr(guard,'observe',lambda *args:calls.append(args)or('snapshot','audit'))
+    if change=='ML':core.spacialization='f'
+    if change=='absent_HL':core.experimental_phases=None
+    if change=='different_HL':coeffs[0][0]+=.01
+    if change=='different_flags':flags.reverse()
+    if change=='different_data':fo.data=lambda:[9.,11.]
+    if change=='different_manager':functor.manager=object()
+    if change=='ADP':minimizer.refine_adp=True
+    if change=='phase_order':phase_indices.reverse();coeffs.reverse()
+    if change=='none':
+        assert guard.observe_target(minimizer,None)==('snapshot','audit') and len(calls)==1
+    else:
+        with pytest.raises(ValueError):guard.observe_target(minimizer,None)
+        assert calls==[]
+
+
+
+def test_explicit_phased_roundoff_keeps_legacy_exact_and_each_tensor_in_own_frame():
+    import math
+    before=states();after=deepcopy(before);frame=hex_frame();other=deepcopy(frame)
+    other['cell'][0]=math.nextafter(frame['cell'][0],math.inf)
+    other['orthogonalization_matrix'][0]=math.nextafter(frame['orthogonalization_matrix'][0],math.inf)
+    for state in (before,after):
+        for a in state.values():a['u_star']=[v*1e-5 for v in a['u_star']]
+    with pytest.raises(ValueError,match='frame changed'):
+        job._verify_return(before,after,{'moving'},observations(),observations(),initial_frame=frame,final_frame=other)
+    result=job._verify_return(before,after,{'moving'},observations(),observations(),
+        initial_frame=frame,final_frame=other,allow_native_frame_roundoff=True)
+    audit=result['adp_audit'];assert not audit['native_frame_exact']
+    assert audit['native_frame_roundoff']['each_tensor_uses_own_frame']
+    assert 0<audit['max_cartesian_difference_angstrom_squared']<1e-12
+
+
+@pytest.mark.parametrize('change',['cell','angle','matrix','space_group','tensor','charge','species'])
+def test_native_roundoff_permission_does_not_allow_crystal_or_chemical_changes(change):
+    import math
+    before=states();after=deepcopy(before);frame=hex_frame();other=deepcopy(frame)
+    for state in (before,after):
+        for a in state.values():a.update(charge='',scattering_type='P')
+    if change=='cell':other['cell'][0]=math.nextafter(frame['cell'][0]+1e-10,math.inf)
+    if change=='angle':other['cell'][5]=math.nextafter(frame['cell'][5]+1e-10,math.inf)
+    if change=='matrix':other['orthogonalization_matrix'][0]=math.nextafter(frame['orthogonalization_matrix'][0]+1e-10,math.inf)
+    if change=='space_group':other['space_group']='P 1'
+    if change=='tensor':after['moving']['u_star'][4]+=1e-10
+    if change=='charge':after['moving']['charge']='1+'
+    if change=='species':after['moving']['scattering_type']='P5+'
+    with pytest.raises(ValueError):
+        job._verify_return(before,after,{'moving'},observations(),observations(),
+            initial_frame=frame,final_frame=other,allow_native_frame_roundoff=True)

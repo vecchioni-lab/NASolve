@@ -7,10 +7,17 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Current audit: W246; code: W245.** [Two-route R3 recut observation](topostitch-periodic.md#w246--observe-both-declared-r3-routes-in-one-saved-recut)
-  retains full inventories and both declared connections with about 1.5e-9
-  relative scattering difference across all supplied HKLs. No physical bend,
-  model export, native fit or coupled-refinement qualification.
+- **Current audit/code: W250.** [Phased local admission](topostitch-preview.md#admit-experimental-phases-and-fixed-scattering-w250)
+  preserves original phases, Free-R assignments and complete fixed scattering in
+  native dry-runs, with an explicit preflight-only stop. 213 source/213 installed
+  checks; native motion remains the next gate, not an accepted repair.
+- **W249.** [Full-precision boundary metadata](topostitch-periodic.md#w249--carry-the-whole-boundary-graph-in-full-precision-mmcif)
+  retains original atom IDs, all connection types and the complete recut boundary
+  graph. Native scattering agrees at round-off; annotations require separate
+  source-bound comparison. Diagnostic only, no maintained writer or adopted ASU.
+- **W248.** [Export inspection](topostitch-preview.md#inspect-a-serialized-recut-against-its-saved-source-w248)
+  binds saved receipts to complete atom identity, thermal state and explicit file
+  precision. External graph intent remains separate from written connections.
 - **W245.** [Saved-recut scattering](topostitch-preview.md#observe-scattering-for-a-pinned-saved-recut-w245)
   binds the existing independent sampled calculation to the exact immutable cut,
   including forest images and declared continuations. 208 source/208 installed;

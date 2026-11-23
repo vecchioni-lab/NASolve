@@ -1,6 +1,50 @@
 # NASolve development handoff — Willow
 
-**Current audit: W249; maintained implementation: W248, 2026-11-23.**
+**Current audit and maintained implementation: W250, 2026-11-23.**
+[Optional phased local admission](topostitch-preview.md#admit-experimental-phases-and-fixed-scattering-w250)
+passes **213 focused source and 213 relocated installed tests (one skip each)**,
+including 108 phosphate cases; two API regressions fail against the previous owner.
+All 214 installation files hash-match after relocation with build/original path gone;
+Python 3.10 syntax and installed `native-phosphate --help` pass. No full suite rerun:
+Rowan reconfirmed focused development; full integration remains required before merge.
+
+Source and installed **Phenix 2.2.1-6174 dry-runs**, with Cedar C550
+`b3602fd266775fc0cfc7de5ec9cbb1af05463430`, admit all 859 fixed-scattering atoms,
+1,151 exact original F/SIGF/HKL/HL quartets and 59 original Free-R reflections.
+The source PDB remains byte-identical. Both native frames are recorded: maximum
+length/angle/matrix differences are 1.43e-14 Å / 2.85e-14° / 4.27e-14 Å. The
+phased-only arithmetic bound is 1e-10 in those units; exact space group and the
+1e-12 Å² Cartesian tensor bound remain. This real parent is isotropic; anisotropic
+frame behavior is covered by the focused regression. Prior exact ML semantics
+remain unchanged. The Hg/HG refusal and strict-frame refusal are preserved;
+Cedar owns the element-spelling correction, with charge/species held independently.
+
+The optional schema-1 request adds dedicated phases and complete source-ordered
+fixed-scattering input, plus an explicit MLHL/group policy. It records native
+source hashes, checks the initialized target and actual coordinate-target arrays,
+and offers `--preflight-only`. No new force, optimizer, global AutoRefine default
+or checkpoint authority. **No phased fit has run yet**: next, review the exact
+admitted request with Hazel, then one bounded 3-cycle × 60-iteration six-role fit
+on the original named parent. Require real MLHL gradient observations, unchanged
+853 fixed atoms/thermal/scattering/data state, and independent junction/boundary
+geometry review. Keep Hazel's separate outward-phosphate whole-model child out
+of this ancestry. S05/S06 remain partial; no density or scientific acceptance.
+
+Exact validation commands/results and source pins are under the local NASolve
+artifact anchor: `branch-artifacts/willow/w250-validation-final/validation.json`
+and `relocated/{install,installed-tests,entry-help}.log`; the source command is
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:<qualified-test-dependencies> python -m
+pytest -p no:cacheprovider -q tests/test_topostitch_phosphate.py
+tests/test_topostitch_endpoint.py tests/test_topostitch_fit.py
+tests/test_topostitch_captured_job.py tests/test_topostitch_capture.py`.
+Native qualification uses the documented API with `preflight_only=True`, explicit
+Phenix/Cedar paths and a 180-second per-phase cap. Saved jobs:
+`w250-phased-preflight/native-frame-qualified` and `w250-installed-preflight`.
+These paths are relative to `branch-artifacts/willow/`; the original failures and
+`w250-hg-observation` are retained. Scientific inputs, captures and generated outputs
+are deliberately excluded from Git. Installation relocation does not establish
+portability of a moved native job.
+
 [W249 carries the whole boundary graph in original mmCIF](topostitch-periodic.md#w249--carry-the-whole-boundary-graph-in-full-precision-mmcif):
 all 62 sites/60 backbone edges, original atom IDs/A1C3T and 80/87 connection rows
 survive. Eight recut paths carry 54 ordinary plus six image-spanning edges;

@@ -31,7 +31,7 @@ def _request(path):
     raw = path.read_bytes(); value = _json(raw)
     _keys(value, {'schema_version', 'kind', 'inputs', 'restraints', 'continuation_id',
                   'cycles', 'iterations', 'max_displacement_angstrom', 'wxc_scale',
-                  'data_labels', 'free_label', 'test_flag_value'})
+                  'data_labels', 'free_label', 'test_flag_value'}, {'diffraction'})
     if type(value['schema_version']) is not int or value['schema_version'] != 1 or value['kind'] != 'topostitch-phosphate-refinement':
         raise ValueError('Require a schema-1 phosphate refinement request')
     for key, lo, hi in [('continuation_id', 1, 1000000), ('cycles', 1, 5), ('iterations', 1, 200)]:
@@ -45,7 +45,12 @@ def _request(path):
     for key in ('data_labels', 'free_label'):
         if not isinstance(value[key], str) or not re.fullmatch(r'[A-Za-z0-9_,()+/\-]+', value[key]):
             raise ValueError('Require explicit native column labels')
-    _keys(value['inputs'], {'model', 'registration_model', 'data', 'registration', 'discovery', 'continuations', 'native_receipt'})
+    phased = 'diffraction' in value
+    if phased:
+        from .topostitch_phased import validate_spec
+        validate_spec(value['diffraction'])
+    _keys(value['inputs'], {'model', 'registration_model', 'data', 'registration', 'discovery', 'continuations', 'native_receipt'}
+          | ({'phases', 'scattering'} if phased else set()))
     if not isinstance(value['restraints'], list) or not 1 <= len(value['restraints']) <= 30:
         raise ValueError('Require 1-30 explicit restraint/dictionary files')
     files = {}; snapshots = {path: raw}
@@ -57,6 +62,9 @@ def _request(path):
         if sha256(data).hexdigest() != ref['sha256']:
             raise ValueError('Input checksum differs: '+name)
         files[name] = target; snapshots[target] = data
+    if phased:
+        from .topostitch_phased import validate_scattering
+        validate_scattering(_json(snapshots[files['scattering']]), snapshots[files['model']])
     return value, files, snapshots
 
 
@@ -78,6 +86,7 @@ def _masked_result(source, points, movable, bound):
 # Absolute component tolerance in physical Angstrom-squared units. The observed
 # native U* round trip differs by ~5e-15 A^2; this is not an ADP refinement budget.
 _CARTESIAN_ADP_TOLERANCE = 1e-12
+_NATIVE_FRAME_ROUNDOFF = 1e-10
 
 
 def _scattering_frame(xray_structure):
@@ -87,7 +96,9 @@ def _scattering_frame(xray_structure):
                 orthogonalization_matrix=list(cell.orthogonalization_matrix()))
 
 
-def _return_frame(initial, final):
+def _return_frame(initial, final, *, allow_native_roundoff=False):
+    if type(allow_native_roundoff) is not bool:
+        raise ValueError("Native frame arithmetic policy must be Boolean")
     if initial is None and final is None:
         return None  # Historical callers retain exact reciprocal-state checks.
     if initial is None or final is None:
@@ -104,7 +115,10 @@ def _return_frame(initial, final):
         a,b,c,d,e,f,g,h,i = flat
         if a*(e*i-f*h)-b*(d*i-f*g)+c*(d*h-e*g) <= 0:
             raise ValueError('Invalid native orthogonalization matrix')
-    if initial != final:
+    if initial != final and (not allow_native_roundoff or
+            initial['space_group'] != final['space_group'] or
+            any(abs(a-b) > _NATIVE_FRAME_ROUNDOFF for key in ('cell', 'orthogonalization_matrix')
+                for a,b in zip(initial[key], final[key]))):
         raise ValueError('Native cell, space group or tensor frame changed')
     flat = initial['orthogonalization_matrix']
     return [flat[i:i+3] for i in (0,3,6)]
@@ -119,10 +133,7 @@ def _cartesian_adp(u_star, orth):
         for i,j in ((0,0),(1,1),(2,2),(0,1),(0,2),(1,2))])
 
 
-def _verify_return(before, after, chosen, initial_observations, final_observations,
-                   *, initial_frame=None, final_frame=None):
-    if not before or set(before) != set(after) or not chosen <= set(before):
-        raise ValueError('Atom inventory changed')
+def _verify_observations(initial_observations, final_observations):
     if not initial_observations or not any(r[-1] for r in initial_observations) or all(r[-1] for r in initial_observations):
         raise ValueError('Require nonempty work and Free-R sets')
     if (len(initial_observations) != len(final_observations)
@@ -142,7 +153,17 @@ def _verify_return(before, after, chosen, initial_observations, final_observatio
             expected = original[k] * scale
             if not math.isfinite(returned[k]) or not math.isclose(returned[k], expected, rel_tol=1e-12, abs_tol=1e-10):
                 raise ValueError('Observations changed beyond a common F/sigma scale')
-    orth = _return_frame(initial_frame, final_frame)
+    return dict(indices_and_flags_exact=True, amplitude_sigma_common_scale=scale,
+                observations_exact=final_observations == initial_observations)
+
+
+def _verify_return(before, after, chosen, initial_observations, final_observations,
+                   *, initial_frame=None, final_frame=None, allow_native_frame_roundoff=False):
+    if not before or set(before) != set(after) or not chosen <= set(before):
+        raise ValueError('Atom inventory changed')
+    observation_audit = _verify_observations(initial_observations, final_observations)
+    orth = _return_frame(initial_frame, final_frame, allow_native_roundoff=allow_native_frame_roundoff)
+    final_orth = _return_frame(final_frame, final_frame)
     anisotropic_count = 0; max_cartesian_difference = 0.
     for key, row in after.items():
         prior = before[key]
@@ -154,7 +175,7 @@ def _verify_return(before, after, chosen, initial_observations, final_observatio
         if set(row) != set(prior) or any(row[k] != prior[k] for k in row if k not in excluded):
             raise ValueError('ADP, occupancy or element changed')
         if compare_cartesian:
-            old, new = _cartesian_adp(prior['u_star'], orth), _cartesian_adp(row['u_star'], orth)
+            old, new = _cartesian_adp(prior['u_star'], orth), _cartesian_adp(row['u_star'], final_orth)
             difference = max(abs(a-b) for a,b in zip(old,new))
             if difference > _CARTESIAN_ADP_TOLERANCE:
                 raise ValueError('Cartesian anisotropic tensor changed')
@@ -164,17 +185,24 @@ def _verify_return(before, after, chosen, initial_observations, final_observatio
             raise ValueError('Nonfinite returned coordinate')
         if key not in chosen and math.dist(row['xyz'], prior['xyz']) > 1e-9:
             raise ValueError('Fixed coordinates changed')
-    return dict(indices_and_flags_exact=True, amplitude_sigma_common_scale=scale,
-                observations_exact=final_observations == initial_observations,
+    return dict(**observation_audit,
                 adp_audit=dict(comparison='cartesian-six-components' if orth is not None else 'legacy-exact-native',
                     anisotropic_atoms_checked=anisotropic_count,
                     max_cartesian_difference_angstrom_squared=max_cartesian_difference,
                     cartesian_tolerance_angstrom_squared=_CARTESIAN_ADP_TOLERANCE if orth is not None else 0.,
-                    native_frame_exact=orth is not None, modes_and_u_iso_exact=True))
+                    native_frame_exact=orth is not None and initial_frame == final_frame, modes_and_u_iso_exact=True,
+                    **(dict(native_frame_roundoff=dict(
+                        max_cell_length_difference_angstrom=max(abs(a-b) for a,b in zip(initial_frame['cell'][:3], final_frame['cell'][:3])),
+                        max_cell_angle_difference_degrees=max(abs(a-b) for a,b in zip(initial_frame['cell'][3:], final_frame['cell'][3:])),
+                        max_orthogonalization_component_difference_angstrom=max(abs(a-b) for a,b in zip(initial_frame['orthogonalization_matrix'], final_frame['orthogonalization_matrix'])),
+                        length_and_matrix_tolerance_angstrom=_NATIVE_FRAME_ROUNDOFF,
+                        angle_tolerance_degrees=_NATIVE_FRAME_ROUNDOFF,
+                        space_group_exact=True, each_tensor_uses_own_frame=True))
+                       if allow_native_frame_roundoff and orth is not None else {})))
 
 
-def run_registered_phosphate_refinement(request_path, output_directory, *, phenix, cedar_source=None, timeout_seconds=1200):
-    """Run one preflight and one fit; never modify a checkpoint or select a model.
+def run_registered_phosphate_refinement(request_path, output_directory, *, phenix, cedar_source=None, timeout_seconds=1200, preflight_only=False):
+    """Run a preflight and optional fit; never modify a checkpoint or select a model.
 
     Input references are resolved relative to the request, with explicit absolute
     paths also supported. The complete native reference capture is authenticated
@@ -184,6 +212,8 @@ def run_registered_phosphate_refinement(request_path, output_directory, *, pheni
     from .topostitch_captured_job import _cedar, _unchanged
     if type(timeout_seconds) not in (int, float) or not math.isfinite(timeout_seconds) or not 1 <= timeout_seconds <= 3600:
         raise ValueError('Require a timeout from 1 to 3600 seconds')
+    if type(preflight_only) is not bool:
+        raise ValueError('preflight_only must be Boolean')
     spec, files, original = _request(request_path)
     root = Path(output_directory).absolute()
     if root.exists():
@@ -200,6 +230,8 @@ def run_registered_phosphate_refinement(request_path, output_directory, *, pheni
         bond = chemistry.phosphate_bond_phil(inspection)
         for name in ('cif_phosphate_runtime', 'cif_refinement_runtime'):
             importlib.import_module(namespace+'.'+name)
+        if 'diffraction' in spec:
+            importlib.import_module(__package__+'.topostitch_native_recipe')
         runtime_sources = {}
         for name, module in list(sys.modules.items()):
             if (name.startswith(namespace+'.') or name.startswith(__package__+'.')) and getattr(module, '__file__', None):
@@ -224,7 +256,7 @@ def run_registered_phosphate_refinement(request_path, output_directory, *, pheni
         frozen = {}
         for name, path in files.items():
             if name == 'native_receipt': continue
-            suffix = path.suffix if name.startswith('restraint_') else dict(model='.pdb', registration_model='.pdb', data='.mtz').get(name, '.json')
+            suffix = path.suffix if name.startswith('restraint_') else dict(model='.pdb', registration_model='.pdb', data='.mtz', phases='.mtz').get(name, '.json')
             relative = 'inputs/'+name+suffix
             (root/relative).write_bytes(original[path]); frozen[name] = relative
         capture_root = root/'native-reference'; capture_root.mkdir()
@@ -237,6 +269,7 @@ def run_registered_phosphate_refinement(request_path, output_directory, *, pheni
             inputs=frozen, movable_indices=chosen, model_sha256=sha256(source).hexdigest(),
             native_version=sdk.version, runtime_sources=runtime_sources,
             inspection_sha256=recipe_digest(inspection), scientific_acceptance=False, checkpoint_created=False)
+        plan['preflight_only'] = preflight_only
         plan['frozen_files'] = {str(p.relative_to(root)): sha256(p.read_bytes()).hexdigest() for p in root.rglob('*') if p.is_file()}
         _save(root/'plan.json', plan)
         package = Path(__file__).resolve().parent.parent
@@ -246,7 +279,7 @@ def run_registered_phosphate_refinement(request_path, output_directory, *, pheni
         frozen_bytes[root/'plan.json'] = (root/'plan.json').read_bytes()
         report = dict(status='FAILED', scientific_acceptance=False, checkpoint_created=False, phases=[])
         try:
-            for phase in ('preflight', 'fit'):
+            for phase in (('preflight',) if preflight_only else ('preflight', 'fit')):
                 if not _unchanged(original) or not _unchanged(frozen_bytes):
                     raise ValueError('Inputs, plan or runtime sources changed before native phase')
                 work = root/phase; work.mkdir()
@@ -263,7 +296,10 @@ def run_registered_phosphate_refinement(request_path, output_directory, *, pheni
                 if observed['status'] != 'COMPLETE_REQUIRES_REVIEW':
                     raise ValueError('Incomplete native phase')
                 report['phases'].append(phase)
-            report.update(status='REFINED_FOR_REVIEW', candidate=dict(anchor='run', relative_path='fit/candidate.pdb', sha256=sha256((root/'fit/candidate.pdb').read_bytes()).hexdigest()))
+            if preflight_only:
+                report.update(status='PREFLIGHT_COMPLETE_REQUIRES_REVIEW')
+            else:
+                report.update(status='REFINED_FOR_REVIEW', candidate=dict(anchor='run', relative_path='fit/candidate.pdb', sha256=sha256((root/'fit/candidate.pdb').read_bytes()).hexdigest()))
         except BaseException as exc:
             report['error'] = type(exc).__name__+': '+str(exc)
             raise
@@ -281,12 +317,15 @@ def run_registered_phosphate_refinement(request_path, output_directory, *, pheni
 def _worker(phase):
     """Native-only worker, entered by the maintained product process owner."""
     from functools import wraps
+    from contextlib import nullcontext, contextmanager
     from unittest.mock import patch
     from phenix.programs.phenix_refine import Program
     from .cif_refinement_runtime import run_compatible_refinement
     from .cif_phosphate_runtime import RegisteredPhosphateRuntime
     if phase not in ('preflight', 'fit'): raise ValueError('Unknown phase')
     root = Path.cwd().parent; plan = _json((root/'plan.json').read_bytes()); controls = plan['controls']
+    if phase == 'fit' and plan.get('preflight_only', False):
+        raise ValueError('This job is explicitly limited to preflight')
     if any(sha256((root/p).read_bytes()).hexdigest() != h for p,h in plan['frozen_files'].items()):
         raise ValueError('Frozen input changed before native execution')
     inspection = _json((root/'inspection.json').read_bytes())
@@ -303,6 +342,12 @@ def _worker(phase):
         selections.append(f"(chain {l[21]} and resseq {int(l[22:26])} and resname {l[17:20].strip()} and name {l[12:16].strip()})")
     selection = ' or '.join(sorted(selections))
     data = '../'+plan['inputs']['data']
+    phased = controls.get('diffraction')
+    guard = None
+    if phased is not None:
+        from .topostitch_phased import NativePhasedGuard, policy_text
+        guard = NativePhasedGuard(phased, {k: root/v for k,v in plan['inputs'].items()}, controls,
+            _json((root/plan['inputs']['scattering']).read_bytes()), raw)
     policy = f'''data_manager {{ miller_array {{ file = "{data}"
  labels {{ name = "{controls['data_labels']}" }}
  labels {{ name = "{controls['free_label']}" }}
@@ -312,7 +357,7 @@ refinement {{
  max_number_of_iterations = {controls['iterations']}
  random_seed = 15403
  nproc = 1
- target = ml
+ target = {'mlhl' if phased is not None else 'ml'}
  scattering_table = n_gaussian
  apply_overall_isotropic_scale_to_adp = False
  place_ions = False
@@ -331,8 +376,10 @@ refinement {{
  output {{ write_final_geo_file = True }}
 }}
 '''
+    if phased is not None:
+        policy += policy_text(phased, '../'+plan['inputs']['phases'])
     Path('policy.phil').write_text(policy)
-    args = ['../'+p for k,p in plan['inputs'].items() if k in ('model','data') or k.startswith('restraint_')]
+    args = ['../'+p for k,p in plan['inputs'].items() if k in ('model','data','phases') or k.startswith('restraint_')]
     args += ['../bond.phil', 'policy.phil', f'xray_data.file_name={data}', f'xray_data.labels={controls["data_labels"]}',
         f'xray_data.r_free_flags.file_name={data}', f'xray_data.r_free_flags.label={controls["free_label"]}',
         f'xray_data.r_free_flags.test_flag_value={controls["test_flag_value"]}', 'xray_data.r_free_flags.generate=False',
@@ -340,6 +387,9 @@ refinement {{
         'ordered_solvent=False', 'simulated_annealing=False', 'output.prefix=refined',
         'output.write_model_cif_file=True', 'output.export_final_f_model=True',
         'refinement.dry_run='+str(phase=='preflight')]
+    if phased is not None:
+        args += ['experimental_phases.file_name=../'+plan['inputs']['phases'],
+                 'experimental_phases.labels='+','.join(phased['phase_labels'])]
     def observations(fm):
         fo=fm.f_obs(); flags=fm.r_free_flags()
         if list(fo.indices()) != list(flags.indices()): raise ValueError('Observation/flag index mismatch')
@@ -347,7 +397,9 @@ refinement {{
     def state(model):
         x=model.get_xray_structure()
         return {a.id_str(): dict(xyz=list(a.xyz), q=s.occupancy, u_star=list(s.u_star), u_iso=s.u_iso,
-            use_u_iso=s.flags.use_u_iso(), use_u_aniso=s.flags.use_u_aniso(), element=a.element.strip())
+            use_u_iso=s.flags.use_u_iso(), use_u_aniso=s.flags.use_u_aniso(),
+            element=a.element.strip().upper() if phased is not None else a.element.strip(),
+            **(dict(charge=a.charge.strip(), scattering_type=s.scattering_type) if phased is not None else {}))
             for a,s in zip(model.get_hierarchy().atoms(),x.scatterers())}
     initial={}; original_validate=Program.validate
     @wraps(original_validate)
@@ -372,12 +424,75 @@ refinement {{
             pre=_json((root/'preflight/science.json').read_bytes())
             if recipe_digest(initial) != pre['initial_sha256']: raise ValueError('Fit differs from qualified preflight')
         return result
+    # Program.validate precedes final native target/scattering setup. Observe the
+    # initialized driver as well, before run() can move any atom. Legacy ML
+    # executions retain their original hooks and reports.
+    diffraction_initial = {}
+    diffraction_params = {}
+    objective_checks = dict(evaluations=0, gradients=0)
+    boundary = nullcontext()
+    if guard is not None:
+        from phenix.refinement.driver import refine as driver
+        before_outputs = driver.write_before_run_outputs
+        if (before_outputs.__module__ != 'phenix.refinement.driver' or
+                before_outputs.__qualname__ != 'refine.write_before_run_outputs'):
+            raise ValueError('Native initialized-driver boundary was already replaced')
+        @wraps(before_outputs)
+        def inspect_initialized(refined, *a, **kw):
+            if diffraction_initial:
+                raise ValueError('Require one initialized phased model')
+            fm = refined.fmodels.fmodel_xray()
+            current = state(refined.model)
+            _save('prepared-state.json', dict(atoms=current, observations=observations(fm),
+                frame=_scattering_frame(refined.model.get_xray_structure())))
+            _verify_return(initial['atoms'], current, set(), initial['observations'], observations(fm),
+                initial_frame=initial['frame'], final_frame=_scattering_frame(refined.model.get_xray_structure()),
+                allow_native_frame_roundoff=True)
+            diffraction_params['params'] = refined.params
+            snapshot, audit = guard.observe(refined.model, fm, refined.params)
+            diffraction_initial.update(state=snapshot, audit=audit)
+            _save('diffraction-initial.json', diffraction_initial)
+            if phase == 'fit':
+                pre = _json((root/'preflight/diffraction-initial.json').read_bytes())
+                if diffraction_initial != pre:
+                    raise ValueError('Phased fit differs from qualified native preflight')
+            return before_outputs(refined, *a, **kw)
+        from mmtbx.refinement.minimization import lbfgs
+        compute_target = lbfgs.compute_target
+        if (compute_target.__module__ != 'mmtbx.refinement.minimization' or
+                compute_target.__qualname__ != 'lbfgs.compute_target'):
+            raise ValueError('Native coordinate target boundary was already replaced')
+        @wraps(compute_target)
+        def inspect_target(minimizer, compute_gradients, u_iso_refinable_params):
+            if not diffraction_initial:
+                raise ValueError('Coordinate evaluation preceded phased admission')
+            snapshot, _ = guard.observe_target(minimizer, diffraction_params['params'])
+            if snapshot != diffraction_initial['state']:
+                raise ValueError('Coordinate target differs from admitted phased state')
+            objective_checks['evaluations'] += 1
+            objective_checks['gradients'] += int(compute_gradients)
+            return compute_target(minimizer, compute_gradients, u_iso_refinable_params)
+        @contextmanager
+        def phased_boundaries():
+            with patch.object(driver, 'write_before_run_outputs', inspect_initialized), patch.object(lbfgs, 'compute_target', inspect_target):
+                yield
+        boundary = phased_boundaries()
     owner=RegisteredPhosphateRuntime(inspection,raw)
     report=dict(status='FAILED',phase=phase,scientific_acceptance=False)
     try:
-        with patch.object(Program,'validate',validate), owner.active():
+        with patch.object(Program,'validate',validate), boundary, owner.active():
             result=run_compatible_refinement(args,evidence_directory='native-runtime',capture_written_model=True)
             model=result.model; fm=result.fmodels.fmodel_xray(); final=state(model)
+            if guard is not None:
+                if not diffraction_initial:
+                    raise ValueError('Initialized phased admission did not run')
+                snapshot, audit = guard.observe(model, fm, result.params)
+                if snapshot != diffraction_initial['state']:
+                    raise ValueError('Effective phased target or fixed scattering changed during execution')
+                _save('diffraction-returned.json', dict(state=snapshot, audit=audit))
+                if phase == 'fit' and not objective_checks['gradients']:
+                    raise ValueError('No admitted MLHL coordinate gradients were observed')
+                report['diffraction_audit'] = dict(audit, coordinate_target_checks=objective_checks)
             selected={a.id_str() for a,yes in zip(model.get_hierarchy().atoms(),model.refinement_flags.sites_individual) if yes}
             if selected != chosen: raise ValueError('Native refinement mask changed')
             if set(final) != set(source) or set(initial['atoms']) != set(source): raise ValueError('Atom inventory changed')
@@ -385,7 +500,7 @@ refinement {{
             final_frame = _scattering_frame(model.get_xray_structure())
             _save('returned-state.json', dict(atoms=final, observations=returned_observations, frame=final_frame))
             observation_audit=_verify_return(initial['atoms'], final, chosen, initial['observations'], returned_observations,
-                initial_frame=initial['frame'], final_frame=final_frame)
+                initial_frame=initial['frame'], final_frame=final_frame, allow_native_frame_roundoff=guard is not None)
             if phase=='fit' and (not owner.calls.get((7,True),0) or result.macro_cycle!=controls['cycles']):
                 raise ValueError('Complete phosphate forces or requested cycles missing')
             points=[final[k]['xyz'] for k in source]
@@ -415,7 +530,8 @@ def main(argv=None):
     parser.add_argument('--phenix',type=Path,required=True)
     parser.add_argument('--cedar-source',type=Path,help='Explicit compatible Cedar package root for branch development')
     parser.add_argument('--timeout',type=float,default=1200)
+    parser.add_argument('--preflight-only',action='store_true',help='Qualify native inputs and stop before fitting')
     args=parser.parse_args(argv)
-    try: result=run_registered_phosphate_refinement(args.request,args.out,phenix=args.phenix,cedar_source=args.cedar_source,timeout_seconds=args.timeout)
+    try: result=run_registered_phosphate_refinement(args.request,args.out,phenix=args.phenix,cedar_source=args.cedar_source,timeout_seconds=args.timeout,preflight_only=args.preflight_only)
     except (OSError,ValueError,RuntimeError) as exc: parser.exit(2,str(exc)+'\n')
     print(json.dumps(result,indent=2));return 0

@@ -3385,8 +3385,9 @@ Cedar/native version compatibility. Install the `topology` extra for Gemmi. This
 route does not require SciPy; the unchanged geometric fitting route still does.
 
 The API is `topostitch_phosphate.run_registered_phosphate_refinement(request_path,
-output_directory, *, phenix, cedar_source=None, timeout_seconds=1200)`.
-The request has exactly these schema-1 fields:
+output_directory, *, phenix, cedar_source=None, timeout_seconds=1200, preflight_only=False)`.
+The historical request uses these mandatory schema-1 fields; W250 adds the
+[optional phased contract](#admit-experimental-phases-and-fixed-scattering-w250):
 
 ```json
 {
@@ -3755,3 +3756,88 @@ Generated observations, install receipts and logs remain under NASolve anchor
 exports or scientific reports are committed. P03 stays partial: production writer,
 connection/polymer metadata, native full-precision/cell policy, inverse edit import,
 coupled refinement and scientific acceptance remain separate gates.
+
+## Admit experimental phases and fixed scattering (W250)
+
+`native-phosphate` now has `--preflight-only` (API keyword
+`preflight_only=True`). It creates a new immutable job, runs the same native
+preflight, and returns `PREFLIGHT_COMPLETE_REQUIRES_REVIEW` without a fit or
+candidate reference. A dry-run is input qualification, not a successful repair.
+Omitting the option retains the preflight-then-fit sequence.
+
+Historical schema-1 requests retain their unphased ML policy. A request may
+add a `diffraction` object and **both** `inputs.phases` and `inputs.scattering`,
+using the same explicit request-relative path/SHA-256 references as other inputs:
+
+```json
+{
+  "target": "mlhl",
+  "phase_labels": ["HLAM", "HLBM", "HLCM", "HLDM"],
+  "fixed_scattering_groups": [
+    {"selection": "element C", "f_prime": 0.0051, "f_double_prime": 0}
+  ]
+}
+```
+
+This is a **shape example**, not a complete scientific request or a prescribed
+carbon value. Groups must cover every actual atom exactly once, with independently
+declared finite values. The `scattering` JSON has schema version 1, kind
+`topostitch-fixed-scattering`, the exact `model_sha256`, and a source-ordered
+`atoms` array. Each entry contains the full six-field `model_atom_rows` identity
+(`chain`, `residue_number`, `insertion_code`, `residue_code`, `atom_name`, `altloc`)
+plus `f_prime` and `f_double_prime`. Missing, reordered or renamed atoms refuse.
+This expectation is a caller-supplied scientific input; it does not infer or fit
+anomalous scattering. For this MLHL geometry scope, every f″ must be **fixed zero**,
+not a reported measurement. Phase MTZ files are dedicated diffraction inputs,
+never extra restraints. Original anomalous data remain untouched.
+
+The optional `topostitch_phased` observer independently reads the requested
+native reflection arrays. Its initial scope requires unique measured amplitude/
+sigma arrays, positive merged amplitudes and sigmas, integer original Free-R
+flags, and a complete non-anomalous HL quartet. Bijvoet averaging is explicit;
+no other observation filtering, phase substitution or guessed label selection
+is allowed. Flags may include additional unobserved reflections, but all observed
+HKLs and phase coefficients must survive exactly. Other input shapes refuse
+rather than silently narrowing the experiment. Existing unphased input support
+is unaffected.
+
+Phenix finalizes its target and scattering groups **after** `Program.validate`.
+The guard therefore reads the initialized driver before coordinate fitting:
+actual MLHL target, enabled phases, coordinate-only strategy, complete indexed
+HL coefficients/original flags, and exact disjoint fixed-scattering groups in
+both model and diffraction managers. Model/data cells must agree within source
+PDB printing precision; space groups must agree exactly. The source model and all
+thermal/charge/scattering-type state remain bound. Element spelling is normalized
+only in the optional phased state (`Hg` and `HG` denote the same element).
+This does not normalize charge or allow another scattering species.
+
+During fitting the observer also checks the **actual coordinate target object**:
+its MLHL specialization, held experimental phases, aligned original flags and
+observations, and current fixed f′/f″ state. A correct manager label cannot hide
+a stale target. This wraps the existing native calculation without changing its
+energy, derivatives or optimizer. The fit's initialized state must match its own
+qualified preflight; return checks repeat the binding. Only the already qualified
+common positive F/SIGF normalization is allowed. Missing observed gradient calls
+cannot count as a completed phased fit.
+
+The optional phased route also records both exact native crystal frames. Native
+copying changed the measured FT frame by at most 4.27e-14 Å in its orthogonalization
+matrix and 2.85e-14° in a cell angle. Its explicit arithmetic allowance is 1e-10 Å
+per cell-length/matrix component and 1e-10° per angle, with exact space group.
+Each displacement tensor is transformed in **its own** frame and still must agree
+within the unchanged 1e-12 Å² Cartesian bound. This is separate from input
+PDB/MTZ printing compatibility. Just-outside cell/basis changes and charge/species
+changes refuse; the historical ML path retains its exact-frame default.
+
+Reports add `prepared-state.json`, `diffraction-initial.json`,
+`diffraction-returned.json`, and a phased
+audit with source checks and coordinate-target call counts. Saved captures,
+native errors and stopped-process records remain alongside the existing job
+artifacts. The six-role movement scope, Cedar reference chemistry, tensor return
+checks, review-only result and lack of checkpoint adoption are unchanged.
+Older requests need no migration; older readers intentionally reject the new
+optional fields. No campaign default or global AutoRefine policy changes.
+
+W250 validation and native qualification are recorded in the current handoff and
+roadmap. Full integration testing remains required before a supported merge.
+Private models, phase arrays, reflection data and generated jobs stay local.

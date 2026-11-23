@@ -17,6 +17,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W250 — Bind phased local refinement to its actual native objective
+
+- Add optional pinned experimental phases and complete fixed-scattering inputs
+  to the existing phosphate request, retaining historical ML behavior. Observe
+  the initialized native target, actual coordinate-target arrays and fixed atom
+  scattering rather than trusting declared parameters alone.
+- Add `--preflight-only` / `preflight_only=True`, with a review-only qualification
+  result and no fit candidate. No default campaign policy or force kernel changes.
+- Preserve dedicated phase/flag/source bindings, fixed geometry/thermal state and
+  native failures. Exact validation and the qualified native scope are recorded
+  in the current handoff; private scientific inputs and outputs remain local.
+
 ### W249 — Audit full-precision ASU boundary metadata
 
 - Record original-mmCIF graph/sequence/connection transport with exact source and

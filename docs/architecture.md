@@ -1121,6 +1121,13 @@ source-frame review candidate. No campaign/checkpoint promotion, whole-ASU write
 new chemistry kernel or automatic connection inference is introduced. Standalone
 Willow needs explicit compatible Cedar modules. The schema and limitations are
 [documented in the preview guide](topostitch-preview.md#refine-one-registered-phosphate-connection-w240).
+W250 adds an optional source-bound phase/fixed-scattering observer in
+`topostitch_phased`. Dedicated pinned phase and atom-keyed scattering inputs are
+checked at the initialized native-driver boundary, in actual coordinate-target
+evaluations, and on return. The existing phosphate executor also supports an
+explicit preflight-only stop. Legacy ML requests and global AutoRefine defaults
+are unchanged; no new force, phase inference or optimizer is introduced. See the
+[phased admission contract](topostitch-preview.md#admit-experimental-phases-and-fixed-scattering-w250).
 The independent `refinement_weight_observation` reader (W242) records printed
 per-cycle XYZ weights from checksum-pinned complete logs, with explicit rounding
 and no-authority limits. It imports no native runtime and controls no weighting.
