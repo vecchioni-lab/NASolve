@@ -13043,3 +13043,55 @@ The local GitHub sibling checkout is
 its self-contained `inspect_density.html`, figure and compact manifest.
 No new coefficients, diffraction fit, product API/schema/default or migration;
 raw map data and derived visualizations remain excluded from Git.
+
+
+## W239 — Regress explicit staggered duplex recuts
+
+A local live repair motivated one compact regression through the existing Pine
+owners, rather than another recut implementation. The parameterized synthetic
+case in `tests/test_topostitch_backbone_intent.py` reuses the renamed two-duplex
+fixture in P43 and R3:H. It declares directed strand order, cuts A2|A3 opposite
+B2|B3, and changes the representatives of A3/A4/B2. Exactly one paired rung
+crosses the boundary. The two resulting route images are reciprocal; continuation
+P/OP1/OP2 persist without OP3 or terminal-phosphate authorization. The replayed
+packet binds all source identities and numerical coordinate/tensor round trips;
+context atoms and source bytes remain unchanged. These synthetic ring/phosphate
+coordinates are not a chemical validation fixture.
+
+Validation (Gemmi available in the test environment):
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -p no:cacheprovider -q \
+  tests/test_topostitch_backbone_intent.py tests/test_topostitch_recut_bundle.py \
+  tests/test_topostitch_continuations.py tests/test_topostitch_transport.py
+```
+
+171 passed in 8.71 s. The actual local invocation added the existing external
+Gemmi/test dependency directory to PYTHONPATH. No full-suite or installation
+repeat: this adds coverage only, with no product code, schema, dependency or
+native-runtime change. No generated structures, manuscript data or host paths
+are committed. The first test draft exposed the reused fixture's record-order
+strand list; the case now explicitly declares 5′→3′ order instead of inferring it.
+
+**Open pipeline gates:** an explicit image request does not establish that the
+chosen cut belongs to the intended duplex. Automatic wrong-duplex rejection
+needs registered pair/route correspondence and a reviewed cut request; existing
+identity guards are not that scientific discriminator. The live source-frame
+repair and locked-sugar qualification remain separate Cedar-owned evidence,
+not a maintained end-to-end Pine replay. P03/P04 stay PARTIAL: preserve complete
+angles, planes, exclusions and fixed boundaries; recutting cannot close a gap.
+
+The live read-only audit also exposed a native serialization hazard in Phenix
+2.2.1-6174: `mmtbx.model.manager` deep-copies its input, and the hierarchy pickle
+path uses PDB precision when labels fit PDB. An otherwise identical long-component
+CIF can therefore follow a different precision path from a short native alias.
+A controlled local comparison measured XYZ rounding up to 0.0005 Å and Uij up to
+0.00005 Å²; passing an explicit `hierarchy.deep_copy()` preserved both exactly.
+This is diagnostic evidence, not a runtime patch or proof of the full refinement
+lifecycle. Qualify construction, copying, source-frame export and independent
+scattering readback before widening native representative support. Preserve
+original coordinate/tensor fields in final source-frame exports.
+
+The earlier prepared two-arm 5W6W receiving experiment remains unlaunched;
+its local folder name was reserved before this live diversion and does not
+establish a completed W239 native result. Resume only after coordinator release.

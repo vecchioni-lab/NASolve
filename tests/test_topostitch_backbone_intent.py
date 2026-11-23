@@ -188,3 +188,79 @@ def test_missing_atom_is_reported_without_erasing_logical_continuation(tmp_path,
     if issue:assert issue in row['issues']
     assert row['incoming_partner']['coordinate_endpoints_resolved']==(name=='OP1')
     assert not row['terminal_phosphate_authorized']
+
+
+@pytest.mark.parametrize('cell,group,operator', [
+    ((30, 30, 40, 90, 90, 90), 'P 43', 'y,-x,z+1/4'),
+    ((30, 30, 40, 90, 90, 120), 'R 3:H', '-y,x-y,z'),
+])
+def test_one_pair_stagger_preserves_both_routes_phosphates_and_tensor_frame(
+        tmp_path, cell, group, operator):
+    """Synthetic bookkeeping only: a cut is not a nick or a repaired molecule."""
+    import gemmi
+    from tests.test_topostitch_periodic import cryst1
+    from nasolve.topostitch_recut_bundle import load_relabel_reference_frame
+
+    packet(tmp_path)  # Reuse the renamed two-duplex fixture and phosphate atoms.
+    model = tmp_path/'model.pdb'
+    discovery = tmp_path/'discovery.json'
+    registration = tmp_path/'registration.json'
+    model.write_text(cryst1(cell, group) + '\n'.join(model.read_text().splitlines()[1:]) + '\n')
+    registry = json.loads(registration.read_text())
+    registry['model']['sha256'] = sha256(model.read_bytes()).hexdigest()
+    registration.write_text(json.dumps(registry))
+    manifest = json.loads(discovery.read_text())
+    # The reusable fixture stores target sites in record order; declare 5′→3′.
+    for strand in manifest['strands']:
+        strand['sites'].sort(key=lambda site: int(site.split(':')[1]))
+    manifest.update(model_sha256=registry['model']['sha256'],
+                    registration_sha256=sha256(registration.read_bytes()).hexdigest())
+    discovery.write_text(json.dumps(manifest))
+    graph = build_registered_periodic_graph(model, discovery, registration)
+    # Rungs A3:B3 and A4:B2: cut A2|A3 opposite B2|B3.
+    # Exactly one paired rung crosses the new representative boundary.
+    moved = {'A:3', 'A:4', 'B:2'}
+    assert sum((a in moved) != (b in moved) for a, b in manifest['duplex_pairs']) == 1
+    request = dict(schema_version=1, kind='topostitch-representative-proposal',
+                   registered_graph_sha256=graph['report_sha256'], extra_edges=[],
+                   node_images=[dict(node_id=n['node_id'], operator_xyz=operator)
+                                for n in graph['nodes'] if n['logical_site'] in moved],
+                   coincidence_tolerance_angstrom=.01, max_atom_tests=2_000_000)
+    proposal = tmp_path/'stagger.json'
+    proposal.write_text(json.dumps(request))
+    original = {p: p.read_bytes() for p in (model, discovery, registration, proposal)}
+    root = tmp_path/'stagger'
+    result = build_relabel_preview(model, discovery, registration_path=registration,
+                                  proposal_path=proposal, output_directory=root)
+    observation = result['observation']
+    rows = sites(observe_relabel_backbone_intent(root))
+    seams = {site: row['incoming_partner'] for site, row in rows.items()
+             if row['incoming_partner'] and row['incoming_partner']['proposed_representation_seam']}
+    assert set(seams) == {'A:3', 'B:3'}
+    assert seams['A:3']['logical_site'] == 'A:2'
+    assert seams['B:3']['logical_site'] == 'B:2'
+    assert seams['A:3']['after_target_operator_xyz'] == gemmi.Op(operator).inverse().triplet()
+    assert seams['B:3']['after_target_operator_xyz'] == operator
+    for site in seams:
+        assert rows[site]['preserve_existing_atoms'] == ['P', 'OP1', 'OP2']
+        assert rows[site]['phosphate_inventory']['OP3'] == []
+        assert rows[site]['terminal_phosphate_authorized'] is None
+        geometry = seams[site]['geometry']
+        assert geometry['before_distance_angstrom'] == pytest.approx(geometry['after_image_distance_angstrom'])
+    assert {g['logical_site'] for g in observation['atom_image_groups']} == moved
+    assert not result['coordinates_materialized'] and not result['chemical_connectivity_changed']
+    digest = sha256((root/'preview.json').read_bytes()).hexdigest()
+    frame = load_relabel_reference_frame(root, expected_receipt_sha256=digest)
+    points = [a['position_angstrom'] for a in observation['source_orbit_observation']['atoms']]
+    represented = frame.to_representatives(points, source_labels=frame.source_labels, context_sha256=digest)
+    restored = frame.to_source(represented, atom_labels=frame.atom_labels, context_sha256=digest)
+    tensors = [(.1 + i*.001, .2, .3, .01, -.02, .03) for i in range(len(points))]
+    rotated = frame.tensors_to_representatives(tensors, source_labels=frame.source_labels, context_sha256=digest)
+    recovered = frame.tensors_to_source(rotated, atom_labels=frame.atom_labels, context_sha256=digest)
+    for i in range(len(points)):
+        assert restored[i] == pytest.approx(points[i], abs=1e-10)
+        assert recovered[i] == pytest.approx(tensors[i], abs=1e-12)
+    for i in observation['fixed_atom_indices']:
+        assert represented[i] == tuple(points[i]) and rotated[i] == tensors[i]
+    assert all(p.read_bytes() == value for p, value in original.items())
+    assert str(tmp_path) not in json.dumps(result)

@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W239 — Regress explicit staggered duplex recuts
+
+- Exercise the existing registered preview, phosphate-intent and complete frame
+  owners together for a one-pair stagger in screw and hexagonal settings.
+- Preserve source identities, reciprocal edge images, continuation P/OP1/OP2,
+  no terminal OP3, and coordinate/tensor round trips. Tests/docs only; automatic
+  duplex choice, native serialization and end-to-end repair remain open.
+
 ### W238 — Reject unaccepted atomic optimizer endpoints
 
 - Bring the Cartesian trial's completion checks into line with the collective
