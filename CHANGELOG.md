@@ -19,6 +19,10 @@ entries are reconstructed from repository history.
 
 ### W244 — Audit coordinated anisotropic native returns
 
+- Schedule processed-mmCIF intent verification, pure-recut invariance, coupled-cut
+  qualification and single-owner restart at the existing Pine/Willow gates.
+  Preserve W241/W242's distinct open comparison; planning only, no native rerun.
+
 - Bind Cedar C547's durable control evidence: matched fixed-unit distance-only
   versus complete restraints distinguishes phosphate-angle preservation. Keep
   simultaneous two-junction qualification separate from the completed individual

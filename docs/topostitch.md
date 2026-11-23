@@ -1825,3 +1825,47 @@ Pine's existing packet observer. The tested seven-site scope leaves other atoms
 as unchanged context. D:1 terminal chemistry is separate. It does not assert
 whole-assembly/triple-junction closure, approve geometry or enable native
 bonds automatically. Keep the source frame/operator roles explicit after recuts.
+
+
+## Coordinated phosphate recut follow-up
+
+**Scheduled after W244/C547; planning only (2026-11-23).** Incorporate the new
+OneDep validation when available and bind its exact processed mmCIF/version
+before interpreting any changed connectivity. Validation is evidence to review,
+not permission to infer a partner or change chemistry. This is a dependency order,
+not authorization for an immediate scientific rerun or a second force engine.
+
+| Order | Existing gate and owner | Required result before advancing |
+| --- | --- | --- |
+| 1 | P01/S03; Pine intent, Cedar chemistry/readers | Verify both declared links in the exact processed mmCIF: atom/residue/strand identities, directed partner images and translation, chemistry and source hash. Cross-check serialized connection records against declared construct intent and coordinates. Missing or ambiguous records remain unresolved; do not invent connectivity from proximity or assume an absent record proves a nick. |
+| 2 | P01/P02 with F02; Pine | Carry the scientist's chosen strand/image/connection intent through the existing recut preview and source-bound choice. Preserve both directed routes, paired-rung correspondence and reciprocal images; show real nicks and undecidable partners distinctly. Recutting cannot reconnect a physical gap. |
+| 3 | P03; Pine with Cedar scattering/serialization owners | Before any refinement, independently compare source and reselected ASU in one cell/setting. Preserve atom-orbit inventory/multiplicity, components, occupancy and properly transformed anisotropic tensors; compare unrefined calculated structure factors and reciprocal round trips. Check chemical graph equivalence modulo the chosen representatives. Equal R values or a locally preserved tensor is insufficient. |
+| 4 | P04/S05; Willow qualification, Cedar sole force owner | Activate both explicitly registered cuts together in one bounded diagnostic fit using the combined movable-atom selection. Qualify both complete bond/angle/torsion/exclusion neighborhoods and their interaction, preserving protected rings, chemistry, thermal state and observations/Free. Reject duplicate or inconsistent restraint installation. This is the open coupled-junction gate, not a repeat of four independent single-junction fits. |
+| 5 | P05/S07; Pine workflow, existing checkpoint controller and Cedar | Restart from the immutable reviewed child with freshly bound intent and native inputs. Reuse Cedar's single force owner and existing process/checkpoint lifetimes; prove both links survive restart without stale image mappings, duplicate forces or silent checkpoint selection. The persistent GUI/review loop remains a separate release requirement. |
+
+**Reuse and negatives:** W239 already exercises explicit staggered directed
+routes and coordinate/tensor round trips; W240 supplies the installed local
+native entry; W243/W244 prove bounded return/export behavior and individual
+healthy-cut execution. W241/W242 retain the receiving comparison and weight
+observer. Reuse the existing rotated, screw and physical-gap panels and stored
+controls, running only the new composition or changed boundary. Add the missing
+combined-scope evidence rather than recreating readers, tensor transforms,
+restraint engines or benchmark collections.
+
+Include a declared **real nick** and an **undecidable partner** in the applicable
+intent/recut/force-admission checks. The real nick must remain chemically a nick
+under representative selection; an undecidable partner must stay unresolved and
+must not acquire a covalent force. Existing phosphates and explicit terminal
+chemistry remain governed by intent, never by the accidental ASU boundary. A gap
+must remain a gap under a pure recut; any coordinate repair is a separate S-track
+child. Use an existing negative fixture when it already covers the required
+boundary; otherwise record the precise missing case before adding one.
+
+**Ownership and non-duplication:** unrefined scattering/ASU equivalence belongs
+at P03, before coupled refinement; coupling belongs at P04/S05; restart belongs
+at P05/S07. OneDep/deposition decisions and Cedar's independent Q06 AutoRefine
+item are outside this follow-up. C547's bond-only/complete fixed-unit diagnostic
+does not close W241's different original-start versus geometry-seed question.
+Keep W241/W242 and S06's common-policy, residual torsion, density and matched
+recovery comparison open. No weights are selected from Rfree, and no new
+supported fixed-weight mode is implied by this schedule.

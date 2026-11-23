@@ -15,6 +15,13 @@ The one-junction-at-a-time two-crystal test is qualified; simultaneous two-junct
 refinement remains separate. This does not repeat or close W241's different
 starting-geometry/weight-policy question.
 
+[The scheduled phosphate follow-up](topostitch.md#coordinated-phosphate-recut-follow-up)
+places processed-mmCIF link verification at P01/S03, chosen-image recuts at
+P01/P02, unrefined scattering/chemistry invariance at P03, simultaneous-cut
+qualification at P04/S05 and checkpoint restart at P05/S07. Reuse existing
+panels and include real-nick/undecidable-partner negatives. Planning only;
+W241/W242's distinct receiving comparison remains open.
+
 [W243 fixes anisotropic return round-off](topostitch-preview.md#preserve-cartesian-adps-through-native-return-w243):
 **293 source/293 isolated installed tests**, both real 1271/1275-atom preflight
 failures reproduced and replayed cold, twelve real tensor-change refusals. All
