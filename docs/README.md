@@ -7,14 +7,15 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Current audit: W239.** [Explicit staggered-duplex regression](topostitch-periodic.md#w239--regress-explicit-staggered-duplex-recuts)
-  passes 171 focused tests. Automatic duplex choice and native serialization
-  remain open; no product behavior or schema change.
-
-- **Current code: W238.** [Atomic endpoint admission](topostitch-preview.md#admit-only-accepted-atomic-trial-endpoints-w238)
-  matches the collective driver, preserving returned failures and accepted-step
-  provenance:398 source/398 installed; full-suite process-permission failures
-  resolved by five-case replay. See the handoff for exact scope.
+- **Current audit/code: W240.** [Registered phosphate refinement](topostitch-preview.md#refine-one-registered-phosphate-connection-w240)
+  is reachable through the installed fitting command, with explicit compatible
+  Cedar modules. 261 source/261 installed checks and a complete native one-cycle
+  run qualify execution/return; residual oxygen angles keep repair unaccepted.
+  [Scientific evidence and next comparison](topostitch-periodic.md#w240--reach-registered-phosphate-refinement-through-the-installed-product).
+- **W239:** staggered-duplex regression preserves reciprocal cuts and tensors;
+  native ASU serialization and automatic duplex choice remain open.
+- **W238:** atomic endpoint admission matches the collective driver; see the
+  handoff for the prior full-suite result and its focused permission replay.
 - **W233.** [Before/after stacking comparison](topostitch-preview.md#compare-internal-stacking-between-named-states-w233)
   retains explicit pair/strand correspondence and per-metric missing coverage:
   125 source/125 installed tests, six saved comparisons, no native run.

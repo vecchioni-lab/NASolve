@@ -4,7 +4,7 @@
   "updated": "2026-11-23",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "0fa2b6643da26977c568528d25126f07d0e7d57a",
+  "audited_code_commit": "b75a16274fccc51dc11528cf15897664821bac63",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -52,7 +52,8 @@
     "Do not advance sideways into deferred chemistry, providers or elaborate UI polish to avoid a failed physical gate. Keep failed/ambiguous/no-op outcomes legitimate.",
     "Validate focused behavior and installation during development; complete integration/full regression, native/platform/relocation and human checks before a supported release or merge. Pushing experimental work does not authorize merging.",
     "Keep scientific inputs/results local unless explicitly authorized for publication. Runtime artifacts use declared anchors and checksums; this roadmap grants no runtime permission.",
-    "Build an input-driven general method, not a fit to named benchmark structures or datasets. Keep fixture-specific identifiers/transforms in requests, and require independent structure/symmetry and forward/reverse controls before widening supported claims."
+    "Build an input-driven general method, not a fit to named benchmark structures or datasets. Keep fixture-specific identifiers/transforms in requests, and require independent structure/symmetry and forward/reverse controls before widening supported claims.",
+    "For an explicitly intended phosphate continuation, retaining atoms and activating a symmetry restraint are separate decisions. Investigator-reviewed unrestrained-edge fallback is legitimate when symmetry oxygen geometry fails; never silently remove atoms, invent another construct connection or treat an averaged ASU boundary as a chemical nick."
   ],
   "milestones": [
     {
@@ -286,7 +287,8 @@
         "W232 binds6connecting-backbone atoms/856held atoms to the real child and authenticated native support,23coldchecks. No coordinate change or new native experiment; full image-force receiving remains Cedar-owned.",
         "W233 composes internal stacking with existing named-state correspondence;125source/125installed and254cold checks per context. Default reports unchanged; no native run or motion admission.",
         "W234 records a six-atom donor graft: closed seam but 16.45-sigma fixed-sugar bond strain, with all rings/856 other atoms held. No fit or acceptance; local boundary forces must accompany seam closure.",
-        "W235 closes the same original seam to1.61303A in one capped six-atom native geometry trial with all856other atoms/BQ held; local and image bond/angle targets recover, torsions remain explicit. Three derivative audits and34cold checks pass; no diffraction fit or acceptance."
+        "W235 closes the same original seam to1.61303A in one capped six-atom native geometry trial with all856other atoms/BQ held; local and image bond/angle targets recover, torsions remain explicit. Three derivative audits and34cold checks pass; no diffraction fit or acceptance.",
+        "W240 provides an installed opt-in native-phosphate route through existing Cedar image chemistry. Complete preflight/one-cycle fit preserves fixed source-frame context and data;261 source/261 installed checks. Chemical recovery remains unaccepted."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
@@ -294,7 +296,7 @@
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient.",
         "Internal helix recovery explicitly compares neighbouring base-plane orientation, spacing, lateral offset/overlap and twist before deformation, after placement and after restrained recovery, including fixed-flank transitions. Within-pair coplanarity and between-pair stacking remain distinct; allow supported curvature/nonuniform twist rather than enforcing universal parallelism. Connectivity, sugar-sign retention and R factors alone do not close this gate. Investigator emphasis2026-11-22; planning only, reuse existing frame/geometry owners."
       ],
-      "next_action": "Review Cedar complete-force receiving survival, then qualify one matched diffraction receiving step for the exact W235 six-atom endpoint with original observations/Free-R and held rings/BQ/context. Inspect residual torsions and native packing/maps; do not tune by Rfree or repeat the donor graft/geometry closure. Broader motion and junction permission remain separate.",
+      "next_action": "Complete the already scoped original-versus-W235 geometry-seed comparison under matched five-cycle receiving controls, only after W240 handoff and checking existing Cedar evidence for redundancy. The new question is initialization-dependent recovery, not force-engine validity. Keep all atoms, fixed context/BQ and original observation/Free membership; audit residual seam/boundary geometry and maps. No Free-R-driven weight tuning or automatic adoption.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -388,14 +390,15 @@
         "E_NARROW_BACKBONE_SCOPE",
         "E_STACKING_COMPARISON",
         "E_NARROW_BACKBONE_DONOR_GRAFT",
-        "E_NARROW_BACKBONE_NATIVE_CLOSURE"
+        "E_NARROW_BACKBONE_NATIVE_CLOSURE",
+        "E_REGISTERED_PHOSPHATE_ENTRY"
       ],
       "last_audit": {
         "date": "2026-11-23",
-        "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933",
+        "code_commit": "b75a16274fccc51dc11528cf15897664821bac63",
         "reviewer": "Linden",
-        "human_update": 235,
-        "scope": "One capped complete-force six-atom geometry closure; diffraction receiving and scientific acceptance open"
+        "human_update": 240,
+        "scope": "Reachable installed six-atom native execution and verified return; broader repair/materialization gates remain partial"
       }
     },
     {
@@ -475,14 +478,15 @@
         "W234 records a six-atom donor graft: closed seam but 16.45-sigma fixed-sugar bond strain, with all rings/856 other atoms held. No fit or acceptance; local boundary forces must accompany seam closure.",
         "W235 closes the same original seam to1.61303A in one capped six-atom native geometry trial with all856other atoms/BQ held; local and image bond/angle targets recover, torsions remain explicit. Three derivative audits and34cold checks pass; no diffraction fit or acceptance.",
         "W236 binds the saved candidate to a fresh native capture and two matched complete-force receiving preflights;17coldchecks, exact six-atom mask/BQ and original data. No fit; replay existing passed preflights when coordinator clears execution.",
-        "W238 aligns atomic trial completion with collective admission: returned native errors/count mismatches/unaccepted final coordinates remain failures, with accepted diagnostics separate.398source/398installed; full-suite permission failures resolved by exact5-case replay."
+        "W238 aligns atomic trial completion with collective admission: returned native errors/count mismatches/unaccepted final coordinates remain failures, with accepted diagnostics separate.398source/398installed; full-suite permission failures resolved by exact5-case replay.",
+        "W240 provides an installed opt-in native-phosphate route through existing Cedar image chemistry. Complete preflight/one-cycle fit preserves fixed source-frame context and data;261 source/261 installed checks. Chemical recovery remains unaccepted."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "When Rowan clears the fitting window, execute the two frozen W236 v3 receiving arms through the prepared W239 controller; reuse passed preflights unless inputs/policy change. Hold the exact six-atom scope/BQ and audit final observation selection, written coordinates and residual torsions. W237 fixed-map inspection is complete. Keep native nonbonded evidence separate until composition with the seven extra forces is receipt-qualified; no automatic adoption.",
+      "next_action": "Complete the already scoped original-versus-W235 geometry-seed comparison under matched five-cycle receiving controls, only after W240 handoff and checking existing Cedar evidence for redundancy. The new question is initialization-dependent recovery, not force-engine validity. Keep all atoms, fixed context/BQ and original observation/Free membership; audit residual seam/boundary geometry and maps. No Free-R-driven weight tuning or automatic adoption.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -616,14 +620,15 @@
         "E_NARROW_BACKBONE_DONOR_GRAFT",
         "E_NARROW_BACKBONE_NATIVE_CLOSURE",
         "E_NARROW_BACKBONE_RECEIVING_PREFLIGHT",
-        "E_ATOMIC_ACCEPTED_ENDPOINT"
+        "E_ATOMIC_ACCEPTED_ENDPOINT",
+        "E_REGISTERED_PHOSPHATE_ENTRY"
       ],
       "last_audit": {
         "date": "2026-11-23",
-        "code_commit": "66f785979b0effaf6a875610a6d11e18fbdceb41",
+        "code_commit": "b75a16274fccc51dc11528cf15897664821bac63",
         "reviewer": "Linden",
-        "human_update": 238,
-        "scope": "Completion integrity only; no geometry/refinement acceptance"
+        "human_update": 240,
+        "scope": "Reachable installed six-atom native execution and verified return; broader repair/materialization gates remain partial"
       }
     },
     {
@@ -707,7 +712,8 @@
         "W234 records a six-atom donor graft: closed seam but 16.45-sigma fixed-sugar bond strain, with all rings/856 other atoms held. No fit or acceptance; local boundary forces must accompany seam closure.",
         "W235 closes the same original seam to1.61303A in one capped six-atom native geometry trial with all856other atoms/BQ held; local and image bond/angle targets recover, torsions remain explicit. Three derivative audits and34cold checks pass; no diffraction fit or acceptance.",
         "W236 binds the saved candidate to a fresh native capture and two matched complete-force receiving preflights;17coldchecks, exact six-atom mask/BQ and original data. No fit; replay existing passed preflights when coordinator clears execution.",
-        "W237 reuses the installed density inspector on the real saved source map and W235 coordinates:14coldchecks,18atoms/31meshes, no candidate map or refinement. Mixed map support stays descriptive; Free-R-containing maps never become a search score."
+        "W237 reuses the installed density inspector on the real saved source map and W235 coordinates:14coldchecks,18atoms/31meshes, no candidate map or refinement. Mixed map support stays descriptive; Free-R-containing maps never become a search score.",
+        "W240 provides an installed opt-in native-phosphate route through existing Cedar image chemistry. Complete preflight/one-cycle fit preserves fixed source-frame context and data;261 source/261 installed checks. Chemical recovery remains unaccepted."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -718,7 +724,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "When Rowan clears the fitting window, execute the two frozen W236 v3 receiving arms through the prepared W239 controller; reuse passed preflights unless inputs/policy change. Hold the exact six-atom scope/BQ and audit final observation selection, written coordinates and residual torsions. W237 fixed-map inspection is complete. Keep native nonbonded evidence separate until composition with the seven extra forces is receipt-qualified; no automatic adoption.",
+      "next_action": "Complete the already scoped original-versus-W235 geometry-seed comparison under matched five-cycle receiving controls, only after W240 handoff and checking existing Cedar evidence for redundancy. The new question is initialization-dependent recovery, not force-engine validity. Keep all atoms, fixed context/BQ and original observation/Free membership; audit residual seam/boundary geometry and maps. No Free-R-driven weight tuning or automatic adoption.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -845,14 +851,15 @@
         "E_NARROW_BACKBONE_DONOR_GRAFT",
         "E_NARROW_BACKBONE_NATIVE_CLOSURE",
         "E_NARROW_BACKBONE_RECEIVING_PREFLIGHT",
-        "E_LOCAL_CLOSURE_FIXED_MAP"
+        "E_LOCAL_CLOSURE_FIXED_MAP",
+        "E_REGISTERED_PHOSPHATE_ENTRY"
       ],
       "last_audit": {
         "date": "2026-11-23",
-        "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933",
+        "code_commit": "b75a16274fccc51dc11528cf15897664821bac63",
         "reviewer": "Linden",
-        "human_update": 237,
-        "scope": "Fixed original-map readback and local visualization; no density-guided optimization or scientific acceptance"
+        "human_update": 240,
+        "scope": "Reachable installed six-atom native execution and verified return; broader repair/materialization gates remain partial"
       }
     },
     {
@@ -1104,14 +1111,15 @@
         "W77 binds representative contact reports through the immutable native-preview context, preserving old link/view defaults and proving source/cell/proposed-coordinate correspondence; native copy/refinement integration remains open.",
         "W78 distinguishes exact source identity/model copies from generic geometry deepcopy that drops nonbonded policy despite retaining contact rows. Isolated native parameter-object control reproduces table loss; complete live policy/copy ownership stays unqualified.",
         "W79 observes actual native outlier-query frame mixing despite correct scalar geometry; explicit local callback remapping restores source outlier identities. Source-frame geo records compare semantically, with raw presentation differences preserved.",
-        "W239 composes the existing registered preview, continuation-phosphate observer and saved ReferenceFrame in a synthetic one-pair stagger across both strands, with P43/R3:H coordinate/tensor round trips. Explicit intent only; no automatic duplex choice or native writer."
+        "W239 composes the existing registered preview, continuation-phosphate observer and saved ReferenceFrame in a synthetic one-pair stagger across both strands, with P43/R3:H coordinate/tensor round trips. Explicit intent only; no automatic duplex choice or native writer.",
+        "W240 provides an installed opt-in native-phosphate route through existing Cedar image chemistry. Complete preflight/one-cycle fit preserves fixed source-frame context and data;261 source/261 installed checks. Chemical recovery remains unaccepted."
       ],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
         "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.",
         "Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified."
       ],
-      "next_action": "With Cedar, authenticate complete live source policy including nonbonded and exclusion tables. For pure recuts, first keep the entire native process in one computational frame and derive bound views at workflow boundaries. This does not repair physical gaps or missing links. Require checked inverse mapping for re-entered edits and fresh qualification for changed identity/intent. If an in-engine facade is actually needed, retain full copy, pair-table, outlier/report, weighting and native source/representative controls. Preserve P02/P03; never activate a symmetry bond alone. Bind an explicitly reviewed stagger to both directed routes and paired rungs; reject wrong-duplex selections only with qualified correspondence. Audit native model-input deepcopy precision and independent source-frame scattering after aliasing. Keep the private live repair separate from maintained Pine replay.",
+      "next_action": "With Cedar, authenticate complete live source policy including nonbonded and exclusion tables. For pure recuts, first keep the entire native process in one computational frame and derive bound views at workflow boundaries. This does not repair physical gaps or missing links. Require checked inverse mapping for re-entered edits and fresh qualification for changed identity/intent. If an in-engine facade is actually needed, retain full copy, pair-table, outlier/report, weighting and native source/representative controls. Preserve P02/P03; never activate a symmetry bond alone. Bind an explicitly reviewed stagger to both directed routes and paired rungs; reject wrong-duplex selections only with qualified correspondence. Audit native model-input deepcopy precision and independent source-frame scattering after aliasing. Keep the private live repair separate from maintained Pine replay. W240 qualifies local image forces/source-frame return only, not whole-ASU construction. Where declared phosphate geometry cannot recover, preserve an explicitly reviewed unrestrained-edge fallback; never infer a chemical nick from an averaged repeat boundary.",
       "evidence": [
         "E_PINE_TEST_BANK",
         "E_NATIVE_REPRESENTATION_SEAMS",
@@ -1129,14 +1137,15 @@
         "E_NATIVE_REPORT_FRAMES",
         "E_COMBINED_FULL_AUDIT",
         "E_C325_INSTALLED_COMPOSITION",
-        "E_STAGGERED_DUPLEX_RECUT"
+        "E_STAGGERED_DUPLEX_RECUT",
+        "E_REGISTERED_PHOSPHATE_ENTRY"
       ],
       "last_audit": {
         "date": "2026-11-23",
-        "code_commit": "0fa2b6643da26977c568528d25126f07d0e7d57a",
+        "code_commit": "b75a16274fccc51dc11528cf15897664821bac63",
         "reviewer": "Linden",
-        "human_update": 239,
-        "scope": "Synthetic integration regression and native-copy precision caveat; full native/materialization gates remain open"
+        "human_update": 240,
+        "scope": "Reachable installed six-atom native execution and verified return; broader repair/materialization gates remain partial"
       }
     },
     {
@@ -6236,6 +6245,15 @@
       "reference": "docs/topostitch-periodic.md#w239--regress-explicit-staggered-duplex-recuts",
       "result": "171 focused tests pass, including one-pair stagger in P43 and R3:H through existing registered preview, phosphate intent and complete coordinate/tensor frame. Both route images, source identity, unchanged context, P/OP1/OP2 and noOP3 retained.",
       "limitation": "Tests/docs only. No automatic correct-duplex discriminator, atom writer, native tensor serialization or end-to-end live repair qualification. Local native copy precision finding remains an explicit P03 gate; manuscript data excluded."
+    },
+    "E_REGISTERED_PHOSPHATE_ENTRY": {
+      "kind": "Installed explicit registered-phosphate native execution",
+      "date": "2026-11-23",
+      "human_update": 240,
+      "code_commit": "b75a16274fccc51dc11528cf15897664821bac63",
+      "reference": "docs/topostitch-periodic.md#w240--reach-registered-phosphate-refinement-through-the-installed-product",
+      "result": "261 focused source and 261 source-independent installed checks; changed-plan fail-before regression. Final installed CLI completes Phenix 2.2.1-6174 preflight plus one cycle, exactly reproducing source full-precision points/PDB. All862 atoms,856 fixed,BQ,1909 ordered indices and124 Free flags retained;33 complete seven-term gradient calls. Common native F/SIG normalization is audited.",
+      "limitation": "Software qualification only: O3-P1.945A, phosphate oxygen angles65.042/154.648deg, Rwork/Rfree0.315017/0.363246. Standalone Willow requires compatible explicit Cedar modules. No full-suite repeat, guessed partner, whole-ASU writer, automatic fallback, campaign promotion or scientific acceptance; native job relocation unqualified, private science excluded."
     }
   },
   "benchmarks": [
@@ -6401,8 +6419,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 239,
-    "next": 240,
+    "current": 240,
+    "next": 241,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -7646,6 +7664,12 @@
         "title": "Regress explicit staggered duplex cuts and retain native serialization gates",
         "state": "RECORDED",
         "code_commit": "0fa2b6643da26977c568528d25126f07d0e7d57a"
+      },
+      {
+        "number": 240,
+        "title": "Expose and qualify installed registered-phosphate refinement",
+        "state": "RECORDED",
+        "code_commit": "b75a16274fccc51dc11528cf15897664821bac63"
       }
     ]
   },

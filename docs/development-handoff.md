@@ -1,13 +1,29 @@
 # NASolve development handoff — Willow
 
-**Current audit: W239; maintained implementation: W238, 2026-11-23.**
-W239 adds [staggered-duplex integration coverage](topostitch-periodic.md#w239--regress-explicit-staggered-duplex-recuts):
-171 focused tests, including P43/R3:H reciprocal cuts, continuation phosphates
-and complete coordinate/tensor round trips. No runtime/schema change or full
-suite. Correct-duplex inference, native precision-preserving construction and
-end-to-end live replay remain open P03/P04 gates. The local manuscript repair
-has passed to Rowan for locked-sugar/remote-pair validation and packaging;
-no live data are committed. The earlier two-arm 5W6W receiving fits remain held.
+**Current audit and maintained implementation: W240, 2026-11-23.**
+The installed [native-phosphate entry](topostitch-preview.md#refine-one-registered-phosphate-connection-w240)
+now runs an explicitly registered six-atom continuation through Cedar C545:
+**261 source/261 installed checks**, complete Phenix 2.2.1-6174 preflight and
+one-cycle execution, exact source/installed candidate parity. Original 862 atoms,
+856 held coordinates/BQ, 1909 indices and 124 Free assignments survive; common
+native F/SIG scaling is recorded. Standalone Willow requires explicit compatible
+Cedar modules; no campaign activation or branch merge is implied.
+
+**Science remains partial:** the poor original pose closes 2.824→1.945 Å, with
+phosphate oxygen angles still 65.042°/154.648° and Rwork/Rfree 0.315017/0.363246.
+This proves a reachable execution/return path, not a finished repair. Next compare
+original versus W235 geometry seed under the already scoped matched five-cycle
+protocol; do not repeat Cedar's distance-only versus full-angle qualification.
+[Methods, failed checks and limitations](topostitch-periodic.md#w240--reach-registered-phosphate-refinement-through-the-installed-product).
+Evidence is local at NASolve anchor `branch-artifacts/willow/w240-native-phosphate/`.
+
+W239's staggered-duplex integration coverage still passes through the current
+focused set. Correct-duplex inference, native precision-preserving ASU construction
+and end-to-end Pine replay remain open P03/P04 gates. Rowan owns the local manuscript
+repair/deposition packaging. A repeat boundary is not a chemical nick; do not carry
+5W6W connection intent to a different construct. Keep an explicitly reviewed
+unrestrained-edge fallback when intended phosphate oxygen geometry cannot recover,
+without deleting atoms or silently adopting a different topology.
 
 The existing native input binder now accepts an explicitly selected dictionary-only
 parent policy from Cedar C526. Default literal inputs still require compiled
@@ -15,7 +31,7 @@ restraints. W214 binds a real X11_22 PostMR checkpoint and original observations
 W215 binds that exact model, original native observation and four reader controls
 without inventing pair restraints. S04/S05/S06 remain PARTIAL.
 
-**Latest local seam science:** [W235](topostitch-periodic.md#w235--close-the-local-symmetry-connection-with-all-rings-held)
+**Geometry-seed science (W235):** [W235](topostitch-periodic.md#w235--close-the-local-symmetry-connection-with-all-rings-held)
 uses the complete Cedar image forces to close 2.824 → 1.613 Å with only six
 connecting atoms moving, all 856 others/BQ held. Boundary bonds recover to
 1.512/1.440 Å; local/seam torsions remain up to 2.25/2.94 σ. Three full derivative
@@ -109,6 +125,7 @@ failure; skipped cases remain unqualified. [Completion contract](topostitch-prev
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
+| W240 native product entry | Installed preflight/one-cycle execution, exact six-atom return and data/thermal preservation; 261 source/261 installed checks | Residual oxygen angles; multi-cycle seed comparison, general repair and ordinary campaign integration |
 | W235 local image connection | Six-atom capped native optimization, 856 held, three derivative audits/34 cold checks; seam 1.613 Å and healthy sugar-boundary lengths | Residual torsions, matched diffraction receiving, maps/packing and general repair |
 | W214/W215 real parent + typed binding | Exact real checkpoint/data; 225 source/225 relocated installed, 19 real-source checks, Phenix Python 3.11 parity | Independent intended motion, Cedar ordinary request/dispatch and chemical admission |
 | W208 maintained parent builder |217 source/217 relocated installed;54 actual-native cold checks, exact W207 prepared state and disposable post-parent failure | Cedar-owned versioned ordinary request/dispatch; C516 early entry qualified |
@@ -198,15 +215,17 @@ placement/recovery gate rather than starting another subsystem or run tonight.
 [W236 receiving preflights now pass](topostitch-periodic.md#w236--bind-the-saved-candidate-to-matched-receiving-preflights)
 for the original and W235 seeds: fresh candidate-bound capture, complete live
 image forces, exact six-atom mask, identical data/Free and unchanged source B/Q.
-No fits yet; Rowan holds the native fitting window for a separate deposition
-repair. Reuse v3 preflights when cleared. W237 completes the fixed original-map
+The matched five-cycle fits are still unrun. Rowan has cleared the bounded
+comparison after the W240 software handoff; check current inputs/runtime before
+reusing v3 preparation. W240 supplies the maintained entry and stricter exact-index
+plus common-scale observation audit. W237 completes the fixed original-map
 inspection; do not repeat it or present geometry-only coordinates as density-refined.
 The local W239 controller is prepared against those unchanged v3 inputs (seven
 cold preparation checks, zero native calls); its live assertions remain untested
 until the two fits run. Native nonbonded observations stay separate from the
 seven-force composition until both receipts establish that contract. This
-preparation is not a new completed milestone or authorization to bypass Rowan's
-resource hold.
+preparation is not a completed experiment. Preserve its historical state; use a
+new independent experiment directory if the controller/protocol changes.
 
 The prepared written-geometry reader reproduces all 58 saved source/candidate
 term values and six relative-handedness checks without a native call. Its exact
