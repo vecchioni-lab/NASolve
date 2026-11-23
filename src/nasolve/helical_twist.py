@@ -155,14 +155,73 @@ def _step(first, second, left, right):
             'common_normal': list(common)}
 
 
+def _stacking_step(first, second, *, declared_break):
+    """Unoriented fitted planes and observed ring centroids, not contact scores."""
+    row = dict(sites=[first['site'], second['site']], status='UNAVAILABLE', reason=None,
+        plane_angle_deg=None, centroid_distance_angstrom=None,
+        normal_spacing_angstrom=None, lateral_offset_angstrom=None)
+    if declared_break:
+        return {**row, 'reason': 'DECLARED_BREAK'}
+    if first['status'] != 'AVAILABLE' or second['status'] != 'AVAILABLE':
+        return {**row, 'reason': 'BASE_FRAME_UNAVAILABLE'}
+    # The last frame atom is C1'; only fitted ring atoms define these centroids.
+    centers = [tuple(math.fsum(atom['xyz_angstrom'][i] for atom in frame['atoms'][:-1])
+                     / (len(frame['atoms'])-1) for i in range(3))
+               for frame in (first, second)]
+    delta = _sub(centers[1], centers[0])
+    distance = math.hypot(*delta)
+    a, b = first['normal'], second['normal']
+    dot = max(-1., min(1., _dot(a, b)))
+    row.update(plane_angle_deg=math.degrees(math.acos(abs(dot))),
+               ring_centroids_angstrom=[list(c) for c in centers],
+               centroid_distance_angstrom=distance)
+    # A plane has no arrow. Align normals along their acute branch, not along
+    # the displacement: coplanar sliding and coincident centroids remain measurable.
+    if abs(dot) <= _EPS:
+        return {**row, 'reason': 'AMBIGUOUS_MIDPLANE_NORMAL'}
+    normal = _unit(tuple(x+(1 if dot > 0 else -1)*y for x,y in zip(a,b)),
+                   'AMBIGUOUS_MIDPLANE_NORMAL')
+    projection = _dot(delta, normal)
+    lateral = math.hypot(*(x-projection*n for x,n in zip(delta, normal)))
+    return {**row, 'status': 'MEASURED',
+            'normal_spacing_angstrom': abs(projection), 'lateral_offset_angstrom': lateral}
+
+
+def _stacking_geometry(frames, pairs):
+    steps = [dict(pair_ids=[left.pair_id,right.pair_id],
+                  pair_roles=[left.role,right.role], break_before=right.break_before,
+                  strand_order=['strand_i','strand_ii'],
+                  strands=[_stacking_step(a,b,declared_break=right.break_before)
+                           for a,b in zip(first['base_frames'],second['base_frames'])])
+             for first,second,left,right in zip(frames,frames[1:],pairs,pairs[1:])]
+    count = sum(row['status']=='MEASURED' for step in steps for row in step['strands'])
+    return dict(method='declared-ring-stacking-v1', status='ASSESSED', steps=steps,
+        coverage=dict(declared_strand_steps=2*len(steps), measured_strand_steps=count,
+                      unavailable_strand_steps=2*len(steps)-count),
+        convention='Observed ring centroids; acute fitted-plane angle; unsigned displacement along the aligned mean normal and residual lateral magnitude',
+        frame_source='simple_step_twist.pair_frames.base_frames',
+        overlap=dict(status='NOT_MEASURED', reason='Centroid offset does not measure ring overlap'),
+        geometry_accepted=False, limitations=[
+            'Descriptive same-strand adjacency from caller order, not inferred stacking contacts or chemical topology',
+            'Within-pair normal angle and signed step twist remain separate in simple_step_twist',
+            'Uses existing canonical frames and fit limit; missing C1-prime also makes that frame unavailable',
+            'No signed roll/tilt, local helix axis, overlap, stacking energy or acceptance cutoff',
+            'Acute unoriented planes cannot distinguish a flipped base from an unflipped plane'])
+
+
 def inspect_helical_region(model_path, region, *, expected_model_sha256,
-                           max_ring_fit_rmsd_angstrom, include_half_span=False):
+                           max_ring_fit_rmsd_angstrom, include_half_span=False,
+                           include_stacking=False):
     """Compose independent phosphate spans and canonical simple-step twist.
 
     Caller declares pairing, strand order and a maximum ring-fit RMSD; the limit
     is reported, not interpreted as a chemical acceptance rule. Requires the
     existing topology extra (Gemmi). Modified rings are deliberately unavailable.
+    Explicit include_stacking adds same-strand ring placement descriptors from
+    those exact frames; it grants no contact assignment or geometry acceptance.
     """
+    if type(include_stacking) is not bool:
+        raise ValueError('include_stacking must be boolean')
     maximum = max_ring_fit_rmsd_angstrom
     if type(maximum) not in (int,float) or not math.isfinite(maximum) or maximum <= 0:
         raise ValueError('Require an explicit positive finite ring-fit RMSD limit')
@@ -190,6 +249,8 @@ def inspect_helical_region(model_path, region, *, expected_model_sha256,
         atom_name_policy='Existing PDB reader normalizes legacy star to prime; duplicates refuse',
         pair_frames=frames, steps=steps,
         coverage={'declared_steps':len(steps),'measured_steps':measured,'unavailable_steps':len(steps)-measured})
+    if include_stacking:
+        result['stacking_geometry'] = _stacking_geometry(frames, region.pairs)
     return result
 
 

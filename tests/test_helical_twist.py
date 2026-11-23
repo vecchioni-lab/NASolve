@@ -158,3 +158,99 @@ def test_coordinate_drift_during_frame_fit_refuses(tmp_path,monkeypatch):
  monkeypatch.setattr(module,'_base_frame',drift)
  with pytest.raises(ValueError,match='changed during frame'):
   inspect_helical_region(p,region(),expected_model_sha256=pin,max_ring_fit_rmsd_angstrom=.15)
+
+
+# Stacking descriptors are read-only and intentionally independent of twist.
+def _translate_pairs(text, shifts):
+ lines=[]
+ for line in text.splitlines(keepends=True):
+  i=int(line[22:26]);pair=i if line[21]=='A' else 4-i
+  dx,dy,dz=shifts.get(pair,(0,0,0))
+  xyz=[float(line[a:b])+d for (a,b),d in zip(((30,38),(38,46),(46,54)),(dx,dy,dz))]
+  lines.append(line[:30]+''.join(f'{v:8.3f}'for v in xyz)+line[54:])
+ return ''.join(lines)
+
+
+def test_stacking_distinguishes_slide_from_normal_spacing(tmp_path):
+ text=_translate_pairs(model(angle=0),{2:(2,0,0),3:(4,0,0)})
+ plain=inspect(tmp_path,text)
+ report=inspect(tmp_path,text,include_stacking=True)
+ stack=report.pop('stacking_geometry')
+ assert report==plain
+ assert stack['coverage']=={'declared_strand_steps':4,'measured_strand_steps':4,'unavailable_strand_steps':0}
+ for step in stack['steps']:
+  assert step['pair_roles']==['flank','core'] or step['pair_roles']==['core','flank']
+  for row in step['strands']:
+   assert row['status']=='MEASURED'
+   assert row['normal_spacing_angstrom']==pytest.approx(3.4,abs=1e-7)
+   assert row['lateral_offset_angstrom']==pytest.approx(2,abs=1e-7)
+   assert row['centroid_distance_angstrom']==pytest.approx(math.hypot(2,3.4),abs=1e-7)
+   assert row['plane_angle_deg']==pytest.approx(0,abs=1e-6)
+ assert stack['overlap']['status']=='NOT_MEASURED'
+ assert stack['geometry_accepted'] is False
+ assert json.loads(json.dumps(stack,allow_nan=False))==stack
+
+
+def test_stacking_rigid_frame_invariance_and_curvature(tmp_path):
+ # One canonical pair tilted about x; the plane angle must expose curvature.
+ text=model(angle=0);lines=[]
+ for l in text.splitlines(keepends=True):
+  if l[21:26] in ('A   2','B   2'):
+   x,y,z=(float(l[a:b])for a,b in ((30,38),(38,46),(46,54)))
+   t=math.radians(25);y,z=y*math.cos(t)-(z-3.4)*math.sin(t),y*math.sin(t)+(z-3.4)*math.cos(t)+3.4
+   l=l[:30]+f'{x:8.3f}{y:8.3f}{z:8.3f}'+l[54:]
+  lines.append(l)
+ text=''.join(lines);a=inspect(tmp_path,text,include_stacking=True)['stacking_geometry']
+ moved=[]
+ for l in text.splitlines(keepends=True):
+  x,y,z=(float(l[a:b])for a,b in ((30,38),(38,46),(46,54)))
+  moved.append(l[:30]+f'{-y+12:8.3f}{z-4:8.3f}{-x+3:8.3f}'+l[54:])
+ b=inspect(tmp_path,''.join(moved),include_stacking=True)['stacking_geometry']
+ for first,second in zip(a['steps'],b['steps']):
+  for x,y in zip(first['strands'],second['strands']):
+   assert x['plane_angle_deg']==pytest.approx(25,abs=.03)
+   for key in ('plane_angle_deg','centroid_distance_angstrom','normal_spacing_angstrom','lateral_offset_angstrom'):
+    assert x[key]==pytest.approx(y[key],abs=1e-6)
+
+
+@pytest.mark.parametrize('fault',['missing','break','coplanar','coincident','perpendicular'])
+def test_stacking_partial_and_degenerate_cases_are_explicit(tmp_path,fault):
+ text=model(angle=0);decl=region()
+ if fault=='missing':text=''.join(l for l in text.splitlines(keepends=True)if not(l[21:26]=='A   2'and l[12:16].strip()=='N9'))
+ if fault=='break':decl=replace(decl,pairs=(decl.pairs[0],replace(decl.pairs[1],break_before=True),decl.pairs[2]))
+ if fault in ('coplanar','coincident'):text=_translate_pairs(model(angle=0,rise=0),{2:(2,0,0),3:(4,0,0)}) if fault=='coplanar' else model(angle=0,rise=0)
+ if fault=='perpendicular':
+  lines=[]
+  for l in text.splitlines(keepends=True):
+   if l[21:26]=='A   2':
+    x,y,z=(float(l[a:b])for a,b in ((30,38),(38,46),(46,54)))
+    l=l[:30]+f'{x:8.3f}{-(z-3.4):8.3f}{y+3.4:8.3f}'+l[54:]
+   lines.append(l)
+  text=''.join(lines)
+ report=inspect(tmp_path,text,decl,include_stacking=True);rows=report['stacking_geometry']['steps']
+ if fault=='missing':
+  assert all(r['strands'][0]['reason']=='BASE_FRAME_UNAVAILABLE'for r in rows)
+  assert all(r['strands'][1]['status']=='MEASURED'for r in rows)
+ elif fault=='break':
+  assert all(r['reason']=='DECLARED_BREAK'for r in rows[0]['strands'])
+  assert all(r['status']=='MEASURED'for r in rows[1]['strands'])
+ elif fault=='perpendicular':
+  assert all(r['strands'][0]['reason']=='AMBIGUOUS_MIDPLANE_NORMAL'for r in rows)
+  assert all(r['strands'][0]['plane_angle_deg']==pytest.approx(90)for r in rows)
+  assert all(r['strands'][1]['status']=='MEASURED'for r in rows)
+ else:
+  assert all(r['strands'][0]['normal_spacing_angstrom']==pytest.approx(0)for r in rows)
+  assert all(r['strands'][0]['lateral_offset_angstrom']==pytest.approx(2 if fault=='coplanar'else 0)for r in rows)
+  assert all(r['twist_deg']is None for r in report['simple_step_twist']['steps'])
+
+
+@pytest.mark.parametrize('value',[1,None,'yes',[],{}])
+def test_stacking_opt_in_is_strict_boolean(tmp_path,value):
+ with pytest.raises(ValueError,match='include_stacking'):
+  inspect(tmp_path,include_stacking=value)
+
+
+def test_single_pair_has_no_invented_stacking_steps(tmp_path):
+ r=inspect(tmp_path,declaration=replace(region(),pairs=region().pairs[:1]),include_stacking=True)
+ assert r['stacking_geometry']['steps']==[]
+ assert r['stacking_geometry']['coverage']['declared_strand_steps']==0

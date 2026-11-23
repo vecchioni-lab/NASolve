@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W230 — Read internal stacking through existing canonical frames
+
+- Opt into same-strand ring-plane angle, centroid spacing and lateral offset in
+  the helical reader. Keep signed twist and within-pair geometry separate;
+  missing frames/breaks remain explicit, with independent strand coverage.
+- Preserve default reports and existing frame/fit policy. Descriptors do not
+  infer contacts, measure overlap, score energy or authorize motion/refinement.
+- Existing API gains one optional boolean and an opt-in report section; no CLI,
+  dependency/default change or report migration. Raw science remains local.
+
 - Clarify internal stacking recovery as an explicit placement/recovery gate:
   distinguish paired-base coplanarity from neighbouring-step orientation,
   spacing, overlap and twist. Planning/docs only; no new run or runtime change.
