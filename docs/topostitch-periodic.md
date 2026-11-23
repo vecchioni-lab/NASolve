@@ -12681,3 +12681,51 @@ same anchor, run with `PYTHONDONTWRITEBYTECODE=1`, the NASolve Python `-B`, and
 optional Gemmi 0.7.5. No production change, new tests, full suite or native run
 accompanies this read-only planning result. Rowan reviewed it as tonight's
 bounded stopping point.
+
+
+## W231 — Distinguish the central crossover from a stacked duplex step
+
+A cold context audit binds the same canonical `MR_frames/5W6W/C_G.pdb`
+(SHA256 `d26ebf248a0a597a3884a6d6b2c6ec8f9bba27c9cad9f0604da136e13bfb1817`)
+and C536/C539 source-frame registration used in W228. The existing graph owner
+retains the single B7 O3′ → B1 P continuation, imaging B1 by `-y,x-y,z`.
+No new pairing, junction mobility or connection is inferred.
+
+| Source context | O3′–P distance (Å) | Adjacent ring-plane angle (°) |
+| --- | ---: | ---: |
+| A8 → A9 | 1.614036 | 8.2335 |
+| A15 → A16 | 1.620926 | 6.6841 |
+| B7 → image(B1) | 2.794915 | 81.9763 |
+
+The seam's ring centroids are 11.8165 Å apart. This source geometry is a
+crossover context, not an ordinary within-duplex stacking target. The intended
+covalent connection does **not** imply that its two bases should become parallel.
+Do not copy a generic neighbouring-base stacking restraint across this seam.
+
+**22 cold checks** include source hashes/immutability, forward and reciprocal
+bond distance, order-three cycle, exact graph intent, independent fractional
+versus Cartesian image transport, P/OP1/OP2 retention without OP3, and observed-
+ring least-squares plane fits. The independent seam angle is 81.9773°; the small
+difference from canonical-template fits is retained. No coordinates, native
+calls or refinements were written/run. The numerical image composition is an
+explicit diagnostic; W230's public reader remains identity-image only.
+
+Rowan confirms that the reviewed connection does not independently declare
+movement of A8–A9 or A15–A16. W229's fixed whole-pair endpoint mask therefore
+remains closed to seam motion. Next, describe a narrowly scoped connecting-
+backbone candidate with bases/sugars and outer context explicitly held, or obtain
+an explicit coupled-junction movement declaration before a whole-pair trial.
+Keep proposal/testing authority distinct from final scientific acceptance; no
+unnecessary repeat of Cedar's whole-model phosphate recovery is warranted.
+Cedar C543's 1.620183 Å child connection and OP angles 103.22°/115.70° are
+owner-reported evidence from ordinary coordinate/ADP refinement, not proof of a
+sugar-frozen repair or a new Willow-native qualification.
+
+Local NASolve evidence: `branch-artifacts/willow/w231-junction-context/review.json`;
+controller `branch-artifacts/willow/runners/w231-junction-context.py`, run with
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/private/tmp/alder-validation-20261121-01/lib/python3.12/site-packages`
+and the main checkout's Python 3.12. It consumes the relocated W230 installation
+and explicitly anchored canonical inputs. An initial interactive inspection used
+an absent `point` method and stopped before measuring the seam; the recorded
+controller uses existing `apply`/`pullback` and independently verifies transport.
+Raw science remains local. No runtime/schema/default change or migration.

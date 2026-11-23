@@ -3266,5 +3266,12 @@ Local evidence uses the NASolve anchor, `branch-artifacts/willow/w230-stacking-r
 source/installed test logs. Controllers are `branch-artifacts/willow/runners/w230-install.py`
 and `w230-readback.py`. They resolve saved models through the prior checkout's
 explicit model references and hashes. Raw science is deliberately excluded from Git.
-The separate branch-wide validation is recorded when completed; these focused
-results do not claim a clean full suite.
+One coordinated complete Willow suite at checkpoint
+`c4b95b20b1d045c5f06a9572c3774b3da952c6a2` also passes: **2481 passed,
+3 skipped, 234 passing subtests**, 107.35 s. Command uses the same environment
+above with `-m pytest -q -p no:cacheprovider` and no file restriction; thread
+limits `OMP_NUM_THREADS=OPENBLAS_NUM_THREADS=MKL_NUM_THREADS=1`.
+`full-suite-owner.json`, `full-suite-review.json` and `full-suite.log` retain
+exact invocation, source commit and result. The three skipped cases remain
+unqualified. This is software validation, separate from native science; no
+scientific fitting experiment was launched for W230.

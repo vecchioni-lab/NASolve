@@ -9,7 +9,8 @@ current instructions; other branches retain their own status and validation pins
 
 - **Current code: W230.** [Internal stacking placement](topostitch-preview.md#measure-internal-stacking-placement-w230)
   separates per-strand plane orientation, spacing and lateral displacement;
-  116 source/116 installed tests, six saved states, no force or motion authority.
+  116 source/116 installed tests, six saved states; full Willow checkpoint
+  2481 passed/3 skipped/234 subtests. No force or motion authority.
 - **W227:** [Stable core measurements](topostitch-preview.md#keep-the-measured-core-fixed-when-a-window-expands-w227)
   remain comparable when the editable window expands, with complete-mask checks:
   392 source/392 installed tests and three saved-endpoint readback contexts.
@@ -34,7 +35,7 @@ current instructions; other branches retain their own status and validation pins
   The failed direct result and three remaining moving-region outliers stay
   explicit. This is same-family synthetic recovery, not general experimental repair.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W230, next W231:
+  [generated human view](topostitch-roadmap.md). Current W231, next W232:
   declare the next terminal/coupled/periodic window before independent bending.
   The existing two-fixed-flank interval cannot simply grow around the same core.
   Keep the successful synthetic receiving comparison closed. The 5 Å centerline target is separate.

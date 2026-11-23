@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W231 — Preserve crossover geometry when scoping seam repair
+
+- Record independent source/image measurements distinguishing the declared
+  central covalent seam from an ordinary stacked duplex step. Keep outer
+  junction mobility unresolved; prefer a bounded backbone-only proposal before
+  releasing whole pairs. Evidence/docs only, no runtime or schema change.
+
 ### W230 — Read internal stacking through existing canonical frames
 
 - Opt into same-strand ring-plane angle, centroid spacing and lateral offset in

@@ -281,7 +281,8 @@
         "W226 maintains the bounded6Ddriver with exact points/units, accepted-step history, hard callback budgets, derivative/restoration gates and installed-native parity. It does not write/qualify rounded coordinates or grant ordinary/scientific permission.",
         "W227keeps a declared measurement core stable inside a larger complete motion mask; bounds/fixed atoms remain checked across all editable atoms.392/392tests and saved-endpoint parity; no expanded-window execution.",
         "W229confirms the current205atom core has no wider two-fixed-flank interval within its frozen seven-pair route declaration;13cold checks/3anchor-release refusals. No coordinates or native run.",
-        "W230 measures adjacent same-strand ring-plane orientation, normal spacing and lateral placement through existing frames;116source/116installed tests and six saved-state readbacks. Default reports unchanged; this is descriptive internal stacking, not closure or acceptance."
+        "W230 measures adjacent same-strand ring-plane orientation, normal spacing and lateral placement through existing frames;116source/116installed tests and six saved-state readbacks. Default reports unchanged; this is descriptive internal stacking, not closure or acceptance.",
+        "W231 distinguishes the canonical central crossover from ordinary stacking:22coldchecks,~82degree seam planes and2.795AO3-P. No whole-pair anchor release or new native run."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
@@ -289,7 +290,7 @@
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient.",
         "Internal helix recovery explicitly compares neighbouring base-plane orientation, spacing, lateral offset/overlap and twist before deformation, after placement and after restrained recovery, including fixed-flank transitions. Within-pair coplanarity and between-pair stacking remain distinct; allow supported curvature/nonuniform twist rather than enforcing universal parallelism. Connectivity, sugar-sign retention and R factors alone do not close this gate. Investigator emphasis2026-11-22; planning only, reuse existing frame/geometry owners."
       ],
-      "next_action": "Declare a source-qualified terminal/coupled or periodic-image window with actual paired neighbours, protected junctions and allowed endpoint movement; existing seven-pair W196/W219scope cannot expand while preserving its205atom core and both fixed flanks. Reuse W227core metrics and W226driver only after source/frame correspondence and baseline qualification. Then one bounded independent data-supported comparison; do not repeat/tune W224. Cedar owns ordinary receiving. The5Acenterline target remains separate and unrun.",
+      "next_action": "Describe a source-qualified connecting-backbone candidate with bases/sugars and outer junction context fixed. Consume Cedar restart/link evidence; no duplicate whole-model phosphate fit or crossover parallelity target. Whole-pair junction motion needs separate scope. Then independent bounded placement/recovery with explicit stacking, geometry and map readback; preserve the5Acenterline gate separately.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -378,14 +379,15 @@
         "E_NATIVE_COLLECTIVE_TRIAL",
         "E_CORE_DISPLACEMENT_SUBSET",
         "E_WIDER_WINDOW_SCOPE",
-        "E_INTERNAL_STACKING_PLACEMENT"
+        "E_INTERNAL_STACKING_PLACEMENT",
+        "E_CROSSOVER_WINDOW_CONTEXT"
       ],
       "last_audit": {
         "date": "2026-11-23",
         "code_commit": "3c6c3f9115190068c43c34c7158b8e9584f83a16",
         "reviewer": "Linden",
-        "human_update": 230,
-        "scope": "Internal stacking readback; junction mobility and independent placement remain open"
+        "human_update": 231,
+        "scope": "Source-qualified crossover context; bounded backbone window still to declare"
       }
     },
     {
@@ -681,7 +683,8 @@
         "W226 maintains the bounded6Ddriver with exact points/units, accepted-step history, hard callback budgets, derivative/restoration gates and installed-native parity. It does not write/qualify rounded coordinates or grant ordinary/scientific permission.",
         "W227keeps a declared measurement core stable inside a larger complete motion mask; bounds/fixed atoms remain checked across all editable atoms.392/392tests and saved-endpoint parity; no expanded-window execution.",
         "W229confirms the current205atom core has no wider two-fixed-flank interval within its frozen seven-pair route declaration;13cold checks/3anchor-release refusals. No coordinates or native run.",
-        "W230 measures adjacent same-strand ring-plane orientation, normal spacing and lateral placement through existing frames;116source/116installed tests and six saved-state readbacks. Default reports unchanged; this is descriptive internal stacking, not closure or acceptance."
+        "W230 measures adjacent same-strand ring-plane orientation, normal spacing and lateral placement through existing frames;116source/116installed tests and six saved-state readbacks. Default reports unchanged; this is descriptive internal stacking, not closure or acceptance.",
+        "W231 distinguishes the canonical central crossover from ordinary stacking:22coldchecks,~82degree seam planes and2.795AO3-P. No whole-pair anchor release or new native run."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -692,7 +695,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Declare a source-qualified terminal/coupled or periodic-image window with actual paired neighbours, protected junctions and allowed endpoint movement; existing seven-pair W196/W219scope cannot expand while preserving its205atom core and both fixed flanks. Reuse W227core metrics and W226driver only after source/frame correspondence and baseline qualification. Then one bounded independent data-supported comparison; do not repeat/tune W224. Cedar owns ordinary receiving. The5Acenterline target remains separate and unrun.",
+      "next_action": "Describe a source-qualified connecting-backbone candidate with bases/sugars and outer junction context fixed. Consume Cedar restart/link evidence; no duplicate whole-model phosphate fit or crossover parallelity target. Whole-pair junction motion needs separate scope. Then independent bounded placement/recovery with explicit stacking, geometry and map readback; preserve the5Acenterline gate separately.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -812,14 +815,15 @@
         "E_NATIVE_COLLECTIVE_TRIAL",
         "E_CORE_DISPLACEMENT_SUBSET",
         "E_WIDER_WINDOW_SCOPE",
-        "E_INTERNAL_STACKING_PLACEMENT"
+        "E_INTERNAL_STACKING_PLACEMENT",
+        "E_CROSSOVER_WINDOW_CONTEXT"
       ],
       "last_audit": {
         "date": "2026-11-23",
         "code_commit": "3c6c3f9115190068c43c34c7158b8e9584f83a16",
         "reviewer": "Linden",
-        "human_update": 230,
-        "scope": "Internal stacking readback; junction mobility and independent placement remain open"
+        "human_update": 231,
+        "scope": "Source-qualified crossover context; bounded backbone window still to declare"
       }
     },
     {
@@ -5945,8 +5949,8 @@
       "human_update": 230,
       "code_commit": "3c6c3f9115190068c43c34c7158b8e9584f83a16",
       "reference": "docs/topostitch-preview.md#measure-internal-stacking-placement-w230",
-      "result": "13fail-before regressions;116source/116relocated installed passes.96coldchecks in each saved-model readback and exact report parity. Initial10Atranslation retains plane angles but lateral offset rises3.50to10.53A; staged recovery3.48A. No native run or modelwrite.",
-      "limitation": "Canonical identity-image scope and caller-declared pairs; no ring-overlap, stacking-energy, acceptance or junction movement grant. Full branch qualification pending separately.",
+      "result": "13fail-before regressions;116source/116relocated installed passes.96coldchecks in each saved-model readback and exact report parity. Initial10Atranslation retains plane angles but lateral offset rises3.50to10.53A; staged recovery3.48A. No native run or modelwrite. One complete Willow checkpoint suite:2481passed,3skipped,234passing subtests; source c4b95b20b1d045c5f06a9572c3774b3da952c6a2.",
+      "limitation": "Canonical identity-image scope and caller-declared pairs; no ring-overlap, stacking-energy, acceptance or junction movement grant. Three skipped software cases remain unqualified; no new native scientific experiment.",
       "local_receipts": [
         {
           "anchor": "NASolve",
@@ -5965,6 +5969,29 @@
           "path": "branch-artifacts/willow/w230-stacking-readback/installed-readback.json",
           "sha256": "e198e82bcd146b758bb149f6134847e86a9fc26cb429208284e1f7451eab026d",
           "size": 929528
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w230-stacking-readback/full-suite-review.json",
+          "sha256": "43d62ec8c710afee90880b371bf8662366d748775baf6f23aaf987ccbf6fb36c",
+          "size": 875
+        }
+      ]
+    },
+    "E_CROSSOVER_WINDOW_CONTEXT": {
+      "kind": "Exact source/image context before coupled junction motion",
+      "date": "2026-11-23",
+      "human_update": 231,
+      "code_commit": "3c6c3f9115190068c43c34c7158b8e9584f83a16",
+      "reference": "docs/topostitch-periodic.md#w231--distinguish-the-central-crossover-from-a-stacked-duplex-step",
+      "result": "22coldchecks. Canonical seam O3-P2.794915Aand ring-plane81.9763deg; independent observed-ring fit81.9773deg. Outer A8-A9/A15-A16links1.614036/1.620926A. Exact forward/inverse image and P/OP1/OP2 retained.",
+      "limitation": "Source-bound geometry only, not new pairing, stacking force, junction mobility, public periodic helical API or scientific acceptance. No modelwrite/nativecall/fit. Cedar C543 remains separately owner-reported.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w231-junction-context/review.json",
+          "sha256": "1c246290f75788b21b8293fc9b6eda1c3161c5fc86cea97c83e1e8a71356cdfd",
+          "size": 9054
         }
       ]
     }
@@ -6132,8 +6159,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 230,
-    "next": 231,
+    "current": 231,
+    "next": 232,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -7321,6 +7348,12 @@
       {
         "number": 230,
         "title": "Measure internal stacking independently of plane parallelity",
+        "state": "RECORDED",
+        "code_commit": "3c6c3f9115190068c43c34c7158b8e9584f83a16"
+      },
+      {
+        "number": 231,
+        "title": "Distinguish a covalent crossover from a stacked duplex step",
         "state": "RECORDED",
         "code_commit": "3c6c3f9115190068c43c34c7158b8e9584f83a16"
       }

@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current audit and maintained implementation: W230, 2026-11-23.**
+**Current audit: W231, 2026-11-23. Maintained implementation: W230.**
 The existing native input binder now accepts an explicitly selected dictionary-only
 parent policy from Cedar C526. Default literal inputs still require compiled
 restraints. W214 binds a real X11_22 PostMR checkpoint and original observations;
@@ -111,8 +111,9 @@ restoration pass, with 77 callbacks/80 outer geometry evaluations. No new fit,
 writer, rounded-endpoint admission or ordinary activation follows. The cap
 remains distinct from convergence. [API, commands and limitations](topostitch-preview.md#run-a-bounded-collective-trial-w226).
 The W226/W227 evening slice deferred the complete suite to the merge gate.
-For W230, one branch-specific checkpoint run is queued under the newer pasted
-contract and coordinated with Rowan; no clean full-suite claim exists yet.
+For W230, the coordinated complete Willow checkpoint run passes: **2481 passed,
+3 skipped and 234 passing subtests** at `c4b95b20b1d045c5f06a9572c3774b3da952c6a2`.
+Skipped cases remain unqualified; this software result is separate from native science.
 
 [W229's route preflight](topostitch-periodic.md#w229--the-current-interior-window-cannot-simply-grow)
 finds no larger declared interval for the same 205 atoms and both fixed flanks:
@@ -123,6 +124,12 @@ movement of A8–A9 or A15–A16. Keep that junction choice explicit; representa
 boundaries must not be relabelled as chemical sticky ends to obtain a window.
 A fresh terminal/coupled/periodic declaration is the next prerequisite; neither
 a bigger pair cap nor W227's reporting subset creates movement permission.
+[W231's independently checked context](topostitch-periodic.md#w231--distinguish-the-central-crossover-from-a-stacked-duplex-step)
+finds the central seam bases nearly perpendicular (81.976°) despite the 2.795 Å
+O3′–P gap. Covalent continuation must not imply a stacking-plane restraint.
+Next prefer a narrowly declared connecting-backbone proposal with bases/sugars
+held; whole-pair junction movement needs separate scope. Consume Cedar C543's
+restart/link evidence rather than repeat a whole-model phosphate fit.
 
 **Internal helix focus (Simon, 2026-11-22):** retain the rough but recoverable
 molecular placement as a useful intermediate, then explicitly assess stacking
