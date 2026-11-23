@@ -208,6 +208,15 @@ angle moved by 32.5° and B:4's by 0.1° or less. The alternative archived
 orientation still had the lower global R-free. A single global score
 cannot select the local orientation on these results alone.
 
+C552 also measures the actual arm in an older written model when the
+selected-site capture is absent. In the two numbered PDU:PDU phosphate
+restarts, the A:12/B:4 tip heights were 2.154/1.497 Å and 2.384/1.506 Å.
+Both sites still had the older 1.607 Å terminal-bond edit. Separately,
+the mixed 5PC/PDU checkpoint agreed with its own native capture to 0.0014 Å
+in tip height after refinement. The open experiment combines the previously
+qualified CIF and corrected site edits with the verified crystal phosphate
+on one unchanged parent.
+
 C537 checks which modeled atoms actually reached a native covalent plane.
 The historical GEO omitted C5A at both PDU sites. The corrected GEO included
 it at both. In the registered thirteen-change scaffold, sixteen dictionary

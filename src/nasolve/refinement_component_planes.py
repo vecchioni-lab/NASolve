@@ -86,6 +86,54 @@ def _source_plane(name, members, modeled, covalent, sections):
     )
 
 
+def _written_ring_arms(raw, labels, by_code):
+    from .cif_plane_coverage import dictionary_ring_arm_paths
+    from .refinement_plane_departures import measure_ring_arm
+
+    if labels is None:
+        return None
+    graphs = {code: {d["definition_sha256"]: dictionary_ring_arm_paths(d) for d in definitions}
+              for code, definitions in by_code.items()}
+    relevant = {code for code, candidates in graphs.items()
+                if any(candidate["arms"] or candidate["status"] == "UNASSESSED" for candidate in candidates.values())}
+    if not relevant:
+        return []
+    elements = {code: {r["atom_id"]: r["element"].upper() for r in by_code[code][0]["inventory"]["atoms"]
+                       if isinstance(r["element"], str)} for code in relevant}
+    positions = defaultdict(dict)
+    for line in raw.decode("ascii").splitlines():
+        if line[:6] not in {"ATOM  ", "HETATM"}:
+            continue
+        (site, code, atom), xyz = labels[line[12:27]]
+        if code not in relevant:
+            continue
+        coords = positions[site, code]
+        try:
+            occupied = 0 < float(line[54:60]) <= 1
+        except ValueError:
+            occupied = False
+        if occupied and all(isfinite(v) for v in xyz) and line[76:78].strip().upper() == elements[code].get(atom):
+            coords[atom] = list(xyz)
+    result = []
+    for (site, code), coords in sorted(positions.items()):
+        definitions = by_code[code]
+        hashes = sorted({d["definition_sha256"] for d in definitions})
+        identity = dict(site=site, component=code, definition_sha256s=hashes)
+        if len(hashes) != 1:
+            result.append(dict(identity, status="UNASSESSED", reason="Conflicting supplied component definitions"))
+            continue
+        definition = graphs[code][hashes[0]]
+        if definition["status"] == "UNASSESSED":
+            result.append(dict(identity, status="UNASSESSED", reason=definition["reason"]))
+            continue
+        for path in definition["arms"]:
+            observation = measure_ring_arm(path["arm"], path["rings"], coords)
+            if observation["missing_atoms"]:
+                observation["reason"] = "A required coordinate is missing, unoccupied or has a different element"
+            result.append(dict(identity, **observation))
+    return result
+
+
 def read_component_planes(model, geometry, components):
     """Compare positive intramonomer covalent plane members with modeled CIF atoms.
 
@@ -95,7 +143,10 @@ def read_component_planes(model, geometry, components):
     """
     model, geometry = Path(model), Path(geometry)
     raw, data = model.read_bytes(), geometry.read_bytes()
-    parsed = None
+    parsed = labels = None
+    by_code = defaultdict(list)
+    for component in components:
+        by_code[component["component_id"]].append(component)
     status, reason, sites = "NOT_RECORDED", None, None
     try:
         parsed, labels = _model_labels(model)
@@ -104,9 +155,6 @@ def read_component_planes(model, geometry, components):
         status, reason, sections = "UNASSESSED", str(exc), None
     if sections:
         status, sites = "OBSERVED", []
-        by_code = defaultdict(list)
-        for component in components:
-            by_code[component["component_id"]].append(component)
         modeled = defaultdict(set)
         for (site, code, name), _ in labels.values():
             if code in by_code:
@@ -136,6 +184,7 @@ def read_component_planes(model, geometry, components):
     return dict(
         policy_id="printed-component-plane-members-v1", model_sha256=sha256(raw).hexdigest(),
         geometry_sha256=sha256(data).hexdigest(), status=status, reason=reason, sections=sections, sites=sites,
+        written_ring_arms=_written_ring_arms(raw, labels, by_code),
         scope="Printed intramonomer planes at modeled sites of supplied components. Exact membership compares positive covalent members only.",
         scientific_approval="NOT_ASSESSED",
     )

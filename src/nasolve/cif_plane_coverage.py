@@ -8,7 +8,7 @@ from hashlib import sha256
 from math import hypot, isfinite
 from pathlib import Path
 
-from .cif_doctor import _rows
+from .cif_doctor import _ORDERS, _rows
 from .cif_stereochemistry_audit import _values, _graph, _stereo, _coordinates
 from .cif_triple_bond_audit import _numeric
 
@@ -188,6 +188,33 @@ def source_ring_alkyne_arms(values, graph):
                 if rings:
                     arms.append((arm, rings))
     return arms
+
+
+def dictionary_ring_arm_paths(component):
+    """Use the chemical declarations retained by the original component assessment."""
+    inventory = component["inventory"]
+    bonds = inventory["bond_orders"]
+    if not any(_ORDERS.get(order.upper()) == "TRIPLE" for bond in bonds for order in bond["declarations"].values()):
+        return dict(status="NO_DECLARED_TRIPLE", arms=[])
+    if component["verdicts"]["graph"] != "PASS" or any(len(row["atoms"]) != 4 for row in inventory["chirality"]):
+        return dict(status="UNASSESSED", reason="The supplied component graph needs review", arms=[])
+    atoms = inventory["atoms"]
+    values = {"_chem_comp_atom.atom_id": [r["atom_id"] for r in atoms],
+              "_chem_comp_atom.type_symbol": [r["element"] for r in atoms],
+              "_chem_comp_bond.atom_id_1": [r["atoms"][0] for r in bonds],
+              "_chem_comp_bond.atom_id_2": [r["atoms"][1] for r in bonds],
+              "_chem_comp_chir.atom_id_centre": [r["atoms"][0] for r in inventory["chirality"]]}
+    for key in ("charge", "pdbx_formal_charge"):
+        values["_chem_comp_atom." + key] = [r["declared_charge_fields"].get(key, "?") for r in atoms]
+    for key in ("stereo_config", "pdbx_stereo_config"):
+        values["_chem_comp_atom." + key] = [r["stereo_declarations"].get(key, "?") for r in atoms]
+    for key in ("type", "value_order"):
+        values["_chem_comp_bond." + key] = [r["declarations"].get(key, "?") for r in bonds]
+    try:
+        arms = source_ring_alkyne_arms(values, _graph(values))
+    except (KeyError, ValueError) as exc:
+        return dict(status="UNASSESSED", reason=f"Cannot interpret the supplied component graph: {exc}", arms=[])
+    return dict(status="CHECKED", arms=[dict(arm=list(arm), rings=[list(r) for r in rings]) for arm, rings in arms])
 
 
 def _audit_coverage(source, dictionary, code, policy, *, snapshot):

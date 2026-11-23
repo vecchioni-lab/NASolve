@@ -39,9 +39,20 @@ the modeled dictionary members at positive weight. The JSON also lists atoms
 absent from the model and the sigma, weight and displacement printed by Phenix.
 An amino group with two heavy atoms and two unmodeled hydrogens, for instance,
 has too few modeled members to establish a plane. Inter-residue pairing planes
-have a separate purpose. The selected-site geometry reading, when recorded,
-still gives the side arm's actual height relative to its ring. Membership alone
-does not measure that height.
+have a separate purpose.
+
+For a neutral ring–C≡C–C arm declared in the supplied CIF, Doctor also
+fits a plane through the six occupied ring atoms in the written PDB. It
+reports each arm atom's distance from that plane, the lengths of its bonds
+and their directions. The tip takes no part in fitting the plane. A short
+distance tells you where the tip ended up. The printed Phenix table tells
+you which atoms felt a plane restraint. These two readings can differ.
+
+The JSON lists these measurements under `written_ring_arms`, including
+when the GEO lacks a plane table. Missing atoms, conflicting component
+definitions and ambiguous rings carry a reason. The selected-site native
+capture, when present, provides a separate reading before coordinate rounding.
+Pairing and density support still need independent assessment.
 
 ## Checking backbone continuity before deposition
 

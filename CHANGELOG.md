@@ -8,6 +8,10 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `cif-doctor assess --refined-planes` measures a carbon alkyne side arm
+  from the six atoms of its ring in the written PDB. It can read older
+  checkpoints and standalone Phenix outputs alongside their supplied CIFs.
+
 - `cif-doctor phosphate-image --duplex-partners` measures the direction of
   the two nonbridging oxygens relative to two assigned base pairs. It works
   on an explicit PDB or a named checkpoint, including declared crystal copies.

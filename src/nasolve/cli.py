@@ -363,7 +363,7 @@ def build_parser() -> argparse.ArgumentParser:
                             help="read a residue's saved B factors and occupancies and compare them with the refinement parent (requires --run)")
     cif_assess.add_argument(
         "--refined-planes", nargs="?", const=True, type=Path, metavar="GEO",
-        help="inspect printed component planes with --model PDB and a GEO, or read recorded planes, ring-tip heights and terminal bonds with --run",
+        help="inspect component planes and measure ring-to-tip distances with a model and its GEO, or at a named run checkpoint",
     )
     cif_assess.add_argument(
         "--refined-links", action="store_true",
@@ -2182,6 +2182,13 @@ def _cif_doctor(args: argparse.Namespace) -> int:
                 if field not in payload:
                     continue
                 reading = payload[field]
+                for arm in ((reading or {}).get("written_ring_arms") or [])[:8]:
+                    if arm["status"] == "MEASURED":
+                        tip = arm["arm_atoms"][-1]
+                        height = arm["arm_distances_angstrom"][tip]
+                        print(f"{stage} {arm['site']} {arm['component']} {tip} is {height:.3f} Å from its six-atom ring.")
+                    else:
+                        print(f"{stage} {arm['site']} {arm['component']} arm geometry unavailable. {arm['reason']}.")
                 if not reading or reading["sites"] is None:
                     reason = (reading["reason"] or reading["status"]) if reading else "no recorded GEO"
                     print(f"{stage} printed component planes unavailable ({reason}).")

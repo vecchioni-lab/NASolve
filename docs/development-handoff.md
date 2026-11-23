@@ -1,7 +1,30 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-23, C551 following an inherited phosphate through molecular replacement and refinement — Rowan**.
+Updated **2026-11-23, C552 measuring the actual alkyne arm in an older refinement — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+**C552 returns to the Q06 side-arm question.** An older checkpoint could
+show which atoms Phenix restrained, but lacked the selected-coordinate
+capture used for ring measurements. Now `cif-doctor assess --refined-planes`
+reads the arm from the chemical inventory and measures it in the actual
+written PDB. The original dictionary assessor keeps its byte-identical
+source so older preparation receipts can still be authenticated.
+
+The three original PDU:PDU checkpoints reproduced their independently read
+heights and terminal bond lengths. On the mixed checkpoint, the rounded PDB
+and full-precision native capture differed by at most 0.0014 Å in height and
+0.0007 Å in terminal length. Two components in one CIF block can use the
+same atom names and carry different formal charges. Ambiguous
+definitions, missing coordinates and wrong elements leave the site open.
+The new field belongs to the optional printed-plane reading. There is no
+migration or change to the refinement recipe or checkpoint registry.
+
+Both builds ran this focused command.
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_{refinement_component_planes,refinement_component_bonds,refinement_plane_departures,cif_plane_coverage,cif_doctor_cli,cif_doctor_run,cif_doctor,refinement_declared_sites}.py`.
+The wheel uses its moved install directory for `PYTHONPATH`. The eight
+files passed 191 tests and seven subtests per build. The existing
+Phenix 2.2.1-6174 outputs and full captures stayed local. Full regression
+remains a pre-merge step.
 
 C547 and Willow W243 carried two independent crystal phosphates per model
 through three Phenix 2.2.1-6174 cycles each. Six atoms could move in each

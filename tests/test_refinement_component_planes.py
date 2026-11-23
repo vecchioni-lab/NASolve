@@ -38,6 +38,85 @@ def direct(capsys, dictionaries, model, geo):
     return json.loads(capsys.readouterr().out)["refined_printed_planes"]
 
 
+def arm_inputs(root, *, charge=None, second_site=False):
+    from .test_refinement_plane_departures import ring_arm_observation
+    sources, observation = ring_arm_observation(charge=charge)
+    values, _ = sources["B:4"]
+    values = dict(values, data_="comp_XYZ")
+    for category in ("atom", "bond"):
+        count = len(values["_chem_comp_"+category+(".atom_id" if category=="atom" else ".atom_id_1")])
+        values["_chem_comp_"+category+".comp_id"] = ["XYZ"] * count
+    cif = write(root, values, "alternative.cif" if charge is not None else "ordinary.cif")
+    model, geo = root/"arm.pdb", root/"arm.geo"
+    records = []
+    for num in ([4,5] if second_site else [4]):
+        for atom, element in zip(observation["atoms"],values["_chem_comp_atom.type_symbol"],strict=True):
+            name = atom["atom_id"]
+            x,y,z = atom["xyz"]
+            occ = 0. if name=="Q8" and num==5 else 1.
+            records.append(f"ATOM  {len(records)+1:5d} {name:>4s} XYZ B{num:4}    "
+                           f"{x:8.3f}{y:8.3f}{z:8.3f}{occ:6.2f}{20.:6.2f}          {element:>2}")
+    model.write_text("\n".join([*records,"END",""]))
+    geo.write_text("Bond | covalent geometry | restraints: 0\n")
+    return cif, model, geo
+
+
+def test_dictionary_alkyne_measurement_works_without_a_printed_plane(tmp_path, capsys):
+    cif,model,geo = arm_inputs(tmp_path, second_site=True)
+    before = _snapshot(tmp_path)
+    report = direct(capsys,[cif],model,geo)
+    assert report["status"] == "NOT_RECORDED"
+    good, absent = report["written_ring_arms"]
+    assert good["site"] == "B:4" and good["arm_atoms"] == ["Q0","Q6","Q7","Q8"]
+    assert good["arm_distances_angstrom"]["Q8"] == pytest.approx(.4)
+    assert good["bond_directions"]["segments"][-1]["length_A"] > 1
+    assert absent["site"] == "B:5" and absent["status"] == "UNASSESSED"
+    assert absent["missing_atoms"] == ["Q8"]
+    assert _snapshot(tmp_path) == before
+
+
+def test_conflicting_alkyne_definitions_cannot_choose_the_ring(tmp_path,capsys):
+    cif,model,geo = arm_inputs(tmp_path)
+    changed,_,_ = arm_inputs(tmp_path,charge=6)
+    assert direct(capsys,[changed],model,geo)["written_ring_arms"] == []
+    conflict, = direct(capsys,[cif,changed],model,geo)["written_ring_arms"]
+    assert conflict["status"] == "UNASSESSED" and "conflict" in conflict["reason"].lower()
+
+
+def test_two_components_in_one_cif_block_keep_their_own_charges(tmp_path, capsys):
+    from .test_refinement_plane_departures import ring_arm_observation
+
+    _, model, geo = arm_inputs(tmp_path, second_site=True)
+    combined = {"data_": "two_components"}
+    for code, charge in (("XYZ", None), ("ABC", 6)):
+        sources, _ = ring_arm_observation(charge=charge)
+        values = dict(sources["B:4"][0])
+        for category, field in (("atom", "atom_id"), ("bond", "atom_id_1")):
+            prefix = "_chem_comp_" + category + "."
+            values[prefix + "comp_id"] = [code] * len(values[prefix + field])
+        for tag, entries in values.items():
+            combined.setdefault(tag, []).extend(entries)
+    cif = write(tmp_path, combined)
+    model.write_text(model.read_text().replace("XYZ B   5", "ABC B   5"))
+    arm, = direct(capsys, [cif], model, geo)["written_ring_arms"]
+    assert (arm["site"], arm["component"], arm["status"]) == ("B:4", "XYZ", "MEASURED")
+
+
+def test_bad_printed_table_and_wrong_model_element_have_separate_outcomes(tmp_path,capsys):
+    cif,model,geo = arm_inputs(tmp_path)
+    geo.write_text("Planarity | broken header\n")
+    report = direct(capsys,[cif],model,geo)
+    assert report["status"] == "UNASSESSED"
+    arm, = report["written_ring_arms"]
+    assert arm["status"] == "MEASURED" and arm["arm_distances_angstrom"]["Q8"] == pytest.approx(.4)
+    records = model.read_text().splitlines(keepends=True)
+    index = next(i for i,row in enumerate(records) if row[12:16].strip()=="Q8")
+    records[index] = records[index][:76]+" N"+records[index][78:]
+    model.write_text("".join(records))
+    arm, = direct(capsys,[cif],model,geo)["written_ring_arms"]
+    assert arm["status"] == "UNASSESSED" and arm["missing_atoms"] == ["Q8"]
+
+
 def test_only_positive_covalent_members_cover_the_modelled_cif_plane(tmp_path,capsys):
     _,model,geo = inputs(tmp_path)
     dictionary = plane_cif(tmp_path)

@@ -1,6 +1,14 @@
 {
   "schema_version": 1,
   "document_kind": "LINKED_NATIVE_REGISTRATION_AND_COMPONENT_METADATA_RETURNS",
+  "c552_written_ring_arms": {
+    "method": "Fit the six ring atoms alone. Read each occupied, element-matched arm atom from the actual PDB using the explicit component inventory.",
+    "older_PDU_pair": {"sites": ["A:12", "B:4"], "tip_heights_A": {"refine-005": [1.575, 1.954], "refine-006": [2.154, 1.497], "refine-007": [2.384, 1.506]}, "printed_terminal_target_A": 1.607, "origin": "User supplied"},
+    "independent_mixed_checkpoint": {"id": "refine-002", "model_sha256": "fcc1dc52cb81548b4ca0c67bc43a703e927248993a8680ed68fedcc5bfca9642",
+      "sites": ["A:4 5PC", "D:5 PDU"], "final_tip_height_A": [0.2540, 0.1040], "final_terminal_length_A": [1.4706, 1.4723],
+      "maximum_difference_from_full_precision_native_capture_A": {"height": 0.001381, "length": 0.000692}},
+    "validation": {"focused_per_build": 191, "subtests_per_build": 7, "existing_native_output": "Phenix 2.2.1-6174", "new_refinement": false}
+  },
   "c551_duplex_phosphate_direction": {
     "method": "Two explicitly paired consecutive residues. Measure OP1, OP2 and their midpoint along the local outward direction calculated from base-ring centres and from C1-prime midpoints, using the same mean plane normal.",
     "accessible_via": "cif-doctor phosphate-image --duplex-partners O3_PARTNER P_PARTNER",
