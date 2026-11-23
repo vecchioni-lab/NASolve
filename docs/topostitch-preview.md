@@ -3841,3 +3841,22 @@ optional fields. No campaign default or global AutoRefine policy changes.
 W250 validation and native qualification are recorded in the current handoff and
 roadmap. Full integration testing remains required before a supported merge.
 Private models, phase arrays, reflection data and generated jobs stay local.
+
+
+### Complete phased output without lossy next-run defaults (W252)
+
+Explicit phased phosphate jobs set native `refinement.output.write_def_file=False`.
+Phenix 2.2.1-6174 formats its optional next-run defaults before comparing group
+selection strings literally; whitespace changes can abort output after all
+refinement cycles. The same formatting rounds fixed f-prime. Replay therefore
+uses the immutable request and checksummed original inputs, not printed `.eff`
+or `.def` values. PDB, mmCIF, maps and final geometry output still use the native
+writer and Cedar's unchanged final-state/written-model guards. Historical ML
+requests keep their existing output policy; no request migration is needed.
+
+Phased `science.json` additionally records `coordinate_target_checks` even when a
+later writer or return check fails. These are counts of admitted target calls
+before native evaluation, not proof that the calls returned successfully or that
+a result is accepted. A successful result also retains the existing final
+`diffraction_audit.coordinate_target_checks` alongside its full returned-state
+checks. Old failed runs cannot acquire counts retroactively.

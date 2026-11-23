@@ -465,3 +465,27 @@ def test_native_roundoff_permission_does_not_allow_crystal_or_chemical_changes(c
     with pytest.raises(ValueError):
         job._verify_return(before,after,{'moving'},observations(),observations(),
             initial_frame=frame,final_frame=other,allow_native_frame_roundoff=True)
+
+
+def test_native_phased_policy_omits_defaults_without_changing_live_groups(tmp_path):
+    phil = pytest.importorskip('iotbx.phil')
+    refinement = pytest.importorskip('phenix.refinement')
+    from nasolve.topostitch_phased import policy_text
+    _, spec, _ = phased_request(tmp_path)
+    spec['diffraction']['fixed_scattering_groups'][0].update(
+        selection="element P and not (segid 'test')", f_prime=.1427225023508072)
+    master = refinement.master_params()
+    legacy = master.extract().refinement
+    actual = master.fetch(source=phil.parse(policy_text(
+        spec['diffraction'], '../inputs/phases.mtz'))).extract().refinement
+    # The unmodified native default remains enabled for non-phased callers.
+    assert legacy.output.write_def_file is True
+    assert actual.output.write_def_file is False
+    assert actual.main.target == 'mlhl' and actual.main.use_experimental_phases
+    groups = [g for g in actual.refine.anomalous_scatterers.group if g.selection]
+    assert len(groups) == len(spec['diffraction']['fixed_scattering_groups'])
+    for expected, group in zip(spec['diffraction']['fixed_scattering_groups'], groups):
+        assert group.selection == expected['selection']
+        assert group.f_prime == expected['f_prime']
+        assert group.f_double_prime == expected['f_double_prime']
+        assert group.refine == []

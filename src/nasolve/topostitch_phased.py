@@ -60,11 +60,15 @@ def validate_scattering(packet, source):
 
 def policy_text(spec, phase_path):
     """Return only the additional explicit phase/fixed-scattering policy."""
+    # Phenix 2.2 formats next-run .def selectors before comparing them literally
+    # to live groups; harmless quoted whitespace can abort an otherwise finished
+    # writer. Formatting also rounds fixed f-prime. Replay uses our frozen inputs
+    # and request, not optional next-run defaults; retain all final-state guards.
     validate_spec(spec)
     quote = lambda s: '"' + s.replace('\\', '\\\\').replace('"', '\\"') + '"'
     lines = ['data_manager { miller_array {', 'file = ' + quote(phase_path),
              'labels { name = ' + quote(','.join(spec['phase_labels'])) + ' }', '}}',
-             'refinement {', 'main { target = mlhl', 'use_experimental_phases = True', '}',
+             'refinement {', 'output { write_def_file = False }', 'main { target = mlhl', 'use_experimental_phases = True', '}',
              'group_anomalous { find_automatically = False }',
              'refine { anomalous_scatterers {']
     for group in spec['fixed_scattering_groups']:

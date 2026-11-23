@@ -520,6 +520,10 @@ refinement {{
     except BaseException as exc:
         report.update(status='FAILED',error=type(exc).__name__+': '+str(exc));raise
     finally:
+        if guard is not None:
+            # Admission counts survive a later writer/return failure. They do
+            # not establish successful native completion or accepted geometry.
+            report['coordinate_target_checks'] = dict(objective_checks)
         _save('science.json',report)
 
 

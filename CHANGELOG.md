@@ -17,6 +17,27 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W252 — Complete phased output without lossy next-run defaults
+
+- Omit Phenix's optional `.def` only for explicit phased local jobs. Native
+  parameter formatting can change selection spelling and round fixed scattering,
+  aborting output after refinement; frozen requests and original inputs remain
+  the exact replay authority. Legacy ML output policy stays unchanged.
+- Retain observed coordinate-target admission counts even when later writing or
+  return validation fails. Counts alone never establish completed refinement.
+- Native PHIL regression fails on the previous code and passes in source and
+  relocated installation. Focused scope and the separate native replay are
+  recorded in the current handoff; no scientific acceptance or force change.
+
+### W251 — Preserve the first phased-fit failure and strained geometry
+
+- Record the completed refinement cycles followed by optional native-defaults
+  serialization failure. Retain raw output as diagnostic only, without a valid
+  written-model return or recovered target-call counts.
+- A shorter image bond accompanies distorted local phosphate/sugar geometry;
+  do not accept closure from bond distance alone. No parameter search or
+  scientific artifacts are committed.
+
 ### W250 — Bind phased local refinement to its actual native objective
 
 - Add optional pinned experimental phases and complete fixed-scattering inputs
