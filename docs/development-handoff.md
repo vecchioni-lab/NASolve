@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current audit and maintained implementation: W240, 2026-11-23.**
+**Current audit: W241; maintained implementation: W240, 2026-11-23.**
 The installed [native-phosphate entry](topostitch-preview.md#refine-one-registered-phosphate-connection-w240)
 now runs an explicitly registered six-atom continuation through Cedar C545:
 **261 source/261 installed checks**, complete Phenix 2.2.1-6174 preflight and
@@ -9,13 +9,30 @@ one-cycle execution, exact source/installed candidate parity. Original 862 atoms
 native F/SIG scaling is recorded. Standalone Willow requires explicit compatible
 Cedar modules; no campaign activation or branch merge is implied.
 
-**Science remains partial:** the poor original pose closes 2.824→1.945 Å, with
-phosphate oxygen angles still 65.042°/154.648° and Rwork/Rfree 0.315017/0.363246.
-This proves a reachable execution/return path, not a finished repair. Next compare
-original versus W235 geometry seed under the already scoped matched five-cycle
-protocol; do not repeat Cedar's distance-only versus full-angle qualification.
-[Methods, failed checks and limitations](topostitch-periodic.md#w240--reach-registered-phosphate-refinement-through-the-installed-product).
-Evidence is local at NASolve anchor `branch-artifacts/willow/w240-native-phosphate/`.
+**Latest science:** [W241's two five-cycle receiving runs](topostitch-periodic.md#w241--compare-geometry-seeded-and-direct-native-receiving)
+show that the W235 geometry seed survives: O3′–P 1.613075 Å, phosphate oxygen
+angles 107.179°/109.761°, local bond/angle residuals at most 0.398/1.614 σ.
+The original-start control remains at 1.819145 Å and 74.607°/149.406°, with a
+2.003 Å P–OP2 bond. All atoms/fixed context/BQ and original observations/Free stay.
+Seeded torsions still reach 2.955 σ; Rwork/Rfree are 0.311730/0.368844 versus
+0.314296/0.363045 for the original-start control. Neither is scientifically accepted.
+
+**Interpretation limit:** native first-cycle effective diffraction weights are
+309.164 versus 0.585627 despite identical requested settings. Phenix estimates
+weights from gradients and adapts the scale in this resolution range, even with
+weight-optimization search disabled. Seeded movement is only 0.00658 Å. We have
+same-recipe geometry survival, not a fixed-objective initialization/basin test.
+Next qualify explicit weight policy/evidence, reusing existing native/Cedar owners;
+no Free-R-driven sweep. Keep residual torsions and density review explicit.
+
+W240 software and W241 science evidence are local at NASolve anchors
+`branch-artifacts/willow/w240-native-phosphate/` and
+`branch-artifacts/willow/w241-seeded-receiving/`. Open the compact local checkout:
+`ScienceCheckouts/Linden/2026-11-23_seeded-receiving/index.html` under the GitHub
+sibling anchor. It includes a Python-openable ChimeraX comparison, the existing
+fixed-source-map inspector and a rendered bond/angle figure. No model copies or
+new FFT; display meshes and source hashes verified, ChimeraX 1.12 headless initial
+view passed. Interactive browser/GUI behavior was not retested.
 
 W239's staggered-duplex integration coverage still passes through the current
 focused set. Correct-duplex inference, native precision-preserving ASU construction
@@ -125,8 +142,9 @@ failure; skipped cases remain unqualified. [Completion contract](topostitch-prev
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
-| W240 native product entry | Installed preflight/one-cycle execution, exact six-atom return and data/thermal preservation; 261 source/261 installed checks | Residual oxygen angles; multi-cycle seed comparison, general repair and ordinary campaign integration |
-| W235 local image connection | Six-atom capped native optimization, 856 held, three derivative audits/34 cold checks; seam 1.613 Å and healthy sugar-boundary lengths | Residual torsions, matched diffraction receiving, maps/packing and general repair |
+| W241 seeded receiving | Two five-cycle native fits; seed keeps healthy local bonds/oxygen angles, exact fixed context and data | Strong adaptive-weight confound, residual torsions, density/statistical acceptance |
+| W240 native product entry | Installed preflight/one-cycle execution, exact six-atom return and data/thermal preservation; 261 source/261 installed checks | Original-start oxygen angles; explicit weight evidence, general repair and ordinary campaign integration |
+| W235 local image connection | Six-atom capped native optimization, 856 held, three derivative audits/34 cold checks; seam 1.613 Å and healthy sugar-boundary lengths | Residual torsions, effective-weight qualification, maps/packing and general repair |
 | W214/W215 real parent + typed binding | Exact real checkpoint/data; 225 source/225 relocated installed, 19 real-source checks, Phenix Python 3.11 parity | Independent intended motion, Cedar ordinary request/dispatch and chemical admission |
 | W208 maintained parent builder |217 source/217 relocated installed;54 actual-native cold checks, exact W207 prepared state and disposable post-parent failure | Cedar-owned versioned ordinary request/dispatch; C516 early entry qualified |
 | W211/W212 intrinsic local recovery | Four matched arms, 38/40 checks per pair and 28 cross-arm; both seeds survive, original chemistry/data retained | General/experimental recovery, residual stereochemistry and maintained proposal consumer |
@@ -212,29 +230,22 @@ better R factors alone do not qualify internal stacking. Reuse the existing
 pair/frame measurements and Cedar/NARestraints owners; this clarifies the current
 placement/recovery gate rather than starting another subsystem or run tonight.
 
-[W236 receiving preflights now pass](topostitch-periodic.md#w236--bind-the-saved-candidate-to-matched-receiving-preflights)
-for the original and W235 seeds: fresh candidate-bound capture, complete live
-image forces, exact six-atom mask, identical data/Free and unchanged source B/Q.
-The matched five-cycle fits are still unrun. Rowan has cleared the bounded
-comparison after the W240 software handoff; check current inputs/runtime before
-reusing v3 preparation. W240 supplies the maintained entry and stricter exact-index
-plus common-scale observation audit. W237 completes the fixed original-map
-inspection; do not repeat it or present geometry-only coordinates as density-refined.
-The local W239 controller is prepared against those unchanged v3 inputs (seven
-cold preparation checks, zero native calls); its live assertions remain untested
-until the two fits run. Native nonbonded observations stay separate from the
-seven-force composition until both receipts establish that contract. This
-preparation is not a completed experiment. Preserve its historical state; use a
-new independent experiment directory if the controller/protocol changes.
+[W236 preflights](topostitch-periodic.md#w236--bind-the-saved-candidate-to-matched-receiving-preflights)
+and W237 fixed-map inspection are retained historical preparation. W241 now
+completes two receiving arms through W240, with a documented policy difference:
+outlier rejection is False in both arms to preserve exact observation membership.
+New preflights qualify that change. The old W239 local controller remains unrun;
+its reserved folder name is not a completed milestone. Do not launch it now to
+repeat the already answered same-protocol question.
 
-The prepared written-geometry reader reproduces all 58 saved source/candidate
-term values and six relative-handedness checks without a native call. Its exact
-input/controller pins are in `geometry-preparation-check.json`. Source restraint
-inspection also confirms that all 38 adjacent native plane terms are present,
-including four PDU-adjacent terms: unsupported canonical frame readback must not
-be mistaken for missing native forces. Larger-motion stack spacing and lateral
-placement remain distinct from these orientation restraints. All owned jobs
-are stopped; no W239 diffraction run has started.
+The existing W239 written-geometry arithmetic was reused for 116 native-target
+values and 12 source-relative handedness checks. All 38 source adjacent native
+plane terms (including four PDU-adjacent terms) remain fixed; canonical-only frame
+support is not the native force inventory. W241 preserves those planes by holding
+all rings, not by proving that broad deformed helices have recovered stacking.
+No native job remains active. A future matched fixed-weight control needs an
+explicit common policy and predeclared question; the ledger itself grants no
+new native run or weight sweep.
 
 The next experiment must answer a new question, not repeat W224:
 

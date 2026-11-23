@@ -288,7 +288,8 @@
         "W233 composes internal stacking with existing named-state correspondence;125source/125installed and254cold checks per context. Default reports unchanged; no native run or motion admission.",
         "W234 records a six-atom donor graft: closed seam but 16.45-sigma fixed-sugar bond strain, with all rings/856 other atoms held. No fit or acceptance; local boundary forces must accompany seam closure.",
         "W235 closes the same original seam to1.61303A in one capped six-atom native geometry trial with all856other atoms/BQ held; local and image bond/angle targets recover, torsions remain explicit. Three derivative audits and34cold checks pass; no diffraction fit or acceptance.",
-        "W240 provides an installed opt-in native-phosphate route through existing Cedar image chemistry. Complete preflight/one-cycle fit preserves fixed source-frame context and data;261 source/261 installed checks. Chemical recovery remains unaccepted."
+        "W240 provides an installed opt-in native-phosphate route through existing Cedar image chemistry. Complete preflight/one-cycle fit preserves fixed source-frame context and data;261 source/261 installed checks. Chemical recovery remains unaccepted.",
+        "W241 completes the paired original-vs-W235 seed receiving question under the same requested native recipe: local seed geometry survives five cycles with all fixed context/data preserved. Effective native weights differ strongly; this is not an isolated basin test or scientific acceptance."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
@@ -296,7 +297,7 @@
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient.",
         "Internal helix recovery explicitly compares neighbouring base-plane orientation, spacing, lateral offset/overlap and twist before deformation, after placement and after restrained recovery, including fixed-flank transitions. Within-pair coplanarity and between-pair stacking remain distinct; allow supported curvature/nonuniform twist rather than enforcing universal parallelism. Connectivity, sugar-sign retention and R factors alone do not close this gate. Investigator emphasis2026-11-22; planning only, reuse existing frame/geometry owners."
       ],
-      "next_action": "Complete the already scoped original-versus-W235 geometry-seed comparison under matched five-cycle receiving controls, only after W240 handoff and checking existing Cedar evidence for redundancy. The new question is initialization-dependent recovery, not force-engine validity. Keep all atoms, fixed context/BQ and original observation/Free membership; audit residual seam/boundary geometry and maps. No Free-R-driven weight tuning or automatic adoption.",
+      "next_action": "Reuse W241 instead of repeating the same-protocol comparison. Qualify explicit native weight policy and retain per-cycle effective-weight evidence before a mechanistic fixed-objective control; use existing Phenix/Cedar owners, never a second weighting engine or Free-R-driven sweep. Preserve all atoms/mask/BQ and observation membership. Inspect density and residual torsions before any acceptance; broader placement, internal stacking and campaign/ASU integration stay separate.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -391,14 +392,15 @@
         "E_STACKING_COMPARISON",
         "E_NARROW_BACKBONE_DONOR_GRAFT",
         "E_NARROW_BACKBONE_NATIVE_CLOSURE",
-        "E_REGISTERED_PHOSPHATE_ENTRY"
+        "E_REGISTERED_PHOSPHATE_ENTRY",
+        "E_SEEDED_RECEIVING_WEIGHT_AUDIT"
       ],
       "last_audit": {
         "date": "2026-11-23",
-        "code_commit": "b75a16274fccc51dc11528cf15897664821bac63",
+        "code_commit": "5bbe2230c74df9aacacc533d8d7f11b8bb2d3493",
         "reviewer": "Linden",
-        "human_update": 240,
-        "scope": "Reachable installed six-atom native execution and verified return; broader repair/materialization gates remain partial"
+        "human_update": 241,
+        "scope": "Narrow seeded-geometry survival demonstrated; adaptive-weight confound, residual torsions and density/statistical gates stay open"
       }
     },
     {
@@ -479,14 +481,15 @@
         "W235 closes the same original seam to1.61303A in one capped six-atom native geometry trial with all856other atoms/BQ held; local and image bond/angle targets recover, torsions remain explicit. Three derivative audits and34cold checks pass; no diffraction fit or acceptance.",
         "W236 binds the saved candidate to a fresh native capture and two matched complete-force receiving preflights;17coldchecks, exact six-atom mask/BQ and original data. No fit; replay existing passed preflights when coordinator clears execution.",
         "W238 aligns atomic trial completion with collective admission: returned native errors/count mismatches/unaccepted final coordinates remain failures, with accepted diagnostics separate.398source/398installed; full-suite permission failures resolved by exact5-case replay.",
-        "W240 provides an installed opt-in native-phosphate route through existing Cedar image chemistry. Complete preflight/one-cycle fit preserves fixed source-frame context and data;261 source/261 installed checks. Chemical recovery remains unaccepted."
+        "W240 provides an installed opt-in native-phosphate route through existing Cedar image chemistry. Complete preflight/one-cycle fit preserves fixed source-frame context and data;261 source/261 installed checks. Chemical recovery remains unaccepted.",
+        "W241 completes the paired original-vs-W235 seed receiving question under the same requested native recipe: local seed geometry survives five cycles with all fixed context/data preserved. Effective native weights differ strongly; this is not an isolated basin test or scientific acceptance."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Complete the already scoped original-versus-W235 geometry-seed comparison under matched five-cycle receiving controls, only after W240 handoff and checking existing Cedar evidence for redundancy. The new question is initialization-dependent recovery, not force-engine validity. Keep all atoms, fixed context/BQ and original observation/Free membership; audit residual seam/boundary geometry and maps. No Free-R-driven weight tuning or automatic adoption.",
+      "next_action": "Reuse W241 instead of repeating the same-protocol comparison. Qualify explicit native weight policy and retain per-cycle effective-weight evidence before a mechanistic fixed-objective control; use existing Phenix/Cedar owners, never a second weighting engine or Free-R-driven sweep. Preserve all atoms/mask/BQ and observation membership. Inspect density and residual torsions before any acceptance; broader placement, internal stacking and campaign/ASU integration stay separate.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -621,14 +624,15 @@
         "E_NARROW_BACKBONE_NATIVE_CLOSURE",
         "E_NARROW_BACKBONE_RECEIVING_PREFLIGHT",
         "E_ATOMIC_ACCEPTED_ENDPOINT",
-        "E_REGISTERED_PHOSPHATE_ENTRY"
+        "E_REGISTERED_PHOSPHATE_ENTRY",
+        "E_SEEDED_RECEIVING_WEIGHT_AUDIT"
       ],
       "last_audit": {
         "date": "2026-11-23",
-        "code_commit": "b75a16274fccc51dc11528cf15897664821bac63",
+        "code_commit": "5bbe2230c74df9aacacc533d8d7f11b8bb2d3493",
         "reviewer": "Linden",
-        "human_update": 240,
-        "scope": "Reachable installed six-atom native execution and verified return; broader repair/materialization gates remain partial"
+        "human_update": 241,
+        "scope": "Narrow seeded-geometry survival demonstrated; adaptive-weight confound, residual torsions and density/statistical gates stay open"
       }
     },
     {
@@ -713,7 +717,8 @@
         "W235 closes the same original seam to1.61303A in one capped six-atom native geometry trial with all856other atoms/BQ held; local and image bond/angle targets recover, torsions remain explicit. Three derivative audits and34cold checks pass; no diffraction fit or acceptance.",
         "W236 binds the saved candidate to a fresh native capture and two matched complete-force receiving preflights;17coldchecks, exact six-atom mask/BQ and original data. No fit; replay existing passed preflights when coordinator clears execution.",
         "W237 reuses the installed density inspector on the real saved source map and W235 coordinates:14coldchecks,18atoms/31meshes, no candidate map or refinement. Mixed map support stays descriptive; Free-R-containing maps never become a search score.",
-        "W240 provides an installed opt-in native-phosphate route through existing Cedar image chemistry. Complete preflight/one-cycle fit preserves fixed source-frame context and data;261 source/261 installed checks. Chemical recovery remains unaccepted."
+        "W240 provides an installed opt-in native-phosphate route through existing Cedar image chemistry. Complete preflight/one-cycle fit preserves fixed source-frame context and data;261 source/261 installed checks. Chemical recovery remains unaccepted.",
+        "W241 completes the paired original-vs-W235 seed receiving question under the same requested native recipe: local seed geometry survives five cycles with all fixed context/data preserved. Effective native weights differ strongly; this is not an isolated basin test or scientific acceptance."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -724,7 +729,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Complete the already scoped original-versus-W235 geometry-seed comparison under matched five-cycle receiving controls, only after W240 handoff and checking existing Cedar evidence for redundancy. The new question is initialization-dependent recovery, not force-engine validity. Keep all atoms, fixed context/BQ and original observation/Free membership; audit residual seam/boundary geometry and maps. No Free-R-driven weight tuning or automatic adoption.",
+      "next_action": "Reuse W241 instead of repeating the same-protocol comparison. Qualify explicit native weight policy and retain per-cycle effective-weight evidence before a mechanistic fixed-objective control; use existing Phenix/Cedar owners, never a second weighting engine or Free-R-driven sweep. Preserve all atoms/mask/BQ and observation membership. Inspect density and residual torsions before any acceptance; broader placement, internal stacking and campaign/ASU integration stay separate.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -852,14 +857,15 @@
         "E_NARROW_BACKBONE_NATIVE_CLOSURE",
         "E_NARROW_BACKBONE_RECEIVING_PREFLIGHT",
         "E_LOCAL_CLOSURE_FIXED_MAP",
-        "E_REGISTERED_PHOSPHATE_ENTRY"
+        "E_REGISTERED_PHOSPHATE_ENTRY",
+        "E_SEEDED_RECEIVING_WEIGHT_AUDIT"
       ],
       "last_audit": {
         "date": "2026-11-23",
-        "code_commit": "b75a16274fccc51dc11528cf15897664821bac63",
+        "code_commit": "5bbe2230c74df9aacacc533d8d7f11b8bb2d3493",
         "reviewer": "Linden",
-        "human_update": 240,
-        "scope": "Reachable installed six-atom native execution and verified return; broader repair/materialization gates remain partial"
+        "human_update": 241,
+        "scope": "Narrow seeded-geometry survival demonstrated; adaptive-weight confound, residual torsions and density/statistical gates stay open"
       }
     },
     {
@@ -6254,6 +6260,15 @@
       "reference": "docs/topostitch-periodic.md#w240--reach-registered-phosphate-refinement-through-the-installed-product",
       "result": "261 focused source and 261 source-independent installed checks; changed-plan fail-before regression. Final installed CLI completes Phenix 2.2.1-6174 preflight plus one cycle, exactly reproducing source full-precision points/PDB. All862 atoms,856 fixed,BQ,1909 ordered indices and124 Free flags retained;33 complete seven-term gradient calls. Common native F/SIG normalization is audited.",
       "limitation": "Software qualification only: O3-P1.945A, phosphate oxygen angles65.042/154.648deg, Rwork/Rfree0.315017/0.363246. Standalone Willow requires compatible explicit Cedar modules. No full-suite repeat, guessed partner, whole-ASU writer, automatic fallback, campaign promotion or scientific acceptance; native job relocation unqualified, private science excluded."
+    },
+    "E_SEEDED_RECEIVING_WEIGHT_AUDIT": {
+      "kind": "Two complete matched-protocol native receiving fits and weight audit",
+      "date": "2026-11-23",
+      "human_update": 241,
+      "code_commit": "5bbe2230c74df9aacacc533d8d7f11b8bb2d3493",
+      "reference": "docs/topostitch-periodic.md#w241--compare-geometry-seeded-and-direct-native-receiving",
+      "result": "Two Phenix2.2.1-6174 preflights and five-cycle fits through W240. Geometry seed retains O3-P1.613075A, oxygen angles107.179/109.761deg; original start remains1.819145A and74.607/149.406deg. All862 atoms,856 fixed,BQ,1909 observations/124Free preserved;148/139 complete-force calls. Existing term reader compares116 values/12 handedness checks. Fixed-source density display reuses existing meshes; ChimeraX1.12 headless initial view and rendered figure checked.",
+      "limitation": "Same declared protocol, not a fixed objective: initial effective native diffraction weights309.164 vs0.585627; seeded motion only0.00658A. Native norm-ratio and3.5–4.5A scale adaptation explain the confound despite optimize_xyz_weight=False. Seeded seam torsions2.955sigma, Rwork/Rfree.311730/.368844; no density acceptance, general repair, extra fit, full-suite repeat or public scientific payload."
     }
   },
   "benchmarks": [
@@ -6419,8 +6434,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 240,
-    "next": 241,
+    "current": 241,
+    "next": 242,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -7670,6 +7685,12 @@
         "title": "Expose and qualify installed registered-phosphate refinement",
         "state": "RECORDED",
         "code_commit": "b75a16274fccc51dc11528cf15897664821bac63"
+      },
+      {
+        "number": 241,
+        "title": "Measure seeded receiving and distinguish native adaptive weights",
+        "state": "RECORDED",
+        "code_commit": "5bbe2230c74df9aacacc533d8d7f11b8bb2d3493"
       }
     ]
   },

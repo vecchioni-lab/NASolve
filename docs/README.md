@@ -7,11 +7,14 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Current audit/code: W240.** [Registered phosphate refinement](topostitch-preview.md#refine-one-registered-phosphate-connection-w240)
-  is reachable through the installed fitting command, with explicit compatible
-  Cedar modules. 261 source/261 installed checks and a complete native one-cycle
-  run qualify execution/return; residual oxygen angles keep repair unaccepted.
-  [Scientific evidence and next comparison](topostitch-periodic.md#w240--reach-registered-phosphate-refinement-through-the-installed-product).
+- **Current audit: W241.** [Seeded receiving and native weighting](topostitch-periodic.md#w241--compare-geometry-seeded-and-direct-native-receiving)
+  shows good local geometry surviving five cycles, while the original pose stays
+  strained. Native adaptive weights differ strongly; this is not fixed-objective
+  evidence or density acceptance. A compact ChimeraX/density checkout is linked
+  in the handoff.
+- **Current code: W240.** [Registered phosphate refinement](topostitch-preview.md#refine-one-registered-phosphate-connection-w240)
+  is reachable through the installed command with explicit compatible Cedar
+  modules; 261 source/261 installed checks and complete native execution.
 - **W239:** staggered-duplex regression preserves reciprocal cuts and tensors;
   native ASU serialization and automatic duplex choice remain open.
 - **W238:** atomic endpoint admission matches the collective driver; see the
