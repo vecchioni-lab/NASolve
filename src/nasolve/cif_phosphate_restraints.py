@@ -5,7 +5,7 @@ torsions. Targets and weights come from the chemically matched links in the
 actual model. Unqualified links stay available for inspection.
 """
 from hashlib import sha256
-from math import dist, isfinite, sqrt
+from math import dist, fsum, isfinite, pi, sqrt
 import re
 
 from .cif_explicit_na_policy import _CODE, _SITE
@@ -150,6 +150,30 @@ def _cryst1_cell(parameters):
     return tuple(format(x, ".3f" if n < 3 else ".2f") for n, x in enumerate(parameters))
 
 
+def _matching_displacement(source, live, scatterer, cell):
+    """Check the original PDB displacement against the hierarchy and the diffraction atom."""
+    missing = (-1.,) * 6
+    source_u = tuple(source.uij)
+    anisotropic = source_u != missing
+    if scatterer.flags.use_u_aniso() != anisotropic or scatterer.flags.use_u_iso() == anisotropic:
+        return False
+    b_scale = 8 * pi**2
+    scattering_b = scatterer.u_iso_or_equiv(cell) * b_scale
+    if not anisotropic:
+        return tuple(live.uij) == missing and all(abs(v - source.b) <= 1e-3 for v in (live.b, scattering_b))
+
+    # The B field is printed to 0.01 Å² and each Cartesian U component to
+    # 0.0001 Å². Phenix can replace the printed B with 8π² times the mean
+    # diagonal U. Only the comparison of those two source fields allows rounding.
+    equivalent_b = fsum(source_u[:3]) * b_scale / 3
+    pdb_roundoff = 0.005 + 0.00005 * b_scale
+    return (abs(source.b - equivalent_b) <= pdb_roundoff + 1e-9
+            and (abs(live.b - equivalent_b) <= 1e-8 or abs(live.b - source.b) <= 1e-8)
+            and abs(scattering_b - equivalent_b) <= 1e-8
+            and dist(live.uij, source_u) <= 1e-9
+            and dist(scatterer.u_cart_plus_u_iso(cell), source_u) <= 1e-9)
+
+
 def verify_phosphate_start(model, raw, inspection):
     """Bind the newly prepared native manager to the exact child, allowing atom reordering."""
     from cctbx import sgtbx
@@ -170,12 +194,14 @@ def verify_phosphate_start(model, raw, inspection):
             or _cryst1_cell(xrs.unit_cell().parameters()) != _cryst1_cell(inspection["cell"])
             or sgtbx.rt_mx(inspection["o3_image"]).mod_positive() not in xrs.space_group()):
         raise ValueError("Native phosphate model atoms or crystal frame differ from the numbered input")
-    for name, atom, xyz in zip(current, live.atoms(), xrs.sites_cart()):
+    for name, atom, xyz, scatterer in zip(current, live.atoms(), xrs.sites_cart(), xrs.scatterers(), strict=True):
         before = expected[name]
         if (atom.element.strip() != before.element.strip() or atom.charge.strip() != before.charge.strip()
-                or abs(atom.occ-before.occ) > 1e-6 or abs(atom.b-before.b) > 1e-3
+                or abs(atom.occ-before.occ) > 1e-6 or abs(scatterer.occupancy-before.occ) > 1e-6
                 or dist(atom.xyz, before.xyz) > 1e-8 or dist(xyz, before.xyz) > 1e-8):
             raise ValueError(f"Native phosphate starting state differs at {name}")
+        if not _matching_displacement(before, atom, scatterer, xrs.unit_cell()):
+            raise ValueError(f"Native phosphate displacement parameters differ at {name}")
 
 
 def qualify_live_phosphate_sources(model, inspection):

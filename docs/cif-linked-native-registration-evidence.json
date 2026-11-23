@@ -1,6 +1,33 @@
 {
   "schema_version": 1,
   "document_kind": "LINKED_NATIVE_REGISTRATION_AND_COMPONENT_METADATA_RETURNS",
+  "c547_anisotropic_phosphate_transfer": {
+    "queue": "Q06",
+    "native": "Phenix 2.2.1-6174",
+    "willow_runtime": "5f5c129b439452256e71d3e03dc6bcbeb10404b8",
+    "source": "Two private experimental models, each with two explicitly declared crystal phosphodiesters",
+    "independent_seam_fits": 4,
+    "macrocycles_each": 3,
+    "movable_backbone_atoms_each": 6,
+    "native_reference_terms_each": {"bond": 1, "angles": 4, "torsions": 3},
+    "checked": [
+      "At least two intact links with matching effective monomer chemistry in each model",
+      "Original Cartesian ANISOU components agree with the starting coordinate and diffraction atoms",
+      "All eight local terms within two native sigmas after each independent fit",
+      "Reopened candidate displacement tensors agree with returned native scattering atoms",
+      "Original work and Free-R assignments retained"
+    ],
+    "same_start_controls": {
+      "adaptive_policy": ["no covalent link", "distance only", "complete registered phosphate"],
+      "fixed_policy": ["distance only", "complete registered phosphate"],
+      "fixed_native_wxc_and_wc": 1,
+      "each_fixed_weight_verified_in_all_three_printed_cycle_summaries": true
+    },
+    "focused_source_and_relocated_wheel_each": 126,
+    "historical_isotropic_native_preflight_cycles": 0,
+    "full_regression_run": false,
+    "scope": "Each cut was free to refine independently. Joint multi-cut and whole-model refinement, distant-end recovery and external deposition validation remain open."
+  },
   "c546_deposition_backbone_readback": {
     "pipeline": "Read-only pre-deposition and returned-file inspection",
     "command": "nasolve cif-doctor deposition-links model.cif --processed returned.cif --json",

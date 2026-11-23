@@ -173,6 +173,12 @@ through a crystallographic repeat does not identify a sample nick. C546 reads th
 crystal connections from a deposition mmCIF. A checked representation can
 still lose a declared symmetry bond during external processing. Follow up
 with the returned file before assigning that warning to the chemistry.
+C547 and Willow W243 tested both cuts of two models in separate three-cycle
+fits with anisotropic atoms. Each phosphate retained its local geometry.
+The distance-only and complete-restraint treatments also separated under
+one fixed native coordinate weight. Open work includes simultaneous cuts
+in one native refinement and recovery when the initial pose is poor.
+Use the completed single-cut fits as controls for either follow-up.
 
 In C531, two historical PHIL edits completely masked the source-supported
 PDU target change from 1.607 to 1.470 Å. Updating both site-specific targets

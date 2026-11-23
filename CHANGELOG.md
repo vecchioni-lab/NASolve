@@ -8,6 +8,10 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- Registered crystal phosphates can use PDB models with anisotropic atoms.
+  Before refinement, Cedar checks each displacement tensor against Phenix's
+  coordinate and diffraction models and allows for the printed precision of B.
+
 - `cif-doctor deposition-links` checks the backbone that a deposition
   reader sees from the polymer sequence, measures explicit crystal
   phosphates, and compares an optional returned coordinate mmCIF.

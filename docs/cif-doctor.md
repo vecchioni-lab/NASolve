@@ -166,6 +166,14 @@ terms confined to those two residues. Older captures omit per-atom images for
 angles and torsions, so applying those terms across a crystal boundary needs its
 own check.
 
+The opt-in phosphate refinement can use models with anisotropic atoms.
+Phenix may recalculate the equivalent B factor from the six displacement
+components in a PDB ANISOU record. Cedar checks those components in
+Cartesian coordinates against both the coordinate model and the diffraction
+model. It allows the independent rounding of the printed B and ANISOU
+fields. A changed tensor, even one with the same equivalent B factor,
+requires review.
+
 <a id="current-capability-boundary-c96"></a>
 <a id="current-capability-boundary-c97"></a>
 

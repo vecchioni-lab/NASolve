@@ -1,7 +1,25 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-23, C546 checking backbone links before deposition — Rowan**.
+Updated **2026-11-23, C547 checking anisotropic atoms at crystal phosphates — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+C547 and Willow W243 carried two independent crystal phosphates per model
+through three Phenix 2.2.1-6174 cycles each. Six atoms could move in each
+test. Each cut had at least two intact reference links in its own model.
+The four tests preserved the working/free assignments and the six Cartesian
+displacement components at every atom. A separate common-weight comparison
+also favored the complete set of phosphate restraints. The local controls
+and external validation have separate outcomes.
+
+Phenix can reconstruct the equivalent B from the ANISOU tensor while PDB
+rounds both fields independently. The starting-state check now verifies
+the tensor in the coordinate and diffraction models. Source and relocated
+wheel each passed 126 focused tests. The earlier isotropic phosphate
+passed a fresh native preflight. No file or checkpoint schema changed.
+The [evidence ledger](cif-linked-native-registration-evidence.json) records the
+protocol and scope. An externally returned model is needed to assess
+retention of the deposited symmetry links. Simultaneous refinement of two
+registered cuts in the same process remains open.
 
 C546 adds a read-only [deposition check](cif-doctor.md#checking-backbone-continuity-before-deposition).
 It measures each direct labelled step independently of the exported covalent

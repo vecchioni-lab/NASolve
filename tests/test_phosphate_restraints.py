@@ -94,3 +94,43 @@ def test_cryst1_precision_accepts_the_mtz_floats_and_preserves_the_measured_cell
     assert _cryst1_cell(native) == _cryst1_cell(stored)
     assert _cryst1_cell([106.2186, *native[1:]]) != _cryst1_cell(stored)
     assert _cryst1_cell([*native[:5], 119.994]) != _cryst1_cell(stored)
+
+
+def test_phosphate_start_checks_anisou_and_its_independently_rounded_b():
+    from math import pi
+    from nasolve.cif_phosphate_restraints import _matching_displacement
+
+    tensor = (0.5001, 0.6001, 0.7002, -0.0234, 0.0142, 0.0083)
+    equivalent_b = sum(tensor[:3]) * 8 * pi**2 / 3
+    source = SimpleNamespace(uij=tensor, b=47.39)
+    live = SimpleNamespace(uij=tensor, b=equivalent_b)
+    scatterer = SimpleNamespace(flags=SimpleNamespace(use_u_iso=lambda: False, use_u_aniso=lambda: True),
+        u_iso_or_equiv=lambda cell: equivalent_b / (8*pi**2), u_cart_plus_u_iso=lambda cell: tensor)
+    assert .005 < abs(source.b - equivalent_b) < .009
+    assert _matching_displacement(source, live, scatterer, None)
+    assert _matching_displacement(source, source, scatterer, None)
+    assert not _matching_displacement(SimpleNamespace(uij=tensor,b=47.40), live, scatterer, None)
+
+    # Exchanging principal components or changing a cross term preserves the trace.
+    drift = (tensor[1], tensor[0], *tensor[2:])
+    assert not _matching_displacement(source, SimpleNamespace(uij=drift,b=live.b), scatterer, None)
+    off_diagonal = (*tensor[:5], tensor[5] + .0001)
+    for change in (dict(u_cart_plus_u_iso=lambda cell: off_diagonal),
+                   dict(flags=SimpleNamespace(use_u_iso=lambda: True, use_u_aniso=lambda: True)),
+                   dict(u_iso_or_equiv=lambda cell: float("nan"))):
+        assert not _matching_displacement(source, live, SimpleNamespace(**(vars(scatterer) | change)), None)
+
+
+def test_phosphate_start_preserves_isotropic_b_and_its_scattering_mode():
+    from math import pi
+    from nasolve.cif_phosphate_restraints import _matching_displacement
+
+    missing = (-1.,)*6
+    source = SimpleNamespace(uij=missing, b=35.)
+    scatterer = SimpleNamespace(flags=SimpleNamespace(use_u_iso=lambda: True, use_u_aniso=lambda: False),
+                                u_iso_or_equiv=lambda cell: 35./(8*pi**2))
+    assert _matching_displacement(source, source, scatterer, None)
+    assert not _matching_displacement(source, SimpleNamespace(uij=missing,b=35.01), scatterer, None)
+    assert not _matching_displacement(source, SimpleNamespace(uij=(1.,)*6,b=35.), scatterer, None)
+    scatterer.u_iso_or_equiv = lambda cell: 35.01/(8*pi**2)
+    assert not _matching_displacement(source, source, scatterer, None)
