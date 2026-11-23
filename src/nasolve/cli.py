@@ -284,6 +284,11 @@ def build_parser() -> argparse.ArgumentParser:
     cif_catalogue.add_argument("--ccd-root", required=True, type=Path,
                                help="explicit CCD directory containing a/data_CODE.cif etc.; no discovery")
     cif_catalogue.add_argument("--json", action="store_true", help="print the complete coverage census")
+    deposition_links = cif_sub.add_parser("deposition-links", help="check ordinary nucleic-acid steps and declared O3'–P crystal links in a coordinate mmCIF")
+    deposition_links.add_argument("model", type=Path, help="exact coordinate mmCIF (requires NASolve[topology])")
+    deposition_links.add_argument("--processed", type=Path, help="optional returned coordinate mmCIF to check for missing covalent declarations")
+    deposition_links.add_argument("--max-step", type=float, default=2.2, metavar="ANGSTROMS", help="flag O3'–P distances above this length (default 2.2 Å)")
+    deposition_links.add_argument("--json", action="store_true", help="print distances, image angles and both file hashes")
     phosphate_image = cif_sub.add_parser("phosphate-image", help="inspect a named O3' crystal image at a phosphate (requires NASolve[topology])")
     phosphate_image.add_argument("model", type=Path, metavar="PDB_OR_RUN", help="exact written PDB with CRYST1, or a numbered run with --checkpoint")
     phosphate_image.add_argument("--checkpoint", help="read this checkpoint ID or bookmark and its recorded final geometry")
@@ -1953,10 +1958,45 @@ def _cif_publish_preparation(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cif_deposition_links(args: argparse.Namespace) -> int:
+    from .cif_deposition_links import inspect_deposition_links
+
+    try:
+        result = inspect_deposition_links(args.model, processed=args.processed, maximum=args.max_step)
+    except (OSError, ValueError, RuntimeError) as exc:
+        print(f"CIF Doctor: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print(json.dumps(result, indent=2, allow_nan=False))
+    else:
+        for name in ("model", "processed"):
+            if name in result:
+                data = result[name]
+                steps = data["ordinary"]
+                print(f"{name.capitalize()}: {steps['measured']} ordinary steps measured, "
+                      f"{len(steps['long_steps'])} long, {len(steps['unmeasured'])} unmeasured, "
+                      f"{len(steps['sequence_gaps'])} sequence gaps. "
+                      f"{len(data['declared'])} declared O3'-P links.")
+                for step in steps["long_steps"][:5]:
+                    names = []
+                    for side in ("from", "to"):
+                        author = step.get(side + "_author")
+                        names.append("".join(author) if author else f"{step['label_asym_id']}/{step[side + '_label_seq_id']}")
+                    print(f"  {names[0]} to {names[1]}: {step['distance_A']:.3f} Å")
+        if "comparison" in result:
+            missing = result["comparison"]["missing"]
+            print("Processed comparison requires review." if missing is None else
+                  f"{len(missing)} source covalent declarations missing from the returned coordinates.")
+        print(f"{result['status']}. Use --json for individual sites and crystal images.")
+    return 0 if result["status"] == "CHECKED" else 2
+
+
 def _cif_doctor(args: argparse.Namespace) -> int:
+    """Offline assessment/preparation and explicitly requested native candidates."""
+    if args.cif_action == "deposition-links":
+        return _cif_deposition_links(args)
     if args.cif_action == "phosphate-image":
         return _cif_phosphate_image(args)
-    """Offline assessment/preparation and explicitly requested native candidates."""
     if args.cif_action == "publish-preparation":
         return _cif_publish_preparation(args)
     if args.cif_action in {"prepare-run", "continue-preparation", "prepared-result", "preparation-status"}:

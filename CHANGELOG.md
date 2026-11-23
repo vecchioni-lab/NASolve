@@ -8,6 +8,10 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `cif-doctor deposition-links` checks the backbone that a deposition
+  reader sees from the polymer sequence, measures explicit crystal
+  phosphates, and compares an optional returned coordinate mmCIF.
+
 - A registered phosphate connection can carry four angles and three torsions
   into a fresh Phenix geometry manager across the declared crystal image.
   Two matched five-cycle refinements tested this opt-in runtime.

@@ -43,6 +43,34 @@ have a separate purpose. The selected-site geometry reading, when recorded,
 still gives the side arm's actual height relative to its ring. Membership alone
 does not measure that height.
 
+## Checking backbone continuity before deposition
+
+With `NASolve[topology]` installed, supply the coordinate mmCIF you intend to
+deposit. If a validation service returns coordinates, supply that file too.
+
+```sh
+nasolve cif-doctor deposition-links model.cif --processed returned.cif --json
+```
+
+Doctor walks consecutive nucleotide positions within each model and label
+chain, measures the direct O3′–P distance, and checks any supplied sequence
+tables against the coordinate labels. This reading gives the same distances
+if a service removes the entire connection table. The default 2.2 Å screen
+calls attention to extended steps. `--max-step` changes that review distance.
+A gap in observed sequence positions or an ambiguous occupied endpoint is
+reported. The construct design establishes whether a real nick is present.
+
+Doctor measures each explicitly declared covalent O3′–P link separately,
+using its deposited crystal operations and unit-cell translations. It reports
+the distances and the available O3′–P–OP1, O3′–P–OP2 and O3′–P–O5′ angles.
+The optional comparison names missing declarations when the occupied
+backbone labels, positions and cell still match. Changed coordinates or
+ambiguous declarations leave that comparison open. The reader writes no
+files. Exit codes are 0 for a completed clear reading, 2 for review and 1
+for an invalid input. Chemical acceptance and portal validation are separate
+steps. [PDBx sequence identifiers](https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_atom_site.label_seq_id.html)
+and [crystal partners](https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_struct_conn.ptnr2_symmetry.html).
+
 ## Inspecting a phosphate at a crystal boundary
 
 When a strand may continue into the next crystal copy, identify the phosphorus,

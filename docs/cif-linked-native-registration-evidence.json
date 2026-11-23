@@ -1,6 +1,37 @@
 {
   "schema_version": 1,
   "document_kind": "LINKED_NATIVE_REGISTRATION_AND_COMPONENT_METADATA_RETURNS",
+  "c546_deposition_backbone_readback": {
+    "pipeline": "Read-only pre-deposition and returned-file inspection",
+    "command": "nasolve cif-doctor deposition-links model.cif --processed returned.cif --json",
+    "synthetic_regression": {
+      "ordinary_O3_P_A": 21.61,
+      "declared_translated_image_A": 1.61,
+      "root_component_codes": [
+        "G7",
+        "QX"
+      ],
+      "reversed_and_renumbered_operators_match": true,
+      "missing_returned_declaration_is_review": true,
+      "ambiguous_conformers_and_changed_sequence_tables_are_review": true
+    },
+    "qualification": {
+      "focused_source": 97,
+      "focused_relocated_wheel": 97,
+      "subtests_each": 14,
+      "affected_modules": [
+        "cif_deposition_links",
+        "phosphate_image",
+        "phosphate_continuation",
+        "phosphate_runtime",
+        "topostitch_graph",
+        "cli"
+      ],
+      "focused_new_module": 6,
+      "native_refinement_cycles": 0
+    },
+    "private_laboratory_evidence": "The prior submitted/processed pair reproduced the two reported long sequence steps and loss of covalent declarations. Two corrected manuscript exports measured all ordinary steps within the screening distance with explicit declarations available. No external validation of the corrected pairs was claimed."
+  },
   "c545_image_angles_after_five_cycles": {
     "queue": "Q06",
     "native": "Phenix 2.2.1-6174",

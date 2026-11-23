@@ -169,7 +169,10 @@ verified that all four adjacent pairs left the nonbonded list. C545 carried the 
 restart, including native atom selections. The two oxygen angles reached
 107.30° and 113.88°. Willow owns the next operator-facing fit and independent
 geometry readback. Keep the scaffold-specific declaration explicit. A cut
-through a crystallographic repeat does not identify a sample nick.
+through a crystallographic repeat does not identify a sample nick. C546 reads the direct steps and named
+crystal connections from a deposition mmCIF. A checked representation can
+still lose a declared symmetry bond during external processing. Follow up
+with the returned file before assigning that warning to the chemistry.
 
 In C531, two historical PHIL edits completely masked the source-supported
 PDU target change from 1.607 to 1.470 Å. Updating both site-specific targets

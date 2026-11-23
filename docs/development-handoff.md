@@ -1,7 +1,18 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-23, C545 testing phosphate angles across a crystal boundary — Rowan**.
+Updated **2026-11-23, C546 checking backbone links before deposition — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+C546 adds a read-only [deposition check](cif-doctor.md#checking-backbone-continuity-before-deposition).
+It measures each direct labelled step independently of the exported covalent
+links and reads the two oxygen angles in each declared crystal mate. Moving
+residues into a new copy without updating the polymer sequence makes a long
+step visible even if the portal strips the declarations. Two private
+manuscript exports were checked without adding experimental files to Git.
+The source and relocated wheel each passed 97 focused tests and 14 subtests.
+Synthetic cases include reordered crystal-operation IDs, reversed links,
+missing records, ambiguous atoms, sequence-table inconsistencies and read-only
+comparison. The remaining external gate is the returned validation report.
 
 C545 restored four angles and three torsions in the crystal copy named by the
 registered backbone. Two complete five-cycle Phenix 2.2.1-6174 restarts on
@@ -22,8 +33,7 @@ strand declaration. Its 40 occupied endpoint atoms kept their crystal copies,
 with a largest movement of 1.371 Å. The child measured 1.620 Å across the
 seam. Its own Phenix 2.2.1-6174 dictionary capture recovered the two original
 DA→DC reference links. The new reading used zero refinement cycles.
-The next Q06 step is delivering those reference terms once to the fresh
-native geometry manager. [Usage](cif-doctor.md#inspecting-a-phosphate-at-a-crystal-boundary).
+C544 and C545 carried those reference terms into fresh native refinement. [Usage](cif-doctor.md#inspecting-a-phosphate-at-a-crystal-boundary).
 
 The result adds an optional frame-transfer record to the inspection output.
 Existing checkpoint registries require no migration. Source and relocated
