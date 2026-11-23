@@ -12,7 +12,7 @@ the [anomalous workflow](metal-anomalous-doctor.md) and [restraint design](metal
 own scientific contracts. A mechanism passing tests does not close its scientific
 gate. Update milestone status, evidence, limitations and next action together.
 
-A01 next-input review now includes [DF C2 chemical target provenance](metal-df-c2-angle-audit.md). A source-consistent fragment is available, but its eLBOW angles are not independent chemistry authority. Validate donor state and coupled targets before transport/recovery; no automatic 120° substitution.
+A01 next-input review now includes [DF C2 chemical target provenance](metal-df-c2-angle-audit.md). A source-consistent fragment is available, but its eLBOW angles are not independent chemistry authority. Retain explicit source-state uncertainty and coupled-target review; routine donor-state integration remains deferred. No automatic 120° substitution.
 
 The latest independent FT source audit leaves two precise input boundaries:
 B:1 now has an investigator-declared B:7→B:1 symmetry continuation; its exact
@@ -256,6 +256,15 @@ reproduces exactly; contraction gains reverse, while modest reorientation can
 lower the target with essentially unchanged attachment angles. These are
 completed diagnostics, not accepted models. Small fractional deviations are
 descriptive; broad geometry and combined scientific evidence guide review.
+
+The 23 November coherent base/attachment retention control is now complete:
+26 source widths halved, targets unchanged, exact native transfer verified.
+Rwork/Rfree improve to 0.2841/0.2925 and attachment to 1.545 Å; common-scale base
+and attachment deviations fall. Hg–O4 remains 1.376 Å, negative density at Hg
+strengthens and optimizer limits persist. See the [retention comparison](metal-development-handoff.md#a01-connected-base-retention--23-november).
+This closes a mechanical sensitivity question, not A01 or an f″ parent gate.
+Audit the remaining contact and existing controls before one new recovery step;
+do not repeat the same arm or promote a weight/default by R statistics alone.
 
 1. **A01:** the coupled starting-pose and exact final-state force questions are
    complete. A matched native capture reproduces the noon model byte-for-byte;

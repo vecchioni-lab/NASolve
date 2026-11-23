@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record coherent connected-base retention during open refinement
+
+- Document the single 26-term DF sensitivity control, exact native transfer and
+  common-original-width comparison. Geometry and R improve; residual Hg contact,
+  map and stopping evidence preserve A01 partial/A02 gated.
+- Publish compact private geometry/map figures and 5,238-check cold readback;
+  preserve the original sign diagnostic and native both-signs correction.
+- Documentation/evidence only: no production dictionary/default, behavior, schema
+  or migration change, scientific parent selection or full suite.
+
+
 ### Clarify DF sulfur-angle provenance
 
 - Add the independently verified free 2-thiothymine experimental comparator; retain the separate metal-bound chemical-state gate and unchanged restraints.

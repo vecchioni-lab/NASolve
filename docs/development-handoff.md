@@ -1,11 +1,13 @@
 # NASolve development handoff — integrated development base
 
-Updated **22 November 2026**. Active integration target: **Alder**. The everyday
+Updated **23 November 2026**. Active integration target: **Alder**. The everyday
 Pine and the separate Cedar/Willow branches are not changed by this integration. This base
 combines the existing metal feature with the qualified shared chemistry, native
 observation and storage owners; it introduces no new scientific policy.
 
 Late A01 read-only follow-up: [DF sulfur-angle provenance and comparator](metal-df-c2-angle-audit.md). No runtime or scientific target changes; A01 partial/A02 gated.
+
+Latest A01 native diagnostic: [coherent base/attachment retention](metal-development-handoff.md#a01-connected-base-retention--23-november) improves geometry and Rwork/Rfree to 0.2841/0.2925 with unchanged targets, but a short Hg–O4 contact, negative difference density and optimizer limits keep A01 partial/A02 gated. Phenix 2.2.1-6174 completed/stopped; 5,238 cold checks. Compact checkout: `ScienceCheckouts/Hazel/2026-11-23_ft-base-retention/index.html`. No runtime/schema/default change or full suite.
 
 ## Qualified integration checkpoint — test-only amendment
 

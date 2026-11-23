@@ -1,6 +1,6 @@
 # Metal development handoff — current state
 
-Updated **22 November 2026**. Active feature branch: **Alder**. The
+Updated **23 November 2026**. Active feature branch: **Alder**. The
 [root integration handoff](development-handoff.md) owns the current combined
 source, full validation and delivery. The [A01–A09 roadmap](metal-development-roadmap.md)
 owns feature completion. The earlier chronological diary is preserved as
@@ -11,7 +11,74 @@ not a second queue.
 
 <a id="a01-current-science-coupled-placement-does-not-survive-open-refinement"></a>
 
-**Late chemical-provenance clarification:** the [DF C2-angle audit](metal-df-c2-angle-audit.md) separates eLBOW source consistency from independent chemical validation. The final sulfur-angle split is 135.3°/108.7°; even the generated targets require donor-state review. A retained base fragment exists (124 read-only checks), but no replacement or target change is admitted.
+**Late chemical-provenance clarification:** the [DF C2-angle audit](metal-df-c2-angle-audit.md) separates eLBOW source consistency from independent chemical validation. The earlier final sulfur-angle split is 135.3°/108.7°; generated targets remain chemically provisional. Routine donor-state integration stays deferred and is not a new immediate A01 prerequisite. A retained base fragment exists (124 read-only checks), but no replacement or target change is admitted.
+
+## A01 connected-base retention — 23 November
+
+**Completed, stopped, diagnostic only. A01 partial; A02 gated.** One predeclared
+sensitivity arm halves σ (fourfold weights) for ten DF heavy-base/attachment bonds
+and sixteen angles: 21 internal base terms plus five attachment-crossing terms.
+The matched earlier baseline is reused. Every target, graph/charge, sugar-only
+term, Hg/NAR term, plane, initial XYZ/B/Q, observation/Free-R flag, phases and
+five-cycle open reciprocal/real-space XYZ plus residue-group B strategy stays
+unchanged. Native preflight confirms exactly 26 weight changes and no unrelated
+full-inventory field changes. This is source-consistent mechanical retention,
+not a calibrated dictionary, adopted default or donor-state assignment.
+
+| Final metric | Original weights | Base + attachment ×4 |
+| --- | ---: | ---: |
+| Rwork / Rfree | 0.3066 / 0.3431 | 0.2841 / 0.2925 |
+| DF C1′–N1 / Å | 1.674 | 1.545 |
+| N1–C2–S / N3–C2–S / ° | 135.3 / 108.7 | 129.9 / 113.5 |
+| Original-σ RMS: DF base / attachment | 2.158 / 3.351 | 0.685 / 0.931 |
+| Original-σ RMS: DF sugar/scaffold | 2.352 | 2.309 |
+| Hg–O4 (DT) / Å | 1.322 | 1.376 |
+| Hg donor angle / ° | 116.9 | 120.8 |
+| DF / DT base B / Å² | 32.24 / 85.12 | 119.07 / 171.05 |
+| Hg B / Å² | 68.55 | 149.59 |
+| Difference map at Hg / separately normalized σ | −2.52 | −4.98 |
+
+The geometry and R improvements are real on a common original restraint scale;
+those deviations are not experimental confidence intervals. Aggregate sugar
+strain does not increase, but some individual sugar angles worsen. Hg–O4 remains
+unacceptably short and the negative difference feature strengthens. Q=1 and f″=0
+remain fixed inputs, not measurements; metal environmental-B preparation has
+not occurred. B values come from the actual final written models. Group B retains
+within-residue base/scaffold offsets. All 103 recorded optimizer calls terminate
+at iteration limits (baseline 105), so completed macrocycles do not establish
+convergence. Automatic XYZ weight optimization remains active; its selected
+stage values are saved, not relabelled as a final combined-objective weight.
+
+Validation used **Phenix 2.2.1-6174**, one complete five-cycle execution plus its
+native dry-run preflight, one thread, 300/1,200-second phase caps. Both owned
+processes stopped; elapsed 542.55 seconds. Independent cold readback passes
+**5,238 checks**, with subprocess launches blocked: final XYZ/B/Q/f″, 859 atom
+identities, 1,092 work/59 free reflections, exact inputs and final bonded inventory,
+shared result readers, local geometry, eight polymer links and stopping evidence.
+A review-only successor corrects the native `both_signs` chirality diagnostic:
+38 raw sign differences are allowed by native terms, with no source handedness
+changes or inadmissible target-sign changes. All non-chirality results are exact;
+the first review is preserved. These are assertions, not pytest counts.
+
+Private evidence: `Alder/a01-base-retention-20261123-01/` at the declared local
+artifact anchor, especially `plan.json`, `pair_flanks/execution.json`,
+`pair_flanks/preflight-pose-control.json`, `science-comparison-v2.json`,
+`review-correction.json` and `figure-visual-review.json`. Commands use the
+existing validation environment contract with `runners/A522_prepare_base_retention.py`,
+`runners/A523_run_base_retention.py`, `runners/A530_review_base_retention_v2.py`,
+`runners/A528_run_retention_figures.py` and `runners/A529_publish_retention_checkout.py`.
+Source baseline `46727c6c` uses unchanged runtime `96a14d78`; no full suite,
+production behavior/schema/migration change or new f″ parent. No generated
+crystallographic data is committed. Original inputs and important outputs stay
+once in the run, with no old-run pruning. The visually inspected compact checkout
+is `ScienceCheckouts/Hazel/2026-11-23_ft-base-retention/index.html` (1,004,301 bytes);
+models/maps are linked rather than copied. No native job remains active.
+
+**Next scoped question:** audit the remaining Hg–O4 native contact against the
+already-completed contact/angle controls before choosing a recovery experiment.
+Do not repeat the base-weight arm or infer acceptance from R improvement alone.
+Cedar owns general chemical target plausibility; Willow owns editable coupled
+windows/stacking. Routine donor-state integration remains explicitly deferred.
 
 ## A01 current science: final-state forces and a contact-preserving comparison
 
