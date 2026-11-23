@@ -22,6 +22,9 @@ small statistics checks. The new saved-context audit identifies a canonical-flan
 A11/B5 direction mismatch and A11 sugar strain despite present pairing/plane
 terms. Scope one source-preserving coupled flank candidate through shared owners
 before another fit; keep polymer boundaries and metal chemistry explicit.
+The investigator expects ordinary Watson–Crick T–A pairing at A11/B5 and notes
+that deposited examples often retain refinement distortion. Preserve this as a
+working chemical hypothesis; deposited coordinates are comparators, not targets.
 The [current handoff](metal-development-handoff.md#current-a01-question--coupled-canonical-flank-placement)
 links the reused Willow reader, original maps, retained checks and limitations.
 

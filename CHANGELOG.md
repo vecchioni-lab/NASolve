@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Clarify intended chemistry of the FT_Hg canonical flank
+
+- Record the investigator's ordinary Watson–Crick T–A expectation for A11/B5
+  and the known deposition/refinement difficulty. Use source-backed chemistry;
+  do not adopt deposited distortion as a target. Documentation only; no new
+  restraint, fit, acceptance decision or repeated validation.
+
+
 ### Localize remaining FT_Hg context strain before another fit
 
 - Record common-width geometry and separate work-gradient observations across

@@ -22,6 +22,15 @@ Cedar/Willow owners; no residue-number-specific fixer or inferred movement
 permission. The unchanged FT_Hg continuation is stable locally, so further
 identical continuations and metal angle/weight grids are not the next step.
 
+**Investigator clarification, 23 November:** A11 DT / B5 DA is expected to be
+an ordinary Watson–Crick T–A pair. The investigator reports that this pair is
+frequently distorted in deposited models because restraining it is difficult.
+Treat canonical pairing as the working chemical hypothesis, not the deposited
+distortion as a structural target. Use source-backed NARestraints chemistry and
+coupled context, then assess the refined geometry and maps. This does not impose
+an exactly planar/rigid pair, establish a new measured geometry, or authorize
+blindly increasing restraint weights; meaningful variation remains possible.
+
 The saved-context audit covers **2,563 matched ordinary bond/angle terms per
 endpoint**, using common original widths across three completed fits. The
 A11 DT / B5 DA direction N3–N1–C2 remains **87.46° versus 116.2°**; A11
