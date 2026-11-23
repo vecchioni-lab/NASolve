@@ -20,7 +20,11 @@ places processed-mmCIF link verification at P01/S03, chosen-image recuts at
 P01/P02, unrefined scattering/chemistry invariance at P03, simultaneous-cut
 qualification at P04/S05 and checkpoint restart at P05/S07. Reuse existing
 panels and include real-nick/undecidable-partner negatives. Planning only;
-W241/W242's distinct receiving comparison remains open.
+W241/W242's distinct receiving comparison remains open. Cedar's processed
+3LNA V51 comparison now confirms preserved geometry/thermal state but omission
+of the entire submitted connection table: annotation-retention check complete,
+**NOT RETAINED**. Curator action and independent 5LNA return remain open; this
+updates P01/S03 observation only and does not invalidate native/local evidence.
 
 [W243 fixes anisotropic return round-off](topostitch-preview.md#preserve-cartesian-adps-through-native-return-w243):
 **293 source/293 isolated installed tests**, both real 1271/1275-atom preflight

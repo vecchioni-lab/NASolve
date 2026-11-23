@@ -19,6 +19,10 @@ entries are reconstructed from repository history.
 
 ### W244 — Audit coordinated anisotropic native returns
 
+- Record Cedar's 3LNA V51 annotation-retention result as complete/NOT RETAINED,
+  separately from unchanged physical geometry and thermal state. Keep curator
+  action and the independent 5LNA return open; observation/docs only.
+
 - Schedule processed-mmCIF intent verification, pure-recut invariance, coupled-cut
   qualification and single-owner restart at the existing Pine/Willow gates.
   Preserve W241/W242's distinct open comparison; planning only, no native rerun.

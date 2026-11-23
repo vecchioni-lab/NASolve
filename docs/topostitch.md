@@ -1835,6 +1835,22 @@ before interpreting any changed connectivity. Validation is evidence to review,
 not permission to infer a partner or change chemistry. This is a dependency order,
 not authorization for an immediate scientific rerun or a second force engine.
 
+**Processed 3LNA V51 observation (Cedar/Rowan, 2026-11-23):** the external
+annotation-retention check is **complete: NOT RETAINED**. Cedar's installed
+comparison reports all 58 ordinary steps in both models, no long steps and a
+maximum length of 1.6214 Å. All 1,271 sites, coordinates, B/Q and six anisotropic
+U components match exactly. V51 omits the entire submitted 80-row connection
+table, including all nine phosphate `covale` rows and both cross-copy links.
+The two reported symmetry close contacts match the declared relative operators
+and V51 distances of 1.60946/1.60802 Å. Thus physical/local native evidence
+survives, but the processed file does not retain the declared connectivity.
+Do not interpret missing annotations as a real nick or infer fresh bonds from
+proximity. Keep the source-bound construct/image declarations separate from the
+processed-file observation. Curator action and an independent 5LNA return remain
+open. This is Cedar's reported comparison, recorded by Willow without rereading
+or altering the manuscript packet; exact input provenance remains with Cedar.
+No P01/S03 milestone or later recut/coupled-fit gate is closed by this observation.
+
 | Order | Existing gate and owner | Required result before advancing |
 | --- | --- | --- |
 | 1 | P01/S03; Pine intent, Cedar chemistry/readers | Verify both declared links in the exact processed mmCIF: atom/residue/strand identities, directed partner images and translation, chemistry and source hash. Cross-check serialized connection records against declared construct intent and coordinates. Missing or ambiguous records remain unresolved; do not invent connectivity from proximity or assume an absent record proves a nick. |
