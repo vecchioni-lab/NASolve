@@ -1,6 +1,14 @@
 # NASolve development handoff — Willow
 
-**Current audit: W238; maintained implementation: W238, 2026-11-23.**
+**Current audit: W239; maintained implementation: W238, 2026-11-23.**
+W239 adds [staggered-duplex integration coverage](topostitch-periodic.md#w239--regress-explicit-staggered-duplex-recuts):
+171 focused tests, including P43/R3:H reciprocal cuts, continuation phosphates
+and complete coordinate/tensor round trips. No runtime/schema change or full
+suite. Correct-duplex inference, native precision-preserving construction and
+end-to-end live replay remain open P03/P04 gates. The local manuscript repair
+has passed to Rowan for locked-sugar/remote-pair validation and packaging;
+no live data are committed. The earlier two-arm 5W6W receiving fits remain held.
+
 The existing native input binder now accepts an explicitly selected dictionary-only
 parent policy from Cedar C526. Default literal inputs still require compiled
 restraints. W214 binds a real X11_22 PostMR checkpoint and original observations;

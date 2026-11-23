@@ -7,6 +7,10 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Current audit: W239.** [Explicit staggered-duplex regression](topostitch-periodic.md#w239--regress-explicit-staggered-duplex-recuts)
+  passes 171 focused tests. Automatic duplex choice and native serialization
+  remain open; no product behavior or schema change.
+
 - **Current code: W238.** [Atomic endpoint admission](topostitch-preview.md#admit-only-accepted-atomic-trial-endpoints-w238)
   matches the collective driver, preserving returned failures and accepted-step
   provenance:398 source/398 installed; full-suite process-permission failures
@@ -42,7 +46,7 @@ current instructions; other branches retain their own status and validation pins
   The failed direct result and three remaining moving-region outliers stay
   explicit. This is same-family synthetic recovery, not general experimental repair.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W238, next W239:
+  [generated human view](topostitch-roadmap.md). Current W239, next W240:
   [six-atom native closure](topostitch-periodic.md#w235--close-the-local-symmetry-connection-with-all-rings-held)
   retains fixed rings and healthy sugar boundaries. Qualify diffraction receiving
   and residual geometry next; matched receiving preflights pass, with fits held

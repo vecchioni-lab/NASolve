@@ -4,7 +4,7 @@
   "updated": "2026-11-23",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "66f785979b0effaf6a875610a6d11e18fbdceb41",
+  "audited_code_commit": "0fa2b6643da26977c568528d25126f07d0e7d57a",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -1056,27 +1056,29 @@
         "W74 native synthetic diffraction and geometry targets agree with all855 anisotropic tensors transported in memory; source work/test values and derivatives are invariant across both cuts. Actual model copy/selection reveals an unsupported pair_proxies protocol. No ordinary refinement or tensor serialization is qualified.",
         "W80 binds complete Cartesian tensor transport to the same source labels/context/full permutation as coordinates and reuses the rotation in existing ANISOU previews. Installed native two-cut/three-order Fcalc and tensor controls pass; physical inventory and serialization remain separate gates.",
         "W82 replays an exactly pinned saved preview into the existing complete numerical ReferenceFrame, preserving source identity/order and unchanged context atoms; no model writer or child rebinding.",
-        "W83 native synthetic special-position/partial-occupancy controls preserve the supplied labelled scattering object and fresh native multiplicity/weights in three settings and orders; source scientific validity remains separate."
+        "W83 native synthetic special-position/partial-occupancy controls preserve the supplied labelled scattering object and fresh native multiplicity/weights in three settings and orders; source scientific validity remains separate.",
+        "W239 composes the existing registered preview, continuation-phosphate observer and saved ReferenceFrame in a synthetic one-pair stagger across both strands, with P43/R3:H coordinate/tensor round trips. Explicit intent only; no automatic duplex choice or native writer."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "First evaluate one computational native frame with explicitly bound derived views at workflow boundaries. Qualify P02 graphical review and full physical inventory/tensor serialization before any model writer. Bind each refined child afresh through verified checkpoint lineage; never silently rebase old preferences. Standalone exports and inverse-mapped edits remain separate qualification gates.",
+      "next_action": "First evaluate one computational native frame with explicitly bound derived views at workflow boundaries. Qualify P02 graphical review and full physical inventory/tensor serialization before any model writer. Bind each refined child afresh through verified checkpoint lineage; never silently rebase old preferences. Standalone exports and inverse-mapped edits remain separate qualification gates. Bind an explicitly reviewed stagger to both directed routes and paired rungs; reject wrong-duplex selections only with qualified correspondence. Audit native model-input deepcopy precision and independent source-frame scattering after aliasing. Keep the private live repair separate from maintained Pine replay.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
         "E_JOINT_FRAME_TARGET",
         "E_BOUND_TENSOR_TRANSPORT",
         "E_SAVED_FRAME_BINDING",
-        "E_SPECIAL_POSITION_SCATTERING"
+        "E_SPECIAL_POSITION_SCATTERING",
+        "E_STAGGERED_DUPLEX_RECUT"
       ],
       "last_audit": {
-        "date": "2026-11-15",
-        "code_commit": "e570d15f308ec46a0b2bc6f62c43c3346e17abb5",
+        "date": "2026-11-23",
+        "code_commit": "0fa2b6643da26977c568528d25126f07d0e7d57a",
         "reviewer": "Linden",
-        "human_update": 83,
-        "scope": "Native fresh-table special-position/mixed-ADP preservation; no serialized writer or source scientific acceptance"
+        "human_update": 239,
+        "scope": "Synthetic integration regression and native-copy precision caveat; full native/materialization gates remain open"
       }
     },
     {
@@ -1101,14 +1103,15 @@
         "W76 adds source-bound representative native contact reports preserving exact image operations, directed membership and native multiplicity; native pair-table/report consumers remain unqualified.",
         "W77 binds representative contact reports through the immutable native-preview context, preserving old link/view defaults and proving source/cell/proposed-coordinate correspondence; native copy/refinement integration remains open.",
         "W78 distinguishes exact source identity/model copies from generic geometry deepcopy that drops nonbonded policy despite retaining contact rows. Isolated native parameter-object control reproduces table loss; complete live policy/copy ownership stays unqualified.",
-        "W79 observes actual native outlier-query frame mixing despite correct scalar geometry; explicit local callback remapping restores source outlier identities. Source-frame geo records compare semantically, with raw presentation differences preserved."
+        "W79 observes actual native outlier-query frame mixing despite correct scalar geometry; explicit local callback remapping restores source outlier identities. Source-frame geo records compare semantically, with raw presentation differences preserved.",
+        "W239 composes the existing registered preview, continuation-phosphate observer and saved ReferenceFrame in a synthetic one-pair stagger across both strands, with P43/R3:H coordinate/tensor round trips. Explicit intent only; no automatic duplex choice or native writer."
       ],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
         "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.",
         "Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified."
       ],
-      "next_action": "With Cedar, authenticate complete live source policy including nonbonded and exclusion tables. For pure recuts, first keep the entire native process in one computational frame and derive bound views at workflow boundaries. This does not repair physical gaps or missing links. Require checked inverse mapping for re-entered edits and fresh qualification for changed identity/intent. If an in-engine facade is actually needed, retain full copy, pair-table, outlier/report, weighting and native source/representative controls. Preserve P02/P03; never activate a symmetry bond alone.",
+      "next_action": "With Cedar, authenticate complete live source policy including nonbonded and exclusion tables. For pure recuts, first keep the entire native process in one computational frame and derive bound views at workflow boundaries. This does not repair physical gaps or missing links. Require checked inverse mapping for re-entered edits and fresh qualification for changed identity/intent. If an in-engine facade is actually needed, retain full copy, pair-table, outlier/report, weighting and native source/representative controls. Preserve P02/P03; never activate a symmetry bond alone. Bind an explicitly reviewed stagger to both directed routes and paired rungs; reject wrong-duplex selections only with qualified correspondence. Audit native model-input deepcopy precision and independent source-frame scattering after aliasing. Keep the private live repair separate from maintained Pine replay.",
       "evidence": [
         "E_PINE_TEST_BANK",
         "E_NATIVE_REPRESENTATION_SEAMS",
@@ -1125,14 +1128,15 @@
         "E_NATIVE_SOURCE_COPY",
         "E_NATIVE_REPORT_FRAMES",
         "E_COMBINED_FULL_AUDIT",
-        "E_C325_INSTALLED_COMPOSITION"
+        "E_C325_INSTALLED_COMPOSITION",
+        "E_STAGGERED_DUPLEX_RECUT"
       ],
       "last_audit": {
-        "date": "2026-11-15",
-        "code_commit": "e570d15f308ec46a0b2bc6f62c43c3346e17abb5",
+        "date": "2026-11-23",
+        "code_commit": "0fa2b6643da26977c568528d25126f07d0e7d57a",
         "reviewer": "Linden",
-        "human_update": 84,
-        "scope": "Focused installed composition verifies C325 historical-reader repair; original full failures retained, seam/runtime qualification unchanged"
+        "human_update": 239,
+        "scope": "Synthetic integration regression and native-copy precision caveat; full native/materialization gates remain open"
       }
     },
     {
@@ -6223,6 +6227,15 @@
           "sha256": "547b427025f6bebac11654a4a5a5c482ccab00b71d8756aaf2ea7fa78cab5c7b"
         }
       ]
+    },
+    "E_STAGGERED_DUPLEX_RECUT": {
+      "kind": "Synthetic integrated representative and phosphate-intent regression",
+      "date": "2026-11-23",
+      "human_update": 239,
+      "code_commit": "0fa2b6643da26977c568528d25126f07d0e7d57a",
+      "reference": "docs/topostitch-periodic.md#w239--regress-explicit-staggered-duplex-recuts",
+      "result": "171 focused tests pass, including one-pair stagger in P43 and R3:H through existing registered preview, phosphate intent and complete coordinate/tensor frame. Both route images, source identity, unchanged context, P/OP1/OP2 and noOP3 retained.",
+      "limitation": "Tests/docs only. No automatic correct-duplex discriminator, atom writer, native tensor serialization or end-to-end live repair qualification. Local native copy precision finding remains an explicit P03 gate; manuscript data excluded."
     }
   },
   "benchmarks": [
@@ -6388,8 +6401,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 238,
-    "next": 239,
+    "current": 239,
+    "next": 240,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -7627,6 +7640,12 @@
         "title": "Require accepted atomic optimizer endpoints and preserve failures",
         "state": "RECORDED",
         "code_commit": "66f785979b0effaf6a875610a6d11e18fbdceb41"
+      },
+      {
+        "number": 239,
+        "title": "Regress explicit staggered duplex cuts and retain native serialization gates",
+        "state": "RECORDED",
+        "code_commit": "0fa2b6643da26977c568528d25126f07d0e7d57a"
       }
     ]
   },
