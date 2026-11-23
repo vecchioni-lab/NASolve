@@ -13,6 +13,8 @@ entries are reconstructed from repository history.
   This helps locate representation breaks for review before chemistry is assigned.
   The 5W6W-derived PDU:PDU example now has an explicit two-connection
   declaration for its central strand and D:7–C:8 crossover.
+  AutoRefine and phosphate inspection now report an error if one command
+  requests two different continuation IDs. Earlier versions kept only the last.
 
 - `cif-doctor assess --bond-targets` points to the file and line of a
   literal site edit that matches a target printed by Phenix. The JSON keeps

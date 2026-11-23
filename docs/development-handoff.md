@@ -1,7 +1,22 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-23, C556 identifying both crystal phosphates in the original PDU construction — Rowan**.
+Updated **2026-11-23, C557 protecting an explicit choice of crystal phosphates — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+C557 closes a command-line ambiguity revealed by the two-crossover recipe.
+AutoRefine and Doctor's `phosphate-image` previously accepted two different
+`--registered-continuation` options and used only the last. Both commands
+now report the conflicting IDs before they read a model or reserve a run.
+Repeating the same ID still works. Existing requests and saved rounds keep
+their original format. The two real crossovers can be inspected separately.
+Joint enforcement and restart in a numbered refinement remain the next task.
+Both command regressions failed before the change. The source and physically
+relocated wheel each passed 75 focused tests and 14 subtests using
+`python -B -m pytest -q -p no:cacheprovider tests/test_refinement_phosphate.py tests/test_phosphate_continuation.py tests/test_phosphate_image.py tests/test_cli.py`
+with bytecode disabled and the tested package on `PYTHONPATH`.
+The ordinary CLI also reopened both distinct C290 edges separately on each
+build. Repeating either ID gave byte-identical output. Asking for both in
+one refinement or inspection exited before touching the supplied files.
 
 **C556 returns to the actual PDU preparation.** The C290 ordinary Coot
 construction ended before ReadySet. Its first whole-model diagnostic named

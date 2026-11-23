@@ -33,6 +33,18 @@ def test_incomplete_phosphate_choice_is_refused_before_phaser_or_run_allocation(
         request_from_args(build_parser().parse_args(["autorefine", *switches]))
 
 
+@pytest.mark.parametrize("command", [("autorefine", "run_002"), ("cif-doctor", "phosphate-image", "model.pdb")])
+def test_one_phosphate_request_cannot_silently_drop_another_registered_edge(command, capsys):
+    from nasolve.cli import build_parser
+    parser = build_parser()
+    first = [*command, "--registered-continuation", "1"]
+    assert parser.parse_args([*first, "--registered-continuation=1"]).registered_continuation == 1
+    with pytest.raises(SystemExit) as exc:
+        parser.parse_args([*first, "--registered-continuation=2"])
+    assert exc.value.code == 2
+    assert "continuation IDs 1 and 2" in capsys.readouterr().err
+
+
 def test_plain_round_and_an_inherited_registration_are_distinct_choices():
     from nasolve.cli import build_parser
     from nasolve.refinement_phosphate import request_from_args

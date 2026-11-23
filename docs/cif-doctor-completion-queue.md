@@ -248,6 +248,7 @@ in every fitted control. The two existing PDU starting-model captures already
 provide four intact T→G reference links for D:7–C:8 and two A→C reference
 links for B:7–B:1. Each gives a 1.607 Å bond, four angles and three torsions.
 AutoRefine currently carries one source-bound continuation per round.
+It refuses two different IDs in the same command before allocating an attempt.
 Carry both distinct images into ordinary preparation,
 preserve the separate D:1 terminus, then check which bonds, angles and
 nonbonded exclusions Phenix actually used at both sites. Review the resulting

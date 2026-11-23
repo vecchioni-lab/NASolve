@@ -42,6 +42,16 @@ from .postmr import PostMRPreparationError, prepare_postmr
 from .refine_doctor import RefineDoctorError, execute_refine_doctor
 
 
+class _SingleContinuation(argparse.Action):
+    """A command carrying one crystal edge must retain the user's complete choice."""
+
+    def __call__(self, parser, namespace, values, option_string=None):
+        previous = getattr(namespace, self.dest, None)
+        if previous is not None and previous != values:
+            raise argparse.ArgumentError(self, f"cannot combine continuation IDs {previous} and {values} in one request")
+        setattr(namespace, self.dest, values)
+
+
 def _phosphate_topology_arguments(parser):
     parser.add_argument("--registration", type=Path, help="construct registration for --registered-continuation")
     parser.add_argument("--registration-checkpoint", metavar="ID",
@@ -232,7 +242,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--checked-plane-forces", action="store_true",
         help="explicit native plane-force correction for this round (qualified Phenix build required)",
     )
-    autorefine.add_argument("--registered-continuation", type=int, metavar="ID",
+    autorefine.add_argument("--registered-continuation", type=int, action=_SingleContinuation, metavar="ID",
         help="carry one declared crystal phosphate through ordinary refinement using checked plane forces and one worker")
     _phosphate_topology_arguments(autorefine)
     autorefine.add_argument("--native-receipt", type=Path,
@@ -310,7 +320,7 @@ def build_parser() -> argparse.ArgumentParser:
     image_choice = phosphate_image.add_mutually_exclusive_group(required=True)
     image_choice.add_argument("--o3-image", metavar="XYZ", help="full fractional operation applied to O3', including any cell translation")
     image_choice.add_argument("--nearest-image", action="store_true", help="compare the closest two crystal copies of the named O3' to the named P")
-    image_choice.add_argument("--registered-continuation", type=int, metavar="ID",
+    image_choice.add_argument("--registered-continuation", type=int, action=_SingleContinuation, metavar="ID",
                               help="read this declared O3'-to-P connection in its registered source frame")
     image_choice.add_argument("--saved-continuation", action="store_true",
                               help="read the crystal bond and native forces saved by this numbered phosphate refinement")
