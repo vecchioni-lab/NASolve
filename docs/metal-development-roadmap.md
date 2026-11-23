@@ -21,15 +21,20 @@ transfers and adaptive weights differ; no new parent is selected. A01 remains
 partial/A02 gated. Reuse the completed7,871 cold result checks and saved map
 figures in the [current handoff](metal-development-handoff.md#current-a01-question--coupled-canonical-flank-placement).
 The investigator expects ordinary Watson–Crick T–A pairing at A11/B5; deposited
-distortion remains a comparator, not a target. Next: cold source/frame/reference
-intake for the declared crystal backbone joins through Cedar, one junction at
-a time. No repeated flank/weight grid or further identical continuation.
+distortion remains a comparator, not a target. The declared crystal-junction
+source/frame/reference intake and fresh current-parent interpretation now pass;
+original indexed phases/Free-R and fixed scattering are bound. Next: qualify
+Willow's optional phased local-fit input natively, then one bounded six-atom
+B7→B1 displaced-start test. D7→C8 and ordinary source-bound checkpoint publication
+remain separate. No repeated flank/weight grid or further identical continuation.
+See the [phosphate intake record](metal-development-handoff.md#a01-registered-phosphate-intake--23-november).
 
 A01 next-input review now includes [DF C2 chemical target provenance](metal-df-c2-angle-audit.md). A source-consistent fragment is available, but its eLBOW angles are not independent chemistry authority. Retain explicit source-state uncertainty and coupled-target review; routine donor-state integration remains deferred. No automatic 120° substitution.
 
-The latest independent FT source audit leaves two precise input boundaries:
-B:1 now has an investigator-declared B:7→B:1 symmetry continuation; its exact
-operator realization/native enforcement still needs qualification. The investigator
+The preceding independent FT source audit identified two input boundaries
+(the new intake above resolves reference/frame binding, not native enforcement):
+B:1 has an investigator-declared B:7→B:1 symmetry continuation; exact source
+operator/frame binding now qualifies, while native enforcement remains pending. The investigator
 also confirmed C/D crossover after the A:1–A:21 condition was verified. The private endpoint needs a legitimate ordinary checkpoint
 before W173 intake. The existing modified/metal movement restriction remains.
 Preserve all phosphates, the 19 supplied pair planes and the separate generic

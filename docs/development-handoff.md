@@ -37,7 +37,13 @@ not convergence or A01 completion. Compact report:
 `ScienceCheckouts/Hazel/2026-11-23_ft-canonical-receiving/index.html`.
 Optional native-crystal binding is the only maintained mechanism change, with
 strict defaults preserved and focused receipts linked in the metal handoff.
-Next is cold compatibility with the registered-phosphate owner, not more f″.
+The subsequent registered-phosphate intake qualifies two independently matched
+source-reference groups and one complete current-parent interpretation (116 + 269
+cold checks; Phenix 2.2.1-6174 capture completed/stopped in 2.10 s). Original indexed
+phases/Free-R and 859 fixed scattering states are bound for the optional shared
+Willow extension. No bond installed or local fit run. The [current metal handoff](metal-development-handoff.md#a01-registered-phosphate-intake--23-november)
+records the six-atom scope, ordinary-checkpoint lineage gap and phased native
+admission required next. A01 partial/A02 gated; no additional runtime/schema change.
 
 ## Qualified integration checkpoint — test-only amendment
 

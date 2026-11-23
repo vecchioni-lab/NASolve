@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bind FT crystal-junction references and phased local-fit inputs
+
+- Record independently matched phosphate references, complete current-parent
+  interpretation and exact original phase/Free-R/fixed-scattering source checks.
+  Scope one six-atom B7→B1 diagnostic through the existing shared owner.
+- Preserve failed caller attempts and the ordinary checkpoint lineage gap.
+  Phased native admission remains pending; no local fit, installed bond, new
+  accepted parent, runtime/schema/default change, migration or full-suite claim.
+
+
 ### Record canonical-flank seed and matched receiving evidence
 
 - Preserve one bounded local seed and two completed open XYZ/group-B receivers,

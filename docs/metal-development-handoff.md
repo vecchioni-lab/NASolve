@@ -19,10 +19,11 @@ not a second queue.
 improves the expected A11 DT / B5 DA pair before diffraction refinement, but
 the improvement largely relaxes back during the two matched five-cycle open
 XYZ/group-B receiving runs. Both Phenix 2.2.1-6174 executions completed/stopped.
-The next bounded action is a cold compatibility review of the two intended
-crystal backbone joins through Cedar's registered-phosphate owner, one junction
-at a time. No further flank weight grid, identical continuation, f″ or automatic
-selection follows from this comparison. A01 remains partial; A02 remains gated.
+The cold compatibility review of both intended crystal backbone joins is now
+complete. Next is independent native admission of the optional phased local-fit
+route owned by Willow, then at most one bounded B7→B1 displaced-start fit.
+D7→C8 waits; no two-cut delivery is inferred. No further flank weight grid,
+identical continuation, f″ or automatic selection follows from this comparison. A01 remains partial; A02 remains gated.
 
 | Endpoint | Rwork / Rfree | T–A direction | N3–N1 / O4–N6 (Å) | T sugar angle |
 | --- | --- | --- | --- | --- |
@@ -89,8 +90,88 @@ The inspected report is
 `ScienceCheckouts/Hazel/2026-11-23_ft-canonical-receiving/index.html` (21 verified
 relative links). It copies figures only; the two protected XYZ-changing proof
 nodes total about22 MB. No models/maps are duplicated into the report, committed
-or uploaded. No pruning or new selected checkpoint. Next review is coordinated
-against Cedar`0bd72380`; paired delivery remains Willow-owned.
+or uploaded. No pruning or new selected checkpoint. The phosphate intake below
+is coordinated against Cedar`0bd72380`; paired delivery remains Willow-owned.
+
+## A01 registered-phosphate intake — 23 November
+
+**References and current chemistry qualify; no repair has run.** Cedar
+`0bd72380` independently matches both investigator-declared symmetry joins to
+intact links with the same effective source chemistry. B7 DA→B1 DC uses A16→A17
+and B5→B6; D7 DT→C8 DG uses A9→A10, C11→C12, D2→D3 and D5→D6. Each group supplies
+one bond, four angles and three torsions. O3′–P target is 1.607 Å with 0.012 Å
+width; source angles/torsions are retained. Operators are independently bound to
+the FT source representative, not copied from a generic 5W6W recipe. Source
+connectivity is investigator-confirmed; no nearest-neighbour chemistry inference.
+
+The cold intake passes 116 checks. A fresh **fixed-coordinate interpretation** of
+the retained parent with Phenix 2.2.1-6174 completed/stopped in 2.096804 seconds.
+Its 269 cold review checks authenticate 859 atoms, 43 monomer mappings, 207 NAR
+terms and all 214 supplied terms. Current independent reference groups exactly
+match the historical source groups. This is complete interpretation evidence,
+not a new final fmodel, installed symmetry bond, refined model or selected parent.
+
+| Intended join | Retained P–O3′ | Unchanged receiver | Seeded receiver |
+| --- | ---: | ---: | ---: |
+| B7→B1 | 3.029 Å | 3.334 Å | 3.208 Å |
+| D7→C8 | 3.111 Å | 3.063 Å | 3.070 Å |
+
+The planned first local window is the existing six-role owner: B7 O3′ and B1
+P/OP1/OP2/O5′/C5′. The other 853 XYZ atoms, both sugar rings, all B/Q/f′/f″ and
+metal/base coordinates stay fixed. With the current O3′–O5′ separation 3.748 Å,
+moving P/OP1/OP2 alone cannot satisfy the two target P–O lengths (sum 3.200 Å).
+This establishes a need to include oxygens, not that the proposed local fit will
+succeed. Retain the prior 3-cycle × 60-iteration, 1.5 Å displacement and
+`wxc_scale=0.5` bounds; no larger search is admitted by this note.
+
+**Phase/scattering interface dependency:** current shared W240 uses ML and has
+no dedicated phase input or fixed f′/f″ return audit. Linden owns an optional
+extension; do not fork a second executor or feed phases as generic restraints.
+The exact FT source contract now verifies all 1,151 effective Miller indices
+against original Free-R assignments (1,092 work / 59 free), all four original HL
+coefficients (maximum difference zero) and all 859 keyed fixed-scattering values.
+The proposed native route must actually read back MLHL, the complete indexed HL
+set and per-atom f′/f″ before motion and on return. Declared settings alone do not
+qualify it. Original anomalous MTZ remains unchanged; merged geometry has fixed
+reference f′ and zero f″, which is not a measured anomalous result. B/Q remain
+fixed only for this local diagnostic; the later open XYZ/B stage remains required.
+
+**Ordinary lineage gap:** the real original PostMR root and matching observations
+exist, but its inherited DF/NAR inputs and absent current AutoSol phase checkpoint
+do not describe the later QF1/QT1 research parent. A plain manual import would
+inherit the wrong context. Do not rewrite history or relabel the standalone state
+as a qualified preparation. Source-bound ordinary publication needs its own
+qualification. This does not prevent a separately admitted standalone diagnostic.
+
+**Reusable evidence and exact commands:** under the private Alder artifact anchor,
+`a01-phosphate-intake-20261123-03/review.json` and
+`a01-phosphate-parent-capture-20261123-02/{review.json,execution.json,README.md}`
+retain source hashes, commands, logs and native receipts. From the NASolve root,
+A586/A588/A589 runners execute respectively intake, capture and cold review with
+`PYTHONDONTWRITEBYTECODE=1 /private/tmp/alder-validation-20261121-01/bin/python -B`.
+After sourcing the installed Phenix environment, `phenix.python -B
+branch-artifacts/Alder/runners/A591_phased_input_contract.py` performs the recorded
+phase/flag/scattering source check; `phased-contract.log` retains its output.
+These immutable outputs already exist: reuse them, do not run them again.
+`next-local-contract.json` and `phased-input-contract.md/.json` define the scoped
+proposal and owner handoff. Proposed negative controls are not completed tests.
+
+Earlier intake attempts retain the QF1 polymer-classifier gap and outer-receipt
+anchor refusal. A first native layout was refused before launch because its
+output was under an input directory. Corrected attempts changed caller scope or
+layout, never scientific matching guards. The successful registration explicitly
+covers 21 B/C/D canonical sites; A/QF1/Hg remain outside this topology inspection
+and untouched. D1 terminal-phosphate intent and the full original restraint set
+remain intact. No runtime/schema/default change, migration, full suite, f″ trial,
+pruning or scientific acceptance follows. A01 partial/A02 gated.
+
+The inspected local report is
+`ScienceCheckouts/Hazel/2026-11-23_ft-phosphate-intake/index.html` (14 verified
+relative links). A593/A594 render the retained parent and its own saved maps at
+each declared join; the second layout fixes a phosphorus-label overlap. A595
+publishes the PNG/SVG and links existing raw artifacts. The two seam planes have
+a common Å scale, with actual atom offsets retained. No new coefficients or fits;
+the previous matched-receiving checkout remains unchanged.
 
 **Investigator clarification, 23 November:** A11 DT / B5 DA is expected to be
 an ordinary Watson–Crick T–A pair. The investigator reports that this pair is
