@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-23, C550 recognizing mercury across native model readers — Rowan**.
+Updated **2026-11-23, C551 following an inherited phosphate through molecular replacement and refinement — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
 C547 and Willow W243 carried two independent crystal phosphates per model
@@ -22,6 +22,27 @@ backbone step, and omitted the submitted connection table. The preliminary
 validation reported zero chain breaks and listed the two intended covalent
 distances as symmetry contacts. Curator annotation and the other deposition's
 return remain open.
+
+**C551 measures which way the two phosphate oxygens face.** Supply the
+two opposite residues of a known stacked step to `cif-doctor phosphate-image
+--duplex-partners`. Positive values point outward. The same command reads a
+saved checkpoint. The six ordinary 5W6W MR templates already face outward at
+A12. An older metal parent inherited the deposited inward pose. The two
+matched five-cycle Phenix fits retained the two starting orientations.
+The outward model improves the local sugar angle and worsens the neighbouring
+pair contacts and final free R. It remains a comparison. Four older Coot
+intermediates retain OP3 at the internal site and correctly return
+UNASSESSED. A group projection assumes ordinary ester chemistry.
+
+The source and relocated installation returned identical results across
+34 local readings, including nine LNA sites or symmetry cuts and two numbered
+PDU children. Each passed 124 focused tests and seven subtests using
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider`
+with `tests/test_{phosphate_duplex,phosphate_image,phosphate_continuation,refinement_phosphate,cif_doctor_run,refinement_plane_departures}.py`.
+For the installation, `PYTHONPATH` pointed to the moved wheel. The reader
+adds an optional output field. Ordinary command output and saved runs keep
+their existing form. Local coordinates, measurements and the visual stay
+in the laboratory workspace. [Method and limits](backbone-chemistry.md#checking-the-direction-of-a-repaired-phosphate).
 
 **C550 lets two Phenix readers spell the same mercury atom differently.**
 The metal-containing model stopped before a coordinate could move because

@@ -52,17 +52,28 @@ class PhosphateEndpointUnavailable(ValueError):
 
 
 def inspect_phosphate_image(model, *, phosphate=None, o3=None, o3_image=None, nearest_image=False, geometry=None,
-                            native_receipt=None, registered=None):
+                            native_receipt=None, registered=None, duplex_partners=None, partner_images=None):
     """Inspect a manual pair or resolve an explicit registered continuation on this model."""
     if registered is not None:
         from .cif_phosphate_continuation import inspect_registered_continuation
         if any(value is not None for value in (phosphate, o3, o3_image)) or nearest_image:
             raise ValueError("A registered continuation supplies both endpoints and the image")
-        return inspect_registered_continuation(model, registered, geometry=geometry, native_receipt=native_receipt)
-    if not phosphate or not o3:
-        raise ValueError("Manual phosphate inspection requires both --phosphate and --o3")
-    return _inspect_coordinates(model, phosphate=phosphate, o3=o3, o3_image=o3_image, nearest_image=nearest_image,
-                                geometry=geometry, native_receipt=native_receipt)
+        result = inspect_registered_continuation(model, registered, geometry=geometry, native_receipt=native_receipt)
+    else:
+        if not phosphate or not o3:
+            raise ValueError("Manual phosphate inspection requires both --phosphate and --o3")
+        result = _inspect_coordinates(model, phosphate=phosphate, o3=o3, o3_image=o3_image, nearest_image=nearest_image,
+                                      geometry=geometry, native_receipt=native_receipt)
+    return with_duplex_direction(model, result, duplex_partners, partner_images)
+
+
+def with_duplex_direction(model, inspection, partners, images):
+    if partners is None:
+        if images is not None:
+            raise ValueError("--partner-images requires --duplex-partners")
+        return inspection
+    from .cif_phosphate_duplex import inspect_duplex_direction
+    return dict(inspection, duplex_direction=inspect_duplex_direction(model, inspection, partners, images))
 
 
 def _inspect_coordinates(model, *, phosphate, o3, o3_image=None, nearest_image=False, geometry=None, native_receipt=None):

@@ -1,6 +1,18 @@
 {
   "schema_version": 1,
   "document_kind": "LINKED_NATIVE_REGISTRATION_AND_COMPONENT_METADATA_RETURNS",
+  "c551_duplex_phosphate_direction": {
+    "method": "Two explicitly paired consecutive residues. Measure OP1, OP2 and their midpoint along the local outward direction calculated from base-ring centres and from C1-prime midpoints, using the same mean plane normal.",
+    "accessible_via": "cif-doctor phosphate-image --duplex-partners O3_PARTNER P_PARTNER",
+    "5w6w_A12_ring_projection_A": {"deposited": -0.648, "six_current_frames_range": [0.574, 0.578], "PDU_refine_006": 0.3143, "PDU_refine_007": 0.3998},
+    "matched_FT_Hg": {"phenix": "2.2.1-6174", "cycles_each": 5, "construction_atoms_changed": 6,
+      "ordinary_then_outward_start": {"written_ring_projection_A": [-0.5840, 0.4089], "written_sugar_projection_A": [-0.5767, 0.3502], "final_free_R": [0.2974, 0.3329]},
+      "selection": "Both remain comparison models. The local sugar improves, the neighbouring T-A contacts shorten further and the final diffraction fit worsens."},
+    "readback": {"source_and_relocated_wheel_equal": true, "real_cases": 34, "measured": 30, "unassessed_with_internal_OP3": 4,
+      "largest_difference_from_independent_coordinate_reading_A": 0.000338, "original_registry_and_report_unchanged": true,
+      "focused_tests_per_build": 124, "focused_subtests_per_build": 7},
+    "scope": "Local duplex geometry only. The two pair assignments and their crystal images must apply to one continuous duplex arm. Routine repair and automatic selection remain open."
+  },
   "c550_native_element_spelling": {
     "milestone": "Q06, recognize the same element on an interpreted metal-containing parent",
     "phenix": "2.2.1-6174",

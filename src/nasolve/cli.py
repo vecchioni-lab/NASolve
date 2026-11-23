@@ -315,6 +315,10 @@ def build_parser() -> argparse.ArgumentParser:
     image_choice.add_argument("--saved-continuation", action="store_true",
                               help="read the crystal bond and native forces saved by this numbered phosphate refinement")
     _phosphate_topology_arguments(phosphate_image)
+    phosphate_image.add_argument("--duplex-partners", nargs=2, metavar=("O3_PARTNER", "P_PARTNER"),
+                                 help="measure oxygen direction across two assigned stacked pairs; give each opposite CHAIN:NUMBER")
+    phosphate_image.add_argument("--partner-images", nargs=2, metavar=("O3_MATE", "P_MATE"),
+                                 help="crystal image of each partner relative to its paired residue (default x,y,z for both)")
     phosphate_image.add_argument("--geometry", type=Path, help="optional matching Phenix GEO with printed bonds and nonbonded contacts")
     phosphate_image.add_argument("--native-receipt", type=Path, help="optional preserved linked native capture for intact backbone references in the same model")
     phosphate_image.add_argument("--json", action="store_true", help="include exact inputs, atom inventory and printed terms")
@@ -1746,7 +1750,8 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
         elif any(path is not None for path in source_paths):
             raise ValueError("Topology input files require --registered-continuation ID")
         options = dict(phosphate=args.phosphate, o3=args.o3, o3_image=args.o3_image,
-                       nearest_image=args.nearest_image, native_receipt=args.native_receipt, registered=registered)
+                       nearest_image=args.nearest_image, native_receipt=args.native_receipt, registered=registered,
+                       duplex_partners=args.duplex_partners, partner_images=args.partner_images)
         if args.registration_checkpoint is not None:
             if args.checkpoint is None or registered is None:
                 raise ValueError("--registration-checkpoint needs a numbered run, --checkpoint and --registered-continuation")
@@ -1800,6 +1805,14 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
         print(f"{result['phosphate'][0]} P to {result['o3'][0]} O3' in image {result['o3_image']} measures {result['distance_A']:.3f} Å.")
         present = [name for name, atom in result["phosphate_atoms"].items() if atom is not None]
         print("Phosphate site contains " + ", ".join(present) + ".")
+        direction = result.get("duplex_direction")
+        if direction is not None:
+            if direction["status"] == "MEASURED":
+                print(f"OP1/OP2 midpoint relative to the declared duplex step (positive points outward): "
+                      f"{direction['ring_centres']['midpoint_A']:+.3f} Å from base rings, "
+                      f"{direction['c1_midpoints']['midpoint_A']:+.3f} Å from sugar positions.")
+            else:
+                print(f"Duplex direction unavailable. {direction['reason']}.")
         print("Angles from the written coordinates")
         for name, angle in result["coordinate_angles_degrees"].items():
             print(f"  {name}  {angle:.2f}°" if angle is not None else f"  {name}  unavailable")

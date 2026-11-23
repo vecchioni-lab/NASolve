@@ -101,10 +101,10 @@ def _final_geometry(run, selected):
 def read_checkpoint_phosphate_image(run: Path, *, checkpoint: str, phosphate: str | None = None, o3: str | None = None,
                                    o3_image: str | None = None, nearest_image: bool = False,
                                    native_receipt: Path | None = None, registered=None, registration_checkpoint: str | None = None,
-                                   saved_continuation: bool = False):
+                                   saved_continuation: bool = False, duplex_partners=None, partner_images=None):
     """Inspect only the named checkpoint's model and its own optional final GEO."""
     from .cif_numerical_replay import numerical_replay_scope
-    from .cif_phosphate_image import inspect_phosphate_image
+    from .cif_phosphate_image import inspect_phosphate_image, with_duplex_direction
 
     if not isinstance(checkpoint, str) or not checkpoint.strip():
         raise CheckpointError("Phosphate inspection needs an explicit checkpoint ID or bookmark")
@@ -144,6 +144,7 @@ def read_checkpoint_phosphate_image(run: Path, *, checkpoint: str, phosphate: st
         if not isinstance(recorded, str) or transfer["source_model_sha256"] != recorded.lower():
             raise CheckpointError("Registration model differs from its frozen ancestor")
         transfer["source_checkpoint"] = ancestor["id"]
+    result = with_duplex_direction(model, result, duplex_partners, partner_images)
     model_ref = _reference(model, run)
     geometry_ref = _reference(geo, run) if geo is not None else None
     if result["model_sha256"] != model_ref["sha256"] or (expected_model is not None and model_ref["sha256"] != expected_model.casefold()):

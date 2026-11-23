@@ -83,6 +83,29 @@ nasolve cif-doctor phosphate-image final.pdb --phosphate B:1 --o3 B:7 \
   --o3-image=-x+y,-x,z --geometry final.geo
 ```
 
+If the donor and phosphate lie in two consecutive stacked pairs on the same
+duplex arm, supply their opposite residues to measure where OP1 and OP2 point.
+For the **internal A11→A12 step** of the 5W6W scaffold, A11 pairs with B5 and
+A12 with B4.
+
+```sh
+nasolve cif-doctor phosphate-image final.pdb --o3 A:11 --phosphate A:12 \
+  --o3-image=x,y,z --duplex-partners B:5 B:4
+```
+
+A positive value means the oxygen midpoint projects away from the local
+duplex centre. The JSON also gives each oxygen separately. Doctor fits the
+occupied, conventionally named base-ring atoms and takes an equal-weight
+centre for each pair. A second reading uses the paired C1′ midpoints with
+the same mean plane normal. Compare the signs, pair-centre separation and
+tilt before calling a rotamer. For paired residues in other crystal copies,
+`--partner-images` takes two full operators relative to the O3′ and P
+residues respectively. Cell translations are retained. The same options
+work on a named checkpoint. This reading describes model geometry. A
+crossover, a real nick, or an uncertain pairing needs its own structural
+interpretation. Missing ring atoms, an occupied third phosphate oxygen or
+an unsupported substitution leave the direction unassessed.
+
 When you know which two atoms join but still need the symmetry operation,
 use `--nearest-image` in place of `--o3-image`. Doctor holds the phosphorus
 fixed, ranks crystal copies of the named O3′, and reports the two closest

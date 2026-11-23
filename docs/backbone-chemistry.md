@@ -63,6 +63,15 @@ started outward and remained outward through two checked five-cycle fits.
 PostMR deliberately restores the incoming sugar and phosphate when changing
 a base. A pre-existing backbone error needs a separate, source-traced trial.
 
+In matched five-cycle Phenix refinements of the DF–Hg–DT model, the A12
+oxygen midpoint stayed 0.58 Å inward from the original start and 0.41 Å
+outward from a locally corrected start. Only six backbone coordinates
+changed in the trial seed. The adjacent sugar angle improved from 124.1°
+to 110.8°. The neighbouring T–A contacts shortened further and final free R
+rose from 0.2974 to 0.3329. Keep this as a local comparison. A new metal
+run can inspect its own parent or numbered child using the
+[paired-step measurement](cif-doctor.md#inspecting-a-phosphate-at-a-crystal-boundary).
+
 ## Standard phosphodiester contract
 
 For ordinary DNA/RNA-like backbones, including sugar variants that retain the

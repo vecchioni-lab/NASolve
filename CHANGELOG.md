@@ -8,6 +8,10 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `cif-doctor phosphate-image --duplex-partners` measures the direction of
+  the two nonbridging oxygens relative to two assigned base pairs. It works
+  on an explicit PDB or a named checkpoint, including declared crystal copies.
+
 - AutoRefine can carry a registered crystal phosphodiester into a numbered
   child. Phenix checks the bond, four angles and three torsions in the declared
   crystal copy during preflight and refinement. The fitted child awaits review.

@@ -1505,8 +1505,13 @@ repair and a change of labels require different evidence. [Scientific
 scope](backbone-chemistry.md#checking-the-direction-of-a-repaired-phosphate).
 Use deposited 5W6W and the six standard W templates as the inward/outward
 A12 controls. The archived DF–Hg–DT and PDU:PDU inputs inherited different
-poses. Follow the matched native receiver of the metal model using its own
-phases, scattering state and original free flags before judging a repair.
+poses. Two matched five-cycle metal refinements retained the two opposite
+A12 directions. Correcting the local sugar angle also compressed the
+neighbouring pair and increased final free R. Keep the outward child as
+a comparison. `phosphate-image --duplex-partners` can now measure each
+model and named checkpoint. The future automatic intake needs an assigned
+continuous duplex arm and a separate chemical and diffraction comparison
+before adopting any repaired metal model.
 
 **Read the processed deposition separately.** A returned model preserved all
 ordinary steps while omitting the two declared crystal links. Its validation
