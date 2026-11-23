@@ -1121,6 +1121,11 @@ source-frame review candidate. No campaign/checkpoint promotion, whole-ASU write
 new chemistry kernel or automatic connection inference is introduced. Standalone
 Willow needs explicit compatible Cedar modules. The schema and limitations are
 [documented in the preview guide](topostitch-preview.md#refine-one-registered-phosphate-connection-w240).
+The independent `refinement_weight_observation` reader (W242) records printed
+per-cycle XYZ weights from checksum-pinned complete logs, with explicit rounding
+and no-authority limits. It imports no native runtime and controls no weighting.
+Cedar retains fixed-protocol parameter/lifetime qualification; observed equal
+printed values cannot establish equal native objectives.
 
 `nasolve-topostitch-cut-preview` freezes explicit representative-image or chosen-
 forest proposals through the existing graph owner. Schema-2 requests can resolve

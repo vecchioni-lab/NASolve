@@ -3463,3 +3463,79 @@ A request-relative relocation regression and source-independent wheel tests cove
 software/input resolution; they do not qualify replay of a moved native job.
 Native/source installation paths and historical capture references remain provenance.
 See [W240 native evidence](topostitch-periodic.md#w240--reach-registered-phosphate-refinement-through-the-installed-product).
+
+
+## Observe printed native XYZ weights (W242)
+
+`refinement_weight_observation.observe_native_xyz_weights` reads the already
+written log; it never imports Phenix, changes weights or launches a program:
+
+```python
+from nasolve.refinement_weight_observation import observe_native_xyz_weights
+
+observed = observe_native_xyz_weights(
+    log_bytes,
+    expected_log_sha256=trusted_log_digest,
+    expected_cycles=5,
+)
+```
+
+The caller supplies immutable bytes, a previously trusted SHA-256 and the exact
+cycle count. Qualification covers the ordinary X-ray XYZ summary printed by
+Phenix **2.2.1-6174**. It requires ordered cycles 1…N, one known objective equation
+and weight summary per cycle, and one final completion marker. Truncated or
+concatenated logs, missing/duplicate/out-of-order summaries, unsupported equations,
+malformed/nonfinite/negative weights, wrong digests and ambiguous counts refuse.
+Joint X-ray/neutron equations are outside this parser's scope. No version is
+inferred from a directory name or claimed from the log's chemical-library path.
+
+The additive schema-1 `native-xyz-weight-observation` result records source SHA,
+one-based source line numbers, exact printed strings, numerical `wxc`,
+`wxc_scale`, `wc`, their `printed_data_factor` product, and a
+`printed_data_to_chemistry_ratio` (unavailable when `wc=0`). Values are explicitly
+**rounded display evidence**, not recovered full-precision weights. The
+`identical_printed_weights` flag compares those displayed triples only. It cannot
+establish fixed policy or equal objectives. `native_policy_inferred`,
+`runtime_authority` and `scientific_acceptance` remain false. A completion marker
+is not a process/native receipt, and this API does not qualify a successful run.
+
+W241's two existing logs reproduce all ten manually audited cycle values exactly.
+The observer retains the large native weighting difference without running
+another fit. **278 focused source/278 isolated installed tests** pass; 17 new
+cases cover distinct reader behavior. Source and installed results are identical
+(12/13 saved-log checks), including a standard-library-only installed replay with
+`python -S` (13 checks). Original build source was removed before installed tests;
+Python 3.10 syntax and installed/source module hashes agree. No optional dependency,
+CLI change, native hook, default change or existing-report migration.
+
+Focused command, with existing Gemmi/test dependencies available for adjacent
+TopoStitch tests:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -p no:cacheprovider -q \
+  tests/test_refinement_weight_observation.py tests/test_topostitch_phosphate.py \
+  tests/test_topostitch_endpoint.py tests/test_topostitch_captured_job.py \
+  tests/test_topostitch_recut_bundle.py tests/test_topostitch_backbone_intent.py \
+  tests/test_topostitch_transport.py
+```
+
+Actual local commands append the existing dependency root to PYTHONPATH. The
+same test fixture closure runs outside the checkout against a fresh wheel built
+with `pip install --no-deps --no-build-isolation --target INSTALL BUILD_SOURCE`.
+Source tests: 278 in 9.57 s; installed: 278 in 9.71 s. No full-suite repeat because
+this isolated, opt-in reader does not alter any workflow or shared native behavior.
+Evidence/logs and module pins are local at the NASolve anchor
+`branch-artifacts/willow/w242-native-weight-observer/`; the archive move verifies
+231 original file hashes. `validation.json` records scope and exact environment.
+No private native logs, coordinates or diffraction data are committed.
+
+**Reuse boundary:** Cedar already owns a fixed-unit native protocol in
+`cif_counted_refinement.refinement_scope`, emitted by AutoRefine and checked by
+`refinement_counted`. It validates actual/returned parameters for
+`fix_wxc=wc=1`, one counted cycle, explicit process/selection/target constraints
+and its own disabled-changing-target conditions. That qualification cannot be
+transferred to Willow's five-cycle six-atom protocol with bulk scaling enabled.
+The next fixed-objective experiment stays queued: declare its common weight and
+native scope through those existing owners, then independently qualify it.
+No second weighting engine, fixed-mode switch or extra native experiment is
+introduced by W242.

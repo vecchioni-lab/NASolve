@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W242 — Observe saved native XYZ weight summaries
+
+- Add a dependency-free, read-only observer of source-pinned per-cycle native
+  weight summaries. Reject incomplete/ambiguous logs and preserve exact printed
+  values, source lines and rounding limits in an additive schema-1 report.
+- Never infer fixed policy or scientific/runtime acceptance from printed weights.
+  Reuse the two existing W241 logs; no native hook, parameter/default change,
+  additional fit or existing-report migration.
+
+
 ### W241 — Measure seeded receiving and audit native weighting
 
 - Record two matched-protocol five-cycle native fits: the geometry seed retains
