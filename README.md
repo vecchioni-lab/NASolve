@@ -1117,6 +1117,10 @@ to the current node or import a manual Coot model as a review child;
 between rounds, but map-coefficient/refinement MTZ outputs can never replace
 the authoritative STARANISO observations or regenerate the Free-R set.
 
+For deposition, take both CIFs from the reviewed round. The [OneDep preparation guide](docs/pdb-deposition.md)
+covers the Phenix outputs, original Free-R assignments, STARANISO supplements
+and comparison with the coordinates returned by wwPDB.
+
 ## Run directories and outputs
 
 Every invocation creates a new numbered directory. Existing runs are never

@@ -68,6 +68,8 @@ Pairing and density support still need independent assessment.
 
 With `NASolve[topology]` installed, supply the coordinate mmCIF you intend to
 deposit. If a validation service returns coordinates, supply that file too.
+The [OneDep preparation guide](pdb-deposition.md) covers the matching Phenix
+reflection file, preserved deposition metadata and interpretation of the return.
 
 ```sh
 nasolve cif-doctor deposition-links model.cif --processed returned.cif --json

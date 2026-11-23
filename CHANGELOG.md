@@ -8,6 +8,10 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- The [OneDep preparation guide](docs/pdb-deposition.md) records how to pair
+  Phenix model and reflection CIFs, retain a crystal's processing data and
+  free flags, and check what wwPDB preserved after processing.
+
 - When several inspected phosphates each lack both OP3 and a verified local
   incoming O3′–P link, the preparation diagnostic names those sites together.
   This helps locate representation breaks for review before chemistry is assigned.

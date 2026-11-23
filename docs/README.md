@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-11-18**. Use the subsystem contract for actual behavior, the
+Updated **2026-11-23**. Use the subsystem contract for actual behavior, the
 [development handoff](development-handoff.md) for the current implementation and
 validation edge, and linked evidence for exact scientific claims. Historical
 milestone statements preserve their original scope; they are not a second queue.
@@ -56,6 +56,8 @@ is an explanation, not an independent status ledger.
 
 - [User guide](../README.md): installed commands, run/view workflows,
   outputs and safeguards.
+- [Preparing an X-ray deposition for OneDep](pdb-deposition.md) covers the
+  paired Phenix CIFs, Free-R checks, modified components and returned coordinates.
 - [Architecture](architecture.md): stable MR, PostMR, refinement, checkpoint
   and provenance contracts.
 - [Collaboration](collaboration.md) and [agent contract](../AGENTS.md):
