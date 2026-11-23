@@ -13,6 +13,59 @@ not a second queue.
 
 **Late chemical-provenance clarification:** the [DF C2-angle audit](metal-df-c2-angle-audit.md) separates eLBOW source consistency from independent chemical validation. The earlier final sulfur-angle split is 135.3°/108.7°; generated targets remain chemically provisional. Routine donor-state integration stays deferred and is not a new immediate A01 prerequisite. A retained base fragment exists (124 read-only checks), but no replacement or target change is admitted.
 
+## Current A01 question — coupled canonical-flank placement
+
+**Next bounded scope, not a new fit:** qualify a source-preserving coupled
+placement candidate for a strained canonical flank, with the metal hypothesis,
+adjacent polymer connections and full native restraints explicit. Reuse the
+Cedar/Willow owners; no residue-number-specific fixer or inferred movement
+permission. The unchanged FT_Hg continuation is stable locally, so further
+identical continuations and metal angle/weight grids are not the next step.
+
+The saved-context audit covers **2,563 matched ordinary bond/angle terms per
+endpoint**, using common original widths across three completed fits. The
+A11 DT / B5 DA direction N3–N1–C2 remains **87.46° versus 116.2°**; A11
+C4′–C3′–O3′ is **127.74° versus 109.7°**. Native pairing, cross-pair plane and
+adjacent parallelity terms are present. Remote A4 DC / C12 DG also carries
+strain (O2–N2 3.884 Å versus 2.8 Å). Thus the remaining context issue is not
+confined to DF. These observations neither decompose Rwork nor prove that
+repairing one flank will improve diffraction fit. Nominal widths are restraint
+widths, not experimental uncertainty; small fractional deviations are not gates.
+
+Reuse of Linden's qualified installed W233 reader (`9d6711767e61ca5a53ea837bd5768eb0b10ac933`)
+retains the explicit 0.3 Å canonical-ring fit bound. A11/B5 plane separation is
+8.66° and P–P span 18.74 Å; A10→A11 and B6→B5 normal spacings are 4.016 and
+3.555 Å. QF1/QT1 frames remain unsupported, not silently mapped to canonical
+bases. The central metal pair has no cross-pair plane; its declaration is bound
+to the two existing N3–Hg bonds. No plane is added. Saved maps retain weak
+ordinary support and negative features near A11 sugar; they do not establish a
+replacement pose. The full map settings and out-of-plane offsets are retained.
+
+**Evidence to reuse:** `Alder/a01-context-localization-20261123-01/README.md`
+links `plan.json`, `localization.json`, `flank-frames.json`, `validation.json`,
+`cold-review.json`, `figure-execution.json` and `checkout-review.json`. The atlas
+contains 23,115 source/term assertions; the shared reader has 38 pair/coverage
+checks and the independent review 232 checks (including 75 Gemmi scalar
+comparisons). These are not pytest counts. Exact commands, source hashes and
+in-run JSON outcomes are retained; no raw console transcript is invented.
+Three caller-harness refusals remain recorded, with no library/tolerance changes.
+A renderer's stdout literal said 40 nucleotide sites; actual data/figure contain
+42 plus Hg, independently checked. No analysis was repeated to correct that text.
+
+Source `a0ac7159`; unchanged native scientific runtime `96a14d78`. **No new
+refinement, coordinates or map coefficients.** Phenix 2.2.1-6174 was used only
+for saved-map read/FFT and figure rendering, with both processes completed and
+stopped. No full suite or production/schema/default change. All scientific data
+stays private. The visually inspected report is
+`ScienceCheckouts/Hazel/2026-11-23_ft-context/index.html`: **1,069,312 bytes**,
+15 verified relative links, no copied models/maps. A01 remains partial/A02 gated.
+
+Before a new native experiment: establish the explicit flank movement window
+and preserved boundary terms with Rowan/Linden, then predeclare one candidate
+and comparison budget. Observe local source geometry, metal contacts, surrounding
+stacking, work/free statistics, B/scaling frames and maps together. Do not replace
+the current retained parent or choose a candidate solely by a scalar score.
+
 ## A01 donor stability and scaling readback — 23 November
 
 **Completed and stopped; A01 partial, A02 gated.** Five additional unchanged open
@@ -68,14 +121,10 @@ schema 1; no migration. Raw scientific files remain private and excluded from Gi
 The pre-implementation missing-module failure is recorded separately as a
 transcript-derived note, not misrepresented as a preserved raw test log.
 
-**Next:** close this small readback task and reuse its evidence. Do not repeat
-unchanged FT_Hg continuations, old angle controls or weight grids without a new
-scientific question. Geometry stability is established within this hypothesis;
-chemical target qualification and whole-context fit remain open. Linden's W235
-is ordinary-DNA phosphate seam evidence, not metal-motion support. Its existing
-masked native trial/C545 composition and canonical stacking readers may inform
-later scoped work, but no unqualified modified-residue transport is admitted.
-Coordinate shared chemistry with Rowan before further source/target changes.
+**Completed supporting step:** reuse the retained scaling-reader evidence.
+The current queue is [coupled canonical-flank placement](#current-a01-question--coupled-canonical-flank-placement)
+above. Routine donor-state integration remains deferred; shared chemical target
+changes require explicit provenance and coordination with Rowan.
 
 ## A01 connected-base retention — 23 November
 

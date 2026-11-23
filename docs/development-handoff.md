@@ -20,6 +20,14 @@ no model mutation or migration): 108 focused tests + 25 subtests and 108 native-
 readback assertions pass; exact source-bound receipts are retained there. No full
 suite or new native execution is claimed for this bounded reader.
 
+The latest A01 [saved-context localization](metal-development-handoff.md#current-a01-question--coupled-canonical-flank-placement)
+reuses existing endpoints and qualified Willow helical readers to identify
+persistent canonical-flank/sugar strain with restraints present. Compact report:
+`ScienceCheckouts/Hazel/2026-11-23_ft-context/index.html`. No new refinement or
+runtime/schema change; 232 independent cold checks and retained commands bind
+the new readback. Next scope is a source-preserving coupled flank candidate,
+not another unchanged continuation; A01 partial/A02 gated.
+
 ## Qualified integration checkpoint — test-only amendment
 
 The integrated candidate `1acc7892d2bc19d5572d46f430b27515a7ea6301` combines

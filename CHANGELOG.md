@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Localize remaining FT_Hg context strain before another fit
+
+- Record common-width geometry and separate work-gradient observations across
+  three saved endpoints; identify persistent canonical-flank/sugar distortion
+  while preserving wider model context and scientific uncertainty.
+- Reuse the qualified helical reader with explicit modified-base gaps and retain
+  original map provenance, compact figures, failed caller attempts and cold
+  validation receipts. No production behavior/schema/default or native fit change.
+- Update the A01 next step to source-preserving coupled flank placement through
+  shared owners; no f″ parent or scientific acceptance is inferred.
+
+
 ### Inspect printed final scaling without rerunning refinement
 
 - Add an opt-in explicit-log CLI reader with bounded, optionally checksum-pinned

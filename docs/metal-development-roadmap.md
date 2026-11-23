@@ -18,7 +18,12 @@ and provisional chemical targets leave A01 partial/A02 gated. The completed
 read-only scaling reader makes final B-transfer evidence inspectable; it closes
 a reporting gap, not the scientific gate. Reuse the linked focused and cold
 receipts in the [current handoff](metal-development-handoff.md) before repeating
-small statistics checks. Next experiments need a distinct chemical/context question.
+small statistics checks. The new saved-context audit identifies a canonical-flank question: persistent
+A11/B5 direction mismatch and A11 sugar strain despite present pairing/plane
+terms. Scope one source-preserving coupled flank candidate through shared owners
+before another fit; keep polymer boundaries and metal chemistry explicit.
+The [current handoff](metal-development-handoff.md#current-a01-question--coupled-canonical-flank-placement)
+links the reused Willow reader, original maps, retained checks and limitations.
 
 A01 next-input review now includes [DF C2 chemical target provenance](metal-df-c2-angle-audit.md). A source-consistent fragment is available, but its eLBOW angles are not independent chemistry authority. Retain explicit source-state uncertainty and coupled-target review; routine donor-state integration remains deferred. No automatic 120° substitution.
 
@@ -279,9 +284,10 @@ The subsequent four-donor-approach hypothesis is also complete: Hg–O4 reaches
 0.3115/0.3454; exact final-scale audit explains much of the written-B contrast
 and records where the R separation emerges. This improves local geometry without
 scientific admission. See the [completed control and scale frames](metal-development-handoff.md#completed-outcome-and-scale-frame-distinction).
-No angle/weight grid follows. One unchanged continuation on this new geometry
-may answer retention/stability; preserve the earlier runs and do not claim a
-matched-budget comparison. Donor-state automation remains deferred.
+No angle/weight grid follows. The unchanged continuation is now complete and
+retains the improved local geometry; see the current handoff. Its different
+cycle budget is not a matched causal comparison. The new remaining question is
+coupled flank/context placement. Donor-state automation remains deferred.
 
 1. **A01:** the coupled starting-pose and exact final-state force questions are
    complete. A matched native capture reproduces the noon model byte-for-byte;
