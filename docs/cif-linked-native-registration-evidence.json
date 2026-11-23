@@ -1,6 +1,15 @@
 {
   "schema_version": 1,
   "document_kind": "LINKED_NATIVE_REGISTRATION_AND_COMPONENT_METADATA_RETURNS",
+  "c553_pdu_arms_and_crystal_phosphate": {
+    "experiment": "One new complete standalone five-cycle Phenix 2.2.1-6174 fit compared with the existing C545 five-cycle control, exact same manual-001 starting coordinates.",
+    "parent_sha256": "5c0b63b683c58e977d12ebce9b6aca61d44444367a816417a2e8c39e667fb075",
+    "written_model_sha256": ["082f614e1f69e80172bb14c28b26a0af7f3f5d659661c06b4b469d712c89ab6e", "81c1ea29c561348b1cfe7cbba776ee0d6b3ae45c71e361e60317d727d4d98117"],
+    "A12_B4": {"control_tip_heights_A": [2.325, 1.559], "candidate_tip_heights_A": [0.786, 0.570], "control_terminal_lengths_A": [1.609, 1.605], "candidate_terminal_lengths_A": [1.488, 1.478]},
+    "B7_image_to_B1": {"control_and_candidate_O3_P_A": [1.6332, 1.6311], "candidate_O3_P_OP1_OP2_degrees": [105.42, 113.88], "complete_gradient_calls_in_each_fit": 2432},
+    "reflections": {"working": 1778, "free": 124, "changed_free_assignments": 0, "excluded_working": 7, "control_Rwork_Rfree": [0.2358, 0.2944], "candidate_Rwork_Rfree": [0.2389, 0.2909]},
+    "scope": "Actual coordinates improved in the two local arms. Both retain residual bend. No local conformer selection, numbered adoption or default change."
+  },
   "c552_written_ring_arms": {
     "method": "Fit the six ring atoms alone. Read each occupied, element-matched arm atom from the actual PDB using the explicit component inventory.",
     "older_PDU_pair": {"sites": ["A:12", "B:4"], "tip_heights_A": {"refine-005": [1.575, 1.954], "refine-006": [2.154, 1.497], "refine-007": [2.384, 1.506]}, "printed_terminal_target_A": 1.607, "origin": "User supplied"},

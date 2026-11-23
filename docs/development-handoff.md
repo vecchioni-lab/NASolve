@@ -1,7 +1,28 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-23, C552 measuring the actual alkyne arm in an older refinement — Rowan**.
+Updated **2026-11-23, C553 testing the base and crystal phosphate in the same refinement — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+**C553 tests both repairs in one native fit.** One new five-cycle Phenix
+2.2.1-6174 experiment reused the C545 comparison's actual parent, 862 atoms,
+seed, native driver, diffraction inputs and phosphate forces. Only the
+qualified PDU CIF and the PHIL containing the two historical terminal-bond
+overrides changed. Phenix used the 1.470(20) Å covalent target and included
+the first propynyl carbon in the ring plane at both sites. The methyl remained
+free of that plane. It finished 0.786/0.570 Å from the two rings, compared
+with 2.325/1.559 Å in the control. The terminal bonds measured 1.488/1.478 Å.
+The six sugar signs, working/free assignments and neighbouring A:12 outward
+phosphate survived. The crystal bond measured 1.631 Å, with O3′–P–OP1/OP2
+at 105.42°/113.88°. Final R-work/free were 0.2389/0.2909 compared with
+0.2358/0.2944. Neither result establishes which local conformer fits the data.
+
+The native experiment used the archived C545 worker with
+`python -B c545_restart.py launch INPUTS PACKAGE PHENIX complete NEW_TRIAL`.
+The cold check used `python -B check.py C545_TRIAL NEW_TRIAL INPUTS SOURCE_CIF NEW_JSON`.
+It verified the printed targets, plane members, six sugar signs, two paths
+to each ring measurement and all 1,902 written flag assignments. Compact
+results and replay instructions share the existing laboratory PDU folder.
+This standalone comparison leaves the selected numbered checkpoint intact.
 
 **C552 returns to the Q06 side-arm question.** An older checkpoint could
 show which atoms Phenix restrained, but lacked the selected-coordinate

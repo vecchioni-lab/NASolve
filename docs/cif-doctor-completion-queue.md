@@ -213,9 +213,18 @@ selected-site capture is absent. In the two numbered PDU:PDU phosphate
 restarts, the A:12/B:4 tip heights were 2.154/1.497 Å and 2.384/1.506 Å.
 Both sites still had the older 1.607 Å terminal-bond edit. Separately,
 the mixed 5PC/PDU checkpoint agreed with its own native capture to 0.0014 Å
-in tip height after refinement. The open experiment combines the previously
-qualified CIF and corrected site edits with the verified crystal phosphate
-on one unchanged parent.
+in tip height after refinement.
+
+C553 combined the previously qualified PDU dictionary with the registered
+crystal phosphate on the exact parent of the C545 control. Replacing the
+terminal bond target, freeing it from two old site overrides and including
+the first propynyl carbon in the ring plane reduced the tip heights from
+2.325/1.559 to 0.786/0.570 Å. The B7–B1 junction still measures 1.631 Å.
+Both fits use the same 1,778 working and 124 free observations. The
+remaining bend and archived glycosidic pose still require review. Retain
+the ordinary C290 construction controls when judging the experimental
+orientation. The next software question is how to locate a competing
+site edit reliably in another ligand's frozen restraint inputs.
 
 C537 checks which modeled atoms actually reached a native covalent plane.
 The historical GEO omitted C5A at both PDU sites. The corrected GEO included
