@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-23, C547 checking anisotropic atoms at crystal phosphates — Rowan**.
+Updated **2026-11-23, C548 carrying a crystal phosphate through numbered refinement — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
 C547 and Willow W243 carried two independent crystal phosphates per model
@@ -23,9 +23,15 @@ validation reported zero chain breaks and listed the two intended covalent
 distances as symmetry contacts. Curator annotation and the other deposition's
 return remain open.
 
-**Resume Q06 at the ordinary numbered AutoRefine restart on PDU:PDU.**
-The morning C545 distance-only and complete-restraint processes both
-finished. Their published readbacks supersede the interruption note.
+**Resume Q06 at the next generation of the numbered PDU:PDU restart.**
+C548 ran five ordinary AutoRefine cycles from manual-001, a child registered
+against refine-005. The new refine-006 retained the crystal bond, four angles
+and three torsions. The written model measures 1.638 Å with O3′–P–OP1/OP2
+at 103.65°/115.44°. Every one of the 1,902 final work/free assignments agrees
+with the original MTZ by Miller index. The fit is marked REVIEW and refine-005
+remains selected. The receipt and geometry reopen after the private run is
+moved. Reusing the earlier model's receipt stops before creating a new round.
+The next step is a fresh chemistry capture and a second fit from refine-006.
 The [existing queue](cif-doctor-completion-queue.md#crystal-phosphates-after-an-asymmetric-unit-recut)
 orders the subsequent Pine recut, simultaneous Willow fit and restart
 stress tests. The single-cut controls are complete.

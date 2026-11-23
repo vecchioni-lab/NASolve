@@ -42,6 +42,14 @@ from .postmr import PostMRPreparationError, prepare_postmr
 from .refine_doctor import RefineDoctorError, execute_refine_doctor
 
 
+def _phosphate_topology_arguments(parser):
+    parser.add_argument("--registration", type=Path, help="construct registration for --registered-continuation")
+    parser.add_argument("--registration-checkpoint", metavar="ID",
+                        help="follow a registered ancestor’s phosphate into the named descendant checkpoint")
+    parser.add_argument("--discovery-input", type=Path, help="registered end-discovery input for --registered-continuation")
+    parser.add_argument("--backbone-continuations", type=Path, help="explicit directed backbone connections for --registered-continuation")
+
+
 def build_parser() -> argparse.ArgumentParser:
     from .cif_generation_input import ORDINARY_INPUT_POLICY, SOURCE_SELECTED_INPUT_POLICY
     parser = argparse.ArgumentParser(prog="nasolve", description="Guarded nucleic-acid structure solution")
@@ -224,6 +232,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--checked-plane-forces", action="store_true",
         help="explicit native plane-force correction for this round (qualified Phenix build required)",
     )
+    autorefine.add_argument("--registered-continuation", type=int, metavar="ID",
+        help="carry one declared crystal phosphate through ordinary refinement using checked plane forces and one worker")
+    _phosphate_topology_arguments(autorefine)
+    autorefine.add_argument("--native-receipt", type=Path,
+        help="exact native chemistry receipt for this parent and its restraint inputs; alone continues its inherited crystal phosphate")
     doctor = subparsers.add_parser(
         "refine-doctor",
         aliases=["refine_doctor"],
@@ -299,11 +312,7 @@ def build_parser() -> argparse.ArgumentParser:
     image_choice.add_argument("--nearest-image", action="store_true", help="compare the closest two crystal copies of the named O3' to the named P")
     image_choice.add_argument("--registered-continuation", type=int, metavar="ID",
                               help="read this declared O3'-to-P connection in its registered source frame")
-    phosphate_image.add_argument("--registration", type=Path, help="construct registration for --registered-continuation")
-    phosphate_image.add_argument("--registration-checkpoint", metavar="ID",
-                                 help="follow a registered ancestor’s phosphate into the named descendant checkpoint")
-    phosphate_image.add_argument("--discovery-input", type=Path, help="registered end-discovery input for --registered-continuation")
-    phosphate_image.add_argument("--backbone-continuations", type=Path, help="explicit directed backbone connections for --registered-continuation")
+    _phosphate_topology_arguments(phosphate_image)
     phosphate_image.add_argument("--geometry", type=Path, help="optional matching Phenix GEO with printed bonds and nonbonded contacts")
     phosphate_image.add_argument("--native-receipt", type=Path, help="optional preserved linked native capture for intact backbone references in the same model")
     phosphate_image.add_argument("--json", action="store_true", help="include exact inputs, atom inventory and printed terms")
@@ -1123,6 +1132,11 @@ def _format_metric(value: object, digits: int = 3) -> str:
 
 def _autorefine(args: argparse.Namespace) -> int:
     try:
+        from .refinement_phosphate import request_from_args
+        try:
+            phosphate = request_from_args(args)
+        except ValueError as exc:
+            raise AutoRefineError(str(exc)) from exc
         config = load_config()
         run = _workspace_run(args.run, config)
         phenix = discover_phenix(config, explicit=args.phenix_root)
@@ -1137,12 +1151,14 @@ def _autorefine(args: argparse.Namespace) -> int:
             print(f"AutoRefine {checkpoint_id} started; full output: {log_path}")
 
         runtime_options = {}
-        if args.checked_plane_forces:
+        if args.checked_plane_forces or phosphate is not None:
             python_executable = phenix.executables.get("phenix.python")
             if python_executable is None:
                 raise AutoRefineError("Checked plane forces require the configured phenix.python")
             runtime_options = dict(correct_native_parallelity=True,
                                    phenix_python_executable=python_executable)
+            if phosphate is not None:
+                runtime_options["phosphate_request"] = phosphate
         result = execute_autorefine(
             run,
             phenix.executables["phenix.refine"],

@@ -22,8 +22,10 @@ V6_POLICY_ID = 'round-local-counted-execution-v6'
 V7_POLICY_ID = 'round-local-counted-execution-v7'
 V8_POLICY_ID = 'round-local-counted-execution-v8'
 V9_POLICY_ID = 'round-local-declared-sites-execution-v9'
+V10_POLICY_ID = 'round-local-registered-phosphate-execution-v10'
+DECLARED_SITE_POLICIES = (V9_POLICY_ID, V10_POLICY_ID)
 _COUNTED_POLICIES = (V5_POLICY_ID, V6_POLICY_ID, V7_POLICY_ID, V8_POLICY_ID)
-_WRITTEN_POLICIES = (V6_POLICY_ID, V7_POLICY_ID, V8_POLICY_ID)
+_WRITTEN_POLICIES = (V6_POLICY_ID, V7_POLICY_ID, V8_POLICY_ID, V10_POLICY_ID)
 _PAIR_GEOMETRY_POLICIES = (V7_POLICY_ID, V8_POLICY_ID)
 POLICY_ID = V3_POLICY_ID  # Ordinary requests keep their existing default.
 ADMISSION_REFUSAL_POLICY_ID = 'preflight-admission-refusal-v1'
@@ -61,6 +63,16 @@ _V8_SOURCE_DIGESTS = dict(_V7_SOURCE_DIGESTS, **{'cif_counted_phase.py': '7aa1f7
 _SOURCES = {LEGACY_POLICY_ID:_SOURCE_DIGESTS, V2_POLICY_ID:_V2_SOURCE_DIGESTS,
             V3_POLICY_ID:_CURRENT_SOURCE_DIGESTS, V4_POLICY_ID:_V4_SOURCE_DIGESTS, V5_POLICY_ID:_V5_SOURCE_DIGESTS, V6_POLICY_ID:_V6_SOURCE_DIGESTS, V7_POLICY_ID:_V7_SOURCE_DIGESTS, V8_POLICY_ID:_V8_SOURCE_DIGESTS}
 _SOURCES[V9_POLICY_ID] = _CURRENT_SOURCE_DIGESTS
+_SOURCES[V10_POLICY_ID] = {name: _V8_SOURCE_DIGESTS[name] for name in (
+    'cif_parallelity_correction.py', 'cif_parallelity_kernel.py', 'cif_refinement_output.py',
+    'cif_refinement_runtime.py', 'cif_refinement_sites.py', 'data/parallelity-native-profile.json',
+    'topostitch.py', 'topostitch_coordinates.py', 'topostitch_periodic.py', 'topostitch_recipe.py',
+    'topostitch_transport.py', 'topostitch_native_recipe.py', 'topostitch_pair_coverage.py', 'topostitch_packing.py')}
+_SOURCES[V10_POLICY_ID].update({
+    'cif_explicit_na_policy.py': 'b01612596352d24886eb4d3bd257b7246004623f3d794253ed029129b736f6c5',
+    'cif_phosphate_restraints.py': 'aac5966dc6aca9441bc752f90d3b30ab4ec5336a2837cec3e56108966c36eccd',
+    'cif_phosphate_runtime.py': '03fd3dc1ed3b8800bc6a43459abf350edf881a1005d09273766c167ad7e89b4b',
+    'cif_phosphate_phase.py': 'e612ceee631bf91f78f04a7634fd7f87dae8f78d70a34943210b59cc7bfd9c20'})
 _RUNTIME_POLICIES = {LEGACY_POLICY_ID:'explicit-native-parallelity-refinement-v1',
                      V2_POLICY_ID:'explicit-native-parallelity-refinement-v2',
                      V3_POLICY_ID:'explicit-native-parallelity-refinement-v3',
@@ -68,6 +80,7 @@ _RUNTIME_POLICIES = {LEGACY_POLICY_ID:'explicit-native-parallelity-refinement-v1
                      V5_POLICY_ID:'explicit-native-parallelity-refinement-v4',
                      V6_POLICY_ID:'explicit-native-parallelity-refinement-v4', V7_POLICY_ID:'explicit-native-parallelity-refinement-v4', V8_POLICY_ID:'explicit-native-parallelity-refinement-v4'}
 _RUNTIME_POLICIES[V9_POLICY_ID] = _RUNTIME_POLICIES[V3_POLICY_ID]
+_RUNTIME_POLICIES[V10_POLICY_ID] = _RUNTIME_POLICIES[V8_POLICY_ID]
 _V2_ENTRY = b'''from pathlib import Path
 import sys
 root=Path(__file__).resolve().parent
@@ -138,7 +151,25 @@ run_phase(root,request,phase,arguments,admission=admission,prepared_path=prepare
 
 _ENTRIES = {LEGACY_POLICY_ID:_V2_ENTRY, V2_POLICY_ID:_V2_ENTRY, V3_POLICY_ID:_ENTRY, V4_POLICY_ID:_ENTRY, V5_POLICY_ID:_COUNTED_ENTRY, V6_POLICY_ID:_COUNTED_ENTRY, V7_POLICY_ID:_COUNTED_ENTRY, V8_POLICY_ID:_COUNTED_ENTRY}
 _ENTRIES[V9_POLICY_ID] = _ENTRY
-_CHEMISTRY_POLICIES = (V3_POLICY_ID, V4_POLICY_ID, V9_POLICY_ID, *_COUNTED_POLICIES)
+_ENTRIES[V10_POLICY_ID] = b'''from pathlib import Path
+import hashlib, json, sys
+root = Path(__file__).resolve().parent
+phase, expected, *arguments = sys.argv[1:]
+raw = (root / "request.json").read_bytes()
+if hashlib.sha256(raw).hexdigest() != expected:
+    raise ValueError("Registered phosphate request changed")
+for name, ref in json.loads(raw)["code"].items():
+    path = root / name
+    if path.resolve() != path or not path.is_relative_to(root):
+        raise ValueError("Unsafe registered phosphate code path")
+    data = path.read_bytes()
+    if len(data) != ref["size"] or hashlib.sha256(data).hexdigest() != ref["sha256"]:
+        raise ValueError("Frozen registered phosphate code changed")
+sys.path.insert(0, str(root / "code"))
+from _nasolve_refinement.cif_phosphate_phase import run_phase
+run_phase(root, phase, expected, arguments)
+'''
+_CHEMISTRY_POLICIES = (V3_POLICY_ID, V4_POLICY_ID, *DECLARED_SITE_POLICIES, *_COUNTED_POLICIES)
 
 
 def _need(value, message='Invalid explicit parallelity execution evidence'):
@@ -158,7 +189,7 @@ def _root(checkpoint): return _directory(checkpoint)+'/parallelity_runtime'
 def _code(policy=None):
     """Freeze qualified bytes; default v3 remains exact after a helper upgrade."""
     policy=POLICY_ID if policy is None else policy
-    _need(isinstance(policy,str) and policy in (V3_POLICY_ID,V4_POLICY_ID,V9_POLICY_ID,*_COUNTED_POLICIES),
+    _need(isinstance(policy,str) and policy in _CHEMISTRY_POLICIES,
           'Unsupported new native execution policy')
     package=Path(__file__).parent;frozen={}
     if policy in (V3_POLICY_ID,V9_POLICY_ID):
@@ -207,6 +238,10 @@ def read_execution_request(run, reference, *, checkpoint):
     record=read_record(path)
     counted=record.get('policy_id') in _COUNTED_POLICIES
     fields = set(record) - ({'chemistry_projections'} if record.get('policy_id') in _CHEMISTRY_POLICIES else set()) - ({'counted_intent'} if counted else set())
+    if record.get('policy_id') == V10_POLICY_ID:
+        from .refinement_phosphate import read_intent
+        read_intent(run, root, record)
+        fields.discard('phosphate')
     _need(fields in ({'schema_version','policy_id','checkpoint','parent','inputs','command','code','record_sha256'}, {'schema_version','policy_id','checkpoint','parent','inputs','command','code','record_sha256','preflight_mode','macro_cycles'})
           and type(record['schema_version']) is int and record['schema_version']==(2 if counted else 1)
           and isinstance(record['policy_id'],str) and record['policy_id'] in _SOURCES
@@ -230,7 +265,7 @@ def read_execution_request(run, reference, *, checkpoint):
     if 'chemistry_projections' in record:
         from .refinement_chemistry import _projection_scope
         _need(bool(record['chemistry_projections']), 'Empty requested chemistry scope')
-        _projection_scope(run,record['chemistry_projections'],require_triple=record['policy_id']!=V9_POLICY_ID)
+        _projection_scope(run,record['chemistry_projections'],require_triple=record['policy_id'] not in DECLARED_SITE_POLICIES)
     path_in(run,reference['relative_path'])
     for item in record['inputs']:_bound_path(item,'parallelity refinement input',run)
     for name,digest in _expected_code(record['policy_id']).items():
@@ -243,19 +278,20 @@ def read_execution_request(run, reference, *, checkpoint):
     return record
 
 
-def prepare_execution(run, *, checkpoint, parent, inputs, command, python_executable, macro_cycles, chemistry_projections=None, runtime_policy=None, counted_pair_request=None):
+def prepare_execution(run, *, checkpoint, parent, inputs, command, python_executable, macro_cycles, chemistry_projections=None, runtime_policy=None, counted_pair_request=None, phosphate=None):
     """Freeze only the small qualified helper; retain all original input files."""
     from .checkpoints import _file_reference
     policy=POLICY_ID if runtime_policy is None else runtime_policy
-    _need(runtime_policy is None or (isinstance(policy,str) and policy in (V3_POLICY_ID,V4_POLICY_ID,V9_POLICY_ID,*_COUNTED_POLICIES)),
+    _need(runtime_policy is None or (isinstance(policy,str) and policy in _CHEMISTRY_POLICIES),
           'Unsupported new native execution policy')
+    _need((phosphate is not None) == (policy == V10_POLICY_ID), 'Registered phosphate requires its explicit native policy')
     _need(isinstance(command,list) and len(command)>1)
     inputs=[Path(p).expanduser().resolve() for p in inputs]
     _need(command[1:1+len(inputs)]==[str(p) for p in inputs],
           'Runtime input order differs from the native command')
     if chemistry_projections is not None:
         from .refinement_chemistry import _projection_scope
-        _projection_scope(run,chemistry_projections,require_triple=policy!=V9_POLICY_ID)
+        _projection_scope(run,chemistry_projections,require_triple=policy not in DECLARED_SITE_POLICIES)
     payload=_code() if runtime_policy is None else _code(policy)
     intent_payload=None
     if policy in _COUNTED_POLICIES:
@@ -280,11 +316,22 @@ def prepare_execution(run, *, checkpoint, parent, inputs, command, python_execut
     if intent_payload is not None:
         from .refinement_counted import write_intent
         intent=write_intent(run,root,intent_payload)
+    phosphate_record = None
+    if phosphate is not None:
+        from .refinement_phosphate import write_intent as write_phosphate
+        phosphate_record = write_phosphate(run, root, phosphate)
+        bond = _bound_path(phosphate_record['bond'], 'crystal bond', run)
+        # Keep the inherited restraints in their original order. The extra bond
+        # belongs to this runtime only and is never inherited as a loose PHIL.
+        options = command[1+len(inputs):]
+        inputs = [*inputs[:-1], bond, inputs[-1]]
+        command = [command[0], *map(str, inputs), *options]
     request=root/'request.json'
     write_record(request,dict(schema_version=2 if intent is not None else 1,policy_id=policy,checkpoint=checkpoint,
         parent=parent,preflight_mode='native-model-zero-cycle-isolated-v1',macro_cycles=macro_cycles,
         inputs=[_file_reference(Path(p),run) for p in inputs],
         command=list(command),code=code,
+        **({'phosphate':phosphate_record} if phosphate_record is not None else {}),
         **({'counted_intent':intent} if intent is not None else {}),
         **({'chemistry_projections':chemistry_projections} if chemistry_projections else {})))
     reference=_file_reference(request,run)
@@ -292,6 +339,9 @@ def prepare_execution(run, *, checkpoint, parent, inputs, command, python_execut
     request_record=read_execution_request(run,reference,checkpoint=checkpoint)
     if policy in _COUNTED_POLICIES:
         return reference,[*prefix,'preflight',reference['sha256'],*_preflight_arguments(request_record)],None
+    if phosphate is not None:
+        return (reference, [*prefix, 'preflight', reference['sha256'], *_preflight_arguments(request_record)],
+                [*prefix, 'refine', reference['sha256'], *command[1:]])
     return reference,[*prefix,'preflight',*_preflight_arguments(request_record)],[*prefix,'refine',*command[1:]]
 
 
@@ -331,7 +381,8 @@ def validate_runtime_choice(enabled, python_executable, *, runtime_policy=None):
             raise ValueError('Required qualified runtime source is unavailable: '+str(exc)) from exc
 
 
-def require_runtime_continuation(registry, selected, enabled, *, run=None, allow_counted=False, observe_declared_sites=False):
+def require_runtime_continuation(registry, selected, enabled, *, run=None, allow_counted=False, observe_declared_sites=False,
+                                 registered_phosphate=False):
     ancestors=_checked_ancestors(registry,selected)
     if run is not None:
         # Ordinary owners have already validated the registry. Read only the
@@ -344,7 +395,10 @@ def require_runtime_continuation(registry, selected, enabled, *, run=None, allow
                 policy=record.get('policy_id')
                 _need(isinstance(policy,str) and policy in _SOURCES,'Unknown ancestor execution policy')
             except (OSError,ValueError,RuntimeError) as exc:raise ValueError(str(exc)) from exc
-            if policy == V9_POLICY_ID and not observe_declared_sites:
+            if policy == V10_POLICY_ID and not registered_phosphate:
+                raise ValueError('This checkpoint inherits a registered crystal phosphate. Continue AutoRefine with '
+                                 'a native receipt for the selected model and restraints. No new round was started.')
+            if policy == V9_POLICY_ID and not (observe_declared_sites or registered_phosphate):
                 raise ValueError('This checkpoint retains declared-site chemistry observation; '
                                  'continue explicitly with observe_declared_sites=True. No new round was started.')
             if policy in _COUNTED_POLICIES and not allow_counted:
@@ -458,6 +512,9 @@ def _phase(run, root, phase, code, request, *, require_complete):
         if request['policy_id'] in _PAIR_GEOMETRY_POLICIES:
             from .refinement_pair_geometry import read_pair_geometry
             read_pair_geometry(run,root,request)
+    if request['policy_id'] == V10_POLICY_ID and require_complete:
+        from .refinement_phosphate import read_phase
+        read_phase(run, root, phase, request)
     return result
 
 
@@ -615,6 +672,13 @@ def validate_checkpoint_execution(run, item, registry):
         _need(paths[:len(expected)]==expected,'Runtime inputs differ from checkpoint ancestry or ordered restraints')
         tail=paths[len(expected):]
         parameter=path_in(run,_directory(item['id'])+'/autorefine.params')
+        if request['policy_id'] == V10_POLICY_ID:
+            from .refinement_phosphate import bind_execution_inputs, validate_lineage
+            bind_execution_inputs(request['phosphate'], paths[1], restraints)
+            validate_lineage(run, registry, parents[0], request['phosphate'])
+            bond = _bound_path(request['phosphate']['bond'], 'registered crystal bond', run)
+            _need(len(tail) >= 2 and tail[-2] == bond, 'Registered crystal bond differs from its round')
+            tail = [*tail[:-2], tail[-1]]
         _need(tail==[parameter] or (item.get('phases') is not None and
               tail==[_ref_path(item['phases'],'runtime phase',run),parameter]),
               'Runtime parameter/phase inputs differ from their round')
@@ -642,7 +706,7 @@ def _selected_chemistry_observation(run, reference, *, checkpoint, parent, model
         return None
     result=_phase(run,_root(checkpoint),'refine',request['code'],request,require_complete=True)
     from .refinement_chemistry import _projection_scope
-    _,projections=_projection_scope(run,request['chemistry_projections'],require_triple=request['policy_id']!=V9_POLICY_ID)
+    _,projections=_projection_scope(run,request['chemistry_projections'],require_triple=request['policy_id'] not in DECLARED_SITE_POLICIES)
     data=Path(model).read_bytes()
     if result['chemistry_observation']['status']=='OBSERVED':
         _need(result['chemistry_model']==dict(sha256=_digest(data),size=len(data)),

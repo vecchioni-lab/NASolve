@@ -13,6 +13,11 @@ _SOURCE = FULL_MODEL_PHIL.encode('utf-8')
 _EXECUTION = b'refinement {\n' + _SOURCE + b'}\n'
 
 
+def refinement_input_bytes(source):
+    """Return the exact bytes used by the ordinary refinement input adapter."""
+    return _EXECUTION if source == _SOURCE else source
+
+
 def _directory(checkpoint):
     if not isinstance(checkpoint, str) or re.fullmatch(r'refine-[0-9]{3,}', checkpoint) is None:
         raise ValueError('Refinement input adaptation requires a numbered refinement checkpoint')
@@ -77,12 +82,14 @@ def prepare_refinement_inputs(run, restraints, *, checkpoint):
     paths = [_ref_path(ref, 'refinement restraint', run) for ref in restraints]
     execution = list(paths); rows = []
     for index, path in enumerate(paths):
-        if path.read_bytes() != _SOURCE:
+        source = path.read_bytes()
+        adapted = refinement_input_bytes(source)
+        if adapted == source:
             continue
         target = path_in(run, directory + '/refinement_inputs/' + f'{index:03d}.phil')
         target.parent.mkdir(exist_ok=True)
         with target.open('xb') as handle:
-            handle.write(_EXECUTION)
+            handle.write(adapted)
         rows.append(dict(index=index, source=_file_reference(path, run),
                          execution=_file_reference(target, run)))
         execution[index] = target

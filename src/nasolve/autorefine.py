@@ -14,7 +14,7 @@ import tempfile
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Callable, Mapping, Sequence
+from typing import TYPE_CHECKING, Callable, Mapping, Sequence
 
 from .ligand_profiles import validate_model_phosphate_policy
 from .phosphate import PhosphateError, requested_op3_sites
@@ -30,6 +30,9 @@ from .checkpoints import (
 )
 from .model_assessment import file_sha256
 from .run_context import artifact_reference, resolve_artifact_path
+
+if TYPE_CHECKING:
+    from .refinement_phosphate import PhosphateRequest
 
 
 class AutoRefineError(RuntimeError):
@@ -1660,6 +1663,7 @@ def execute_autorefine(
     counted_frame: str | None = None,
     counted_pair_geometry: bool = False,
     observe_declared_sites: bool = False,
+    phosphate_request: PhosphateRequest | None = None,
     progress: Callable[[str, Path], None] | None = None,
 ) -> AutoRefineResult:
     """Run one quiet refinement round and append an immutable checkpoint.
@@ -1669,7 +1673,7 @@ def execute_autorefine(
     existing initialization behavior. Later saves still use the registry guard.
     """
     from .refinement_parallelity import (
-        V6_POLICY_ID, V7_POLICY_ID, V8_POLICY_ID, V9_POLICY_ID, require_runtime_continuation,
+        V6_POLICY_ID, V7_POLICY_ID, V8_POLICY_ID, V9_POLICY_ID, V10_POLICY_ID, require_runtime_continuation,
         validate_declared_site_choice, validate_runtime_choice,
     )
     from .refinement_counted import LONG_CONTROL_PROTOCOL, control_iteration_cap
@@ -1680,6 +1684,16 @@ def execute_autorefine(
         if not counted_pair_geometry:
             raise AutoRefineError('Longer counted control requires final pair geometry capture')
         counted_policy = V8_POLICY_ID
+    phosphate_intent = None
+    if phosphate_request is not None:
+        from .refinement_phosphate import PhosphateRequest
+        if (not isinstance(phosphate_request, PhosphateRequest) or not correct_native_parallelity
+                or counted_protocol is not None or processor_count not in (None, 1)):
+            raise AutoRefineError("Registered phosphate requires ordinary checked refinement with one native worker")
+        processor_count = 1
+    runtime_policy = (counted_policy if counted_protocol is not None else V10_POLICY_ID if phosphate_request is not None
+                      else V9_POLICY_ID if observe_declared_sites else None)
+    runtime_options = {"runtime_policy": runtime_policy} if runtime_policy is not None else {}
     from .refinement_counted import validate_autorefine_control
     try:
         validate_declared_site_choice(observe_declared_sites, checked=correct_native_parallelity,
@@ -1689,9 +1703,7 @@ def execute_autorefine(
             processor_count=processor_count, real_space_sites=real_space_sites,
             adp_mode=adp_mode, refine_occupancies=refine_occupancies,
             anomalous_mode=anomalous_mode, refine_coordinates=refine_coordinates)
-        validate_runtime_choice(correct_native_parallelity, phenix_python_executable,
-            **({'runtime_policy': counted_policy} if counted_protocol is not None else
-               {'runtime_policy': V9_POLICY_ID} if observe_declared_sites else {}))
+        validate_runtime_choice(correct_native_parallelity, phenix_python_executable, **runtime_options)
     except ValueError as exc:
         raise AutoRefineError(str(exc)) from exc
     if counted_frame is not None and (counted_protocol is None or counted_frame != 'recipe'):
@@ -1729,6 +1741,7 @@ def execute_autorefine(
         try:
             require_runtime_continuation(registry, parent, correct_native_parallelity, run=run,
                 **({'allow_counted': True} if counted_protocol is not None else {}),
+                **({'registered_phosphate': True} if phosphate_request is not None else {}),
                 **({'observe_declared_sites':True} if observe_declared_sites else {}))
         except ValueError as exc:
             raise AutoRefineError(str(exc)) from exc
@@ -1744,7 +1757,7 @@ def execute_autorefine(
         from .refinement_chemistry import prepare_chemistry_scope
         try:
             chemistry_projections = prepare_chemistry_scope(run,registry,verified_preparations,parent,
-                **({'include_nontriple':True} if observe_declared_sites else {}))
+                **({'include_nontriple':True} if observe_declared_sites or phosphate_request is not None else {}))
         except (OSError,ValueError,RuntimeError) as exc:
             raise AutoRefineError(f'Checked chemistry scope is inconsistent: {exc}') from exc
     report = _run_report(run)
@@ -1810,6 +1823,13 @@ def execute_autorefine(
         resolved_extra_restraints.append(path)
 
     restraints = [*restraints, *resolved_extra_restraints]
+    if phosphate_request is not None:
+        from .refinement_phosphate import prepare_intent
+        try:
+            phosphate_intent = prepare_intent(run, registry, parent, phosphate_request, phenix_version=phenix_version,
+                                             python_executable=phenix_python_executable)
+        except (OSError, ValueError, RuntimeError, TypeError, KeyError) as exc:
+            raise AutoRefineError(f"Registered phosphate could not be verified: {exc}") from exc
 
     requested_terminal_protection_path: Path | None = None
     if requested_terminal_protection is not None:
@@ -1881,6 +1901,17 @@ def execute_autorefine(
             terminal_phosphate_sites,
         )
 
+    if phosphate_intent is not None:
+        from .refinement_phosphate import bind_planned_inputs
+        try:
+            source_paths = [observations, model, *restraints, *([phase_file] if phase_file is not None else [])]
+            if any(artifact_reference(path, run).get("anchor") not in ("run", "dataset", "repository")
+                   for path in source_paths):
+                raise ValueError("Registered phosphate needs refinement inputs inside a declared run, dataset or repository")
+            bind_planned_inputs(phosphate_intent, model, restraints,
+                                terminal_protection=automatic_terminal_seed["protection_text"] if automatic_terminal_seed else None)
+        except (OSError, ValueError, RuntimeError) as exc:
+            raise AutoRefineError(f"Registered phosphate starting inputs differ: {exc}") from exc
     checkpoint_id = next_checkpoint_id(registry, "refine")
     round_number = int(checkpoint_id.rsplit("-", 1)[1])
     round_directory = run / "AutoRefine" / f"round_{round_number:03d}"
@@ -1975,6 +2006,9 @@ def execute_autorefine(
     try:
         execution_restraints, refinement_input_reference = prepare_refinement_inputs(
             run, execution_restraint_records, checkpoint=checkpoint_id)
+        if phosphate_intent is not None:
+            from .refinement_phosphate import bind_execution_inputs
+            bind_execution_inputs(phosphate_intent, model, execution_restraints)
     except (OSError, ValueError, RuntimeError) as exc:
         raise AutoRefineError(f"Refinement input preparation failed: {exc}") from exc
 
@@ -2019,9 +2053,9 @@ def execute_autorefine(
                         *([phase_file] if phase_file is not None else []), parameters],
                 command=command, python_executable=phenix_python_executable, macro_cycles=macro_cycles,
                 chemistry_projections=chemistry_projections,
-                **({'runtime_policy': counted_policy, 'counted_pair_request': counted_pair_request}
-                   if counted_protocol is not None else
-                   {'runtime_policy': V9_POLICY_ID} if observe_declared_sites else {}))
+                **runtime_options,
+                **({'counted_pair_request': counted_pair_request} if counted_protocol is not None else {}),
+                **({'phosphate': phosphate_intent} if phosphate_intent is not None else {}))
         except (OSError, ValueError, RuntimeError) as exc:
             raise AutoRefineError(f'Parallelity execution preparation failed: {exc}') from exc
     if counted_protocol is not None:
@@ -2344,6 +2378,12 @@ def execute_autorefine(
         checkpoint_status = "REVIEW"
         usable = True
         exit_code = 0
+    elif phosphate_intent is not None:
+        status = "AUTOREFINE_REVIEW"
+        message = "Refinement completed. Inspect the registered crystal phosphate before selecting this checkpoint."
+        checkpoint_status = "REVIEW"
+        usable = True
+        exit_code = 0
     elif counted_protocol is not None:
         status = "AUTOREFINE_REVIEW"
         message = "Explicit counted-coordinate control completed; inspect the model before selection"
@@ -2412,7 +2452,7 @@ def execute_autorefine(
     }
     selected = auto_select_success and status == "AUTOREFINE_READY"
     try:
-        if counted_protocol is not None:
+        if counted_protocol is not None or phosphate_intent is not None:
             from .refinement_parallelity import validate_checkpoint_execution
             validate_checkpoint_execution(run, checkpoint_payload,
                 dict(registry, checkpoints=[*registry['checkpoints'], checkpoint_payload]))

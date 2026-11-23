@@ -277,11 +277,11 @@ def read_refinement_chemistry(run_directory, *, checkpoint, native_receipt=None)
     if result is None:
         result = _readback(inherited['model'], prepared['projections'], dictionaries, phils, native_receipt)
     else:
-        from .refinement_parallelity import read_execution_request, validate_execution, V9_POLICY_ID
+        from .refinement_parallelity import read_execution_request, validate_execution, DECLARED_SITE_POLICIES
         record = validate_execution(run,execution,checkpoint=item['id'],parent=item['parent'],usable=True)
         request = read_execution_request(run,record['request'],checkpoint=item['id'])
         expected = prepare_chemistry_scope(run,registry,verified,item,
-            **({'include_nontriple':True} if request['policy_id']==V9_POLICY_ID else {}))
+            **({'include_nontriple':True} if request['policy_id'] in DECLARED_SITE_POLICIES else {}))
         _need(result['declared_sites'] == {row['site']:dict(component=row['component'],projection_sha256=row['projection']['sha256'])
               for row in expected}, 'Observed scope differs from checked preparation')
     _need(result['model_sha256'] == item['model']['sha256'].lower(), 'Final checkpoint model changed during read')

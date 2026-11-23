@@ -340,6 +340,10 @@ def _bind_capture_inputs(record, model, dictionaries, phils):
     """Bind ordered bytes only; completion/consumer qualification is separate."""
     expected=[('model',model),*[('dictionary',p) for p in dictionaries],*[('phil',p) for p in phils]]
     pins=[(role,sha256(_read(path)).hexdigest(),path.stat().st_size) for role,path in expected]
+    _bind_capture_input_pins(record, pins)
+
+
+def _bind_capture_input_pins(record, pins):
     actual=[(r.get('role'),r.get('sha256'),r.get('size')) for r in record['inputs']]
     _need(actual==pins, 'Native capture did not consume the exact ordered prepared inputs')
 

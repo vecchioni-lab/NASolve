@@ -1464,14 +1464,18 @@ report-only findings into unreviewed universal gates.
 
 #### Crystal phosphates after an asymmetric-unit recut
 
-**Resume the numbered AutoRefine restart first.** C545 completed the paired
-five-cycle experiment that was in flight at the morning interruption. On the
-original PDU:PDU comparison, start a fresh child through the ordinary command.
-Verify the actual selected parent, inherited restraint files and Free-R
-assignments. Read back one bond, four angles and three torsions in the
-declared mate after native geometry is rebuilt. Keep the fitted child available
-for review and the parent's own history intact. Reuse the completed C545
-and C547/W243 controls.
+**The first ordinary numbered restart is complete (C548).** On a separate copy
+of the PDU:PDU run, ordinary AutoRefine fitted the named manual child for five
+cycles. The B7 O3′–B1 P bond finished at 1.638 Å in its registered image.
+The seven inherited restraints, eight native linkage terms and original
+work/free assignments were verified. The fitted child is available for review.
+The previous selection and earlier checkpoints were preserved.
+
+**Next, restart from the fitted child after moving the dataset.** Reuse the
+saved construct declaration, recapture the chemistry of the new model and
+check the actual second fit. Keep routine successful evidence compact and
+preserve enough information to reproduce the receipt. A missing declaration
+or a receipt from a different model must never authorize this junction.
 
 **Stress-test the shared method in stages.** Pine records the designed
 continuation and its exact crystal operation through a recut. Before any

@@ -8,6 +8,10 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- AutoRefine can carry a registered crystal phosphodiester into a numbered
+  child. Phenix checks the bond, four angles and three torsions in the declared
+  crystal copy during preflight and refinement. The fitted child awaits review.
+
 - Registered crystal phosphates can use PDB models with anisotropic atoms.
   Before refinement, Cedar checks each displacement tensor against Phenix's
   coordinate and diffraction models and allows for the printed precision of B.

@@ -185,6 +185,36 @@ model. It allows the independent rounding of the printed B and ANISOU
 fields. A changed tensor, even one with the same equivalent B factor,
 requires review.
 
+### Carrying one registered phosphate through a numbered refinement
+
+Give AutoRefine the checkpoint to fit, the checkpoint where the construct was
+registered, and the exact native chemistry receipt for the model being fitted.
+For example, these are the inputs for a child of the original registration.
+
+```bash
+nasolve autorefine RUN --from manual-001 --registration-checkpoint refine-005 \
+  --registered-continuation 1 --registration registration.json \
+  --discovery-input discovery.json --backbone-continuations continuations.json \
+  --native-receipt current-parent/native_receipt.json
+```
+
+The original seven restraint files in the PDU example keep their order. The
+number of files can vary by experiment. The round supplies its own crystal
+bond to Phenix. Two or more chemically matching intact links must agree on
+the bond and all seven orientation terms. Checked plane forces and one native
+worker are used. Preflight and refinement independently verify the applied
+terms, the four bonded-neighbour exclusions, and the work/free identities.
+Read the new checkpoint's coordinates and maps before selecting it.
+
+For a later child on the same branch, `--native-receipt` by itself carries
+the stored registration forward. The new receipt must describe the newly
+selected model and its exact dictionaries and PHIL files. The original
+registration files can move after the first round. Each request keeps small
+copies in its own `parallelity_runtime/phosphate` directory. The full native
+chemistry inventory is checked when supplied and its fingerprint is retained.
+This route currently covers one registered junction in a PDB model on the
+qualified Phenix build. A physical nick remains open.
+
 <a id="current-capability-boundary-c96"></a>
 <a id="current-capability-boundary-c97"></a>
 
