@@ -2147,7 +2147,8 @@ def _cif_doctor(args: argparse.Namespace) -> int:
                         if requested is None:
                             continue
                         geometry = requested.expanduser()
-                        observed = reader(model, geometry, payload["components"])
+                        options = {"restraint_inputs": zip(paths, payload["inputs"], strict=True)} if key == "refined_bond_targets" else {}
+                        observed = reader(model, geometry, payload["components"], **options)
                         if observed["model_sha256"] != payload["model"].get("sha256"):
                             raise ValueError("Model changed during printed geometry inspection")
                         observed["geometry"] = {"anchor": "geometry-input", "relative_path": geometry.name, "sha256": observed["geometry_sha256"]}
@@ -2220,6 +2221,12 @@ def _cif_doctor(args: argparse.Namespace) -> int:
                 for row in [r for r in bonds["observations"] if r["comparison"] in {"TARGET_DIFFERS", "TARGET_AND_SIGMA_DIFFER"}][:8]:
                     print(f"  {row['site']} {row['component']} {'–'.join(row['atoms'])}  CIF {row['dictionary_ideal_A']:.3f} Å, "
                           f"Phenix {row['printed_ideal_A']:.3f} Å ({row['origin']}), model {row['model_A']:.3f} Å.")
+                files = {entry["input_index"]: entry["name"] for entry in bonds.get("edit_inputs", [])}
+                matches = [(row, edit) for row in bonds["observations"] for edit in row.get("explicit_bond_edits", [])
+                           if edit["matches_printed_parameters"]]
+                for row, edit in matches[:8]:
+                    print(f"  {row['site']} {row['component']} {'–'.join(row['atoms'])}  Printed target and sigma match "
+                          f"{files[edit['input_index']]} (line {edit['line']}).")
             if "b_factors" in payload:
                 for site, group in payload["b_factors"]["sites"].items():
                     if group.get("b_change_range_A2") is not None:

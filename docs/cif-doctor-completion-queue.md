@@ -223,8 +223,10 @@ the first propynyl carbon in the ring plane reduced the tip heights from
 Both fits use the same 1,778 working and 124 free observations. The
 remaining bend and archived glycosidic pose still require review. Retain
 the ordinary C290 construction controls when judging the experimental
-orientation. The next software question is how to locate a competing
-site edit reliably in another ligand's frozen restraint inputs.
+orientation. C554 located both earlier site edits in the frozen refinement
+inputs and their absence after the targeted repair. The same check uses
+literal selected atoms and native target values for other components.
+Any automatic change must still establish ownership of the edit.
 
 C537 checks which modeled atoms actually reached a native covalent plane.
 The historical GEO omitted C5A at both PDU sites. The corrected GEO included

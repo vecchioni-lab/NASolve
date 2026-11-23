@@ -8,7 +8,7 @@ the native printed targets, inspect a checkpoint or supply the exact files.
 
 ```sh
 nasolve cif-doctor assess --run dataset/AutoMR/run_001 --checkpoint refine-002 --bond-targets
-nasolve cif-doctor assess PDU.cif --model refined_001.pdb --bond-targets refined_001_final.geo
+nasolve cif-doctor assess PDU.cif site_edits.phil --model refined_001.pdb --bond-targets refined_001_final.geo
 ```
 
 Doctor compares the ideal length and sigma of each printed within-residue bond
@@ -21,6 +21,16 @@ inputs. An intentional site edit or a polymer-link modification can explain it.
 Use `--json` for sigma differences, explicit edits, and ambiguous or missing
 source rows. Chemical acceptance and any choice to edit restraints stay with
 the operator.
+
+For a bond that Phenix calls user-supplied, Doctor looks for literal
+single-atom selections in the supplied restraint files. It compares the
+two atoms in either order, the ideal distance, sigma and slack. A matching
+file and line let you open the original instruction. Several declarations
+can request the same values. The JSON retains them all, along with
+declarations at the same bond that requested different values. It also
+identifies unsupported selections and files it could only partly read.
+A numbered checkpoint supplies its own ordered inputs. For a standalone
+reading, include the actual PHIL files beside the CIF on the command line.
 
 ## Checking which atoms Phenix put in a residue plane
 

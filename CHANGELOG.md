@@ -8,6 +8,10 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `cif-doctor assess --bond-targets` points to the file and line of a
+  literal site edit that matches a target printed by Phenix. The JSON keeps
+  conflicting declarations and identifies files it could only partly read.
+
 - `cif-doctor assess --refined-planes` measures a carbon alkyne side arm
   from the six atoms of its ring in the written PDB. It can read older
   checkpoints and standalone Phenix outputs alongside their supplied CIFs.

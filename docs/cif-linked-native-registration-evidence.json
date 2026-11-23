@@ -1,6 +1,14 @@
 {
   "schema_version": 1,
   "document_kind": "LINKED_NATIVE_REGISTRATION_AND_COMPONENT_METADATA_RETURNS",
+  "c554_explicit_bond_edit_sources": {
+    "command": "cif-doctor assess --bond-targets",
+    "real_readings": ["numbered refine-007 preflight", "numbered refine-007 final", "C531 masked corrected CIF final", "C553 combined treatment final"],
+    "historical_PHIL_sha256": "6014d86de76d1fa5e0cf270e30667ea803eebfa365c5644773eac32c351b8280",
+    "PDU_terminal_old_edits": {"A:12": 16, "B:4": 53, "ideal_A": 1.607, "sigma_A": 0.010, "action": "change"},
+    "scope": "Literal matches to the printed parameters. Multiple declarations and incomplete file readings are retained. No editing or inference of precedence.",
+    "focused_tests_per_build": 225, "subtests_per_build": 7
+  },
   "c553_pdu_arms_and_crystal_phosphate": {
     "experiment": "One new complete standalone five-cycle Phenix 2.2.1-6174 fit compared with the existing C545 five-cycle control, exact same manual-001 starting coordinates.",
     "parent_sha256": "5c0b63b683c58e977d12ebce9b6aca61d44444367a816417a2e8c39e667fb075",

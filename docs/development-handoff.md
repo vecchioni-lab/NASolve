@@ -1,7 +1,30 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-23, C553 testing the base and crystal phosphate in the same refinement — Rowan**.
+Updated **2026-11-23, C554 locating an old site edit in the refinement inputs — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+**C554 explains a competing site instruction.** The optional bond-target
+inspection now reads the ordered, fingerprinted PHIL inputs and lists
+literal statements for the exact atom pair, including the file and line.
+The target, sigma and slack are compared at the GEO's printed precision.
+The existing parser supplies the block boundaries. Simple single-atom
+selections cover base and sugar names. A wildcard, include or unsupported
+block leaves its file partially read or unassessed. The command keeps
+every matching declaration and leaves the order of precedence open.
+
+For the older PDU pair, the responsible file contains `change` blocks at
+lines 16 and 53. Both request 1.607(10) Å. The same statements appeared
+in the numbered preflight, final GEO and independent masked-CIF experiment.
+After removing these two edits, both neighbouring alkyne edits remained
+traceable at each site. The matching statements and affected sites were
+identical in the source and moved-wheel check.
+
+The focused command was `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_{refinement_component_bonds,refinement_link_geometry,refinement_component_planes,cif_doctor_run,cif_doctor_cli,cif_na_policy,cif_restraint_context,cif_doctor}.py`.
+Both builds passed 225 tests and seven subtests. Two new regression cases
+first failed on missing source attribution. A third checks that changed
+file bytes cannot supply a match. This adds read-only fields on request.
+Stored refinements keep their existing formats and inputs. The native
+files are the same Phenix 2.2.1-6174 outputs reported under C553.
 
 **C553 tests both repairs in one native fit.** One new five-cycle Phenix
 2.2.1-6174 experiment reused the C545 comparison's actual parent, 862 atoms,

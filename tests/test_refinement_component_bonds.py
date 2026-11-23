@@ -36,6 +36,71 @@ def standalone(capsys, dictionaries, model, geometry):
     return json.loads(capsys.readouterr().out)["refined_bond_targets"]
 
 
+def test_supplied_bond_can_be_located_across_ordered_phil_inputs(tmp_path, capsys):
+    dictionary, model, geometry = inputs(tmp_path)
+    body = """refinement.geometry_restraints.edits {
+  bond {
+    action = change
+    atom_selection_1 = chain B and resid 4 and name "C5'"
+    atom_selection_2 = chain B and resid 4 and name C5
+    distance_ideal = 1.6073
+    sigma = 0.010
+  }
+}
+"""
+    first = tmp_path / "first.phil"
+    second = tmp_path / "second.eff"
+    incomplete = tmp_path / "other.phil"
+    first.write_text(body)
+    second.write_text(body.replace("0.010", "0.020"))
+    incomplete.write_text("include file unprovided.phil\n")
+    before = _snapshot(tmp_path)
+    report = standalone(capsys, [first, dictionary, second, incomplete], model, geometry)
+    edited, = [r for r in report["observations"] if r["origin"] == "User supplied"]
+    hits = edited["explicit_bond_edits"]
+    assert [(r["input_index"], r["line"], r["matches_printed_parameters"]) for r in hits] == [(0, 2, True), (2, 2, False)]
+    assert hits[0]["action"] == "change" and hits[0]["ideal_A"] == 1.6073
+    assert report["edit_inputs"][-1]["status"] == "UNASSESSED"
+    assert report["edit_inputs"][0]["sha256"] == file_sha256(first)
+    assert _snapshot(tmp_path) == before
+
+
+def test_unsupported_or_wildcard_selections_do_not_claim_a_printed_bond(tmp_path, capsys):
+    dictionary, model, geometry = inputs(tmp_path)
+    phil = tmp_path / "edits.phil"
+    phil.write_text("""geometry_restraints.edits {
+  bond {
+    action = change
+    atom_selection_1 = chain B and resid 4 and name C5*
+    atom_selection_2 = chain B and resid 4 and name C5
+    distance_ideal = 1.607
+    sigma = 0.01
+  }
+}
+""")
+    report = standalone(capsys, [dictionary, phil], model, geometry)
+    edited, = [r for r in report["observations"] if r["origin"] == "User supplied"]
+    assert edited["explicit_bond_edits"] == []
+    owner, = report["edit_inputs"]
+    assert owner["status"] == "PARTIAL" and owner["unread_bond_blocks"] == 1
+
+
+def test_bond_edit_bytes_must_match_the_initial_dictionary_assessment(tmp_path):
+    import pytest
+    from nasolve.cif_doctor import assess_dictionaries
+    from nasolve.refinement_component_bonds import read_component_bond_targets
+
+    cif, model, geo = inputs(tmp_path)
+    phil = tmp_path / "edits.phil"
+    phil.write_text("# original\n")
+    paths = [cif, phil]
+    captured = assess_dictionaries(paths, model=model)
+    phil.write_text("# changed during inspection\n")
+    with pytest.raises(ValueError, match="differs from the assessed restraint"):
+        read_component_bond_targets(model, geo, captured["components"],
+                                    restraint_inputs=zip(paths, captured["inputs"], strict=True))
+
+
 def test_changed_target_and_sigma_are_compared_separately(tmp_path, capsys):
     dictionary, model, geometry = inputs(tmp_path)
     snapshot = _snapshot(tmp_path)

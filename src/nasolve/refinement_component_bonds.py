@@ -4,6 +4,7 @@ from hashlib import sha256
 from pathlib import Path
 
 from .cif_doctor import _number
+from .refinement_bond_edits import compare_explicit_edits, explicit_bond_edits
 from .refinement_link_geometry import _model_labels, _printed_rows, _within
 
 _DIFFERENCES = {"TARGET_DIFFERS", "SIGMA_DIFFERS", "TARGET_AND_SIGMA_DIFFER"}
@@ -55,17 +56,19 @@ def _compare_row(declarations, numbers):
     return states[target_matches, sigma_matches], ideal, sigma
 
 
-def read_component_bond_targets(model, geometry, components):
+def read_component_bond_targets(model, geometry, components, *, restraint_inputs=()):
     """Observe every printed same-residue bond belonging to an inventoried component.
 
     Include individual rows for differences, unresolved readings and user-supplied
-    bonds. An effective linked monomer can legitimately differ from its input CIF.
+    bonds. Optional restraint inputs pair each path with its original assessment
+    descriptor. An effective linked monomer can legitimately differ from its input CIF.
     """
     model, geometry = Path(model), Path(geometry)
     raw, labels = _model_labels(model)
     data = geometry.read_bytes()
     definitions = _definitions(components)
     counts, observations = Counter(), []
+    edits, edit_inputs = explicit_bond_edits(restraint_inputs, labels)
     try:
         sections, printed = _printed_rows(data.decode("utf-8"), labels, intra_components=definitions)
     except ValueError as exc:
@@ -90,12 +93,15 @@ def read_component_bond_targets(model, geometry, components):
                                      dictionary_ideal_A=ideal, dictionary_sigma_A=sigma,
                                      printed_ideal_A=float(numbers["ideal"]), printed_sigma_A=float(numbers["sigma"]),
                                      printed_slack_A=float(numbers.get("slack", 0)), model_A=float(numbers["model"])))
+            if origin == "User supplied" and edit_inputs:
+                observations[-1]["explicit_bond_edits"] = compare_explicit_edits(edits, left, right, numbers, image)
     if model.read_bytes() != raw or geometry.read_bytes() != data:
         raise ValueError("Model or printed geometry changed during the bond target comparison")
     status = "UNASSESSED" if reason else ("OBSERVED" if sections else "NOT_RECORDED")
     return dict(policy_id="printed-component-bond-targets-v1", model_sha256=sha256(raw).hexdigest(),
                 geometry_sha256=sha256(data).hexdigest(), status=status, reason=reason, sections=sections,
                 counts=dict(sorted(counts.items())) if sections else None, observations=observations if sections else None,
+                **({"edit_inputs": edit_inputs} if edit_inputs else {}),
                 scope="Printed same-residue bonds for explicit input components, at GEO precision.",
                 scientific_approval="NOT_ASSESSED")
 

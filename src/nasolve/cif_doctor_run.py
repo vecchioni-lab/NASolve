@@ -292,7 +292,8 @@ def assess_run(
                 observations_at_stage["contacts"] = read_refined_contacts(coords, geo, contact_sites)
             if bond_targets:
                 from .refinement_component_bonds import read_component_bond_targets
-                observations_at_stage["bond_targets"] = read_component_bond_targets(coords, geo, receipt["components"])
+                observations_at_stage["bond_targets"] = read_component_bond_targets(
+                    coords, geo, receipt["components"], restraint_inputs=zip(restraints, inputs, strict=True))
             if refined_planes:
                 from .refinement_component_planes import read_component_planes
                 observations_at_stage["printed_planes"] = read_component_planes(coords, geo, receipt["components"])
