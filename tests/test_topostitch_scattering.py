@@ -139,3 +139,92 @@ def test_process_global_charge_policy_is_not_silently_changed(tmp_path):
         with pytest.raises(ValueError,match='neutral IT92'):observe_registered_relabel_scattering(*paths,**kw)
         assert gemmi.IT92_get_ignore_charge() is False
     finally:gemmi.IT92_set_ignore_charge(original)
+
+
+def saved_scattering_packet(tmp_path, *, forest=False):
+    from nasolve.topostitch_recut_bundle import build_relabel_preview
+    if forest:
+        from tests.test_topostitch_continuations import setup, request
+        paths, links = setup(tmp_path)
+        args, _, _ = request(paths, links, forest=True)
+    else:
+        paths, kw = fixture(tmp_path)
+        request = dict(schema_version=1, kind='topostitch-representative-proposal',
+            registered_graph_sha256=kw['expected_registered_graph_sha256'],
+            node_images=kw['node_images'], extra_edges=[],
+            coincidence_tolerance_angstrom=.01, max_atom_tests=2_000_000)
+        proposal = tmp_path/'chosen.json'; proposal.write_text(json.dumps(request))
+        args = dict(model=paths[0], discovery=paths[1], registration_path=paths[2], proposal_path=proposal)
+    root = tmp_path/'saved-scattering'
+    receipt = build_relabel_preview(**args, output_directory=root)
+    return root, sha256((root/'preview.json').read_bytes()).hexdigest(), receipt
+
+
+@pytest.mark.parametrize('forest', [False, True])
+def test_saved_cut_scattering_uses_verified_images_and_continuations(tmp_path, forest):
+    from nasolve.topostitch_recut_bundle import observe_relabel_scattering
+    root, digest, receipt = saved_scattering_packet(tmp_path, forest=forest)
+    original = {p:p.read_bytes() for p in root.iterdir()}
+    result = observe_relabel_scattering(root, expected_receipt_sha256=digest, hkls=HKLS)
+    observation = result['observation']
+    assert result['preview_receipt_sha256'] == digest
+    assert observation['preview_sha256'] == receipt['observation']['preview_sha256']
+    assert observation['registered_graph_sha256'] == receipt['registered_graph_sha256']
+    assert observation['source_model_sha256'] == receipt['source_model_sha256']
+    assert observation['relative_l2_complex_difference'] < 1e-7
+    assert not result['runtime_authority'] and not result['scientific_acceptance']
+    assert not result['scattering_invariance_validated'] and not result['coordinates_materialized']
+    if forest:
+        assert receipt['observation']['registered_graph']['declared_continuations']
+        assert receipt['forest_selection']
+    else:
+        assert observation['transported_anisou']
+    assert {p:p.read_bytes() for p in root.iterdir()} == original
+    assert str(tmp_path) not in json.dumps(result)
+
+
+def test_saved_cut_wrong_pin_refuses_before_scattering(tmp_path, monkeypatch):
+    from nasolve.topostitch_recut_bundle import observe_relabel_scattering
+    import nasolve.topostitch_scattering as module
+    root, digest, _ = saved_scattering_packet(tmp_path)
+    monkeypatch.setattr(module, 'observe_registered_relabel_scattering',
+        lambda *a, **k: pytest.fail('A different saved cut must not be evaluated'))
+    with pytest.raises(ValueError, match='receipt'):
+        observe_relabel_scattering(root, expected_receipt_sha256='0'*64, hkls=HKLS)
+
+
+@pytest.mark.parametrize('change', ['receipt', 'observation'])
+def test_saved_cut_drift_or_mismatched_calculation_refuses(tmp_path, monkeypatch, change):
+    from nasolve.topostitch_recut_bundle import observe_relabel_scattering
+    import nasolve.topostitch_scattering as module
+    from nasolve.topostitch_registration import _fingerprint
+    root, digest, _ = saved_scattering_packet(tmp_path)
+    calculate = module.observe_registered_relabel_scattering
+    def changed(*a, **k):
+        result = calculate(*a, **k)
+        if change == 'receipt':
+            path = root/'preview.json'; path.write_bytes(path.read_bytes()+b'\n')
+        else:
+            result['preview_sha256'] = '0'*64
+            result['report_sha256'] = _fingerprint({k:v for k,v in result.items() if k != 'report_sha256'})
+        return result
+    monkeypatch.setattr(module, 'observe_registered_relabel_scattering', changed)
+    with pytest.raises(ValueError, match='changed|differs'):
+        observe_relabel_scattering(root, expected_receipt_sha256=digest, hkls=HKLS)
+
+
+def test_saved_cut_scattering_relocates_without_original_source_or_new_files(tmp_path, monkeypatch):
+    from pathlib import Path
+    from nasolve.topostitch_recut_bundle import observe_relabel_scattering
+    original = tmp_path/'original'; original.mkdir()
+    root, digest, _ = saved_scattering_packet(original)
+    expected = observe_relabel_scattering(root, expected_receipt_sha256=digest, hkls=HKLS)
+    moved = tmp_path/'moved'; shutil.move(root,moved); shutil.rmtree(original)
+    opener = Path.open
+    def guarded(self, *a, **k):
+        if self.resolve().is_relative_to(original): raise AssertionError('Original path lookup')
+        return opener(self, *a, **k)
+    monkeypatch.setattr(Path, 'open', guarded)
+    assert observe_relabel_scattering(moved, expected_receipt_sha256=digest, hkls=HKLS) == expected
+    with pytest.raises(ValueError, match='work budget'):
+        observe_relabel_scattering(moved, expected_receipt_sha256=digest, hkls=HKLS, max_structure_factor_terms=1)

@@ -3589,3 +3589,71 @@ Willow; Rowan owns the separate live execution. No full-suite repeat for this
 isolated return comparator. Evidence and the frozen installed package live at
 NASolve anchor `branch-artifacts/willow/w243-cartesian-return/`; private arrays,
 models and scientific data are excluded from Git. No manuscript files were edited.
+
+
+## Observe scattering for a pinned saved recut (W245)
+
+`topostitch_recut_bundle.observe_relabel_scattering` binds the existing independent
+Gemmi scattering observer to an exact immutable preview receipt. Previously a
+caller reconstructed the proposal's image list and connection declarations when
+calling `observe_registered_relabel_scattering`; the new API derives them from
+the replayed saved packet, for explicit-image and forest proposals alike.
+
+```python
+from nasolve.topostitch_recut_bundle import observe_relabel_scattering
+report = observe_relabel_scattering(
+    preview_directory,
+    expected_receipt_sha256=recorded_preview_sha256,
+    hkls=[[1, 2, 3], [-1, 3, 2]],
+    max_structure_factor_terms=5_000_000,
+)
+```
+
+The supplied digest must identify the exact saved `preview.json`, not a graph
+fingerprint or a newly calculated digest substituted for the intended choice.
+The packet owner revalidates local anchored source/proposal inputs and the full
+preview. The observer uses the verified graph's complete requested node images,
+retains schema-2 explicit backbone continuations and applies the original work
+budgets. Its source, graph and preview bindings must reproduce the saved choice;
+changed packet bytes or a mismatched returned calculation refuse. No original
+external source location is consulted.
+
+The additive schema-1 `topostitch-representative-scattering-observation` report
+contains `preview_receipt_sha256`, the unchanged nested scattering `observation`
+and its own `report_sha256`. Source-byte verification is recorded separately
+from scientific authority. Existing proposal/preview schemas, direct scattering
+API, CLI defaults and previous reports remain unchanged; no migration is needed.
+Nothing is written, selected, refined or serialized. Gemmi 0.7.5's neutral-atom
+sampled complex Fcalc, float32 anisotropic storage and the existing scope limits
+still apply. This is not complete reciprocal-space, special-position chemistry,
+serialized-ADP or whole-ASU acceptance. The original tensor/scattering engines are
+reused unchanged; Cedar remains the owner of native forces.
+
+**Validation:** six distinct new boundary cases fail before implementation;
+**208 focused source tests (12.45 s) and 208 isolated installed tests (11.66 s)**
+pass. Coverage includes explicit anisotropic and forest/declared-continuation
+packets, wrong receipt pins before calculation, packet drift, mismatched computed
+preview, byte-exact read-only behavior, work budget delegation and relocated
+packet replay after original sources are removed. Existing screw/centered/oblique,
+wrong-tensor, coordinate-damage, chemical-boundary and ambiguous-partner controls
+are reused unchanged. Python 3.10 syntax and installed/source bytes agree.
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -p no:cacheprovider -q \
+  tests/test_topostitch_scattering.py tests/test_topostitch_recut_bundle.py \
+  tests/test_topostitch_continuations.py tests/test_topostitch_forest_bundle.py \
+  tests/test_topostitch_backbone_intent.py tests/test_topostitch_transport.py
+```
+
+Actual local commands append the existing test/Gemmi dependency directory to
+PYTHONPATH. Installation uses `pip install --no-deps --no-build-isolation --target
+INSTALL BUILD_SOURCE`; the build source is removed before installed tests, which
+run outside the checkout against the copied test-fixture closure. The initial
+installed attempt omitted relative fixture imports and failed collection; its
+log is retained, the fixture closure was corrected, and the package was unchanged.
+The complete evidence/install directory was then relocated: all 222 file hashes
+match, the old location is absent and the relocated package imports correctly.
+Local receipts/logs live under NASolve anchor
+`branch-artifacts/willow/w245-saved-scattering/`. No native Phenix execution,
+full-suite repeat, scientific dataset copy or generated payload commit was needed
+for this isolated read-only composition boundary. P03 remains partial.

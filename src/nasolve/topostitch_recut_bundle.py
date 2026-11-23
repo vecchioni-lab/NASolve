@@ -174,6 +174,54 @@ def load_relabel_preview(directory):
 
 
 
+def observe_relabel_scattering(directory, *, expected_receipt_sha256, hkls,
+                               max_structure_factor_terms=5_000_000):
+    """Observe sampled unrefined scattering for one exactly pinned saved cut.
+
+    Reuse packet replay and the independent scattering owner. Both explicit and
+    forest proposals retain their verified images and declared continuations.
+    Nothing is written, selected or accepted; this is not a serialized-model or
+    complete reciprocal-space invariance proof.
+    """
+    from .topostitch_scattering import observe_registered_relabel_scattering
+
+    if (not isinstance(expected_receipt_sha256, str)
+            or not re.fullmatch(r'[0-9a-f]{64}', expected_receipt_sha256)):
+        raise ValueError('Require the exact expected preview receipt SHA-256')
+    root = Path(directory)
+    manifest = root/'preview.json'
+    frozen = {p:p.read_bytes() for p in [manifest, *(root/name for name in _FILES.values())]}
+    if sha256(frozen[manifest]).hexdigest() != expected_receipt_sha256:
+        raise ValueError('Saved preview receipt differs from the requested scattering binding')
+    packet = load_relabel_preview(root)
+    if (_fingerprint(packet) != _fingerprint(_json(frozen[manifest]))
+            or any(p.read_bytes() != data for p,data in frozen.items())):
+        raise ValueError('Representative packet changed before scattering observation')
+    request = _proposal_request(frozen[root/_FILES['proposal']])
+    preview = packet['observation']
+    images = [dict(node_id=row['node_id'], operator_xyz=row['image']['operator_xyz'])
+              for row in preview['graph_relabeling']['proposed_node_images']]
+    observation = observe_registered_relabel_scattering(
+        root/_FILES['source'], root/_FILES['discovery'], root/_FILES['registration'],
+        node_images=images, expected_registered_graph_sha256=packet['registered_graph_sha256'],
+        hkls=hkls, extra_edges=request['extra_edges'],
+        backbone_continuations=request.get('backbone_continuations', ()),
+        coincidence_tolerance_angstrom=request['coincidence_tolerance_angstrom'],
+        max_atom_tests=request['max_atom_tests'], max_structure_factor_terms=max_structure_factor_terms)
+    if (any(observation[k] != packet[k] for k in ('source_model_sha256', 'registered_graph_sha256'))
+            or observation['preview_sha256'] != preview['preview_sha256']
+            or observation['report_sha256'] != _fingerprint({k:v for k,v in observation.items() if k != 'report_sha256'})):
+        raise ValueError('Scattering observation differs from the pinned representative preview')
+    if any(p.read_bytes() != data for p,data in frozen.items()):
+        raise ValueError('Representative packet changed during scattering observation')
+    result = dict(schema_version=1, kind='topostitch-representative-scattering-observation',
+        preview_receipt_sha256=expected_receipt_sha256, observation=observation,
+        source_bytes_verified=True, coordinates_materialized=False,
+        scattering_invariance_validated=False, scientific_acceptance=False, runtime_authority=False)
+    result['report_sha256'] = _fingerprint(result)
+    return result
+
+
 def load_relabel_reference_frame(directory, *, expected_receipt_sha256):
     """Compile a complete numerical frame from an exactly pinned saved preview.
 

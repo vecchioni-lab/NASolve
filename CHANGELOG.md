@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W245 — Bind sampled scattering to the saved recut
+
+- Add a read-only exact-receipt-bound scattering observation for immutable recut
+  previews. Reuse the existing packet and Gemmi owners, including forest choices
+  and explicit continuations; refuse drift or mismatched calculation bindings.
+- Add a schema-1 observation wrapper without changing existing packets, direct
+  APIs, defaults or runtime authority. Sampled scattering is not whole-ASU or
+  serialization acceptance; no new force, writer or scientific rerun.
+
 ### W244 — Audit coordinated anisotropic native returns
 
 - Record Cedar's 3LNA V51 annotation-retention result as complete/NOT RETAINED,
