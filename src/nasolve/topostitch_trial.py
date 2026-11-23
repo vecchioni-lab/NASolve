@@ -2,6 +2,7 @@
 from hashlib import sha256
 import importlib
 import io
+import json
 import math
 from pathlib import Path
 
@@ -88,6 +89,42 @@ def _observe_failed_last_accepted(objective, result, sources, pinned):
     return report
 
 
+def _observe_failed_proposal(values, mask, binding):
+    """Describe an unreturned objective call without evaluating its proposal.
+
+    A displacement beyond the mask is an observation, not a classification of
+    the original exception. The failed objective may have done partial work.
+    No full point/displacement array or new candidate is retained here.
+    """
+    report = dict(status='UNAVAILABLE', coordinate_origin='OPTIMIZER_PROPOSAL',
+        objective_returned=False, accepted_by_this_call=False,
+        observation_evaluations=0, scientific_acceptance=False)
+    try:
+        if (len(values) != 3*len(mask.indices) or
+                any(type(v) not in (int, float) or not math.isfinite(v) for v in values)):
+            raise ValueError('Require complete finite proposed displacements')
+        digest = lambda value: sha256(json.dumps(value, allow_nan=False,
+            separators=(',', ':')).encode('ascii')).hexdigest()
+        report.update(displacements_sha256=digest(values),
+            mask_indices_sha256=digest(mask.indices),
+            variable_count=len(values), motion_bound_angstrom=mask.max_displacement_angstrom)
+        if 'source_model_sha256' in binding:
+            report['source_model_sha256'] = binding['source_model_sha256']
+        first = None
+        for offset, index in enumerate(mask.indices):
+            length = math.hypot(*values[3*offset:3*offset+3])
+            if not math.isfinite(length):
+                raise ValueError('Proposed displacement norm is not finite')
+            if length > mask.max_displacement_angstrom:
+                first = dict(source_atom_index=index, movable_atom_offset=offset,
+                    displacement_angstrom=length, bound_angstrom=mask.max_displacement_angstrom)
+                break
+        report.update(status='OBSERVED', first_exceeding_displacement=first)
+    except (AttributeError, TypeError, ValueError, OverflowError) as exc:
+        report['error'] = type(exc).__name__+': '+str(exc)
+    return report
+
+
 def run_native_masked_trial(objective, *, max_iterations, max_calls, initial_displacements=None):
     """Use the installed scitbx optimizer with hard motion/evaluation bounds.
 
@@ -132,7 +169,12 @@ def run_native_masked_trial(objective, *, max_iterations, max_calls, initial_dis
             def __init__(self):self.x=flex.double(initial_values)
             def compute_functional_and_gradients(self):
                 if len(result['trace'])>=max_calls:raise ValueError('Optimizer evaluation budget exhausted')
-                self.current=objective.evaluate(self.x)
+                proposal = tuple(self.x)
+                try:
+                    self.current=objective.evaluate(self.x)
+                except (ValueError, RuntimeError, OverflowError):
+                    result['failed_proposal'] = _observe_failed_proposal(proposal, getattr(objective, '_mask', None), binding)
+                    raise
                 result['trace'].append(dict(displacements=list(self.x),target=self.current['target'],
                     native_target=self.current['native_target'],pair_target=self.current['pair_target'],
                     unweighted_pair_target=self.current['unweighted_pair_target'],tether_target=self.current['tether_target'],

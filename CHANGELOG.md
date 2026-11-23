@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W254 — Observe failed optimizer proposals without accepting them
+
+- When an atomic trial objective raises, retain compact proposal/mask digests,
+  source model hash when supplied, and the first displacement beyond the existing
+  mask bound. Preserve the original failure and last accepted point separately.
+- Do not store another coordinate array, evaluate the failed point again, alter
+  optimizer policy or infer the cause of unrelated failures. Malformed proposals
+  remain unavailable. Existing W253 evidence cannot gain the missing proposal.
+- Add focused rejection/serialization regressions and verify a relocated clean
+  installation. No native rerun, CLI change, force change or request migration.
+
 ### W253 — Audit the boundary-limited local geometry diagnostic
 
 - Record one same-parent geometry-plus-tether trial through existing native

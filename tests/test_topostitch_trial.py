@@ -199,6 +199,7 @@ def test_failed_trial_audits_accepted_step_not_best_rejected_trial(fake_optimize
     objective=TrialObjective();failed_optimizer(fake_optimizer,objective)
     report=run_native_masked_trial(objective,max_iterations=2,max_calls=10)
     assert report['status']=='FAILED' and report['error']=='RuntimeError: original line-search failure'
+    assert 'failed_proposal' not in report  # Evaluations returned before the optimizer failed.
     assert report['trace'][1]['target']<report['trace'][0]['target']
     diagnostic=report['failure_endpoint']
     assert diagnostic['status']=='DERIVATIVES_PASS' and diagnostic['exact_trace_replay']
@@ -261,7 +262,7 @@ def test_successful_trial_retains_existing_endpoint_and_stopping_fields(fake_opt
     report=run_native_masked_trial(objective,max_iterations=2,max_calls=10)
     assert report['status']=='ENDPOINT_DERIVATIVES_PASS'
     assert report['stopping']['reason']=='max_iterations'
-    assert 'failure_endpoint' not in report
+    assert 'failure_endpoint' not in report and 'failed_proposal' not in report
 
 
 def test_unmatched_callback_cannot_mislabel_an_evaluated_trial_as_accepted(fake_optimizer):
@@ -746,3 +747,108 @@ def test_atomic_trial_can_finish_at_unchanged_initial_point_without_accepted_ste
     assert report['accepted_steps'] == []
     assert report['full_precision_derivatives']['baseline']['points'] == objective._mask.reference
     assert not report['stopping']['native_criterion_met']
+
+
+@pytest.mark.parametrize('accepted', [False, True])
+def test_failed_objective_retains_first_outside_move_without_evaluating_it_again(fake_optimizer, accepted):
+    import json
+    from hashlib import sha256
+    from nasolve.topostitch_trial import run_native_masked_trial
+    objective = TrialObjective()
+    objective._mask = CoordinateMask(objective._mask.reference, (1,), 1.)
+    objective.binding_report = lambda: dict(movable_indices=[1], max_evaluations=100,
+        source_model_sha256='a'*64)
+    proposed = [1.2, .1, 0.]
+    def run(*, target_evaluator, **kw):
+        if accepted:
+            target_evaluator.x[:] = [.2004, 0., 0.]
+            target_evaluator.compute_functional_and_gradients()
+            target_evaluator.callback_after_step(SimpleNamespace(iter=lambda:1, nfun=lambda:1))
+        target_evaluator.x[:] = proposed
+        target_evaluator.compute_functional_and_gradients()
+        pytest.fail('The motion guard must still reject the proposal')
+    fake_optimizer.run = run
+    report = run_native_masked_trial(objective, max_iterations=2, max_calls=10)
+    assert report['status'] == 'FAILED'
+    assert report['error'] == 'ValueError: Movable atom displacement exceeds declared bound'
+    failed = report['failed_proposal']
+    assert failed['status'] == 'OBSERVED' and not failed['objective_returned']
+    assert not failed['accepted_by_this_call'] and failed['observation_evaluations'] == 0
+    assert failed['source_model_sha256'] == 'a'*64
+    assert failed['first_exceeding_displacement'] == dict(source_atom_index=1,
+        movable_atom_offset=0, displacement_angstrom=pytest.approx(1.2041594578792296), bound_angstrom=1.)
+    assert failed['displacements_sha256'] == sha256(json.dumps(proposed, separators=(',', ':')).encode('ascii')).hexdigest()
+    assert not any(k in failed for k in ('points', 'displacements', 'target', 'gradient'))
+    assert objective.visited.count(tuple(proposed)) == 1
+    assert objective._calls == (44 if accepted else 15)
+    assert len(report['trace']) == int(accepted) and len(report['accepted_steps']) == int(accepted)
+    assert report['failure_endpoint']['status'] == ('DERIVATIVES_PASS' if accepted else 'NO_ACCEPTED_STEP')
+    json.dumps(report, allow_nan=False)
+
+
+def test_failed_proposal_is_copied_before_a_failing_objective_mutates_optimizer_values(fake_optimizer):
+    from nasolve.topostitch_trial import run_native_masked_trial
+    objective = TrialObjective(); original = objective.evaluate
+    def evaluate(x):
+        if x[0] == 1.2:
+            x[:] = [0., 0., 0.]
+            raise RuntimeError('objective failed after changing its argument')
+        return original(x)
+    objective.evaluate = evaluate
+    def run(*, target_evaluator, **kw):
+        target_evaluator.x[:] = [1.2, 0., 0.]
+        target_evaluator.compute_functional_and_gradients()
+    fake_optimizer.run = run
+    report = run_native_masked_trial(objective, max_iterations=2, max_calls=10)
+    assert report['error'] == 'RuntimeError: objective failed after changing its argument'
+    assert report['failed_proposal']['first_exceeding_displacement']['displacement_angstrom'] == 1.2
+    assert objective._calls == 14 and report['trace'] == []
+
+
+@pytest.mark.parametrize('proposed', [[float('nan'),0.,0.], [float('inf'),0.,0.], [0.,0.], [1.7e308]*3])
+def test_malformed_failed_proposal_cannot_replace_original_error_or_break_json(fake_optimizer, proposed):
+    import json
+    from nasolve.topostitch_trial import run_native_masked_trial
+    objective = TrialObjective(); original = objective.evaluate
+    def evaluate(x):
+        objective._mask.expand(x)
+        return original(x)
+    objective.evaluate = evaluate
+    def run(*, target_evaluator, **kw):
+        target_evaluator.x[:] = proposed
+        target_evaluator.compute_functional_and_gradients()
+    fake_optimizer.run = run
+    report = run_native_masked_trial(objective, max_iterations=2, max_calls=10)
+    assert report['status'] == 'FAILED' and report['error'].startswith('ValueError:')
+    assert report['failed_proposal']['status'] == 'UNAVAILABLE'
+    assert report['failure_endpoint']['status'] == 'NO_ACCEPTED_STEP'
+    assert objective._calls == 14 and report['trace'] == []
+    json.dumps(report, allow_nan=False)
+
+
+def test_other_objective_failure_does_not_invent_a_motion_violation(fake_optimizer):
+    from nasolve.topostitch_trial import run_native_masked_trial
+    objective = TrialObjective(); original = objective.evaluate
+    def evaluate(x):
+        if x[0] == .4: raise RuntimeError('unrelated objective failure')
+        return original(x)
+    objective.evaluate = evaluate
+    def run(*, target_evaluator, **kw):
+        target_evaluator.x[:] = [.4, 0., 0.]
+        target_evaluator.compute_functional_and_gradients()
+    fake_optimizer.run = run
+    report = run_native_masked_trial(objective, max_iterations=2, max_calls=10)
+    assert report['error'] == 'RuntimeError: unrelated objective failure'
+    assert report['failed_proposal']['status'] == 'OBSERVED'
+    assert report['failed_proposal']['first_exceeding_displacement'] is None
+    assert not report['failed_proposal']['objective_returned']
+
+
+def test_failed_proposal_reports_first_mask_order_violation_without_duplicate_coordinates():
+    from nasolve.topostitch_trial import _observe_failed_proposal
+    mask = CoordinateMask(((0,0,0),(1,1,1),(2,2,2)), (2,0,1), 1.)
+    report = _observe_failed_proposal((.5,0,0, 1.1,0,0, 9.,0,0), mask, {})
+    assert report['first_exceeding_displacement']['source_atom_index'] == 0
+    assert report['first_exceeding_displacement']['movable_atom_offset'] == 1
+    assert report['first_exceeding_displacement']['displacement_angstrom'] == 1.1
+    assert report['variable_count'] == 9 and 'displacements' not in report

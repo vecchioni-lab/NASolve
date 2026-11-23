@@ -3860,3 +3860,49 @@ before native evaluation, not proof that the calls returned successfully or that
 a result is accepted. A successful result also retains the existing final
 `diffraction_audit.coordinate_target_checks` alongside its full returned-state
 checks. Old failed runs cannot acquire counts retroactively.
+
+
+### Observe a failed atomic proposal without promoting it (W254)
+
+`run_native_masked_trial` adds `failed_proposal` only when a call to
+`objective.evaluate` raises a caught `ValueError`, `RuntimeError` or
+`OverflowError`. The pre-call displacement values are copied before evaluation
+can alter the optimizer's working vector. The original error, failed status and
+separate `failure_endpoint` observation of the last accepted step remain intact.
+Successful reports and optimizer-only errors after returned evaluations keep
+their previous fields. Collective-motion trials are unchanged.
+
+This additive observation stores compact SHA-256 digests of the proposed
+ordered displacement vector and ordered mask indices, the source model SHA when
+provided by the existing binding, the variable count/motion bound and at most the
+**first exceeding displacement in mask order**: zero-based source atom index,
+zero-based movable offset, move length and bound, all distances in Å. Digests use
+ASCII compact JSON arrays (`separators=(',', ':')`, finite numbers only). The
+source model and existing objective binding provide identity/reference context;
+the digest does not reconstruct the missing full proposal. No new coordinate
+array, energy, gradient or candidate is emitted.
+
+`objective_returned=False` and `accepted_by_this_call=False` describe this call;
+they do not claim the objective performed no partial work. The observer itself
+adds zero evaluations. A null `first_exceeding_displacement` means no move beyond
+the bound was found; it does not make a failed evaluation valid. Conversely an
+observed excess does not classify the original exception as a motion error.
+Malformed/nonfinite vectors or unrepresentable norms report `UNAVAILABLE` with
+an observation error, while retaining the original trial error. Observation does
+not retry, project, clip, relax the bound or change the optimizer's coordinates.
+
+Nine focused cases cover failure before/after an accepted step, exact evaluation
+counts, snapshotting before argument mutation, malformed/nonfinite values,
+unrelated objective errors and mask-order identity. Both public rejection cases
+fail on the preceding code because `failed_proposal` is absent. Combined scope:
+274 source/274 relocated installed passes, one skip each; 83 trial tests pass.
+All 216 installation files hash-match after original build/install paths are
+removed; Python 3.10 syntax and installed entry-point help pass. Exact commands
+are in `branch-artifacts/willow/w254-validation/validation.json` under the NASolve
+anchor. This is synthetic/software and installation validation, **not a fresh
+Phenix trial**. No global mechanics, numerical policy or request schema changes;
+full integration suite remains a separate pre-merge gate.
+
+W253's unrecorded rejected proposal stays unknown. Its known accepted step and
+failed status cannot be upgraded by this patch, nor can the violating atom be
+inferred retrospectively from the new reporting code.
