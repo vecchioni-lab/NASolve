@@ -3203,3 +3203,68 @@ The first new-test attempt had a missing test import and is preserved as a setup
 error, not counted as fail-before evidence. Corrected tests were replayed against
 W226 before qualification. Source/install/readback logs and generated coordinates
 are not committed; no existing artifact migration is needed.
+
+
+## Measure internal stacking placement (W230)
+
+`helical_twist.inspect_helical_region(..., include_stacking=True)` adds
+`stacking_geometry` to the existing source-bound canonical report. The default
+remains `False`; default reports, CLI and existing comparison/weighted-summary
+APIs are unchanged. This is an opt-in reporting field, not a new model schema
+or a stacking restraint.
+
+For each adjacent declared pair, the reader keeps both strand identities and
+core/flank roles, and measures each strand separately using the existing fitted
+base planes and observed ring atoms. It reports acute unoriented plane angle,
+ring-centroid separation, unsigned spacing along the aligned mean normal and
+lateral centroid displacement. The two displacement components reconstruct the
+centroid distance. No C1′ or phosphate enters the ring centroid. The existing
+frame availability policy still requires C1′; missing or unsupported frames
+remain unavailable. Missing one strand does not erase the other strand. Explicit
+pair breaks suppress both corresponding strand steps.
+
+Planes at 90° have an ambiguous mean normal: angle/distance remain available,
+but normal spacing/lateral offset do not. Coincident or coplanar centroids can
+still give measured zeros even when signed twist is unavailable. Zeros are
+observations, not acceptance. Acute unoriented planes cannot detect a flipped
+base; retain sugar/chirality and atom-identity audits separately.
+
+Within-pair geometry and signed step twist remain in `simple_step_twist`.
+Lateral displacement is not a ring-overlap area, contact or stacking energy.
+There is no universal parallelity/spacing cutoff, local-axis inference or
+permission to move a junction. Canonical identity-image PDB scope and caller
+fit limits are unchanged. Periodic context needs an independently verified
+image binding before use; this API still refuses nonidentity `HelicalSite`s.
+
+**Validation.** Thirteen regressions fail on the previous API and pass after the
+change. The four helical-reader test files pass **116 source / 116 relocated
+installed** tests, including existing source/CLI/relocation controls. The build
+source and original installation paths were removed before installed validation.
+Wheel SHA256 `8cd366f1c2a7f88a673d559324ad36b27cb4674f8df9812dd64d0fc8e7c7ec73`.
+Exact commands from the Willow checkout (explicit external environment anchors
+are local validation provenance, not artifact resolution):
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:/private/tmp/alder-validation-20261121-01/lib/python3.12/site-packages \
+  ../NASolve/.venv/bin/python -B -m pytest -q -p no:cacheprovider \
+  tests/test_helical_geometry.py tests/test_helical_twist.py \
+  tests/test_helical_comparison.py tests/test_helical_summary.py
+```
+
+Six immutable W217/W219/W223/W224 endpoints give 96 cold checks in each
+source/installed readback; reports are byte-identical across those contexts.
+No coordinates, Phenix/Coot runs or refinement outputs were generated. The
+original 10 Å initializer keeps the source maximum neighbouring plane angle
+(12.8204°), while maximum lateral ring-centroid offset grows from 3.5014 to
+10.5321 Å. Rejected direct recovery reaches 35.6597° and 10.3348 Å; staged
+recovery returns to 12.6964° and 3.4816 Å. These are maxima over twelve
+same-strand steps, not necessarily the same step. Recovery near the synthetic
+source is not evidence for a distinct experimental shape or ideal geometry.
+
+Local evidence uses the NASolve anchor, `branch-artifacts/willow/w230-stacking-readback/`:
+`installed-check.json`, `source-readback.json`, `installed-readback.json`, and
+source/installed test logs. Controllers are `branch-artifacts/willow/runners/w230-install.py`
+and `w230-readback.py`. They resolve saved models through the prior checkout's
+explicit model references and hashes. Raw science is deliberately excluded from Git.
+The separate branch-wide validation is recorded when completed; these focused
+results do not claim a clean full suite.

@@ -1084,6 +1084,11 @@ W196 returns to the existing preview/replay owner with schema-3 registered
 interior windows, two fixed paired flanks and explicit per-pair weights. It reuses
 coordinate rendering, full-precision motion and extended backbone audits; neither
 a new force owner nor automatic repair is introduced.
+W230 optionally adds same-strand ring placement descriptors from those same
+frames: acute plane angle, ring-centroid distance, unsigned normal spacing and
+lateral displacement. Independent strand availability and breaks are retained.
+Default reports stay exact; no overlap, contact score, force or motion authority
+is inferred. These descriptors supplement signed twist and within-pair geometry.
 See the [shared plan](helical-geometry-plan.json).
 
 The pairing owner supplies exact forward/reciprocal edge incidence to selected

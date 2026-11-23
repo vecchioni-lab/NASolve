@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current audit: W229, 2026-11-22. Maintained implementation: W227.**
+**Current audit and maintained implementation: W230, 2026-11-23.**
 The existing native input binder now accepts an explicitly selected dictionary-only
 parent policy from Cedar C526. Default literal inputs still require compiled
 restraints. W214 binds a real X11_22 PostMR checkpoint and original observations;
@@ -58,6 +58,14 @@ shared graph, resolves actual coordinate labels and the reciprocal image, and
 keeps chemical intent distinct from the original checkpoint's nonbonded-only
 record. This source-frame observation is not a recut, force grant or branch merge.
 
+W230 adds opt-in [internal stacking descriptors](topostitch-preview.md#measure-internal-stacking-placement-w230)
+from existing canonical frames: 116 source/116 relocated installed tests and
+96 cold checks per saved-model readback with exact source/installed parity.
+The initial large translation preserves plane angles but raises maximum lateral
+ring-centroid offset from 3.50 to 10.53 Å; staged recovery returns near 3.48 Å.
+This measures spacing and lateral placement separately from within-pair geometry
+and twist. It does not establish overlap, an ideal structure or seam closure.
+
 ## Current development edge
 
 | Component | Proven scope | Still open |
@@ -102,14 +110,17 @@ trajectory/end coordinates reproduce; two derivative audits and baseline
 restoration pass, with 77 callbacks/80 outer geometry evaluations. No new fit,
 writer, rounded-endpoint admission or ordinary activation follows. The cap
 remains distinct from convergence. [API, commands and limitations](topostitch-preview.md#run-a-bounded-collective-trial-w226).
-The complete suite is deferred to the merge gate under Rowan's direction for
-this focused evening run; the earlier W215 environment-limited result above is
-not replaced by a clean full-suite claim.
+The W226/W227 evening slice deferred the complete suite to the merge gate.
+For W230, one branch-specific checkpoint run is queued under the newer pasted
+contract and coordinated with Rowan; no clean full-suite claim exists yet.
 
 [W229's route preflight](topostitch-periodic.md#w229--the-current-interior-window-cannot-simply-grow)
 finds no larger declared interval for the same 205 atoms and both fixed flanks:
 13 cold checks/three refused anchor releases, no new coordinates or native run.
 The source B chain has seven sites and the discovery boundaries remain unknown.
+Rowan confirms that the reviewed B7–B1 connection does not independently grant
+movement of A8–A9 or A15–A16. Keep that junction choice explicit; representation
+boundaries must not be relabelled as chemical sticky ends to obtain a window.
 A fresh terminal/coupled/periodic declaration is the next prerequisite; neither
 a bigger pair cap nor W227's reporting subset creates movement permission.
 

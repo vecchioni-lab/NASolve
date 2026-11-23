@@ -1,13 +1,16 @@
 # NASolve documentation map
 
-Updated **2026-11-22** for **`willow`**. Start with the
+Updated **2026-11-23** for **`willow`**. Start with the
 [current development handoff](development-handoff.md) for the proven edge,
 remaining gates and next bounded task. Historical handoffs are evidence, not
 current instructions; other branches retain their own status and validation pins.
 
 ## What's current?
 
-- **Current code: W227.** [Stable core measurements](topostitch-preview.md#keep-the-measured-core-fixed-when-a-window-expands-w227)
+- **Current code: W230.** [Internal stacking placement](topostitch-preview.md#measure-internal-stacking-placement-w230)
+  separates per-strand plane orientation, spacing and lateral displacement;
+  116 source/116 installed tests, six saved states, no force or motion authority.
+- **W227:** [Stable core measurements](topostitch-preview.md#keep-the-measured-core-fixed-when-a-window-expands-w227)
   remain comparable when the editable window expands, with complete-mask checks:
   392 source/392 installed tests and three saved-endpoint readback contexts.
 - **Reusable optimizer: W226.** [Bounded collective-motion trials](topostitch-preview.md#run-a-bounded-collective-trial-w226)
@@ -31,7 +34,7 @@ current instructions; other branches retain their own status and validation pins
   The failed direct result and three remaining moving-region outliers stay
   explicit. This is same-family synthetic recovery, not general experimental repair.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W229, next W230:
+  [generated human view](topostitch-roadmap.md). Current W230, next W231:
   declare the next terminal/coupled/periodic window before independent bending.
   The existing two-fixed-flank interval cannot simply grow around the same core.
   Keep the successful synthetic receiving comparison closed. The 5 Å centerline target is separate.

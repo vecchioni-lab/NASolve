@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "kind": "topostitch-development-roadmap",
-  "updated": "2026-11-22",
+  "updated": "2026-11-23",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "761f43982fe1bec85e119c64277abccaeda6dda2",
+  "audited_code_commit": "3c6c3f9115190068c43c34c7158b8e9584f83a16",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -280,7 +280,8 @@
         "W222qualifies live corrected forces; W223capped6Dgeometry warm-start plus W224matched5cycle receiving retains126sugarsigns and recovers synthetic data, with explicit remaining moving outliers. W225necessary fixed-flank path bound motivates window feasibility before larger targets.",
         "W226 maintains the bounded6Ddriver with exact points/units, accepted-step history, hard callback budgets, derivative/restoration gates and installed-native parity. It does not write/qualify rounded coordinates or grant ordinary/scientific permission.",
         "W227keeps a declared measurement core stable inside a larger complete motion mask; bounds/fixed atoms remain checked across all editable atoms.392/392tests and saved-endpoint parity; no expanded-window execution.",
-        "W229confirms the current205atom core has no wider two-fixed-flank interval within its frozen seven-pair route declaration;13cold checks/3anchor-release refusals. No coordinates or native run."
+        "W229confirms the current205atom core has no wider two-fixed-flank interval within its frozen seven-pair route declaration;13cold checks/3anchor-release refusals. No coordinates or native run.",
+        "W230 measures adjacent same-strand ring-plane orientation, normal spacing and lateral placement through existing frames;116source/116installed tests and six saved-state readbacks. Default reports unchanged; this is descriptive internal stacking, not closure or acceptance."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
@@ -376,15 +377,15 @@
         "E_CENTROID_PATH_BOUND",
         "E_NATIVE_COLLECTIVE_TRIAL",
         "E_CORE_DISPLACEMENT_SUBSET",
-        "E_WIDER_WINDOW_SCOPE"
+        "E_WIDER_WINDOW_SCOPE",
+        "E_INTERNAL_STACKING_PLACEMENT"
       ],
       "last_audit": {
-        "date": "2026-11-22",
-        "human_update": 229,
-        "code_commit": "761f43982fe1bec85e119c64277abccaeda6dda2",
+        "date": "2026-11-23",
+        "code_commit": "3c6c3f9115190068c43c34c7158b8e9584f83a16",
         "reviewer": "Linden",
-        "scope": "Source/window preflight only; independent placement and scientific closure remain partial",
-        "basis": "13cold checks and unchanged inputs. Need fresh terminal/coupled/periodic scope, not a larger cap or implicit anchor release."
+        "human_update": 230,
+        "scope": "Internal stacking readback; junction mobility and independent placement remain open"
       }
     },
     {
@@ -679,7 +680,8 @@
         "W222qualifies live corrected forces; W223capped6Dgeometry warm-start plus W224matched5cycle receiving retains126sugarsigns and recovers synthetic data, with explicit remaining moving outliers. W225necessary fixed-flank path bound motivates window feasibility before larger targets.",
         "W226 maintains the bounded6Ddriver with exact points/units, accepted-step history, hard callback budgets, derivative/restoration gates and installed-native parity. It does not write/qualify rounded coordinates or grant ordinary/scientific permission.",
         "W227keeps a declared measurement core stable inside a larger complete motion mask; bounds/fixed atoms remain checked across all editable atoms.392/392tests and saved-endpoint parity; no expanded-window execution.",
-        "W229confirms the current205atom core has no wider two-fixed-flank interval within its frozen seven-pair route declaration;13cold checks/3anchor-release refusals. No coordinates or native run."
+        "W229confirms the current205atom core has no wider two-fixed-flank interval within its frozen seven-pair route declaration;13cold checks/3anchor-release refusals. No coordinates or native run.",
+        "W230 measures adjacent same-strand ring-plane orientation, normal spacing and lateral placement through existing frames;116source/116installed tests and six saved-state readbacks. Default reports unchanged; this is descriptive internal stacking, not closure or acceptance."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -809,15 +811,15 @@
         "E_CENTROID_PATH_BOUND",
         "E_NATIVE_COLLECTIVE_TRIAL",
         "E_CORE_DISPLACEMENT_SUBSET",
-        "E_WIDER_WINDOW_SCOPE"
+        "E_WIDER_WINDOW_SCOPE",
+        "E_INTERNAL_STACKING_PLACEMENT"
       ],
       "last_audit": {
-        "date": "2026-11-22",
-        "human_update": 229,
-        "code_commit": "761f43982fe1bec85e119c64277abccaeda6dda2",
+        "date": "2026-11-23",
+        "code_commit": "3c6c3f9115190068c43c34c7158b8e9584f83a16",
         "reviewer": "Linden",
-        "scope": "Source/window preflight only; independent placement and scientific closure remain partial",
-        "basis": "13cold checks and unchanged inputs. Need fresh terminal/coupled/periodic scope, not a larger cap or implicit anchor release."
+        "human_update": 230,
+        "scope": "Internal stacking readback; junction mobility and independent placement remain open"
       }
     },
     {
@@ -5936,6 +5938,35 @@
           "size": 6211
         }
       ]
+    },
+    "E_INTERNAL_STACKING_PLACEMENT": {
+      "kind": "Read-only canonical ring placement through existing helical frames",
+      "date": "2026-11-23",
+      "human_update": 230,
+      "code_commit": "3c6c3f9115190068c43c34c7158b8e9584f83a16",
+      "reference": "docs/topostitch-preview.md#measure-internal-stacking-placement-w230",
+      "result": "13fail-before regressions;116source/116relocated installed passes.96coldchecks in each saved-model readback and exact report parity. Initial10Atranslation retains plane angles but lateral offset rises3.50to10.53A; staged recovery3.48A. No native run or modelwrite.",
+      "limitation": "Canonical identity-image scope and caller-declared pairs; no ring-overlap, stacking-energy, acceptance or junction movement grant. Full branch qualification pending separately.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w230-stacking-readback/installed-check.json",
+          "sha256": "2258da73056b980ab9ddc3e515179e93caf8f6f861d225996930e4ba4407a1fc",
+          "size": 920
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w230-stacking-readback/source-readback.json",
+          "sha256": "e198e82bcd146b758bb149f6134847e86a9fc26cb429208284e1f7451eab026d",
+          "size": 929528
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w230-stacking-readback/installed-readback.json",
+          "sha256": "e198e82bcd146b758bb149f6134847e86a9fc26cb429208284e1f7451eab026d",
+          "size": 929528
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -6101,8 +6132,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 229,
-    "next": 230,
+    "current": 230,
+    "next": 231,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -7286,6 +7317,12 @@
         "title": "Verify the actual route limit before a wider-window control",
         "state": "RECORDED",
         "code_commit": "761f43982fe1bec85e119c64277abccaeda6dda2"
+      },
+      {
+        "number": 230,
+        "title": "Measure internal stacking independently of plane parallelity",
+        "state": "RECORDED",
+        "code_commit": "3c6c3f9115190068c43c34c7158b8e9584f83a16"
       }
     ]
   },

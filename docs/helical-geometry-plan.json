@@ -20,9 +20,9 @@
       "status": "partial",
       "name": "Qualify simple step twist and the two width measurements",
       "acceptance": [
-        "Measure signed simple base-pair-step twist (degrees) from consecutive oriented C1\u2032\u2013C1\u2032 directions with the two base-pair normals brought into a common frame. Keep strand order, handedness, normal convention and ring-atom choice explicit.",
-        "For each declared pair report the distance between its two P atoms in \u00c5 (the mmDNA diameter). If useful also report half that distance as a derived half-span.",
-        "For each antiparallel step use conventional base-pair frames to obtain its local screw axis. Record the position, unit direction and exact phosphate on each strand. The radii are the two perpendicular point-to-axis distances in \u00c5. For an ordinary uninterrupted step i\u2192i+1 the crossing phosphate belongs to i+1 on strand I and i on strand II. Resolve both physical anchors explicitly at junctions.",
+        "Measure signed simple base-pair-step twist (degrees) from consecutive oriented C1′–C1′ directions with the two base-pair normals brought into a common frame. Keep strand order, handedness, normal convention and ring-atom choice explicit.",
+        "For each declared pair report the distance between its two P atoms in Å (the mmDNA diameter). If useful also report half that distance as a derived half-span.",
+        "For each antiparallel step use conventional base-pair frames to obtain its local screw axis. Record the position, unit direction and exact phosphate on each strand. The radii are the two perpendicular point-to-axis distances in Å. For an ordinary uninterrupted step i→i+1 the crossing phosphate belongs to i+1 on strand I and i on strand II. Resolve both physical anchors explicitly at junctions.",
         "Report absent phosphates, poorly determined axes, unavailable sugar anchors and ambiguous mappings per quantity, including the reason. One missing radius does not invalidate an independently measured twist or opposite-strand radius. Leave genuinely phosphate-free backbones unmeasured for that quantity.",
         "Compare against public tables for canonical and modified sites, both signs and bent, off-center and degenerate controls. Verify invariance under a rigid movement of the whole model. Resolve or bound the 7SDG twist discrepancy with the exact pair list, images, input coordinates, mapping and Web 3DNA output before claiming equivalence for it."
       ]
@@ -122,16 +122,16 @@
     }
   },
   "implementation": {
-    "human_update": "W195",
+    "human_update": "W230",
     "owner": "Linden / Willow; shared with Cedar and Alder",
-    "code_commit": "796af35a5a9f4dc8a40fc970dffa917c2b807dc9",
+    "code_commit": "3c6c3f9115190068c43c34c7158b8e9584f83a16",
     "module": "nasolve.helical_geometry + nasolve.helical_twist + nasolve.helical_comparison",
-    "guide": "docs/topostitch-preview.md#summarize-declared-regional-twist-w195",
+    "guide": "docs/topostitch-preview.md#measure-internal-stacking-placement-w230",
     "report_schema": 1,
     "delivered": [
       "Exact single-model PDB and identity-image site/component/conformer binding",
       "Caller-ordered logical pairs with flanks/breaks; no inferred correspondence",
-      "Per-pair P\u2013P span and optional half-span with explicit missing/ambiguity reasons",
+      "Per-pair P–P span and optional half-span with explicit missing/ambiguity reasons",
       "67 focused source and67 relocated installed checks; exact7SDF/C444 span agreement",
       "Canonical DA/DC/DG/DT ring frames with exact atom provenance and explicit fit limit",
       "Signed simple-step twist using author normal convention; independent missing quantities",
@@ -140,13 +140,15 @@
       "Candidate-minus-reference P-span/half-span and wrap-safe simple-twist deltas, without inferred physical equivalence",
       "113 focused source and 113 relocated installed checks; five exact saved 5W6W comparisons, 35 independent P-span delta checks; no new native run",
       "Declared contiguous regional step weights, full raw coverage, signed mean and guarded signed bp/turn",
-      "136 focused source and 136 relocated installed checks; twelve saved-state summaries and prior generator values reproduce"
+      "136 focused source and 136 relocated installed checks; twelve saved-state summaries and prior generator values reproduce",
+      "Optional per-strand ring-plane angle, centroid separation, normal spacing and lateral offset from existing canonical frames; independent missing/break coverage,116source/116relocated installed tests and96saved-model checks each with exact parity"
     ],
     "remaining": [
       "Other crystal images, mmCIF and registered cross-state correspondence",
       "Modified base-frame mapping/fit quality",
       "Local-axis per-strand radii and historical 7SDG publication-input discrepancy",
-      "Publication table export and modified-site regional qualification"
+      "Publication table export and modified-site regional qualification",
+      "Ring overlap, stacking energetics and calibrated scientific acceptance; centroid offset alone is not overlap"
     ],
     "native_execution": false,
     "runtime_authority": false,
@@ -154,9 +156,10 @@
       "declared-pair-phosphate-span-v1",
       "declared-canonical-simple-step-twist-v1",
       "declared-helical-state-comparison-v1",
-      "declared-weighted-simple-twist-v1"
+      "declared-weighted-simple-twist-v1",
+      "declared-ring-stacking-v1"
     ],
-    "next_solving_gate": "Return to local repair/source-bound comparison: existing positive endpoint localization is informative, but its small regional mean hides covalent defects. Do not expand reporting before supported admission/retention integration."
+    "next_solving_gate": "Use the explicit internal stacking descriptors at placement/recovery checkpoints. Declare a source-qualified coupled movement window without silently releasing junctions; do not duplicate the frame/force engine."
   },
   "simple_twist_reference_qualification": {
     "human_update": "W192",
