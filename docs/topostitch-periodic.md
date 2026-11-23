@@ -13518,3 +13518,96 @@ from actual annotations, and native source state separated from Gemmi state.
 Qualify connection and polymer metadata before a production recut writer. P03
 remains partial; simultaneous-cut force qualification and checkpoint restart stay
 with their existing owners and prerequisites.
+
+
+## W249 — Carry the whole boundary graph in full-precision mmCIF
+
+W248 exposed a concrete export requirement: localizing two chosen joins creates
+six image-spanning boundaries elsewhere. W249 tests complete metadata transport
+using **the original full-precision paper mmCIFs**, separately bound to their
+original source hashes. The working PDB receipt is not reused as authority for
+changed source bytes or a differently named component.
+
+Rowan supplied the declared `paper_r3` anchor (`LNA repair/R3 redeposition 2`),
+relative coordinates `3LNA/9Z65_coordinates.cif` and `5LNA/9ZS1_coordinates.cif`,
+and the original preparation receipts. The existing Cedar conversion explicitly
+maps A1C3T to ACL only in the working PDB. Replaying that exact conversion reproduces
+the frozen working PDB hash. The diagnostic preserves **A1C3T, every original atom
+ID and author identity**, original B/occupancy and all six original U components;
+ACL is used only to bind the working graph. Original entity types and sequence
+scheme supply the metadata; no polymer type is guessed from an atom/component name.
+
+Identity-image backbone edges define explicit directed paths. Every other edge
+remains an explicit image-spanning declaration. The local projection refuses
+incomplete atom coverage, branching or an uncut identity cycle rather than
+inventing a path. The existing `ReferenceFrame` transports full double-precision
+XYZ/U from the original CIF and checks its inverse. New diagnostic label/entity
+and sequence assignments retain a per-node original-to-new mapping. All source
+`struct_conn` rows—including hydrogen bonds—receive corresponding endpoint labels
+and inverse image mappings. Previously undeclared exposed boundaries get their
+own rows; already explicit boundaries are not duplicated.
+
+| Original source | Atoms / logical nucleotides / unique backbone edges | Unchanged paths; ordinary/image edges | Recut paths; ordinary/image edges | Original connection rows retained; added rows | Native recut relative complex-Fcalc L2 |
+| --- | --- | --- | --- | --- | --- |
+| 3LNA | 1271 / 62 / 60 | 4; 58 / 2 | 8; 54 / 6 | 80 retained; 6 added | 1.051516e-15 |
+| 5LNA | 1275 / 62 / 60 | 4; 58 / 2 | 8; 54 / 6 | 87 retained; 5 added | 7.995454e-16 |
+
+One 5LNA boundary was already explicitly declared. Original hydrogen-bond rows
+number 71/74; all remain and their physical endpoint positions agree within
+4e-15 Å after image transport. Every original author field and atom ID rereads
+unchanged, and all polymer labels match the bound lineage. Ordinary adjacency
+plus the explicit declarations reconstruct **exactly the 60 original directed
+backbone edges**, including their relative operators. This is a representative
+change, not new chemical bond formation or a geometry repair.
+
+Cedar's existing `cif_deposition_links.inspect_deposition_links` at
+`92a280402957b1fdf869cccee0abeac224674961` reads the four diagnostic models,
+checks the sequence tables and resolves all boundaries. No second annotation
+parser is added. Independent **Phenix 2.2.1-6174 / Python 3.11.15** readback checks
+all atom identities, modes/multiplicities, original IDs, B/Q, cell/group and full
+Cartesian tensors. XYZ agreement is within 7.11e-15 Å and U within 3.56e-15 Å².
+Direct IT1992 Fcalc uses all 1484/2375 supplied indices; unchanged controls are
+exactly zero, and recuts agree at the near-round-off levels above. These are
+complete read-only native calculations, **not refinements or dry runs**; no
+observed amplitudes, Free flags or density were used to select the cut.
+
+**Retained formatting failure:** the first four diagnostic files copied scalar
+cell categories through Gemmi's generic category setter, producing one-row loops.
+Gemmi accepted them, but iotbx refused `_cell_length_a` in a loop before scattering.
+Those files/plan/log remain. A separate attempt preserves scalar category layout
+without changing the numerical state, and all four independent native checks pass.
+The check therefore qualifies this explicit output layout, not every valid-looking
+CIF produced by a generic conversion.
+
+**Connectivity controls:** on the 3LNA recut, removing one boundary row leaves
+the standalone geometry reader at `CHECKED`, while comparing against the complete
+bound reference reports the missing declaration and returns `REVIEW`. Replacing
+its image with identity also returns `REVIEW`. Both altered files preserve exactly
+the same native coordinates, tensors and Fcalc as the correct file. This reuses
+Cedar's existing annotation-comparison behavior on the real recut: scattering
+invariance and locally good geometry alone cannot prove the intended connectivity.
+
+Evidence is local at NASolve anchors
+`branch-artifacts/willow/w249-boundary-metadata/` (path projection and first attempt)
+and `w249-boundary-metadata-format/` (scalar-layout retry, native readback, coverage
+and negative controls). Plans bind original/working inputs, declared external
+anchors, alias-conversion code, exact reader dependencies and outputs. Retained
+runners are `w249-boundary-partition.py`, `w249-metadata-diagnostic.py`,
+`w249-metadata-format.py`, `w249-native-readback.py`,
+`w249-native-format-readback.py`, `w249-coverage-controls.py` and
+`w249-negative-native.py` under `branch-artifacts/willow/runners/`.
+Host runs use the existing Gemmi environment with `PYTHONDONTWRITEBYTECODE=1`;
+native runs use `OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1
+phenix.python -B RUNNER`. This is a local diagnostic, not a portable native-run
+claim. Scientific coordinates and reports remain outside Git.
+
+**Scope remains partial.** These files intentionally contain the diagnostic
+coordinate/chemical/sequence/connection categories, with omitted source categories
+listed in lineage receipts and immutable originals retained. They are not
+submission-ready depositions. W248's maintained saved-PDB/single-block export
+API is unchanged; W249 has a separate original-mmCIF binding and attached component
+blocks. General source/alias import, full metadata preservation, special positions,
+inverse editing, native refinement adoption and human review remain before a
+supported ASU writer. No new force, fit, production code or test-suite repeat.
+Cedar's separate 5W6W/PDU restart and its A112 phosphate-orientation diagnosis
+remain distinct from these two R3 metadata controls.

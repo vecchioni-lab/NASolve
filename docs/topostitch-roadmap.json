@@ -1084,13 +1084,14 @@
         "W245 binds the existing independent sampled scattering owner to an exact saved recut receipt, deriving verified explicit/forest images and declared continuations. 208 source/208 installed; six new boundary regressions, relocation and unchanged source. No new scattering engine, serialization or whole-ASU acceptance.",
         "W246 composes the installed saved-cut observer with both declared R3 routes and existing orbit/intent owners: four read-only controls, all source atoms and supplied HKLs, near-roundoff scattering differences and unchanged bond image geometry. Only 82 atoms change representatives per source; no physical bend, coordinate export or coupled refinement.",
         "W247 measures default PDB/mmCIF precision and exact represented-state full-precision CIF control, then independently rereads all12 outputs with Phenix/cctbx. Full ordered inventory and both externally declared links retained. Writer defaults are not invariance: default rotated U formatting fails the planned bound; first failures remain. No production writer or new native fit.",
-        "W248 maintains a read-only exact-receipt/export-bound PDB/mmCIF inspector: complete identity permutation, explicit coordinate/U precision and separate external-link geometry.237 source/237 relocated installed;12 real-model source/installed replays agree and retain both default-writer precision failures. No production writer or annotation/physical acceptance."
+        "W248 maintains a read-only exact-receipt/export-bound PDB/mmCIF inspector: complete identity permutation, explicit coordinate/U precision and separate external-link geometry.237 source/237 relocated installed;12 real-model source/installed replays agree and retain both default-writer precision failures. No production writer or annotation/physical acceptance.",
+        "W249 separately binds the original full-precision coordinate mmCIFs, original A1C3T identity and typed sequence metadata. Four local diagnostic recuts carry every graph edge and original connection annotation; independent Phenix/cctbx readback and supplied-HKL Fcalc agree near1e-15. Annotation-only negative controls show scattering alone cannot prove connectivity. This is a diagnostic composition, not a maintained writer or extension of W248 input scope."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "Reuse W248 to observe pinned exports rather than repeating ad hoc readback. Next inspect the existing Cedar cif_deposition_links consumer before adding any annotation owner: carry the complete relabelled boundary graph, not just requested joins (W248:60 links;2 old seams local,6 new image-spanning links). Qualify polymer/entity/sequence mapping and all directed annotations before a production whole-ASU writer. Preserve native full precision and authoritative cell separately from CRYST1/Gemmi rounding. Pure recuts must preserve phosphate orientation relative to the same qualified local duplex in its named image; source defects are not recut damage. Keep scheduled stage3 before coupled refinement; P02 graphical review, complete physical inventory, independent reciprocal-space/special-position checks, fresh child binding and inverse edit import remain gates.",
+      "next_action": "Formalize the proven P03 pieces through existing owners rather than another writer: original-mmCIF versus working-PDB lineage with explicit aliases, full-precision source context, unique coordinate block plus attached component definitions, scalar/loop layout, complete polymer path mapping and all boundary annotations. W248 remains a narrower saved-PDB/export observer; do not silently substitute original sources or component names. Reuse Cedar deposition-link comparison against a bound complete reference; standalone CHECKED or unchanged Fcalc cannot detect an omitted declaration. Preserve every original connection kind, node/image lineage, true nick and alternative orientation. Keep P02 graphical review, special-position/general-source qualification, native full lifecycle, fresh refined-child binding and inverse edits open before supported materialization/refinement.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -1102,14 +1103,15 @@
         "E_SAVED_SCATTERING_BINDING",
         "E_TWO_ROUTE_REPRESENTATIVE_OBSERVATION",
         "E_SERIALIZATION_READBACK_OBSERVATION",
-        "E_SERIALIZED_RECUT_OBSERVER"
+        "E_SERIALIZED_RECUT_OBSERVER",
+        "E_FULL_PRECISION_BOUNDARY_METADATA"
       ],
       "last_audit": {
         "date": "2026-11-23",
         "code_commit": "3f8627b62dd5e594390b525823d973555a383905",
         "reviewer": "Linden",
-        "human_update": 248,
-        "scope": "Maintained serialization observation and two-source installed replay; full boundary metadata and native full-precision gates remain"
+        "human_update": 249,
+        "scope": "Full-precision two-source metadata/graph diagnostic; scalar-format failure and annotation-only negatives retained; no product writer or refinement adoption"
       }
     },
     {
@@ -6451,6 +6453,84 @@
           "size": 341
         }
       ]
+    },
+    "E_FULL_PRECISION_BOUNDARY_METADATA": {
+      "kind": "Original-mmCIF graph/metadata diagnostic with independent native readback",
+      "date": "2026-11-23",
+      "human_update": 249,
+      "code_commit": "3f8627b62dd5e594390b525823d973555a383905",
+      "cedar_reader_commit": "92a280402957b1fdf869cccee0abeac224674961",
+      "reference": "docs/topostitch-periodic.md#w249--carry-the-whole-boundary-graph-in-full-precision-mmcif",
+      "result": "Four diagnostic originals/recuts retain all1271/1275 original atom IDs/names, B/Q, modes/multiplicity and full-precision U. A1C3T stays A1C3T; explicit Cedar alias only binds working graph to original.62sites/60edges:4paths58ordinary+2seams become8paths54ordinary+6seams. All80/87 original connection rows, including71/74H-bonds, transported;6/5 rows added because one5LNA boundary already explicit. Native direct Fcalc recut relativeL2 1.051516e-15/7.995454e-16, unchanged0. Both annotation-only negatives preserve exact native Fcalc but source-bound Cedar comparison detects missing/wrong image.",
+      "limitation": "Local diagnostic, no maintained writer/adopted ASU/deposition-ready output or native fit. PDB working receipts are not reused for changed original sources; new exact source/alias/frame bindings. First files and iotbx scalar-category formatting failure retained, then separate format retry. Original paper models untouched. General metadata/alias/multiblock import, inverse edits, whole-refinement lifecycle and physical acceptance stay open.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w249-boundary-metadata/plan.json",
+          "sha256": "18cc1e9670052309900cffc0ec0ed84b23d25e19f3386efc35680c62e49b29cb",
+          "size": 7410
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w249-boundary-metadata/partition-summary.json",
+          "sha256": "e36916485a1de34009e90e29415c02377b2aac167d5e0cba83d7b9470fb35ebf",
+          "size": 984
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w249-boundary-metadata/materialization-plan.json",
+          "sha256": "2d09a568db1669e9e658fc095a1711bbcacd71e8404bf327726d0716e65abc89",
+          "size": 11612
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w249-boundary-metadata/native-run.log",
+          "sha256": "5f4f6a623bc6d7ac7a8338ae56e8cc37d4601d1958156ba46ec970704abf4150",
+          "size": 78
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w249-boundary-metadata-format/materialization-plan.json",
+          "sha256": "5c7f0e0fe75f096f3533c9c58cf4334b23e36e975cad94b3b242c119a4b059b2",
+          "size": 11806
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w249-boundary-metadata-format/materialization-summary.json",
+          "sha256": "fcfee913cd3eb794b4ff2bcb70b49a101d9e0c1b843e32badef54f4aa2c9a47e",
+          "size": 3416
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w249-boundary-metadata-format/native-plan.json",
+          "sha256": "241092ac09dbc81f93e3afa758261c6158347a29ffe260a8850b2871bbfdaa36",
+          "size": 4037
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w249-boundary-metadata-format/native-summary.json",
+          "sha256": "41ee254e8b9c0eb7cfe00dd717fe0b96d1c1c7785e45a377fe4fd84cf2b52969",
+          "size": 3360
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w249-boundary-metadata-format/coverage-summary.json",
+          "sha256": "e666ddf78c3be39f5614583bc1aa538a50d533eb9e5269a549814434a8f3a27a",
+          "size": 1444
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w249-boundary-metadata-format/negative-controls/summary.json",
+          "sha256": "cde4c581338663c37157c1f08d2bd16d714463198ff23fbcbcb74fafc7b8c710",
+          "size": 2090
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w249-boundary-metadata-format/negative-controls/native-summary.json",
+          "sha256": "68faca8b1c4101996fc9bfbb158282672ddc56274bed5e2a004ce5a2e7621c58",
+          "size": 974
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -6616,8 +6696,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 248,
-    "next": 249,
+    "current": 249,
+    "next": 250,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -7913,6 +7993,12 @@
       {
         "number": 248,
         "title": "Inspect exported recuts with full identity and explicit precision",
+        "state": "RECORDED",
+        "code_commit": "3f8627b62dd5e594390b525823d973555a383905"
+      },
+      {
+        "number": 249,
+        "title": "Carry complete boundary metadata with original full-precision scattering",
         "state": "RECORDED",
         "code_commit": "3f8627b62dd5e594390b525823d973555a383905"
       }

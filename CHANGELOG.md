@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W249 — Audit full-precision ASU boundary metadata
+
+- Record original-mmCIF graph/sequence/connection transport with exact source and
+  alias lineage, retaining all original atom IDs and connection types. Independent
+  native readback preserves unrefined scattering near round-off.
+- Retain the scalar-category formatting failure and missing/wrong-annotation
+  controls. Evidence/docs only: no production writer, force change or new fit;
+  generated diagnostic coordinates and reports stay local.
+
 ### W248 — Inspect serialized models against the saved recut
 
 - Add a read-only exact-receipt/export-bound PDB/mmCIF inspector in existing

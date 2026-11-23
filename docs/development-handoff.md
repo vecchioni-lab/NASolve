@@ -1,6 +1,17 @@
 # NASolve development handoff — Willow
 
-**Current audit and maintained implementation: W248, 2026-11-23.**
+**Current audit: W249; maintained implementation: W248, 2026-11-23.**
+[W249 carries the whole boundary graph in original mmCIF](topostitch-periodic.md#w249--carry-the-whole-boundary-graph-in-full-precision-mmcif):
+all 62 sites/60 backbone edges, original atom IDs/A1C3T and 80/87 connection rows
+survive. Eight recut paths carry 54 ordinary plus six image-spanning edges;
+6/5 rows are added because one 5LNA boundary was already explicit. Native
+full-precision Fcalc agrees around 1e-15; unchanged controls are zero. Scalar-CIF
+formatting failure retained, separate retry passes. Removing a declaration leaves
+Fcalc unchanged but bound Cedar comparison catches it. Diagnostic only: originals
+untouched, no product writer or refinement. Formalize source/alias/polymer and
+complete annotation lineage through existing owners before widening P03 support.
+
+
 [W248 makes exported-model inspection reusable](topostitch-preview.md#inspect-a-serialized-recut-against-its-saved-source-w248):
 237 source/237 relocated installed checks; all 12 W247 cases replay identically,
 including the two expected default-mmCIF tensor-precision failures. Complete
