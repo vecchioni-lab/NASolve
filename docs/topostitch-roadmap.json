@@ -4,7 +4,7 @@
   "updated": "2026-11-23",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "3c6c3f9115190068c43c34c7158b8e9584f83a16",
+  "audited_code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -283,7 +283,8 @@
         "W229confirms the current205atom core has no wider two-fixed-flank interval within its frozen seven-pair route declaration;13cold checks/3anchor-release refusals. No coordinates or native run.",
         "W230 measures adjacent same-strand ring-plane orientation, normal spacing and lateral placement through existing frames;116source/116installed tests and six saved-state readbacks. Default reports unchanged; this is descriptive internal stacking, not closure or acceptance.",
         "W231 distinguishes the canonical central crossover from ordinary stacking:22coldchecks,~82degree seam planes and2.795AO3-P. No whole-pair anchor release or new native run.",
-        "W232 binds6connecting-backbone atoms/856held atoms to the real child and authenticated native support,23coldchecks. No coordinate change or new native experiment; full image-force receiving remains Cedar-owned."
+        "W232 binds6connecting-backbone atoms/856held atoms to the real child and authenticated native support,23coldchecks. No coordinate change or new native experiment; full image-force receiving remains Cedar-owned.",
+        "W233 composes internal stacking with existing named-state correspondence;125source/125installed and254cold checks per context. Default reports unchanged; no native run or motion admission."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
@@ -382,14 +383,15 @@
         "E_WIDER_WINDOW_SCOPE",
         "E_INTERNAL_STACKING_PLACEMENT",
         "E_CROSSOVER_WINDOW_CONTEXT",
-        "E_NARROW_BACKBONE_SCOPE"
+        "E_NARROW_BACKBONE_SCOPE",
+        "E_STACKING_COMPARISON"
       ],
       "last_audit": {
         "date": "2026-11-23",
-        "code_commit": "3c6c3f9115190068c43c34c7158b8e9584f83a16",
+        "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933",
         "reviewer": "Linden",
-        "human_update": 232,
-        "scope": "Conservative six-atom scope bound; physical feasibility and complete image-force restart open"
+        "human_update": 233,
+        "scope": "Before/after stacking integration; physical narrow-window experiment awaits Cedar force restart"
       }
     },
     {
@@ -688,7 +690,8 @@
         "W229confirms the current205atom core has no wider two-fixed-flank interval within its frozen seven-pair route declaration;13cold checks/3anchor-release refusals. No coordinates or native run.",
         "W230 measures adjacent same-strand ring-plane orientation, normal spacing and lateral placement through existing frames;116source/116installed tests and six saved-state readbacks. Default reports unchanged; this is descriptive internal stacking, not closure or acceptance.",
         "W231 distinguishes the canonical central crossover from ordinary stacking:22coldchecks,~82degree seam planes and2.795AO3-P. No whole-pair anchor release or new native run.",
-        "W232 binds6connecting-backbone atoms/856held atoms to the real child and authenticated native support,23coldchecks. No coordinate change or new native experiment; full image-force receiving remains Cedar-owned."
+        "W232 binds6connecting-backbone atoms/856held atoms to the real child and authenticated native support,23coldchecks. No coordinate change or new native experiment; full image-force receiving remains Cedar-owned.",
+        "W233 composes internal stacking with existing named-state correspondence;125source/125installed and254cold checks per context. Default reports unchanged; no native run or motion admission."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -821,14 +824,15 @@
         "E_WIDER_WINDOW_SCOPE",
         "E_INTERNAL_STACKING_PLACEMENT",
         "E_CROSSOVER_WINDOW_CONTEXT",
-        "E_NARROW_BACKBONE_SCOPE"
+        "E_NARROW_BACKBONE_SCOPE",
+        "E_STACKING_COMPARISON"
       ],
       "last_audit": {
         "date": "2026-11-23",
-        "code_commit": "3c6c3f9115190068c43c34c7158b8e9584f83a16",
+        "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933",
         "reviewer": "Linden",
-        "human_update": 232,
-        "scope": "Conservative six-atom scope bound; physical feasibility and complete image-force restart open"
+        "human_update": 233,
+        "scope": "Before/after stacking integration; physical narrow-window experiment awaits Cedar force restart"
       }
     },
     {
@@ -6016,6 +6020,41 @@
           "size": 28501
         }
       ]
+    },
+    "E_STACKING_COMPARISON": {
+      "kind": "Existing named-state comparison with optional stacking changes",
+      "date": "2026-11-23",
+      "human_update": 233,
+      "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933",
+      "reference": "docs/topostitch-preview.md#compare-internal-stacking-between-named-states-w233",
+      "result": "9fail-before regressions;125source/125relocated installed;254cold checks per context across6saved comparisons with exact parity. Directed adjacency, separate strand coverage and partial plane-angle/distance availability retained. ActualPDUrings stay unsupported;7P-span changes/8of12strand steps.",
+      "limitation": "Read-only caller-declared correspondence; no alignment, overlap, scientific acceptance, new force/native run or full-suite repeat. W230complete-suite result stays bound to its earlier checkpoint.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w233-stacking-comparison/installed-check.json",
+          "sha256": "2dcf223ec56e0d899fef8b2829dd327a439155b4eec3b4d5109433298093cb39",
+          "size": 920
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w233-stacking-comparison/source-readback.json",
+          "sha256": "d3e5c75a2ec0bdbc77e3fc42912bc796f0e88ebc5f45c337134c6a674db70636",
+          "size": 2261308
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w233-stacking-comparison/installed-readback.json",
+          "sha256": "d3e5c75a2ec0bdbc77e3fc42912bc796f0e88ebc5f45c337134c6a674db70636",
+          "size": 2261308
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w233-stacking-comparison/readback-parity.json",
+          "sha256": "e0de64f0b5ec91b073fb56a3b5aba415f1e2e2bda874157416a78938823f9a86",
+          "size": 193
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -6181,8 +6220,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 232,
-    "next": 233,
+    "current": 233,
+    "next": 234,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -7384,6 +7423,12 @@
         "title": "Bind six connecting-backbone atoms with all rings held",
         "state": "RECORDED",
         "code_commit": "3c6c3f9115190068c43c34c7158b8e9584f83a16"
+      },
+      {
+        "number": 233,
+        "title": "Compare stacking through explicit state correspondence",
+        "state": "RECORDED",
+        "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933"
       }
     ]
   },

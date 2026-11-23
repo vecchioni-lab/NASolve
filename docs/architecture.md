@@ -1088,7 +1088,10 @@ W230 optionally adds same-strand ring placement descriptors from those same
 frames: acute plane angle, ring-centroid distance, unsigned normal spacing and
 lateral displacement. Independent strand availability and breaks are retained.
 Default reports stay exact; no overlap, contact score, force or motion authority
-is inferred. These descriptors supplement signed twist and within-pair geometry.
+is inferred. These descriptors supplement signed twist and within-pair geometry. W233
+carries them through the existing explicit named-state comparison, retaining
+directed adjacency and independent strand/metric availability. It adds no
+coordinate alignment or inferred physical correspondence.
 See the [shared plan](helical-geometry-plan.json).
 
 The pairing owner supplies exact forward/reciprocal edge incidence to selected

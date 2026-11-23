@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current audit: W232, 2026-11-23. Maintained implementation: W230.**
+**Current audit and maintained implementation: W233, 2026-11-23.**
 The existing native input binder now accepts an explicitly selected dictionary-only
 parent policy from Cedar C526. Default literal inputs still require compiled
 restraints. W214 binds a real X11_22 PostMR checkpoint and original observations;
@@ -65,6 +65,13 @@ The initial large translation preserves plane angles but raises maximum lateral
 ring-centroid offset from 3.50 to 10.53 Å; staged recovery returns near 3.48 Å.
 This measures spacing and lateral placement separately from within-pair geometry
 and twist. It does not establish overlap, an ideal structure or seam closure.
+
+W233 carries those [stacking measurements through named-state comparison](topostitch-preview.md#compare-internal-stacking-between-named-states-w233):
+125 source/125 relocated installed tests, 254 cold checks per readback and exact
+parity. Explicit directed correspondence and independent strand/metric coverage
+stay intact. Actual C543 PDU rings remain unsupported while their P spans are
+retained. No new force/native run or full-suite repeat; W230's complete suite
+remains tied to its recorded earlier checkpoint.
 
 ## Current development edge
 

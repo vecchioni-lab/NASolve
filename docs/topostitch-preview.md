@@ -3275,3 +3275,45 @@ limits `OMP_NUM_THREADS=OPENBLAS_NUM_THREADS=MKL_NUM_THREADS=1`.
 exact invocation, source commit and result. The three skipped cases remain
 unqualified. This is software validation, separate from native science; no
 scientific fitting experiment was launched for W230.
+
+
+## Compare internal stacking between named states (W233)
+
+Use the existing `helical_comparison.compare_helical_states` with
+`simple_twist=True`, an explicit `max_ring_fit_rmsd_angstrom`, and
+`include_stacking=True`. Both source models, ordered pairs and strand
+correspondence are still explicit. No alignment or matching is inferred.
+
+Each directed step gains two `stacking_geometry` entries, labelled `strand_i`
+and `strand_ii`. Each carries reference, candidate and ordinary difference for
+plane angle, centroid distance, normal spacing and lateral offset. Acute plane
+angle differences are not wrapped and are not signed bend angles; the existing
+signed-twist differences retain their original wrap policy. `coverage.stacking_changes`
+counts each metric separately. Embedded measurements retain their exact original
+source and frame provenance.
+
+Missing/reversed/unmatched adjacency never becomes a step by compressing the
+mapping. A missing base frame leaves the other strand measurable. At an ambiguous
+mean plane, the observed angle and centroid distance can still be compared while
+normal spacing/lateral offset remain unavailable. Default reports are unchanged;
+only the explicit option adds fields, with no CLI, dependency or schema migration.
+This does not measure overlap, validate physical correspondence or adopt a model.
+
+**Validation:** nine fail-before regressions; **125 source / 125 relocated
+installed** tests using the same four helical test files/command as W230.
+The original build source and installation are absent before relocated tests.
+Final wheel SHA256 `03a7a54417b1245ae11c2ee2559fc4cd3ddc93c7b35bbbebef302b81b2033fd9`.
+Six saved comparisons give **254 cold checks** per source/installed context
+and exact report parity, including 240 independently subtracted saved scalar
+changes. The real C543 ancestor/child comparison preserves all seven phosphate
+span changes while reporting only eight of twelve strand steps for each stacking
+metric: both PDU ring frames remain explicitly unsupported, not canonicalized.
+This is a readback of Cedar's whole-model result, not a Willow narrow-window fit.
+
+Local NASolve evidence: `branch-artifacts/willow/w233-stacking-comparison/`
+(`installed-check.json`, `source-readback.json`, `installed-readback.json`,
+`readback-parity.json`, test logs); controllers `runners/w233-install.py` and
+`runners/w233-readback.py` under `branch-artifacts/willow/`. A pre-format wheel
+was superseded and its task-owned temporary package removed; final qualified
+files and fail-before evidence remain. No native calculation or coordinate
+write, and no repeat of W230's complete suite under the coordinated cadence.

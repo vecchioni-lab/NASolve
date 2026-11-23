@@ -122,11 +122,11 @@
     }
   },
   "implementation": {
-    "human_update": "W230",
+    "human_update": "W233",
     "owner": "Linden / Willow; shared with Cedar and Alder",
-    "code_commit": "3c6c3f9115190068c43c34c7158b8e9584f83a16",
+    "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933",
     "module": "nasolve.helical_geometry + nasolve.helical_twist + nasolve.helical_comparison",
-    "guide": "docs/topostitch-preview.md#measure-internal-stacking-placement-w230",
+    "guide": "docs/topostitch-preview.md#compare-internal-stacking-between-named-states-w233",
     "report_schema": 1,
     "delivered": [
       "Exact single-model PDB and identity-image site/component/conformer binding",
@@ -141,7 +141,8 @@
       "113 focused source and 113 relocated installed checks; five exact saved 5W6W comparisons, 35 independent P-span delta checks; no new native run",
       "Declared contiguous regional step weights, full raw coverage, signed mean and guarded signed bp/turn",
       "136 focused source and 136 relocated installed checks; twelve saved-state summaries and prior generator values reproduce",
-      "Optional per-strand ring-plane angle, centroid separation, normal spacing and lateral offset from existing canonical frames; independent missing/break coverage,116source/116relocated installed tests and96saved-model checks each with exact parity"
+      "Optional per-strand ring-plane angle, centroid separation, normal spacing and lateral offset from existing canonical frames; independent missing/break coverage,116source/116relocated installed tests and96saved-model checks each with exact parity",
+      "Opt-in stacking changes through existing named-state correspondence: directed adjacency and independent strand/metric availability;125source/125installed,254cold checks per context with exact saved-report parity"
     ],
     "remaining": [
       "Other crystal images, mmCIF and registered cross-state correspondence",

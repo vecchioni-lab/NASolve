@@ -7,7 +7,10 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Current code: W230.** [Internal stacking placement](topostitch-preview.md#measure-internal-stacking-placement-w230)
+- **Current code: W233.** [Before/after stacking comparison](topostitch-preview.md#compare-internal-stacking-between-named-states-w233)
+  retains explicit pair/strand correspondence and per-metric missing coverage:
+  125 source/125 installed tests, six saved comparisons, no native run.
+- **W230:** [Internal stacking placement](topostitch-preview.md#measure-internal-stacking-placement-w230)
   separates per-strand plane orientation, spacing and lateral displacement;
   116 source/116 installed tests, six saved states; full Willow checkpoint
   2481 passed/3 skipped/234 subtests. No force or motion authority.
@@ -35,7 +38,7 @@ current instructions; other branches retain their own status and validation pins
   The failed direct result and three remaining moving-region outliers stay
   explicit. This is same-family synthetic recovery, not general experimental repair.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W232, next W233:
+  [generated human view](topostitch-roadmap.md). Current W233, next W234:
   a six-atom connecting-backbone scope is bound with all base/sugar rings fixed;
   consume Cedar’s complete image-force restart before the narrow ancestor trial.
   The existing two-fixed-flank interval cannot simply grow around the same core.
