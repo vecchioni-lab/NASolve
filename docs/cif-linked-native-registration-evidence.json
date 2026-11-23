@@ -1,6 +1,21 @@
 {
   "schema_version": 1,
   "document_kind": "LINKED_NATIVE_REGISTRATION_AND_COMPONENT_METADATA_RETURNS",
+  "c544_restored_native_bond": {
+    "queue": "Q06", "checkpoint": "manual-001", "parent": "refine-005",
+    "model_sha256": "5c0b63b683c58e977d12ebce9b6aca61d44444367a816417a2e8c39e667fb075",
+    "native": "Phenix 2.2.1-6174", "dry_run": true, "new_cycles": 0,
+    "input_atoms": 862, "working": 1785, "free": 124,
+    "references": [["A:16","A:17"],["B:5","B:6"]],
+    "complete_native_terms": 8, "native_parameters_sha256": "56df5552029f069832389874951e33f9310108201725e78325518f618cdf0311",
+    "installed_bonds": 1, "second_shell_pairs_verified": 4, "overlapping_nonbonded": 0,
+    "source_and_relocated_tests_each": 66,
+    "test_modules": ["phosphate_restraints","phosphate_reference_links","phosphate_continuation","phosphate_image"],
+    "replay": {"anchor": "NASolve-local-artifacts", "receipt": "cedar/c528-phosphate-refinement/c544-native.json",
+      "sha256": "e67b9fb5d9dacdd7eda80e877ffa305e8f956e890fc3ca96391e2f8b4a50d0b3",
+      "prepare": "cedar/runners/c544_prepare.py", "prepare_sha256": "c6eec8407fee54e060a08e61d051ee5d681fdc80430cbfb2fe7373d16eedd6db",
+      "read_native": "cedar/runners/c544_native.py", "read_native_sha256": "5cf4aaddca6daa142d493acad447a69202d6445046f5758f3873e5e2ab7a4402"}
+  },
   "c543_numbered_phosphate_descendant": {
     "queue": "Q06",
     "registration_checkpoint": "refine-005",

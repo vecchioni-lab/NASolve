@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-23, C543 following the registered phosphate into a numbered child — Rowan**.
+Updated **2026-11-23, C544 restoring the registered bond in fresh Phenix — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
 C543 reopens the C541 five-cycle model as a manual child of `refine-005`
@@ -19,6 +19,16 @@ wheel each passed 187 checks and 27 subtests with
 `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/{test_phosphate_continuation,test_phosphate_image,test_phosphate_reference_links,test_cif_doctor_run,test_topostitch_images,test_topostitch_graph,test_topostitch_registration,test_checkpoints,test_cli}.py`
 (use the relocated wheel and qualified Gemmi on the installed test path).
 Both inspections reproduced the same [compact evidence](cif-linked-native-registration-evidence.json).
+
+C544 started a new Phenix 2.2.1-6174 process on this child with all seven
+inherited files. The source-derived bond gave it one 1.607 Å target and
+the four expected second-neighbour exclusions. The opposing nonbonded
+contacts disappeared. Both intact DA→DC references still agreed on all
+eight forces after checking the fields that static dictionary capture
+omits. This was a native dry run on all 1,785 working and 124 free
+reflections. The remaining step is attaching the four angles and three
+torsions to the new manager and following them into refinement.
+The optional internal reader changes no stored checkpoint format.
 
 C541 tested the [declared 5W6W junction](backbone-chemistry.md#the-central-strand-in-the-5w6w-scaffold)
 through two actual five-cycle Phenix 2.2.1-6174 refinements. Both used the

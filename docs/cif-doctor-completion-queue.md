@@ -163,9 +163,11 @@ Reuse these paired controls.
 C543 carries the registered endpoints and their full crystal operation from
 the numbered ancestor to the written child. All 40 atoms at the two residues
 kept their crystal copies. The child measured 1.620 Å and its own native
-capture supplied both intact reference links. The remaining work is delivery
-of those terms to the fresh Phenix geometry manager and retention during
-the next refinement.
+capture supplied both intact reference links. C544 rechecked the actual forces
+from both links in a fresh Phenix process, restored exactly one distance and
+verified that all four adjacent pairs left the nonbonded list. The next step
+is delivery of the four angles and three torsions, including after Phenix
+selects a subset of atoms, and retention during the next refinement.
 
 In C531, two historical PHIL edits completely masked the source-supported
 PDU target change from 1.607 to 1.470 Å. Updating both site-specific targets
