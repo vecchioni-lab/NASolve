@@ -13,13 +13,141 @@ not a second queue.
 
 **Late chemical-provenance clarification:** the [DF C2-angle audit](metal-df-c2-angle-audit.md) separates eLBOW source consistency from independent chemical validation. The earlier final sulfur-angle split is 135.3°/108.7°; generated targets remain chemically provisional. Routine donor-state integration stays deferred and is not a new immediate A01 prerequisite. A retained base fragment exists (124 read-only checks), but no replacement or target change is admitted.
 
-## Current A01 — outward phosphate survives; the pair remains compressed
+<a id="a01-phased-junction-2026-11-23"></a>
+
+## Current A01 — phased junction executes; local geometry remains unresolved
+
+The shared six-atom B7→B1 phased fit now completes native output and independent
+return checks. The geometry is not suitable for selection. A separate single
+geometry-plus-tether trial from the original parent stops at the existing motion
+guard, before convergence. A01 remains partial; A02 stays gated. No f″ trial,
+accepted parent, second cut or ordinary checkpoint is created.
+
+| Measurement | Source target | Original parent | Completed phased fit | Last accepted geometry step* |
+| --- | ---: | ---: | ---: | ---: |
+| B7 image O3′–B1 P | 1.607 Å | 3.029 Å | 1.997 Å | 1.617 Å |
+| B7 C3′–O3′ | 1.435 Å | 1.442 Å | 1.772 Å | 1.487 Å |
+| B1 OP2–P–O5′ | 108.0° | 101.4° | 58.1° | 85.7° |
+| B1 C5′–C4′–C3′ | 114.1° | 116.8° | 105.5° | 124.6° |
+
+*The last column belongs to a failed, unconverged trial, not an emitted candidate.
+Native restraint targets/widths are not experimental uncertainties. The broad
+attachment and phosphate distortions matter; small fractional deviations do not.
+
+**Phased execution and output boundary.** W250 admission retains all 859 atoms,
+1,151 original indexed reflections/HL quartets, 59 original Free reflections,
+eight ordered chemistry inputs and every fixed f′/f″ value. A607 passes 8,714 cold
+checks; A609 binds the relocated installed preflight with 89 further checks and
+no native rerun. Its only source delta changes frame-report unit labels; reversing
+those edits reproduces the earlier source hash exactly. Four angles and three
+torsions supplement one native bond; they are not seven nonbonded terms. The
+original receipt's wording error is corrected in its separate README.
+
+W251 executes native cycles but fails in optional next-run `.def` serialization:
+formatted selectors no longer match live strings, and formatting also rounds f′.
+Raw PDB/maps do not constitute a successful return. W252 disables that optional
+export, using the exact request/inputs as replay authority; all scientific controls
+remain unchanged. Its completed native atom records reproduce W251 exactly.
+Shared implementation `2ad83590` remains a separately qualified Willow follow-on,
+not an implicit code merge into Alder. Focused source/relocated installed tests
+and actual Phenix PHIL fail-before/pass-after evidence are retained with it.
+
+The completed Phenix **2.2.1-6174** fit observes 97 MLHL target evaluations,
+94 target gradients and 97 complete image angle/torsion gradient contributions,
+alongside the native bond and four second-shell exclusions. A615 independently
+passes **4,720 cold checks**: full/rounded output, six movable atoms, 853 fixed
+coordinates, all B/Q/scattering, original phases/Free-R and the complete adjacent
+covalent pocket. Maximum shift is 0.631342 Å; Rwork/Rfree is
+0.306743/0.342453. Hg retains source B=69.52 Å² and Q=1. f″=0 is fixed and
+unmeasured under the merged-observation MLHL policy; environmental-B preparation
+has not run. Lower R or a shorter new bond cannot override the damaged geometry.
+A608's first cold reader refused an additional Cedar source fingerprint. A615
+explicitly binds the reviewed optional duplex-reader change in Cedar `3325f533`,
+already present in W251; absent partner arguments preserve the old inspection.
+The refusal remains saved; no tolerance or scientific guard was relaxed.
+
+**One geometry-plus-tether discriminator.** A614/A613 compose existing native
+owners in a native preflight observer, from the original `7aade3c4` parent, not
+the distorted child. All native geometry and registered link terms act, with an
+explicit 0.5 Å positional tether and no diffraction or duplicate pair energy.
+Both sugar rings remain fixed. Budgets are 100 iterations, 300 optimizer calls,
+600 total geometry evaluations and 600 seconds; movement remains limited to
+1.5 Å. The qualified explicit native-crystal binding preserves the existing
+1e-10 manager check. The live model/scattering/data and source files stay exact.
+
+The process stops cleanly in 177.97 s after 236 geometry evaluations. After
+12 accepted optimizer steps, a proposed displacement exceeds the hard guard.
+The existing last-accepted-step observer preserves this failure and verifies
+initial/full/rounded derivatives (worst 6.70e-5 against the unchanged 0.001 bound).
+A616 independently passes **1,789 cold checks**. The last accepted maximum shift
+is 1.479672 Å, but angles/attachments remain strained. No candidate is emitted.
+This is an unconstrained optimizer proposal refused by a guard, **not a constrained
+optimum at the limit**. The rejected proposal was not retained; neither its
+violating atom nor a need for a larger mask can be inferred. No convergence or
+geometric impossibility is established. Do not restart from that saved step.
+
+A separate cold necessary-distance calculation, `willow/w253-geometry-reach.json`,
+puts the minimum P displacement for three exact local ideals at 1.511 Å. Allowing
+illustrative one-native-width intervals lowers that necessary bound to 1.473 Å.
+The 0.011 Å exact-ideal excess is not a chemical impossibility at soft restraints.
+This calculation omits the O3′ motion limit, orientation, other chemistry, contacts
+and diffraction: it neither proves feasible closure nor identifies the rejected
+proposal. Treat it as context for a later placement preflight, not authority to
+change the mask, bound or acceptance criteria.
+
+**Next scientific question:** review source-derived phosphate placement and the
+motion representation against both fixed sugar attachments and local contacts
+before designing another bounded experiment. Do not silently expand the bound,
+add sugar freedom, repeat a weight grid or combine the separate A12 outward
+hypothesis. D7→C8, whole-model receiving and ordinary source-bound publication
+remain separate. Reuse the prior-attempt search: 14 exact-parent-linked records
+contain no earlier identical six-role geometry-only trial; earlier canonical-flank,
+outward-phosphate, ATL and W controls differ in scope or parent.
+
+For later legacy 5W6W-derived input admission, carry Cedar C551's read-only
+phosphate orientation check where the declared adjacent pairs actually match.
+The current six standard frames are already corrected; old Coot mutation can
+retain the inward phosphate, and an internal OP3 must remain explicitly
+unassessed. This is a future admission check, not automatic coordinate swapping
+or a new task in this checkout.
+
+**Evidence, validation and delivery:** private artifact anchors are
+`Alder/a01-phased-phosphate-admission-20261123-01/`,
+`Alder/a01-phosphate-writer-failure-20261123-01/`,
+`Alder/a01-phased-phosphate-return-20261123-01/` (preserved reader refusal),
+`Alder/a01-phased-phosphate-return-20261123-02/` and
+`Alder/a01-phosphate-geometry-feasibility-20261123-01/`.
+Their README files, execution manifests and logs retain exact commands, source
+hashes, stopping and limitations. W251/W252 failed/completed native nodes remain
+under the Willow artifact anchor. Do not repeat completed checks merely to refresh
+docs. No full suite; no additional Alder runtime/schema/default change or migration
+in this documentation update. Generated models/maps/native evidence are deliberately
+excluded from Git; no automatic pruning or portability claim is made.
+
+The geometry trial's `closeout-audit.json` verifies all five explicitly owned
+native processes stopped. The failed writer run, completed replay and geometry
+trial occupy 62,440,589 logical bytes together. No files were deleted. These
+changed-coordinate and failure-evidence nodes remain protected; the more aggressive
+retention policy for cheap frozen-coordinate f″ children does not apply here.
+
+The inspected compact report is
+`ScienceCheckouts/Hazel/2026-11-23_ft-crystal-junction/index.html` (17 verified links),
+with SVG/PNG figures and source-bound map sampling. Weak model-assisted density at
+this join does not choose a geometry. Linden's validated three-state inspection is
+`ScienceCheckouts/Linden/2026-11-23_phased-junction-boundary/index.html`:
+ChimeraX 1.12 checks 3×859 atoms and all six view actions, displaying the failed
+last-accepted points only in memory on the original model. No candidate PDB is
+created. Existing figures are reused. Keep the earlier reports below.
+
+<a id="current-a01--outward-phosphate-survives-the-pair-remains-compressed"></a>
+
+## Preceding A01 comparison — outward phosphate survives; the pair remains compressed
 
 One additional matched receiving experiment is complete and stopped. The six-atom
 A12 outward-phosphate seed improves local backbone geometry under the unchanged
 five-cycle phased XYZ/group-B protocol, but does not qualify a new metal parent.
-A01 remains partial; A02 remains gated. Next is the separate B7→B1 phased local-fit
-admission through the shared Willow owner. Do not combine hypotheses, repeat an
+A01 remains partial; A02 remains gated. The separate B7→B1 phased local fit
+is now reviewed above through the shared Willow owner. Do not combine hypotheses, repeat an
 unchanged control, expand a weight grid or start f″ merely because the phosphate
 orientation persists.
 
@@ -88,8 +216,8 @@ improves the expected A11 DT / B5 DA pair before diffraction refinement, but
 the improvement largely relaxes back during the two matched five-cycle open
 XYZ/group-B receiving runs. Both Phenix 2.2.1-6174 executions completed/stopped.
 The cold compatibility review of both intended crystal backbone joins is now
-complete. Next is independent native admission of the optional phased local-fit
-route owned by Willow, then at most one bounded B7→B1 displaced-start fit.
+complete. The later independently reviewed phased local fit and bounded
+geometry trial are recorded above; they do not select a new parent.
 D7→C8 waits; no two-cut delivery is inferred. No further flank weight grid,
 identical continuation, f″ or automatic selection follows from this comparison. A01 remains partial; A02 remains gated.
 

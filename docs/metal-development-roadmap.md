@@ -12,22 +12,30 @@ the [anomalous workflow](metal-anomalous-doctor.md) and [restraint design](metal
 own scientific contracts. A mechanism passing tests does not close its scientific
 gate. Update milestone status, evidence, limitations and next action together.
 
-A01's latest source-pinned outward-phosphate seed survives five phased open
-XYZ/group-B cycles and repairs the local A11 sugar angle to 110.81° (target
-109.7°). Independent coordinate readback confirms the orientation persists.
-However, the adjacent T–A contacts remain compressed at 2.200/2.104 Å and final
-Rwork/Rfree is 0.3081/0.3329. The R ranking reverses during final scaling; saved
-maps and source-state uncertainty do not support selecting a new parent.
-A01 remains partial/A02 gated. Reuse the completed 2,664 cold checks, the saved
-unchanged-parent control and the [current handoff](metal-development-handoff.md#current-a01--outward-phosphate-survives-the-pair-remains-compressed).
-The preceding canonical-flank seed/receiving comparison remains separate evidence.
+A01's latest six-atom B7→B1 phased fit now completes source-bound native output
+and independent return checks, but shortening the gap to 1.997 Å distorts the
+adjacent bonds/angles. One separate geometry-plus-0.5 Å tether trial reaches a
+saved 1.617 Å gap, then an unconstrained optimizer proposal exceeds the unchanged
+1.5 Å guard. It does not converge or emit a candidate. A01 remains partial/A02
+gated; see the [current handoff](metal-development-handoff.md#a01-phased-junction-2026-11-23).
 
-Next: independently qualify Willow's optional phased local-fit route, then one
-bounded six-atom B7→B1 displaced-start test on its explicitly named parent.
-D7→C8 and ordinary source-bound checkpoint publication remain separate. No
-repeated control/weight grid or automatic combination of the phosphate and
-symmetry-join hypotheses. The [phosphate intake](metal-development-handoff.md#a01-registered-phosphate-intake--23-november)
-binds chemistry, indexed phases/Free-R and fixed scattering before motion.
+Reuse the completed admission/return/failed-step audits (8,714 + 89, 4,720 and
+1,789 cold checks respectively), shared source/installed focused receipts and
+saved reports. The optional next-run defaults compatibility fix is separately
+qualified in Willow; its complete output-only replay reproduces the failed run's
+coordinates. No implicit integration, accepted model or full-suite claim follows.
+
+Next: review chemically valid source-backed phosphate placement and the motion
+representation against both fixed sugar attachments/local contacts before another
+bounded experiment. A guard refusal is not a constrained optimum or proof that a
+larger movement mask is needed. No automatic bound expansion, weight grid, second
+cut or combination with the earlier A12 outward-phosphate hypothesis. Ordinary
+checkpoint publication and a sound open XYZ/B parent remain prerequisites before
+f″. For later 5W6W-derived legacy admission, use Cedar C551's read-only orientation
+check where the paired-neighbour declaration actually matches; keep internal OP3
+unassessed and never silently swap coordinates. The standard frames are already
+corrected. Earlier canonical-flank and outward-phosphate comparisons remain
+separate retained evidence.
 
 A01 next-input review now includes [DF C2 chemical target provenance](metal-df-c2-angle-audit.md). A source-consistent fragment is available, but its eLBOW angles are not independent chemistry authority. Retain explicit source-state uncertainty and coupled-target review; routine donor-state integration remains deferred. No automatic 120° substitution.
 

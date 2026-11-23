@@ -7,28 +7,33 @@ observation and storage owners; it introduces no new scientific policy.
 
 ## Current metal-science edge
 
-A01 remains partial; A02 quantitative f″ trials remain gated. The latest
-[outward-phosphate receiving comparison](metal-development-handoff.md#current-a01--outward-phosphate-survives-the-pair-remains-compressed)
-repairs local sugar geometry and retains the constructed orientation, but the
-canonical pair remains compressed and final scaling reverses the apparent R
-ranking. One Phenix 2.2.1-6174 receiver completed/stopped; 2,664 cold checks pass.
-The prior unchanged-parent control is reused. Compact private report:
-`ScienceCheckouts/Hazel/2026-11-23_ft-outward-phosphate/index.html`.
+A01 remains partial; A02 quantitative f″ remains gated. The latest
+[crystal-junction comparison](metal-development-handoff.md#a01-phased-junction-2026-11-23)
+qualifies source-bound phased execution and return, but the six-atom local fit
+distorts its attachments. A separate geometry-plus-tether trial stops at the
+unchanged movement guard before convergence; no candidate is emitted. Reuse the
+completed native and independent cold evidence. Both processes are stopped.
 
-The separate [registered-phosphate intake](metal-development-handoff.md#a01-registered-phosphate-intake--23-november)
-qualifies source references, a complete current-parent interpretation and exact
-indexed phase/Free-R/fixed-scattering bindings. Next is native admission through
-Willow's optional phased local-fit route, then one bounded B7→B1 fit. Ordinary
-source-bound publication and paired-junction delivery remain separate. Neither
-this intake nor the latest local correction installs an accepted f″ parent.
+The shared optional-defaults output fix is separately qualified in Willow
+`2ad83590`, not implicitly merged here. A615's 4,720 cold checks preserve original
+phases/Free-R, all fixed B/Q/scattering and the 853 fixed coordinates; A616's 1,789
+checks retain the failed trial and its last accepted diagnostic step. No new
+Alder runtime/schema/default change, migration or full suite in this docs update.
+No raw scientific data is committed/uploaded or automatically pruned.
 
-The preceding seed/receivers, stopping/final-scaling readers and source
-[DF angle uncertainty](metal-df-c2-angle-audit.md) remain linked from the current
-metal handoff. Optional explicit native-crystal binding is the only maintained
-runtime change in the latest push; strict defaults and old report shape remain.
-Its focused/native receipts are retained there. No full suite was repeated for
-these bounded scientific diagnostics or documentation updates. No raw science is
-committed or uploaded.
+Next review source-backed phosphate placement/motion and both sugar attachments
+before another experiment. Do not interpret a rejected optimizer proposal as a
+constrained optimum, enlarge the mask automatically, repeat a weight grid or start
+f″. D7→C8 and ordinary checkpoint delivery stay separate. The [metal handoff](metal-development-handoff.md)
+links the exact source/installed tests, native versions/commands, immutable failed
+attempts, scope, remaining chemistry uncertainty and prior controls.
+
+Private reports:
+`ScienceCheckouts/Hazel/2026-11-23_ft-crystal-junction/index.html` and
+`ScienceCheckouts/Linden/2026-11-23_phased-junction-boundary/index.html`.
+The latter displays the saved step from the failed trial only in memory and does
+not create a candidate model. Earlier outward-phosphate/canonical-flank reports
+remain linked. The qualified integration checkpoint below is unchanged.
 
 ## Qualified integration checkpoint — test-only amendment
 

@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record phased junction return and bounded geometry failure
+
+- Preserve independently checked native execution/return for one crystal
+  phosphate join, including the failed optional-defaults writer and exact
+  output-only replay. Correct source-state delivery does not accept distorted
+  geometry or authorize f″ quantitation.
+- Record one original-parent geometry-plus-tether trial that stops at the existing
+  motion guard before convergence. Keep its last accepted step diagnostic-only,
+  with no emitted candidate, bound expansion or claim of geometric impossibility.
+- Link compact maps, geometry tables, exact validation and the coordinated
+  in-memory inspection view. A01 remains partial/A02 gated. Documentation only
+  on Alder; the shared output change remains separately qualified in Willow.
+  No schema migration, raw science commit, pruning or new full-suite claim.
+
+
 ### Record matched outward-phosphate receiving evidence
 
 - Preserve one source-pinned six-coordinate construction and matched phased
