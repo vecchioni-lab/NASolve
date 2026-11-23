@@ -15,6 +15,27 @@ not a second queue.
 
 ## Current A01 question — coupled canonical-flank placement
 
+**Native precision qualification passed; seed timeout preserved:** the second
+attempt's actual Phenix 2.2.1-6174 constructor checks include seven refusals and
+one nonidentity translation control. The translation uses 105.14800262451169 Å,
+while the unchanged default uses the source-rounded 105.148 Å. Pair and mask
+must share the optional binding. Native-manager cell comparison retains its
+existing 1e-10 arithmetic bound, independently of source CRYST1 rounding; two
+new boundary tests distinguish 5e-11 from 5e-10. The original 176 focused tests,
+143 direct contribution/coverage tests and 18 precision tests (16 overlapping)
+pass; no full suite. Exact receipts remain under the first two private attempts.
+
+The 41-atom trial then reached its 600 s operational cap without a completed
+optimizer receipt. No candidate or receiving fit is admitted. The sandbox denied
+the watchdog's group cleanup; a separate elevated read-only process/group check
+confirmed PID/PGID 91476 absent. Original failure and `timeout-cleanup.json` are
+retained in `Alder/a01-canonical-flank-20261123-02/`. The next operational retry
+keeps all scientific settings and the 1,802-evaluation bound, adds compact live
+progress/interruption records and a 2,100 s execution cap. This repairs observability
+and the time estimate, not a failed scientific result. No derivative tolerance,
+geometry target, movement mask or source/data change is authorized by the retry.
+
+
 **First evening preflight withheld:** native preparation completed in 6.79 s,
 then the existing placement constructor correctly refused a cell mismatch before
 optimization. The source CRYST1 lengths 105.148/94.504 Å correspond to native

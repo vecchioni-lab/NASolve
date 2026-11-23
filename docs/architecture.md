@@ -1846,7 +1846,8 @@ cell/group to the original source-model hash. Space groups must agree; cell
 lengths must serialize identically at CRYST1's three decimals and angles at two.
 Pair/image transformations use the exact supplied native cell, and the masked
 owner independently checks the actual geometry manager against that chosen
-cell/group. Source PDB bytes and reflection data are never rounded or rewritten.
+cell/group, retaining its existing 1e-10 cell-parameter arithmetic bound and
+exact space-group comparison. This is not bitwise equality of floating values. Source PDB bytes and reflection data are never rounded or rewritten.
 This follows the existing Cedar phosphate-start precision rule. It is a
 representation bridge, not reflection authentication or movement permission:
 callers retain original observation/Free-R provenance and supply the actual

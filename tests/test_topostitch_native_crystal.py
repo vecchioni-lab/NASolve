@@ -53,3 +53,23 @@ def test_invalid_cells_refuse(bad):
 
 def test_missing_source_crystal_is_not_inferred():
     with pytest.raises(ValueError):_native_crystal_binding(None,Crystal(NATIVE))
+
+
+@pytest.mark.parametrize("delta,allowed",[(5e-11,True),(5e-10,False)])
+def test_manager_comparison_retains_its_arithmetic_bound(monkeypatch,delta,allowed):
+    # Isolate the existing static guard, not constructor or chemical admission.
+    from nasolve import topostitch_native_recipe as module
+    points=[]; native=list(NATIVE);native[0]+=delta
+    hierarchy=SimpleNamespace(atoms=lambda:SimpleNamespace(extract_xyz=lambda:()))
+    table=SimpleNamespace(indices=lambda:SimpleNamespace(size=lambda:0),special_position_indices=lambda:[])
+    geo=SimpleNamespace(external_energy_function=None,reference_coordinate_proxies=None,
+                        crystal_symmetry=Crystal(native),site_symmetry_table=table)
+    obj=object.__new__(module.NativeMaskedObjective)
+    obj._geometry=geo;obj._hierarchy=hierarchy;obj._identities=[];obj._hierarchy_reference=()
+    obj._crystal=Crystal(NATIVE);obj._mask=SimpleNamespace(reference=[])
+    obj._audit=SimpleNamespace(fixed_signature=lambda geometry,sites:"fixed")
+    obj._flex=SimpleNamespace(vec3_double=lambda p:p);obj._signature="fixed"
+    monkeypatch.setattr(module,"native_atom_identities",lambda h:[])
+    if allowed:obj._check_native(points)
+    else:
+        with pytest.raises(ValueError,match="crystal differs"):obj._check_native(points)
