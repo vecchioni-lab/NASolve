@@ -1111,7 +1111,16 @@ caller limits; this is not atomistic closure or refinement qualification.
 `nasolve-topostitch-fit` optionally proposes that terminal motion through a finite
 single-window least-squares search, with explicit pairing/image, scales, bounds
 and total residual-call budget. Continuous optimization is followed by the same
-serialized preview audit. It writes no models and has no density/R-factor target.
+serialized preview audit. That geometric route writes no models and has no density/R-factor target.
+W240 adds the explicit `native-phosphate` subcommand on the same entry point.
+It freezes a registered continuation request, authenticates native reference input,
+then composes Cedar's existing phosphate runtime and process/refinement owners.
+One preflight precedes one bounded six-atom coordinate-only fit; actual inventory,
+fixed context, thermal state and observations are verified before returning a
+source-frame review candidate. No campaign/checkpoint promotion, whole-ASU writer,
+new chemistry kernel or automatic connection inference is introduced. Standalone
+Willow needs explicit compatible Cedar modules. The schema and limitations are
+[documented in the preview guide](topostitch-preview.md#refine-one-registered-phosphate-connection-w240).
 
 `nasolve-topostitch-cut-preview` freezes explicit representative-image or chosen-
 forest proposals through the existing graph owner. Schema-2 requests can resolve

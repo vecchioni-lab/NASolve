@@ -3365,3 +3365,97 @@ source/installed counts in `*-command.json`, `fail-before.json` and
 384-test count; its log is preserved, the successful 398-test source run was
 reused, and installed checks ran once. Generated scientific data remain outside
 Git. Final software-suite qualification is recorded in the current handoff.
+
+
+## Refine one registered phosphate connection (W240)
+
+The existing fitting command now offers an explicit native route:
+
+```sh
+nasolve-topostitch-fit native-phosphate --request request.json --out new-job \
+  --phenix /path/to/phenix --cedar-source /path/to/qualified/package-root
+```
+
+`--cedar-source` points to a package root containing `nasolve/`, not the repository
+root. Standalone Willow does not contain all required Cedar modules: supply a
+compatible, qualified Cedar installation explicitly. A combined installation may
+omit that option only after the owners have been integrated and validated.
+W240 qualifies Cedar C545 with Phenix **2.2.1-6174**; it does not claim arbitrary
+Cedar/native version compatibility. Install the `topology` extra for Gemmi. This
+route does not require SciPy; the unchanged geometric fitting route still does.
+
+The API is `topostitch_phosphate.run_registered_phosphate_refinement(request_path,
+output_directory, *, phenix, cedar_source=None, timeout_seconds=1200)`.
+The request has exactly these schema-1 fields:
+
+```json
+{
+  "schema_version": 1,
+  "kind": "topostitch-phosphate-refinement",
+  "inputs": {
+    "model": {"path": "inputs/model.pdb", "sha256": "SHA256"},
+    "registration_model": {"path": "inputs/registered.pdb", "sha256": "SHA256"},
+    "data": {"path": "inputs/data.mtz", "sha256": "SHA256"},
+    "registration": {"path": "inputs/registration.json", "sha256": "SHA256"},
+    "discovery": {"path": "inputs/discovery.json", "sha256": "SHA256"},
+    "continuations": {"path": "inputs/continuations.json", "sha256": "SHA256"},
+    "native_receipt": {"path": "capture/receipt.json", "sha256": "SHA256"}
+  },
+  "restraints": [{"path": "inputs/restraints.phil", "sha256": "SHA256"}],
+  "continuation_id": 1,
+  "cycles": 1,
+  "iterations": 50,
+  "max_displacement_angstrom": 5,
+  "wxc_scale": 0.5,
+  "data_labels": "IMEAN,SIGIMEAN",
+  "free_label": "FreeR_flag",
+  "test_flag_value": 0
+}
+```
+
+Replace each `SHA256` with the actual 64-character lowercase digest. Paths resolve
+relative to the request; explicit absolute CLI/input paths remain supported.
+`model` is the source-frame model to refine. `registration_model` is the model
+bound by the existing Pine registration, discovery and continuation records.
+Cedar qualifies inheritance between them and authenticates the **complete** native
+reference capture, including its referenced files. Supply every intended ordinary
+restraint/dictionary in order; the capture is evidence, not a substitute for those
+files. No partner, nick, image or sequence is inferred. Reference identities and
+exact image must already describe the requested construct.
+
+The bounded route permits 1–5 cycles, 1–200 iterations, 0–10 Å maximum endpoint
+motion (strictly positive), positive `wxc_scale` up to 10, and 1–30 restraint files.
+Timeout is 1–3600 seconds **per phase**, default 1200. It freezes inputs and native
+capture into a new job directory, records source hashes/native version, then runs
+one preflight and one coordinate-only fit in separate owned processes. Changed
+inputs, plan or loaded source files prevent the next phase; a failed preflight
+cannot launch the fit. Fit must start from the same native atom/data state.
+
+Only six unambiguous canonical, fully occupied connecting atoms are movable:
+acceptor **P/OP1/OP2/O5′/C5′** and donor **O3′**. All rings and other atoms are held.
+Cedar evaluates its four angles/three torsions in one local contiguous image and
+returns forces to the original ASU; native bond and exclusion-shell owners remain
+active. This introduces no whole-ASU rewrite and does not grant general duplex,
+modified-endpoint or multi-connection movement. Unrelated modified residues may
+remain in the fixed context with their supplied dictionaries.
+
+On return, actual compiled selection, atom inventory, fixed coordinates,
+occupancies and native Uiso/Ustar/use flags must survive. Exact ordered reflection
+indices and Free-R flags must survive too. Phenix's normal common positive F/SIGF
+rescaling is recorded and allowed; filtering, changed flags, duplicate indices or
+nonuniform amplitude/sigma changes refuse. Small R factors are not an acceptance
+criterion. A refinement must actually invoke all seven image terms with gradients.
+
+`result.json` reports `REFINED_FOR_REVIEW`, with a checksummed run-relative candidate
+reference, `scientific_acceptance: false` and `checkpoint_created: false`.
+`fit/candidate.pdb` changes only movable XYZ fields in the original PDB bytes;
+Cartesian ANISOU and all other records remain exact. Full-precision coordinates,
+native model/map/geometry outputs, state audits and logs remain beside it.
+Original PDB metadata are therefore preserved rather than refreshed: the candidate
+is **not deposition-ready**. Inspect the actual geometry, density and R statistics.
+No fallback silently removes a restraint or declares a successful repair.
+
+A request-relative relocation regression and source-independent wheel tests cover
+software/input resolution; they do not qualify replay of a moved native job.
+Native/source installation paths and historical capture references remain provenance.
+See [W240 native evidence](topostitch-periodic.md#w240--reach-registered-phosphate-refinement-through-the-installed-product).

@@ -17,6 +17,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W240 — Expose bounded registered-phosphate refinement
+
+- Add opt-in `nasolve-topostitch-fit native-phosphate` and its schema-1 request,
+  reusing Cedar's registered continuation, full image angle/torsion forces and
+  native bond/exclusion owners. Legacy geometric fitting remains unchanged.
+- Freeze checksummed inputs, require successful preflight, verify the six-atom
+  coordinate-only return, and retain P/OP1/OP2 without adding OP3. Preserve fixed
+  coordinates, ADPs, occupancies, exact reflection indices and Free-R flags;
+  permit only the native common amplitude/sigma normalization.
+- Return an unselected review candidate, never scientific acceptance. Standalone
+  Willow requires explicitly supplied compatible Cedar modules; no branch merge
+  or campaign activation. Installation and complete native execution are qualified
+  in the bounded scope documented in the periodic evidence.
+
+
 ### W239 — Regress explicit staggered duplex recuts
 
 - Exercise the existing registered preview, phosphate-intent and complete frame

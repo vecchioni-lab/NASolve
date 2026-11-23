@@ -302,8 +302,13 @@ def fit_end_placement(model_path, discovery_path, *, registration_path, request_
 
 
 def main(argv=None):
+    argv = list(sys.argv[1:] if argv is None else argv)
+    if argv and argv[0] == 'native-phosphate':
+        from .topostitch_phosphate import main as phosphate_main
+        return phosphate_main(argv[1:])
     parser=argparse.ArgumentParser(prog='nasolve-topostitch-fit',
-        description='Propose a bounded terminal motion for an explicitly chosen pairing; write no models.')
+        description='Propose a bounded terminal motion for an explicitly chosen pairing; write no models.',
+        epilog='For opt-in registered phosphate refinement, use: nasolve-topostitch-fit native-phosphate --help')
     parser.add_argument('model',type=Path)
     parser.add_argument('discovery',type=Path)
     parser.add_argument('--registration',required=True,type=Path)

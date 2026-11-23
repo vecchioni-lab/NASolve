@@ -13095,3 +13095,119 @@ original coordinate/tensor fields in final source-frame exports.
 The earlier prepared two-arm 5W6W receiving experiment remains unlaunched;
 its local folder name was reserved before this live diversion and does not
 establish a completed W239 native result. Resume only after coordinator release.
+
+
+## W240 — Reach registered phosphate refinement through the installed product
+
+**Behavior:** the existing fitting command now has an opt-in `native-phosphate`
+route, instead of requiring an experiment-specific native launcher. Cedar C545
+still owns registered image chemistry, four angles/three torsions, the native
+bond/exclusion shell and refinement/process lifetime. Willow owns the checked
+request, preflight-before-fit sequence, six-atom motion mask and verified source-
+frame return. The legacy geometric route remains unchanged. See the
+[request/API guide](topostitch-preview.md#refine-one-registered-phosphate-connection-w240).
+
+The real qualification uses the previously declared B7 O3′→B1 P continuation
+and original 862-atom source, with only six connecting atoms movable. Source
+SHA-256: `00ee2b2f9ebc57e1bab1a51abc64a903c204cdddabccf6a8399ef1546c547313`.
+The target-P image is `-y,x-y,z`, reciprocal to the P-fixed O3′ view
+`-x+y,-x,z`. These belong to that registered construct and exact coordinate
+frame; they are not defaults for other designs. P/OP1/OP2 persist without OP3.
+
+One complete Phenix **2.2.1-6174** preflight followed by one **1-cycle,
+50-iteration-cap** refinement returns `REFINED_FOR_REVIEW`. All 862 atoms,
+856 held coordinates, source B/Q and noncoordinate PDB records survive. The
+native owner records 33 complete seven-term gradient calls, one bond, four
+second-shell pairs and no remaining nonbonded pair for that connection. Both
+workers stop and native hooks restore. Full-precision maximum motion is
+0.820711 Å. The final installed command reproduces both full-precision points
+and the source-preserving PDB exactly (SHA-256
+`89cae84cd5b90da136bdf05e0d9ae699d4b3db31bde51bd7634673510e42b494`).
+
+**This is a software qualification, not a finished chemical repair:** O3′–P
+shortens 2.824291→1.945379 Å, while O3′–P–OP1/OP2 remain 65.042°/154.648°.
+Final Rwork/Rfree are 0.315017/0.363246. The scaled native starting values are
+approximately 0.3138/0.3540; the preflight's unscaled raw statistics are not a
+comparable recovery baseline. No checkpoint is selected, no statistical gate
+is changed and no longer refinement is implied by this one-cycle result.
+
+The first complete fit was deliberately rejected by a too-literal observation
+check. Investigation showed **no dropped reflections**: native
+`apply_scale_k1_to_f_obs` rescales F and SIGF by one common positive factor.
+The corrected guard requires all 1909 ordered indices and 124 original Free-R
+assignments exactly, allowing only this common normalization (131.91489939471037
+in the returned native doubles). Per-value native-double tolerance is 1e-12
+relative/1e-10 absolute; exported float32 MTZ arrays were independently checked
+and are not held to double precision. Nonuniform F/SIG changes, duplicate or
+removed indices and changed flags still fail. No data-selection policy was
+relaxed. The rejected attempt and its read-only diagnostic preflight remain.
+
+**Validation:** 261 focused source tests (7.12 s) and the same 261 tests from an
+isolated wheel installation (6.48 s), with original temporary build path gone.
+The 26 entry-specific cases cover invalid bounds, request relocation/checksums,
+source records/Cartesian tensors, fixed atoms, thermal/data preservation, both
+CLI dispatch paths, common-scale handling, failed-preflight isolation and changed-
+plan refusal. The changed-plan regression fails against the earlier installed
+implementation, then passes with the guard. Both installed help routes and
+Python 3.10 syntax checks pass. Installed and source module hashes agree.
+No shared chemistry/global mechanics changed; no full-suite repeat. The legacy
+geometric CLI dispatch is tested; its optional SciPy optimization is not rerun.
+
+Exact focused command (Python 3.12, Gemmi/test dependencies available):
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -p no:cacheprovider -q \
+  tests/test_topostitch_phosphate.py tests/test_topostitch_endpoint.py \
+  tests/test_topostitch_captured_job.py tests/test_topostitch_recut_bundle.py \
+  tests/test_topostitch_backbone_intent.py tests/test_topostitch_transport.py
+```
+
+The actual local invocation appends the existing qualified Gemmi/test dependency
+root to PYTHONPATH. Build uses `python -m pip install --no-deps --no-build-isolation
+--target INSTALL BUILD_SOURCE` with existing setuptools. Installed checks use
+`PYTHONPATH=INSTALL:DEPENDENCIES` from the isolated copied test fixture tree.
+Initial missing-build-backend and incomplete test-fixture-copy failures were
+harness preparation failures, retained alongside the successful logs.
+
+Native command, from outside the checkout:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=INSTALL:DEPENDENCIES \
+  INSTALL/bin/nasolve-topostitch-fit native-phosphate \
+  --request REQUEST --out NEW_JOB --phenix PHENIX_ROOT \
+  --cedar-source QUALIFIED_CEDAR_PACKAGE --timeout 300
+```
+
+The complete installed execution qualifies the final input/plan/source guards,
+not just the earlier source draft. All native runs use one CPU. Local evidence
+was moved, not duplicated, into the NASolve anchor
+`branch-artifacts/willow/w240-native-phosphate/`; `archive-manifest.json` verifies
+867 original files after that move. `attempt-001` preserves the rejected fit,
+`attempt-002` the source success, and `installed-native` the final installed
+success. Request/source pins, native argv/logs, worker stop receipts, initial/
+returned states, geometry readback and installation/test logs remain there.
+Historical absolute paths record execution provenance; replay after moving a
+native job is **not qualified**. No coordinates, diffraction data, native capture,
+private request or generated output are committed.
+
+**Compatibility/migration:** additive schema-1 request/plan/result, no migration
+of existing requests or checkpoints. Standalone Willow requires explicitly
+supplied compatible Cedar modules; no implicit branch merge or ordinary campaign
+activation. The PDB review export preserves original metadata and requires later
+deposition preparation. Whole-ASU mmCIF construction, arbitrary endpoints, multiple
+connections, automatic partner choice and scientific acceptance remain open.
+
+**Next distinct experiment:** compare the original poor pose and W235's already
+qualified geometry seed under the same five-cycle receiving protocol. This asks
+whether initialization changes recovery, not whether the seven-term runtime
+works (Cedar already qualified that). Reuse the frozen W236 controls, keep arms
+independent, and audit retained observations, fixed context, boundary geometry,
+residual angles/torsions and maps. Do not tune weights against Free-R.
+
+**Investigator interpretation (via Rowan):** in the live periodic-repeat example,
+retain the phosphate treatment where its symmetry-related oxygen angles work;
+otherwise an explicitly reviewed unrestrained edge is a legitimate fallback.
+This does not authorize deleting phosphate atoms or inventing another construct's
+connection. An averaged ASU repeat boundary is not itself a chemical nick; actual
+strand termini/cuts need construct-specific correspondence. W240 does not implement
+automatic fallback selection or claim the live manuscript repair as a Pine replay.
