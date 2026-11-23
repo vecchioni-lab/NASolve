@@ -13,7 +13,75 @@ not a second queue.
 
 **Late chemical-provenance clarification:** the [DF C2-angle audit](metal-df-c2-angle-audit.md) separates eLBOW source consistency from independent chemical validation. The earlier final sulfur-angle split is 135.3°/108.7°; generated targets remain chemically provisional. Routine donor-state integration stays deferred and is not a new immediate A01 prerequisite. A retained base fragment exists (124 read-only checks), but no replacement or target change is admitted.
 
-## Current A01 question — coupled canonical-flank placement
+## Current A01 — outward phosphate survives; the pair remains compressed
+
+One additional matched receiving experiment is complete and stopped. The six-atom
+A12 outward-phosphate seed improves local backbone geometry under the unchanged
+five-cycle phased XYZ/group-B protocol, but does not qualify a new metal parent.
+A01 remains partial; A02 remains gated. Next is the separate B7→B1 phased local-fit
+admission through the shared Willow owner. Do not combine hypotheses, repeat an
+unchanged control, expand a weight grid or start f″ merely because the phosphate
+orientation persists.
+
+Cedar's source audit identifies an inward A12 phosphate inherited by the old FT
+MR/Coot/restored/ReadySet lineage. The six current standard pair frames already
+have the outward correction; they are not patched by this experiment. Source
+construction from retained parent `7aade3c4` changes only A11 O3′ and A12
+P/OP1/OP2/O5′/C5′. All 853 other coordinates and every non-XYZ PDB byte remain
+exact. The outward template supplies a proper superposition and construction
+priors; the current parent's native bond/angle targets remain the authority.
+No construction positional, torsion or radial prior enters receiving refinement.
+The same completed unchanged-parent receiver is reused as the control.
+
+| Endpoint | Final Rwork / Rfree | A11 sugar angle | T–A contacts (Å) | Hg–O4 (Å) | N3–Hg–N3 |
+| --- | --- | ---: | --- | ---: | ---: |
+| Retained inward parent | 0.3072 / 0.3430 | 127.74° | 2.511 / 2.373 | 2.508 | 168.49° |
+| Unchanged receiver | 0.2830 / 0.2974 | 124.09° | 2.311 / 2.195 | 2.741 | 175.86° |
+| Outward-seeded receiver | 0.3081 / 0.3329 | 110.81° | 2.200 / 2.104 | 2.725 | 176.86° |
+
+Sugar target is 109.7°; both T–A contacts target 2.8 Å. T–A direction remains
+93.62° versus the 116.2° source target. All 165 source chiral signs survive.
+The independent coordinate reader received exact child/control hashes before the
+science comparison: OP-midpoint ring-axis projections are +0.4089/−0.5840 Å,
+and C1′-axis projections +0.3502/−0.5767 Å. One individual OP remains partly
+inward. This establishes persistence of a local construction hypothesis, not
+independent density support or a whole-model correction.
+
+**Scaling and maps remain material limits.** At Hg, saved 2mFo−DFc/mFo−DFc values
+are +5.42/−2.41σ, versus +6.89/−4.84σ for the unchanged control. These unfilled,
+model-assisted maps include Free-R reflections and use separate whole-cell sigma
+normalization. Before final scaling, Rwork/Rfree is 0.2840/0.2968 versus the
+control's 0.3046/0.3261; the final ranking reverses. Printed B transfers are
+−48.10/+45.20 Å², with written Hg B 64.19/123.66 Å². Do not choose an intermediate
+R value or read the written B difference as a common physical disorder scale.
+Q=1 and f″=0 remain fixed/unmeasured; f′ is fixed. Environmental-B preparation
+has not run. Source donor-state/CIF uncertainty remains explicit.
+
+**Qualification and reuse:** Phenix 2.2.1-6174 completes/stops in 399.57 seconds
+including preflight and returned-state diagnostics. Native intake confirms the
+same bonded force inventory, all indexed HL coefficients and original Free-R
+assignments. The independent cold review passes 2,664 checks; it reuses the prior
+qualified control rather than running it again. Selected XYZ weights are
+13.518, 13.809, 14.239, 12.791 and 5.000. Stops are 67 iteration caps and six
+unreported; no convergence claim. No maintained runtime/schema/default change,
+migration or full-suite run follows from this diagnostic.
+
+Private evidence is `Alder/a01-outward-phosphate-20261123-01/`: exact commands,
+source/seed pins and limitations in `README.md`; bounded plan, movement scope,
+source construction, execution, cold review and saved maps remain immutable.
+Runners A598/A599 prepare/run the one receiver; A600 reviews only the new arm.
+The seed is `a8eba377`, final model `6f88cc8a`, maps `86938b88` (full digests in
+records). Cedar's source/independent readback is under
+`cedar/c550-5w6w-phosphate/{construction.json,blind-receiver-measurements.json}`;
+the latter SHA256 is `a206f67b546d6f4cf0dca6a9c4e80547acba004e24e48c602f8d0c311ba172d1`.
+A601/A603/A604 render existing coefficients; v2 separates the P label and uses
+solid lines for actual covalent links. A605 publishes the inspected report at
+`ScienceCheckouts/Hazel/2026-11-23_ft-outward-phosphate/index.html` with 21 verified
+links. Only figures are copied; models/maps are not committed or uploaded.
+
+<a id="current-a01-question--coupled-canonical-flank-placement"></a>
+
+## Preceding A01 comparison — coupled canonical-flank placement
 
 **Completed comparison; no new parent selected.** One bounded local seed
 improves the expected A11 DT / B5 DA pair before diffraction refinement, but
@@ -164,6 +232,21 @@ covers 21 B/C/D canonical sites; A/QF1/Hg remain outside this topology inspectio
 and untouched. D1 terminal-phosphate intent and the full original restraint set
 remain intact. No runtime/schema/default change, migration, full suite, f″ trial,
 pruning or scientific acceptance follows. A01 partial/A02 gated.
+
+The six-role baseline additionally records six existing bonds (two crossing
+into fixed atoms), nine angles (five crossing), six torsions and three chiralities.
+Both affected sugar signs are correct. The phosphate explicitly permits both
+signs; A596's overstrict one-sign reader refused, A597 and `boundary-review.json`
+retain the actual native semantics. No chemical defect or guard relaxation is
+inferred. `boundary-review.md` records exact read commands and the pre-existing
+4.34-width donor sugar-angle strain for later comparison.
+
+Read-only storage assessment finds the three capture JSON files total 15.22 MB
+and would occupy 0.886 MB with lossless gzip. Outer/native receipts have equal
+parsed JSON but different byte hashes; the initial byte-equality assumption was
+withdrawn. No file is deleted or rewritten. This protected capture belongs once
+per changed parent, not per frozen f″ child; shared storage owns future compact
+replay. `capture-size-assessment.json` preserves exact values and limits.
 
 The inspected local report is
 `ScienceCheckouts/Hazel/2026-11-23_ft-phosphate-intake/index.html` (14 verified

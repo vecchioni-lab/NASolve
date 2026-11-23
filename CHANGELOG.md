@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record matched outward-phosphate receiving evidence
+
+- Preserve one source-pinned six-coordinate construction and matched phased
+  XYZ/group-B receiver, reusing the existing unchanged-parent control. Local
+  sugar geometry and outward orientation improve, but compressed pair contacts,
+  scaling-sensitive R ranking and map limits prevent parent promotion.
+- Link independent coordinate readback, exact native/cold checks and inspected
+  figures. Keep A01 partial/A02 gated and the symmetry-join experiment separate.
+  Documentation only; no runtime/schema/default change or full-suite claim.
+
+
 ### Bind FT crystal-junction references and phased local-fit inputs
 
 - Record independently matched phosphate references, complete current-parent

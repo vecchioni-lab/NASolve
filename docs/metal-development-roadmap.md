@@ -12,22 +12,22 @@ the [anomalous workflow](metal-anomalous-doctor.md) and [restraint design](metal
 own scientific contracts. A mechanism passing tests does not close its scientific
 gate. Update milestone status, evidence, limitations and next action together.
 
-A01's canonical-flank seed is now tested through a matched open XYZ/group-B
-receiving pair. The local seed improves T–A direction109.64° but the receiving
-endpoint relaxes to94.88°; the unchanged control is93.71°. Control Rwork/Rfree
-0.2830/0.2974 comes with compressed2.311/2.195 Å contacts and more negative
-difference density at Hg. Seeded Rwork/Rfree is0.3067/0.3355. Final scaling/B
-transfers and adaptive weights differ; no new parent is selected. A01 remains
-partial/A02 gated. Reuse the completed7,871 cold result checks and saved map
-figures in the [current handoff](metal-development-handoff.md#current-a01-question--coupled-canonical-flank-placement).
-The investigator expects ordinary Watson–Crick T–A pairing at A11/B5; deposited
-distortion remains a comparator, not a target. The declared crystal-junction
-source/frame/reference intake and fresh current-parent interpretation now pass;
-original indexed phases/Free-R and fixed scattering are bound. Next: qualify
-Willow's optional phased local-fit input natively, then one bounded six-atom
-B7→B1 displaced-start test. D7→C8 and ordinary source-bound checkpoint publication
-remain separate. No repeated flank/weight grid or further identical continuation.
-See the [phosphate intake record](metal-development-handoff.md#a01-registered-phosphate-intake--23-november).
+A01's latest source-pinned outward-phosphate seed survives five phased open
+XYZ/group-B cycles and repairs the local A11 sugar angle to 110.81° (target
+109.7°). Independent coordinate readback confirms the orientation persists.
+However, the adjacent T–A contacts remain compressed at 2.200/2.104 Å and final
+Rwork/Rfree is 0.3081/0.3329. The R ranking reverses during final scaling; saved
+maps and source-state uncertainty do not support selecting a new parent.
+A01 remains partial/A02 gated. Reuse the completed 2,664 cold checks, the saved
+unchanged-parent control and the [current handoff](metal-development-handoff.md#current-a01--outward-phosphate-survives-the-pair-remains-compressed).
+The preceding canonical-flank seed/receiving comparison remains separate evidence.
+
+Next: independently qualify Willow's optional phased local-fit route, then one
+bounded six-atom B7→B1 displaced-start test on its explicitly named parent.
+D7→C8 and ordinary source-bound checkpoint publication remain separate. No
+repeated control/weight grid or automatic combination of the phosphate and
+symmetry-join hypotheses. The [phosphate intake](metal-development-handoff.md#a01-registered-phosphate-intake--23-november)
+binds chemistry, indexed phases/Free-R and fixed scattering before motion.
 
 A01 next-input review now includes [DF C2 chemical target provenance](metal-df-c2-angle-audit.md). A source-consistent fragment is available, but its eLBOW angles are not independent chemistry authority. Retain explicit source-state uncertainty and coupled-target review; routine donor-state integration remains deferred. No automatic 120° substitution.
 
