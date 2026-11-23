@@ -15,72 +15,82 @@ not a second queue.
 
 ## Current A01 question — coupled canonical-flank placement
 
-**Native precision qualification passed; seed timeout preserved:** the second
-attempt's actual Phenix 2.2.1-6174 constructor checks include seven refusals and
-one nonidentity translation control. The translation uses 105.14800262451169 Å,
-while the unchanged default uses the source-rounded 105.148 Å. Pair and mask
-must share the optional binding. Native-manager cell comparison retains its
-existing 1e-10 arithmetic bound, independently of source CRYST1 rounding; two
-new boundary tests distinguish 5e-11 from 5e-10. The original 176 focused tests,
-143 direct contribution/coverage tests and 18 precision tests (16 overlapping)
-pass; no full suite. Exact receipts remain under the first two private attempts.
+**Completed comparison; no new parent selected.** One bounded local seed
+improves the expected A11 DT / B5 DA pair before diffraction refinement, but
+the improvement largely relaxes back during the two matched five-cycle open
+XYZ/group-B receiving runs. Both Phenix 2.2.1-6174 executions completed/stopped.
+The next bounded action is a cold compatibility review of the two intended
+crystal backbone joins through Cedar's registered-phosphate owner, one junction
+at a time. No further flank weight grid, identical continuation, f″ or automatic
+selection follows from this comparison. A01 remains partial; A02 remains gated.
 
-The 41-atom trial then reached its 600 s operational cap without a completed
-optimizer receipt. No candidate or receiving fit is admitted. The sandbox denied
-the watchdog's group cleanup; a separate elevated read-only process/group check
-confirmed PID/PGID 91476 absent. Original failure and `timeout-cleanup.json` are
-retained in `Alder/a01-canonical-flank-20261123-02/`. The next operational retry
-keeps all scientific settings and the 1,802-evaluation bound, adds compact live
-progress/interruption records and a 2,100 s execution cap. This repairs observability
-and the time estimate, not a failed scientific result. No derivative tolerance,
-geometry target, movement mask or source/data change is authorized by the retry.
+| Endpoint | Rwork / Rfree | T–A direction | N3–N1 / O4–N6 (Å) | T sugar angle |
+| --- | --- | --- | --- | --- |
+| Retained parent | 0.3072 / 0.3430 | 87.46° | 2.511 / 2.373 | 127.74° |
+| Unchanged receiver | 0.2830 / 0.2974 | 93.71° | 2.311 / 2.195 | 124.09° |
+| Seeded receiver | 0.3067 / 0.3355 | 94.88° | 2.602 / 2.385 | 126.95° |
 
+The direction/sugar targets are116.2°/109.7°. The lower-R control compresses
+the contacts and has more negative saved difference density at Hg: −4.84σ,
+versus −2.41σ for the seeded endpoint. These are model-assisted maps including
+Free-R reflections, separately sigma-normalized; no occupancy inference follows.
+The control's final scaling transfers +45.20 Å² to written B, versus −4.25 Å²
+for the seeded run. Written Hg B is123.66/78.93 Å², respectively. Before final
+scaling, Rwork/Rfree is0.3046/0.3261 versus0.3063/0.3336. The written B difference
+is therefore not a direct measurement of environmental disorder. Native adaptive
+XYZ weights differ, and iteration caps dominate recorded stopping; neither fit
+establishes convergence or a fixed-objective causal comparison.
 
-**First evening preflight withheld:** native preparation completed in 6.79 s,
-then the existing placement constructor correctly refused a cell mismatch before
-optimization. The source CRYST1 lengths 105.148/94.504 Å correspond to native
-reflection values 105.14800262451169/94.50399780273438 Å. All parent bonded
-terms were retained; no atom moved. This is a representation/interface issue,
-not evidence for or against the flank geometry. The failed attempt and stopped
-process remain in the private experiment directory below. Cedar's existing
-phosphate-start CRYST1 rule supplies the precedent; Willow/Rowan agreed on an
-optional two-owner exact-native binding, preserving strict defaults. Initial
-focused regression failed on the missing helper; the implemented boundary passes
-176 focused tests in 2.40 s (cache-write warning only). Native positive/negative
-binding and seed qualification remain next. This patch needs an explicit Willow
-forward-port review; no shared checkout is silently updated.
+Only41 initial XYZ differ between the receiving inputs. B/Q, original observations
+(1,092 work /59 free), MLHL phases and all source/NAR/metal terms match. Open
+XYZ/group-B acts on the whole model in both receivers. Q=1 and f″=0 remain
+fixed/unmeasured, f′ fixed; environmental-B preparation has not run. The merged
+MLHL geometry-stage policy is unchanged; original anomalous data is retained.
+The cold reader passes7,871 assertions; all165 source chiral signs survive.
+Native durations are529.28/539.08 seconds by controller monotonic timers.
 
+**Seed evidence:** all818 fixed atoms and every B/Q/scattering value are retained.
+The41 movable atoms move at most1.110 Å; native geometry falls6564.68→6187.87.
+Direction improves87.49→109.64° and contacts become2.822/2.734 Å before receiving.
+Sugar angle improves to121.56° but remains strained. Four crossing bonds are
+1.602–1.615 Å;16 crossing angles within1.99 original widths; eight local chiral
+signs survive. The100-iteration cap is not convergence. Initial/full/rounded
+derivative audits pass at the existing0.001 bound (worst0.000281). One completed
+seed uses1,587 evaluations; the cold reader passes1,466 assertions. Its720.04 s
+monotonic duration excludes an observed host-clock gap; it is not asserted as
+continuous wall time.
 
-**Evening bounded experiment, 23 November (prepared, not yet run):** retain the
-written donor-continuation parent and try one local canonical-coordinate seed.
-All 41 atoms of A11 DT / B5 DA may relax within 1.5 Å; the other 818 atoms,
-including QF1/QT1/Hg, and every B/Q/scattering value remain fixed during seed
-construction. Existing native chemistry, pair, plane and stacking terms remain
-active. The four crossing polymer bonds, 16 crossing angles, 12 dihedrals and
-four adjacent parallelities are observed explicitly. They are chemical restraints,
-not exact holds at the distorted starting values. A weak 0.5 Å positional tether
-bounds local drift; no added pair force doubles the existing native recipe.
+**Reusable mechanism and failure evidence:** optional two-owner `native_crystal`
+binding follows Cedar's CRYST1 representation rule while retaining the original
+1e-10 manager arithmetic check, strict defaults and old report shape. Source
+commits`b0133082`/`913b11eb` are pushed; Willow has reviewed the boundary but has
+not adopted it. Seven native refusals plus one nonidentity translation qualify
+the real mixed parent. The first seed preflight refused legitimate PDB/MTZ cell
+rounding; the second qualified the binding but timed out at600 s without a
+candidate. The original failure and independently confirmed process absence
+remain recorded. Attempt03 changed only observability and the operational cap
+to2,100 s, preserving scientific settings. No derivative bound was relaxed.
 
-Use the existing masked native objective and Willow bounded 3N trial, with the
-Cedar corrected gradient/live nonbonded policy and strict initial/final/rounded
-derivative checks. Budget: one 100-iteration/300-optimizer-call seed, at most
-1,802 evaluations and 600 s including native preparation. A scientific failure
-is retained without a weight/window grid. Only a suitable geometry seed proceeds
-to one unchanged and one seeded five-cycle XYZ/group-B receiving comparison;
-automatic diffraction weights are observations, not a claimed common objective.
-No f″, checkpoint selection or scientific acceptance. The private plan and
-movement boundary are `Alder/a01-canonical-flank-20261123-01/`; current source
-is `c92ffbb8`. Existing W223/W224 rigid recovery is reused as evidence but cannot
-repair internal sugar or relative base geometry. W240 phosphate-only movement
-is not used as base/metal authority. Rowan and Willow owners agree on this scope.
+Reuse176 focused tests,143 direct-caller tests and18 precision tests (16 overlap
+with the first selection). Receipts live in attempts01/02; do not rerun unchanged
+tests. No full suite. The only maintained runtime/schema change in this push is
+the optional native-crystal receipt; no implicit adoption or migration.
 
+**Private evidence:** `Alder/a01-canonical-flank-20261123-01/` through`-03/` retain
+the plan, rejected attempts, exact commands, source pins, native qualification,
+seed state and review. `Alder/a01-canonical-receiving-20261123-01/` retains both
+owned execution records, plan,`science-comparison.json`,`cold-review.log`, map
+rendering manifests and compact checkout. Runners A571–A578 own execution/review;
+A579–A582 own saved-map rendering/report publication. Rendering initially refused
+an unsourced Phenix environment; it was corrected without native refitting. The
+flank-layout v2 removes label/scale overlap; original figures remain evidence.
 
-**Next bounded scope, not a new fit:** qualify a source-preserving coupled
-placement candidate for a strained canonical flank, with the metal hypothesis,
-adjacent polymer connections and full native restraints explicit. Reuse the
-Cedar/Willow owners; no residue-number-specific fixer or inferred movement
-permission. The unchanged FT_Hg continuation is stable locally, so further
-identical continuations and metal angle/weight grids are not the next step.
+The inspected report is
+`ScienceCheckouts/Hazel/2026-11-23_ft-canonical-receiving/index.html` (21 verified
+relative links). It copies figures only; the two protected XYZ-changing proof
+nodes total about22 MB. No models/maps are duplicated into the report, committed
+or uploaded. No pruning or new selected checkpoint. Next review is coordinated
+against Cedar`0bd72380`; paired delivery remains Willow-owned.
 
 **Investigator clarification, 23 November:** A11 DT / B5 DA is expected to be
 an ordinary Watson–Crick T–A pair. The investigator reports that this pair is
@@ -129,11 +139,9 @@ stays private. The visually inspected report is
 `ScienceCheckouts/Hazel/2026-11-23_ft-context/index.html`: **1,069,312 bytes**,
 15 verified relative links, no copied models/maps. A01 remains partial/A02 gated.
 
-Before a new native experiment: establish the explicit flank movement window
-and preserved boundary terms with Rowan/Linden, then predeclare one candidate
-and comparison budget. Observe local source geometry, metal contacts, surrounding
-stacking, work/free statistics, B/scaling frames and maps together. Do not replace
-the current retained parent or choose a candidate solely by a scalar score.
+The preceding context audit supplied the completed canonical-flank experiment
+above. Reuse it instead of repeating localization or the same receiving pair.
+The parent remains unchanged; no candidate is chosen solely by a scalar score.
 
 ## A01 donor stability and scaling readback — 23 November
 

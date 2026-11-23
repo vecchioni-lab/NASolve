@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record canonical-flank seed and matched receiving evidence
+
+- Preserve one bounded local seed and two completed open XYZ/group-B receivers,
+  including retained failed operational attempts, exact inputs, stopping, maps
+  and final-scaling evidence. Lower R does not override compressed geometry.
+- Keep A01 partial/A02 gated and the existing parent unchanged; scope a cold
+  crystal-junction intake review next. Compact private report copies figures
+  only. Documentation/evidence update; no additional runtime or default change,
+  new f″ result, automatic pruning, migration or full-suite claim.
+
+
 ### Bind explicit native crystals across PDB cell precision
 
 - Direct pair/coordinate-mask owners can explicitly use an authenticated native

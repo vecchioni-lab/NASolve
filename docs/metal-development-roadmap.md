@@ -12,21 +12,18 @@ the [anomalous workflow](metal-anomalous-doctor.md) and [restraint design](metal
 own scientific contracts. A mechanism passing tests does not close its scientific
 gate. Update milestone status, evidence, limitations and next action together.
 
-A01's unchanged donor-endpoint continuation retains the improved local geometry
-(2.508 Å Hg–O4, 168.5° bridge), but Rwork/Rfree 0.3072/0.3430, stopping evidence
-and provisional chemical targets leave A01 partial/A02 gated. The completed
-read-only scaling reader makes final B-transfer evidence inspectable; it closes
-a reporting gap, not the scientific gate. Reuse the linked focused and cold
-receipts in the [current handoff](metal-development-handoff.md) before repeating
-small statistics checks. The new saved-context audit identifies a canonical-flank question: persistent
-A11/B5 direction mismatch and A11 sugar strain despite present pairing/plane
-terms. Scope one source-preserving coupled flank candidate through shared owners
-before another fit; keep polymer boundaries and metal chemistry explicit.
-The investigator expects ordinary Watson–Crick T–A pairing at A11/B5 and notes
-that deposited examples often retain refinement distortion. Preserve this as a
-working chemical hypothesis; deposited coordinates are comparators, not targets.
-The [current handoff](metal-development-handoff.md#current-a01-question--coupled-canonical-flank-placement)
-links the reused Willow reader, original maps, retained checks and limitations.
+A01's canonical-flank seed is now tested through a matched open XYZ/group-B
+receiving pair. The local seed improves T–A direction109.64° but the receiving
+endpoint relaxes to94.88°; the unchanged control is93.71°. Control Rwork/Rfree
+0.2830/0.2974 comes with compressed2.311/2.195 Å contacts and more negative
+difference density at Hg. Seeded Rwork/Rfree is0.3067/0.3355. Final scaling/B
+transfers and adaptive weights differ; no new parent is selected. A01 remains
+partial/A02 gated. Reuse the completed7,871 cold result checks and saved map
+figures in the [current handoff](metal-development-handoff.md#current-a01-question--coupled-canonical-flank-placement).
+The investigator expects ordinary Watson–Crick T–A pairing at A11/B5; deposited
+distortion remains a comparator, not a target. Next: cold source/frame/reference
+intake for the declared crystal backbone joins through Cedar, one junction at
+a time. No repeated flank/weight grid or further identical continuation.
 
 A01 next-input review now includes [DF C2 chemical target provenance](metal-df-c2-angle-audit.md). A source-consistent fragment is available, but its eLBOW angles are not independent chemistry authority. Retain explicit source-state uncertainty and coupled-target review; routine donor-state integration remains deferred. No automatic 120° substitution.
 
