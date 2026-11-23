@@ -38,14 +38,55 @@ def _positive(value):
     return value
 
 
+def _native_crystal_binding(source, native):
+    """Bind an explicitly supplied exact crystal to the source PDB precision.
+
+    This follows Cedar's phosphate-start CRYST1 comparison: lengths have three
+    decimal places and angles two. It does not authenticate reflections; the
+    caller must supply the actual scattering crystal from its frozen inputs.
+    Exact native-manager equality is checked separately by the masked owner.
+    """
+    try:
+        cells = [list(c.unit_cell().parameters()) for c in (source, native)]
+        if any(len(cell) != 6 or any(type(v) not in (int, float)
+                or not math.isfinite(v) or v <= 0 or (i >= 3 and v >= 180)
+                for i, v in enumerate(cell)) for cell in cells):
+            raise ValueError('Require complete finite physical crystal cells')
+        if source.space_group() != native.space_group():
+            raise ValueError('Explicit native space group differs from source model')
+        encoded = lambda cell: tuple(format(v, '.3f' if i < 3 else '.2f')
+                                     for i, v in enumerate(cell))
+        if encoded(cells[0]) != encoded(cells[1]):
+            raise ValueError('Explicit native cell differs at source CRYST1 precision')
+        return dict(policy_id='explicit-native-crystal-cryst1-binding-v1',
+            source_cell_parameters=cells[0], native_cell_parameters=cells[1],
+            space_group_hall_symbol=native.space_group().type().hall_symbol(),
+            source_precision=[3, 3, 3, 2, 2, 2],
+            reflection_authentication='CALLER_OWNED')
+    except (AttributeError, TypeError, OverflowError) as exc:
+        raise ValueError('Require source and explicit native crystal symmetry') from exc
+
+
+def _bound_crystal(binding):
+    # Reconstruct independent native objects so caller mutation cannot silently
+    # change the chosen cell/group after transforms and the receipt are frozen.
+    from cctbx import crystal, sgtbx
+    return crystal.symmetry(unit_cell=binding['native_cell_parameters'],
+        space_group=sgtbx.space_group(binding['space_group_hall_symbol']))
+
+
 class NativePairRecipe:
     """Bind one exact packet and model; evaluate under explicit atom ordering.
 
     `correction` is a caller-supplied trusted Cedar module, never captured text.
+    Optional `native_crystal` is the caller-authenticated scattering crystal;
+    source CRYST1 precision and group must agree. The exact supplied cell owns
+    image transforms. Omitting it preserves strict historical source behavior.
     Phenix imports are delayed until construction. No Gemmi/NARestraints import
     is required in the native interpreter because their effective recipe is frozen.
     """
-    def __init__(self, packet, model_bytes, *, expected_recipe_sha256, correction):
+    def __init__(self, packet, model_bytes, *, expected_recipe_sha256, correction,
+                 native_crystal=None):
         from iotbx import pdb, phil
         from mmtbx.command_line import pdb_interpretation
         from cctbx import geometry_restraints as gr, sgtbx
@@ -95,6 +136,10 @@ class NativePairRecipe:
                                           space_group_symbol=packet['crystal']['space_group'])
         if declared.space_group() != crystal.space_group():
             raise ValueError('Native crystal group differs from the frozen recipe')
+        crystal_binding = None
+        if native_crystal is not None:
+            crystal_binding = _native_crystal_binding(crystal, native_crystal)
+            crystal = _bound_crystal(crystal_binding)
         unit_cell = crystal.unit_cell()
         orth, frac = matrix.sqr(unit_cell.orthogonalization_matrix()), matrix.sqr(unit_cell.fractionalization_matrix())
         source_rows = [l for l in model_bytes.decode('ascii').splitlines() if l[:6] in ('ATOM  ','HETATM')]
@@ -218,6 +263,8 @@ class NativePairRecipe:
             'correction_policy':CORRECTION_ID,
             'correction_source_sha256':sha256(Path(correction.__file__).read_bytes()).hexdigest(),
             'policy':dict(POLICY),'scientific_acceptance':False}
+        if crystal_binding is not None:
+            self._report['native_crystal_binding'] = crystal_binding
 
     def binding_report(self):
         return json.loads(json.dumps(self._report,allow_nan=False))
@@ -509,11 +556,13 @@ class NativeMaskedObjective:
     or refinement. The caller supplies the trusted Cedar audit/correction owners
     and a manager constructed from the exact source model. Static-definition
     checks do not freeze native nonbonded neighbours or prove capture provenance.
+    Optional `native_crystal` must match the pair owner's explicit binding and
+    the actual geometry manager; the caller authenticates its reflection source.
     """
     def __init__(self, geometry, native_hierarchy, model_bytes, pair_binding, *,
                  movable_indices, expected_native_signature, correction, native_audit,
                  tether_sigma_angstrom, max_displacement_angstrom, max_evaluations, include_pairs=True,
-                 live_policy_owner=None, expected_live_policy=None):
+                 live_policy_owner=None, expected_live_policy=None, native_crystal=None):
         if ((live_policy_owner is None) != (expected_live_policy is None)
                 or (live_policy_owner is not None and not callable(
                     getattr(live_policy_owner, 'require_live_nonbonded_policy', None)))):
@@ -562,6 +611,12 @@ class NativeMaskedObjective:
         self._pair_weight = 1. if include_pairs else 0.
         self._signature = expected_native_signature
         self._crystal = inp.crystal_symmetry()
+        crystal_binding = None
+        if native_crystal is not None:
+            crystal_binding = _native_crystal_binding(self._crystal, native_crystal)
+            self._crystal = _bound_crystal(crystal_binding)
+        if binding.get('native_crystal_binding') != crystal_binding:
+            raise ValueError('Pair and masked native crystal bindings differ')
         self._tether_weight, self._max_calls, self._calls = weight,max_evaluations,0
         guard_report = None
         if live_policy_owner is not None:
@@ -591,6 +646,8 @@ class NativeMaskedObjective:
                 'Static-definition signature does not freeze nonbonded neighbours or qualify packing',
                 'Explicit mask is not permission to move atoms or proof of complete chemistry',
                 'No optimizer, manager rebuild, refinement or campaign lifecycle is qualified']}
+        if crystal_binding is not None:
+            self._report['native_crystal_binding'] = crystal_binding
         if guard_report is not None:
             self._report['live_nonbonded_policy'] = guard_report
 

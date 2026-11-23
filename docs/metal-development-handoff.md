@@ -15,6 +15,45 @@ not a second queue.
 
 ## Current A01 question — coupled canonical-flank placement
 
+**First evening preflight withheld:** native preparation completed in 6.79 s,
+then the existing placement constructor correctly refused a cell mismatch before
+optimization. The source CRYST1 lengths 105.148/94.504 Å correspond to native
+reflection values 105.14800262451169/94.50399780273438 Å. All parent bonded
+terms were retained; no atom moved. This is a representation/interface issue,
+not evidence for or against the flank geometry. The failed attempt and stopped
+process remain in the private experiment directory below. Cedar's existing
+phosphate-start CRYST1 rule supplies the precedent; Willow/Rowan agreed on an
+optional two-owner exact-native binding, preserving strict defaults. Initial
+focused regression failed on the missing helper; the implemented boundary passes
+176 focused tests in 2.40 s (cache-write warning only). Native positive/negative
+binding and seed qualification remain next. This patch needs an explicit Willow
+forward-port review; no shared checkout is silently updated.
+
+
+**Evening bounded experiment, 23 November (prepared, not yet run):** retain the
+written donor-continuation parent and try one local canonical-coordinate seed.
+All 41 atoms of A11 DT / B5 DA may relax within 1.5 Å; the other 818 atoms,
+including QF1/QT1/Hg, and every B/Q/scattering value remain fixed during seed
+construction. Existing native chemistry, pair, plane and stacking terms remain
+active. The four crossing polymer bonds, 16 crossing angles, 12 dihedrals and
+four adjacent parallelities are observed explicitly. They are chemical restraints,
+not exact holds at the distorted starting values. A weak 0.5 Å positional tether
+bounds local drift; no added pair force doubles the existing native recipe.
+
+Use the existing masked native objective and Willow bounded 3N trial, with the
+Cedar corrected gradient/live nonbonded policy and strict initial/final/rounded
+derivative checks. Budget: one 100-iteration/300-optimizer-call seed, at most
+1,802 evaluations and 600 s including native preparation. A scientific failure
+is retained without a weight/window grid. Only a suitable geometry seed proceeds
+to one unchanged and one seeded five-cycle XYZ/group-B receiving comparison;
+automatic diffraction weights are observations, not a claimed common objective.
+No f″, checkpoint selection or scientific acceptance. The private plan and
+movement boundary are `Alder/a01-canonical-flank-20261123-01/`; current source
+is `c92ffbb8`. Existing W223/W224 rigid recovery is reused as evidence but cannot
+repair internal sugar or relative base geometry. W240 phosphate-only movement
+is not used as base/metal authority. Rowan and Willow owners agree on this scope.
+
+
 **Next bounded scope, not a new fit:** qualify a source-preserving coupled
 placement candidate for a strained canonical flank, with the metal hypothesis,
 adjacent polymer connections and full native restraints explicit. Reuse the

@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bind explicit native crystals across PDB cell precision
+
+- Direct pair/coordinate-mask owners can explicitly use an authenticated native
+  crystal when its unit cell agrees with the source at CRYST1 precision. Both
+  owners share the exact native frame for symmetry transformations and verify
+  the actual manager; source model/reflections remain unchanged.
+- Default strict behavior and old report shape remain unchanged. The optional
+  binding records source/native cells and group, but does not authenticate the
+  caller's reflections or grant new movement/chemistry authority. Focused native
+  qualification is tracked in the current metal handoff; no full-suite claim.
+
+
 ### Clarify intended chemistry of the FT_Hg canonical flank
 
 - Record the investigator's ordinary Watson–Crick T–A expectation for A11/B5

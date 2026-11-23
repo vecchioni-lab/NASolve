@@ -1840,6 +1840,22 @@ automation but do not replace visual inspection or user approval.
 
 ## Metal authoring core and frozen anomalous diagnostics
 
+The direct `NativePairRecipe` and `NativeMaskedObjective` Python owners accept an
+optional caller-authenticated `native_crystal`. Both bind the same exact native
+cell/group to the original source-model hash. Space groups must agree; cell
+lengths must serialize identically at CRYST1's three decimals and angles at two.
+Pair/image transformations use the exact supplied native cell, and the masked
+owner independently checks the actual geometry manager against that chosen
+cell/group. Source PDB bytes and reflection data are never rounded or rewritten.
+This follows the existing Cedar phosphate-start precision rule. It is a
+representation bridge, not reflection authentication or movement permission:
+callers retain original observation/Free-R provenance and supply the actual
+scattering crystal. An optional binding field records both cells and the Hall
+symbol; omitted arguments preserve the strict historical behavior/report shape.
+Existing automatic/counting/contribution callers are unchanged. No historical
+receipt migration, automatic model selection or new scientific gate follows.
+
+
 The API-only `metal.native_terms` adapter describes explicit recipe distances
 and angles for shared native coverage review. It binds a complete native
 identity/element inventory to a revalidated preview, preserving angle vertices
