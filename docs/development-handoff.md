@@ -1,6 +1,17 @@
 # NASolve development handoff — Willow
 
-**Current audit and maintained implementation: W242, 2026-11-23.**
+**Current audit and maintained implementation: W243, 2026-11-23.**
+[W243 fixes anisotropic return round-off](topostitch-preview.md#preserve-cartesian-adps-through-native-return-w243):
+**293 source/293 isolated installed tests**, both real 1271/1275-atom preflight
+failures reproduced and replayed cold, twelve real tensor-change refusals. All
+six Cartesian ADP components compare at absolute 1e-12 Å² in the exact native
+cell/group/frame; modes/Uiso and isotropic behavior stay strict. Source ANISOU
+and ATOM B/Q export bytes remain exact. Installed/source/read-only cctbx replay
+agree; no new fits or manuscript edits. Rowan has the frozen package at NASolve
+anchor `branch-artifacts/willow/w243-cartesian-return/installed` for his separate
+live qualification. New state receipts carry frame and ADP comparison evidence;
+use fresh jobs, preserve old failures. Whole-ASU/export scattering gates stay open.
+
 [W242 observes saved native XYZ weights](topostitch-preview.md#observe-printed-native-xyz-weights-w242)
 without changing refinement: **278 source/278 isolated installed tests**, exact
 readback of all ten W241 cycle summaries, including a standard-library-only
@@ -152,6 +163,7 @@ failure; skipped cases remain unqualified. [Completion contract](topostitch-prev
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
+| W243 Cartesian ADP return | Both real anisotropic failures replay cold; 293 source/293 installed, all six components and real-change refusals | Fresh Cedar-coordinated live execution; exported-candidate scattering and whole-ASU gates |
 | W242 weight observer | Source-pinned ordered native summaries, rounding/no-authority limits; 278 source/278 installed, exact saved-log parity | Live/fixed-policy qualification; no parameter changes or extra fits |
 | W241 seeded receiving | Two five-cycle native fits; seed keeps healthy local bonds/oxygen angles, exact fixed context and data | Strong adaptive-weight confound, residual torsions, density/statistical acceptance |
 | W240 native product entry | Installed preflight/one-cycle execution, exact six-atom return and data/thermal preservation; 261 source/261 installed checks | Original-start oxygen angles; explicit weight evidence, general repair and ordinary campaign integration |

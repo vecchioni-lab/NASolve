@@ -7,7 +7,11 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Current audit/code: W242.** [Read-only native-weight observation](topostitch-preview.md#observe-printed-native-xyz-weights-w242)
+- **Current audit/code: W243.** [Cartesian ADP return](topostitch-preview.md#preserve-cartesian-adps-through-native-return-w243)
+  tolerates only physical-unit tensor round-off while preserving exact frame,
+  modes, isotropic state and source ANISOU/B/Q bytes. 293 source/293 installed;
+  both real failures replay cold. Rowan owns the separate fresh native fits.
+- **W242.** [Read-only native-weight observation](topostitch-preview.md#observe-printed-native-xyz-weights-w242)
   preserves pinned per-cycle printed values and their limits: 278 source/278
   installed tests, exact replay of the ten saved W241 summaries, no new fit.
   Fixed-objective native scope remains a Cedar-coordinated follow-up.
