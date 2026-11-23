@@ -592,6 +592,18 @@ Apply the smallest feasible operation first:
 5. Audit full atomic geometry and native interpretation; refine a new child
    and test whether the intended connection survives.
 
+A numerical stop alone does not justify expanding the editable window. Separate
+an unevaluated/rejected optimizer proposal or line-search failure from evidence
+that a chemically admissible connection is unreachable under the current scope.
+The W253 stop is an example: a later proposal exceeded a hard bound, but the last
+accepted point was not a constrained optimum. W254 records future rejected-move
+evidence without changing that boundary. Review initialization, chemical frames,
+complete native terms and source/context binding before selecting a new motion
+experiment. Necessary-distance bounds may help identify obvious conflicts, but
+small differences from exact restraint ideals are not physical impossibility
+criteria and passing such a bound does not establish closure. Automatic whole-
+step expansion still needs the existing topology/permission and geometry gates.
+
 Use full frames, not plane normals alone: position, in-plane rotation, groove
 orientation and strand direction are necessary. Optimize base-pair-step rise,
 shift, slide, roll, tilt and twist within a benchmarked sequence/context model.

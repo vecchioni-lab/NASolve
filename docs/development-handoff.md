@@ -1,6 +1,29 @@
 # NASolve development handoff — Willow
 
-**Current audit: W253; maintained implementation: W252, 2026-11-23.**
+**Current audit and maintained implementation: W254, 2026-11-23.**
+[Failed-proposal observation](topostitch-preview.md#observe-a-failed-atomic-proposal-without-promoting-it-w254)
+now closes the reporting gap for future atomic trials. A failed objective call
+retains compact proposal/mask digests and the first move beyond the bound, with
+source atom index, move length and limit. The original exception and last
+accepted step remain separate; no full coordinate array, extra evaluation,
+optimizer change or promotion. Malformed/nonfinite proposals stay unavailable.
+Existing W253 evidence remains unchanged and its rejected atom remains unknown.
+
+**274 source and 274 relocated installed checks pass (one skip each)**, including
+83 trial checks and nine new rejection-report cases. Both public failure cases
+fail on previous code. All 216 installation files hash-match after build/original
+path removal; Python 3.10 syntax and installed command help pass. Exact commands,
+logs and source hashes: NASolve anchor `branch-artifacts/willow/w254-validation/`.
+Source command: `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:<qualified-test-dependencies>
+python -m pytest -p no:cacheprovider -q tests/test_topostitch_trial.py
+tests/test_topostitch_transport.py tests/test_topostitch_native_window.py
+tests/test_topostitch_native_terms.py tests/test_topostitch_fit.py
+tests/test_topostitch_captured_job.py`. Hazel's pinned cold interface review has
+no blocking findings; it did not duplicate tests or native execution. This is
+synthetic/software qualification, not a new Phenix run. Full suite remains
+explicitly pending in the coordinated pre-merge gate.
+
+**Latest science: W253, not a new W254 run.**
 [One same-parent geometry diagnostic](topostitch-periodic.md#w253--audit-a-motion-limited-geometry-trial-without-claiming-an-optimum)
 reuses the existing masked native objective and registered phosphate owner.
 Hazel ran it once with six movable atoms, held rings, a 0.5 Å source tether and
@@ -20,9 +43,9 @@ places three *exact* ideals just 0.011 Å beyond the cap; illustrative soft-targ
 envelopes fit. That tiny discrepancy is not a meaningful physical impossibility
 claim. Significant residual angles and attachment geometry remain the concern.
 
-**Next bounded work:** preserve the rejected proposal and offending displacement
-through the existing trial recorder before changing numerical policy. Review
-chemical placement against the fixed sugar frames and existing source restraints.
+**Next bounded work:** review chemical placement against the fixed sugar frames
+and existing source restraints. W254 now observes future rejected proposals; it
+does not alter the numerical policy or recover the old missing point.
 Select a new initialization/motion experiment prospectively; do not infer a
 larger mask or automatic bound increase from this stop. No retry, weight grid or
 new native work tonight. W241's adaptive-weight confound and full integration

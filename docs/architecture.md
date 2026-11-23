@@ -1292,6 +1292,11 @@ the start. It does not rebase source/tether, count the seed as an accepted step 
 adopt a failed parent. Explicit starts add an `initialization` observation; default
 zero-start reports and native stopping/error settings remain unchanged. Callers
 own parent-point authentication and must preserve its original outcome.
+When an atomic objective call raises, W254 retains a compact `failed_proposal`
+observation: pre-call displacement/mask digests, optional bound source-model hash
+and the first exceeding move in mask order. It does not store another coordinate
+array or evaluate the proposal again. The original failure and accepted endpoint
+remain separate; no movement/optimizer policy or collective-trial change follows.
 `topostitch_captured_job.run_captured_objective` owns their package-level
 orchestration; the developer CLI is a thin caller. Cedar still authenticates the
 captured model/dictionaries/ordered PHIL, composes native observation layers and
