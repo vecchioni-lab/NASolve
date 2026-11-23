@@ -1,6 +1,16 @@
 # NASolve development handoff — Willow
 
-**Current audit: W246; maintained implementation: W245, 2026-11-23.**
+**Current audit: W247; maintained implementation: W245, 2026-11-23.**
+[W247 qualifies serialization precision](topostitch-periodic.md#w247--qualify-serialization-precision-before-a-recut-writer):
+12 Gemmi/12 independent Phenix readbacks retain all ordered atoms and thermal
+inventory. Default mmCIF rounds rotated U beyond the planned bound; the separate
+full-precision CIF control retains represented XYZ/U exactly. Native U rereads
+within 3.56e-15 Å²; native source scattering is not exactly Gemmi float32 state.
+Both links remain external graph intent, with zero coordinate annotations.
+Retain the first precision failure and native ordering-harness failure. Next is
+a small read-only export observer; polymer/connection metadata, whole-ASU writer,
+coupled fits and acceptance remain open. No new native refinement or product code.
+
 [W246 observes two declared R3 routes together](topostitch-periodic.md#w246--observe-both-declared-r3-routes-in-one-saved-recut):
 82 atoms/four canonical sites change representatives; all 1271/1275 atoms remain.
 Both connections retain their image-aware lengths and declared chemistry. All

@@ -13440,3 +13440,81 @@ P03 remains partial: full reciprocal-space/native-policy/serialization and
 physical interpretation are separate. **Both links being represented together
 is not both links being refined together**; the P04/S05 coupled-fit gate remains
 open, as do W241/W242's distinct receiving question and Cedar's restart work.
+
+
+## W247 — Qualify serialization precision before a recut writer
+
+W246 established the saved in-memory representation. W247 asks a smaller next
+question: what survives existing coordinate writers and independent readers?
+Each unchanged/compound packet is bound by its exact receipt and source hashes;
+its existing `ReferenceFrame` transports every coordinate and all six Cartesian
+U components. No source, prior packet, manuscript artifact or native model is
+modified. Diagnostic derivatives stay local.
+
+The first attempt deliberately stops when default Gemmi 0.7.5 mmCIF output
+exceeds the declared **1e-6 Å² tensor-component bound**. Keep that failed plan,
+first printed file and log. A separate observation records all default outcomes
+under the same bounds, plus a control using Gemmi's existing CIF tables with
+explicit **17-significant-digit XYZ/U fields**. This is a diagnostic precision
+control, not a new production model writer.
+
+| Compound recut | Format | Maximum coordinate-component error (Å) | Maximum U-component error (Å²) | Relative complex-Fcalc L2 error against represented memory |
+| --- | --- | --- | --- | --- |
+| 3LNA | PDB | 4.99950e-4 | 5.00679e-5 | 1.08080e-5 |
+| 3LNA | default mmCIF | 4.93433e-8 | 4.19617e-5 | 5.25921e-8 |
+| 3LNA | full-precision mmCIF control | 0 | 0 | 0 |
+| 5LNA | PDB | 4.99828e-4 | 4.96358e-5 | 1.37393e-5 |
+| 5LNA | default mmCIF | 4.91153e-8 | 5.00679e-6 | 4.89605e-8 |
+| 5LNA | full-precision mmCIF control | 0 | 0 | 0 |
+
+All twelve outputs preserve **1271/1275 ordered atoms**, residue/element/record
+identities, occupancies/B, anisotropic inventory, cell and group in Gemmi.
+Unchanged PDB controls are exactly unchanged numerically; default mmCIF can
+still round float32 tensors in an unchanged model. The full-precision control
+preserves the represented Gemmi state exactly, including both external links'
+image-aware lengths. PDB link-distance changes stay below 0.0004 Å. None of
+these thresholds grants structural acceptance.
+
+A separate **Phenix 2.2.1-6174 / Python 3.11.15** read-only iotbx/cctbx pass
+reopens all twelve files, checks identity/order before comparing, independently
+reconstructs all Cartesian tensors, and calculates direct IT1992 structure
+factors on the same 1484/2375 supplied indices. Written CIF numbers agree with
+native scattering U within **3.56e-15 Å²** and XYZ within numerical round-off.
+Native source-to-full-CIF Fcalc differs by about **2e-8 relative L2**: this is
+consistent with passing the source through Gemmi's float32 atom tensors, and
+must not be called exact preservation of native full precision. No Phenix
+refinement, Coot execution or native dry-run is performed.
+
+The initial native harness compared a default-sorted hierarchy against raw-order
+scatterers in modified ATL residues. Its failure is retained. Explicit
+`sort_atoms=False` and atom-label equality before every value comparison resolve
+the harness error; it was not evidence that the coordinate file moved atoms.
+
+**Connections are a separate contract.** These working sources have zero parsed
+connection records, and the diagnostic outputs also have zero. Both intended
+links remain bound to the saved graph, with the recut's correct operators and
+measured distances. They have not been embedded in the coordinate files.
+Absence of annotations neither removes intended chemistry nor creates a nick.
+Likewise, preserving author atom identities does not qualify polymer/entity/sequence
+metadata or an adopted whole-ASU layout.
+
+Evidence resides at NASolve anchor `branch-artifacts/willow/w247-serialization/`
+(first failed precision attempt) and `w247-serialization-observation/` (twelve
+observations and independent native results). Frozen plans pin exact inputs,
+runner files and dispatcher; the roadmap binds plan/summary/failure hashes.
+Commands run the retained `runners/w247-serialization.py plan` then `run`,
+`runners/w247-serialization-observation.py plan` then `run`, and the independent
+`runners/w247-native-ordered-readback.py` with Phenix Python. Host observations
+use `PYTHONDONTWRITEBYTECODE=1` and the existing topology dependency environment;
+native readback additionally uses `OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1`.
+The first native harness is retained as `runners/w247-native-readback.py`.
+No scientific artifacts enter Git; no test-suite or install repeat is warranted
+for this evidence/docs-only update, with W245's 208/208 maintained-code validation
+unchanged. These local diagnostics are not a portable native-run claim.
+
+**Next small contract:** a read-only, exact-source/receipt-bound export observer,
+with complete labelled mapping and declared precision, external intent separated
+from actual annotations, and native source state separated from Gemmi state.
+Qualify connection and polymer metadata before a production recut writer. P03
+remains partial; simultaneous-cut force qualification and checkpoint restart stay
+with their existing owners and prerequisites.

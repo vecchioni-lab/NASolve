@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W247 — Audit recut serialization precision and independent readback
+
+- Record default PDB/mmCIF rounding and a full-precision CIF control, with complete
+  ordered atom/tensor inventory and independent Phenix readback. Retain failed
+  precision and harness-ordering attempts; separate graph intent from annotations.
+- Evidence/docs only; no production writer, runtime/default change or native fit.
+  Generated coordinates and reports remain local. P03 stays partial.
+
 ### W246 — Observe two R3 routes in the same recut
 
 - Record unchanged/compound-recut controls using the installed saved-preview,
