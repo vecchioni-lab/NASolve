@@ -176,9 +176,9 @@ with the returned file before assigning that warning to the chemistry.
 C547 and Willow W243 tested both cuts of two models in separate three-cycle
 fits with anisotropic atoms. Each phosphate retained its local geometry.
 The distance-only and complete-restraint treatments also separated under
-one fixed native coordinate weight. Open work includes simultaneous cuts
-in one native refinement and recovery when the initial pose is poor.
-Use the completed single-cut fits as controls for either follow-up.
+one fixed native coordinate weight. The ordinary restart and the later
+[crystal-boundary stress tests](#crystal-phosphates-after-an-asymmetric-unit-recut)
+have separate acceptance checks.
 
 In C531, two historical PHIL edits completely masked the source-supported
 PDU target change from 1.607 to 1.470 Å. Updating both site-specific targets
@@ -1461,6 +1461,36 @@ an older model with newer dictionaries, rewrite a prior checkpoint, or promote
 report-only findings into unreviewed universal gates.
 
 ### Q06 — Qualify the actual refinement consumer
+
+#### Crystal phosphates after an asymmetric-unit recut
+
+**Resume the numbered AutoRefine restart first.** C545 completed the paired
+five-cycle experiment that was in flight at the morning interruption. On the
+original PDU:PDU comparison, start a fresh child through the ordinary command.
+Verify the actual selected parent, inherited restraint files and Free-R
+assignments. Read back one bond, four angles and three torsions in the
+declared mate after native geometry is rebuilt. Keep the fitted child available
+for review and the parent's own history intact. Reuse the completed C545
+and C547/W243 controls.
+
+**Stress-test the shared method in stages.** Pine records the designed
+continuation and its exact crystal operation through a recut. Before any
+refinement, check that the new asymmetric unit gives equivalent scattering,
+strand chemistry and pair assignments. Willow then fits two registered cuts
+together using Cedar's single set of forces per junction and checks them in
+a fresh restart. Exercise the existing rotated or screw-related examples,
+a cell translation and a displaced starting junction. A true nick stays
+open. An ambiguous partner requires review. Check both nonbridging oxygens,
+nearby clashes, handedness and the original free set after motion.
+Willow's [coordinated roadmap](https://github.com/vecchioni-lab/NASolve/blob/willow/docs/topostitch.md#coordinated-phosphate-recut-follow-up)
+owns placement and recutting. Space group alone cannot establish bond intent.
+
+**Read the processed deposition separately.** A returned model preserved all
+ordinary steps while omitting the two declared crystal links. Its validation
+report assigned those two covalent distances to symmetry contacts. Compare
+the uploaded and processed coordinates using the existing deposition reader.
+Carry the missing records to biocuration and check the next returned model.
+Routine adoption awaits that external outcome and the scientific stress tests.
 
 **Alder final-stage reporting holdover (2026-11-17, `ccb5e769`):** a passive exact-
 endpoint replay localizes one DF child's final R/B shift inside native

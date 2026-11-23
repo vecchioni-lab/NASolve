@@ -17,9 +17,18 @@ the tensor in the coordinate and diffraction models. Source and relocated
 wheel each passed 126 focused tests. The earlier isotropic phosphate
 passed a fresh native preflight. No file or checkpoint schema changed.
 The [evidence ledger](cif-linked-native-registration-evidence.json) records the
-protocol and scope. An externally returned model is needed to assess
-retention of the deposited symmetry links. Simultaneous refinement of two
-registered cuts in the same process remains open.
+protocol and scope. A first processed model preserved every atom and ordinary
+backbone step, and omitted the submitted connection table. The preliminary
+validation reported zero chain breaks and listed the two intended covalent
+distances as symmetry contacts. Curator annotation and the other deposition's
+return remain open.
+
+**Resume Q06 at the ordinary numbered AutoRefine restart on PDU:PDU.**
+The morning C545 distance-only and complete-restraint processes both
+finished. Their published readbacks supersede the interruption note.
+The [existing queue](cif-doctor-completion-queue.md#crystal-phosphates-after-an-asymmetric-unit-recut)
+orders the subsequent Pine recut, simultaneous Willow fit and restart
+stress tests. The single-cut controls are complete.
 
 C546 adds a read-only [deposition check](cif-doctor.md#checking-backbone-continuity-before-deposition).
 It measures each direct labelled step independently of the exported covalent

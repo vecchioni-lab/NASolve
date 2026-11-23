@@ -166,8 +166,19 @@ terms confined to those two residues. Older captures omit per-atom images for
 angles and torsions, so applying those terms across a crystal boundary needs its
 own check.
 
-The opt-in phosphate refinement can use models with anisotropic atoms.
-Phenix may recalculate the equivalent B factor from the six displacement
+The opt-in phosphate refinement holds the phosphorus in its stored crystal
+copy, brings the named donor
+atoms into that frame, and evaluates the local angles and torsions with
+Phenix's geometry terms from matching intact links. For an image position
+`x′ = R x + t` in Cartesian coordinates, the force on an image atom is
+rotated back to its stored atom as `Rᵀ F′`. The native bond retains its
+symmetry operation and covalent exclusions. These operations apply to a
+declared chain continuation. Even in P1, a strand can cross into an adjacent
+unit cell by a translation. The recorded native refinements test one junction
+at a time.
+
+The opt-in refinement can use models with anisotropic atoms. Phenix may
+recalculate the equivalent B factor from the six displacement
 components in a PDB ANISOU record. Cedar checks those components in
 Cartesian coordinates against both the coordinate model and the diffraction
 model. It allows the independent rounding of the printed B and ANISOU
