@@ -9,7 +9,11 @@ ANISOU/B/Q and measured/Free membership stay. Linden verified 84 frozen-input
 hashes and source/candidate/runtime/state bindings without duplicate runs.
 This closes W243's fresh local return/export check; general damaged-seam repair,
 whole-ASU scattering, fixed-objective comparison and scientific acceptance remain
-open. The current next step returns to the existing weight-policy/repair queue.
+open. Rowan's fixed-unit bond-only/complete controls now give O3′–P–O5′
+95.19°/102.46° against a 104° target; the released-link control opens to 3.261 Å.
+The one-junction-at-a-time two-crystal test is qualified; simultaneous two-junction
+refinement remains separate. This does not repeat or close W241's different
+starting-geometry/weight-policy question.
 
 [W243 fixes anisotropic return round-off](topostitch-preview.md#preserve-cartesian-adps-through-native-return-w243):
 **293 source/293 isolated installed tests**, both real 1271/1275-atom preflight

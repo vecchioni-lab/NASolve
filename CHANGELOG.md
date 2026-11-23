@@ -19,6 +19,11 @@ entries are reconstructed from repository history.
 
 ### W244 — Audit coordinated anisotropic native returns
 
+- Bind Cedar C547's durable control evidence: matched fixed-unit distance-only
+  versus complete restraints distinguishes phosphate-angle preservation. Keep
+  simultaneous two-junction qualification separate from the completed individual
+  junction tests; no new native execution or fixed-weight product mode.
+
 - Record four completed Cedar-coordinated real-data fits and independent exported
   tensor readbacks. Healthy registered connections survive with all eight local
   terms within 1.82 sigma; original atoms, thermal records and Free membership stay.

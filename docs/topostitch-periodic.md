@@ -13350,3 +13350,35 @@ an explicitly common weight policy with Cedar instead of treating identical
 requested scales as identical objectives. Preserve the independent whole-ASU,
 input/scattering and reviewed unrestrained-edge gates. A mobile healthy cut is a
 positive integration control, not proof that arbitrary ends can be repaired.
+
+
+**W244 coordinated control addendum:** Cedar C547 is now pinned at
+`43bec537e68ec7f0ee6db185564c4fa1577f40da`, paired with Willow W243
+`5f5c129b439452256e71d3e03dc6bcbeb10404b8`. Rowan's durable report,
+`Verified phosphate fits.json`, SHA-256
+`8a4a187d51e23f026834fd7f016656754dc1822dfe118eef24775a982a99bf45`,
+and adjacent `Reproduce the fits.zip` are bound through the local
+`lna_crystal_phosphate_tests` anchor in NASolve
+`branch-artifacts/willow/w244-control-evidence.json`. The archive retains the
+four original independent readbacks byte-for-byte; Linden checked their hashes,
+all four added control records and the matched fixed-control starting/data bindings.
+No manuscript artifact was edited or copied into Git.
+
+For 3LNA A116→D107, the released-link control opens to **3.261472 Å**.
+That adaptive-weight run is descriptive, not an isolated force comparison.
+The separate bond-only and complete-restraint controls use an explicit fixed-unit
+diagnostic policy and print `wxc/wxc_scale/wc = 1/1/1` in all three cycles.
+Their starting state and data hashes match; O3′–P–O5′ is **95.192744°** with
+bond-only restraints versus **102.461673°** with complete restraints, against the
+**104°** native target. Bond lengths remain 1.609736/1.608052 Å. This shows why a
+correct distance alone does not establish phosphate geometry. All displacement
+tensors remain preserved on independent native reread. These are Cedar-owned
+explicit diagnostic controls, not a new supported fixed-weight product mode or
+a qualification of the different W241 damaged-start/geometry-seed experiment.
+
+The **two-crystal, one-junction-at-a-time** native test is now qualified in its
+stated scope. **Both junctions active in one fit remains a separate open gate**:
+bind both explicit connections and the combined movable-atom selection, retain
+all protected rings/thermal state/data, and check both complete seam geometries
+and exclusions together. Do not infer simultaneous support from independent fits
+or duplicate the completed one-junction controls.
