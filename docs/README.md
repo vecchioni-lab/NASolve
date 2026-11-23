@@ -33,14 +33,15 @@ current instructions; other branches retain their own status and validation pins
 - **Ordinary integration:** W214/W215 bind a real PostMR root and an explicit
   dictionary-only native source; no pairing/motion intent is invented. Cedar
   owns the receiving request and native lifecycle. Read the [current handoff](development-handoff.md).
-- **Latest science: W222–W225.** [Collective warm-start and matched receiving refinement](topostitch-periodic.md#w222w225--corrected-collective-warm-start-and-matched-receiving-refinement)
+- **Larger-motion science: W222–W225.** [Collective warm-start and matched receiving refinement](topostitch-periodic.md#w222w225--corrected-collective-warm-start-and-matched-receiving-refinement)
   recover a large synthetic perturbation while preserving sugar handedness.
   The failed direct result and three remaining moving-region outliers stay
   explicit. This is same-family synthetic recovery, not general experimental repair.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W234, next W235:
-  a six-atom donor graft closes the seam but strains the fixed-sugar boundaries;
-  consume Cedar’s complete image-force restart before the narrow ancestor trial.
+  [generated human view](topostitch-roadmap.md). Current W235, next W236:
+  [six-atom native closure](topostitch-periodic.md#w235--close-the-local-symmetry-connection-with-all-rings-held)
+  retains fixed rings and healthy sugar boundaries. Qualify diffraction receiving
+  and residual geometry next; the capped geometry trial is not acceptance.
   The existing two-fixed-flank interval cannot simply grow around the same core.
   Keep the successful synthetic receiving comparison closed. The 5 Å centerline target is separate.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and

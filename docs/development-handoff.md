@@ -1,13 +1,21 @@
 # NASolve development handoff — Willow
 
-**Current audit: W234; maintained implementation: W233, 2026-11-23.**
+**Current audit: W235; maintained implementation: W233, 2026-11-23.**
 The existing native input binder now accepts an explicitly selected dictionary-only
 parent policy from Cedar C526. Default literal inputs still require compiled
 restraints. W214 binds a real X11_22 PostMR checkpoint and original observations;
 W215 binds that exact model, original native observation and four reader controls
 without inventing pair restraints. S04/S05/S06 remain PARTIAL.
 
-**Latest science:** A constrained geometry warm-start now lets the original
+**Latest local seam science:** [W235](topostitch-periodic.md#w235--close-the-local-symmetry-connection-with-all-rings-held)
+uses the complete Cedar image forces to close 2.824 → 1.613 Å with only six
+connecting atoms moving, all 856 others/BQ held. Boundary bonds recover to
+1.512/1.440 Å; local/seam torsions remain up to 2.25/2.94 σ. Three full derivative
+audits and 34 cold checks pass; 50-iteration cap, no diffraction fit or acceptance.
+The three-state ChimeraX checkout is at the GitHub sibling anchor
+`ScienceCheckouts/Linden/2026-11-23_symmetry-connection/index.html`.
+
+**Larger-motion science:** A constrained geometry warm-start now lets the original
 five-cycle protocol recover the 10 Å synthetic perturbation without the direct
 attempt's sugar inversion. W223 reaches its 20-iteration cap (not convergence);
 W224 retains 126/126 sugar signs, gives 1.612–1.621 Å flank links and
@@ -77,6 +85,7 @@ remains tied to its recorded earlier checkpoint.
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
+| W235 local image connection | Six-atom capped native optimization, 856 held, three derivative audits/34 cold checks; seam 1.613 Å and healthy sugar-boundary lengths | Residual torsions, matched diffraction receiving, maps/packing and general repair |
 | W214/W215 real parent + typed binding | Exact real checkpoint/data; 225 source/225 relocated installed, 19 real-source checks, Phenix Python 3.11 parity | Independent intended motion, Cedar ordinary request/dispatch and chemical admission |
 | W208 maintained parent builder |217 source/217 relocated installed;54 actual-native cold checks, exact W207 prepared state and disposable post-parent failure | Cedar-owned versioned ordinary request/dispatch; C516 early entry qualified |
 | W211/W212 intrinsic local recovery | Four matched arms, 38/40 checks per pair and 28 cross-arm; both seeds survive, original chemistry/data retained | General/experimental recovery, residual stereochemistry and maintained proposal consumer |
@@ -146,7 +155,10 @@ closes that seam but strains the two fixed-sugar bonds (−9.60/+16.45 native
 sigmas), despite retained chirality signs and unchanged stacking. Twenty-two
 cold checks, one diagnostic PDB, no fit or acceptance. This rules out simple
 coordinate transplantation; it does not rule out a constrained six-atom solution.
-The next optimization must retain those boundary terms with the full seam forces.
+[W235 now performs that constrained trial](topostitch-periodic.md#w235--close-the-local-symmetry-connection-with-all-rings-held)
+with the full seam forces and retains healthy boundary bonds. Do not repeat it:
+the next question is matched diffraction receiving, residual torsions and packing,
+using Cedar's qualified restart lifecycle and unchanged original data/Free.
 
 **Internal helix focus (Simon, 2026-11-22):** retain the rough but recoverable
 molecular placement as a useful intermediate, then explicitly assess stacking

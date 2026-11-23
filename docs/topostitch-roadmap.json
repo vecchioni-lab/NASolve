@@ -285,7 +285,8 @@
         "W231 distinguishes the canonical central crossover from ordinary stacking:22coldchecks,~82degree seam planes and2.795AO3-P. No whole-pair anchor release or new native run.",
         "W232 binds6connecting-backbone atoms/856held atoms to the real child and authenticated native support,23coldchecks. No coordinate change or new native experiment; full image-force receiving remains Cedar-owned.",
         "W233 composes internal stacking with existing named-state correspondence;125source/125installed and254cold checks per context. Default reports unchanged; no native run or motion admission.",
-        "W234 records a six-atom donor graft: closed seam but 16.45-sigma fixed-sugar bond strain, with all rings/856 other atoms held. No fit or acceptance; local boundary forces must accompany seam closure."
+        "W234 records a six-atom donor graft: closed seam but 16.45-sigma fixed-sugar bond strain, with all rings/856 other atoms held. No fit or acceptance; local boundary forces must accompany seam closure.",
+        "W235 closes the same original seam to1.61303A in one capped six-atom native geometry trial with all856other atoms/BQ held; local and image bond/angle targets recover, torsions remain explicit. Three derivative audits and34cold checks pass; no diffraction fit or acceptance."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
@@ -293,7 +294,7 @@
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient.",
         "Internal helix recovery explicitly compares neighbouring base-plane orientation, spacing, lateral offset/overlap and twist before deformation, after placement and after restrained recovery, including fixed-flank transitions. Within-pair coplanarity and between-pair stacking remain distinct; allow supported curvature/nonuniform twist rather than enforcing universal parallelism. Connectivity, sugar-sign retention and R factors alone do not close this gate. Investigator emphasis2026-11-22; planning only, reuse existing frame/geometry owners."
       ],
-      "next_action": "After Cedar qualifies the complete image-force restart, optimize the six-atom window from the original 2.824 A ancestor with all rings/context held. Include both fixed-sugar boundaries and relative handedness; W234 donor graft is strained and must not be adopted. If bounded optimization fails, record it before declaring a wider window. No repeat whole-model fit; junction mobility and 5 A centerline remain separate.",
+      "next_action": "Review Cedar complete-force receiving survival, then qualify one matched diffraction receiving step for the exact W235 six-atom endpoint with original observations/Free-R and held rings/BQ/context. Inspect residual torsions and native packing/maps; do not tune by Rfree or repeat the donor graft/geometry closure. Broader motion and junction permission remain separate.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -386,14 +387,15 @@
         "E_CROSSOVER_WINDOW_CONTEXT",
         "E_NARROW_BACKBONE_SCOPE",
         "E_STACKING_COMPARISON",
-        "E_NARROW_BACKBONE_DONOR_GRAFT"
+        "E_NARROW_BACKBONE_DONOR_GRAFT",
+        "E_NARROW_BACKBONE_NATIVE_CLOSURE"
       ],
       "last_audit": {
         "date": "2026-11-23",
         "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933",
         "reviewer": "Linden",
-        "human_update": 234,
-        "scope": "Cold donor-graft boundary diagnosis; no native refinement or scientific acceptance"
+        "human_update": 235,
+        "scope": "One capped complete-force six-atom geometry closure; diffraction receiving and scientific acceptance open"
       }
     },
     {
@@ -470,14 +472,15 @@
         "W226 maintains the bounded6Ddriver with exact points/units, accepted-step history, hard callback budgets, derivative/restoration gates and installed-native parity. It does not write/qualify rounded coordinates or grant ordinary/scientific permission.",
         "W228independently reviews CedarC539 consuming the shared registered graph for a named source-frame phosphate continuation:36cold checks, exact mapped labels/operators and checkpoint evidence. Intended topology remains distinct from actually printed restraints; no force or recut qualification.",
         "W232 binds6connecting-backbone atoms/856held atoms to the real child and authenticated native support,23coldchecks. No coordinate change or new native experiment; full image-force receiving remains Cedar-owned.",
-        "W234 records a six-atom donor graft: closed seam but 16.45-sigma fixed-sugar bond strain, with all rings/856 other atoms held. No fit or acceptance; local boundary forces must accompany seam closure."
+        "W234 records a six-atom donor graft: closed seam but 16.45-sigma fixed-sugar bond strain, with all rings/856 other atoms held. No fit or acceptance; local boundary forces must accompany seam closure.",
+        "W235 closes the same original seam to1.61303A in one capped six-atom native geometry trial with all856other atoms/BQ held; local and image bond/angle targets recover, torsions remain explicit. Three derivative audits and34cold checks pass; no diffraction fit or acceptance."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "After Cedar qualifies the complete image-force restart, optimize the six-atom window from the original 2.824 A ancestor with all rings/context held. Include both fixed-sugar boundaries and relative handedness; W234 donor graft is strained and must not be adopted. If bounded optimization fails, record it before declaring a wider window. No repeat whole-model fit; junction mobility and 5 A centerline remain separate.",
+      "next_action": "Review Cedar complete-force receiving survival, then qualify one matched diffraction receiving step for the exact W235 six-atom endpoint with original observations/Free-R and held rings/BQ/context. Inspect residual torsions and native packing/maps; do not tune by Rfree or repeat the donor graft/geometry closure. Broader motion and junction permission remain separate.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -608,14 +611,15 @@
         "E_NATIVE_COLLECTIVE_TRIAL",
         "E_REGISTERED_PHOSPHATE_READER",
         "E_NARROW_BACKBONE_SCOPE",
-        "E_NARROW_BACKBONE_DONOR_GRAFT"
+        "E_NARROW_BACKBONE_DONOR_GRAFT",
+        "E_NARROW_BACKBONE_NATIVE_CLOSURE"
       ],
       "last_audit": {
         "date": "2026-11-23",
         "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933",
         "reviewer": "Linden",
-        "human_update": 234,
-        "scope": "Cold donor-graft boundary diagnosis; no native refinement or scientific acceptance"
+        "human_update": 235,
+        "scope": "One capped complete-force six-atom geometry closure; diffraction receiving and scientific acceptance open"
       }
     },
     {
@@ -696,7 +700,8 @@
         "W231 distinguishes the canonical central crossover from ordinary stacking:22coldchecks,~82degree seam planes and2.795AO3-P. No whole-pair anchor release or new native run.",
         "W232 binds6connecting-backbone atoms/856held atoms to the real child and authenticated native support,23coldchecks. No coordinate change or new native experiment; full image-force receiving remains Cedar-owned.",
         "W233 composes internal stacking with existing named-state correspondence;125source/125installed and254cold checks per context. Default reports unchanged; no native run or motion admission.",
-        "W234 records a six-atom donor graft: closed seam but 16.45-sigma fixed-sugar bond strain, with all rings/856 other atoms held. No fit or acceptance; local boundary forces must accompany seam closure."
+        "W234 records a six-atom donor graft: closed seam but 16.45-sigma fixed-sugar bond strain, with all rings/856 other atoms held. No fit or acceptance; local boundary forces must accompany seam closure.",
+        "W235 closes the same original seam to1.61303A in one capped six-atom native geometry trial with all856other atoms/BQ held; local and image bond/angle targets recover, torsions remain explicit. Three derivative audits and34cold checks pass; no diffraction fit or acceptance."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -707,7 +712,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "After Cedar qualifies the complete image-force restart, optimize the six-atom window from the original 2.824 A ancestor with all rings/context held. Include both fixed-sugar boundaries and relative handedness; W234 donor graft is strained and must not be adopted. If bounded optimization fails, record it before declaring a wider window. No repeat whole-model fit; junction mobility and 5 A centerline remain separate.",
+      "next_action": "Review Cedar complete-force receiving survival, then qualify one matched diffraction receiving step for the exact W235 six-atom endpoint with original observations/Free-R and held rings/BQ/context. Inspect residual torsions and native packing/maps; do not tune by Rfree or repeat the donor graft/geometry closure. Broader motion and junction permission remain separate.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -831,14 +836,15 @@
         "E_CROSSOVER_WINDOW_CONTEXT",
         "E_NARROW_BACKBONE_SCOPE",
         "E_STACKING_COMPARISON",
-        "E_NARROW_BACKBONE_DONOR_GRAFT"
+        "E_NARROW_BACKBONE_DONOR_GRAFT",
+        "E_NARROW_BACKBONE_NATIVE_CLOSURE"
       ],
       "last_audit": {
         "date": "2026-11-23",
         "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933",
         "reviewer": "Linden",
-        "human_update": 234,
-        "scope": "Cold donor-graft boundary diagnosis; no native refinement or scientific acceptance"
+        "human_update": 235,
+        "scope": "One capped complete-force six-atom geometry closure; diffraction receiving and scientific acceptance open"
       }
     },
     {
@@ -6078,6 +6084,47 @@
           "size": 326604
         }
       ]
+    },
+    "E_NARROW_BACKBONE_NATIVE_CLOSURE": {
+      "kind": "Complete native image forces in one bounded six-atom geometry trial",
+      "date": "2026-11-23",
+      "human_update": 235,
+      "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933",
+      "reference": "docs/topostitch-periodic.md#w235--close-the-local-symmetry-connection-with-all-rings-held",
+      "result": "One complete Phenix2.2.1-6174 geometry-only execution using installed Cedar C545 and existing Willow masked driver. 50 iteration cap, 53 optimizer calls, 277 evaluations; initial/full/rounded 18-axis derivative audits pass. Seam 2.82429 to 1.61303 A with 856 atoms/BQ held; boundary bonds 1.51179/1.44006 A. 34 cold checks; local bond/angle max0.389/1.553 sigma, seam0.503/0.733 sigma. Three-model/five-action ChimeraX headless check passes.",
+      "limitation": "Not converged: explicit iteration cap. Local/seam torsion deviations up to2.25/2.94 sigma remain. No new diffraction refinement, map or full packing readback, general repair, ordinary admission or scientific acceptance. Raw model/results local only.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w235-six-atom-native/plan.json",
+          "sha256": "3f5cd56ccb4b2d9056b441650d7e656b8a482750679ec5448a5d9bf053f6af58",
+          "size": 75570
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w235-six-atom-native/native-result.json",
+          "sha256": "100be381e38d21f95912484ef963215e8e63ab71ced083ee16e6e87e4c2bc59d",
+          "size": 309832
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w235-six-atom-native/review.json",
+          "sha256": "19c2cef8ae25f14ca70b8fcc8467f0055c589152b0c0cb9ead92ca4be55d276c",
+          "size": 25579
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w235-six-atom-native/chimerax-check.json",
+          "sha256": "67b506ec0e31959c465483522e5eb889776eb7e61b4c0ffbb4720620cb4359d8",
+          "size": 493
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w235-six-atom-native/stopped.json",
+          "sha256": "ca0627dbdf23c52ea1af01b2dcee480abe3da91a7b025120c52da7810c6ec5e1",
+          "size": 73
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -6243,8 +6290,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 234,
-    "next": 235,
+    "current": 235,
+    "next": 236,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -7456,6 +7503,12 @@
       {
         "number": 234,
         "title": "Measure fixed-sugar strain after a six-atom donor graft",
+        "state": "RECORDED",
+        "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933"
+      },
+      {
+        "number": 235,
+        "title": "Close the local symmetry connection with all rings held",
         "state": "RECORDED",
         "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933"
       }

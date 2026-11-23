@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W235 — Demonstrate constrained local symmetry closure
+
+- Record one complete native geometry trial using Cedar's installed image-force
+  runtime and the existing Willow masked driver. Six atoms close the original
+  connection while all rings/856 other atoms and B/Q remain fixed.
+- Keep the iteration cap, residual torsions and untested diffraction receiving
+  explicit. Evidence/docs and a local visual checkout only; no product default,
+  API/schema change or generated crystallographic data in Git.
+
 ### W234 — Retain boundary strain when judging a closed connection
 
 - Record a six-atom donor graft that closes the symmetry seam but strains its

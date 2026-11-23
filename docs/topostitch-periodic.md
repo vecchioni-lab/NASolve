@@ -12827,3 +12827,100 @@ Generated science stays local and excluded from Git. Documentation/evidence only
 no API/schema/default or migration change. Roadmap consistency and diff checks
 suffice here; the preceding W233 installed tests and W230 complete-suite result
 remain tied to their own recorded code checkpoints.
+
+
+## W235 — Close the local symmetry connection with all rings held
+
+One bounded native geometry trial answers W234's next question. Starting from
+the original `refine-005` ancestor, **six connecting atoms can approach the
+complete native bond and angle targets while all 856 other atoms stay fixed**.
+This is a local feasibility result for this declared connection, not a large
+helix bend or general repair. No datum or Free-R flag is used to choose the pose.
+
+| Measurement | Original | Six-atom donor graft | Constrained endpoint |
+| --- | ---: | ---: | ---: |
+| Image O3′–P, Å | 2.824291 | 1.620183 | 1.613032 |
+| B1 C4′–C5′, Å | 1.513077 | 1.444806 | 1.511786 |
+| B7 C3′–O3′, Å | 1.428669 | 1.648819 | 1.440062 |
+| Image C3′–O3′–P, degrees | 107.948 | 131.893 | 119.737 |
+| Maximum local bond deviation, native σ | 0.514 | 16.448 | 0.389 |
+| Maximum local angle deviation, native σ | 2.997 | 4.812 | 1.553 |
+| Maximum image bond / angle deviation, native σ | 101.441 / 16.512 | 1.099 / 10.161 | 0.503 / 0.733 |
+
+These descriptive deviations use the exact source definitions; they are not a
+universal geometry acceptance gate. The written candidate's largest local and
+image torsion deviations are **2.250 and 2.943 σ**. All three selected-boundary
+relative chirality signs survive at full and PDB-rounded precision. Base/sugar
+coordinates and their frames are identical to the ancestor. Maximum selected
+motion is **1.884603 Å**, below the declared 2 Å bound. Occupancy/ADPs and all
+noncoordinate source bytes are unchanged.
+
+### Native composition and actual stopping state
+
+The installed Cedar C545 `RegisteredPhosphateRuntime` attaches to the intact
+862-atom native model before any coordinate restriction. Ordinary Phenix owns
+the explicit image bond and its four second-shell exclusions; the runtime adds
+the four angles and three torsions from two agreeing, chemically matched source
+links. The actual full manager evaluates every proposal; only the six selected
+atoms receive coordinate variables. No shortened molecular model or new force
+implementation is substituted. Existing internal pair/plane restraints remain.
+All plane terms lie in the fixed context, so no movable plane force is omitted.
+
+The original C540 ancestor reference and its own capture are used, not the
+C543 written child. Native work/free selection is **1785/124**, digest
+`5c5153ab49d91becc9c1986450c5684a0e51e8d88a18538b4aad5b72e5d029de`.
+This is a complete **Phenix 2.2.1-6174 geometry-only optimization**, following a
+native dry-run initialization. There is **no diffraction refinement** or fitted
+B/Q. The original model hierarchy, scattering metadata, observation arrays and
+baseline energy/gradient are verified unchanged; runtime hooks are restored.
+
+The existing Willow `run_native_masked_trial` uses 18 Cartesian variables and
+hard budgets of 50 iterations, 180 optimizer calls and 450 total evaluations,
+with a 300-second owned-process timeout and one CPU. No extra pair penalty or
+tether is added to the complete native target. It takes **53 optimizer calls,
+277 total evaluations and 8.60 seconds**, stopping at **50 iterations—not
+convergence**. Raw target decreases 14545.5943 → 3623.3298 (rounded 3623.3474).
+Initial, full-precision and rounded derivative audits each test all 18 axes at
+10⁻⁴ and 10⁻⁵ Å; worst absolute error is 5.81×10⁻⁵ against the existing 10⁻³
+bound. This qualifies the numerical callback here, not physical completeness in
+other cases or scientific acceptance.
+
+### Evidence, compatibility and next gate
+
+**34 cold checks** authenticate the ancestor's own capture, inspect all six local
+bonds/nine angles/six torsions plus eight image terms, verify all fixed records
+and confirm the owned process stopped. The candidate SHA-256 is
+`43ed35838333eebbcf8cac2126dae496218dfc8715aefeae99749c0eb846756b`.
+The earlier donor-graft failure remains intact; no selected endpoint or source
+checkpoint is changed. First exploratory readback imported an absent private
+angle helper and stopped before measurement; the recorded cold review uses the
+existing preview angle helper and Gemmi's dihedral measurement.
+
+NASolve anchor: `branch-artifacts/willow/w235-six-atom-native/`, containing the
+frozen `plan.json`/`binding.json`, `native-result.json`, `review.json`, process
+receipts and diagnostic `geometry-candidate.pdb`. Controller commands:
+`PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/runners/w235-six-atom-native.py prepare`
+and the same command with `launch`; preparation and launch are single-use for
+this immutable directory. Cold review uses `w235-review.py` with the W231 Gemmi
+environment. The plan records declared input/code anchors and hashes, with
+absolute runtime locations retained as local provenance. It is not a portable
+numbered-run publication.
+
+The compact local checkout is under the GitHub sibling anchor
+`ScienceCheckouts/Linden/2026-11-23_symmetry-connection/`: `index.html`, one figure,
+`manifest.json` and `open_comparison.py`; models are hash-checked links, not
+copies. ChimeraX **1.12** headless checks load three 862-atom sources, verify the
+explicit displayed image distances and execute all five actions. First launch
+was blocked by its application cache lock; the permitted launch passes. GUI
+rendering is not claimed. The matplotlib figure was rendered and visually checked.
+Grey background, silhouettes, soft lighting and thin rings remain defaults;
+GUI uses orthographic projection. Displaying B7's symmetry image changes no file.
+
+Next qualify the exact candidate through a matched diffraction receiving step
+with its complete image forces, original observations/Free and held context,
+coordinating with Cedar's separate child-restart survival comparison. Review
+residual torsions, native packing and maps; do not simply extend the geometry
+budget or optimize against Free-R. No wider junction movement follows.
+Evidence/docs only in Git, no new product API/schema/default or migration; raw
+science stays local. Existing installed owners were composed without a source
+patch; no redundant full suite or new packaging claim.
