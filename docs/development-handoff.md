@@ -1,6 +1,16 @@
 # NASolve development handoff — Willow
 
-**Current audit: W241; maintained implementation: W240, 2026-11-23.**
+**Current audit and maintained implementation: W242, 2026-11-23.**
+[W242 observes saved native XYZ weights](topostitch-preview.md#observe-printed-native-xyz-weights-w242)
+without changing refinement: **278 source/278 isolated installed tests**, exact
+readback of all ten W241 cycle summaries, including a standard-library-only
+installed replay. SHA/cycle/summary/completion checks preserve raw printed strings,
+line numbers and rounding limits; equal printed weights do not establish fixed
+policy or objective equality. No native execution or full-suite repeat.
+Cedar already owns a fixed-unit counted-cycle protocol; its one-cycle scope is
+not transferable to Willow's five-cycle/bulk-scaling experiment. A matched
+fixed-objective control stays queued for explicit scope qualification.
+
 The installed [native-phosphate entry](topostitch-preview.md#refine-one-registered-phosphate-connection-w240)
 now runs an explicitly registered six-atom continuation through Cedar C545:
 **261 source/261 installed checks**, complete Phenix 2.2.1-6174 preflight and
@@ -142,6 +152,7 @@ failure; skipped cases remain unqualified. [Completion contract](topostitch-prev
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
+| W242 weight observer | Source-pinned ordered native summaries, rounding/no-authority limits; 278 source/278 installed, exact saved-log parity | Live/fixed-policy qualification; no parameter changes or extra fits |
 | W241 seeded receiving | Two five-cycle native fits; seed keeps healthy local bonds/oxygen angles, exact fixed context and data | Strong adaptive-weight confound, residual torsions, density/statistical acceptance |
 | W240 native product entry | Installed preflight/one-cycle execution, exact six-atom return and data/thermal preservation; 261 source/261 installed checks | Original-start oxygen angles; explicit weight evidence, general repair and ordinary campaign integration |
 | W235 local image connection | Six-atom capped native optimization, 856 held, three derivative audits/34 cold checks; seam 1.613 Å and healthy sugar-boundary lengths | Residual torsions, effective-weight qualification, maps/packing and general repair |

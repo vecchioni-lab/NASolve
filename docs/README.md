@@ -7,12 +7,16 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Current audit: W241.** [Seeded receiving and native weighting](topostitch-periodic.md#w241--compare-geometry-seeded-and-direct-native-receiving)
+- **Current audit/code: W242.** [Read-only native-weight observation](topostitch-preview.md#observe-printed-native-xyz-weights-w242)
+  preserves pinned per-cycle printed values and their limits: 278 source/278
+  installed tests, exact replay of the ten saved W241 summaries, no new fit.
+  Fixed-objective native scope remains a Cedar-coordinated follow-up.
+- **Latest science: W241.** [Seeded receiving and native weighting](topostitch-periodic.md#w241--compare-geometry-seeded-and-direct-native-receiving)
   shows good local geometry surviving five cycles, while the original pose stays
   strained. Native adaptive weights differ strongly; this is not fixed-objective
   evidence or density acceptance. A compact ChimeraX/density checkout is linked
   in the handoff.
-- **Current code: W240.** [Registered phosphate refinement](topostitch-preview.md#refine-one-registered-phosphate-connection-w240)
+- **Native execution entry: W240.** [Registered phosphate refinement](topostitch-preview.md#refine-one-registered-phosphate-connection-w240)
   is reachable through the installed command with explicit compatible Cedar
   modules; 261 source/261 installed checks and complete native execution.
 - **W239:** staggered-duplex regression preserves reciprocal cuts and tensors;
