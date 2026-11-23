@@ -38,8 +38,8 @@ current instructions; other branches retain their own status and validation pins
   The failed direct result and three remaining moving-region outliers stay
   explicit. This is same-family synthetic recovery, not general experimental repair.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W233, next W234:
-  a six-atom connecting-backbone scope is bound with all base/sugar rings fixed;
+  [generated human view](topostitch-roadmap.md). Current W234, next W235:
+  a six-atom donor graft closes the seam but strains the fixed-sugar boundaries;
   consume Cedar’s complete image-force restart before the narrow ancestor trial.
   The existing two-fixed-flank interval cannot simply grow around the same core.
   Keep the successful synthetic receiving comparison closed. The 5 Å centerline target is separate.

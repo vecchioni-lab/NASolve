@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current audit and maintained implementation: W233, 2026-11-23.**
+**Current audit: W234; maintained implementation: W233, 2026-11-23.**
 The existing native input binder now accepts an explicitly selected dictionary-only
 parent policy from Cedar C526. Default literal inputs still require compiled
 restraints. W214 binds a real X11_22 PostMR checkpoint and original observations;
@@ -140,6 +140,13 @@ run. All captured base-plane terms are fixed; complete image-force restart
 remains Cedar-owned. Next test the original 2.824 Å ancestor under this narrow
 constraint once that force path is ready. Do not re-perturb the already closed
 child or repeat the whole-model fit; whole-pair junction mobility stays separate.
+
+[W234's donor graft](topostitch-periodic.md#w234--a-closed-seam-can-still-strain-the-fixed-sugar-boundaries)
+closes that seam but strains the two fixed-sugar bonds (−9.60/+16.45 native
+sigmas), despite retained chirality signs and unchanged stacking. Twenty-two
+cold checks, one diagnostic PDB, no fit or acceptance. This rules out simple
+coordinate transplantation; it does not rule out a constrained six-atom solution.
+The next optimization must retain those boundary terms with the full seam forces.
 
 **Internal helix focus (Simon, 2026-11-22):** retain the rough but recoverable
 molecular placement as a useful intermediate, then explicitly assess stacking

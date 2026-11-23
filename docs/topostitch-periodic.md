@@ -12778,3 +12778,52 @@ uses Python 3.12 with the same `PYTHONDONTWRITEBYTECODE` and Gemmi environment
 as W231. Original inputs and selected checkpoint remain untouched. These local
 working inputs are not a complete portable numbered run and stay out of Git.
 No runtime/schema/default change, new installation or full-suite repeat.
+
+
+## W234 — A closed seam can still strain the fixed-sugar boundaries
+
+The explicit six-atom donor-coordinate graft tests a narrower question than a
+new fit: can C543's refined connecting atoms simply be copied into the original
+ancestor while all 856 other atoms stay fixed? **No: this graft closes the seam
+but leaves substantial fixed-sugar boundary strain.** It does not establish that
+a separately optimized six-atom solution is impossible.
+
+| Measurement | Original ancestor | Whole-model donor | Six-atom graft |
+| --- | ---: | ---: | ---: |
+| Image O3′–P, Å | 2.824291 | 1.620183 | 1.620183 |
+| B1 C4′–C5′, Å | 1.513077 | 1.515540 | 1.444806 |
+| B7 C3′–O3′, Å | 1.428669 | 1.463469 | 1.648819 |
+| Image C3′–O3′–P, degrees | 107.948 | 121.345 | 131.893 |
+
+The graft's two fixed-sugar boundary bonds are −9.60 and +16.45 native dictionary
+sigmas respectively; the largest local dictionary angle deviation is −4.81
+sigmas. These are measured against the authenticated W232 native definitions,
+not new empirical thresholds. All three explicit source-relative chirality
+signs survive. The maximum selected-atom displacement is 1.370846 Å, below the
+predeclared 2 Å bound. All available W233 base-stacking changes are exactly zero
+because every base and sugar-ring coordinate remains fixed; unsupported PDU
+frames remain explicit. Unchanged stacking does not make this a good backbone.
+
+**22 cold checks** verify exact input hashes, full record identity/order, the
+existing masked endpoint byte audit, retained occupancy/ADPs, source-relative
+handedness, dictionary target/weight validity and input preservation. Exactly one
+diagnostic PDB is written; no native geometry evaluation, optimization,
+refinement, map scoring or acceptance occurs. In particular, donor ADPs are not
+copied. The candidate is evidence of boundary strain, not a model to adopt.
+
+Next use Cedar's complete image-force manager for one bounded optimization from
+the original ancestor, retaining the two sugar boundary bonds, their angles and
+handedness. Do not silently expand the mask, adopt the donor graft or replace
+this question with another whole-model fit. Complete symmetry force/exclusion
+lifecycle, packing and diffraction-supported recovery remain separate gates.
+
+Local NASolve receipt: `branch-artifacts/willow/w234-local-pose-preflight/review.json`;
+PDB: `six-atom-donor-candidate.pdb` in that folder. Controller:
+`branch-artifacts/willow/runners/w234-local-pose-preflight.py`, executed with
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/private/tmp/alder-validation-20261121-01/lib/python3.12/site-packages`
+and the main checkout's `.venv/bin/python -B`. It reuses the relocated W233
+installation and exact W232 source/capture anchors; no external program runs.
+Generated science stays local and excluded from Git. Documentation/evidence only;
+no API/schema/default or migration change. Roadmap consistency and diff checks
+suffice here; the preceding W233 installed tests and W230 complete-suite result
+remain tied to their own recorded code checkpoints.

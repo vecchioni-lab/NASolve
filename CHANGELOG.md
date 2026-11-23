@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W234 — Retain boundary strain when judging a closed connection
+
+- Record a six-atom donor graft that closes the symmetry seam but strains its
+  fixed-sugar bonds. Keep the diagnostic candidate separate from accepted
+  geometry and require local boundary forces in the next constrained trial.
+- Evidence/docs only; no runtime, schema or default change. Generated coordinates
+  remain local; no new native fit or full-suite repeat.
+
 ### W233 — Compare stacking through declared state correspondence
 
 - Carry opt-in stacking descriptors through the existing before/after helical
