@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current audit: W235; maintained implementation: W233, 2026-11-23.**
+**Current audit: W236; maintained implementation: W233, 2026-11-23.**
 The existing native input binder now accepts an explicitly selected dictionary-only
 parent policy from Cedar C526. Default literal inputs still require compiled
 restraints. W214 binds a real X11_22 PostMR checkpoint and original observations;
@@ -171,6 +171,13 @@ uncalibrated universal cutoff. A connected backbone, retained sugar signs or
 better R factors alone do not qualify internal stacking. Reuse the existing
 pair/frame measurements and Cedar/NARestraints owners; this clarifies the current
 placement/recovery gate rather than starting another subsystem or run tonight.
+
+[W236 receiving preflights now pass](topostitch-periodic.md#w236--bind-the-saved-candidate-to-matched-receiving-preflights)
+for the original and W235 seeds: fresh candidate-bound capture, complete live
+image forces, exact six-atom mask, identical data/Free and unchanged source B/Q.
+No fits yet; Rowan holds the native fitting window for a separate deposition
+repair. Reuse v3 preflights when cleared. Fixed original-map inspection is useful
+independent work; do not present geometry-only coordinates as density-refined.
 
 The next experiment must answer a new question, not repeat W224:
 

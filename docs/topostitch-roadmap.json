@@ -473,14 +473,15 @@
         "W228independently reviews CedarC539 consuming the shared registered graph for a named source-frame phosphate continuation:36cold checks, exact mapped labels/operators and checkpoint evidence. Intended topology remains distinct from actually printed restraints; no force or recut qualification.",
         "W232 binds6connecting-backbone atoms/856held atoms to the real child and authenticated native support,23coldchecks. No coordinate change or new native experiment; full image-force receiving remains Cedar-owned.",
         "W234 records a six-atom donor graft: closed seam but 16.45-sigma fixed-sugar bond strain, with all rings/856 other atoms held. No fit or acceptance; local boundary forces must accompany seam closure.",
-        "W235 closes the same original seam to1.61303A in one capped six-atom native geometry trial with all856other atoms/BQ held; local and image bond/angle targets recover, torsions remain explicit. Three derivative audits and34cold checks pass; no diffraction fit or acceptance."
+        "W235 closes the same original seam to1.61303A in one capped six-atom native geometry trial with all856other atoms/BQ held; local and image bond/angle targets recover, torsions remain explicit. Three derivative audits and34cold checks pass; no diffraction fit or acceptance.",
+        "W236 binds the saved candidate to a fresh native capture and two matched complete-force receiving preflights;17coldchecks, exact six-atom mask/BQ and original data. No fit; replay existing passed preflights when coordinator clears execution."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Review Cedar complete-force receiving survival, then qualify one matched diffraction receiving step for the exact W235 six-atom endpoint with original observations/Free-R and held rings/BQ/context. Inspect residual torsions and native packing/maps; do not tune by Rfree or repeat the donor graft/geometry closure. Broader motion and junction permission remain separate.",
+      "next_action": "When Rowan clears the native fitting window, execute the frozen matched W236 receiving arms, reusing passed v3 preflights unless inputs/policy change. Hold exact six-atom scope and B/Q, audit final observation selection, packing/maps and residual torsions; no automatic adoption. Meanwhile inspect the proposal against the fixed original checkpoint map, clearly separating geometry-only coordinates from map provenance.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -612,14 +613,15 @@
         "E_REGISTERED_PHOSPHATE_READER",
         "E_NARROW_BACKBONE_SCOPE",
         "E_NARROW_BACKBONE_DONOR_GRAFT",
-        "E_NARROW_BACKBONE_NATIVE_CLOSURE"
+        "E_NARROW_BACKBONE_NATIVE_CLOSURE",
+        "E_NARROW_BACKBONE_RECEIVING_PREFLIGHT"
       ],
       "last_audit": {
         "date": "2026-11-23",
         "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933",
         "reviewer": "Linden",
-        "human_update": 235,
-        "scope": "One capped complete-force six-atom geometry closure; diffraction receiving and scientific acceptance open"
+        "human_update": 236,
+        "scope": "Fresh exact candidate sources and matched native preflights; fits held for coordination"
       }
     },
     {
@@ -701,7 +703,8 @@
         "W232 binds6connecting-backbone atoms/856held atoms to the real child and authenticated native support,23coldchecks. No coordinate change or new native experiment; full image-force receiving remains Cedar-owned.",
         "W233 composes internal stacking with existing named-state correspondence;125source/125installed and254cold checks per context. Default reports unchanged; no native run or motion admission.",
         "W234 records a six-atom donor graft: closed seam but 16.45-sigma fixed-sugar bond strain, with all rings/856 other atoms held. No fit or acceptance; local boundary forces must accompany seam closure.",
-        "W235 closes the same original seam to1.61303A in one capped six-atom native geometry trial with all856other atoms/BQ held; local and image bond/angle targets recover, torsions remain explicit. Three derivative audits and34cold checks pass; no diffraction fit or acceptance."
+        "W235 closes the same original seam to1.61303A in one capped six-atom native geometry trial with all856other atoms/BQ held; local and image bond/angle targets recover, torsions remain explicit. Three derivative audits and34cold checks pass; no diffraction fit or acceptance.",
+        "W236 binds the saved candidate to a fresh native capture and two matched complete-force receiving preflights;17coldchecks, exact six-atom mask/BQ and original data. No fit; replay existing passed preflights when coordinator clears execution."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -712,7 +715,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Review Cedar complete-force receiving survival, then qualify one matched diffraction receiving step for the exact W235 six-atom endpoint with original observations/Free-R and held rings/BQ/context. Inspect residual torsions and native packing/maps; do not tune by Rfree or repeat the donor graft/geometry closure. Broader motion and junction permission remain separate.",
+      "next_action": "When Rowan clears the native fitting window, execute the frozen matched W236 receiving arms, reusing passed v3 preflights unless inputs/policy change. Hold exact six-atom scope and B/Q, audit final observation selection, packing/maps and residual torsions; no automatic adoption. Meanwhile inspect the proposal against the fixed original checkpoint map, clearly separating geometry-only coordinates from map provenance.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -837,14 +840,15 @@
         "E_NARROW_BACKBONE_SCOPE",
         "E_STACKING_COMPARISON",
         "E_NARROW_BACKBONE_DONOR_GRAFT",
-        "E_NARROW_BACKBONE_NATIVE_CLOSURE"
+        "E_NARROW_BACKBONE_NATIVE_CLOSURE",
+        "E_NARROW_BACKBONE_RECEIVING_PREFLIGHT"
       ],
       "last_audit": {
         "date": "2026-11-23",
         "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933",
         "reviewer": "Linden",
-        "human_update": 235,
-        "scope": "One capped complete-force six-atom geometry closure; diffraction receiving and scientific acceptance open"
+        "human_update": 236,
+        "scope": "Fresh exact candidate sources and matched native preflights; fits held for coordination"
       }
     },
     {
@@ -6123,6 +6127,29 @@
           "path": "branch-artifacts/willow/w235-six-atom-native/stopped.json",
           "sha256": "ca0627dbdf23c52ea1af01b2dcee480abe3da91a7b025120c52da7810c6ec5e1",
           "size": 73
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w235-six-atom-native/torsion-kernel-check.json",
+          "sha256": "e96b6fb260ad98080230f17954edf14a1ea10758edfd06072febaab9c1c2b829",
+          "size": 16023
+        }
+      ]
+    },
+    "E_NARROW_BACKBONE_RECEIVING_PREFLIGHT": {
+      "kind": "Fresh candidate capture and matched complete-force receiving dry runs",
+      "date": "2026-11-23",
+      "human_update": 236,
+      "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933",
+      "reference": "docs/topostitch-periodic.md#w236--bind-the-saved-candidate-to-matched-receiving-preflights",
+      "result": "Fresh candidate-bound native capture and inherited-frame checks pass. Two complete Phenix2.2.1-6174 dry runs restore all image terms, exactly six selected atoms and held B/Q, identical1785work/124Free arrays. Fresh raw native targets reproduce W235 source and rounded endpoint within1e-8.17cold checks. Earlier parser-only failure and oversized wildcard-mask refusal preserved; zero fits.",
+      "limitation": "Diffraction fits held for Rowan coordination, not technical admission failure. Final data selection/scaling, packing/maps, residual torsions and scientific acceptance remain open. Dry-run R values are not final comparisons. No new product patch or numbered checkpoint ancestry.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w236-six-atom-receiving/review.json",
+          "sha256": "3650b925f70ff91fbf0f2dc145e3265c61c829567ae398d9cf8b9987dc76003f",
+          "size": 5455
         }
       ]
     }
@@ -6290,8 +6317,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 235,
-    "next": 236,
+    "current": 236,
+    "next": 237,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -7509,6 +7536,12 @@
       {
         "number": 235,
         "title": "Close the local symmetry connection with all rings held",
+        "state": "RECORDED",
+        "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933"
+      },
+      {
+        "number": 236,
+        "title": "Bind the saved endpoint to matched native receiving preflights",
         "state": "RECORDED",
         "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933"
       }

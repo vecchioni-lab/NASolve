@@ -38,10 +38,11 @@ current instructions; other branches retain their own status and validation pins
   The failed direct result and three remaining moving-region outliers stay
   explicit. This is same-family synthetic recovery, not general experimental repair.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W235, next W236:
+  [generated human view](topostitch-roadmap.md). Current W236, next W237:
   [six-atom native closure](topostitch-periodic.md#w235--close-the-local-symmetry-connection-with-all-rings-held)
   retains fixed rings and healthy sugar boundaries. Qualify diffraction receiving
-  and residual geometry next; the capped geometry trial is not acceptance.
+  and residual geometry next; matched receiving preflights pass, with fits held
+  for coordinator scheduling. The capped geometry trial is not acceptance.
   The existing two-fixed-flank interval cannot simply grow around the same core.
   Keep the successful synthetic receiving comparison closed. The 5 Å centerline target is separate.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and

@@ -12847,6 +12847,9 @@ helix bend or general repair. No datum or Free-R flag is used to choose the pose
 | Maximum local angle deviation, native σ | 2.997 | 4.812 | 1.553 |
 | Maximum image bond / angle deviation, native σ | 101.441 / 16.512 | 1.099 / 10.161 | 0.503 / 0.733 |
 
+A separate 36-case Phenix dihedral-kernel readback confirms the reported signed
+angles and absolute periodic deviations (maximum errors 2.85×10⁻¹³ degrees and
+1.43×10⁻¹⁴ σ); no new whole-model evaluation or fit.
 These descriptive deviations use the exact source definitions; they are not a
 universal geometry acceptance gate. The written candidate's largest local and
 image torsion deviations are **2.250 and 2.943 σ**. All three selected-boundary
@@ -12924,3 +12927,57 @@ budget or optimize against Free-R. No wider junction movement follows.
 Evidence/docs only in Git, no new product API/schema/default or migration; raw
 science stays local. Existing installed owners were composed without a source
 patch; no redundant full suite or new packaging claim.
+
+
+## W236 — Bind the saved candidate to matched receiving preflights
+
+The saved W235 endpoint now has its **own fresh native capture** under the seven
+original restraint inputs. Cedar's `inspect_inherited_continuation` verifies
+identical atom chemistry and crystal representatives against the original
+registered source. Its agreeing native reference links reproduce the original
+source groups. This is a diagnostic coordinate descendant; no numbered
+checkpoint ancestry or preparation status is invented.
+
+Two complete **Phenix 2.2.1-6174 dry runs**, original seed and W235 seed, pass the
+complete image-force restart and exact six-atom selection. All 862 source atoms,
+coordinates and B/Q remain unchanged at preflight. Both use identical **1785
+work / 124 Free** observations and all live connection terms. Original and
+candidate raw geometry targets reproduce W235 within 10⁻⁸ despite fresh native
+interpretation. The eight-term seam is not inferred merely from a plausible
+printed distance. Seventeen cold checks verify the recorded comparison.
+
+The intended receiving policy is five cycles, at most 100 iterations per cycle,
+one CPU, seed 15403, individual selected XYZ only, native scaling enabled but
+no overall isotropic scale transfer into atom ADPs. XYZ/ADP weight optimization
+is disabled; the initial native weight uses `wxc_scale=0.5`. This is a frozen
+matched two-arm question, not a Free-R-driven parameter sweep. Final observation
+selection must still be audited because the original outlier policy remains.
+Dry-run R values precede the completed scaling/refinement cycle and must not be
+compared with published final refinement statistics.
+
+Two preparation failures are retained. Version 1 omitted the original explicit
+`data_manager` labels, and the native parser refused the ambiguous intensity
+arrays before preparing a model. Version 2 restored those labels but used `C5*`,
+which also selects the nucleobase C5; the exact six-atom check refused it before
+any fit. Version 3 uses literal apostrophe atom names, independently checked by
+the native selection parser, and both preflights pass. No production code or
+science result was overwritten. These are input preparation corrections, not
+changes selected from refinement outcomes.
+
+**No diffraction fit has run.** Rowan requested the fitting window remain free
+for the separate deposition repair. Reuse the passed version-3 preflights when
+that window opens; do not rerun source interpretation without changed inputs or
+policy. In the meantime, a fixed-map comparison against the original checkpoint
+can inspect the proposed local movement without regenerating density from the
+unrefined candidate.
+
+NASolve anchor: `branch-artifacts/willow/w236-six-atom-receiving/` contains the
+fresh capture, `candidate-inspection.json`, original and corrected receiving
+plans, per-arm `preflight-v3/` proofs and `review.json`. Controllers under
+`branch-artifacts/willow/runners/`: `w236-receiving-prepare.py`, `w236-bind.py`,
+`w236-live-preflight.py` and `w236-review.py`. Preparation/frame/cold readers use
+the same main Python 3.12 and W231 Gemmi environment; the owned preflight launcher
+runs native Phenix Python with a 120-second limit and single-thread variables.
+The execution script exposes dry runs only, not a refinement dispatcher.
+Generated science remains local. Evidence/docs only in Git; no API/schema/default
+change, migration, installation claim or full-suite repeat.

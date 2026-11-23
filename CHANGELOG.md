@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W236 — Qualify matched receiving preparation without fitting
+
+- Bind the saved local closure to its own native capture and complete image
+  forces in two matched dry runs, preserving the exact six-atom mask and B/Q.
+- Preserve parser/mask preparation failures and corrected input versions.
+  Evidence/docs only; diffraction fits remain held for coordinator scheduling.
+
 ### W235 — Demonstrate constrained local symmetry closure
 
 - Record one complete native geometry trial using Cedar's installed image-force
