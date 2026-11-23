@@ -13674,3 +13674,81 @@ NASolve artifact anchor. Native jobs/diagnosis are in `w251-phased-junction-fit/
 and `w252-phased-output-qualified/` under `branch-artifacts/willow/`. All scientific
 inputs, coordinates and reports remain local; only code, tests and documentation
 are committed. S05/S06 remain PARTIAL.
+
+
+## W253 — Audit a motion-limited geometry trial without claiming an optimum
+
+**Purpose.** Distinguish the W252 data/geometry compromise from the ability of
+this same six-role local window to improve chemistry. Earlier W235/W241 controls
+use different parents; they do not answer this exact FT parent question.
+
+Hazel ran one predeclared geometry-plus-source-tether diagnostic on the original
+`7aade3c4…` parent, both rings fixed, same six roles and registered image terms.
+The existing `NativeMaskedObjective(include_pairs=False)` and bounded native
+trial are composed under Cedar's active phosphate owner. The optional full-native-
+crystal binding is explicitly frozen from Alder; no implicit Willow merge or
+standalone support claim. Native phases/scattering are held and observed but
+contribute no diffraction objective. Tether sigma is 0.5 Å, motion cap 1.5 Å,
+100 iteration/300 optimizer-call/600 total-evaluation budget, 600-second owned
+wall cap; Phenix 2.2.1-6174. No new optimizer or production worker is introduced.
+
+The owned diagnostic stops after about 178 seconds. Its embedded optimization
+is **FAILED**, because a proposed unconstrained L-BFGS step exceeds the motion
+cap after 12 accepted steps and 14 evaluated optimizer points. The outer complete
+receipt means the diagnostic recorded/restored its state, not optimizer success.
+All source/code pins, native manager, live model/scattering/data and shared
+preflight source remain unchanged. No geometry candidate PDB is emitted.
+
+The existing failed-endpoint observer replays the last accepted point exactly.
+Initial/full/rounded derivatives pass, maximum error 6.70e-5 against 1e-3;
+236 total evaluations include those audits. Independent failure review passes
+1,789 checks. At this diagnostic point:
+
+| Quantity | Last accepted value | Native target |
+| --- | ---: | ---: |
+| Image O3′–P | 1.616792 Å | 1.607 Å |
+| B7 C3′–O3′ | 1.487373 Å | 1.435 Å |
+| OP2–P–O5′ | 85.662° | 108° |
+| C5′–C4′–C3′ | 124.638° | 114.1° |
+
+Native whole-model geometry sum falls from 20739.428 to 6779.382; the final tether
+term is 29.023. These sums are not acceptance scores; many fixed terms contribute.
+Largest accepted movement is 1.479672 Å. The remaining coordinate-gradient norm
+is about 1306. **This is not a constrained optimum at 1.5 Å.** The rejected
+proposal is not recorded, so the violating atom and amount cannot be reconstructed
+from the accepted trace. No inference that a larger mask/bound is required, no
+claim of convergence and no proof of geometric impossibility follows.
+
+**Cold necessary reach check.** Original fixed image C3′ to P is 4.142861813 Å.
+The three exact native ideals C3′–O3′ 1.435 Å, O3′–P 1.607 Å and included angle
+119.7° imply C3′–P 2.631876511 Å by the law of cosines. The reverse triangle
+inequality therefore requires P movement of at least 1.510985302 Å to meet all
+three exact ideals. This exceeds the arbitrary trial cap by only 0.010985 Å;
+it is not a physical rejection criterion. Illustrative one-/three-native-width
+boxes give necessary minimum movements 1.473467/1.398531 Å, within the cap.
+Those boxes are sensitivity illustrations, not acceptance thresholds or joint
+confidence intervals. Other sugar/oxygen constraints, chirality, sterics and
+diffraction are omitted, so passing this necessary test proves no feasible bridge.
+No new native evaluation, coordinate change or altered policy accompanies it.
+
+**Next.** First retain exact rejected-proposal provenance through the existing
+trial recorder, preserving refusal semantics. Review chemical placement against
+fixed sugar frames before choosing a new initialization or motion parameterization.
+Any next experiment must declare its parent, role mask, bound/tether, native terms
+and comparison in advance. No automatic limit relaxation, repeated cap/weight
+search, mask expansion or additional native run tonight. Complete integration
+suite remains a pre-merge requirement; no full pass is claimed for this slice.
+
+**Inspection/evidence.** Under the GitHub anchor, open
+`ScienceCheckouts/Linden/2026-11-23_phased-junction-boundary/index.html` or
+`open_comparison.py`. The latter verifies original/fit hashes and the exact failed
+receipt, then displays last-accepted points on a temporary in-memory copy. Three
+859-atom models, all six toggles and image gaps 3.028533/1.996554/1.616792 Å pass
+ChimeraX 1.12 headless checks. GUI/browser appearance is not newly qualified.
+Thirteen link/hash/syntax checks pass. Hazel's two-state map image is reused with
+its exact provenance and diagnostic-map limitations; no duplicate FFT or candidate
+file is written. Raw files stay local under the NASolve anchor at
+`branch-artifacts/Alder/a01-phosphate-geometry-feasibility-20261123-01/` and
+`branch-artifacts/willow/w253-{chimerax-check,checkout-validation,geometry-reach}.json`.
+This is evidence/docs only; no new production code, schema or scientific acceptance.
+S05/S06 remain PARTIAL.

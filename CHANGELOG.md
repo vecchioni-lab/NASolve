@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W253 — Audit the boundary-limited local geometry diagnostic
+
+- Record one same-parent geometry-plus-tether trial through existing native
+  owners; retain its rejected motion proposal outcome and last accepted state
+  separately. Near-target bond length coexists with significant local strain.
+- Reuse the independent map rendering and provide a checksum-bound three-state
+  ChimeraX view, displaying the failed last step in memory without a candidate
+  PDB. Preserve branch dependencies and the unresolved scientific gate.
+- Evidence/docs only: no new production force, optimizer, default or schema;
+  no automatic bound expansion, retry, merge or scientific data in Git.
+
 ### W252 — Complete phased output without lossy next-run defaults
 
 - Omit Phenix's optional `.def` only for explicit phased local jobs. Native

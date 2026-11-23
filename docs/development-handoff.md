@@ -1,6 +1,51 @@
 # NASolve development handoff — Willow
 
-**Current audit and maintained implementation: W252, 2026-11-23.**
+**Current audit: W253; maintained implementation: W252, 2026-11-23.**
+[One same-parent geometry diagnostic](topostitch-periodic.md#w253--audit-a-motion-limited-geometry-trial-without-claiming-an-optimum)
+reuses the existing masked native objective and registered phosphate owner.
+Hazel ran it once with six movable atoms, held rings, a 0.5 Å source tether and
+1.5 Å motion cap. An unconstrained L-BFGS proposal exceeded that cap after 12
+accepted steps/14 optimizer evaluations. The original failure is preserved;
+236 total evaluations include initial and failed-last-step derivative checks.
+Maximum derivative error is 6.70e-5 against the predeclared 1e-3 bound. Live
+model/scattering/data and source signatures remain unchanged. No candidate PDB,
+convergence or geometric feasibility is claimed.
+
+The saved last accepted step improves O3′–P to 1.616792 Å, but C3′–O3′ remains
+1.487373 Å and OP2–P–O5′ is 85.662° (native targets 1.435 Å and 108°).
+Largest accepted motion is 1.479672 Å. This is **not a constrained optimum at
+the boundary**; the rejected proposal was not retained, so its violating atom is
+unknown. Independent review passes 1,789 checks. A cold triangle calculation
+places three *exact* ideals just 0.011 Å beyond the cap; illustrative soft-target
+envelopes fit. That tiny discrepancy is not a meaningful physical impossibility
+claim. Significant residual angles and attachment geometry remain the concern.
+
+**Next bounded work:** preserve the rejected proposal and offending displacement
+through the existing trial recorder before changing numerical policy. Review
+chemical placement against the fixed sugar frames and existing source restraints.
+Select a new initialization/motion experiment prospectively; do not infer a
+larger mask or automatic bound increase from this stop. No retry, weight grid or
+new native work tonight. W241's adaptive-weight confound and full integration
+suite remain open. Rowan reconfirmed Simon's light branch-specific checkout scope
+for this window; full suite is a pending pre-merge gate, not a reported pass.
+
+The diagnostic explicitly freezes Alder's optional `native_crystal` owner alongside
+Willow's installed execution and Cedar's phosphate owner. No branch was merged;
+standalone Willow does not acquire that optional constructor through this result.
+Exact Phenix version, original-parent bindings, controls, stopped receipt and
+source hashes are under the NASolve anchor
+`branch-artifacts/Alder/a01-phosphate-geometry-feasibility-20261123-01/`.
+
+**Human checkout:** under the GitHub anchor,
+`ScienceCheckouts/Linden/2026-11-23_phased-junction-boundary/index.html` and
+`open_comparison.py`. Three models/859 atoms and all six toggles pass ChimeraX
+1.12 headless checks, including exact declared-image gaps. The last failed step
+is displayed in memory only; no candidate file is written. Hazel's existing
+source-pinned map figure is reused without another FFT. GUI/browser rendering
+is not newly qualified; 13 file-link/hash/syntax checks pass. The local report
+keeps the phase-fit technical success separate from both chemical failures.
+
+**W252 native implementation and validation.**
 [The first phased six-role fit now completes](topostitch-periodic.md#w251w252--separate-native-output-completion-from-local-repair).
 W251 finished its three refinement cycles but failed while writing optional
 next-run defaults. W252 disables that output only for phased jobs; the same
@@ -17,13 +62,9 @@ checkpoint, density success or healthy closure is claimed. Hazel's independent
 returned-state/boundary audit passes 4,720 cold checks and confirms the strain
 (full-precision O3′–P 1.997399 Å); earlier raw-output diagnosis is retained.
 
-Next, one predeclared geometry-plus-tether feasibility diagnostic
-may reuse the existing native objective on the same original parent, six movable
-roles and fixed sugar rings. It must retain all native chemistry/image terms and
-live-state checks. One failed optimizer start would not prove impossibility;
-one healthy endpoint would establish a seed candidate, not density support.
-Do not run a weight grid, broaden the mask or use Hazel's separate whole-model
-outward-phosphate child as this parent. S05/S06 remain partial.
+W253 above records the subsequent same-parent geometry diagnostic and its stop.
+The separate outward-phosphate whole-model child is not this parent. S05/S06
+remain partial; no density support or accepted repair follows from technical completion.
 
 Validation: **213 source/213 relocated installed tests, two skips each**, plus
 one real Phenix PHIL regression passing before install and after relocation.

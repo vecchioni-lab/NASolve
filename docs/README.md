@@ -7,7 +7,11 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Current audit/code: W252.** [Completed phased output, unresolved geometry](topostitch-periodic.md#w251w252--separate-native-output-completion-from-local-repair)
+- **Current audit: W253.** [Motion-limited geometry diagnostic](topostitch-periodic.md#w253--audit-a-motion-limited-geometry-trial-without-claiming-an-optimum)
+  reaches a near-target bond in its last accepted step but retains significant
+  angle/attachment strain. A later proposal crosses the motion cap; this is not
+  a boundary optimum or proof that a larger mask is needed. No candidate emitted.
+- **Maintained implementation: W252.** [Completed phased output, unresolved geometry](topostitch-periodic.md#w251w252--separate-native-output-completion-from-local-repair)
   preserves all atoms, phases and fixed scattering through actual refinement and
   final writing. Output-only replay reproduces W251 coordinates exactly. Local
   phosphate strain remains; a shorter bond is not accepted repair.
