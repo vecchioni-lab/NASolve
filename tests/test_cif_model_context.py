@@ -68,6 +68,30 @@ def test_derivation_covers_selected_sites_and_whole_model_links_read_only(tmp_pa
     assert inventory(tmp_path) == before and intent == original
 
 
+@pytest.mark.parametrize("unlinked", [("A:1",), ("A:1", "B:1")])
+def test_preparation_identifies_each_phosphate_without_a_local_link_or_op3(tmp_path, unlinked):
+    from nasolve.cif_model_context import derive_prepared_model_context
+    from nasolve.phosphate import PhosphateError
+
+    path = model(tmp_path / "prepared.pdb", chains=(("A", "ZZZ"), ("B", "YYY"), ("C", "ZZZ")))
+    lines = path.read_text().splitlines(keepends=True)
+    path.write_text("".join(line for line in lines if not (
+        line[12:16].strip() == "OP3" and line[21] + ":" + line[22:26].strip() in unlinked)))
+    intent = report(*(s for s in ("A:1", "B:1", "C:1") if s not in unlinked))
+    before = inventory(tmp_path)
+    with pytest.raises(PhosphateError) as exc:
+        derive_prepared_model_context(path, intent, ["YYY"])
+    message = str(exc.value)
+    single = "Phosphate A:1: absent OP3 without a verified incoming O3'-P link; terminal dictionary profile requires review"
+    if len(unlinked) == 1:
+        assert message == single
+    else:
+        assert all(s in message for s in unlinked)
+        assert "OP3" in message and "incoming O3'-P" in message
+    assert all(s not in message for s in ("C:1", "A:9", "B:9", "C:9"))
+    assert inventory(tmp_path) == before
+
+
 def test_five_prime_hydroxyl_uses_the_other_sites_verified_incoming_link(tmp_path):
     from nasolve.cif_model_context import derive_prepared_model_context
     path = model(tmp_path/'model.pdb', free=True)

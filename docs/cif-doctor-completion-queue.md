@@ -238,6 +238,20 @@ the local omit-map contrast depended on the solvent model. Keep the
 orientation open. The next ordinary child needs the corrected dictionary
 and removal of the two superseded historical site edits through a freshly
 qualified preparation. Reuse the completed five-cycle and omit-map controls.
+In the original C290 construction, 38 local links and the D:1 terminus
+pass individually. C556 reports both phosphates that require crystal
+information. Simon confirmed D:7–C:8 alongside B:7–B:1 for the PDU:PDU
+construct. The [two-edge declaration](recipes/5w6w-pdu-backbone-continuations.json)
+replays on the complete 42-site registrations for both starting models and
+all three fitted controls. D:7–C:8 is still printed as a nonbonded contact
+in every fitted control. The two existing PDU starting-model captures already
+provide four intact T→G reference links for D:7–C:8 and two A→C reference
+links for B:7–B:1. Each gives a 1.607 Å bond, four angles and three torsions.
+AutoRefine currently carries one source-bound continuation per round.
+Carry both distinct images into ordinary preparation,
+preserve the separate D:1 terminus, then check which bonds, angles and
+nonbonded exclusions Phenix actually used at both sites. Review the resulting
+PDU geometry, local fit and original free reflections before selection.
 
 C537 checks which modeled atoms actually reached a native covalent plane.
 The historical GEO omitted C5A at both PDU sites. The corrected GEO included

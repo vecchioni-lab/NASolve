@@ -177,6 +177,28 @@ alone still left the crossing angles and torsions absent. Pine owns editable
 connection intent. Routine continuation must carry both the written child
 and the complete local restraints. [Cedar completion queue](cif-doctor-completion-queue.md#pipeline-position).
 
+### Two crossovers in the PDU:PDU test scaffold
+
+Simon confirmed on 23 November 2026 that D:7 O3′ continues into C:8 P in
+the 5W6W-derived PDU:PDU scaffold with A:1–A:21. Its central B:7–B:1
+connection also applies. The [two-connection declaration](recipes/5w6w-pdu-backbone-continuations.json)
+keeps the original central edge and adds the crossover. Holding each O3′
+fixed, apply `-y,x-y,z` to B:1 P and `-x+y,-x,z` to C:8 P. Both use zero
+additional lattice shift. D:1 retains its separate terminal phosphate.
+Register the declaration against the actual coordinates before using it.
+
+In the saved MR and Coot models, the two distances are 3.340 and 3.017 Å.
+In all three subsequent five-cycle PDU comparison models, Phenix restrained
+B:7–B:1 and treated D:7–C:8 as a nonbonded contact with a 3.4 Å target.
+The latter gap measured 2.934, 3.043 and 2.993 Å. A preparation carrying
+both crystal bonds still needs a native refinement check. Four intact T→G
+links in the same model agree on the bond, four angles and three torsions
+for the D:7 crossover. The native bond target is 1.607 Å. Two intact
+A→C links supply the reference for the central B strand. This declaration
+does not establish ligation or occupancy in individual crystal copies.
+
+### Crossovers in the FT–Hg scaffold
+
 In the separate FT_Hg construct, the investigator declared the central B
 continuation and confirmed the C/D crossover. A runs from 1 to 21 in each of
 three saved models. On the selected source model, the directed correspondences

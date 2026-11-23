@@ -1,6 +1,19 @@
 {
   "schema_version": 1,
   "document_kind": "LINKED_NATIVE_REGISTRATION_AND_COMPONENT_METADATA_RETURNS",
+  "c556_ordinary_preparation_phosphates": {
+    "scope": "Read-only replay of the saved C290 ordinary MR and Coot-prepared PDU models. No ReadySet or Phenix execution.",
+    "model_sha256": ["6fbe480c3ee0d4068ac525adbf9c479f80e63343d85d947b158c370efdc37991", "baaaa8ca63d5aa5457ca0c85f59dc788c67611f75fd5b0dba793b894e288c338"],
+    "phosphates_each": {"total": 41, "local_phosphodiesters": 38, "complete_declared_terminus": "D:1", "missing_local_incoming_and_OP3": ["B:1", "C:8"]},
+    "B7_to_B1": {"status": "Registered seven-site central strand", "oxygen_image_with_P_fixed": "-x+y,-x,z", "distance_A": 3.34019},
+    "D7_to_C8": {"status": "Covalent crossover confirmed by Simon for this PDU:PDU construct on 2026-11-23", "oxygen_image_with_P_fixed": "-y,x-y,z", "P_image_with_oxygen_fixed": "-x+y,-x,z", "nearest_and_next_A": [3.01658, 32.78793], "neighboring_A_strand": "A:1 through A:21"},
+    "two_edge_registration": {"recipe": "docs/recipes/5w6w-pdu-backbone-continuations.json", "recipe_sha256": "fa29010c708792b34e619b10f8e9d8b96a6242ec0cb938df60f1f1450dda17b9", "models": ["C290 MR", "C290 Coot", "C545 written", "C553 written", "C555 written"], "sites_matched_per_model": 42, "identity_mismatches": 0, "wrong_source_registration_refused": true, "source_and_relocated_evidence_sha256": "d9cf7f04d76d01ca1954618229655295d95701b981c962331a734c1ae057e1b0"},
+    "existing_fits": {"order": ["C545", "C553", "C555"], "B7_to_B1_bond_A": [1.63318, 1.63107, 1.64543], "D7_to_C8_nonbonded_A": [2.93412, 3.04320, 2.99261], "D7_to_C8_vdw_A_in_each": 3.4, "D7_to_C8_printed_bonds_in_each": 0},
+    "existing_native_references": {"Phenix": "2.2.1-6174", "captures": ["C553 starting model", "C555 starting model"], "B7_A_to_B1_C": [["A:16", "A:17"], ["B:5", "B:6"]], "D7_T_to_C8_G": [["A:9", "A:10"], ["C:11", "C:12"], ["D:2", "D:3"], ["D:5", "D:6"]], "bond_A": 1.607, "angles": 4, "torsions": 3, "terms_sha256": "20306d3d54021322c095d6cce324aa8091174f02cf984e36b0148c6468cff34d", "source_and_relocated_receipt_sha256": "19608aa515b1c3833e76d693f149f9c1939476fbc6978dbf60fd9297875dfab3", "joint_native_execution": false},
+    "reader_sha256": "b17b43a28ae0d0de0ae4b2c75f50e8925d22748df92e9aa32c94fde2ed48045a",
+    "focused_per_build": 295, "subtests_per_build": 10,
+    "compatibility": "The same unresolved chemical state still blocks preparation. The multiple-site message is additive. Historical coordinates, report and selection remain intact."
+  },
   "c555_host_orientations_with_registered_phosphate": {
     "experiment": "One additional completed five-cycle Phenix 2.2.1-6174 fit from the C290 host orientations, compared with the completed C553 fit. Seven identical restraint inputs and 862 atoms.",
     "changed_starting_base_atoms": 20,

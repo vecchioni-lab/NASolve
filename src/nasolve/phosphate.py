@@ -327,6 +327,7 @@ def _process_phosphates(
             for site in sorted(passthrough)
         ]}
     removed_atoms = []
+    unverified_incoming = []
     seen_sites: set[str] = set()
     for group in targets:
         site = group[0].site
@@ -368,7 +369,9 @@ def _process_phosphates(
         elif extra is not None and incoming is None:
             raise PhosphateError(f"Phosphate {site}: unrequested terminal/unlinked OP3; review the chemistry or explicitly set allow_op3_sites for a valid 5'-phosphate")
         if site in inspect_sites and incoming is None and extra is None:
-            raise PhosphateError(f"Phosphate {site}: absent OP3 without a verified incoming O3'-P link; terminal dictionary profile requires review")
+            # Multiple representation breaks can occur in one asymmetric unit.
+            unverified_incoming.append(site)
+            continue
         if incoming is not None:
             oxygens.append(incoming)
         elif extra is not None:
@@ -411,6 +414,12 @@ def _process_phosphates(
         elif extra is not None:
             report["retained"].append({**details, "atom": extra.line[12:16].strip(),
                 "reason": "explicitly-requested-unlinked-phosphate"})
+    if unverified_incoming:
+        first, *others = unverified_incoming
+        message = f"Phosphate {first}: absent OP3 without a verified incoming O3'-P link; terminal dictionary profile requires review"
+        if others:
+            message += ". The same finding applies at " + ", ".join(others) + "."
+        raise PhosphateError(message)
     removed_indices = {a.index for a in removed_atoms}
     removed_serials = {a.serial for a in removed_atoms}
     # Coot model merges can retain per-monomer serials. Coordinate selection

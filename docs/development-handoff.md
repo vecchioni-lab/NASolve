@@ -1,7 +1,46 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-23, C555 repeating the PDU repair from the host base orientations — Rowan**.
+Updated **2026-11-23, C556 identifying both crystal phosphates in the original PDU construction — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+**C556 returns to the actual PDU preparation.** The C290 ordinary Coot
+construction ended before ReadySet. Its first whole-model diagnostic named
+B:1. The same read-only Phenix-independent phosphate check now reports
+multiple sites that reach that same unresolved state in one pass.
+On both the saved MR model and the Coot-prepared model it named B:1 and C:8.
+Independent site checks accounted for all 41 phosphates, with 38 local
+phosphodiesters and the separately declared D:1 terminal phosphate.
+
+Simon confirmed that D:7–C:8 is the same crossover in this PDU construct.
+Its [two-connection recipe](recipes/5w6w-pdu-backbone-continuations.json)
+was read on five exact models with all 42 residue identities matched.
+In both the MR and Coot starts B:7 O3′ was 3.340 Å from B:1 P and D:7 O3′
+was 3.017 Å from C:8 P, in different crystal copies. Both receiving sites
+have P, OP1 and OP2. The three previously fitted PDU models registered
+only B:7–B:1 for refinement. Their final Phenix geometry files all treat
+D:7–C:8 as a nonbonded contact, at 2.934, 3.043 and 2.993 Å. Neither the
+coordinate proximity nor the new declaration repairs those historical fits.
+Two old native captures give agreeing chemistry from four intact T→G links
+for the D:7 crossover and two A→C links for the central B edge. Each yields
+a 1.607 Å target, four angles and three torsions. AutoRefine currently
+accepts one declared continuation per ordinary round. Next, carry both edges
+and the corrected PDU restraints through ordinary preparation and a new
+numbered child. Keep the separate D:1 terminal state.
+
+The single-site error was retained. The before-change regression missed C:8's
+synthetic counterpart. The real saved models, report and modification times
+stayed intact. Source and relocated package returned identical records.
+The focused files were `test_phosphate`, `test_cif_model_context`,
+`test_recipe_phosphates`, `test_linked_phosphate_profile`,
+`test_postmr_phosphate`, `test_cif_postmr_request`,
+`test_phosphate_continuation`, `test_phosphate_duplex` and `test_phosphate_image`, under `tests/`.
+The source command used `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider`
+with these nine files. The relocated run used the moved installation for
+`PYTHONPATH`. With Gemmi available, each passed 295 tests and ten subtests.
+The new recipe was also red before it was added. The source and relocated
+readers agreed on both edges in all five real models and refused a registration
+from a different model. Existing thresholds, checkpoint formats and selection
+remain compatible. C556 launched no native refinement.
 
 **C555 tests what the starting base orientations contribute.** Both PDU bases
 were rotated about their sugar attachment to the angles measured on the C290

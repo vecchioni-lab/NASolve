@@ -150,6 +150,24 @@ def test_5w6w_declared_edge_moves_phosphorus_and_doctor_moves_oxygen():
     assert report["phosphate_atoms"]["OP3"] is None
 
 
+def test_pdu_crossover_recipe_preserves_the_central_edge_and_selects_the_other_mate():
+    gemmi = pytest.importorskip("gemmi")
+    from nasolve.cif_phosphate_image import inspect_phosphate_image
+
+    root = Path(__file__).resolve().parents[1]
+    recipes = root / "docs/recipes"
+    central = json.loads((recipes / "5w6w-central-continuation.json").read_bytes())
+    edges = json.loads((recipes / "5w6w-pdu-backbone-continuations.json").read_bytes())
+    first, crossover = edges
+    assert [first] == central
+    assert (crossover["continuation_id"], crossover["source_site"], crossover["target_site"]) == (2, "D:7", "C:8")
+    oxygen_image = gemmi.Op(crossover["target_operator_xyz"]).inverse().triplet()
+    result = inspect_phosphate_image(root / "MR_frames/5W6W/C_G.pdb", phosphate="C:8", o3="D:7", o3_image=oxygen_image)
+    assert result["distance_A"] == pytest.approx(2.918951, abs=.00001)
+    assert all(result["phosphate_atoms"][name] for name in ("P", "OP1", "OP2"))
+    assert result["phosphate_atoms"]["OP3"] is None
+
+
 def test_checkpoint_follows_its_own_model_and_geometry_after_relocation(tmp_path, capsys, monkeypatch):
     pytest.importorskip("gemmi")
     from nasolve.model_assessment import file_sha256

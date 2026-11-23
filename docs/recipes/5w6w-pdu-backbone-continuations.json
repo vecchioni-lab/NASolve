@@ -1,0 +1,14 @@
+[
+  {
+    "continuation_id": 1,
+    "source_site": "B:7",
+    "target_site": "B:1",
+    "target_operator_xyz": "-y,x-y,z"
+  },
+  {
+    "continuation_id": 2,
+    "source_site": "D:7",
+    "target_site": "C:8",
+    "target_operator_xyz": "-x+y,-x,z"
+  }
+]
