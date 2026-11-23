@@ -228,6 +228,17 @@ inputs and their absence after the targeted repair. The same check uses
 literal selected atoms and native target values for other components.
 Any automatic change must still establish ownership of the edit.
 
+C555 repeated the combined C553 treatment after changing just the two
+starting base orientations to the angles from the C290 host construction.
+After five Phenix cycles the arm tips were 0.282/0.464 Å from their rings
+and the crystal phosphate bond was 1.645 Å. The rest of the starting
+model, including every displacement parameter, the registered forces
+and the original observed data were common to the comparison. At 4.19 Å
+the local omit-map contrast depended on the solvent model. Keep the
+orientation open. The next ordinary child needs the corrected dictionary
+and removal of the two superseded historical site edits through a freshly
+qualified preparation. Reuse the completed five-cycle and omit-map controls.
+
 C537 checks which modeled atoms actually reached a native covalent plane.
 The historical GEO omitted C5A at both PDU sites. The corrected GEO included
 it at both. In the registered thirteen-change scaffold, sixteen dictionary

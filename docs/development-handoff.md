@@ -1,7 +1,37 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-23, C554 locating an old site edit in the refinement inputs — Rowan**.
+Updated **2026-11-23, C555 repeating the PDU repair from the host base orientations — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+**C555 tests what the starting base orientations contribute.** Both PDU bases
+were rotated about their sugar attachment to the angles measured on the C290
+host construction. Only 20 base-atom positions changed. Another complete
+five-cycle Phenix 2.2.1-6174 fit used C553's seven restraint files, phosphate
+forces, seed and ordinary weights. A:12/B:4 ended 0.282/0.464 Å from the
+ring planes, compared with 0.786/0.570 Å from the archived orientations.
+The two terminal bonds measured 1.477/1.499 Å. The six sugar chiral signs
+survived, the crystal phosphate measured 1.645 Å and the two bases finished
+at chi −102.2°/−99.7°. R-work/free were 0.2333/0.2780, with the same 1,778
+working and 124 free reflections in both written models.
+
+To test local support, we omitted both complete bases from both starting
+models. The remaining 840 atoms were byte-identical. Two fixed-coordinate
+Phenix maps used just the original working amplitudes. With bulk solvent
+enabled, the host A:12 arm sampled 2.32 map rms units higher in 2Fo−Fc.
+Disabling bulk solvent reversed that contrast to −4.13. The B:4 contrasts
+were +0.03 and −3.75. The experimental orientation stays open at 4.19 Å.
+Retain both models as comparisons. The next ordinary refinement requires a
+fresh preparation that owns the corrected inputs. The selected checkpoint
+still carries its historical site edits.
+
+The existing C545 driver ran both five-cycle arms. `check_orientation.py`
+reopened the two actual returns, compared all output reflection assignments and
+checked the coordinate change against the named starting atoms. Each omit map
+ran with `phenix.maps control.phil`. A separate reader using Phenix's FFT
+reproduced the linear-interpolation contrasts within 0.000003 map rms.
+C555 records laboratory evidence only. The previous implementation and
+focused software qualifications carry forward. The full suite remains due
+before merge. The compact methods and measurements share the C531 laboratory folder.
 
 **C554 explains a competing site instruction.** The optional bond-target
 inspection now reads the ordered, fingerprinted PHIL inputs and lists

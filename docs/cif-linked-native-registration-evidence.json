@@ -1,6 +1,16 @@
 {
   "schema_version": 1,
   "document_kind": "LINKED_NATIVE_REGISTRATION_AND_COMPONENT_METADATA_RETURNS",
+  "c555_host_orientations_with_registered_phosphate": {
+    "experiment": "One additional completed five-cycle Phenix 2.2.1-6174 fit from the C290 host orientations, compared with the completed C553 fit. Seven identical restraint inputs and 862 atoms.",
+    "changed_starting_base_atoms": 20,
+    "five_cycle_models_sha256": ["81c1ea29c561348b1cfe7cbba776ee0d6b3ae45c71e361e60317d727d4d98117", "14c9632cd3a8947082507e66a2c15177f5541d07bc089aea17676021e588a40c"],
+    "A12_B4": {"host_start_chi_deg": [-150.153, -108.924], "host_final_chi_deg": [-102.154, -99.703], "archived_then_host_tip_heights_A": [[0.7863, 0.5705], [0.2823, 0.4639]], "host_terminal_lengths_A": [1.4770, 1.4989], "preserved_sugar_chiral_signs": 6},
+    "host_B7_image_to_B1": {"distance_A": 1.6454, "oxygen_angles_deg": [108.154, 116.598], "full_gradient_calls": 2382, "second_shell_exclusions": 4, "residual_nonbonded": 0},
+    "diffraction": {"working": 1778, "free": 124, "changed_flag_assignments": 0, "archived_then_host_Rwork_Rfree": [[0.2389, 0.2909], [0.2333, 0.2780]]},
+    "common_omit_maps": {"phenix": "2.2.1-6174 phenix.maps, zero coordinate cycles", "shared_atoms_after_omission": 840, "working_amplitudes": 1778, "free_in_maps": 0, "resolution_A": 4.19, "tip_separation_A": [10.628, 10.519], "A12_B4_2FoFc_host_minus_archived_map_rms": {"bulk_solvent_on": [2.317, 0.027], "bulk_solvent_off": [-4.133, -3.746]}, "changed_observation_phases_over_90_degrees": 171, "independent_linear_interpolation_max_difference_map_rms": 0.0000021},
+    "scope": "Host-oriented start improves both achieved arm heights and the global diffraction scores in this matched experiment. The local map does not distinguish both conformers reliably. No model or default was selected."
+  },
   "c554_explicit_bond_edit_sources": {
     "command": "cif-doctor assess --bond-targets",
     "real_readings": ["numbered refine-007 preflight", "numbered refine-007 final", "C531 masked corrected CIF final", "C553 combined treatment final"],
