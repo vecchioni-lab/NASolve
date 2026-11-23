@@ -1,6 +1,16 @@
 # NASolve development handoff — Willow
 
-**Current audit: W244; maintained implementation: W243, 2026-11-23.**
+**Current audit and maintained implementation: W245, 2026-11-23.**
+[W245 binds scattering to the saved recut](topostitch-preview.md#observe-scattering-for-a-pinned-saved-recut-w245):
+**208 source/208 isolated installed tests**, six new boundary regressions. The
+read-only API requires the exact preview receipt, derives explicit/forest image
+choices and declared continuations, and reuses existing independent scattering
+without manual reconstruction. Drift and mismatched calculations refuse; original
+sources/build can be absent. All 222 relocated archive files hash-match, and the
+installed package imports at its new location. No native run or model emission.
+P03 remains partial: sampled neutral-atom Fcalc and float32 ANISOU transport do
+not establish serialized or complete crystal/scattering acceptance.
+
 [W244 audits four coordinated live returns](topostitch-periodic.md#w244--audit-coordinated-live-anisotropic-phosphate-returns).
 Rowan completed three-cycle/six-atom Phenix fits on four initially healthy R3
 cuts: bonds 1.605–1.613 Å, all eight local terms within 1.82 σ. Independent

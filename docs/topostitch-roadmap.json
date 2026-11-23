@@ -4,7 +4,7 @@
   "updated": "2026-11-23",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "5f5c129b439452256e71d3e03dc6bcbeb10404b8",
+  "audited_code_commit": "b86ffd5391e453da20533d4e90355f41a60938a4",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -1080,13 +1080,14 @@
         "W80 binds complete Cartesian tensor transport to the same source labels/context/full permutation as coordinates and reuses the rotation in existing ANISOU previews. Installed native two-cut/three-order Fcalc and tensor controls pass; physical inventory and serialization remain separate gates.",
         "W82 replays an exactly pinned saved preview into the existing complete numerical ReferenceFrame, preserving source identity/order and unchanged context atoms; no model writer or child rebinding.",
         "W83 native synthetic special-position/partial-occupancy controls preserve the supplied labelled scattering object and fresh native multiplicity/weights in three settings and orders; source scientific validity remains separate.",
-        "W239 composes the existing registered preview, continuation-phosphate observer and saved ReferenceFrame in a synthetic one-pair stagger across both strands, with P43/R3:H coordinate/tensor round trips. Explicit intent only; no automatic duplex choice or native writer."
+        "W239 composes the existing registered preview, continuation-phosphate observer and saved ReferenceFrame in a synthetic one-pair stagger across both strands, with P43/R3:H coordinate/tensor round trips. Explicit intent only; no automatic duplex choice or native writer.",
+        "W245 binds the existing independent sampled scattering owner to an exact saved recut receipt, deriving verified explicit/forest images and declared continuations. 208 source/208 installed; six new boundary regressions, relocation and unchanged source. No new scattering engine, serialization or whole-ASU acceptance."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "Scheduled phosphate follow-up stage 3 precedes refinement: independently verify unrefined source/reselected-ASU scattering and chemical graph equivalence, full atom/tensor/occupancy inventory and reciprocal round trips. Reuse rotated/screw/gap panels; a pure recut must not repair a gap. Schedule and ownership: docs/topostitch.md#coordinated-phosphate-recut-follow-up. Planning only; no immediate native rerun. First evaluate one computational native frame with explicitly bound derived views at workflow boundaries. Qualify P02 graphical review and full physical inventory/tensor serialization before any model writer. Bind each refined child afresh through verified checkpoint lineage; never silently rebase old preferences. Standalone exports and inverse-mapped edits remain separate qualification gates. Bind an explicitly reviewed stagger to both directed routes and paired rungs; reject wrong-duplex selections only with qualified correspondence. Audit native model-input deepcopy precision and independent source-frame scattering after aliasing. Keep the private live repair separate from maintained Pine replay.",
+      "next_action": "Use W245 to observe the actual pinned recut choice rather than reconstructing images by hand. Scheduled phosphate follow-up stage 3 precedes refinement: independently verify unrefined source/reselected-ASU scattering and chemical graph equivalence, full atom/tensor/occupancy inventory and reciprocal round trips. Reuse rotated/screw/gap panels; a pure recut must not repair a gap. Schedule and ownership: docs/topostitch.md#coordinated-phosphate-recut-follow-up. Planning only; no immediate native rerun. First evaluate one computational native frame with explicitly bound derived views at workflow boundaries. Qualify P02 graphical review and full physical inventory/tensor serialization before any model writer. Bind each refined child afresh through verified checkpoint lineage; never silently rebase old preferences. Standalone exports and inverse-mapped edits remain separate qualification gates. Bind an explicitly reviewed stagger to both directed routes and paired rungs; reject wrong-duplex selections only with qualified correspondence. Audit native model-input deepcopy precision and independent source-frame scattering after aliasing. Keep the private live repair separate from maintained Pine replay.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -1094,14 +1095,15 @@
         "E_BOUND_TENSOR_TRANSPORT",
         "E_SAVED_FRAME_BINDING",
         "E_SPECIAL_POSITION_SCATTERING",
-        "E_STAGGERED_DUPLEX_RECUT"
+        "E_STAGGERED_DUPLEX_RECUT",
+        "E_SAVED_SCATTERING_BINDING"
       ],
       "last_audit": {
         "date": "2026-11-23",
-        "code_commit": "0fa2b6643da26977c568528d25126f07d0e7d57a",
+        "code_commit": "b86ffd5391e453da20533d4e90355f41a60938a4",
         "reviewer": "Linden",
-        "human_update": 239,
-        "scope": "Synthetic integration regression and native-copy precision caveat; full native/materialization gates remain open"
+        "human_update": 245,
+        "scope": "Exact immutable packet-to-sampled-scattering binding; remaining physical and serialized invariance gates stay open"
       }
     },
     {
@@ -6319,6 +6321,15 @@
       "reference": "docs/topostitch.md#coordinated-phosphate-recut-follow-up",
       "result": "Cedar/Rowan reports processed 3LNA V51 comparison complete: annotation NOT RETAINED. All 58 ordinary steps, 1271 sites, coordinates, B/Q and six U components preserved; no long steps, maximum 1.6214 Å. Entire submitted 80-row connection table absent, including nine phosphate covale rows and both cross-copy links. Reported symmetry contacts match declared relative operators and distances 1.60946/1.60802 Å.",
       "limitation": "Coordinated Cedar observation, not an independent Willow reread. Exact input provenance is retained by Cedar in the private manuscript packet. Curator action and independent 5LNA return remain open. Missing annotation is not a chemical nick; preserved geometry does not establish annotation retention. No rerun, new task, milestone closure or change to native/physical evidence."
+    },
+    "E_SAVED_SCATTERING_BINDING": {
+      "kind": "Read-only saved-preview/scattering composition",
+      "date": "2026-11-23",
+      "human_update": 245,
+      "code_commit": "b86ffd5391e453da20533d4e90355f41a60938a4",
+      "reference": "docs/topostitch-preview.md#observe-scattering-for-a-pinned-saved-recut-w245",
+      "result": "Six fail-before boundary cases; 208 source and 208 isolated installed tests. Exact receipt binds explicit/forest image choices and declared continuations to the existing independent sampled scattering observer. Wrong pin, drift and mismatched calculation refuse. Relocated packet replay, original build removal, installed/source parity, Python 3.10 syntax and 222-file archive relocation hashes pass.",
+      "limitation": "Additive schema-1 read-only observation wrapper; no old packet/API/default changes, native force, model writer, coordinate repair, scientific acceptance or new Phenix execution. Sampled Gemmi neutral-atom and float32 tensor limits remain; complete reciprocal-space, serialized model and whole-ASU gates remain open. Initial installed fixture closure omitted relative test imports, corrected without product changes; failed log retained. No full suite for isolated composition."
     }
   },
   "benchmarks": [
@@ -6484,8 +6495,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 244,
-    "next": 245,
+    "current": 245,
+    "next": 246,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -7759,6 +7770,12 @@
         "title": "Audit four coordinated live anisotropic phosphate returns",
         "state": "RECORDED",
         "code_commit": "5f5c129b439452256e71d3e03dc6bcbeb10404b8"
+      },
+      {
+        "number": 245,
+        "title": "Bind sampled scattering to the exact saved recut",
+        "state": "RECORDED",
+        "code_commit": "b86ffd5391e453da20533d4e90355f41a60938a4"
       }
     ]
   },

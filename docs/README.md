@@ -7,7 +7,11 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Current audit: W244; code: W243.** [Four coordinated real fits](topostitch-periodic.md#w244--audit-coordinated-live-anisotropic-phosphate-returns)
+- **Current audit/code: W245.** [Saved-recut scattering](topostitch-preview.md#observe-scattering-for-a-pinned-saved-recut-w245)
+  binds the existing independent sampled calculation to the exact immutable cut,
+  including forest images and declared continuations. 208 source/208 installed;
+  no new force, writer, native run or whole-ASU acceptance.
+- **W244.** [Four coordinated real fits](topostitch-periodic.md#w244--audit-coordinated-live-anisotropic-phosphate-returns)
   preserve healthy symmetry connections and anisotropic exports; 84 frozen-input
   hashes and complete saved-state bindings checked without duplicate runs.
   General damaged-seam repair and whole-ASU scattering remain open.
