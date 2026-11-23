@@ -3317,3 +3317,38 @@ Local NASolve evidence: `branch-artifacts/willow/w233-stacking-comparison/`
 was superseded and its task-owned temporary package removed; final qualified
 files and fail-before evidence remain. No native calculation or coordinate
 write, and no repeat of W230's complete suite under the coordinated cadence.
+
+
+## Admit only accepted atomic trial endpoints (W238)
+
+The existing `run_native_masked_trial` now uses the same successful-endpoint
+rules as the collective-motion driver. A normally returning native optimizer
+must report no error, bounded iteration counts and an evaluation count matching
+the recorded trace. Its final coordinates must be its last accepted step; when
+no step was accepted, only the unchanged initial coordinates may be reported.
+Previously, a returned error or restored/unaccepted trial could pass endpoint
+derivative checks and appear successful.
+
+Failures retain the existing `FAILED` outcome and original error, with any
+last-accepted-point audit confined to `failure_endpoint`. That diagnostic never
+becomes an accepted candidate. A legitimate unchanged start remains reportable,
+and an iteration cap remains distinct from convergence. Successful report shapes,
+function arguments, source masks and scientific force calculations are unchanged;
+no schema migration or new optimizer is introduced.
+
+Five rejection regressions fail against the previous source; an unchanged-start
+control already passes. Focused source and source-free relocated-wheel checks
+pass **398 tests each** across trial, transport, local proposal, endpoint,
+preparation, native-window, checkpoint and execution files. The installation's
+build source and original installation path are removed before installed tests.
+Seven cold checks show W235's existing saved endpoint satisfies these stricter
+rules, including exact accepted coordinates/scalars/gradient norm and 53 recorded
+optimizer evaluations. No new Phenix execution or scientific rerun is implied.
+
+Evidence at the NASolve anchor `branch-artifacts/willow/w238-accepted-endpoint/`
+records exact argv/environment/Python, module/wheel/test hashes, raw logs and
+source/installed counts in `*-command.json`, `fail-before.json` and
+`installed-check.json`. The initial harness incorrectly expected the older
+384-test count; its log is preserved, the successful 398-test source run was
+reused, and installed checks ran once. Generated scientific data remain outside
+Git. Final software-suite qualification is recorded in the current handoff.

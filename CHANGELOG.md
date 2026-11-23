@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W238 — Reject unaccepted atomic optimizer endpoints
+
+- Bring the Cartesian trial's completion checks into line with the collective
+  driver: reject returned optimizer errors, inconsistent counts and final points
+  that were never accepted. Preserve the original failure and separate accepted
+  diagnostic; retain a legitimate unchanged start and explicit iteration caps.
+- Successful schemas and force calculations remain unchanged. Five fail-before
+  regressions, an unchanged-start control and installed validation cover the fix.
+
 ### W237 — View the local geometry proposal in its fixed source map
 
 - Reuse the installed density inspector with the original saved checkpoint maps,

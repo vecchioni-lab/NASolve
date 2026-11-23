@@ -149,6 +149,20 @@ def run_native_masked_trial(objective, *, max_iterations, max_calls, initial_dis
                 termination_params=lbfgs.termination_parameters(max_iterations=max_iterations,max_calls=max_calls,
                     traditional_convergence_test=True,traditional_convergence_test_eps=1e-5),
                 exception_handling_params=lbfgs.exception_handling_parameters(ignore_line_search_failed_rounding_errors=False),log=log)
+            if sources()!=pinned:raise ValueError('Native optimizer sources changed')
+            if optimizer.error is not None:
+                raise RuntimeError('Native optimizer returned an error: '+str(optimizer.error))
+            if (not 0<=int(optimizer.iter())<=max_iterations
+                    or int(optimizer.nfun())!=len(result['trace'])):
+                raise ValueError('Native optimizer counts differ from the bounded trace')
+            # A restored/rejected line-search trial is not an accepted endpoint.
+            # Keep the same admission rule as the collective-motion driver.
+            if result['accepted_steps']:
+                index=result['accepted_steps'][-1]['trace_index']
+                if list(evaluator.x)!=result['trace'][index]['displacements']:
+                    raise ValueError('Final displacement is not the last accepted optimizer step')
+            elif list(evaluator.x)!=list(initial_values):
+                raise ValueError('Final displacement changed without an accepted step')
         except (ValueError,RuntimeError,OverflowError) as exc:
             result['error']=type(exc).__name__+': '+str(exc)
             result['failure_endpoint']=_observe_failed_last_accepted(objective,result,sources,pinned)

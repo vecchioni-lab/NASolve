@@ -693,3 +693,56 @@ def test_motion_trial_rejects_native_error_and_unaccounted_counts(fake_optimizer
     assert result['status']=='FAILED'and result['error']
     assert 'full_precision_derivatives'not in result
     assert result['baseline_restoration']['status']=='EXACT_REPEAT'
+
+
+@pytest.mark.parametrize('mode,expected', [
+    ('native_error', 'Native optimizer returned an error: returned line-search error'),
+    ('wrong_count', 'Native optimizer counts differ'),
+    ('iteration_overflow', 'Native optimizer counts differ'),
+    ('unaccepted_final', 'Final displacement is not the last accepted optimizer step'),
+    ('no_accepted_step', 'Final displacement changed without an accepted step'),
+])
+def test_atomic_trial_rejects_invalid_returned_optimizer_endpoint(fake_optimizer, mode, expected):
+    from nasolve.topostitch_trial import run_native_masked_trial
+    objective = TrialObjective()
+    def run(*, target_evaluator, **kw):
+        target_evaluator.x[:] = [.2004, 0., 0.]
+        target_evaluator.compute_functional_and_gradients()
+        if mode != 'no_accepted_step':
+            target_evaluator.callback_after_step(SimpleNamespace(iter=lambda: 1, nfun=lambda: 1))
+        calls = 1
+        if mode == 'unaccepted_final':
+            target_evaluator.x[:] = [.3, 0., 0.]
+            target_evaluator.compute_functional_and_gradients()
+            calls += 1
+        return SimpleNamespace(error='returned line-search error' if mode == 'native_error' else None,
+            iter=lambda: 3 if mode == 'iteration_overflow' else 1,
+            nfun=lambda: calls + (mode == 'wrong_count'))
+    fake_optimizer.run = run
+    report = run_native_masked_trial(objective, max_iterations=2, max_calls=10)
+    assert report['status'] == 'FAILED'
+    assert expected in report['error']
+    assert all(key not in report for key in ('full_precision_derivatives', 'serialized_derivatives', 'stopping'))
+    assert not report['scientific_acceptance'] and not report['automatic_adoption']
+    diagnostic = report['failure_endpoint']
+    if mode == 'no_accepted_step':
+        assert diagnostic['status'] == 'NO_ACCEPTED_STEP'
+        assert diagnostic['evaluation_calls'] == 0
+    else:
+        assert diagnostic['status'] == 'DERIVATIVES_PASS'
+        assert diagnostic['full_precision_derivatives']['baseline']['points'][0][0] == pytest.approx(1.2004)
+        assert diagnostic['optimizer_failure_preserved']
+
+
+def test_atomic_trial_can_finish_at_unchanged_initial_point_without_accepted_step(fake_optimizer):
+    from nasolve.topostitch_trial import run_native_masked_trial
+    objective = TrialObjective()
+    def run(*, target_evaluator, **kw):
+        target_evaluator.compute_functional_and_gradients()
+        return SimpleNamespace(error=None, iter=lambda: 0, nfun=lambda: 1)
+    fake_optimizer.run = run
+    report = run_native_masked_trial(objective, max_iterations=2, max_calls=10)
+    assert report['status'] == 'ENDPOINT_DERIVATIVES_PASS'
+    assert report['accepted_steps'] == []
+    assert report['full_precision_derivatives']['baseline']['points'] == objective._mask.reference
+    assert not report['stopping']['native_criterion_met']
