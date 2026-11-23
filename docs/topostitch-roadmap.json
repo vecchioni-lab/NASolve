@@ -4,7 +4,7 @@
   "updated": "2026-11-23",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933",
+  "audited_code_commit": "66f785979b0effaf6a875610a6d11e18fbdceb41",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -474,7 +474,8 @@
         "W232 binds6connecting-backbone atoms/856held atoms to the real child and authenticated native support,23coldchecks. No coordinate change or new native experiment; full image-force receiving remains Cedar-owned.",
         "W234 records a six-atom donor graft: closed seam but 16.45-sigma fixed-sugar bond strain, with all rings/856 other atoms held. No fit or acceptance; local boundary forces must accompany seam closure.",
         "W235 closes the same original seam to1.61303A in one capped six-atom native geometry trial with all856other atoms/BQ held; local and image bond/angle targets recover, torsions remain explicit. Three derivative audits and34cold checks pass; no diffraction fit or acceptance.",
-        "W236 binds the saved candidate to a fresh native capture and two matched complete-force receiving preflights;17coldchecks, exact six-atom mask/BQ and original data. No fit; replay existing passed preflights when coordinator clears execution."
+        "W236 binds the saved candidate to a fresh native capture and two matched complete-force receiving preflights;17coldchecks, exact six-atom mask/BQ and original data. No fit; replay existing passed preflights when coordinator clears execution.",
+        "W238 aligns atomic trial completion with collective admission: returned native errors/count mismatches/unaccepted final coordinates remain failures, with accepted diagnostics separate.398source/398installed; full-suite permission failures resolved by exact5-case replay."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
@@ -614,14 +615,15 @@
         "E_NARROW_BACKBONE_SCOPE",
         "E_NARROW_BACKBONE_DONOR_GRAFT",
         "E_NARROW_BACKBONE_NATIVE_CLOSURE",
-        "E_NARROW_BACKBONE_RECEIVING_PREFLIGHT"
+        "E_NARROW_BACKBONE_RECEIVING_PREFLIGHT",
+        "E_ATOMIC_ACCEPTED_ENDPOINT"
       ],
       "last_audit": {
         "date": "2026-11-23",
-        "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933",
+        "code_commit": "66f785979b0effaf6a875610a6d11e18fbdceb41",
         "reviewer": "Linden",
-        "human_update": 236,
-        "scope": "Fresh exact candidate sources and matched native preflights; fits held for coordination"
+        "human_update": 238,
+        "scope": "Completion integrity only; no geometry/refinement acceptance"
       }
     },
     {
@@ -6185,6 +6187,42 @@
           "size": 1575
         }
       ]
+    },
+    "E_ATOMIC_ACCEPTED_ENDPOINT": {
+      "kind": "Atomic optimizer completion guards",
+      "date": "2026-11-23",
+      "human_update": 238,
+      "code_commit": "66f785979b0effaf6a875610a6d11e18fbdceb41",
+      "reference": "docs/topostitch-preview.md#admit-only-accepted-atomic-trial-endpoints-w238",
+      "result": "Five fail-before rejection regressions plus unchanged-start control;398 source/398 relocated installed focused tests. Full suite:2491passed,3skipped,234subtests and5sandbox process failures; exact5 pass permitted focused replay. Seven cold checks authenticate existing W235 accepted endpoint under stricter guards.",
+      "limitation": "No new native optimizer or diffraction run; successful report shape/forces unchanged. Three skipped tests remain unqualified; full invocation was not clean, failures resolved separately. No scientific acceptance.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w238-accepted-endpoint/fail-before.json",
+          "sha256": "3bfa425a2510bf3ac6cee2a4facf0593004335dfc2e44939e4c524cf10900f57"
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w238-accepted-endpoint/installed-check.json",
+          "sha256": "b21b5c5f66ae6237872f5ee2a1e51d695b7b56b1c8dd4cd28c93163fb13959fb"
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w238-accepted-endpoint/full-suite-review.json",
+          "sha256": "e8123126b9644b0376da4010426a64dc79ee02d2f2d2b4add7a5f3f0caa7768c"
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w238-accepted-endpoint/process-replay-review.json",
+          "sha256": "9a011deaa7fb16dc7e2a0eb47fa7b7283f13b8fddb6fa32c4820e51f02b5623b"
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w238-accepted-endpoint/w235-cold-check.json",
+          "sha256": "547b427025f6bebac11654a4a5a5c482ccab00b71d8756aaf2ea7fa78cab5c7b"
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -6350,8 +6388,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 237,
-    "next": 238,
+    "current": 238,
+    "next": 239,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -7583,6 +7621,12 @@
         "title": "Inspect the local closure against the fixed original map",
         "state": "RECORDED",
         "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933"
+      },
+      {
+        "number": 238,
+        "title": "Require accepted atomic optimizer endpoints and preserve failures",
+        "state": "RECORDED",
+        "code_commit": "66f785979b0effaf6a875610a6d11e18fbdceb41"
       }
     ]
   },

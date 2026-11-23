@@ -7,7 +7,11 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Current code: W233.** [Before/after stacking comparison](topostitch-preview.md#compare-internal-stacking-between-named-states-w233)
+- **Current code: W238.** [Atomic endpoint admission](topostitch-preview.md#admit-only-accepted-atomic-trial-endpoints-w238)
+  matches the collective driver, preserving returned failures and accepted-step
+  provenance:398 source/398 installed; full-suite process-permission failures
+  resolved by five-case replay. See the handoff for exact scope.
+- **W233.** [Before/after stacking comparison](topostitch-preview.md#compare-internal-stacking-between-named-states-w233)
   retains explicit pair/strand correspondence and per-metric missing coverage:
   125 source/125 installed tests, six saved comparisons, no native run.
 - **W230:** [Internal stacking placement](topostitch-preview.md#measure-internal-stacking-placement-w230)
@@ -38,7 +42,7 @@ current instructions; other branches retain their own status and validation pins
   The failed direct result and three remaining moving-region outliers stay
   explicit. This is same-family synthetic recovery, not general experimental repair.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W237, next W238:
+  [generated human view](topostitch-roadmap.md). Current W238, next W239:
   [six-atom native closure](topostitch-periodic.md#w235--close-the-local-symmetry-connection-with-all-rings-held)
   retains fixed rings and healthy sugar boundaries. Qualify diffraction receiving
   and residual geometry next; matched receiving preflights pass, with fits held

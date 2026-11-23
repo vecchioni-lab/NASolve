@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current audit: W237; maintained implementation: W233, 2026-11-23.**
+**Current audit: W238; maintained implementation: W238, 2026-11-23.**
 The existing native input binder now accepts an explicitly selected dictionary-only
 parent policy from Cedar C526. Default literal inputs still require compiled
 restraints. W214 binds a real X11_22 PostMR checkpoint and original observations;
@@ -85,6 +85,18 @@ stay intact. Actual C543 PDU rings remain unsupported while their P spans are
 retained. No new force/native run or full-suite repeat; W230's complete suite
 remains tied to its recorded earlier checkpoint.
 
+W238 tightens the existing atomic trial's completion checks to match the
+collective driver: returned errors, inconsistent counts and unaccepted final
+coordinates remain failures. Five fail-before cases and an unchanged-start
+control; **398 focused source/398 relocated installed tests**. Seven cold checks
+show the saved W235 endpoint already satisfies the new rules; no scientific rerun.
+The complete software invocation at W238 source hashes records **2491 passed,
+3 skipped, 234 passing subtests and five sandbox process-control failures**.
+Those exact five pass a permitted focused replay; this is not one clean full-suite
+invocation. Commands, hashes and logs are retained under the NASolve anchor
+`branch-artifacts/willow/w238-accepted-endpoint/`. No remaining observed test
+failure; skipped cases remain unqualified. [Completion contract](topostitch-preview.md#admit-only-accepted-atomic-trial-endpoints-w238).
+
 ## Current development edge
 
 | Component | Proven scope | Still open |
@@ -149,10 +161,9 @@ finds the central seam bases nearly perpendicular (81.976°) despite the 2.795 �
 O3′–P gap. Covalent continuation must not imply a stacking-plane restraint.
 [W232 now binds a six-atom connecting-backbone scope](topostitch-periodic.md#w232--bind-a-six-atom-connecting-backbone-scope)
 with all 856 other atoms held: 23 cold checks, no displaced candidate or native
-run. All captured base-plane terms are fixed; complete image-force restart
-remains Cedar-owned. Next test the original 2.824 Å ancestor under this narrow
-constraint once that force path is ready. Do not re-perturb the already closed
-child or repeat the whole-model fit; whole-pair junction mobility stays separate.
+run. All captured base-plane terms are fixed. W235 subsequently qualifies the
+constrained original-ancestor trial below; do not repeat this preparation or
+re-perturb the already closed child. Whole-pair junction mobility stays separate.
 
 [W234's donor graft](topostitch-periodic.md#w234--a-closed-seam-can-still-strain-the-fixed-sugar-boundaries)
 closes that seam but strains the two fixed-sugar bonds (−9.60/+16.45 native
@@ -180,8 +191,8 @@ placement/recovery gate rather than starting another subsystem or run tonight.
 for the original and W235 seeds: fresh candidate-bound capture, complete live
 image forces, exact six-atom mask, identical data/Free and unchanged source B/Q.
 No fits yet; Rowan holds the native fitting window for a separate deposition
-repair. Reuse v3 preflights when cleared. Fixed original-map inspection is useful
-independent work; do not present geometry-only coordinates as density-refined.
+repair. Reuse v3 preflights when cleared. W237 completes the fixed original-map
+inspection; do not repeat it or present geometry-only coordinates as density-refined.
 
 The next experiment must answer a new question, not repeat W224:
 
