@@ -11,6 +11,15 @@ Latest A01 native diagnostic: [coherent base/attachment retention](metal-develop
 
 A second completed A01 control adds exactly four source-H direction hypotheses around the N3 donors. Hg–O4 improves to2.390 Å and the bridge to163.2°, but final Rwork/Rfree0.3115/0.3454 and unresolved stopping/chemical scope preserve the gate. A21-check final-scale audit distinguishes written B from its83 Å² export offset;5,253 cold result checks pass. Latest private report: `ScienceCheckouts/Hazel/2026-11-23_ft-donor-approach/index.html`, with a scale-frame addendum. No runtime or default change.
 
+The unchanged donor-endpoint stability control is now complete: 2.508 Å Hg–O4,
+168.5° bridge and Rwork/Rfree 0.3072/0.3430. A01 remains partial/A02 gated.
+The [current metal handoff](metal-development-handoff.md#a01-donor-stability-and-scaling-readback--23-november)
+links its 5,257 cold checks, 21 scale checks and compact private report. The new
+opt-in printed-scaling reader changes only inspection behavior (schema-1 JSON,
+no model mutation or migration): 108 focused tests + 25 subtests and 108 native-log
+readback assertions pass; exact source-bound receipts are retained there. No full
+suite or new native execution is claimed for this bounded reader.
+
 ## Qualified integration checkpoint — test-only amendment
 
 The integrated candidate `1acc7892d2bc19d5572d46f430b27515a7ea6301` combines

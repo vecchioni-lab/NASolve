@@ -43,6 +43,36 @@ qualified open-refined coordinating bases, excluding sugar/backbone, with proven
 and explicit overrides. Dataset-specific wavelength/reference values are always
 read from the actual inputs; historical examples do not supply hidden constants.
 
+## Printed final scaling inspection
+
+Use `nasolve metal inspect-final-scaling /explicit/path/to/refined.log --json`
+to inspect the final R and global B-transfer sequence without running refinement.
+An optional `--expected-sha256` independently pins the supplied log. Output goes
+to stdout; the command does not discover runs or tools, write results, or modify
+models. It reports the start, reset-scales, B-transfer and bulk-solvent/scaling
+rows, one-based line numbers, exact printed text and source-byte SHA-256.
+
+The supported format is the four-stage **Phenix 2.2.1-6174** final log block.
+A unique ordered sequence with matching positive reflection counts is required;
+partial, duplicate, reordered or malformed evidence remains unavailable. A printed
+zero is preserved as zero. JSON schema 1 uses status `OBSERVED` only for that
+complete sequence; exit status is 0 then, otherwise 2. It does not mean scientific
+acceptance. Reads are bounded to 16 MiB and accept explicit paths independently
+of workspace shortcuts. Unknown formats require review, not inferred values.
+
+Python `nasolve.refinement_final_scaling.describe_b_frame` accepts explicitly
+named written B values and optional reference labels. It reports written values,
+written-minus-final-transfer and contrasts to the equally weighted reference mean.
+No ligand/base membership is inferred. The offset subtraction is approximate:
+printed values are rounded and earlier ADP/scaling trajectories can differ. It is
+not a reconstructed pre-scaling model or a complete common physical scale.
+Caller values are not authenticated against a model; the log hash binds only
+the log. Reflection totals do not identify Free-R membership. R changes across
+the final sequence also involve solvent and scaling, not only the B transfer.
+No scientific policy, frozen-state contract or checkpoint selection changes.
+Focused and native-log readback receipts are linked from the
+[current handoff](metal-development-handoff.md#read-only-scaling-reader-evidence-to-reuse).
+
 ## Native XYZ weight-selection evidence
 
 New XYZ workers also retain `metal-xyz-weight-selection-v1` in

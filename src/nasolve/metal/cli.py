@@ -16,6 +16,11 @@ from .scattering import inspect_observations, reference_scattering
 def configure(subparsers):
     metal = subparsers.add_parser('metal', help='inspect generated models and preview explicit metal restraints')
     actions = metal.add_subparsers(dest='metal_action', required=True)
+    scale_inspect = actions.add_parser('inspect-final-scaling', help='read printed final scaling stages; no native run or model change')
+    scale_inspect.add_argument('log', type=Path, help='explicit Phenix refinement log')
+    scale_inspect.add_argument('--expected-sha256', help='optional independently retained log checksum')
+    scale_inspect.add_argument('--json', action='store_true')
+    scale_inspect.set_defaults(output=None)
     child_inputs = actions.add_parser('verify-fdp-child-inputs', help='replay prepared bytes from one protected ordinary parent; no native run')
     child_inputs.add_argument('prepared', type=Path)
     child_inputs.add_argument('--parent-archive', type=Path, required=True)
@@ -223,6 +228,19 @@ def execute(args):
         outputs = [p for p in (args.output, getattr(args, 'export', None)) if p is not None]
         if len({p.resolve() for p in outputs}) != len(outputs) or any(p.exists() or p.is_symlink() for p in outputs):
             raise RecipeError('Outputs must be distinct new files')
+        if args.metal_action == 'inspect-final-scaling':
+            from ..refinement_final_scaling import read_final_scaling
+            result = read_final_scaling(args.log, expected_sha256=args.expected_sha256)
+            if args.json:
+                print(json.dumps(result, indent=2, allow_nan=False))
+            else:
+                print('Printed final scaling: ' + result['status'])
+                for row in result['stages']:
+                    print(f"{row['stage']}: Rwork={row['r_work']:.6g}; Rfree={row['r_free']:.6g}; reflections={row['n_refl']}")
+                shift = result['b_transfer_printed']
+                print('Final B transfer: '+(shift+' Å²' if shift is not None else 'unavailable'))
+                print('Printed evidence only; no native execution, model change or scientific acceptance.')
+            return 0 if result['status']=='OBSERVED' else 2
         if args.metal_action == 'inspect-audited-fdp-child':
             return _inspect_audited_child(args)
         if args.metal_action == 'run-audited-fdp-child':

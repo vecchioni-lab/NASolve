@@ -13,6 +13,70 @@ not a second queue.
 
 **Late chemical-provenance clarification:** the [DF C2-angle audit](metal-df-c2-angle-audit.md) separates eLBOW source consistency from independent chemical validation. The earlier final sulfur-angle split is 135.3°/108.7°; generated targets remain chemically provisional. Routine donor-state integration stays deferred and is not a new immediate A01 prerequisite. A retained base fragment exists (124 read-only checks), but no replacement or target change is admitted.
 
+## A01 donor stability and scaling readback — 23 November
+
+**Completed and stopped; A01 partial, A02 gated.** Five additional unchanged open
+XYZ/group-B cycles from the actual written four-angle donor endpoint retain the
+improved geometry. Hg–O4 is 2.508 Å, N3–Hg–N3 is 168.5°, and DF C1′–N1 is
+1.542 Å. Rwork/Rfree is 0.3072/0.3430. Written DF-base/DT-base/Hg B is
+41.72/109.56/69.52 Å², with a final −3.83 Å² global transfer. Subtracting that
+printed transfer gives 45.55/113.39/73.35 Å² only as an approximate export-offset
+comparison, not an exact pre-scaling state or a complete common physical scale.
+Hg difference density remains −2.32 separately normalized σ. The 94 observed
+optimizer calls include 88 iteration-limit stops and six unreported reasons;
+completion does not establish convergence. No f″ parent is selected.
+
+Phenix **2.2.1-6174**, complete five-cycle execution: **543.97 s**. Native preflight
+passes `EXACT_WRITTEN_PARENT_RESTART`: 859 written XYZ/B states, Q/f′/f″,
+observations/Free-R flags, phases and bonded terms match; fresh nonbonded-cache
+membership is recorded separately. This is endpoint stability evidence, not an
+equal-budget causal comparison. **5,257 cold checks** and **21 scale-frame checks**
+pass without rerunning refinement. Preserve the exact receipts under
+`Alder/a01-donor-continuation-20261123-01/`: `plan.json`,
+`pair_flanks/execution.json`, `science-comparison.json`, `final-scale-audit.json`,
+`figure-visual-review.json` and `checkout-publication.json`. The source baseline
+is `a62a4c9e`; the unchanged native runtime is `96a14d78`.
+
+Runner commands use the established validation environment and artifact anchor:
+`runners/A544_prepare_donor_continuation.py`,
+`runners/A545_run_donor_continuation.py pair_flanks`,
+`runners/A546_review_donor_continuation.py`, and
+`runners/A550_audit_continuation_scales.py`. Consult the retained runners/receipts
+for exact invocation before any repeat. The compact, visually inspected checkout
+is `ScienceCheckouts/Hazel/2026-11-23_ft-donor-stability/index.html`: 833,525 bytes,
+12 checked relative links; models/maps are linked, not duplicated.
+
+### Read-only scaling reader: evidence to reuse
+
+`metal inspect-final-scaling LOG [--expected-sha256 SHA256] [--json]` exposes the
+four printed final scaling stages, preserving exact rows and source hash. Missing,
+partial, repeated, reordered or inconsistent evidence does not become a zero
+transfer. The optional Python B description keeps written values, approximate
+final-offset subtraction and explicit local contrasts distinct. It does not choose
+an environmental B, edit a model, start Phenix or authenticate caller model linkage.
+See [the scientific contract](metal-anomalous-doctor.md#printed-final-scaling-inspection).
+
+**Saved focused validation:** `Alder/final-scaling-reader-20261123-01/README.md`
+is the entry point. `focused.json` records the exact command, environment,
+base commit and tested file hashes; `focused.stdout.txt` retains **108 passed,
+25 subtests passed in 11.96 s**. `cold-readback.json` retains **108 assertions**
+against three unique Phenix logs (four comparisons against existing audits),
+including +83.02, 0.00 and −3.83 Å² transfers, stage R values and B contrasts.
+These assertion counts are not pytest counts. No new native execution or full
+suite; no previous result schema/default changes. New opt-in inspection JSON is
+schema 1; no migration. Raw scientific files remain private and excluded from Git.
+The pre-implementation missing-module failure is recorded separately as a
+transcript-derived note, not misrepresented as a preserved raw test log.
+
+**Next:** close this small readback task and reuse its evidence. Do not repeat
+unchanged FT_Hg continuations, old angle controls or weight grids without a new
+scientific question. Geometry stability is established within this hypothesis;
+chemical target qualification and whole-context fit remain open. Linden's W235
+is ordinary-DNA phosphate seam evidence, not metal-motion support. Its existing
+masked native trial/C545 composition and canonical stacking readers may inform
+later scoped work, but no unqualified modified-residue transport is admitted.
+Coordinate shared chemistry with Rowan before further source/target changes.
+
 ## A01 connected-base retention — 23 November
 
 **Completed, stopped, diagnostic only. A01 partial; A02 gated.** One predeclared

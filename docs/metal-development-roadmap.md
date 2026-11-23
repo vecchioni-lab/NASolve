@@ -1,6 +1,6 @@
 # Post-merge metal-coordination roadmap
 
-Updated **22 November 2026**. Working branch **Alder**. The feature milestones
+Updated **23 November 2026**. Working branch **Alder**. The feature milestones
 below are numbered **A01–A09** and are explicitly **post-merge work**. A09 is
 further deferred until after the main build and core A01–A08 work. These are
 not prerequisites for merging the current experimental implementation.
@@ -11,6 +11,14 @@ The [handoff](metal-development-handoff.md) owns exact validation and pending wo
 the [anomalous workflow](metal-anomalous-doctor.md) and [restraint design](metal-restraint-builder.md)
 own scientific contracts. A mechanism passing tests does not close its scientific
 gate. Update milestone status, evidence, limitations and next action together.
+
+A01's unchanged donor-endpoint continuation retains the improved local geometry
+(2.508 Å Hg–O4, 168.5° bridge), but Rwork/Rfree 0.3072/0.3430, stopping evidence
+and provisional chemical targets leave A01 partial/A02 gated. The completed
+read-only scaling reader makes final B-transfer evidence inspectable; it closes
+a reporting gap, not the scientific gate. Reuse the linked focused and cold
+receipts in the [current handoff](metal-development-handoff.md) before repeating
+small statistics checks. Next experiments need a distinct chemical/context question.
 
 A01 next-input review now includes [DF C2 chemical target provenance](metal-df-c2-angle-audit.md). A source-consistent fragment is available, but its eLBOW angles are not independent chemistry authority. Retain explicit source-state uncertainty and coupled-target review; routine donor-state integration remains deferred. No automatic 120° substitution.
 

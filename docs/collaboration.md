@@ -38,6 +38,16 @@ verify it against the actual checkout and name any remaining uncertainty.
 Update the smallest authoritative document rather than creating another status
 file or appending a session transcript.
 
+Retain validation evidence as tests run, including small statistical readers.
+Record the exact command, environment/tool version, tested revision and relevant
+file hashes, exit status, result counts, retained output, and scope/limitations.
+Link the existing evidence location from the current subsystem handoff. Preserve
+failed attempts and distinguish reconstructed notes from original logs. Consult
+these receipts before repeating tests after context loss; rerun only for changed
+relevant code/inputs/environment, a failure, or an unresolved validation question.
+A test pass is neither native scientific acceptance nor qualification of a later
+revision. Keep receipts compact and avoid copying raw science into Git.
+
 Maintain a concise **human-facing feature descriptor** for substantive features
 so a user or manuscript author can understand what the software does without
 reconstructing development conversations. State the purpose, actual behavior,

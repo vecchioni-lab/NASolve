@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Inspect printed final scaling without rerunning refinement
+
+- Add an opt-in explicit-log CLI reader with bounded, optionally checksum-pinned
+  input, exact four-stage evidence and schema-1 JSON. Missing or ambiguous
+  transfer evidence remains absent; recorded zero remains zero.
+- Keep written B, approximate final-offset subtraction and explicit local
+  contrasts distinct. No model, native settings, acceptance or default changes;
+  existing results remain unchanged and require no migration.
+- Record focused tests and cold readback receipts for reuse, plus completed
+  donor-endpoint stability evidence. A01 remains partial and A02 gated; no full
+  suite or new native run for the reader. Scientific data stays outside Git.
+
+
 ### Document donor-approach sensitivity and final scaling frames
 
 - Trace the short Hg–O4 contact to an ordinary retained1–4 repulsion proxy, with
