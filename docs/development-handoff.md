@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current audit: W236; maintained implementation: W233, 2026-11-23.**
+**Current audit: W237; maintained implementation: W233, 2026-11-23.**
 The existing native input binder now accepts an explicitly selected dictionary-only
 parent policy from Cedar C526. Default literal inputs still require compiled
 restraints. W214 binds a real X11_22 PostMR checkpoint and original observations;
@@ -12,6 +12,10 @@ uses the complete Cedar image forces to close 2.824 → 1.613 Å with only six
 connecting atoms moving, all 856 others/BQ held. Boundary bonds recover to
 1.512/1.440 Å; local/seam torsions remain up to 2.25/2.94 σ. Three full derivative
 audits and 34 cold checks pass; 50-iteration cap, no diffraction fit or acceptance.
+[W237 fixed-source density](topostitch-periodic.md#w237--inspect-the-local-proposal-in-the-fixed-original-map)
+shows more positive residual samples at proposed P/OP2, with weak ordinary-map
+support remaining; no independent validation or density optimization claim.
+The map checkout is `ScienceCheckouts/Linden/2026-11-23_fixed-source-density/index.html`.
 The three-state ChimeraX checkout is at the GitHub sibling anchor
 `ScienceCheckouts/Linden/2026-11-23_symmetry-connection/index.html`.
 

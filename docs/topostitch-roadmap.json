@@ -704,7 +704,8 @@
         "W233 composes internal stacking with existing named-state correspondence;125source/125installed and254cold checks per context. Default reports unchanged; no native run or motion admission.",
         "W234 records a six-atom donor graft: closed seam but 16.45-sigma fixed-sugar bond strain, with all rings/856 other atoms held. No fit or acceptance; local boundary forces must accompany seam closure.",
         "W235 closes the same original seam to1.61303A in one capped six-atom native geometry trial with all856other atoms/BQ held; local and image bond/angle targets recover, torsions remain explicit. Three derivative audits and34cold checks pass; no diffraction fit or acceptance.",
-        "W236 binds the saved candidate to a fresh native capture and two matched complete-force receiving preflights;17coldchecks, exact six-atom mask/BQ and original data. No fit; replay existing passed preflights when coordinator clears execution."
+        "W236 binds the saved candidate to a fresh native capture and two matched complete-force receiving preflights;17coldchecks, exact six-atom mask/BQ and original data. No fit; replay existing passed preflights when coordinator clears execution.",
+        "W237 reuses the installed density inspector on the real saved source map and W235 coordinates:14coldchecks,18atoms/31meshes, no candidate map or refinement. Mixed map support stays descriptive; Free-R-containing maps never become a search score."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -841,14 +842,15 @@
         "E_STACKING_COMPARISON",
         "E_NARROW_BACKBONE_DONOR_GRAFT",
         "E_NARROW_BACKBONE_NATIVE_CLOSURE",
-        "E_NARROW_BACKBONE_RECEIVING_PREFLIGHT"
+        "E_NARROW_BACKBONE_RECEIVING_PREFLIGHT",
+        "E_LOCAL_CLOSURE_FIXED_MAP"
       ],
       "last_audit": {
         "date": "2026-11-23",
         "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933",
         "reviewer": "Linden",
-        "human_update": 236,
-        "scope": "Fresh exact candidate sources and matched native preflights; fits held for coordination"
+        "human_update": 237,
+        "scope": "Fixed original-map readback and local visualization; no density-guided optimization or scientific acceptance"
       }
     },
     {
@@ -876,7 +878,8 @@
         "W170 adds a checked PNG/SVG report and matched map/geometry table, preserving common and own-map sigma scales. The static figure was inspected directly; browser/GPU rendering is unqualified. No runtime viewer or detector change; see E_SAVED_RESIDUAL_MAP_REVIEW.",
         "W208 maintains SourceBoundParentBuilder beside W200: explicit C512 service and trusted native observers/writer, original source MATCH before transfer, unchanged protected state/topology/proxies/candidate diffraction, first-error invalidation.217 source/217 relocated installed tests and54 actual-native cold checks pass. Actual dry-run exactly reproduces W207; intentional post-parent failure performs zero transfer and exposes no builder result. Earlier last-bit cell-representation refusal is preserved; raw metric changes are bounded below1e-10 with10-decimal canonical cell representation only. No ordinary dispatch or new refinement.",
         "Cedar C516 owns validation/finalization/one pending process ordering. Owner-qualified actual success and post-parent failure match W208 model/restraints/source chemistry/mappings and all three diffraction snapshots;3 early hooks+2 observers restore, processes stop. Zero refinement; ordinary dispatcher remains false.",
-        "W214 binds a genuine canonical PostMR root but finds no independently declared motion. W215 explicitly binds dictionary-only native source with225/225focused tests and19real-source checks; no dummy restraint or ordinary execution authority."
+        "W214 binds a genuine canonical PostMR root but finds no independently declared motion. W215 explicitly binds dictionary-only native source with225/225focused tests and19real-source checks; no dummy restraint or ordinary execution authority.",
+        "W237 reuses the installed density inspector on the real saved source map and W235 coordinates:14coldchecks,18atoms/31meshes, no candidate map or refinement. Mixed map support stays descriptive; Free-R-containing maps never become a search score."
       ],
       "acceptance": [
         "Create immutable children with exact model/CIF/PHIL inputs, preserve current selection, and reuse existing Coot/model-tree paths; viewing never selects or approves.",
@@ -902,14 +905,15 @@
         "E_MAINTAINED_PARENT_BUILDER",
         "E_C516_NATIVE_ENTRY_HANDOFF",
         "E_REAL_CANONICAL_PARENT",
-        "E_DICTIONARY_PARENT_BINDING"
+        "E_DICTIONARY_PARENT_BINDING",
+        "E_LOCAL_CLOSURE_FIXED_MAP"
       ],
       "last_audit": {
-        "date": "2026-11-22",
-        "code_commit": "81bf2fbe3d374be77563b192009797e3db2a0c78",
+        "date": "2026-11-23",
+        "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933",
         "reviewer": "Linden",
-        "scope": "Exact real parent/source and installed opt-in binder; no scientific milestone closure",
-        "human_update": 215
+        "human_update": 237,
+        "scope": "Fixed original-map readback and local visualization; no density-guided optimization or scientific acceptance"
       }
     },
     {
@@ -6152,6 +6156,35 @@
           "size": 5455
         }
       ]
+    },
+    "E_LOCAL_CLOSURE_FIXED_MAP": {
+      "kind": "Original checkpoint map held fixed while viewing the geometry-only proposal",
+      "date": "2026-11-23",
+      "human_update": 237,
+      "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933",
+      "reference": "docs/topostitch-periodic.md#w237--inspect-the-local-proposal-in-the-fixed-original-map",
+      "result": "Existing installed inspection/array/renderer owners; exact refine-005 model/map pins and saved unfilled map settings.18atoms including6moving,31contour meshes,14cold embedding/source checks. P/OP2 proposed positions sample more positive original difference density; weak/negative ordinary-map support remains. No new coefficients or fit.",
+      "limitation": "Ordinary model-assisted source maps include Free-R; descriptive inspection only, not independent validation, optimization objective or noise classifier. Candidate has no map. Browser rendering untested; static figure visually checked. Historical generation lacks a modern complete producer receipt.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w237-fixed-source-density/inspection.json",
+          "sha256": "1f81b541bf833821306744a1a1346013aac87409ff327969fecbc9aad9a3fc82",
+          "size": 1504
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w237-fixed-source-density/review.json",
+          "sha256": "7a9a60e5f56e9cee962ef01611198d7214d7b425cacb7d858db903b089981012",
+          "size": 22635
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w237-fixed-source-density/verification.json",
+          "sha256": "ca26ba49d92ecd87265680dbc6e6e2b3ab05fb4477429b761587319ddd64c488",
+          "size": 1575
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -6317,8 +6350,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 236,
-    "next": 237,
+    "current": 237,
+    "next": 238,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -7542,6 +7575,12 @@
       {
         "number": 236,
         "title": "Bind the saved endpoint to matched native receiving preflights",
+        "state": "RECORDED",
+        "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933"
+      },
+      {
+        "number": 237,
+        "title": "Inspect the local closure against the fixed original map",
         "state": "RECORDED",
         "code_commit": "9d6711767e61ca5a53ea837bd5768eb0b10ac933"
       }

@@ -12981,3 +12981,65 @@ runs native Phenix Python with a 120-second limit and single-thread variables.
 The execution script exposes dry runs only, not a refinement dispatcher.
 Generated science remains local. Evidence/docs only in Git; no API/schema/default
 change, migration, installation claim or full-suite repeat.
+
+
+## W237 — Inspect the local proposal in the fixed original map
+
+While diffraction fits remain held, the installed model/map inspection,
+coefficient-selection and density-rendering owners now show W235 against the
+**original `refine-005` map**, held fixed for both coordinate states. No density
+is regenerated from the proposed coordinates. The 18 displayed atoms include
+all six moving atoms; B7 uses the explicitly declared crystal image beside B1.
+No coordinate alignment, movement exaggeration or automatic noise classification.
+
+| Moving atom | Original → proposed, 2mFo–DFc σ | Original → proposed, mFo–DFc σ |
+| --- | ---: | ---: |
+| B1 P | 0.730 → 0.777 | 1.382 → 1.857 |
+| B1 OP1 | 1.736 → 1.722 | 2.574 → 2.677 |
+| B1 OP2 | 0.205 → 0.819 | 0.658 → 1.894 |
+| B1 O5′ | 0.079 → 0.054 | 0.835 → 0.877 |
+| B1 C5′ | −0.891 → −0.887 | 0.321 → 0.325 |
+| Image B7 O3′ | −0.676 → −0.522 | 1.116 → 1.234 |
+
+These are two positions sampled in each **same** source map, not a before/after
+change in density. P/OP2 sample more positive difference density, while weak or
+negative ordinary-map support remains elsewhere. This is mixed, limited evidence;
+it neither validates the repair nor identifies the cause of residual density.
+The ordinary model-assisted maps include Free-R reflections and must not be used
+as an independent validation or motion-search score.
+
+The existing resolver pins the model and `refined_001.mtz` to the saved
+checkpoint; map SHA is `646940e316126a379b844b0a320959293a2cb509e802791d18da892613a87936`.
+Exact arrays are `2FOFCWT_no_fill,PH2FOFCWT_no_fill` and `FOFCWT,PHFOFCWT`.
+Saved parameters declare unfilled, isotropized, unsharpened maps with Free-R
+included. Source hashes, group and cell at PDB precision agree. An initial
+10⁻⁶ Å cell comparison refused before the FFT: MTZ float storage differs by
+2.32×10⁻⁶ Å. The corrected check verifies the exact space group and PDB cell
+precision, retaining the measured difference rather than changing any frame.
+
+Two Phenix **2.2.1-6174** FFTs of saved coefficients use whole-cell sigma scaling,
+then trilinear sampling on a 24×28×20 local grid. Existing W143 mesh arithmetic
+produces 31 contour levels, 8931 vertices and 16243 triangles. Every checked
+mesh vertex reproduces its contour within 10⁻⁸. Lattice translation samples
+agree within 10⁻¹⁰; rotation-related trilinear samples differ by at most
+0.01945 σ, explicitly recorded instead of assuming interpolation preserves
+rotational symmetry exactly. Twelve fixed-atom sample pairs are unchanged.
+
+**14 cold checks** verify source pins, numerical scene preservation, the filled
+base64/gzip HTML payload, separate model/map labels, all contour levels, absence
+of a candidate map, lattice sampling and report links. The static sample figure
+was rendered and visually checked. Interactive browser rendering of this scene
+has not been tested. The historical run has checkpoint/parameter/hash evidence,
+not a retroactively invented modern producer receipt.
+
+NASolve anchor: `branch-artifacts/willow/w237-fixed-source-density/`; controllers
+`w237-fixed-density.py`, `w237-review.py`, `w237-checkout.py`, `w237-figure.py`
+under the existing runners directory. Native scene command:
+`OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 phenix.python -B branch-artifacts/willow/runners/w237-fixed-density.py`.
+Cold verification uses main `.venv/bin/python -B` with `PYTHONDONTWRITEBYTECODE=1`.
+Existing output files are single-use; failed cell-check log is preserved.
+The local GitHub sibling checkout is
+`ScienceCheckouts/Linden/2026-11-23_fixed-source-density/index.html`, alongside
+its self-contained `inspect_density.html`, figure and compact manifest.
+No new coefficients, diffraction fit, product API/schema/default or migration;
+raw map data and derived visualizations remain excluded from Git.

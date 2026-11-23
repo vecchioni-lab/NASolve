@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W237 — View the local geometry proposal in its fixed source map
+
+- Reuse the installed density inspector with the original saved checkpoint maps,
+  explicit crystal image and separate coordinate/map labels. Keep mixed density
+  support and Free-R inclusion visible; no candidate map or fit is implied.
+- Evidence/docs and local visualizations only; no product behavior/schema change.
+
 ### W236 — Qualify matched receiving preparation without fitting
 
 - Bind the saved local closure to its own native capture and complete image
