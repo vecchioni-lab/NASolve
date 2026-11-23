@@ -200,6 +200,15 @@ seven-force composition until both receipts establish that contract. This
 preparation is not a new completed milestone or authorization to bypass Rowan's
 resource hold.
 
+The prepared written-geometry reader reproduces all 58 saved source/candidate
+term values and six relative-handedness checks without a native call. Its exact
+input/controller pins are in `geometry-preparation-check.json`. Source restraint
+inspection also confirms that all 38 adjacent native plane terms are present,
+including four PDU-adjacent terms: unsupported canonical frame readback must not
+be mistaken for missing native forces. Larger-motion stack spacing and lateral
+placement remain distinct from these orientation restraints. All owned jobs
+are stopped; no W239 diffraction run has started.
+
 The next experiment must answer a new question, not repeat W224:
 
 1. **Feasible window:** declare source, intended endpoint/image, ordered pairs,

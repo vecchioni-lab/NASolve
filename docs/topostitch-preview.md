@@ -3310,6 +3310,19 @@ span changes while reporting only eight of twelve strand steps for each stacking
 metric: both PDU ring frames remain explicitly unsupported, not canonicalized.
 This is a readback of Cedar's whole-model result, not a Willow narrow-window fit.
 
+An unsupported descriptive frame does **not** mean its native restraint is
+absent. Cold inspection of this exact original-source capture finds 57 actual
+parallelity terms: 38 same-strand adjacent and 19 cross-strand. Four adjacent
+terms include PDU (A11–A12, A12–A13, B3–B4, B4–B5). Their source-specific atom
+selections are native evidence; they do not extend this reader's canonical-frame
+qualification. Plane orientation alone does not establish normal spacing or
+lateral overlap. All 57 terms are fixed in the six-atom seam experiment.
+The authenticated receipt is already pinned in W235; cold rows and exact
+source/native movable-index mapping are retained under the NASolve anchor
+`branch-artifacts/willow/w239-local-closure-receiving/` in
+`source-stacking-context.json` and `stacking-context-mapping-check.json`.
+No new native evaluation, restraint or pairing authority follows.
+
 Local NASolve evidence: `branch-artifacts/willow/w233-stacking-comparison/`
 (`installed-check.json`, `source-readback.json`, `installed-readback.json`,
 `readback-parity.json`, test logs); controllers `runners/w233-install.py` and
