@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W232 — Bind a conservative connecting-backbone candidate window
+
+- Bind six exact backbone atoms and 856 held atoms to the real numbered child,
+  ancestor and authenticated native support. Preserve source identities and
+  explicit sugar-boundary checks; no displaced model or native run.
+- Evidence/docs only. A descendant is not relabelled as a preparation; complete
+  symmetry-force restart and physical narrow-window feasibility remain open.
+
 ### W231 — Preserve crossover geometry when scoping seam repair
 
 - Record independent source/image measurements distinguishing the declared

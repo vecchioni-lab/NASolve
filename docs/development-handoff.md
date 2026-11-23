@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current audit: W231, 2026-11-23. Maintained implementation: W230.**
+**Current audit: W232, 2026-11-23. Maintained implementation: W230.**
 The existing native input binder now accepts an explicitly selected dictionary-only
 parent policy from Cedar C526. Default literal inputs still require compiled
 restraints. W214 binds a real X11_22 PostMR checkpoint and original observations;
@@ -127,9 +127,12 @@ a bigger pair cap nor W227's reporting subset creates movement permission.
 [W231's independently checked context](topostitch-periodic.md#w231--distinguish-the-central-crossover-from-a-stacked-duplex-step)
 finds the central seam bases nearly perpendicular (81.976°) despite the 2.795 Å
 O3′–P gap. Covalent continuation must not imply a stacking-plane restraint.
-Next prefer a narrowly declared connecting-backbone proposal with bases/sugars
-held; whole-pair junction movement needs separate scope. Consume Cedar C543's
-restart/link evidence rather than repeat a whole-model phosphate fit.
+[W232 now binds a six-atom connecting-backbone scope](topostitch-periodic.md#w232--bind-a-six-atom-connecting-backbone-scope)
+with all 856 other atoms held: 23 cold checks, no displaced candidate or native
+run. All captured base-plane terms are fixed; complete image-force restart
+remains Cedar-owned. Next test the original 2.824 Å ancestor under this narrow
+constraint once that force path is ready. Do not re-perturb the already closed
+child or repeat the whole-model fit; whole-pair junction mobility stays separate.
 
 **Internal helix focus (Simon, 2026-11-22):** retain the rough but recoverable
 molecular placement as a useful intermediate, then explicitly assess stacking
@@ -337,6 +340,14 @@ full-suite qualifications remain their own historical scoped results. No new
 merge, scientific payload publication or default activation is authorized here.
 
 ## Local science checkout
+
+Latest read-only science: GitHub anchor
+`ScienceCheckouts/Linden/2026-11-23_stacking/index.html`. One visually inspected
+figure distinguishes plane angle, normal spacing and lateral displacement in
+both strands, and the report explains the nearly perpendicular crossover.
+It links the existing ChimeraX comparison rather than copying more models.
+Source hashes and links pass; browser rendering is not claimed.
+
 
 Latest physical result: GitHub anchor
 `ScienceCheckouts/Linden/2026-11-21_fixed-frame-recovery/index.html`.

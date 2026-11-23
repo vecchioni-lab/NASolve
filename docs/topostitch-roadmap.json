@@ -282,7 +282,8 @@
         "W227keeps a declared measurement core stable inside a larger complete motion mask; bounds/fixed atoms remain checked across all editable atoms.392/392tests and saved-endpoint parity; no expanded-window execution.",
         "W229confirms the current205atom core has no wider two-fixed-flank interval within its frozen seven-pair route declaration;13cold checks/3anchor-release refusals. No coordinates or native run.",
         "W230 measures adjacent same-strand ring-plane orientation, normal spacing and lateral placement through existing frames;116source/116installed tests and six saved-state readbacks. Default reports unchanged; this is descriptive internal stacking, not closure or acceptance.",
-        "W231 distinguishes the canonical central crossover from ordinary stacking:22coldchecks,~82degree seam planes and2.795AO3-P. No whole-pair anchor release or new native run."
+        "W231 distinguishes the canonical central crossover from ordinary stacking:22coldchecks,~82degree seam planes and2.795AO3-P. No whole-pair anchor release or new native run.",
+        "W232 binds6connecting-backbone atoms/856held atoms to the real child and authenticated native support,23coldchecks. No coordinate change or new native experiment; full image-force receiving remains Cedar-owned."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
@@ -290,7 +291,7 @@
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient.",
         "Internal helix recovery explicitly compares neighbouring base-plane orientation, spacing, lateral offset/overlap and twist before deformation, after placement and after restrained recovery, including fixed-flank transitions. Within-pair coplanarity and between-pair stacking remain distinct; allow supported curvature/nonuniform twist rather than enforcing universal parallelism. Connectivity, sugar-sign retention and R factors alone do not close this gate. Investigator emphasis2026-11-22; planning only, reuse existing frame/geometry owners."
       ],
-      "next_action": "Describe a source-qualified connecting-backbone candidate with bases/sugars and outer junction context fixed. Consume Cedar restart/link evidence; no duplicate whole-model phosphate fit or crossover parallelity target. Whole-pair junction motion needs separate scope. Then independent bounded placement/recovery with explicit stacking, geometry and map readback; preserve the5Acenterline gate separately.",
+      "next_action": "After Cedar qualifies complete image-force restart, test one bounded six-atom recovery from the original2.824Aancestor with all rings/outer context held. Preserve C3/C4 handedness, exact source chemistry, image identity and original data/Free. Do not re-perturb the closed child or duplicate whole-model fitting. Whole-pair junction motion and5Acenterline remain separate gates.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -380,14 +381,15 @@
         "E_CORE_DISPLACEMENT_SUBSET",
         "E_WIDER_WINDOW_SCOPE",
         "E_INTERNAL_STACKING_PLACEMENT",
-        "E_CROSSOVER_WINDOW_CONTEXT"
+        "E_CROSSOVER_WINDOW_CONTEXT",
+        "E_NARROW_BACKBONE_SCOPE"
       ],
       "last_audit": {
         "date": "2026-11-23",
         "code_commit": "3c6c3f9115190068c43c34c7158b8e9584f83a16",
         "reviewer": "Linden",
-        "human_update": 231,
-        "scope": "Source-qualified crossover context; bounded backbone window still to declare"
+        "human_update": 232,
+        "scope": "Conservative six-atom scope bound; physical feasibility and complete image-force restart open"
       }
     },
     {
@@ -462,14 +464,15 @@
         "W220 preserves sugar signs on five fixed whole-residue poses. W221 resolves all24 raw derivative discrepancies through the existing Cedar plane correction; actual refinement already uses it. No new optimizer, accepted large repair or ordinary activation.",
         "W222qualifies live corrected forces; W223capped6Dgeometry warm-start plus W224matched5cycle receiving retains126sugarsigns and recovers synthetic data, with explicit remaining moving outliers. W225necessary fixed-flank path bound motivates window feasibility before larger targets.",
         "W226 maintains the bounded6Ddriver with exact points/units, accepted-step history, hard callback budgets, derivative/restoration gates and installed-native parity. It does not write/qualify rounded coordinates or grant ordinary/scientific permission.",
-        "W228independently reviews CedarC539 consuming the shared registered graph for a named source-frame phosphate continuation:36cold checks, exact mapped labels/operators and checkpoint evidence. Intended topology remains distinct from actually printed restraints; no force or recut qualification."
+        "W228independently reviews CedarC539 consuming the shared registered graph for a named source-frame phosphate continuation:36cold checks, exact mapped labels/operators and checkpoint evidence. Intended topology remains distinct from actually printed restraints; no force or recut qualification.",
+        "W232 binds6connecting-backbone atoms/856held atoms to the real child and authenticated native support,23coldchecks. No coordinate change or new native experiment; full image-force receiving remains Cedar-owned."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Use the qualified collective driver and existing atomic/endpoint owners. First freeze a feasible editable-window and independent intended motion/target; preserve protected junctions, stacking and original chemistry. Then one matched data-supported bending/straightening comparison after baseline qualification. Do not repeat/tune W224. Cedar owns ordinary receiving and the real5W6W periodic intent; the5Acenterline definition/test remains separate and unrun.",
+      "next_action": "After Cedar qualifies complete image-force restart, test one bounded six-atom recovery from the original2.824Aancestor with all rings/outer context held. Preserve C3/C4 handedness, exact source chemistry, image identity and original data/Free. Do not re-perturb the closed child or duplicate whole-model fitting. Whole-pair junction motion and5Acenterline remain separate gates.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -598,15 +601,15 @@
         "E_STAGED_RECOVERY",
         "E_CENTROID_PATH_BOUND",
         "E_NATIVE_COLLECTIVE_TRIAL",
-        "E_REGISTERED_PHOSPHATE_READER"
+        "E_REGISTERED_PHOSPHATE_READER",
+        "E_NARROW_BACKBONE_SCOPE"
       ],
       "last_audit": {
-        "date": "2026-11-22",
-        "human_update": 228,
-        "code_commit": "761f43982fe1bec85e119c64277abccaeda6dda2",
+        "date": "2026-11-23",
+        "code_commit": "3c6c3f9115190068c43c34c7158b8e9584f83a16",
         "reviewer": "Linden",
-        "scope": "Read-only cross-owner source-frame observation; milestone remains partial",
-        "basis": "20canonical and16exact-checkpoint checks against Cedar7bc491ac; no new native execution or merged source."
+        "human_update": 232,
+        "scope": "Conservative six-atom scope bound; physical feasibility and complete image-force restart open"
       }
     },
     {
@@ -684,7 +687,8 @@
         "W227keeps a declared measurement core stable inside a larger complete motion mask; bounds/fixed atoms remain checked across all editable atoms.392/392tests and saved-endpoint parity; no expanded-window execution.",
         "W229confirms the current205atom core has no wider two-fixed-flank interval within its frozen seven-pair route declaration;13cold checks/3anchor-release refusals. No coordinates or native run.",
         "W230 measures adjacent same-strand ring-plane orientation, normal spacing and lateral placement through existing frames;116source/116installed tests and six saved-state readbacks. Default reports unchanged; this is descriptive internal stacking, not closure or acceptance.",
-        "W231 distinguishes the canonical central crossover from ordinary stacking:22coldchecks,~82degree seam planes and2.795AO3-P. No whole-pair anchor release or new native run."
+        "W231 distinguishes the canonical central crossover from ordinary stacking:22coldchecks,~82degree seam planes and2.795AO3-P. No whole-pair anchor release or new native run.",
+        "W232 binds6connecting-backbone atoms/856held atoms to the real child and authenticated native support,23coldchecks. No coordinate change or new native experiment; full image-force receiving remains Cedar-owned."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -695,7 +699,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Describe a source-qualified connecting-backbone candidate with bases/sugars and outer junction context fixed. Consume Cedar restart/link evidence; no duplicate whole-model phosphate fit or crossover parallelity target. Whole-pair junction motion needs separate scope. Then independent bounded placement/recovery with explicit stacking, geometry and map readback; preserve the5Acenterline gate separately.",
+      "next_action": "After Cedar qualifies complete image-force restart, test one bounded six-atom recovery from the original2.824Aancestor with all rings/outer context held. Preserve C3/C4 handedness, exact source chemistry, image identity and original data/Free. Do not re-perturb the closed child or duplicate whole-model fitting. Whole-pair junction motion and5Acenterline remain separate gates.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -816,14 +820,15 @@
         "E_CORE_DISPLACEMENT_SUBSET",
         "E_WIDER_WINDOW_SCOPE",
         "E_INTERNAL_STACKING_PLACEMENT",
-        "E_CROSSOVER_WINDOW_CONTEXT"
+        "E_CROSSOVER_WINDOW_CONTEXT",
+        "E_NARROW_BACKBONE_SCOPE"
       ],
       "last_audit": {
         "date": "2026-11-23",
         "code_commit": "3c6c3f9115190068c43c34c7158b8e9584f83a16",
         "reviewer": "Linden",
-        "human_update": 231,
-        "scope": "Source-qualified crossover context; bounded backbone window still to declare"
+        "human_update": 232,
+        "scope": "Conservative six-atom scope bound; physical feasibility and complete image-force restart open"
       }
     },
     {
@@ -5994,6 +5999,23 @@
           "size": 9054
         }
       ]
+    },
+    "E_NARROW_BACKBONE_SCOPE": {
+      "kind": "Exact numbered-child backbone-only candidate scope",
+      "date": "2026-11-23",
+      "human_update": 232,
+      "code_commit": "3c6c3f9115190068c43c34c7158b8e9584f83a16",
+      "reference": "docs/topostitch-periodic.md#w232--bind-a-six-atom-connecting-backbone-scope",
+      "result": "23coldchecks;6selected/856held atoms, true manual-001/refine-005lineage, authenticated child-native capture, fixed-sugar and >2Amotion refusals. All44planarity/57parallelity terms fixed. No displacedmodel/nativecall/fit.",
+      "limitation": "Candidate feasibility constraint only; current child already closed1.620183A. Full image-force restart and narrow recovery from original2.824Aancestor remain open. Prep-only reader not bypassed; no general descendant admission or scientific acceptance.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w232-backbone-window/review.json",
+          "sha256": "ec45f4b35abda96a125d5fdd14aadf46a46f5a10181202c490113d25a76b57b7",
+          "size": 28501
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -6159,8 +6181,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 231,
-    "next": 232,
+    "current": 232,
+    "next": 233,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -7354,6 +7376,12 @@
       {
         "number": 231,
         "title": "Distinguish a covalent crossover from a stacked duplex step",
+        "state": "RECORDED",
+        "code_commit": "3c6c3f9115190068c43c34c7158b8e9584f83a16"
+      },
+      {
+        "number": 232,
+        "title": "Bind six connecting-backbone atoms with all rings held",
         "state": "RECORDED",
         "code_commit": "3c6c3f9115190068c43c34c7158b8e9584f83a16"
       }

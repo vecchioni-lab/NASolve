@@ -35,8 +35,9 @@ current instructions; other branches retain their own status and validation pins
   The failed direct result and three remaining moving-region outliers stay
   explicit. This is same-family synthetic recovery, not general experimental repair.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W231, next W232:
-  declare the next terminal/coupled/periodic window before independent bending.
+  [generated human view](topostitch-roadmap.md). Current W232, next W233:
+  a six-atom connecting-backbone scope is bound with all base/sugar rings fixed;
+  consume Cedar’s complete image-force restart before the narrow ancestor trial.
   The existing two-fixed-flank interval cannot simply grow around the same core.
   Keep the successful synthetic receiving comparison closed. The 5 Å centerline target is separate.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and

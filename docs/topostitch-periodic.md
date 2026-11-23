@@ -12729,3 +12729,52 @@ and explicitly anchored canonical inputs. An initial interactive inspection used
 an absent `point` method and stopped before measuring the seam; the recorded
 controller uses existing `apply`/`pullback` and independently verifies transport.
 Raw science remains local. No runtime/schema/default change or migration.
+
+
+## W232 — Bind a six-atom connecting-backbone scope
+
+The first conservative candidate window now names B1 P/OP1/OP2/O5′/C5′ and
+B7 O3′, with a proposed 2 Å per-atom displacement cap. All other **856 atoms**
+—including every base and sugar-ring atom—stay fixed, as do occupancy/ADPs.
+This is an exploratory feasibility constraint, not a recommended production
+fit. O3′ is exocyclic; moving it still needs the B7 C3′ handedness check, and
+moving C5′ needs the B1 C4′ check. Keeping ring coordinates alone is insufficient.
+
+**23 cold checks** bind the exact C543 `manual-001` child
+(`5c0b63b683c58e977d12ebce9b6aca61d44444367a816417a2e8c39e667fb075`)
+to its real `refine-005` ancestor, unchanged 862 identities, observations and
+source-image declaration. The inherited native receipt
+`886583be3b0a852e38c9770f7ee081f30388540f481db8ef8b5f4b148c702fde`
+authenticates the copied fixed-coordinate capture through existing Cedar owners.
+The existing coordinate mask and endpoint byte audit accept zero displacement
+and refuse moving a held sugar atom or exceeding the 2 Å cap. No displaced
+model, minimization, native call or refinement is produced.
+
+Captured dictionary support touches six bonds, nine angles, six dihedrals and
+three chirality terms (including phosphate chirality). All 44 planarity and
+57 parallelity terms lie wholly in the fixed context. The capture contains no
+`bond_asu` terms; observing its monomer support is not proof of complete
+image-aware continuation forces in the restarted optimizer. Cedar owns that
+restoration, exclusion and exactly-once execution gate.
+
+The maintained preparation-window inspector deliberately refuses refined/manual
+descendants. This audit does not bypass it by inventing a preparation or preview
+ancestor: existing checkpoint resolution and inherited-input verification,
+authenticated native capture, named proxy support and native/source mapping are
+composed directly in a local diagnostic. A maintained descendant-window consumer
+will require the explicit Cedar lineage join.
+
+The current child already measures 1.620183 Å at the seam. The next useful
+physical test starts from the **original 2.824 Å ancestor**, asking whether
+this narrow backbone window can close with rings held under the full original
+chemistry and complete image-aware restraints. Do not perturb and recover the
+already closed child merely to obtain another success. Expand the window only
+as a new explicit hypothesis if the narrow constraint proves infeasible.
+
+NASolve anchor: `branch-artifacts/willow/w232-backbone-window/review.json`,
+with unchanged model/registry snapshots in `inputs/` and the authenticated
+capture in `native-capture/`. Controller `branch-artifacts/willow/runners/w232-backbone-window.py`
+uses Python 3.12 with the same `PYTHONDONTWRITEBYTECODE` and Gemmi environment
+as W231. Original inputs and selected checkpoint remain untouched. These local
+working inputs are not a complete portable numbered run and stay out of Git.
+No runtime/schema/default change, new installation or full-suite repeat.
