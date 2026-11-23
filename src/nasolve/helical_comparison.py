@@ -83,16 +83,35 @@ def _delta(first, second, key, *, units, absent, angular=False):
     return {**result, 'status': 'MEASURED', 'delta': delta}
 
 
+_STACKING_METRICS = ('plane_angle_deg', 'centroid_distance_angstrom',
+                     'normal_spacing_angstrom', 'lateral_offset_angstrom')
+
+
+def _stacking_delta(first, second, key):
+    # Per-metric availability matters: perpendicular planes still supply an
+    # angle and centroid distance, even though their mean normal is ambiguous.
+    def metric(row):
+        if row is None or row[key] is None:
+            return row
+        return {**row, 'status': 'MEASURED', 'reason': None}
+    return _delta(metric(first), metric(second), key,
+                  units='degree' if key=='plane_angle_deg' else 'angstrom',
+                  absent='ADJACENT_STEP_UNMAPPED')
+
+
 def compare_helical_states(reference, candidate, *, correspondence,
                            strand_correspondence, simple_twist=False,
-                           max_ring_fit_rmsd_angstrom=None, include_half_span=False):
+                           max_ring_fit_rmsd_angstrom=None, include_half_span=False,
+                           include_stacking=False):
     """Return candidate-minus-reference changes without inferring site identity.
 
     Require explicit I-to-I/II-to-II strand correspondence and complete pair
     accounting, including None for unmatched mates. Reversed or missing adjacency
     has no comparable step. Both states use the same measurement options.
     Optional simple twist requires the existing topology extra and explicit fit
-    limit. State-scoped source anchors retain exact filenames/hashes on relocation.
+    limit. include_stacking explicitly requires simple_twist=True and compares
+    the same fitted frames, preserving independent strand/metric availability.
+    State-scoped source anchors retain exact filenames/hashes on relocation.
     """
     if not isinstance(reference, HelicalState) or not isinstance(candidate, HelicalState):
         raise ValueError('Require two explicit HelicalState records')
@@ -100,8 +119,10 @@ def compare_helical_states(reference, candidate, *, correspondence,
         raise ValueError('State names must be distinct')
     if strand_correspondence != 'I_TO_I_II_TO_II':
         raise ValueError('Explicit I_TO_I_II_TO_II strand correspondence is required; no strand-direction inference')
-    if type(simple_twist) is not bool or type(include_half_span) is not bool:
+    if any(type(value) is not bool for value in (simple_twist, include_half_span, include_stacking)):
         raise ValueError('Measurement options must be boolean')
+    if include_stacking and not simple_twist:
+        raise ValueError('Stacking comparison requires simple_twist=True and an explicit ring-fit policy')
     if not simple_twist and max_ring_fit_rmsd_angstrom is not None:
         raise ValueError('Ring-fit limit requires simple_twist=True')
     _validate_correspondence(reference, candidate, correspondence)
@@ -112,7 +133,8 @@ def compare_helical_states(reference, candidate, *, correspondence,
         if simple_twist:
             from .helical_twist import inspect_helical_region
             report = inspect_helical_region(state.model_path, state.region,
-                max_ring_fit_rmsd_angstrom=max_ring_fit_rmsd_angstrom, **kwargs)
+                max_ring_fit_rmsd_angstrom=max_ring_fit_rmsd_angstrom,
+                include_stacking=include_stacking, **kwargs)
         else:
             report = inspect_phosphate_spans(state.model_path, state.region, **kwargs)
         reports.append(report)
@@ -136,6 +158,7 @@ def compare_helical_states(reference, candidate, *, correspondence,
     # Enumerate actual declared adjacency in each state, never compress away a
     # missing pair or infer direction for reversed/reordered correspondences.
     step_maps = []
+    stacking_maps = []
     for report, attr in zip(reports, ('reference_pair_id', 'candidate_pair_id')):
         logical = {getattr(r,attr): r.logical_pair_id for r in correspondence if getattr(r,attr) is not None}
         observed = report['simple_step_twist'].get('steps')
@@ -143,12 +166,23 @@ def compare_helical_states(reference, candidate, *, correspondence,
             ids = [p['pair_id'] for p in report['pairs']]
             observed = [dict(pair_ids=[a,b],status='NOT_MEASURED',reason='SIMPLE_TWIST_NOT_REQUESTED') for a,b in zip(ids,ids[1:])]
         step_maps.append({tuple(logical[p] for p in step['pair_ids']):step for step in observed})
+        if include_stacking:
+            stacking_maps.append({tuple(logical[p] for p in step['pair_ids']):step
+                                  for step in report['stacking_geometry']['steps']})
     keys = list(dict.fromkeys([*step_maps[0], *step_maps[1]]))
     steps = [{'logical_pair_ids':list(key), 'simple_step_twist': _delta(
         step_maps[0].get(key),step_maps[1].get(key),'twist_deg',units='degree',
         absent='ADJACENT_STEP_UNMAPPED',angular=True)} for key in keys]
+    if include_stacking:
+        for item, key in zip(steps, keys):
+            a, b = (mapping.get(key) for mapping in stacking_maps)
+            item['stacking_geometry'] = [dict(strand=strand, **{
+                metric: _stacking_delta(a['strands'][i] if a else None,
+                                        b['strands'][i] if b else None, metric)
+                for metric in _STACKING_METRICS})
+                for i, strand in enumerate(('strand_i', 'strand_ii'))]
     manifest = [asdict(r) for r in correspondence]
-    return dict(schema_version=1, kind='helical-state-comparison', method=METHOD,
+    result = dict(schema_version=1, kind='helical-state-comparison', method=METHOD,
         state_names={'reference':reference.name,'candidate':candidate.name},
         states={'reference':reports[0],'candidate':reports[1]},
         source_anchor_scope='Each embedded state owns its model_directory anchor',
@@ -164,3 +198,9 @@ def compare_helical_states(reference, candidate, *, correspondence,
                   'measured_twist_changes':sum(s['simple_step_twist']['status']=='MEASURED' for s in steps)},
         axis_radii={'status':'NOT_MEASURED'}, helix_bending={'status':'NOT_MEASURED'},
         runtime_authority=False, coordinate_changes=False)
+    if include_stacking:
+        result['stacking_delta_convention'] = 'Candidate minus reference without angular wrapping; acute unoriented plane angle is not a signed bend'
+        result['coverage']['stacking_changes'] = {
+            metric: sum(row[metric]['status']=='MEASURED' for step in steps
+                        for row in step['stacking_geometry']) for metric in _STACKING_METRICS}
+    return result

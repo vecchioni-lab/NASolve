@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W233 — Compare stacking through declared state correspondence
+
+- Carry opt-in stacking descriptors through the existing before/after helical
+  comparison. Keep directed adjacency, explicit strand mapping and per-metric
+  missing values; never bridge unmatched steps or hide the intact strand.
+- Preserve default reports and signed-twist arithmetic. The new optional report
+  fields use ordinary candidate-minus-reference differences, not contact or
+  acceptance scores. No CLI, dependency, force or migration change.
+
 ### W232 — Bind a conservative connecting-backbone candidate window
 
 - Bind six exact backbone atoms and 856 held atoms to the real numbered child,

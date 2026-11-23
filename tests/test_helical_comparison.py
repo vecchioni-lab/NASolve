@@ -180,3 +180,79 @@ def test_relocation_preserves_report(tmp_path):
     for s in (a,b):s.model_path.rename(moved/s.model_path.name)
     actual=compare(replace(a,model_path=moved/a.model_path.name),replace(b,model_path=moved/b.model_path.name))
     assert actual==expected
+
+
+def stacking_compare(a,b,correspondence=None,**kw):
+ return compare(a,b,correspondence,simple_twist=True,max_ring_fit_rmsd_angstrom=.15,include_stacking=True,**kw)
+
+
+def test_stacking_comparison_preserves_defaults_and_explicit_renaming(tmp_path):
+ from .test_helical_twist import model, _translate_pairs
+ a,b=twist_states(tmp_path,0,0)
+ text=_translate_pairs(model(angle=0),{2:(2,0,0),3:(4,0,0)})
+ text=''.join(l[:21]+('X'if l[21]=='A'else'Z')+f'{int(l[22:26])+100:4d}'+l[26:]for l in text.splitlines(keepends=True))
+ b=state(tmp_path,'candidate',region(100,('X','Z'),'q'),text)
+ plain=compare(a,b,simple_twist=True,max_ring_fit_rmsd_angstrom=.15)
+ r=stacking_compare(a,b);reverse=stacking_compare(b,a)
+ for step,back in zip(r['steps'],reverse['steps']):
+  assert [row['strand']for row in step['stacking_geometry']]==['strand_i','strand_ii']
+  for row,rev in zip(step['stacking_geometry'],back['stacking_geometry']):
+   assert row['lateral_offset_angstrom']['delta']==pytest.approx(2)
+   assert rev['lateral_offset_angstrom']['delta']==pytest.approx(-2)
+   assert row['normal_spacing_angstrom']['delta']==pytest.approx(0)
+   assert row['plane_angle_deg']['delta']==pytest.approx(0,abs=1e-6)
+ assert r['coverage']['stacking_changes']==dict(plane_angle_deg=4,centroid_distance_angstrom=4,normal_spacing_angstrom=4,lateral_offset_angstrom=4)
+ # No default mutation or silent report migration.
+ for embedded in r['states'].values():embedded.pop('stacking_geometry')
+ for step in r['steps']:step.pop('stacking_geometry')
+ r['coverage'].pop('stacking_changes');r.pop('stacking_delta_convention')
+ assert r==plain
+
+
+@pytest.mark.parametrize('fault',['missing_atom','break','reversed','unmapped'])
+def test_stacking_comparison_respects_missing_strands_and_directed_adjacency(tmp_path,fault):
+ a,b=twist_states(tmp_path);mapping=None
+ if fault=='missing_atom':
+  text=''.join(l for l in b.model_path.read_text().splitlines(keepends=True)if not(l[21:26]=='A   2'and l[12:16].strip()=='N9'))
+  b=state(tmp_path,'candidate',b.region,text)
+ if fault=='break':b=replace(b,region=replace(b.region,pairs=(b.region.pairs[0],replace(b.region.pairs[1],break_before=True),b.region.pairs[2])))
+ if fault=='reversed':
+  b=replace(b,region=replace(b.region,pairs=tuple(reversed(b.region.pairs))))
+  mapping=tuple(PairCorrespondence(p.pair_id,p.pair_id,p.pair_id)for p in a.region.pairs)
+ if fault=='unmapped':mapping=(PairCorrespondence('left','p1','p1'),PairCorrespondence('missing','p2',None),PairCorrespondence('new',None,'p2'),PairCorrespondence('right','p3','p3'))
+ r=stacking_compare(a,b,mapping)
+ if fault=='missing_atom':
+  for step in r['steps']:
+   assert step['stacking_geometry'][0]['plane_angle_deg']['delta']is None
+   assert step['stacking_geometry'][1]['plane_angle_deg']['delta']==pytest.approx(0)
+ elif fault=='break':
+  assert all(x['normal_spacing_angstrom']['candidate_reason']=='DECLARED_BREAK'for x in r['steps'][0]['stacking_geometry'])
+  assert all(x['normal_spacing_angstrom']['delta']==pytest.approx(0)for x in r['steps'][1]['stacking_geometry'])
+ else:
+  assert len(r['steps'])==4
+  assert all(x['plane_angle_deg']['delta']is None for step in r['steps']for x in step['stacking_geometry'])
+  assert all(v==0 for v in r['coverage']['stacking_changes'].values())
+
+
+def test_stacking_comparison_keeps_partial_angle_and_distance(tmp_path):
+ a,b=twist_states(tmp_path,0,0);lines=[]
+ for l in b.model_path.read_text().splitlines(keepends=True):
+  if l[21:26]=='A   2':
+   x,y,z=(float(l[a:b])for a,b in ((30,38),(38,46),(46,54)))
+   l=l[:30]+f'{x:8.3f}{-(z-3.4):8.3f}{y+3.4:8.3f}'+l[54:]
+  lines.append(l)
+ b=state(tmp_path,'candidate',b.region,''.join(lines));r=stacking_compare(a,b)
+ for step in r['steps']:
+  row=step['stacking_geometry'][0]
+  assert row['plane_angle_deg']['delta']==pytest.approx(90,abs=1e-6)
+  assert row['centroid_distance_angstrom']['status']=='MEASURED'
+  assert row['normal_spacing_angstrom']['delta']is None
+  assert row['normal_spacing_angstrom']['candidate_reason']=='AMBIGUOUS_MIDPLANE_NORMAL'
+  assert step['stacking_geometry'][1]['normal_spacing_angstrom']['delta']==pytest.approx(0)
+
+
+@pytest.mark.parametrize('options',[{'include_stacking':1},{'include_stacking':None},{'include_stacking':True}])
+def test_stacking_comparison_rejects_implicit_frame_policy(tmp_path,options):
+ a,b=state(tmp_path,'parent'),state(tmp_path,'candidate')
+ with pytest.raises(ValueError,match='boolean|simple_twist'):
+  compare(a,b,**options)
