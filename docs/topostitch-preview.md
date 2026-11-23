@@ -3657,3 +3657,92 @@ Local receipts/logs live under NASolve anchor
 `branch-artifacts/willow/w245-saved-scattering/`. No native Phenix execution,
 full-suite repeat, scientific dataset copy or generated payload commit was needed
 for this isolated read-only composition boundary. P03 remains partial.
+
+
+## Inspect a serialized recut against its saved source (W248)
+
+`topostitch_recut_bundle.observe_relabel_serialization` checks whether a separately
+saved PDB/mmCIF still represents the chosen recut. Previously this comparison was
+only the W247 local experiment. The maintained API is read-only: it writes no
+coordinates, adopts no ASU and activates no bond or restraint.
+
+```python
+from nasolve.topostitch_recut_bundle import observe_relabel_serialization
+report = observe_relabel_serialization(
+    preview_directory, exported_model,
+    expected_receipt_sha256=recorded_preview_sha256,
+    expected_model_sha256=recorded_export_sha256,
+    coordinate_format="mmcif",
+    max_coordinate_component_error_angstrom=1e-6,
+    max_u_component_error_angstrom_squared=1e-6,
+)
+```
+
+Both SHA-256 values must identify the intended saved bytes. The packet owner
+replays its existing anchored inputs and `ReferenceFrame`; drift before or during
+inspection refuses. PDB/mmCIF selection and finite nonnegative precision bounds
+are explicit. These are caller-declared **numerical review bounds**, not chemical
+or crystallographic acceptance thresholds.
+
+The inspector checks the complete atom inventory by chain, residue number,
+insertion code, component, atom name and alternate location. A one-to-one
+`source_to_export_indices` permutation records reordered files; it never joins
+independently sorted arrays just by index. Missing, extra or duplicate atoms,
+changed record type/element/charge, B/occupancy, anisotropic presence, parsed cell
+or space group refuse. CIF atom IDs, required scattering fields and six Cartesian
+U fields must be explicit and unambiguous; missing values are not replaced with
+parser defaults. NCS expansion and multiple coordinate models/blocks are outside
+this scope. Author atom identities must remain resolvable; this is not a renaming
+or polymer/entity metadata importer.
+
+Coordinates and all six Cartesian U components are compared against the existing
+bound frame. U values explicitly describe **Gemmi's float32 Atom state**, including
+rotation/readback rounding; this does not preserve a higher-precision native
+scattering object by implication. The report records maximum component errors,
+counts exceeding each bound and `within_requested_precision`. A coordinate/U
+precision failure remains an observed result with `scientific_acceptance=False`;
+it is not silently accepted or confused with an identity/binding failure.
+
+The existing backbone-intent owner supplies each resolved O3′–P partner and exact
+directed image. The inspector measures that geometry in the reread model and
+retains unresolved endpoints. `declared_link_observations` comes from the external
+verified graph; `annotations.parsed_connection_count` describes the coordinate
+reader separately. `declared_graph_verified_in_file` remains false even when
+counts happen to match. No proximity-based partner or chemical nick is inferred.
+Native chemical interpretation and actual annotation correspondence need their
+own qualification.
+
+The additive schema-1 `topostitch-representative-serialization-observation` carries
+receipt, exported-model/source/graph digests, numerical precision and permutation,
+external-intent digest, link observations and its own report digest. Existing
+packets, reports, CLI defaults, force owners and direct scattering API are unchanged;
+no migration is required. This observer calculates no structure factors. Use the
+existing W245 scattering observation for the same saved recut and preserve W247's
+independent native readback evidence; neither alone closes whole-ASU acceptance.
+
+**Validation:** 29 focused cases, including 24 demonstrated fail-before cases,
+cover explicit anisotropic and forest/isotropic packets, reordered atoms,
+coordinate/tensor precision loss, changed inventory/thermal state/cell/group,
+ambiguous CIF fields, exact pins, mid-read drift, explicit format/bounds and
+relocation with the original packet directory gone. **237 source checks (17.42 s)
+and 237 isolated installed checks (20.76 s)** pass using the six-file W245 command.
+The source run's only warning was sandbox-denied pytest-cache writing; the installed
+run disables the cache. Python 3.10 syntax, installed/source module bytes and the
+existing cut-preview `--help` entry point pass. The disposable build source is
+removed; all **219** archived file hashes match after relocation, the original
+install path is gone, and the installed tests run from the relocated package.
+Installation uses `pip install --no-index --no-deps --no-build-isolation --target
+INSTALL BUILD_SOURCE` with the existing topology/test dependencies.
+
+A full-suite attempt was stopped at Rowan's request to preserve Simon's focused
+branch-testing scope. It had 285 passes, one skip and five campaign-process
+failures caused by sandbox-denied `killpg`/`ps`, then exited on the requested
+interrupt. Its partial log is retained; **there is no full-suite pass**. The
+confirmed pytest process and recorded fixture-worker PIDs had exited. Complete
+integration testing remains a pre-merge gate, not a claim made by this patch.
+
+Generated observations, install receipts and logs remain under NASolve anchor
+`branch-artifacts/willow/w248-serialization-observer/`. No datasets, coordinate
+exports or scientific reports are committed. P03 stays partial: production writer,
+connection/polymer metadata, native full-precision/cell policy, inverse edit import,
+coupled refinement and scientific acceptance remain separate gates.

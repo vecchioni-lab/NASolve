@@ -175,3 +175,124 @@ def observe_registered_relabel_scattering(model,discovery,registration,*,node_im
     if any(p.read_bytes()!=value for p,value in originals.items()):raise ValueError('Scattering source inputs changed during observation')
     report['report_sha256']=_fingerprint(report)
     return report
+
+
+def _parsed_identity(cra):
+    return dict(chain=cra.chain.name, residue_number=cra.residue.seqid.num,
+        insertion_code=cra.residue.seqid.icode.strip(), residue_code=cra.residue.name,
+        atom_name=cra.atom.name, altloc=cra.atom.altloc.replace('\x00','').strip())
+
+
+def _serialized_structure(data, coordinate_format):
+    """Read explicit scattering fields; never accept parser-filled missing values."""
+    import gemmi
+    try:
+        text = data.decode('ascii')
+        if coordinate_format == 'pdb':
+            parsed = gemmi.read_pdb_string(text)
+            if len(parsed) != 1: raise ValueError('Require exactly one serialized model')
+            orbit = dict(atoms=[dict(identity=_parsed_identity(c), position_angstrom=list(c.atom.pos))
+                               for c in parsed[0].all()])
+            return _structure(data, orbit)[0]
+        if coordinate_format != 'mmcif':
+            raise ValueError('Require an explicit pdb or mmcif coordinate format')
+        document = gemmi.cif.read_string(text)
+        if len(document) != 1: raise ValueError('Require exactly one coordinate CIF block')
+        block = document.sole_block()
+        table = block.find_mmcif_category('_atom_site.')
+        required = ('id','group_PDB','type_symbol','label_atom_id','label_comp_id',
+                    'auth_asym_id','auth_seq_id','Cartn_x','Cartn_y','Cartn_z','occupancy','B_iso_or_equiv')
+        tags = list(table.tags)
+        if not len(table) or any('_atom_site.'+t not in tags for t in required):
+            raise ValueError('Require explicit serialized atom identity and scattering fields')
+        columns = {t:tags.index('_atom_site.'+t) for t in required}
+        ids=[];identities=[]
+        for row in table:
+            values={t:gemmi.cif.as_string(row[i]) for t,i in columns.items()}
+            if any(row[columns[t]] in ('.','?') for t in required):
+                raise ValueError('Missing serialized atom identity or scattering field')
+            if values['group_PDB'] not in ('ATOM','HETATM'):
+                raise ValueError('Unsupported serialized record type')
+            numbers = [float(values[t]) for t in ('Cartn_x','Cartn_y','Cartn_z','occupancy','B_iso_or_equiv')]
+            if not all(math.isfinite(v) for v in numbers) or not 0<=numbers[3]<=1 or numbers[4]<0:
+                raise ValueError('Invalid serialized scattering parameters')
+            ids.append(values['id'])
+            identities.append((values['auth_asym_id'],int(values['auth_seq_id']),
+                               values['label_comp_id'],values['label_atom_id'],values['group_PDB']))
+        id_set=set(ids)
+        if len(id_set)!=len(ids): raise ValueError('Duplicate serialized atom-site identifiers')
+        adp = block.find_mmcif_category('_atom_site_anisotrop.');aniso_ids=set()
+        if len(adp):
+            names=['_atom_site_anisotrop.id']+['_atom_site_anisotrop.U'+s for s in
+                ('[1][1]','[2][2]','[3][3]','[1][2]','[1][3]','[2][3]')]
+            if any(n not in list(adp.tags) for n in names):
+                raise ValueError('Require explicit six-component Cartesian U in coordinate CIF')
+            indices=[list(adp.tags).index(n)for n in names]
+            for row in adp:
+                key=gemmi.cif.as_string(row[indices[0]])
+                if key not in id_set or key in aniso_ids:
+                    raise ValueError('Orphan or duplicate serialized anisotropic tensor')
+                values=[float(row[i])for i in indices[1:]]
+                if not all(math.isfinite(v)for v in values) or not any(values) or min(gemmi.SMat33d(*values).calculate_eigenvalues())<0:
+                    raise ValueError('Invalid serialized Cartesian anisotropic tensor')
+                aniso_ids.add(key)
+        structure=gemmi.make_structure_from_block(block)
+        if len(structure)!=1 or len(list(structure[0].all()))!=len(ids):
+            raise ValueError('Coordinate CIF parser changed model or atom multiplicity')
+        if structure.ncs or len(block.find_mmcif_category('_struct_ncs_oper.')):
+            raise ValueError('NCS expansion is outside serialized representative scope')
+        for cra,key,expected in zip(structure[0].all(),ids,identities):
+            actual=(cra.chain.name,cra.residue.seqid.num,cra.residue.name,cra.atom.name,
+                    'ATOM' if cra.residue.het_flag=='A' else 'HETATM')
+            if actual!=expected or cra.atom.aniso.nonzero()!=(key in aniso_ids):
+                raise ValueError('Coordinate CIF parser changed ordered identity or ADP inventory')
+        return structure
+    except (RuntimeError,UnicodeError,OverflowError,TypeError) as exc:
+        raise ValueError('Unsupported or malformed serialized coordinate model') from exc
+
+
+def _observe_serialized_relabel(source_data, export_data, *, preview, frame,
+        coordinate_format, coordinate_bound, u_bound):
+    """Compare the complete labelled exported state with the represented Gemmi state."""
+    import gemmi
+    for value in (coordinate_bound,u_bound):
+        if type(value) not in (int,float) or not math.isfinite(value) or value<0:
+            raise ValueError('Require explicit finite nonnegative serialization precision bounds')
+    source,source_atoms,anisou_count=_structure(source_data,preview['source_orbit_observation'])
+    exported=_serialized_structure(export_data,coordinate_format)
+    if (exported.cell.parameters!=source.cell.parameters or exported.find_spacegroup() is None
+            or exported.find_spacegroup().hall!=source.find_spacegroup().hall):
+        raise ValueError('Serialized crystal cell or group differs from the source frame')
+    actual=list(exported[0].all());keys=[_fingerprint(_parsed_identity(c))for c in actual]
+    expected_keys=[_fingerprint(atom['identity'])for atom in preview['source_orbit_observation']['atoms']]
+    if len(keys)!=len(expected_keys) or len(set(keys))!=len(keys) or set(keys)!=set(expected_keys):
+        raise ValueError('Serialized atom identity or multiplicity differs from complete source')
+    lookup={key:i for i,key in enumerate(keys)};order=[lookup[k]for k in expected_keys]
+    actual=[actual[i]for i in order]
+    def metadata(cra):
+        a=cra.atom
+        return cra.residue.het_flag,a.element.name,a.charge,a.occ,a.b_iso,a.aniso.nonzero()
+    if any(metadata(a)!=metadata(b)for a,b in zip(source_atoms,actual)):
+        raise ValueError('Serialized element, record type, charge, B/Q or ADP mode changed')
+    kwargs=dict(source_labels=frame.source_labels,context_sha256=frame.context_sha256)
+    expected_xyz=frame.to_representatives([list(c.atom.pos)for c in source_atoms],**kwargs)
+    # State precision is explicit: source Atom and rotated target Atom U are float32.
+    expected_u=[list(gemmi.SMat33f(*u).elements_pdb())for u in frame.tensors_to_representatives(
+        [list(c.atom.aniso.elements_pdb())for c in source_atoms],**kwargs)]
+    actual_xyz=[list(c.atom.pos)for c in actual];actual_u=[list(c.atom.aniso.elements_pdb())for c in actual]
+    if not all(math.isfinite(v)for rows in (actual_xyz,actual_u)for row in rows for v in row):
+        raise ValueError('Nonfinite serialized coordinate or displacement tensor')
+    coordinate_errors=[max(abs(x-y)for x,y in zip(a,b))for a,b in zip(actual_xyz,expected_xyz)]
+    u_errors=[max(abs(x-y)for x,y in zip(a,b))for a,b in zip(actual_u,expected_u)]
+    return dict(atom_count=len(actual),anisou_count=anisou_count,
+        identity_mapping=dict(source_order_retained=order==list(range(len(order))),source_to_export_indices=order),
+        maximum_coordinate_component_error_angstrom=max(coordinate_errors),
+        maximum_u_component_error_angstrom_squared=max(u_errors),
+        atoms_exceeding_coordinate_bound=sum(x>coordinate_bound for x in coordinate_errors),
+        atoms_exceeding_u_bound=sum(x>u_bound for x in u_errors),
+        within_requested_precision=max(coordinate_errors)<=coordinate_bound and max(u_errors)<=u_bound,
+        precision=dict(max_coordinate_component_error_angstrom=coordinate_bound,
+                       max_u_component_error_angstrom_squared=u_bound,
+                       state='Represented Gemmi float32 Atom U; not full-precision native scattering state'),
+        annotations=dict(parsed_connection_count=len(exported.connections),declared_graph_verified_in_file=False),
+        crystal=preview['registered_graph']['periodic_graph']['crystal']),actual_xyz

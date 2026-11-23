@@ -228,3 +228,155 @@ def test_saved_cut_scattering_relocates_without_original_source_or_new_files(tmp
     assert observe_relabel_scattering(moved, expected_receipt_sha256=digest, hkls=HKLS) == expected
     with pytest.raises(ValueError, match='work budget'):
         observe_relabel_scattering(moved, expected_receipt_sha256=digest, hkls=HKLS, max_structure_factor_terms=1)
+
+
+def serialized_packet(tmp_path, *, coordinate_format='mmcif', forest=False):
+    root, digest, receipt = saved_scattering_packet(tmp_path, forest=forest)
+    source = gemmi.read_pdb_string((root/'source.pdb').read_text())
+    atoms = [c.atom for c in source[0].all()]
+    for atom, point in zip(atoms, receipt['observation']['proposed_points_angstrom']):
+        atom.pos = gemmi.Position(*point)
+    for group in receipt['observation']['atom_image_groups']:
+        matrix = source.cell.op_as_transform(gemmi.Op(group['operator_xyz'])).mat
+        for i in group['atom_indices']:
+            atoms[i].aniso = atoms[i].aniso.transformed_by(matrix)
+    path = tmp_path/('export.pdb' if coordinate_format == 'pdb' else 'export.cif')
+    if coordinate_format == 'pdb':
+        source.write_pdb(str(path))
+    else:
+        doc = source.make_mmcif_document(); block = doc.sole_block()
+        table = block.find_mmcif_category('_atom_site.')
+        for row, atom in zip(table, atoms):
+            for axis, value in zip('xyz', atom.pos):
+                row[list(table.tags).index('_atom_site.Cartn_'+axis)] = format(value, '.17g')
+        table = block.find_mmcif_category('_atom_site_anisotrop.')
+        for row, atom in zip(table, (a for a in atoms if a.aniso.nonzero())):
+            for axis, value in zip(('[1][1]', '[2][2]', '[3][3]', '[1][2]', '[1][3]', '[2][3]'), atom.aniso.elements_pdb()):
+                row[list(table.tags).index('_atom_site_anisotrop.U'+axis)] = format(value, '.17g')
+        doc.write_file(str(path))
+    args = dict(expected_receipt_sha256=digest, expected_model_sha256=sha256(path.read_bytes()).hexdigest(),
+        coordinate_format=coordinate_format, max_coordinate_component_error_angstrom=.000501,
+        max_u_component_error_angstrom_squared=.000051)
+    return root, path, args
+
+
+@pytest.mark.parametrize('coordinate_format,forest', [('pdb',False), ('mmcif',False), ('pdb',True), ('mmcif',True)])
+def test_serialized_recut_observes_full_inventory_and_external_intent(tmp_path, coordinate_format, forest):
+    from nasolve.topostitch_recut_bundle import observe_relabel_serialization
+    root, path, args = serialized_packet(tmp_path, coordinate_format=coordinate_format, forest=forest)
+    before = {p:p.read_bytes() for p in [path, *root.iterdir()]}
+    result = observe_relabel_serialization(root, path, **args)
+    assert result['within_requested_precision']
+    assert result['exported_model_sha256'] == args['expected_model_sha256']
+    assert result['preview_receipt_sha256'] == args['expected_receipt_sha256']
+    assert result['identity_mapping']['source_to_export_indices'] == list(range(result['atom_count']))
+    assert result['annotations']['parsed_connection_count'] == 0
+    assert not result['annotations']['declared_graph_verified_in_file']
+    assert not result['scientific_acceptance'] and not result['runtime_authority']
+    assert not result['scattering_invariance_validated'] and not result['coordinates_written']
+    assert result['declared_backbone_intent_sha256']
+    if forest:
+        assert any(r['continuation_id'] is not None for r in result['declared_link_observations'])
+    assert all(p.read_bytes()==data for p,data in before.items())
+    assert str(tmp_path) not in json.dumps(result)
+
+
+def test_serialized_recut_maps_reordered_atoms_by_full_identity(tmp_path):
+    from nasolve.topostitch_recut_bundle import observe_relabel_serialization
+    root, path, args = serialized_packet(tmp_path, coordinate_format='pdb')
+    lines = path.read_text().splitlines(keepends=True)
+    positions = [i for i,r in enumerate(lines) if r.startswith('ATOM')]
+    i,j = positions[:2]
+    assert lines[i][17:27] == lines[j][17:27]
+    lines[i],lines[j] = lines[j],lines[i]
+    lines[i+1],lines[j+1] = lines[j+1],lines[i+1]
+    path.write_text(''.join(lines));args['expected_model_sha256']=sha256(path.read_bytes()).hexdigest()
+    result=observe_relabel_serialization(root,path,**args)
+    assert result['within_requested_precision']
+    assert result['identity_mapping']['source_to_export_indices'][:2]==[1,0]
+    assert not result['identity_mapping']['source_order_retained']
+
+
+@pytest.mark.parametrize('damage',['position','tensor'])
+def test_serialized_recut_reports_precision_failure_without_acceptance(tmp_path,damage):
+    from nasolve.topostitch_recut_bundle import observe_relabel_serialization
+    root,path,args=serialized_packet(tmp_path)
+    doc=gemmi.cif.read_file(str(path));block=doc.sole_block()
+    tag='_atom_site.Cartn_x' if damage=='position' else '_atom_site_anisotrop.U[1][1]'
+    values=block.find_values(tag);values[0]=str(float(values[0])+.01);doc.write_file(str(path))
+    args['expected_model_sha256']=sha256(path.read_bytes()).hexdigest()
+    result=observe_relabel_serialization(root,path,**args)
+    assert not result['within_requested_precision']
+    assert result['status']=='OBSERVED_REVIEW_REQUIRED' and not result['scientific_acceptance']
+
+
+@pytest.mark.parametrize('damage',['duplicate','missing','element','occupancy','b','adp_mode','cell','group','ncs'])
+def test_serialized_recut_refuses_changed_inventory_or_crystal(tmp_path,damage):
+    from nasolve.topostitch_recut_bundle import observe_relabel_serialization
+    root,path,args=serialized_packet(tmp_path,coordinate_format='pdb')
+    s=gemmi.read_structure(str(path));atom=list(s[0].all())[0].atom
+    if damage=='duplicate':s[0][0][0].add_atom(atom.clone())
+    elif damage=='missing':del s[0][0][0][0]
+    elif damage=='element':atom.element=gemmi.Element('S')
+    elif damage=='occupancy':atom.occ=.5
+    elif damage=='b':atom.b_iso+=1
+    elif damage=='adp_mode':atom.aniso=gemmi.SMat33f(0,0,0,0,0,0)
+    elif damage=='cell':s.cell=gemmi.UnitCell(31,30,40,90,90,90)
+    elif damage=='group':s.spacegroup_hm='P 41'
+    if damage=='ncs':
+        text=path.read_text();path.write_text(text+'MTRIX1   1  1.000000  0.000000  0.000000        0.00000    1\n')
+    else:s.write_pdb(str(path))
+    args['expected_model_sha256']=sha256(path.read_bytes()).hexdigest()
+    with pytest.raises(ValueError):observe_relabel_serialization(root,path,**args)
+
+
+@pytest.mark.parametrize('damage',['missing_occ','duplicate_anisou','orphan_anisou','missing_u','multiple_blocks'])
+def test_serialized_mmcif_requires_explicit_unambiguous_scattering_fields(tmp_path,damage):
+    from nasolve.topostitch_recut_bundle import observe_relabel_serialization
+    root,path,args=serialized_packet(tmp_path)
+    doc=gemmi.cif.read_file(str(path));b=doc.sole_block()
+    if damage=='missing_occ':b.find_values('_atom_site.occupancy')[0]='?'
+    elif damage in ('duplicate_anisou','orphan_anisou'):
+        table=b.find_mmcif_category('_atom_site_anisotrop.');row=list(table[0])
+        if damage=='orphan_anisou':row[0]='999999'
+        table.loop.add_row(row)
+    elif damage=='missing_u':b.find_values('_atom_site_anisotrop.U[1][1]')[0]='?'
+    else:doc.add_new_block('unexpected')
+    doc.write_file(str(path));args['expected_model_sha256']=sha256(path.read_bytes()).hexdigest()
+    with pytest.raises(ValueError):observe_relabel_serialization(root,path,**args)
+
+
+@pytest.mark.parametrize('pin',['expected_receipt_sha256','expected_model_sha256'])
+def test_serialized_recut_requires_both_exact_pins_before_parsing(tmp_path,monkeypatch,pin):
+    from nasolve.topostitch_recut_bundle import observe_relabel_serialization
+    import nasolve.topostitch_scattering as owner
+    root,path,args=serialized_packet(tmp_path);args[pin]='0'*64
+    monkeypatch.setattr(owner,'_serialized_structure',lambda *a:pytest.fail('Wrong input parsed'))
+    with pytest.raises(ValueError,match='binding|receipt'):observe_relabel_serialization(root,path,**args)
+
+
+def test_serialized_recut_relocation_and_midread_drift(tmp_path,monkeypatch):
+    from nasolve.topostitch_recut_bundle import observe_relabel_serialization
+    import nasolve.topostitch_scattering as owner
+    original=tmp_path/'original';original.mkdir();root,path,args=serialized_packet(original)
+    expected=observe_relabel_serialization(root,path,**args)
+    moved=tmp_path/'moved';shutil.move(original,moved);root=moved/root.name;path=moved/path.name
+    assert not original.exists() and observe_relabel_serialization(root,path,**args)==expected
+    parse=owner._serialized_structure
+    def changed(*a):
+        result=parse(*a);path.write_bytes(path.read_bytes()+b'\n');return result
+    monkeypatch.setattr(owner,'_serialized_structure',changed)
+    with pytest.raises(ValueError,match='changed during'):observe_relabel_serialization(root,path,**args)
+
+
+@pytest.mark.parametrize('field,value',[
+    ('max_coordinate_component_error_angstrom',float('nan')),
+    ('max_u_component_error_angstrom_squared',float('inf')),
+    ('max_coordinate_component_error_angstrom',True),
+    ('max_u_component_error_angstrom_squared',-.01),
+    ('coordinate_format','auto'),
+])
+def test_serialized_recut_requires_explicit_finite_precision_and_format(tmp_path,field,value):
+    from nasolve.topostitch_recut_bundle import observe_relabel_serialization
+    root,path,args=serialized_packet(tmp_path);args[field]=value
+    with pytest.raises(ValueError):observe_relabel_serialization(root,path,**args)

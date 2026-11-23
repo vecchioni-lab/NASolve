@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W248 — Inspect serialized models against the saved recut
+
+- Add a read-only exact-receipt/export-bound PDB/mmCIF inspector in existing
+  packet/scattering owners. Check complete atom identity mapping, thermal state,
+  parsed crystal and explicit coordinate/U precision; retain external link intent
+  separately from coordinate annotations. Reordered files retain a full permutation.
+- Add an observation schema without changing saved packets, CLI defaults or native
+  forces. No writer or structural acceptance; installation and focused relocation
+  checks pass. Full integration testing remains deferred.
+
 ### W247 — Audit recut serialization precision and independent readback
 
 - Record default PDB/mmCIF rounding and a full-precision CIF control, with complete

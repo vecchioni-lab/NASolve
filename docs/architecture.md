@@ -1176,6 +1176,13 @@ Its context is the exact preview receipt byte digest; source labels are canonica
 JSON atom identities in record order, including unchanged context atoms. Compiled
 positions must reproduce the saved observation. This is a preview binding, not a
 native policy/checkpoint identity or permission to import edits or rebase a cut.
+`topostitch_recut_bundle.observe_relabel_serialization` reuses that frame and
+existing Gemmi scattering readers to inspect a separately SHA-pinned PDB/mmCIF.
+It verifies a complete identity permutation, thermal inventory and parsed crystal,
+then reports explicit coordinate/U precision and externally declared link geometry.
+Parsed coordinate annotations remain separate; no writer, native policy, renamed
+polymer mapping or scientific acceptance is introduced. See the
+[W248 readback contract](topostitch-preview.md#inspect-a-serialized-recut-against-its-saved-source-w248).
 
 `topostitch_recipe` freezes complete canonical NARestraints selections for explicit
 atom images; `topostitch_native_recipe` binds them to unmodified PDB atom order

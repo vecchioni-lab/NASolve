@@ -553,6 +553,65 @@ def observe_relabel_native_packing(directory, native_receipt, *, cedar_source=No
     return report
 
 
+def observe_relabel_serialization(directory, model, *, expected_receipt_sha256,
+        expected_model_sha256, coordinate_format, max_coordinate_component_error_angstrom,
+        max_u_component_error_angstrom_squared):
+    """Read a separately pinned export without writing or adopting its ASU.
+
+    Match every source atom by full identity, retaining an explicit permutation.
+    Bounds are caller-declared numerical review values, not chemical acceptance.
+    Declared graph geometry and parsed file annotations remain separate evidence.
+    """
+    import math
+    from .topostitch_scattering import _observe_serialized_relabel
+    from .topostitch_transport import crystallographic_image
+    for digest in (expected_receipt_sha256,expected_model_sha256):
+        if not isinstance(digest,str) or not re.fullmatch(r'[0-9a-f]{64}',digest):
+            raise ValueError('Require exact preview receipt and exported model SHA-256 bindings')
+    root=Path(directory);manifest=root/'preview.json';model=Path(model)
+    frozen={p:p.read_bytes()for p in [manifest,*(root/n for n in _FILES.values()),model]}
+    if (sha256(frozen[manifest]).hexdigest()!=expected_receipt_sha256
+            or sha256(frozen[model]).hexdigest()!=expected_model_sha256):
+        raise ValueError('Saved receipt or exported model differs from requested binding')
+    packet=load_relabel_preview(root)
+    frame=load_relabel_reference_frame(root,expected_receipt_sha256=expected_receipt_sha256)
+    if _fingerprint(packet)!=_fingerprint(_json(frozen[manifest])):
+        raise ValueError('Saved representative changed before serialized model observation')
+    result,points=_observe_serialized_relabel(frozen[root/'source.pdb'],frozen[model],
+        preview=packet['observation'],frame=frame,coordinate_format=coordinate_format,
+        coordinate_bound=max_coordinate_component_error_angstrom,
+        u_bound=max_u_component_error_angstrom_squared)
+    intent=_backbone_intent_observation(packet,expected_receipt_sha256);links=[]
+    for row in intent['sites']:
+        partner=row['incoming_partner']
+        if partner is None:continue
+        distance=None
+        if partner['coordinate_endpoints_resolved']:
+            i=partner['source_atom_indices'][0];j=partner['target_atom_indices'][0]
+            image=crystallographic_image(**intent['crystal'],operator_xyz=partner['after_target_operator_xyz'])
+            distance=math.dist(points[i],image.apply(points[j]))
+        links.append(dict(edge_id=partner['edge_id'],continuation_id=partner.get('continuation_id'),
+            source_node_id=partner['node_id'],target_node_id=row['node_id'],
+            target_operator_xyz=partner['after_target_operator_xyz'],
+            coordinate_endpoints_resolved=partner['coordinate_endpoints_resolved'],
+            expected_image_distance_angstrom=(partner['geometry']['after_image_distance_angstrom']if partner['geometry']else None),
+            serialized_image_distance_angstrom=distance,origin='External verified declared graph; not a file annotation'))
+    if any(p.read_bytes()!=data for p,data in frozen.items()):
+        raise ValueError('Saved packet or exported model changed during serialization observation')
+    result.update(schema_version=1,kind='topostitch-representative-serialization-observation',
+        status='OBSERVED_REVIEW_REQUIRED',preview_receipt_sha256=expected_receipt_sha256,
+        exported_model_sha256=expected_model_sha256,source_model_sha256=packet['source_model_sha256'],
+        registered_graph_sha256=packet['registered_graph_sha256'],coordinate_format=coordinate_format,
+        declared_backbone_intent_sha256=intent['report_sha256'],declared_link_observations=links,
+        source_bytes_verified=True,coordinates_written=False,scattering_invariance_validated=False,
+        scientific_acceptance=False,runtime_authority=False,
+        limitations=['Numerical readback only; no native full-precision or physical/scattering acceptance',
+            'No inferred connection, annotation retention, polymer/entity/sequence validation or native restraint activation',
+            'Source PDB frame; no MTZ cell binding, changed-child rebase, writer or edit import'])
+    result['report_sha256']=_fingerprint(result)
+    return result
+
+
 def main(argv=None):
     parser=argparse.ArgumentParser(prog='nasolve-topostitch-cut-preview',
         description='Freeze an explicit representative proposal for review; no edited model or chemical link.')
