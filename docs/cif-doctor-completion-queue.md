@@ -1566,6 +1566,20 @@ the uploaded and processed coordinates using the existing deposition reader.
 Carry the missing records to biocuration and check the next returned model.
 Routine adoption awaits that external outcome and the scientific stress tests.
 
+**Queued for Cedar and Willow · check ordinary DNA geometry before upload.**
+Cedar should screen every standard nucleotide in the final coordinate mmCIF,
+including atoms held fixed during refinement. Use the applicable wwPDB reference
+for bond lengths and angles. Report the residue, atoms, observed value, target,
+standard deviation and Z score. Willow should run the same check before and
+after reslicing, matching the same physical atoms across crystal copies so an
+inherited outlier can be distinguished from one introduced by the move.
+
+The first control is the saved 5LNA OneDep return. Recover its three long sugar
+bonds and three angles (two thymine N3–C4–O4 angles and one O5′–C5′–C4′ angle)
+across four ordinary residues. The corrected A112 sugar angle should clear.
+Use the existing [deposition checks](pdb-deposition.md) for the two genuine
+symmetry phosphodiesters. This item is a read-only audit before submission.
+
 **Alder final-stage reporting holdover (2026-11-17, `ccb5e769`):** a passive exact-
 endpoint replay localizes one DF child's final R/B shift inside native
 `update_all_scales`. XYZ, occupancy, fp/fdp, phase probabilities and F_mask remain
