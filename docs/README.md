@@ -7,7 +7,11 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Current audit/code: W245.** [Saved-recut scattering](topostitch-preview.md#observe-scattering-for-a-pinned-saved-recut-w245)
+- **Current audit: W246; code: W245.** [Two-route R3 recut observation](topostitch-periodic.md#w246--observe-both-declared-r3-routes-in-one-saved-recut)
+  retains full inventories and both declared connections with about 1.5e-9
+  relative scattering difference across all supplied HKLs. No physical bend,
+  model export, native fit or coupled-refinement qualification.
+- **W245.** [Saved-recut scattering](topostitch-preview.md#observe-scattering-for-a-pinned-saved-recut-w245)
   binds the existing independent sampled calculation to the exact immutable cut,
   including forest images and declared continuations. 208 source/208 installed;
   no new force, writer, native run or whole-ASU acceptance.

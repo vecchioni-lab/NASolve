@@ -13382,3 +13382,61 @@ bind both explicit connections and the combined movable-atom selection, retain
 all protected rings/thermal state/data, and check both complete seam geometries
 and exclusions together. Do not infer simultaneous support from independent fits
 or duplicate the completed one-junction controls.
+
+
+## W246 — Observe both declared R3 routes in one saved recut
+
+Reuse the frozen 3LNA/5LNA working PDBs, registrations, pair inventory,
+continuations and reflection indices from W244's authenticated Cedar inputs.
+These are PDB working derivatives, **not a direct evaluation of processed V51**.
+V51's missing external annotations remain separate from the operator's declared
+intent. No manuscript files are changed.
+
+For each source, compare an unchanged packet with one explicit compound recut:
+select the registered paired rungs containing D107 and B101, carry their partners
+B116 and A115 with the same respective image, and preserve each source's original
+directed operators/translations. This is a diagnostic representative choice, not
+an adopted asymmetric unit. Only **82 atoms in four canonical residues** change
+representatives; all present atoms contribute to the independent scattering sum.
+
+| Source | All atoms / unchanged representatives | Supplied reflection indices | Relative complex-Fcalc L2 difference | Maximum absolute complex difference | Both preserved O3′–P lengths (Å) |
+| --- | --- | --- | --- | --- | --- |
+| 3LNA | 1271 / 1189 | 1484 | 1.466618e-9 | 6.282520e-6 | 1.609309 / 1.608058 |
+| 5LNA | 1275 / 1193 | 2375 | 1.531780e-9 | 4.940444e-6 | 1.608806 / 1.604539 |
+
+Both unchanged controls have exactly zero complex-Fcalc difference, and their
+source structure factors exactly match the corresponding recut's source values.
+The installed W245 API evaluates every supplied index using the unchanged Gemmi
+0.7.5 neutral-atom direct sum; it does not use observed amplitudes or Free flags
+to optimize or choose a cut. The declared numerical review bound is 1e-6 relative
+L2, distinct from scientific acceptance; float32 tensor transport remains explicit.
+The four observations take about 28–29 seconds each. No Phenix process is run.
+
+Both selected continuation images become identity in the new representatives,
+with their image-aware distances unchanged to the checked 1e-10 Å bound. All
+P/OP1/OP2 groups remain; no OP3 is added. Existing labelled orbit permutations
+cover every atom, and the exact graph inverse restores both original operators,
+including lattice translations. Source inventory and all original input hashes
+remain unchanged. Real chemical boundaries A101/C101 stay chemical boundaries;
+missing annotation creates neither a chemical nick nor a guessed link. Existing
+ambiguous-partner/screw/rotated/gap controls remain their scoped prior evidence,
+not new experimental results from this comparison.
+
+The frozen declaration, installed module pin, explicit HKLs, four observations,
+source references and summary are at NASolve anchor
+`branch-artifacts/willow/w246-two-route-recut/`. Commands use the retained
+`controller.py plan` followed by `controller.py run`, host Python 3.12 with
+`PYTHONDONTWRITEBYTECODE=1` and the existing topology dependency path. The controller
+is a local diagnostic; external inputs use the declared Cedar anchor and checksums,
+not basename discovery. This is not a portable native-run claim. No datasets,
+coordinates, reflection tables or generated checkouts are committed.
+
+A compact local checkout reuses the existing Pine comparison viewer at GitHub
+sibling anchor `ScienceCheckouts/Linden/2026-11-23_two-route-recut/index.html`.
+Three HTML hashes and four local links pass; scene generation validates both
+saved choices. Browser security blocked the local file URL, so **interactive
+rendering was not revalidated**. No replacement coordinate file was emitted.
+P03 remains partial: full reciprocal-space/native-policy/serialization and
+physical interpretation are separate. **Both links being represented together
+is not both links being refined together**; the P04/S05 coupled-fit gate remains
+open, as do W241/W242's distinct receiving question and Cedar's restart work.

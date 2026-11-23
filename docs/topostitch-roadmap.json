@@ -1081,7 +1081,8 @@
         "W82 replays an exactly pinned saved preview into the existing complete numerical ReferenceFrame, preserving source identity/order and unchanged context atoms; no model writer or child rebinding.",
         "W83 native synthetic special-position/partial-occupancy controls preserve the supplied labelled scattering object and fresh native multiplicity/weights in three settings and orders; source scientific validity remains separate.",
         "W239 composes the existing registered preview, continuation-phosphate observer and saved ReferenceFrame in a synthetic one-pair stagger across both strands, with P43/R3:H coordinate/tensor round trips. Explicit intent only; no automatic duplex choice or native writer.",
-        "W245 binds the existing independent sampled scattering owner to an exact saved recut receipt, deriving verified explicit/forest images and declared continuations. 208 source/208 installed; six new boundary regressions, relocation and unchanged source. No new scattering engine, serialization or whole-ASU acceptance."
+        "W245 binds the existing independent sampled scattering owner to an exact saved recut receipt, deriving verified explicit/forest images and declared continuations. 208 source/208 installed; six new boundary regressions, relocation and unchanged source. No new scattering engine, serialization or whole-ASU acceptance.",
+        "W246 composes the installed saved-cut observer with both declared R3 routes and existing orbit/intent owners: four read-only controls, all source atoms and supplied HKLs, near-roundoff scattering differences and unchanged bond image geometry. Only 82 atoms change representatives per source; no physical bend, coordinate export or coupled refinement."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
@@ -1096,14 +1097,15 @@
         "E_SAVED_FRAME_BINDING",
         "E_SPECIAL_POSITION_SCATTERING",
         "E_STAGGERED_DUPLEX_RECUT",
-        "E_SAVED_SCATTERING_BINDING"
+        "E_SAVED_SCATTERING_BINDING",
+        "E_TWO_ROUTE_REPRESENTATIVE_OBSERVATION"
       ],
       "last_audit": {
         "date": "2026-11-23",
         "code_commit": "b86ffd5391e453da20533d4e90355f41a60938a4",
         "reviewer": "Linden",
-        "human_update": 245,
-        "scope": "Exact immutable packet-to-sampled-scattering binding; remaining physical and serialized invariance gates stay open"
+        "human_update": 246,
+        "scope": "Two-source simultaneous-route in-memory representation/scattering observation; native serialization and coupled refinement remain open"
       }
     },
     {
@@ -6330,6 +6332,15 @@
       "reference": "docs/topostitch-preview.md#observe-scattering-for-a-pinned-saved-recut-w245",
       "result": "Six fail-before boundary cases; 208 source and 208 isolated installed tests. Exact receipt binds explicit/forest image choices and declared continuations to the existing independent sampled scattering observer. Wrong pin, drift and mismatched calculation refuse. Relocated packet replay, original build removal, installed/source parity, Python 3.10 syntax and 222-file archive relocation hashes pass.",
       "limitation": "Additive schema-1 read-only observation wrapper; no old packet/API/default changes, native force, model writer, coordinate repair, scientific acceptance or new Phenix execution. Sampled Gemmi neutral-atom and float32 tensor limits remain; complete reciprocal-space, serialized model and whole-ASU gates remain open. Initial installed fixture closure omitted relative test imports, corrected without product changes; failed log retained. No full suite for isolated composition."
+    },
+    "E_TWO_ROUTE_REPRESENTATIVE_OBSERVATION": {
+      "kind": "Read-only paired-route source/recut comparison",
+      "date": "2026-11-23",
+      "human_update": 246,
+      "code_commit": "b86ffd5391e453da20533d4e90355f41a60938a4",
+      "reference": "docs/topostitch-periodic.md#w246--observe-both-declared-r3-routes-in-one-saved-recut",
+      "result": "Four saved-packet observations: unchanged and compound recut for each R3 source. 82 selected atoms/four canonical residues; all 1271/1275 atoms retained, 1189/1193 representatives fixed. All 1484/2375 supplied HKLs evaluated; unchanged controls zero, recut relative complex Fcalc L2 1.466618e-9/1.531780e-9. Both declared links become local with preserved image-aware distances, exact graph inverse and full labelled orbit inventory. Real chemical boundaries and source hashes preserved.",
+      "limitation": "PDB working derivatives, not direct V51 evaluation. Gemmi 0.7.5 neutral sampled scattering/float32 tensors, no native run, serialized model, adopted ASU, force, coupled refinement or scientific acceptance. Local HTML hashes/links pass; browser file-protocol restriction prevented interactive revalidation. W241/W242 comparison and Cedar restart remain separate."
     }
   },
   "benchmarks": [
@@ -6495,8 +6506,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 245,
-    "next": 246,
+    "current": 246,
+    "next": 247,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -7774,6 +7785,12 @@
       {
         "number": 245,
         "title": "Bind sampled scattering to the exact saved recut",
+        "state": "RECORDED",
+        "code_commit": "b86ffd5391e453da20533d4e90355f41a60938a4"
+      },
+      {
+        "number": 246,
+        "title": "Observe two declared R3 routes together without changing the crystal",
         "state": "RECORDED",
         "code_commit": "b86ffd5391e453da20533d4e90355f41a60938a4"
       }

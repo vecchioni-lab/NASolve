@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W246 — Observe two R3 routes in the same recut
+
+- Record unchanged/compound-recut controls using the installed saved-preview,
+  scattering, orbit and intent owners. Both declared links and full atom
+  inventories survive; selected representatives remain distinct from whole-ASU
+  scattering scope. Scientific inputs and the compact checkout remain local.
+- Evidence/docs only: no native run, model writer, force/default change or
+  coupled-refinement claim. Full native serialization and acceptance stay open.
+
 ### W245 — Bind sampled scattering to the saved recut
 
 - Add a read-only exact-receipt-bound scattering observation for immutable recut

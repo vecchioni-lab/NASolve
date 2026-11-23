@@ -1,6 +1,17 @@
 # NASolve development handoff — Willow
 
-**Current audit and maintained implementation: W245, 2026-11-23.**
+**Current audit: W246; maintained implementation: W245, 2026-11-23.**
+[W246 observes two declared R3 routes together](topostitch-periodic.md#w246--observe-both-declared-r3-routes-in-one-saved-recut):
+82 atoms/four canonical sites change representatives; all 1271/1275 atoms remain.
+Both connections retain their image-aware lengths and declared chemistry. All
+1484/2375 supplied HKLs give relative complex-Fcalc differences of about 1.5e-9;
+unchanged controls are exactly zero. No physical bend, model export or native fit.
+The compact checkout is at GitHub sibling anchor
+`ScienceCheckouts/Linden/2026-11-23_two-route-recut/index.html`; saved data, hashes
+and local links pass, but browser file-policy restrictions prevented interactive
+revalidation. P03 remains partial; simultaneous representation does not qualify
+simultaneous restraint/refinement. Keep W241/W242 and Cedar restart separate.
+
 [W245 binds scattering to the saved recut](topostitch-preview.md#observe-scattering-for-a-pinned-saved-recut-w245):
 **208 source/208 isolated installed tests**, six new boundary regressions. The
 read-only API requires the exact preview receipt, derives explicit/forest image
