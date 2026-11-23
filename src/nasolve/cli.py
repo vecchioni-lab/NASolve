@@ -312,6 +312,8 @@ def build_parser() -> argparse.ArgumentParser:
     image_choice.add_argument("--nearest-image", action="store_true", help="compare the closest two crystal copies of the named O3' to the named P")
     image_choice.add_argument("--registered-continuation", type=int, metavar="ID",
                               help="read this declared O3'-to-P connection in its registered source frame")
+    image_choice.add_argument("--saved-continuation", action="store_true",
+                              help="read the crystal bond and native forces saved by this numbered phosphate refinement")
     _phosphate_topology_arguments(phosphate_image)
     phosphate_image.add_argument("--geometry", type=Path, help="optional matching Phenix GEO with printed bonds and nonbonded contacts")
     phosphate_image.add_argument("--native-receipt", type=Path, help="optional preserved linked native capture for intact backbone references in the same model")
@@ -1750,12 +1752,15 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
                 raise ValueError("--registration-checkpoint needs a numbered run, --checkpoint and --registered-continuation")
             options["registration_checkpoint"] = args.registration_checkpoint
         if args.checkpoint is None:
+            if args.saved_continuation:
+                raise ValueError("--saved-continuation needs a numbered run and --checkpoint")
             result = inspect_phosphate_image(args.model, geometry=args.geometry, **options)
         else:
             from .cif_doctor_run import read_checkpoint_phosphate_image
             if args.geometry is not None:
                 raise ValueError("Checkpoint inspection uses its recorded geometry. To supply a GEO, give a PDB path without --checkpoint.")
-            result = read_checkpoint_phosphate_image(args.model, checkpoint=args.checkpoint, **options)
+            result = read_checkpoint_phosphate_image(args.model, checkpoint=args.checkpoint,
+                                                     saved_continuation=args.saved_continuation, **options)
     except (OSError, ValueError, RuntimeError) as exc:
         print(f"CIF Doctor: {exc}", file=sys.stderr)
         return 1
@@ -1764,6 +1769,13 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
     else:
         if "checkpoint" in result:
             print(f"Checkpoint {result['checkpoint']['id']}.")
+            fit = result.get("numbered_refinement")
+            if fit is not None:
+                terms, counts = fit["native_forces"], fit["reflections"]
+                print(f"Phenix fitted parent {fit['parent']} with {terms['bond_simple']} crystal bond, "
+                      f"{terms['angle']} angles and {terms['dihedral']} torsions.")
+                print(f"Working reflections {counts['start']['work']} → {counts['finish']['work']}. "
+                      f"Free reflections {counts['start']['free']} → {counts['finish']['free']}.")
             transfer = result.get("registered_continuation", {}).get("frame_transfer")
             if transfer is not None:
                 print(f"Registration from {transfer['source_checkpoint']}. "

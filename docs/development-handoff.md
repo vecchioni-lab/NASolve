@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-23, C548 carrying a crystal phosphate through numbered refinement — Rowan**.
+Updated **2026-11-23, C549 following a crystal phosphate through two numbered refinements — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
 C547 and Willow W243 carried two independent crystal phosphates per model
@@ -23,7 +23,7 @@ validation reported zero chain breaks and listed the two intended covalent
 distances as symmetry contacts. Curator annotation and the other deposition's
 return remain open.
 
-**Resume Q06 at the next generation of the numbered PDU:PDU restart.**
+**Q06 has two numbered PDU:PDU refinements across the same crystal bond.**
 C548 ran five ordinary AutoRefine cycles from manual-001, a child registered
 against refine-005. The new refine-006 retained the crystal bond, four angles
 and three torsions. The written model measures 1.638 Å with O3′–P–OP1/OP2
@@ -31,10 +31,27 @@ at 103.65°/115.44°. Every one of the 1,902 final work/free assignments agrees
 with the original MTZ by Miller index. The fit is marked REVIEW and refine-005
 remains selected. The receipt and geometry reopen after the private run is
 moved. Reusing the earlier model's receipt stops before creating a new round.
-The next step is a fresh chemistry capture and a second fit from refine-006.
-The [existing queue](cif-doctor-completion-queue.md#crystal-phosphates-after-an-asymmetric-unit-recut)
-orders the subsequent Pine recut, simultaneous Willow fit and restart
-stress tests. The single-cut controls are complete.
+After moving the dataset, C549 recaptured the chemistry of refine-006 and
+ran another five cycles. In refine-007 the bond measures 1.642 Å and the
+oxygen angles are 104.90° and 114.12°. The original 124 free reflections
+survive both fits. Seven working observations were dropped in each fit.
+The child awaits operator review. To inspect either fitted child directly,
+use `cif-doctor phosphate-image RUN --checkpoint ID --saved-continuation`.
+The [queue](cif-doctor-completion-queue.md#crystal-phosphates-after-an-asymmetric-unit-recut)
+assigns Pine the atom-by-atom transfer through an asymmetric-unit recut and
+Willow the simultaneous two-junction fit and restart. Cedar still needs to
+judge the geometry of the modified bases on the actual fitted coordinates.
+The public [ledger](cif-linked-native-registration-evidence.json) retains
+the model fingerprints and held-out-set comparison.
+
+C549 changed the phosphate checkpoint reader, CLI and two regression files.
+The existing files and checkpoint schemas remain compatible. The two completed
+fits reopened identically from source and the relocated installation. Working
+trees used `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest
+-q -p no:cacheprovider` with `tests/test_{refinement_phosphate,phosphate_image,phosphate_continuation,phosphate_restraints,refinement_parallelity,refinement_inputs,cif_dictionary_sites,autorefine_counted,autorefine,cif_doctor_run}.py`.
+Each passed 341 tests and 45 subtests. In the installed check, `PYTHONPATH`
+pointed at the relocated package. Full regression is deferred. The reproduction
+scripts and experimental data stay in the laboratory workspace.
 
 C546 adds a read-only [deposition check](cif-doctor.md#checking-backbone-continuity-before-deposition).
 It measures each direct labelled step independently of the exported covalent

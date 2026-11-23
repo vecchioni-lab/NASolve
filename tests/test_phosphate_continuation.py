@@ -18,6 +18,20 @@ def put(path, value):
     return path
 
 
+def test_saved_phosphate_needs_a_completed_round_at_the_named_checkpoint(tmp_path, capsys):
+    run = make_checkpoint_run(tmp_path / "dataset")
+    before = _snapshot(run)
+    assert main(["cif-doctor", "phosphate-image", str(run), "--checkpoint", "postmr", "--saved-continuation"]) == 1
+    assert "completed registered phosphate refinement" in capsys.readouterr().err
+    assert _snapshot(run) == before
+
+
+def test_saved_phosphate_cannot_guess_the_checkpoint_from_a_model(tmp_path, capsys):
+    model, _, _, _, _ = files(tmp_path)
+    assert main(["cif-doctor", "phosphate-image", str(model), "--saved-continuation"]) == 1
+    assert "--checkpoint" in capsys.readouterr().err
+
+
 def files(root, *, missing=False, absent_atom=False, protected_nick=False):
     model, geo = inputs(root)
     text = model.read_text().replace("Z99", " DC")
@@ -132,7 +146,7 @@ def test_registered_continuation_reopens_the_exact_checkpoint_after_relocation(t
     assert _snapshot(moved)==before and not original.exists()
 
 
-def test_numbered_restart_carries_its_ancestors_image_after_relocation(tmp_path, capsys):
+def test_numbered_restart_carries_its_ancestors_image_after_relocation(tmp_path, capsys, monkeypatch):
     original = tmp_path / "original"
     original.mkdir()
     model, _, reg, disc, edges = files(original)
@@ -169,6 +183,19 @@ def test_numbered_restart_carries_its_ancestors_image_after_relocation(tmp_path,
     assert observed["distance_A"] == pytest.approx(3.5)
     assert observed["printed_geometry"] is None and declaration["runtime_authority"] is False
     assert not original.exists() and _snapshot(moved) == before
+    from nasolve.cif_phosphate_continuation import RegisteredContinuation
+    from nasolve import refinement_phosphate
+    fit = {"parent": "postmr", "starting_model_sha256": parent_hash}
+    def stored_registration(root, selected):
+        assert root == actual and selected["id"] == "refine-001"
+        return "postmr", RegisteredContinuation(9, *args[1:]), fit
+    monkeypatch.setattr(refinement_phosphate, "saved_refinement", stored_registration)
+    saved_args = ["cif-doctor", "phosphate-image", str(actual), "--checkpoint", "first-refinement", "--saved-continuation", "--json"]
+    assert main(saved_args) == 0
+    assert json.loads(capsys.readouterr().out) == dict(observed, numbered_refinement=fit)
+    assert main([*saved_args, "--o3", "B:2"]) == 1
+    assert "supplies its own" in capsys.readouterr().err
+    assert _snapshot(moved) == before
     assert invoke(*args, "--checkpoint", "postmr", "--registration-checkpoint", "first-refinement", "--json") == 1
     assert "ancestor" in capsys.readouterr().err
     assert _snapshot(moved) == before

@@ -100,9 +100,10 @@ def frozen_round(tmp_path):
         path.write_text(path.name)
     model_digest = sha256(paths[1].read_bytes()).hexdigest()
     observed = inspection()
+    observed["native_reference_links"]["native_receipt_sha256"] = "b" * 64
     sources = {name:name.encode() for name in ("registration","discovery","continuations")}
     observed["model_sha256"] = model_digest
-    observed["registered_continuation"].update(frame_transfer=dict(child_model_sha256=model_digest),
+    observed["registered_continuation"].update(continuation_id=1, frame_transfer=dict(child_model_sha256=model_digest),
         sources={k+"_sha256":sha256(v).hexdigest() for k,v in sources.items()})
     capture = [dict(role=role,sha256=sha256(p.read_bytes()).hexdigest(),size=p.stat().st_size)
                for role,p in zip(("model","dictionary","phil"),paths[1:4])]
@@ -172,7 +173,7 @@ def test_planned_namespace_and_terminal_restraint_must_match_before_a_round_open
     assert policy.read_bytes() == _SOURCE
 
 
-def test_cold_reader_rejects_missing_proxy_force_or_changed_comparison(tmp_path):
+def test_cold_reader_rejects_missing_proxy_force_or_changed_comparison(tmp_path, monkeypatch):
     import json
     from nasolve.cif_phosphate_phase import reflection_change
     from nasolve.refinement_parallelity import read_execution_request
@@ -191,6 +192,30 @@ def test_cold_reader_rejects_missing_proxy_force_or_changed_comparison(tmp_path)
         (folder/phase/"phosphate.json").write_text(json.dumps(dict(data,phase=phase)))
     relative = folder.relative_to(run).as_posix()
     assert read_phase(run,relative,"refine",req)["reflections"]["start"]["free"] == 1
+    from nasolve import refinement_parallelity, refinement_phosphate
+    execution = dict(request=ref, policy_id=refinement_parallelity.V10_POLICY_ID)
+    def prior_execution(root, reference, *, checkpoint, parent, usable):
+        assert (root, checkpoint, parent, usable) == (run, "refine-001", "postmr", True)
+        assert reference == {"source": "this round"}
+        return execution
+    monkeypatch.setattr(refinement_parallelity, "validate_execution", prior_execution)
+    selected = dict(kind="refinement", usable=True, id="refine-001", parent="postmr",
+                    outputs={"parallelity_execution": {"source": "this round"}})
+    ancestor, registration, fit = refinement_phosphate.saved_refinement(run, selected)
+    assert ancestor == req["phosphate"]["ancestor"]
+    assert registration.registration == folder / "phosphate/registration.json"
+    assert fit["starting_native_receipt_sha256"] == "b" * 64
+    assert fit["request_sha256"] == ref["sha256"] and fit["full_gradient_calls"] == 2
+    assert fit["native_neighbours"] == data["bond"] and fit["reflections"] == data["reflections"]
+    for invalid in (None, True, 0):
+        edge = req["phosphate"]["inspection"]["registered_continuation"]
+        with monkeypatch.context() as patch:
+            patch.setitem(edge, "continuation_id", invalid)
+            with pytest.raises(ValueError, match="continuation ID"):
+                refinement_phosphate._frozen_registration(run, req["phosphate"])
+    execution["policy_id"] = "ordinary"
+    with pytest.raises(ValueError, match="no completed registered"):
+        refinement_phosphate.saved_refinement(run, selected)
     for changed in ({"families":dict(data["families"],dihedral=2)},
                     {"bond":dict(data["bond"],remaining_nonbonded=1)},
                     {"full_gradient_calls":0}, {"oxygen_operator_xyz":"-x+y,-x,z"},

@@ -38,7 +38,8 @@ A:PDU comparison. The ordinary and added-plane tip heights were 0.466
 and 0.304 Å. Rfree was 0.2501 and 0.2500. The adaptive run favored the
 ordinary arm by this measurement. Keep the soft plane experimental. For the distinct
 PDU:PDU phosphate, the [central link is confirmed](backbone-chemistry.md#the-central-strand-in-the-5w6w-scaffold).
-The ordinary refinement route still needs to preserve its image-aware restraints on restart.
+Two ordinary five-cycle restarts now retain the registered crystal bond,
+four angles and three torsions. See the crystal-phosphate checks under Q06.
 For the explicitly phosphorylated D:1 on the host control, C504 accounts for
 all eleven local Phenix restraints, including the last angle before the next
 table. The DY starting geometry warrants review and its two refined controls
@@ -1471,11 +1472,13 @@ The seven inherited restraints, eight native linkage terms and original
 work/free assignments were verified. The fitted child is available for review.
 The previous selection and earlier checkpoints were preserved.
 
-**Next, restart from the fitted child after moving the dataset.** Reuse the
-saved construct declaration, recapture the chemistry of the new model and
-check the actual second fit. Keep routine successful evidence compact and
-preserve enough information to reproduce the receipt. A missing declaration
-or a receipt from a different model must never authorize this junction.
+**The relocated second fit is complete (C549).** The saved construct
+declaration and fresh native capture of refine-006 produced refine-007.
+After five cycles the bond measures 1.642 Å, with O3′–P–OP1/OP2 at
+104.90°/114.12°. All 124 original free flags survived. The saved-continuation
+inspection reads each child's own applied forces and final coordinates.
+A missing declaration or a different starting model's receipt stopped before
+creating the next round.
 
 **Stress-test the shared method in stages.** Pine records the designed
 continuation and its exact crystal operation through a recut. Before any
@@ -1488,6 +1491,18 @@ open. An ambiguous partner requires review. Check both nonbridging oxygens,
 nearby clashes, handedness and the original free set after motion.
 Willow's [coordinated roadmap](https://github.com/vecchioni-lab/NASolve/blob/willow/docs/topostitch.md#coordinated-phosphate-recut-follow-up)
 owns placement and recutting. Space group alone cannot establish bond intent.
+
+**Check phosphate direction before and after stitching.** The 5LNA
+source already had an inward-facing A111→A112 phosphate before the
+sequence-contiguous recut. Both newly chosen crystal boundaries pointed
+outward. Cedar owns the chemistry reading and a bounded comparison of
+alternative backbone poses. Pine/Willow owns the same-image comparison
+across a change of representative. Check both ester bonds, local sugar
+geometry, nonbridging oxygen directions, clashes and handedness after a
+real refinement. Include a true nick, a crossover, a labelled-oxygen
+swap and a stereospecific substitution among the controls. A physical
+repair and a change of labels require different evidence. [Scientific
+scope](backbone-chemistry.md#checking-the-direction-of-a-repaired-phosphate).
 
 **Read the processed deposition separately.** A returned model preserved all
 ordinary steps while omitting the two declared crystal links. Its validation

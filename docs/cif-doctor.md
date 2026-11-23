@@ -215,6 +215,21 @@ chemistry inventory is checked when supplied and its fingerprint is retained.
 This route currently covers one registered junction in a PDB model on the
 qualified Phenix build. A physical nick remains open.
 
+To see what survived refinement, name the fitted checkpoint. Its saved
+declaration supplies the atoms and crystal copy.
+
+```bash
+nasolve cif-doctor phosphate-image RUN --checkpoint refine-007 --saved-continuation
+```
+
+The report measures the written model, reads its final geometry listing and
+shows how many bond, angle and torsion restraints Phenix applied during this
+fit. It also reports the starting and final work/free counts. Inspection can
+run after moving the dataset and leaves the selected checkpoint in place.
+A manual edit or an ordinary fit has no such native result of its own. An
+optional `--native-receipt` here must belong to the model being **inspected**;
+the fit already records the fingerprint of its **starting** model's receipt.
+
 <a id="current-capability-boundary-c96"></a>
 <a id="current-capability-boundary-c97"></a>
 

@@ -27,6 +27,26 @@ remain separate decisions. A periodic central strand can average a real
 nick over several equivalent copies. Its crystal representative can be cut
 at a different base without identifying the nick.
 
+## Checking the direction of a repaired phosphate
+
+A short O3′–P bond and plausible tetrahedral angles can survive even when
+the whole phosphate points into a duplex. Inspect both nonbridging oxygen
+positions after molecular replacement, gap filling and crystal recutting.
+Register the paired bases on both sides of the step, put them in their
+declared crystal images, and compare the OP1/OP2 midpoint and the two
+individual directions with the neighbouring backbone. A label exchange
+leaves the midpoint in the same place. One oxygen can legitimately point
+toward a groove. At a crossover, true nick or unresolved base pair, record
+which local comparison is possible.
+
+A repair trial must preserve both ester bonds, the sugar stereocentres
+and the intended phosphate chemistry. Compare the starting pose with a
+locally rotated or reference-based alternative under the same refinement
+restraints and diffraction observations. Measure the written model and
+retain the original free flags. A change of crystal representative alone
+must preserve the local orientation. The general automatic repair remains
+in the [crystal-boundary queue](cif-doctor-completion-queue.md#crystal-phosphates-after-an-asymmetric-unit-recut).
+
 ## Standard phosphodiester contract
 
 For ordinary DNA/RNA-like backbones, including sugar variants that retain the

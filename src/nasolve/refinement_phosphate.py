@@ -53,6 +53,14 @@ def _identity(ancestor, edge):
             edge["source"], edge["target"], edge["oxygen_operator_xyz"])
 
 
+def _frozen_registration(run, intent):
+    identifier = intent["inspection"]["registered_continuation"].get("continuation_id")
+    if type(identifier) is not int or identifier < 1:
+        raise ValueError("The saved phosphate has no valid continuation ID")
+    paths = (_bound_path(intent["sources"][name], "frozen phosphate " + name, run) for name in _SOURCE_NAMES)
+    return RegisteredContinuation(identifier, *paths)
+
+
 def _original(run, registry, parent, checkpoint):
     ancestor = resolve_checkpoint(registry, checkpoint)
     if ancestor["id"] not in _lineage(registry, parent):
@@ -82,8 +90,7 @@ def prepare_intent(run, registry, parent, choice, *, phenix_version, python_exec
         if prior is None:
             raise ValueError("This branch has no registered phosphate to continue")
         checkpoint = prior["ancestor"]
-        registered = RegisteredContinuation(prior["inspection"]["registered_continuation"]["continuation_id"],
-            *(_bound_path(prior["sources"][name], "inherited phosphate " + name, run) for name in _SOURCE_NAMES))
+        registered = _frozen_registration(run, prior)
     else:
         checkpoint = choice.registration_checkpoint or parent["id"]
     ancestor, source = _original(run, registry, parent, checkpoint)
@@ -197,8 +204,7 @@ def validate_lineage(run, registry, parent, intent):
     ancestor, source = _original(run, registry, parent, intent["ancestor"])
     recorded = intent["inspection"]
     edge = recorded["registered_continuation"]
-    registered = RegisteredContinuation(edge["continuation_id"],
-        *(_bound_path(intent["sources"][name], "frozen topology " + name, run) for name in _SOURCE_NAMES))
+    registered = _frozen_registration(run, intent)
     actual = inspect_inherited_continuation(source, _ref_path(parent["model"], "phosphate model", run), registered)
     if actual != {key: value for key, value in recorded.items() if key != "native_reference_links"}:
         raise ValueError("The registered phosphate observation differs from the original or selected parent")
@@ -206,6 +212,37 @@ def validate_lineage(run, registry, parent, intent):
     if prior is not None and _identity(ancestor["id"], edge) != _identity(
             prior["ancestor"], prior["inspection"]["registered_continuation"]):
         raise ValueError("Numbered child changed its inherited phosphate")
+
+
+def saved_refinement(run, checkpoint):
+    """Read the restraint evidence from this completed checkpoint's own fit."""
+    from .refinement_parallelity import V10_POLICY_ID, read_execution_request, validate_execution
+
+    reference = (checkpoint.get("outputs") or {}).get("parallelity_execution")
+    missing = "The named checkpoint has no completed registered phosphate refinement"
+    if checkpoint.get("kind") != "refinement" or checkpoint.get("usable") is not True or reference is None:
+        raise ValueError(missing)
+    record = validate_execution(run, reference, checkpoint=checkpoint["id"], parent=checkpoint["parent"], usable=True)
+    if record["policy_id"] != V10_POLICY_ID:
+        raise ValueError(missing)
+    request = read_execution_request(run, record["request"], checkpoint=checkpoint["id"])
+    intent = request["phosphate"]
+    root = Path(record["request"]["relative_path"]).parent.as_posix()
+    phase = read_phase(run, root, "refine", request)
+    capture = intent["inspection"]["native_reference_links"].get("native_receipt_sha256")
+    if not isinstance(capture, str) or not re.fullmatch("[0-9a-f]{64}", capture):
+        raise ValueError("The starting-model native chemistry receipt has no valid fingerprint")
+    evidence = {
+        "parent": request["parent"],
+        "starting_model_sha256": phase["parent_model_sha256"],
+        "starting_native_receipt_sha256": capture,
+        "request_sha256": record["request"]["sha256"],
+        "native_forces": phase["families"],
+        "native_neighbours": phase["bond"],
+        "full_gradient_calls": phase["full_gradient_calls"],
+        "reflections": phase["reflections"],
+    }
+    return intent["ancestor"], _frozen_registration(run, intent), evidence
 
 
 def read_phase(run, root, phase, request):

@@ -11,6 +11,9 @@ entries are reconstructed from repository history.
 - AutoRefine can carry a registered crystal phosphodiester into a numbered
   child. Phenix checks the bond, four angles and three torsions in the declared
   crystal copy during preflight and refinement. The fitted child awaits review.
+  `cif-doctor phosphate-image RUN --checkpoint ID --saved-continuation`
+  reads that child's written geometry, the linkage forces Phenix used and the
+  working and held-out reflection counts directly from the saved run.
 
 - Registered crystal phosphates can use PDB models with anisotropic atoms.
   Before refinement, Cedar checks each displacement tensor against Phenix's

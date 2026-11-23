@@ -100,16 +100,23 @@ def _final_geometry(run, selected):
 
 def read_checkpoint_phosphate_image(run: Path, *, checkpoint: str, phosphate: str | None = None, o3: str | None = None,
                                    o3_image: str | None = None, nearest_image: bool = False,
-                                   native_receipt: Path | None = None, registered=None, registration_checkpoint: str | None = None):
+                                   native_receipt: Path | None = None, registered=None, registration_checkpoint: str | None = None,
+                                   saved_continuation: bool = False):
     """Inspect only the named checkpoint's model and its own optional final GEO."""
     from .cif_numerical_replay import numerical_replay_scope
     from .cif_phosphate_image import inspect_phosphate_image
 
     if not isinstance(checkpoint, str) or not checkpoint.strip():
         raise CheckpointError("Phosphate inspection needs an explicit checkpoint ID or bookmark")
+    if saved_continuation and (any(x is not None for x in (registered, registration_checkpoint, phosphate, o3, o3_image)) or nearest_image):
+        raise CheckpointError("A saved continuation supplies its own registration, endpoints and crystal image")
+    native_fit = None
     with numerical_replay_scope():
         run, registry, _, report_ref, registry_ref = _checked_registry(run)
         selected = resolve_checkpoint(registry, checkpoint)
+        if saved_continuation:
+            from .refinement_phosphate import saved_refinement
+            registration_checkpoint, registered, native_fit = saved_refinement(run, selected)
     frozen_model = selected.get("model")
     if not isinstance(frozen_model, Mapping):
         raise CheckpointError("Selected checkpoint has no model reference")
@@ -148,6 +155,8 @@ def read_checkpoint_phosphate_image(run: Path, *, checkpoint: str, phosphate: st
     _require_unchanged(run / "report.json", report_ref)
     _require_registry_unchanged(registry_path(run), registry_ref)
     result["checkpoint"] = dict(id=selected["id"], parent=selected.get("parent"), model=model_ref, geometry=geometry_ref)
+    if native_fit is not None:
+        result["numbered_refinement"] = native_fit
     return result
 
 
