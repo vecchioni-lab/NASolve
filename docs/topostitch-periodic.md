@@ -13303,3 +13303,50 @@ by looking for a lower Free-R. Native already provides this option: do not write
 a second weighting engine. No extra fit or weight sweep is authorized by the
 ledger itself. Density-supported repair, stacking recovery and broader bending
 remain their existing separate milestones.
+
+
+## W244 — Audit coordinated live anisotropic phosphate returns
+
+Cedar's C547 working package and the frozen installed Willow W243 entry completed
+four **Phenix 2.2.1-6174** refinements owned by Rowan: two explicitly registered
+cuts in each of two R3 working inputs derived from the deposited coordinate/data
+pairs. Each had three macrocycles, at most 60 iterations per cycle, six movable
+backbone atoms, maximum motion 1.5 Å and requested `wxc_scale=0.5`. These are
+initially healthy connection controls, not repair of a widely separated seam.
+
+| Control | O3′–P (Å) | O3′–P–OP1 / OP2 (°) | Maximum local residual (σ) | Maximum atom motion (Å) |
+| --- | --- | --- | --- | --- |
+| 3LNA cut 1 | 1.613413 | 109.141 / 112.008 | 1.808 | 0.330717 |
+| 3LNA cut 2 | 1.610070 | 107.094 / 110.074 | 1.764 | 0.554335 |
+| 5LNA cut 1 | 1.606412 | 108.880 / 107.785 | 1.305 | 0.107192 |
+| 5LNA cut 2 | 1.604866 | 107.004 / 104.290 | 1.371 | 0.074192 |
+
+All eight native-reference local terms remain within 1.82 σ. Each result moves
+six atoms and preserves every other coordinate and source ANISOU/B/Q record.
+Rowan independently reopened each exported candidate with native cctbx: all
+1271/1275 Cartesian displacement tensors agree with the native return within
+8.89e-15 Å², with only expected PDB coordinate rounding. Original reflection
+and Free membership survive (1484/66 and 2375/120 respectively). These checks
+qualify this local native-return/export path; they are not a whole-ASU scattering
+invariance or deposition-acceptance claim.
+
+Linden audited the saved evidence without rerunning refinement: **84 frozen-file
+hashes**, four candidate/source digest bindings, exact W243 runtime module pin,
+three-cycle/six-atom controls, exact initial/final frame, complete observations
+and atom inventory all pass. Every result remains `REFINED_FOR_REVIEW`, with no
+checkpoint created or scientific acceptance. The source hashes and per-case
+references are in NASolve anchor
+`branch-artifacts/willow/w244-live-return-audit.json`; each external receipt uses
+the explicit `cedar_r3_native_links` anchor and relative path. Its local binding
+is historical evidence, not a claim that the native run is portable. The underlying
+Cedar archive is owned by Rowan; do not copy/re-run it or edit manuscript files.
+W243's source/installed tests remain the code qualification; this update changes
+documentation only. No native run, full suite, model/MTZ copy or private data commit
+was added by Linden.
+
+**Next:** keep the damaged-seam recovery and residual torsion/density questions
+open. Use W242's existing observer before any matched receiving comparison; qualify
+an explicitly common weight policy with Cedar instead of treating identical
+requested scales as identical objectives. Preserve the independent whole-ASU,
+input/scattering and reviewed unrestrained-edge gates. A mobile healthy cut is a
+positive integration control, not proof that arbitrary ends can be repaired.

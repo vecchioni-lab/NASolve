@@ -1,6 +1,16 @@
 # NASolve development handoff — Willow
 
-**Current audit and maintained implementation: W243, 2026-11-23.**
+**Current audit: W244; maintained implementation: W243, 2026-11-23.**
+[W244 audits four coordinated live returns](topostitch-periodic.md#w244--audit-coordinated-live-anisotropic-phosphate-returns).
+Rowan completed three-cycle/six-atom Phenix fits on four initially healthy R3
+cuts: bonds 1.605–1.613 Å, all eight local terms within 1.82 σ. Independent
+export rereading preserves all Cartesian tensors within 8.89e-15 Å²; original
+ANISOU/B/Q and measured/Free membership stay. Linden verified 84 frozen-input
+hashes and source/candidate/runtime/state bindings without duplicate runs.
+This closes W243's fresh local return/export check; general damaged-seam repair,
+whole-ASU scattering, fixed-objective comparison and scientific acceptance remain
+open. The current next step returns to the existing weight-policy/repair queue.
+
 [W243 fixes anisotropic return round-off](topostitch-preview.md#preserve-cartesian-adps-through-native-return-w243):
 **293 source/293 isolated installed tests**, both real 1271/1275-atom preflight
 failures reproduced and replayed cold, twelve real tensor-change refusals. All
@@ -8,9 +18,10 @@ six Cartesian ADP components compare at absolute 1e-12 Å² in the exact native
 cell/group/frame; modes/Uiso and isotropic behavior stay strict. Source ANISOU
 and ATOM B/Q export bytes remain exact. Installed/source/read-only cctbx replay
 agree; no new fits or manuscript edits. Rowan has the frozen package at NASolve
-anchor `branch-artifacts/willow/w243-cartesian-return/installed` for his separate
-live qualification. New state receipts carry frame and ADP comparison evidence;
-use fresh jobs, preserve old failures. Whole-ASU/export scattering gates stay open.
+anchor `branch-artifacts/willow/w243-cartesian-return/installed` for the separate
+live qualification now audited in W244. New state receipts carry frame and ADP
+comparison evidence; use fresh jobs, preserve old failures. Whole-ASU scattering
+gates stay open.
 
 [W242 observes saved native XYZ weights](topostitch-preview.md#observe-printed-native-xyz-weights-w242)
 without changing refinement: **278 source/278 isolated installed tests**, exact
@@ -30,7 +41,7 @@ one-cycle execution, exact source/installed candidate parity. Original 862 atoms
 native F/SIG scaling is recorded. Standalone Willow requires explicit compatible
 Cedar modules; no campaign activation or branch merge is implied.
 
-**Latest science:** [W241's two five-cycle receiving runs](topostitch-periodic.md#w241--compare-geometry-seeded-and-direct-native-receiving)
+**Seeded-receiving science:** [W241's two five-cycle receiving runs](topostitch-periodic.md#w241--compare-geometry-seeded-and-direct-native-receiving)
 show that the W235 geometry seed survives: O3′–P 1.613075 Å, phosphate oxygen
 angles 107.179°/109.761°, local bond/angle residuals at most 0.398/1.614 σ.
 The original-start control remains at 1.819145 Å and 74.607°/149.406°, with a
@@ -163,7 +174,7 @@ failure; skipped cases remain unqualified. [Completion contract](topostitch-prev
 
 | Component | Proven scope | Still open |
 | --- | --- | --- |
-| W243 Cartesian ADP return | Both real anisotropic failures replay cold; 293 source/293 installed, all six components and real-change refusals | Fresh Cedar-coordinated live execution; exported-candidate scattering and whole-ASU gates |
+| W243/W244 Cartesian ADP return | 293 source/293 installed; four coordinated real fits and reopened local exports preserve tensors, source bytes and observations | General damaged-seam repair, whole-ASU scattering and scientific acceptance |
 | W242 weight observer | Source-pinned ordered native summaries, rounding/no-authority limits; 278 source/278 installed, exact saved-log parity | Live/fixed-policy qualification; no parameter changes or extra fits |
 | W241 seeded receiving | Two five-cycle native fits; seed keeps healthy local bonds/oxygen angles, exact fixed context and data | Strong adaptive-weight confound, residual torsions, density/statistical acceptance |
 | W240 native product entry | Installed preflight/one-cycle execution, exact six-atom return and data/thermal preservation; 261 source/261 installed checks | Original-start oxygen angles; explicit weight evidence, general repair and ordinary campaign integration |

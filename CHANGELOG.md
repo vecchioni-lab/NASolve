@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W244 — Audit coordinated anisotropic native returns
+
+- Record four completed Cedar-coordinated real-data fits and independent exported
+  tensor readbacks. Healthy registered connections survive with all eight local
+  terms within 1.82 sigma; original atoms, thermal records and Free membership stay.
+- Audit 84 frozen-input hashes and saved return bindings without duplicate runs.
+  Documentation/evidence only; general damaged-seam repair and whole-ASU scattering
+  remain open. No runtime/schema/default changes or private scientific data in Git.
+
 ### W243 — Compare returned anisotropic tensors in physical units
 
 - Fix false return failures from native reciprocal-tensor round-off. Compare all

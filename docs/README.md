@@ -7,15 +7,19 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Current audit/code: W243.** [Cartesian ADP return](topostitch-preview.md#preserve-cartesian-adps-through-native-return-w243)
+- **Current audit: W244; code: W243.** [Four coordinated real fits](topostitch-periodic.md#w244--audit-coordinated-live-anisotropic-phosphate-returns)
+  preserve healthy symmetry connections and anisotropic exports; 84 frozen-input
+  hashes and complete saved-state bindings checked without duplicate runs.
+  General damaged-seam repair and whole-ASU scattering remain open.
+- **W243.** [Cartesian ADP return](topostitch-preview.md#preserve-cartesian-adps-through-native-return-w243)
   tolerates only physical-unit tensor round-off while preserving exact frame,
   modes, isotropic state and source ANISOU/B/Q bytes. 293 source/293 installed;
-  both real failures replay cold. Rowan owns the separate fresh native fits.
+  both real failures replay cold; W244 records the separate fresh native fits.
 - **W242.** [Read-only native-weight observation](topostitch-preview.md#observe-printed-native-xyz-weights-w242)
   preserves pinned per-cycle printed values and their limits: 278 source/278
   installed tests, exact replay of the ten saved W241 summaries, no new fit.
   Fixed-objective native scope remains a Cedar-coordinated follow-up.
-- **Latest science: W241.** [Seeded receiving and native weighting](topostitch-periodic.md#w241--compare-geometry-seeded-and-direct-native-receiving)
+- **Seeded receiving: W241.** [Seeded receiving and native weighting](topostitch-periodic.md#w241--compare-geometry-seeded-and-direct-native-receiving)
   shows good local geometry surviving five cycles, while the original pose stays
   strained. Native adaptive weights differ strongly; this is not fixed-objective
   evidence or density acceptance. A compact ChimeraX/density checkout is linked
