@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-23, C549 following a crystal phosphate through two numbered refinements — Rowan**.
+Updated **2026-11-23, C550 recognizing mercury across native model readers — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
 C547 and Willow W243 carried two independent crystal phosphates per model
@@ -22,6 +22,17 @@ backbone step, and omitted the submitted connection table. The preliminary
 validation reported zero chain breaks and listed the two intended covalent
 distances as symmetry contacts. Curator annotation and the other deposition's
 return remain open.
+
+**C550 lets two Phenix readers spell the same mercury atom differently.**
+The metal-containing model stopped before a coordinate could move because
+the PDB reader returned Hg and the interpreted model returned HG. New
+registered-phosphate rounds accept that spelling; charge, coordinates,
+occupancy and displacement must still agree. V10 retains the exact original
+helper for old rounds. No migration is needed. The C549 focused command
+below passed 347 tests and 45 subtests each from source and the relocated
+installation. Both real V10 child reports reopened identically. Willow
+owns the new phased, fixed-mercury preflight. The separate A12 phosphate
+orientation comparison is recorded under [backbone chemistry](backbone-chemistry.md).
 
 **Q06 has two numbered PDU:PDU refinements across the same crystal bond.**
 C548 ran five ordinary AutoRefine cycles from manual-001, a child registered

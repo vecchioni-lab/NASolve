@@ -15,6 +15,11 @@ entries are reconstructed from repository history.
   reads that child's written geometry, the linkage forces Phenix used and the
   working and held-out reflection counts directly from the saved run.
 
+- Registered-phosphate refinement accepts the same element when Phenix
+  capitalizes its PDB spelling, for example `Hg` to `HG`. The recorded
+  charge, atom identity, coordinates, occupancy and displacement checks still
+  apply. Earlier numbered refinements retain their exact execution fingerprints.
+
 - Registered crystal phosphates can use PDB models with anisotropic atoms.
   Before refinement, Cedar checks each displacement tensor against Phenix's
   coordinate and diffraction models and allows for the printed precision of B.

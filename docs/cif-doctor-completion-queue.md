@@ -1503,6 +1503,10 @@ real refinement. Include a true nick, a crossover, a labelled-oxygen
 swap and a stereospecific substitution among the controls. A physical
 repair and a change of labels require different evidence. [Scientific
 scope](backbone-chemistry.md#checking-the-direction-of-a-repaired-phosphate).
+Use deposited 5W6W and the six standard W templates as the inward/outward
+A12 controls. The archived DF–Hg–DT and PDU:PDU inputs inherited different
+poses. Follow the matched native receiver of the metal model using its own
+phases, scattering state and original free flags before judging a repair.
 
 **Read the processed deposition separately.** A returned model preserved all
 ordinary steps while omitting the two declared crystal links. Its validation

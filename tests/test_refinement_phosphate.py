@@ -84,11 +84,11 @@ def test_exact_restraint_capture_preserves_order_within_native_input_roles(tmp_p
             bind_execution_inputs({"capture_inputs":pins}, files[0], [files[i] for i in order])
 
 
-def frozen_round(tmp_path):
+def frozen_round(tmp_path, policy=None):
     from hashlib import sha256
     import sys
     from nasolve.cif_phosphate_restraints import phosphate_bond_phil
-    from nasolve.refinement_parallelity import prepare_execution, V10_POLICY_ID
+    from nasolve.refinement_parallelity import prepare_execution, V11_POLICY_ID
     from tests.test_phosphate_restraints import inspection
     original = tmp_path/"original"
     run = original/"dataset/AutoMR/run_001"
@@ -111,14 +111,18 @@ def frozen_round(tmp_path):
                     capture_inputs=capture)
     command = ["phenix.refine", *map(str, paths), "--overwrite", "output.prefix=refined"]
     reference, dry, fit = prepare_execution(run, checkpoint="refine-001", parent="postmr", inputs=paths,
-        command=command, python_executable=Path(sys.executable), macro_cycles=5, runtime_policy=V10_POLICY_ID,
+        command=command, python_executable=Path(sys.executable), macro_cycles=5, runtime_policy=policy or V11_POLICY_ID,
         phosphate=prepared)
     return original, run, stage, paths, reference, dry, fit
 
 
-def test_registered_round_retains_order_translated_operator_and_relocatable_sources(tmp_path):
-    from nasolve.refinement_parallelity import read_execution_request
-    original, run, stage, paths, ref, dry, fit = frozen_round(tmp_path)
+@pytest.mark.parametrize("policy_version", [10, 11])
+def test_registered_round_retains_order_translated_operator_and_relocatable_sources(tmp_path, policy_version):
+    from nasolve.refinement_parallelity import read_execution_request, V10_POLICY_ID, V11_POLICY_ID
+    policy = V10_POLICY_ID if policy_version == 10 else V11_POLICY_ID
+    original, run, stage, paths, ref, dry, fit = frozen_round(tmp_path, policy)
+    helper = stage / "parallelity_runtime/code/_nasolve_refinement/cif_phosphate_restraints.py"
+    assert ("_same_atomic_species" in helper.read_text()) == (policy_version == 11)
     bond = stage/"parallelity_runtime/phosphate/image-bond.phil"
     assert "symmetry_operation = -x+y,-x,z+1" in bond.read_text()
     expected = [*map(str, paths[:-1]), str(bond), str(paths[-1])]
@@ -193,7 +197,7 @@ def test_cold_reader_rejects_missing_proxy_force_or_changed_comparison(tmp_path,
     relative = folder.relative_to(run).as_posix()
     assert read_phase(run,relative,"refine",req)["reflections"]["start"]["free"] == 1
     from nasolve import refinement_parallelity, refinement_phosphate
-    execution = dict(request=ref, policy_id=refinement_parallelity.V10_POLICY_ID)
+    execution = dict(request=ref, policy_id=refinement_parallelity.V11_POLICY_ID)
     def prior_execution(root, reference, *, checkpoint, parent, usable):
         assert (root, checkpoint, parent, usable) == (run, "refine-001", "postmr", True)
         assert reference == {"source": "this round"}

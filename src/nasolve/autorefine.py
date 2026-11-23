@@ -1673,7 +1673,7 @@ def execute_autorefine(
     existing initialization behavior. Later saves still use the registry guard.
     """
     from .refinement_parallelity import (
-        V6_POLICY_ID, V7_POLICY_ID, V8_POLICY_ID, V9_POLICY_ID, V10_POLICY_ID, require_runtime_continuation,
+        V6_POLICY_ID, V7_POLICY_ID, V8_POLICY_ID, V9_POLICY_ID, V11_POLICY_ID, require_runtime_continuation,
         validate_declared_site_choice, validate_runtime_choice,
     )
     from .refinement_counted import LONG_CONTROL_PROTOCOL, control_iteration_cap
@@ -1691,7 +1691,7 @@ def execute_autorefine(
                 or counted_protocol is not None or processor_count not in (None, 1)):
             raise AutoRefineError("Registered phosphate requires ordinary checked refinement with one native worker")
         processor_count = 1
-    runtime_policy = (counted_policy if counted_protocol is not None else V10_POLICY_ID if phosphate_request is not None
+    runtime_policy = (counted_policy if counted_protocol is not None else V11_POLICY_ID if phosphate_request is not None
                       else V9_POLICY_ID if observe_declared_sites else None)
     runtime_options = {"runtime_policy": runtime_policy} if runtime_policy is not None else {}
     from .refinement_counted import validate_autorefine_control

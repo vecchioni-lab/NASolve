@@ -174,6 +174,12 @@ def _matching_displacement(source, live, scatterer, cell):
             and dist(scatterer.u_cart_plus_u_iso(cell), source_u) <= 1e-9)
 
 
+def _same_atomic_species(source, live):
+    # The fresh PDB reader can preserve Hg while native interpretation prints HG.
+    return (source.element.strip().upper() == live.element.strip().upper()
+            and source.charge.strip() == live.charge.strip())
+
+
 def verify_phosphate_start(model, raw, inspection):
     """Bind the newly prepared native manager to the exact child, allowing atom reordering."""
     from cctbx import sgtbx
@@ -196,7 +202,7 @@ def verify_phosphate_start(model, raw, inspection):
         raise ValueError("Native phosphate model atoms or crystal frame differ from the numbered input")
     for name, atom, xyz, scatterer in zip(current, live.atoms(), xrs.sites_cart(), xrs.scatterers(), strict=True):
         before = expected[name]
-        if (atom.element.strip() != before.element.strip() or atom.charge.strip() != before.charge.strip()
+        if (not _same_atomic_species(before, atom)
                 or abs(atom.occ-before.occ) > 1e-6 or abs(scatterer.occupancy-before.occ) > 1e-6
                 or dist(atom.xyz, before.xyz) > 1e-8 or dist(xyz, before.xyz) > 1e-8):
             raise ValueError(f"Native phosphate starting state differs at {name}")

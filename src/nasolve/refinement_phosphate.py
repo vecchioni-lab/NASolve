@@ -36,13 +36,13 @@ def request_from_args(args):
 
 
 def _prior_intent(run, registry, parent):
-    from .refinement_parallelity import V10_POLICY_ID
+    from .refinement_parallelity import PHOSPHATE_POLICIES
     by_id = {row["id"]: row for row in registry["checkpoints"]}
     for key in reversed(_lineage(registry, parent)):
         ref = (by_id[key].get("outputs") or {}).get("parallelity_execution")
         if ref is not None:
             sealed = read_record(_bound_path(ref, "ancestor execution", run))
-            if sealed["policy_id"] == V10_POLICY_ID:
+            if sealed["policy_id"] in PHOSPHATE_POLICIES:
                 request = read_record(_bound_path(sealed["request"], "ancestor request", run))
                 return request["phosphate"]
     return None
@@ -216,14 +216,14 @@ def validate_lineage(run, registry, parent, intent):
 
 def saved_refinement(run, checkpoint):
     """Read the restraint evidence from this completed checkpoint's own fit."""
-    from .refinement_parallelity import V10_POLICY_ID, read_execution_request, validate_execution
+    from .refinement_parallelity import PHOSPHATE_POLICIES, read_execution_request, validate_execution
 
     reference = (checkpoint.get("outputs") or {}).get("parallelity_execution")
     missing = "The named checkpoint has no completed registered phosphate refinement"
     if checkpoint.get("kind") != "refinement" or checkpoint.get("usable") is not True or reference is None:
         raise ValueError(missing)
     record = validate_execution(run, reference, checkpoint=checkpoint["id"], parent=checkpoint["parent"], usable=True)
-    if record["policy_id"] != V10_POLICY_ID:
+    if record["policy_id"] not in PHOSPHATE_POLICIES:
         raise ValueError(missing)
     request = read_execution_request(run, record["request"], checkpoint=checkpoint["id"])
     intent = request["phosphate"]

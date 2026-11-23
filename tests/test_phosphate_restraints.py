@@ -96,6 +96,22 @@ def test_cryst1_precision_accepts_the_mtz_floats_and_preserves_the_measured_cell
     assert _cryst1_cell([*native[:5], 119.994]) != _cryst1_cell(stored)
 
 
+@pytest.mark.parametrize(("stored", "stored_charge", "prepared", "prepared_charge", "equal"), [
+    ("Hg", "  ", "HG", "", True),
+    ("CL", "1-", "Cl", "1-", True),
+    ("Hg", "  ", "H", "", False),
+    ("H", "", "D", "", False),
+    ("Hg", "", "HG", "2+", False),
+])
+def test_phosphate_start_recognizes_element_spelling_and_preserves_charge(
+        stored, stored_charge, prepared, prepared_charge, equal):
+    from nasolve.cif_phosphate_restraints import _same_atomic_species
+
+    before = SimpleNamespace(element=stored, charge=stored_charge)
+    live = SimpleNamespace(element=prepared, charge=prepared_charge)
+    assert _same_atomic_species(before, live) is equal
+
+
 def test_phosphate_start_checks_anisou_and_its_independently_rounded_b():
     from math import pi
     from nasolve.cif_phosphate_restraints import _matching_displacement

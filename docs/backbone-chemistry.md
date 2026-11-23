@@ -47,6 +47,22 @@ retain the original free flags. A change of crystal representative alone
 must preserve the local orientation. The general automatic repair remains
 in the [crystal-boundary queue](cif-doctor-completion-queue.md#crystal-phosphates-after-an-asymmetric-unit-recut).
 
+The central A11 O3′–A12 P linkage is a known pair of controls. In deposited
+5W6W the OP1/OP2 midpoint projects 0.65 Å toward the local duplex axis.
+Both individual oxygens point inward. The six standard templates introduced
+at `eda1df7b` carry the outward pose, with the midpoint 0.57–0.58 Å away
+from the axis. The packaged `5W6W_noPO4.pdb` retains the inward pose for
+explicit historical tests. AutoMR uses a named pair template or its standard
+`C_G.pdb` fallback. The original and current files therefore serve different
+purposes. [Deposited 5W6W](https://www.rcsb.org/structure/5W6W).
+
+For a metal refinement, check its actual parent model. One older DF–Hg–DT
+lineage inherited the inward A12 phosphate in molecular replacement and
+kept it through Coot, scaffold restoration and ReadySet. A PDU:PDU lineage
+started outward and remained outward through two checked five-cycle fits.
+PostMR deliberately restores the incoming sugar and phosphate when changing
+a base. A pre-existing backbone error needs a separate, source-traced trial.
+
 ## Standard phosphodiester contract
 
 For ordinary DNA/RNA-like backbones, including sugar variants that retain the

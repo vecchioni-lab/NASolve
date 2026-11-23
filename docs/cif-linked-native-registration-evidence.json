@@ -1,6 +1,16 @@
 {
   "schema_version": 1,
   "document_kind": "LINKED_NATIVE_REGISTRATION_AND_COMPONENT_METADATA_RETURNS",
+  "c550_native_element_spelling": {
+    "milestone": "Q06, recognize the same element on an interpreted metal-containing parent",
+    "phenix": "2.2.1-6174",
+    "observation": "The input atom is Hg and the interpreted hierarchy prints HG. Both carry an empty charge. The native scatterer is Hg, with unchanged position, occupancy and displacement.",
+    "native_zero_angle_scattering": 79.5674876573,
+    "new_helper_sha256": "95521b5732958d619ec8751a9e949707992d713a0dea8c845546dd21ee8d5d39",
+    "scope": "V11 compares element symbols without case. The input charge and all other starting-state checks still apply. V10 retains its original helper and both earlier numbered fits reopen identically.",
+    "qualification": {"focused_per_build": 347, "subtests_per_build": 45, "builds": ["source", "relocated installed wheel"]},
+    "external_check": "A new native preflight on the phased, fixed-Hg Willow parent is tracked separately."
+  },
   "c549_relocated_registered_phosphate": {
     "milestone": "Q06, a second numbered five-cycle fit after moving the dataset",
     "phenix": "2.2.1-6174",
