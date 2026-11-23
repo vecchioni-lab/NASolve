@@ -79,9 +79,21 @@ The source and target in the declaration are logical sequence sites. Pine's
 mapping locates their actual PDB residues. The declared operation moves P with
 O3′ fixed. Doctor inverts it to inspect O3′ with P fixed. A nearer copy cannot
 replace a declared one. If a mapped atom is missing, the JSON retains the
-connection and explains why its length is unavailable. A registration for
-different coordinate bytes is refused. This command reads the registered
-source frame and the checkpoint's own GEO. It adds no forces.
+connection and explains why its length is unavailable. By default the
+registration must belong to the exact coordinate file.
+
+To follow the same bond after refinement, name the checkpoint where the
+strand was registered with `--registration-checkpoint refine-005`, and
+give the later model's ID to `--checkpoint`. Doctor checks their ancestry,
+the cell and space-group setting, and the identities and elements of the
+atoms at both residues. Each occupied atom in the later model must still
+be closest to its earlier position in the same crystal copy, with a
+separation larger than PDB rounding uncertainty. This checks the coordinate
+representatives without choosing a new bond partner. If an end was recut,
+or its chemistry changed, supply a registration for the new frame.
+The distances, optional native dictionary capture and optional final GEO
+all belong to the requested later model. The command reads coordinates and
+restraints without applying forces.
 
 The operation acts on O3′ and its C3′. The report gives the P–O3′ distance, the
 available backbone angles from the coordinates and the named phosphate atoms

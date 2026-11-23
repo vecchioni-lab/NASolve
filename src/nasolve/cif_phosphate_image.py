@@ -12,6 +12,10 @@ from .topostitch_images import _cartesian, _fractional, closest_atom_images
 from .topostitch_periodic import _op_key, crystal_from_pdb_bytes
 
 
+# Two distances between PDB positions rounded to 0.001 Å can differ by this amount.
+PDB_IMAGE_SEPARATION_A = 2 * sqrt(3) * .001
+
+
 def _printed_evidence(kind, text, labels, endpoints, images, gemmi, members, distance):
     """Phenix applies its operator to the second label, in printed order."""
     sections = {}
@@ -112,9 +116,7 @@ def _inspect_coordinates(model, *, phosphate, o3, o3_image=None, nearest_image=F
         moving = point(o3, "O3'", "O", required=True)
         closest = closest_atom_images(p, moving, cell, spacegroup, gemmi)
         gap = closest[1]["distance_A"] - closest[0]["distance_A"]
-        # Each distance uses two PDB positions rounded to 0.001 Å per axis.
-        # Their difference can therefore change by at most twice that distance error.
-        allowance = 2 * sqrt(3) * .001
+        allowance = PDB_IMAGE_SEPARATION_A
         if gap > allowance:
             op = _operator(closest[0]["image"]["operator_xyz"], gemmi, members)
         observations["image_ranking"] = dict(status="SEPARATED" if op is not None else "AMBIGUOUS_AT_PDB_PRECISION",

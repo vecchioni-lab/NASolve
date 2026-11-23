@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current work order, 2026-11-22.** This is the one unfinished-work queue. The
+**Current work order, 2026-11-23.** This is the one unfinished-work queue. The
 [capability table](cif-doctor.md#current-capability-boundary) records demonstrated
 support; the [handoff](development-handoff.md) says where work stopped. Old notes
 record what was known then. They do not create a second set of instructions.
@@ -159,6 +159,13 @@ and three torsions absent. Its fresh registration and native capture recovered
 both intact source links. Implement a checked, child-bound restoration of the
 complete neighbourhood and prove single application on a numbered restart.
 Reuse these paired controls.
+
+C543 carries the registered endpoints and their full crystal operation from
+the numbered ancestor to the written child. All 40 atoms at the two residues
+kept their crystal copies. The child measured 1.620 Å and its own native
+capture supplied both intact reference links. The remaining work is delivery
+of those terms to the fresh Phenix geometry manager and retention during
+the next refinement.
 
 In C531, two historical PHIL edits completely masked the source-supported
 PDU target change from 1.607 to 1.470 Å. Updating both site-specific targets

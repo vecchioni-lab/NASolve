@@ -130,3 +130,73 @@ def test_registered_continuation_reopens_the_exact_checkpoint_after_relocation(t
     assert reading["checkpoint"]["id"]=="refine-001" and reading["distance_A"]==pytest.approx(3)
     assert reading["registered_continuation"]["measurement_status"]=="MEASURED"
     assert _snapshot(moved)==before and not original.exists()
+
+
+def test_numbered_restart_carries_its_ancestors_image_after_relocation(tmp_path, capsys):
+    original = tmp_path / "original"
+    original.mkdir()
+    model, _, reg, disc, edges = files(original)
+    run = make_checkpoint_run(original / "dataset")
+    parent = run / "PostMR/Model/readyset_model.pdb"
+    parent.write_bytes(model.read_bytes())
+    report = json.loads((run / "report.json").read_bytes())
+    report["postmr"]["prepared_sha256"] = file_sha256(parent)
+    put(run / "report.json", report)
+    child = _child(run)
+    coordinates = run / child["model"]["relative_path"]
+    coordinates.write_text(coordinates.read_text().replace("  19.000", "  18.500"))
+    registry = run / "AutoRefine/checkpoints.json"
+    tree = json.loads(registry.read_bytes())
+    tree["checkpoints"][-1]["model"] = _reference(coordinates, run)
+    tree["current"] = "postmr"
+    put(registry, tree)
+    parent_hash, child_hash = file_sha256(parent), file_sha256(coordinates)
+    moved = original.rename(tmp_path / "moved")
+    actual = moved / run.relative_to(original)
+    args = (actual, moved / reg.name, moved / disc.name, moved / edges.name)
+    before = _snapshot(moved)
+    assert invoke(*args, "--checkpoint", "first-refinement", "--registration-checkpoint", "postmr", "--json") == 0
+    observed = json.loads(capsys.readouterr().out)
+    assert observed["checkpoint"]["id"] == "refine-001"
+    declaration = observed["registered_continuation"]
+    assert declaration["source"]["logical_site"] == "L:2"
+    assert declaration["oxygen_operator_xyz"] == "x-1,y,z"
+    transfer = declaration["frame_transfer"]
+    assert transfer["source_checkpoint"] == "postmr"
+    assert transfer["source_model_sha256"] == parent_hash
+    assert transfer["child_model_sha256"] == child_hash == observed["model_sha256"]
+    assert transfer["atom_count"] == 5 and transfer["max_atom_shift_A"] == pytest.approx(.5)
+    assert observed["distance_A"] == pytest.approx(3.5)
+    assert observed["printed_geometry"] is None and declaration["runtime_authority"] is False
+    assert not original.exists() and _snapshot(moved) == before
+    assert invoke(*args, "--checkpoint", "postmr", "--registration-checkpoint", "first-refinement", "--json") == 1
+    assert "ancestor" in capsys.readouterr().err
+    assert _snapshot(moved) == before
+
+
+@pytest.mark.parametrize(("change", "message"), [
+    ("crystal", "crystal frame"), ("rename", "chemical identities"),
+    ("element", "chemical identities"), ("charge", "chemical identities"),
+    ("unoccupied", "chemical identities"), ("lattice translation", "crystal representative"),
+    ("image tie", "crystal representative"),
+])
+def test_inherited_edge_requires_the_same_local_chemistry_and_image(tmp_path, change, message):
+    from nasolve.cif_phosphate_continuation import RegisteredContinuation, inspect_inherited_continuation
+    source, _, reg, disc, edges = files(tmp_path)
+    lines = source.read_text().splitlines()
+    for i, line in enumerate(lines):
+        if change == "crystal" and line.startswith("CRYST1"):
+            lines[i] = line.replace("20.000", "21.000", 1)
+        if line[12:16].strip() == "OP1":
+            lines[i] = {
+                "rename": line.replace("OP1", "OP2"),
+                "element": line[:76] + " S",
+                "charge": line[:78] + "1-",
+                "unoccupied": line[:54] + "  0.00" + line[60:],
+                "lattice translation": line[:30] + "  22.000" + line[38:],
+                "image tie": line[:30] + "  12.000" + line[38:],
+            }.get(change, line)
+    child = tmp_path / "child.pdb"
+    child.write_text("\n".join(lines) + "\n")
+    with pytest.raises(ValueError, match=message):
+        inspect_inherited_continuation(source, child, RegisteredContinuation(9, reg, disc, edges))

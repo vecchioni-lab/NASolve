@@ -295,6 +295,8 @@ def build_parser() -> argparse.ArgumentParser:
     image_choice.add_argument("--registered-continuation", type=int, metavar="ID",
                               help="read this declared O3'-to-P connection in its registered source frame")
     phosphate_image.add_argument("--registration", type=Path, help="construct registration for --registered-continuation")
+    phosphate_image.add_argument("--registration-checkpoint", metavar="ID",
+                                 help="follow a registered ancestor’s phosphate into the named descendant checkpoint")
     phosphate_image.add_argument("--discovery-input", type=Path, help="registered end-discovery input for --registered-continuation")
     phosphate_image.add_argument("--backbone-continuations", type=Path, help="explicit directed backbone connections for --registered-continuation")
     phosphate_image.add_argument("--geometry", type=Path, help="optional matching Phenix GEO with printed bonds and nonbonded contacts")
@@ -1722,6 +1724,10 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
             raise ValueError("Topology input files require --registered-continuation ID")
         options = dict(phosphate=args.phosphate, o3=args.o3, o3_image=args.o3_image,
                        nearest_image=args.nearest_image, native_receipt=args.native_receipt, registered=registered)
+        if args.registration_checkpoint is not None:
+            if args.checkpoint is None or registered is None:
+                raise ValueError("--registration-checkpoint needs a numbered run, --checkpoint and --registered-continuation")
+            options["registration_checkpoint"] = args.registration_checkpoint
         if args.checkpoint is None:
             result = inspect_phosphate_image(args.model, geometry=args.geometry, **options)
         else:
@@ -1737,6 +1743,10 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
     else:
         if "checkpoint" in result:
             print(f"Checkpoint {result['checkpoint']['id']}.")
+            transfer = result.get("registered_continuation", {}).get("frame_transfer")
+            if transfer is not None:
+                print(f"Registration from {transfer['source_checkpoint']}. "
+                      f"Same crystal copies for {transfer['atom_count']} occupied atoms at the two residues.")
             if result["printed_geometry"] is None:
                 print("This checkpoint has no recorded final geometry. Measurements use its saved coordinates.")
         declared = result.get("registered_continuation")

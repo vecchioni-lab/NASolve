@@ -12,6 +12,8 @@ entries are reconstructed from repository history.
   O3′–P connection from a construct registration and reports what the exact
   model or refinement checkpoint contains. A missing coordinate endpoint
   leaves the declared connection available for review.
+  With `--registration-checkpoint`, the same command can follow that bond
+  into a named descendant after checking the crystal copies at both residues.
 
 - `cif-doctor assess --refined-planes` now shows which modeled atoms Phenix
   included with positive weight in a residue's own plane. It can read an

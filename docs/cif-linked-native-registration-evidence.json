@@ -1,6 +1,22 @@
 {
   "schema_version": 1,
   "document_kind": "LINKED_NATIVE_REGISTRATION_AND_COMPONENT_METADATA_RETURNS",
+  "c543_numbered_phosphate_descendant": {
+    "queue": "Q06",
+    "registration_checkpoint": "refine-005",
+    "source_model_sha256": "00ee2b2f9ebc57e1bab1a51abc64a903c204cdddabccf6a8399ef1546c547313",
+    "measured_checkpoint": "manual-001",
+    "measured_model_sha256": "5c0b63b683c58e977d12ebce9b6aca61d44444367a816417a2e8c39e667fb075",
+    "selected_checkpoint_after_read": "refine-005",
+    "occupied_endpoint_atoms": 40, "maximum_shift_A": 1.370846,
+    "bond_A": 1.620183, "O3_P_OP1_OP2_angles_deg": [103.221, 115.703],
+    "native_reference_sites": [["A:16", "A:17"], ["B:5", "B:6"]],
+    "native_terms_sha256": "20306d3d54021322c095d6cce324aa8091174f02cf984e36b0148c6468cff34d",
+    "child_native_capture_sha256": "886583be3b0a852e38c9770f7ee081f30388540f481db8ef8b5f4b148c702fde",
+    "phenix": "2.2.1-6174", "new_cycles": 0,
+    "validation": {"focused_source": 187, "focused_relocated_wheel": 187, "subtests_each": 27},
+    "replay": {"anchor": "NASolve-local-artifacts", "receipt": "cedar/c528-phosphate-refinement/c543-science.json", "sha256": "82f2916339a3aca59050e6f2398b06c4aaa099b854be5449691c819175a901cd", "script": "cedar/runners/c543_restart_frame.py", "script_sha256": "949ab9f8459be78bc2ad992b094fa0b10f19ab848d6703010c9e57af4d6a186d"}
+  },
   "df_sulfur_direction_2026_11_22": {
     "queue": "Q08", "donor_state_question": "Q13", "residue": "QF1 A:12",
     "chemistry": "Generated neutral DF definition used in the DF–Hg–DT fit",

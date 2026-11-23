@@ -1,7 +1,24 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-22, C542 reopening the written 5W6W phosphate after ordinary-recipe refinement — Rowan**.
+Updated **2026-11-23, C543 following the registered phosphate into a numbered child — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+C543 reopens the C541 five-cycle model as a manual child of `refine-005`
+in an isolated copy of the numbered PDU run. The existing phosphate reader
+now accepts `--registration-checkpoint` and reuses the original directed
+strand declaration. Its 40 occupied endpoint atoms kept their crystal copies,
+with a largest movement of 1.371 Å. The child measured 1.620 Å across the
+seam. Its own Phenix 2.2.1-6174 dictionary capture recovered the two original
+DA→DC reference links. The new reading used zero refinement cycles.
+The next Q06 step is delivering those reference terms once to the fresh
+native geometry manager. [Usage](cif-doctor.md#inspecting-a-phosphate-at-a-crystal-boundary).
+
+The result adds an optional frame-transfer record to the inspection output.
+Existing checkpoint registries require no migration. Source and relocated
+wheel each passed 187 checks and 27 subtests with
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -q -p no:cacheprovider tests/{test_phosphate_continuation,test_phosphate_image,test_phosphate_reference_links,test_cif_doctor_run,test_topostitch_images,test_topostitch_graph,test_topostitch_registration,test_checkpoints,test_cli}.py`
+(use the relocated wheel and qualified Gemmi on the installed test path).
+Both inspections reproduced the same [compact evidence](cif-linked-native-registration-evidence.json).
 
 C541 tested the [declared 5W6W junction](backbone-chemistry.md#the-central-strand-in-the-5w6w-scaffold)
 through two actual five-cycle Phenix 2.2.1-6174 refinements. Both used the

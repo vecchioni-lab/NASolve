@@ -2,11 +2,14 @@
 from dataclasses import dataclass
 from hashlib import sha256
 import json
+from math import isfinite
 from pathlib import Path
 
 from .model_assessment import file_sha256
-from .cif_phosphate_image import PhosphateEndpointUnavailable, _inspect_coordinates
+from .cif_phosphate_image import PDB_IMAGE_SEPARATION_A, PhosphateEndpointUnavailable, _inspect_coordinates
+from .refinement_link_geometry import _model_labels
 from .topostitch_graph import _inverse, build_registered_periodic_graph
+from .topostitch_images import closest_atom_images
 from .topostitch_inspect import _unique_object
 from .topostitch_periodic import crystal_from_pdb_bytes
 
@@ -17,6 +20,12 @@ class RegisteredContinuation:
     registration: Path
     discovery: Path
     continuations: Path
+
+
+def _sources_match(request, sources):
+    return (file_sha256(request.registration) == sources["registration_sha256"]
+            and file_sha256(request.discovery) == sources["discovery_sha256"]
+            and file_sha256(request.continuations) == sources["continuations_sha256"])
 
 
 def _endpoint(node, atom):
@@ -70,9 +79,7 @@ def inspect_registered_continuation(model, request, *, geometry, native_receipt)
             result["native_reference_links"] = dict(status="UNASSESSED", reason=reason, groups=[])
     if (result["model_sha256"] != graph["source_model_sha256"] or sha256(raw).hexdigest() != result["model_sha256"]
             or file_sha256(model) != result["model_sha256"]
-            or file_sha256(request.registration) != sources["registration_sha256"]
-            or file_sha256(request.discovery) != sources["discovery_sha256"]
-            or file_sha256(request.continuations) != sources["continuations_sha256"]):
+            or not _sources_match(request, sources)):
         raise ValueError("Registered phosphate inputs changed during inspection")
     result["registered_continuation"] = dict(
         continuation_id=request.identifier, edge_id=edge["edge_id"], copy_id=graph["copy_id"], sources=sources,
@@ -81,4 +88,68 @@ def inspect_registered_continuation(model, request, *, geometry, native_receipt)
         measurement_status="UNRESOLVED" if reason else "MEASURED", reason=reason,
         frame="registered source coordinates", runtime_authority=False,
     )
+    return result
+
+
+def _endpoint_atoms(model, sites):
+    raw, labels = _model_labels(model)
+    atoms = {}
+    for line in raw.decode("ascii").splitlines():
+        if line[:6] not in ("ATOM  ", "HETATM"):
+            continue
+        identity, xyz = labels[line[12:27]]
+        if identity[0] in sites:
+            occupancy = float(line[54:60])
+            if not isfinite(occupancy) or not 0 <= occupancy <= 1:
+                raise ValueError("Invalid occupancy at a registered phosphate endpoint")
+            key = (*identity, line[:6], line[76:78].strip().upper(), line[78:80].strip(), occupancy > 0)
+            atoms[key] = xyz
+    return raw, atoms
+
+
+def inspect_inherited_continuation(source_model, child_model, request, *, geometry=None, native_receipt=None):
+    """Follow the two registered residues into a coordinate refinement in the same frame.
+
+    Inspect every occupied atom in those residues against its own source position.
+    The original mate must remain meaningful. No new partner or image is chosen.
+    Checkpoint ancestry is verified separately by the run reader.
+    """
+    source_model, child_model = Path(source_model), Path(child_model)
+    source = inspect_registered_continuation(source_model, request, geometry=None, native_receipt=None)
+    edge = source["registered_continuation"]
+    if edge["measurement_status"] != "MEASURED":
+        raise ValueError("Cannot transfer an unresolved phosphate registration")
+    sites = (edge["source"]["coordinate_site"], edge["target"]["coordinate_site"])
+    original, prior = _endpoint_atoms(source_model, sites)
+    current, present = _endpoint_atoms(child_model, sites)
+    gemmi, cell, setting = crystal_from_pdb_bytes(original)
+    _, child_cell, child_setting = crystal_from_pdb_bytes(current)
+    group = gemmi.find_spacegroup_by_name(setting)
+    if (tuple(cell.parameters) != tuple(child_cell.parameters)
+            or group.hall != gemmi.find_spacegroup_by_name(child_setting).hall):
+        raise ValueError("Registered phosphate requires the same crystal frame")
+    if prior.keys() != present.keys():
+        raise ValueError("The two registered residues changed chemical identities or atom occupancy status")
+    distances = []
+    same_bytes = original == current
+    for key, xyz in prior.items():
+        if key[-1]:
+            if same_bytes:
+                distances.append(0.)
+                continue
+            first, second = closest_atom_images(xyz, present[key], cell, group, gemmi)
+            if (first["image"]["operator_xyz"] != "x,y,z"
+                    or second["distance_A"] - first["distance_A"] <= PDB_IMAGE_SEPARATION_A):
+                raise ValueError(f"Changed or ambiguous crystal representative at {key[0]} {key[2]}")
+            distances.append(first["distance_A"])
+    result = _inspect_coordinates(child_model, o3=sites[0], phosphate=sites[1], o3_image=source["o3_image"],
+                                  geometry=geometry, native_receipt=native_receipt)
+    if (source["model_sha256"] != sha256(original).hexdigest() or file_sha256(source_model) != source["model_sha256"]
+            or result["model_sha256"] != sha256(current).hexdigest() or file_sha256(child_model) != result["model_sha256"]
+            or not _sources_match(request, edge["sources"])):
+        raise ValueError("Registered phosphate inputs changed during frame transfer")
+    result["registered_continuation"] = dict(edge, frame="same crystal representatives in descendant coordinates",
+        frame_transfer=dict(source_model_sha256=source["model_sha256"], child_model_sha256=result["model_sha256"],
+                            method="identical model bytes" if same_bytes else "nearest image of each named atom",
+                            atom_count=len(distances), max_atom_shift_A=max(distances)))
     return result
