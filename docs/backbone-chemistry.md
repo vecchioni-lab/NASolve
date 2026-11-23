@@ -15,6 +15,18 @@ The automatic default is **standard phosphodiester**. A non-standard backbone
 is never inferred from atom names, distances, residue codes, or a monomer
 library entry. A user must explicitly mark the affected site.
 
+For a registered crystal-boundary bond the native runtime puts the relevant
+atoms in one local Cartesian frame, evaluates the ordinary Phenix angle and
+torsion terms there, and rotates their derivatives back to the stored atom
+positions. The existing bond and nonbonded exclusions still apply. Each
+selection inherits the complete terms it contains. A five-cycle restart from
+a registered 5W6W-derived child measured 107.30° and 113.88° at the two
+phosphate oxygens with these forces. The matched distance-only run gave
+75.17° and 127.56°. Chemical intent, image selection and final readback
+remain separate decisions. A periodic central strand can average a real
+nick over several equivalent copies. Its crystal representative can be cut
+at a different base without identifying the nick.
+
 ## Standard phosphodiester contract
 
 For ordinary DNA/RNA-like backbones, including sugar variants that retain the

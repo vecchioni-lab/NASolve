@@ -165,9 +165,11 @@ the numbered ancestor to the written child. All 40 atoms at the two residues
 kept their crystal copies. The child measured 1.620 Å and its own native
 capture supplied both intact reference links. C544 rechecked the actual forces
 from both links in a fresh Phenix process, restored exactly one distance and
-verified that all four adjacent pairs left the nonbonded list. The next step
-is delivery of the four angles and three torsions, including after Phenix
-selects a subset of atoms, and retention during the next refinement.
+verified that all four adjacent pairs left the nonbonded list. C545 carried the four angles and three torsions through a complete five-cycle
+restart, including native atom selections. The two oxygen angles reached
+107.30° and 113.88°. Willow owns the next operator-facing fit and independent
+geometry readback. Keep the scaffold-specific declaration explicit. A cut
+through a crystallographic repeat does not identify a sample nick.
 
 In C531, two historical PHIL edits completely masked the source-supported
 PDU target change from 1.607 to 1.470 Å. Updating both site-specific targets

@@ -8,6 +8,10 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- A registered phosphate connection can carry four angles and three torsions
+  into a fresh Phenix geometry manager across the declared crystal image.
+  Two matched five-cycle refinements tested this opt-in runtime.
+
 - `cif-doctor phosphate-image --registered-continuation ID` reads a named
   O3′–P connection from a construct registration and reports what the exact
   model or refinement checkpoint contains. A missing coordinate endpoint

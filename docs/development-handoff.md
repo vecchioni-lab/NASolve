@@ -1,7 +1,19 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-23, C544 restoring the registered bond in fresh Phenix — Rowan**.
+Updated **2026-11-23, C545 testing phosphate angles across a crystal boundary — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+C545 restored four angles and three torsions in the crystal copy named by the
+registered backbone. Two complete five-cycle Phenix 2.2.1-6174 restarts on
+the same child used 1,778 working and 124 free reflections each. With the
+distance alone the O3′–P–OP1/OP2 angles were 75.17° and 127.56°. With the
+angular forces they were 107.30° and 113.88°. Free R was 0.2924 and 0.2944,
+respectively. Native selections kept each complete force once. The opt-in
+runtime changes no registry or ordinary refinement default. Willow is testing
+how an operator reaches this through its fitting command. Each source and
+relocated wheel passed 118 focused tests across the runtime, restraints,
+continuation, image, reference-link and transport modules.
+[Measurements and replay](cif-linked-native-registration-evidence.json).
 
 C543 reopens the C541 five-cycle model as a manual child of `refine-005`
 in an isolated copy of the numbered PDU run. The existing phosphate reader
@@ -26,8 +38,7 @@ the four expected second-neighbour exclusions. The opposing nonbonded
 contacts disappeared. Both intact DA→DC references still agreed on all
 eight forces after checking the fields that static dictionary capture
 omits. This was a native dry run on all 1,785 working and 124 free
-reflections. The remaining step is attaching the four angles and three
-torsions to the new manager and following them into refinement.
+reflections. C545 tested the remaining angle and torsion forces through refinement.
 The optional internal reader changes no stored checkpoint format.
 
 C541 tested the [declared 5W6W junction](backbone-chemistry.md#the-central-strand-in-the-5w6w-scaffold)

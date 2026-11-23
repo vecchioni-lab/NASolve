@@ -1,6 +1,51 @@
 {
   "schema_version": 1,
   "document_kind": "LINKED_NATIVE_REGISTRATION_AND_COMPONENT_METADATA_RETURNS",
+  "c545_image_angles_after_five_cycles": {
+    "queue": "Q06",
+    "native": "Phenix 2.2.1-6174",
+    "macrocycles_per_arm": 5,
+    "working_each": 1778,
+    "free_each": 124,
+    "working_rejected_each": 7,
+    "free_rejected_each": 0,
+    "native_forces": {
+      "bond": 1,
+      "angles": 4,
+      "torsions": 3,
+      "second_shell_exclusions": 4
+    },
+    "arms": {
+      "bond": {
+        "bond_A": 1.62962,
+        "O3_P_OP_angles_deg": [
+          75.1673,
+          127.561
+        ],
+        "Rwork": 0.235724,
+        "Rfree": 0.292412,
+        "model_sha256": "0fd0d793dfe1ff6cd0e21f6414c8bb6b4fdae8d8c60e004fcca903a95104459e"
+      },
+      "complete": {
+        "bond_A": 1.63318,
+        "O3_P_OP_angles_deg": [
+          107.2958,
+          113.8808
+        ],
+        "Rwork": 0.235752,
+        "Rfree": 0.29436,
+        "model_sha256": "082f614e1f69e80172bb14c28b26a0af7f3f5d659661c06b4b469d712c89ab6e"
+      }
+    },
+    "focused_source_and_relocated_wheel_each": 118,
+    "replay": {
+      "anchor": "NASolve-local-artifacts",
+      "receipt": "cedar/c528-phosphate-refinement/c545-matched-restart.json",
+      "sha256": "f6416c2e11ad247590f88a0f88ef6265a04f3b3b75e8379b8a04c4fb811a0a29",
+      "software": "cedar/c528-phosphate-refinement/c545-restart-software-20261123.zip",
+      "software_sha256": "98cee1f382849cd66d3507bc6d59d3c31bb9e7122fce2dc8f61502c335ed9ad1"
+    }
+  },
   "c544_restored_native_bond": {
     "queue": "Q06", "checkpoint": "manual-001", "parent": "refine-005",
     "model_sha256": "5c0b63b683c58e977d12ebce9b6aca61d44444367a816417a2e8c39e667fb075",
