@@ -1128,6 +1128,10 @@ evaluations, and on return. The existing phosphate executor also supports an
 explicit preflight-only stop. Legacy ML requests and global AutoRefine defaults
 are unchanged; no new force, phase inference or optimizer is introduced. See the
 [phased admission contract](topostitch-preview.md#admit-experimental-phases-and-fixed-scattering-w250).
+W252 omits optional native next-run defaults only on this phased route, avoiding
+lossy selector/scattering formatting. Frozen requests and original inputs remain
+the replay authority; native writer/return guards remain active. Failure receipts
+retain admitted target-call counts separately from successful completion.
 The independent `refinement_weight_observation` reader (W242) records printed
 per-cycle XYZ weights from checksum-pinned complete logs, with explicit rounding
 and no-authority limits. It imports no native runtime and controls no weighting.

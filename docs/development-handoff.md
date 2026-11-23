@@ -1,49 +1,60 @@
 # NASolve development handoff — Willow
 
-**Current audit and maintained implementation: W250, 2026-11-23.**
-[Optional phased local admission](topostitch-preview.md#admit-experimental-phases-and-fixed-scattering-w250)
-passes **213 focused source and 213 relocated installed tests (one skip each)**,
-including 108 phosphate cases; two API regressions fail against the previous owner.
-All 214 installation files hash-match after relocation with build/original path gone;
-Python 3.10 syntax and installed `native-phosphate --help` pass. No full suite rerun:
-Rowan reconfirmed focused development; full integration remains required before merge.
+**Current audit and maintained implementation: W252, 2026-11-23.**
+[The first phased six-role fit now completes](topostitch-periodic.md#w251w252--separate-native-output-completion-from-local-repair).
+W251 finished its three refinement cycles but failed while writing optional
+next-run defaults. W252 disables that output only for phased jobs; the same
+request reproduces every native atom record exactly and passes Cedar's unchanged
+written-model and returned-state guards. No force, fit setting or selection changed.
 
-Source and installed **Phenix 2.2.1-6174 dry-runs**, with Cedar C550
-`b3602fd266775fc0cfc7de5ec9cbb1af05463430`, admit all 859 fixed-scattering atoms,
-1,151 exact original F/SIGF/HKL/HL quartets and 59 original Free-R reflections.
-The source PDB remains byte-identical. Both native frames are recorded: maximum
-length/angle/matrix differences are 1.43e-14 Å / 2.85e-14° / 4.27e-14 Å. The
-phased-only arithmetic bound is 1e-10 in those units; exact space group and the
-1e-12 Å² Cartesian tensor bound remain. This real parent is isotropic; anisotropic
-frame behavior is covered by the focused regression. Prior exact ML semantics
-remain unchanged. The Hg/HG refusal and strict-frame refusal are preserved;
-Cedar owns the element-spelling correction, with charge/species held independently.
+**Technical completion is not chemical recovery.** All 859 atoms, 853 fixed
+positions, thermal state, 1,151 observations/HL quartets, 59 original Free-R flags
+and complete fixed scattering survive. The actual MLHL target is observed at
+97 evaluations (94 requesting gradients), with 97 complete image-force gradient
+calls. Rwork/Rfree are 0.306743/0.342453. The image O3′–P gap shortens from 3.029
+to 1.997 Å, but OP2–P–O5′ collapses to about 58°. No scientific acceptance,
+checkpoint, density success or healthy closure is claimed. Hazel's independent
+returned-state/boundary audit passes 4,720 cold checks and confirms the strain
+(full-precision O3′–P 1.997399 Å); earlier raw-output diagnosis is retained.
 
-The optional schema-1 request adds dedicated phases and complete source-ordered
-fixed-scattering input, plus an explicit MLHL/group policy. It records native
-source hashes, checks the initialized target and actual coordinate-target arrays,
-and offers `--preflight-only`. No new force, optimizer, global AutoRefine default
-or checkpoint authority. **No phased fit has run yet**: next, review the exact
-admitted request with Hazel, then one bounded 3-cycle × 60-iteration six-role fit
-on the original named parent. Require real MLHL gradient observations, unchanged
-853 fixed atoms/thermal/scattering/data state, and independent junction/boundary
-geometry review. Keep Hazel's separate outward-phosphate whole-model child out
-of this ancestry. S05/S06 remain partial; no density or scientific acceptance.
+Next, one predeclared geometry-plus-tether feasibility diagnostic
+may reuse the existing native objective on the same original parent, six movable
+roles and fixed sugar rings. It must retain all native chemistry/image terms and
+live-state checks. One failed optimizer start would not prove impossibility;
+one healthy endpoint would establish a seed candidate, not density support.
+Do not run a weight grid, broaden the mask or use Hazel's separate whole-model
+outward-phosphate child as this parent. S05/S06 remain partial.
 
-Exact validation commands/results and source pins are under the local NASolve
-artifact anchor: `branch-artifacts/willow/w250-validation-final/validation.json`
-and `relocated/{install,installed-tests,entry-help}.log`; the source command is
-`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:<qualified-test-dependencies> python -m
-pytest -p no:cacheprovider -q tests/test_topostitch_phosphate.py
-tests/test_topostitch_endpoint.py tests/test_topostitch_fit.py
-tests/test_topostitch_captured_job.py tests/test_topostitch_capture.py`.
-Native qualification uses the documented API with `preflight_only=True`, explicit
-Phenix/Cedar paths and a 180-second per-phase cap. Saved jobs:
-`w250-phased-preflight/native-frame-qualified` and `w250-installed-preflight`.
-These paths are relative to `branch-artifacts/willow/`; the original failures and
-`w250-hg-observation` are retained. Scientific inputs, captures and generated outputs
-are deliberately excluded from Git. Installation relocation does not establish
-portability of a moved native job.
+Validation: **213 source/213 relocated installed tests, two skips each**, plus
+one real Phenix PHIL regression passing before install and after relocation.
+The regression fails against the previous code at `write_def_file=True`.
+All 214 relocated installation files hash-match after build/original path removal;
+Python 3.10 syntax and installed CLI help pass. Exact commands/logs are under the
+NASolve artifact anchor `branch-artifacts/willow/w252-validation-qualified/`.
+Two earlier test-launch environment failures remain recorded; neither is a code
+pass. Full suite deferred per coordinated scoped development; merge integration
+remains required. Source command: `PYTHONDONTWRITEBYTECODE=1
+PYTHONPATH=src:<qualified-test-dependencies> python -m pytest -p no:cacheprovider
+-q tests/test_topostitch_phosphate.py tests/test_topostitch_endpoint.py
+tests/test_topostitch_fit.py tests/test_topostitch_captured_job.py
+tests/test_topostitch_capture.py`. Native regression commands are preserved in
+`validation.json`; host test dependencies are appended after Phenix's own packages.
+
+Complete native execution uses **Phenix 2.2.1-6174**, the installed owner, explicit
+Cedar source, 3 cycles × 60 iterations, 1.5 Å maximum movement, `wxc_scale=0.5`
+and a 600-second per-phase cap. This is adaptive native weighting, not a fixed
+objective. Saved result: `branch-artifacts/willow/w252-phased-output-qualified/`;
+original W251 and the earlier W252 host-dependency refusal are retained. The
+reproduction authority is the full-precision frozen request and inputs, not
+printed `.eff`/`.def` files. No request migration; legacy ML is unchanged.
+Phased failure reports now retain admitted target-call counts without implying
+successful evaluation or completion. Original W251 counts cannot be recovered.
+
+W250's source/installed dry-run evidence, Hg spelling correction, strict-frame
+refusal and phased-only arithmetic bounds remain in the
+[admission contract](topostitch-preview.md#admit-experimental-phases-and-fixed-scattering-w250).
+All scientific inputs, captures, generated coordinates and maps remain local.
+Installation relocation does not establish portability of a moved native job.
 
 [W249 carries the whole boundary graph in original mmCIF](topostitch-periodic.md#w249--carry-the-whole-boundary-graph-in-full-precision-mmcif):
 all 62 sites/60 backbone edges, original atom IDs/A1C3T and 80/87 connection rows
@@ -329,7 +340,7 @@ W215 broader validation: one complete-suite attempt yielded 1947 passed,
 pass on a focused replay with optional Gemmi and permitted test-process cleanup.
 No clean full-suite or skipped-case qualification is claimed; no suite rerun.
 
-## Next bounded work
+## Earlier implementation and bounded controls
 
 W226 closes the maintained collective-trial contract: 378 source/378 relocated
 installed tests and 26 cold installed-native checks. The exact W223 optimizer

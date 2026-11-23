@@ -4,7 +4,7 @@
   "updated": "2026-11-23",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "dd7c242a036cb7947a73bafabedc8977b644cce9",
+  "audited_code_commit": "2ad835900cb3e42fea6ce0df86a9b2b87248a712",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -487,14 +487,15 @@
         "W242 makes W241 adaptive-weight evidence reproducible through a read-only source-pinned observer:278 source/278 installed tests and exact10-cycle saved-log parity. Existing Cedar fixed-unit ownership and its narrower counted-cycle limits remain explicit.",
         "W243 removes reciprocal U* round-off false failures with a six-component Cartesian comparison, unchanged native frame/modes/Uiso and exact source ANISOU/BQ export.293 source/293 installed; both real anisotropic failures and12 real-change refusals replay cold. No whole-ASU or new live-fit qualification.",
         "W244 audits four Cedar-coordinated real-data fits on initially healthy cuts: all eight seam terms within 1.82 sigma, complete anisotropic return and reopened source-byte-preserving export, 84 frozen-input hashes. This closes the W243 fresh local return gate; general damaged-seam repair and whole-ASU scattering remain open.",
-        "W250 optionally binds dedicated phases and complete atom-keyed fixed scattering to the initialized native MLHL state and actual coordinate-target objects.213 source/213 relocated installed tests and source/installed preflights pass;859atoms/1151original reflections andHL/59Free exact, source PDB unchanged. One preflight-only stop is available; no phased fit or scientific acceptance yet."
+        "W250 optionally binds dedicated phases and complete atom-keyed fixed scattering to the initialized native MLHL state and actual coordinate-target objects.213 source/213 relocated installed tests and source/installed preflights pass;859atoms/1151original reflections andHL/59Free exact, source PDB unchanged. One preflight-only stop is available; no phased fit or scientific acceptance yet.",
+        "W251/W252: actual phased six-role refinement and output guards qualified after an output-only compatibility fix; all raw atom records reproduce the failed original. The gap shortens but phosphate/sugar strain remains, so technical completion is separate from chemical repair. Exact phases, Free-R, fixed scattering and fixed context survive; no accepted candidate."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Next run one installed bounded 3-cycle x60-iteration,1.5A six-role trial on the independently admitted original phased parent; require actual MLHL coordinate-gradient checks, all seven image angle/torsion forces, unchanged fixed/data/scattering state, then independent boundary/plane/density review. Keep the separate outward-phosphate child out of this ancestry. Queued from Rowan/Simon: inspect OP1/OP2 orientation relative to a qualified local duplex in its named image before/after gap filling or deformation; good bond lengths and conventional phosphate handedness alone are insufficient. Preserve genuine alternatives and true nicks; unresolved duplex correspondence remains unresolved. Cedar owns source-provenance diagnosis and correction, with no new force or immediate trial here. Scheduled phosphate follow-up stage 4: qualify the combined two-cut geometry only after source intent and pure-recut invariance pass; Cedar remains the sole force owner. Reuse W239\u2013W244 and existing rotated/screw/gap controls; preserve nick and ambiguous-partner negatives. Schedule and ownership: docs/topostitch.md#coordinated-phosphate-recut-follow-up. Planning only; no immediate native rerun. Use W242 for saved-log weight evidence; do not re-run W241. Coordinate any explicit fixed-objective control with Cedar counted/native scope owners: one fixed-unit counted cycle does not qualify five-cycle six-atom/bulk-scaling behavior. Predeclare common weight, both starts and unchanged observations/mask/BQ before execution; no Free-R-driven tuning. Continue residual torsion/density review and preserve broader bending/stacking/ASU gates.",
+      "next_action": "Independent W252 return audit passes4720 checks; geometry remains unaccepted. Next permit one same-original-parent geometry-plus-tether feasibility diagnostic through existing owners, six roles and held rings, with finite-derivative/live-state guards; no grid or mask expansion. Failure from one start is not impossibility; a healthy seed is not density acceptance. Queued from Rowan/Simon: inspect OP1/OP2 orientation relative to a qualified local duplex in its named image before/after gap filling or deformation; good bond lengths and conventional phosphate handedness alone are insufficient. Preserve genuine alternatives and true nicks; unresolved duplex correspondence remains unresolved. Cedar owns source-provenance diagnosis and correction, with no new force or immediate trial here. Scheduled phosphate follow-up stage 4: qualify the combined two-cut geometry only after source intent and pure-recut invariance pass; Cedar remains the sole force owner. Reuse W239\u2013W244 and existing rotated/screw/gap controls; preserve nick and ambiguous-partner negatives. Schedule and ownership: docs/topostitch.md#coordinated-phosphate-recut-follow-up. Planning only; no immediate native rerun. Use W242 for saved-log weight evidence; do not re-run W241. Coordinate any explicit fixed-objective control with Cedar counted/native scope owners: one fixed-unit counted cycle does not qualify five-cycle six-atom/bulk-scaling behavior. Predeclare common weight, both starts and unchanged observations/mask/BQ before execution; no Free-R-driven tuning. Continue residual torsion/density review and preserve broader bending/stacking/ASU gates.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -634,14 +635,15 @@
         "E_NATIVE_WEIGHT_OBSERVATION",
         "E_CARTESIAN_ADP_RETURN",
         "E_LIVE_ANISOTROPIC_RETURN",
-        "E_PHASED_PHOSPHATE_ADMISSION"
+        "E_PHASED_PHOSPHATE_ADMISSION",
+        "E_PHASED_PHOSPHATE_OUTPUT"
       ],
       "last_audit": {
         "date": "2026-11-23",
-        "code_commit": "dd7c242a036cb7947a73bafabedc8977b644cce9",
-        "reviewer": "Linden with independent Alder admission review",
-        "human_update": 250,
-        "scope": "Source-bound phased preflight qualified; actual six-role motion and physical outcome remain open"
+        "code_commit": "2ad835900cb3e42fea6ce0df86a9b2b87248a712",
+        "reviewer": "Linden; independent boundary audit coordinated with Hazel",
+        "human_update": 252,
+        "scope": "Completed native compatibility and exact-state retention; local geometry remains poor, no accepted repair"
       }
     },
     {
@@ -729,7 +731,8 @@
         "W240 provides an installed opt-in native-phosphate route through existing Cedar image chemistry. Complete preflight/one-cycle fit preserves fixed source-frame context and data;261 source/261 installed checks. Chemical recovery remains unaccepted.",
         "W241 completes the paired original-vs-W235 seed receiving question under the same requested native recipe: local seed geometry survives five cycles with all fixed context/data preserved. Effective native weights differ strongly; this is not an isolated basin test or scientific acceptance.",
         "W242 makes W241 adaptive-weight evidence reproducible through a read-only source-pinned observer:278 source/278 installed tests and exact10-cycle saved-log parity. Existing Cedar fixed-unit ownership and its narrower counted-cycle limits remain explicit.",
-        "W250 optionally binds dedicated phases and complete atom-keyed fixed scattering to the initialized native MLHL state and actual coordinate-target objects.213 source/213 relocated installed tests and source/installed preflights pass;859atoms/1151original reflections andHL/59Free exact, source PDB unchanged. One preflight-only stop is available; no phased fit or scientific acceptance yet."
+        "W250 optionally binds dedicated phases and complete atom-keyed fixed scattering to the initialized native MLHL state and actual coordinate-target objects.213 source/213 relocated installed tests and source/installed preflights pass;859atoms/1151original reflections andHL/59Free exact, source PDB unchanged. One preflight-only stop is available; no phased fit or scientific acceptance yet.",
+        "W251/W252: actual phased six-role refinement and output guards qualified after an output-only compatibility fix; all raw atom records reproduce the failed original. The gap shortens but phosphate/sugar strain remains, so technical completion is separate from chemical repair. Exact phases, Free-R, fixed scattering and fixed context survive; no accepted candidate."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -740,7 +743,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "For the upcoming single phased local trial, preserve all original HL/Free/Fsig and fixed fp/fdp throughout actual coordinate-target evaluations. Admission is not repair acceptance; retain failed or ambiguous outcomes and inspect maps after recovery before judging R statistics. Use W242 for saved-log weight evidence; do not re-run W241. Coordinate any explicit fixed-objective control with Cedar counted/native scope owners: one fixed-unit counted cycle does not qualify five-cycle six-atom/bulk-scaling behavior. Predeclare common weight, both starts and unchanged observations/mask/BQ before execution; no Free-R-driven tuning. Continue residual torsion/density review and preserve broader bending/stacking/ASU gates.",
+      "next_action": "Independent W252 return audit passes4720 checks; geometry remains unaccepted. Next permit one same-original-parent geometry-plus-tether feasibility diagnostic through existing owners, six roles and held rings, with finite-derivative/live-state guards; no grid or mask expansion. Failure from one start is not impossibility; a healthy seed is not density acceptance. Use W242 for saved-log weight evidence; do not re-run W241. Coordinate any explicit fixed-objective control with Cedar counted/native scope owners: one fixed-unit counted cycle does not qualify five-cycle six-atom/bulk-scaling behavior. Predeclare common weight, both starts and unchanged observations/mask/BQ before execution; no Free-R-driven tuning. Continue residual torsion/density review and preserve broader bending/stacking/ASU gates.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -871,14 +874,15 @@
         "E_REGISTERED_PHOSPHATE_ENTRY",
         "E_SEEDED_RECEIVING_WEIGHT_AUDIT",
         "E_NATIVE_WEIGHT_OBSERVATION",
-        "E_PHASED_PHOSPHATE_ADMISSION"
+        "E_PHASED_PHOSPHATE_ADMISSION",
+        "E_PHASED_PHOSPHATE_OUTPUT"
       ],
       "last_audit": {
         "date": "2026-11-23",
-        "code_commit": "dd7c242a036cb7947a73bafabedc8977b644cce9",
-        "reviewer": "Linden with independent Alder admission review",
-        "human_update": 250,
-        "scope": "Source-bound phased preflight qualified; actual six-role motion and physical outcome remain open"
+        "code_commit": "2ad835900cb3e42fea6ce0df86a9b2b87248a712",
+        "reviewer": "Linden; independent boundary audit coordinated with Hazel",
+        "human_update": 252,
+        "scope": "Completed native compatibility and exact-state retention; local geometry remains poor, no accepted repair"
       }
     },
     {
@@ -6544,7 +6548,7 @@
       "cedar_commit": "b3602fd266775fc0cfc7de5ec9cbb1af05463430",
       "reference": "docs/topostitch-preview.md#admit-experimental-phases-and-fixed-scattering-w250",
       "result": "213 source and 213 relocated installed tests, one skip each;108 phosphate cases, two real API fail-before controls,214 relocated installation hashes. Phenix2.2.1-6174 source/installed preflights retain859 fixed-scattering atoms,1151 exact original F/SIGF/HKL/HL quartets and59 original Free reflections; source PDB byte-identical. Native target MLHL, disjoint fixed groups, no anomalous refinement. Both native frames retained; maximum length/angle/matrix differences1.43e-14A/2.85e-14degrees/4.27e-14A. Explicit phased-only1e-10 arithmetic allowance, unchanged1e-12A2 CartesianADP bound and historical strict default. Alder independently passes8714 cold checks.",
-      "limitation": "Admission-only real native scope: zero coordinate-target gradient calls and no phased fit yet. Actual target/array/species guards are implemented and tested; one bounded installed trial is next. Hg/HG refusal retained and fixed by Cedar C550; strict-frame refusal retained before numeric qualification. Real parent isotropic, anisotropic behavior unit-qualified. No general phased data conversion, inferred scattering, density/geometry acceptance, two-cut execution, checkpoint or campaign adoption. Full suite not rerun; native-job portability not claimed; private inputs/results excluded from Git.",
+      "limitation": "Admission-only real native scope: zero coordinate-target gradient calls and no phased fit at W250. Actual target/array/species guards are implemented and tested; W251/W252 separately record the subsequent installed trial. Hg/HG refusal retained and fixed by Cedar C550; strict-frame refusal retained before numeric qualification. Real parent isotropic, anisotropic behavior unit-qualified. No general phased data conversion, inferred scattering, density/geometry acceptance, two-cut execution, checkpoint or campaign adoption. Full suite not rerun; native-job portability not claimed; private inputs/results excluded from Git.",
       "artifacts": [
         {
           "anchor": "NASolve",
@@ -6605,6 +6609,71 @@
           "path": "branch-artifacts/Alder/a01-phased-phosphate-admission-20261123-01/review.json",
           "sha256": "dd275c1a94ebc9d72cf5fe1a924df3d5f5ff47b79b8dbc9e3a4bb9cb1ec5af4a",
           "size": 20488
+        }
+      ]
+    },
+    "E_PHASED_PHOSPHATE_OUTPUT": {
+      "kind": "One completed output-only phased fit and retained failed original",
+      "date": "2026-11-23",
+      "human_update": 252,
+      "code_commit": "2ad835900cb3e42fea6ce0df86a9b2b87248a712",
+      "reference": "docs/topostitch-periodic.md#w251w252--separate-native-output-completion-from-local-repair",
+      "result": "213 source/213 relocated installed tests, two skips; native PHIL fail-before/pass-after and installed pass. Actual Phenix2.2.1-6174 replay completes with 97 MLHL target admissions/94 gradient requests and97 complete image-force gradient calls. Exact W251 raw atom records, inputs, controls and prepared state;859 atoms/853fixed,1151observations+HL/59Free, fixed scattering and thermal state preserved. Native written-model and return guards pass. Independent Alder return audit passes4720 cold checks; full-precision O3-P=1.997399A, same severe local strain.",
+      "limitation": "Technical completion only. O3-P remains1.9966A and OP2-P-O5 is58.15degrees; no healthy closure, density or scientific acceptance. Native adaptive weighting retained; no grid or wider mask. W251 remains failed; first W252 host-dependency refusal and two validation-environment failures retained. Full suite deferred; generated science excluded; no native-job portability claim.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w251-phased-junction-fit/execution.json",
+          "sha256": "537c842538e04bd88fa201d5cc13c7b67d9f3650e1342f0ecc95dbc2aa2facef",
+          "size": 122
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w251-phased-junction-fit/serialization-diagnosis.json",
+          "sha256": "947581085ca9a37904b146e167b73be42c89f685794129671301b9aefb3bde8b",
+          "size": 15178
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w252-validation-qualified/validation.json",
+          "sha256": "141bcc45bb2bd0145077e2c50f6f2261724c50a51e0938a12b46229f19731077",
+          "size": 3917
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w252-phased-output-qualified/plan.json",
+          "sha256": "1f5d8524157e3e921265a73aa53cfe9db67fd44199ea11354414f7f86d3f36c8",
+          "size": 3375
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w252-phased-output-qualified/execution.json",
+          "sha256": "6a32ec545764aff676208d80c1d2b9712cfe76344c9fa6fa4dff325a762fcf63",
+          "size": 633
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w252-phased-output-qualified/native/fit/science.json",
+          "sha256": "d034672db369aa8bf7130d5d4853182b2a1005f99381b9fe5e12ddd15455d5f7",
+          "size": 3472
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w252-phased-output-qualified/native/fit/native-runtime/result.json",
+          "sha256": "14f1ec42d0d86968194d596e92ae3a2a5a969735e6f5b1744d8a6826fc5bd699",
+          "size": 39845
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/a01-phosphate-writer-failure-20261123-01/diagnostic.json",
+          "sha256": "ec0dba3270a29c432739a40d810c0a66032267cb05a18cefb810840ec0258d1d",
+          "size": 21191
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/a01-phased-phosphate-return-20261123-02/review.json",
+          "sha256": "6d1ca1cc7ac3830468dfb6f2d104cae022a6aac77123b18cc435a6e7871eb938",
+          "size": 47990
         }
       ]
     }
@@ -6772,8 +6841,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 250,
-    "next": 251,
+    "current": 252,
+    "next": 253,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -8083,6 +8152,18 @@
         "title": "Bind phased phosphate admission to the actual native diffraction state",
         "state": "RECORDED",
         "code_commit": "dd7c242a036cb7947a73bafabedc8977b644cce9"
+      },
+      {
+        "number": 251,
+        "title": "Retain the phased writer failure and distorted local closure",
+        "state": "RECORDED",
+        "code_commit": "dd7c242a036cb7947a73bafabedc8977b644cce9"
+      },
+      {
+        "number": 252,
+        "title": "Complete phased output without changing the fitted structure",
+        "state": "RECORDED",
+        "code_commit": "2ad835900cb3e42fea6ce0df86a9b2b87248a712"
       }
     ]
   },

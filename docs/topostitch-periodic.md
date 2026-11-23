@@ -13611,3 +13611,66 @@ inverse editing, native refinement adoption and human review remain before a
 supported ASU writer. No new force, fit, production code or test-suite repeat.
 Cedar's separate 5W6W/PDU restart and its A112 phosphate-orientation diagnosis
 remain distinct from these two R3 metadata controls.
+
+
+## W251/W252 — Separate native output completion from local repair
+
+**Question.** Can the declared image-spanning B7 O3′–B1 P connection close with
+only its six connecting atoms movable, both sugar rings held and the original
+phased diffraction/scattering inputs retained? This is one explicit registered
+connection, not automatic seam discovery or a general repair result.
+
+W251 used the W250 installed owner, original `7aade3c4…` parent, 3 cycles × 60
+iterations, 1.5 Å displacement cap and native `wxc_scale=0.5`. The cycles ran;
+Phenix 2.2.1-6174 then failed an assertion in optional `.def` output. Native
+parameter formatting changed five of six selection strings by whitespace while
+preserving every selected atom. It also rounded every fixed f-prime (maximum
+change below 1e-9). The original parsed policy contains the exact source values.
+The failed run retains raw native output but has no valid completed writer/return
+receipt and no recorded target-call count; those facts cannot be repaired by
+reinterpreting its files afterward.
+
+W252 changes only the phased optional output setting to `write_def_file=False`.
+It preserves normal native PDB/mmCIF/maps/geometry writing and all Cedar return
+checks. The relocated installed replay completes in about 49 seconds. Frozen
+scientific controls/inputs, admitted and prepared states and **all raw atom
+records match W251 exactly**. The first host launch lacked optional Gemmi and
+stopped before native execution; its separate failure is retained. There was one
+actual output-only native replay, no scientific parameter search.
+
+The successful return retains 859 atoms, 853 fixed positions, B/Q/U and all fixed
+fp/fdp, 1,151 original HKL/HL/F/SIGF rows (only the permitted common native
+amplitude/sigma scale) and 59 Free-R assignments. Actual MLHL target admissions:
+97 evaluations/94 requesting gradients. Complete image-angle/torsion gradient
+calls: 97, alongside the native bond and exclusions. Rwork/Rfree are
+0.306743/0.342453; these are not a selection criterion or fixed-weight comparison.
+
+The chemistry remains poor. Raw printed geometry reviewed independently by Hazel
+shows O3′–P 3.0285→1.9966 Å, B7 C3′–O3′ 1.442→1.772 Å, P–OP1/OP2
+1.795/1.715 Å and OP2–P–O5′ 101.4→58.15°. Maximum movement is 0.631342 Å
+(full precision). The output-only fix reproduces the same distortion, so technical
+completion does not rescue this candidate. Hazel’s independent full returned-state audit passes 4,720 cold checks and
+confirms the strain (full-precision O3′–P 1.997399 Å). Maps, stacking and broader
+closure remain unaccepted. Its first reader invocation refused an additional
+current Cedar source hash; the separately reviewed receiver explicitly binds
+the already-present opt-in reader, without relaxing numerical bounds.
+
+**Next discriminator.** After that audit, one same-parent geometry-plus-tether
+trial may test the six-role scope using the existing masked native objective,
+registered phosphate owner and fixed rings. Preserve finite-derivative/live-state
+checks and source binding. A failed start is not proof of geometric impossibility;
+a healthy endpoint is only a seed candidate. No weight grid or automatic mask
+expansion. Keep the separate outward-phosphate whole-model child out of this ancestry.
+
+**Validation/compatibility.** 213 source and 213 relocated installed tests (two
+skips outside Phenix), plus the real native PHIL regression in source and installed
+contexts; it fails at the expected output setting on the previous code. 214
+relocated files hash-match after original build/install paths are removed.
+No full suite rerun, force/default-ML change, request migration or job portability
+claim. Additive failed-phase target counts mean admitted calls, not successful
+native completion. Exact commands and versions are in the current handoff and
+`branch-artifacts/willow/w252-validation-qualified/validation.json` under the
+NASolve artifact anchor. Native jobs/diagnosis are in `w251-phased-junction-fit/`
+and `w252-phased-output-qualified/` under `branch-artifacts/willow/`. All scientific
+inputs, coordinates and reports remain local; only code, tests and documentation
+are committed. S05/S06 remain PARTIAL.

@@ -7,10 +7,13 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Current audit/code: W250.** [Phased local admission](topostitch-preview.md#admit-experimental-phases-and-fixed-scattering-w250)
-  preserves original phases, Free-R assignments and complete fixed scattering in
-  native dry-runs, with an explicit preflight-only stop. 213 source/213 installed
-  checks; native motion remains the next gate, not an accepted repair.
+- **Current audit/code: W252.** [Completed phased output, unresolved geometry](topostitch-periodic.md#w251w252--separate-native-output-completion-from-local-repair)
+  preserves all atoms, phases and fixed scattering through actual refinement and
+  final writing. Output-only replay reproduces W251 coordinates exactly. Local
+  phosphate strain remains; a shorter bond is not accepted repair.
+- **W250.** [Phased local admission](topostitch-preview.md#admit-experimental-phases-and-fixed-scattering-w250)
+  supplies exact source-bound input and actual-objective checks, with an explicit
+  preflight-only stop. W251/W252 separately qualify motion/output and its limits.
 - **W249.** [Full-precision boundary metadata](topostitch-periodic.md#w249--carry-the-whole-boundary-graph-in-full-precision-mmcif)
   retains original atom IDs, all connection types and the complete recut boundary
   graph. Native scattering agrees at round-off; annotations require separate
