@@ -17,6 +17,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W243 — Compare returned anisotropic tensors in physical units
+
+- Fix false return failures from native reciprocal-tensor round-off. Compare all
+  six Cartesian ADP components at an absolute 1e-12 Å² bound in an unchanged
+  native cell/group/frame; keep ADP modes, Uiso and isotropic behavior strict.
+- Preserve original ANISOU and ATOM B/Q export bytes. Add frame evidence to native
+  state receipts and a component-level ADP comparison summary; no request or
+  checkpoint migration. Fresh jobs/preflights bind the new receipt fields.
+- Reproduce both real failures, reject deliberate physical tensor changes, and
+  qualify source/installed cold replay. Native fits remain Cedar-coordinated.
+
+
 ### W242 — Observe saved native XYZ weight summaries
 
 - Add a dependency-free, read-only observer of source-pinned per-cycle native

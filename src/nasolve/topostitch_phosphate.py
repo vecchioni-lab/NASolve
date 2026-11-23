@@ -75,7 +75,52 @@ def _masked_result(source, points, movable, bound):
     return candidate, audit
 
 
-def _verify_return(before, after, chosen, initial_observations, final_observations):
+# Absolute component tolerance in physical Angstrom-squared units. The observed
+# native U* round trip differs by ~5e-15 A^2; this is not an ADP refinement budget.
+_CARTESIAN_ADP_TOLERANCE = 1e-12
+
+
+def _scattering_frame(xray_structure):
+    cell = xray_structure.unit_cell()
+    return dict(cell=list(cell.parameters()),
+                space_group=str(xray_structure.space_group_info()),
+                orthogonalization_matrix=list(cell.orthogonalization_matrix()))
+
+
+def _return_frame(initial, final):
+    if initial is None and final is None:
+        return None  # Historical callers retain exact reciprocal-state checks.
+    if initial is None or final is None:
+        raise ValueError('Require both native scattering frames')
+    for frame in (initial, final):
+        _keys(frame, {'cell', 'space_group', 'orthogonalization_matrix'})
+        cell, flat = frame['cell'], frame['orthogonalization_matrix']
+        if (not isinstance(cell, (list, tuple)) or len(cell) != 6
+                or not isinstance(flat, (list, tuple)) or len(flat) != 9
+                or any(type(v) not in (int, float) or not math.isfinite(v) for v in (*cell, *flat))
+                or any(v <= 0 for v in cell[:3]) or any(not 0 < v < 180 for v in cell[3:])
+                or not isinstance(frame['space_group'], str) or not frame['space_group'].strip()):
+            raise ValueError('Invalid native scattering frame')
+        a,b,c,d,e,f,g,h,i = flat
+        if a*(e*i-f*h)-b*(d*i-f*g)+c*(d*h-e*g) <= 0:
+            raise ValueError('Invalid native orthogonalization matrix')
+    if initial != final:
+        raise ValueError('Native cell, space group or tensor frame changed')
+    flat = initial['orthogonalization_matrix']
+    return [flat[i:i+3] for i in (0,3,6)]
+
+
+def _cartesian_adp(u_star, orth):
+    from .topostitch_transport import _tensor
+    a,b,c,d,e,f = _tensor(u_star)
+    matrix = ((a,d,e), (d,b,f), (e,f,c))
+    return _tensor([math.fsum(orth[i][a]*matrix[a][b]*orth[j][b]
+        for a in range(3) for b in range(3))
+        for i,j in ((0,0),(1,1),(2,2),(0,1),(0,2),(1,2))])
+
+
+def _verify_return(before, after, chosen, initial_observations, final_observations,
+                   *, initial_frame=None, final_frame=None):
     if not before or set(before) != set(after) or not chosen <= set(before):
         raise ValueError('Atom inventory changed')
     if not initial_observations or not any(r[-1] for r in initial_observations) or all(r[-1] for r in initial_observations):
@@ -97,16 +142,35 @@ def _verify_return(before, after, chosen, initial_observations, final_observatio
             expected = original[k] * scale
             if not math.isfinite(returned[k]) or not math.isclose(returned[k], expected, rel_tol=1e-12, abs_tol=1e-10):
                 raise ValueError('Observations changed beyond a common F/sigma scale')
+    orth = _return_frame(initial_frame, final_frame)
+    anisotropic_count = 0; max_cartesian_difference = 0.
     for key, row in after.items():
         prior = before[key]
-        if set(row) != set(prior) or any(row[k] != prior[k] for k in row if k != 'xyz'):
+        if any(type(state.get(flag)) is not bool for state in (row, prior)
+               for flag in ('use_u_iso','use_u_aniso')):
+            raise ValueError('Invalid native ADP mode')
+        compare_cartesian = orth is not None and prior['use_u_aniso']
+        excluded = {'xyz', 'u_star'} if compare_cartesian else {'xyz'}
+        if set(row) != set(prior) or any(row[k] != prior[k] for k in row if k not in excluded):
             raise ValueError('ADP, occupancy or element changed')
+        if compare_cartesian:
+            old, new = _cartesian_adp(prior['u_star'], orth), _cartesian_adp(row['u_star'], orth)
+            difference = max(abs(a-b) for a,b in zip(old,new))
+            if difference > _CARTESIAN_ADP_TOLERANCE:
+                raise ValueError('Cartesian anisotropic tensor changed')
+            anisotropic_count += 1
+            max_cartesian_difference = max(max_cartesian_difference, difference)
         if any(not math.isfinite(v) for v in row['xyz']):
             raise ValueError('Nonfinite returned coordinate')
         if key not in chosen and math.dist(row['xyz'], prior['xyz']) > 1e-9:
             raise ValueError('Fixed coordinates changed')
     return dict(indices_and_flags_exact=True, amplitude_sigma_common_scale=scale,
-                observations_exact=final_observations == initial_observations)
+                observations_exact=final_observations == initial_observations,
+                adp_audit=dict(comparison='cartesian-six-components' if orth is not None else 'legacy-exact-native',
+                    anisotropic_atoms_checked=anisotropic_count,
+                    max_cartesian_difference_angstrom_squared=max_cartesian_difference,
+                    cartesian_tolerance_angstrom_squared=_CARTESIAN_ADP_TOLERANCE if orth is not None else 0.,
+                    native_frame_exact=orth is not None, modes_and_u_iso_exact=True))
 
 
 def run_registered_phosphate_refinement(request_path, output_directory, *, phenix, cedar_source=None, timeout_seconds=1200):
@@ -301,7 +365,8 @@ refinement {{
             raise ValueError('Compiled refinement exceeds the bounded protocol')
         if p.main.apply_overall_isotropic_scale_to_adp or p.target_weights.optimize_xyz_weight or p.target_weights.optimize_adp_weight:
             raise ValueError('Compiled refinement permits ADP or weight changes')
-        initial.update(atoms=state(model), observations=observations(program.fmodel))
+        initial.update(atoms=state(model), observations=observations(program.fmodel),
+                       frame=_scattering_frame(model.get_xray_structure()))
         _save('initial-state.json', initial)
         if phase=='fit':
             pre=_json((root/'preflight/science.json').read_bytes())
@@ -317,8 +382,10 @@ refinement {{
             if selected != chosen: raise ValueError('Native refinement mask changed')
             if set(final) != set(source) or set(initial['atoms']) != set(source): raise ValueError('Atom inventory changed')
             returned_observations=observations(fm)
-            _save('returned-state.json', dict(atoms=final, observations=returned_observations))
-            observation_audit=_verify_return(initial['atoms'], final, chosen, initial['observations'], returned_observations)
+            final_frame = _scattering_frame(model.get_xray_structure())
+            _save('returned-state.json', dict(atoms=final, observations=returned_observations, frame=final_frame))
+            observation_audit=_verify_return(initial['atoms'], final, chosen, initial['observations'], returned_observations,
+                initial_frame=initial['frame'], final_frame=final_frame)
             if phase=='fit' and (not owner.calls.get((7,True),0) or result.macro_cycle!=controls['cycles']):
                 raise ValueError('Complete phosphate forces or requested cycles missing')
             points=[final[k]['xyz'] for k in source]

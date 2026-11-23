@@ -3444,7 +3444,9 @@ modified-endpoint or multi-connection movement. Unrelated modified residues may
 remain in the fixed context with their supplied dictionaries.
 
 On return, actual compiled selection, atom inventory, fixed coordinates,
-occupancies and native Uiso/Ustar/use flags must survive. Exact ordered reflection
+occupancies and native ADP modes/Uiso must survive exactly. W243 compares active
+anisotropic tensors in the unchanged Cartesian frame at the round-off bound
+[below](#preserve-cartesian-adps-through-native-return-w243). Exact ordered reflection
 indices and Free-R flags must survive too. Phenix's normal common positive F/SIGF
 rescaling is recorded and allowed; filtering, changed flags, duplicate indices or
 nonuniform amplitude/sigma changes refuse. Small R factors are not an acceptance
@@ -3539,3 +3541,51 @@ The next fixed-objective experiment stays queued: declare its common weight and
 native scope through those existing owners, then independently qualify it.
 No second weighting engine, fixed-mode switch or extra native experiment is
 introduced by W242.
+
+
+## Preserve Cartesian ADPs through native return (W243)
+
+Two real anisotropic dry runs reached the W240 return checker with only
+reciprocal U* round-off changed (up to 4.34e-19 / 6.51e-19). Exact U* list equality
+incorrectly rejected them. W243 snapshots the actual native cell parameters,
+space-group string and orthogonalization matrix in both native state receipts.
+It requires that frame to remain exact, converts U* with **O U* Oᵀ**, and compares
+all six Cartesian components (U11/U22/U33/U12/U13/U23) at an **absolute 1e-12 Å²**
+limit, with no relative tolerance. This accommodates arithmetic round-off, not
+an ADP-refinement allowance. Full tensor/mode and coordinate checks apply to fixed
+as well as movable atoms.
+
+ADP usage flags and Uiso remain exact; isotropic atoms retain their previous
+exact inactive-U* check. Changed cell/group/matrix, changed modes, nonfinite
+components and real tensor changes refuse. Historical private checker calls
+without both frame snapshots keep exact reciprocal comparison, rather than
+silently gaining a tolerance. New initial/returned-state receipts add `frame`;
+`observation_audit.adp_audit` records mode, count, measured maximum, units and
+bound. Requests/CLI/checkpoints stay unchanged. A fresh native job/preflight is
+needed for the new evidence fields; old immutable receipts are not rewritten.
+
+The source-preserving exporter is unchanged: original ANISOU, ATOM B/Q and all
+other noncoordinate records remain byte-exact. This is separate from the native
+scattering-state comparison. Cedar owns the source-ANISOU-to-native starting check
+and native model/F-model synchronization. W243 does not re-interpret the exported
+candidate or claim whole-ASU tensor/materialization qualification.
+
+**Validation:** 293 focused source tests (9.31 s), 293 isolated installed tests
+(9.01 s), including 15 new cases. Both saved failures reject under the old installed
+code and pass under source, installed and relocated-installed code. Read-only
+Phenix **2.2.1-6174** replay covers all 1271/1275 anisotropic atoms: maximum Cartesian
+differences 7.11e-15 / 5.33e-15 Å²; independent native cctbx conversion agrees within
+3.56e-15 Å². For each model, a deliberate 1e-4 Å² change to each diagonal and
+off-diagonal component is rejected (12 refusals). Candidate export keeps all source
+ANISOU/B/Q bytes, and provided input files stay unchanged. Both saved 862-atom
+isotropic W241 controls still pass strict thermal checks.
+
+Use W242's focused test command (same seven files). Tests run with
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src` plus the existing dependency root;
+installed tests run outside the checkout with the old build source removed.
+Python 3.10 syntax and installed/source module hashes agree. These were cold
+replays of existing arrays, **zero new native preflights or refinements** by
+Willow; Rowan owns the separate live execution. No full-suite repeat for this
+isolated return comparator. Evidence and the frozen installed package live at
+NASolve anchor `branch-artifacts/willow/w243-cartesian-return/`; private arrays,
+models and scientific data are excluded from Git. No manuscript files were edited.

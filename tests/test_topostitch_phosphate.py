@@ -166,3 +166,57 @@ def test_owned_execution_requires_qualified_preflight_and_unchanged_plan(tmp_pat
         result=json.loads((out/'result.json').read_text())
         assert result['status'] == ('FAILED_INPUT_DRIFT' if mode == 'changed_plan' else 'FAILED')
     assert model.read_bytes() == raw
+
+
+
+def hex_frame():
+    return dict(cell=[100.,100.,80.,90.,90.,120.], space_group='R 3:H',
+        orthogonalization_matrix=[100.,-50.,0.,0.,50.*(3.**.5),0.,0.,0.,80.])
+
+
+def test_reciprocal_roundoff_is_compared_in_six_physical_cartesian_components():
+    import math
+    before=states(); after=deepcopy(before)
+    for row in after.values():
+        row['u_star']=[math.nextafter(v, math.inf) for v in row['u_star']]
+    frame=hex_frame()
+    result=job._verify_return(before,after,{'moving'},observations(),observations(),
+        initial_frame=frame,final_frame=deepcopy(frame))
+    audit=result['adp_audit']
+    assert audit['anisotropic_atoms_checked']==2 and audit['native_frame_exact']
+    assert 0 < audit['max_cartesian_difference_angstrom_squared'] <= 1e-12
+    with pytest.raises(ValueError):
+        job._verify_return(before,after,{'moving'},observations(),observations())
+
+
+@pytest.mark.parametrize('component',range(6))
+def test_real_diagonal_or_offdiagonal_tensor_changes_refuse(component):
+    before=states();after=deepcopy(before);after['fixed']['u_star'][component]+=1e-8
+    with pytest.raises(ValueError,match='Cartesian anisotropic tensor'):
+        job._verify_return(before,after,{'moving'},observations(),observations(),
+            initial_frame=hex_frame(),final_frame=hex_frame())
+
+
+@pytest.mark.parametrize('change',['cell','group','matrix','mode','isotropic','inactive_tensor','nonfinite'])
+def test_cartesian_roundoff_policy_keeps_frame_mode_and_isotropic_state_strict(change):
+    before=states();after=deepcopy(before);frame=hex_frame();other=deepcopy(frame)
+    if change=='cell':other['cell'][0]+=.001
+    elif change=='group':other['space_group']='P 1'
+    elif change=='matrix':other['orthogonalization_matrix'][0]+=.001
+    elif change=='mode':after['moving']['use_u_aniso']=False
+    elif change in ('isotropic','inactive_tensor'):
+        for state in (before,after):
+            for row in state.values():row.update(use_u_aniso=False,use_u_iso=True,u_iso=.2,u_star=[-1.]*6)
+        if change=='isotropic':after['moving']['u_iso']+=1e-14
+        else:after['moving']['u_star'][0]+=1e-14
+    elif change=='nonfinite':after['moving']['u_star'][4]=float('nan')
+    with pytest.raises(ValueError):
+        job._verify_return(before,after,{'moving'},observations(),observations(),
+            initial_frame=frame,final_frame=other)
+
+
+def test_six_component_conversion_retains_shear_and_physical_units():
+    # Independent product for O=[[2,1,0],[0,3,0],[0,0,4]], U*=diag(1,2,3).
+    assert job._cartesian_adp([1.,2.,3.,0.,0.,0.],[[2.,1.,0.],[0.,3.,0.],[0.,0.,4.]])==(6.,18.,48.,6.,0.,0.)
+    with pytest.raises(ValueError,match='both native'):
+        job._verify_return(states(),states(),{'moving'},observations(),observations(),initial_frame=hex_frame())
