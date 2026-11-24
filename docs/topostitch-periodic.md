@@ -13836,3 +13836,54 @@ reusing Cedar's deposition-link reader/comparison. An annotation-only omission
 can preserve Fcalc and pass an incomplete standalone check. Required P02 GUI,
 inverse edits, refined-child rebinding, supported writing, special-position
 source validity and the native refinement lifecycle remain separate gates.
+
+## W257 — Account for original sites and every declared backbone edge
+
+The [maintained path projection](topostitch-preview.md#project-declared-paths-onto-original-cif-sites-w257)
+uses W256's original-source binding and the replayed graph. It encodes each
+declared covalent edge exactly once, either as local adjacency or as an explicit
+image-spanning connection. All registered nodes map to complete original CIF
+sites; component aliases never overwrite original labels. Unregistered atoms,
+protected sites and original chemical/unknown boundary intentions stay visible.
+
+| Source | Original atoms / registered nucleotides / backbone edges | Before: paths, local edges, image edges | Two-route recut: paths, local edges, image edges |
+| --- | --- | --- | --- |
+| 3LNA | 1,271 / 62 / 60 | 4, 58, 2 | 8, 54, 6 |
+| 5LNA | 1,275 / 62 / 60 | 4, 58, 2 | 8, 54, 6 |
+
+All four source-bound path/node sequences and boundary operators reproduce the
+earlier W249 diagnostic exactly. A1C3T remains A1C3T. This is a change in how the
+same crystal is represented, not a new chemical nick or physical bend. The new
+API writes no model and performs no Fcalc/native call. Original annotations
+remain preserved in the W256 document, but are not yet re-expressed by this API.
+
+**Validation:** `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:<qualified-dependencies>
+python -m pytest -p no:cacheprovider -q tests/test_topostitch_cif_paths.py
+tests/test_topostitch_cif_source.py tests/test_topostitch_recut_bundle.py
+tests/test_topostitch_graph.py` passes 121 tests, and the same 121 pass from a
+relocated offline installation. The complete `python -m pytest -p no:cacheprovider
+-q` run, with process permissions available, passes **2,705 tests, four skips and
+234 subtests**. No branch merge is implied by this Willow-only suite.
+
+The first test fixtures incorrectly aliased multiple author sites and assumed
+equal strand lengths; those fixture failures remain. A separate negative test
+demonstrated a real prototype gap: different components could occupy the same
+original label-chain/sequence position. The maintained binding now refuses that
+collision; branch/cycle, partial-source, unregistered-context and relocated/race
+controls also pass. Hazel then identified an unregistered atom with missing entity metadata that
+could hide a collision at a known position. Its regression fails before the fix;
+position occupancy now includes incomplete metadata rows. Revised source, all
+four real replays, installation and full suite pass, and Hazel confirms the
+exact-hash fix. Prior formatting and replay-harness failures remain retained;
+none is relabelled as a scientific result.
+
+Exact source/review hashes, logs, replay, installation/cleanup and restart records
+are local under NASolve anchor
+`branch-artifacts/willow/w257-original-path-projection/`. Scientific files remain
+outside Git; task-owned disposable installations are removed. P03 stays partial.
+Next, transport **all** original connection rows through original atom/image
+lineage, retaining explicit reasons for unresolved/out-of-scope endpoints. Reuse
+Cedar for covalent chemistry/sequence semantics and compare against the complete
+bound reference. Its O3′–P-specific checker is not an all-annotation parser.
+No automatic row deletion, chemical inference, supported writer, edited-child
+rebinding, P02 GUI acceptance or native receiving is introduced here.

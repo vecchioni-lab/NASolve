@@ -3959,3 +3959,48 @@ already-available build dependency path; adding that path qualified the same
 source, with the failure retained. No native execution was repeated. The complete Willow suite ran: 2,688 passed, four skipped and 234 subtests passed; five campaign-process tests failed because sandbox process inspection/signaling was denied. Those same five passed with permission (2.48 s), unchanged source. This clears all 2,693 tests across the run and retry, not a single clean full invocation or a combined-branch integration result.
 See W256 in the periodic ledger for the four real-source replays and remaining
 scientific gates. Existing calls and artifact schemas need no migration.
+
+### Project declared paths onto original CIF sites (W257)
+
+`topostitch_cif_source.observe_relabel_cif_paths(directory, model, **source_binding)`
+accepts the same explicit controls as W256 and returns a read-only schema-1
+`topostitch-original-cif-declared-path-projection`. It invokes the existing source
+loader, then partitions only the exact saved graph's `covalent_backbone` edges.
+Identity-image edges form deterministic directed paths; nonidentity edges remain
+explicit boundaries. Base-pairing and other graph edges retain their IDs separately.
+No edge is created from coordinates, distance, sequence or base identity.
+
+Every registered node must have resolved complete atom coverage and exactly one
+original `label_asym_id` / positive `label_seq_id` / `label_entity_id` /
+`label_comp_id` site. Each numeric chain/sequence position belongs to one whole
+node, even when competing components have different names. Missing labels,
+partial sites, aliasing, competing incoming/outgoing covalent edges and uncut
+identity cycles refuse with a reason. Periodic cycles remain representable when
+their nonidentity edge stays explicit; an isolated node does not acquire a bond.
+
+`paths` lists node order and ordinary edge IDs; `boundary_edges` keeps exact
+target operators and both proposed path positions. `registered_original_sites`
+binds those nodes to original labels/atom IDs and protected/do-not-connect flags.
+`declared_routes` preserves original chemical/representation/unknown boundary
+intent; outside-route node IDs and the `unregistered_original_atom_ids` list
+remain visible. The report pins the original context, receipt, registered graph and
+representative graph. Source bytes are checked again after projection; relocation
+with the old input path gone reproduces the report.
+
+**These are graph path numbers, not new CIF chain/entity assignments.** Complete
+registered-node coverage does not establish complete original polymer coverage,
+entity/sequence correctness or the coverage of original `struct_conn` rows. The
+reader does not classify unregistered atoms as solvent, name chemical termini,
+validate chemistry, write coordinates/annotations or authorize native refinement.
+Cedar remains the semantic sequence/backbone declaration owner; its covalent
+reader intentionally does not cover every other connection type. Original
+noncovalent annotation transport is the next separate source-bound layer.
+
+121 focused source and 121 relocated installed checks pass; the complete Willow
+suite passes 2,705 tests, four skips and 234 subtests. Hazel's independent review exposed and verified the missing-entity collision
+fix: occupancy of a known label position is now indexed independently of full
+entity labels. The regression fails before the fix and passes afterward. Final
+source and installed bytes match exactly; installed imports/help also pass. 206 installation
+files hash-match after temporary build/old installation path removal. Initial
+absent-API and prototype position-collision failures remain recorded; no native
+run occurred. Existing source-reader calls and saved-preview schemas are unchanged.

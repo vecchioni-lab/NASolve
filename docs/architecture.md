@@ -1201,6 +1201,12 @@ working-file precision. Raw original double XYZ/U and all original document
 bytes define an immutable source context; attached definitions/category layouts
 are retained. No writer or annotation/path coverage approval is supplied. See the
 [W256 original-source contract](topostitch-preview.md#bind-an-original-mmcif-to-a-saved-working-recut-w256).
+`topostitch_cif_source.observe_relabel_cif_paths` composes that binding with the
+saved declared graph to project local paths and explicit image boundaries onto
+complete original site labels. Unregistered source context and original boundary
+intent remain explicit; path numbering does not write new CIF chains. Complete
+annotation transport and Cedar-owned sequence/chemistry checks remain separate.
+
 
 `topostitch_recipe` freezes complete canonical NARestraints selections for explicit
 atom images; `topostitch_native_recipe` binds them to unmodified PDB atom order

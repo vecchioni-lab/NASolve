@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W257 — Project declared backbone paths onto complete original CIF sites
+
+- Reuse the original-source reader and saved graph to partition existing edges
+  into local paths and explicit image boundaries, preserving original site/atom
+  labels, boundary intent and unregistered context. Refuse incomplete/ambiguous
+  sites, branching and uncut identity cycles; do not infer bonds or write chains.
+- Qualify focused/relocated installation, the full Willow suite and four exact
+  earlier path replays. No native calculation, changed existing API or migration.
+
 ### W256 — Bind original mmCIF precision to an explicit saved recut
 
 - Add a read-only source context preserving original document bytes, atom IDs,

@@ -1,32 +1,42 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W256, 2026-11-24**, code `484a4c414e70b601a137d83e5c2105fd95f3ebb5`.
-[Original mmCIF source binding](topostitch-preview.md#bind-an-original-mmcif-to-a-saved-working-recut-w256)
-preserves exact original bytes/IDs/component spelling and raw double XYZ/U while
-mapping every atom to a replayed working-PDB recut. Explicit aliases and precision
-separate original authority from working-file serialization. Unique coordinate
-block, attached definitions, complete permutation and crystal operations are
-checked; category layout is inventoried. No writer, annotation coverage approval,
-native runtime or adoption. Existing calls and artifact schemas need no migration.
+**Current maintained slice: W257, 2026-11-24.**
+[Declared paths on original CIF sites](topostitch-preview.md#project-declared-paths-onto-original-cif-sites-w257)
+binds every resolved registered node to a complete original site and partitions
+every declared backbone edge into local adjacency or an explicit image boundary.
+Original identities, chemical/unknown boundaries, protected/do-not-connect flags
+and unregistered atoms remain visible. Branches, uncut identity cycles, incomplete
+sites and multiple components aliasing one label-chain/sequence position refuse.
+Path numbers are not new output chains; no writer or chemical inference is added.
 
-**217 source / 217 relocated installed checks pass.** Python 3.10 syntax, installed
-cut-preview help and 206 relocated file hashes pass after removing temporary
-build/old install paths. A missing offline build dependency path caused the first
-install attempt to fail; the same source passed with the already-qualified path
-included. That failure is retained. Four original 3LNA/5LNA controls reproduce
-W249 XYZ/U exactly for all 1,271/1,275 atoms, without new native calls. Hazel's exact-hash cold review found no blocking issue. Exact
-commands, source hashes, logs and local replay are in NASolve anchor
-`branch-artifacts/willow/w256-source-cif-context/`. The complete Willow suite ran: 2,688 passed, four skipped and 234 subtests passed; five campaign-process tests failed because sandbox process inspection/signaling was denied. Those same five passed with permission (2.48 s), unchanged source. This clears all 2,693 tests across the run and retry, not a single clean full invocation or a combined-branch integration result. Shared callers remain unchanged. Initial absent-API collection is not an old-behavior regression proof.
+**121 focused source / 121 relocated installed checks pass.** The complete Willow
+suite passes **2,705 tests, four skips and 234 subtests**, with process inspection
+permissions available. Hazel's independent review exposed one missing-entity position collision; its
+regression fails before the fix, the reviewed final bytes pass, and the whole
+validation is repeated for that semantic correction. Installed imports/help pass.
+206 installation-file hashes verify after temporary build and old-install removal.
+Four original 3LNA/5LNA cases reproduce W249 paths/operators exactly: all
+1,271/1,275 atoms and 62 nodes/60 backbone edges; 4 paths/2 seams become 8 paths/
+6 seams. No new native calculation, refinement or coordinate file is generated.
+Exact commands, original failures, hashes and evidence are in NASolve anchor
+`branch-artifacts/willow/w257-original-path-projection/`.
 
-**P03 remains partial; next Pine slice:** bind complete original polymer paths
-and all connection annotations to this context and the cut. Reuse Cedar's
-deposition-link owner against a complete bound reference; do not build another
-native parser or infer metadata completeness from unchanged scattering. Keep
-P02 GUI review, general/source special-position validity, native lifecycle,
-supported output and changed-child/inverse-edit binding open. Rowan owns Cedar
-chemistry/native execution; Willow owns this original-source/recut binding.
+**P03 stays partial; next:** transport all original connection annotations through
+the bound atom/image lineage, retaining unresolved rows and reasons. Cedar owns
+sequence/backbone chemistry semantics; its O3′–P filter cannot establish coverage
+of hydrogen bonds or other annotations. Compare complete references rather than
+trust standalone CHECKED or unchanged scattering. Keep complete original polymer
+coverage, general/special-position source validity, supported writing, P02 GUI,
+native lifecycle and changed-child/inverse-edit binding as separate gates.
+Rowan confirmed this ownership split; no Cedar source or shared caller changed.
 
-**Latest coordinated geometry evidence: W255.**
+W256's original byte/ID/component/raw-double XYZ/U context remains unchanged.
+Its 217 source/217 installed and four exact numerical replays stay valid; the
+W256 full-suite sandbox failure and five-test permission retry remain recorded,
+not relabelled as a clean invocation. W257 now supplies the clean Willow suite.
+This is not combined-branch integration or scientific/model acceptance.
+
+**Coordinated geometry context: W255.**
 [Cap and feasible-step diagnostics](topostitch-periodic.md#w255--record-the-coordinated-cap-and-feasible-step-diagnostics)
 replace the previously queued 1.5→2 Å experiment: it has run once and stopped
 after 27 accepted steps, with OP2's next proposal beyond the bound. The last
@@ -46,13 +56,22 @@ support before new PDB lattice machinery. Hazel's pinned output review finds the
 native worker already requests mmCIF, but its wrapper defaults to five-place XYZ
 and Alder's endpoint auditor currently admits only three-place PDB. Format
 availability is not receiving authority; qualify precision and admission together.
+A separately named, opt-in constructed receiving seed need not claim optimizer
+stationarity: it must retain complete source chemistry/atoms, evaluated actual
+output, fixed context and a matched receiving control. Current W238 optimizer
+acceptance and diagnostic no-candidate verdicts remain unchanged. This is a
+planned distinct role, not permission to reuse an old native capture for new bytes.
 No cap grid or automatic enlargement.
 Later density-aware receiving and the existing fixed-weight confound remain open.
 
-**Human checkout:** reuse GitHub anchor
-`ScienceCheckouts/Hazel/2026-11-24_feasible-helper-extraction/index.html` for the
-geometry diagnostics and the W249 original-source/recut evidence for Pine. No
-newly bent model or deposition-ready recut is claimed. Exact W255 and W256 scope,
+**Human checkout:** GitHub anchor
+`ScienceCheckouts/Linden/2026-11-24_original-source-paths/index.html` and
+`open_report.py` show the original/recut atom, path and connection counts with
+links to exact local evidence. Four links and the Python 3.10 opener syntax pass.
+This is a compact static science report, not the required future P02 editor.
+Hazel's separate geometry report remains at
+`ScienceCheckouts/Hazel/2026-11-24_feasible-helper-extraction/index.html`.
+No newly bent model or deposition-ready recut is claimed. Exact W255–W257 scope,
 failures and next actions are in the periodic ledger and machine roadmap.
 
 W254's compact failed-proposal reporting remains validated (274 source/274

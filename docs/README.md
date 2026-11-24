@@ -7,7 +7,12 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Current source binding: W256.** [Original mmCIF context](topostitch-preview.md#bind-an-original-mmcif-to-a-saved-working-recut-w256)
+- **Current path binding: W257.** [Original-site path projection](topostitch-preview.md#project-declared-paths-onto-original-cif-sites-w257)
+  accounts for every declared backbone edge and original registered site while
+  retaining unregistered context. 121 source/121 installed; full Willow suite
+  2,705 passed, four skips, 234 subtests. Four exact W249 path replays; no writer.
+
+- **Original source binding: W256.** [Original mmCIF context](topostitch-preview.md#bind-an-original-mmcif-to-a-saved-working-recut-w256)
   retains original precision/identity through an explicitly matched working recut.
   217 source/217 installed checks; four exact W249 replays. P03 remains partial.
 - **Coordinated science: W255.** [Cap and feasible-step evidence](topostitch-periodic.md#w255--record-the-coordinated-cap-and-feasible-step-diagnostics)
@@ -94,7 +99,7 @@ current instructions; other branches retain their own status and validation pins
   The failed direct result and three remaining moving-region outliers stay
   explicit. This is same-family synthetic recovery, not general experimental repair.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W256, next W257.
+  [generated human view](topostitch-roadmap.md). Current W257, next W258.
   Continue complete original path/annotation binding in Pine; coordinate feasible
   endpoint/convergence qualification with Alder and chemistry receiving with Cedar.
   Prior synthetic recovery and near-target bond controls remain closed evidence;
