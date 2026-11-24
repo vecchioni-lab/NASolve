@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W262 — Bind explicit strand-design documents through existing registration
+
+- Verify an optional exact-hash sequence-family target by rebuilding its supplied
+  registration against the saved model and source-defined polymer roles. Preserve
+  all target codes, including unmapped positions; reject inconsistent declarations.
+- Keep ASU target reuse neutral and physical copy/nick phase unproved. Existing
+  calls and all four real-control W261 reports remain unchanged.
+- Qualify 169 source/169 relocated installed checks and four source replays;
+  no new schema owner, native job, coordinate writer or default change.
+
 ### W261 — Preserve fragment lineage without promoting an ASU map to an oligo
 
 - Add an optional read-only observer joining original CIF sites, registered copy/

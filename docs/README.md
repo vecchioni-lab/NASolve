@@ -7,10 +7,10 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Current fragment lineage: W261.** [Source/copy/path mapping](topostitch-preview.md#carry-original-identity-through-visible-fragments-w261)
-  retains 62 sites and 60 backbone edges through four-to-eight fragment changes.
-  Existing ASU targets stay source-only; supplied registrations remain neutral
-  pending an independent target document. 158 source/158 installed checks.
+- **Current explicit target binding: W262.** [Strand target documents](topostitch-preview.md#bind-a-declared-strand-target-document-w262)
+  rebuild their existing registration against the same model. Partial target sites
+  and ASU-only identities remain explicit. 169 source/169 installed checks;
+  four real-control reports remain exact.
 
 - **Current sequence-text evidence: W260.** [Literal and canonical text](topostitch-preview.md#compare-original-literal-and-canonical-sequence-text-w260)
   reuses the shared tokenizer, preserves unresolved modified parents, and keeps
@@ -119,7 +119,7 @@ current instructions; other branches retain their own status and validation pins
   The failed direct result and three remaining moving-region outliers stay
   explicit. This is same-family synthetic recovery, not general experimental repair.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W261, next W262.
+  [generated human view](topostitch-roadmap.md). Current W262, next W263.
   Continue original polymer/sequence semantics and supported output in Pine; coordinate feasible
   endpoint/convergence qualification with Alder and chemistry receiving with Cedar.
   Prior synthetic recovery and near-target bond controls remain closed evidence;

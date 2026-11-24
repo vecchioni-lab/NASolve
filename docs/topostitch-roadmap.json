@@ -1120,7 +1120,7 @@
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "W262: optionally bind an actual existing sequence-family-target document by exact SHA and reconstruct its registration through public build_construct_registration against the same model/copy map. Require exact registration equality; preserve target codes for unmapped positions and reject same-site-name/wrong-sequence targets. Known ASU target reuse remains neutral. Real LNA controls stay source-only without an independent lab target. Then scope output entity/reference and assembly/TLS transformations, not a new writer by implication. Physical copy/nick phase, P02 graphical review and native/edited-child lifecycle remain separate gates.",
+      "next_action": "W263: audit and qualify a bounded output-reference projection against original CIF labels, source author numbering and visible paths. Inspect exact sequence-range/depositor-reference semantics and existing owners before coding; unresolved author ranges and unmodeled positions must remain explicit. No inferred full oligo/nick phase or new chemical entities. Assembly/TLS frame transformations, maintained writer, P02 GUI and native/edited-child lifecycle remain separate gates.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -7330,8 +7330,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 261,
-    "next": 262,
+    "current": 262,
+    "next": 263,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -8707,6 +8707,12 @@
         "title": "Retain fragment source/copy lineage without inferring a full oligo",
         "state": "RECORDED",
         "code_commit": "d05bbfb9e540284a85f04ed72fd7294e4eb848a8"
+      },
+      {
+        "number": 262,
+        "title": "Bind actual target documents through existing registration",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   },

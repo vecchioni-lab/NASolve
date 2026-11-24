@@ -17,7 +17,7 @@ def observe(root,model,kw,**extra):
     return observe_relabel_cif_fragments(root,model,**kw,**extra)
 
 
-def oligo_file(root,folder,*,missing=False,extra=False,different=False,lexical_order=False):
+def oligo_file(root,folder,*,missing=False,extra=False,different=False,lexical_order=False,target_path=None):
     a=inspect_pdb(root/'source.pdb',polymer_ligand_codes={'DA','DC','DG','DT'})
     codes=literal_polymer_identity_inventory(a)
     saved=json.loads((root/'preview.json').read_text())['observation']['registered_graph']
@@ -29,6 +29,7 @@ def oligo_file(root,folder,*,missing=False,extra=False,different=False,lexical_o
     if extra:sites.append(('oligo:extra','DA'))
     mapping={f'oligo:{i}':s for i,s in enumerate(ordered,1)if not missing or i>1}
     declared=target(*sites);declared['reference']={'id':'explicit-oligo-fixture','version':'1','content_sha256':'b'*64}
+    if target_path is not None:target_path.write_text(json.dumps(declared))
     reg=build_construct_registration(a,declared,{'declared-copy':mapping},source='Explicit synthetic oligo assignment; not inferred')
     path=folder/'oligo.json';path.write_text(json.dumps(reg));return path
 
@@ -169,3 +170,89 @@ def test_reusing_asu_registration_is_not_an_oligo_declaration(tmp_path,reseriali
     assert r['oligo_mapping_status']=='SOURCE_TARGET_REUSED'
     assert all(s['oligo_assignment'] is None for s in all_sites(r))
     assert all(s['declared_mapping'] is not None for s in all_sites(r))
+
+
+# W262 binds the existing logical target itself, not only a reference label.
+def target_binding(path):
+    return dict(oligo_target_path=path, expected_oligo_target_sha256=sha256(path.read_bytes()).hexdigest())
+
+
+def test_target_document_rebuilds_registration_and_retains_unmapped_codes(tmp_path):
+    root,model,kw,_=fixture(tmp_path);design=tmp_path/'target.json'
+    path=oligo_file(root,tmp_path,extra=True,target_path=design)
+    before=observe(root,model,kw,**binding(path))
+    r=observe(root,model,kw,**binding(path),**target_binding(design))
+    assert before['oligo_mapping_status']=='DECLARED_REGISTRATION_ONLY'
+    assert r['oligo_mapping_status']=='TARGET_DOCUMENT_BOUND'
+    assert r['explicit_target_document_verified']
+    assert r['oligo_registration']['target_document_sha256']==sha256(design.read_bytes()).hexdigest()
+    assert r['oligo_registration']['target_document_sites'][-1]=={'site':'oligo:extra','residue_code':'DA'}
+    assert r['oligo_registration']['unmapped_logical_sites_by_copy']=={'declared-copy':['oligo:extra']}
+    assert all(s['oligo_assignment']==s['declared_mapping'] for s in all_sites(r))
+    assert not r['physical_copy_placement_validated'] and not r['physical_nick_inferred']
+    assert not r['oligo_registration']['target_reference_content_loaded']
+    assert not r['writer_authorized'] and not r['coordinates_written']
+    assert r['polymer_coverage_sha256']==before['polymer_coverage_sha256']
+
+
+@pytest.mark.parametrize('damage',['missing_hash','missing_path','wrong_hash','no_registration','mapped_code','reference','duplicate_key'])
+def test_target_document_binding_rejects_inconsistent_evidence(tmp_path,damage):
+    root,model,kw,_=fixture(tmp_path);design=tmp_path/'target.json'
+    path=oligo_file(root,tmp_path,target_path=design);args=dict(**binding(path),**target_binding(design))
+    if damage=='missing_hash':args.pop('expected_oligo_target_sha256')
+    elif damage=='missing_path':args.pop('oligo_target_path')
+    elif damage=='wrong_hash':args['expected_oligo_target_sha256']='0'*64
+    elif damage=='no_registration':args=target_binding(design)
+    else:
+        data=json.loads(design.read_text())
+        if damage=='mapped_code':data['sites'][0]['residue_code']='ZZZ'
+        elif damage=='reference':data['reference']['content_sha256']='c'*64
+        design.write_text(json.dumps(data))
+        if damage=='duplicate_key':design.write_text(design.read_text().replace('"schema_version": 1','"schema_version": 1, "schema_version": 1',1))
+        args.update(target_binding(design))
+    with pytest.raises((ValueError,RuntimeError)):
+        observe(root,model,kw,**args)
+
+
+def test_bound_target_does_not_hide_missing_mapping_or_identity_conflict(tmp_path):
+    root,model,kw,_=fixture(tmp_path);design=tmp_path/'target.json'
+    path=oligo_file(root,tmp_path,missing=True,target_path=design)
+    r=observe(root,model,kw,**binding(path),**target_binding(design))
+    assert r['explicit_target_document_verified']
+    assert r['oligo_mapping_status']=='DECLARED_MAPPING_REVIEW_REQUIRED'
+    assert len(r['registered_nodes_without_declared_mapping'])==1
+    path=oligo_file(root,tmp_path,different=True,target_path=design)
+    r=observe(root,model,kw,**binding(path),**target_binding(design))
+    assert r['explicit_target_document_verified'] and len(r['target_identity_conflicts'])==1
+    assert r['oligo_registration']['target_document_status']=='LOADED_REGISTRATION_MATCH'
+    assert r['oligo_registration']['target_reference_status']=='NOT_LOADED'
+    assert r['oligo_mapping_status']=='DECLARED_MAPPING_REVIEW_REQUIRED'
+    assert not r['coordinates_written']
+
+
+def test_actual_asu_target_document_remains_neutral(tmp_path):
+    root,model,kw,_=fixture(tmp_path);reg=json.loads((root/'registration.json').read_text())
+    codes={m['logical_site']:m['target_residue_code'] for c in reg['copies']for m in c['mappings']}
+    doc=target(*[(s,codes[s]) for s in reg['target']['sites']]);doc['reference']=reg['target']['reference']
+    design=tmp_path/'asu-target.json';design.write_text(json.dumps(doc))
+    r=observe(root,model,kw,**binding(root/'registration.json'),**target_binding(design))
+    assert r['explicit_target_document_verified']
+    assert r['oligo_mapping_status']=='SOURCE_TARGET_REUSED'
+    assert all(s['oligo_assignment'] is None for s in all_sites(r))
+
+
+def test_target_binding_relocation_and_late_change(tmp_path,monkeypatch):
+    old=tmp_path/'old';old.mkdir();root,model,kw,_=fixture(old);design=old/'target.json'
+    path=oligo_file(root,old,target_path=design)
+    original=observe(root,model,kw,**binding(path),**target_binding(design))
+    rel=[p.relative_to(old)for p in (root,model,path,design,kw['cedar_source'])]
+    new=tmp_path/'relocated';shutil.move(old,new);root,model,path,design,cedar=[new/p for p in rel];kw['cedar_source']=cedar
+    assert not old.exists()
+    assert observe(root,model,kw,**binding(path),**target_binding(design))==original
+    import nasolve.topostitch_cif_fragments as module
+    before=module.observe_relabel_cif_polymer
+    def drift(*args,**kwargs):
+        result=before(*args,**kwargs);design.write_text(design.read_text()+' ');return result
+    monkeypatch.setattr(module,'observe_relabel_cif_polymer',drift)
+    with pytest.raises(ValueError,match='changed'):
+        observe(root,model,kw,**binding(path),**target_binding(design))

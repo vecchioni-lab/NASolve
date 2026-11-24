@@ -1,29 +1,36 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W261, 2026-11-24** (code `d05bbfb9e540284a85f04ed72fd7294e4eb848a8`).
-[Fragment lineage](topostitch-preview.md#carry-original-identity-through-visible-fragments-w261)
-retains original CIF sites/atoms/author labels, registered copy/logical identities
-and proposed path/images through the existing owners. Every declared backbone
-edge keeps its old/new image and source asym/entity/sequence transition.
-No output labels, entities, coordinates or native restraints are written.
+**Current maintained slice: W262, 2026-11-24** (code pin follows qualification).
+[Explicit strand target binding](topostitch-preview.md#bind-a-declared-strand-target-document-w262)
+loads an optional exact-hash sequence-family target and reconstructs its supplied
+registration through the existing public owner. It preserves the actual target
+codes, including unmapped positions. Matching names with conflicting sequence or
+reference metadata fail; partial copies and identity conflicts stay visible.
+A bound target is a consistent caller declaration, not proof of physical copy,
+full synthesized strand, nick phase or an unloaded reference file. ASU reuse stays
+neutral. No writer, entity assignment, coordinates or native restraints change.
 
-The four LNA controls each retain **62 sites and 60 backbone edges**, including
-the original cross-entity A16→D1 and wrapped B17→B1 transitions. Four source paths
-become eight visible recut paths. Their saved registration target describes the
-ASU, so all four remain **SOURCE_LINEAGE_ONLY** for full-oligo identity. A complete
-ASU target does not establish a complete synthesized strand or a physical nick.
+**169 focused source / 169 relocated installed checks, plus two subtests** pass
+(12.98 s / 12.82 s). Installation verifies 212 files after moving the package and
+removing the original build/install paths. Eleven new tests failed on the old API.
+All four original LNA controls reproduce their W261 reports exactly: 62 sites and
+60 backbone edges, four source/eight recut paths. No independent laboratory target
+has been supplied for these controls; they remain source-lineage-only.
+Exact commands, source pins and local evidence: NASolve anchor
+`branch-artifacts/willow/w262-target-document/validation.json`.
 
-**158 focused source / 158 relocated installed checks, plus two subtests**, qualify
-the new composition. Installation verifies 212 files after relocation and removal of the original build/install paths (installed checks: 10.62 s).
-Rowan's negative reproduced promotion of a reused ASU registration; exact and
-reserialized reuse now remain neutral. The reversed-coordinate-order fixture also
-became a distinct negative. W260's full-suite baseline remains 2,786 passed/four
-skipped/234 subtests; this isolated observer uses focused checks under the resumed
-work instruction. No shared registration implementation or existing API changed.
-Exact source pins/commands/evidence: NASolve anchor
-`branch-artifacts/willow/w261-fragment-lineage/`.
+W261 source `d05bbfb9` supplied fragment lineage and Rowan's ASU-target reuse guard;
+158 source/158 installed checks and 212 file hashes passed. W260's full-suite
+baseline is 2,786 passed/four skips/234 subtests. No full-suite repeat for isolated
+composition in this resumed focused-check window; no shared owner changed.
 
-**Next W262; P03 remains partial.** W262: optionally bind an actual existing sequence-family-target document by exact SHA and reconstruct its registration through public build_construct_registration against the same model/copy map. Require exact registration equality; preserve target codes for unmapped positions and reject same-site-name/wrong-sequence targets. Known ASU target reuse remains neutral. Real LNA controls stay source-only without an independent lab target. Then scope output entity/reference and assembly/TLS transformations, not a new writer by implication. Physical copy/nick phase, P02 graphical review and native/edited-child lifecycle remain separate gates.
+**Deposition context:** Simon reports via Rowan that 3LNA passed OneDep apart from
+expected symmetry-bond notices. This is user-reported external validation, not a
+new automated qualification of every recut or a writer. Rowan owns the shared
+Cedar deposition audit; no new validation PDF or exact submitted hash was supplied
+with that message.
+
+**Next W263; P03 remains partial.** W263: audit and qualify a bounded output-reference projection against original CIF labels, source author numbering and visible paths. Inspect exact sequence-range/depositor-reference semantics and existing owners before coding; unresolved author ranges and unmodeled positions must remain explicit. No inferred full oligo/nick phase or new chemical entities. Assembly/TLS frame transformations, maintained writer, P02 GUI and native/edited-child lifecycle remain separate gates.
 
 W259 code `d9a24fd914c9cb9cf9d9baf8959fdf0454f63476` remains qualified: 168 focused
 source/168 installed, 210 files; full 2,752 passed/four skipped/234 subtests. Four

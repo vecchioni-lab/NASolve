@@ -14124,3 +14124,36 @@ remain unverified. No writer, output entities, assembly/TLS transformation or
 scientific adoption; all generated evidence stays local.
 
 **Next:** W262: optionally bind an actual existing sequence-family-target document by exact SHA and reconstruct its registration through public build_construct_registration against the same model/copy map. Require exact registration equality; preserve target codes for unmapped positions and reject same-site-name/wrong-sequence targets. Known ASU target reuse remains neutral. Real LNA controls stay source-only without an independent lab target. Then scope output entity/reference and assembly/TLS transformations, not a new writer by implication. Physical copy/nick phase, P02 graphical review and native/edited-child lifecycle remain separate gates.
+
+## W262 — Bind the actual target without claiming physical oligo placement
+
+The existing fragment observer now accepts an optional SHA-bound sequence-family
+target document alongside its explicit registration. Public registration rebuilding
+must reproduce every validated field against the same working model; original CIF
+polymer roles and explicit aliases supply modified-residue classification. This
+reuses the current target/registration contract. All target site codes survive,
+including unmapped positions. See the [API contract](topostitch-preview.md#bind-a-declared-strand-target-document-w262).
+
+`TARGET_DOCUMENT_BOUND` means declaration consistency. It does not verify laboratory
+sequence authenticity, full synthesized oligo identity, physical copy/repeat/nick
+phase or an unloaded reference file. ASU target reuse never populates an oligo
+assignment. Partial mappings and sequence conflicts remain explicit. No output
+entity, terminus, assembly/TLS transform, coordinate writer or native fit is implied.
+
+**Validation:** eleven new regression failures on the old API; 169 focused source
+checks (12.98 s), 169 relocated installed checks (12.82 s), two subtests and 212
+verified installation files. Source and installed module bytes match; the original
+build/install paths are gone during qualification. Four original LNA controls
+reproduce W261 default reports exactly, retaining every source site and declared
+backbone edge. No independent laboratory target was supplied for those controls;
+none was fabricated. Full-suite W260 baseline remains 2,786/four skips/234 subtests;
+no shared mechanics change or full-suite repeat. Local evidence, commands and
+hashes: NASolve anchor `branch-artifacts/willow/w262-target-document/validation.json`.
+Scientific data remain excluded from Git. Python 3.12.14/Gemmi 0.7.5; no Phenix run.
+
+**External deposition context:** Simon reports through Rowan that 3LNA passed OneDep
+except the expected symmetry-bond notices. Exact submission hash/new report was
+not attached to that message, so this is a reported result, not an inferred pass
+for all four recuts or the pending maintained writer. Rowan owns shared Cedar notes.
+
+**Next:** W263: audit and qualify a bounded output-reference projection against original CIF labels, source author numbering and visible paths. Inspect exact sequence-range/depositor-reference semantics and existing owners before coding; unresolved author ranges and unmodeled positions must remain explicit. No inferred full oligo/nick phase or new chemical entities. Assembly/TLS frame transformations, maintained writer, P02 GUI and native/edited-child lifecycle remain separate gates.

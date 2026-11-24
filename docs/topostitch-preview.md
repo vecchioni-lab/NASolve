@@ -4175,3 +4175,38 @@ The schema-1 `topostitch-original-cif-fragment-lineage` report binds original,
 receipt, coverage, graph and optional registration hashes and checks frozen inputs
 after observation. It performs no coordinate/sequence edit, entity assignment,
 physical-copy/nick inference, assembly/TLS transformation or writer authorization.
+
+## Bind a declared strand target document (W262)
+
+The W261 fragment observer additionally accepts paired `oligo_target_path` and
+`expected_oligo_target_sha256`. These require the explicit registration arguments.
+The file must use the existing `sequence-family-target` schema. Its exact bytes
+are frozen and hashed; duplicate JSON keys, drift and a mismatched digest fail.
+
+The observer rebuilds the registration through `build_construct_registration`
+using that target, the same working model, supplied copy maps and original source
+text. Modified polymer roles come from W259 original CIF polymer coverage plus
+its explicit component aliases, not the supplied registration. The rebuilt
+registration must equal the supplied validated registration in full. Matching site
+names with different mapped residue codes or a different target reference fail.
+
+The report retains `target_document_sites` with every site/component, including
+unmapped positions, and the target-document digest. A consistent, distinct target
+returns `TARGET_DOCUMENT_BOUND`; its mapped rows populate `oligo_assignment` as
+**caller-declared identity**, not verified physical placement. Missing coordinate
+mappings, identity differences and nonadjacent/repeat relations still require
+review. A partial copy stays partial even when all observed sites are mapped.
+Known ASU-target reuse remains `SOURCE_TARGET_REUSED` with no oligo assignment,
+even if the actual ASU target document rebuilds correctly.
+
+`target_document_status=LOADED_REGISTRATION_MATCH` and
+`explicit_target_document_verified` mean the document and mapping agree, including
+a declared coordinate/target identity conflict. `target_reference_status=NOT_LOADED`
+separately identifies the unverified external source cited by the target. It does
+not certify the synthesized strand, sequence authenticity, physical copy/nick
+phase, or a target reference file that was not loaded. The separate
+`target_reference_content_loaded` and physical-acceptance flags remain false.
+Codes for unmapped target positions come from the newly bound document; the old
+registration alone could not validate them. Existing calls without a target file
+produce exactly the W261 report, with no migration or new required input.
+No source coordinates, chemical entities, assemblies, TLS or native controls change.

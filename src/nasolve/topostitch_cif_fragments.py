@@ -10,7 +10,7 @@ import json
 from pathlib import Path
 import re
 
-from .construct_registration import validate_construct_registration
+from .construct_registration import build_construct_registration, validate_construct_registration
 from .topostitch_cif_annotations import _rows
 from .topostitch_cif_polymer import observe_relabel_cif_polymer
 from .topostitch_cif_source import _declared_paths
@@ -53,6 +53,36 @@ def _declared_oligos(data, source_bytes):
     return mappings,summary
 
 
+def _bind_target_document(data, registration_data, source, coverage, aliases):
+    """Rebuild the existing contract from actual target and coordinate evidence.
+
+    Source CIF polymer membership supplies modified-residue roles; the supplied
+    registration cannot classify arbitrary HETATMs as polymer by itself.
+    """
+    from .model_assessment import inspect_pdb
+
+    target = json.loads(data, object_pairs_hook=_unique_object)
+    registration = validate_construct_registration(
+        json.loads(registration_data, object_pairs_hook=_unique_object))
+    polymer_codes = {
+        aliases.get(code, code)
+        for site in coverage['observed_polymer_sites']
+        for code in site['original_components']
+    }
+    assessment = inspect_pdb(source, polymer_ligand_codes=polymer_codes)
+    copies = {
+        copy['copy_id']: {row['logical_site']: row['coordinate_site']
+                         for row in copy['mappings']}
+        for copy in registration['copies']
+    }
+    rebuilt = build_construct_registration(
+        assessment, target, copies, source=registration['source'])
+    if rebuilt != registration:
+        raise ValueError('Target document does not reproduce the supplied oligo registration')
+    return [{'site': row['site'], 'residue_code': row['residue_code']}
+            for row in target['sites']]
+
+
 def _oligo_relation(a,b):
     if a is None or b is None:return 'UNASSIGNED'
     if a['identity_relation']!='SAME' or b['identity_relation']!='SAME':return 'TARGET_IDENTITY_CONFLICT'
@@ -64,13 +94,18 @@ def _oligo_relation(a,b):
 
 
 def observe_relabel_cif_fragments(directory, model, *, oligo_registration_path=None,
-        expected_oligo_registration_sha256=None, **polymer_binding):
+        expected_oligo_registration_sha256=None, oligo_target_path=None,
+        expected_oligo_target_sha256=None, **polymer_binding):
     """Compose original sites, saved paths and an optional explicit oligo mapping.
 
     The optional file is the existing construct-registration schema, bound to the
     same working-model bytes. Its logical target/copy assignments remain caller
     declarations, not proof of physical copy placement or repeat/nick phase.
     Unmapped target positions are not relabelled as unmodeled source residues.
+    An optional SHA-bound sequence-family-target document must exactly rebuild
+    the supplied registration through its existing public owner. This binds
+    declared sequence and copy mapping; it does not verify the referenced source
+    file or independently establish the physical oligo/copy/nick placement.
     No output CIF labels, entities, coordinates or new graph edges are written.
     """
     import gemmi
@@ -79,6 +114,10 @@ def observe_relabel_cif_fragments(directory, model, *, oligo_registration_path=N
     root=Path(directory);model=Path(model);manifest=root/'preview.json'
     if (oligo_registration_path is None)!=(expected_oligo_registration_sha256 is None):
         raise ValueError('Explicit oligo registration requires both path and exact SHA-256')
+    if (oligo_target_path is None)!=(expected_oligo_target_sha256 is None):
+        raise ValueError('Explicit oligo target requires both path and exact SHA-256')
+    if oligo_target_path is not None and oligo_registration_path is None:
+        raise ValueError('Explicit oligo target requires a supplied registration')
     frozen={p:p.read_bytes() for p in [model,manifest,*(root/n for n in _FILES.values())]}
     oligos={};oligo_summary=None
     if oligo_registration_path is not None:
@@ -88,7 +127,25 @@ def observe_relabel_cif_fragments(directory, model, *, oligo_registration_path=N
                 or sha256(data).hexdigest()!=expected_oligo_registration_sha256):
             raise ValueError('Explicit oligo registration checksum mismatch')
         oligos,oligo_summary=_declared_oligos(data,frozen[root/_FILES['source']])
+    target_data = None
+    if oligo_target_path is not None:
+        target_path = Path(oligo_target_path)
+        target_data = target_path.read_bytes()
+        frozen[target_path] = target_data
+        if (not isinstance(expected_oligo_target_sha256, str)
+                or re.fullmatch(r'[0-9a-f]{64}', expected_oligo_target_sha256) is None
+                or sha256(target_data).hexdigest() != expected_oligo_target_sha256):
+            raise ValueError('Explicit oligo target checksum mismatch')
     coverage=observe_relabel_cif_polymer(root,model,**polymer_binding)
+    if target_data is not None:
+        target_sites = _bind_target_document(
+            target_data, frozen[Path(oligo_registration_path)], root/_FILES['source'],
+            coverage, polymer_binding.get('component_aliases', {}))
+        oligo_summary.update(target_document_sha256=sha256(target_data).hexdigest(),
+            target_document_sites=target_sites, target_document_verified=True,
+            target_document_status='LOADED_REGISTRATION_MATCH',
+            target_reference_status='NOT_LOADED')
+
     if (sha256(frozen[model]).hexdigest()!=coverage['original_model_sha256']
             or sha256(frozen[manifest]).hexdigest()!=coverage['preview_receipt_sha256']):
         raise ValueError('Source or saved preview changed before fragment observation')
@@ -125,7 +182,8 @@ def observe_relabel_cif_fragments(directory, model, *, oligo_registration_path=N
                 registered_coordinate_site=coordinate,declared_route_id=node['strand_id'],
                 representative_operator_xyz=images.get(number,'x,y,z'),
                 declared_protected=node['protected'],declared_do_not_connect=node['do_not_connect'],
-                declared_mapping=assignment,oligo_assignment=None)
+                declared_mapping=assignment,oligo_assignment=(assignment
+                    if target_data is not None and not source_target_reused else None))
             sites.append(row);projected[number]=dict(path_number=path['path_number'],**row)
         fragments.append(dict(path_number=path['path_number'],sites=sites,
             ordinary_edge_ids=path['ordinary_edge_ids'],output_chain_id=None,output_entity_id=None))
@@ -154,9 +212,10 @@ def observe_relabel_cif_fragments(directory, model, *, oligo_registration_path=N
     adjacency_review=[e['edge_id']for e in edges if e['oligo_relation'] not in ('UNASSIGNED','ADJACENT_IN_DECLARED_SEQUENCE')]
     status=('SOURCE_LINEAGE_ONLY' if oligo_summary is None else 'SOURCE_TARGET_REUSED'
             if source_target_reused else 'DECLARED_MAPPING_REVIEW_REQUIRED'
-            if missing or conflicts or adjacency_review else 'DECLARED_REGISTRATION_ONLY')
+            if missing or conflicts or adjacency_review else 'TARGET_DOCUMENT_BOUND'
+            if target_data is not None else 'DECLARED_REGISTRATION_ONLY')
     if any(p.read_bytes()!=data for p,data in frozen.items()):
-        raise ValueError('Original source, preview or oligo registration changed during fragment observation')
+        raise ValueError('Original source, preview or oligo declaration changed during fragment observation')
     report=dict(schema_version=1,kind='topostitch-original-cif-fragment-lineage',status='OBSERVED_REVIEW_REQUIRED',
         oligo_mapping_status=status,original_model_sha256=coverage['original_model_sha256'],
         preview_receipt_sha256=coverage['preview_receipt_sha256'],polymer_coverage_sha256=coverage['report_sha256'],
@@ -173,7 +232,7 @@ def observe_relabel_cif_fragments(directory, model, *, oligo_registration_path=N
         registered_nodes_without_declared_mapping=missing,target_identity_conflicts=conflicts,
         sequence_adjacency_review_edge_ids=adjacency_review,
         all_registered_nodes_projected_once=True,all_declared_backbone_edges_retained=True,
-        explicit_target_document_verified=False,physical_copy_placement_validated=False,physical_nick_inferred=False,
+        explicit_target_document_verified=target_data is not None,physical_copy_placement_validated=False,physical_nick_inferred=False,
         assembly_transformed=False,tls_transformed=False,coordinates_written=False,
         chemical_entities_assigned=False,writer_authorized=False,runtime_authority=False,scientific_acceptance=False,
         limitations=['Saved ASU registration is not automatically a full synthesized-oligo declaration',

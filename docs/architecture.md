@@ -1234,6 +1234,11 @@ registration is neutral evidence; re-use of the ASU target cannot become an olig
 declaration. Missing target mappings and unmodeled source positions stay distinct.
 No graph, registration schema or writer changes. See the
 [W261 contract](topostitch-preview.md#carry-original-identity-through-visible-fragments-w261).
+W262 optionally binds an actual sequence-family target by exact digest and rebuilds
+its existing registration through the public owner; it adds no registration schema
+or physical-copy inference. Supplied ASU targets stay neutral. The report retains
+all target codes without making output chemical-entity or terminus decisions.
+
 
 
 
