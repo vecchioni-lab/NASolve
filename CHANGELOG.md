@@ -26,7 +26,9 @@ entries are reconstructed from repository history.
 
 - When several inspected phosphates each lack both OP3 and a verified local
   incoming O3′–P link, the preparation diagnostic names those sites together.
-  This helps locate representation breaks for review before chemistry is assigned.
+  Before reporting those gaps it checks the three P–O bonds still visible
+  in each phosphate, the angles between them and its outgoing backbone link.
+  A distorted oxygen or ambiguous partner now gets its own diagnostic.
   The 5W6W-derived PDU:PDU example now has an explicit two-connection
   declaration for its central strand and D:7–C:8 crossover.
   Repeating the singular `--registered-continuation` option with different

@@ -368,10 +368,6 @@ def _process_phosphates(
                 raise PhosphateError(f"Phosphate {site}: possible incoming link across a chain/TER boundary requires review")
         elif extra is not None and incoming is None:
             raise PhosphateError(f"Phosphate {site}: unrequested terminal/unlinked OP3; review the chemistry or explicitly set allow_op3_sites for a valid 5'-phosphate")
-        if site in inspect_sites and incoming is None and extra is None:
-            # Multiple representation breaks can occur in one asymmetric unit.
-            unverified_incoming.append(site)
-            continue
         if incoming is not None:
             oxygens.append(incoming)
         elif extra is not None:
@@ -403,6 +399,10 @@ def _process_phosphates(
                 raise PhosphateError(f"Phosphate {site}: ambiguous outgoing O3'-P connection")
             if outgoing:
                 outgoing_site = outgoing[0].site
+        if site in inspect_sites and incoming is None and extra is None:
+            # An open incoming bond does not excuse the three local oxygens or the outgoing link.
+            unverified_incoming.append(site)
+            continue
         details = {"site": site, "residue": p.line[17:20].strip(),
             "incoming_site": incoming.site if incoming else None, "outgoing_site": outgoing_site,
             "p_o_distances_angstrom": lengths, "o_p_o_angles_degrees": angles}

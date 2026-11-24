@@ -269,6 +269,8 @@ carry both registered partners into an unselected repair child. Preserve
 their source frame, model and restraint identities, the thirty-eight local
 bonds, the D:1 terminal chemistry and the original Free-R assignments. A
 declaration on its own cannot establish that a physically open bond is fitted.
+C563 now rules out damaged local P–O geometry and ambiguous outgoing bonds
+before an ordinary preparation reports the remaining open incoming sites.
 
 C537 checks which modeled atoms actually reached a native covalent plane.
 The historical GEO omitted C5A at both PDU sites. The corrected GEO included

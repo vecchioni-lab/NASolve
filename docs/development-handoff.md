@@ -1,9 +1,28 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-24, C562 from the original Coot build through ReadySet and refinement — Rowan**.
+Updated **2026-11-24, C563 checking local phosphate geometry at a crystal boundary — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
-**Q06.** ReadySet accepted the corrected PDU dictionary on the original C290
+**Q06.** When an incoming phosphodiester bond is unresolved, checked
+preparation now examines the three local P–O bonds, their three angles and
+the outgoing O3′ connection before reporting the gap. The old diagnostic
+hid a 3.000 Å P–OP1 bond, collapsed OP1–P–OP2 angle, and ambiguous outgoing
+partner in separate controls. The three new regressions failed first.
+In the original C290 Coot model, the corrected ReadySet return and the
+five-cycle model, the local oxygens passed the existing connectivity
+bounds. The same two crystal partners still require an explicit registration.
+
+Source and relocated wheel with Gemmi 0.7.5 each passed 191 tests and
+10 subtests across `test_phosphate`, `test_postmr_phosphate`,
+`test_cif_model_context`, `test_cif_postmr_request`, `test_phosphate_image`
+and `test_phosphate_continuation`. Project Python passed 146 tests and 10
+subtests, with 27 skipped. All were under `tests/`, using
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider`
+or the relocated installation. The saved models and their timestamps were
+preserved. The patch changes the diagnostic order, using the existing
+connectivity limits and file formats.
+
+**C562.** ReadySet accepted the corrected PDU dictionary on the original C290
 Coot model. A standalone five-cycle Phenix 2.2.1-6174 refinement of the returned
 model brought both crystal phosphate bonds to 1.62 Å. The two PDU propynyl tips
 finished 0.290 and 0.246 Å from their rings. The D:7–C:8 donor torsion and

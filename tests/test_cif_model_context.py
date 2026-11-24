@@ -92,6 +92,39 @@ def test_preparation_identifies_each_phosphate_without_a_local_link_or_op3(tmp_p
     assert inventory(tmp_path) == before
 
 
+@pytest.mark.parametrize(("defect", "expected"), [
+    ("stretched", "implausible P-OP1 distance"),
+    ("collapsed_angle", "implausible OP1-P-OP2 angle"),
+    ("two_outgoing", "ambiguous outgoing O3'-P connection"),
+])
+def test_open_incoming_phosphate_does_not_mask_local_geometry(tmp_path, defect, expected):
+    from nasolve.cif_model_context import derive_prepared_model_context
+    from nasolve.phosphate import PhosphateError
+
+    path = model(tmp_path / "prepared.pdb")
+    records = path.read_text().splitlines(keepends=True)
+    output = []
+    for line in records:
+        site = line[22:26].strip()
+        name = line[12:16].strip()
+        if site == "1" and name == "OP3":
+            continue
+        if site == "1" and name == "OP1" and defect != "two_outgoing":
+            point = (3.0, 0.0, 0.0) if defect == "stretched" else (-0.5, -0.7, 1.212)
+            line = line[:30] + "".join(f"{coordinate:8.3f}" for coordinate in point) + line[54:]
+        if site == "9" and defect == "two_outgoing":
+            # Place a second complete acceptor close to the same outgoing O3′.
+            second = line[:6] + f"{int(line[6:11]) + 50:5d}" + line[11:22] + "  12" + line[26:]
+            output.append(second[:30] + f"{float(second[30:38]) + 0.1:8.3f}" + second[38:])
+        output.append(line)
+    path.write_text("".join(output))
+    before = inventory(tmp_path)
+    with pytest.raises(PhosphateError) as exc:
+        derive_prepared_model_context(path, report(), ["ZZZ"])
+    assert f"Phosphate A:1: {expected}" in str(exc.value)
+    assert inventory(tmp_path) == before
+
+
 def test_five_prime_hydroxyl_uses_the_other_sites_verified_incoming_link(tmp_path):
     from nasolve.cif_model_context import derive_prepared_model_context
     path = model(tmp_path/'model.pdb', free=True)
