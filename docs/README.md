@@ -7,6 +7,11 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Current sequence-text evidence: W260.** [Literal and canonical text](topostitch-preview.md#compare-original-literal-and-canonical-sequence-text-w260)
+  reuses the shared tokenizer, preserves unresolved modified parents, and keeps
+  original W259 coverage unchanged. 225 source/225 relocated installed checks.
+  Four real controls match literal text; modified canonical parents remain open.
+
 - **Current polymer coverage: W259.** [Declared positions and coordinates](topostitch-preview.md#account-for-declared-polymer-positions-and-original-coordinates-w259)
   retain all original entities, shared sequences, alternative monomers and absent
   coordinates. 168 source/168 relocated installed checks; four real controls each
@@ -109,7 +114,7 @@ current instructions; other branches retain their own status and validation pins
   The failed direct result and three remaining moving-region outliers stay
   explicit. This is same-family synthetic recovery, not general experimental repair.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W259, next W260.
+  [generated human view](topostitch-roadmap.md). Current W260, next W261.
   Continue original polymer/sequence semantics and supported output in Pine; coordinate feasible
   endpoint/convergence qualification with Alder and chemistry receiving with Cedar.
   Prior synthetic recovery and near-target bond controls remain closed evidence;

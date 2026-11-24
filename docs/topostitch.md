@@ -79,6 +79,54 @@ unrefined calculated structure factors should remain equivalent within numerical
 tolerance in the same setting. Later refinement may respond differently to a
 changed restraint/chain interpretation; record that separately from the recut.
 
+
+## Output sequence and fragment policy gate (W260)
+
+**Planning, not an available export mode.** Reuse the four layers in
+[construct registration](construct-registration.md#tile-design-periodic-object-and-asu-are-distinct-layers):
+input oligos, tile hypothesis, periodic graph and ASU serialization. W259 covers
+original entity/asym/sequence declarations; W260 compares their original text.
+Neither turns a displayed path into a new synthesized molecule.
+
+The real both-route controls have eight visible paths from four original asym
+labels. One path joins original A16/entity 1 to D1/entity 4; another wraps B17 to
+B1 in entity 2. Original A and B each occupy three paths, and D occupies two.
+The source explicitly describes A+D as parts of one 31-nt strand and B as a 17-nt
+repeat of a linear 51-nt strand with a symmetry-averaged nick. These supplied
+semantics must survive; their physical interpretation is not re-inferred from
+short local sequences. No new coordinates were generated for this audit.
+
+The W249 diagnostic's entity-per-path labels, default `nstd_linkage=no` and
+canonical-string indexing were local experimental conveniences, not a production
+contract. A production plan must separately bind:
+
+- original atom/site labels and chemical component identities;
+- original deposited entities/asym elements and declared but unmodeled positions;
+- reviewed logical strand/copy/repeat assignments, retaining unknown nick phase;
+- proposed visible paths and candidate output fragment labels; and
+- every affected annotation/reference and its explicit symmetry frame.
+
+Do not duplicate the full original sequence into each fragment, discard absent
+positions to make a shorter sequence, infer free termini from a new chain start,
+or turn a geometric cut into a new chemical entity without an explicit supported
+fragment policy. The [mmCIF linkage flag](https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_entity_poly.nstd_linkage.html)
+concerns link chemistry, not whether the representative crosses a cell boundary.
+Rowan supports a scoped internal ASU-fragment preview only with residue-by-residue
+original oligo/copy/position binding and separate A16→D1 and B17→B1 boundary
+records. Its deposition entity representation remains an explicit decision gate.
+The current API does not implement that output mode.
+
+**Next bounded gate:** build a read-only proposed-declaration/reference plan before
+any writer. Keep author numbering distinct from sequence positions; inventory
+source categories whose identity or frame could change (including assemblies,
+NCS/TLS, geometry and unobserved-site records) rather than assuming `_struct_conn`
+is the only dependency. Unsupported categories and ambiguous unmodeled placement
+must be explicit. Reuse Cedar component-parent identity when source-bound evidence
+exists, and preserve its competing-partner check before inherited-restraint
+refinement. Reuse the already qualified source/scattering controls; a new native
+run is not the first next step. P02 graphical review and changed-child/inverse-edit
+lifecycle remain separate acceptance gates.
+
 ## Explicit sticky-end enforcement during refinement (planned W122)
 
 **User direction, 2026-11-17: planning only; no implementation or new runs.**

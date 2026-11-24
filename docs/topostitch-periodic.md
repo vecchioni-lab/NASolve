@@ -14029,3 +14029,59 @@ behavior unchanged. No writer, chemical entities, termini, sequence mutation,
 coordinate edits, ordinary defaults or migration. All generated results remain
 local. Original author-numbering and canonical-text semantics remain unvalidated;
 missing tables mean unavailable, not empty-conflict approval. W260: define a reviewed output-label/sequence policy before a writer. Separate original chemical entities, construct strands, observed ASU fragments and recut paths; a cut alone cannot determine a nick or assign unmodeled residues to new segments. Audit original author-number and canonical one-letter sequence semantics through established owners, preserving ambiguous alternatives and modified-component spelling. Specify encoding of original annotations plus previously implicit graph edges. Reuse W249 native/scattering and W256-W259 source controls; no repeated native run. P02 graphical review, special-position/source validity, native lifecycle and changed-child/inverse-edit binding remain separate gates. Preserve Cedar's competing-partner guard before any later recut refinement with inherited restraints.
+
+## W260 — Keep literal sequence, canonical parents and recut paths distinct
+
+The optional sequence-text observer composes W259 source coverage and the shared
+sequence tokenizer. It retains original literal/canonical text, position alternatives
+and component-parent evidence from the exact source, including attached blocks.
+No CCD parent is guessed from an atom name, ligand alias or desired target. Missing,
+unknown, conflicting, nonstandard and multi-parent evidence remains unavailable.
+Explicit unquoted `.` can mean no parent/X; quoted null-like values remain strings.
+The [API](topostitch-preview.md#compare-original-literal-and-canonical-sequence-text-w260)
+and [output policy gate](topostitch.md#output-sequence-and-fragment-policy-gate-w260)
+separate current behavior from future output semantics.
+
+**Validation:** 225 focused source checks (13.30 s), 225 relocated installed checks,
+210 installed-file hashes, package import/help and Python 3.10 syntax. Build and
+old install paths removed before testing; disposable 5.89 MB installation removed
+afterward. Full Willow regression: **2,786 passed, four skipped and 234 subtests (115.79 s)**. This is not combined-branch/native qualification.
+Python 3.12.14/Gemmi 0.7.5; no Phenix/Coot call or new scientific coordinates.
+
+Four original controls retain exact W259 coverage-report digests. In each, all
+four original entity literal strings match declared positions; canonical text for
+the two unmodified entities matches, while the two modified entities lack parent
+fields and stay unavailable. This is not a sequence-error diagnosis. Unchanged
+controls have four visible paths; recuts have eight, including cross-entity A16→D1
+and wrapped B17→B1. That is why entity-per-path output cannot silently stand in
+for full-strand chemical identity. Existing construct-registration semantics are
+reused; no second topology ontology or target-sequence parser is introduced.
+
+**Failures retained:** an initial wrong fixture import, then 28 actual missing-API
+failures; a focused command initially named a nonexistent tokenizer test file and
+was corrected before execution. The 34 new cases include multi-parent expansion
+followed by a standard residue, quoted-null lookalikes, literal DNA/RNA distinction,
+missing/gapped/duplicate declarations, alternatives, absent coordinates and late
+source drift. Rowan supplied parent/null review guidance. No old data were changed.
+
+Focused selection adds `test_topostitch_cif_sequence_text.py` and
+`test_annotated_sequence_syntax.py` to W259's six files. Exact commands,
+interpreter/dependency path, final source pins, installation and replay evidence
+remain at NASolve anchor `branch-artifacts/willow/w260-cif-sequence-text/validation.json`
+and `qualification.json`. Every check uses `PYTHONDONTWRITEBYTECODE=1`; source
+checks use `PYTHONPATH=src` plus the explicitly qualified local dependency path.
+No installed-source versus source-tree equivalence is assumed without hashes.
+
+**Compatibility:** optional additive schema-1 report; existing W259 report digests
+unchanged. No native policy, default, writer, entity assignment, chemical approval,
+external CCD fetch, output label mutation or migration. Scientific artifacts stay
+local. Author numbering and a supported fragment/output-reference policy remain
+open. W261: define a reviewed read-only output-declaration/reference plan before a writer. Keep source entity/asym, full oligo/copy/repeat identity, unmodeled positions and proposed path labels separate. Audit author numbering and all affected category references, including assemblies/NCS/TLS/geometry/unobserved sites. Cross-entity and wrapped paths require explicit fragment semantics; unknown nick phase and absent component parents remain unresolved. Do not infer entities, free termini or nonstandard-linkage flags from cuts. Reuse W249 native/scattering and W256-W260 source controls. P02 GUI, source validity, native/edited-child lifecycle and Cedar competing-partner protection remain separate gates.
+
+The compact dependency inventory counts 82/75 category occurrences across the
+original coordinate/component blocks. Both sources include six TLS parameter rows,
+six TLS-group rows, assembly generators/operators and structure-reference mappings.
+Correct per-atom U transport does not by itself qualify copying source-frame TLS
+metadata into a recut. The tag inventory is a planning aid, not complete foreign-key
+or frame validation. Rowan agrees to an internal fragment preview with explicit
+residue-to-oligo/copy/position binding; deposition entity encoding stays gated.

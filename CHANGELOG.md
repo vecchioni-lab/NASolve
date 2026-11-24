@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W260 — Compare deposited sequence text without guessing modified parents
+
+- Add an optional source-bound literal/canonical sequence-text observation using
+  the existing tokenizer and W259 coverage. Preserve original alternatives and
+  unmodeled positions; distinguish DNA literal tokens from user-target coercion.
+- Require explicit parent evidence for modified canonical letters. Missing,
+  unknown, conflicting and multiple parents stay unresolved; quoted null-like
+  strings cannot become CIF nulls. Existing W259 reports remain unchanged.
+- Record the output-fragment policy gate and coordinated Alder results. No writer,
+  output entity assignment, external CCD fetch, native run or default change.
+
 ### W259 — Account for original polymer declarations and absent coordinates
 
 - Add a read-only source-bound coverage observer preserving original entity,

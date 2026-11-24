@@ -1,33 +1,37 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W259, 2026-11-24** code `d9a24fd914c9cb9cf9d9baf8959fdf0454f63476`.
-[Original polymer coverage](topostitch-preview.md#account-for-declared-polymer-positions-and-original-coordinates-w259)
-accounts for every original atom and declared sequence position against the saved
-recut paths. Raw entity/asym/sequence tables, shared entities, alternative monomers,
-unregistered polymers and unmodeled positions remain visible. Conflicting atom
-labels cannot silently convert existing coordinates into a missing residue.
+**Current maintained slice: W260, 2026-11-24** (code pin follows qualification).
+[Original sequence-text observation](topostitch-preview.md#compare-original-literal-and-canonical-sequence-text-w260)
+compares literal CCD tokens with declared positions, then checks canonical letters
+only where standard IDs or explicit source parent fields support them. Original
+alternatives and unmodeled positions remain; no chemical entities or new chains
+are assigned. Missing/unknown/multi-parent evidence stays unvalidated.
 
-**168 focused source / 168 relocated installed checks pass**, with 210 installed
-file hashes checked after removal of the build and former installation path.
-Rowan found overbroad uncertainty from a water with a missing chain; two failing
-regressions and a positive ambiguity control now pass. Four final-source 3LNA/5LNA
-controls each retain all **62 declared and observed positions**, with zero unresolved
-or unmodeled positions and W258 connection reports exactly unchanged. Synthetic
-controls separately cover genuinely unmodeled positions and alternative monomers.
-Full Willow regression: **2,752 passed, four skipped and 234 subtests (118.50 s)**. This is not combined-branch/native qualification.
-Exact commands, final source pins and local evidence use NASolve anchor
-`branch-artifacts/willow/w259-cif-polymer-coverage/`. No scientific inputs or
-coordinates are committed; no native calculation was launched.
+**225 focused source / 225 relocated installed checks pass**, with 210 installed
+file hashes and build/old-install removal. Rowan requested multi-parent alignment
+and quoted-null guards; these and late-source drift pass. Four real 3LNA/5LNA
+unchanged/recut controls each have four matching literal entity strings, two
+matching canonical strings and two unavailable canonical comparisons because the
+modified-component parent fields are absent. This is missing evidence, not a
+newly diagnosed sequence error. Each prior W259 report digest remains exact.
+Full Willow regression: **2,786 passed, four skipped and 234 subtests (115.79 s)**. This is not combined-branch/native qualification.
+Exact source pins/commands/evidence: NASolve anchor
+`branch-artifacts/willow/w260-cif-sequence-text/`. No native tool run or scientific
+coordinate file is generated; scientific payloads stay out of Git.
 
-Cedar owns public `inspect_deposition_links`; its exact file SHA-256 remains
+**P03 stays partial; next W261.** W261: define a reviewed read-only output-declaration/reference plan before a writer. Keep source entity/asym, full oligo/copy/repeat identity, unmodeled positions and proposed path labels separate. Audit author numbering and all affected category references, including assemblies/NCS/TLS/geometry/unobserved sites. Cross-entity and wrapped paths require explicit fragment semantics; unknown nick phase and absent component parents remain unresolved. Do not infer entities, free termini or nonstandard-linkage flags from cuts. Reuse W249 native/scattering and W256-W260 source controls. P02 GUI, source validity, native/edited-child lifecycle and Cedar competing-partner protection remain separate gates.
+See the [output policy gate](topostitch.md#output-sequence-and-fragment-policy-gate-w260).
+The source's ASU fragments must not be mistaken for the complete synthesized strands.
+
+W259 code `d9a24fd914c9cb9cf9d9baf8959fdf0454f63476` remains qualified: 168 focused
+source/168 installed, 210 files; full 2,752 passed/four skipped/234 subtests. Four
+controls each retain 62 declared/observed positions with zero unresolved/unmodeled
+positions; synthetic cases cover the absent-coordinate and conflicting-label cases.
+Cedar's public reader/decoder source SHA remains
 `931af21688c15a29c99b605b4d442afc908df91d48a1825c19dc68eae81e4204`.
-The shared isolated loader now supplies either that reader or W258's decoder.
-No Cedar source, ordinary workflow or existing packet schema changed. A compatible
-explicit Cedar source remains required until branch integration. Author numbering,
-canonical sequence text and chemical truth are explicitly not approved by this
-coverage result. No CIF writer or new chain/entity assignment is enabled.
-
-**P03 stays partial; next W260.** W260: define a reviewed output-label/sequence policy before a writer. Separate original chemical entities, construct strands, observed ASU fragments and recut paths; a cut alone cannot determine a nick or assign unmodeled residues to new segments. Audit original author-number and canonical one-letter sequence semantics through established owners, preserving ambiguous alternatives and modified-component spelling. Specify encoding of original annotations plus previously implicit graph edges. Reuse W249 native/scattering and W256-W259 source controls; no repeated native run. P02 graphical review, special-position/source validity, native lifecycle and changed-child/inverse-edit binding remain separate gates. Preserve Cedar's competing-partner guard before any later recut refinement with inherited restraints.
+Compatible explicit Cedar source is required until owner integration. No Cedar
+code, existing packet schema or ordinary default changed; W260 is an optional
+additive observation in the existing polymer module.
 
 The W258 connection transport underneath remains qualified at
 `03bb5a2e00b313432a1908418d853df160d9b202`: 80/87 connection rows, including 71/74
@@ -57,23 +61,36 @@ local maps and **Rwork/Rfree 0.3081/0.3427** still block parent selection/f″.
 The 200-step projected diagnostic did not establish stationarity; its old verdict
 is unchanged. Do not rerun the completed six-atom receiver.
 
-Alder `f3ee67b604c4e1a51d958b550993f467ef48ea3e` records the next matched DNA-only
-XYZ/group-B design and completed **zero-cycle native initialization**, not a
-broader fit: 858 DNA atoms, 42 groups, source MLHL/Free-R and Hg XYZ/Q/B/f′/f″
-held. Optimization-stage admission remains next. Rowan directs that execution;
-Willow continues source topology/annotation binding. This is readback of Alder's
-current handoff and coordinated reports, not independent Willow native replay.
-See GitHub anchor `NASolve-metal-coordination/docs/metal-development-handoff.md`
-and `ScienceCheckouts/Hazel/2026-11-24_ft-seed-receiving/index.html`.
+The later Alder A01 matched comparison now completes **five native cycles** from
+original and constructed inputs, with DNA XYZ/42 group-B groups and Hg fixed.
+Hazel's saved review (102 checks, Phenix 2.2.1-6174) gives original/constructed
+Rwork **0.30838/0.30541**, Rfree **0.33333/0.33398**, P–O3′ **1.648/1.677 Å** and
+local OP2–P–O5′ **93.9/89.2°**. No winner, parent or f″ is selected. The 94-check
+bonded attribution finds the actual 108°/3° local angle present in both arms;
+it is strained, not missing. Local real-space processes zero DNA residues;
+these results do not establish global real-space qualification.
+
+Hazel/Rowan also identify a report-frame limitation: raw `.geo` cross-image angles
+can use untransformed ASU sites. Use Cedar's explicit-image written-coordinate
+measurements alongside that report; corrected live forces and ordinary within-site
+angles are separate observations. This is Alder's evidence readback, not a Willow
+native repeat. Exact local references/hashes are in W260's coordinated-context.json
+under NASolve anchor, sourced from
+`branch-artifacts/Alder/a01-dna-stage-admission-20261124-01/`.
+Alder's later clean `2ec9c11ff7ae12193b619bda2c9a0cbe6ef51c14` checkpoint also
+qualifies a **189-check two-connection scope** through C560/C564, retaining D1's
+p5*END/OP3 intent. Written D7→C8 remains 2.993/3.051 Å. The next Alder step is
+joint-owner initialization with both image/exclusion sets, not another single-join
+sweep; no joint native execution or scientific parent is claimed here.
 No Cedar/Alder implementation was merged or changed here.
 
 **Human checkout:** GitHub anchor
-`ScienceCheckouts/Linden/2026-11-24_connection-transport/index.html` and
-`open_report.py` show original/recut connection counts and physical endpoint
-invariance. Three local links and Python 3.10 opener syntax pass; no browser
-render check is claimed. The earlier original-source-paths checkout is preserved.
-These are compact static science reports, not the required future P02 editor.
-No newly bent model or deposition-ready recut is claimed. Exact W255–W258 scope,
+`ScienceCheckouts/Linden/2026-11-24_sequence-and-cut-review/index.html` and
+`open_report.py` show retained sequence coverage, missing parent evidence and the
+four-to-eight path example. Five local links and Python 3.10 opener syntax pass;
+no browser render check is claimed. Earlier connection/source-path reports remain
+linked and unchanged. These are compact static reports, not the future P02 editor.
+No newly bent model or deposition-ready recut is claimed. Exact W255–W260 scope,
 failures and next actions are in the periodic ledger and machine roadmap.
 
 W254's compact failed-proposal reporting remains validated (274 source/274

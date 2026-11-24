@@ -1118,7 +1118,7 @@
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "W260: define a reviewed output-label/sequence policy before a writer. Separate original chemical entities, construct strands, observed ASU fragments and recut paths; a cut alone cannot determine a nick or assign unmodeled residues to new segments. Audit original author-number and canonical one-letter sequence semantics through established owners, preserving ambiguous alternatives and modified-component spelling. Specify encoding of original annotations plus previously implicit graph edges. Reuse W249 native/scattering and W256-W259 source controls; no repeated native run. P02 graphical review, special-position/source validity, native lifecycle and changed-child/inverse-edit binding remain separate gates. Preserve Cedar's competing-partner guard before any later recut refinement with inherited restraints.",
+      "next_action": "W261: define a reviewed read-only output-declaration/reference plan before a writer. Keep source entity/asym, full oligo/copy/repeat identity, unmodeled positions and proposed path labels separate. Audit author numbering and all affected category references, including assemblies/NCS/TLS/geometry/unobserved sites. Cross-entity and wrapped paths require explicit fragment semantics; unknown nick phase and absent component parents remain unresolved. Do not infer entities, free termini or nonstandard-linkage flags from cuts. Reuse W249 native/scattering and W256-W260 source controls. P02 GUI, source validity, native/edited-child lifecycle and Cedar competing-partner protection remain separate gates.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -7196,8 +7196,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 259,
-    "next": 260,
+    "current": 260,
+    "next": 261,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -8561,6 +8561,12 @@
         "title": "Preserve original polymer coverage and unmodeled sequence positions",
         "state": "RECORDED",
         "code_commit": "d9a24fd914c9cb9cf9d9baf8959fdf0454f63476"
+      },
+      {
+        "number": 260,
+        "title": "Compare original sequence text and preserve unresolved component parents",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   },

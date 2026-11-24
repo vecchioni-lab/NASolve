@@ -277,3 +277,154 @@ def observe_relabel_cif_polymer(directory, model, *, expected_deposition_owner_s
             'No output chain/entity names, new sequence, termini, annotation, restraint or coordinate file'])
     report['report_sha256'] = _fingerprint(report)
     return report
+
+
+_NUCLEOTIDE_CANONICAL = {'DA':'A', 'DC':'C', 'DG':'G', 'DT':'T',
+                         'A':'A', 'C':'C', 'G':'G', 'U':'U'}
+_NUCLEIC_POLYMERS = {'polydeoxyribonucleotide', 'polyribonucleotide',
+                    'polydeoxyribonucleotide/polyribonucleotide hybrid'}
+
+
+def _sequence_text(tables, components):
+    """Compare supplied NA sequence text; do not infer CCD parents or targets."""
+    from .sequence_syntax import parse_sequence_tokens, SequenceSyntaxError
+
+    grouped = {}
+    for row in tables['_entity_poly.']:
+        grouped.setdefault(row.get('entity_id'), []).append(row)
+    parent_rows = {}
+    for record in components:
+        parent_rows.setdefault(record['row'].get('id'), []).append(record)
+
+    def canonical(code):
+        evidence = parent_rows.get(code, [])
+        if code in _NUCLEOTIDE_CANONICAL:
+            return [_NUCLEOTIDE_CANONICAL[code]], 'Standard nucleotide identifier', evidence
+        supplied = [r['row']['mon_nstd_parent_comp_id'] for r in evidence
+                    if 'mon_nstd_parent_comp_id' in r['row']]
+        if not supplied:
+            return [], 'No explicit parent field in bound source', evidence
+        if any(value is None or value == '' for value in supplied):
+            return [], 'Unknown component parent', evidence
+        unique = set(supplied)
+        if len(unique) != 1:
+            return [], 'Conflicting component parents', evidence
+        value = supplied[0]
+        if value is False:
+            return ['X'], 'Explicitly inapplicable parent', evidence
+        parents = [p.strip() for p in value.split(',')]
+        if len(parents) != 1:
+            return [], 'Multiple parents require a separate expansion mapping', evidence
+        if parents[0] not in _NUCLEOTIDE_CANONICAL:
+            return [], 'Parent is not a supported standard nucleotide identifier', evidence
+        return [_NUCLEOTIDE_CANONICAL[parents[0]]], 'Explicit source parent', evidence
+
+    result = []
+    for entity, poly_rows in grouped.items():
+        row = poly_rows[0]
+        record = dict(entity_id=entity, original_polymer_rows=poly_rows,
+            literal_status='UNAVAILABLE', literal_reason=None, literal_components=None,
+            canonical_status='UNAVAILABLE', canonical_reason=None, canonical_expected=None,
+            positions=[], has_alternative_monomers=False)
+        result.append(record)
+        sequences = [r for r in tables['_entity_poly_seq.'] if r.get('entity_id')==entity]
+        positions = {}; repeated = set(); invalid = False
+        for seq in sequences:
+            pos = _position(seq.get('num')); comp = seq.get('mon_id')
+            if pos is None or not _known(comp) or (pos,comp) in repeated:
+                invalid = True; continue
+            repeated.add((pos,comp)); positions.setdefault(pos, []).append(comp)
+        numbers = sorted(positions)
+        if (len(poly_rows)!=1 or not _known(entity) or not numbers or invalid
+                or any(pos!=i for i,pos in enumerate(numbers,1))):
+            record['literal_reason']=record['canonical_reason']='Incomplete, duplicated or noncontiguous declarations'
+            continue
+        if str(row.get('type')).lower() not in _NUCLEIC_POLYMERS:
+            record['literal_reason']=record['canonical_reason']='Only declared nucleic-acid polymers are supported'
+            continue
+        for pos in numbers:
+            codes = sorted(positions[pos]); options = []; reasons = []; evidence = []
+            resolved = True
+            for code in codes:
+                letters, reason, parents = canonical(code)
+                resolved = resolved and bool(letters)
+                options.extend(letters); reasons.append(dict(component=code,reason=reason))
+                evidence.extend(parents)
+            unique_options = sorted(set(options)) if resolved else []
+            record['positions'].append(dict(sequence_position=pos, declared_components=codes,
+                canonical_options=unique_options, component_reasons=reasons, parent_evidence=evidence))
+        record['has_alternative_monomers']=any(len(p['declared_components'])>1 for p in record['positions'])
+        literal = row.get('pdbx_seq_one_letter_code')
+        if isinstance(literal,str) and literal.strip():
+            try:
+                tokens = parse_sequence_tokens(literal, valid_ligand_codes={c for p in positions.values() for c in p})
+            except SequenceSyntaxError as exc:
+                record['literal_reason']=str(exc)
+            else:
+                # mmCIF literal bare A/C/G/U denotes the ribonucleotide. Do not
+                # use the user target parser's DNA coercion on deposited text.
+                codes = [t[1:-1] if t.startswith('(') else t for t in tokens]
+                record['literal_components']=codes
+                match = len(codes)==len(numbers) and all(c in positions[n] for c,n in zip(codes,numbers))
+                record['literal_status']='MATCH' if match else 'CONFLICT'
+                record['literal_reason']='One supplied monomer per declared position; alternatives retained' if match else 'Literal text differs from declared sequence positions'
+        else:
+            record['literal_reason']='No supplied literal sequence text'
+        canonical_text = row.get('pdbx_seq_one_letter_code_can')
+        single = all(len(p['canonical_options'])==1 for p in record['positions'])
+        if single:
+            record['canonical_expected']=''.join(p['canonical_options'][0] for p in record['positions'])
+        if not isinstance(canonical_text,str) or not canonical_text.strip():
+            record['canonical_reason']='No supplied canonical sequence text'
+        elif not single:
+            record['canonical_reason']='At least one position lacks a unique source-supported canonical letter'
+        else:
+            supplied = ''.join(canonical_text.split())
+            match = supplied==record['canonical_expected']
+            record['canonical_status']='MATCH' if match else 'CONFLICT'
+            record['canonical_reason']='Supplied text matches source-supported letters' if match else 'Canonical text differs from source-supported letters'
+    return result
+
+
+def observe_relabel_cif_sequence_text(directory, model, **polymer_binding):
+    """Observe original text against W259 coverage; preserve unresolved parents.
+
+    This optional composition does not change W259's report or authorize a
+    sequence, chemistry change, output label policy or new coordinate file.
+    Parent evidence comes only from the exact bound source, including attached
+    component blocks. Missing parent fields never become an assumed X or alias.
+    """
+    import gemmi
+    model = Path(model); original = model.read_bytes()
+    coverage = observe_relabel_cif_polymer(directory, model, **polymer_binding)
+    if sha256(original).hexdigest()!=coverage['original_model_sha256']:
+        raise ValueError('Original source changed before sequence text observation')
+    doc = gemmi.cif.read_string(original.decode('ascii'))
+    components = [dict(block=block.name,source_row=i,row=row)
+                  for block in doc for i,row in enumerate(_rows(block,'_chem_comp.'),1)]
+    entities = _sequence_text(coverage['original_tables'],components)
+    statuses = [r[k] for r in entities for k in ('literal_status','canonical_status')]
+    status = ('REVIEW_REQUIRED' if coverage['metadata_coverage_status']!='CONSISTENT_DECLARATIONS'
+              or 'CONFLICT' in statuses else 'MATCHES_DECLARATIONS' if statuses
+              and set(statuses)=={'MATCH'} else 'PARTIAL')
+    if model.read_bytes()!=original:
+        raise ValueError('Original source changed during sequence text observation')
+    report = dict(schema_version=1,kind='topostitch-original-cif-sequence-text',
+        status='OBSERVED_REVIEW_REQUIRED',sequence_text_status=status,
+        original_model_sha256=coverage['original_model_sha256'],
+        preview_receipt_sha256=coverage['preview_receipt_sha256'],
+        polymer_coverage_sha256=coverage['report_sha256'],
+        metadata_coverage_status=coverage['metadata_coverage_status'],
+        deposition_owner_sha256=coverage['deposition_owner_sha256'],gemmi_version=gemmi.__version__,
+        original_component_rows=components,entities=entities,
+        coordinates_written=False,chemical_entities_assigned=False,
+        source_semantics_approved=False,author_numbering_semantics_validated=False,
+        runtime_authority=False,scientific_acceptance=False,
+        limitations=['Sequence text/declaration comparison is not chemical identity validation or synthesis intent',
+            'Standard nucleotide IDs use standard canonical letters; custom chemistry under those IDs is not validated',
+            'Missing, unknown, conflicting, nonstandard or multiple parents remain unresolved; no external CCD lookup',
+            'Shared sequence tokenizer has a 1-5 character parenthetical-code grammar; unsupported text remains visible',
+            'One literal monomer can match a declared alternative without selecting the chemical population',
+            'No assignment of unmodeled positions to new paths; no output labels, sequence edits or writer'])
+    report['report_sha256']=_fingerprint(report)
+    return report

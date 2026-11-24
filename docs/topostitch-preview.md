@@ -4099,3 +4099,43 @@ permits alternative monomers at a position, and
 may share an entity. A geometric cut must not automatically invent a chemical nick,
 new chemical entity or `nstd_linkage=no`. No writer, output labels, new annotations,
 restraints, coordinate changes, ordinary-workflow activation or migration is added.
+
+## Compare original literal and canonical sequence text (W260)
+
+`topostitch_cif_polymer.observe_relabel_cif_sequence_text(directory, model,
+**polymer_binding)` composes W259 with the exact original document and the shared
+`sequence_syntax.parse_sequence_tokens` owner. `polymer_binding` is the unchanged
+explicit original/receipt/precision/Cedar-owner contract. The previous W259 API
+and report remain unchanged. This optional observation writes no model or metadata.
+
+Each original nucleic-acid entity retains its raw text and every declared position,
+including positions without coordinates. Literal parenthetical CCD tokens compare
+to the allowed monomers at each position; matching one alternative does not select
+the chemical population. DNA target coercion is deliberately not used: deposited
+bare `A` and `(DA)` are different literal components. Unsupported grammar (including
+codes outside the shared tokenizer's 1–5-character syntax) remains unavailable.
+
+Canonical comparison uses standard DA/DC/DG/DT and A/C/G/U identities, or an explicit
+standard nucleotide parent in a source `_chem_comp` row, including attached blocks.
+Missing columns, unknown, conflicting, nonstandard or multiple parents remain
+unavailable. Explicit unquoted CIF `.` for an inapplicable parent permits `X`;
+quoted `'.'` and `'?'` stay literal strings. No external CCD lookup, alias, residue
+name or target mutation supplies a guessed parent. Standard-ID mapping does not
+validate custom chemistry defined under a standard name.
+
+A canonical string is compared only when every declared position has exactly one
+supported letter, shared by all allowed alternatives. Multiple-parent components
+can expand canonical text, so this scoped observer never indexes later residues
+into such a string. The
+[wwPDB canonical-text definition](https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_entity_poly.pdbx_seq_one_letter_code_can.html)
+and [literal-text definition](https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_entity_poly.pdbx_seq_one_letter_code.html)
+are the format references; these comparisons do not establish chemical truth.
+
+The schema-1 `topostitch-original-cif-sequence-text` report preserves component
+rows with block/row identity, per-position parent evidence, reasons, source/receipt/
+coverage/owner hashes and a report digest. Per-entity literal/canonical outcomes
+are `MATCH`, `CONFLICT` or `UNAVAILABLE`; aggregate `MATCHES_DECLARATIONS`, `PARTIAL`
+or `REVIEW_REQUIRED` is separate from its permanent `OBSERVED_REVIEW_REQUIRED`
+status. Original coverage conflicts cannot become approval. Author-number semantics,
+output labels, chemical entities, unmodeled-position reassignment and a writer
+remain unimplemented. No existing packet migration or ordinary default changes.

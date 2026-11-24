@@ -1221,6 +1221,13 @@ public sequence inspection supplies evidence, not whole-file approval. Shared
 entity identity remains independent of geometric path segmentation. Author-number
 and canonical-text semantics, output labels and a writer remain separate gates.
 See the [W259 contract](topostitch-preview.md#account-for-declared-polymer-positions-and-original-coordinates-w259).
+The optional `observe_relabel_cif_sequence_text` composition adds original literal
+and canonical text evidence through the existing sequence tokenizer. Modified
+canonical letters require explicit source parent metadata; unresolved alternatives
+or multi-parent expansions cannot be flattened by positional string indexing.
+It does not change W259 or assign output entities. See the
+[W260 contract](topostitch-preview.md#compare-original-literal-and-canonical-sequence-text-w260).
+
 
 
 
