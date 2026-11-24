@@ -1247,6 +1247,12 @@ and the established proper Cartesian image owner. It carries one uniform group's
 origin/T/L/S without normalizing S or touching deposited total atom ADPs. Mixed
 images stay unresolved; shared original motion and independent refinable groups
 must not be conflated. Native raw/default convention is qualified separately.
+The existing `topostitch_view` command accepts optional explicit original-CIF
+bindings for a single representative scene. It recomputes the TLS observer and
+renders original group/image member IDs; it never trusts a saved report as input
+or derives independent refinement groups from image partitions. The binding JSON
+contains checksums/aliases/bounds only; paths remain explicit CLI arguments.
+
 
 
 

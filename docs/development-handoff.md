@@ -1,37 +1,43 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W264, 2026-11-24** (code `5f0dbcb4afe726b853b402424d450507331a329f`).
-[Declared TLS transport](topostitch-preview.md#carry-one-declared-tls-motion-through-a-uniform-image-w264)
-now preserves one group's origin/T/L/S under a shared proper crystal image.
-Each original LNA control has six uniform groups; each recut has two uniform and
-four mixed groups. Mixed membership stays explicit and unsplit. Raw S components
-and all deposited atom ADPs are preserved; no output model or refinement is made.
+**Current maintained slice: W265, 2026-11-24** (source pin follows qualification).
+The [ordinary recut inspector](topostitch-preview.md#inspect-original-tls-groups-in-the-ordinary-recut-viewer-w265)
+now shows original TLS groups and exact atom/image membership from a freshly
+verified original CIF. The installed command reproduces the exact W264 3LNA
+report after staged input/package relocation: four mixed/two uniform groups,
+738 unique mixed members and all 1,271 source atoms. Default viewers are unchanged.
 
-**200 focused source / 200 relocated installed checks, two subtests and 214
-installation-file hashes** pass (21.40 s / 21.46 s). Thirteen missing-API failures
-and Rowan's two reproduced unknown-ID/selection negatives are retained. Explicit
-common refinement IDs and complete range evidence now qualify membership.
-Four original-file replays preserve W262 fragment digests.
+The separate complete **Phenix 2.2.1-6174** shared-motion diagnostic carries each
+mixed member using one immutable original group: eight derived images, 82 moved
+atoms, max per-atom TLS U-frame difference **3.55e-15 Å²**. It does not test
+inter-atom covariance or implement native parameter ties. The maintained observer
+continues to mark mixed groups for review. No atom ADPs, coordinates or chemistry
+are changed, and no output model or writer is approved.
 
-**Independent native evidence:** complete read-only Phenix 2.2.1-6174/cctbx TLS
-evaluation, 18 comparisons. Maximum raw-field transport error **5.33e-15 Å²**;
-Python versus cctbx **3.55e-15 Å²**. Two separately labeled whole-group controls
-use nontrivial crystal images; they are not claims that mixed recut groups were
-transported. Leaving their parameters unmoved differs by 26.29/7.21 Å².
+**225 focused source / 225 relocated installed checks**, two skips/two subtests,
+214 installed-file hashes. Two before-change regressions retained. Full Willow:
+**2,853 passed, four skips, 234 subtests (128.00 s)**; completed before Rowan's later
+focused-only message, with no repeat planned. Installed public CLI and generated
+JavaScript syntax verified; browser visual rendering unavailable because the
+browser tool blocked local file URLs. Evidence/commands: NASolve anchor
+`branch-artifacts/willow/w265-shared-tls-motion/validation.json`.
 
-The trace-zero option changes the supplied TLS field by up to **2.46919 Å²**
-(3LNA group 6). No trace normalization is applied. R3 default-convention transport
-itself remains near roundoff; native-refinement semantics remain unapproved.
-Commands/hashes: NASolve anchor `branch-artifacts/willow/w264-tls-transport/validation.json`.
-No full-suite repeat for this additive owner; W260 baseline remains 2,786 passed/
-four skips/234 subtests. Scientific outputs remain local, excluded from Git.
+The installation audit also records existing unshipped DP/DZ/5CM provenance JSON
+sidecars; all maintained Python and the changed shipped HTML match. This omission
+was sent to Rowan; no unrelated ligand/packaging change is included. Scientific
+payloads remain local. The human checkout is
+`ScienceCheckouts/Linden/2026-11-24_sequence-and-cut-review/index.html`, with the
+ordinary TLS view linked beside sequence/path evidence.
 
-W261–W263 identity/target/reference scopes remain intact. Four source references
-become ten recut segments across eight paths, retaining all 62 positions and their
-original alignment/ref IDs. Physical nick/repeat phase and output entity policy
-remain open. Rowan owns the separately reviewed 3LNA OneDep audit.
+W264 source `5f0dbcb4afe726b853b402424d450507331a329f` retains its uniform-image
+qualification: 200 source/200 installed checks, 18 native comparisons, raw U
+transport within 5.33e-15 Å². Native trace-zero reinterpretation changes the supplied
+source field by up to 2.46919 Å²; total deposited ADPs were not changed. W261–W263
+preserve target/fragment/reference identity: four references become ten recut
+segments across eight paths, retaining all 62 positions. Nick/repeat phase and
+output entity policy remain unresolved. Rowan owns the separate 3LNA OneDep audit.
 
-**Next W265; P03 remains partial.** W265: one read-only 3LNA recut diagnostic retaining one immutable original TLS parameter set per mixed group. Derive each member image from that same shared group, compare every cctbx TLS U with R_i U_i R_i^T, and verify exact registered-member coverage once. Do not create independent refinable groups or alter S convention. This will supply a future-writer condition, not writer authorization; full cross-atom covariance/native parameter ties and total-ADP/refinement policy remain separate. Assembly/sequence output identifiers, P02 GUI and native/edited-child lifecycle stay open.
+**Next W266; P03 remains partial.** W266: assess the remaining writer policy with Rowan before implementation: distinguish declared TLS parameter convention from uniquely inferred inter-atom motion, total versus residual deposited ADPs, shared native ties and edited-child ownership. Preserve original mixed-group identities; do not split or infer physical correlations from successful per-atom U transport. Assembly/sequence output identifiers and P02 graphical review still gate P03; select one existing-owner boundary, not a second writer or GUI.
 
 W259 code `d9a24fd914c9cb9cf9d9baf8959fdf0454f63476` remains qualified: 168 focused
 source/168 installed, 210 files; full 2,752 passed/four skipped/234 subtests. Four

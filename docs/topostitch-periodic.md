@@ -14232,3 +14232,53 @@ extension and TLS header hashes are in the native receipt. Python source/install
 baseline remains 2,786/four skips/234 subtests. Scientific payloads excluded from Git.
 
 **Next:** W265: one read-only 3LNA recut diagnostic retaining one immutable original TLS parameter set per mixed group. Derive each member image from that same shared group, compare every cctbx TLS U with R_i U_i R_i^T, and verify exact registered-member coverage once. Do not create independent refinable groups or alter S convention. This will supply a future-writer condition, not writer authorization; full cross-atom covariance/native parameter ties and total-ADP/refinement policy remain separate. Assembly/sequence output identifiers, P02 GUI and native/edited-child lifecycle stay open.
+
+## W265 — Inspect shared original TLS membership after a recut
+
+One exact **3LNA / both_routes** read-only diagnostic derives eight image-frame
+parameter sets from **four immutable original TLS groups**. Each of the **738**
+mixed-group atoms is evaluated once; **82** change representative image. The other
+**533** atoms belong to uniform groups, accounting for all **1,271** registered
+atoms once. Independent cctbx evaluation agrees with each atom's `R U Rᵀ` within
+**3.5527e-15 Å²**. This tests the per-atom displacement field, not inter-atom
+covariance, physical validity of a motion ensemble or native refinement ties.
+Derived image parameters never become independently refinable groups.
+
+The native run used **Phenix 2.2.1-6174 / Python 3.11.15**, with raw nine-component
+S and `zeroize_trace=False`. It was a complete read-only evaluation, not a dry-run
+or refinement. An initial exact cross-Python floating-point comparison failed;
+reconstruction differed by at most 8.88e-16. The reviewed diagnostic explicitly
+uses a 1e-12 reconstruction bound and a separate 1e-10 Å² field bound. The failed
+attempt is retained. No maintained numerical code was changed to obtain this result.
+
+The existing [ordinary viewer](topostitch-preview.md#inspect-original-tls-groups-in-the-ordinary-recut-viewer-w265)
+now optionally recomputes this source-bound membership and displays every original
+member/image ID, with mixed status and full parameters available for inspection.
+A relocated installed `nasolve-topostitch-view` command, after deleting its staged
+original input/build/install paths, reproduced the **exact W264 report** for the
+actual 3LNA recut: four mixed/two uniform groups and 1,271 display atoms. The HTML
+contains no operational host paths and requires no external files. Source inputs
+were unchanged. It does not embed the W265 native calculation as new authority.
+
+**Validation:** 225 focused source (20.23 s) and 225 relocated installed (23.89 s),
+two skips and two subtests each; 214 installed-file hashes. Two positive capability
+regressions failed before implementation. Complete Willow: **2,853 passed, four
+skipped, 234 subtests, 128.00 s**. This completed before Rowan's later focused-only
+coordination message; no repeat is planned before a shared integration gate.
+Generated inline JavaScript parsed successfully. Browser automation rejected the
+local file protocol; no visual-render success or workaround is claimed.
+
+The initial broad installation audit additionally expected three existing ligand
+provenance JSON sidecars (DP/DZ/5CM) that the current package-data declaration does
+not ship. The follow-up checks all maintained Python and the changed shipped HTML
+exactly, hashes the entire installation and records those omissions separately
+for Rowan. No ligand or packaging behavior was changed; completed installation,
+tests and real CLI execution were reused rather than repeated.
+
+Exact commands, source/runtime hashes and local receipts: NASolve anchor
+`branch-artifacts/willow/w265-shared-tls-motion/validation.json`. Source/install
+Python 3.12.14, Gemmi 0.7.5. Scientific inputs, native values, HTML and logs remain
+local, excluded from Git. Existing packet schemas/default calls are unchanged;
+the viewer attachment is optional and additive. Compatible explicitly pinned
+Cedar source remains required. No coordinate writer, total-ADP change, native
+parameter tying or whole-ASU acceptance is delivered. **P03 remains partial.**

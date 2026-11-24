@@ -4277,3 +4277,52 @@ to 2.46919 Å² in TLS U under that reinterpretation. This is not a coordinate o
 total deposited ADP change, nor a claim that the source's refinement is invalid.
 The tested R3 default-convention transport also stays near roundoff; source-field
 reinterpretation and frame-transport covariance are different questions.
+
+## Inspect original TLS groups in the ordinary recut viewer (W265)
+
+The existing `nasolve-topostitch-view` command can optionally recompute the
+original-CIF TLS observation for **one saved representative preview**. It does
+not accept a previously generated TLS report as evidence. Give the original
+coordinate CIF, a path-free JSON binding, and the explicitly trusted compatible
+Cedar source until shared-owner integration:
+
+```bash
+nasolve-topostitch-view prepared-preview --out recut-inspection.html \
+  --original-cif original-coordinates.cif --cif-binding source-binding.json \
+  --cedar-source ../NASolve-c96/src
+```
+
+The JSON requires exactly these existing observer arguments: replace the three
+hash placeholders with the expected SHA-256 values. The numerical bounds below
+are an example for the known three-decimal working PDB, **not universal defaults**.
+Aliases must be explicitly known; use `{}` when none are needed.
+
+```json
+{
+  "expected_receipt_sha256": "<prepared preview.json SHA-256>",
+  "expected_model_sha256": "<original coordinate CIF SHA-256>",
+  "expected_deposition_owner_sha256": "<trusted cif_deposition_links.py SHA-256>",
+  "component_aliases": {"A1C3T": "ACL"},
+  "max_coordinate_component_error_angstrom": 0.000501,
+  "max_u_component_error_angstrom_squared": 0.000051,
+  "max_b_error_angstrom_squared": 0.0051,
+  "max_occupancy_error": 0.0051
+}
+```
+
+Paths remain explicit CLI arguments; no basename discovery, stored host-path
+fallback or automatic component aliasing is introduced. Duplicate/unknown JSON
+keys, missing bindings, mismatched inputs and a changed preview fail before output.
+This option rejects bend previews and multi-cut comparisons. Ordinary calls are
+unchanged. Python callers use `representative_scene` or `write_preview_view` with
+`original_cif=...`, `cif_binding=...` and optional `cedar_source=...`.
+
+The additive `original_cif_tls` field carries the exact schema-1 observer result.
+The **Original TLS groups** panel shows original group IDs, member counts, each
+crystal image and its exact original CIF atom IDs. Expand **Complete TLS evidence**
+for parameters, range rows, issues and source/report hashes. Mixed groups visibly
+remain under review; this UI does not turn image subsets into independent groups.
+The scene's coordinates, atom inventory, graph and approval state are unchanged.
+The generated HTML is standalone with no network requests. Input and installation
+relocation were exercised using the installed command; browser visual rendering
+was not verified because the browser tool refused the local file protocol.

@@ -17,6 +17,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W265 — Inspect original TLS membership through the existing recut viewer
+
+- Add optional explicit original-CIF/binding arguments to the installed viewer.
+  Recompute and display original TLS groups, image membership and exact atom IDs;
+  preserve mixed groups as review items and retain ordinary default behavior.
+- Qualify actual 3LNA inspection after input/package relocation: exact W264 report,
+  four mixed/two uniform groups, 738 mixed members and 1,271 displayed atoms.
+- Record a separate complete read-only cctbx shared-motion diagnostic: eight
+  derived images retain per-atom TLS U within 3.55e-15 Å². No independent groups,
+  native fitting, covariance claim, coordinate/ADP write or scientific approval.
+- 225 source/225 installed checks; full Willow 2,853 passed/four skipped/234 subtests.
+  Browser visual rendering remains unverified; generated JavaScript syntax passes.
+
 ### W264 — Transport declared TLS only under a uniform crystal image
 
 - Add a read-only TLS observer and proper-image tensor arithmetic. Retain every

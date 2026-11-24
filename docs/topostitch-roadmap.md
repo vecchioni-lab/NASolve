@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W264 — Transport one declared TLS motion under a uniform crystal image.** Next: W265.
+**Current update: W265 — Inspect shared original TLS membership through the ordinary recut viewer.** Next: W266.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W255 | Record coordinated cap and feasible-step evidence without endpoint adoption | RECORDED |
 | W256 | Bind original mmCIF identity and precision to the saved working recut | RECORDED |
 | W257 | Project every declared backbone edge onto complete original CIF sites | RECORDED |
 | W258 | Preserve every original connection row and its physical image endpoints | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W262 | Bind actual target documents through existing registration | RECORDED |
 | W263 | Carry original sequence-reference ranges through fragment splits | RECORDED |
 | W264 | Transport one declared TLS motion under a uniform crystal image | RECORDED |
+| W265 | Inspect shared original TLS membership through the ordinary recut viewer | IN_PROGRESS |
 
 ## Finish lines
 
@@ -309,7 +309,7 @@ Write a new ASU representative while preserving the physical scattering object e
 - Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.
 - Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap.
 
-**Next action:** W265: one read-only 3LNA recut diagnostic retaining one immutable original TLS parameter set per mixed group. Derive each member image from that same shared group, compare every cctbx TLS U with R_i U_i R_i^T, and verify exact registered-member coverage once. Do not create independent refinable groups or alter S convention. This will supply a future-writer condition, not writer authorization; full cross-atom covariance/native parameter ties and total-ADP/refinement policy remain separate. Assembly/sequence output identifiers, P02 GUI and native/edited-child lifecycle stay open.
+**Next action:** W266: assess the remaining writer policy with Rowan before implementation: distinguish declared TLS parameter convention from uniquely inferred inter-atom motion, total versus residual deposited ADPs, shared native ties and edited-child ownership. Preserve original mixed-group identities; do not split or infer physical correlations from successful per-atom U transport. Assembly/sequence output identifiers and P02 graphical review still gate P03; select one existing-owner boundary, not a second writer or GUI.
 **Evidence:** [E_REPRESENTATIVE_SCATTERING](#e_representative_scattering), [E_ORBIT_PERMUTATIONS](#e_orbit_permutations), [E_JOINT_FRAME_TARGET](#e_joint_frame_target), [E_BOUND_TENSOR_TRANSPORT](#e_bound_tensor_transport), [E_SAVED_FRAME_BINDING](#e_saved_frame_binding), [E_SPECIAL_POSITION_SCATTERING](#e_special_position_scattering), [E_STAGGERED_DUPLEX_RECUT](#e_staggered_duplex_recut), [E_SAVED_SCATTERING_BINDING](#e_saved_scattering_binding), [E_TWO_ROUTE_REPRESENTATIVE_OBSERVATION](#e_two_route_representative_observation), [E_SERIALIZATION_READBACK_OBSERVATION](#e_serialization_readback_observation), [E_SERIALIZED_RECUT_OBSERVER](#e_serialized_recut_observer), [E_FULL_PRECISION_BOUNDARY_METADATA](#e_full_precision_boundary_metadata), [E_ORIGINAL_CIF_SOURCE_CONTEXT](#e_original_cif_source_context), [E_ORIGINAL_CIF_PATH_PROJECTION](#e_original_cif_path_projection), [E_ORIGINAL_CIF_CONNECTION_TRANSPORT](#e_original_cif_connection_transport), [E_ORIGINAL_CIF_POLYMER_COVERAGE](#e_original_cif_polymer_coverage), [E_ORIGINAL_CIF_SEQUENCE_TEXT](#e_original_cif_sequence_text), [E_ORIGINAL_CIF_FRAGMENT_LINEAGE](#e_original_cif_fragment_lineage), [E_ORIGINAL_CIF_TARGET_DOCUMENT](#e_original_cif_target_document), [E_ORIGINAL_CIF_REFERENCE_RANGES](#e_original_cif_reference_ranges), [E_ORIGINAL_CIF_TLS_TRANSPORT](#e_original_cif_tls_transport).
 **Last audit:** 2026-11-24, Linden; membership and trace-convention review from Rowan, [W264](https://github.com/vecchioni-lab/NASolve/commit/5f0dbcb4afe726b853b402424d450507331a329f); Uniform-image raw TLS field; mixed motion/native convention/writer gates open.
 

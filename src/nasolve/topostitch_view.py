@@ -126,7 +126,21 @@ def preview_scene(directory, *, candidate_index=None, radius_angstrom=None,
             'periodic':periodic,'max_pairs':max_pairs,'max_image_tests':max_image_tests}}
 
 
-def representative_scene(directory, *, native_receipt=None, cedar_source=None, backbone_intent=False):
+_TLS_BINDING_KEYS = frozenset((
+    'expected_receipt_sha256', 'expected_model_sha256', 'expected_deposition_owner_sha256',
+    'component_aliases', 'max_coordinate_component_error_angstrom',
+    'max_u_component_error_angstrom_squared', 'max_b_error_angstrom_squared', 'max_occupancy_error'))
+
+
+def _validate_tls_binding(original_cif, cif_binding):
+    if original_cif is None and cif_binding is None:
+        return
+    if original_cif is None or not isinstance(cif_binding, dict) or set(cif_binding) != _TLS_BINDING_KEYS:
+        raise ValueError('Original CIF inspection requires its explicit path and complete path-free CIF binding')
+
+
+def representative_scene(directory, *, native_receipt=None, cedar_source=None, backbone_intent=False,
+                         original_cif=None, cif_binding=None):
     """Inspect a frozen representative proposal, including exact edge images.
 
     Points are display coordinates, never a new chemical bond or materialized
@@ -135,8 +149,9 @@ def representative_scene(directory, *, native_receipt=None, cedar_source=None, b
     from .topostitch_recut_bundle import load_relabel_preview, observe_relabel_native_links, observe_relabel_backbone_intent
     if type(backbone_intent) is not bool:
         raise ValueError('backbone_intent must be a boolean')
-    if cedar_source is not None and native_receipt is None:
-        raise ValueError('A trusted Cedar source requires an explicit native receipt')
+    _validate_tls_binding(original_cif, cif_binding)
+    if cedar_source is not None and native_receipt is None and original_cif is None:
+        raise ValueError('A trusted Cedar source requires an explicit native receipt or original CIF binding')
     from .topostitch_registration import _fingerprint
     import gemmi
     root=Path(directory);receipt_bytes=(root/'preview.json').read_bytes()
@@ -210,6 +225,15 @@ def representative_scene(directory, *, native_receipt=None, cedar_source=None, b
         if intent['preview_receipt_sha256'] != sha256(receipt_bytes).hexdigest():
             raise ValueError('Backbone intent belongs to a different representative preview')
         scene['backbone_intent'] = intent
+    if original_cif is not None:
+        from .topostitch_cif_tls import observe_relabel_cif_tls
+        tls = observe_relabel_cif_tls(root, original_cif, cedar_source=cedar_source, **cif_binding)
+        if cif_binding['expected_receipt_sha256'] != scene['preview_receipt_sha256']:
+            raise ValueError('Original CIF TLS observation belongs to a different preview')
+        if ((root/'preview.json').read_bytes() != receipt_bytes
+                or any((root/receipt['artifacts'][k]['relative_path']).read_bytes() != v for k,v in snapshots.items())):
+            raise ValueError('Representative preview changed during TLS inspection')
+        scene['original_cif_tls'] = tls
     return scene
 
 
@@ -330,15 +354,18 @@ def _html(scene,preference=None):
     return re.sub('__SCENE_JSON__|__PREFERENCE_JSON__',lambda match:payloads[match.group()],template)
 
 
-def write_preview_view(directory,output_path,*,native_receipt=None,cedar_source=None,comparison_directories=(),preference_path=None,backbone_intent=False,**options):
-    if cedar_source is not None and native_receipt is None:
-        raise ValueError('A trusted Cedar source requires an explicit native receipt')
+def write_preview_view(directory,output_path,*,native_receipt=None,cedar_source=None,comparison_directories=(),preference_path=None,backbone_intent=False,original_cif=None,cif_binding=None,**options):
+    _validate_tls_binding(original_cif, cif_binding)
+    if cedar_source is not None and native_receipt is None and original_cif is None:
+        raise ValueError('A trusted Cedar source requires an explicit native receipt or original CIF binding')
     if type(backbone_intent) is not bool:
         raise ValueError('backbone_intent must be a boolean')
     root=Path(directory).resolve();out=Path(output_path).absolute()
     if out.exists():raise FileExistsError(out)
     if not isinstance(comparison_directories,(list,tuple)) or len(comparison_directories)>7:
         raise ValueError('At most seven additional explicit comparison paths are supported')
+    if original_cif is not None and comparison_directories:
+        raise ValueError('Original CIF TLS inspection currently requires one explicit representative preview')
     roots=[root]+[Path(path).resolve() for path in comparison_directories]
     if any(out.resolve().is_relative_to(path) for path in roots):raise ValueError('Write the view outside every frozen preview directory')
     receipt=_json((root/'preview.json').read_bytes())
@@ -349,8 +376,9 @@ def write_preview_view(directory,output_path,*,native_receipt=None,cedar_source=
         if any(k not in defaults or type(v) is not type(defaults[k]) or v!=defaults[k] for k,v in options.items()):
             raise ValueError('Representative preview already declares its images; bend-search options do not apply')
         scene=(representative_comparison(roots,native_receipt=native_receipt,cedar_source=cedar_source,backbone_intent=backbone_intent) if comparison_directories
-               else representative_scene(root,native_receipt=native_receipt,cedar_source=cedar_source,backbone_intent=backbone_intent))
+               else representative_scene(root,native_receipt=native_receipt,cedar_source=cedar_source,backbone_intent=backbone_intent,original_cif=original_cif,cif_binding=cif_binding))
     else:
+        if original_cif is not None:raise ValueError('Original CIF TLS inspection requires a representative preview')
         if backbone_intent:raise ValueError('Backbone intent observation requires a representative preview')
         if native_receipt is not None:raise ValueError('Native seam observation requires a representative preview')
         scene=preview_scene(root,**options)
@@ -376,9 +404,13 @@ def main(argv=None):
     parser.add_argument('--backbone-intent',action='store_true',help='Show declared backbone continuation and phosphate inventory without changing chemistry')
     parser.add_argument('--native-receipt',type=Path,help='Optional authenticated source capture for existing-link seam observations')
     parser.add_argument('--cedar-source',type=Path,help='Explicit trusted developer Cedar source; default uses installed owners')
+    parser.add_argument('--original-cif',type=Path,help='Original coordinate CIF for read-only TLS membership inspection')
+    parser.add_argument('--cif-binding',type=Path,help='Path-free JSON with exact source/preview/owner hashes, aliases and working-file precision bounds')
     args=parser.parse_args(argv)
-    try:scene=write_preview_view(args.preview,args.out,candidate_index=args.candidate,radius_angstrom=args.radius,
-        periodic=args.periodic,max_pairs=args.max_pairs,max_image_tests=args.max_image_tests,native_receipt=args.native_receipt,cedar_source=args.cedar_source,comparison_directories=args.compare,preference_path=args.preference,backbone_intent=args.backbone_intent)
+    try:
+        binding=None if args.cif_binding is None else _json(args.cif_binding.read_bytes())
+        scene=write_preview_view(args.preview,args.out,candidate_index=args.candidate,radius_angstrom=args.radius,
+        periodic=args.periodic,max_pairs=args.max_pairs,max_image_tests=args.max_image_tests,native_receipt=args.native_receipt,cedar_source=args.cedar_source,comparison_directories=args.compare,preference_path=args.preference,backbone_intent=args.backbone_intent,original_cif=args.original_cif,cif_binding=binding)
     except (OSError,ValueError,RuntimeError,ImportError) as exc:parser.exit(2,f'{parser.prog}: {exc}\n')
     detail=(str(len(scene['alternatives']))+' explicit cuts; none selected' if 'alternatives' in scene
             else str(len(scene['atoms']))+' displayed atom instances; proposal remains unreviewed')

@@ -1123,7 +1123,7 @@
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "W265: one read-only 3LNA recut diagnostic retaining one immutable original TLS parameter set per mixed group. Derive each member image from that same shared group, compare every cctbx TLS U with R_i U_i R_i^T, and verify exact registered-member coverage once. Do not create independent refinable groups or alter S convention. This will supply a future-writer condition, not writer authorization; full cross-atom covariance/native parameter ties and total-ADP/refinement policy remain separate. Assembly/sequence output identifiers, P02 GUI and native/edited-child lifecycle stay open.",
+      "next_action": "W266: assess the remaining writer policy with Rowan before implementation: distinguish declared TLS parameter convention from uniquely inferred inter-atom motion, total versus residual deposited ADPs, shared native ties and edited-child ownership. Preserve original mixed-group identities; do not split or infer physical correlations from successful per-atom U transport. Assembly/sequence output identifiers and P02 graphical review still gate P03; select one existing-owner boundary, not a second writer or GUI.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -7531,8 +7531,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 264,
-    "next": 265,
+    "current": 265,
+    "next": 266,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -8926,6 +8926,12 @@
         "title": "Transport one declared TLS motion under a uniform crystal image",
         "state": "RECORDED",
         "code_commit": "5f0dbcb4afe726b853b402424d450507331a329f"
+      },
+      {
+        "number": 265,
+        "title": "Inspect shared original TLS membership through the ordinary recut viewer",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   },

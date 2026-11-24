@@ -138,3 +138,52 @@ def test_explicitly_inapplicable_selection_uses_complete_declared_range(tmp_path
     g=observe(root,model,kw)['groups'][0]
     assert g['status']=='UNIFORM_IMAGE_TRANSPORT_OBSERVED'
     assert g['original_group_rows'][0]['selection'] is False
+
+
+def test_tls_view_keeps_exact_mixed_members_and_relocates(tmp_path):
+    from nasolve.topostitch_view import representative_scene, write_preview_view
+    old=tmp_path/'old';old.mkdir();root,model,kw,_=fixture(old,mixed=True)
+    cedar=kw.pop('cedar_source');expected=observe(root,model,dict(kw,cedar_source=cedar))
+    plain=representative_scene(root)
+    before={p:p.read_bytes()for p in [model,*root.iterdir()]}
+    scene=representative_scene(root,original_cif=model,cif_binding=kw,cedar_source=cedar)
+    assert scene['original_cif_tls']==expected
+    assert {k:v for k,v in scene.items()if k!='original_cif_tls'}==plain
+    assert all(p.read_bytes()==v for p,v in before.items())
+    output=tmp_path/'view.html';write_preview_view(root,output,original_cif=model,cif_binding=kw,cedar_source=cedar)
+    html=output.read_text();assert 'Original TLS groups' in html and 'MIXED_IMAGES_REVIEW' in html
+    moved=tmp_path/'moved';relative=[p.relative_to(old)for p in (root,model,cedar)];shutil.move(old,moved)
+    root,model,cedar=[moved/p for p in relative]
+    assert not old.exists()
+    assert representative_scene(root,original_cif=model,cif_binding=kw,cedar_source=cedar)==scene
+
+
+@pytest.mark.parametrize('problem',['missing_binding','missing_cif','wrong_preview','wrong_model','unknown_key','comparison'])
+def test_tls_view_refuses_unbound_evidence_before_output(tmp_path,problem):
+    from nasolve.topostitch_view import write_preview_view
+    root,model,kw,_=fixture(tmp_path,mixed=True);cedar=kw.pop('cedar_source')
+    args=dict(original_cif=model,cif_binding=kw,cedar_source=cedar)
+    if problem=='missing_binding':args['cif_binding']=None
+    elif problem=='missing_cif':args['original_cif']=None
+    elif problem=='wrong_preview':kw['expected_receipt_sha256']='0'*64
+    elif problem=='wrong_model':kw['expected_model_sha256']='0'*64
+    elif problem=='unknown_key':kw['unexpected']=True
+    elif problem=='comparison':args['comparison_directories']=[root]
+    output=tmp_path/'invalid.html'
+    with pytest.raises(ValueError):write_preview_view(root,output,**args)
+    assert not output.exists()
+
+
+def test_tls_view_cli_uses_explicit_original_and_path_free_binding(tmp_path):
+    from nasolve.topostitch_view import main
+    root,model,kw,_=fixture(tmp_path,mixed=True);cedar=kw.pop('cedar_source')
+    binding=tmp_path/'binding.json';binding.write_text(json.dumps(kw));out=tmp_path/'view.html'
+    assert main([str(root),'--out',str(out),'--original-cif',str(model),
+        '--cif-binding',str(binding),'--cedar-source',str(cedar)])==0
+    import re
+    scene=json.loads(re.search(r'<script id="scene" type="application/json">(.*?)</script>',out.read_text(),re.S)[1])
+    assert scene['original_cif_tls']['mixed_group_count']==1
+    binding.write_text('{"expected_model_sha256":"a","expected_model_sha256":"b"}')
+    with pytest.raises(SystemExit)as exc:
+        main([str(root),'--out',str(tmp_path/'bad.html'),'--original-cif',str(model),'--cif-binding',str(binding)])
+    assert exc.value.code==2 and not(tmp_path/'bad.html').exists()
