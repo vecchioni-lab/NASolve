@@ -8,6 +8,11 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- When Coot and ReadySet built a model in the same run, AutoRefine can now
+  fit its registered crystal bonds directly from `--from postmr`. The round
+  records the original Coot construction separately from the ReadySet starting
+  coordinates. Subsequent rounds can verify both after the run moves.
+
 - `cif-doctor assess --template-bonds` compares the heavy-atom distances
   in each dictionary coordinate set with its own refinement targets. It accepts
   standalone CIFs, the frozen dictionary of a numbered checkpoint or an

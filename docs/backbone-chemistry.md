@@ -273,11 +273,20 @@ On the corrected ReadySet return the two crystal gaps were still 3.340 and
 dictionary and six restraint files. A control with the extra D:7 O3′–B:1 P
 bond was refused.
 
-To carry that reviewed model into an ordinary fit, start from a named
-checkpoint containing the candidate. Its registered ancestor must contain
-the Coot model used for the declaration. The earlier preparation can belong
-to another run with the same frozen backbone intent and the same measured
-reflection file.
+If Coot and ReadySet both ran in this run and its `postmr` checkpoint contains
+the reviewed ReadySet model, register on the original Coot coordinates and fit
+the ReadySet coordinates in one step.
+
+```sh
+nasolve autorefine RUN --from postmr --registered-continuations 1 2 \
+  --registration registration.json --discovery-input discovery.json \
+  --backbone-continuations continuations.json --native-receipt native_receipt.json \
+  --prepared-backbone-source RUN
+```
+
+For an imported preparation, name the checkpoint containing the candidate and
+the ancestor containing the registered Coot model. Both runs must agree on the
+frozen backbone intent and measured reflection data.
 
 ```sh
 nasolve autorefine RECEIVING_RUN --from manual-002 --registration-checkpoint manual-001 \
@@ -333,6 +342,14 @@ donor torsion was +37.6° and +30.9° respectively. Both endpoints remain
 unselected. Use the new template comparison to find candidate construction
 problems across components. A general repair needs an independent component
 and a separate check of its geometry after native refinement.
+
+C570 repeated the adjusted PDU construction, then fitted its ordinary
+`postmr` checkpoint directly. The first five cycles produced exactly the same
+coordinate file as the two named checkpoints in C569. After moving the run,
+five more cycles gave crystal bonds of 1.641 and 1.632 Å. The 124 original free
+reflections and eleven D:1 terms survived. The two PDU tips ended 0.180 and
+0.284 Å from their rings, and the D:7 torsion remained at +40.7°. A different
+run with equivalent starting coordinates was refused before creating a round.
 
 One standalone five-cycle Phenix refinement used the corrected returned model,
 the two registered crystal partners, the original reflection flags and the seven

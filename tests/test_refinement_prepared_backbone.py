@@ -70,6 +70,58 @@ def test_source_review_requires_explicit_parent_ancestor_and_all_topology():
             request_from_args(args(*missing))
 
 
+def test_direct_postmr_trial_uses_the_recorded_construction(tmp_path):
+    from nasolve.refinement_phosphate import direct_preparation
+
+    run = tmp_path / "run"
+    run.mkdir()
+    parser = build_parser()
+    args = parser.parse_args(["autorefine", str(run), "--prepared-backbone-source", str(run), "--from", "postmr",
+                              "--registered-continuations", "1", "2", "--registration", "r", "--discovery-input", "d",
+                              "--backbone-continuations", "e", "--native-receipt", "n"])
+    choice = request_from_args(args)
+    assert choice.registration_checkpoint is None
+    assert direct_preparation(run, "postmr", choice)
+    from dataclasses import replace
+    with pytest.raises(ValueError, match="same run"):
+        direct_preparation(run, "postmr", replace(choice, prepared_backbone_source=tmp_path))
+    with pytest.raises(ValueError, match="postmr"):
+        direct_preparation(run, "manual-001", choice)
+    assert not direct_preparation(run, "postmr", replace(choice, registration_checkpoint="postmr"))
+
+
+def test_construction_evidence_binds_the_exact_coot_record_and_model(tmp_path, monkeypatch):
+    from nasolve import postmr_lineage
+    from nasolve.refinement_phosphate import construction_registration
+
+    model = tmp_path / "prepared.pdb"
+    model.write_bytes(b"Coot source, before ReadySet")
+    digest = sha256(model.read_bytes()).hexdigest()
+    record_hash = "4" * 64
+    record = {"record_sha256": record_hash, "outputs": {"prepared": {"sha256": digest}}}
+    monkeypatch.setattr(postmr_lineage, "read_postmr_construction",
+                        lambda run: {"model": model, "report": record})
+    assert construction_registration(tmp_path, "postmr", expected=record_hash) == (model, digest, record_hash)
+    for fields in [("manual-001", record_hash), ("postmr", "5" * 64)]:
+        with pytest.raises(ValueError, match="construction"):
+            construction_registration(tmp_path, fields[0], expected=fields[1])
+    model.write_bytes(b"ReadySet return")
+    with pytest.raises(ValueError, match="construction"):
+        construction_registration(tmp_path, "postmr", expected=record_hash)
+
+
+def test_restart_cannot_switch_between_root_model_and_root_construction():
+    from nasolve.refinement_phosphate import _check_inherited_scope
+    edge = dict(continuation_id=1, sources={}, registered_graph_sha256="7" * 64, source=["B", 7], target=["B", 1],
+                oxygen_operator_xyz="-x+y,-x,z")
+    rows = [dict(registered_continuation=edge)]
+    pin = "a" * 64
+    prior = dict(ancestor="postmr", inspection=rows[0], postmr_construction_sha256=pin)
+    _check_inherited_scope(prior, "postmr", rows, construction_sha256=pin)
+    with pytest.raises(ValueError, match="different starting branch"):
+        _check_inherited_scope(prior, "postmr", rows)
+
+
 @pytest.mark.parametrize("mismatch", [None, "original data", "recorded observations", "terminal", "source model", "missing junction", "capture"])
 def test_cannot_transfer_scientific_intent_from_a_different_source(tmp_path, monkeypatch, mismatch):
     import json

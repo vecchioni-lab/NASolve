@@ -1,9 +1,26 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-24, C569 comparing the PDU construction coordinates with the refinement target — Rowan**.
+Updated **2026-11-24, C570 fitting the original Coot and ReadySet preparation directly — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
-**Q06.** C569 starts with the corrected dictionary already present when Coot
+**Q06.** AutoRefine can now fit a same-run ReadySet root while reading crystal
+partners from its original Coot construction. Earlier this required two named
+checkpoint copies. The fitted PDU coordinate file matched the earlier control
+byte for byte. A fresh five-cycle fit after relocation still held both crystal
+bonds at 1.641/1.632 Å with 124 free reflections. D:7 remains unresolved.
+An attempted substitution of another genuine preparation returned an error
+before either run's registry or rounds changed.
+
+The phosphate record can carry the hash of the original PostMR construction.
+Older named registrations retain their existing interpretation. Changes cover
+the AutoRefine and CIF Doctor commands, the preparation and phosphate readers,
+and checked refinement. The installed and source builds each passed 444 focused
+tests and 69 subtests across the 17 files of the C568/C569 backbone and template
+boundary. Reuse the focused command below. The six earlier phosphate reports
+were byte-identical. Real Coot 1.3.3 and Phenix 2.2.1-6174 completed both
+ordinary five-cycle fits. The native files stay local.
+
+**C569.** C569 starts with the corrected dictionary already present when Coot
 mutates the scaffold. The PDU terminal C–C restraint called for 1.470 Å.
 Its template placed the two atoms 1.607 Å apart. Coot built 1.607/1.608 Å
 at A:12/B:4. In a separate dictionary with only four starting positions

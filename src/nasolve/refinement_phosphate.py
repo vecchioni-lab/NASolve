@@ -42,9 +42,10 @@ def request_from_args(args):
     elif args.registered_continuation is not None:
         ids = _ordered_ids([args.registered_continuation])
     source = getattr(args, "prepared_backbone_source", None)
-    if source is not None and (not ids or not args.from_checkpoint or not args.registration_checkpoint
+    if source is not None and (not ids or not args.from_checkpoint or (not args.registration_checkpoint and args.from_checkpoint != "postmr")
                                or args.native_receipt is None or any(p is None for p in paths)):
-        raise ValueError("A prepared backbone trial needs --from, --registration-checkpoint, all crystal topology and a native receipt")
+        raise ValueError("A prepared backbone trial needs a named parent, all crystal topology and a native receipt. "
+                         "Give --registration-checkpoint for an imported source, or --from postmr for the same run's construction.")
     if not ids:
         if args.registration_checkpoint is not None or any(p is not None for p in paths):
             raise ValueError("Registering crystal phosphates requires continuation IDs with all three topology files")
@@ -87,12 +88,12 @@ def _frozen_registration(run, intent, inspection=None):
     return RegisteredContinuation(identifier, *paths)
 
 
-def _check_inherited_scope(prior, ancestor, observations):
+def _check_inherited_scope(prior, ancestor, observations, *, construction_sha256=None):
     if prior is None:
         return
     old = [_identity(prior["ancestor"], row["registered_continuation"]) for row in _inspections(prior)]
     new = [_identity(ancestor, row["registered_continuation"]) for row in observations]
-    if new != old:
+    if new != old or prior.get("postmr_construction_sha256") != construction_sha256:
         raise ValueError("Changing an inherited phosphate registration requires a different starting branch")
 
 
@@ -103,6 +104,31 @@ def _original(run, registry, parent, checkpoint):
     if ancestor["model"].get("anchor") not in ("run", "dataset", "repository"):
         raise ValueError("The original phosphate registration needs a portable checkpoint model")
     return ancestor, _bound_path(ancestor["model"], "original phosphate registration model", run)
+
+
+def direct_preparation(run, parent_id, choice):
+    """Only an explicit preparation from this run's ReadySet root may use its Coot construction."""
+    if choice.prepared_backbone_source is None or choice.registration_checkpoint is not None:
+        return False
+    if parent_id != "postmr" or Path(choice.prepared_backbone_source).expanduser().resolve() != Path(run).resolve():
+        raise ValueError("Using the recorded Coot construction requires --from postmr in the same run")
+    return True
+
+
+def construction_registration(run, ancestor_id, *, expected=None):
+    """Resolve the recorded pre-ReadySet coordinates and the exact immutable construction that produced them."""
+    from .postmr_lineage import read_postmr_construction
+
+    if ancestor_id != "postmr":
+        raise ValueError("A Coot construction belongs to the postmr root")
+    proof = read_postmr_construction(run)
+    digest = proof["report"]["record_sha256"]
+    model_hash = proof["report"]["outputs"]["prepared"]["sha256"]
+    model = proof["model"]
+    if (not isinstance(digest, str) or not re.fullmatch("[0-9a-f]{64}", digest)
+            or (expected is not None and digest != expected) or model_hash != sha256(model.read_bytes()).hexdigest()):
+        raise ValueError("The PostMR construction differs from the recorded source")
+    return model, model_hash, digest
 
 
 def _same_native_capture(receipt, version, python_executable):
@@ -133,6 +159,13 @@ def prepare_intent(run, registry, parent, choice, *, phenix_version, python_exec
         ids = _ordered_ids((registered.identifier, *choice.additional_ids))
         registrations = [replace(registered, identifier=i) for i in ids]
     ancestor, source = _original(run, registry, parent, checkpoint)
+    source_hash = ancestor["model"]["sha256"]
+    origin = {}
+    inherited_hash = (prior or {}).get("postmr_construction_sha256") if registered is None else None
+    if direct_preparation(run, parent["id"], choice) or inherited_hash is not None:
+        source, source_hash, construction_hash = construction_registration(
+            run, ancestor["id"], expected=inherited_hash)
+        origin["postmr_construction_sha256"] = construction_hash
     model = _bound_path(parent["model"], "phosphate starting model", run)
     observations = [inspect_inherited_continuation(source, model, reg, native_receipt=choice.native_receipt)
                     for reg in registrations]
@@ -143,9 +176,9 @@ def prepare_intent(run, registry, parent, choice, *, phenix_version, python_exec
     if len(observations) > 1:
         RegisteredPhosphateRuntime.check_group(observations)
     edges = [row["registered_continuation"] for row in observations]
-    if any(edge["frame_transfer"]["source_model_sha256"] != ancestor["model"]["sha256"] for edge in edges):
+    if any(edge["frame_transfer"]["source_model_sha256"] != source_hash for edge in edges):
         raise ValueError("Phosphate registration differs from its original checkpoint")
-    _check_inherited_scope(prior, ancestor["id"], observations)
+    _check_inherited_scope(prior, ancestor["id"], observations, construction_sha256=origin.get("postmr_construction_sha256"))
     receipt_raw = Path(choice.native_receipt).read_bytes()
     receipt = json.loads(receipt_raw)
     digest = sha256(receipt_raw).hexdigest()
@@ -158,7 +191,7 @@ def prepare_intent(run, registry, parent, choice, *, phenix_version, python_exec
     if not all(sha256(raw).hexdigest() == edges[0]["sources"][name+"_sha256"] for name, raw in sources.items()):
         raise ValueError("A phosphate topology input changed after inspection")
     scope = {"inspection": observations[0]} if len(observations) == 1 else {"inspections": observations}
-    return dict(ancestor=ancestor["id"], **scope, sources=sources, bond=bond, capture_inputs=capture_inputs)
+    return dict(ancestor=ancestor["id"], **origin, **scope, sources=sources, bond=bond, capture_inputs=capture_inputs)
 
 
 def bind_execution_inputs(prepared, model, restraints):
@@ -208,12 +241,17 @@ def read_intent(run, root, request):
 
 
 def _read_intent(run, root, request):
-    from .refinement_parallelity import V12_POLICY_ID
+    from .refinement_parallelity import V11_POLICY_ID, V12_POLICY_ID
     intent = request.get("phosphate")
     grouped = request.get("policy_id") == V12_POLICY_ID
     scope = "inspections" if grouped else "inspection"
-    if not isinstance(intent, dict) or set(intent) != {"ancestor", scope, "sources", "bond", "capture_inputs"}:
+    fields = {"ancestor", scope, "sources", "bond", "capture_inputs"}
+    if not isinstance(intent, dict) or set(intent) not in (fields, fields | {"postmr_construction_sha256"}):
         raise ValueError("Missing registered phosphate intent")
+    if "postmr_construction_sha256" in intent and (intent["ancestor"] != "postmr" or request.get("policy_id") not in (V11_POLICY_ID, V12_POLICY_ID)
+            or not isinstance(intent["postmr_construction_sha256"], str)
+            or not re.fullmatch("[0-9a-f]{64}", intent["postmr_construction_sha256"])):
+        raise ValueError("Invalid registered phosphate construction")
     observations = _inspections(intent)
     if grouped:
         if not isinstance(observations, list) or len(observations) < 2:
@@ -259,6 +297,12 @@ def _read_intent(run, root, request):
 def validate_lineage(run, registry, parent, intent):
     """Cold replay binds the original topology and current coordinate frame without Phenix."""
     ancestor, source = _original(run, registry, parent, intent["ancestor"])
+    prior = _prior_intent(run, registry, parent)
+    construction_hash = intent.get("postmr_construction_sha256")
+    if construction_hash is not None:
+        if parent["id"] != "postmr" and prior is None:
+            raise ValueError("A Coot construction must first be fitted from the postmr root")
+        source, _, _ = construction_registration(run, ancestor["id"], expected=construction_hash)
     observations = _inspections(intent)
     model = _ref_path(parent["model"], "phosphate model", run)
     for recorded in observations:
@@ -266,7 +310,7 @@ def validate_lineage(run, registry, parent, intent):
         actual = inspect_inherited_continuation(source, model, registered)
         if actual != {key: value for key, value in recorded.items() if key != "native_reference_links"}:
             raise ValueError("The registered phosphate observation differs from the original or selected parent")
-    _check_inherited_scope(_prior_intent(run, registry, parent), ancestor["id"], observations)
+    _check_inherited_scope(prior, ancestor["id"], observations, construction_sha256=construction_hash)
 
 
 def saved_refinement(run, checkpoint, *, identifier=None, restraint_deviations=False):
@@ -309,6 +353,8 @@ def saved_refinement(run, checkpoint, *, identifier=None, restraint_deviations=F
     }
     if len(identifiers) > 1:
         evidence["registered_continuation_ids"] = identifiers
+    if "postmr_construction_sha256" in intent:
+        evidence["postmr_construction_sha256"] = intent["postmr_construction_sha256"]
     if restraint_deviations:
         from .cif_phosphate_reference import measure_written_phosphate
         model = checkpoint.get("model")

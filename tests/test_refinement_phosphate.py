@@ -249,6 +249,27 @@ def test_descendant_cannot_add_or_drop_a_registered_phosphate(tmp_path):
         _check_inherited_scope(dict(ancestor=ancestor, inspection=rows[0]), ancestor, rows)
 
 
+@pytest.mark.parametrize("policy,ancestor,origin,accepted", [
+    (12, "postmr", "7" * 64, True), (11, "postmr", "7" * 64, True),
+    (12, "manual-001", "7" * 64, False), (11, "postmr", None, False),
+    (10, "postmr", "7" * 64, False),
+])
+def test_construction_origin_is_specific_to_the_numbered_postmr_protocol(tmp_path, policy, ancestor, origin, accepted):
+    from nasolve import refinement_parallelity as runtime
+    from nasolve.refinement_phosphate import read_intent
+
+    policy_id = getattr(runtime, f"V{policy}_POLICY_ID")
+    _, run, stage, _, ref, _, _ = frozen_round(tmp_path, policy_id, group=policy == 12)
+    record = runtime.read_execution_request(run, ref, checkpoint="refine-001")
+    record["phosphate"].update(ancestor=ancestor, postmr_construction_sha256=origin)
+    root = (stage / "parallelity_runtime").relative_to(run).as_posix()
+    if accepted:
+        assert read_intent(run, root, record)["postmr_construction_sha256"] == origin
+    else:
+        with pytest.raises(ValueError, match="construction"):
+            read_intent(run, root, record)
+
+
 @pytest.mark.parametrize("policy_version", [10, 11])
 def test_registered_round_retains_order_translated_operator_and_relocatable_sources(tmp_path, policy_version):
     from nasolve.refinement_parallelity import read_execution_request, V10_POLICY_ID, V11_POLICY_ID

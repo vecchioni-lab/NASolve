@@ -288,9 +288,11 @@ the same two atoms across different crystal images and refuses the observed
 from its first use by Coot and found a 1.607 Å coordinate template against a
 1.470 Å bond target. Correcting the starting coordinates fixed construction
 at both sites. Five-cycle refinement improved the tip height at one site and
-worsened it at the other. Keep that comparison unselected. Next use the
-ordinary run's recorded Coot construction and ReadySet root directly, and
-qualify terminal-group template repair on a second component before adoption.
+worsened it at the other. Keep that comparison unselected. C570 now fits the ReadySet root directly from its recorded Coot
+construction. Its first five cycles reproduced the named-checkpoint coordinate
+file exactly, and the moved run retained both crystal bonds on restart. Next
+compare the same terminal-group adjustment on a second component through
+Coot, ReadySet and five native cycles. Keep the D:7 crossover open.
 
 C537 checks which modeled atoms actually reached a native covalent plane.
 The historical GEO omitted C5A at both PDU sites. The corrected GEO included

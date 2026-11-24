@@ -81,6 +81,9 @@ def prepare_trial(source_run, receiving_report, parent, inherited, choice, inten
         continuations=registered.continuations, candidate_model=inherited["model"], native_receipt=choice.native_receipt)
     candidate = proof["native_candidate"]
     identity = _request_identity(intent)
+    if "postmr_construction_sha256" in intent:
+        _need(intent["postmr_construction_sha256"] == proof["construction_sha256"],
+              "The numbered trial belongs to a different PostMR construction")
     _need(proof["prepared_model"]["sha256"] == identity["coot_model_sha256"]
           and candidate["candidate_model_sha256"] == identity["candidate_model_sha256"]
           and candidate["native_receipt_sha256"] == identity["native_receipt_sha256"]
@@ -120,6 +123,9 @@ def validate_trial(run, reference, item, parent, intent):
           "Prepared backbone record belongs to a different numbered round")
     proof = read_record(_bound_path(reference, "prepared backbone source", run))
     identity = _request_identity(intent)
+    if "postmr_construction_sha256" in intent:
+        _need(intent["postmr_construction_sha256"] == proof.get("construction_sha256"),
+              "The numbered preparation differs from its recorded PostMR construction")
     _need(proof.get("schema_version") == 1 and proof.get("policy_id") == POLICY_ID
           and proof.get("checkpoint") == item["id"] and proof.get("parent") == parent["id"]
           and proof.get("observations_sha256") == item["observations"]["sha256"]

@@ -1694,9 +1694,10 @@ def execute_autorefine(
             raise AutoRefineError("Registered phosphate requires ordinary checked refinement with one native worker")
         processor_count = 1
         if phosphate_request.prepared_backbone_source is not None and (
-                not from_checkpoint or not phosphate_request.registration_checkpoint or phosphate_request.registered is None
+                not from_checkpoint or (not phosphate_request.registration_checkpoint and from_checkpoint != "postmr")
+                or phosphate_request.registered is None
                 or extra_restraints or terminal_geometry_protection is not None):
-            raise AutoRefineError("A prepared backbone trial needs named starting and registration checkpoints with the captured restraints")
+            raise AutoRefineError("A prepared backbone trial needs the recorded postmr construction or named starting and registration checkpoints with the captured restraints")
     runtime_policy = counted_policy if counted_protocol is not None else V9_POLICY_ID if observe_declared_sites else None
     runtime_options = {"runtime_policy": runtime_policy} if runtime_policy is not None else {}
     from .refinement_counted import validate_autorefine_control

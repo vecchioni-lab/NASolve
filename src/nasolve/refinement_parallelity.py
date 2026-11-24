@@ -711,6 +711,8 @@ def validate_checkpoint_execution(run, item, registry):
             from .refinement_phosphate import bind_execution_inputs, validate_lineage
             bind_execution_inputs(request['phosphate'], paths[1], restraints)
             validate_lineage(run, registry, parents[0], request['phosphate'])
+            if parents[0]['id'] == 'postmr' and 'postmr_construction_sha256' in request['phosphate']:
+                _need(prepared is not None, 'A direct Coot registration requires its checked preparation receipt')
             if prepared is not None:
                 from .refinement_prepared_backbone import validate_trial
                 validate_trial(run, prepared, item, parents[0], request['phosphate'])

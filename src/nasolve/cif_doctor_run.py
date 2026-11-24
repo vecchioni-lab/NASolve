@@ -145,12 +145,18 @@ def read_checkpoint_phosphate_image(run: Path, *, checkpoint: str, phosphate: st
         if ancestor["id"] not in _lineage(registry, selected):
             raise CheckpointError("Registration checkpoint must be the named model or one of its ancestors")
         source = _ref_path(ancestor["model"], "registration model", run)
+        recorded = ancestor["model"].get("sha256")
+        construction_hash = (native_fit or {}).get("postmr_construction_sha256")
+        if construction_hash is not None:
+            from .refinement_phosphate import construction_registration
+            source, recorded, _ = construction_registration(run, ancestor["id"], expected=construction_hash)
         result = inspect_inherited_continuation(source, model, registered, geometry=geo, native_receipt=native_receipt)
         transfer = result["registered_continuation"]["frame_transfer"]
-        recorded = ancestor["model"].get("sha256")
         if not isinstance(recorded, str) or transfer["source_model_sha256"] != recorded.lower():
             raise CheckpointError("Registration model differs from its frozen ancestor")
         transfer["source_checkpoint"] = ancestor["id"]
+        if construction_hash is not None:
+            transfer["postmr_construction_sha256"] = construction_hash
     result = with_duplex_direction(model, result, duplex_partners, partner_images)
     model_ref = _reference(model, run)
     geometry_ref = _reference(geo, run) if geo is not None else None
