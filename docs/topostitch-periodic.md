@@ -13972,6 +13972,8 @@ Rowan/Alder own that next step; prior optimizer stopping verdicts stay intact.
 
 ## W259 — Preserve declared polymer coverage and unmodeled positions
 
+Maintained code: `d9a24fd914c9cb9cf9d9baf8959fdf0454f63476`.
+
 The new read-only `topostitch_cif_polymer` observer joins the original five
 entity/asym/sequence tables with W256 source identity and W257 registered paths.
 Every source atom is accounted for once; original nonpolymer context, unregistered

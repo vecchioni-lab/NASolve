@@ -4,7 +4,7 @@
   "updated": "2026-11-24",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "03bb5a2e00b313432a1908418d853df160d9b202",
+  "audited_code_commit": "d9a24fd914c9cb9cf9d9baf8959fdf0454f63476",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -1111,7 +1111,8 @@
         "W249 separately binds the original full-precision coordinate mmCIFs, original A1C3T identity and typed sequence metadata. Four local diagnostic recuts carry every graph edge and original connection annotation; independent Phenix/cctbx readback and supplied-HKL Fcalc agree near1e-15. Annotation-only negative controls show scattering alone cannot prove connectivity. This is a diagnostic composition, not a maintained writer or extension of W248 input scope.",
         "W256 maintains original-mmCIF identity/precision binding to an exact working recut: explicit component aliases, complete atom permutation, raw double XYZ/U, exact original bytes, unique coordinate block/attached definitions and category inventory.217source/217installed; four W249 real controls reproduce all raw XYZ/U exactly. No writer or annotation/path approval.",
         "W257 maintains exact declared-edge path projection bound to complete original CIF sites.121source/121installed; Willowfull2705pass/4skip/234subtests; four real W249 path/boundary replays exact. Original protected/unknown-boundary intent and unregistered atoms survive. No polymer semantic/all-annotation approval or writer.",
-        "W258: 143focused source/143relocated installed;208installation-file hashes;full Willow2727passed/4skipped/234subtests. Four original3LNA/5LNA controls preserve80/87rows,71/74H-bonds;14/15endpoint references change while physical endpoints agree within5.03e-15 A. Explicit blank/unknown and missing polymer-locator review defects reproduced/fixed. No writer/native call."
+        "W258: 143focused source/143relocated installed;208installation-file hashes;full Willow2727passed/4skipped/234subtests. Four original3LNA/5LNA controls preserve80/87rows,71/74H-bonds;14/15endpoint references change while physical endpoints agree within5.03e-15 A. Explicit blank/unknown and missing polymer-locator review defects reproduced/fixed. No writer/native call.",
+        "W259: 168 focused source and 168 relocated installed checks; 210 installation-file hashes. Full Willow: 2752 passed, 4 skipped, 234 subtests. Four original 3LNA/5LNA controls each retain 62 declared/observed positions, no unresolved/unmodeled positions and exact W258 connection reports. Synthetic controls cover unmodeled positions, alternative monomers, shared entities, conflicting labels and unregistered polymers; Rowan uncertainty regression fixed. No writer/native call."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
@@ -1133,14 +1134,15 @@
         "E_FULL_PRECISION_BOUNDARY_METADATA",
         "E_ORIGINAL_CIF_SOURCE_CONTEXT",
         "E_ORIGINAL_CIF_PATH_PROJECTION",
-        "E_ORIGINAL_CIF_CONNECTION_TRANSPORT"
+        "E_ORIGINAL_CIF_CONNECTION_TRANSPORT",
+        "E_ORIGINAL_CIF_POLYMER_COVERAGE"
       ],
       "last_audit": {
         "date": "2026-11-24",
-        "code_commit": "03bb5a2e00b313432a1908418d853df160d9b202",
-        "reviewer": "Linden; independent identity review with Rowan",
-        "human_update": 258,
-        "scope": "Original struct_conn endpoint transport; semantic/writer/native gates open"
+        "code_commit": "d9a24fd914c9cb9cf9d9baf8959fdf0454f63476",
+        "reviewer": "Linden; independent uncertainty review with Rowan",
+        "human_update": 259,
+        "scope": "Original polymer/entity/asym/sequence coverage; output semantics/writer/native gates open"
       }
     },
     {
@@ -6952,6 +6954,83 @@
       "reference": "docs/topostitch-periodic.md#w258--retain-original-connection-rows-and-physical-endpoints",
       "result": "Alder handoff atf3ee67b6 and receiving commit09a972b6 report a separately source/chemistry-qualified constructed seed surviving the exact W252 receiver: P-O3 1.618to1.615A,C3-O3 1.454to1.448A; other853coordinates and allB/Q/fprime/fdoubleprimeheld. Rwork/Rfree0.3081/0.3427 and weak/negative maps. Broader858DNAatom42group XYZ/groupB comparison has completed zero-cycle MLHL/FreeR/fixedHg initialization only.",
       "limitation": "Coordinated reports and exact Alder handoff readback, not independent Willow native replay. Optimizer iteration-limit verdicts unchanged; no selected parent, fdp or broad optimization executed. Rowan/Alder own next optimization-stage admission. No Cedar/Alder implementation merged into Willow."
+    },
+    "E_ORIGINAL_CIF_POLYMER_COVERAGE": {
+      "kind": "Maintained original polymer coverage observation",
+      "date": "2026-11-24",
+      "human_update": 259,
+      "code_commit": "d9a24fd914c9cb9cf9d9baf8959fdf0454f63476",
+      "reference": "docs/topostitch-periodic.md#w259--preserve-declared-polymer-coverage-and-unmodeled-positions",
+      "result": "168 focused source and 168 relocated installed checks; 210 installation-file hashes. Full Willow: 2752 passed, 4 skipped, 234 subtests. Four original 3LNA/5LNA controls each retain 62 declared/observed positions, no unresolved/unmodeled positions and exact W258 connection reports. Synthetic controls cover unmodeled positions, alternative monomers, shared entities, conflicting labels and unregistered polymers; Rowan uncertainty regression fixed. No writer/native call.",
+      "limitation": "Read-only relational coverage, not chemical truth or output entity assignment. Author numbering and canonical sequence text remain unvalidated. Missing tables unavailable; geometric cuts cannot infer nicks. Explicit compatible Cedar source required; no combined-branch release. Scientific artifacts excluded from Git.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w259-cif-polymer-coverage/before.log",
+          "sha256": "7248aa9e09922393b1b78caa2a1f1f0f24490296cae524ae28565b7bd9a26122",
+          "size": 36394
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w259-cif-polymer-coverage/coverage-before.log",
+          "sha256": "f73bdb5c1e8746bd3a11c9c9b7717f3380d560574a0c0fc014be972591dbe690",
+          "size": 1470
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w259-cif-polymer-coverage/gap-before.log",
+          "sha256": "dae59b3aa966718b7b04bee45c0229e26789d49e7a56032b37d9742b80c8bd34",
+          "size": 1524
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w259-cif-polymer-coverage/review-before.log",
+          "sha256": "3c02bc981e000a03eace1af350026c1174cb349ab5960d75b5561361361ace20",
+          "size": 3792
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w259-cif-polymer-coverage/focused-reviewed.log",
+          "sha256": "5cc069386c543315fde22a2a80cbd7eb373356fcf4c49a775f828cf926ba62fd",
+          "size": 261
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w259-cif-polymer-coverage/qualification.json",
+          "sha256": "c112690c758b81697bbc7742ef39779f59a8b7450de737c0bd142ece7db22fd1",
+          "size": 13005
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w259-cif-polymer-coverage/installed-tests.log",
+          "sha256": "8599c81a97d726f17009e0da0114c5471597abc05f585a7eba5d1a7197085fa4",
+          "size": 261
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w259-cif-polymer-coverage/real-file-replay-reviewed.json",
+          "sha256": "5892545bf5e3ed19c77c95bbf8a80466064c4b9ab6e74cd13cd5b874b2cb8e2f",
+          "size": 888642
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w259-cif-polymer-coverage/full-suite.log",
+          "sha256": "10e9c5a590c8e74cac89320f760dd3692211ab64eefd991315e86f4e3e0e38c5",
+          "size": 3167
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w259-cif-polymer-coverage/reviewed-hashes.json",
+          "sha256": "07bf76e550c03af8e6c516fd9c9d931b606d178959bea1656976b37e5ae6161b",
+          "size": 339
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w259-cif-polymer-coverage/validation.json",
+          "sha256": "e483a8b0f0f0360b8aed7b395846261c1e9b2dbf7eb71817340c2c27f4ca49b3",
+          "size": 4307
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -8480,8 +8559,8 @@
       {
         "number": 259,
         "title": "Preserve original polymer coverage and unmodeled sequence positions",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "d9a24fd914c9cb9cf9d9baf8959fdf0454f63476"
       }
     ]
   },

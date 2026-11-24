@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W259, 2026-11-24** (code pin follows qualification).
+**Current maintained slice: W259, 2026-11-24** code `d9a24fd914c9cb9cf9d9baf8959fdf0454f63476`.
 [Original polymer coverage](topostitch-preview.md#account-for-declared-polymer-positions-and-original-coordinates-w259)
 accounts for every original atom and declared sequence position against the saved
 recut paths. Raw entity/asym/sequence tables, shared entities, alternative monomers,
