@@ -27,7 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W254 | Retain compact failed-proposal evidence without changing the optimizer | RECORDED |
 | W255 | Record coordinated cap and feasible-step evidence without endpoint adoption | RECORDED |
 | W256 | Bind original mmCIF identity and precision to the saved working recut | RECORDED |
-| W257 | Project every declared backbone edge onto complete original CIF sites | IN_PROGRESS |
+| W257 | Project every declared backbone edge onto complete original CIF sites | RECORDED |
 
 ## Finish lines
 
@@ -311,7 +311,7 @@ Write a new ASU representative while preserving the physical scattering object e
 
 **Next action:** Transport all original connection rows through W256 original atom/image lineage and W257 complete registered path bindings, retaining explicit unresolved/out-of-scope rows and reasons. Reuse Cedar for semantic entity/sequence and covalent backbone checking against a complete bound reference; its O3-prime/P filter is not an all-annotation reader. Preserve noncovalent row types, author labels, alternate endpoints, nicks and orientations; no guessed deletion or completeness from Fcalc. Complete original polymer coverage, P02 graphical review, special-position/source validity, supported output, native lifecycle and refined-child/inverse-edit binding remain open.
 **Evidence:** [E_REPRESENTATIVE_SCATTERING](#e_representative_scattering), [E_ORBIT_PERMUTATIONS](#e_orbit_permutations), [E_JOINT_FRAME_TARGET](#e_joint_frame_target), [E_BOUND_TENSOR_TRANSPORT](#e_bound_tensor_transport), [E_SAVED_FRAME_BINDING](#e_saved_frame_binding), [E_SPECIAL_POSITION_SCATTERING](#e_special_position_scattering), [E_STAGGERED_DUPLEX_RECUT](#e_staggered_duplex_recut), [E_SAVED_SCATTERING_BINDING](#e_saved_scattering_binding), [E_TWO_ROUTE_REPRESENTATIVE_OBSERVATION](#e_two_route_representative_observation), [E_SERIALIZATION_READBACK_OBSERVATION](#e_serialization_readback_observation), [E_SERIALIZED_RECUT_OBSERVER](#e_serialized_recut_observer), [E_FULL_PRECISION_BOUNDARY_METADATA](#e_full_precision_boundary_metadata), [E_ORIGINAL_CIF_SOURCE_CONTEXT](#e_original_cif_source_context), [E_ORIGINAL_CIF_PATH_PROJECTION](#e_original_cif_path_projection).
-**Last audit:** 2026-11-24, Linden; exact-hash cold review and completeness correction with Hazel, [W257](https://github.com/vecchioni-lab/NASolve/commit/afbbdc069260df6cc2ceb5febf45b79a51441a5f); Complete registered-site/declared-edge projection; raw all-annotation transport and semantic/writer gates remain open.
+**Last audit:** 2026-11-24, Linden; exact-hash cold review and completeness correction with Hazel, [W257](https://github.com/vecchioni-lab/NASolve/commit/dc50cf4e92dce776b67ca92bbe9a7713406b35bb); Complete registered-site/declared-edge projection; raw all-annotation transport and semantic/writer gates remain open.
 
 <a id="p04"></a>
 ### P04 — Qualify seam chemistry and native interpretation
@@ -2115,7 +2115,7 @@ One original-parent six-role trial with held rings and0.5A tether;12accepted ste
 <a id="e_original_cif_path_projection"></a>
 ### E_ORIGINAL_CIF_PATH_PROJECTION — Read-only original-labelled declared-path projection
 
-[Evidence contract](topostitch-periodic.md#w257--account-for-original-sites-and-every-declared-backbone-edge) at [W257](https://github.com/vecchioni-lab/NASolve/commit/afbbdc069260df6cc2ceb5febf45b79a51441a5f).
+[Evidence contract](topostitch-periodic.md#w257--account-for-original-sites-and-every-declared-backbone-edge) at [W257](https://github.com/vecchioni-lab/NASolve/commit/dc50cf4e92dce776b67ca92bbe9a7713406b35bb).
 121focused source/121relocated installed; full Willow2705passed/4skipped/234subtests. Hazel missing-entity position-collision finding reproduced and fixed; reviewed final source/install bytes match and all four replays repeat exactly.206relocated files hash-match. Four3LNA/5LNA controls exactly reproduceW249: all1271/1275atoms,62nodes/60edges;4paths58ordinary2boundary→8paths54ordinary6boundary. Missing/partial/colliding original sites, branches, cycles refuse; original boundary intent and unregistered atom IDs retained.
 **Limit:** Graph projection not source entity/sequence semantics or all-annotation coverage. No original struct_conn rewrite, new chemical bond/nick, output chain/entity assignment, model writer, native run or receiving acceptance. Full suite is Willow-only, not combined-branch integration. Component-position and missing-entity collision failures plus fixture/harness failures retained; generated science excluded from Git.
 

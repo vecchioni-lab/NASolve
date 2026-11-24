@@ -4,7 +4,7 @@
   "updated": "2026-11-24",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "484a4c414e70b601a137d83e5c2105fd95f3ebb5",
+  "audited_code_commit": "dc50cf4e92dce776b67ca92bbe9a7713406b35bb",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -1131,7 +1131,7 @@
       ],
       "last_audit": {
         "date": "2026-11-24",
-        "code_commit": "afbbdc069260df6cc2ceb5febf45b79a51441a5f",
+        "code_commit": "dc50cf4e92dce776b67ca92bbe9a7713406b35bb",
         "reviewer": "Linden; exact-hash cold review and completeness correction with Hazel",
         "human_update": 257,
         "scope": "Complete registered-site/declared-edge projection; raw all-annotation transport and semantic/writer gates remain open"
@@ -6854,7 +6854,7 @@
       "kind": "Read-only original-labelled declared-path projection",
       "date": "2026-11-24",
       "human_update": 257,
-      "code_commit": "afbbdc069260df6cc2ceb5febf45b79a51441a5f",
+      "code_commit": "dc50cf4e92dce776b67ca92bbe9a7713406b35bb",
       "reference": "docs/topostitch-periodic.md#w257--account-for-original-sites-and-every-declared-backbone-edge",
       "result": "121focused source/121relocated installed; full Willow2705passed/4skipped/234subtests. Hazel missing-entity position-collision finding reproduced and fixed; reviewed final source/install bytes match and all four replays repeat exactly.206relocated files hash-match. Four3LNA/5LNA controls exactly reproduceW249: all1271/1275atoms,62nodes/60edges;4paths58ordinary2boundary\u21928paths54ordinary6boundary. Missing/partial/colliding original sites, branches, cycles refuse; original boundary intent and unregistered atom IDs retained.",
       "limitation": "Graph projection not source entity/sequence semantics or all-annotation coverage. No original struct_conn rewrite, new chemical bond/nick, output chain/entity assignment, model writer, native run or receiving acceptance. Full suite is Willow-only, not combined-branch integration. Component-position and missing-entity collision failures plus fixture/harness failures retained; generated science excluded from Git.",
@@ -8406,8 +8406,8 @@
       {
         "number": 257,
         "title": "Project every declared backbone edge onto complete original CIF sites",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "dc50cf4e92dce776b67ca92bbe9a7713406b35bb"
       }
     ]
   },

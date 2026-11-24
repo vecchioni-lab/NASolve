@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W257, 2026-11-24.**
+**Current maintained slice: W257, 2026-11-24**, code `dc50cf4e92dce776b67ca92bbe9a7713406b35bb`.
 [Declared paths on original CIF sites](topostitch-preview.md#project-declared-paths-onto-original-cif-sites-w257)
 binds every resolved registered node to a complete original site and partitions
 every declared backbone edge into local adjacency or an explicit image boundary.
