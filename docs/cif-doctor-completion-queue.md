@@ -41,8 +41,10 @@ PDU:PDU phosphate, the [central link is confirmed](backbone-chemistry.md#the-cen
 Two ordinary five-cycle rounds retained both registered crystal bonds. C562
 then carried the corrected PDU dictionary through ReadySet and five standalone
 cycles on the original Coot build. C565 binds both crystal partners to the
-recorded ordinary construction and its 38 local bonds. Next carry them
-with the corrected dictionary into an unselected preparation candidate.
+recorded ordinary construction and its 38 local bonds. C566 follows both
+partners into the unselected returned model and verifies its native restraint
+inputs. Next give that model an ordinary numbered child with the original
+observations and free set.
 See the [two-crossover measurements](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold).
 For the explicitly phosphorylated D:1 on the host control, C504 accounts for
 all eleven local Phenix restraints, including the last angle before the next
@@ -275,8 +277,11 @@ before an ordinary preparation reports the remaining open incoming sites.
 C564 blocks a proposed bond if the native input already uses its O3′ or P
 for another O3′–P distance. A known Phenix hydrogen-bond restraint keeps
 its own meaning. C565 accounts for the two registered partners, the local
-backbone and D:1 in one read of the original construction. The next native
-handoff must bind the returned model and its actual corrected restraint inputs.
+backbone and D:1 in one read of the original construction. C566 also binds
+the returned model and its seven actual restraint inputs. Its matched native
+reference steps are among those 38 local bonds. The next handoff must preserve
+that bundle and its observations in a fresh, unselected ordinary child. Reuse
+the existing numbered phosphate and Free-R checks when creating it.
 
 C537 checks which modeled atoms actually reached a native covalent plane.
 The historical GEO omitted C5A at both PDU sites. The corrected GEO included

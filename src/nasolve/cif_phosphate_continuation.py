@@ -136,6 +136,11 @@ def inspect_inherited_continuation(source_model, child_model, request, *, geomet
     """
     source_model, child_model = Path(source_model), Path(child_model)
     source = inspect_registered_continuation(source_model, request, geometry=None, native_receipt=None)
+    return _inherit_measured(source_model, child_model, request, source, geometry=geometry, native_receipt=native_receipt)
+
+
+def _inherit_measured(source_model, child_model, request, source, *, geometry=None, native_receipt=None):
+    """Transfer a measured member of a verified source registration to the same named residues."""
     edge = source["registered_continuation"]
     if edge["measurement_status"] != "MEASURED":
         raise ValueError("Cannot transfer an unresolved phosphate registration")

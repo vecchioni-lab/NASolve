@@ -159,17 +159,25 @@ def reference_link_terms(native, *, phosphate, o3):
 
 
 def read_phosphate_references(receipt, model_bytes, *, phosphate, o3):
+    _, references = read_phosphate_reference_set(receipt, model_bytes, [(phosphate, o3)])
+    return references[0]
+
+
+def read_phosphate_reference_set(receipt, model_bytes, endpoints):
+    """Check one preserved native interpretation, then read each named (P site, O3′ site)."""
     path = Path(receipt).expanduser().resolve(strict=True)
     try:
         proof, native, snapshots = _capture(path, model_bytes)
         _native_atoms(native, model_bytes)
-        result = reference_link_terms(native, phosphate=phosphate, o3=o3)
+        references = [reference_link_terms(native, phosphate=p, o3=o) for p, o in endpoints]
     except (KeyError, IndexError, TypeError, AttributeError) as exc:
         raise ValueError("Incomplete native phosphate reference capture") from exc
     if any(p.read_bytes() != data for p, data in snapshots.items()):
         raise ValueError("Native capture changed during phosphate reference comparison")
-    result.update(native_receipt_sha256=sha256(snapshots[path]).hexdigest(), phenix_version=proof["phenix_version"])
-    return result
+    receipt_sha256 = sha256(snapshots[path]).hexdigest()
+    for result in references:
+        result.update(native_receipt_sha256=receipt_sha256, phenix_version=proof["phenix_version"])
+    return proof, references
 
 
 def _written_measurement(term, points, target, width, gemmi):

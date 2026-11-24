@@ -257,6 +257,24 @@ This inspection is available even when Coot returned before a dictionary
 request could be published. A distance across a declared gap is a measurement
 on the starting model. The five-cycle comparison below measures the fitted bonds.
 
+Add `--candidate-model RETURNED.pdb --native-receipt native_receipt.json`
+to the same command to review an unselected set of refinement inputs. Supply
+the exact candidate PDB used for the preserved Phenix interpretation. The
+reader checks the modeled heavy-atom identities, local bonds, terminal intent
+and the crystal copy of each registered residue. Each native target needs
+matching intact bonds in the same model's audited backbone. The bond, angles
+and torsions must be measurable at the proposed junction and at every intact
+reference. The JSON includes the input dictionary and restraint-file digests
+in their recorded order.
+
+On the corrected ReadySet return the two crystal gaps were still 3.340 and
+3.017 Å. Two intact A→C links and four intact T→G links supplied the same
+1.607 Å distance target. The native files contained the corrected PDU
+dictionary and six restraint files. A control with the extra D:7 O3′–B:1 P
+bond was refused. This comparison establishes the inputs to a possible
+refinement. The ordinary numbered child and its Free-R data still require a
+separate handoff.
+
 One standalone five-cycle Phenix refinement used the corrected returned model,
 the two registered crystal partners, the original reflection flags and the seven
 effective restraint files. The R values were read at the start and end of the

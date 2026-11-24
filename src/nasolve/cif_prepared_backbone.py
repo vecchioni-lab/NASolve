@@ -1,15 +1,17 @@
 """Read the whole backbone of an ordinary Coot construction before native qualification."""
+from hashlib import sha256
 from pathlib import Path
 
 from .cif_dictionary_sites import _need, _read
 from .cif_dictionary_store import _json
 from .cif_model_context import _BACKBONE, _intent, _local_backbone
-from .cif_phosphate_continuation import inspect_registered_backbone
+from .cif_phosphate_continuation import (
+    RegisteredContinuation, _endpoint_atoms, _inherit_measured, _sources_match, inspect_registered_backbone,
+)
 from .postmr_lineage import read_postmr_construction
 
 
-def _registered_partners(model, model_sha256, paths, sites, links, open_sites, terminal_sites):
-    observations = inspect_registered_backbone(model, *paths)
+def _registered_partners(observations, model_sha256, sites, links, open_sites, terminal_sites):
     donors = {source for source, _ in links}
     targets = set()
     partners = []
@@ -38,16 +40,79 @@ def _registered_partners(model, model_sha256, paths, sites, links, open_sites, t
     return dict(copy_id=first["copy_id"], graph_sha256=first["registered_graph_sha256"], **first["sources"]), partners
 
 
-def review_prepared_backbone(run, *, registration=None, discovery=None, continuations=None):
+def _native_candidate(source, candidate, receipt, paths, observations, local, intent, codes):
+    from .cif_phosphate_reference import measure_written_phosphate, read_phosphate_reference_set
+    from .cif_phosphate_runtime import RegisteredPhosphateRuntime
+
+    source_sites, source_links, source_audit, source_open = local
+    sites, links, audit, open_sites = _local_backbone(candidate, intent, codes, review_open=True)
+    original_bytes, original_atoms = _endpoint_atoms(source, source_sites)
+    candidate_bytes, candidate_atoms = _endpoint_atoms(candidate, sites)
+    # Includes residue identities, element, charge and occupied/unoccupied state.
+    # The image-transfer owner below also checks hydrogen identities at each junction.
+    if ({k for k in original_atoms if k[4] not in {"H", "D"}} !=
+            {k for k in candidate_atoms if k[4] not in {"H", "D"}}):
+        raise ValueError("The candidate changed modeled residue or atom identities")
+    _need(links == source_links and set(open_sites) == set(source_open),
+          "The candidate has different local bonds or open incoming phosphates")
+    _need(sha256(original_bytes).hexdigest() == source_audit["input_sha256"] and
+          sha256(candidate_bytes).hexdigest() == audit["input_sha256"], "Backbone inputs changed during comparison")
+    transferred = []
+    for observed in observations:
+        reg = RegisteredContinuation(observed["registered_continuation"]["continuation_id"], *paths)
+        transferred.append(_inherit_measured(source, candidate, reg, observed))
+    RegisteredPhosphateRuntime.check_group(transferred)
+    _need(all(row["model_sha256"] == audit["input_sha256"] for row in transferred),
+          "Candidate crystal coordinates differ from the audited native input")
+    endpoints = [(row["phosphate"][0], row["o3"][0]) for row in transferred]
+    proof, references = read_phosphate_reference_set(receipt, candidate_bytes, endpoints)
+    _need(proof["status"] == "REVIEW" and proof["execution"]["returncode"] == 0,
+          "Require a successful native interpretation of these candidate inputs")
+    local_links = {tuple(link) for link in links}
+    partners = []
+    for row, ref in zip(transferred, references, strict=True):
+        _need(ref["status"] != "COMPETING_ENDPOINT_BOND", ref.get("reason", "Competing phosphate bond"))
+        measured = measure_written_phosphate(candidate, dict(row, native_reference_links=ref),
+                                             model_sha256=audit["input_sha256"])
+        matched = ref["groups"][0]["links"]
+        for donor, acceptor in matched:
+            _need((donor, acceptor) in local_links,
+                  f"Native reference {donor} O3′ to {acceptor} P is absent from the audited local bonds")
+        for term in measured["terms"]:
+            for sample in (term["written"], *term["ordinary_links"]):
+                if sample["value"] is None:
+                    donor = sample.get("o3_site", measured["o3_site"])
+                    acceptor = sample.get("phosphate_site", measured["phosphate_site"])
+                    raise ValueError(f"Unmeasurable native {term['kind']} at {donor} to {acceptor}: {sample['reason']}")
+        bond, = (term for term in measured["terms"] if term["kind"] == "bond_simple")
+        edge = row["registered_continuation"]
+        partners.append(dict(id=edge["continuation_id"], o3_site=row["o3"][0], phosphate_site=row["phosphate"][0],
+            o3_image=row["o3_image"], distance_A=row["distance_A"], coordinate_angles_degrees=row["coordinate_angles_degrees"],
+            matched_local_links=matched, native_terms_sha256=measured["reference_terms_sha256"],
+            measured_terms_per_link=len(measured["terms"]),
+            native_bond_target_A=bond["target"], native_bond_sigma_A=bond["restraint_width"],
+            frame_transfer=edge["frame_transfer"]))
+    _need(_read(candidate) == candidate_bytes, "Candidate model changed during native readback")
+    return dict(status="NATIVE_INPUTS_VERIFIED_FOR_REVIEW", candidate_model_sha256=audit["input_sha256"],
+        native_receipt_sha256=references[0]["native_receipt_sha256"], phenix_version=proof["phenix_version"],
+        native_inputs=[{k: r[k] for k in ("anchor", "path", "role", "sha256", "size")} for r in proof["inputs"]],
+        registered_continuations=partners)
+
+
+def review_prepared_backbone(run, *, registration=None, discovery=None, continuations=None,
+                             candidate_model=None, native_receipt=None):
     """Read the recorded Coot model, local backbone, terminal consent and optional crystal partners.
 
     Complete registration accounts for the identity of each open end. The measured
     distance and angles describe the written construction, including physically
-    open junctions. This reader supplies no forces or checkpoint selection.
+    open junctions. With candidate coordinates and a native interpretation,
+    also compare the returned backbone, frame and actual reference terms.
     """
     paths = (registration, discovery, continuations)
     _need(all(p is None for p in paths) or all(p is not None for p in paths),
           "Supply registration, discovery input and backbone continuations together")
+    _need((candidate_model is None) == (native_receipt is None), "Supply the candidate model and native receipt together")
+    _need(candidate_model is None or registration is not None, "A native candidate needs the complete crystal registration")
     run = Path(run)
     construction = read_postmr_construction(run)
     saved = construction["report"]
@@ -62,15 +127,23 @@ def review_prepared_backbone(run, *, registration=None, discovery=None, continua
     _need(terminal == controls["allow_op3_sites"] and not controls["passthrough_sites"],
           "Frozen phosphate/backbone intent differs from the recorded Coot construction")
     codes = {row["after"] for row in controls["actions"]}
-    sites, links, audit, open_sites = _local_backbone(model, intent, codes, review_open=True)
+    local = _local_backbone(model, intent, codes, review_open=True)
+    sites, links, audit, open_sites = local
     _need(audit["input_sha256"] == saved["outputs"]["prepared"]["sha256"],
           "The measured backbone differs from the recorded Coot model")
     registration_info, partners = None, []
+    candidate_info = {}
     status = "OPEN_INCOMING" if open_sites else "LOCAL_BACKBONE_CHECKED"
     if registration is not None:
-        registration_info, partners = _registered_partners(model, audit["input_sha256"], paths, sites, links,
-                                                         open_sites, terminal)
+        paths = tuple(Path(p).expanduser() for p in paths)
+        observations = inspect_registered_backbone(model, *paths)
+        registration_info, partners = _registered_partners(observations, audit["input_sha256"], sites, links, open_sites, terminal)
         status = "REGISTERED_FOR_REVIEW"
+        if candidate_model is not None:
+            candidate_info["native_candidate"] = _native_candidate(model, Path(candidate_model).expanduser(), native_receipt,
+                                                                  paths, observations, local, intent, codes)
+        _need(_sources_match(RegisteredContinuation(partners[0]["id"], *paths), registration_info),
+              "Crystal registration changed during preparation review")
     _need(_read(report_path) == original and all(_read(run / name) == data for name, data in construction["files"].items()),
           "The ordinary preparation changed during backbone review")
     return dict(schema_version=1, policy_id="prepared-backbone-review-v1", status=status,
@@ -78,4 +151,4 @@ def review_prepared_backbone(run, *, registration=None, discovery=None, continua
         construction_dictionaries=saved["inputs"]["dictionaries"], local_links=links,
         protected_terminal_phosphates=terminal, without_local_incoming=sorted(
             (r for r in audit["checked"] if r["site"] in open_sites), key=lambda row: row["site"]),
-        registration=registration_info, registered_continuations=partners, scientific_qualification="NOT_ASSESSED")
+        registration=registration_info, registered_continuations=partners, scientific_qualification="NOT_ASSESSED", **candidate_info)

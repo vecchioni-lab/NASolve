@@ -309,6 +309,8 @@ def build_parser() -> argparse.ArgumentParser:
     backbone_review = cif_sub.add_parser("prepared-backbone", help="review local bonds, terminal phosphates and crystal partners on the recorded Coot construction")
     backbone_review.add_argument("run", type=Path, help="ordinary AutoMR run with a recorded PostMR construction")
     _phosphate_topology_arguments(backbone_review, checkpoint=False)
+    backbone_review.add_argument("--candidate-model", type=Path, help="compare this unselected model with the Coot construction, using the complete crystal registration and its native receipt")
+    backbone_review.add_argument("--native-receipt", type=Path, help="preserved Phenix interpretation of the candidate model and its ordered dictionaries and restraint files")
     backbone_review.add_argument("--json", action="store_true", help="include model and dictionary identities, local bonds and measured image geometry")
     cif_catalogue = cif_sub.add_parser("catalogue", help="read-only NARestraints catalogue/source coverage census")
     cif_catalogue.add_argument("--workbook", required=True, type=Path, help="explicit NARestraints Ligands.xlsx")
@@ -1941,10 +1943,12 @@ def _cif_link_plan(args: argparse.Namespace) -> int:
         return 1
 
 
-def _cif_prepared_backbone(run, *, registration=None, discovery=None, continuations=None, as_json=False):
+def _cif_prepared_backbone(run, *, registration=None, discovery=None, continuations=None,
+                           candidate_model=None, native_receipt=None, as_json=False):
     from .cif_prepared_backbone import review_prepared_backbone
     try:
-        report = review_prepared_backbone(run, registration=registration, discovery=discovery, continuations=continuations)
+        report = review_prepared_backbone(run, registration=registration, discovery=discovery, continuations=continuations,
+                                          candidate_model=candidate_model, native_receipt=native_receipt)
     except (OSError, ValueError, ImportError, RuntimeError) as exc:
         print(f"Could not review the prepared backbone: {exc}", file=sys.stderr)
         return 2
@@ -1961,6 +1965,12 @@ def _cif_prepared_backbone(run, *, registration=None, discovery=None, continuati
     if open_sites and registration is None:
         print("To check the assigned crystal partners, supply --registration, --discovery-input and --backbone-continuations to cif-doctor prepared-backbone.")
     print("These measurements describe the construction before refinement.")
+    if "native_candidate" in report:
+        candidate = report["native_candidate"]
+        print(f"Unselected candidate read by Phenix {candidate['phenix_version']}: {candidate['candidate_model_sha256']}")
+        for row in candidate["registered_continuations"]:
+            print(f"  {row['o3_site']} O3′ to {row['phosphate_site']} P measures {row['distance_A']:.3f} Å "
+                  f"({len(row['matched_local_links'])} intact reference links, target {row['native_bond_target_A']:.3f} Å)")
     return 0
 
 
@@ -2118,7 +2128,8 @@ def _cif_doctor(args: argparse.Namespace) -> int:
         return _cif_phosphate_image(args)
     if args.cif_action == "prepared-backbone":
         return _cif_prepared_backbone(args.run.expanduser(), registration=args.registration,
-            discovery=args.discovery_input, continuations=args.backbone_continuations, as_json=args.json)
+            discovery=args.discovery_input, continuations=args.backbone_continuations, as_json=args.json,
+            candidate_model=args.candidate_model, native_receipt=args.native_receipt)
     if args.cif_action == "publish-preparation":
         return _cif_publish_preparation(args)
     if args.cif_action in {"prepare-run", "continue-preparation", "prepared-result", "preparation-status"}:

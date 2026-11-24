@@ -17,12 +17,12 @@ def put(path, value):
     return path
 
 
-def construction(root, damage=None):
+def construction(root, damage=None, *, native_fixture=False):
     run = root / "run with spaces"
     models = run / "PostMR/Model"
     models.mkdir(parents=True)
     (run / "PostMR/Coot").mkdir()
-    chains = (("A", "DC"), ("B", "DA"), ("D", "DT"))
+    chains = tuple((chain, "DC" if native_fixture else code) for chain, code in (("A", "DC"), ("B", "DA"), ("D", "DT")))
     terminal = ("A:1", "B:1", "D:1") if damage == "local" else ("D:1",)
     prepared = model(models / "prepared_model.pdb", chains=chains)
     lines = ["CRYST1   20.000  160.000   90.000  90.00  90.00  90.00 P 1           1\n"]
@@ -35,6 +35,12 @@ def construction(root, damage=None):
             line = line[:30] + f"{9.:8.3f}" + line[38:]
         if damage == "extra" and (site, atom) == ("D:9", "OP1"):
             lines.append(line[:12] + " OP3" + line[16:])
+        if native_fixture and atom == "C5'":
+            line = line[:38] + f"{float(line[38:46]) + .6:8.3f}" + line[46:]
+        if native_fixture and atom == "C3'" and not (damage == "missing reference torsion" and site == "D:1"):
+            x, y, z = (float(line[i:i+8]) for i in (30, 38, 46))
+            lines.append(line[:6] + f"{int(line[6:11]) + 2000:5d}" + line[11:12] + " C4'" + line[16:30] +
+                         f"{x+.3:8.3f}{y+.7:8.3f}{z+.9:8.3f}" + line[54:])
         lines.append(line)
     prepared.write_text("".join(lines))
     original = models / "mr_solution.pdb"
@@ -48,7 +54,8 @@ def construction(root, damage=None):
 
 
 def registration(root, prepared, *, occupied_donor=False):
-    rows = [(f"{c}:{i}", code) for c, code in (("A", "DC"), ("B", "DA"), ("D", "DT")) for i in (1, 9)]
+    from nasolve.cif_linked_preparation import _model_inventory
+    rows = [(site, info["code"]) for site, info in _model_inventory(prepared).items()]
     sites = {site: site for site, _ in rows}
     reg = put(root / "registration.json", build_construct_registration(
         inspect_pdb(prepared), target(*rows), {"copy": sites}, source="two declared seams"))
@@ -68,11 +75,11 @@ def registration(root, prepared, *, occupied_donor=False):
     return reg, discovery, edges
 
 
-def call(run, inputs=()):
+def call(run, inputs=(), *extra):
     args = ["cif-doctor", "prepared-backbone", str(run), "--json"]
     for flag, path in zip(("--registration", "--discovery-input", "--backbone-continuations"), inputs):
         args.extend([flag, str(path)])
-    return main(args)
+    return main([*args, *map(str, extra)])
 
 
 def test_open_preparation_status_reopens_construction_without_creating_a_request(tmp_path, capsys):
@@ -169,3 +176,95 @@ def test_partial_or_conflicting_chemistry_never_becomes_a_review_candidate(tmp_p
     assert call(run, inputs) != 0
     result = capsys.readouterr()
     assert not result.out and diagnostic in result.err and inventory(tmp_path) == before
+
+
+def test_candidate_needs_its_model_capture_and_complete_registration(tmp_path, capsys):
+    run, prepared = construction(tmp_path)
+    assert call(run, (), "--candidate-model", prepared) == 2
+    assert "candidate model and native receipt together" in capsys.readouterr().err
+    assert call(run, (), "--candidate-model", prepared, "--native-receipt", tmp_path/"unused.json") == 2
+    assert "complete crystal registration" in capsys.readouterr().err
+
+
+@pytest.mark.parametrize(("damage", "diagnostic"), [
+    ("different base", "residue or atom identities"), ("different element", "residue or atom identities"),
+    ("other image", "crystal representative"), ("different frame", "same crystal frame"),
+    ("damaged internal bond", "implausible P-OP1 distance"),
+])
+def test_candidate_checks_the_whole_model_and_named_copy_before_reading_native_evidence(tmp_path, capsys, damage, diagnostic):
+    pytest.importorskip("gemmi")
+    run, prepared = construction(tmp_path)
+    inputs = registration(tmp_path, prepared)
+    lines = prepared.read_text().splitlines(keepends=True)
+    for i, line in enumerate(lines):
+        site = line[21:22] + ":" + line[22:26].strip()
+        name = line[12:16].strip()
+        if damage == "different base" and site == "D:9":
+            lines[i] = line[:17] + " DA" + line[20:]
+        if damage == "different element" and site == "D:9" and name == "C5'":
+            lines[i] = line[:76] + " N" + line[78:]
+        if damage == "other image" and site.startswith("A:"):
+            lines[i] = line[:30] + f"{float(line[30:38]) + 20:8.3f}" + line[38:]
+        if damage == "different frame" and line.startswith("CRYST1"):
+            lines[i] = line.replace("20.000", "21.000", 1)
+        if damage == "damaged internal bond" and site == "D:9" and name == "OP1":
+            lines[i] = line[:30] + f"{100.:8.3f}" + line[38:]
+    candidate = tmp_path / "candidate.pdb"
+    candidate.write_text("".join(lines))
+    before = inventory(tmp_path)
+    assert call(run, inputs, "--candidate-model", candidate, "--native-receipt", tmp_path/"unused.json") == 2
+    result = capsys.readouterr()
+    assert diagnostic in result.err and not result.out and inventory(tmp_path) == before
+
+
+@pytest.mark.parametrize("native_case", ["matched", "competing", "nonlocal reference", "missing reference torsion"])
+def test_one_native_capture_binds_both_image_partners_without_selecting_the_candidate(tmp_path, capsys, monkeypatch, native_case):
+    pytest.importorskip("gemmi")
+    from .test_phosphate_restraints import inspection
+    run, prepared = construction(tmp_path, native_case, native_fixture=True)
+    inputs = registration(tmp_path, prepared)
+    candidate = tmp_path / "returned.pdb"
+    candidate.write_bytes(prepared.read_bytes() + b"\n")
+    receipt = tmp_path / "native_receipt.json"
+    receipt.write_text("{}")
+    row = dict(anchor="native_directory", path="inputs/000_model.pdb", role="model",
+               sha256=file_sha256(candidate), size=candidate.stat().st_size)
+    captures = []
+    def capture(path, data):
+        assert path == receipt and data == candidate.read_bytes()
+        captures.append(path)
+        proof = dict(status="REVIEW", execution=dict(returncode=0), inputs=[row], phenix_version="test")
+        return proof, {}, {path: path.read_bytes()}
+    def references(native, *, phosphate, o3):
+        assert (phosphate, o3) in {("A:1", "A:9"), ("B:1", "B:9")}
+        if native_case == "competing" and o3 == "B:9":
+            return dict(status="COMPETING_ENDPOINT_BOND", reason="B:9 O3′ already has a native partner")
+        ref = inspection()["native_reference_links"]
+        ref["groups"][0]["links"] = [[f"{c}:1", f"{c}:9"] for c in "ABD" if c != o3[0]]
+        if native_case == "nonlocal reference" and o3 == "B:9":
+            ref["groups"][0]["links"][0] = ["A:1", "D:9"]
+        return ref
+    # Native input parsing and reference-term chemistry have their own tests.
+    # This small fixture tests the join to both real, source-bound coordinate measurements.
+    monkeypatch.setattr("nasolve.cif_phosphate_reference._capture", capture)
+    monkeypatch.setattr("nasolve.cif_phosphate_reference._native_atoms", lambda native, data: None)
+    monkeypatch.setattr("nasolve.cif_phosphate_reference.reference_link_terms", references)
+    before = inventory(tmp_path)
+    status = call(run, inputs, "--candidate-model", candidate, "--native-receipt", receipt)
+    result = capsys.readouterr()
+    assert captures == [receipt] and inventory(tmp_path) == before
+    if native_case != "matched":
+        message = {"competing": "already has a native partner", "nonlocal reference": "absent from the audited local bonds",
+                   "missing reference torsion": "Missing or unoccupied o3-site C4'"}[native_case]
+        assert status == 2 and not result.out and message in result.err
+        return
+    assert status == 0, result.err
+    report = json.loads(result.out)
+    reading = report["native_candidate"]
+    assert reading["native_inputs"] == [row] and reading["candidate_model_sha256"] == file_sha256(candidate)
+    assert reading["native_receipt_sha256"] == file_sha256(receipt) and reading["phenix_version"] == "test"
+    for original, returned in zip(report["registered_continuations"], reading["registered_continuations"], strict=True):
+        assert returned["o3_image"] == original["o3_image"] and returned["distance_A"] == original["distance_A"]
+        assert returned["native_bond_target_A"] == 1.593 and returned["native_bond_sigma_A"] == .02
+        assert returned["measured_terms_per_link"] == 8
+        assert returned["frame_transfer"]["source_model_sha256"] == file_sha256(prepared)

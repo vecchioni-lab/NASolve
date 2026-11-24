@@ -1,9 +1,31 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-24, C565 finding both crystal partners in ordinary preparation — Rowan**.
+Updated **2026-11-24, C566 checking the returned model and its native phosphate targets — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
-**Q06.** C565 adds `nasolve cif-doctor prepared-backbone RUN` to inspect
+**Q06.** C566 follows the original construction into an unselected model with
+an actual Phenix interpretation. In C290 the corrected ReadySet model kept
+all 862 atom identities, 38 local phosphodiesters and the D:1 OP3. Its two
+open crystal gaps measured 3.340 and 3.017 Å. The native receipt identifies
+the corrected PDU dictionary and six PHIL inputs. Two intact local links for
+B:7–B:1 and four for D:7–C:8 supply the 1.607 Å target. All eight terms were
+measurable at both junctions and all six reference links. The reader rejected
+a different model and the competing D:7–B:1 distance. This is a cold read of
+the saved Phenix 2.2.1-6174 inputs. C562 records the five-cycle refinement.
+
+The opt-in report adds `native_candidate` to `prepared-backbone-review-v1`.
+Existing runs need no migration. Source and a relocated wheel each passed
+354 focused tests and 24 subtests. Use the C565 command and files below plus
+`test_phosphate_reference_links.py`, `test_phosphate_restraints.py` and
+`test_cif_attachment_native.py`. The moved C290 inputs gave identical JSON.
+Six earlier numbered checkpoint reports also reproduced byte for byte.
+
+Next publish the verified bundle into an ordinary unselected child with
+the original observations and Free-R flags. The existing numbered worker
+must establish which forces Phenix actually installs. The weak local density
+and D:7 torsion still need scientific review.
+
+**C565.** C565 adds `nasolve cif-doctor prepared-backbone RUN` to inspect
 the recorded Coot model when a checked dictionary request has yet to start.
 The ordinary gate still names an open phosphate. The new read-only command
 can join every open site to its assigned crystal partner, with the complete
@@ -14,8 +36,6 @@ JSON on the original and relocated construction. All six older numerical
 checkpoint reports reproduced byte for byte. No new model was fitted.
 The optional inspection emits `prepared-backbone-review-v1` JSON. Existing
 preparation and checkpoint records keep their earlier interpretation.
-Next bind the corrected returned model and its dictionaries to this same
-source frame before attempting publication of an unselected repair.
 
 The focused command used
 `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider`

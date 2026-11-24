@@ -13,6 +13,10 @@ entries are reconstructed from repository history.
   ends. With the construct registration, strand-end discovery and directed
   continuation files it measures every declared crystal partner in its exact
   image. A preparation that stops at an open phosphate points to this review.
+  With `--candidate-model` and `--native-receipt` it also checks the candidate's
+  local backbone and both ends of each crystal bond against the original
+  construction. The report identifies the actual Phenix inputs and the intact
+  local bonds that supply each target.
 
 - The [OneDep preparation guide](docs/pdb-deposition.md) records how to pair
   Phenix model and reflection CIFs, retain a crystal's processing data and
