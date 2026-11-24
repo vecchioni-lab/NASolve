@@ -238,6 +238,25 @@ every coordinate, occupancy and displacement parameter. Both crystal gaps
 were still open. The ordinary phosphate audit identified 38 local incoming
 bonds, the declared D:1 terminal phosphate and two unresolved incoming sites.
 
+To inspect that stage on another run, use `nasolve cif-doctor prepared-backbone RUN`.
+It reads the model, source dictionaries and terminal consent recorded when Coot
+returned. To account for the crystal connections, provide the three matching
+files from the same source frame.
+
+```sh
+nasolve cif-doctor prepared-backbone RUN --registration registration.json \
+  --discovery-input discovery.json --backbone-continuations continuations.json --json
+```
+
+The O3′ image in each result acts on the donor oxygen. The inverse operator
+in the declaration acts on P. On the starting PDU scaffold the donor images
+are `-x+y,-x,z` for B:7 and `-y,x-y,z` for D:7. Omitting either declaration
+leaves a named phosphate unaccounted for. A protected terminus or an O3′
+that already has a local partner cannot be used for a new connection.
+This inspection is available even when Coot returned before a dictionary
+request could be published. A distance across a declared gap is a measurement
+on the starting model. The five-cycle comparison below measures the fitted bonds.
+
 One standalone five-cycle Phenix refinement used the corrected returned model,
 the two registered crystal partners, the original reflection flags and the seven
 effective restraint files. The R values were read at the start and end of the

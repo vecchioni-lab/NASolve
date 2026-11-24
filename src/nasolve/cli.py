@@ -52,12 +52,13 @@ class _SingleContinuation(argparse.Action):
         setattr(namespace, self.dest, values)
 
 
-def _phosphate_topology_arguments(parser):
-    parser.add_argument("--registration", type=Path, help="construct registration for --registered-continuation")
-    parser.add_argument("--registration-checkpoint", metavar="ID",
-                        help="follow a registered ancestor’s phosphate into the named descendant checkpoint")
-    parser.add_argument("--discovery-input", type=Path, help="registered end-discovery input for --registered-continuation")
-    parser.add_argument("--backbone-continuations", type=Path, help="explicit directed backbone connections for --registered-continuation")
+def _phosphate_topology_arguments(parser, *, checkpoint=True):
+    parser.add_argument("--registration", type=Path, help="construct registration for the written source coordinates")
+    if checkpoint:
+        parser.add_argument("--registration-checkpoint", metavar="ID",
+                            help="follow a registered ancestor’s phosphate into the named descendant checkpoint")
+    parser.add_argument("--discovery-input", type=Path, help="registered strand-end discovery input")
+    parser.add_argument("--backbone-continuations", type=Path, help="explicit directed backbone connections and crystal images")
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -305,6 +306,10 @@ def build_parser() -> argparse.ArgumentParser:
     publish.add_argument("--as-alternative", action="store_true", help="save a later attempt as a separate REVIEW checkpoint from the same frozen construction; preserve the current selection")
     preparation_status = cif_sub.add_parser("preparation-status", help="read saved preparation attempts and whether work is still running")
     preparation_status.add_argument("run", type=Path)
+    backbone_review = cif_sub.add_parser("prepared-backbone", help="review local bonds, terminal phosphates and crystal partners on the recorded Coot construction")
+    backbone_review.add_argument("run", type=Path, help="ordinary AutoMR run with a recorded PostMR construction")
+    _phosphate_topology_arguments(backbone_review, checkpoint=False)
+    backbone_review.add_argument("--json", action="store_true", help="include model and dictionary identities, local bonds and measured image geometry")
     cif_catalogue = cif_sub.add_parser("catalogue", help="read-only NARestraints catalogue/source coverage census")
     cif_catalogue.add_argument("--workbook", required=True, type=Path, help="explicit NARestraints Ligands.xlsx")
     cif_catalogue.add_argument("--ccd-root", required=True, type=Path,
@@ -1936,9 +1941,33 @@ def _cif_link_plan(args: argparse.Namespace) -> int:
         return 1
 
 
+def _cif_prepared_backbone(run, *, registration=None, discovery=None, continuations=None, as_json=False):
+    from .cif_prepared_backbone import review_prepared_backbone
+    try:
+        report = review_prepared_backbone(run, registration=registration, discovery=discovery, continuations=continuations)
+    except (OSError, ValueError, ImportError, RuntimeError) as exc:
+        print(f"Could not review the prepared backbone: {exc}", file=sys.stderr)
+        return 2
+    if as_json:
+        print(json.dumps(report, indent=2, sort_keys=True, allow_nan=False))
+        return 0
+    print("Recorded Coot construction: " + report["prepared_model"]["path"])
+    print("Local O3′–P bonds: " + str(len(report["local_links"])))
+    print("Protected terminal phosphates: " + (", ".join(report["protected_terminal_phosphates"]) or "none"))
+    open_sites = [row["site"] for row in report["without_local_incoming"]]
+    print("Phosphates without a local incoming O3′: " + (", ".join(open_sites) or "none"))
+    for row in report["registered_continuations"]:
+        print(f"  {row['o3_site']} O3′ ({row['o3_image']}) to {row['phosphate_site']} P: {row['distance_A']:.3f} Å")
+    if open_sites and registration is None:
+        print("To check the assigned crystal partners, supply --registration, --discovery-input and --backbone-continuations to cif-doctor prepared-backbone.")
+    print("These measurements describe the construction before refinement.")
+    return 0
+
+
 def _cif_checked_preparation(args: argparse.Namespace) -> int:
     """Explain the existing owner's result without promoting it to refinement."""
     from .campaign_process import CampaignProcessError
+    from .phosphate import UnverifiedIncomingPhosphate
     from .cif_ordinary_postmr import (
         _ordinary_request_directory, continue_checked_postmr, prepare_checked_postmr,
         read_ordinary_postmr_result,
@@ -1947,9 +1976,14 @@ def _cif_checked_preparation(args: argparse.Namespace) -> int:
     try:
         if args.cif_action == "preparation-status":
             from .cif_complete_request import inspect_dictionary_request
+            from .postmr_lineage import RECORD_PATH
             state = inspect_dictionary_request(_ordinary_request_directory(run))
             print(f"Preparation: {state['state']}")
             print(f"Further attempt: {state['availability']}")
+            if state["state"] == "NOT_RECORDED" and (run / RECORD_PATH).is_file():
+                print("Coot returned a construction. There is no published dictionary request.")
+                print("Inspect its backbone: " + shlex.join(["nasolve", "cif-doctor", "prepared-backbone", str(run)]))
+                return 0
             for row in state['attempts']:
                 print(f"Attempt {row['number']}: {row['state']}")
                 if row['state'] == 'STOPPED_UNFINISHED':
@@ -1992,8 +2026,12 @@ def _cif_checked_preparation(args: argparse.Namespace) -> int:
     except (OSError, ValueError, ConfigError, CootDiscoveryError, PhenixDiscoveryError,
             PostMRPreparationError, CampaignProcessError, TimeoutError) as exc:
         print(f"Preparation could not complete: {exc}", file=sys.stderr)
-        print("Read saved attempts: " + shlex.join([
-            "nasolve", "cif-doctor", "preparation-status", str(run)]), file=sys.stderr)
+        if isinstance(exc, UnverifiedIncomingPhosphate):
+            print("Inspect the recorded construction: " + shlex.join([
+                "nasolve", "cif-doctor", "prepared-backbone", str(run)]), file=sys.stderr)
+        else:
+            print("Read saved attempts: " + shlex.join([
+                "nasolve", "cif-doctor", "preparation-status", str(run)]), file=sys.stderr)
         return 2
     print(result.message)
     print(f"ReadySet: {result.readyset_status}")
@@ -2078,6 +2116,9 @@ def _cif_doctor(args: argparse.Namespace) -> int:
         return _cif_deposition_links(args)
     if args.cif_action == "phosphate-image":
         return _cif_phosphate_image(args)
+    if args.cif_action == "prepared-backbone":
+        return _cif_prepared_backbone(args.run.expanduser(), registration=args.registration,
+            discovery=args.discovery_input, continuations=args.backbone_continuations, as_json=args.json)
     if args.cif_action == "publish-preparation":
         return _cif_publish_preparation(args)
     if args.cif_action in {"prepare-run", "continue-preparation", "prepared-result", "preparation-status"}:

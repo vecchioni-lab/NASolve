@@ -8,6 +8,12 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `cif-doctor prepared-backbone RUN` reads Coot's recorded construction and
+  accounts for local O3′–P bonds, protected terminal phosphates and open incoming
+  ends. With the construct registration, strand-end discovery and directed
+  continuation files it measures every declared crystal partner in its exact
+  image. A preparation that stops at an open phosphate points to this review.
+
 - The [OneDep preparation guide](docs/pdb-deposition.md) records how to pair
   Phenix model and reflection CIFs, retain a crystal's processing data and
   free flags, and check what wwPDB preserved after processing.

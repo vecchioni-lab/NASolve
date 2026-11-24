@@ -13,7 +13,7 @@ import re
 from .backbone import requested_backbone_policy
 from .cif_dictionary_sites import _links, _model_inventory, _need, _read
 from .cif_dictionary_store import _bytes, _json
-from .phosphate import _atoms, _MAX_PO, audit_phosphates, requested_op3_sites
+from .phosphate import _atoms, _MAX_PO, UnverifiedIncomingPhosphate, audit_phosphates, requested_op3_sites
 
 POLICY_ID = 'cif-prepared-model-context-v1'
 _BACKBONE = {"O5'", "C5'", "C3'", "O3'"}
@@ -41,19 +41,8 @@ def _intent(report):
     return _json(_bytes(dict(post_mr_plan=plan)))
 
 
-def derive_prepared_model_context(model, report, components):
-    """Derive exact selected sites and all audited PDB backbone links, read-only.
-
-    A missing explicit OP3 request is never filled from coordinate presence.
-    Numbering, sequence order and NAR pairing/stacking are not covalent evidence.
-    This first policy requires canonical atom names, one unambiguous PDB model,
-    complete standard backbone endpoints and acyclic unbranched connectivity.
-    Source chemistry and full-model native qualification remain separate gates.
-    """
-    _need(isinstance(components, (list, tuple)) and 1 <= len(components) <= 16
-          and all(isinstance(c, str) and re.fullmatch(r'[A-Za-z0-9]{1,3}', c) for c in components)
-          and len(set(components)) == len(components), 'Require one to sixteen unique selected components')
-    codes = sorted(components); intent = _intent(report)
+def _local_backbone(model, intent, codes, *, review_open=False):
+    """Measure the written ASU. Only the review reader can retain an unverified incoming end."""
     model = Path(model); data = _read(model); lines = data.decode('utf-8').splitlines()
     _need(not any(l.startswith(('MODEL ', 'ENDMDL')) for l in lines),
           'Explicit MODEL records need a separately reviewed model selector')
@@ -77,8 +66,16 @@ def derive_prepared_model_context(model, report, components):
         _need('P' in names or not names & _PHOSPHATE, 'Incomplete phosphate at '+site)
     plan = intent['post_mr_plan']
     _need(set(plan['backbone_policy']['sites']) <= set(sites), 'Frozen backbone intent names an absent site')
-    audit = audit_phosphates(model, allow_op3_sites=tuple(plan['allow_op3_sites']),
-                             inspect_sites=tuple(sorted(phosphorus)))
+    open_sites = ()
+    try:
+        audit = audit_phosphates(model, allow_op3_sites=tuple(plan['allow_op3_sites']),
+                                 inspect_sites=tuple(sorted(phosphorus)))
+    except UnverifiedIncomingPhosphate as error:
+        if not review_open:
+            raise
+        open_sites, audit = error.sites, error.audit
+        _need(not audit['removed'], 'Unrequested internal OP3 remains at ' +
+              ', '.join(row['site'] for row in audit['removed']))
     pairs = sorted([row['incoming_site'], row['site']] for row in audit['checked'] if row['incoming_site'] is not None)
     # The ordinary audit respects chain/TER boundaries. An additional nearby
     # endpoint across such a boundary must not silently become a free terminus.
@@ -87,7 +84,7 @@ def derive_prepared_model_context(model, report, components):
                       for o in atoms if o.name == "O3'" and dist(o.xyz, p.xyz) <= _MAX_PO)
     _need(contacts == pairs, 'Unexplained O3-prime/P contact across a boundary or within a residue')
     _links(model, [], pairs)  # Reuse the complete unbranched-link contract.
-    incoming = {b: a for a, b in pairs}; outgoing = {a: b for a, b in pairs}
+    outgoing = dict(pairs)
     for a, b in pairs:
         _need(_BACKBONE <= sites[a]['atoms'], 'Incoming backbone endpoint is incomplete at '+a)
     for site in outgoing:
@@ -97,13 +94,32 @@ def derive_prepared_model_context(model, report, components):
             visited.add(current); current = outgoing[current]
     for row in audit['checked']:
         _need(row['outgoing_site'] == outgoing.get(row['site']), 'Audited backbone endpoints disagree')
+    _need(audit['input_sha256'] == sha256(data).hexdigest() and _read(model) == data,
+          'Prepared model changed during context derivation')
+    return sites, pairs, audit, open_sites
+
+
+def derive_prepared_model_context(model, report, components):
+    """Derive exact selected sites and audited, acyclic local backbone links.
+
+    A missing explicit OP3 request is never filled from coordinate presence.
+    Numbering, sequence order and NAR pairing/stacking are not covalent evidence.
+    Source chemistry and full-model native qualification remain separate gates.
+    """
+    _need(isinstance(components, (list, tuple)) and 1 <= len(components) <= 16
+          and all(isinstance(c, str) and re.fullmatch(r'[A-Za-z0-9]{1,3}', c) for c in components)
+          and len(set(components)) == len(components), 'Require one to sixteen unique selected components')
+    codes = sorted(components); intent = _intent(report)
+    model = Path(model)
+    sites, pairs, audit, _ = _local_backbone(model, intent, codes)
+    incoming = {b: a for a, b in pairs}; outgoing = dict(pairs)
     contexts = {code: [dict(site=s, incoming_site=incoming.get(s), outgoing_site=outgoing.get(s),
-        five_prime_state='linked' if s in incoming else 'phosphate' if s in phosphorus else 'free_OH',
+        five_prime_state='linked' if s in incoming else 'phosphate' if 'P' in sites[s]['atoms'] else 'free_OH',
         three_prime_state='linked' if s in outgoing else 'free_OH')
-        for s in sorted(selected) if sites[s]['code'] == code] for code in codes}
+        for s in sorted(sites) if sites[s]['code'] == code] for code in codes}
     _links(model, [c for group in contexts.values() for c in group], pairs)
-    digest = sha256(data).hexdigest()
-    _need(audit['input_sha256'] == digest and _read(model) == data,
+    digest = audit['input_sha256']
+    _need(sha256(_read(model)).hexdigest() == digest,
           'Prepared model changed during context derivation')
     return dict(schema_version=1, policy_id=POLICY_ID, model_sha256=digest,
                 components=codes, intent=intent, contexts=contexts, expected_links=pairs,

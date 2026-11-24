@@ -34,19 +34,41 @@ def _endpoint(node, atom):
                 atom=atom, mapping_issues=node["issues"])
 
 
+def _registration(model, registration, discovery, continuations):
+    edges = continuations.read_bytes()
+    graph = build_registered_periodic_graph(
+        model, discovery, registration,
+        backbone_continuations=json.loads(edges, object_pairs_hook=_unique_object),
+    )
+    sources = dict(registration_sha256=graph["registration_file_sha256"],
+                   discovery_sha256=graph["discovery_file_sha256"], continuations_sha256=sha256(edges).hexdigest())
+    return graph, sources
+
+
 def inspect_registered_continuation(model, request, *, geometry, native_receipt):
     if type(request.identifier) is not int or request.identifier < 1:
         raise ValueError("Require a positive registered continuation ID")
     model = Path(model)
-    edges = request.continuations.read_bytes()
-    graph = build_registered_periodic_graph(
-        model, request.discovery, request.registration,
-        backbone_continuations=json.loads(edges, object_pairs_hook=_unique_object),
-    )
+    graph, sources = _registration(model, request.registration, request.discovery, request.continuations)
     edge = next((row for row in graph.get("declared_continuations", [])
                  if row["continuation_id"] == request.identifier), None)
     if edge is None:
         raise ValueError(f"Continuation {request.identifier} is absent from the declared backbone connections")
+    return _inspect_registered_edge(model, request, graph, sources, edge, geometry, native_receipt)
+
+
+def inspect_registered_backbone(model, registration, discovery, continuations):
+    """Measure every declaration against one verified graph, in declaration-ID order."""
+    model, registration, discovery, continuations = map(Path, (model, registration, discovery, continuations))
+    graph, sources = _registration(model, registration, discovery, continuations)
+    edges = graph.get("declared_continuations")
+    if not edges:
+        raise ValueError("Require at least one declared crystal backbone continuation")
+    return [_inspect_registered_edge(model, RegisteredContinuation(edge["continuation_id"], registration,
+                discovery, continuations), graph, sources, edge, None, None) for edge in edges]
+
+
+def _inspect_registered_edge(model, request, graph, sources, edge, geometry, native_receipt):
     connection = next(row for row in graph["periodic_graph"]["edges"] if row["edge_id"] == edge["edge_id"])
     nodes = {node["node_id"]: node for node in graph["nodes"]}
     donor = _endpoint(nodes[connection["source"]], "O3'")
@@ -54,8 +76,6 @@ def inspect_registered_continuation(model, request, *, geometry, native_receipt)
     raw = model.read_bytes()
     gemmi, cell, space_group = crystal_from_pdb_bytes(raw)
     oxygen_op = _inverse(gemmi.Op(connection["target_operator_xyz"]), gemmi.Op("x,y,z")).triplet()
-    sources = dict(registration_sha256=graph["registration_file_sha256"],
-                   discovery_sha256=graph["discovery_file_sha256"], continuations_sha256=sha256(edges).hexdigest())
     reason = None
     if donor["mapping_issues"] or acceptor["mapping_issues"]:
         reason = "The registered mapping leaves one or both endpoints unresolved"

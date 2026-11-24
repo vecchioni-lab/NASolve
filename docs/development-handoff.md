@@ -1,9 +1,34 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-24, C564 detecting a third bond at a registered phosphate — Rowan**.
+Updated **2026-11-24, C565 finding both crystal partners in ordinary preparation — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
-**Q06.** C564 tests whether two correct crystal bonds can hide a third,
+**Q06.** C565 adds `nasolve cif-doctor prepared-backbone RUN` to inspect
+the recorded Coot model when a checked dictionary request has yet to start.
+The ordinary gate still names an open phosphate. The new read-only command
+can join every open site to its assigned crystal partner, with the complete
+set of three topology inputs. On C290 it accounts for 38 local bonds,
+D:1 OP3, and B:7→B:1 and D:7→C:8 at 3.340 and 3.017 Å. A declaration
+missing C:8 was refused. Source and relocated package produced identical
+JSON on the original and relocated construction. All six older numerical
+checkpoint reports reproduced byte for byte. No new model was fitted.
+The optional inspection emits `prepared-backbone-review-v1` JSON. Existing
+preparation and checkpoint records keep their earlier interpretation.
+Next bind the corrected returned model and its dictionaries to this same
+source frame before attempting publication of an unselected repair.
+
+The focused command used
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider`
+on `tests/test_prepared_crystal_backbone.py`, `test_phosphate.py`,
+`test_cif_model_context.py`, `test_cif_postmr_request.py`,
+`test_phosphate_continuation.py`, `test_refinement_phosphate.py`,
+`test_phosphate_image.py`, `test_postmr_phosphate.py`, `test_cli.py`
+and `test_cif_ordinary_cli.py`, all under `tests/`. Source and relocated wheel
+each passed 250 tests and 24 subtests with Gemmi 0.7.5 in the Phenix 2.2.1-6174
+Python environment. The original suite failure showed only a blocked request
+after Coot returned. Full regression is deferred.
+
+**C564.** C564 tests whether two correct crystal bonds can hide a third,
 unintended bond in the input restraints. In a deliberately altered copy
 of C562, native Phenix initialization accepted a D:7 O3′–B:1 P edit with
 a 1.607 Å target while the atoms sat 5.859 Å apart. Each atom already
