@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W264 — Transport declared TLS only under a uniform crystal image
+
+- Add a read-only TLS observer and proper-image tensor arithmetic. Retain every
+  supplied S component; keep unknown membership, mixed images and refinement-ID
+  ambiguity explicit. Never split groups or change atom ADPs by inference.
+- Qualify 200 focused source/200 installed checks and 18 independent cctbx field
+  comparisons. Raw U transport agrees within 5.33e-15 Å²; native trace-zero
+  reinterpretation is measured separately and remains a compatibility gate.
+- Each real recut has two uniform and four mixed TLS groups. No writer, native
+  refinement, new independent groups or scientific selection is introduced.
+
 ### W263 — Preserve sequence-reference ranges through ASU fragment splits
 
 - Project original entity-sequence ranges to explicit fragment segments, retaining

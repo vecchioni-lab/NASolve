@@ -14193,3 +14193,42 @@ no breaks and two true symmetry contacts. Source identity/audit remains Rowan-ow
 this does not qualify all recuts or the pending writer.
 
 **Next:** W264: qualify one concrete TLS transport dependency. For a completely declared group whose members all undergo one known proper crystal transform, transport its origin and T/L/S axes and compare per-atom TLS U before/after with independent cctbx evaluation. Groups spanning inequivalent images remain explicit review cases; no silent group splitting, new refinement groups or chemical-entity policy. Preserve original raw groups and selection evidence. Assembly/reference rewriting, maintained writer, P02 GUI and native/edited-child lifecycle stay open.
+
+## W264 — Carry declared TLS without inventing new motion groups
+
+The isolated TLS module reuses fragment/source identity and proper Cartesian image
+transport. Complete explicit label/author membership and an explicit common
+refinement ID are required. Unknown selections need an exact range description;
+explicitly inapplicable text remains distinct. Uniform images carry origin/T/L/S;
+mixed groups remain unsplit and available for separate treatment. Raw parameter
+and range rows survive. No total atom ADP or coordinate changes, independent
+refinement groups or native policy are introduced. See the [contract](topostitch-preview.md#carry-one-declared-tls-motion-through-a-uniform-image-w264).
+
+**Validation:** 200 focused source (21.40 s)/200 relocated installed (21.46 s), two
+subtests and 214 installation hashes. Thirteen missing-API regressions; two further
+Rowan negatives reproduced unknown refinement IDs comparing equal and unknown
+selection text masquerading as complete membership. Both now require explicit
+evidence. Existing fragment digests remain exact in four LNA replays: six uniform
+source groups; two uniform/four mixed recut groups per model.
+
+**Native calculation:** Phenix 2.2.1-6174, Python 3.11.15; complete read-only cctbx
+evaluation, not a dry-run or refinement. Eighteen comparisons include actual
+uniform groups and one separately labeled nontrivial whole-group image per source.
+Raw declared TLS U transport agrees within 5.33e-15 Å²; the Python evaluator agrees
+with cctbx within 3.55e-15 Å². Incorrectly leaving group parameters unmoved differs
+by 26.29/7.21 Å² in those two controls. This does not transport the mixed recut groups.
+
+All supplied S components are retained and evaluated with `zeroize_trace=False`.
+The separate native trace-zero option replaces S33 and changes source TLS U by up
+to 2.46919 Å² (3LNA group 6); group-1 differences are 0.92108/0.87429 Å². The tested
+R3 rotations still give near-roundoff default-convention covariance, so no failure
+of that transport is claimed. No silent trace correction or source-refinement
+judgment is made. Total deposited atom ADPs are untouched.
+
+Local evidence and exact commands: NASolve anchor
+`branch-artifacts/willow/w264-tls-transport/validation.json`; dispatcher, compiled
+extension and TLS header hashes are in the native receipt. Python source/install:
+3.12.14/Gemmi 0.7.5. No shared owner changed or full suite repeated; W260's complete
+baseline remains 2,786/four skips/234 subtests. Scientific payloads excluded from Git.
+
+**Next:** W265: one read-only 3LNA recut diagnostic retaining one immutable original TLS parameter set per mixed group. Derive each member image from that same shared group, compare every cctbx TLS U with R_i U_i R_i^T, and verify exact registered-member coverage once. Do not create independent refinable groups or alter S convention. This will supply a future-writer condition, not writer authorization; full cross-atom covariance/native parameter ties and total-ADP/refinement policy remain separate. Assembly/sequence output identifiers, P02 GUI and native/edited-child lifecycle stay open.

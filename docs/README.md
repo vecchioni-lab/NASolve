@@ -7,10 +7,10 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Current reference-range projection: W263.** [Sequence references through a split](topostitch-preview.md#carry-source-sequence-reference-ranges-across-a-split-w263)
-  retain four original alignments as ten recut segments over all 62 positions.
-  Database correspondence and physical nick phase stay open. 184 source/184
-  installed checks; target/fragment reports remain unchanged.
+- **Current declared TLS transport: W264.** [Uniform-image TLS](topostitch-preview.md#carry-one-declared-tls-motion-through-a-uniform-image-w264)
+  preserves the supplied displacement field within 5.33e-15 Å² in independent
+  cctbx checks. Mixed groups stay unsplit; the source/default trace convention
+  remains explicit. 200 source/200 installed checks.
 
 - **Current sequence-text evidence: W260.** [Literal and canonical text](topostitch-preview.md#compare-original-literal-and-canonical-sequence-text-w260)
   reuses the shared tokenizer, preserves unresolved modified parents, and keeps
@@ -119,7 +119,7 @@ current instructions; other branches retain their own status and validation pins
   The failed direct result and three remaining moving-region outliers stay
   explicit. This is same-family synthetic recovery, not general experimental repair.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W263, next W264.
+  [generated human view](topostitch-roadmap.md). Current W264, next W265.
   Continue original polymer/sequence semantics and supported output in Pine; coordinate feasible
   endpoint/convergence qualification with Alder and chemistry receiving with Cedar.
   Prior synthetic recovery and near-target bond controls remain closed evidence;

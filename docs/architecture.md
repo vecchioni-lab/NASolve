@@ -1242,6 +1242,12 @@ The same module's W263 reference-range observer projects original entity positio
 through the saved fragments while retaining alignment/reference/discrepancy links.
 Source author numbering has a separate narrow qualification; no external database
 alignment, fragment entity policy or writer is inferred from matching endpoints.
+`topostitch_cif_tls` composes fragment image membership with original TLS ranges
+and the established proper Cartesian image owner. It carries one uniform group's
+origin/T/L/S without normalizing S or touching deposited total atom ADPs. Mixed
+images stay unresolved; shared original motion and independent refinable groups
+must not be conflated. Native raw/default convention is qualified separately.
+
 
 
 

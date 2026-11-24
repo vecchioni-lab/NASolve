@@ -4241,3 +4241,39 @@ refer to an external sequence; equal span lengths do not establish a gapless
 per-residue correspondence. The schema-1 `topostitch-original-cif-reference-ranges`
 report therefore qualifies source membership only. It binds the original bytes
 and fragment report, preserves every original link slot and writes no CIF.
+
+## Carry one declared TLS motion through a uniform image (W264)
+
+`topostitch_cif_tls.observe_relabel_cif_tls(directory, model, **fragment_binding)`
+reuses W261/W262 source/image binding. It retains the original TLS parameter and
+group rows, resolves complete explicit label/author ranges, and aggregates range
+fragments belonging to the same original TLS identifier. A matching **explicit**
+refinement ID is required; two unknown identifiers cannot establish that link.
+Unknown selection text needs an exact complete-range description. An explicitly
+inapplicable selection is distinct from unknown. Other selection grammars,
+missing/unregistered members, contradictory author bounds and overlaps require review.
+
+For one proper crystal image shared by every member, the observer transports the
+origin and T/L/S axes. `transport_tls_parameters` and `tls_u_cart` expose the pure
+numerical operation and declared TLS field evaluation. T uses Å², L degree² and
+S Å·degree; symmetric tensors have order 11,22,33,12,13,23 and S is row-major nine
+components. All nine supplied S values and its trace survive. No trace correction,
+parameter uncertainty propagation, total atom ADP update or refinement is performed.
+The [TLS category](https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Categories/pdbx_refine_tls.html)
+and [group fragments](https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Categories/pdbx_refine_tls_group.html)
+remain distinct declarations.
+
+A mixed-image group returns `MIXED_IMAGES_REVIEW`, with original parameters and
+all per-image member IDs retained, but no transported group. It is not silently
+split into independent refinable groups. Missing parameters or membership return
+review; an absent TLS table is unavailable. The schema-1 transport report binds
+the exact source/fragment report and keeps writer/native-refinement permission false.
+
+**Convention limit:** cctbx's `zeroize_trace=True` overwrites S33, rather than
+subtracting a scalar identity matrix from S. Independent Phenix 2.2.1-6174 checks
+therefore use `zeroize_trace=False` for the supplied nine-component field and
+measure the default's effect separately. The original 3LNA group 6 differs by up
+to 2.46919 Å² in TLS U under that reinterpretation. This is not a coordinate or
+total deposited ADP change, nor a claim that the source's refinement is invalid.
+The tested R3 default-convention transport also stays near roundoff; source-field
+reinterpretation and frame-transport covariance are different questions.
