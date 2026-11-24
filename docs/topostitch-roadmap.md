@@ -27,7 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W253 | Observe a failed bounded geometry trial without claiming an optimum | RECORDED |
 | W254 | Retain compact failed-proposal evidence without changing the optimizer | RECORDED |
 | W255 | Record coordinated cap and feasible-step evidence without endpoint adoption | RECORDED |
-| W256 | Bind original mmCIF identity and precision to the saved working recut | IN_PROGRESS |
+| W256 | Bind original mmCIF identity and precision to the saved working recut | RECORDED |
 
 ## Finish lines
 
@@ -311,7 +311,7 @@ Write a new ASU representative while preserving the physical scattering object e
 
 **Next action:** Bind complete original polymer paths and every connection annotation to W256 original-source identity and the cut, reusing Cedar deposition-link comparison against a complete bound reference. W256 covers source/working compatibility, not historical producer proof or annotation coverage. Keep W248 narrow; preserve original connection kinds, node/image lineage, nicks and orientations. P02 graphical review, special-position/source validity, supported writing, native full lifecycle and refined-child/inverse-edit binding remain open. No duplicated native parser or inference of annotation completeness from Fcalc.
 **Evidence:** [E_REPRESENTATIVE_SCATTERING](#e_representative_scattering), [E_ORBIT_PERMUTATIONS](#e_orbit_permutations), [E_JOINT_FRAME_TARGET](#e_joint_frame_target), [E_BOUND_TENSOR_TRANSPORT](#e_bound_tensor_transport), [E_SAVED_FRAME_BINDING](#e_saved_frame_binding), [E_SPECIAL_POSITION_SCATTERING](#e_special_position_scattering), [E_STAGGERED_DUPLEX_RECUT](#e_staggered_duplex_recut), [E_SAVED_SCATTERING_BINDING](#e_saved_scattering_binding), [E_TWO_ROUTE_REPRESENTATIVE_OBSERVATION](#e_two_route_representative_observation), [E_SERIALIZATION_READBACK_OBSERVATION](#e_serialization_readback_observation), [E_SERIALIZED_RECUT_OBSERVER](#e_serialized_recut_observer), [E_FULL_PRECISION_BOUNDARY_METADATA](#e_full_precision_boundary_metadata), [E_ORIGINAL_CIF_SOURCE_CONTEXT](#e_original_cif_source_context).
-**Last audit:** 2026-11-24, Linden; exact-hash cold review by Hazel, [W256](https://github.com/vecchioni-lab/NASolve/commit/aa0d6e7230aed107da271113f285847be4bf6875); Maintained original-source binding and exact cold replay; annotation/path coverage and supported materialization remain open.
+**Last audit:** 2026-11-24, Linden; exact-hash cold review by Hazel, [W256](https://github.com/vecchioni-lab/NASolve/commit/484a4c414e70b601a137d83e5c2105fd95f3ebb5); Maintained original-source binding and exact cold replay; annotation/path coverage and supported materialization remain open.
 
 <a id="p04"></a>
 ### P04 — Qualify seam chemistry and native interpretation
@@ -2108,7 +2108,7 @@ One original-parent six-role trial with held rings and0.5A tether;12accepted ste
 <a id="e_original_cif_source_context"></a>
 ### E_ORIGINAL_CIF_SOURCE_CONTEXT — Maintained read-only original-mmCIF source context
 
-[Evidence contract](topostitch-periodic.md#w256--preserve-original-cif-precision-in-a-maintained-recut-source-context) at [W256](https://github.com/vecchioni-lab/NASolve/commit/aa0d6e7230aed107da271113f285847be4bf6875).
+[Evidence contract](topostitch-periodic.md#w256--preserve-original-cif-precision-in-a-maintained-recut-source-context) at [W256](https://github.com/vecchioni-lab/NASolve/commit/484a4c414e70b601a137d83e5c2105fd95f3ebb5).
 217source/217relocated installed checks;206installation files verified,Python3.10 syntax/installed cut-preview help. Four original3LNA/5LNA controls retain1271/1275atoms,explicit A1C3T→ACL working mapping,raw original XYZ/U and byte document; compiled values exactly equalW249expected states. Source frame has distinct original binding. Attached definitions/category layouts retained; supplied symmetry table checked. The complete Willow suite ran: 2,688 passed, four skipped and 234 subtests passed; five campaign-process tests failed because sandbox process inspection/signaling was denied. Those same five passed with permission (2.48 s), unchanged source. This clears all 2,693 tests across the run and retry, not a single clean full invocation or a combined-branch integration result. Hazel exact-hash cold review: no blocking finding.
 **Limit:** Compatibility binding is not independent producer proof or alias chemistry approval. No annotation/path validation, writer, native interpretation, edited-child rebinding or adoption. Prior W248 input scope/default callers unchanged. First missing-build-dependency-path failure retained; no native rerun; combined-branch integration remains open. P03 remains partial.
 

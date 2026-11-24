@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W256, 2026-11-24.**
+**Current maintained slice: W256, 2026-11-24**, code `484a4c414e70b601a137d83e5c2105fd95f3ebb5`.
 [Original mmCIF source binding](topostitch-preview.md#bind-an-original-mmcif-to-a-saved-working-recut-w256)
 preserves exact original bytes/IDs/component spelling and raw double XYZ/U while
 mapping every atom to a replayed working-PDB recut. Explicit aliases and precision
@@ -42,7 +42,11 @@ default changed and no repeated native experiment ran for this documentation.
 Scope an explicit opt-in boundary-endpoint contract before receiving candidates:
 gradient accuracy, projected stationarity, chemical geometry and actual serialized
 point qualification are separate gates. Prefer existing full-precision receiving
-support before new PDB lattice machinery. No cap grid or automatic enlargement.
+support before new PDB lattice machinery. Hazel's pinned output review finds the
+native worker already requests mmCIF, but its wrapper defaults to five-place XYZ
+and Alder's endpoint auditor currently admits only three-place PDB. Format
+availability is not receiving authority; qualify precision and admission together.
+No cap grid or automatic enlargement.
 Later density-aware receiving and the existing fixed-weight confound remain open.
 
 **Human checkout:** reuse GitHub anchor

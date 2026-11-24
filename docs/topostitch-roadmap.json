@@ -4,7 +4,7 @@
   "updated": "2026-11-24",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "d6445d80337882b18bf2ab9636593e9eb238f2fa",
+  "audited_code_commit": "484a4c414e70b601a137d83e5c2105fd95f3ebb5",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -1128,7 +1128,7 @@
       ],
       "last_audit": {
         "date": "2026-11-24",
-        "code_commit": "aa0d6e7230aed107da271113f285847be4bf6875",
+        "code_commit": "484a4c414e70b601a137d83e5c2105fd95f3ebb5",
         "reviewer": "Linden; exact-hash cold review by Hazel",
         "human_update": 256,
         "scope": "Maintained original-source binding and exact cold replay; annotation/path coverage and supported materialization remain open"
@@ -6816,7 +6816,7 @@
       "kind": "Maintained read-only original-mmCIF source context",
       "date": "2026-11-24",
       "human_update": 256,
-      "code_commit": "aa0d6e7230aed107da271113f285847be4bf6875",
+      "code_commit": "484a4c414e70b601a137d83e5c2105fd95f3ebb5",
       "reference": "docs/topostitch-periodic.md#w256--preserve-original-cif-precision-in-a-maintained-recut-source-context",
       "result": "217source/217relocated installed checks;206installation files verified,Python3.10 syntax/installed cut-preview help. Four original3LNA/5LNA controls retain1271/1275atoms,explicit A1C3T\u2192ACL working mapping,raw original XYZ/U and byte document; compiled values exactly equalW249expected states. Source frame has distinct original binding. Attached definitions/category layouts retained; supplied symmetry table checked. The complete Willow suite ran: 2,688 passed, four skipped and 234 subtests passed; five campaign-process tests failed because sandbox process inspection/signaling was denied. Those same five passed with permission (2.48 s), unchanged source. This clears all 2,693 tests across the run and retry, not a single clean full invocation or a combined-branch integration result. Hazel exact-hash cold review: no blocking finding.",
       "limitation": "Compatibility binding is not independent producer proof or alias chemistry approval. No annotation/path validation, writer, native interpretation, edited-child rebinding or adoption. Prior W248 input scope/default callers unchanged. First missing-build-dependency-path failure retained; no native rerun; combined-branch integration remains open. P03 remains partial.",
@@ -8356,8 +8356,8 @@
       {
         "number": 256,
         "title": "Bind original mmCIF identity and precision to the saved working recut",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "484a4c414e70b601a137d83e5c2105fd95f3ebb5"
       }
     ]
   },
