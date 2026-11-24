@@ -4,7 +4,7 @@
   "updated": "2026-11-24",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "6afba5df69af25d3a6b1804a58c3278c74b973fe",
+  "audited_code_commit": "635171a0419c9887f1bf404760d9d6489a114d9c",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -1115,7 +1115,8 @@
         "W259: 168 focused source and 168 relocated installed checks; 210 installation-file hashes. Full Willow: 2752 passed, 4 skipped, 234 subtests. Four original 3LNA/5LNA controls each retain 62 declared/observed positions, no unresolved/unmodeled positions and exact W258 connection reports. Synthetic controls cover unmodeled positions, alternative monomers, shared entities, conflicting labels and unregistered polymers; Rowan uncertainty regression fixed. No writer/native call.",
         "W260: 225 focused source and 225 relocated installed checks; 210 installation hashes. Full Willow2786 passed/4 skipped/234 subtests. Four original controls preserve exact W259 report digests: all four literal entity texts match, two canonical texts match and two remain unavailable because modified-parent fields are absent. Multi-parent expansion, quoted-null lookalikes and source drift guarded. Compact 82/75-category inventory exposes six TLS groups per source plus assembly/reference dependencies. No native run or writer.",
         "W261: 158 focused source and 158 relocated installed checks, two subtests and 212 installation-file hashes. Four real controls retain 62 sites,60 edges and exact W259 coverage digests; four source paths become eight recut paths. ASU target reuse stays neutral across reserialization. No native job or writer.",
-        "W262: 169 focused source and 169 relocated installed checks, two subtests and 212 installation-file hashes. Eleven missing-API regressions now pass. Exact target-document binding rebuilds existing registration with original source polymer roles; all target codes retained. Four real default reports equal W261 exactly. Known ASU target reuse remains neutral; no writer or native job."
+        "W262: 169 focused source and 169 relocated installed checks, two subtests and 212 installation-file hashes. Eleven missing-API regressions now pass. Exact target-document binding rebuilds existing registration with original source polymer roles; all target codes retained. Four real default reports equal W261 exactly. Known ASU target reuse remains neutral; no writer or native job.",
+        "W263: 184 focused source and184 relocated installed checks,two subtests and212 installation-file hashes. Four real controls retain four reference ranges and62 positions; source cuts have four segments,recuts ten across eight paths. Every segment retains align_id/ref_id; W262 fragment hashes exact. Explicit scheme resolves unknown atom insertion fields without rewriting; unknown/reversed/unmodeled cases stay reviewable. No database interpolation,native call or writer."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
@@ -1141,14 +1142,15 @@
         "E_ORIGINAL_CIF_POLYMER_COVERAGE",
         "E_ORIGINAL_CIF_SEQUENCE_TEXT",
         "E_ORIGINAL_CIF_FRAGMENT_LINEAGE",
-        "E_ORIGINAL_CIF_TARGET_DOCUMENT"
+        "E_ORIGINAL_CIF_TARGET_DOCUMENT",
+        "E_ORIGINAL_CIF_REFERENCE_RANGES"
       ],
       "last_audit": {
         "date": "2026-11-24",
-        "code_commit": "6afba5df69af25d3a6b1804a58c3278c74b973fe",
-        "reviewer": "Linden; target provenance/status review from Rowan",
-        "human_update": 262,
-        "scope": "Declared target document binding; physical copy and writer gates open"
+        "code_commit": "635171a0419c9887f1bf404760d9d6489a114d9c",
+        "reviewer": "Linden; scope and link-slot review from Rowan",
+        "human_update": 263,
+        "scope": "Source reference membership; database correspondence and writer gates open"
       }
     },
     {
@@ -7220,6 +7222,77 @@
           "size": 3573
         }
       ]
+    },
+    "E_ORIGINAL_CIF_REFERENCE_RANGES": {
+      "kind": "Source reference ranges through recut fragments",
+      "date": "2026-11-24",
+      "human_update": 263,
+      "code_commit": "635171a0419c9887f1bf404760d9d6489a114d9c",
+      "reference": "docs/topostitch-periodic.md#w263--preserve-source-reference-ranges-without-inventing-database-alignment",
+      "result": "184 focused source and184 relocated installed checks,two subtests and212 installation-file hashes. Four real controls retain four reference ranges and62 positions; source cuts have four segments,recuts ten across eight paths. Every segment retains align_id/ref_id; W262 fragment hashes exact. Explicit scheme resolves unknown atom insertion fields without rewriting; unknown/reversed/unmodeled cases stay reviewable. No database interpolation,native call or writer.",
+      "limitation": "Source membership only; author numbering has a narrow scope and database correspondence is not inferred. New entity/chain/alignment identifiers, TLS/assembly transformation and writer remain open. Scientific payloads local.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w263-reference-ranges/before.log",
+          "sha256": "a8de13f8e68a9b183b83d90898ff48857055b136ea391125fbac2643ffdc24c1",
+          "size": 35379
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w263-reference-ranges/before-api.log",
+          "sha256": "3f3dc0a4b9b459a5e5a0712a34f36988509323afe5408139ecdf2def44c625dd",
+          "size": 30046
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w263-reference-ranges/scheme-before.log",
+          "sha256": "b1a1f48e732e36aea7899d52c3c5f9a963a07e66cb7bce9cad6f8ab095af66e1",
+          "size": 1186
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w263-reference-ranges/focused-reviewed.log",
+          "sha256": "fda6ab65f98016216df2e227f714d27615fb904c605aef40c7b786f9c1b506ce",
+          "size": 278
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w263-reference-ranges/reviewed-install/qualification.json",
+          "sha256": "d50993d7d0c99cc908c8225e2a904717af6dd14ddaad2e3752857099eb34b334",
+          "size": 13251
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w263-reference-ranges/reviewed-install/installed-tests.log",
+          "sha256": "fb6ff6e6891f35eacfded46121707882ea4333e755e8643186bb8dcdd36109b6",
+          "size": 278
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w263-reference-ranges/real-reference-ranges-reviewed.json",
+          "sha256": "f0c48c33503230bd596d64a24ac6b628d0203813062d385e0c169f97b2ad8a64",
+          "size": 811432
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w263-reference-ranges/reviewed-hashes.json",
+          "sha256": "e2533bea096b89903c3dcfd5ee5790584a1820dc53f1a907930df0be23955139",
+          "size": 235
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w263-reference-ranges/dictionary-scope.json",
+          "sha256": "61d3fce3cd470cca74284d7a2483862d91a66a586766b8778d01b1ee0e309348",
+          "size": 1541
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w263-reference-ranges/validation.json",
+          "sha256": "b963c3409fb6c6a96fea7ca3e583efff8b923d686fbfc514958d17375e8196ef",
+          "size": 4352
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -8772,8 +8845,8 @@
       {
         "number": 263,
         "title": "Carry original sequence-reference ranges through fragment splits",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "635171a0419c9887f1bf404760d9d6489a114d9c"
       }
     ]
   },

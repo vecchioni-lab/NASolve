@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W263, 2026-11-24** (code pin follows qualification).
+**Current maintained slice: W263, 2026-11-24** (code `635171a0419c9887f1bf404760d9d6489a114d9c`).
 [Source reference ranges](topostitch-preview.md#carry-source-sequence-reference-ranges-across-a-split-w263)
 now follow the saved ASU fragments. All four real controls retain 62 positions and
 four original alignment/reference IDs. Original cuts have four segments; recuts
