@@ -218,7 +218,14 @@ torsion was 54.5°, against a native target of −140° and a width of 35°.
 In the first fit, two of four chemically matched ordinary T→G links also
 had positive values (92.5° and 81.5°). All donor sugar stereocentres tested
 kept their handedness. These measurements leave the crossover conformation
-open. With the historical PDU restraints, the final two propynyl tips lay
+open. In the restarted fit the four ordinary values were −122.3°, +87.0°,
++78.4° and −176.0°. To read these eight geometric terms for any fitted
+continuation, use `cif-doctor phosphate-image RUN --checkpoint ID
+--saved-continuation-id NUMBER --restraint-deviations --json`. The target
+and its weight come from the starting native chemistry. The junction and
+ordinary-link coordinates come from the named written checkpoint.
+
+With the historical PDU restraints, the final two propynyl tips lay
 2.338/1.243 Å from their ring planes. Repeat under the corrected preparation
 before promoting a PDU model.
 

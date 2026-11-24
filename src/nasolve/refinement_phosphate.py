@@ -259,7 +259,7 @@ def validate_lineage(run, registry, parent, intent):
     _check_inherited_scope(_prior_intent(run, registry, parent), ancestor["id"], observations)
 
 
-def saved_refinement(run, checkpoint, *, identifier=None):
+def saved_refinement(run, checkpoint, *, identifier=None, restraint_deviations=False):
     """Read the restraint evidence from this completed checkpoint's own fit."""
     from .refinement_parallelity import PHOSPHATE_POLICIES, read_execution_request, validate_execution
 
@@ -299,6 +299,11 @@ def saved_refinement(run, checkpoint, *, identifier=None):
     }
     if len(identifiers) > 1:
         evidence["registered_continuation_ids"] = identifiers
+    if restraint_deviations:
+        from .cif_phosphate_reference import measure_written_phosphate
+        model = checkpoint.get("model")
+        path = _ref_path(model, "written phosphate model", run)
+        evidence["written_restraint_geometry"] = measure_written_phosphate(path, observation, model_sha256=model.get("sha256"))
     return intent["ancestor"], _frozen_registration(run, intent, observation), evidence
 
 

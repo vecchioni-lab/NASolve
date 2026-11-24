@@ -329,6 +329,8 @@ def build_parser() -> argparse.ArgumentParser:
                               help="read the crystal bond and native forces saved by this numbered phosphate refinement")
     image_choice.add_argument("--saved-continuation-id", type=int, action=_SingleContinuation, metavar="ID",
                               help="inspect this member of the phosphate set fitted in the named checkpoint")
+    phosphate_image.add_argument("--restraint-deviations", action="store_true",
+                                help="measure the saved fit's bond, four angles and three torsions against the native targets and intact links")
     _phosphate_topology_arguments(phosphate_image)
     phosphate_image.add_argument("--duplex-partners", nargs=2, metavar=("O3_PARTNER", "P_PARTNER"),
                                  help="measure oxygen direction across two assigned stacked pairs; give each opposite CHAIN:NUMBER")
@@ -1771,6 +1773,10 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
             if args.checkpoint is None or registered is None:
                 raise ValueError("--registration-checkpoint needs a numbered run, --checkpoint and --registered-continuation")
             options["registration_checkpoint"] = args.registration_checkpoint
+        if args.restraint_deviations:
+            if args.checkpoint is None:
+                raise ValueError("Restraint deviations require a saved continuation in a numbered checkpoint")
+            options["restraint_deviations"] = True
         if args.checkpoint is None:
             if args.saved_continuation or args.saved_continuation_id is not None:
                 raise ValueError("--saved-continuation needs a numbered run and --checkpoint")
@@ -1803,6 +1809,16 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
                 print(f"{subject} {terms['bond_simple']} crystal bond, {terms['angle']} angles and {terms['dihedral']} torsions.")
                 print(f"Working reflections {counts['start']['work']} → {counts['finish']['work']}. "
                       f"Free reflections {counts['start']['free']} → {counts['finish']['free']}.")
+                if "written_restraint_geometry" in fit:
+                    for term in fit["written_restraint_geometry"]["terms"]:
+                        names = "–".join(atom for _, atom in term["atoms"])
+                        measurement = term["written"]
+                        if measurement["value"] is None:
+                            print(f"{names} unmeasured. {measurement['reason']}.")
+                        else:
+                            unit = "Å" if term["kind"] == "bond_simple" else "°"
+                            print(f"{names} {measurement['value']:.3f}{unit}, target {term['target']:.3f}{unit}, "
+                                  f"{measurement['delta_in_widths']:+.2f} restraint widths.")
             transfer = result.get("registered_continuation", {}).get("frame_transfer")
             if transfer is not None:
                 print(f"Registration from {transfer['source_checkpoint']}. "

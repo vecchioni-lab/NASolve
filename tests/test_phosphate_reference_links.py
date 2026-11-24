@@ -117,3 +117,61 @@ def test_missing_origin_cannot_identify_a_reference_bond():
     native["geometry"]["proxy_details"]["bond_simple"][0]["origin_id"] = False
     with pytest.raises(ValueError, match="bond origin"):
         read(native)
+
+def test_written_restraints_use_the_registered_image_and_the_intact_links(tmp_path):
+    pytest.importorskip("gemmi")
+    from hashlib import sha256
+    from nasolve.cif_phosphate_reference import measure_written_phosphate
+    from .test_phosphate_restraints import inspection
+
+    row = inspection()
+    row.update(cell=[20., 20., 20., 90., 90., 90.], space_group="P 1", o3_image="x-1,y,z")
+    row["registered_continuation"]["oxygen_operator_xyz"] = row["o3_image"]
+    donor = {"O3'": (1., 0., 0.), "C3'": (1., 1., 0.), "C4'": (1., 1., -1.)}
+    acceptor = {"P": (2.5, 0., 0.), "OP1": (3., 1., -.5), "OP2": (2.8, -1., -.3),
+                "O5'": (2.5, .6, 1.), "C5'": (3.2, 1., 1.8)}
+    links = [(row["o3"][0], row["phosphate"][0]), *row["native_reference_links"]["groups"][0]["links"]]
+    lines = ["CRYST1   20.000   20.000   20.000  90.00  90.00  90.00 P 1           1"]
+    for i, (left, right) in enumerate(links):
+        for site, code, sites in ((left, "RX9", donor), (right, "Q2", acceptor)):
+            chain, number = site.split(":")
+            for name, (x, y, z) in sites.items():
+                if i == 0 and site == left:
+                    x += 20.
+                if i == 1 and name == "C4'":
+                    z *= -1.
+                occupancy = 0. if i == 2 and name == "OP2" else 1.
+                lines.append(f"ATOM  {len(lines):5} {name:>4} {code:>3} {chain}{int(number):4}    "
+                             f"{x:8.3f}{y+i*4:8.3f}{z:8.3f}{occupancy:6.2f}{30:6.2f}          {name[0]:>2}")
+    model = tmp_path / "written.pdb"
+    model.write_text("\n".join([*lines, "END", ""]))
+    digest = sha256(model.read_bytes()).hexdigest()
+    report = measure_written_phosphate(model, row, model_sha256=digest)
+    assert report["written_model_sha256"] == digest
+    terms = {tuple(atom for role, atom in t["atoms"]): t for t in report["terms"]}
+    assert len(terms) == 8
+    bond = terms["O3'", "P"]
+    assert bond["written"]["value"] == pytest.approx(1.5)
+    assert bond["written"]["delta_in_widths"] == pytest.approx((1.5 - 1.593) / .02)
+    torsion = terms["C4'", "C3'", "O3'", "P"]
+    assert torsion["periodicity"] == 2
+    assert torsion["written"]["value"] == pytest.approx(90)
+    assert torsion["written"]["delta"] == pytest.approx(34)
+    peers = torsion["ordinary_links"]
+    assert [[t["o3_site"], t["phosphate_site"]] for t in peers] == links[1:]
+    assert [t["value"] for t in peers] == pytest.approx([-90, 90])
+    missing = terms["O3'", "P", "OP2"]["ordinary_links"][1]
+    assert missing["value"] is None and "OP2" in missing["reason"]
+    assert all(t["value"] is not None for t in bond["ordinary_links"])
+    collinear = [line[:30] + f"{1.:8.3f}{6.:8.3f}{0.:8.3f}" + line[54:]
+                 if line.startswith("ATOM") and line[21] == "K" and line[12:16].strip() == "C4'" else line
+                 for line in lines]
+    straight = tmp_path / "collinear.pdb"
+    straight.write_text("\n".join([*collinear, "END", ""]))
+    changed = measure_written_phosphate(straight, row, model_sha256=sha256(straight.read_bytes()).hexdigest())
+    undefined = next(t for t in changed["terms"] if t["atoms"] == torsion["atoms"])["ordinary_links"][0]
+    assert undefined["value"] is None and "Collinear" in undefined["reason"]
+    with pytest.raises(ValueError, match="checksum"):
+        measure_written_phosphate(model, row, model_sha256="0"*64)
+    with pytest.raises(ValueError, match="crystal frame"):
+        measure_written_phosphate(model, dict(row, space_group="P -1"), model_sha256=digest)

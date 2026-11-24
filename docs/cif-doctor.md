@@ -281,6 +281,14 @@ For a fit with several bonds, use `--saved-continuation-id 2` to inspect
 the chosen member. The result identifies all the continuations Phenix fitted
 together. Asking for an unspecified member lists the available IDs.
 
+Add `--restraint-deviations` to measure the O3′–P bond, its four angles and
+three backbone torsions from the checkpoint coordinates. Combine it with
+`--json` to see the same measurements at each ordinary link that supplied the
+native targets. A signed torsion difference accounts for periodicity. A
+restraint width comes from the weight used in refinement. Assess local density
+separately. Missing or unoccupied atoms and undefined torsions have an explicit
+reason.
+
 The report measures the written model, reads its final geometry listing and
 shows how many bond, angle and torsion restraints Phenix applied during this
 fit. It also reports the starting and final work/free counts. Inspection can

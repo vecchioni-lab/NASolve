@@ -247,8 +247,8 @@ all three earlier fitted controls. Each printed D:7–C:8 as a nonbonded
 contact. The two existing PDU starting-model captures already
 provide four intact T→G reference links for D:7–C:8 and two A→C reference
 links for B:7–B:1. Each gives a 1.607 Å bond, four angles and three torsions.
-AutoRefine currently carries one source-bound continuation per round.
-It refuses two different IDs in the same command before allocating an attempt.
+AutoRefine can fit both registered continuations together and preserve them
+on restart. Repeating the singular option with conflicting IDs is rejected.
 The [two-junction test](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold)
 now carries both distinct images through a five-cycle standalone refinement.
 The PDU tip heights were 0.283 and 0.476 Å, close to the corresponding
@@ -256,7 +256,9 @@ single-link control. C560 carried the complete set through two numbered
 five-cycle rounds, including a restart after relocating the dataset. Both
 links, D:1 terminal geometry and the original free set survived. The
 historical PDU tips still departed from their ring planes, and the D:7
-torsion and local density require review. Next, carry the registered
+torsion and local density require review. C561 measures all eight terms in
+the written model, including actual conformations at the same ordinary links
+that supplied the targets. Reuse it after the next fit. Carry the registered
 connections through the C290 PostMR/ReadySet preparation with the corrected
 PDU dictionary and removal of the two superseded site edits. Repeat the
 same written-model and local-map checks on that chemistry.

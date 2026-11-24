@@ -20,6 +20,9 @@ entries are reconstructed from repository history.
   and carries that complete set into subsequent rounds. Inspect a single member
   of the fit with `cif-doctor phosphate-image --saved-continuation-id ID`.
   Older one-link workers retain their original source bytes.
+  Add `--restraint-deviations` to measure the written bond, four angles and
+  three torsions against the fitted targets. JSON includes the actual values
+  on each chemically matched ordinary link in that same checkpoint.
 
 - When several inspected phosphates each lack both OP3 and a verified local
   incoming O3′–P link, the preparation diagnostic names those sites together.

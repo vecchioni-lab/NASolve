@@ -2,13 +2,20 @@
 from collections import Counter, defaultdict
 from hashlib import sha256
 import json
-from math import isfinite
+from math import degrees, dist, isfinite, sqrt
 from pathlib import Path
 
 from .cif_attachment_native import _capture, _native_atoms
 from .cif_native_parent_chemistry import _COMPONENT_CATEGORIES, _PROXY_FAMILIES, _PROXY_STATUS_FAMILIES
 from .cif_native_target_comparison import _mappings
 from .cif_terminal_qualification import _bound_proxy_endpoints
+from .cif_dihedral_conditioning import dihedral_geometry
+from .cif_phosphate_continuation import _endpoint_atoms
+from .cif_phosphate_restraints import _reference_group
+from .topostitch_contacts import _angle
+from .topostitch_graph import _operator
+from .topostitch_images import _cartesian, _fractional
+from .topostitch_periodic import _op_key, crystal_from_pdb_bytes
 
 
 def _packed(value):
@@ -151,3 +158,87 @@ def read_phosphate_references(receipt, model_bytes, *, phosphate, o3):
         raise ValueError("Native capture changed during phosphate reference comparison")
     result.update(native_receipt_sha256=sha256(snapshots[path]).hexdigest(), phenix_version=proof["phenix_version"])
     return result
+
+
+def _written_measurement(term, points, target, width, gemmi):
+    ordered = []
+    for role, name in term["atoms"]:
+        xyz = points.get((role, name))
+        if xyz is None:
+            return dict(value=None, reason=f"Missing or unoccupied {role} {name} with its expected residue and element")
+        ordered.append(xyz)
+    kind = term["kind"]
+    if kind == "bond_simple":
+        value = dist(*ordered)
+    elif kind == "angle":
+        value = _angle(ordered)
+        if value is None:
+            return dict(value=None, reason="Coincident atoms leave the angle undefined")
+    else:
+        condition = dihedral_geometry(ordered)
+        if not condition["geometry_defined"]:
+            return dict(value=None, reason="Collinear or coincident atoms leave the torsion undefined")
+        value = degrees(gemmi.calculate_dihedral(*(gemmi.Position(*p) for p in ordered)))
+        if not isfinite(value):
+            return dict(value=None, reason="The signed torsion could not be measured")
+    delta = value - target
+    result = dict(value=value)
+    if kind == "dihedral":
+        turn = 360. / term["parameters"]["periodicity"]
+        delta = (delta + turn / 2) % turn - turn / 2
+        result["near_collinear_review"] = condition["near_collinear_review"]
+    return dict(result, delta=delta, delta_in_widths=delta / width)
+
+
+def measure_written_phosphate(model, starting_inspection, *, model_sha256):
+    """Measure a fitted crystal bond and its ordinary reference links in the written model.
+
+    All donor atoms follow the registered image. The ordinary links retain the
+    identity image used by their native proxies. Widths refer to restraints.
+    """
+    group = _reference_group(starting_inspection)
+    donor, donor_code, _ = starting_inspection["o3"]
+    acceptor, acceptor_code, _ = starting_inspection["phosphate"]
+    links = [(donor, acceptor), *group["links"]]
+    raw, atoms = _endpoint_atoms(model, {site for pair in links for site in pair})
+    written_digest = sha256(raw).hexdigest()
+    if not isinstance(model_sha256, str) or written_digest != model_sha256.casefold():
+        raise ValueError("Written phosphate model differs from its checkpoint checksum")
+    gemmi, cell, setting = crystal_from_pdb_bytes(raw)
+    spacegroup = gemmi.find_spacegroup_by_name(setting)
+    source_group = gemmi.find_spacegroup_by_name(starting_inspection["space_group"])
+    if (list(cell.parameters) != starting_inspection["cell"] or source_group is None
+            or source_group.hall != spacegroup.hall):
+        raise ValueError("The written phosphate model differs from the registered crystal frame")
+    operation = _operator(starting_inspection["o3_image"], gemmi, {_op_key(op) for op in spacegroup.operations()})
+    needed = {name for term in group["terms"] for _, name in term["atoms"]}
+    by_site = defaultdict(dict)
+    for (site, code, name, _, element, _, occupied), xyz in atoms.items():
+        if name in needed and occupied and element == name[0]:
+            by_site[site, code][name] = xyz
+    positions = []
+    for i, (left, right) in enumerate(links):
+        points = {}
+        for name, xyz in by_site[left, donor_code].items():
+            if i == 0:
+                xyz = _cartesian(operation.apply_to_xyz(_fractional(xyz, cell, gemmi)), cell, gemmi)
+            points["o3-site", name] = xyz
+        for name, xyz in by_site[right, acceptor_code].items():
+            points["phosphate-site", name] = xyz
+        positions.append(points)
+    terms = []
+    for term in group["terms"]:
+        kind, params = term["kind"], term["parameters"]
+        target = params["distance_ideal"] if kind == "bond_simple" else params["angle_ideal"]
+        width = 1. / sqrt(params["weight"])
+        written, *peers = [_written_measurement(term, points, target, width, gemmi) for points in positions]
+        ordinary = [dict(o3_site=left, phosphate_site=right, **measurement)
+                    for (left, right), measurement in zip(group["links"], peers, strict=True)]
+        row = dict(kind=kind, atoms=term["atoms"], units="angstrom" if kind == "bond_simple" else "degrees",
+                   target=target, restraint_width=width, written=written, ordinary_links=ordinary)
+        if kind == "dihedral":
+            row["periodicity"] = params["periodicity"]
+        terms.append(row)
+    return dict(written_model_sha256=written_digest, reference_terms_sha256=group["terms_sha256"],
+                o3_site=donor, phosphate_site=acceptor, oxygen_operator_xyz=starting_inspection["o3_image"],
+                terms=terms)

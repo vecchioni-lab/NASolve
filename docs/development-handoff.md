@@ -1,7 +1,18 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-24, C560 two crystal bonds through a numbered restart — Rowan**.
+Updated **2026-11-24, C561 measuring the written crossover geometry — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+C561 lets `cif-doctor phosphate-image` show how far each fitted bond, angle
+and torsion finished from its actual Phenix target. Add `--restraint-deviations`
+to a saved-continuation inspection. JSON also reports the same measurements on
+the intact links that supplied those targets. Source and relocated installation
+agreed with an independent coordinate measurement on all 176 values across the
+four archived checkpoints refine-006 through refine-009. Their six earlier
+default JSON reports remained byte-identical. No refinement was run for C561.
+The ten focused files listed below passed 249 tests and 59 subtests on source.
+Six reader and checkpoint files passed 112 tests and seven subtests on the
+relocated installation. The full suite remains due before merge.
 
 C560 carried two crystal bonds through two ordinary five-cycle rounds on
 the archived PDU:PDU parent. Both kept their original sites, crystal
