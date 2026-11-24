@@ -1609,6 +1609,23 @@ across four ordinary residues. The corrected A112 sugar angle should clear.
 Use the existing [deposition checks](pdb-deposition.md) for the two genuine
 symmetry phosphodiesters. This item is a read-only audit before submission.
 
+Use the passed 3LNA and 5LNA entries as paired controls for this Cedar/Willow
+milestone. The [deposition guide](pdb-deposition.md#what-the-locked-dna-depositions-established)
+records the observed outcome and the distinction between local candidates and
+an identified submission. Extend the same read-only check to modified sites
+using their actual component, stereocentres, base attachment, ring closure and
+both polymer neighbours. Report standard-library and component-specific
+targets separately. Preserve the source and parameters of each target.
+
+The downstream constructor should first try the supplied definition on the
+existing scaffold. Where local refinement leaves a cage distorted, compare
+a reference-supported connected pose with the unchanged parent. Verify the
+two sugar–phosphate joins, chirality, nearby pairs, stacking, displacement
+and the same free reflections after releasing any temporary coordinate holds.
+Record which improvements survive release. Leave selection with the operator
+where the maps allow multiple poses. Willow owns the identity and images
+across a recut. Cedar owns the chemistry checks on the written model.
+
 **Alder final-stage reporting holdover (2026-11-17, `ccb5e769`):** a passive exact-
 endpoint replay localizes one DF child's final R/B shift inside native
 `update_all_scales`. XYZ, occupancy, fp/fdp, phase probabilities and F_mask remain
