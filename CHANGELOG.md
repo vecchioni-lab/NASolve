@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record matched DNA-only native initialization
+
+- Qualify both exact source-bound inputs through the existing native owner with
+  actual MLHL, DNA XYZ/group-B masks, fixed Hg and complete image-force attachment.
+  Both are completed dry runs; optimization-stage qualification remains pending.
+- Preserve the failed selector-serialization attempt and diagnosed correction,
+  independent cold checks, stopped workers and compact recovery evidence.
+  Documentation only; no runtime/schema/default change or selected science model.
+
 ### Scope matched DNA relaxation with protected metal state
 
 - Record source-qualified original/constructed inputs and explicit DNA-only XYZ

@@ -71,7 +71,8 @@ were 0.220/0.430σ and −2.712/−2.557σ. These 5.06 Å model-assisted maps in
 reflections. Better geometry does not establish better density support. Hg remains
 Q=1, B=69.52 Å² and f″=0 (unmeasured); environmental-B preparation has not run.
 
-**Next:** admit the separately scoped DNA-only XYZ/group-B comparison below,
+**Next:** admit optimization-stage observation for the initialization-qualified
+DNA-only XYZ/group-B comparison below,
 holding Hg XYZ/Q/B/f′/f″ throughout while retaining the declared crystal connection
 and complete source chemistry. The earlier
 whole-model control lacks the same join and cannot silently substitute. Review
@@ -163,6 +164,71 @@ files and the small local checkout only: no runtime/schema/default/migration,
 scientific upload, pruning or full-suite claim. The next pass starts at protocol
 admission, not another seed search or replay of completed tests. A01 remains
 partial and A02 remains gated.
+
+<a id="a01-dna-initialization-2026-11-24"></a>
+
+### Native initialization now qualifies both exact starting models
+
+The bounded follow-up used the existing frozen V11 phosphate and compatible
+refinement owners in an explicitly **standalone research caller**. Both original
+and constructed inputs complete **Phenix 2.2.1-6174 dry runs**: 9.71 s and 6.12 s,
+zero refinement cycles, all owned processes stopped. No checkpoint ancestry was
+invented. The source-bound standalone pattern is consistent with Cedar's C558
+example; this is not ordinary numbered-run adoption or a full fit.
+
+| Actual initialized and returned state | Original | Constructed |
+| --- | ---: | ---: |
+| DNA atoms in coordinate mask | 858 | 858 |
+| Explicit DNA group-B groups | 42 | 42 |
+| Reflections / original Free observations | 1,151 / 59 | 1,151 / 59 |
+| Effective target | MLHL | MLHL |
+| Hg B (Å²) / Q | 69.52 / 1.00 | 69.52 / 1.00 |
+| Refinement cycles executed | 0 | 0 |
+
+The observer checks actual source-indexed HL/Free-R, original observations under
+the admitted native scaling, exact atom identities, coordinate/ADP masks and
+fixed scattering. Hg XYZ/f′/f″ are unchanged, as are **all** starting coordinates,
+B and Q during these dry runs. Atomic isotropic ADP back-trace is disabled.
+One explicit geometry-gradient call per arm verifies all image angle/torsion
+forces while the owner is active, with the image bond and four second-shell
+exclusions intact. This is an initialization check, **not optimizer execution**.
+Native/output/observer bindings restore after each run. No final model or map
+is written or selected.
+
+**A real caller failure was recovered without changing scientific scope.**
+Attempt 01 stopped before the initialized-driver observer: this installed native
+selector treats quoted `resid '1'` and `resname 'DG'` as empty matches, while
+their unquoted forms select the expected atoms. A small direct parser diagnosis
+isolated the issue. Attempt 02 uses unquoted safe source identifiers in the 43
+DNA declarations; the exact membership assertions are unchanged. The failed
+attempt, logs, parser result and stopped process remain intact, and its second
+arm was not launched. No native owner or W252 fixed-B guard was changed.
+
+**Validation and limits:** 10,354 live assertions per successful arm primarily
+cover repeated per-atom state invariants; **88 cold receipt/state checks** confirm
+the saved state, exact input retention, matched non-XYZ state and stopped jobs.
+Indexed HL/Free-R equality was checked inside the frozen native observer against
+independently read source arrays; cold review authenticates that receipt/method,
+not a second native array reconstruction. Source/caller code and all input
+checksums are retained. Neither dry run demonstrates fixed Hg during later
+coordinate, real-space, ADP or scaling optimization stages.
+
+**Next:** add bounded observations at those actual stages inside the existing
+owner, then admit the two matched fits only if the fixed-metal, target, phase,
+selection and image-force contracts hold. Preserve original/seed and independent
+outputs; no parent selection, environmental-B assignment or f″. A01 remains
+partial; A02 remains gated. Do not repeat the completed initialization or geometry
+checks without a changed input, code or unresolved admission question.
+
+**Evidence:** local `branch-artifacts/Alder/a01-dna-initialization-20261124-01/`
+holds the failure and parser diagnosis; `a01-dna-initialization-20261124-02/`
+holds the matched dry runs, `cold-review.json`, exact commands and restart.
+Runners A656–A662 are private experimental preparation/observation/report methods.
+The two evidence nodes occupy about **8.64 MB**, retained as source/recovery
+proof; the checkout links to them rather than copying model/map files. This
+follow-up updates four maintained documentation files and the existing local
+checkout only. No shared runtime/schema/default/migration change, generated
+science in Git, automatic pruning, full suite or unchanged native replay.
 
 <a id="a01-phosphate-cap-2026-11-24"></a>
 

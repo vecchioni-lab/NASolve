@@ -21,8 +21,11 @@ Rwork/Rfree remain high (0.3081/0.3427), with weak/negative local map support.
 Do not promote the model or infer f″. The [matched DNA-only XYZ/group-B design](metal-development-handoff.md#a01-dna-only-comparison-design-2026-11-24)
 now has 1,240 source/input and 20 source/design checks: 858 DNA atoms and 42 groups,
 with Hg XYZ/Q/B/f′/f″ held throughout. Explicit groups and disabled atomic ADP
-back-trace are required. Native protocol/lineage admission is next; no broader fit
-has run. The old whole-model control lacks the join. D7→C8 and coupled metal/base
+back-trace are required. Both exact inputs now [pass native initialization](metal-development-handoff.md#a01-dna-initialization-2026-11-24)
+through the existing V11 owner (zero cycles; 88 cold checks), with source phases,
+flags and fixed Hg observed. A recovered selector-serialization failure remains
+preserved. Optimization-stage admission is next; no broader fit has run.
+The old whole-model control lacks the join. D7→C8 and coupled metal/base
 placement remain distinct.
 The report/figure is `ScienceCheckouts/Hazel/2026-11-24_ft-seed-receiving/index.html`.
 Exact evidence is under the three `Alder/a01-constructed-seed-*` anchors dated

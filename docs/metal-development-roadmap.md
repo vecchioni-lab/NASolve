@@ -22,9 +22,11 @@ selected parent or f″ eligibility. See the [current handoff](metal-development
 
 The [two-arm DNA-only XYZ/group-B design](metal-development-handoff.md#a01-dna-only-comparison-design-2026-11-24)
 is now input-qualified (1,240 cold checks plus 20 source/design assertions).
-Next admit its actual execution/lineage: explicit 858-atom DNA mask and 42 ADP
-groups, Hg XYZ/Q/B/f′/f″ held throughout, atomic ADP back-trace disabled, declared
-crystal join and original work/free/HL retained. No broader fit has run.
+Both source-bound standalone arms now [pass native initialization](metal-development-handoff.md#a01-dna-initialization-2026-11-24):
+actual MLHL, explicit 858-atom DNA mask, 42 ADP groups, fixed Hg XYZ/Q/B/f′/f″,
+original work/free/HL and image forces. Zero refinement cycles; 88 cold checks.
+Next qualify invariance through actual optimization stages before the paired fit.
+No fabricated numbered ancestry, broader fit or parent selection.
 The old whole-model control lacks the same join and cannot be silently reused.
 Compare actual maps/scaling and broad geometry; preserve the constructed-start
 versus converged-parent distinction. D7→C8, coupled metal/base placement and
