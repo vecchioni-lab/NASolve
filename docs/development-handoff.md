@@ -38,6 +38,18 @@ conflate retained original rows with added coverage of previously implicit graph
 edges. P02 GUI, special-position/source validity, native lifecycle and changed-child/
 inverse-edit binding remain separate gates. No ordinary workflow activates this API.
 
+The next bounded experiment can reuse Cedar's public `inspect_deposition_links`
+for its `sequence_tables_checked`, `sequence_conflicts` and
+`unlabelled_polymer_atom_rows`. Do not use its whole-file CHECKED status as a
+sequence approval, or its unchanged-label processed-file comparator on recut
+labels. Willow must separately account for original entity/asym/site coverage,
+unregistered polymer atoms and declared sequence positions lacking coordinates.
+Missing tables stay unavailable; an empty conflict list does not certify them.
+W249 already exercised diagnostic sequence output and native scattering, so reuse
+those controls instead of repeating Phenix. Do not automatically set nonstandard
+linkage flags or define new chemical entities merely because an ASU path splits.
+Output chain/entity semantics require an explicit supported policy before writing.
+
 W257's declared paths remain qualified: 121 source/121 installed; full Willow
 2,705 tests, four skips and 234 subtests. Four exact W249 path/operator replays
 retain all 1,271/1,275 atoms and 62 nodes/60 backbone edges. It supplies the site
