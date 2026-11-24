@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W261 — Preserve fragment lineage without promoting an ASU map to an oligo
+
+- Add an optional read-only observer joining original CIF sites, registered copy/
+  logical identities and visible recut paths through existing owners. Retain every
+  declared backbone edge, including cross-entity and wrapped transitions.
+- Keep supplied registrations neutral until target-document qualification. Detect
+  re-use of the saved ASU target across reserialization; preserve partial/missing
+  target sites separately from source residues without coordinates.
+- Qualify focused source/relocated installation and the four existing LNA controls.
+  No registration schema change, writer, coordinates, default or native call.
+
 ### W260 — Compare deposited sequence text without guessing modified parents
 
 - Add an optional source-bound literal/canonical sequence-text observation using

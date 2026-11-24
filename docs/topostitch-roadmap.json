@@ -1119,7 +1119,7 @@
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "W261: define a reviewed read-only output-declaration/reference plan before a writer. Keep source entity/asym, full oligo/copy/repeat identity, unmodeled positions and proposed path labels separate. Audit author numbering and all affected category references, including assemblies/NCS/TLS/geometry/unobserved sites. Cross-entity and wrapped paths require explicit fragment semantics; unknown nick phase and absent component parents remain unresolved. Do not infer entities, free termini or nonstandard-linkage flags from cuts. Reuse W249 native/scattering and W256-W260 source controls. P02 GUI, source validity, native/edited-child lifecycle and Cedar competing-partner protection remain separate gates.",
+      "next_action": "W262: optionally bind an actual existing sequence-family-target document by exact SHA and reconstruct its registration through public build_construct_registration against the same model/copy map. Require exact registration equality; preserve target codes for unmapped positions and reject same-site-name/wrong-sequence targets. Known ASU target reuse remains neutral. Real LNA controls stay source-only without an independent lab target. Then scope output entity/reference and assembly/TLS transformations, not a new writer by implication. Physical copy/nick phase, P02 graphical review and native/edited-child lifecycle remain separate gates.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -7269,8 +7269,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 260,
-    "next": 261,
+    "current": 261,
+    "next": 262,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -8640,6 +8640,12 @@
         "title": "Compare original sequence text and preserve unresolved component parents",
         "state": "RECORDED",
         "code_commit": "66e9760ed3d728fe2639d0962ba43ec11c59f104"
+      },
+      {
+        "number": 261,
+        "title": "Retain fragment source/copy lineage without inferring a full oligo",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   },

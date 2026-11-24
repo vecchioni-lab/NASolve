@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W260 — Compare original sequence text and preserve unresolved component parents.** Next: W261.
+**Current update: W261 — Retain fragment source/copy lineage without inferring a full oligo.** Next: W262.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W251 | Retain the phased writer failure and distorted local closure | RECORDED |
 | W252 | Complete phased output without changing the fitted structure | RECORDED |
 | W253 | Observe a failed bounded geometry trial without claiming an optimum | RECORDED |
 | W254 | Retain compact failed-proposal evidence without changing the optimizer | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W258 | Preserve every original connection row and its physical image endpoints | RECORDED |
 | W259 | Preserve original polymer coverage and unmodeled sequence positions | RECORDED |
 | W260 | Compare original sequence text and preserve unresolved component parents | RECORDED |
+| W261 | Retain fragment source/copy lineage without inferring a full oligo | IN_PROGRESS |
 
 ## Finish lines
 
@@ -309,7 +309,7 @@ Write a new ASU representative while preserving the physical scattering object e
 - Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.
 - Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap.
 
-**Next action:** W261: define a reviewed read-only output-declaration/reference plan before a writer. Keep source entity/asym, full oligo/copy/repeat identity, unmodeled positions and proposed path labels separate. Audit author numbering and all affected category references, including assemblies/NCS/TLS/geometry/unobserved sites. Cross-entity and wrapped paths require explicit fragment semantics; unknown nick phase and absent component parents remain unresolved. Do not infer entities, free termini or nonstandard-linkage flags from cuts. Reuse W249 native/scattering and W256-W260 source controls. P02 GUI, source validity, native/edited-child lifecycle and Cedar competing-partner protection remain separate gates.
+**Next action:** W262: optionally bind an actual existing sequence-family-target document by exact SHA and reconstruct its registration through public build_construct_registration against the same model/copy map. Require exact registration equality; preserve target codes for unmapped positions and reject same-site-name/wrong-sequence targets. Known ASU target reuse remains neutral. Real LNA controls stay source-only without an independent lab target. Then scope output entity/reference and assembly/TLS transformations, not a new writer by implication. Physical copy/nick phase, P02 graphical review and native/edited-child lifecycle remain separate gates.
 **Evidence:** [E_REPRESENTATIVE_SCATTERING](#e_representative_scattering), [E_ORBIT_PERMUTATIONS](#e_orbit_permutations), [E_JOINT_FRAME_TARGET](#e_joint_frame_target), [E_BOUND_TENSOR_TRANSPORT](#e_bound_tensor_transport), [E_SAVED_FRAME_BINDING](#e_saved_frame_binding), [E_SPECIAL_POSITION_SCATTERING](#e_special_position_scattering), [E_STAGGERED_DUPLEX_RECUT](#e_staggered_duplex_recut), [E_SAVED_SCATTERING_BINDING](#e_saved_scattering_binding), [E_TWO_ROUTE_REPRESENTATIVE_OBSERVATION](#e_two_route_representative_observation), [E_SERIALIZATION_READBACK_OBSERVATION](#e_serialization_readback_observation), [E_SERIALIZED_RECUT_OBSERVER](#e_serialized_recut_observer), [E_FULL_PRECISION_BOUNDARY_METADATA](#e_full_precision_boundary_metadata), [E_ORIGINAL_CIF_SOURCE_CONTEXT](#e_original_cif_source_context), [E_ORIGINAL_CIF_PATH_PROJECTION](#e_original_cif_path_projection), [E_ORIGINAL_CIF_CONNECTION_TRANSPORT](#e_original_cif_connection_transport), [E_ORIGINAL_CIF_POLYMER_COVERAGE](#e_original_cif_polymer_coverage), [E_ORIGINAL_CIF_SEQUENCE_TEXT](#e_original_cif_sequence_text).
 **Last audit:** 2026-11-24, Linden; parent/null and output-policy guidance from Rowan, [W260](https://github.com/vecchioni-lab/NASolve/commit/66e9760ed3d728fe2639d0962ba43ec11c59f104); Source sequence-text evidence and fragment-policy dependency audit; writer/native gates open.
 

@@ -14087,3 +14087,40 @@ Correct per-atom U transport does not by itself qualify copying source-frame TLS
 metadata into a recut. The tag inventory is a planning aid, not complete foreign-key
 or frame validation. Rowan agrees to an internal fragment preview with explicit
 residue-to-oligo/copy/position binding; deposition entity encoding stays gated.
+
+## W261 — Carry fragment lineage without inventing full oligo identity
+
+The new isolated observer composes existing W259 source coverage, saved graph/path
+and construct-registration validation. It preserves original atom/site/author IDs,
+registered logical/copy IDs and images, and all declared backbone edges. Optional
+SHA-bound registrations are checked against the actual working-coordinate identity;
+they remain neutral declarations pending the next target-document check. No source
+or existing registration schema changed. See the [contract](topostitch-preview.md#carry-original-identity-through-visible-fragments-w261).
+
+**Evidence:** four exact original LNA controls retain 62 sites, 60 backbone edges
+and the two original cross-entity/wrapped transitions. Original paths number four;
+recut paths number eight. Every W259 coverage-report digest remains exact. The
+saved target is reviewed ASU coordinates, not a full synthesized strand, so these
+real controls remain source-only. Synthetic independently declared mappings cover
+partial copies, target identity mismatch, ordering, source drift and relocation.
+No native or new coordinate experiment was run.
+
+**Validation:** 158 focused source checks (11.64 s), 158 relocated installed checks
+and two subtests. Installation verifies 212 files after relocation and removal of the original build/install paths (installed checks: 10.62 s).
+Python 3.12.14/Gemmi 0.7.5. Full W260 baseline remains 2,786/four skips/234 subtests;
+no full-suite repeat for this isolated observer under the resumed focused-check
+instruction. Source selection: fragment, polymer, paths, original-source, graph
+and construct-registration tests, with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`
+plus the qualified dependency path. Exact commands/pins live at NASolve anchor
+`branch-artifacts/willow/w261-fragment-lineage/validation.json`.
+
+**Failures retained:** 14 initial missing-API failures; two fixtures incorrectly
+used coordinate sort order for reversed strands. Correct declarations pass and
+the sort-order negative stays. Rowan's exact/reserialized ASU-target reuse cases
+both failed before correction; retained target identity now blocks their promotion.
+Unmapped logical targets are never silently called absent-coordinate residues.
+Registry-only mappings, physical copy/repeat/nick phase and external target content
+remain unverified. No writer, output entities, assembly/TLS transformation or
+scientific adoption; all generated evidence stays local.
+
+**Next:** W262: optionally bind an actual existing sequence-family-target document by exact SHA and reconstruct its registration through public build_construct_registration against the same model/copy map. Require exact registration equality; preserve target codes for unmapped positions and reject same-site-name/wrong-sequence targets. Known ASU target reuse remains neutral. Real LNA controls stay source-only without an independent lab target. Then scope output entity/reference and assembly/TLS transformations, not a new writer by implication. Physical copy/nick phase, P02 graphical review and native/edited-child lifecycle remain separate gates.

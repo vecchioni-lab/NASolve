@@ -1227,6 +1227,14 @@ canonical letters require explicit source parent metadata; unresolved alternativ
 or multi-parent expansions cannot be flattened by positional string indexing.
 It does not change W259 or assign output entities. See the
 [W260 contract](topostitch-preview.md#compare-original-literal-and-canonical-sequence-text-w260).
+`topostitch_cif_fragments.observe_relabel_cif_fragments` composes the original
+coverage, saved graph/path and established construct-registration owners to carry
+source/copy/logical/author/image lineage through visible fragments. A supplied
+registration is neutral evidence; re-use of the ASU target cannot become an oligo
+declaration. Missing target mappings and unmodeled source positions stay distinct.
+No graph, registration schema or writer changes. See the
+[W261 contract](topostitch-preview.md#carry-original-identity-through-visible-fragments-w261).
+
 
 
 

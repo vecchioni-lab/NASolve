@@ -4139,3 +4139,39 @@ or `REVIEW_REQUIRED` is separate from its permanent `OBSERVED_REVIEW_REQUIRED`
 status. Original coverage conflicts cannot become approval. Author-number semantics,
 output labels, chemical entities, unmodeled-position reassignment and a writer
 remain unimplemented. No existing packet migration or ordinary default changes.
+
+## Carry original identity through visible fragments (W261)
+
+`topostitch_cif_fragments.observe_relabel_cif_fragments(directory, model,
+**polymer_binding)` composes W259 with the saved graph/path and existing construct
+registration. Every registered node retains original CIF atom/site/author identity,
+registered copy/logical/coordinate site, declared route and proposed representative
+operator. Path numbers remain preview identifiers; output chain/entity IDs are unset.
+Every declared backbone edge retains both original and proposed image operations,
+its declared origin, fragment boundary and original asym/entity/sequence transition.
+A cross-entity or wrapped transition remains visible even when local in the new cut.
+
+Optional `oligo_registration_path` and `expected_oligo_registration_sha256` accept
+only an explicitly selected, exact-hash existing construct-registration document.
+The existing validator owns its schema, uniqueness and partial-copy semantics;
+actual identities are checked against the same saved working-model bytes. Target
+order is retained as supplied, never sorted by author residue number. The target
+reference is preserved, but its external content is not loaded in W261.
+
+The saved ASU registration does not establish full synthesized-oligo identity.
+Reusing its target reference returns `SOURCE_TARGET_REUSED`, including equivalent
+JSON reserialization. A distinct supplied registration is `DECLARED_REGISTRATION_ONLY`
+or `DECLARED_MAPPING_REVIEW_REQUIRED`. Rows carry neutral `declared_mapping` evidence;
+`oligo_assignment` remains unset until a separately bound target-document check.
+No supplied registration returns `SOURCE_LINEAGE_ONLY`. Target identity conflicts,
+nonadjacent/wrapped sequence relations and missing mappings remain explicit.
+
+Unmapped logical target positions are separate from original declared positions
+without coordinates. Unregistered original polymers/nonpolymers and supplied
+mappings outside the current fragment projection remain visible. Existing one-site
+registration uniqueness is unchanged; repeated symmetry occurrences cannot be
+manufactured by assigning one coordinate site to several logical residues.
+The schema-1 `topostitch-original-cif-fragment-lineage` report binds original,
+receipt, coverage, graph and optional registration hashes and checks frozen inputs
+after observation. It performs no coordinate/sequence edit, entity assignment,
+physical-copy/nick inference, assembly/TLS transformation or writer authorization.

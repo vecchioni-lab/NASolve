@@ -1,27 +1,29 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W260, 2026-11-24** code `66e9760ed3d728fe2639d0962ba43ec11c59f104`.
-[Original sequence-text observation](topostitch-preview.md#compare-original-literal-and-canonical-sequence-text-w260)
-compares literal CCD tokens with declared positions, then checks canonical letters
-only where standard IDs or explicit source parent fields support them. Original
-alternatives and unmodeled positions remain; no chemical entities or new chains
-are assigned. Missing/unknown/multi-parent evidence stays unvalidated.
+**Current maintained slice: W261, 2026-11-24** (code pin follows qualification).
+[Fragment lineage](topostitch-preview.md#carry-original-identity-through-visible-fragments-w261)
+retains original CIF sites/atoms/author labels, registered copy/logical identities
+and proposed path/images through the existing owners. Every declared backbone
+edge keeps its old/new image and source asym/entity/sequence transition.
+No output labels, entities, coordinates or native restraints are written.
 
-**225 focused source / 225 relocated installed checks pass**, with 210 installed
-file hashes and build/old-install removal. Rowan requested multi-parent alignment
-and quoted-null guards; these and late-source drift pass. Four real 3LNA/5LNA
-unchanged/recut controls each have four matching literal entity strings, two
-matching canonical strings and two unavailable canonical comparisons because the
-modified-component parent fields are absent. This is missing evidence, not a
-newly diagnosed sequence error. Each prior W259 report digest remains exact.
-Full Willow regression: **2,786 passed, four skipped and 234 subtests (115.79 s)**. This is not combined-branch/native qualification.
+The four LNA controls each retain **62 sites and 60 backbone edges**, including
+the original cross-entity A16→D1 and wrapped B17→B1 transitions. Four source paths
+become eight visible recut paths. Their saved registration target describes the
+ASU, so all four remain **SOURCE_LINEAGE_ONLY** for full-oligo identity. A complete
+ASU target does not establish a complete synthesized strand or a physical nick.
+
+**158 focused source / 158 relocated installed checks, plus two subtests**, qualify
+the new composition. Installation verifies 212 files after relocation and removal of the original build/install paths (installed checks: 10.62 s).
+Rowan's negative reproduced promotion of a reused ASU registration; exact and
+reserialized reuse now remain neutral. The reversed-coordinate-order fixture also
+became a distinct negative. W260's full-suite baseline remains 2,786 passed/four
+skipped/234 subtests; this isolated observer uses focused checks under the resumed
+work instruction. No shared registration implementation or existing API changed.
 Exact source pins/commands/evidence: NASolve anchor
-`branch-artifacts/willow/w260-cif-sequence-text/`. No native tool run or scientific
-coordinate file is generated; scientific payloads stay out of Git.
+`branch-artifacts/willow/w261-fragment-lineage/`.
 
-**P03 stays partial; next W261.** W261: define a reviewed read-only output-declaration/reference plan before a writer. Keep source entity/asym, full oligo/copy/repeat identity, unmodeled positions and proposed path labels separate. Audit author numbering and all affected category references, including assemblies/NCS/TLS/geometry/unobserved sites. Cross-entity and wrapped paths require explicit fragment semantics; unknown nick phase and absent component parents remain unresolved. Do not infer entities, free termini or nonstandard-linkage flags from cuts. Reuse W249 native/scattering and W256-W260 source controls. P02 GUI, source validity, native/edited-child lifecycle and Cedar competing-partner protection remain separate gates.
-See the [output policy gate](topostitch.md#output-sequence-and-fragment-policy-gate-w260).
-The source's ASU fragments must not be mistaken for the complete synthesized strands.
+**Next W262; P03 remains partial.** W262: optionally bind an actual existing sequence-family-target document by exact SHA and reconstruct its registration through public build_construct_registration against the same model/copy map. Require exact registration equality; preserve target codes for unmapped positions and reject same-site-name/wrong-sequence targets. Known ASU target reuse remains neutral. Real LNA controls stay source-only without an independent lab target. Then scope output entity/reference and assembly/TLS transformations, not a new writer by implication. Physical copy/nick phase, P02 graphical review and native/edited-child lifecycle remain separate gates.
 
 W259 code `d9a24fd914c9cb9cf9d9baf8959fdf0454f63476` remains qualified: 168 focused
 source/168 installed, 210 files; full 2,752 passed/four skipped/234 subtests. Four
