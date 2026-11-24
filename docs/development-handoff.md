@@ -37,7 +37,17 @@ preserve target/fragment/reference identity: four references become ten recut
 segments across eight paths, retaining all 62 positions. Nick/repeat phase and
 output entity policy remain unresolved. Rowan owns the separate 3LNA OneDep audit.
 
-**Next W266; P03 remains partial.** W266: assess the remaining writer policy with Rowan before implementation: distinguish declared TLS parameter convention from uniquely inferred inter-atom motion, total versus residual deposited ADPs, shared native ties and edited-child ownership. Preserve original mixed-group identities; do not split or infer physical correlations from successful per-atom U transport. Assembly/sequence output identifiers and P02 graphical review still gate P03; select one existing-owner boundary, not a second writer or GUI.
+**Next W266; P03 remains partial.** W266: read-only original assembly-reference observer using existing CIF source and fragment/image owners. Preserve curated/depositor operator namespaces, raw assembly/generator/operator/support rows and original asym/atom membership; do not assign output IDs. Exercise the demonstrated 3LNA operator2/3 namespace swap and mixed-image paths3/6, unresolved references and relocation. Single-ID actual controls do not qualify general operation-expression products. Source convention/shared TLS fitting, total-versus-residual ADPs, output entities and edited-child lifecycle remain with existing owners. No new writer, GUI or native fit.
+
+The [planning audit](topostitch-periodic.md#w265-planning-limit-declared-motion-and-assembly-references)
+now records two concrete boundaries. Positive-definite latent motions can share
+identical per-atom U but different inter-atom correlations; preserve declared TLS
+rather than claiming uniqueness. Original 3LNA depositor operator IDs 2/3 correspond
+to curated 3/2, while both recuts have mixed-image paths 3/6. Assembly references
+must retain category namespaces and per-atom image ownership. No source error,
+assembly rewrite or physical-oligomer count change is inferred. Rowan agreed this
+read-only dependency is the next scoped task; refined structures/file writers stay
+under their current owners.
 
 W259 code `d9a24fd914c9cb9cf9d9baf8959fdf0454f63476` remains qualified: 168 focused
 source/168 installed, 210 files; full 2,752 passed/four skipped/234 subtests. Four

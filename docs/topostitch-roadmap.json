@@ -1124,7 +1124,7 @@
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "W266: assess the remaining writer policy with Rowan before implementation: distinguish declared TLS parameter convention from uniquely inferred inter-atom motion, total versus residual deposited ADPs, shared native ties and edited-child ownership. Preserve original mixed-group identities; do not split or infer physical correlations from successful per-atom U transport. Assembly/sequence output identifiers and P02 graphical review still gate P03; select one existing-owner boundary, not a second writer or GUI.",
+      "next_action": "W266: read-only original assembly-reference observer using existing CIF source and fragment/image owners. Preserve curated/depositor operator namespaces, raw assembly/generator/operator/support rows and original asym/atom membership; do not assign output IDs. Exercise the demonstrated 3LNA operator2/3 namespace swap and mixed-image paths3/6, unresolved references and relocation. Single-ID actual controls do not qualify general operation-expression products. Source convention/shared TLS fitting, total-versus-residual ADPs, output entities and edited-child lifecycle remain with existing owners. No new writer, GUI or native fit.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -1154,7 +1154,7 @@
         "code_commit": "6e90105f8c2b12a5444578dd1ba356087ece79a8",
         "reviewer": "Linden; ordinary-inspection boundary coordinated with Rowan",
         "human_update": 265,
-        "scope": "Source-bound public TLS membership inspection and per-atom shared-motion diagnostic; native covariance/refinement/writer gates remain open"
+        "scope": "Source-bound public TLS inspection; positive-definite correlation non-uniqueness and assembly-reference planning audited. P03/writer remains partial."
       }
     },
     {
@@ -7376,7 +7376,7 @@
       "code_commit": "6e90105f8c2b12a5444578dd1ba356087ece79a8",
       "reference": "docs/topostitch-periodic.md#w265--inspect-shared-original-tls-membership-after-a-recut",
       "result": "225 focused source/225 relocated installed checks,two skips/two subtests each;214 installed-file hashes. Full Willow2853 passed,4 skipped,234 subtests. Installed ordinary viewer reproduces exact W264 3LNA report after staged input/package relocation:4 mixed/2 uniform TLS groups,738 unique mixed members,1271 atoms. Separate complete Phenix2.2.1-6174 shared-original-motion diagnostic:4 groups,8 derived images,82 moved members; max per-atom U error3.55e-15 A2. No independent parameters,native fitting or writer.",
-      "limitation": "Per-atom TLS field preservation is not unique inter-atom covariance or native parameter tying. One representative preview only; source/preview/owner hashes and explicit precision bounds required. Browser visual render unverified after local URL policy refusal. Existing unshipped DP/DZ/5CM provenance sidecars reported separately; no packaging change. Scientific payloads local.",
+      "limitation": "Per-atom TLS field preservation is not unique inter-atom covariance or native parameter tying. One representative preview only; source/preview/owner hashes and explicit precision bounds required. Browser visual render unverified after local URL policy refusal. Existing unshipped DP/DZ/5CM provenance sidecars reported separately; no packaging change. Scientific payloads local. Planning audit: per-atom U does not uniquely identify inter-atom covariance. Curated/depositor operation IDs2/3 differ in3LNA; mixed-image paths3/6 prevent a generic one-transform-per-path rewrite. No assembly-set equivalence tested.",
       "artifacts": [
         {
           "anchor": "NASolve",
@@ -7497,6 +7497,30 @@
           "path": "branch-artifacts/willow/w265-shared-tls-motion/validation.json",
           "sha256": "8707c9bfce29beb5b08964315a10a391bb13e72284e32fb60306e32ec82c7a3e",
           "size": 7720
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w265-shared-tls-motion/covariance_identifiability.py",
+          "sha256": "824d47ad8f47ac04f992400229ab7dfb5fee4998b6ca789fa34ab44387a5eaf4",
+          "size": 2896
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w265-shared-tls-motion/covariance-identifiability.json",
+          "sha256": "e669692f22d0eaea1e4786a11311ccdf6ba77bb7043b4c7d732d5346882f8841",
+          "size": 4105
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w265-shared-tls-motion/assembly_dependency_audit.py",
+          "sha256": "349bd2ee185f9196885fd0fb78083f00b271c6c31ad294f30ceab40fb2ae7d85",
+          "size": 5518
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w265-shared-tls-motion/assembly-dependency-audit.json",
+          "sha256": "ebee85af473ce6058dc56d41aa207a4f1cd3c1fc27e1a3999d05026cfef4d049",
+          "size": 79229
         }
       ]
     }

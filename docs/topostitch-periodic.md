@@ -14282,3 +14282,66 @@ local, excluded from Git. Existing packet schemas/default calls are unchanged;
 the viewer attachment is optional and additive. Compatible explicitly pinned
 Cedar source remains required. No coordinate writer, total-ADP change, native
 parameter tying or whole-ASU acceptance is delivered. **P03 remains partial.**
+
+### W265 planning limit: declared motion and assembly references
+
+**TLS correlations are not uniquely recovered from per-atom ADPs.** With
+`A_i = -cross(r_i)`, the declared field is
+`U_i = T + A_i L A_iᵀ + A_i S + Sᵀ A_iᵀ`. Replacing S by `S+cI` leaves U_i
+unchanged because A_i is antisymmetric. This trace indeterminacy is discussed in
+[Urzhumtsev et al. (2015), section 4.1](https://journals.iucr.org/d/issues/2015/08/00/rr5096/index.html).
+
+Our separate synthetic calculation uses translation SD 0.2 Å, libration SD 0.1 rad
+and standardized translation/libration correlation 0 versus 0.5. Both latent
+covariances are positive definite: their dimensionless eigenvalues are `1±rho`.
+They produce identical U at three sites, while one inter-atom covariance differs
+by **0.01 Å²**. Algebraically `C_ij = T+A_i L A_jᵀ+A_i S+Sᵀ A_jᵀ`, so
+`delta C_ij = c(A_i-A_j)`. This is a counterexample to uniqueness, not a statement
+about the measured correlations or physical validity of the LNA source models.
+It uses the maintained evaluator with explicit radian/degree conversion; no native
+job or production change. Preserve a **declared** convention/group model; do not
+infer unique physical correlations from W265's per-atom transport success.
+
+**The next dependency is assembly identity, not another writer.** Both pinned
+LNA sources retain one author-defined assembly, three simple generator expressions
+`1`, `2`, `3` over original label-asym IDs A/B/C/D, three Cartesian operations,
+a stated oligomeric count of 12 and native-gel support. A recut's eight visible
+fragments do not establish a new physical oligomeric count.
+
+The 3LNA file also retains depositor assembly, generator, operator and support
+categories. Depositor operator **2** numerically corresponds to curated **3**,
+and depositor **3** to curated **2**, within **3.8e-9** in matrix components.
+Comparing the same numeric IDs instead differs by **1.7320508038** in a component.
+This is an original category-scoped naming distinction, not a newly diagnosed
+structure error. Do not join curated and historical operator rows by bare ID.
+Preserve the supplied raw tables, unknowns, matrices, provenance and namespaces.
+
+The [assembly asym list](https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_pdbx_struct_assembly_gen.asym_id_list.html)
+references `struct_asym.id`; [operator expressions](https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_pdbx_struct_assembly_gen.oper_expression.html)
+can contain products applied right to left. The [operator table](https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Categories/pdbx_struct_oper_list.html)
+contains Cartesian transforms. The original data here exercise only single IDs;
+a general expression parser and product-order behavior have not been qualified.
+
+For a fixed original assembly frame, if an atom's new representative is `G_i x`,
+its original assembly instance `H x` needs `H G_i^-1` on that representative.
+Both saved recuts have mixed-image **paths 3 and 6**. Therefore a single correction
+per visible path cannot generally preserve each labeled original assembly instance.
+A complete finite operator set might preserve the overall assembly set through
+operator permutations, but that requires an explicit atom-instance bijection,
+multiplicity and XYZ/U checks; no such equivalence is claimed here.
+
+**Agreed next bounded step with Rowan:** a read-only assembly-reference observer
+using the existing original-CIF binding and fragment/image owners. Retain curated
+and depositor categories separately; map original assembly/asym/operator membership
+to registered sites and proposed fragments without assigning output IDs. Unknown,
+duplicate or unsupported references remain review items. First regressions should
+cover the demonstrated operator-ID namespace trap and mixed-image paths, plus
+unresolved membership and relocation. Reuse the two exact LNA inputs. Native
+structure refinement, file writing, output entity policy and shared TLS fitting
+stay with their existing owners; no new GUI or competing writer is needed.
+
+Local, hash-bound planning receipts are `covariance-identifiability.json` and
+`assembly-dependency-audit.json` under NASolve anchor
+`branch-artifacts/willow/w265-shared-tls-motion/`. Their scripts and primary source
+links are retained. These augment the sealed W265 validation; they do not change
+its acceptance or require another full-suite/native run. P03 remains partial.
