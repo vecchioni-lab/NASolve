@@ -1121,7 +1121,7 @@
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "W263: audit and qualify a bounded output-reference projection against original CIF labels, source author numbering and visible paths. Inspect exact sequence-range/depositor-reference semantics and existing owners before coding; unresolved author ranges and unmodeled positions must remain explicit. No inferred full oligo/nick phase or new chemical entities. Assembly/TLS frame transformations, maintained writer, P02 GUI and native/edited-child lifecycle remain separate gates.",
+      "next_action": "W264: qualify one concrete TLS transport dependency. For a completely declared group whose members all undergo one known proper crystal transform, transport its origin and T/L/S axes and compare per-atom TLS U before/after with independent cctbx evaluation. Groups spanning inequivalent images remain explicit review cases; no silent group splitting, new refinement groups or chemical-entity policy. Preserve original raw groups and selection evidence. Assembly/reference rewriting, maintained writer, P02 GUI and native/edited-child lifecycle stay open.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -7385,8 +7385,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 262,
-    "next": 263,
+    "current": 263,
+    "next": 264,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -8768,6 +8768,12 @@
         "title": "Bind actual target documents through existing registration",
         "state": "RECORDED",
         "code_commit": "6afba5df69af25d3a6b1804a58c3278c74b973fe"
+      },
+      {
+        "number": 263,
+        "title": "Carry original sequence-reference ranges through fragment splits",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   },

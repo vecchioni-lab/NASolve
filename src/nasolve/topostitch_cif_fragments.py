@@ -244,3 +244,172 @@ def observe_relabel_cif_fragments(directory, model, *, oligo_registration_path=N
             'No output labels/entities, assembly/TLS transformation, chemistry change or model writer'])
     report['report_sha256']=_fingerprint(report)
     return report
+
+
+def _reference_integer(value):
+    if isinstance(value, str) and re.fullmatch(r'-?[0-9]+', value):
+        return int(value)
+    return None
+
+
+def _project_reference_range(row, tables, lineage, alignment_counts):
+    """Project source entity positions only; database alignment is not inferred."""
+    issues = []
+    align_id = row.get('align_id')
+    references = [r for r in tables['_struct_ref.'] if r.get('id') == row.get('ref_id')]
+    if not isinstance(align_id, str) or not align_id or alignment_counts[align_id] != 1:
+        issues.append('Missing or ambiguous alignment identifier')
+    if not isinstance(row.get('ref_id'), str) or len(references) != 1:
+        issues.append('Missing or ambiguous reference identifier')
+    reference = references[0] if len(references) == 1 else {}
+    entity = reference.get('entity_id')
+    start, end = (_reference_integer(row.get(k)) for k in ('seq_align_beg','seq_align_end'))
+    if start is None or end is None or start < 1 or end < start:
+        issues.append('Unsupported or reversed entity sequence range')
+    strand = row.get('pdbx_strand_id')
+    scheme = tables['_pdbx_poly_seq_scheme.']
+    candidates = sorted({r['asym_id'] for r in scheme
+        if isinstance(entity, str) and r.get('entity_id') == entity
+        and isinstance(strand, str) and r.get('pdb_strand_id') == strand
+        and isinstance(r.get('asym_id'), str)})
+    if len(candidates) != 1:
+        issues.append('Missing or ambiguous source strand-to-asym mapping')
+    asym = candidates[0] if len(candidates) == 1 else None
+    positions = []; segments = []
+    author_issues = []
+    if lineage['metadata_coverage_status'] != 'CONSISTENT_DECLARATIONS':
+        issues.append('Original polymer declarations require review')
+    if asym is not None and start is not None and end is not None and 0 < start <= end:
+        declared = sorted({_reference_integer(r.get('num')) for r in tables['_entity_poly_seq.']
+            if r.get('entity_id') == entity and _reference_integer(r.get('num')) is not None
+            and start <= _reference_integer(r.get('num')) <= end})
+        if len(declared) != end-start+1:
+            issues.append('Range endpoints or intervening entity positions are undeclared')
+        projected = {(s['original_label']['label_asym_id'],int(s['original_label']['label_seq_id'])):
+            (fragment['path_number'],s) for fragment in lineage['fragments'] for s in fragment['sites']}
+        outside = {(s['label_asym_id'],s['label_seq_id']):s
+            for s in lineage['source_positions_without_fragment']}
+        authors = []
+        for number in declared:
+            location = projected.get((asym,number))
+            absent = outside.get((asym,number),{})
+            state = 'OBSERVED' if location else absent.get('coordinate_status','UNRESOLVED')
+            rows = [r for r in scheme if r.get('asym_id') == asym and r.get('entity_id') == entity
+                    and _reference_integer(r.get('seq_id')) == number]
+            author_keys = ('pdb_strand_id','auth_seq_num','pdb_seq_num','pdb_ins_code')
+            identities = {tuple(r.get(k) for k in author_keys) for r in rows}
+            author = dict(zip(author_keys,next(iter(identities)))) if len(identities) == 1 else None
+            if author is None:
+                author_issues.append('Ambiguous or absent author scheme at entity position '+str(number))
+            if location is None:
+                issues.append('Range position has no fragment assignment: '+str(number)+' ('+state+')')
+            else:
+                raw_authors = location[1]['original_author_sites']
+                if (author is None or len(raw_authors) != 1
+                        or raw_authors[0].get('auth_asym_id') != author['pdb_strand_id']
+                        or raw_authors[0].get('auth_seq_id') != author['auth_seq_num']
+                        or (raw_authors[0].get('pdbx_PDB_ins_code') is not None
+                            and raw_authors[0]['pdbx_PDB_ins_code'] != author['pdb_ins_code'])):
+                    author_issues.append('Author scheme conflicts with original atoms at position '+str(number))
+            if author is not None:
+                numeric = _reference_integer(author['auth_seq_num'])
+                if (numeric is None or author['pdb_seq_num'] != author['auth_seq_num']
+                        or author['pdb_ins_code'] is not False):
+                    author_issues.append('Author numbering/insertion is outside the uninserted numeric scope at '+str(number))
+                authors.append(numeric)
+            positions.append(dict(source_seq_id=number,coordinate_status=state,
+                original_author_scheme_rows=rows,
+                original_author_sites=location[1]['original_author_sites'] if location else [],
+                node_id=location[1]['node_id'] if location else None,
+                fragment_position=dict(path_number=location[0],position=location[1]['path_position']) if location else None))
+        if len(authors) == len(declared) and all(n is not None for n in authors):
+            if any(b != a+1 for a,b in zip(authors,authors[1:])):
+                author_issues.append('Author numbering is reversed, gapped or non-monotonic')
+        for number, label in ((start,'beg'),(end,'end')):
+            matching = [p for p in positions if p['source_seq_id'] == number]
+            if not matching or len(matching[0]['original_author_sites']) != 1:
+                author_issues.append('Original author endpoint unavailable: '+label)
+                continue
+            original = matching[0]['original_author_sites'][0]
+            if row.get('pdbx_auth_seq_align_'+label) != original.get('auth_seq_id'):
+                author_issues.append('Author alignment endpoint differs from original atoms: '+label)
+            insertion = row.get('pdbx_seq_align_'+label+'_ins_code')
+            # An optional '?' does not assert blank; observed scheme/atoms above
+            # must independently establish a known uninserted endpoint. An atom
+            # '?' can be resolved by the explicit scheme; it is never rewritten.
+            endpoint_schemes = matching[0]['original_author_scheme_rows']
+            if insertion is not None and (not endpoint_schemes or any(
+                    s.get('pdb_ins_code') != insertion for s in endpoint_schemes)):
+                author_issues.append('Author alignment insertion endpoint differs: '+label)
+        for position in sorted((p for p in positions if p['fragment_position'] is not None),
+                               key=lambda p:(p['fragment_position']['path_number'],p['fragment_position']['position'])):
+            loc = position['fragment_position']
+            if (segments and segments[-1]['path_number'] == loc['path_number']
+                    and segments[-1]['positions'][-1]['fragment_position']['position']+1 == loc['position']
+                    and segments[-1]['positions'][-1]['source_seq_id']+1 == position['source_seq_id']):
+                segments[-1]['positions'].append(position)
+            else:
+                segments.append(dict(path_number=loc['path_number'],positions=[position],
+                    original_align_id=align_id,original_ref_id=row.get('ref_id'),
+                    original_entity_id=entity,original_asym_id=asym,
+                    output_chain_id=None,output_entity_id=None,output_db_align_beg=None,output_db_align_end=None))
+    else:
+        author_issues.append('Author range cannot be qualified without unique source entity/strand bounds')
+    issues.extend(author_issues)
+    discrepancies = [r for r in tables['_struct_ref_seq_dif.'] if r.get('align_id') == align_id]
+    return dict(raw_fields=row,source_reference_rows=references,source_entity_id=entity,source_asym_id=asym,
+        status='REVIEW_REQUIRED' if issues else 'SOURCE_RANGE_PROJECTED',issues=issues,
+        author_range_status='REVIEW_REQUIRED' if author_issues else 'CONSISTENT_UNINSERTED_FORWARD_RANGE',
+        positions=positions,segments=segments,discrepancy_rows=discrepancies,
+        database_correspondence_status='ENDPOINT_DECLARATION_ONLY',
+        output_fields_requiring_mapping=['New chain/entity and alignment identifiers',
+            'Database endpoints for each fragment; equal span lengths do not prove gapless alignment',
+            'Sequence-discrepancy and depositor-reference relabeling'])
+
+
+def observe_relabel_cif_reference_ranges(directory, model, **fragment_binding):
+    """Observe original sequence-reference ranges across saved recut fragments.
+
+    Supported membership uses entity_poly_seq positions and a unique declared
+    PDB-strand/asym mapping. Author numbering is checked separately in the narrow
+    forward, numeric, uninserted scope. Ambiguity never removes the raw row.
+    This is not a database alignment engine or a deposition writer.
+    """
+    from collections import Counter
+    import gemmi
+
+    model = Path(model)
+    data = model.read_bytes()
+    lineage = observe_relabel_cif_fragments(directory, model, **fragment_binding)
+    if model.read_bytes() != data or sha256(data).hexdigest() != lineage['original_model_sha256']:
+        raise ValueError('Original CIF changed during sequence-reference observation')
+    doc = gemmi.cif.read_string(data.decode('ascii'))
+    block = next(b for b in doc if '_atom_site.' in b.get_mmcif_category_names())
+    categories = ('_struct_ref.','_struct_ref_seq.','_struct_ref_seq_dif.',
+        '_pdbx_struct_ref_seq_depositor_info.','_pdbx_seq_map_depositor_info.',
+        '_pdbx_poly_seq_scheme.','_entity_poly_seq.')
+    tables = {category:_rows(block,category) for category in categories}
+    counts = Counter(row.get('align_id') for row in tables['_struct_ref_seq.'])
+    alignments = [_project_reference_range(row,tables,lineage,counts) for row in tables['_struct_ref_seq.']]
+    orphan = [dict(raw_fields=row,reason='Missing or ambiguous alignment identifier')
+              for row in tables['_struct_ref_seq_dif.']
+              if not isinstance(row.get('align_id'),str) or counts[row.get('align_id')] != 1]
+    report = dict(schema_version=1,kind='topostitch-original-cif-reference-ranges',
+        status='UNAVAILABLE' if not alignments else 'OBSERVED_REVIEW_REQUIRED',
+        original_model_sha256=lineage['original_model_sha256'],fragment_lineage_sha256=lineage['report_sha256'],
+        original_tables=tables,alignments=alignments,unresolved_discrepancy_rows=orphan,
+        unprojected_reference_tables={category:tables[category] for category in categories[3:5]},
+        source_range_projected_count=sum(r['status']=='SOURCE_RANGE_PROJECTED' for r in alignments),
+        source_range_review_count=sum(r['status']=='REVIEW_REQUIRED' for r in alignments),
+        database_positions_inferred=False,output_alignment_rows_written=False,writer_authorized=False,
+        runtime_authority=False,
+        chemical_entities_assigned=False,coordinates_written=False,scientific_acceptance=False,
+        limitations=['Source range membership only; new output sequence/reference identifiers are unset',
+            'Database endpoints and equal range lengths do not establish per-residue correspondence',
+            'Unknown, inserted, reversed or conflicting author numbering requires explicit review',
+            'Discrepancy/depositor rows retained without inventing new references or dropping link slots',
+            'No chemistry, assembly/TLS, coordinate or native changes'])
+    if model.read_bytes() != data:
+        raise ValueError('Original CIF changed during sequence-reference observation')
+    report['report_sha256'] = _fingerprint(report)
+    return report

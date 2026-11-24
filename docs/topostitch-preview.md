@@ -4210,3 +4210,34 @@ Codes for unmapped target positions come from the newly bound document; the old
 registration alone could not validate them. Existing calls without a target file
 produce exactly the W261 report, with no migration or new required input.
 No source coordinates, chemical entities, assemblies, TLS or native controls change.
+
+## Carry source sequence-reference ranges across a split (W263)
+
+`topostitch_cif_fragments.observe_relabel_cif_reference_ranges(directory, model,
+**fragment_binding)` composes the qualified fragment observer with the original
+`_struct_ref`, `_struct_ref_seq`, `_struct_ref_seq_dif` and sequence-scheme tables.
+Each projected segment retains its original alignment/reference/entity/asym IDs.
+The source range uses [entity sequence positions](https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_struct_ref_seq.seq_align_beg.html);
+its [PDB strand locator](https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_struct_ref_seq.pdbx_strand_id.html)
+is resolved through the explicit scheme, without substituting author numbers.
+
+Supported rows require a unique reference/strand, complete declared range and
+registered fragment membership. Author-number qualification is separately limited
+to consistent, numeric, forward, uninserted ranges. An explicit no-insertion
+scheme can resolve an unreported atom insertion field; neither raw field is
+rewritten. Unknown in both sources, inserted/reversed numbering, unmodeled or
+unregistered positions and conflicting endpoints remain review cases. Missing
+alignment tables mean unavailable. An invalid source may be refused by the
+existing source/Gemmi reader before this observer; that boundary is unchanged.
+
+Raw reference/discrepancy/depositor rows remain in the report, including orphan or
+ambiguous alignment links. The original [discrepancy parent link](https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_struct_ref_seq_dif.align_id.html)
+is retained, not reassigned. Unmodeled coordinates and unknown author metadata
+are distinct states. Source-range membership does not validate discrepancy details.
+
+New chain/entity/alignment IDs and fragment database endpoints remain unset.
+[Database endpoints](https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_struct_ref_seq.db_align_beg.html)
+refer to an external sequence; equal span lengths do not establish a gapless
+per-residue correspondence. The schema-1 `topostitch-original-cif-reference-ranges`
+report therefore qualifies source membership only. It binds the original bytes
+and fragment report, preserves every original link slot and writes no CIF.

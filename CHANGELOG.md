@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W263 — Preserve sequence-reference ranges through ASU fragment splits
+
+- Project original entity-sequence ranges to explicit fragment segments, retaining
+  alignment/reference IDs and raw discrepancy/depositor rows. Keep author-number
+  evidence distinct from source sequence position and missing coordinates.
+- Use explicit scheme evidence for unreported atom insertion fields; ambiguous,
+  inserted, reversed or unmodeled cases stay reviewable. Never interpolate external
+  database coordinates from endpoint spans or infer physical repeat/nick phase.
+- Qualify 184 source/184 relocated installed checks and four real range replays.
+  Four references become ten recut segments over all 62 positions. No writer.
+
 ### W262 — Bind explicit strand-design documents through existing registration
 
 - Verify an optional exact-hash sequence-family target by rebuilding its supplied

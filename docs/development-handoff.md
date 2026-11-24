@@ -1,36 +1,37 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W262, 2026-11-24** (code `6afba5df69af25d3a6b1804a58c3278c74b973fe`).
-[Explicit strand target binding](topostitch-preview.md#bind-a-declared-strand-target-document-w262)
-loads an optional exact-hash sequence-family target and reconstructs its supplied
-registration through the existing public owner. It preserves the actual target
-codes, including unmapped positions. Matching names with conflicting sequence or
-reference metadata fail; partial copies and identity conflicts stay visible.
-A bound target is a consistent caller declaration, not proof of physical copy,
-full synthesized strand, nick phase or an unloaded reference file. ASU reuse stays
-neutral. No writer, entity assignment, coordinates or native restraints change.
+**Current maintained slice: W263, 2026-11-24** (code pin follows qualification).
+[Source reference ranges](topostitch-preview.md#carry-source-sequence-reference-ranges-across-a-split-w263)
+now follow the saved ASU fragments. All four real controls retain 62 positions and
+four original alignment/reference IDs. Original cuts have four segments; recuts
+have ten segments across eight paths. Cross-entity and repeat-wrap pieces keep
+separate source references. No new database offsets, chemical entities or physical
+nick/phase interpretation are inferred.
 
-**169 focused source / 169 relocated installed checks, plus two subtests** pass
-(12.98 s / 12.82 s). Installation verifies 212 files after moving the package and
-removing the original build/install paths. Eleven new tests failed on the old API.
-All four original LNA controls reproduce their W261 reports exactly: 62 sites and
-60 backbone edges, four source/eight recut paths. No independent laboratory target
-has been supplied for these controls; they remain source-lineage-only.
-Exact commands, source pins and local evidence: NASolve anchor
-`branch-artifacts/willow/w262-target-document/validation.json`.
+**184 focused source / 184 relocated installed checks, plus two subtests** pass
+(13.90 s / 13.96 s), with 212 installed-file hashes verified after relocation.
+The four real runs preserve exact W262 fragment-report digests. Tests cover an
+actual preview split, malformed references, reverse/insertion/unknown endpoints,
+unmodeled positions, orphan discrepancy rows, relocation and late source drift.
+Initial fixture mistakes and a scheme-evidence regression remain recorded.
+Local commands, pins and results: NASolve anchor
+`branch-artifacts/willow/w263-reference-ranges/validation.json`.
+No native job or full-suite repeat; W260's baseline remains 2,786 passed/four skips/
+234 subtests. No shared owner changed. All generated science stays outside Git.
 
-W261 source `d05bbfb9` supplied fragment lineage and Rowan's ASU-target reuse guard;
-158 source/158 installed checks and 212 file hashes passed. W260's full-suite
-baseline is 2,786 passed/four skips/234 subtests. No full-suite repeat for isolated
-composition in this resumed focused-check window; no shared owner changed.
+W262 target-document binding and W261 source/copy/fragment lineage remain qualified.
+A loaded target document agreeing with its registration is distinct from its
+unloaded external reference and from physical oligo/copy/nick evidence. No
+independent full laboratory target was supplied for the LNA controls.
 
-**Deposition context:** Simon reports via Rowan that 3LNA passed OneDep apart from
-expected symmetry-bond notices. This is user-reported external validation, not a
-new automated qualification of every recut or a writer. Rowan owns the shared
-Cedar deposition audit; no new validation PDF or exact submitted hash was supplied
-with that message.
+**Deposition context:** Simon reported a successful 3LNA OneDep check; Rowan then
+independently read the new report: 0/1,348 bond and 0/2,065 standard-angle outliers,
+no breaks, and two true symmetry contacts. Rowan owns the shared deposition audit.
+This is evidence for that reviewed submission, not automatic acceptance of every
+recut or the pending maintained writer. Rowan owns the
+submission-identity audit; this Willow observation did not rerun validation.
 
-**Next W263; P03 remains partial.** W263: audit and qualify a bounded output-reference projection against original CIF labels, source author numbering and visible paths. Inspect exact sequence-range/depositor-reference semantics and existing owners before coding; unresolved author ranges and unmodeled positions must remain explicit. No inferred full oligo/nick phase or new chemical entities. Assembly/TLS frame transformations, maintained writer, P02 GUI and native/edited-child lifecycle remain separate gates.
+**Next W264; P03 remains partial.** W264: qualify one concrete TLS transport dependency. For a completely declared group whose members all undergo one known proper crystal transform, transport its origin and T/L/S axes and compare per-atom TLS U before/after with independent cctbx evaluation. Groups spanning inequivalent images remain explicit review cases; no silent group splitting, new refinement groups or chemical-entity policy. Preserve original raw groups and selection evidence. Assembly/reference rewriting, maintained writer, P02 GUI and native/edited-child lifecycle stay open.
 
 W259 code `d9a24fd914c9cb9cf9d9baf8959fdf0454f63476` remains qualified: 168 focused
 source/168 installed, 210 files; full 2,752 passed/four skipped/234 subtests. Four

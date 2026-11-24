@@ -1238,6 +1238,11 @@ W262 optionally binds an actual sequence-family target by exact digest and rebui
 its existing registration through the public owner; it adds no registration schema
 or physical-copy inference. Supplied ASU targets stay neutral. The report retains
 all target codes without making output chemical-entity or terminus decisions.
+The same module's W263 reference-range observer projects original entity positions
+through the saved fragments while retaining alignment/reference/discrepancy links.
+Source author numbering has a separate narrow qualification; no external database
+alignment, fragment entity policy or writer is inferred from matching endpoints.
+
 
 
 

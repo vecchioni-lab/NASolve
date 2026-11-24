@@ -14157,3 +14157,39 @@ not attached to that message, so this is a reported result, not an inferred pass
 for all four recuts or the pending maintained writer. Rowan owns shared Cedar notes.
 
 **Next:** W263: audit and qualify a bounded output-reference projection against original CIF labels, source author numbering and visible paths. Inspect exact sequence-range/depositor-reference semantics and existing owners before coding; unresolved author ranges and unmodeled positions must remain explicit. No inferred full oligo/nick phase or new chemical entities. Assembly/TLS frame transformations, maintained writer, P02 GUI and native/edited-child lifecycle remain separate gates.
+
+## W263 — Preserve source reference ranges without inventing database alignment
+
+The reference-range observer in the existing fragment module carries entity
+sequence membership across the saved cut. Every segment retains source alignment,
+reference, entity and asym IDs. Raw discrepancy/depositor rows and ambiguous links
+stay visible. Author numbering is checked separately, with explicit scheme evidence
+able to resolve unreported atom insertion fields without rewriting them. See the
+[contract and dictionary sources](topostitch-preview.md#carry-source-sequence-reference-ranges-across-a-split-w263).
+
+**Real controls:** four source ranges/62 positions survive in each LNA control.
+The original cut has four segments; the two-route cut has ten across eight paths.
+Every projected segment retains its original align_id/ref_id. W262 fragment reports
+remain exact. Unknown metadata and unmodeled coordinates are separate; no external
+database offsets or physical repeat/nick phase is inferred. These files contain
+real ranges; the separate synthetic fixture covers failures absent from them.
+
+**Validation:** 184 focused source (13.90 s)/184 relocated installed (13.96 s), two
+subtests, 212 installation hashes, Python 3.12.14/Gemmi 0.7.5. The first fixture
+wrongly assumed chain A instead of its actual source chain M; retained failures
+are not counted as missing-API evidence. Corrected tests then failed on the prior
+API in a disposable source copy. A further real-data negative exposed that atom
+insertion '?' must be resolved through explicit scheme '.', not assumed absent;
+that regression is retained. When both are unknown, review remains. The pre-existing
+source reader refuses dangling reference IDs; its boundary was not weakened.
+No Phenix job, shared mechanics or full-suite repeat. Full W260 baseline remains
+2,786/four skips/234 subtests. Local exact commands/hashes:
+NASolve anchor `branch-artifacts/willow/w263-reference-ranges/validation.json`.
+No scientific artifacts are committed.
+
+**Coordinated deposition evidence:** Simon's reported 3LNA OneDep pass was followed
+by Rowan's independent report read: 0/1,348 bond and 0/2,065 standard-angle outliers,
+no breaks and two true symmetry contacts. Source identity/audit remains Rowan-owned;
+this does not qualify all recuts or the pending writer.
+
+**Next:** W264: qualify one concrete TLS transport dependency. For a completely declared group whose members all undergo one known proper crystal transform, transport its origin and T/L/S axes and compare per-atom TLS U before/after with independent cctbx evaluation. Groups spanning inequivalent images remain explicit review cases; no silent group splitting, new refinement groups or chemical-entity policy. Preserve original raw groups and selection evidence. Assembly/reference rewriting, maintained writer, P02 GUI and native/edited-child lifecycle stay open.
