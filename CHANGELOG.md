@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record the predeclared phosphate movement comparison
+
+- Preserve one original-parent 2.0 Å cap comparison with exact earlier trajectory,
+  improved phosphate geometry and a recorded OP2 guard refusal. The unconverged
+  last step remains diagnostic; no candidate or f″ result is selected.
+- Record independent state/derivative, periodic-distance and local-term checks,
+  stopped preparation failures and a compact scientific figure/report. Keep A01
+  partial/A02 gated; scope boundary-aware proposal review without another cap increase.
+- Documentation only: no runtime, schema, default or migration change, raw science
+  commit, automatic pruning or repeated full-suite claim.
+
+
 ### Record phased junction return and bounded geometry failure
 
 - Preserve independently checked native execution/return for one crystal

@@ -1,6 +1,6 @@
 # Metal development handoff — current state
 
-Updated **23 November 2026**. Active feature branch: **Alder**. The
+Updated **24 November 2026**. Active feature branch: **Alder**. The
 [root integration handoff](development-handoff.md) owns the current combined
 source, full validation and delivery. The [A01–A09 roadmap](metal-development-roadmap.md)
 owns feature completion. The earlier chronological diary is preserved as
@@ -13,9 +13,90 @@ not a second queue.
 
 **Late chemical-provenance clarification:** the [DF C2-angle audit](metal-df-c2-angle-audit.md) separates eLBOW source consistency from independent chemical validation. The earlier final sulfur-angle split is 135.3°/108.7°; generated targets remain chemically provisional. Routine donor-state integration stays deferred and is not a new immediate A01 prerequisite. A retained base fragment exists (124 read-only checks), but no replacement or target change is admitted.
 
+<a id="a01-phosphate-cap-2026-11-24"></a>
+
+## Current A01 — phosphate geometry improves; bounded search remains unfinished
+
+One predeclared original-parent comparison changed only the displacement cap
+from **1.5 to 2.0 Å**, with W254's separately qualified failed-proposal reporting.
+It reproduced the earlier initial objective and all 14 earlier trace evaluations
+exactly. The larger allowance substantially improved the phosphate geometry;
+a later proposed step crossed the new guard. **No candidate, convergence,
+accepted parent or f″ result. A01 remains partial; A02 remains gated.**
+
+| Measurement | Native target | 1.5 Å failed last step | 2.0 Å failed last step |
+| --- | ---: | ---: | ---: |
+| B7 image O3′–B1 P | 1.607 Å | 1.617 Å | 1.615 Å |
+| B7 C3′–O3′ | 1.435 Å | 1.487 Å | 1.460 Å |
+| B1 OP2–P–O5′ | 108.0° | 85.7° | 107.3° |
+| B1 C5′–C4′–C3′ | 114.1° | 124.6° | 118.2° |
+
+These are diagnostic steps from failed runs. Remaining attachment-angle
+variations of about 6–7° require review, not mechanical rejection by a restraint
+width. Native widths are not experimental uncertainties. Broad geometry and
+experimental fit remain more important than tiny fractional differences.
+
+**Execution and source control.** Original `7aade3c4` parent, zero start, the same
+six atoms, held sugar rings, 0.5 Å tether, full unnormalized native geometry and
+registered image terms remain exact; there is no diffraction objective or duplicate
+pair energy. Budgets remain 100 iterations, 300 optimizer calls, 600 total geometry
+evaluations and 600 seconds. The original Cedar source/resources are frozen so a
+later reporting change does not confound this comparison. Two incomplete dependency
+bundles stop before optimization and remain recorded; the corrected bundle runs
+one scientific trial. No shared runtime owner was changed or implicitly merged.
+
+Phenix **2.2.1-6174** stops after **159.11 s**, 251 total geometry evaluations,
+29 optimizer calls and 27 accepted steps. W254 identifies the first mask-order
+violation as **B1 OP2, proposed 2.049111 Å**; its last accepted move is 1.971914 Å.
+The complete gradient norm is 293.86. This is an unconstrained proposal refused
+by a guard, not a constrained optimum or proof that chemistry needs a larger cap.
+The old 1.5 Å run's rejected atom remains unknown.
+
+**Independent evidence.** A620 passes **1,797 cold checks**: exact source and prior
+trajectory, all 853 fixed coordinates, all B/Q/scattering and original reflections,
+Free-R/HL, and initial/full/rounded derivatives (maximum error 6.70e-5 against the
+unchanged 0.001 bound). Both sugar chirality signs survive. A621's independent
+periodic distance screen finds no new contact below 2.4 Å shortened by more than
+0.2 Å; its conservative graph exclusions and lack of chemical VDW classification
+remain explicit. Hg stays B=69.52 Å², Q=1, f′=−8.10018 e; f″=0 is fixed/unmeasured.
+
+A622 adds **21 cold scalar-term checks**, without another native fit. OP2's
+OP2–P–O5′ penalty falls from 55.44 to 0.048 native energy units. Its outward radial
+gradient falls from −157.65 to −1.51. The five explicit bonded terms plus tether
+leave a gradient remainder of norm 2.22; do not label that remainder as nonbonded
+without further attribution. The radial direction comes from the accepted point,
+not the unavailable rejected vector. Much of the earlier phosphate strain resolves;
+this does not choose a structure or justify another cap escalation.
+
+**Next bounded question:** review boundary-aware proposal handling and source-derived
+phosphate placement against both attachments and nearby contacts. The current
+Cartesian L-BFGS driver can stop on an out-of-domain proposal before line-search
+recovery; that is an algorithmic question, not evidence for changing chemistry.
+Do not implement a new optimizer, increase the cap again, expand the mask, restart
+from the failed point, or start a receiving refinement automatically. Independent
+source-bound geometry review must justify the next controlled XYZ/B experiment.
+D7→C8, whole-model receiving and ordinary checkpoint publication stay separate.
+
+**Reproduction and handoff.** Private anchor
+`Alder/a01-phosphate-cap-comparison-20261124-03/` contains exact launch/readback
+commands in README, original owner/resource hashes, frozen controls, stopped
+process receipt, failed trace, independent review, term decomposition and editable
+figures. Preparation failures `-01` and `-02` are preserved, stopped before
+optimization. The compact inspected report is
+`ScienceCheckouts/Hazel/2026-11-24_ft-phosphate-cap/index.html` under the GitHub
+anchor. Its figure explicitly labels both failed last steps and reuses a common
+camera/Å scale; there are no new maps. Earlier phased maps remain model-specific.
+
+This Alder change updates documentation only: no runtime/schema/default or
+migration change. Relevant scientific checks and document/link checks replace an
+unchanged full-suite rerun. W254 source/relocated tests were already qualified and
+are not repeated. Generated inputs/models/logs/source copies remain private and
+excluded from Git. All three processes are stopped; no pruning or portability
+claim. The existing qualified integration checkpoint remains unchanged.
+
 <a id="a01-phased-junction-2026-11-23"></a>
 
-## Current A01 — phased junction executes; local geometry remains unresolved
+## Preceding A01 — phased junction executes; local geometry remains unresolved
 
 The shared six-atom B7→B1 phased fit now completes native output and independent
 return checks. The geometry is not suitable for selection. A separate single

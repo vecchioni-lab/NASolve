@@ -1,39 +1,42 @@
 # NASolve development handoff — integrated development base
 
-Updated **23 November 2026**. Active integration target: **Alder**. The everyday
+Updated **24 November 2026**. Active integration target: **Alder**. The everyday
 Pine and the separate Cedar/Willow branches are not changed by this integration. This base
 combines the existing metal feature with the qualified shared chemistry, native
 observation and storage owners; it introduces no new scientific policy.
 
 ## Current metal-science edge
 
-A01 remains partial; A02 quantitative f″ remains gated. The latest
-[crystal-junction comparison](metal-development-handoff.md#a01-phased-junction-2026-11-23)
-qualifies source-bound phased execution and return, but the six-atom local fit
-distorts its attachments. A separate geometry-plus-tether trial stops at the
-unchanged movement guard before convergence; no candidate is emitted. Reuse the
-completed native and independent cold evidence. Both processes are stopped.
+A01 remains partial; A02 quantitative f″ remains gated. The predeclared
+[2.0 Å phosphate comparison](metal-development-handoff.md#a01-phosphate-cap-2026-11-24)
+substantially improves local phosphate geometry, but a later B1 OP2 proposal
+crosses the guard at 2.049111 Å. It is not converged and emits no candidate.
+The original parent, held sugars, chemistry, 0.5 Å tether and budgets stay exact;
+the entire earlier trace prefix reproduces. No second cap increase or automatic
+adoption follows.
 
-The shared optional-defaults output fix is separately qualified in Willow
-`2ad83590`, not implicitly merged here. A615's 4,720 cold checks preserve original
-phases/Free-R, all fixed B/Q/scattering and the 853 fixed coordinates; A616's 1,789
-checks retain the failed trial and its last accepted diagnostic step. No new
-Alder runtime/schema/default change, migration or full suite in this docs update.
-No raw scientific data is committed/uploaded or automatically pruned.
+One Phenix 2.2.1-6174 geometry-only trial stops in 159.11 s. A620 passes 1,797
+independent cold checks; A622 passes 21 local scalar-term checks. All 853 fixed
+coordinates, B/Q/scattering, original phases and Free-R remain exact. The periodic
+distance screen is descriptive, not VDW qualification. Remaining modest angle
+deviations are review context, not mechanical acceptance thresholds. Two preparation
+failures are retained and stopped before optimization. No new diffraction fit,
+R statistics, environmental-B assignment or f″ result.
 
-Next review source-backed phosphate placement/motion and both sugar attachments
-before another experiment. Do not interpret a rejected optimizer proposal as a
-constrained optimum, enlarge the mask automatically, repeat a weight grid or start
-f″. D7→C8 and ordinary checkpoint delivery stay separate. The [metal handoff](metal-development-handoff.md)
-links the exact source/installed tests, native versions/commands, immutable failed
-attempts, scope, remaining chemistry uncertainty and prior controls.
+Next review bound-aware proposal handling/source-derived placement against both
+attachments before choosing another experiment. Do not widen the mask, restart
+from the failed point or escalate the cap. See the metal handoff for exact
+source/trace hashes, native commands, limits and prior-attempt evidence. W254
+reporting and W252 output changes remain separately qualified Willow work, not
+implicit source integration here. The current Alder update changes four documents
+only, with document/link checks; no runtime/schema/default or migration change,
+new full-suite claim, scientific upload or pruning.
 
-Private reports:
-`ScienceCheckouts/Hazel/2026-11-23_ft-crystal-junction/index.html` and
-`ScienceCheckouts/Linden/2026-11-23_phased-junction-boundary/index.html`.
-The latter displays the saved step from the failed trial only in memory and does
-not create a candidate model. Earlier outward-phosphate/canonical-flank reports
-remain linked. The qualified integration checkpoint below is unchanged.
+Private report:
+`ScienceCheckouts/Hazel/2026-11-24_ft-phosphate-cap/index.html`.
+The three-view figure labels both failed last steps and uses the same camera and
+Å scale. Earlier maps remain linked with their original models. All three owned
+processes are stopped. The qualified integration checkpoint below is unchanged.
 
 ## Qualified integration checkpoint — test-only amendment
 

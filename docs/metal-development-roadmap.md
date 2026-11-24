@@ -1,6 +1,6 @@
 # Post-merge metal-coordination roadmap
 
-Updated **23 November 2026**. Working branch **Alder**. The feature milestones
+Updated **24 November 2026**. Working branch **Alder**. The feature milestones
 below are numbered **A01–A09** and are explicitly **post-merge work**. A09 is
 further deferred until after the main build and core A01–A08 work. These are
 not prerequisites for merging the current experimental implementation.
@@ -12,30 +12,27 @@ the [anomalous workflow](metal-anomalous-doctor.md) and [restraint design](metal
 own scientific contracts. A mechanism passing tests does not close its scientific
 gate. Update milestone status, evidence, limitations and next action together.
 
-A01's latest six-atom B7→B1 phased fit now completes source-bound native output
-and independent return checks, but shortening the gap to 1.997 Å distorts the
-adjacent bonds/angles. One separate geometry-plus-0.5 Å tether trial reaches a
-saved 1.617 Å gap, then an unconstrained optimizer proposal exceeds the unchanged
-1.5 Å guard. It does not converge or emit a candidate. A01 remains partial/A02
-gated; see the [current handoff](metal-development-handoff.md#a01-phased-junction-2026-11-23).
+A01's predeclared same-parent cap comparison is complete: increasing only the
+movement allowance from 1.5 to 2.0 Å restores much of the phosphate geometry
+(OP2–P–O5′ 85.7→107.3°, target 108°), but a later B1 OP2 proposal crosses the
+new guard. The trial remains unconverged and emits no candidate. **A01 partial;
+A02 gated.** See the [current handoff](metal-development-handoff.md#a01-phosphate-cap-2026-11-24).
 
-Reuse the completed admission/return/failed-step audits (8,714 + 89, 4,720 and
-1,789 cold checks respectively), shared source/installed focused receipts and
-saved reports. The optional next-run defaults compatibility fix is separately
-qualified in Willow; its complete output-only replay reproduces the failed run's
-coordinates. No implicit integration, accepted model or full-suite claim follows.
+Reuse the exact prior trajectory and source bindings, 1,797 independent cold
+checks, 21 local scalar-term checks and the inspected three-view report. One native
+geometry trial ran; two preparation-only dependency failures remain recorded.
+All processes stopped. No changed runtime owner, implicit Willow integration,
+new diffraction fit, ordinary checkpoint, accepted parent or full-suite claim.
 
-Next: review chemically valid source-backed phosphate placement and the motion
-representation against both fixed sugar attachments/local contacts before another
-bounded experiment. A guard refusal is not a constrained optimum or proof that a
-larger movement mask is needed. No automatic bound expansion, weight grid, second
-cut or combination with the earlier A12 outward-phosphate hypothesis. Ordinary
-checkpoint publication and a sound open XYZ/B parent remain prerequisites before
-f″. For later 5W6W-derived legacy admission, use Cedar C551's read-only orientation
-check where the paired-neighbour declaration actually matches; keep internal OP3
-unassessed and never silently swap coordinates. The standard frames are already
-corrected. Earlier canonical-flank and outward-phosphate comparisons remain
-separate retained evidence.
+Next: review boundary-aware proposal handling and source-derived phosphate placement
+against both fixed sugar attachments and packing. A guard refusal is not a
+constrained optimum, and remaining ~6–7° angle deviations are not automatically
+fatal at this resolution. No third cap, parameter grid, mask expansion or restart
+from a failed point. Independently reviewed source-bound geometry must precede a
+controlled open XYZ/B receiving experiment and f″. Keep D7→C8 and the earlier A12
+outward-phosphate hypothesis separate. For future legacy admission, Cedar C551's
+read-only orientation check requires matching declared adjacent pairs; internal
+OP3 stays unassessed and no coordinates are silently swapped.
 
 A01 next-input review now includes [DF C2 chemical target provenance](metal-df-c2-angle-audit.md). A source-consistent fragment is available, but its eLBOW angles are not independent chemistry authority. Retain explicit source-state uncertainty and coupled-target review; routine donor-state integration remains deferred. No automatic 120° substitution.
 
