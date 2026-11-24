@@ -51,6 +51,34 @@ def test_two_intact_references_retain_the_angles_and_signed_torsion():
     assert report["automatic_adoption"] is False and native == before
 
 
+@pytest.mark.parametrize(("kind", "indices", "origin", "other"), [
+    ("bond_simple", (2, 9), 4, ("A:5", "A:2")),   # same O3′, different phosphorus
+    ("bond_asu", (5, 10), 0, ("A:3", "A:6")),    # same phosphorus, different O3′
+    ("bond_simple", (2, 9), 2, None),               # a recognized hydrogen-bond restraint
+    ("bond_simple", (9, 10), 0, None),              # the two requested atoms themselves
+    ("bond_asu", (1, 6), 4, None),                  # both endpoints belong elsewhere
+])
+def test_native_bond_competing_for_one_registered_atom(kind, indices, origin, other):
+    native = capture()
+    native["restraint_policy"] = {"origin_ids": {"hydrogen bonds": 2}}
+    rows = native["geometry"]["proxy_details"]
+    extra = dict(rows["bond_simple"][0], i_seqs=list(indices), origin_id=origin,
+                 atoms=[native["atoms"][i]["label"] for i in indices],
+                 symmetry_operation="x+1,y,z" if kind == "bond_asu" else None)
+    rows[kind].append(extra)
+    native["geometry"]["proxy_counts"][kind] += 1
+    result = read(native)
+    if other is None:
+        assert result["status"] == "AGREEING_REFERENCES"
+        assert "competing_endpoint_bonds" not in result
+    else:
+        assert result["status"] == "COMPETING_ENDPOINT_BOND"
+        assert result["reference_status"] == "AGREEING_REFERENCES"
+        assert result["competing_endpoint_bonds"] == [list(other)]
+        assert all(site in result["reason"] for site in (*other, "A:5", "A:6"))
+        assert result["groups"][0]["links"] == [["A:1", "A:2"], ["A:3", "A:4"]]
+
+
 def test_incompatible_chemistry_and_competing_targets_stay_distinct():
     native = capture()
     native["geometry"]["proxy_details"]["angle"][1]["angle_ideal"] = 107

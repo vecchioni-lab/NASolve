@@ -58,7 +58,8 @@ def reference_link_terms(native, *, phosphate, o3):
     Require an observed, positive, ordinary covalent O3′–P bond between distinct
     sites. Exclude the queried pair, keeping it independent of its references.
     Preserve signed atom order for torsions and chirality, duplicate terms and
-    zero weights. Terms reaching a third residue are outside this comparison.
+    zero weights. Report any other non-hydrogen-bond O3′–P distance sharing the
+    proposed donor or acceptor. Other three-residue terms are outside the comparison.
     """
     mappings = _mappings(native)
     if phosphate not in mappings or o3 not in mappings:
@@ -78,6 +79,7 @@ def reference_link_terms(native, *, phosphate, o3):
              for i, a in atoms.items()}
     references = {}
     between = Counter()
+    competing = set()
     policy = native.get("restraint_policy")
     origins = policy.get("origin_ids") if isinstance(policy, dict) else None
     hydrogen_origin = origins.get("hydrogen bonds") if isinstance(origins, dict) else None
@@ -99,6 +101,9 @@ def reference_link_terms(native, *, phosphate, o3):
                 indices = indices[::-1]
             source, target = left[0], right[0]
             between[frozenset((source, target))] += 1
+            if ((left[1], right[1]) == ("O3'", "P") and (source == o3 or target == phosphate)
+                    and (source, target) != (o3, phosphate)):
+                competing.add((source, target))
             if (origin == 0 and kind == "bond_simple" and row["symmetry_operation"] in (None, "x,y,z") and row["weight"] > 0
                     and (left[1], right[1]) == ("O3'", "P") and source != target
                     and [atoms[i]["element"].strip().upper() for i in indices] == ["O", "P"]
@@ -140,10 +145,17 @@ def reference_link_terms(native, *, phosphate, o3):
         status = "AGREEING_REFERENCES"
     else:
         status = "ONE_REFERENCE" if references else "NO_MATCHING_REFERENCE"
-    return dict(status=status, groups=list(groups.values()), o3_chemistry_sha256=chemistry[o3],
-                phosphate_chemistry_sha256=chemistry[phosphate], excluded_multiple_bonds=[list(p) for p in sorted(multiple)],
-                automatic_adoption=False,
-                scope="Recorded covalent terms confined to both reference residues. Per-atom angle and torsion images are not recorded in this capture format.")
+    result = dict(status=status, groups=list(groups.values()), o3_chemistry_sha256=chemistry[o3],
+                  phosphate_chemistry_sha256=chemistry[phosphate], excluded_multiple_bonds=[list(p) for p in sorted(multiple)],
+                  automatic_adoption=False,
+                  scope="Recorded covalent terms confined to both reference residues. Per-atom angle and torsion images are not recorded in this capture format.")
+    if competing:
+        pairs = sorted(competing)
+        observed = ", ".join(f"{donor} O3′ to {acceptor} P" for donor, acceptor in pairs)
+        result.update(status="COMPETING_ENDPOINT_BOND", reference_status=status,
+                      competing_endpoint_bonds=[list(pair) for pair in pairs],
+                      reason=f"Phenix already restrains {observed}. That shares an atom with the proposed {o3} O3′ to {phosphate} P bond.")
+    return result
 
 
 def read_phosphate_references(receipt, model_bytes, *, phosphate, o3):

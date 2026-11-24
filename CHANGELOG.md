@@ -19,7 +19,10 @@ entries are reconstructed from repository history.
   Numbered AutoRefine accepts an explicit set with `--registered-continuations`
   and carries that complete set into subsequent rounds. Inspect a single member
   of the fit with `cif-doctor phosphate-image --saved-continuation-id ID`.
-  Older one-link workers retain their original source bytes.
+  Before allocating a round, AutoRefine checks whether the input chemistry
+  already gives either O3′ or P another partner. The diagnostic names the
+  conflicting atoms. Inspector JSON retains the evidence from the intact
+  reference links. Older one-link workers retain their original source bytes.
   Add `--restraint-deviations` to measure the written bond, four angles and
   three torsions against the fitted targets. JSON includes the actual values
   on each chemically matched ordinary link in that same checkpoint.

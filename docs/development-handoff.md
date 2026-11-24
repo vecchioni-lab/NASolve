@@ -1,9 +1,30 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-24, C563 checking local phosphate geometry at a crystal boundary — Rowan**.
+Updated **2026-11-24, C564 detecting a third bond at a registered phosphate — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
-**Q06.** When an incoming phosphodiester bond is unresolved, checked
+**Q06.** C564 tests whether two correct crystal bonds can hide a third,
+unintended bond in the input restraints. In a deliberately altered copy
+of C562, native Phenix initialization accepted a D:7 O3′–B:1 P edit with
+a 1.607 Å target while the atoms sat 5.859 Å apart. Each atom already
+belonged to a different intended junction. No optimization was run on this
+control. On a private copy with the Coot and returned ReadySet models
+imported as manual checkpoints, the ordinary AutoRefine command named both
+pairs and refused before allocating a round. Refine-005 stayed selected and
+the registry bytes and timestamp were preserved. The read-only inspector keeps the two and four intact reference links and
+their numerical targets. The clean control emits both original bond edits
+byte-for-byte. Six saved checkpoint reports also reproduced byte-for-byte.
+
+The six focused files were `test_phosphate_reference_links`,
+`test_refinement_phosphate`, `test_phosphate_restraints`,
+`test_phosphate_image`, `test_phosphate_continuation` and `test_cli`.
+Source and relocated wheel each passed 118 tests and 14 subtests with
+Gemmi 0.7.5, using the same command below. The private companion
+`Competing phosphate control.zip` reuses C562 inputs. Its deliberately
+wrong restraint is confined to the negative control. Next carry the qualified
+dictionary and both registered crystal images into ordinary preparation.
+
+**C563.** When an incoming phosphodiester bond is unresolved, checked
 preparation now examines the three local P–O bonds, their three angles and
 the outgoing O3′ connection before reporting the gap. The old diagnostic
 hid a 3.000 Å P–OP1 bond, collapsed OP1–P–OP2 angle, and ambiguous outgoing

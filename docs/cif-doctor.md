@@ -251,6 +251,12 @@ For a construct with several covalent crossovers, replace
 `--registered-continuations 1 2`, using the IDs from its own registration.
 Each O3′ donor and phosphorus acceptor can participate in one bond at that
 end. One nucleotide can contribute its two different ends to adjacent links.
+The native chemistry receipt is checked for existing O3′–P bonds at both
+atoms, including distance edits supplied by the user. If either atom already
+has a different partner, AutoRefine reports both pairs before it creates
+a round. `phosphate-image --native-receipt` retains the reference targets
+and lists the conflicting partners. Phenix's recognized hydrogen-bond
+restraints are distinguished by their recorded origin.
 
 The original restraint files keep their order. The round supplies each
 declared bond to Phenix in its own crystal image. For each connection, two

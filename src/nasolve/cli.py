@@ -1879,7 +1879,9 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
                     print(f"  {row['angle']}  GEO {row['model_degrees']:.2f}° {descriptions[row['coordinate_agreement']]}{image_note}")
         reference = result.get("native_reference_links")
         if reference is not None:
-            print("Intact links with matching residue definitions  " + reference["status"])
+            print("Intact links with matching residue definitions  " + reference.get("reference_status", reference["status"]))
+            if reference.get("reason"):
+                print("  " + reference["reason"])
             for group in reference["groups"]:
                 pairs = ", ".join(source + " to " + target for source, target in group["links"])
                 print(f"  {pairs} share {len(group['terms'])} recorded covalent terms")

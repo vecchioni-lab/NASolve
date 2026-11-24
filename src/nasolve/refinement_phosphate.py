@@ -131,6 +131,10 @@ def prepare_intent(run, registry, parent, choice, *, phenix_version, python_exec
     model = _bound_path(parent["model"], "phosphate starting model", run)
     observations = [inspect_inherited_continuation(source, model, reg, native_receipt=choice.native_receipt)
                     for reg in registrations]
+    for observation in observations:
+        reference = observation["native_reference_links"]
+        if reference["status"] == "COMPETING_ENDPOINT_BOND":
+            raise ValueError(reference["reason"])
     if len(observations) > 1:
         RegisteredPhosphateRuntime.check_group(observations)
     edges = [row["registered_continuation"] for row in observations]
