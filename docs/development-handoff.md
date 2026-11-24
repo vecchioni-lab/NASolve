@@ -8,38 +8,35 @@ observation and storage owners; it introduces no new scientific policy.
 ## Current metal-science edge
 
 A01 remains partial; A02 f″ remains gated. The
-[matched DNA XYZ/group-B comparison](metal-development-handoff.md#a01-dna-stage-admission-2026-11-24)
-now completes both five-cycle native fits with original phases/Free-R, the same
-858 DNA atoms/42 B groups and fixed Hg XYZ/B/Q/f′/f″. Rwork/Rfree are
-0.3084/0.3333 and 0.3054/0.3340. Both starts close the large phosphate gap and
-produce nearly linear Hg coordination; weak phosphate maps and remaining
-geometry prevent parent selection. Base-only B values differ strongly between
-the two ligands; no environmental B or f″ quantitation has run.
+[joint DNA XYZ/group-B comparison](metal-development-handoff.md#a01-joint-dna-2026-11-24)
+completes two five-cycle Phenix 2.2.1-6174 fits with **both confirmed crystal
+connections**, original phases/Free-R, 858 DNA XYZ/42 B groups and fixed Hg.
+B7→B1 is 1.649/1.658 Å; the previously open D7→C8 closes to 1.621/1.638 Å.
+Hg coordination is about 172.2°; Rwork/Rfree are 0.3054/0.3341 and 0.3061/0.3366.
+No selected parent: the first phosphate stays strained and its maps remain weak.
 
-The local phosphate angle is present once at its original 108° target, but
-remains 93.9°/89.2°. Its bonded potentials favor opening, not a new duplicate
-restraint. Cedar C561's existing written-image reader supplies physical image
-geometry beside the raw native GEO. The actual real-space mode processed zero
-DNA residues; global real-space execution is not qualified.
+The existing environmental-B helper previews base-mean values 85.85/86.62 Å²
+versus N3-donor means 94.59/95.36 Å² from the returned models. Saved Hg remains
+B69.52/Q1/f″0 unmeasured; neither model changes. The first phosphate's installed
+bonded terms favor opening, and no reported OP2 contact is inside its vdW
+distance. Complete force balance and coupled metal/base placement remain open.
 
-Both fits and preflights are stopped. Reuse 21 observer controls, 102 independent
-protocol/output checks, 94 cold term checks and the exact C561 readback; no new
-refinement is needed to close this comparison. Both FT-specific declared crystal
-connections now pass source/frame/reference and C560/C564 joint-scope checks
-(189 cold checks). D:1 remains terminal. D7→C8 still spans 2.993/3.051 Å in the
-written outputs, providing the next broad geometry question. Next initialize
-the existing joint owner with both image-force/exclusion sets and protected
-Hg/HL/Free-R before considering a new fit. No new native job is queued tonight.
-No cap/weight grid, ordinary checkpoint ancestry or f″ eligibility is inferred.
-The local evidence is `Alder/a01-dna-stage-admission-20261124-01/`;
-the reports are `ScienceCheckouts/Hazel/2026-11-24_ft-dna-relaxation/index.html`
-and its read-only follow-up `joint-scope.html`.
+Both preflights and fits are stopped. Reuse 105 joint preflight checks, 130
+cold fit/output checks, 18 Cedar written-image checks, 20 saved R-factor checks,
+44 B-preview checks, 94 bonded-term checks and 84 contact checks. Local real-space
+calls processed zero DNA; global real-space execution is not qualified. Native
+Rfree is recovered with its own amplitude scale, not the unrescaled FMODEL ratio.
 
-The [pure helpers](topostitch-feasible-diagnostics.md) at `7c2e1c41` retain
-53 focused/99 adjacent/53 installed cases and 531 cold replay checks.
-This update changes documentation only, with relevant document/link checks.
-No shared runtime/schema/default/migration change, scientific upload, pruning,
-unchanged full suite or new integration qualification.
+Next scope coupled Hg/base XYZ freedom with explicit native mask/protection
+observations under the same joint chemistry; consult prior all-atom attempts.
+Do not silently adopt these standalone results as ordinary/f″ parents.
+The current evidence is `Alder/a01-joint-dna-20261124-01/`; the visual report is
+`ScienceCheckouts/Hazel/2026-11-24_ft-two-connections/index.html`.
+Earlier one-link and scope receipts remain linked in the metal handoff.
+
+This checkpoint changes four maintained documents only. Cedar V12 is frozen
+for the private experiment, not a new Alder integration. No maintained runtime,
+schema, default, migration, scientific upload, pruning or full-suite claim.
 
 ## Qualified integration checkpoint — test-only amendment
 

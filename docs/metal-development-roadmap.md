@@ -12,23 +12,22 @@ the [anomalous workflow](metal-anomalous-doctor.md) and [restraint design](metal
 own scientific contracts. A mechanism passing tests does not close its scientific
 gate. Update milestone status, evidence, limitations and next action together.
 
-**A01 partial; A02 f″ gated.** The [matched open-DNA comparison](metal-development-handoff.md#a01-dna-stage-admission-2026-11-24)
-now completes both five-cycle XYZ/group-B fits with original phases/Free-R and
-fixed Hg. Both produce nearly linear coordination and close the first crystal
-connection; Rfree remains about 0.334 and phosphate maps/geometry do not support
-parent selection. The installed local angle restraint is present and strained.
-No f″ quantitation or global real-space DNA qualification follows.
+**A01 partial; A02 f″ gated.** The [joint open-DNA comparison](metal-development-handoff.md#a01-joint-dna-2026-11-24)
+now completes both five-cycle fits with both confirmed crystal connections.
+D7→C8 closes to 1.621/1.638 Å; B7→B1 remains 1.649/1.658 Å. Hg coordination
+is about 172.2°, Rfree 0.3341/0.3366. The first phosphate's 91.21/92.97° angle
+and weak maps remain unresolved. Saved Hg is fixed; no accepted parent/f″ result.
 
-**Next A01 step:** initialize both declared crystal connections through Cedar's
-existing joint owner, observing both image-force/exclusion sets and protected
-Hg/HL/Free-R. The FT-specific source/frame/reference and joint grouping already
-pass 189 cold checks; D:1 stays terminal. D7→C8 is still 2.993/3.051 Å in the
-written one-join outputs, giving the next substantial geometry question.
-No new native job is queued tonight. Reuse completed fits, observer controls,
-cold readbacks and helper tests; no further cap/weight grid. The handoff owns
-exact commands, evidence and limitations. The local visual report is
-`ScienceCheckouts/Hazel/2026-11-24_ft-dna-relaxation/index.html`, with the later
-read-only scope in `joint-scope.html`.
+**Next A01 step:** scope coupled metal/base XYZ freedom under the same joint
+chemistry, original phases/Free-R and fixed Hg B/Q/f′/f″. Check older all-atom
+attempts first, then qualify changed native masks/protection observations before
+any separately bounded fit. Existing environmental-B machinery previews the
+actual refined base/donor means without changing either model. Standalone
+results still need source-backed receiving before the ordinary diagnostic f″
+interface; scientific acceptance is separate. Reuse all completed preflight,
+fit, map and term/contact readbacks; no cap/weight grid or global real-space
+claim. The handoff owns exact validation and limits. The current visual report:
+`ScienceCheckouts/Hazel/2026-11-24_ft-two-connections/index.html`.
 
 A01 next-input review now includes [DF C2 chemical target provenance](metal-df-c2-angle-audit.md). A source-consistent fragment is available, but its eLBOW angles are not independent chemistry authority. Retain explicit source-state uncertainty and coupled-target review; routine donor-state integration remains deferred. No automatic 120° substitution.
 

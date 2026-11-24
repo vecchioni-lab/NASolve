@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record joint crystal-link refinement and environmental-B previews
+
+- Complete the matched source-bound five-cycle comparison with both confirmed
+  FT_Hg crystal connections through the frozen Cedar V12 owner. Retain original
+  phases/Free-R, protected Hg, actual native-stage observations and paired maps.
+- Record closure of the second link, remaining first-phosphate strain, explicit
+  base/donor B previews and saved native R-factor recovery. Keep both endpoints
+  unselected; no f″, ordinary-parent adoption or scientific acceptance follows.
+- Reuse saved bonded/contact readbacks and scope coupled metal/base receiving.
+  Documentation only; no maintained runtime/schema/default/migration change,
+  new shared integration, scientific upload, automatic pruning or full-suite claim.
+
 ### Record matched open-DNA refinement and phosphate force attribution
 
 - Complete the source-bound original/constructed five-cycle XYZ/group-B

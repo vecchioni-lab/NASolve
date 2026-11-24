@@ -10,126 +10,112 @@ not a second queue.
 <a id="a01-current-science-attachment-stiffness-transfers-strain"></a>
 <a id="a01-current-science-coupled-placement-does-not-survive-open-refinement"></a>
 <a id="a01-dna-stage-admission-2026-11-24"></a>
+<a id="a01-joint-dna-2026-11-24"></a>
 
-## Current A01 — matched DNA XYZ/group-B fits complete; no selected parent
+## Current A01 — both crystal connections refine together; no selected parent
 
-Two source-bound standalone **five-cycle Phenix 2.2.1-6174 fits** now compare
-the original model and constructed phosphate seed. Exactly six starting XYZ
-values differ. Both free the same 858 DNA coordinates and 42 residue B groups,
-retain MLHL with the same 1,151 observations/HL and 59 original Free reflections,
-and hold Hg XYZ/B/Q/f′/f″ throughout. The registered B7→B1 crystal connection and
-all original chemistry are retained. This completes the bounded execution
-comparison, **not A01 scientific acceptance**. A01 remains partial; A02 is gated.
+The source-bound original/constructed comparison now runs with **both confirmed
+B7→B1 and D7→C8 connections** through the frozen Cedar V12 joint owner. Two
+complete five-cycle **Phenix 2.2.1-6174** fits free the same 858 DNA XYZ values
+and 42 residue B groups; Hg XYZ/B/Q/f′/f″ stay fixed. Exactly six initial XYZ
+values differ between arms. Original indexed HL/MLHL and all 1,151 observations,
+including 59 original Free reflections, remain unchanged. D:1 stays chemically
+terminal with p5*END and P/OP1/OP2/OP3 retained. A01 partial; A02 gated.
 
 | Returned measurement | Original start | Constructed start |
 | --- | ---: | ---: |
-| Rwork / Rfree | 0.3084 / 0.3333 | 0.3054 / 0.3340 |
-| B7-image O3′–B1 P (Å) | 1.648 | 1.677 |
-| B7 C3′–O3′ (Å) | 1.487 | 1.508 |
-| B1 OP2–P–O5′ (degrees) | 93.87 | 89.21 |
-| N3–Hg–N3 (degrees) | 172.10 | 170.37 |
-| Hg–N3 A12 / B4 (Å) | 2.017 / 2.030 | 2.006 / 1.992 |
-| A12 / B4 base-only mean B (Å²) | 53.91 / 124.28 | 50.40 / 121.32 |
+| Rwork / Rfree | 0.3054 / 0.3341 | 0.3061 / 0.3366 |
+| B7-image O3′–B1 P (Å) | 1.649 | 1.658 |
+| D7-image O3′–C8 P (Å) | 1.621 | 1.638 |
+| B1 / C8 OP2–P–O5′ (degrees) | 91.21 / 107.96 | 92.97 / 109.09 |
+| N3–Hg–N3 (degrees) | 172.16 | 172.21 |
+| Hg–N3 A12 / B4 (Å) | 2.031 / 1.985 | 2.010 / 2.004 |
+| A12 / B4 base-only mean B (Å²) | 51.11 / 120.58 | 51.56 / 121.68 |
+| Preview Hg B, base-mean / N3-donor-mean (Å²) | 85.85 / 94.59 | 86.62 / 95.36 |
 
-Both starts now close the large phosphate gap and give a nearly linear Hg pair.
-The crystal connection still has weak main density and negative difference
-density: original/constructed P is 0.038/0.039σ in 2mFo−DFc and −2.986/−2.876σ in
-mFo−DFc. Hg has strong main density (5.020/5.241σ), with negative difference
-density (−2.586/−2.482σ). These are model-assisted 5.06 Å maps including Free-R;
-neither map support nor tiny between-arm R differences establish a winner.
-Hg remains B=69.52 Å², Q=1, f″=0 **unmeasured**. No environmental-B assignment,
-f″ sweep or parent selection. Base B means exclude sugar/backbone; group-ADP
-refinement retains inherited within-group B differences, so B4's mean differs
-from its N3 B (141.75/138.79 Å²). Do not force either to an expected range.
+The second connection closes from 3.111 Å in both starts, whereas earlier
+one-link fits left it at 2.993/3.051 Å. Its phosphate angle is now close to the
+108° source target. The first phosphate remains substantially strained. Both
+Hg pairs are nearly linear, but these small R differences do not choose a
+winner. The prior one-link comparison used V11; it is historical context,
+not a code-identical single-variable control for this V12 pair.
 
-**Protocol evidence:** 21 positive/negative observer controls pass before the
-pair. Original/constructed preflights take 11.16/9.15 s; complete fits take
-374.53/467.00 s. All four owned processes exit/stay stopped. Actual reciprocal
-XYZ target evaluations are 2,150/2,736; group-ADP evaluations 354/361; 92 full
-stage observations per arm preserve Hg and indexed phases/Free-R. Independent
-cold reading of source arrays, returned states, written models and maps passes
-**102 checks**. All 858 DNA B values move; fixed atomic scattering/occupancy and
-native/output bindings are preserved. No ordinary numbered ancestry is invented.
+**Maps and environmental B:** original/constructed B1 P main/difference density
+is 0.112/−2.953 and 0.092/−2.863σ; C8 P is 0.029/−2.670 and 0.018/−2.660σ.
+Hg is 5.226/−2.487 and 5.204/−2.528σ. These are model-assisted 5.06 Å maps
+including Free-R, not independent validation. Saved Hg remains B=69.52 Å²,
+Q=1, f″=0 **unmeasured**. The existing environmental-B helper previews both
+policies from the actual returned models and captured CIF graphs: nine non-H
+atoms per base, excluding sugar/phosphate, or the two explicit N3 donors.
+The base mismatch is retained; no expected B range is imposed. Proposed bytes
+exist only in memory and are discarded. No saved B assignment, f″ fit or
+parent selection. Written-PDB rounding explains small differences from native
+full-precision means. B4's donor B is 138.06/139.15 Å², distinct from its base mean.
 
-Both atomic isotropic ADP back-trace controls remain disabled; ordinary
-bulk-solvent/scaling stays enabled. The compiled real-space mode is **local
-only**, and each of its ten calls processes zero DNA residues. Thus these are
-actual reciprocal XYZ/group-B fits, **not a qualification of global real-space
-DNA optimization**. No mode was silently changed during the comparison.
+**The first phosphate has a real remaining conflict, not a missing restraint.**
+Exactly one local 108°/3° OP2–P–O5′ term remains installed; current raw penalties
+are 31.307/25.115. All five bonded OP2 terms are present. Their summed partial
+opening slopes are −4.190/−3.691 native units per degree. The final reported
+nonbonded environment has 20/18 OP2 contact rows (including reciprocal image
+rows); none lies inside its reported van der Waals distance. Minimum clearances
+are +0.236/+0.418 Å. This does not reconstruct the complete diffraction/nonbonded
+force balance or establish stationarity. It supports neither a duplicate angle
+restraint nor another weight grid. Use Cedar C561's written-image reader beside
+raw GEO: cross-image GEO model/residual values use untransformed coordinates,
+whereas the qualified runtime corrects actual energies/gradients.
 
-**The local phosphate-angle force is present.** Reusing A622's scalar method
-on these new endpoints (not its old capped-search states) gives **94 cold
-inventory/scalar checks**. Both initial/final native reports contain exactly
-one OP2–P–O5′ term: target 108°, restraint width 3°, final raw penalties
-22.189/39.234. All five bonded terms touching OP2 are present. Opening that angle
-by rotating only OP2 at fixed P–OP2 length lowers their summed potential:
-−3.551/−4.511 native units per degree. This partial derivative says nothing
-about the complete MLHL/nonbonded force or stationarity, and does not authorize
-another restraint, relaxed weight or search grid. Restraint widths are not
-experimental error bars.
+**Execution/validation:** both zero-cycle preflights pass **105 independent
+checks**, including 24 full/DNA-sliced geometry finite-difference probes per arm
+(maximum errors 1.25e−6/9.84e−7). Both owners retain their seven image terms,
+bond/exclusion sets and source references. Fits take **510.77/481.75 s**;
+actual reciprocal XYZ target calls are 2,915/2,677, group-ADP calls 371/368,
+with 92 full stage observations per arm. Both processes and preflights stop.
+**130** cold fit/output checks, **18** existing Cedar image-geometry checks,
+**20** saved R-factor checks, **44** environmental-B preview checks,
+**94** bonded-attribution checks and **84** saved-contact checks pass.
+The three paired PNG/SVG views were visually reviewed. These are private
+scientific assertions/readbacks, not a fresh pytest/full-suite claim.
 
-Cedar **C561 (`51be01f4`)** already measures written crystal-image geometry.
-Its existing `measure_written_phosphate` helper reads both checksummed outputs;
-the ordinary `phosphate-image --restraint-deviations` CLI remains reserved for
-legitimate saved checkpoints. Eight image terms per arm are recorded. The raw
-native GEO prints cross-image model/residual values using untransformed sites:
-original O3′–P–OP2 is printed as 47.20°, whereas the declared-image measurement
-from written coordinates is 109.924°. Runtime corrected forces remain qualified;
-the local within-residue angle is unaffected. Use the Cedar readback alongside
-the raw GEO, not that cross-image printed value as physical geometry.
+Both atomic isotropic ADP back-trace controls stay disabled; ordinary bulk-
+solvent/scaling remains enabled. Local real-space calls process zero DNA
+residues: global real-space optimization is not qualified. Native Rwork/Rfree
+are independently recovered from saved f-models using Phenix's separate work
+and free amplitude scales. An unrescaled exported FMODEL free residual is a
+different statistic; do not replace the recorded Rfree with that lower number.
 
-**Next boundary — joint source scope now qualified, native initialization pending.**
-The read-only A674 follow-up reuses the FT-specific investigator declaration,
-original registration and the two existing exact-model chemistry captures.
-**189 cold checks** admit both B7→B1 and D7→C8 through Cedar C564's competing-
-partner checks and C560's existing joint grouping. A:1–A:21 is verified; D:1
-retains its chemical boundary, p5*END modification and P/OP1/OP2/OP3 atoms.
-B7→B1 uses native references A16→A17 and B5→B6; D7→C8 uses A9→A10,
-C11→C12, D2→D3 and D5→D6. The declared oxygen-image operators are respectively
-`-y,x-y,z` and `-x+y,-x,z`. The B/C/D-only registration is not an A-chain/metal
-sequence-design or complete pairing authority. No PDU topology is substituted.
+**Next A01 boundary:** review the remaining geometry and scope coupled Hg/base
+XYZ freedom under the same joint chemistry, phases, Free-R and fixed Hg B/Q/f′/f″.
+Check previous all-atom attempts before running: neither those older fits nor
+the current fixed-Hg comparison qualifies the new joint moving-metal state.
+Any changed freedom needs explicit native masks/protection observations and a
+separate bounded protocol. Do not silently promote either fitted endpoint or
+fabricate ordinary checkpoint ancestry. The existing diagnostic f″ bridge is
+distinct from scientific acceptance, but this standalone joint experiment does
+not yet satisfy its ordinary endpoint/provenance interface. Source-backed
+receiving and the unresolved geometry are the named gaps; no automatic f″,
+cap/weight grid, new chemical target or global real-space mode follows.
 
-The second gap is a substantial remaining defect: **D7→C8 is 2.993/3.051 Å** in
-the actual written one-join outputs, versus the native 1.607 Å target. Both
-prospective original/constructed starts have that gap at 3.111 Å. Written
-endpoint geometry is diagnostic only; those fitted outputs lack fresh
-exact-model chemistry captures and are not silently promoted as new parents.
-This supports testing the missing declared connection before chasing small
-angular differences at the repaired first join.
+**Evidence/restart:** `branch-artifacts/Alder/a01-joint-dna-20261124-01/` retains
+plans/source pins, frozen V12/observer code, exact native argument arrays,
+preflight/fit process stops, independent receipts, written models/maps and
+editable figures. Runners **A677–A688** record the methods; `README.md` records
+exact commands. The new compact report is
+`ScienceCheckouts/Hazel/2026-11-24_ft-two-connections/index.html` and links
+models/maps without copying them. Important geometry/proof nodes remain local;
+no pruning, science upload or portability claim. Four maintained documents
+change; no maintained runtime/schema/default/migration change. The V12 package
+is frozen from Cedar for this experiment, not silently integrated into Alder.
 
-Next freeze the current multi-phosphate owner and initialize an explicitly
-declared new branch with both owners in one active context. Observe both bonds,
-fourteen image angle/torsion terms, both exclusion sets and joint/sliced calls,
-alongside the existing Hg, DNA-mask, phase and Free-R protections. The earlier
-single-owner worker cannot be reused unchanged, and the inherited one-join
-scope must not be silently altered. Only after that boundary qualifies may a
-separately declared fit run. No further native job is queued tonight.
-Coupled metal/base placement, ordinary checkpoint publication and independent
-DF target chemistry remain open; A01 partial/A02 gated.
+### Preceding evidence retained
 
-The compact scope receipt is
-`branch-artifacts/Alder/a01-two-connection-scope-20261124-01/scope-review.json`
-(about 118 KB with its caller-correction note, no copied models). The checkout's
-new `joint-scope.html` links the completed comparison without changing its
-published report. A first cold caller used a nonexistent review-receipt path;
-reading A645's actual writer resolved the reference before any native work.
-No scientific input or model was changed.
-
-**Evidence/restart:** `branch-artifacts/Alder/a01-dna-stage-admission-20261124-01/`
-contains plan, exact commands/process stops, frozen observer/owner, source pins,
-native products, `cold-review.json`, `phosphate-attribution.json`,
-`cedar-written-geometry.json` and editable paired figures. Runners A664–A672
-retain preparation, 21 controls, execution and review methods; the local README
-records exact commands. Approximately 20.2 MB of proof/input/output material
-is retained. The new checkout is
-`ScienceCheckouts/Hazel/2026-11-24_ft-dna-relaxation/index.html`; it links models,
-maps and figures instead of duplicating them. Earlier checkouts stay unchanged.
-No scientific upload, automatic pruning or portability claim.
-
-This checkpoint changes four maintained documents only. No runtime, schema,
-default or migration change; no unchanged suite/native rerun. The pure-helper
-qualification at `7c2e1c41` remains 53 focused/99 adjacent/53 installed cases and
-531 cold replay checks. Relevant document/link checks are recorded separately.
+`2ec9c11f:docs/metal-development-handoff.md` retains the one-link comparison
+and joint-source scope in full. Its 21 observer controls, 102 fit/output checks,
+94 saved-term checks, C561 readback and 189 joint-source checks remain evidence;
+do not rerun them unchanged. The source scope binds both FT-specific connections,
+A:1–A:21, D:1 chemistry, exact native reference groups and operators `-y,x-y,z`
+and `-x+y,-x,z`; PDU is not substituted as topology authority.
+Earlier checkouts stay intact. Pure-helper qualification at `7c2e1c41` remains
+53 focused/99 adjacent/53 installed cases and 531 cold replay checks.
 
 <a id="a01-feasible-step-2026-11-24"></a>
 <a id="a01-allowance-comparison-2026-11-24"></a>
