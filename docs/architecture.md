@@ -1213,6 +1213,16 @@ code decoder owns operation lookup; Willow owns complete atom identity and
 physical endpoint invariance. No annotation or model file is written. See the
 [W258 contract](topostitch-preview.md#preserve-original-connection-endpoints-through-a-recut-w258).
 
+`topostitch_cif_polymer.observe_relabel_cif_polymer` adds the original five-table
+entity/asym/sequence inventory and partitions every source atom without confusing
+missing coordinates with conflicting labels. It preserves unmodeled positions,
+alternative monomers and unregistered polymer context; Cedar's separately pinned
+public sequence inspection supplies evidence, not whole-file approval. Shared
+entity identity remains independent of geometric path segmentation. Author-number
+and canonical-text semantics, output labels and a writer remain separate gates.
+See the [W259 contract](topostitch-preview.md#account-for-declared-polymer-positions-and-original-coordinates-w259).
+
+
 
 
 `topostitch_recipe` freezes complete canonical NARestraints selections for explicit

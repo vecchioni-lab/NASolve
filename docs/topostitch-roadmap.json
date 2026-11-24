@@ -1117,7 +1117,7 @@
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "Bind original polymer/entity/sequence semantics and complete original polymer coverage to proposed paths through Cedar semantic owners and complete source-bound references. Then define output chain/entity labels and encoding of original plus previously implicit graph connections before a maintained writer. Retain unresolved rows, nicks, author/alternate identity and raw source metadata. P02 GUI, special-position/source validity, native lifecycle and changed-child/inverse-edit binding remain separate gates. W259 first reuses public Cedar inspect_deposition_links sequence_tables_checked/sequence_conflicts/unlabelled_polymer_atom_rows, with its exact source/model hash. Missing tables are unavailable, not empty-conflict approval. Independently account for original entity/asym/site coverage, unregistered polymer atoms and unmodeled sequence positions. Do not reuse the unchanged-label processed comparator for a recut or assign new chemical entities/nonstandard-linkage flags from geometric path segmentation. Reuse W249 native/scattering evidence; initial negatives should target missing tables, inconsistent entity/site identifiers, modified-component spelling and incomplete coverage, without new native runs.",
+      "next_action": "W260: define a reviewed output-label/sequence policy before a writer. Separate original chemical entities, construct strands, observed ASU fragments and recut paths; a cut alone cannot determine a nick or assign unmodeled residues to new segments. Audit original author-number and canonical one-letter sequence semantics through established owners, preserving ambiguous alternatives and modified-component spelling. Specify encoding of original annotations plus previously implicit graph edges. Reuse W249 native/scattering and W256-W259 source controls; no repeated native run. P02 graphical review, special-position/source validity, native lifecycle and changed-child/inverse-edit binding remain separate gates. Preserve Cedar's competing-partner guard before any later recut refinement with inherited restraints.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -7117,8 +7117,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 258,
-    "next": 259,
+    "current": 259,
+    "next": 260,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -8476,6 +8476,12 @@
         "title": "Preserve every original connection row and its physical image endpoints",
         "state": "RECORDED",
         "code_commit": "03bb5a2e00b313432a1908418d853df160d9b202"
+      },
+      {
+        "number": 259,
+        "title": "Preserve original polymer coverage and unmodeled sequence positions",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   },

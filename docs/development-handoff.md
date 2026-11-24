@@ -1,54 +1,40 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W258, 2026-11-24**, code `03bb5a2e00b313432a1908418d853df160d9b202`.
-[Original connection transport](topostitch-preview.md#preserve-original-connection-endpoints-through-a-recut-w258)
-retains every original `_struct_conn` row and resolves supplied atom labels and
-explicit symmetry through the saved cut. New image `g h^-1` preserves the exact
-physical endpoint; path positions remain descriptive, not output chain names.
-All connection kinds remain visible. Unresolved/third-partner rows retain reasons;
-missing symmetry never silently becomes identity. No model or annotation is written.
+**Current maintained slice: W259, 2026-11-24** (code pin follows qualification).
+[Original polymer coverage](topostitch-preview.md#account-for-declared-polymer-positions-and-original-coordinates-w259)
+accounts for every original atom and declared sequence position against the saved
+recut paths. Raw entity/asym/sequence tables, shared entities, alternative monomers,
+unregistered polymers and unmodeled positions remain visible. Conflicting atom
+labels cannot silently convert existing coordinates into a missing residue.
 
-**143 focused source / 143 relocated installed checks pass.** Rowan's cold read
-found explicit-blank/unknown matching and a missing polymer residue locator;
-five regressions fail before correction and pass afterward. A fixture initially
-omitted its operation table, and another confused logical with author chains;
-both failed checks remain recorded. Installation/import/help/Python 3.10 syntax
-are qualified after removing the temporary build and former install path; all
-208 installed-file hashes verify. Full Willow regression: **2,727 passed, four
-skipped and 234 subtests in 109.31 s**.
-This is not combined-branch/native qualification.
-The final source repeats all four real 3LNA/5LNA controls: **80/87 connection rows**,
-including **71/74 hydrogen bonds**, remain resolved. Two-route recuts change
-**14/15 endpoint images** with maximum physical endpoint error **5.03e-15 Å**;
-unchanged controls are exactly zero. There is no new native calculation.
-Exact source/owner pins, commands and logs live at NASolve anchor
-`branch-artifacts/willow/w258-cif-connection-transport/`.
+**168 focused source / 168 relocated installed checks pass**, with 210 installed
+file hashes checked after removal of the build and former installation path.
+Rowan found overbroad uncertainty from a water with a missing chain; two failing
+regressions and a positive ambiguity control now pass. Four final-source 3LNA/5LNA
+controls each retain all **62 declared and observed positions**, with zero unresolved
+or unmodeled positions and W258 connection reports exactly unchanged. Synthetic
+controls separately cover genuinely unmodeled positions and alternative monomers.
+Full Willow regression: **2,752 passed, four skipped and 234 subtests (118.50 s)**. This is not combined-branch/native qualification.
+Exact commands, final source pins and local evidence use NASolve anchor
+`branch-artifacts/willow/w259-cif-polymer-coverage/`. No scientific inputs or
+coordinates are committed; no native calculation was launched.
 
-Cedar's public decoder at `51be01f48327c187ac2015e328c1c61adb46891a` is used through
-the existing isolated loader, with its file hash pinned before/after. No Cedar
-source or shared caller changed; compatible explicit Cedar source is required
-until the owner is integrated into the installed package. Rowan owns covalent
-chemistry/sequence interpretation and newly qualified registered-force receiving.
+Cedar owns public `inspect_deposition_links`; its exact file SHA-256 remains
+`931af21688c15a29c99b605b4d442afc908df91d48a1825c19dc68eae81e4204`.
+The shared isolated loader now supplies either that reader or W258's decoder.
+No Cedar source, ordinary workflow or existing packet schema changed. A compatible
+explicit Cedar source remains required until branch integration. Author numbering,
+canonical sequence text and chemical truth are explicitly not approved by this
+coverage result. No CIF writer or new chain/entity assignment is enabled.
 
-**P03 stays partial; next W259:** bind original polymer/entity/sequence semantics
-and complete original polymer coverage to these proposed paths, using Cedar's
-semantic owner and complete source-bound references. Then scope explicit output
-chain/entity labels and connection encoding before a maintained writer. Do not
-conflate retained original rows with added coverage of previously implicit graph
-edges. P02 GUI, special-position/source validity, native lifecycle and changed-child/
-inverse-edit binding remain separate gates. No ordinary workflow activates this API.
+**P03 stays partial; next W260.** W260: define a reviewed output-label/sequence policy before a writer. Separate original chemical entities, construct strands, observed ASU fragments and recut paths; a cut alone cannot determine a nick or assign unmodeled residues to new segments. Audit original author-number and canonical one-letter sequence semantics through established owners, preserving ambiguous alternatives and modified-component spelling. Specify encoding of original annotations plus previously implicit graph edges. Reuse W249 native/scattering and W256-W259 source controls; no repeated native run. P02 graphical review, special-position/source validity, native lifecycle and changed-child/inverse-edit binding remain separate gates. Preserve Cedar's competing-partner guard before any later recut refinement with inherited restraints.
 
-The next bounded experiment can reuse Cedar's public `inspect_deposition_links`
-for its `sequence_tables_checked`, `sequence_conflicts` and
-`unlabelled_polymer_atom_rows`. Do not use its whole-file CHECKED status as a
-sequence approval, or its unchanged-label processed-file comparator on recut
-labels. Willow must separately account for original entity/asym/site coverage,
-unregistered polymer atoms and declared sequence positions lacking coordinates.
-Missing tables stay unavailable; an empty conflict list does not certify them.
-W249 already exercised diagnostic sequence output and native scattering, so reuse
-those controls instead of repeating Phenix. Do not automatically set nonstandard
-linkage flags or define new chemical entities merely because an ASU path splits.
-Output chain/entity semantics require an explicit supported policy before writing.
+The W258 connection transport underneath remains qualified at
+`03bb5a2e00b313432a1908418d853df160d9b202`: 80/87 connection rows, including 71/74
+hydrogen bonds, survive. Recuts change 14/15 endpoint references while preserving
+physical endpoints within 5.03e-15 Å. Original annotation retention does not add
+annotations for previously implicit graph edges. W259 reproduces these reports
+exactly, with no repeated native experiment.
 
 W257's declared paths remain qualified: 121 source/121 installed; full Willow
 2,705 tests, four skips and 234 subtests. Four exact W249 path/operator replays

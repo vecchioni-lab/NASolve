@@ -4050,3 +4050,52 @@ interpret native restraints or authorize a changed model. These are separate P03
 and Cedar gates. [The wwPDB category definition](https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Categories/struct_conn.html)
 covers different connection types, which is why the reader does not filter to
 O3′–P covalent bonds.
+
+## Account for declared polymer positions and original coordinates (W259)
+
+`topostitch_cif_polymer.observe_relabel_cif_polymer(directory, model,
+expected_deposition_owner_sha256=..., cedar_source=..., **source_binding)` adds
+read-only polymer coverage to the W256 original-source/W257 path binding. The
+source arguments retain their explicit hashes, aliases and precision controls.
+The trusted Cedar source is selected explicitly, using the same isolated,
+SHA-pinned owner loader as W258. Its public `inspect_deposition_links` supplies
+sequence-table checks, conflicts and unlabelled polymer-atom counts. The whole
+Cedar geometry status is not sequence approval; an unchanged-label processed-file
+comparison is not used for recut labels. No Phenix/Coot process is launched.
+
+The observer retains raw `_entity`, `_entity_poly`, `_struct_asym`,
+`_entity_poly_seq` and `_pdbx_poly_seq_scheme` tables, including original component
+spellings, author identifiers and nonstandard-linkage flags. It joins declarations
+without filling absent fields or replacing conflicting rows. Every original atom
+belongs exactly once to a known polymer, known nonpolymer or unresolved group;
+unregistered polymer atoms remain visible. Declared sequence positions are
+expanded separately for each original asym element, even when several elements
+share one entity. Legitimate alternative monomers at one position are retained.
+
+Each declared position is `OBSERVED`, `UNMODELED` or `UNRESOLVED`. Conflicting
+atom labels cannot make existing coordinates appear absent. An unresolved atom
+only casts uncertainty over positions compatible with its known identifiers;
+a uniquely identified water with a missing chain does not erase evidence of an
+unmodeled DNA residue. Missing declarations, duplicate identifiers/monomers,
+numbering gaps, contradictory entity assignments and incomplete coverage remain
+review reasons. No missing residue is generated or assigned to a recut segment.
+
+The schema-1 `topostitch-original-cif-polymer-coverage` observation retains source,
+receipt, path-projection, owner and report hashes. Its overall status stays
+`OBSERVED_REVIEW_REQUIRED`. `metadata_coverage_status=CONSISTENT_DECLARATIONS`
+means these supplied tables agree with observed coverage and Cedar's separate
+sequence-table evidence. It does not certify the biological sequence, chemical
+connectivity or a deposition-ready model. Missing any of the five scoped tables
+returns `UNAVAILABLE`; this is this observer's coverage requirement, not a claim
+that every general CIF must contain those tables.
+
+**Unvalidated semantics stay explicit:** original author numbering and canonical
+one-letter sequence text are preserved, not checked or rewritten. In particular,
+[scheme author numbering](https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_pdbx_poly_seq_scheme.auth_seq_num.html)
+need not equal coordinate residue numbering. The
+[sequence definition](https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Categories/entity_poly_seq.html)
+permits alternative monomers at a position, and
+[asym elements](https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Categories/struct_asym.html)
+may share an entity. A geometric cut must not automatically invent a chemical nick,
+new chemical entity or `nstd_linkage=no`. No writer, output labels, new annotations,
+restraints, coordinate changes, ordinary-workflow activation or migration is added.

@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W258 — Preserve every original connection row and its physical image endpoints.** Next: W259.
+**Current update: W259 — Preserve original polymer coverage and unmodeled sequence positions.** Next: W260.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W249 | Carry complete boundary metadata with original full-precision scattering | RECORDED |
 | W250 | Bind phased phosphate admission to the actual native diffraction state | RECORDED |
 | W251 | Retain the phased writer failure and distorted local closure | RECORDED |
 | W252 | Complete phased output without changing the fitted structure | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W256 | Bind original mmCIF identity and precision to the saved working recut | RECORDED |
 | W257 | Project every declared backbone edge onto complete original CIF sites | RECORDED |
 | W258 | Preserve every original connection row and its physical image endpoints | RECORDED |
+| W259 | Preserve original polymer coverage and unmodeled sequence positions | IN_PROGRESS |
 
 ## Finish lines
 
@@ -309,7 +309,7 @@ Write a new ASU representative while preserving the physical scattering object e
 - Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.
 - Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap.
 
-**Next action:** Bind original polymer/entity/sequence semantics and complete original polymer coverage to proposed paths through Cedar semantic owners and complete source-bound references. Then define output chain/entity labels and encoding of original plus previously implicit graph connections before a maintained writer. Retain unresolved rows, nicks, author/alternate identity and raw source metadata. P02 GUI, special-position/source validity, native lifecycle and changed-child/inverse-edit binding remain separate gates. W259 first reuses public Cedar inspect_deposition_links sequence_tables_checked/sequence_conflicts/unlabelled_polymer_atom_rows, with its exact source/model hash. Missing tables are unavailable, not empty-conflict approval. Independently account for original entity/asym/site coverage, unregistered polymer atoms and unmodeled sequence positions. Do not reuse the unchanged-label processed comparator for a recut or assign new chemical entities/nonstandard-linkage flags from geometric path segmentation. Reuse W249 native/scattering evidence; initial negatives should target missing tables, inconsistent entity/site identifiers, modified-component spelling and incomplete coverage, without new native runs.
+**Next action:** W260: define a reviewed output-label/sequence policy before a writer. Separate original chemical entities, construct strands, observed ASU fragments and recut paths; a cut alone cannot determine a nick or assign unmodeled residues to new segments. Audit original author-number and canonical one-letter sequence semantics through established owners, preserving ambiguous alternatives and modified-component spelling. Specify encoding of original annotations plus previously implicit graph edges. Reuse W249 native/scattering and W256-W259 source controls; no repeated native run. P02 graphical review, special-position/source validity, native lifecycle and changed-child/inverse-edit binding remain separate gates. Preserve Cedar's competing-partner guard before any later recut refinement with inherited restraints.
 **Evidence:** [E_REPRESENTATIVE_SCATTERING](#e_representative_scattering), [E_ORBIT_PERMUTATIONS](#e_orbit_permutations), [E_JOINT_FRAME_TARGET](#e_joint_frame_target), [E_BOUND_TENSOR_TRANSPORT](#e_bound_tensor_transport), [E_SAVED_FRAME_BINDING](#e_saved_frame_binding), [E_SPECIAL_POSITION_SCATTERING](#e_special_position_scattering), [E_STAGGERED_DUPLEX_RECUT](#e_staggered_duplex_recut), [E_SAVED_SCATTERING_BINDING](#e_saved_scattering_binding), [E_TWO_ROUTE_REPRESENTATIVE_OBSERVATION](#e_two_route_representative_observation), [E_SERIALIZATION_READBACK_OBSERVATION](#e_serialization_readback_observation), [E_SERIALIZED_RECUT_OBSERVER](#e_serialized_recut_observer), [E_FULL_PRECISION_BOUNDARY_METADATA](#e_full_precision_boundary_metadata), [E_ORIGINAL_CIF_SOURCE_CONTEXT](#e_original_cif_source_context), [E_ORIGINAL_CIF_PATH_PROJECTION](#e_original_cif_path_projection), [E_ORIGINAL_CIF_CONNECTION_TRANSPORT](#e_original_cif_connection_transport).
 **Last audit:** 2026-11-24, Linden; independent identity review with Rowan, [W258](https://github.com/vecchioni-lab/NASolve/commit/03bb5a2e00b313432a1908418d853df160d9b202); Original struct_conn endpoint transport; semantic/writer/native gates open.
 

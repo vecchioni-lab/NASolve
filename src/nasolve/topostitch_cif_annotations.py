@@ -26,8 +26,8 @@ def _known(value):
 
 
 @contextmanager
-def _image_owner(source, expected_sha256):
-    """Use Cedar's public code decoder, pinned before and after isolated import."""
+def _deposition_owner(source, expected_sha256):
+    """Pin one Cedar deposition owner before and after isolated import."""
     from .topostitch_captured_job import _cedar
     if not isinstance(expected_sha256, str) or not re.fullmatch(r'[0-9a-f]{64}', expected_sha256):
         raise ValueError('Require exact image owner SHA-256')
@@ -41,12 +41,19 @@ def _image_owner(source, expected_sha256):
         module = importlib.import_module(namespace+'.cif_deposition_links')
         if Path(module.__file__).resolve() != path.resolve():
             raise ValueError('Cedar image owner resolved outside the selected package')
+        yield module
+        if path.read_bytes() != data:
+            raise ValueError('Cedar image owner changed during connection transport')
+
+
+@contextmanager
+def _image_owner(source, expected_sha256):
+    """Keep W258's decoder interface while sharing its pinned owner binding."""
+    with _deposition_owner(source, expected_sha256) as module:
         decoder = getattr(module, 'resolve_deposition_image', None)
         if not callable(decoder):
             raise ValueError('Selected Cedar owner lacks resolve_deposition_image')
         yield decoder
-        if path.read_bytes() != data:
-            raise ValueError('Cedar image owner changed during connection transport')
 
 
 def _operations(block, gemmi):

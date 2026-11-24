@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W259 — Account for original polymer declarations and absent coordinates
+
+- Add a read-only source-bound coverage observer preserving original entity,
+  asym, sequence and scheme tables, alternative monomers, unregistered polymers
+  and declared positions with no coordinates. Conflicting labels remain unresolved.
+- Reuse Cedar's pinned public sequence inspection and the existing isolated owner
+  loader. Retain W258 connection behavior exactly; no chemical entity or nick is
+  inferred from a geometric cut. Author numbering and canonical text remain open.
+- Qualify source tests, relocated installation and four original 3LNA/5LNA controls.
+  Additive observation schema 1; no writer, native execution, defaults or migration.
+
 ### W258 — Preserve deposited connection endpoints through a recut
 
 - Add a read-only observer retaining every original `_struct_conn` row and its

@@ -7,6 +7,11 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Current polymer coverage: W259.** [Declared positions and coordinates](topostitch-preview.md#account-for-declared-polymer-positions-and-original-coordinates-w259)
+  retain all original entities, shared sequences, alternative monomers and absent
+  coordinates. 168 source/168 relocated installed checks; four real controls each
+  account for 62 positions with unchanged W258 results. No output label assignment.
+
 - **Current annotation transport: W258.** [Original connection endpoints](topostitch-preview.md#preserve-original-connection-endpoints-through-a-recut-w258)
   retain every source connection row and exact atom/image lineage, including
   hydrogen bonds and unresolved cases. 143 source/143 relocated installed;
@@ -104,7 +109,7 @@ current instructions; other branches retain their own status and validation pins
   The failed direct result and three remaining moving-region outliers stay
   explicit. This is same-family synthetic recovery, not general experimental repair.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W258, next W259.
+  [generated human view](topostitch-roadmap.md). Current W259, next W260.
   Continue original polymer/sequence semantics and supported output in Pine; coordinate feasible
   endpoint/convergence qualification with Alder and chemistry receiving with Cedar.
   Prior synthetic recovery and near-target bond controls remain closed evidence;

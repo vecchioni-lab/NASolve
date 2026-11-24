@@ -13969,3 +13969,61 @@ weak/negative density prevent parent selection/f″. The next 858-DNA-atom,
 with source MLHL/Free-R and Hg held; broader optimization has not run. These are
 coordinated reports/current-handoff readback, not independent Willow native tests.
 Rowan/Alder own that next step; prior optimizer stopping verdicts stay intact.
+
+## W259 — Preserve declared polymer coverage and unmodeled positions
+
+The new read-only `topostitch_cif_polymer` observer joins the original five
+entity/asym/sequence tables with W256 source identity and W257 registered paths.
+Every source atom is accounted for once; original nonpolymer context, unregistered
+polymers, alternative monomers and shared entities remain explicit. A declared
+position without coordinates remains distinct from one whose coordinates have
+contradictory labels. The [API contract](topostitch-preview.md#account-for-declared-polymer-positions-and-original-coordinates-w259)
+records the additive observation schema and deferred semantic gates.
+
+Cedar's public `inspect_deposition_links` supplies separate sequence evidence
+through W258's extracted shared private owner loader. Exact source SHA-256
+`931af21688c15a29c99b605b4d442afc908df91d48a1825c19dc68eae81e4204`
+is checked before/after; original model hashes must agree. Cedar geometry status
+cannot substitute for sequence coverage. No Cedar/Alder source changed.
+
+**Validation:** 168 source checks (12.94 s), 168 relocated installed checks
+(13.93 s), 210 installed-file hashes, import/help and Python 3.10 syntax. Build
+and former install paths were removed before installed checks; disposable 5.86 MB
+installation was removed afterward. Full Willow regression: **2,752 passed, four skipped and 234 subtests (118.50 s)**. This is not combined-branch/native qualification.
+Python 3.12.14/Gemmi 0.7.5; no Phenix or Coot process, dry-run or refinement.
+Four exact original 3LNA/5LNA controls (unchanged and both-route recuts) each retain
+62 declared/observed positions, zero unresolved/unmodeled positions and zero
+coverage issues. All W258 connection reports compare exactly after JSON
+normalization. These real controls do not contain unmodeled positions; synthetic
+regressions supply that distinct evidence.
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -p no:cacheprovider -q \
+  tests/test_topostitch_cif_polymer.py tests/test_topostitch_cif_annotations.py \
+  tests/test_topostitch_cif_paths.py tests/test_topostitch_cif_source.py \
+  tests/test_topostitch_recut_bundle.py tests/test_topostitch_graph.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -p no:cacheprovider -q
+```
+
+Exact qualified dependency path, interpreter, installation recipe, final source
+pins and anchored original-file bindings remain local at NASolve anchor
+`branch-artifacts/willow/w259-cif-polymer-coverage/validation.json`,
+`qualification.json` and `real-file-replay-reviewed.json`. No scientific payload
+is committed. Installation is offline using existing qualified dependencies.
+
+**Failures retained:** absent new API; conflicting source entity labels initially
+made existing coordinates appear unmodeled; numbering gaps were initially missed.
+Rowan found an unresolved water with no chain tainted unrelated DNA positions;
+two failures plus one positive ambiguity control became three passes after known
+entity/position constraints were applied. The atom itself stays unresolved. Tests
+also retain missing/duplicate tables, shared entities, alternative monomers,
+unregistered polymers, relocation and source drift. One invalid numeric fixture
+is correctly refused by the upstream original-source parser. Local replay harness
+syntax and tuple-versus-JSON-list comparison failures were fixed before final
+four-case replay; no scientific source or native evidence was changed.
+
+**Compatibility and remaining work:** optional additive API/schema 1; W258
+behavior unchanged. No writer, chemical entities, termini, sequence mutation,
+coordinate edits, ordinary defaults or migration. All generated results remain
+local. Original author-numbering and canonical-text semantics remain unvalidated;
+missing tables mean unavailable, not empty-conflict approval. W260: define a reviewed output-label/sequence policy before a writer. Separate original chemical entities, construct strands, observed ASU fragments and recut paths; a cut alone cannot determine a nick or assign unmodeled residues to new segments. Audit original author-number and canonical one-letter sequence semantics through established owners, preserving ambiguous alternatives and modified-component spelling. Specify encoding of original annotations plus previously implicit graph edges. Reuse W249 native/scattering and W256-W259 source controls; no repeated native run. P02 graphical review, special-position/source validity, native lifecycle and changed-child/inverse-edit binding remain separate gates. Preserve Cedar's competing-partner guard before any later recut refinement with inherited restraints.
