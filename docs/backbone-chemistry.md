@@ -271,9 +271,36 @@ On the corrected ReadySet return the two crystal gaps were still 3.340 and
 3.017 Å. Two intact A→C links and four intact T→G links supplied the same
 1.607 Å distance target. The native files contained the corrected PDU
 dictionary and six restraint files. A control with the extra D:7 O3′–B:1 P
-bond was refused. This comparison establishes the inputs to a possible
-refinement. The ordinary numbered child and its Free-R data still require a
-separate handoff.
+bond was refused.
+
+To carry that reviewed model into an ordinary fit, start from a named
+checkpoint containing the candidate. Its registered ancestor must contain
+the Coot model used for the declaration. The earlier preparation can belong
+to another run with the same frozen backbone intent and the same measured
+reflection file.
+
+```sh
+nasolve autorefine RECEIVING_RUN --from manual-002 --registration-checkpoint manual-001 \
+  --registered-continuations 1 2 --registration registration.json \
+  --discovery-input discovery.json --backbone-continuations continuations.json \
+  --native-receipt native_receipt.json --prepared-backbone-source SOURCE_RUN
+```
+
+The model, dictionaries and inherited restraints must already agree with the
+native interpretation. The numbered round copies any missing, self-contained
+PHIL restraints in order. For a declared terminal phosphate it identifies the
+matching protection by regenerating the angles with the candidate model and
+dictionaries. The run keeps one copy of those restraints. The checked
+source is recorded in `outputs.prepared_backbone`. On restart the usual
+`--from refine-002 --native-receipt NEW_RECEIPT` uses the fitted model.
+
+In C567 the two PDU crystal bonds went from 3.340/3.017 Å to 1.610/1.633 Å
+after five ordinary cycles and to 1.643/1.627 Å in the relocated restart.
+All 38 ordinary bonds, eleven D:1 terminal terms and 124 original free
+observations survived both fits. The two PDU tips ended 0.182/0.245 Å from
+their rings. The D:7 donor torsion stayed at +36.0° against a native target
+of −140° with a 35° width. D:7 O3′ and C:8 P were at −1.80 and −1.18
+whole-map rms in the unfilled 2mFo−DFc map. Both fits stayed unselected.
 
 One standalone five-cycle Phenix refinement used the corrected returned model,
 the two registered crystal partners, the original reflection flags and the seven

@@ -1,9 +1,25 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-24, C566 checking the returned model and its native phosphate targets — Rowan**.
+Updated **2026-11-24, C567 carrying the reviewed PDU preparation into a numbered refinement — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
-**Q06.** C566 follows the original construction into an unselected model with
+**Q06.** C567 produced the first ordinary numbered fit of the C566 candidate.
+A new receiving run completed Coot 1.3.3 and ReadySet with the corrected
+dictionary. Its named checkpoints identify the original C290 Coot model and
+its corrected ReadySet return. Five real Phenix 2.2.1-6174 cycles through the
+ordinary CLI reproduced the explicitly assembled control’s written coordinates.
+The run then moved and another five cycles inherited both junctions. The
+original C290 run remains at MR_SUCCESS. The [measurements and command](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold)
+include the unresolved D:7 geometry and density.
+
+The optional `outputs.prepared_backbone` points to the run-local
+`numbered-prepared-backbone-v1` receipt. Existing runs need no migration.
+Use the C566 focused test command below, adding `test_autorefine.py` and
+`test_refinement_prepared_backbone.py`. Source and relocated wheel each passed
+409 tests and 62 subtests. All six older phosphate reports reproduced byte
+for byte. Only software, tests and documentation belong in this commit.
+
+**C566.** C566 follows the original construction into an unselected model with
 an actual Phenix interpretation. In C290 the corrected ReadySet model kept
 all 862 atom identities, 38 local phosphodiesters and the D:1 OP3. Its two
 open crystal gaps measured 3.340 and 3.017 Å. The native receipt identifies
@@ -19,11 +35,6 @@ Existing runs need no migration. Source and a relocated wheel each passed
 `test_phosphate_reference_links.py`, `test_phosphate_restraints.py` and
 `test_cif_attachment_native.py`. The moved C290 inputs gave identical JSON.
 Six earlier numbered checkpoint reports also reproduced byte for byte.
-
-Next publish the verified bundle into an ordinary unselected child with
-the original observations and Free-R flags. The existing numbered worker
-must establish which forces Phenix actually installs. The weak local density
-and D:7 torsion still need scientific review.
 
 **C565.** C565 adds `nasolve cif-doctor prepared-backbone RUN` to inspect
 the recorded Coot model when a checked dictionary request has yet to start.

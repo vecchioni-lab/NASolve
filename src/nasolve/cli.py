@@ -249,6 +249,8 @@ def build_parser() -> argparse.ArgumentParser:
     phosphate_choice.add_argument("--registered-continuations", type=int, nargs="+", action="extend", metavar="ID",
         help="fit these distinct crystal phosphates together from the same registration and carry the complete set into restarts")
     _phosphate_topology_arguments(autorefine)
+    autorefine.add_argument("--prepared-backbone-source", type=Path, metavar="RUN",
+        help="fit the reviewed Coot/ReadySet candidate from this AutoMR run using its captured restraints and original Free-R flags")
     autorefine.add_argument("--native-receipt", type=Path,
         help="exact native chemistry receipt for this parent and its restraints; alone continues all inherited crystal phosphates")
     doctor = subparsers.add_parser(

@@ -8,6 +8,12 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `autorefine --prepared-backbone-source RUN` can fit a reviewed ReadySet
+  candidate in a numbered checkpoint. It checks the Coot construction,
+  every declared crystal junction, the actual parent restraints and the
+  original diffraction observations and Free-R flags. The child retains
+  the missing captured restraints and remains available for inspection.
+
 - `cif-doctor prepared-backbone RUN` reads Coot's recorded construction and
   accounts for local O3′–P bonds, protected terminal phosphates and open incoming
   ends. With the construct registration, strand-end discovery and directed

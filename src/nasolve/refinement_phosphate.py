@@ -23,6 +23,7 @@ class PhosphateRequest:
     registered: RegisteredContinuation | None = None
     registration_checkpoint: str | None = None
     additional_ids: tuple[int, ...] = ()
+    prepared_backbone_source: Path | None = None
 
 
 def _ordered_ids(values):
@@ -40,6 +41,10 @@ def request_from_args(args):
             raise ValueError("Use --registered-continuation for one phosphate or give at least two distinct IDs")
     elif args.registered_continuation is not None:
         ids = _ordered_ids([args.registered_continuation])
+    source = getattr(args, "prepared_backbone_source", None)
+    if source is not None and (not ids or not args.from_checkpoint or not args.registration_checkpoint
+                               or args.native_receipt is None or any(p is None for p in paths)):
+        raise ValueError("A prepared backbone trial needs --from, --registration-checkpoint, all crystal topology and a native receipt")
     if not ids:
         if args.registration_checkpoint is not None or any(p is not None for p in paths):
             raise ValueError("Registering crystal phosphates requires continuation IDs with all three topology files")
@@ -47,7 +52,7 @@ def request_from_args(args):
     if any(p is None for p in paths) or args.native_receipt is None:
         raise ValueError("A positive continuation ID, registration, discovery input, backbone continuations and native receipt are required")
     return PhosphateRequest(args.native_receipt, RegisteredContinuation(ids[0], *paths),
-                            args.registration_checkpoint, ids[1:])
+                            args.registration_checkpoint, ids[1:], source)
 
 
 def _prior_intent(run, registry, parent):
@@ -162,7 +167,7 @@ def bind_execution_inputs(prepared, model, restraints):
                          [p for p in restraints if p.suffix.casefold() != ".cif"])
 
 
-def bind_planned_inputs(prepared, model, restraints, *, terminal_protection=None):
+def bind_planned_inputs(prepared, model, restraints, *, terminal_protection=None, supplemental_phils=()):
     """Reject a mismatched capture before allocating an immutable round."""
     from .refinement_inputs import refinement_input_bytes
     def pin(role, raw):
@@ -172,6 +177,7 @@ def bind_planned_inputs(prepared, model, restraints, *, terminal_protection=None
     for path in restraints:
         role = "dictionary" if path.suffix.casefold() == ".cif" else "phil"
         (dictionaries if role == "dictionary" else phils).append(pin(role, refinement_input_bytes(path.read_bytes())))
+    phils.extend(pin("phil", refinement_input_bytes(raw)) for raw in supplemental_phils)
     if terminal_protection is not None:
         phils.append(pin("phil", refinement_input_bytes(terminal_protection.encode())))
     _bind_capture_input_pins({"inputs": prepared["capture_inputs"]}, [*pins, *dictionaries, *phils])

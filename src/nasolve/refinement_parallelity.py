@@ -673,10 +673,21 @@ def validate_execution(run, reference, *, checkpoint, parent=None, usable=False)
 
 def validate_checkpoint_execution(run, item, registry):
     outputs=item.get('outputs')
+    prepared = outputs.get("prepared_backbone") if isinstance(outputs, dict) else None
+    if isinstance(outputs, dict) and "prepared_backbone" in outputs:
+        _need(isinstance(prepared, dict) and isinstance(outputs.get("parallelity_execution"), dict),
+              "Prepared backbone requires its numbered execution")
+    elif item.get("kind") == "refinement" and isinstance(item.get("restraints"), list):
+        prefix = "AutoRefine/round_" + str(item.get("id", "")).removeprefix("refine-") + "/prepared_backbone/"
+        _need(not any(isinstance(ref, dict) and ref.get("anchor") == "run"
+                      and str(ref.get("relative_path", "")).startswith(prefix) for ref in item["restraints"]),
+              "Captured supplemental restraints require their numbered preparation record")
     if isinstance(outputs,dict) and 'parallelity_execution' in outputs:
         record=validate_execution(run,outputs['parallelity_execution'],checkpoint=item.get('id'),
                                   parent=item.get('parent'),usable=item.get('usable') is True)
         request=read_execution_request(run,record['request'],checkpoint=item['id'])
+        if prepared is not None:
+            _need(request['policy_id'] in PHOSPHATE_POLICIES, "Prepared backbone requires the registered phosphate execution")
         if request['policy_id'] in _COUNTED_POLICIES:
             from .refinement_counted import validate_intent_lineage
             validate_intent_lineage(run,registry,item,request)
@@ -700,6 +711,9 @@ def validate_checkpoint_execution(run, item, registry):
             from .refinement_phosphate import bind_execution_inputs, validate_lineage
             bind_execution_inputs(request['phosphate'], paths[1], restraints)
             validate_lineage(run, registry, parents[0], request['phosphate'])
+            if prepared is not None:
+                from .refinement_prepared_backbone import validate_trial
+                validate_trial(run, prepared, item, parents[0], request['phosphate'])
             bond = _bound_path(request['phosphate']['bond'], 'registered crystal bond', run)
             _need(len(tail) >= 2 and tail[-2] == bond, 'Registered crystal bond differs from its round')
             tail = [*tail[:-2], tail[-1]]

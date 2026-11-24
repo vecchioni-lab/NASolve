@@ -43,8 +43,10 @@ then carried the corrected PDU dictionary through ReadySet and five standalone
 cycles on the original Coot build. C565 binds both crystal partners to the
 recorded ordinary construction and its 38 local bonds. C566 follows both
 partners into the unselected returned model and verifies its native restraint
-inputs. Next give that model an ordinary numbered child with the original
-observations and free set.
+inputs. C567 carries that model and those same seven restraints through an
+ordinary five-cycle child and a five-cycle restart after relocation. Both
+retain 124 held-out observations. The crossover torsion and local density
+remain unresolved.
 See the [two-crossover measurements](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold).
 For the explicitly phosphorylated D:1 on the host control, C504 accounts for
 all eleven local Phenix restraints, including the last angle before the next
@@ -279,9 +281,12 @@ for another O3′–P distance. A known Phenix hydrogen-bond restraint keeps
 its own meaning. C565 accounts for the two registered partners, the local
 backbone and D:1 in one read of the original construction. C566 also binds
 the returned model and its seven actual restraint inputs. Its matched native
-reference steps are among those 38 local bonds. The next handoff must preserve
-that bundle and its observations in a fresh, unselected ordinary child. Reuse
-the existing numbered phosphate and Free-R checks when creating it.
+reference steps are among those 38 local bonds. C567 preserves that bundle
+and its observations in a fresh, unselected ordinary child. Next check the
+specific crystal image when the native input already bonds the very same
+two atoms. Then test the corrected dictionary from the beginning of ordinary
+Coot construction with the same scaffold and the same reflections. Distinguish
+the original Coot source from its ReadySet return when binding that run.
 
 C537 checks which modeled atoms actually reached a native covalent plane.
 The historical GEO omitted C5A at both PDU sites. The corrected GEO included

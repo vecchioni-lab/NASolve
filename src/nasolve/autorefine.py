@@ -1685,12 +1685,18 @@ def execute_autorefine(
             raise AutoRefineError('Longer counted control requires final pair geometry capture')
         counted_policy = V8_POLICY_ID
     phosphate_intent = None
+    backbone_trial = None
+    backbone_reference = None
     if phosphate_request is not None:
         from .refinement_phosphate import PhosphateRequest
         if (not isinstance(phosphate_request, PhosphateRequest) or not correct_native_parallelity
                 or counted_protocol is not None or processor_count not in (None, 1)):
             raise AutoRefineError("Registered phosphate requires ordinary checked refinement with one native worker")
         processor_count = 1
+        if phosphate_request.prepared_backbone_source is not None and (
+                not from_checkpoint or not phosphate_request.registration_checkpoint or phosphate_request.registered is None
+                or extra_restraints or terminal_geometry_protection is not None):
+            raise AutoRefineError("A prepared backbone trial needs named starting and registration checkpoints with the captured restraints")
     runtime_policy = counted_policy if counted_protocol is not None else V9_POLICY_ID if observe_declared_sites else None
     runtime_options = {"runtime_policy": runtime_policy} if runtime_policy is not None else {}
     from .refinement_counted import validate_autorefine_control
@@ -1830,6 +1836,10 @@ def execute_autorefine(
                                              python_executable=phenix_python_executable)
             runtime_options = {"runtime_policy": V12_POLICY_ID if "inspections" in phosphate_intent else V11_POLICY_ID}
             validate_runtime_choice(correct_native_parallelity, phenix_python_executable, **runtime_options)
+            if phosphate_request.prepared_backbone_source is not None:
+                from .refinement_prepared_backbone import prepare_trial
+                backbone_trial = prepare_trial(phosphate_request.prepared_backbone_source, report, parent,
+                                               inherited, phosphate_request, phosphate_intent)
         except (OSError, ValueError, RuntimeError, TypeError, KeyError) as exc:
             raise AutoRefineError(f"Registered phosphate could not be verified: {exc}") from exc
 
@@ -1890,6 +1900,7 @@ def execute_autorefine(
     selections = anomalous_selections(report) if plan.anomalous else ()
 
     automatic_terminal_seed: dict[str, object] | None = None
+    captured_terminal_index = None
     if (
         terminal_phosphate_sites
         and inherited_terminal_protection is None
@@ -1897,7 +1908,7 @@ def execute_autorefine(
     ):
         automatic_terminal_seed = _prepare_terminal_phosphate_protection(
             model,
-            restraints,
+            [p for p in restraints if p.suffix.casefold() == ".cif"] if backbone_trial is not None else restraints,
             refine_executable,
             environment,
             terminal_phosphate_sites,
@@ -1910,8 +1921,14 @@ def execute_autorefine(
             if any(artifact_reference(path, run).get("anchor") not in ("run", "dataset", "repository")
                    for path in source_paths):
                 raise ValueError("Registered phosphate needs refinement inputs inside a declared run, dataset or repository")
-            bind_planned_inputs(phosphate_intent, model, restraints,
-                                terminal_protection=automatic_terminal_seed["protection_text"] if automatic_terminal_seed else None)
+            protection = automatic_terminal_seed["protection_text"] if automatic_terminal_seed else None
+            if backbone_trial is not None:
+                if protection is not None:
+                    from .refinement_prepared_backbone import terminal_input_index
+                    captured_terminal_index = terminal_input_index(backbone_trial.supplements, protection)
+                bind_planned_inputs(phosphate_intent, model, restraints, supplemental_phils=backbone_trial.supplements)
+            else:
+                bind_planned_inputs(phosphate_intent, model, restraints, terminal_protection=protection)
         except (OSError, ValueError, RuntimeError) as exc:
             raise AutoRefineError(f"Registered phosphate starting inputs differ: {exc}") from exc
     checkpoint_id = next_checkpoint_id(registry, "refine")
@@ -1926,6 +1943,11 @@ def execute_autorefine(
 
     pre_refinement_geometry: Path | None = None
     pre_refinement_geometry_log: Path | None = None
+    if backbone_trial is not None:
+        from .refinement_prepared_backbone import write_trial
+        captured_paths, backbone_reference = write_trial(run, checkpoint_id, parent["id"], backbone_trial)
+        resolved_extra_restraints.extend(captured_paths)
+        restraints.extend(captured_paths)
     if automatic_terminal_seed is not None:
         geometry_text = automatic_terminal_seed.get("geometry_text")
         geometry_log_text = automatic_terminal_seed.get("log_text")
@@ -1948,9 +1970,8 @@ def execute_autorefine(
         pre_refinement_geometry_log = (
             round_directory / "terminal_geometry_pre_refine.log"
         )
-        protection_path = (
-            round_directory / "terminal_phosphate_protection.phil"
-        )
+        protection_path = (captured_paths[captured_terminal_index] if captured_terminal_index is not None
+                           else round_directory / "terminal_phosphate_protection.phil")
         pre_refinement_geometry.write_text(
             geometry_text,
             encoding="utf-8",
@@ -1959,10 +1980,10 @@ def execute_autorefine(
             geometry_log_text,
             encoding="utf-8",
         )
-        protection_path.write_text(
-            protection_text,
-            encoding="utf-8",
-        )
+        if captured_terminal_index is None:
+            protection_path.write_text(protection_text, encoding="utf-8")
+            resolved_extra_restraints.append(protection_path)
+            restraints.append(protection_path)
 
         requested_terminal_protection = (
             _validate_terminal_geometry_protection(
@@ -1978,8 +1999,6 @@ def execute_autorefine(
                 "Automatic terminal protection unexpectedly produced no record"
             )
         requested_terminal_protection_path = protection_path
-        resolved_extra_restraints.append(protection_path)
-        restraints.append(protection_path)
 
     parameters = round_directory / "autorefine.params"
     nproc = max(1, processor_count if processor_count is not None else (os.cpu_count() or 1))
@@ -2278,6 +2297,7 @@ def execute_autorefine(
         terminal_protection_record = None
 
     output_references = {
+        **({"prepared_backbone": backbone_reference} if backbone_reference is not None else {}),
         **({"parallelity_execution": parallelity_execution_reference} if parallelity_execution_reference is not None else {}),
         **({"refinement_inputs": refinement_input_reference} if refinement_input_reference is not None else {}),
         "model_cif": file_reference(model_cif) if model_cif else None,
