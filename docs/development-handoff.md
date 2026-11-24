@@ -1,87 +1,61 @@
 # NASolve development handoff — Willow
 
-**Current audit and maintained implementation: W254, 2026-11-23.**
-[Failed-proposal observation](topostitch-preview.md#observe-a-failed-atomic-proposal-without-promoting-it-w254)
-now closes the reporting gap for future atomic trials. A failed objective call
-retains compact proposal/mask digests and the first move beyond the bound, with
-source atom index, move length and limit. The original exception and last
-accepted step remain separate; no full coordinate array, extra evaluation,
-optimizer change or promotion. Malformed/nonfinite proposals stay unavailable.
-Existing W253 evidence remains unchanged and its rejected atom remains unknown.
+**Current maintained slice: W256, 2026-11-24.**
+[Original mmCIF source binding](topostitch-preview.md#bind-an-original-mmcif-to-a-saved-working-recut-w256)
+preserves exact original bytes/IDs/component spelling and raw double XYZ/U while
+mapping every atom to a replayed working-PDB recut. Explicit aliases and precision
+separate original authority from working-file serialization. Unique coordinate
+block, attached definitions, complete permutation and crystal operations are
+checked; category layout is inventoried. No writer, annotation coverage approval,
+native runtime or adoption. Existing calls and artifact schemas need no migration.
 
-**274 source and 274 relocated installed checks pass (one skip each)**, including
-83 trial checks and nine new rejection-report cases. Both public failure cases
-fail on previous code. All 216 installation files hash-match after build/original
-path removal; Python 3.10 syntax and installed command help pass. Exact commands,
-logs and source hashes: NASolve anchor `branch-artifacts/willow/w254-validation/`.
-Source command: `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:<qualified-test-dependencies>
-python -m pytest -p no:cacheprovider -q tests/test_topostitch_trial.py
-tests/test_topostitch_transport.py tests/test_topostitch_native_window.py
-tests/test_topostitch_native_terms.py tests/test_topostitch_fit.py
-tests/test_topostitch_captured_job.py`. Hazel's pinned cold interface review has
-no blocking findings; it did not duplicate tests or native execution. This is
-synthetic/software qualification, not a new Phenix run. Full suite remains
-explicitly pending in the coordinated pre-merge gate.
+**217 source / 217 relocated installed checks pass.** Python 3.10 syntax, installed
+cut-preview help and 206 relocated file hashes pass after removing temporary
+build/old install paths. A missing offline build dependency path caused the first
+install attempt to fail; the same source passed with the already-qualified path
+included. That failure is retained. Four original 3LNA/5LNA controls reproduce
+W249 XYZ/U exactly for all 1,271/1,275 atoms, without new native calls. Hazel's exact-hash cold review found no blocking issue. Exact
+commands, source hashes, logs and local replay are in NASolve anchor
+`branch-artifacts/willow/w256-source-cif-context/`. The complete Willow suite ran: 2,688 passed, four skipped and 234 subtests passed; five campaign-process tests failed because sandbox process inspection/signaling was denied. Those same five passed with permission (2.48 s), unchanged source. This clears all 2,693 tests across the run and retry, not a single clean full invocation or a combined-branch integration result. Shared callers remain unchanged. Initial absent-API collection is not an old-behavior regression proof.
 
-**Latest science: W253, not a new W254 run.**
-[One same-parent geometry diagnostic](topostitch-periodic.md#w253--audit-a-motion-limited-geometry-trial-without-claiming-an-optimum)
-reuses the existing masked native objective and registered phosphate owner.
-Hazel ran it once with six movable atoms, held rings, a 0.5 Å source tether and
-1.5 Å motion cap. An unconstrained L-BFGS proposal exceeded that cap after 12
-accepted steps/14 optimizer evaluations. The original failure is preserved;
-236 total evaluations include initial and failed-last-step derivative checks.
-Maximum derivative error is 6.70e-5 against the predeclared 1e-3 bound. Live
-model/scattering/data and source signatures remain unchanged. No candidate PDB,
-convergence or geometric feasibility is claimed.
+**P03 remains partial; next Pine slice:** bind complete original polymer paths
+and all connection annotations to this context and the cut. Reuse Cedar's
+deposition-link owner against a complete bound reference; do not build another
+native parser or infer metadata completeness from unchanged scattering. Keep
+P02 GUI review, general/source special-position validity, native lifecycle,
+supported output and changed-child/inverse-edit binding open. Rowan owns Cedar
+chemistry/native execution; Willow owns this original-source/recut binding.
 
-The saved last accepted step improves O3′–P to 1.616792 Å, but C3′–O3′ remains
-1.487373 Å and OP2–P–O5′ is 85.662° (native targets 1.435 Å and 108°).
-Largest accepted motion is 1.479672 Å. This is **not a constrained optimum at
-the boundary**; the rejected proposal was not retained, so its violating atom is
-unknown. Independent review passes 1,789 checks. A cold triangle calculation
-places three *exact* ideals just 0.011 Å beyond the cap; illustrative soft-target
-envelopes fit. That tiny discrepancy is not a meaningful physical impossibility
-claim. Significant residual angles and attachment geometry remain the concern.
+**Latest coordinated geometry evidence: W255.**
+[Cap and feasible-step diagnostics](topostitch-periodic.md#w255--record-the-coordinated-cap-and-feasible-step-diagnostics)
+replace the previously queued 1.5→2 Å experiment: it has run once and stopped
+after 27 accepted steps, with OP2's next proposal beyond the bound. The last
+accepted bond/angle improves, but there is no candidate or optimum. A separate
+projected diagnostic reaches its 100-iteration limit with residual 5.1565.
+The feasible-basis native derivative audit passes (4.963e-5 against 1e-3), while
+old centered endpoint checks remain unavailable and rounded PDB exceeds the cap.
 
-**Next-session experiment, coordinated with Rowan:** one original-parent
-geometry-plus-tether comparison changes **only the displacement budget from
-1.5 to 2.0 Å**. This is an explicit cap-adequacy experiment, not a conclusion that
-a larger domain is necessary. Keep original `7aade3c4…` parent and zero start,
-the same six roles/held rings, 0.5 Å tether, source dictionaries/native image terms,
-100 iterations, 300 optimizer calls, 600 total evaluations and 600-second wall cap.
-Bind W254 reporting and verify all numerically relevant owner/input hashes against
-W253 before launch; a changed chemistry/runtime owner requires review first.
+Alder owns the independently reviewed pure helpers at
+`7c2e1c41d969db7b047b242d847bf18ace49b531`; 53 focused/99 adjacent/53 installed tests
+and 531 cold replay assertions pass. Nothing was merged into Willow, no trial
+default changed and no repeated native experiment ran for this documentation.
+Scope an explicit opt-in boundary-endpoint contract before receiving candidates:
+gradient accuracy, projected stationarity, chemical geometry and actual serialized
+point qualification are separate gates. Prefer existing full-precision receiving
+support before new PDB lattice machinery. No cap grid or automatic enlargement.
+Later density-aware receiving and the existing fixed-weight confound remain open.
 
-Require accepted-step provenance, full/rounded derivative and live-state checks,
-then independent inspection of the phosphate, **both sugar attachments, nearby
-packing and the fixed Hg site**. Record the stopping reason and gradient; a cap
-or guard stop is not a constrained optimum. If a shorter bond damages either
-flank, retain the failed result, return to the original geometry and inspect the
-competing local terms before another fit. No second cap escalation, weight grid,
-mask expansion or automatic adoption. No diffraction refinement until that
-independent geometry review warrants it. W254 should record a future rejected
-proposal; W253's actual rejected atom remains unknown.
+**Human checkout:** reuse GitHub anchor
+`ScienceCheckouts/Hazel/2026-11-24_feasible-helper-extraction/index.html` for the
+geometry diagnostics and the W249 original-source/recut evidence for Pine. No
+newly bent model or deposition-ready recut is claimed. Exact W255 and W256 scope,
+failures and next actions are in the periodic ledger and machine roadmap.
 
-This plan has **not run**. There is no more native work tonight. W241's adaptive-
-weight confound and full integration suite remain open. Rowan reconfirmed Simon's
-light branch-specific checkout scope for this window; full suite is a pending
-pre-merge gate, not a reported pass.
-
-The diagnostic explicitly freezes Alder's optional `native_crystal` owner alongside
-Willow's installed execution and Cedar's phosphate owner. No branch was merged;
-standalone Willow does not acquire that optional constructor through this result.
-Exact Phenix version, original-parent bindings, controls, stopped receipt and
-source hashes are under the NASolve anchor
-`branch-artifacts/Alder/a01-phosphate-geometry-feasibility-20261123-01/`.
-
-**Human checkout:** under the GitHub anchor,
-`ScienceCheckouts/Linden/2026-11-23_phased-junction-boundary/index.html` and
-`open_comparison.py`. Three models/859 atoms and all six toggles pass ChimeraX
-1.12 headless checks, including exact declared-image gaps. The last failed step
-is displayed in memory only; no candidate file is written. Hazel's existing
-source-pinned map figure is reused without another FFT. GUI/browser rendering
-is not newly qualified; 13 file-link/hash/syntax checks pass. The local report
-keeps the phase-fit technical success separate from both chemical failures.
+W254's compact failed-proposal reporting remains validated (274 source/274
+installed, one skip each); W255 used it to identify the rejected OP2 proposal.
+It cannot retroactively recover W253's missing rejected atom. Earlier science
+and native limitations below remain evidence; closed controls should not be rerun
+merely because the handoff advances.
 
 **W252 native implementation and validation.**
 [The first phased six-role fit now completes](topostitch-periodic.md#w251w252--separate-native-output-completion-from-local-repair).

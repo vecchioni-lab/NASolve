@@ -3906,3 +3906,56 @@ full integration suite remains a separate pre-merge gate.
 W253's unrecorded rejected proposal stays unknown. Its known accepted step and
 failed status cannot be upgraded by this patch, nor can the violating atom be
 inferred retrospectively from the new reporting code.
+
+### Bind an original mmCIF to a saved working recut (W256)
+
+`topostitch_cif_source.load_relabel_cif_source(directory, model, ...)` binds one
+SHA-pinned original coordinate mmCIF to the existing SHA-pinned working-PDB
+preview. It replays the saved preview and frame owners; it does not replace the
+working receipt with an original source or broaden W248's export-reader scope.
+Supply `expected_receipt_sha256`, `expected_model_sha256`, an explicit
+`component_aliases` mapping (possibly empty), and four nonnegative finite bounds:
+`max_coordinate_component_error_angstrom`,
+`max_u_component_error_angstrom_squared`, `max_b_error_angstrom_squared` and
+`max_occupancy_error`. Bounds describe known working-file serialization error;
+they are not permission to match an arbitrary refined child.
+
+Every original atom must map once to a working atom through complete author-chain,
+residue-number/insertion, component, atom-name and alternate identity. Only named
+component spelling aliases may differ; unused aliases are refused. Record type,
+element, charge, crystal and ADP mode must agree. A supplied symmetry-operation
+table must equal the declared group. There must be one coordinate block; extra
+blocks must be unique attached component definitions. Unsupported parser changes
+to ordered identity, NCS expansion, missing/duplicate atoms, unexplained source
+differences and input races stop the read. Explicit file paths remain required;
+no basename discovery or hidden workspace lookup is added.
+
+The immutable `CifRelabelSource` keeps exact `document_bytes`, original `atom_ids`,
+the complete `working_atom_indices` permutation, raw double-precision
+`positions_angstrom` and `u_cart_angstrom_squared` (absent tensors remain `None`).
+Its `frame` maps the original-order positions and tensors using the existing
+`ReferenceFrame` methods. Pass `frame.source_labels` and `frame.context_sha256`
+to those methods. The new context digest binds the original file, aliases,
+precision policy and saved preview; it is not the working receipt's digest.
+`observation` returns a detached schema-1 descriptive dictionary with scalar/loop
+category and component-block inventory, precision errors and source bindings.
+Original B/Q and all annotations remain in exact document bytes.
+
+**Scope:** source/working compatibility, not independent historical producer proof
+or alias chemistry validation. Polymer paths and connection annotations are
+inventoried, not validated or transported. No writer, edited-child rebase,
+native interpretation, CLI/default change or model adoption. Complete original
+annotation/path coverage must be bound before materialization; use Cedar's
+deposition-link owner against a complete reference rather than infer completeness
+from a standalone check or unchanged scattering.
+
+**Validation:** 217 focused source and 217 relocated installed checks; synthetic
+permutation, isotropic forest, exact original precision, symmetry contradiction,
+missing/extra source data and relocation/race cases. Initial collection fails on
+the absent new API, not on an existing behavior regression. Python 3.10 syntax,
+installed cut-preview help and 206 relocated installation-file hashes pass after
+build/original installation path removal. An initial offline install lacked the
+already-available build dependency path; adding that path qualified the same
+source, with the failure retained. No native execution was repeated. The complete Willow suite ran: 2,688 passed, four skipped and 234 subtests passed; five campaign-process tests failed because sandbox process inspection/signaling was denied. Those same five passed with permission (2.48 s), unchanged source. This clears all 2,693 tests across the run and retry, not a single clean full invocation or a combined-branch integration result.
+See W256 in the periodic ledger for the four real-source replays and remaining
+scientific gates. Existing calls and artifact schemas need no migration.

@@ -17,6 +17,23 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W256 — Bind original mmCIF precision to an explicit saved recut
+
+- Add a read-only source context preserving original document bytes, atom IDs,
+  raw double XYZ/U, attached component definitions and complete working-atom
+  mapping. Require pinned inputs, explicit spelling aliases/precision and
+  consistent crystal operations. No writer, chemistry or annotation approval.
+- Qualify focused source/relocated installation and exact four-case W249 replay.
+  Existing readers/defaults are unchanged; no artifact migration or native rerun.
+
+### W255 — Record coordinated feasible-step progress and remaining gates
+
+- Record the completed 2 Å cap comparison, projected diagnostic and independent
+  boundary derivative audit without promoting an unconverged or infeasible
+  rounded endpoint. Alder's reviewed pure helpers remain separately owned.
+- Replace the stale planned-experiment queue with convergence, explicit boundary
+  audit and serialized-state qualification gates. No Willow optimizer change.
+
 ### W254 — Observe failed optimizer proposals without accepting them
 
 - When an atomic trial objective raises, retain compact proposal/mask digests,

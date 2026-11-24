@@ -1195,6 +1195,13 @@ Parsed coordinate annotations remain separate; no writer, native policy, renamed
 polymer mapping or scientific acceptance is introduced. See the
 [W248 readback contract](topostitch-preview.md#inspect-a-serialized-recut-against-its-saved-source-w248).
 
+`topostitch_cif_source.load_relabel_cif_source` separately binds the original
+coordinate mmCIF to that working preview through explicit aliases and declared
+working-file precision. Raw original double XYZ/U and all original document
+bytes define an immutable source context; attached definitions/category layouts
+are retained. No writer or annotation/path coverage approval is supplied. See the
+[W256 original-source contract](topostitch-preview.md#bind-an-original-mmcif-to-a-saved-working-recut-w256).
+
 `topostitch_recipe` freezes complete canonical NARestraints selections for explicit
 atom images; `topostitch_native_recipe` binds them to unmodified PDB atom order
 and evaluates unnormalized additive pair energies/ASU gradients. The new schema-1

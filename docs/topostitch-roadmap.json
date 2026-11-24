@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "topostitch-development-roadmap",
-  "updated": "2026-11-23",
+  "updated": "2026-11-24",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
   "audited_code_commit": "d6445d80337882b18bf2ab9636593e9eb238f2fa",
@@ -490,14 +490,15 @@
         "W250 optionally binds dedicated phases and complete atom-keyed fixed scattering to the initialized native MLHL state and actual coordinate-target objects.213 source/213 relocated installed tests and source/installed preflights pass;859atoms/1151original reflections andHL/59Free exact, source PDB unchanged. One preflight-only stop is available; no phased fit at W250 and no scientific acceptance; W251/W252 are later evidence.",
         "W251/W252: actual phased six-role refinement and output guards qualified after an output-only compatibility fix; all raw atom records reproduce the failed original. The gap shortens but phosphate/sugar strain remains, so technical completion is separate from chemical repair. Exact phases, Free-R, fixed scattering and fixed context survive; no accepted candidate.",
         "W253: one original-parent geometry+tether trial reaches a near-target O3-P distance but significant boundary/oxygen-angle strain persists. A proposed unconstrained step exceeds the1.5A guard after12accepted steps; failed-last-step derivatives and1789independent checks pass. No convergence, candidate, feasible-bridge claim or automatic bound expansion. Three-state headless view preserves failed origin and exact source bindings.",
-        "W254 records compact evidence when an atomic objective call fails: exact proposed-vector/mask digests, optional source hash and first exceeding source atom index/norm/bound.274source/274relocated installed checks; no extra evaluation, new optimizer policy, full coordinate array or retrospective recovery of W253."
+        "W254 records compact evidence when an atomic objective call fails: exact proposed-vector/mask digests, optional source hash and first exceeding source atom index/norm/bound.274source/274relocated installed checks; no extra evaluation, new optimizer policy, full coordinate array or retrospective recovery of W253.",
+        "W255 records the completed coordinated2A cap comparison and separately bounded projected search/basis audit. Geometry improves but projected residual5.1565 and infeasible PDB rounding prevent a candidate. Alder pure helpers are independently reviewed at7c2e1c41; no Willow default/integration change or duplicate native run."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Next session, one Rowan-coordinated cap-adequacy comparison changes only1.5\u21922.0A: same original7aade parent/zero start/six roles/held rings/0.5A tether/native image chemistry,100iterations/300optimizer calls/600total evaluations/600s wall. Bind W254 reporting and verify numerical owners/inputs against W253 before launch. Require accepted-step/derivative/live-state qualification and independent phosphate, both sugar attachments, nearby packing and fixed Hg review before proceeding. A shorter bond with damaged flanks requires retaining failure and returning to original geometry to inspect competing terms. No second cap escalation, grid, larger mask or automatic adoption; no diffraction fit before geometry review. This is planned, not run, and does not establish that a larger domain was necessary or identify W253\u2019s missing rejected atom. Queued from Rowan/Simon: inspect OP1/OP2 orientation relative to a qualified local duplex in its named image before/after gap filling or deformation; good bond lengths and conventional phosphate handedness alone are insufficient. Preserve genuine alternatives and true nicks; unresolved duplex correspondence remains unresolved. Cedar owns source-provenance diagnosis and correction, with no new force or immediate trial here. Scheduled phosphate follow-up stage 4: qualify the combined two-cut geometry only after source intent and pure-recut invariance pass; Cedar remains the sole force owner. Reuse W239\u2013W244 and existing rotated/screw/gap controls; preserve nick and ambiguous-partner negatives. Schedule and ownership: docs/topostitch.md#coordinated-phosphate-recut-follow-up. Planning only; no immediate native rerun. Use W242 for saved-log weight evidence; do not re-run W241. Coordinate any explicit fixed-objective control with Cedar counted/native scope owners: one fixed-unit counted cycle does not qualify five-cycle six-atom/bulk-scaling behavior. Predeclare common weight, both starts and unchanged observations/mask/BQ before execution; no Free-R-driven tuning. Continue residual torsion/density review and preserve broader bending/stacking/ASU gates.",
+      "next_action": "The planned2A comparison is complete: do not repeat it or widen the cap automatically. Coordinate source-bound convergence/chemistry assessment with Alder/Cedar. Explicitly scope boundary-endpoint qualification before receiving: feasible-basis force audit, projected stationarity, preserved old centered UNAVAILABLE, and actual serialized-state geometry/gradient/residual are independent. Inspect existing high-precision receiving support before separate PDB lattice proposals. No silent clipping or old-gradient reuse; no candidate/refinement before qualified output and chemistry. Queued from Rowan/Simon: inspect OP1/OP2 orientation relative to a qualified local duplex in its named image before/after gap filling or deformation; good bond lengths and conventional phosphate handedness alone are insufficient. Preserve genuine alternatives and true nicks; unresolved duplex correspondence remains unresolved. Cedar owns source-provenance diagnosis and correction, with no new force or immediate trial here. Scheduled phosphate follow-up stage 4: qualify the combined two-cut geometry only after source intent and pure-recut invariance pass; Cedar remains the sole force owner. Reuse W239\u2013W244 and existing rotated/screw/gap controls; preserve nick and ambiguous-partner negatives. Schedule and ownership: docs/topostitch.md#coordinated-phosphate-recut-follow-up. Planning only; no immediate native rerun. Use W242 for saved-log weight evidence; do not re-run W241. Coordinate any explicit fixed-objective control with Cedar counted/native scope owners: one fixed-unit counted cycle does not qualify five-cycle six-atom/bulk-scaling behavior. Predeclare common weight, both starts and unchanged observations/mask/BQ before execution; no Free-R-driven tuning. Continue residual torsion/density review and preserve broader bending/stacking/ASU gates.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -640,14 +641,15 @@
         "E_PHASED_PHOSPHATE_ADMISSION",
         "E_PHASED_PHOSPHATE_OUTPUT",
         "E_PHASED_GEOMETRY_BOUND",
-        "E_FAILED_PROPOSAL_OBSERVATION"
+        "E_FAILED_PROPOSAL_OBSERVATION",
+        "E_FEASIBLE_CAP_DIAGNOSTICS"
       ],
       "last_audit": {
-        "date": "2026-11-23",
-        "code_commit": "d6445d80337882b18bf2ab9636593e9eb238f2fa",
-        "reviewer": "Linden; cold interface review by Hazel, scoped by Rowan",
-        "human_update": 254,
-        "scope": "Future failure evidence qualified in software; no new native run or scientific closure"
+        "date": "2026-11-24",
+        "code_commit": "7c2e1c41d969db7b047b242d847bf18ace49b531",
+        "reviewer": "Hazel; scoped owner review by Linden; coordinated by Rowan",
+        "human_update": 255,
+        "scope": "Coordinated cap/search/derivative evidence; still unconverged and no serialized candidate"
       }
     },
     {
@@ -737,7 +739,8 @@
         "W242 makes W241 adaptive-weight evidence reproducible through a read-only source-pinned observer:278 source/278 installed tests and exact10-cycle saved-log parity. Existing Cedar fixed-unit ownership and its narrower counted-cycle limits remain explicit.",
         "W250 optionally binds dedicated phases and complete atom-keyed fixed scattering to the initialized native MLHL state and actual coordinate-target objects.213 source/213 relocated installed tests and source/installed preflights pass;859atoms/1151original reflections andHL/59Free exact, source PDB unchanged. One preflight-only stop is available; no phased fit at W250 and no scientific acceptance; W251/W252 are later evidence.",
         "W251/W252: actual phased six-role refinement and output guards qualified after an output-only compatibility fix; all raw atom records reproduce the failed original. The gap shortens but phosphate/sugar strain remains, so technical completion is separate from chemical repair. Exact phases, Free-R, fixed scattering and fixed context survive; no accepted candidate.",
-        "W253: one original-parent geometry+tether trial reaches a near-target O3-P distance but significant boundary/oxygen-angle strain persists. A proposed unconstrained step exceeds the1.5A guard after12accepted steps; failed-last-step derivatives and1789independent checks pass. No convergence, candidate, feasible-bridge claim or automatic bound expansion. Three-state headless view preserves failed origin and exact source bindings."
+        "W253: one original-parent geometry+tether trial reaches a near-target O3-P distance but significant boundary/oxygen-angle strain persists. A proposed unconstrained step exceeds the1.5A guard after12accepted steps; failed-last-step derivatives and1789independent checks pass. No convergence, candidate, feasible-bridge claim or automatic bound expansion. Three-state headless view preserves failed origin and exact source bindings.",
+        "W255 records the completed coordinated2A cap comparison and separately bounded projected search/basis audit. Geometry improves but projected residual5.1565 and infeasible PDB rounding prevent a candidate. Alder pure helpers are independently reviewed at7c2e1c41; no Willow default/integration change or duplicate native run."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -748,7 +751,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Next session, one Rowan-coordinated cap-adequacy comparison changes only1.5\u21922.0A: same original7aade parent/zero start/six roles/held rings/0.5A tether/native image chemistry,100iterations/300optimizer calls/600total evaluations/600s wall. Bind W254 reporting and verify numerical owners/inputs against W253 before launch. Require accepted-step/derivative/live-state qualification and independent phosphate, both sugar attachments, nearby packing and fixed Hg review before proceeding. A shorter bond with damaged flanks requires retaining failure and returning to original geometry to inspect competing terms. No second cap escalation, grid, larger mask or automatic adoption; no diffraction fit before geometry review. This is planned, not run, and does not establish that a larger domain was necessary or identify W253\u2019s missing rejected atom. Use W242 for saved-log weight evidence; do not re-run W241. Coordinate any explicit fixed-objective control with Cedar counted/native scope owners: one fixed-unit counted cycle does not qualify five-cycle six-atom/bulk-scaling behavior. Predeclare common weight, both starts and unchanged observations/mask/BQ before execution; no Free-R-driven tuning. Continue residual torsion/density review and preserve broader bending/stacking/ASU gates.",
+      "next_action": "The planned2A comparison is complete: do not repeat it or widen the cap automatically. Coordinate source-bound convergence/chemistry assessment with Alder/Cedar. Explicitly scope boundary-endpoint qualification before receiving: feasible-basis force audit, projected stationarity, preserved old centered UNAVAILABLE, and actual serialized-state geometry/gradient/residual are independent. Inspect existing high-precision receiving support before separate PDB lattice proposals. No silent clipping or old-gradient reuse; no candidate/refinement before qualified output and chemistry. Use W242 for saved-log weight evidence; do not re-run W241. Coordinate any explicit fixed-objective control with Cedar counted/native scope owners: one fixed-unit counted cycle does not qualify five-cycle six-atom/bulk-scaling behavior. Predeclare common weight, both starts and unchanged observations/mask/BQ before execution; no Free-R-driven tuning. Continue residual torsion/density review and preserve broader bending/stacking/ASU gates.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -881,14 +884,15 @@
         "E_NATIVE_WEIGHT_OBSERVATION",
         "E_PHASED_PHOSPHATE_ADMISSION",
         "E_PHASED_PHOSPHATE_OUTPUT",
-        "E_PHASED_GEOMETRY_BOUND"
+        "E_PHASED_GEOMETRY_BOUND",
+        "E_FEASIBLE_CAP_DIAGNOSTICS"
       ],
       "last_audit": {
-        "date": "2026-11-23",
-        "code_commit": "d6445d80337882b18bf2ab9636593e9eb238f2fa",
-        "reviewer": "Linden; cold interface review by Hazel, scoped by Rowan",
-        "human_update": 254,
-        "scope": "Future failure evidence qualified in software; no new native run or scientific closure"
+        "date": "2026-11-24",
+        "code_commit": "7c2e1c41d969db7b047b242d847bf18ace49b531",
+        "reviewer": "Hazel; scoped owner review by Linden; coordinated by Rowan",
+        "human_update": 255,
+        "scope": "Coordinated cap/search/derivative evidence; still unconverged and no serialized candidate"
       }
     },
     {
@@ -1099,13 +1103,14 @@
         "W246 composes the installed saved-cut observer with both declared R3 routes and existing orbit/intent owners: four read-only controls, all source atoms and supplied HKLs, near-roundoff scattering differences and unchanged bond image geometry. Only 82 atoms change representatives per source; no physical bend, coordinate export or coupled refinement.",
         "W247 measures default PDB/mmCIF precision and exact represented-state full-precision CIF control, then independently rereads all12 outputs with Phenix/cctbx. Full ordered inventory and both externally declared links retained. Writer defaults are not invariance: default rotated U formatting fails the planned bound; first failures remain. No production writer or new native fit.",
         "W248 maintains a read-only exact-receipt/export-bound PDB/mmCIF inspector: complete identity permutation, explicit coordinate/U precision and separate external-link geometry.237 source/237 relocated installed;12 real-model source/installed replays agree and retain both default-writer precision failures. No production writer or annotation/physical acceptance.",
-        "W249 separately binds the original full-precision coordinate mmCIFs, original A1C3T identity and typed sequence metadata. Four local diagnostic recuts carry every graph edge and original connection annotation; independent Phenix/cctbx readback and supplied-HKL Fcalc agree near1e-15. Annotation-only negative controls show scattering alone cannot prove connectivity. This is a diagnostic composition, not a maintained writer or extension of W248 input scope."
+        "W249 separately binds the original full-precision coordinate mmCIFs, original A1C3T identity and typed sequence metadata. Four local diagnostic recuts carry every graph edge and original connection annotation; independent Phenix/cctbx readback and supplied-HKL Fcalc agree near1e-15. Annotation-only negative controls show scattering alone cannot prove connectivity. This is a diagnostic composition, not a maintained writer or extension of W248 input scope.",
+        "W256 maintains original-mmCIF identity/precision binding to an exact working recut: explicit component aliases, complete atom permutation, raw double XYZ/U, exact original bytes, unique coordinate block/attached definitions and category inventory.217source/217installed; four W249 real controls reproduce all raw XYZ/U exactly. No writer or annotation/path approval."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "Formalize the proven P03 pieces through existing owners rather than another writer: original-mmCIF versus working-PDB lineage with explicit aliases, full-precision source context, unique coordinate block plus attached component definitions, scalar/loop layout, complete polymer path mapping and all boundary annotations. W248 remains a narrower saved-PDB/export observer; do not silently substitute original sources or component names. Reuse Cedar deposition-link comparison against a bound complete reference; standalone CHECKED or unchanged Fcalc cannot detect an omitted declaration. Preserve every original connection kind, node/image lineage, true nick and alternative orientation. Keep P02 graphical review, special-position/general-source qualification, native full lifecycle, fresh refined-child binding and inverse edits open before supported materialization/refinement.",
+      "next_action": "Bind complete original polymer paths and every connection annotation to W256 original-source identity and the cut, reusing Cedar deposition-link comparison against a complete bound reference. W256 covers source/working compatibility, not historical producer proof or annotation coverage. Keep W248 narrow; preserve original connection kinds, node/image lineage, nicks and orientations. P02 graphical review, special-position/source validity, supported writing, native full lifecycle and refined-child/inverse-edit binding remain open. No duplicated native parser or inference of annotation completeness from Fcalc.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -1118,14 +1123,15 @@
         "E_TWO_ROUTE_REPRESENTATIVE_OBSERVATION",
         "E_SERIALIZATION_READBACK_OBSERVATION",
         "E_SERIALIZED_RECUT_OBSERVER",
-        "E_FULL_PRECISION_BOUNDARY_METADATA"
+        "E_FULL_PRECISION_BOUNDARY_METADATA",
+        "E_ORIGINAL_CIF_SOURCE_CONTEXT"
       ],
       "last_audit": {
-        "date": "2026-11-23",
-        "code_commit": "3f8627b62dd5e594390b525823d973555a383905",
-        "reviewer": "Linden",
-        "human_update": 249,
-        "scope": "Full-precision two-source metadata/graph diagnostic; scalar-format failure and annotation-only negatives retained; no product writer or refinement adoption"
+        "date": "2026-11-24",
+        "code_commit": "aa0d6e7230aed107da271113f285847be4bf6875",
+        "reviewer": "Linden; exact-hash cold review by Hazel",
+        "human_update": 256,
+        "scope": "Maintained original-source binding and exact cold replay; annotation/path coverage and supported materialization remain open"
       }
     },
     {
@@ -6770,6 +6776,76 @@
           "size": 1539
         }
       ]
+    },
+    "E_FEASIBLE_CAP_DIAGNOSTICS": {
+      "kind": "Coordinated native cap/feasible-step and read-only derivative evidence",
+      "date": "2026-11-24",
+      "human_update": 255,
+      "code_commit": "7c2e1c41d969db7b047b242d847bf18ace49b531",
+      "reference": "docs/topostitch-periodic.md#w255--record-the-coordinated-cap-and-feasible-step-diagnostics",
+      "result": "2A cap comparison stops27accepted/29calls with OP2next2.0491108A vsaccepted1.9719141A;1797cold+21term checks. Separate projected diagnostic stops100iterations/209search calls,residual5.1565;3154cold checks.75-evaluation feasible-basis audit reproduces saved state and passes4.963e-5. Alder pure helpers53focused/99adjacent/53installed and531cold replay assertions; independent Willow review resolved collapsed-probe/partial-evidence defects.",
+      "limitation": "Coordinated evidence only; no Willow optimizer integration or new Linden native run. Neither endpoint converged; centered full-precision probes unavailable and rounded PDB outside cap. New opt-in endpoint contract, actual serialized-state qualification and chemistry review remain separate gates; no candidate/adoption, cap grid, mask expansion or diffraction receiving.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/a01-phosphate-cap-comparison-20261124-03/independent-review.json",
+          "sha256": "1c1155290867530575756407f4edd89a05b567d5deb30c3892fefd1f674ce6a6",
+          "size": 30175
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/a01-phosphate-cap-comparison-20261124-03/op2-term-audit.json",
+          "sha256": "3844cdcb814453063c25b556d33a18d2aab5fba72b336994902f7102c7898a5d",
+          "size": 15305
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/a01-feasible-maintained-20261124-01/cold-replay.json",
+          "sha256": "3349536e0e03a7952293f60da7721626c71241d133c674f0a8d3f4b80c5370e0",
+          "size": 1173
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/a01-feasible-maintained-20261124-01/delivery.json",
+          "sha256": "6ad86b9dd5c314f9e2090394a9b1d354bb7ff9f2eb6027d24a9ab90504f86477",
+          "size": 493
+        }
+      ]
+    },
+    "E_ORIGINAL_CIF_SOURCE_CONTEXT": {
+      "kind": "Maintained read-only original-mmCIF source context",
+      "date": "2026-11-24",
+      "human_update": 256,
+      "code_commit": "aa0d6e7230aed107da271113f285847be4bf6875",
+      "reference": "docs/topostitch-periodic.md#w256--preserve-original-cif-precision-in-a-maintained-recut-source-context",
+      "result": "217source/217relocated installed checks;206installation files verified,Python3.10 syntax/installed cut-preview help. Four original3LNA/5LNA controls retain1271/1275atoms,explicit A1C3T\u2192ACL working mapping,raw original XYZ/U and byte document; compiled values exactly equalW249expected states. Source frame has distinct original binding. Attached definitions/category layouts retained; supplied symmetry table checked. The complete Willow suite ran: 2,688 passed, four skipped and 234 subtests passed; five campaign-process tests failed because sandbox process inspection/signaling was denied. Those same five passed with permission (2.48 s), unchanged source. This clears all 2,693 tests across the run and retry, not a single clean full invocation or a combined-branch integration result. Hazel exact-hash cold review: no blocking finding.",
+      "limitation": "Compatibility binding is not independent producer proof or alias chemistry approval. No annotation/path validation, writer, native interpretation, edited-child rebinding or adoption. Prior W248 input scope/default callers unchanged. First missing-build-dependency-path failure retained; no native rerun; combined-branch integration remains open. P03 remains partial.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w256-source-cif-context/qualification.json",
+          "sha256": "9dbcd23ba76fd98aa4c08780c7c8855dc68f8ddd8633ef1036aca332773f5556",
+          "size": 16387
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w256-source-cif-context/source-replay-final.json",
+          "sha256": "152bd829b1fbb40608f3367d068247d4d4bf582a67ce6f26275cd6a789c304d7",
+          "size": 1281204
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w256-source-cif-context/validation-final.json",
+          "sha256": "1bb72d7b554ae780652f3aeb4e44b2b6d197444b3a70267fa0c42f2e9ba36397",
+          "size": 3883
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/Alder/a01-feasible-continuation-review-20261124-01/w256-read-only-review.json",
+          "sha256": "e67a8bcbd2b785afcafd85699b0dc93a2f77a3b7187f729c104227d8f3c542fe",
+          "size": 1536
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -6935,8 +7011,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 254,
-    "next": 255,
+    "current": 256,
+    "next": 257,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -8270,6 +8346,18 @@
         "title": "Retain compact failed-proposal evidence without changing the optimizer",
         "state": "RECORDED",
         "code_commit": "d6445d80337882b18bf2ab9636593e9eb238f2fa"
+      },
+      {
+        "number": 255,
+        "title": "Record coordinated cap and feasible-step evidence without endpoint adoption",
+        "state": "RECORDED",
+        "code_commit": "7c2e1c41d969db7b047b242d847bf18ace49b531"
+      },
+      {
+        "number": 256,
+        "title": "Bind original mmCIF identity and precision to the saved working recut",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   },

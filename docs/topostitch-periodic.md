@@ -13752,3 +13752,87 @@ file is written. Raw files stay local under the NASolve anchor at
 `branch-artifacts/willow/w253-{chimerax-check,checkout-validation,geometry-reach}.json`.
 This is evidence/docs only; no new production code, schema or scientific acceptance.
 S05/S06 remain PARTIAL.
+
+## W255 — Record the coordinated cap and feasible-step diagnostics
+
+Hazel completed the predeclared original-parent 1.5→2.0 Å cap comparison using
+the same six atoms, held rings, 0.5 Å tether, chemistry, budgets and Phenix
+2.2.1-6174. It stopped after 27 accepted steps/29 optimizer evaluations:
+OP2 proposed 2.0491108 Å versus the last accepted 1.9719141 Å. The last step has
+O3′–P 1.615456 Å, C3′–O3′ 1.4598 Å and OP2–P–O5′ 107.340°. There is no candidate
+or constrained optimum. The 1,797 cold checks and 21 local-term checks show the
+angle penalty falling 55.44→0.048 and outward radial derivative −157.65→−1.51;
+the rejected proposal does not prove that a larger displacement domain is needed.
+Two prior resource-copy preparation failures remain distinct from this one fit.
+
+A separate private projected-gradient diagnostic kept the 2 Å balls, original
+parent and objective. It reached 100 iterations/209 search evaluations in 189 s,
+stopping at the iteration limit with projected residual 5.1565. All 3,154 cold
+checks pass, with no out-of-domain objective calls. Centered endpoint probes are
+unavailable at the active cap; the rounded PDB point is outside the cap. A separate
+read-only 75-evaluation feasible-basis audit completed in 55 s and reproduced the
+saved scalar/gradient exactly; largest derivative error is 4.963e-5 against 1e-3.
+This checks forces, not stationarity or serialized-model acceptance.
+
+Alder now owns the optional pure search/audit helpers at
+`7c2e1c41d969db7b047b242d847bf18ace49b531`: 53 focused, 99 adjacent, 53 installed
+tests and 531 cold replay assertions. Linden's independent review caught/refused
+collapsed finite-difference probes and retained successful partial probes on
+failure. Replay reproduces saved calls, not new native evaluations. These modules
+are not imported or merged into Willow by this update; ordinary trial defaults
+are unchanged. Native adapters, exact source identity, deadlines and output
+qualification remain caller-owned.
+
+The next gate separates convergence, force correctness, chemistry and actual
+serialization. Scope an explicit opt-in boundary-endpoint contract before any
+receiving candidate: preserve old centered `UNAVAILABLE`, independently qualify
+feasible-basis derivatives and the serialized point's own geometry/gradient/
+projected residual. First inspect high-precision mmCIF receiving support; any
+PDB lattice choice is a separate encoding proposal requiring fresh evaluation,
+not silent clipping or reuse of the old gradient. No cap grid, automatic mask
+expansion, diffraction receiving or acceptance follows from this audit.
+
+Evidence stays local under the NASolve anchor:
+`branch-artifacts/Alder/a01-phosphate-cap-comparison-20261124-03/`,
+`a01-feasible-step-native-20261124-01/`,
+`a01-feasible-basis-native-20261124-01/` and
+`a01-feasible-maintained-20261124-01/` (the latter three share the same
+`branch-artifacts/Alder/` parent). The existing human checkout under the GitHub
+anchor is `ScienceCheckouts/Hazel/2026-11-24_feasible-helper-extraction/index.html`.
+This is coordinated evidence, not a duplicated Linden experiment.
+
+## W256 — Preserve original CIF precision in a maintained recut source context
+
+The [original-CIF source reader](topostitch-preview.md#bind-an-original-mmcif-to-a-saved-working-recut-w256)
+formalizes the source-binding slice of W249. Original bytes, atom IDs, component
+names and raw double XYZ/U survive; the explicit A1C3T→ACL alias only matches the
+working-PDB graph. A separate original-source digest owns the frame. Attached
+component blocks and category layouts remain available for subsequent metadata
+work. The working-file error limits are explicit, not an implicit source rewrite.
+
+Four cold real-data replays cover 3LNA/5LNA unchanged and both-route cuts. All
+1,271/1,275 atoms map exactly once. Compiled raw XYZ and Cartesian U reproduce
+W249 expected values with **zero component difference** in all four cases.
+Maximum original-to-working errors are 0.0005 Å coordinates, 0.00005 Å² U,
+0.005 Å² B and zero occupancy difference. This is exact replay of earlier
+unrefined numerical states; no new Fcalc, Phenix, refinement or coordinates are
+generated. Original files remain unchanged. The first local replay predates the
+symmetry-table admission check; the separately pinned final replay uses the
+qualified source. Do not relabel the first result as the final-code check.
+
+Focused command, with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:<qualified-test-dependencies>`:
+`python -m pytest -p no:cacheprovider -q tests/test_topostitch_cif_source.py
+tests/test_topostitch_scattering.py tests/test_topostitch_recut_bundle.py
+tests/test_topostitch_recut.py tests/test_topostitch_transport.py`.
+217 source tests pass; the same 217 pass from the relocated installation after
+removing the temporary source build and old installation location. The complete Willow suite ran: 2,688 passed, four skipped and 234 subtests passed; five campaign-process tests failed because sandbox process inspection/signaling was denied. Those same five passed with permission (2.48 s), unchanged source. This clears all 2,693 tests across the run and retry, not a single clean full invocation or a combined-branch integration result. Hazel's exact-hash independent cold review has no blocking finding. Original-source relocation is also exercised with its old path gone.
+Exact commands, hashes, logs and source replay are under the NASolve anchor
+`branch-artifacts/willow/w256-source-cif-context/`. Task-owned disposable build/
+installation files were removed; private scientific data is excluded from Git.
+
+P03 stays **PARTIAL**. The next maintained slice must bind complete polymer paths
+and every original connection type to this source context and the proposed cut,
+reusing Cedar's deposition-link reader/comparison. An annotation-only omission
+can preserve Fcalc and pass an incomplete standalone check. Required P02 GUI,
+inverse edits, refined-child rebinding, supported writing, special-position
+source validity and the native refinement lifecycle remain separate gates.

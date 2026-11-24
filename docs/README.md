@@ -1,16 +1,23 @@
 # NASolve documentation map
 
-Updated **2026-11-23** for **`willow`**. Start with the
+Updated **2026-11-24** for **`willow`**. Start with the
 [current development handoff](development-handoff.md) for the proven edge,
 remaining gates and next bounded task. Historical handoffs are evidence, not
 current instructions; other branches retain their own status and validation pins.
 
 ## What's current?
 
-- **Current audit/code: W254.** [Compact failed-proposal observation](topostitch-preview.md#observe-a-failed-atomic-proposal-without-promoting-it-w254)
+- **Current source binding: W256.** [Original mmCIF context](topostitch-preview.md#bind-an-original-mmcif-to-a-saved-working-recut-w256)
+  retains original precision/identity through an explicitly matched working recut.
+  217 source/217 installed checks; four exact W249 replays. P03 remains partial.
+- **Coordinated science: W255.** [Cap and feasible-step evidence](topostitch-periodic.md#w255--record-the-coordinated-cap-and-feasible-step-diagnostics)
+  improves local geometry but remains unconverged; force-audit success does not
+  accept the rounded endpoint. Alder helpers are separately owned, not merged.
+
+- **Failure reporting: W254.** [Compact failed-proposal observation](topostitch-preview.md#observe-a-failed-atomic-proposal-without-promoting-it-w254)
   records future motion-bound evidence without another coordinate array or
   evaluation. 274 source/274 relocated installed passes; no native rerun.
-- **Latest science: W253.** [Motion-limited geometry diagnostic](topostitch-periodic.md#w253--audit-a-motion-limited-geometry-trial-without-claiming-an-optimum)
+- **Prior geometry control: W253.** [Motion-limited geometry diagnostic](topostitch-periodic.md#w253--audit-a-motion-limited-geometry-trial-without-claiming-an-optimum)
   reaches a near-target bond in its last accepted step but retains significant
   angle/attachment strain. A later proposal crosses the motion cap; this is not
   a boundary optimum or proof that a larger mask is needed. No candidate emitted.
@@ -87,14 +94,11 @@ current instructions; other branches retain their own status and validation pins
   The failed direct result and three remaining moving-region outliers stay
   explicit. This is same-family synthetic recovery, not general experimental repair.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W239, next W240:
-  [six-atom native closure](topostitch-periodic.md#w235--close-the-local-symmetry-connection-with-all-rings-held)
-  retains fixed rings and healthy sugar boundaries. Qualify diffraction receiving
-  and residual geometry next; matched receiving preflights pass, with fits held
-  for coordinator scheduling. [Fixed original-map inspection](topostitch-periodic.md#w237--inspect-the-local-proposal-in-the-fixed-original-map)
-  records mixed support; neither view is scientific acceptance.
-  The existing two-fixed-flank interval cannot simply grow around the same core.
-  Keep the successful synthetic receiving comparison closed. The 5 Å centerline target is separate.
+  [generated human view](topostitch-roadmap.md). Current W256, next W257.
+  Continue complete original path/annotation binding in Pine; coordinate feasible
+  endpoint/convergence qualification with Alder and chemistry receiving with Cedar.
+  Prior synthetic recovery and near-target bond controls remain closed evidence;
+  neither a changed ASU nor a shorter bond closes the scientific repair gate.
 - **Exact evidence:** [Periodic/native ledger](topostitch-periodic.md) and
   [preview/API guide](topostitch-preview.md) retain commands, failed attempts,
   compatibility pins and limits. Do not repeat closed probes because this index
