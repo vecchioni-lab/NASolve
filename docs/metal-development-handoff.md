@@ -71,8 +71,9 @@ were 0.220/0.430σ and −2.712/−2.557σ. These 5.06 Å model-assisted maps in
 reflections. Better geometry does not establish better density support. Hg remains
 Q=1, B=69.52 Å² and f″=0 (unmeasured); environmental-B preparation has not run.
 
-**Next:** scope a separately matched whole-model open XYZ/group-B protocol that
-retains the declared crystal connection and complete source chemistry. The earlier
+**Next:** admit the separately scoped DNA-only XYZ/group-B comparison below,
+holding Hg XYZ/Q/B/f′/f″ throughout while retaining the declared crystal connection
+and complete source chemistry. The earlier
 whole-model control lacks the same join and cannot silently substitute. Review
 actual maps, scaling and broad geometry before any parent selection. D7→C8,
 coupled metal/base placement and f″ remain separate; no further search-allowance,
@@ -99,6 +100,69 @@ This follow-up uses existing owners and changes documentation only; no runtime,
 shared caller, schema, default, migration or full-suite rerun. The earlier
 allowance comparison and its 4,703 checks remain at their original anchors and
 Git checkpoint `f769a8d0`; they are not repeated or rewritten.
+
+<a id="a01-dna-only-comparison-design-2026-11-24"></a>
+
+### Next experiment — matched DNA relaxation with Hg held fixed
+
+The two-arm input design is complete; **no broader fit has run**. Compare the
+original `7aade3c4` model with the constructed `c307fc65` seed, not their already
+locally refined products. Exactly six starting XYZ values differ; the remaining
+853 coordinates and all atom identities, B/Q and scattering terms match.
+Both actual-model captures pass existing Cedar input/continuation admission.
+**1,240 cold source/input checks** pass and the existing 20-file V11 runtime
+payload authenticates. This establishes input parity, not execution qualification.
+
+| Scope | Matched declaration for both arms |
+| --- | --- |
+| Movable coordinates | The 858 source-identified DNA atoms; explicit exact mask |
+| Group B | 42 explicit DNA residue groups; exclude the Hg residue |
+| Protected Hg | Original XYZ, Q=1, B=69.52 Å², f′ and f″ throughout |
+| Data | Same 1,151 reflections, 59 original Free observations and HL phases; actual MLHL required |
+| Chemistry | Same ordered three CIF/five PHIL resources and complete registered B7→B1 image terms |
+| Scaling | Keep bulk-solvent/scaling; disable atomic overall isotropic ADP back-trace in both arms |
+| Products | Preserve original, seed and both independent outputs; no selected parent or f″ |
+
+The installed **Phenix 2.2.1-6174 source** explains two required controls. Default
+one-group-per-residue ADP selection includes Hg; use explicit `group_selection`
+with the 42 DNA groups instead. Excluding Hg from those groups alone does not
+protect its B against overall ADP back-trace. Set both
+`main.apply_overall_isotropic_scale_to_adp=False` and
+`bulk_solvent_and_scale.apply_back_trace=False`, then observe the actual metal
+state through execution. This is an intentional protocol change relative to the
+old whole-model recipe, applied identically to both arms.
+
+The actual `phenix.refine` global real-space route is
+`xyz_real_space.run_global`: it passes `sites_individual` to the minimizer.
+The separate standalone driver's `selection=None` is **not** evidence that this
+route ignores its mask. Global real-space execution is conditional on Rwork>0.3;
+observe whether it runs, subsequent symmetry projection and any rollback.
+These are static source findings, not a completed native freeze test.
+Twenty additional source/design assertions authenticate those findings and the
+identical 42-group membership. No inherited scientific REVIEW is relabelled PASS.
+
+**Remaining admission work:** use the existing V11 owner with a truthful research
+execution contract or legitimate original-registration checkpoint ancestry.
+Neither exact input currently has an ordinary numbered registry; do not invent
+one or reuse unrelated PDU lineage. Observe compiled MLHL/HL/Free-R, exact XYZ/ADP
+masks, protected Hg state and all eight image terms/exclusions while the owner is
+active. A geometry probe after owner teardown would omit the image forces.
+Capture synchronized native/written state and matching maps before teardown.
+Keep W252's narrow fixed-B guards intact; add a distinct bounded observer for
+DNA group-B rather than weakening them. Only then run two sequential identical
+protocols, with source/technical failures stopping the pair.
+
+**Receipt and restart:** `branch-artifacts/Alder/a01-whole-model-join-design-20261124-01/`
+retains immutable `comparison-design.json`, the later `confirmed-dna-scope.json`,
+source hashes, group membership and the design log. Runners A652/A653 use
+`PYTHONDONTWRITEBYTECODE=1 /private/tmp/alder-validation-20261121-01/bin/python -B`
+with their explicit runner paths; results are 1,240 and 20 cold assertions.
+They execute no Phenix fit and create no model. Reuse the completed local native
+comparison and existing focused tests. This addendum changes four documentation
+files and the small local checkout only: no runtime/schema/default/migration,
+scientific upload, pruning or full-suite claim. The next pass starts at protocol
+admission, not another seed search or replay of completed tests. A01 remains
+partial and A02 remains gated.
 
 <a id="a01-phosphate-cap-2026-11-24"></a>
 

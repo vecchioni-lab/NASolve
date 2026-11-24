@@ -20,8 +20,11 @@ and unavailable-audit verdicts are unchanged. **A01 partial; A02 gated.**
 Rwork/Rfree remain 0.3081/0.3427 and local maps weak/negative, so there is no
 selected parent or f″ eligibility. See the [current handoff](metal-development-handoff.md#a01-constructed-seed-receiving-2026-11-24).
 
-Next scope one separately matched whole-model open XYZ/group-B protocol retaining
-the declared crystal join, complete source chemistry and original work/free/HL.
+The [two-arm DNA-only XYZ/group-B design](metal-development-handoff.md#a01-dna-only-comparison-design-2026-11-24)
+is now input-qualified (1,240 cold checks plus 20 source/design assertions).
+Next admit its actual execution/lineage: explicit 858-atom DNA mask and 42 ADP
+groups, Hg XYZ/Q/B/f′/f″ held throughout, atomic ADP back-trace disabled, declared
+crystal join and original work/free/HL retained. No broader fit has run.
 The old whole-model control lacks the same join and cannot be silently reused.
 Compare actual maps/scaling and broad geometry; preserve the constructed-start
 versus converged-parent distinction. D7→C8, coupled metal/base placement and
@@ -33,6 +36,9 @@ work is needed to close this comparison. Source rounding/derivative checks now
 qualify this actual PDB seed, not a universal new output or adoption policy.
 
 A01 next-input review now includes [DF C2 chemical target provenance](metal-df-c2-angle-audit.md). A source-consistent fragment is available, but its eLBOW angles are not independent chemistry authority. Retain explicit source-state uncertainty and coupled-target review; routine donor-state integration remains deferred. No automatic 120° substitution.
+
+Historical source-intake context below predates the qualified local receiver; its
+pending-enforcement wording is not the current local-run verdict.
 
 The preceding independent FT source audit identified two input boundaries
 (the new intake above resolves reference/frame binding, not native enforcement):

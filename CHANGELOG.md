@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Scope matched DNA relaxation with protected metal state
+
+- Record source-qualified original/constructed inputs and explicit DNA-only XYZ
+  and group-B controls, holding Hg XYZ/Q/B/f′/f″ throughout. Document native
+  selection and ADP back-trace findings without claiming execution qualification.
+- Preserve the lineage/active-owner observation gates and unmatched-control
+  exclusions. Documentation only; no broader fit, runtime/schema/default change,
+  new scientific artifact in Git or unchanged suite rerun.
+
 ### Record source-bound constructed-seed receiving evidence
 
 - Preserve separate endpoint/chemistry admission and one matched local phased
