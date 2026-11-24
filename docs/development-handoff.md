@@ -7,36 +7,29 @@ observation and storage owners; it introduces no new scientific policy.
 
 ## Current metal-science edge
 
-A01 remains partial; A02 quantitative f″ remains gated. The predeclared
-[2.0 Å phosphate comparison](metal-development-handoff.md#a01-phosphate-cap-2026-11-24)
-substantially improves local phosphate geometry, but a later B1 OP2 proposal
-crosses the guard at 2.049111 Å. It is not converged and emits no candidate.
-The original parent, held sugars, chemistry, 0.5 Å tether and budgets stay exact;
-the entire earlier trace prefix reproduces. No second cap increase or automatic
-adoption follows.
+A01 remains partial; A02 f″ remains gated. The separate
+[feasible-step diagnostic](metal-development-handoff.md#a01-feasible-step-2026-11-24)
+keeps the original model, native chemistry and 2 Å movement balls, and completes
+100 iterations without an out-of-domain evaluation. It is still unconverged
+(projected residual 5.1565); no candidate is emitted. A627 passes 3,154 cold checks.
+A separate 75-evaluation observation validates a full-rank feasible derivative
+basis at the exact saved point (maximum error 4.96e-5); A630 passes 1,301 independent
+frame/sample/state checks. Original centered/rounded endpoint checks remain
+unavailable. No scientific acceptance, receiving fit or f″ follows.
 
-One Phenix 2.2.1-6174 geometry-only trial stops in 159.11 s. A620 passes 1,797
-independent cold checks; A622 passes 21 local scalar-term checks. All 853 fixed
-coordinates, B/Q/scattering, original phases and Free-R remain exact. The periodic
-distance screen is descriptive, not VDW qualification. Remaining modest angle
-deviations are review context, not mechanical acceptance thresholds. Two preparation
-failures are retained and stopped before optimization. No new diffraction fit,
-R statistics, environmental-B assignment or f″ result.
+Both Phenix 2.2.1-6174 processes are stopped. The reviewed private prototypes have
+26 search/adapter and 15 derivative tests. Next extract the reusable pure helpers,
+obtain Linden's exact-diff review and run focused regressions, leaving shared
+trial/defaults untouched. Current branch checkpoint updates documentation only;
+no runtime/schema/default or migration change, full-suite rerun, raw science
+commit, pruning or implicit Willow merge. The current integration checkpoint
+below remains unchanged.
 
-Next review bound-aware proposal handling/source-derived placement against both
-attachments before choosing another experiment. Do not widen the mask, restart
-from the failed point or escalate the cap. See the metal handoff for exact
-source/trace hashes, native commands, limits and prior-attempt evidence. W254
-reporting and W252 output changes remain separately qualified Willow work, not
-implicit source integration here. The current Alder update changes four documents
-only, with document/link checks; no runtime/schema/default or migration change,
-new full-suite claim, scientific upload or pruning.
-
-Private report:
-`ScienceCheckouts/Hazel/2026-11-24_ft-phosphate-cap/index.html`.
-The three-view figure labels both failed last steps and uses the same camera and
-Å scale. Earlier maps remain linked with their original models. All three owned
-processes are stopped. The qualified integration checkpoint below is unchanged.
+Private report: `ScienceCheckouts/Hazel/2026-11-24_ft-feasible-steps/index.html`.
+Restart state: `Alder/a01-feasible-step-review-20261124-01/restart.json` under the
+branch-artifacts anchor. Exact commands, hashes and prior-work review are linked
+from the metal handoff. Before the brief requested read-only coordination review,
+all Alder numerical work is saved and stopped; pure-helper extraction remains next.
 
 ## Qualified integration checkpoint — test-only amendment
 

@@ -12,27 +12,22 @@ the [anomalous workflow](metal-anomalous-doctor.md) and [restraint design](metal
 own scientific contracts. A mechanism passing tests does not close its scientific
 gate. Update milestone status, evidence, limitations and next action together.
 
-A01's predeclared same-parent cap comparison is complete: increasing only the
-movement allowance from 1.5 to 2.0 Å restores much of the phosphate geometry
-(OP2–P–O5′ 85.7→107.3°, target 108°), but a later B1 OP2 proposal crosses the
-new guard. The trial remains unconverged and emits no candidate. **A01 partial;
-A02 gated.** See the [current handoff](metal-development-handoff.md#a01-phosphate-cap-2026-11-24).
+A01 now has a separate feasible-step diagnostic under the unchanged native
+objective and 2 Å atom-wise movement balls. It reaches the 100-iteration limit
+without an out-of-domain evaluation, but remains unconverged and emits no
+candidate. A supplemental full-rank feasible derivative audit passes at the exact
+saved point; the original centered/rounded endpoint checks remain unavailable.
+**A01 partial; A02 gated.** See the [current handoff](metal-development-handoff.md#a01-feasible-step-2026-11-24).
 
-Reuse the exact prior trajectory and source bindings, 1,797 independent cold
-checks, 21 local scalar-term checks and the inspected three-view report. One native
-geometry trial ran; two preparation-only dependency failures remain recorded.
-All processes stopped. No changed runtime owner, implicit Willow integration,
-new diffraction fit, ordinary checkpoint, accepted parent or full-suite claim.
-
-Next: review boundary-aware proposal handling and source-derived phosphate placement
-against both fixed sugar attachments and packing. A guard refusal is not a
-constrained optimum, and remaining ~6–7° angle deviations are not automatically
-fatal at this resolution. No third cap, parameter grid, mask expansion or restart
-from a failed point. Independently reviewed source-bound geometry must precede a
-controlled open XYZ/B receiving experiment and f″. Keep D7→C8 and the earlier A12
-outward-phosphate hypothesis separate. For future legacy admission, Cedar C551's
-read-only orientation check requires matching declared adjacent pairs; internal
-OP3 stays unassessed and no coordinates are silently swapped.
+Reuse 3,154 independent trajectory/state checks, 1,301 independent derivative
+frame/sample checks, 41 focused prototype tests and the inspected figure. Both
+native processes are stopped. Next maintain only the reviewed pure numerical
+helpers with focused regressions and exact-diff owner review; keep ordinary
+trial/defaults unchanged. Convergence and faithful output representation remain
+required before controlled open XYZ/B receiving. No cap escalation, repeated
+weight grid, widened mask or automatic adoption. Keep D7→C8, A12 orientation and
+whole-model publication separate. The earlier cap comparison and preparation
+failures remain source-bound evidence rather than work to rerun.
 
 A01 next-input review now includes [DF C2 chemical target provenance](metal-df-c2-angle-audit.md). A source-consistent fragment is available, but its eLBOW angles are not independent chemistry authority. Retain explicit source-state uncertainty and coupled-target review; routine donor-state integration remains deferred. No automatic 120° substitution.
 

@@ -13,9 +13,69 @@ not a second queue.
 
 **Late chemical-provenance clarification:** the [DF C2-angle audit](metal-df-c2-angle-audit.md) separates eLBOW source consistency from independent chemical validation. The earlier final sulfur-angle split is 135.3°/108.7°; generated targets remain chemically provisional. Routine donor-state integration stays deferred and is not a new immediate A01 prerequisite. A retained base fragment exists (124 read-only checks), but no replacement or target change is admitted.
 
+<a id="a01-feasible-step-2026-11-24"></a>
+
+## Current A01 — feasible steps work; convergence and output remain open
+
+A separate opt-in projected-gradient/Armijo diagnostic now evaluates only feasible
+positions under the **same 2 Å atom-wise balls**. It keeps the original parent,
+zero start, six movable atoms, native objective/chemistry and 0.5 Å tether. The
+ordinary L-BFGS owner and all defaults remain unchanged. Actual projected trial
+positions receive fresh scalar/gradient evaluations; no old gradient is attached
+to a clipped point. Existing recipe-only projection was reviewed but excludes
+native energy, so it cannot supply this objective. No existing full-objective
+feasible-step owner was found.
+
+One Phenix **2.2.1-6174** diagnostic stops at its declared **100-iteration limit**,
+not convergence, after 209 search calls/284 total evaluations and **189.13 s**.
+Cartesian gradient norm is 53.97 versus 293.86 at the earlier failed point;
+projected residual is still 5.1565 against 1e-5. P–O3′ is 1.617 Å. A627 passes
+**3,154 independent cold checks**, including every feasible/accepted trace step,
+actual Armijo decrease, source tether, exact initial objective, complete fixed
+state and original data. No geometry candidate or accepted parent is emitted.
+Native/preflight output remains the unchanged source.
+
+**Boundary derivative distinction.** OP2's actual radius is 1.999995521 Å.
+Some existing centered Cartesian probes and the rounded PDB endpoint exceed the
+cap, so those checks remain explicitly unavailable. A separately initialized,
+read-only native observer authenticates the exact saved point and checks a
+full-rank feasible basis: inward radial second-order one-sided probes and two
+same-actual-radius, arc-length sphere tangents for OP2; centered Cartesian probes
+for the other atoms. Both original 1e-4/1e-5 Å steps and the 1e-3 directional-error
+bound remain unchanged. No endpoint snap, tolerance change or extra optimization.
+
+The supplemental audit passes with maximum error **4.96255e-5**, 75 native
+evaluations and **54.96 s**, stopped. A630 independently recomputes all frames,
+sample paths, scalar differences and source state: **1,301 cold checks pass**.
+This validates the full-precision ambient gradient, not constrained stationarity,
+rounded-output feasibility or chemical acceptance. All 853 other coordinates,
+sugars, Hg, B/Q/scattering and original phases/Free-R remain exact. No new maps,
+R statistics, environmental-B preparation or f″ result.
+
+**Current restart point:** both native nodes are stopped. Private prototypes
+pass **26 search/adapter tests + 15 feasible-basis tests**, covering known interior
+and coupled constrained optima, failure accounting/deadlines, linear-on-sphere,
+actual-radius, cubic and rotated-basis cases. Linden reviewed scope and failure
+paths. Next extract only reusable pure helpers behind explicit calls, send the
+maintained diff for owner review and run focused regressions. Leave the shared
+trial/defaults untouched; no further native optimization is needed for this slice.
+Convergence and faithful output representation must precede receiving refinement.
+A01 remains partial; A02 stays gated. No cap/weight grid or automatic adoption.
+
+Evidence anchors are `Alder/a01-feasible-step-review-20261124-01/`,
+`Alder/a01-feasible-step-native-20261124-01/` and
+`Alder/a01-feasible-basis-native-20261124-01/`. Their README/plan/execution/review
+files record exact commands, source hashes, limitations and stopping. The private
+inspected report is `ScienceCheckouts/Hazel/2026-11-24_ft-feasible-steps/index.html`.
+The explicit interruption state is in the prototype anchor's `restart.json`.
+At this checkpoint Alder changes documentation only; no runtime/schema/default,
+migration or implicit Willow integration. No full suite, scientific upload,
+pruning, portability or ordinary checkpoint claim. Preserved prior attempts below
+remain evidence, not a second work queue.
+
 <a id="a01-phosphate-cap-2026-11-24"></a>
 
-## Current A01 — phosphate geometry improves; bounded search remains unfinished
+## Preceding A01 — phosphate geometry improves; bounded search remains unfinished
 
 One predeclared original-parent comparison changed only the displacement cap
 from **1.5 to 2.0 Å**, with W254's separately qualified failed-proposal reporting.

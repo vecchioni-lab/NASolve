@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record feasible-step and boundary-derivative diagnostics
+
+- Preserve one same-objective/same-cap feasible-step search and one read-only
+  full-rank derivative audit, with independent state/sample checks and compact
+  figures. Iteration limits and unavailable centered/rounded checks stay explicit;
+  no candidate, convergence, scientific acceptance or f″ result is claimed.
+- Save a stopped A01 restart point and scope reusable pure-helper extraction.
+  Documentation only at this checkpoint; existing runtime/defaults, schemas and
+  integration qualification stay unchanged. No raw science commit or full-suite rerun.
+
+
 ### Record the predeclared phosphate movement comparison
 
 - Preserve one original-parent 2.0 Å cap comparison with exact earlier trajectory,
