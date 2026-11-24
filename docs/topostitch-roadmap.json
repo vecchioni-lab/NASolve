@@ -4,7 +4,7 @@
   "updated": "2026-11-24",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "d9a24fd914c9cb9cf9d9baf8959fdf0454f63476",
+  "audited_code_commit": "66e9760ed3d728fe2639d0962ba43ec11c59f104",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -1112,7 +1112,8 @@
         "W256 maintains original-mmCIF identity/precision binding to an exact working recut: explicit component aliases, complete atom permutation, raw double XYZ/U, exact original bytes, unique coordinate block/attached definitions and category inventory.217source/217installed; four W249 real controls reproduce all raw XYZ/U exactly. No writer or annotation/path approval.",
         "W257 maintains exact declared-edge path projection bound to complete original CIF sites.121source/121installed; Willowfull2705pass/4skip/234subtests; four real W249 path/boundary replays exact. Original protected/unknown-boundary intent and unregistered atoms survive. No polymer semantic/all-annotation approval or writer.",
         "W258: 143focused source/143relocated installed;208installation-file hashes;full Willow2727passed/4skipped/234subtests. Four original3LNA/5LNA controls preserve80/87rows,71/74H-bonds;14/15endpoint references change while physical endpoints agree within5.03e-15 A. Explicit blank/unknown and missing polymer-locator review defects reproduced/fixed. No writer/native call.",
-        "W259: 168 focused source and 168 relocated installed checks; 210 installation-file hashes. Full Willow: 2752 passed, 4 skipped, 234 subtests. Four original 3LNA/5LNA controls each retain 62 declared/observed positions, no unresolved/unmodeled positions and exact W258 connection reports. Synthetic controls cover unmodeled positions, alternative monomers, shared entities, conflicting labels and unregistered polymers; Rowan uncertainty regression fixed. No writer/native call."
+        "W259: 168 focused source and 168 relocated installed checks; 210 installation-file hashes. Full Willow: 2752 passed, 4 skipped, 234 subtests. Four original 3LNA/5LNA controls each retain 62 declared/observed positions, no unresolved/unmodeled positions and exact W258 connection reports. Synthetic controls cover unmodeled positions, alternative monomers, shared entities, conflicting labels and unregistered polymers; Rowan uncertainty regression fixed. No writer/native call.",
+        "W260: 225 focused source and 225 relocated installed checks; 210 installation hashes. Full Willow2786 passed/4 skipped/234 subtests. Four original controls preserve exact W259 report digests: all four literal entity texts match, two canonical texts match and two remain unavailable because modified-parent fields are absent. Multi-parent expansion, quoted-null lookalikes and source drift guarded. Compact 82/75-category inventory exposes six TLS groups per source plus assembly/reference dependencies. No native run or writer."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
@@ -1135,14 +1136,15 @@
         "E_ORIGINAL_CIF_SOURCE_CONTEXT",
         "E_ORIGINAL_CIF_PATH_PROJECTION",
         "E_ORIGINAL_CIF_CONNECTION_TRANSPORT",
-        "E_ORIGINAL_CIF_POLYMER_COVERAGE"
+        "E_ORIGINAL_CIF_POLYMER_COVERAGE",
+        "E_ORIGINAL_CIF_SEQUENCE_TEXT"
       ],
       "last_audit": {
         "date": "2026-11-24",
-        "code_commit": "d9a24fd914c9cb9cf9d9baf8959fdf0454f63476",
-        "reviewer": "Linden; independent uncertainty review with Rowan",
-        "human_update": 259,
-        "scope": "Original polymer/entity/asym/sequence coverage; output semantics/writer/native gates open"
+        "code_commit": "66e9760ed3d728fe2639d0962ba43ec11c59f104",
+        "reviewer": "Linden; parent/null and output-policy guidance from Rowan",
+        "human_update": 260,
+        "scope": "Source sequence-text evidence and fragment-policy dependency audit; writer/native gates open"
       }
     },
     {
@@ -7031,6 +7033,77 @@
           "size": 4307
         }
       ]
+    },
+    "E_ORIGINAL_CIF_SEQUENCE_TEXT": {
+      "kind": "Maintained original literal/canonical sequence-text observation",
+      "date": "2026-11-24",
+      "human_update": 260,
+      "code_commit": "66e9760ed3d728fe2639d0962ba43ec11c59f104",
+      "reference": "docs/topostitch-periodic.md#w260--keep-literal-sequence-canonical-parents-and-recut-paths-distinct",
+      "result": "225 focused source and 225 relocated installed checks; 210 installation hashes. Full Willow2786 passed/4 skipped/234 subtests. Four original controls preserve exact W259 report digests: all four literal entity texts match, two canonical texts match and two remain unavailable because modified-parent fields are absent. Multi-parent expansion, quoted-null lookalikes and source drift guarded. Compact 82/75-category inventory exposes six TLS groups per source plus assembly/reference dependencies. No native run or writer.",
+      "limitation": "Original text/declaration consistency only, not chemical truth or output entity assignment. Missing, unknown, conflicting and multi-parent evidence remains unresolved; standard-ID chemistry not revalidated. Author numbering, complete category/reference transformations and deposition fragment encoding remain open. Scientific payloads local, excluded from Git; explicit compatible Cedar owner required.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w260-cif-sequence-text/api-before.log",
+          "sha256": "a435c3a47b40b227a80c0c45dd70f5d9476cdf721afadabf11bd3c96b1fd5d51",
+          "size": 37824
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w260-cif-sequence-text/focused-reviewed.log",
+          "sha256": "a84c8bf53182f584dddbc989e1697cb74a28b8e9bf2510f69a7ce1e7b5575054",
+          "size": 341
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w260-cif-sequence-text/qualification.json",
+          "sha256": "2ca757b6eaefb598b4588bc119e2e5a8286ecdbfb87336d89d229bc35a641c80",
+          "size": 13106
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w260-cif-sequence-text/installed-tests.log",
+          "sha256": "555d3816d73459265fe9c18c74ae23cb774cb0eb8110d9ab4de851662eba4ec4",
+          "size": 341
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w260-cif-sequence-text/real-file-observation.json",
+          "sha256": "9c7aadaea507a42eb0789e27f32b6ea0019da3582b1176370b1a596bc3b2ab23",
+          "size": 310239
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w260-cif-sequence-text/dependency-audit.json",
+          "sha256": "97643c21305b78eaf7e924571a07f9e02d8035b103b5252d9c06f2bfe6f968da",
+          "size": 63307
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w260-cif-sequence-text/coordinated-context.json",
+          "sha256": "f8fa57ab8e17b2a002dfc10a53a68b429e9e06dcc0a38343c412b35aff5644b2",
+          "size": 1469
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w260-cif-sequence-text/full-suite.log",
+          "sha256": "ed17eb9918b5be537f0fddaef5688aa43cb5205613cac3ce76e0c29b8b1b1e5e",
+          "size": 3167
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w260-cif-sequence-text/reviewed-hashes.json",
+          "sha256": "95a1cd13daa925f5a21db1917d31c252009aea67ab85b03cf486deba92bfd60c",
+          "size": 230
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w260-cif-sequence-text/validation.json",
+          "sha256": "511e9a0d7de5dd9ab1f5ec486f999ddff01f4745d1c151d4a34d371538bf5e35",
+          "size": 4528
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -8565,8 +8638,8 @@
       {
         "number": 260,
         "title": "Compare original sequence text and preserve unresolved component parents",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "66e9760ed3d728fe2639d0962ba43ec11c59f104"
       }
     ]
   },

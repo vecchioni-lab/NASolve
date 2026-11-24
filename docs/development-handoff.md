@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W260, 2026-11-24** (code pin follows qualification).
+**Current maintained slice: W260, 2026-11-24** code `66e9760ed3d728fe2639d0962ba43ec11c59f104`.
 [Original sequence-text observation](topostitch-preview.md#compare-original-literal-and-canonical-sequence-text-w260)
 compares literal CCD tokens with declared positions, then checks canonical letters
 only where standard IDs or explicit source parent fields support them. Original

@@ -14032,6 +14032,8 @@ missing tables mean unavailable, not empty-conflict approval. W260: define a rev
 
 ## W260 — Keep literal sequence, canonical parents and recut paths distinct
 
+Maintained code: `66e9760ed3d728fe2639d0962ba43ec11c59f104`.
+
 The optional sequence-text observer composes W259 source coverage and the shared
 sequence tokenizer. It retains original literal/canonical text, position alternatives
 and component-parent evidence from the exact source, including attached blocks.
