@@ -8,31 +8,28 @@ observation and storage owners; it introduces no new scientific policy.
 ## Current metal-science edge
 
 A01 remains partial; A02 f″ remains gated. The
-[one bounded allowance comparison](metal-development-handoff.md#a01-allowance-comparison-2026-11-24)
-reproduces the prior 209 native calls exactly, then reaches 200 iterations without
-converging (projected residual 5.1472). Phenix 2.2.1-6174 stops in 325.70 s;
-4,703 independent cold checks preserve all source/fixed state and actual geometry.
-No candidate, new diffraction fit, maps or f″. No further allowance extension.
+[constructed-seed receiving comparison](metal-development-handoff.md#a01-constructed-seed-receiving-2026-11-24)
+now shows a local crystal connection surviving the same W252 phased refinement:
+P–O3′ 1.618→1.615 Å and C3′–O3′ 1.454→1.448 Å, while the original-start control
+remains distorted. The seed is separately source/chemistry/output-qualified,
+not a converged or selected parent. All 853 other coordinates and B/Q/f′/f″ stay
+fixed. Native execution is complete/stopped; 2,204 endpoint, 939 chemistry/source
+and 4,718 receiving cold checks pass. Prior iteration-limit/unavailable-audit
+verdicts remain intact.
 
-The next distinct role is an explicitly nonstationary **constructed seed for a
-bounded receiving experiment**, not an optimized or selected parent. Fresh
-full/actual-serialized gradient checks, source/chemistry/capture binding,
-stereochemistry and contacts must qualify that seed independently. Conditional
-reuse of the W252 six-atom fixed-B/Q/scattering control is scoped; whole-model
-XYZ/group-B remains a separate gate. Current no-candidate/unavailable-audit
-verdicts stay intact. No seed or receiving execution is created here.
+Rwork/Rfree remain high (0.3081/0.3427), with weak/negative local map support.
+Do not promote the model or infer f″. Next scope a separately matched whole-model
+XYZ/group-B protocol retaining the declared join; the old whole-model control
+lacks that join. D7→C8 and coupled metal/base placement remain distinct.
+The report/figure is `ScienceCheckouts/Hazel/2026-11-24_ft-seed-receiving/index.html`.
+Exact evidence is under the three `Alder/a01-constructed-seed-*` anchors dated
+20261124-01. No additional native work is queued for this comparison.
 
 The [pure helpers](topostitch-feasible-diagnostics.md) at `7c2e1c41` retain 53
-focused + 99 adjacent + 53 installed tests and 531 cold replay assertions, plus
-the new bounded native diagnostic. Reuse those receipts; this follow-up changes
-documentation only, not shared callers, schemas, defaults or dependencies.
-No raw science commit, pruning or full-suite rerun.
-
-Current report: `ScienceCheckouts/Hazel/2026-11-24_ft-search-allowance/index.html`.
-Stopped evidence: `Alder/a01-feasible-allowance-native-20261124-01/` and
-`Alder/a01-feasible-continuation-review-20261124-01/` under `branch-artifacts/`.
-Earlier reports and failed attempts remain unchanged. The prior integration
-checkpoint below does not imply new release qualification.
+focused + 99 adjacent + 53 installed tests and 531 cold replay assertions.
+This follow-up changes documentation only; reuse those receipts. No raw science
+commit, pruning, runtime/schema/default change or full-suite rerun. The prior
+integration checkpoint below does not imply new release qualification.
 
 ## Qualified integration checkpoint — test-only amendment
 

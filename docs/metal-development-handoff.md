@@ -16,92 +16,89 @@ not a second queue.
 <a id="a01-feasible-step-2026-11-24"></a>
 <a id="a01-allowance-comparison-2026-11-24"></a>
 
-## Current A01 — more search allowance does not establish convergence
+<a id="a01-constructed-seed-receiving-2026-11-24"></a>
 
-One predeclared original-parent comparison increases only the search allowance
-from 100 to 200 iterations (300→600 search calls; 600→1,000 total allowance).
-The original `7aade3c4` model, zero start, six connecting atoms, native chemistry,
-2 Å atom-wise balls and 0.5 Å tether stay fixed. The maintained feasible-step
-helper is used; its first **209 actual native evaluations reproduce the prior
-trajectory exactly**. Ordinary L-BFGS/refinement defaults remain unchanged.
+## Current A01 — constructed geometry survives a local phased fit
 
-Phenix **2.2.1-6174** completes and stops after **325.70 s**, with 415 search /
-490 total evaluations. The run reaches its 200-iteration limit, not stationarity.
-No candidate, selected parent, diffraction optimization, map or f″ result.
-A01 remains partial; A02 remains gated. Do not extend the allowance again or
-start a cap/weight grid merely because the penalty decreases.
+One independently admitted, **nonstationary constructed seed** now completes
+exactly the existing W252 three-cycle/six-atom MLHL receiving protocol. The
+phosphate connection survives, unlike the original-start local fit. This is
+local construction/retention evidence, **not a selected parent or whole-model
+solution**. A01 remains partial; A02 f″ remains gated.
 
-| Diagnostic measurement | 100 iterations | 200 iterations |
-| --- | ---: | ---: |
-| Native geometry + tether penalty | 6628.4984 | 6623.4109 |
-| Projected residual (criterion 1e-5) | 5.1565 | 5.1472 |
-| Cartesian gradient norm | 53.97 | 61.98 |
-| B7 image O3′–B1 P (Å) | 1.6172 | 1.6178 |
-| B1 C5′–C4′–O4′ (degrees) | 102.26 | 103.55 |
+| Measurement | Original-start output | Constructed seed | Constructed-start output |
+| --- | ---: | ---: | ---: |
+| B7 image O3′–B1 P (Å) | 1.997 | 1.618 | 1.615 |
+| B7 C3′–O3′ (Å) | 1.772 | 1.454 | 1.448 |
+| B1 OP2–P–O5′ (degrees) | 58.14 | 99.81 | 104.23 |
+| Rwork | 0.3067 | — | 0.3081 |
+| Rfree | 0.3425 | — | 0.3427 |
 
-The displacement vector changes by 0.415 Å between endpoints; lower geometry
-penalty is not better experimental fit. **A638 passes 4,703 cold checks**,
-including all 853 fixed coordinates, complete B/Q/scattering, original work/free
-and HL data, source/code identity, actual geometry and the exact prior trajectory.
-Sugar chirality signs survive. A639 finds no new descriptive contact below 2.4 Å
-shortened by more than 0.2 Å; its conservative graph exclusions and lack of
-chemical VDW classification remain explicit. The inspected figure uses one
-camera/Å scale with faint fixed-base/backbone context. Hg and its unmeasured
-f″=0 are unchanged; environmental-B preparation has not run.
+The earlier 200-step search still has ITERATION_LIMIT and residual 5.1472;
+its no-candidate/unavailable full-Cartesian-audit verdict remains unchanged.
+The new seed role receives its own fresh full-feasible and actual-PDB-centred
+derivative audits: 150 evaluations, maximum errors 4.884e-5/4.885e-5 at the
+unchanged 1e-3 bound. Exact masked serialization preserves all other bytes.
+**2,204 independent cold checks** authenticate the endpoint. Sugar signs survive;
+there are no new descriptive short contacts. Distance thresholds and conservative
+bonded-image exclusions are not a chemical VDW certificate.
 
-**Endpoint checks remain separate.** Only full-precision centred probes exceed
-the cap at the new endpoint. Its ordinary three-decimal PDB endpoint and centred
-probes are feasible, but the existing private adapter skips all endpoint audits
-if any stage is unavailable. Therefore no new endpoint derivative pass is claimed.
-The earlier 100-step full-rank feasible audit (maximum error 4.96e-5; 1,301 cold
-checks) belongs to that point, not this one. At a truly active bound, centred
-Cartesian probes cannot all fit: a future explicit endpoint regime must retain
-that UNAVAILABLE verdict and independently assess a feasible basis, the actual
-serialized point, geometry and source restoration.
+A fresh Cedar fixed-coordinate capture binds the actual `c307fc65` seed, with
+**939 additional source/chemistry checks**: identical complete monomer definitions,
+native proxies and supplied requests, source-bound image/reference chemistry,
+original observations/HL/Free-R and atom identities. The wrong parent is refused.
+Fixed f′/f″ values are inherited unchanged into a new validated model binding;
+the original scattering packet and native capture remain immutable. The inherited
+native chemistry REVIEW/unsupported-charge scope is not relabelled scientific PASS.
 
-Installed Phenix already requests/writes coordinate mmCIF at five decimal places;
-the present masked endpoint owner audits exact three-decimal PDB. Code and
-rounding inspection are not receiving-output qualification. Both encodings happen
-to fit this endpoint, while eight/twelve-decimal rounding can land just outside
-the exact bound. Higher precision is not a universal guard fix. Inspect existing
-output/receiving support before adding a lattice constructor; never choose a
-geometry solely to make an audit pass.
+Phenix **2.2.1-6174** completes/stops the endpoint audit in **102.83 s**, fresh
+capture in **2.68 s**, and preflight plus receiving fit in **54.38 s**. The receiver
+uses the exact W252 runtime/controls: three cycles, 60 iterations, wxc scale 0.5,
+six canonical XYZ atoms, fixed B/Q/f′/f″, 1,151 reflections/HL and 59 original
+Free observations. Its 1.5 Å movement limit is relative to each input, distinct
+from construction's 2 Å original-parent limit. Maximum receiving motion is
+0.367 Å. **4,718 independent cold checks** preserve all 853 other coordinates,
+atomic state, source data, complete image forces and actual return bytes.
+The original-start control is reused without rerunning it. Native adaptive
+weights/scaling can differ; common observation scales are recorded (254.634
+versus 254.897), and tiny R differences are not significance with 59 Free data.
 
-**Next bounded step — explicitly qualify a constructed receiving seed.** A
-starting geometry for a diagnostic receiving refinement need not be a stationary
-optimizer solution. The earlier [canonical-flank comparison](#current-a01-question--coupled-canonical-flank-placement)
-already used an iteration-limited construction followed by separately qualified
-receiving refinement. The current diagnostic retains its no-candidate verdict;
-a new role must have its own source/chemistry, fresh full/serialized gradients,
-actual output, signed stereochemistry and contact checks. It must not acquire a
-converged/selected-parent label or reuse the old parent's native capture under
-a new model hash. Rowan and Willow's owner agree on this distinction.
+**Maps do not yet validate this placement.** The matched figure uses actual
+returned model/coefficient pairs, the same source-defined camera and Å scale,
+and faint fixed-base context. At the constructed-start returned P/O3′ positions,
+2mFo−DFc is −0.086/−0.134σ and mFo−DFc is −3.431/−3.845σ. Original-start values
+were 0.220/0.430σ and −2.712/−2.557σ. These 5.06 Å model-assisted maps include Free-R
+reflections. Better geometry does not establish better density support. Hg remains
+Q=1, B=69.52 Å² and f″=0 (unmeasured); environmental-B preparation has not run.
 
-The smallest scoped receiver reuses the W252 protocol/control **only if exact
-context checks qualify it**: three cycles, 60 iterations, six canonical XYZ atoms,
-1.5 Å receiving allowance from each declared input, fixed B/Q/f′/f″, original
-1,151 observations/HL and 59 Free reflections. Its receiving origin differs
-explicitly from the construction's 2 Å original-parent bound. A fresh Cedar native
-receipt must bind the actual proposed seed. The test must be able to reject it.
-Whole-model open XYZ/group-B remains a later gate; its old control lacks identical
-image-join enforcement and cannot silently substitute for a matched control.
-No receiving job or seed has been emitted by this checkpoint.
+**Next:** scope a separately matched whole-model open XYZ/group-B protocol that
+retains the declared crystal connection and complete source chemistry. The earlier
+whole-model control lacks the same join and cannot silently substitute. Review
+actual maps, scaling and broad geometry before any parent selection. D7→C8,
+coupled metal/base placement and f″ remain separate; no further search-allowance,
+cap or weight grid is justified by this comparison alone.
 
-The [pure helper contract](topostitch-feasible-diagnostics.md) is maintained at
-`7c2e1c41`: reuse 53 focused + 99 adjacent + 53 installed tests and 531 exact cold
-replay assertions. The new native comparison exercises that exact helper; no
-unchanged pytest/full-suite rerun or shared caller/schema/default change follows.
+**Evidence and restart:** local `branch-artifacts/Alder/` contains
+`a01-constructed-seed-admission-20261124-01/`,
+`a01-constructed-seed-capture-20261124-01/`, and
+`a01-constructed-seed-receiving-20261124-01/`. Runners A641–A651 retain exact
+commands, hashes, failures, measurements and the source/receiver distinction.
+A642's first cold caller failed because the Phenix dispatcher ignored PYTHONPATH;
+explicit source loading corrected the reviewer without repeating native work.
+The inherited diagnostic-plan descriptions are historical context; its explicit
+CONSTRUCTED_NONSTATIONARY_SEED role, frozen adapter and fresh admission define
+this separate experiment, not optimizer promotion.
+The report is `ScienceCheckouts/Hazel/2026-11-24_ft-seed-receiving/index.html`,
+with editable SVG and exact measurements linked. About 56.9 MB of local proof
+nodes are retained; the report links rather than duplicates models/maps. No
+pruning, scientific upload or portability claim. All jobs are stopped.
 
-**Stopped restart and evidence:**
-`Alder/a01-feasible-allowance-native-20261124-01/` retains exact execution, input/code
-hashes, cold checks, actual geometry, footprint and editable figures.
-`Alder/a01-feasible-continuation-review-20261124-01/` retains trajectory/output
-capability reviews and `constructed-seed-receiving-scope.json`. Earlier prototype,
-100-step native, basis-audit and maintained-helper anchors remain unchanged.
-The compact report is `ScienceCheckouts/Hazel/2026-11-24_ft-search-allowance/index.html`.
-All jobs are stopped; roughly 17.65 MB of this changed-coordinate proof node is
-retained locally. No scientific upload, automatic pruning or portability claim.
-The prior integration/full-tested boundary is unchanged.
+The [pure-helper contract](topostitch-feasible-diagnostics.md) remains at
+`7c2e1c41`: reuse 53 focused, 99 adjacent, 53 installed and 531 cold replay checks.
+This follow-up uses existing owners and changes documentation only; no runtime,
+shared caller, schema, default, migration or full-suite rerun. The earlier
+allowance comparison and its 4,703 checks remain at their original anchors and
+Git checkpoint `f769a8d0`; they are not repeated or rewritten.
 
 <a id="a01-phosphate-cap-2026-11-24"></a>
 

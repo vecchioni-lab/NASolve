@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record source-bound constructed-seed receiving evidence
+
+- Preserve separate endpoint/chemistry admission and one matched local phased
+  refinement. Improved starting phosphate geometry survives the receiver, while
+  high R values and weak/negative maps prevent scientific parent selection or f″.
+- Record actual source/output/Free-R/HL/fixed-state checks, stopped processes,
+  compact paired map figures and the next separately matched whole-model XYZ/B
+  scope. Original nonconvergence and unavailable-audit verdicts remain intact.
+- Documentation only; no shared runtime/schema/default/migration change,
+  raw scientific commit, automatic pruning or unchanged full-suite rerun.
+
 ### Record bounded search allowance and distinct receiving-seed scope
 
 - Preserve one original-parent 200-iteration geometry diagnostic with exact prior

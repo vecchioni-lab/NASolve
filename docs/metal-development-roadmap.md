@@ -12,28 +12,25 @@ the [anomalous workflow](metal-anomalous-doctor.md) and [restraint design](metal
 own scientific contracts. A mechanism passing tests does not close its scientific
 gate. Update milestone status, evidence, limitations and next action together.
 
-A01's one predeclared 100→200-iteration comparison remains nonstationary:
-projected residual 5.1565→5.1472, despite a small geometry-penalty reduction.
-The preceding 209-call trajectory is exact; 4,703 cold source/state/geometry
-checks pass. The native job is stopped, with no candidate or diffraction/f″ fit.
-**A01 partial; A02 gated.** See the [current handoff](metal-development-handoff.md#a01-allowance-comparison-2026-11-24).
+A01 now demonstrates one source-qualified, nonstationary constructed seed
+surviving the existing six-atom phased receiver: P–O3′ 1.618→1.615 Å, while the
+same protocol from the original displaced phosphate remains distorted. Fresh
+endpoint and chemistry admission precede the matched run; original optimizer
+and unavailable-audit verdicts are unchanged. **A01 partial; A02 gated.**
+Rwork/Rfree remain 0.3081/0.3427 and local maps weak/negative, so there is no
+selected parent or f″ eligibility. See the [current handoff](metal-development-handoff.md#a01-constructed-seed-receiving-2026-11-24).
 
-Next independently qualify an explicitly nonstationary constructed seed for one
-bounded receiving test. A universal stationarity-before-receiving requirement
-would contradict the earlier canonical-flank experiment and is not a chemical
-criterion. This does not weaken optimizer/selected-parent claims or reinterpret
-the current no-candidate verdict. Fresh full-feasible/actual-serialized gradient,
-source/chemistry/native-capture, stereochemistry and contact checks come first.
-The smallest scoped receiver conditionally reuses W252's six-atom MLHL control;
-whole-model XYZ/group-B needs its own matched image-join protocol. No seed or
-receiver has been emitted. Keep full/serialized audit availability independent,
-and inspect native mmCIF receiving support before a new lattice constructor.
+Next scope one separately matched whole-model open XYZ/group-B protocol retaining
+the declared crystal join, complete source chemistry and original work/free/HL.
+The old whole-model control lacks the same join and cannot be silently reused.
+Compare actual maps/scaling and broad geometry; preserve the constructed-start
+versus converged-parent distinction. D7→C8, coupled metal/base placement and
+whole-model publication remain separate. No further allowance/cap/weight grid.
 
-Reuse the existing pure-helper tests (53 focused, 99 adjacent, 53 installed),
-531 cold replay checks and prior native evidence. No repeated allowance/cap/weight
-grid, widened mask, automatic adoption or f″. D7→C8, A12 orientation and whole-model
-publication remain separate. Numerical and scientific review remain explicit;
-broad geometry matters more than fractional target agreement.
+The current native comparison and all source/return checks are complete/stopped;
+reuse them and the 53 focused/99 adjacent/53 installed helper tests. No new native
+work is needed to close this comparison. Source rounding/derivative checks now
+qualify this actual PDB seed, not a universal new output or adoption policy.
 
 A01 next-input review now includes [DF C2 chemical target provenance](metal-df-c2-angle-audit.md). A source-consistent fragment is available, but its eLBOW angles are not independent chemistry authority. Retain explicit source-state uncertainty and coupled-target review; routine donor-state integration remains deferred. No automatic 120° substitution.
 

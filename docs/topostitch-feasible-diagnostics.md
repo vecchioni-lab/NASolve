@@ -99,13 +99,15 @@ anchor `Alder/a01-feasible-maintained-20261124-01/` under `branch-artifacts/`.
 A subsequent single 200-iteration comparison runs the exact maintained search
 helper in Phenix 2.2.1-6174, reproducing the prior 209-call trajectory. It remains
 nonstationary (projected residual 5.1472); 4,703 cold source/state/geometry checks
-pass. New endpoint derivative checks remain unexecuted, despite feasible serialized
-probes, because the private adapter skips all endpoint audits when the full stage
-is unavailable. See the current A01 handoff for this limitation and the planned
-separate constructed-seed role. A diagnostic receiving seed need not claim solver
-stationarity, but requires its own chemistry, source, actual-output and derivative
-qualification. Existing optimizer/adoption verdicts are not reinterpreted.
-The full suite and a receiving native integration remain separate gates.
+pass. The original private adapter skipped new endpoint checks because full Cartesian
+probes were unavailable. Its verdict remains unchanged. A separate constructed-seed
+experiment now performs fresh feasible-basis and actual PDB-centred checks with
+errors ≤4.89e-5, exact source/output binding and fresh native chemistry capture.
+One matched six-atom phased receiver preserves the connection, while high R values
+and weak/negative map support prevent parent selection or f″. See the current A01
+handoff for exact local evidence and limitations. This is explicit private owner
+composition, not ordinary runtime activation or an adoption policy. Existing
+helper code/tests stay unchanged; full release integration remains separate.
 
 **Methods wording.** Local displacement variables were restricted to a product
 of equal-radius Cartesian balls. A spectral projected-gradient search evaluated
