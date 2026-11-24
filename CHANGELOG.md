@@ -11,6 +11,8 @@ entries are reconstructed from repository history.
 - The [OneDep preparation guide](docs/pdb-deposition.md) records how to pair
   Phenix model and reflection CIFs, retain a crystal's processing data and
   free flags, and check what wwPDB preserved after processing.
+  Coordinate tools can reuse the same file-specific crystal-image decoder
+  through `nasolve.cif_deposition_links.resolve_deposition_image`.
 
 - The Phenix phosphate-restraint engine can evaluate independently registered
   O3′–P linkages in their respective crystal images during the same refinement.

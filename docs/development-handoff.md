@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-24, C558 testing two crystal phosphates together — Rowan**.
+Updated **2026-11-24, C559 sharing the deposition image decoder — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
 C558 put both declared PDU:PDU crossovers into one native Phenix fit.
@@ -12,9 +12,12 @@ D:1 terminal phosphate were also checked. See the
 [measurements and scope](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold).
 The next implementation step is inheriting the full chosen set in a numbered
 AutoRefine child. Historical single-phosphate workers retain their exact
-source bytes. A separate Willow handoff needs the existing deposition image
-decoder exposed under a shared name before integration.
-With Gemmi 0.7.5 the physically relocated wheel passed 177 focused tests
+source bytes. C559 exposes the same file-declared image decoder to Willow
+for annotation transport. The caller owns atom identity and chemical meaning.
+The source and relocated wheel each passed 47 focused checks and 14 subtests.
+The previous and shared decoders gave identical linkage audits on two experimental
+models. See the [deposition guide](pdb-deposition.md#check-what-survives-onedep).
+For C558, with Gemmi 0.7.5 the physically relocated wheel passed 177 focused tests
 and 14 subtests across phosphate selection, native execution, recovery and CLI
 behavior. The ordinary project Python passed 133 tests and 14 subtests, with
 27 skipped. The native force check compared 48 coordinate derivatives and

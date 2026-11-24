@@ -39,6 +39,14 @@ The separate `export_final_f_model` option writes an MTZ useful for checking sca
 
 ## Check what survives OneDep
 
+When carrying a connection to another crystal copy, decode each partner's
+image using the operator IDs declared in that file. For example, `8_465`
+applies operator 8 followed by a shift of −1, +1 and 0 unit cells.
+The shared Python function `nasolve.cif_deposition_links.resolve_deposition_image`
+returns the resulting Gemmi operation. A missing or unrecognized code
+leaves the image unresolved. The caller still identifies the atoms and
+determines the chemical meaning of their connection.
+
 For a recut nucleic-acid helix, first trace consecutive `label_seq_id` positions within each `label_asym_id`. They should describe the intended ordinary backbone in the stored coordinates. A crystal bond in `_struct_conn` can coexist with an apparent long polymer step when the sequence labels still span the cut. Place the representation boundary at the intended site and keep the sample’s strand sequence and true nick documented.
 
 For each intended crystal phosphodiester identify the O3′ and P partners, their operators and cell translations, the O3′–P length and the angles to OP1 and OP2. An internal phosphate keeps P, OP1 and OP2. Recompute the mate in each entry’s own operator table, even for related crystals. [PDBx/mmCIF connectivity](https://mmcif.wwpdb.org/docs/user-guide/resources/ligands.html)

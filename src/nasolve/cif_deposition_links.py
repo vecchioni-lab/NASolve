@@ -149,12 +149,22 @@ def _ordinary(c, maximum):
             "unmeasured": unmeasured, "sequence_gaps": gaps}
 
 
-def _image(code, ops):
+def resolve_deposition_image(code, operations):
+    """Apply a connection's lattice shift to its file-declared Gemmi operation.
+
+    A bare operation ID has zero additional shift. Absent or unknown codes
+    return None so the caller can preserve an unresolved crystal image.
+    """
     match = re.fullmatch(r"(\d+)(?:_(\d{3}))?", str(code))
-    if not match or match[1] not in ops:
+    if not match or match[1] not in operations:
         return None
-    base = ops[match[1]]
+    base = operations[match[1]]
     return base.translated([(int(v) - 5) * base.DEN for v in (match[2] or "555")])
+
+
+def _image(code, ops):
+    """Compatibility entry point for earlier laboratory readers."""
+    return resolve_deposition_image(code, ops)
 
 
 def _endpoint(row, side):
@@ -196,7 +206,7 @@ def _declared(block, c, gemmi):
         i = atoms.index("O3'") + 1
         j = 3 - i
         o, p = _endpoint(row, i), _endpoint(row, j)
-        a, b = (_image(row.get(f"ptnr{s}_symmetry"), c.ops) for s in (i, j))
+        a, b = (resolve_deposition_image(row.get(f"ptnr{s}_symmetry"), c.ops) for s in (i, j))
         relative = _compose(_inverse(a, identity), b) if a is not None and b is not None else None
         op = relative.triplet() if relative is not None else None
         observed = []

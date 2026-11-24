@@ -6,6 +6,21 @@ from nasolve.cli import main
 gemmi = pytest.importorskip("gemmi")
 
 
+def test_shared_deposition_image_preserves_operator_and_cell_shift():
+    from nasolve.cif_deposition_links import _image, resolve_deposition_image
+
+    operations = {"8": gemmi.Op("-x+y,-x,z+1/3"), "4": gemmi.Op("x,y,z")}
+    position = [0.2, 0.1, 0.25]
+    image = resolve_deposition_image("8_465", operations)
+    assert image.apply_to_xyz(position) == pytest.approx([-1.1, 0.8, 0.25 + 1/3])
+    assert _image("8_465", ops=operations) == image
+    assert resolve_deposition_image("8", operations) == operations["8"]
+    assert resolve_deposition_image("8_555", operations) == operations["8"]
+    assert operations["8"] == gemmi.Op("-x+y,-x,z+1/3")
+    for unassigned in (None, False, ".", "?", "3_555", "8_5", "8_xyz"):
+        assert resolve_deposition_image(unassigned, operations) is None
+
+
 def make_cif(path, *, extended=True, link=True, op_id="1", reverse=False, alt=False, gap=False):
     doc = gemmi.cif.Document()
     b = doc.add_new_block("test")
