@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record bounded search allowance and distinct receiving-seed scope
+
+- Preserve one original-parent 200-iteration geometry diagnostic with exact prior
+  trajectory and independently checked fixed state. Penalty decreases without
+  stationarity; no candidate or f″ result is promoted and no further extension
+  is queued. Record separate full/serialized audit availability and existing
+  native mmCIF output capability without claiming receiving qualification.
+- Distinguish an independently qualified constructed seed for a bounded receiving
+  test from a converged/selected parent, following the earlier canonical-flank
+  precedent. Scope fresh source/native-capture/output checks and conditional
+  control reuse; no seed or receiving execution is created in this update.
+- Documentation only; reuse focused validation, retain a compact local scientific
+  report, and keep runtime/default/schema behavior and raw scientific files unchanged.
+
+
 ### Add explicit bounded-coordinate diagnostic helpers
 
 - Maintain pure feasible-ball search and supplemental boundary derivative checks

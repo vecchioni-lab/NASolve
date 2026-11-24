@@ -7,35 +7,32 @@ observation and storage owners; it introduces no new scientific policy.
 
 ## Current metal-science edge
 
-A01 remains partial; A02 f″ remains gated. The separate
-[feasible-step diagnostic](metal-development-handoff.md#a01-feasible-step-2026-11-24)
-keeps the original model, native chemistry and 2 Å movement balls, and completes
-100 iterations without an out-of-domain evaluation. It is still unconverged
-(projected residual 5.1565); no candidate is emitted. A627 passes 3,154 cold checks.
-A separate 75-evaluation observation validates a full-rank feasible derivative
-basis at the exact saved point (maximum error 4.96e-5); A630 passes 1,301 independent
-frame/sample/state checks. Original centered/rounded endpoint checks remain
-unavailable. No scientific acceptance, receiving fit or f″ follows.
+A01 remains partial; A02 f″ remains gated. The
+[one bounded allowance comparison](metal-development-handoff.md#a01-allowance-comparison-2026-11-24)
+reproduces the prior 209 native calls exactly, then reaches 200 iterations without
+converging (projected residual 5.1472). Phenix 2.2.1-6174 stops in 325.70 s;
+4,703 independent cold checks preserve all source/fixed state and actual geometry.
+No candidate, new diffraction fit, maps or f″. No further allowance extension.
 
-Both Phenix 2.2.1-6174 processes remain stopped. The explicit
-[pure diagnostic helpers](topostitch-feasible-diagnostics.md) are now maintained:
-53 focused and 99 adjacent tests pass, and 531 cold assertions reproduce every
-saved search/probe request and numerical outcome without native execution.
-Callback state, failed attempts, collapsed probes and partial evidence are
-covered by retained before/after regressions. Exact-diff owner review is complete with no blocking findings; 53 installed
-tests also pass with original-checkout access blocked. A path-spelling harness
-failure before those tests is preserved; the same wheel passed after correction. No shared trial/default/CLI/dependency/artifact migration,
-new fit, raw science commit, pruning or full-suite rerun.
+The next distinct role is an explicitly nonstationary **constructed seed for a
+bounded receiving experiment**, not an optimized or selected parent. Fresh
+full/actual-serialized gradient checks, source/chemistry/capture binding,
+stereochemistry and contacts must qualify that seed independently. Conditional
+reuse of the W252 six-atom fixed-B/Q/scattering control is scoped; whole-model
+XYZ/group-B remains a separate gate. Current no-candidate/unavailable-audit
+verdicts stay intact. No seed or receiving execution is created here.
 
-A01's next scientific step still needs convergence and faithful serialized output
-before receiving open XYZ/B refinement. Do not adopt the unconverged diagnostic.
-Current extraction evidence: `Alder/a01-feasible-maintained-20261124-01/` under
-`branch-artifacts/`; report:
-`ScienceCheckouts/Hazel/2026-11-24_feasible-helper-extraction/index.html`.
-The original numerical report remains
-`ScienceCheckouts/Hazel/2026-11-24_ft-feasible-steps/index.html`.
-The prior integration checkpoint below is unchanged; focused development is not
-a new release/full-suite qualification.
+The [pure helpers](topostitch-feasible-diagnostics.md) at `7c2e1c41` retain 53
+focused + 99 adjacent + 53 installed tests and 531 cold replay assertions, plus
+the new bounded native diagnostic. Reuse those receipts; this follow-up changes
+documentation only, not shared callers, schemas, defaults or dependencies.
+No raw science commit, pruning or full-suite rerun.
+
+Current report: `ScienceCheckouts/Hazel/2026-11-24_ft-search-allowance/index.html`.
+Stopped evidence: `Alder/a01-feasible-allowance-native-20261124-01/` and
+`Alder/a01-feasible-continuation-review-20261124-01/` under `branch-artifacts/`.
+Earlier reports and failed attempts remain unchanged. The prior integration
+checkpoint below does not imply new release qualification.
 
 ## Qualified integration checkpoint — test-only amendment
 

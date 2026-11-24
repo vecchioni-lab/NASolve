@@ -96,6 +96,15 @@ and exact numerical results. Saved scalar lookup is not a new native evaluation;
 probe gradients absent from the archive are not inferred. Source data remain
 unchanged. Exact commands, hashes and test outputs are in the local evidence
 anchor `Alder/a01-feasible-maintained-20261124-01/` under `branch-artifacts/`.
+A subsequent single 200-iteration comparison runs the exact maintained search
+helper in Phenix 2.2.1-6174, reproducing the prior 209-call trajectory. It remains
+nonstationary (projected residual 5.1472); 4,703 cold source/state/geometry checks
+pass. New endpoint derivative checks remain unexecuted, despite feasible serialized
+probes, because the private adapter skips all endpoint audits when the full stage
+is unavailable. See the current A01 handoff for this limitation and the planned
+separate constructed-seed role. A diagnostic receiving seed need not claim solver
+stationarity, but requires its own chemistry, source, actual-output and derivative
+qualification. Existing optimizer/adoption verdicts are not reinterpreted.
 The full suite and a receiving native integration remain separate gates.
 
 **Methods wording.** Local displacement variables were restricted to a product

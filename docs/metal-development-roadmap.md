@@ -12,24 +12,28 @@ the [anomalous workflow](metal-anomalous-doctor.md) and [restraint design](metal
 own scientific contracts. A mechanism passing tests does not close its scientific
 gate. Update milestone status, evidence, limitations and next action together.
 
-A01 now has a separate feasible-step diagnostic under the unchanged native
-objective and 2 Å atom-wise movement balls. It reaches the 100-iteration limit
-without an out-of-domain evaluation, but remains unconverged and emits no
-candidate. A supplemental full-rank feasible derivative audit passes at the exact
-saved point; the original centered/rounded endpoint checks remain unavailable.
-**A01 partial; A02 gated.** See the [current handoff](metal-development-handoff.md#a01-feasible-step-2026-11-24).
+A01's one predeclared 100→200-iteration comparison remains nonstationary:
+projected residual 5.1565→5.1472, despite a small geometry-penalty reduction.
+The preceding 209-call trajectory is exact; 4,703 cold source/state/geometry
+checks pass. The native job is stopped, with no candidate or diffraction/f″ fit.
+**A01 partial; A02 gated.** See the [current handoff](metal-development-handoff.md#a01-allowance-comparison-2026-11-24).
 
-Reuse 3,154 independent trajectory/state checks, 1,301 independent derivative
-frame/sample checks, 41 focused prototype tests and the inspected figure. Both
-native processes are stopped. The explicit [pure numerical helpers](topostitch-feasible-diagnostics.md)
-now have 53 focused and 99 adjacent passing tests, plus 531 cold replay assertions
-covering exact saved numerical behavior. Exact-diff owner review is complete;
-53 installed tests pass with source access blocked.
-Ordinary trial/defaults remain unchanged. Next resolve source-bound convergence
-and faithful output representation before controlled open XYZ/B receiving. No cap escalation, repeated
-weight grid, widened mask or automatic adoption. Keep D7→C8, A12 orientation and
-whole-model publication separate. The earlier cap comparison and preparation
-failures remain source-bound evidence rather than work to rerun.
+Next independently qualify an explicitly nonstationary constructed seed for one
+bounded receiving test. A universal stationarity-before-receiving requirement
+would contradict the earlier canonical-flank experiment and is not a chemical
+criterion. This does not weaken optimizer/selected-parent claims or reinterpret
+the current no-candidate verdict. Fresh full-feasible/actual-serialized gradient,
+source/chemistry/native-capture, stereochemistry and contact checks come first.
+The smallest scoped receiver conditionally reuses W252's six-atom MLHL control;
+whole-model XYZ/group-B needs its own matched image-join protocol. No seed or
+receiver has been emitted. Keep full/serialized audit availability independent,
+and inspect native mmCIF receiving support before a new lattice constructor.
+
+Reuse the existing pure-helper tests (53 focused, 99 adjacent, 53 installed),
+531 cold replay checks and prior native evidence. No repeated allowance/cap/weight
+grid, widened mask, automatic adoption or f″. D7→C8, A12 orientation and whole-model
+publication remain separate. Numerical and scientific review remain explicit;
+broad geometry matters more than fractional target agreement.
 
 A01 next-input review now includes [DF C2 chemical target provenance](metal-df-c2-angle-audit.md). A source-consistent fragment is available, but its eLBOW angles are not independent chemistry authority. Retain explicit source-state uncertainty and coupled-target review; routine donor-state integration remains deferred. No automatic 120° substitution.
 

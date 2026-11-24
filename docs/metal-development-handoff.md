@@ -14,78 +14,94 @@ not a second queue.
 **Late chemical-provenance clarification:** the [DF C2-angle audit](metal-df-c2-angle-audit.md) separates eLBOW source consistency from independent chemical validation. The earlier final sulfur-angle split is 135.3°/108.7°; generated targets remain chemically provisional. Routine donor-state integration stays deferred and is not a new immediate A01 prerequisite. A retained base fragment exists (124 read-only checks), but no replacement or target change is admitted.
 
 <a id="a01-feasible-step-2026-11-24"></a>
+<a id="a01-allowance-comparison-2026-11-24"></a>
 
-## Current A01 — feasible steps work; convergence and output remain open
+## Current A01 — more search allowance does not establish convergence
 
-A separate opt-in projected-gradient/Armijo diagnostic now evaluates only feasible
-positions under the **same 2 Å atom-wise balls**. It keeps the original parent,
-zero start, six movable atoms, native objective/chemistry and 0.5 Å tether. The
-ordinary L-BFGS owner and all defaults remain unchanged. Actual projected trial
-positions receive fresh scalar/gradient evaluations; no old gradient is attached
-to a clipped point. Existing recipe-only projection was reviewed but excludes
-native energy, so it cannot supply this objective. No existing full-objective
-feasible-step owner was found.
+One predeclared original-parent comparison increases only the search allowance
+from 100 to 200 iterations (300→600 search calls; 600→1,000 total allowance).
+The original `7aade3c4` model, zero start, six connecting atoms, native chemistry,
+2 Å atom-wise balls and 0.5 Å tether stay fixed. The maintained feasible-step
+helper is used; its first **209 actual native evaluations reproduce the prior
+trajectory exactly**. Ordinary L-BFGS/refinement defaults remain unchanged.
 
-One Phenix **2.2.1-6174** diagnostic stops at its declared **100-iteration limit**,
-not convergence, after 209 search calls/284 total evaluations and **189.13 s**.
-Cartesian gradient norm is 53.97 versus 293.86 at the earlier failed point;
-projected residual is still 5.1565 against 1e-5. P–O3′ is 1.617 Å. A627 passes
-**3,154 independent cold checks**, including every feasible/accepted trace step,
-actual Armijo decrease, source tether, exact initial objective, complete fixed
-state and original data. No geometry candidate or accepted parent is emitted.
-Native/preflight output remains the unchanged source.
+Phenix **2.2.1-6174** completes and stops after **325.70 s**, with 415 search /
+490 total evaluations. The run reaches its 200-iteration limit, not stationarity.
+No candidate, selected parent, diffraction optimization, map or f″ result.
+A01 remains partial; A02 remains gated. Do not extend the allowance again or
+start a cap/weight grid merely because the penalty decreases.
 
-**Boundary derivative distinction.** OP2's actual radius is 1.999995521 Å.
-Some existing centered Cartesian probes and the rounded PDB endpoint exceed the
-cap, so those checks remain explicitly unavailable. A separately initialized,
-read-only native observer authenticates the exact saved point and checks a
-full-rank feasible basis: inward radial second-order one-sided probes and two
-same-actual-radius, arc-length sphere tangents for OP2; centered Cartesian probes
-for the other atoms. Both original 1e-4/1e-5 Å steps and the 1e-3 directional-error
-bound remain unchanged. No endpoint snap, tolerance change or extra optimization.
+| Diagnostic measurement | 100 iterations | 200 iterations |
+| --- | ---: | ---: |
+| Native geometry + tether penalty | 6628.4984 | 6623.4109 |
+| Projected residual (criterion 1e-5) | 5.1565 | 5.1472 |
+| Cartesian gradient norm | 53.97 | 61.98 |
+| B7 image O3′–B1 P (Å) | 1.6172 | 1.6178 |
+| B1 C5′–C4′–O4′ (degrees) | 102.26 | 103.55 |
 
-The supplemental audit passes with maximum error **4.96255e-5**, 75 native
-evaluations and **54.96 s**, stopped. A630 independently recomputes all frames,
-sample paths, scalar differences and source state: **1,301 cold checks pass**.
-This validates the full-precision ambient gradient, not constrained stationarity,
-rounded-output feasibility or chemical acceptance. All 853 other coordinates,
-sugars, Hg, B/Q/scattering and original phases/Free-R remain exact. No new maps,
-R statistics, environmental-B preparation or f″ result.
+The displacement vector changes by 0.415 Å between endpoints; lower geometry
+penalty is not better experimental fit. **A638 passes 4,703 cold checks**,
+including all 853 fixed coordinates, complete B/Q/scattering, original work/free
+and HL data, source/code identity, actual geometry and the exact prior trajectory.
+Sugar chirality signs survive. A639 finds no new descriptive contact below 2.4 Å
+shortened by more than 0.2 Å; its conservative graph exclusions and lack of
+chemical VDW classification remain explicit. The inspected figure uses one
+camera/Å scale with faint fixed-base/backbone context. Hg and its unmeasured
+f″=0 are unchanged; environmental-B preparation has not run.
 
-**Current restart point:** both native nodes remain stopped. The reusable pure
-helpers are now maintained behind explicit Python calls; ordinary trial/defaults
-remain untouched. See the [methods and caller contract](topostitch-feasible-diagnostics.md).
-New regressions protect callback snapshots, failure accounting, representable
-probes and partial evidence. **53 focused + 99 adjacent tests pass.** A cold
-replay reproduces all 209 saved search requests and 74 audit requests/results
-exactly, with **531 assertions** and no native execution. The baseline 12
-hardening failures and two further audit failures are preserved before repair;
-a second large-coordinate witness covers the same collapsed-probe mechanism.
-The exact maintained diff is independently reviewed with no remaining blocking
-findings. The same 53 tests pass from an offline installed wheel with source
-checkout access blocked; its temporary build/install was removed. The retained
-first harness failure was a macOS /var versus /private/var assertion before tests.
+**Endpoint checks remain separate.** Only full-precision centred probes exceed
+the cap at the new endpoint. Its ordinary three-decimal PDB endpoint and centred
+probes are feasible, but the existing private adapter skips all endpoint audits
+if any stage is unavailable. Therefore no new endpoint derivative pass is claimed.
+The earlier 100-step full-rank feasible audit (maximum error 4.96e-5; 1,301 cold
+checks) belongs to that point, not this one. At a truly active bound, centred
+Cartesian probes cannot all fit: a future explicit endpoint regime must retain
+that UNAVAILABLE verdict and independently assess a feasible basis, the actual
+serialized point, geometry and source restoration.
 
-**Next bounded scientific boundary:** determine a source-bound route to
-convergence and faithful output representation before controlled open XYZ/B
-receiving. Do not turn the diagnostic last step into a parent, enlarge the cap
-again or bypass unavailable serialization checks. A01 remains partial; A02 stays
-gated. There is no new f″, map, R statistic or environmental-B preparation.
-Further native work needs a declared experiment through its existing owner;
-the extraction itself requires no repeated native fit.
+Installed Phenix already requests/writes coordinate mmCIF at five decimal places;
+the present masked endpoint owner audits exact three-decimal PDB. Code and
+rounding inspection are not receiving-output qualification. Both encodings happen
+to fit this endpoint, while eight/twelve-decimal rounding can land just outside
+the exact bound. Higher precision is not a universal guard fix. Inspect existing
+output/receiving support before adding a lattice constructor; never choose a
+geometry solely to make an audit pass.
 
-Evidence anchors are `Alder/a01-feasible-step-review-20261124-01/`,
-`Alder/a01-feasible-step-native-20261124-01/`,
-`Alder/a01-feasible-basis-native-20261124-01/` and the new
-`Alder/a01-feasible-maintained-20261124-01/`. Exact commands, source hashes,
-negative regressions, review diffs and stopping are recorded there. The inspected
-scientific figure remains in `ScienceCheckouts/Hazel/2026-11-24_ft-feasible-steps/index.html`;
-the bounded extraction report is `ScienceCheckouts/Hazel/2026-11-24_feasible-helper-extraction/index.html`.
-Raw models/maps/native evidence stay private and are excluded from Git. No new
-native execution, pruning, migration or default activation; no full-suite or
-ordinary-checkpoint claim. The prior integrated full-tested boundary below is
-unchanged and does not qualify these new helpers for release. Preserved earlier
-attempts remain evidence, not a second work queue.
+**Next bounded step — explicitly qualify a constructed receiving seed.** A
+starting geometry for a diagnostic receiving refinement need not be a stationary
+optimizer solution. The earlier [canonical-flank comparison](#current-a01-question--coupled-canonical-flank-placement)
+already used an iteration-limited construction followed by separately qualified
+receiving refinement. The current diagnostic retains its no-candidate verdict;
+a new role must have its own source/chemistry, fresh full/serialized gradients,
+actual output, signed stereochemistry and contact checks. It must not acquire a
+converged/selected-parent label or reuse the old parent's native capture under
+a new model hash. Rowan and Willow's owner agree on this distinction.
+
+The smallest scoped receiver reuses the W252 protocol/control **only if exact
+context checks qualify it**: three cycles, 60 iterations, six canonical XYZ atoms,
+1.5 Å receiving allowance from each declared input, fixed B/Q/f′/f″, original
+1,151 observations/HL and 59 Free reflections. Its receiving origin differs
+explicitly from the construction's 2 Å original-parent bound. A fresh Cedar native
+receipt must bind the actual proposed seed. The test must be able to reject it.
+Whole-model open XYZ/group-B remains a later gate; its old control lacks identical
+image-join enforcement and cannot silently substitute for a matched control.
+No receiving job or seed has been emitted by this checkpoint.
+
+The [pure helper contract](topostitch-feasible-diagnostics.md) is maintained at
+`7c2e1c41`: reuse 53 focused + 99 adjacent + 53 installed tests and 531 exact cold
+replay assertions. The new native comparison exercises that exact helper; no
+unchanged pytest/full-suite rerun or shared caller/schema/default change follows.
+
+**Stopped restart and evidence:**
+`Alder/a01-feasible-allowance-native-20261124-01/` retains exact execution, input/code
+hashes, cold checks, actual geometry, footprint and editable figures.
+`Alder/a01-feasible-continuation-review-20261124-01/` retains trajectory/output
+capability reviews and `constructed-seed-receiving-scope.json`. Earlier prototype,
+100-step native, basis-audit and maintained-helper anchors remain unchanged.
+The compact report is `ScienceCheckouts/Hazel/2026-11-24_ft-search-allowance/index.html`.
+All jobs are stopped; roughly 17.65 MB of this changed-coordinate proof node is
+retained locally. No scientific upload, automatic pruning or portability claim.
+The prior integration/full-tested boundary is unchanged.
 
 <a id="a01-phosphate-cap-2026-11-24"></a>
 
