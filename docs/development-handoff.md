@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W265, 2026-11-24** (source pin follows qualification).
+**Current maintained slice: W265, 2026-11-24** (code `6e90105f8c2b12a5444578dd1ba356087ece79a8`).
 The [ordinary recut inspector](topostitch-preview.md#inspect-original-tls-groups-in-the-ordinary-recut-viewer-w265)
 now shows original TLS groups and exact atom/image membership from a freshly
 verified original CIF. The installed command reproduces the exact W264 3LNA

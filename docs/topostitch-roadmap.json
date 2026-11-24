@@ -1117,7 +1117,8 @@
         "W261: 158 focused source and 158 relocated installed checks, two subtests and 212 installation-file hashes. Four real controls retain 62 sites,60 edges and exact W259 coverage digests; four source paths become eight recut paths. ASU target reuse stays neutral across reserialization. No native job or writer.",
         "W262: 169 focused source and 169 relocated installed checks, two subtests and 212 installation-file hashes. Eleven missing-API regressions now pass. Exact target-document binding rebuilds existing registration with original source polymer roles; all target codes retained. Four real default reports equal W261 exactly. Known ASU target reuse remains neutral; no writer or native job.",
         "W263: 184 focused source and184 relocated installed checks,two subtests and212 installation-file hashes. Four real controls retain four reference ranges and62 positions; source cuts have four segments,recuts ten across eight paths. Every segment retains align_id/ref_id; W262 fragment hashes exact. Explicit scheme resolves unknown atom insertion fields without rewriting; unknown/reversed/unmodeled cases stay reviewable. No database interpolation,native call or writer.",
-        "W264: 200 focused source/200 relocated installed checks,two subtests,214 installation-file hashes. Four real controls: original6 uniform TLS groups,recut2 uniform/4 mixed.18 complete read-only Phenix2.2.1-6174/cctbx comparisons bound raw U transport to5.33e-15 A2 and Python/native agreement to3.55e-15 A2. Separate default-trace reinterpretation changes source TLS U up to2.46919 A2; raw S retained. Mixed groups not split or transported; no refinement or writer."
+        "W264: 200 focused source/200 relocated installed checks,two subtests,214 installation-file hashes. Four real controls: original6 uniform TLS groups,recut2 uniform/4 mixed.18 complete read-only Phenix2.2.1-6174/cctbx comparisons bound raw U transport to5.33e-15 A2 and Python/native agreement to3.55e-15 A2. Separate default-trace reinterpretation changes source TLS U up to2.46919 A2; raw S retained. Mixed groups not split or transported; no refinement or writer.",
+        "W265: 225 focused source/225 relocated installed checks,two skips/two subtests each;214 installed-file hashes. Full Willow2853 passed,4 skipped,234 subtests. Installed ordinary viewer reproduces exact W264 3LNA report after staged input/package relocation:4 mixed/2 uniform TLS groups,738 unique mixed members,1271 atoms. Separate complete Phenix2.2.1-6174 shared-original-motion diagnostic:4 groups,8 derived images,82 moved members; max per-atom U error3.55e-15 A2. No independent parameters,native fitting or writer."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
@@ -1145,14 +1146,15 @@
         "E_ORIGINAL_CIF_FRAGMENT_LINEAGE",
         "E_ORIGINAL_CIF_TARGET_DOCUMENT",
         "E_ORIGINAL_CIF_REFERENCE_RANGES",
-        "E_ORIGINAL_CIF_TLS_TRANSPORT"
+        "E_ORIGINAL_CIF_TLS_TRANSPORT",
+        "E_ORIGINAL_CIF_TLS_INSPECTION"
       ],
       "last_audit": {
         "date": "2026-11-24",
-        "code_commit": "5f0dbcb4afe726b853b402424d450507331a329f",
-        "reviewer": "Linden; membership and trace-convention review from Rowan",
-        "human_update": 264,
-        "scope": "Uniform-image raw TLS field; mixed motion/native convention/writer gates open"
+        "code_commit": "6e90105f8c2b12a5444578dd1ba356087ece79a8",
+        "reviewer": "Linden; ordinary-inspection boundary coordinated with Rowan",
+        "human_update": 265,
+        "scope": "Source-bound public TLS membership inspection and per-atom shared-motion diagnostic; native covariance/refinement/writer gates remain open"
       }
     },
     {
@@ -7366,6 +7368,137 @@
           "size": 4867
         }
       ]
+    },
+    "E_ORIGINAL_CIF_TLS_INSPECTION": {
+      "kind": "Shared original TLS motion and public read-only membership inspection",
+      "date": "2026-11-24",
+      "human_update": 265,
+      "code_commit": "6e90105f8c2b12a5444578dd1ba356087ece79a8",
+      "reference": "docs/topostitch-periodic.md#w265--inspect-shared-original-tls-membership-after-a-recut",
+      "result": "225 focused source/225 relocated installed checks,two skips/two subtests each;214 installed-file hashes. Full Willow2853 passed,4 skipped,234 subtests. Installed ordinary viewer reproduces exact W264 3LNA report after staged input/package relocation:4 mixed/2 uniform TLS groups,738 unique mixed members,1271 atoms. Separate complete Phenix2.2.1-6174 shared-original-motion diagnostic:4 groups,8 derived images,82 moved members; max per-atom U error3.55e-15 A2. No independent parameters,native fitting or writer.",
+      "limitation": "Per-atom TLS field preservation is not unique inter-atom covariance or native parameter tying. One representative preview only; source/preview/owner hashes and explicit precision bounds required. Browser visual render unverified after local URL policy refusal. Existing unshipped DP/DZ/5CM provenance sidecars reported separately; no packaging change. Scientific payloads local.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w265-shared-tls-motion/prepare.py",
+          "sha256": "9fd364570bbd0ca861791481ed9848535706306b47ce840b9a92aa31132506f5",
+          "size": 4639
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w265-shared-tls-motion/native_check_reviewed.py",
+          "sha256": "c8d73757c74d68bbbc89ff09115d28638a55a44042d70494dd344e4e6b42fe1e",
+          "size": 5683
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w265-shared-tls-motion/native-input.json",
+          "sha256": "8143c62023016e38ca9ec138452cd08c0a5481cb5a14c35c07a62ba1657cab56",
+          "size": 116531
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w265-shared-tls-motion/native.log",
+          "sha256": "bd714357daeb6d925f268ed7b898b24b76f179074d7edb8518c6a652373db948",
+          "size": 297
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w265-shared-tls-motion/native-reviewed.log",
+          "sha256": "00cb538b7664ea19be069b9caf6b0db6156d64bdee3d0379fd936bdd47210542",
+          "size": 608
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w265-shared-tls-motion/native-validation-reviewed.json",
+          "sha256": "5591bfe403c1acf0a3f5e70ee7868f5fcdedd3e0187cff53b7c967883bcb3254",
+          "size": 111234
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w265-shared-tls-motion/view-before.log",
+          "sha256": "5fb3583e32dca68bcdc28812fc8ce62cf6544acd6b5211a98465d8f31fda1ed6",
+          "size": 4602
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w265-shared-tls-motion/focused.log",
+          "sha256": "cba3ff27bd79df40a5f4ed8c7b79e59ef1194e3ae0f47f2e7c0334b96c20ed99",
+          "size": 369
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w265-shared-tls-motion/full.log",
+          "sha256": "1cda8217244e1cced00f64f6b649e836853c84782516c3d3469d9eef85e34a64",
+          "size": 3247
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w265-shared-tls-motion/qualify_view.py",
+          "sha256": "02736232a9463d74ebdc3c615520d96916541170fb490df038cf4dcdac995c01",
+          "size": 6710
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w265-shared-tls-motion/finalize_view_reviewed.py",
+          "sha256": "0a9d7167f2c749595d98cdbaa784c10e39b08e3aa60eaeaa5c12d60ebd46008b",
+          "size": 5390
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w265-shared-tls-motion/install.log",
+          "sha256": "fdc6f4e4b767b04df565fceda24bcef74e707a9fe9ab056c6276ac220a946394",
+          "size": 1100
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w265-shared-tls-motion/installed-tests.log",
+          "sha256": "8b23be8af70091525cfcce1081f0f6682acabc028d2ee44cc6df4b562a6c47eb",
+          "size": 369
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w265-shared-tls-motion/installed-entry-help.log",
+          "sha256": "679f832493614317c65fa5fac6b3e1ffece34e513efd47cd27eb3a45ab5ed56e",
+          "size": 2314
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w265-shared-tls-motion/installed-real-view.log",
+          "sha256": "04a4449c0b3e89bb584189b592010f5e426401827fc052335ee2175deed5d6af",
+          "size": 187
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w265-shared-tls-motion/view-qualification.json",
+          "sha256": "ed71c73fa647a99165f28e18b6d3904586ece7a2ab9c195665048cb3ca5a5964",
+          "size": 37299
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w265-shared-tls-motion/qualification-scope-review.txt",
+          "sha256": "3e2a3c3f6fc0fa10d54b8039f64b7bbfd8b9836368d47c8fd4be096c0ad90093",
+          "size": 595
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w265-shared-tls-motion/3LNA-recut-tls.html",
+          "sha256": "c98cbb63edeb3bbc89e4a97494d40c110527a55638e75743972c0c9644742519",
+          "size": 745406
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w265-shared-tls-motion/browser-check.json",
+          "sha256": "e90084f9a70151ae49653b8bcc6764b1266b8a40442507b4f025d2fc7cf0b858",
+          "size": 323
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w265-shared-tls-motion/validation.json",
+          "sha256": "8707c9bfce29beb5b08964315a10a391bb13e72284e32fb60306e32ec82c7a3e",
+          "size": 7720
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -8930,8 +9063,8 @@
       {
         "number": 265,
         "title": "Inspect shared original TLS membership through the ordinary recut viewer",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "6e90105f8c2b12a5444578dd1ba356087ece79a8"
       }
     ]
   },
