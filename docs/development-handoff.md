@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W262, 2026-11-24** (code pin follows qualification).
+**Current maintained slice: W262, 2026-11-24** (code `6afba5df69af25d3a6b1804a58c3278c74b973fe`).
 [Explicit strand target binding](topostitch-preview.md#bind-a-declared-strand-target-document-w262)
 loads an optional exact-hash sequence-family target and reconstructs its supplied
 registration through the existing public owner. It preserves the actual target
