@@ -252,10 +252,14 @@ It refuses two different IDs in the same command before allocating an attempt.
 The [two-junction test](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold)
 now carries both distinct images through a five-cycle standalone refinement.
 The PDU tip heights were 0.283 and 0.476 Å, close to the corresponding
-single-link control. The D:7 torsion still merits local inspection. Next
-carry the complete chosen set through ordinary preparation and numbered
-restart. Verify both links, the separate D:1 terminus, PDU geometry, local
-fit and original Free-R assignments in the actual written child.
+single-link control. C560 carried the complete set through two numbered
+five-cycle rounds, including a restart after relocating the dataset. Both
+links, D:1 terminal geometry and the original free set survived. The
+historical PDU tips still departed from their ring planes, and the D:7
+torsion and local density require review. Next, carry the registered
+connections through the C290 PostMR/ReadySet preparation with the corrected
+PDU dictionary and removal of the two superseded site edits. Repeat the
+same written-model and local-map checks on that chemistry.
 
 C537 checks which modeled atoms actually reached a native covalent plane.
 The historical GEO omitted C5A at both PDU sites. The corrected GEO included

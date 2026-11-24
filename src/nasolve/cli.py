@@ -242,11 +242,14 @@ def build_parser() -> argparse.ArgumentParser:
         "--checked-plane-forces", action="store_true",
         help="explicit native plane-force correction for this round (qualified Phenix build required)",
     )
-    autorefine.add_argument("--registered-continuation", type=int, action=_SingleContinuation, metavar="ID",
+    phosphate_choice = autorefine.add_mutually_exclusive_group()
+    phosphate_choice.add_argument("--registered-continuation", type=int, action=_SingleContinuation, metavar="ID",
         help="carry one declared crystal phosphate through ordinary refinement using checked plane forces and one worker")
+    phosphate_choice.add_argument("--registered-continuations", type=int, nargs="+", action="extend", metavar="ID",
+        help="fit these distinct crystal phosphates together from the same registration and carry the complete set into restarts")
     _phosphate_topology_arguments(autorefine)
     autorefine.add_argument("--native-receipt", type=Path,
-        help="exact native chemistry receipt for this parent and its restraint inputs; alone continues its inherited crystal phosphate")
+        help="exact native chemistry receipt for this parent and its restraints; alone continues all inherited crystal phosphates")
     doctor = subparsers.add_parser(
         "refine-doctor",
         aliases=["refine_doctor"],
@@ -324,6 +327,8 @@ def build_parser() -> argparse.ArgumentParser:
                               help="read this declared O3'-to-P connection in its registered source frame")
     image_choice.add_argument("--saved-continuation", action="store_true",
                               help="read the crystal bond and native forces saved by this numbered phosphate refinement")
+    image_choice.add_argument("--saved-continuation-id", type=int, action=_SingleContinuation, metavar="ID",
+                              help="inspect this member of the phosphate set fitted in the named checkpoint")
     _phosphate_topology_arguments(phosphate_image)
     phosphate_image.add_argument("--duplex-partners", nargs=2, metavar=("O3_PARTNER", "P_PARTNER"),
                                  help="measure oxygen direction across two assigned stacked pairs; give each opposite CHAIN:NUMBER")
@@ -1767,13 +1772,15 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
                 raise ValueError("--registration-checkpoint needs a numbered run, --checkpoint and --registered-continuation")
             options["registration_checkpoint"] = args.registration_checkpoint
         if args.checkpoint is None:
-            if args.saved_continuation:
+            if args.saved_continuation or args.saved_continuation_id is not None:
                 raise ValueError("--saved-continuation needs a numbered run and --checkpoint")
             result = inspect_phosphate_image(args.model, geometry=args.geometry, **options)
         else:
             from .cif_doctor_run import read_checkpoint_phosphate_image
             if args.geometry is not None:
                 raise ValueError("Checkpoint inspection uses its recorded geometry. To supply a GEO, give a PDB path without --checkpoint.")
+            if args.saved_continuation_id is not None:
+                options["saved_continuation_id"] = args.saved_continuation_id
             result = read_checkpoint_phosphate_image(args.model, checkpoint=args.checkpoint,
                                                      saved_continuation=args.saved_continuation, **options)
     except (OSError, ValueError, RuntimeError) as exc:
@@ -1787,8 +1794,13 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
             fit = result.get("numbered_refinement")
             if fit is not None:
                 terms, counts = fit["native_forces"], fit["reflections"]
-                print(f"Phenix fitted parent {fit['parent']} with {terms['bond_simple']} crystal bond, "
-                      f"{terms['angle']} angles and {terms['dihedral']} torsions.")
+                if "registered_continuation_ids" in fit:
+                    ids = ", ".join(map(str, fit["registered_continuation_ids"]))
+                    print(f"Phenix fitted parent {fit['parent']} with continuation IDs {ids} together.")
+                    subject = f"Continuation {result['registered_continuation']['continuation_id']} contributed"
+                else:
+                    subject = f"Phenix fitted parent {fit['parent']} with"
+                print(f"{subject} {terms['bond_simple']} crystal bond, {terms['angle']} angles and {terms['dihedral']} torsions.")
                 print(f"Working reflections {counts['start']['work']} → {counts['finish']['work']}. "
                       f"Free reflections {counts['start']['free']} → {counts['finish']['free']}.")
             transfer = result.get("registered_continuation", {}).get("frame_transfer")

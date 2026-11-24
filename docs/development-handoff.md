@@ -1,7 +1,30 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-24, C559 sharing the deposition image decoder — Rowan**.
+Updated **2026-11-24, C560 two crystal bonds through a numbered restart — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+C560 carried two crystal bonds through two ordinary five-cycle rounds on
+the archived PDU:PDU parent. Both kept their original sites, crystal
+images, native forces and free reflections after moving the dataset.
+The selected model stayed at refine-005. A request that dropped either
+bond or reused the starting model's old chemistry receipt stops before
+allocating a round. Earlier single-bond requests and workers still replay.
+See the [laboratory measurements](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold)
+and [ordinary commands](cif-doctor.md#carrying-crystal-phosphates-through-a-numbered-refinement).
+The next construction task is carrying those same two registered
+connections through the original C290 PostMR/ReadySet preparation so a
+new child can inherit the corrected PDU dictionary and site restraints.
+
+The ten focused files were `test_refinement_phosphate`, `test_refinement_parallelity`,
+`test_phosphate_runtime`, `test_phosphate_restraints`, `test_phosphate_reference_links`,
+`test_phosphate_continuation`, `test_phosphate_image`, `test_cif_doctor_run`,
+`test_autorefine` and `test_cli` under `tests/`. Source and the relocated
+wheel passed 247 tests and 59 subtests using Gemmi 0.7.5. Project Python
+passed 203 tests and 59 subtests, with 27 skips. The final CLI text passed
+53 focused tests and 14 subtests on both paths. Commands used
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider`
+with the named files, using the installed package path for the wheel.
+The full suite remains due before merge.
 
 C558 put both declared PDU:PDU crossovers into one native Phenix fit.
 Two bonds, eight angles and six torsions survived five cycles. The second
@@ -10,9 +33,7 @@ C4′–C3′–O3′–P torsion still needs review. Both fits used exactly the
 same final working and free sets. The written PDU side arms and the distinct
 D:1 terminal phosphate were also checked. See the
 [measurements and scope](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold).
-The next implementation step is inheriting the full chosen set in a numbered
-AutoRefine child. Historical single-phosphate workers retain their exact
-source bytes. C559 exposes the same file-declared image decoder to Willow
+C559 exposes the same file-declared image decoder to Willow
 for annotation transport. The caller owns atom identity and chemical meaning.
 The source and relocated wheel each passed 47 focused checks and 14 subtests.
 The previous and shared decoders gave identical linkage audits on two experimental
@@ -49,10 +70,9 @@ D:7–C:8 as a nonbonded contact, at 2.934, 3.043 and 2.993 Å. Neither the
 coordinate proximity nor the new declaration repairs those historical fits.
 Two old native captures give agreeing chemistry from four intact T→G links
 for the D:7 crossover and two A→C links for the central B edge. Each yields
-a 1.607 Å target, four angles and three torsions. AutoRefine currently
-accepts one declared continuation per ordinary round. Next, carry both edges
-and the corrected PDU restraints through ordinary preparation and a new
-numbered child. Keep the separate D:1 terminal state.
+a 1.607 Å target, four angles and three torsions. C560 subsequently
+qualified the two-edge numbered restart. The corrected PDU restraints
+still need to enter through ordinary preparation. Keep D:1 terminal.
 
 The single-site error was retained. The before-change regression missed C:8's
 synthetic counterpart. The real saved models, report and modification times

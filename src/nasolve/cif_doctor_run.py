@@ -101,22 +101,25 @@ def _final_geometry(run, selected):
 def read_checkpoint_phosphate_image(run: Path, *, checkpoint: str, phosphate: str | None = None, o3: str | None = None,
                                    o3_image: str | None = None, nearest_image: bool = False,
                                    native_receipt: Path | None = None, registered=None, registration_checkpoint: str | None = None,
-                                   saved_continuation: bool = False, duplex_partners=None, partner_images=None):
+                                   saved_continuation: bool = False, saved_continuation_id: int | None = None,
+                                   duplex_partners=None, partner_images=None):
     """Inspect only the named checkpoint's model and its own optional final GEO."""
     from .cif_numerical_replay import numerical_replay_scope
     from .cif_phosphate_image import inspect_phosphate_image, with_duplex_direction
 
     if not isinstance(checkpoint, str) or not checkpoint.strip():
         raise CheckpointError("Phosphate inspection needs an explicit checkpoint ID or bookmark")
-    if saved_continuation and (any(x is not None for x in (registered, registration_checkpoint, phosphate, o3, o3_image)) or nearest_image):
+    saved = saved_continuation or saved_continuation_id is not None
+    if saved and (any(x is not None for x in (registered, registration_checkpoint, phosphate, o3, o3_image)) or nearest_image):
         raise CheckpointError("A saved continuation supplies its own registration, endpoints and crystal image")
     native_fit = None
     with numerical_replay_scope():
         run, registry, _, report_ref, registry_ref = _checked_registry(run)
         selected = resolve_checkpoint(registry, checkpoint)
-        if saved_continuation:
+        if saved:
             from .refinement_phosphate import saved_refinement
-            registration_checkpoint, registered, native_fit = saved_refinement(run, selected)
+            member = {} if saved_continuation_id is None else {"identifier": saved_continuation_id}
+            registration_checkpoint, registered, native_fit = saved_refinement(run, selected, **member)
     frozen_model = selected.get("model")
     if not isinstance(frozen_model, Mapping):
         raise CheckpointError("Selected checkpoint has no model reference")

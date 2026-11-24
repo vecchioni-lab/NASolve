@@ -55,6 +55,22 @@ def test_plain_round_and_an_inherited_registration_are_distinct_choices():
     assert continuation.registered is None and continuation.registration_checkpoint is None
 
 
+def test_multiple_registered_phosphates_are_an_explicit_complete_set():
+    from nasolve.cli import build_parser
+    from nasolve.refinement_phosphate import request_from_args
+
+    parser = build_parser()
+    base = ["autorefine", "--registration", "r", "--discovery-input", "d",
+            "--backbone-continuations", "edges", "--native-receipt", "capture"]
+    choice = request_from_args(parser.parse_args([*base, "--registered-continuations", "4", "2"]))
+    assert choice.registered.identifier == 2 and choice.additional_ids == (4,)
+    for values in (["4"], ["4", "2", "4"], ["1", "0"], ["-1", "2"]):
+        with pytest.raises(ValueError):
+            request_from_args(parser.parse_args([*base, "--registered-continuations", *values]))
+    with pytest.raises(SystemExit):
+        parser.parse_args([*base, "--registered-continuation", "1", "--registered-continuations", "2", "3"])
+
+
 def test_free_set_follows_miller_indices_and_allows_a_reported_native_rejection():
     from nasolve.cif_phosphate_phase import reflection_change
     first = {(0, 1, 2): (5., 1., True), (4, 5, 6): (3., .1, False),
@@ -96,7 +112,7 @@ def test_exact_restraint_capture_preserves_order_within_native_input_roles(tmp_p
             bind_execution_inputs({"capture_inputs":pins}, files[0], [files[i] for i in order])
 
 
-def frozen_round(tmp_path, policy=None):
+def frozen_round(tmp_path, policy=None, *, group=False):
     from hashlib import sha256
     import sys
     from nasolve.cif_phosphate_restraints import phosphate_bond_phil
@@ -121,11 +137,116 @@ def frozen_round(tmp_path, policy=None):
                for role,p in zip(("model","dictionary","phil"),paths[1:4])]
     prepared = dict(ancestor="postmr", sources=sources, inspection=observed, bond=phosphate_bond_phil(observed).encode(),
                     capture_inputs=capture)
+    if group:
+        from copy import deepcopy
+        edge = observed["registered_continuation"]
+        edge.update(copy_id="as-built", registered_graph_sha256="d"*64)
+        edge["frame_transfer"]["source_model_sha256"] = model_digest
+        second = deepcopy(observed)
+        edge = second["registered_continuation"]
+        edge["continuation_id"] = 4
+        second["o3"][0] = edge["source"]["coordinate_site"] = "M:3"
+        second["phosphate"][0] = edge["target"]["coordinate_site"] = "N:2"
+        second["o3_image"] = edge["oxygen_operator_xyz"] = "-y,x-y,z"
+        prepared["inspections"] = [prepared.pop("inspection"), second]
+        prepared["bond"] += phosphate_bond_phil(second).encode()
     command = ["phenix.refine", *map(str, paths), "--overwrite", "output.prefix=refined"]
     reference, dry, fit = prepare_execution(run, checkpoint="refine-001", parent="postmr", inputs=paths,
         command=command, python_executable=Path(sys.executable), macro_cycles=5, runtime_policy=policy or V11_POLICY_ID,
         phosphate=prepared)
     return original, run, stage, paths, reference, dry, fit
+
+
+def test_numbered_set_preserves_each_image_and_rejects_truncated_or_reordered_evidence(tmp_path):
+    from copy import deepcopy
+    from nasolve.refinement_parallelity import V12_POLICY_ID, read_execution_request
+    from nasolve.refinement_phosphate import read_intent
+
+    original, run, stage, _, ref, dry, fit = frozen_round(tmp_path, V12_POLICY_ID, group=True)
+    folder = stage / "parallelity_runtime"
+    bond = folder / "phosphate/image-bond.phil"
+    assert fit.count(str(bond)) == dry.count(str(bond)) == 1
+    assert bond.read_text().count("symmetry_operation = ") == 2
+    copied = original.rename(tmp_path / "relocated")
+    run, root = copied / run.relative_to(original), folder.relative_to(run).as_posix()
+    checked = read_execution_request(run, ref, checkpoint="refine-001")
+    assert [i["o3_image"] for i in checked["phosphate"]["inspections"]] == ["-x+y,-x,z+1", "-y,x-y,z"]
+    for change in ("drop", "reverse", "repeat", "operator", "capture", "legacy-policy"):
+        bad = deepcopy(checked)
+        rows = bad["phosphate"]["inspections"]
+        if change == "drop":
+            rows.pop()
+        elif change == "reverse":
+            rows.reverse()
+        elif change == "repeat":
+            rows[1] = rows[0]
+        elif change == "operator":
+            rows[1]["o3_image"] = rows[0]["o3_image"]
+        elif change == "capture":
+            rows[1]["native_reference_links"]["native_receipt_sha256"] = "a"*64
+        else:
+            from nasolve.refinement_parallelity import V11_POLICY_ID
+            bad["policy_id"] = V11_POLICY_ID
+        with pytest.raises(ValueError):
+            read_intent(run, root, bad)
+
+
+def test_saved_fit_requires_the_named_member_and_simultaneous_gradients(tmp_path, monkeypatch):
+    import json
+    from copy import deepcopy
+    from nasolve import refinement_parallelity as runtime
+    from nasolve.cif_phosphate_phase import reflection_change
+    from nasolve.refinement_phosphate import read_phase, saved_refinement
+
+    _, run, stage, _, ref, _, _ = frozen_round(tmp_path, runtime.V12_POLICY_ID, group=True)
+    req = runtime.read_execution_request(run, ref, checkpoint="refine-001")
+    folder = stage / "parallelity_runtime"
+    root = folder.relative_to(run).as_posix()
+    observations = req["phosphate"]["inspections"]
+    edges = [dict(continuation_id=row["registered_continuation"]["continuation_id"],
+                  oxygen_operator_xyz=row["o3_image"], live_sources_sha256=token*64,
+                  families={"bond_simple": 1, "angle": 4, "dihedral": 3},
+                  bond={"bonds": 1, "second_shell_pairs": 4, "remaining_nonbonded": 0})
+             for row, token in zip(observations, "ab")]
+    flags = {(1, 0, 0): (4., 1., True), (0, 1, 0): (5., 1., False)}
+    record = dict(schema_version=2, request_sha256=ref["sha256"], parent_model_sha256=observations[0]["model_sha256"],
+                  full_gradient_calls=3, reflections=reflection_change(flags, flags), bindings_restored=True, edges=edges)
+    for phase in ("preflight", "refine"):
+        (folder/phase).mkdir()
+        (folder/phase/"phosphate.json").write_text(json.dumps(dict(record, phase=phase)))
+    selected = dict(id="refine-001", kind="refinement", usable=True, parent="postmr",
+                    outputs={"parallelity_execution": ref})
+    monkeypatch.setattr(runtime, "validate_execution", lambda *a, **k: dict(request=ref, policy_id=runtime.V12_POLICY_ID))
+    with pytest.raises(ValueError, match="1, 4"):
+        saved_refinement(run, selected)
+    for invalid in (2, True):
+        with pytest.raises(ValueError, match="not fitted"):
+            saved_refinement(run, selected, identifier=invalid)
+    for identifier in (1, 4):
+        ancestor, registered, evidence = saved_refinement(run, selected, identifier=identifier)
+        assert (ancestor, registered.identifier, evidence["registered_continuation_ids"]) == ("postmr", identifier, [1, 4])
+        assert evidence["full_gradient_calls"] == 3
+    altered = deepcopy(edges)
+    altered[1]["live_sources_sha256"] = "c"*64
+    for change in ({"edges": edges[:1]}, {"edges": list(reversed(edges))}, {"edges": altered}, {"full_gradient_calls": 0}):
+        (folder/"refine/phosphate.json").write_text(json.dumps(dict(record, phase="refine") | change))
+        with pytest.raises(ValueError):
+            read_phase(run, root, "refine", req)
+
+
+def test_descendant_cannot_add_or_drop_a_registered_phosphate(tmp_path):
+    from nasolve import refinement_parallelity as runtime
+    from nasolve.refinement_phosphate import _check_inherited_scope
+
+    _, run, _, _, ref, _, _ = frozen_round(tmp_path, runtime.V12_POLICY_ID, group=True)
+    intent = runtime.read_execution_request(run, ref, checkpoint="refine-001")["phosphate"]
+    rows = intent["inspections"]
+    ancestor = intent["ancestor"]
+    _check_inherited_scope(intent, ancestor, rows)
+    with pytest.raises(ValueError, match="different starting branch"):
+        _check_inherited_scope(intent, ancestor, rows[:1])
+    with pytest.raises(ValueError, match="different starting branch"):
+        _check_inherited_scope(dict(ancestor=ancestor, inspection=rows[0]), ancestor, rows)
 
 
 @pytest.mark.parametrize("policy_version", [10, 11])

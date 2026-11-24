@@ -16,16 +16,18 @@ entries are reconstructed from repository history.
 
 - The Phenix phosphate-restraint engine can evaluate independently registered
   O3′–P linkages in their respective crystal images during the same refinement.
-  A five-cycle test used two crossovers. Numbered AutoRefine currently accepts
-  one continuation and retains its earlier workers for replay.
+  Numbered AutoRefine accepts an explicit set with `--registered-continuations`
+  and carries that complete set into subsequent rounds. Inspect a single member
+  of the fit with `cif-doctor phosphate-image --saved-continuation-id ID`.
+  Older one-link workers retain their original source bytes.
 
 - When several inspected phosphates each lack both OP3 and a verified local
   incoming O3′–P link, the preparation diagnostic names those sites together.
   This helps locate representation breaks for review before chemistry is assigned.
   The 5W6W-derived PDU:PDU example now has an explicit two-connection
   declaration for its central strand and D:7–C:8 crossover.
-  AutoRefine and phosphate inspection now report an error if one command
-  requests two different continuation IDs. Earlier versions kept only the last.
+  Repeating the singular `--registered-continuation` option with different
+  IDs reports an error. Earlier versions kept only the last.
 
 - `cif-doctor assess --bond-targets` points to the file and line of a
   literal site edit that matches a target printed by Phenix. The JSON keeps

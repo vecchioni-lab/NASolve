@@ -1673,7 +1673,7 @@ def execute_autorefine(
     existing initialization behavior. Later saves still use the registry guard.
     """
     from .refinement_parallelity import (
-        V6_POLICY_ID, V7_POLICY_ID, V8_POLICY_ID, V9_POLICY_ID, V11_POLICY_ID, require_runtime_continuation,
+        V6_POLICY_ID, V7_POLICY_ID, V8_POLICY_ID, V9_POLICY_ID, V11_POLICY_ID, V12_POLICY_ID, require_runtime_continuation,
         validate_declared_site_choice, validate_runtime_choice,
     )
     from .refinement_counted import LONG_CONTROL_PROTOCOL, control_iteration_cap
@@ -1691,8 +1691,7 @@ def execute_autorefine(
                 or counted_protocol is not None or processor_count not in (None, 1)):
             raise AutoRefineError("Registered phosphate requires ordinary checked refinement with one native worker")
         processor_count = 1
-    runtime_policy = (counted_policy if counted_protocol is not None else V11_POLICY_ID if phosphate_request is not None
-                      else V9_POLICY_ID if observe_declared_sites else None)
+    runtime_policy = counted_policy if counted_protocol is not None else V9_POLICY_ID if observe_declared_sites else None
     runtime_options = {"runtime_policy": runtime_policy} if runtime_policy is not None else {}
     from .refinement_counted import validate_autorefine_control
     try:
@@ -1703,7 +1702,8 @@ def execute_autorefine(
             processor_count=processor_count, real_space_sites=real_space_sites,
             adp_mode=adp_mode, refine_occupancies=refine_occupancies,
             anomalous_mode=anomalous_mode, refine_coordinates=refine_coordinates)
-        validate_runtime_choice(correct_native_parallelity, phenix_python_executable, **runtime_options)
+        if phosphate_request is None:
+            validate_runtime_choice(correct_native_parallelity, phenix_python_executable, **runtime_options)
     except ValueError as exc:
         raise AutoRefineError(str(exc)) from exc
     if counted_frame is not None and (counted_protocol is None or counted_frame != 'recipe'):
@@ -1828,6 +1828,8 @@ def execute_autorefine(
         try:
             phosphate_intent = prepare_intent(run, registry, parent, phosphate_request, phenix_version=phenix_version,
                                              python_executable=phenix_python_executable)
+            runtime_options = {"runtime_policy": V12_POLICY_ID if "inspections" in phosphate_intent else V11_POLICY_ID}
+            validate_runtime_choice(correct_native_parallelity, phenix_python_executable, **runtime_options)
         except (OSError, ValueError, RuntimeError, TypeError, KeyError) as exc:
             raise AutoRefineError(f"Registered phosphate could not be verified: {exc}") from exc
 
@@ -2380,7 +2382,8 @@ def execute_autorefine(
         exit_code = 0
     elif phosphate_intent is not None:
         status = "AUTOREFINE_REVIEW"
-        message = "Refinement completed. Inspect the registered crystal phosphate before selecting this checkpoint."
+        subject = "each registered crystal phosphate" if "inspections" in phosphate_intent else "the registered crystal phosphate"
+        message = f"Refinement completed. Inspect {subject} before selecting this checkpoint."
         checkpoint_status = "REVIEW"
         usable = True
         exit_code = 0

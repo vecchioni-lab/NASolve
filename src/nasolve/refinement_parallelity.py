@@ -24,7 +24,8 @@ V8_POLICY_ID = 'round-local-counted-execution-v8'
 V9_POLICY_ID = 'round-local-declared-sites-execution-v9'
 V10_POLICY_ID = 'round-local-registered-phosphate-execution-v10'
 V11_POLICY_ID = 'round-local-registered-phosphate-execution-v11'
-PHOSPHATE_POLICIES = (V10_POLICY_ID, V11_POLICY_ID)
+V12_POLICY_ID = 'round-local-registered-phosphate-set-execution-v12'
+PHOSPHATE_POLICIES = (V10_POLICY_ID, V11_POLICY_ID, V12_POLICY_ID)
 DECLARED_SITE_POLICIES = (V9_POLICY_ID, *PHOSPHATE_POLICIES)
 _COUNTED_POLICIES = (V5_POLICY_ID, V6_POLICY_ID, V7_POLICY_ID, V8_POLICY_ID)
 _WRITTEN_POLICIES = (V6_POLICY_ID, V7_POLICY_ID, V8_POLICY_ID, *PHOSPHATE_POLICIES)
@@ -77,6 +78,9 @@ _SOURCES[V10_POLICY_ID].update({
     'cif_phosphate_phase.py': 'e612ceee631bf91f78f04a7634fd7f87dae8f78d70a34943210b59cc7bfd9c20'})
 _SOURCES[V11_POLICY_ID] = {**_SOURCES[V10_POLICY_ID],
     'cif_phosphate_restraints.py': '95521b5732958d619ec8751a9e949707992d713a0dea8c845546dd21ee8d5d39'}
+_SOURCES[V12_POLICY_ID] = {**_SOURCES[V11_POLICY_ID],
+    'cif_phosphate_runtime.py': 'a9e32506e7f26d9433dfc682363f74f68d7fac3a95b9ee47c320c1e6f8092b6c',
+    'cif_phosphate_phase.py': 'b5b92734fb56a29f9a25b36226bfd1ce4d921f91a9f6b63d0e7de688fc23ed14'}
 _RUNTIME_POLICIES = {LEGACY_POLICY_ID:'explicit-native-parallelity-refinement-v1',
                      V2_POLICY_ID:'explicit-native-parallelity-refinement-v2',
                      V3_POLICY_ID:'explicit-native-parallelity-refinement-v3',
@@ -86,6 +90,7 @@ _RUNTIME_POLICIES = {LEGACY_POLICY_ID:'explicit-native-parallelity-refinement-v1
 _RUNTIME_POLICIES[V9_POLICY_ID] = _RUNTIME_POLICIES[V3_POLICY_ID]
 _RUNTIME_POLICIES[V10_POLICY_ID] = _RUNTIME_POLICIES[V8_POLICY_ID]
 _RUNTIME_POLICIES[V11_POLICY_ID] = _RUNTIME_POLICIES[V10_POLICY_ID]
+_RUNTIME_POLICIES[V12_POLICY_ID] = _RUNTIME_POLICIES[V11_POLICY_ID]
 _V2_ENTRY = b'''from pathlib import Path
 import sys
 root=Path(__file__).resolve().parent
@@ -175,6 +180,7 @@ from _nasolve_refinement.cif_phosphate_phase import run_phase
 run_phase(root, phase, expected, arguments)
 '''
 _ENTRIES[V11_POLICY_ID] = _ENTRIES[V10_POLICY_ID]
+_ENTRIES[V12_POLICY_ID] = _ENTRIES[V11_POLICY_ID]
 _CHEMISTRY_POLICIES = (V3_POLICY_ID, V4_POLICY_ID, *DECLARED_SITE_POLICIES, *_COUNTED_POLICIES)
 
 
@@ -222,8 +228,8 @@ def _code(policy=None):
         frozen.update(legacy)
     if policy in (V10_POLICY_ID, V11_POLICY_ID):
         single = json.loads((package / 'data/refinement-runtime-single-phosphate-sources.json').read_text())
-        _need(isinstance(single, dict) and set(single) == {'cif_phosphate_runtime.py'}
-              and isinstance(single['cif_phosphate_runtime.py'], str), 'Invalid frozen single-phosphate runtime')
+        _need(isinstance(single, dict) and set(single) == {'cif_phosphate_runtime.py', 'cif_phosphate_phase.py'}
+              and all(isinstance(text, str) for text in single.values()), 'Invalid frozen single-phosphate runtime')
         frozen.update(single)
     if policy == V10_POLICY_ID:
         legacy = json.loads((package / 'data/refinement-runtime-v10-sources.json').read_text())
@@ -301,6 +307,8 @@ def prepare_execution(run, *, checkpoint, parent, inputs, command, python_execut
     _need(runtime_policy is None or (isinstance(policy,str) and policy in _CHEMISTRY_POLICIES),
           'Unsupported new native execution policy')
     _need((phosphate is not None) == (policy in PHOSPHATE_POLICIES), 'Registered phosphate requires its explicit native policy')
+    if phosphate is not None:
+        _need(('inspections' in phosphate) == (policy == V12_POLICY_ID), 'Phosphate scope differs from the native policy')
     _need(isinstance(command,list) and len(command)>1)
     inputs=[Path(p).expanduser().resolve() for p in inputs]
     _need(command[1:1+len(inputs)]==[str(p) for p in inputs],

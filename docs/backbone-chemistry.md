@@ -205,6 +205,23 @@ the repaired bond alone cannot establish the backbone conformation.
 D:1 retained all eleven terminal restraints. The same 1,778 working and
 124 free reflections were retained in the one-link and two-link fits.
 
+The ordinary numbered test used the archived starting model and its seven
+original restraint files. Starting from manual-001, two five-cycle rounds
+gave B:7–B:1 and D:7–C:8 distances of 1.649/1.630 Å and then 1.643/1.647 Å.
+Both had eight crossing angles, six torsions, all eleven D:1 terminal terms,
+and the same 1,778 working and 124 free indices. R-work/free were
+0.2354/0.2964 and 0.2171/0.2826. Refine-005 stayed selected.
+
+The second fit still placed D:7 O3′ and C:8 P at −1.87 and −1.05 whole-map
+rms units in its unfilled 2mFo−DFc map at 4.19 Å. The donor C4′–C3′–O3′–P
+torsion was 54.5°, against a native target of −140° and a width of 35°.
+In the first fit, two of four chemically matched ordinary T→G links also
+had positive values (92.5° and 81.5°). All donor sugar stereocentres tested
+kept their handedness. These measurements leave the crossover conformation
+open. With the historical PDU restraints, the final two propynyl tips lay
+2.338/1.243 Å from their ring planes. Repeat under the corrected preparation
+before promoting a PDU model.
+
 ### Crossovers in the FT–Hg scaffold
 
 In the separate FT_Hg construct, the investigator declared the central B

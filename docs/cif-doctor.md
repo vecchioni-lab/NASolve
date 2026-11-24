@@ -231,7 +231,9 @@ model. It allows the independent rounding of the printed B and ANISOU
 fields. A changed tensor, even one with the same equivalent B factor,
 requires review.
 
-### Carrying one registered phosphate through a numbered refinement
+<a id="carrying-one-registered-phosphate-through-a-numbered-refinement"></a>
+
+### Carrying crystal phosphates through a numbered refinement
 
 Give AutoRefine the checkpoint to fit, the checkpoint where the construct was
 registered, and the exact native chemistry receipt for the model being fitted.
@@ -244,21 +246,28 @@ nasolve autorefine RUN --from manual-001 --registration-checkpoint refine-005 \
   --native-receipt current-parent/native_receipt.json
 ```
 
-The original seven restraint files in the PDU example keep their order. The
-number of files can vary by experiment. The round supplies its own crystal
-bond to Phenix. Two or more chemically matching intact links must agree on
-the bond and all seven orientation terms. Checked plane forces and one native
-worker are used. Preflight and refinement independently verify the applied
-terms, the four bonded-neighbour exclusions, and the work/free identities.
+For a construct with several covalent crossovers, replace
+`--registered-continuation 1` in that command with
+`--registered-continuations 1 2`, using the IDs from its own registration.
+Each O3′ donor and phosphorus acceptor can participate in one bond at that
+end. One nucleotide can contribute its two different ends to adjacent links.
+
+The original restraint files keep their order. The round supplies each
+declared bond to Phenix in its own crystal image. For each connection, two
+or more chemically matching intact links must agree on the bond and all
+seven orientation terms. One native worker applies all requested forces
+together. Preflight and refinement independently verify the applied terms,
+the four bonded-neighbour exclusions per link, and the work/free identities.
 Read the new checkpoint's coordinates and maps before selecting it.
 
 For a later child on the same branch, `--native-receipt` by itself carries
-the stored registration forward. The new receipt must describe the newly
+the complete stored set forward. To change which bonds are present, start
+from a checkpoint before that set was introduced. The new receipt must describe the newly
 selected model and its exact dictionaries and PHIL files. The original
 registration files can move after the first round. Each request keeps small
 copies in its own `parallelity_runtime/phosphate` directory. The full native
 chemistry inventory is checked when supplied and its fingerprint is retained.
-This route currently covers one registered junction in a PDB model on the
+This route uses PDB coordinates in the original crystal frame on the
 qualified Phenix build. A physical nick remains open.
 
 To see what survived refinement, name the fitted checkpoint. Its saved
@@ -267,6 +276,10 @@ declaration supplies the atoms and crystal copy.
 ```bash
 nasolve cif-doctor phosphate-image RUN --checkpoint refine-007 --saved-continuation
 ```
+
+For a fit with several bonds, use `--saved-continuation-id 2` to inspect
+the chosen member. The result identifies all the continuations Phenix fitted
+together. Asking for an unspecified member lists the available IDs.
 
 The report measures the written model, reads its final geometry listing and
 shows how many bond, angle and torsion restraints Phenix applied during this

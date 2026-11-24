@@ -1,5 +1,5 @@
-"""Bind one declared crystal phosphodiester to an ordinary numbered refinement round."""
-from dataclasses import dataclass
+"""Carry declared crystal phosphodiesters through an ordinary numbered refinement."""
+from dataclasses import dataclass, replace
 from hashlib import sha256
 import json
 from pathlib import Path
@@ -11,6 +11,7 @@ from .checkpoints import _file_reference, _ref_path, resolve_checkpoint
 from .cif_dictionary_sites import _bind_capture_inputs, _bind_capture_input_pins
 from .cif_phosphate_continuation import RegisteredContinuation, inspect_inherited_continuation
 from .cif_phosphate_restraints import phosphate_bond_phil
+from .cif_phosphate_runtime import RegisteredPhosphateRuntime
 from .refinement_inputs import _bound_path
 
 _SOURCE_NAMES = ("registration", "discovery", "continuations")
@@ -21,18 +22,32 @@ class PhosphateRequest:
     native_receipt: Path
     registered: RegisteredContinuation | None = None
     registration_checkpoint: str | None = None
+    additional_ids: tuple[int, ...] = ()
+
+
+def _ordered_ids(values):
+    if any(type(v) is not int or v < 1 for v in values) or len(set(values)) != len(values):
+        raise ValueError("Registered continuation IDs must be distinct positive integers")
+    return tuple(sorted(values))
 
 
 def request_from_args(args):
     paths = (args.registration, args.discovery_input, args.backbone_continuations)
-    if args.registered_continuation is None:
+    ids = ()
+    if getattr(args, "registered_continuations", None) is not None:
+        ids = _ordered_ids(args.registered_continuations)
+        if len(ids) < 2:
+            raise ValueError("Use --registered-continuation for one phosphate or give at least two distinct IDs")
+    elif args.registered_continuation is not None:
+        ids = _ordered_ids([args.registered_continuation])
+    if not ids:
         if args.registration_checkpoint is not None or any(p is not None for p in paths):
-            raise ValueError("Registering a phosphate requires --registered-continuation with all three topology files")
+            raise ValueError("Registering crystal phosphates requires continuation IDs with all three topology files")
         return PhosphateRequest(args.native_receipt) if args.native_receipt is not None else None
-    if args.registered_continuation < 1 or any(p is None for p in paths) or args.native_receipt is None:
+    if any(p is None for p in paths) or args.native_receipt is None:
         raise ValueError("A positive continuation ID, registration, discovery input, backbone continuations and native receipt are required")
-    return PhosphateRequest(args.native_receipt, RegisteredContinuation(args.registered_continuation, *paths),
-                            args.registration_checkpoint)
+    return PhosphateRequest(args.native_receipt, RegisteredContinuation(ids[0], *paths),
+                            args.registration_checkpoint, ids[1:])
 
 
 def _prior_intent(run, registry, parent):
@@ -53,12 +68,27 @@ def _identity(ancestor, edge):
             edge["source"], edge["target"], edge["oxygen_operator_xyz"])
 
 
-def _frozen_registration(run, intent):
-    identifier = intent["inspection"]["registered_continuation"].get("continuation_id")
+def _inspections(intent):
+    return intent["inspections"] if "inspections" in intent else [intent["inspection"]]
+
+
+def _frozen_registration(run, intent, inspection=None):
+    if inspection is None:
+        inspection, = _inspections(intent)
+    identifier = inspection["registered_continuation"].get("continuation_id")
     if type(identifier) is not int or identifier < 1:
         raise ValueError("The saved phosphate has no valid continuation ID")
     paths = (_bound_path(intent["sources"][name], "frozen phosphate " + name, run) for name in _SOURCE_NAMES)
     return RegisteredContinuation(identifier, *paths)
+
+
+def _check_inherited_scope(prior, ancestor, observations):
+    if prior is None:
+        return
+    old = [_identity(prior["ancestor"], row["registered_continuation"]) for row in _inspections(prior)]
+    new = [_identity(ancestor, row["registered_continuation"]) for row in observations]
+    if new != old:
+        raise ValueError("Changing an inherited phosphate registration requires a different starting branch")
 
 
 def _original(run, registry, parent, checkpoint):
@@ -87,34 +117,39 @@ def prepare_intent(run, registry, parent, choice, *, phenix_version, python_exec
     prior = _prior_intent(run, registry, parent)
     registered = choice.registered
     if registered is None:
+        if choice.additional_ids or choice.registration_checkpoint is not None:
+            raise ValueError("Additional IDs or a registration checkpoint need an explicit phosphate registration")
         if prior is None:
             raise ValueError("This branch has no registered phosphate to continue")
         checkpoint = prior["ancestor"]
-        registered = _frozen_registration(run, prior)
+        registrations = [_frozen_registration(run, prior, row) for row in _inspections(prior)]
     else:
         checkpoint = choice.registration_checkpoint or parent["id"]
+        ids = _ordered_ids((registered.identifier, *choice.additional_ids))
+        registrations = [replace(registered, identifier=i) for i in ids]
     ancestor, source = _original(run, registry, parent, checkpoint)
     model = _bound_path(parent["model"], "phosphate starting model", run)
-    inspection = inspect_inherited_continuation(source, model, registered, native_receipt=choice.native_receipt)
-    edge = inspection["registered_continuation"]
-    if edge["frame_transfer"]["source_model_sha256"] != ancestor["model"]["sha256"]:
+    observations = [inspect_inherited_continuation(source, model, reg, native_receipt=choice.native_receipt)
+                    for reg in registrations]
+    if len(observations) > 1:
+        RegisteredPhosphateRuntime.check_group(observations)
+    edges = [row["registered_continuation"] for row in observations]
+    if any(edge["frame_transfer"]["source_model_sha256"] != ancestor["model"]["sha256"] for edge in edges):
         raise ValueError("Phosphate registration differs from its original checkpoint")
-    if prior is not None and _identity(ancestor["id"], edge) != _identity(
-            prior["ancestor"], prior["inspection"]["registered_continuation"]):
-        raise ValueError("Changing an inherited phosphate registration requires a different starting branch")
-    proof = inspection["native_reference_links"]
+    _check_inherited_scope(prior, ancestor["id"], observations)
     receipt_raw = Path(choice.native_receipt).read_bytes()
     receipt = json.loads(receipt_raw)
-    if sha256(receipt_raw).hexdigest() != proof["native_receipt_sha256"] or not _same_native_capture(
+    digest = sha256(receipt_raw).hexdigest()
+    if any(row["native_reference_links"]["native_receipt_sha256"] != digest for row in observations) or not _same_native_capture(
             receipt, phenix_version, python_executable):
         raise ValueError("The phosphate capture or its Phenix version differs from this refinement")
     capture_inputs = [{k: row[k] for k in ("role", "sha256", "size")} for row in receipt["inputs"]]
-    bond = phosphate_bond_phil(inspection).encode()
-    sources = {name: Path(getattr(registered, name)).read_bytes() for name in _SOURCE_NAMES}
-    if not all(sha256(raw).hexdigest() == edge["sources"][name+"_sha256"] for name, raw in sources.items()):
+    bond = "".join(map(phosphate_bond_phil, observations)).encode()
+    sources = {name: Path(getattr(registrations[0], name)).read_bytes() for name in _SOURCE_NAMES}
+    if not all(sha256(raw).hexdigest() == edges[0]["sources"][name+"_sha256"] for name, raw in sources.items()):
         raise ValueError("A phosphate topology input changed after inspection")
-    return dict(ancestor=ancestor["id"], inspection=inspection, sources=sources, bond=bond,
-                capture_inputs=capture_inputs)
+    scope = {"inspection": observations[0]} if len(observations) == 1 else {"inspections": observations}
+    return dict(ancestor=ancestor["id"], **scope, sources=sources, bond=bond, capture_inputs=capture_inputs)
 
 
 def bind_execution_inputs(prepared, model, restraints):
@@ -151,12 +186,11 @@ def write_intent(run, root, prepared):
     bond = folder / "image-bond.phil"
     with bond.open("xb") as handle:
         handle.write(prepared["bond"])
-    return dict(ancestor=prepared["ancestor"], inspection=prepared["inspection"], sources=refs,
-                capture_inputs=prepared["capture_inputs"], bond=_file_reference(bond, run))
+    return {**prepared, "sources": refs, "bond": _file_reference(bond, run)}
 
 
 def read_intent(run, root, request):
-    """Verify the small frozen declaration and the one execution-only bond."""
+    """Verify the frozen declaration and every bond in the execution-only PHIL."""
     try:
         return _read_intent(run, root, request)
     except (KeyError, TypeError, AttributeError, IndexError) as exc:
@@ -164,15 +198,28 @@ def read_intent(run, root, request):
 
 
 def _read_intent(run, root, request):
+    from .refinement_parallelity import V12_POLICY_ID
     intent = request.get("phosphate")
-    if not isinstance(intent, dict) or set(intent) != {"ancestor", "inspection", "sources", "bond", "capture_inputs"}:
+    grouped = request.get("policy_id") == V12_POLICY_ID
+    scope = "inspections" if grouped else "inspection"
+    if not isinstance(intent, dict) or set(intent) != {"ancestor", scope, "sources", "bond", "capture_inputs"}:
         raise ValueError("Missing registered phosphate intent")
-    observation = intent["inspection"]
-    edge = observation["registered_continuation"]
+    observations = _inspections(intent)
+    if grouped:
+        if not isinstance(observations, list) or len(observations) < 2:
+            raise ValueError("This round requires its complete registered phosphate set")
+        ids = RegisteredPhosphateRuntime.check_group(observations)
+        captures = {row["native_reference_links"]["native_receipt_sha256"] for row in observations}
+        originals = {row["registered_continuation"]["frame_transfer"]["source_model_sha256"] for row in observations}
+        if (ids != _ordered_ids(ids) or len(captures) != 1 or len(originals) != 1
+                or not all(re.fullmatch("[0-9a-f]{64}", h) for h in (*captures, *originals))):
+            raise ValueError("Crystal phosphates must share one original model and native capture in registration order")
+    edge = observations[0]["registered_continuation"]
     if (not isinstance(intent["ancestor"], str) or not intent["ancestor"] or set(intent["sources"]) != set(_SOURCE_NAMES)
-            or len(request["inputs"]) < 4 or observation["model_sha256"] != request["inputs"][1]["sha256"]
+            or len(request["inputs"]) < 4 or any(row["model_sha256"] != request["inputs"][1]["sha256"] for row in observations)
             or any(row.get("anchor") not in ("run", "dataset", "repository") for row in request["inputs"])
-            or edge["frame_transfer"]["child_model_sha256"] != observation["model_sha256"]):
+            or any(row["registered_continuation"]["frame_transfer"]["child_model_sha256"] != row["model_sha256"]
+                   for row in observations)):
         raise ValueError("The phosphate observation differs from its numbered parent")
     for name in _SOURCE_NAMES:
         ref = intent["sources"][name]
@@ -186,8 +233,8 @@ def _read_intent(run, root, request):
     inputs = request["inputs"]
     if (ref.get("anchor") != "run" or ref.get("relative_path") != relative or inputs.count(ref) != 1 or inputs[-2] != ref
             or _bound_path(ref, "registered phosphate bond", run) != path_in(run, relative)
-            or path_in(run, relative).read_bytes() != phosphate_bond_phil(observation).encode()):
-        raise ValueError("A single crystal bond with its exact operator is required")
+            or path_in(run, relative).read_bytes() != "".join(map(phosphate_bond_phil, observations)).encode()):
+        raise ValueError("Each registered crystal bond with its exact operator is required")
     capture = intent["capture_inputs"]
     if not isinstance(capture, list) or not capture or len(inputs) - len(capture) not in (3, 4):
         raise ValueError("Phosphate capture does not cover the ordered model and restraints")
@@ -202,19 +249,17 @@ def _read_intent(run, root, request):
 def validate_lineage(run, registry, parent, intent):
     """Cold replay binds the original topology and current coordinate frame without Phenix."""
     ancestor, source = _original(run, registry, parent, intent["ancestor"])
-    recorded = intent["inspection"]
-    edge = recorded["registered_continuation"]
-    registered = _frozen_registration(run, intent)
-    actual = inspect_inherited_continuation(source, _ref_path(parent["model"], "phosphate model", run), registered)
-    if actual != {key: value for key, value in recorded.items() if key != "native_reference_links"}:
-        raise ValueError("The registered phosphate observation differs from the original or selected parent")
-    prior = _prior_intent(run, registry, parent)
-    if prior is not None and _identity(ancestor["id"], edge) != _identity(
-            prior["ancestor"], prior["inspection"]["registered_continuation"]):
-        raise ValueError("Numbered child changed its inherited phosphate")
+    observations = _inspections(intent)
+    model = _ref_path(parent["model"], "phosphate model", run)
+    for recorded in observations:
+        registered = _frozen_registration(run, intent, recorded)
+        actual = inspect_inherited_continuation(source, model, registered)
+        if actual != {key: value for key, value in recorded.items() if key != "native_reference_links"}:
+            raise ValueError("The registered phosphate observation differs from the original or selected parent")
+    _check_inherited_scope(_prior_intent(run, registry, parent), ancestor["id"], observations)
 
 
-def saved_refinement(run, checkpoint):
+def saved_refinement(run, checkpoint, *, identifier=None):
     """Read the restraint evidence from this completed checkpoint's own fit."""
     from .refinement_parallelity import PHOSPHATE_POLICIES, read_execution_request, validate_execution
 
@@ -229,7 +274,17 @@ def saved_refinement(run, checkpoint):
     intent = request["phosphate"]
     root = Path(record["request"]["relative_path"]).parent.as_posix()
     phase = read_phase(run, root, "refine", request)
-    capture = intent["inspection"]["native_reference_links"].get("native_receipt_sha256")
+    observations = _inspections(intent)
+    identifiers = [row["registered_continuation"]["continuation_id"] for row in observations]
+    if identifier is None and len(observations) > 1:
+        raise ValueError("This checkpoint fitted several phosphates. Use --saved-continuation-id with one of "
+                         + ", ".join(map(str, identifiers)))
+    if identifier is not None and (type(identifier) is not int or identifier not in identifiers):
+        raise ValueError("The selected continuation ID was not fitted in this checkpoint")
+    index = identifiers.index(identifier) if identifier is not None else 0
+    observation = observations[index]
+    fitted = phase["edges"][index] if "edges" in phase else phase
+    capture = observation["native_reference_links"].get("native_receipt_sha256")
     if not isinstance(capture, str) or not re.fullmatch("[0-9a-f]{64}", capture):
         raise ValueError("The starting-model native chemistry receipt has no valid fingerprint")
     evidence = {
@@ -237,32 +292,46 @@ def saved_refinement(run, checkpoint):
         "starting_model_sha256": phase["parent_model_sha256"],
         "starting_native_receipt_sha256": capture,
         "request_sha256": record["request"]["sha256"],
-        "native_forces": phase["families"],
-        "native_neighbours": phase["bond"],
+        "native_forces": fitted["families"],
+        "native_neighbours": fitted["bond"],
         "full_gradient_calls": phase["full_gradient_calls"],
         "reflections": phase["reflections"],
     }
-    return intent["ancestor"], _frozen_registration(run, intent), evidence
+    if len(identifiers) > 1:
+        evidence["registered_continuation_ids"] = identifiers
+    return intent["ancestor"], _frozen_registration(run, intent, observation), evidence
 
 
 def read_phase(run, root, phase, request):
     """Read checked phosphate and free-set observations without invoking native code."""
     directory = path_in(run, root)
     row = json.loads(path_in(directory, phase+"/phosphate.json").read_bytes())
-    inspection = request["phosphate"]["inspection"]
-    expected = dict(schema_version=1, phase=phase, request_sha256=sha256((directory/"request.json").read_bytes()).hexdigest(),
-                    parent_model_sha256=inspection["model_sha256"], oxygen_operator_xyz=inspection["o3_image"],
-                    families={"bond_simple": 1, "angle": 4, "dihedral": 3},
-                    bond={"bonds": 1, "second_shell_pairs": 4, "remaining_nonbonded": 0}, bindings_restored=True)
+    inspections = _inspections(request["phosphate"])
+    grouped = "inspections" in request["phosphate"]
+    expected = dict(schema_version=2 if grouped else 1, phase=phase,
+                    request_sha256=sha256((directory/"request.json").read_bytes()).hexdigest(),
+                    parent_model_sha256=inspections[0]["model_sha256"], bindings_restored=True)
+    edge_fields = {"oxygen_operator_xyz", "families", "bond", "live_sources_sha256"}
+    fields = set(expected) | {"full_gradient_calls", "reflections"} | ({"edges"} if grouped else edge_fields)
     def digest(value):
         return isinstance(value, str) and len(value) == 64 and all(c in "0123456789abcdef" for c in value)
-    if (not isinstance(row, dict) or set(row) != set(expected) | {"live_sources_sha256", "full_gradient_calls", "reflections"}
+    if (not isinstance(row, dict) or set(row) != fields
             or any(type(row[k]) is not type(v) or row[k] != v for k, v in expected.items())
-            or type(row["full_gradient_calls"]) is not int or row["full_gradient_calls"] < 1
-            or not digest(row["live_sources_sha256"])):
+            or type(row["full_gradient_calls"]) is not int or row["full_gradient_calls"] < 1):
         raise ValueError("Incomplete native phosphate geometry or restored binding")
-    if any(type(n) is not int for key in ("families", "bond") for n in row[key].values()):
-        raise ValueError("Native phosphate proxy counts must be integers")
+    measured = row["edges"] if grouped else [row]
+    if not isinstance(measured, list) or len(measured) != len(inspections):
+        raise ValueError("The native fit did not record every registered phosphate")
+    for item, obs in zip(measured, inspections):
+        if grouped and (not isinstance(item, dict) or set(item) != edge_fields | {"continuation_id"}
+                or type(item["continuation_id"]) is not int
+                or item["continuation_id"] != obs["registered_continuation"]["continuation_id"]):
+            raise ValueError("Phosphate fit differs from its registered continuation IDs")
+        if (item["oxygen_operator_xyz"] != obs["o3_image"] or not digest(item["live_sources_sha256"])
+                or item["families"] != {"bond_simple": 1, "angle": 4, "dihedral": 3}
+                or item["bond"] != {"bonds": 1, "second_shell_pairs": 4, "remaining_nonbonded": 0}
+                or any(type(n) is not int for key in ("families", "bond") for n in item[key].values())):
+            raise ValueError("Incomplete native phosphate geometry or crystal image")
     flags = row["reflections"]
     if not isinstance(flags, dict) or set(flags) != {"start", "finish", "removed_free", "removed_work"}:
         raise ValueError("Incomplete native phosphate reflection inventory")
@@ -278,6 +347,7 @@ def read_phase(run, root, phase, request):
             raise ValueError("Phosphate refinement changed the observed work/free accounting")
     if phase == "refine":
         before = read_phase(run, root, "preflight", request)
-        if before["live_sources_sha256"] != row["live_sources_sha256"] or before["reflections"]["start"] != flags["start"]:
+        chemistry = "edges" if grouped else "live_sources_sha256"
+        if before[chemistry] != row[chemistry] or before["reflections"]["start"] != flags["start"]:
             raise ValueError("Phosphate preflight and refinement started with different chemistry or diffraction inputs")
     return row
