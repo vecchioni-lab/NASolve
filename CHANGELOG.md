@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W258 — Preserve deposited connection endpoints through a recut
+
+- Add a read-only observer retaining every original `_struct_conn` row and its
+  atom identity while transporting explicit images through the saved recut.
+  Reuse Cedar's pinned public symmetry decoder and existing exact image algebra.
+- Preserve unresolved rows/reasons, including unknown or conflicting identifiers,
+  ambiguous alternates, missing polymer locators and unsupported third partners.
+  An explicitly blank value cannot match unknown or absent source metadata.
+- Verify focused source/relocated installation and original 3LNA/5LNA files.
+  No CIF writer, inferred chemistry, native execution, default or schema migration.
+
 ### W257 — Project declared backbone paths onto complete original CIF sites
 
 - Reuse the original-source reader and saved graph to partition existing edges

@@ -7,6 +7,11 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Current annotation transport: W258.** [Original connection endpoints](topostitch-preview.md#preserve-original-connection-endpoints-through-a-recut-w258)
+  retain every source connection row and exact atom/image lineage, including
+  hydrogen bonds and unresolved cases. 143 source/143 relocated installed;
+  four actual-file controls preserve all 80/87 original rows. No writer.
+
 - **Current path binding: W257.** [Original-site path projection](topostitch-preview.md#project-declared-paths-onto-original-cif-sites-w257)
   accounts for every declared backbone edge and original registered site while
   retaining unregistered context. 121 source/121 installed; full Willow suite
@@ -99,8 +104,8 @@ current instructions; other branches retain their own status and validation pins
   The failed direct result and three remaining moving-region outliers stay
   explicit. This is same-family synthetic recovery, not general experimental repair.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W257, next W258.
-  Continue complete original path/annotation binding in Pine; coordinate feasible
+  [generated human view](topostitch-roadmap.md). Current W258, next W259.
+  Continue original polymer/sequence semantics and supported output in Pine; coordinate feasible
   endpoint/convergence qualification with Alder and chemistry receiving with Cedar.
   Prior synthetic recovery and near-target bond controls remain closed evidence;
   neither a changed ASU nor a shorter bond closes the scientific repair gate.

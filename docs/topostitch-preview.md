@@ -4004,3 +4004,49 @@ source and installed bytes match exactly; installed imports/help also pass. 206 
 files hash-match after temporary build/old installation path removal. Initial
 absent-API and prototype position-collision failures remain recorded; no native
 run occurred. Existing source-reader calls and saved-preview schemas are unchanged.
+
+## Preserve original connection endpoints through a recut (W258)
+
+`topostitch_cif_annotations.observe_relabel_cif_connections(directory, model,
+expected_image_owner_sha256=..., cedar_source=..., **source_binding)` observes
+all original `_struct_conn` rows against W256's original byte/atom context and
+W257's complete registered-site projection. `source_binding` is exactly the
+explicit receipt/model hashes, aliases and working-precision controls required
+by `load_relabel_cif_source`. `cedar_source` is an explicitly selected trusted
+source directory containing `nasolve`; omit it only with a compatible installed
+Cedar owner. No checkout is searched automatically. Pin
+`nasolve/cif_deposition_links.py` with `expected_image_owner_sha256`.
+
+Cedar's `resolve_deposition_image` resolves the file's declared operation IDs and
+cell shifts. The isolated existing owner loader is reused and its source hash is
+checked before/after. This does not call Phenix. The qualified current owner is
+Cedar `51be01f48327c187ac2015e328c1c61adb46891a`, decoder SHA-256
+`931af21688c15a29c99b605b4d442afc908df91d48a1825c19dc68eae81e4204`.
+Earlier Willow-only installations without that compatible owner require the
+explicit developer source argument; this is not a combined-branch release.
+
+Every supplied label/author identity field constrains matching. Ambiguous or
+missing atoms, inconsistent IDs, absent/unknown symmetry codes, conflicting
+operation tables and third partners stay unresolved with reasons and the complete
+raw row. Explicit CIF blank (`.`) differs from unknown (`?`) or an absent field.
+A polymer endpoint with a known source sequence position needs an explicit label
+or author residue number. Unregistered context stays at its existing image.
+Unknown connection kinds may retain resolved endpoints without acquiring chemical
+meaning. Duplicate connection IDs retain both numbered rows and block a fully
+resolved result. An absent table does not certify absent or complete connectivity.
+
+For source endpoint `g(x)` and new representative `y = h(x)`, observe the new image
+`g h^-1(y)` using the existing exact operator owners. Both absolute physical
+endpoints, their numerical errors and connection distance are recorded; unchanged
+distance alone cannot hide an incorrect common translation. Original atom IDs,
+raw fields and proposed path positions remain visible. The JSON observation is
+schema 1, `topostitch-original-cif-connection-transport`; it contains source,
+preview, path and decoder hashes and no operational absolute paths. Full original
+lexical bytes remain in the pinned W256 source context.
+
+This is **not a writer**: it does not choose output chain/entity names, add missing
+graph edges as annotations, validate connection chemistry, alter sequence/termini,
+interpret native restraints or authorize a changed model. These are separate P03
+and Cedar gates. [The wwPDB category definition](https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Categories/struct_conn.html)
+covers different connection types, which is why the reader does not filter to
+O3′–P covalent bonds.

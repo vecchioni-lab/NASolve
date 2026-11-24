@@ -1206,6 +1206,13 @@ saved declared graph to project local paths and explicit image boundaries onto
 complete original site labels. Unregistered source context and original boundary
 intent remain explicit; path numbering does not write new CIF chains. Complete
 annotation transport and Cedar-owned sequence/chemistry checks remain separate.
+`topostitch_cif_annotations.observe_relabel_cif_connections` now observes all
+original connection rows through that exact lineage, retaining unresolved values
+and applying `g h^-1` to explicit endpoints. Cedar's SHA-pinned public image
+code decoder owns operation lookup; Willow owns complete atom identity and
+physical endpoint invariance. No annotation or model file is written. See the
+[W258 contract](topostitch-preview.md#preserve-original-connection-endpoints-through-a-recut-w258).
+
 
 
 `topostitch_recipe` freezes complete canonical NARestraints selections for explicit

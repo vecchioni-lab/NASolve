@@ -13887,3 +13887,85 @@ Cedar for covalent chemistry/sequence semantics and compare against the complete
 bound reference. Its O3′–P-specific checker is not an all-annotation parser.
 No automatic row deletion, chemical inference, supported writer, edited-child
 rebinding, P02 GUI acceptance or native receiving is introduced here.
+
+## W258 — Retain original connection rows and physical endpoints
+
+The maintained `topostitch_cif_annotations` observer composes W256/W257 original
+source/site binding, the existing isolated Cedar loader, Cedar's public
+`resolve_deposition_image`, and the exact graph/image arithmetic owners. For an
+original endpoint `g(x)` and representative `h(x)`, it records `g h^-1` without
+changing either physical endpoint. All original `_struct_conn` rows and raw
+fields remain, including unknown types and unresolved endpoints. No writer,
+chain/entity assignment, missing-bond inference or native restraint activation.
+The [API contract](topostitch-preview.md#preserve-original-connection-endpoints-through-a-recut-w258)
+records input controls and scope.
+
+Four read-only controls use the exact original models and preview anchors/hashes
+in W249's `materialization-plan.json`. All **80/87 original connections** survive,
+including **71/74 hydrogen bonds**. The unchanged controls have exactly zero
+endpoint error; the two-route recuts change **14/15 endpoint references**, with
+maximum physical endpoint errors **4.45e-15/5.03e-15 Å**. Original labelled atoms,
+not rounded working identities, own the correspondence. No coordinates or
+scientific source documents were written. No Phenix/Coot job was launched.
+
+**Validation:** 143 focused source tests (9.16 s), 143 relocated installed tests
+(9.82 s); 208 installed-file hashes verified after build and old-install removal.
+New API imports, installed cut-preview help and Python 3.10 parsing pass. Full
+Willow suite: **2,727 passed, four skipped, 234 subtests (109.31 s)**. This is a
+Willow full regression, not a combined-branch native qualification. The direct
+collaboration contract required the complete suite; no scientific control was
+rerun for it. Python 3.12.14/Gemmi 0.7.5; no external native-tool execution.
+
+Source/installed focused selection:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -p no:cacheprovider -q \
+  tests/test_topostitch_cif_annotations.py tests/test_topostitch_cif_paths.py \
+  tests/test_topostitch_cif_source.py tests/test_topostitch_recut_bundle.py \
+  tests/test_topostitch_graph.py
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest -p no:cacheprovider -q
+```
+
+The local qualification supplied an explicitly qualified Gemmi/pytest dependency
+path in addition to `src`; exact interpreter/environment/commands, clean-install
+recipe, real-file anchors and source hashes are retained in NASolve anchor
+`branch-artifacts/willow/w258-cif-connection-transport/validation.json` and
+`qualification.json`. No network package install was needed. The task-owned
+5.8 MB build/install temporary tree was removed after checks.
+
+**Failures retained:** initial missing-API regressions; synthetic fixture missing
+its explicit operation table; later fixture mixing logical D with author chain
+names. Rowan's cold review found a real identity gap: explicitly blank alt/insert
+fields matched unknown/absent source values, and a unique polymer atom could match
+without an explicit residue locator. All five regressions fail before correction.
+Final source and relocated installation pass; all four real controls were replayed
+on the final bytes. A local docs helper then reused its output path variable
+and overwrote that JSON report with the intended roadmap payload. The failed
+payload is retained; a fresh same-source read-only replay seals a new report.
+No scientific input, source module or native result changed. Tests also retain ambiguity, alternate conflicts, duplicate
+connection IDs, unknown codes, absent tables, original context and owner drift.
+
+**Compatibility:** additive optional API/report schema 1. No changes to previous
+APIs, existing packet schemas, callers, default behavior or migration. The public
+Cedar decoder is separately qualified at code `51be01f48327c187ac2015e328c1c61adb46891a`,
+file SHA-256 `931af21688c15a29c99b605b4d442afc908df91d48a1825c19dc68eae81e4204`.
+An explicit compatible trusted Cedar source is required until that owner is
+integrated into Willow's package. Source imports are isolated, file-hash pinned
+and read-only. All generated science/reports remain local, excluded from Git.
+
+**Next:** P03 remains partial. Bind original entity/polymer sequence semantics and
+complete original polymer coverage through Cedar's semantic owner. Define output
+labels and complete graph/annotation encoding before any maintained writer.
+Original connection-row retention does not create annotations for previously
+implicit bonds. P02 graphical review, source validity and native/child lifecycle
+remain separate gates.
+
+**Coordinated science status, no duplicate native work:** Alder handoff
+`f3ee67b604c4e1a51d958b550993f467ef48ea3e` records the separately qualified
+constructed-seed receiver at `09a972b63b3eb85415ffd1a87e383d4b39c51643`: P–O3′
+1.618→1.615 Å and C3′–O3′ 1.454→1.448 Å, while Rwork/Rfree 0.3081/0.3427 and
+weak/negative density prevent parent selection/f″. The next 858-DNA-atom,
+42-group XYZ/group-B comparison has completed zero-cycle native initialization
+with source MLHL/Free-R and Hg held; broader optimization has not run. These are
+coordinated reports/current-handoff readback, not independent Willow native tests.
+Rowan/Alder own that next step; prior optimizer stopping verdicts stay intact.

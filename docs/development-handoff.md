@@ -1,77 +1,80 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W257, 2026-11-24**, code `dc50cf4e92dce776b67ca92bbe9a7713406b35bb`.
-[Declared paths on original CIF sites](topostitch-preview.md#project-declared-paths-onto-original-cif-sites-w257)
-binds every resolved registered node to a complete original site and partitions
-every declared backbone edge into local adjacency or an explicit image boundary.
-Original identities, chemical/unknown boundaries, protected/do-not-connect flags
-and unregistered atoms remain visible. Branches, uncut identity cycles, incomplete
-sites and multiple components aliasing one label-chain/sequence position refuse.
-Path numbers are not new output chains; no writer or chemical inference is added.
+**Current maintained slice: W258, 2026-11-24** (code pin recorded after commit).
+[Original connection transport](topostitch-preview.md#preserve-original-connection-endpoints-through-a-recut-w258)
+retains every original `_struct_conn` row and resolves supplied atom labels and
+explicit symmetry through the saved cut. New image `g h^-1` preserves the exact
+physical endpoint; path positions remain descriptive, not output chain names.
+All connection kinds remain visible. Unresolved/third-partner rows retain reasons;
+missing symmetry never silently becomes identity. No model or annotation is written.
 
-**121 focused source / 121 relocated installed checks pass.** The complete Willow
-suite passes **2,705 tests, four skips and 234 subtests**, with process inspection
-permissions available. Hazel's independent review exposed one missing-entity position collision; its
-regression fails before the fix, the reviewed final bytes pass, and the whole
-validation is repeated for that semantic correction. Installed imports/help pass.
-206 installation-file hashes verify after temporary build and old-install removal.
-Four original 3LNA/5LNA cases reproduce W249 paths/operators exactly: all
-1,271/1,275 atoms and 62 nodes/60 backbone edges; 4 paths/2 seams become 8 paths/
-6 seams. No new native calculation, refinement or coordinate file is generated.
-Exact commands, original failures, hashes and evidence are in NASolve anchor
-`branch-artifacts/willow/w257-original-path-projection/`.
+**143 focused source / 143 relocated installed checks pass.** Rowan's cold read
+found explicit-blank/unknown matching and a missing polymer residue locator;
+five regressions fail before correction and pass afterward. A fixture initially
+omitted its operation table, and another confused logical with author chains;
+both failed checks remain recorded. Installation/import/help/Python 3.10 syntax
+are qualified after removing the temporary build and former install path; all
+208 installed-file hashes verify. Full Willow regression: **2,727 passed, four skipped and 234 subtests in 109.31 s**.
+This is not combined-branch/native qualification.
+The final source repeats all four real 3LNA/5LNA controls: **80/87 connection rows**,
+including **71/74 hydrogen bonds**, remain resolved. Two-route recuts change
+**14/15 endpoint images** with maximum physical endpoint error **5.03e-15 Å**;
+unchanged controls are exactly zero. There is no new native calculation.
+Exact source/owner pins, commands and logs live at NASolve anchor
+`branch-artifacts/willow/w258-cif-connection-transport/`.
 
-**P03 stays partial; next:** transport all original connection annotations through
-the bound atom/image lineage, retaining unresolved rows and reasons. Cedar owns
-sequence/backbone chemistry semantics; its O3′–P filter cannot establish coverage
-of hydrogen bonds or other annotations. Compare complete references rather than
-trust standalone CHECKED or unchanged scattering. Keep complete original polymer
-coverage, general/special-position source validity, supported writing, P02 GUI,
-native lifecycle and changed-child/inverse-edit binding as separate gates.
-Rowan confirmed this ownership split; no Cedar source or shared caller changed.
+Cedar's public decoder at `51be01f48327c187ac2015e328c1c61adb46891a` is used through
+the existing isolated loader, with its file hash pinned before/after. No Cedar
+source or shared caller changed; compatible explicit Cedar source is required
+until the owner is integrated into the installed package. Rowan owns covalent
+chemistry/sequence interpretation and newly qualified registered-force receiving.
+
+**P03 stays partial; next W259:** bind original polymer/entity/sequence semantics
+and complete original polymer coverage to these proposed paths, using Cedar's
+semantic owner and complete source-bound references. Then scope explicit output
+chain/entity labels and connection encoding before a maintained writer. Do not
+conflate retained original rows with added coverage of previously implicit graph
+edges. P02 GUI, special-position/source validity, native lifecycle and changed-child/
+inverse-edit binding remain separate gates. No ordinary workflow activates this API.
+
+W257's declared paths remain qualified: 121 source/121 installed; full Willow
+2,705 tests, four skips and 234 subtests. Four exact W249 path/operator replays
+retain all 1,271/1,275 atoms and 62 nodes/60 backbone edges. It supplies the site
+projection underneath W258, not an additional new experiment today.
 
 W256's original byte/ID/component/raw-double XYZ/U context remains unchanged.
 Its 217 source/217 installed and four exact numerical replays stay valid; the
 W256 full-suite sandbox failure and five-test permission retry remain recorded,
-not relabelled as a clean invocation. W257 now supplies the clean Willow suite.
+not relabelled as a clean invocation. W257/W258 supply later clean Willow suites.
 This is not combined-branch integration or scientific/model acceptance.
 
-**Coordinated geometry context: W255.**
-[Cap and feasible-step diagnostics](topostitch-periodic.md#w255--record-the-coordinated-cap-and-feasible-step-diagnostics)
-replace the previously queued 1.5→2 Å experiment: it has run once and stopped
-after 27 accepted steps, with OP2's next proposal beyond the bound. The last
-accepted bond/angle improves, but there is no candidate or optimum. A separate
-projected diagnostic reaches its 100-iteration limit with residual 5.1565.
-The feasible-basis native derivative audit passes (4.963e-5 against 1e-3), while
-old centered endpoint checks remain unavailable and rounded PDB exceeds the cap.
+**Coordinated geometry context (Alder-owned, no Willow rerun).**
+W255's cap/projected-gradient and no-candidate findings remain in the periodic
+ledger. Alder's later constructed seed is a separately source-qualified role,
+not optimizer convergence. At `09a972b63b3eb85415ffd1a87e383d4b39c51643`, Hazel
+reports the exact W252 receiver retains P–O3′ **1.618→1.615 Å** and C3′–O3′
+**1.454→1.448 Å**; the original-start comparison stays strained. Weak/negative
+local maps and **Rwork/Rfree 0.3081/0.3427** still block parent selection/f″.
+The 200-step projected diagnostic did not establish stationarity; its old verdict
+is unchanged. Do not rerun the completed six-atom receiver.
 
-Alder owns the independently reviewed pure helpers at
-`7c2e1c41d969db7b047b242d847bf18ace49b531`; 53 focused/99 adjacent/53 installed tests
-and 531 cold replay assertions pass. Nothing was merged into Willow, no trial
-default changed and no repeated native experiment ran for this documentation.
-Scope an explicit opt-in boundary-endpoint contract before receiving candidates:
-gradient accuracy, projected stationarity, chemical geometry and actual serialized
-point qualification are separate gates. Prefer existing full-precision receiving
-support before new PDB lattice machinery. Hazel's pinned output review finds the
-native worker already requests mmCIF, but its wrapper defaults to five-place XYZ
-and Alder's endpoint auditor currently admits only three-place PDB. Format
-availability is not receiving authority; qualify precision and admission together.
-A separately named, opt-in constructed receiving seed need not claim optimizer
-stationarity: it must retain complete source chemistry/atoms, evaluated actual
-output, fixed context and a matched receiving control. Current W238 optimizer
-acceptance and diagnostic no-candidate verdicts remain unchanged. This is a
-planned distinct role, not permission to reuse an old native capture for new bytes.
-No cap grid or automatic enlargement.
-Later density-aware receiving and the existing fixed-weight confound remain open.
+Alder `f3ee67b604c4e1a51d958b550993f467ef48ea3e` records the next matched DNA-only
+XYZ/group-B design and completed **zero-cycle native initialization**, not a
+broader fit: 858 DNA atoms, 42 groups, source MLHL/Free-R and Hg XYZ/Q/B/f′/f″
+held. Optimization-stage admission remains next. Rowan directs that execution;
+Willow continues source topology/annotation binding. This is readback of Alder's
+current handoff and coordinated reports, not independent Willow native replay.
+See GitHub anchor `NASolve-metal-coordination/docs/metal-development-handoff.md`
+and `ScienceCheckouts/Hazel/2026-11-24_ft-seed-receiving/index.html`.
+No Cedar/Alder implementation was merged or changed here.
 
 **Human checkout:** GitHub anchor
-`ScienceCheckouts/Linden/2026-11-24_original-source-paths/index.html` and
-`open_report.py` show the original/recut atom, path and connection counts with
-links to exact local evidence. Four links and the Python 3.10 opener syntax pass.
-This is a compact static science report, not the required future P02 editor.
-Hazel's separate geometry report remains at
-`ScienceCheckouts/Hazel/2026-11-24_feasible-helper-extraction/index.html`.
-No newly bent model or deposition-ready recut is claimed. Exact W255–W257 scope,
+`ScienceCheckouts/Linden/2026-11-24_connection-transport/index.html` and
+`open_report.py` show original/recut connection counts and physical endpoint
+invariance. Three local links and Python 3.10 opener syntax pass; no browser
+render check is claimed. The earlier original-source-paths checkout is preserved.
+These are compact static science reports, not the required future P02 editor.
+No newly bent model or deposition-ready recut is claimed. Exact W255–W258 scope,
 failures and next actions are in the periodic ledger and machine roadmap.
 
 W254's compact failed-proposal reporting remains validated (274 source/274
