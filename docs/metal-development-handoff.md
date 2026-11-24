@@ -52,26 +52,40 @@ rounded-output feasibility or chemical acceptance. All 853 other coordinates,
 sugars, Hg, B/Q/scattering and original phases/Free-R remain exact. No new maps,
 R statistics, environmental-B preparation or f″ result.
 
-**Current restart point:** both native nodes are stopped. Private prototypes
-pass **26 search/adapter tests + 15 feasible-basis tests**, covering known interior
-and coupled constrained optima, failure accounting/deadlines, linear-on-sphere,
-actual-radius, cubic and rotated-basis cases. Linden reviewed scope and failure
-paths. Next extract only reusable pure helpers behind explicit calls, send the
-maintained diff for owner review and run focused regressions. Leave the shared
-trial/defaults untouched; no further native optimization is needed for this slice.
-Convergence and faithful output representation must precede receiving refinement.
-A01 remains partial; A02 stays gated. No cap/weight grid or automatic adoption.
+**Current restart point:** both native nodes remain stopped. The reusable pure
+helpers are now maintained behind explicit Python calls; ordinary trial/defaults
+remain untouched. See the [methods and caller contract](topostitch-feasible-diagnostics.md).
+New regressions protect callback snapshots, failure accounting, representable
+probes and partial evidence. **53 focused + 99 adjacent tests pass.** A cold
+replay reproduces all 209 saved search requests and 74 audit requests/results
+exactly, with **531 assertions** and no native execution. The baseline 12
+hardening failures and two further audit failures are preserved before repair;
+a second large-coordinate witness covers the same collapsed-probe mechanism.
+The exact maintained diff is independently reviewed with no remaining blocking
+findings. The same 53 tests pass from an offline installed wheel with source
+checkout access blocked; its temporary build/install was removed. The retained
+first harness failure was a macOS /var versus /private/var assertion before tests.
+
+**Next bounded scientific boundary:** determine a source-bound route to
+convergence and faithful output representation before controlled open XYZ/B
+receiving. Do not turn the diagnostic last step into a parent, enlarge the cap
+again or bypass unavailable serialization checks. A01 remains partial; A02 stays
+gated. There is no new f″, map, R statistic or environmental-B preparation.
+Further native work needs a declared experiment through its existing owner;
+the extraction itself requires no repeated native fit.
 
 Evidence anchors are `Alder/a01-feasible-step-review-20261124-01/`,
-`Alder/a01-feasible-step-native-20261124-01/` and
-`Alder/a01-feasible-basis-native-20261124-01/`. Their README/plan/execution/review
-files record exact commands, source hashes, limitations and stopping. The private
-inspected report is `ScienceCheckouts/Hazel/2026-11-24_ft-feasible-steps/index.html`.
-The explicit interruption state is in the prototype anchor's `restart.json`.
-At this checkpoint Alder changes documentation only; no runtime/schema/default,
-migration or implicit Willow integration. No full suite, scientific upload,
-pruning, portability or ordinary checkpoint claim. Preserved prior attempts below
-remain evidence, not a second work queue.
+`Alder/a01-feasible-step-native-20261124-01/`,
+`Alder/a01-feasible-basis-native-20261124-01/` and the new
+`Alder/a01-feasible-maintained-20261124-01/`. Exact commands, source hashes,
+negative regressions, review diffs and stopping are recorded there. The inspected
+scientific figure remains in `ScienceCheckouts/Hazel/2026-11-24_ft-feasible-steps/index.html`;
+the bounded extraction report is `ScienceCheckouts/Hazel/2026-11-24_feasible-helper-extraction/index.html`.
+Raw models/maps/native evidence stay private and are excluded from Git. No new
+native execution, pruning, migration or default activation; no full-suite or
+ordinary-checkpoint claim. The prior integrated full-tested boundary below is
+unchanged and does not qualify these new helpers for release. Preserved earlier
+attempts remain evidence, not a second work queue.
 
 <a id="a01-phosphate-cap-2026-11-24"></a>
 

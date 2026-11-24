@@ -17,19 +17,25 @@ basis at the exact saved point (maximum error 4.96e-5); A630 passes 1,301 indepe
 frame/sample/state checks. Original centered/rounded endpoint checks remain
 unavailable. No scientific acceptance, receiving fit or f″ follows.
 
-Both Phenix 2.2.1-6174 processes are stopped. The reviewed private prototypes have
-26 search/adapter and 15 derivative tests. Next extract the reusable pure helpers,
-obtain Linden's exact-diff review and run focused regressions, leaving shared
-trial/defaults untouched. Current branch checkpoint updates documentation only;
-no runtime/schema/default or migration change, full-suite rerun, raw science
-commit, pruning or implicit Willow merge. The current integration checkpoint
-below remains unchanged.
+Both Phenix 2.2.1-6174 processes remain stopped. The explicit
+[pure diagnostic helpers](topostitch-feasible-diagnostics.md) are now maintained:
+53 focused and 99 adjacent tests pass, and 531 cold assertions reproduce every
+saved search/probe request and numerical outcome without native execution.
+Callback state, failed attempts, collapsed probes and partial evidence are
+covered by retained before/after regressions. Exact-diff owner review is complete with no blocking findings; 53 installed
+tests also pass with original-checkout access blocked. A path-spelling harness
+failure before those tests is preserved; the same wheel passed after correction. No shared trial/default/CLI/dependency/artifact migration,
+new fit, raw science commit, pruning or full-suite rerun.
 
-Private report: `ScienceCheckouts/Hazel/2026-11-24_ft-feasible-steps/index.html`.
-Restart state: `Alder/a01-feasible-step-review-20261124-01/restart.json` under the
-branch-artifacts anchor. Exact commands, hashes and prior-work review are linked
-from the metal handoff. Before the brief requested read-only coordination review,
-all Alder numerical work is saved and stopped; pure-helper extraction remains next.
+A01's next scientific step still needs convergence and faithful serialized output
+before receiving open XYZ/B refinement. Do not adopt the unconverged diagnostic.
+Current extraction evidence: `Alder/a01-feasible-maintained-20261124-01/` under
+`branch-artifacts/`; report:
+`ScienceCheckouts/Hazel/2026-11-24_feasible-helper-extraction/index.html`.
+The original numerical report remains
+`ScienceCheckouts/Hazel/2026-11-24_ft-feasible-steps/index.html`.
+The prior integration checkpoint below is unchanged; focused development is not
+a new release/full-suite qualification.
 
 ## Qualified integration checkpoint — test-only amendment
 

@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Add explicit bounded-coordinate diagnostic helpers
+
+- Maintain pure feasible-ball search and supplemental boundary derivative checks
+  with separate convergence/limit/failure outcomes. Preserve actual trial
+  evaluations, immutable callback snapshots and valid partial audit evidence;
+  refuse collapsed probes and callback errors masquerading as normal stops.
+- Keep native/source/deadline and output authority with the existing caller.
+  Ordinary refinement, CLI, defaults, dependencies and artifact schemas are
+  unchanged. Focused tests and exact cold numerical replay qualify the extraction;
+  no new native fit, scientific acceptance, candidate or full-suite claim.
+
+
 ### Record feasible-step and boundary-derivative diagnostics
 
 - Preserve one same-objective/same-cap feasible-step search and one read-only

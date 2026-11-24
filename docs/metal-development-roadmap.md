@@ -21,10 +21,12 @@ saved point; the original centered/rounded endpoint checks remain unavailable.
 
 Reuse 3,154 independent trajectory/state checks, 1,301 independent derivative
 frame/sample checks, 41 focused prototype tests and the inspected figure. Both
-native processes are stopped. Next maintain only the reviewed pure numerical
-helpers with focused regressions and exact-diff owner review; keep ordinary
-trial/defaults unchanged. Convergence and faithful output representation remain
-required before controlled open XYZ/B receiving. No cap escalation, repeated
+native processes are stopped. The explicit [pure numerical helpers](topostitch-feasible-diagnostics.md)
+now have 53 focused and 99 adjacent passing tests, plus 531 cold replay assertions
+covering exact saved numerical behavior. Exact-diff owner review is complete;
+53 installed tests pass with source access blocked.
+Ordinary trial/defaults remain unchanged. Next resolve source-bound convergence
+and faithful output representation before controlled open XYZ/B receiving. No cap escalation, repeated
 weight grid, widened mask or automatic adoption. Keep D7→C8, A12 orientation and
 whole-model publication separate. The earlier cap comparison and preparation
 failures remain source-bound evidence rather than work to rerun.
