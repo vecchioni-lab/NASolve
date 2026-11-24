@@ -1,7 +1,26 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-24, C561 measuring the written crossover geometry — Rowan**.
+Updated **2026-11-24, C562 from the original Coot build through ReadySet and refinement — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
+
+**Q06.** ReadySet accepted the corrected PDU dictionary on the original C290
+Coot model. A standalone five-cycle Phenix 2.2.1-6174 refinement of the returned
+model brought both crystal phosphate bonds to 1.62 Å. The two PDU propynyl tips
+finished 0.290 and 0.246 Å from their rings. The D:7–C:8 donor torsion and
+density still require review. The original run and its checkpoint selection
+were preserved. See the [before/after measurements](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold).
+
+The next step is to let ordinary preparation carry the declared crystal partners
+into an unselected repair candidate. Keep each exact crystal image separate
+from the local covalent links. The apparent B:7–B:1 loop goes into another
+copy of the central strand. Check every remaining phosphate and preserve the
+separate D:1 terminal intent. The private laboratory replay is `C290 Coot to
+refined PDU.zip` beside the two-phosphate refinement and numbered restart kits.
+C562 changed laboratory documentation only. A fresh directory with spaces
+and a relocated installation reproduced both ReadySet geometries, all seven
+bound restraint files and native initialization. The original scientific
+comparison completed five refinement cycles. The full regression remains
+due before merge.
 
 C561 lets `cif-doctor phosphate-image` show how far each fitted bond, angle
 and torsion finished from its actual Phenix target. Add `--restraint-deviations`
@@ -22,9 +41,6 @@ bond or reused the starting model's old chemistry receipt stops before
 allocating a round. Earlier single-bond requests and workers still replay.
 See the [laboratory measurements](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold)
 and [ordinary commands](cif-doctor.md#carrying-crystal-phosphates-through-a-numbered-refinement).
-The next construction task is carrying those same two registered
-connections through the original C290 PostMR/ReadySet preparation so a
-new child can inherit the corrected PDU dictionary and site restraints.
 
 The ten focused files were `test_refinement_phosphate`, `test_refinement_parallelity`,
 `test_phosphate_runtime`, `test_phosphate_restraints`, `test_phosphate_reference_links`,

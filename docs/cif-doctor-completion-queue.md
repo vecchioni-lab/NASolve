@@ -38,8 +38,11 @@ A:PDU comparison. The ordinary and added-plane tip heights were 0.466
 and 0.304 Å. Rfree was 0.2501 and 0.2500. The adaptive run favored the
 ordinary arm by this measurement. Keep the soft plane experimental. For the distinct
 PDU:PDU phosphate, the [central link is confirmed](backbone-chemistry.md#the-central-strand-in-the-5w6w-scaffold).
-Two ordinary five-cycle restarts now retain the registered crystal bond,
-four angles and three torsions. See the crystal-phosphate checks under Q06.
+Two ordinary five-cycle rounds retained both registered crystal bonds. C562
+then carried the corrected PDU dictionary through ReadySet and five standalone
+cycles on the original Coot build. The next ordinary preparation must retain
+the exact crystal partners while exposing an unselected repair candidate.
+See the [two-crossover measurements](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold).
 For the explicitly phosphorylated D:1 on the host control, C504 accounts for
 all eleven local Phenix restraints, including the last angle before the next
 table. The DY starting geometry warrants review and its two refined controls
@@ -257,11 +260,15 @@ five-cycle rounds, including a restart after relocating the dataset. Both
 links, D:1 terminal geometry and the original free set survived. The
 historical PDU tips still departed from their ring planes, and the D:7
 torsion and local density require review. C561 measures all eight terms in
-the written model, including actual conformations at the same ordinary links
-that supplied the targets. Reuse it after the next fit. Carry the registered
-connections through the C290 PostMR/ReadySet preparation with the corrected
-PDU dictionary and removal of the two superseded site edits. Repeat the
-same written-model and local-map checks on that chemistry.
+the written model, including the ordinary links that supplied the targets.
+C562 checked that corrected chemistry on the original Coot build after an
+actual ReadySet run and five standalone cycles. Both bonds closed and the
+PDU tips finished within 0.30 Å of the rings. Weak local density and the D:7
+torsion keep this candidate under review. Next make the ordinary preparation
+carry both registered partners into an unselected repair child. Preserve
+their source frame, model and restraint identities, the thirty-eight local
+bonds, the D:1 terminal chemistry and the original Free-R assignments. A
+declaration on its own cannot establish that a physically open bond is fitted.
 
 C537 checks which modeled atoms actually reached a native covalent plane.
 The historical GEO omitted C5A at both PDU sites. The corrected GEO included

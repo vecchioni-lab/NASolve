@@ -226,8 +226,40 @@ and its weight come from the starting native chemistry. The junction and
 ordinary-link coordinates come from the named written checkpoint.
 
 With the historical PDU restraints, the final two propynyl tips lay
-2.338/1.243 Å from their ring planes. Repeat under the corrected preparation
-before promoting a PDU model.
+2.338/1.243 Å from their ring planes.
+
+C562 started again from the original 862-atom C290 Coot model. ReadySet
+2.2.1-6174 rebuilt PDU from chemical components when given the historical
+dictionary. Its generated C5–C5A and C5B–C5M targets were both 1.527 Å,
+and its base plane stopped at the ring. With the qualified dictionary,
+ReadySet used the supplied restraints. The two targets were 1.431 and 1.470 Å,
+with the first arm carbon C5A in the base plane. Both ReadySet runs preserved
+every coordinate, occupancy and displacement parameter. Both crystal gaps
+were still open. The ordinary phosphate audit identified 38 local incoming
+bonds, the declared D:1 terminal phosphate and two unresolved incoming sites.
+
+One standalone five-cycle Phenix refinement used the corrected returned model,
+the two registered crystal partners, the original reflection flags and the seven
+effective restraint files. The R values were read at the start and end of the
+4.19 Å refinement.
+
+| Measurement | After ReadySet | After refinement |
+| --- | ---: | ---: |
+| B:7 O3′–B:1 P across its registered image | 3.340 Å | 1.624 Å |
+| D:7 O3′–C:8 P across its registered image | 3.017 Å | 1.617 Å |
+| A:12 / B:4 propynyl tip height above the six-atom ring plane | 0.094 / 0.093 Å | 0.290 / 0.246 Å |
+| R-work / R-free | 0.3389 / 0.4317 | 0.2348 / 0.3023 |
+
+The refined terminal PDU arm bonds were 1.454/1.493 Å. The native base
+planes contained C5A at both sites and left the methyl tips free. Each
+crossing had one printed bond and four crossing angles. The terminal D:1
+retained all eleven restraints. All 124 free flags survived. Phenix excluded
+seven working reflections, leaving 1,778 working and 124 free indices, exactly
+the final set in the archived comparison. The D:7 C4′–C3′–O3′–P torsion
+was +37.3° against −140° with a width of 35°. Its O3′ and C:8 P sampled
+−1.83 and −1.26 whole-map rms units in the unfilled 2mFo−DFc map. The bond
+and arm measurements demonstrate restraint survival. The local crossover
+conformation remains open. This experiment created no numbered checkpoint.
 
 ### Crossovers in the FT–Hg scaffold
 
