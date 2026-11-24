@@ -4,7 +4,7 @@
   "updated": "2026-11-24",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "dc50cf4e92dce776b67ca92bbe9a7713406b35bb",
+  "audited_code_commit": "03bb5a2e00b313432a1908418d853df160d9b202",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -649,10 +649,10 @@
       ],
       "last_audit": {
         "date": "2026-11-24",
-        "code_commit": "7c2e1c41d969db7b047b242d847bf18ace49b531",
-        "reviewer": "Hazel; scoped owner review by Linden; coordinated by Rowan",
-        "human_update": 255,
-        "scope": "Coordinated cap/search/derivative evidence; still unconverged and no serialized candidate"
+        "code_commit": "03bb5a2e00b313432a1908418d853df160d9b202",
+        "human_update": 258,
+        "reviewer": "Linden; coordinated Alder/Rowan handoff readback",
+        "scope": "Constructed receiving seed completed separately; broader native optimization-stage admission remains open, no Willow rerun"
       }
     },
     {
@@ -894,10 +894,10 @@
       ],
       "last_audit": {
         "date": "2026-11-24",
-        "code_commit": "7c2e1c41d969db7b047b242d847bf18ace49b531",
-        "reviewer": "Hazel; scoped owner review by Linden; coordinated by Rowan",
-        "human_update": 255,
-        "scope": "Coordinated cap/search/derivative evidence; still unconverged and no serialized candidate"
+        "code_commit": "03bb5a2e00b313432a1908418d853df160d9b202",
+        "human_update": 258,
+        "reviewer": "Linden; coordinated Alder/Rowan handoff readback",
+        "scope": "Constructed receiving seed completed separately; broader native optimization-stage admission remains open, no Willow rerun"
       }
     },
     {
@@ -1137,7 +1137,7 @@
       ],
       "last_audit": {
         "date": "2026-11-24",
-        "code_commit": "72c4f8f662a139927f17a2e53fcbc6663ea79d8e",
+        "code_commit": "03bb5a2e00b313432a1908418d853df160d9b202",
         "reviewer": "Linden; independent identity review with Rowan",
         "human_update": 258,
         "scope": "Original struct_conn endpoint transport; semantic/writer/native gates open"
@@ -6901,7 +6901,7 @@
       "kind": "Maintained original connection endpoint transport",
       "date": "2026-11-24",
       "human_update": 258,
-      "code_commit": "72c4f8f662a139927f17a2e53fcbc6663ea79d8e",
+      "code_commit": "03bb5a2e00b313432a1908418d853df160d9b202",
       "reference": "docs/topostitch-periodic.md#w258--retain-original-connection-rows-and-physical-endpoints",
       "result": "143focused source/143relocated installed;208installation-file hashes;full Willow2727passed/4skipped/234subtests. Four original3LNA/5LNA controls preserve80/87rows,71/74H-bonds;14/15endpoint references change while physical endpoints agree within5.03e-15 A. Explicit blank/unknown and missing polymer-locator review defects reproduced/fixed. No writer/native call.",
       "limitation": "Read-only all-struct_conn endpoint transport, not chemical/sequence semantics, new annotation creation, output label assignment, native force activation or scientific acceptance. Third partners and unresolved rows retained; original document owns other categories. Explicit compatible Cedar owner required; no combined-branch release. Fixture and local doc-writer failures retained; final sealed same-source replay verified.",
@@ -8474,8 +8474,8 @@
       {
         "number": 258,
         "title": "Preserve every original connection row and its physical image endpoints",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "03bb5a2e00b313432a1908418d853df160d9b202"
       }
     ]
   },

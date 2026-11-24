@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W258, 2026-11-24** (code pin recorded after commit).
+**Current maintained slice: W258, 2026-11-24**, code `03bb5a2e00b313432a1908418d853df160d9b202`.
 [Original connection transport](topostitch-preview.md#preserve-original-connection-endpoints-through-a-recut-w258)
 retains every original `_struct_conn` row and resolves supplied atom labels and
 explicit symmetry through the saved cut. New image `g h^-1` preserves the exact
@@ -14,7 +14,8 @@ five regressions fail before correction and pass afterward. A fixture initially
 omitted its operation table, and another confused logical with author chains;
 both failed checks remain recorded. Installation/import/help/Python 3.10 syntax
 are qualified after removing the temporary build and former install path; all
-208 installed-file hashes verify. Full Willow regression: **2,727 passed, four skipped and 234 subtests in 109.31 s**.
+208 installed-file hashes verify. Full Willow regression: **2,727 passed, four
+skipped and 234 subtests in 109.31 s**.
 This is not combined-branch/native qualification.
 The final source repeats all four real 3LNA/5LNA controls: **80/87 connection rows**,
 including **71/74 hydrogen bonds**, remain resolved. Two-route recuts change
