@@ -20,6 +20,7 @@ from .checkpoints import (
     list_checkpoints,
     select_checkpoint,
 )
+from .cif_doctor_repair import RECIPE_IDS
 from .config import AppConfig, ConfigError, default_config_path, load_config, save_config
 from .coot_runtime import (
     CootDiscoveryError,
@@ -413,7 +414,7 @@ def build_parser() -> argparse.ArgumentParser:
     cif_prepare = cif_sub.add_parser("prepare", help="write an explicit source-preserving derivative")
     cif_prepare.add_argument("dictionary", type=Path)
     cif_prepare.add_argument("--recipe", required=True,
-                             choices=("torsion-alternates-v1", "5cm-reviewed-torsion-v1"))
+                             choices=RECIPE_IDS)
     cif_prepare.add_argument("--output", required=True, type=Path, help="new candidate CIF path")
     cif_prepare.add_argument("--report", type=Path, help="new JSON preparation receipt")
     cif_prepare.add_argument("--json", action="store_true", help="print the full JSON receipt")

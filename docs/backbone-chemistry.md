@@ -351,6 +351,16 @@ reflections and eleven D:1 terms survived. The two PDU tips ended 0.180 and
 0.284 Å from their rings, and the D:7 torsion remained at +40.7°. A different
 run with equivalent starting coordinates was refused before creating a round.
 
+At that second D:7 endpoint the onefold native donor torsion was only 0.72°
+from the angle directly opposite its −140° target. Using the actual crystal
+image and the native Phenix torsion, the residual was 15.673 against a maximum
+of 15.673. Its turning force was **1.26%** of this term's maximum. The B:7
+control retained **85.8%**. A small virtual rotation gave the same derivative
+as the native atom gradients. These are single-term measurements on the
+written coordinates. The total refinement force includes neighboring geometry
+and diffraction. An independent local backbone starting conformation is the
+next comparison for D:7.
+
 One standalone five-cycle Phenix refinement used the corrected returned model,
 the two registered crystal partners, the original reflection flags and the seven
 effective restraint files. The R values were read at the start and end of the

@@ -1,9 +1,42 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-24, C570 fitting the original Coot and ReadySet preparation directly — Rowan**.
+Updated **2026-11-24, C571 testing the terminal template correction on an independent modified base — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
-**Q06.** AutoRefine can now fit a same-run ReadySet root while reading crystal
+**Q06.** C571 makes the separate alkynyl methyl starting-coordinate trial
+available through the existing CIF Doctor preparation command. One graph-valid
+component and one unambiguous terminal methyl are required. The recipe
+preserves the original charge, restraint rows, other bond lengths and all CIF
+text outside the moved Cartesian coordinates. It produced the exact PDU and
+5PC trial dictionary bytes already taken through Coot 1.3.3, ReadySet and
+five Phenix 2.2.1-6174 cycles.
+
+In the independent G:5PC pair, one of 856 starting model atoms moved. Both
+standalone five-cycle trials used the checked C437 native plane correction,
+58 plane-pair terms, all eleven protected D:1 terms, 2,142 working and 125
+free reflections. The 1.364/1.470 Å starting distances became 1.481/1.479 Å.
+The tip heights were 0.007/0.013 Å and R-free was 0.2276/0.2273. Both fits
+remain available. Next inspect an independent D:7 sugar–phosphate start.
+The written donor torsion sat close to the maximum of its periodic energy
+and therefore exerted little turning force.
+
+The additive recipe uses the existing preparation receipt. It leaves default
+assessment and existing recipes compatible. A stale PostMR test double now
+checks the saved MR coordinates used to inherit displacement values. Source
+and relocated wheel each passed 329 focused tests and 21 subtests. Run
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider`
+on `tests/test_{cif_template_candidate,cif_template_bonds,cif_doctor_repair,cif_doctor_cli,cif_doctor,cif_doctor_run,cif_doctor_postmr,cif_doctor_degenerate_geometry,cif_linear_bond_reference,cif_linear_bond_native,cif_stereochemistry_audit,dictionary_compatibility,cli}.py`
+using shell brace expansion. The numerical records and native run directories
+remain local. The six earlier phosphate reports reproduced byte for byte.
+
+The C437 isolated qualification reopens under the producing NASolve Python
+3.12.14. With Phenix Python 3.11.15 the twelve differing fields were all the
+original assessor's Python version. All other rederived fields agreed at the
+first rejected comparison. Keep scientific replay strict and use the original
+environment for this historical receipt. Its independent five-cycle experiment
+used the verified native helper and frozen inputs.
+
+**C570.** AutoRefine can now fit a same-run ReadySet root while reading crystal
 partners from its original Coot construction. Earlier this required two named
 checkpoint copies. The fitted PDU coordinate file matched the earlier control
 byte for byte. A fresh five-cycle fit after relocation still held both crystal

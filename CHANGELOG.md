@@ -8,6 +8,11 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `cif-doctor prepare --recipe alkynyl-methyl-template-v1` writes a separate
+  trial dictionary for one neutral alkynyl methyl. It moves the terminal
+  carbon and its three explicit hydrogens to the dictionary's own bond target.
+  The receipt records what moved and the original and achieved distances.
+
 - When Coot and ReadySet built a model in the same run, AutoRefine can now
   fit its registered crystal bonds directly from `--from postmr`. The round
   records the original Coot construction separately from the ReadySet starting

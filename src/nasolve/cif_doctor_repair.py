@@ -17,7 +17,8 @@ from .dictionary_compatibility import TORSION_POLICY, normalize_torsion_block
 from .ligand_profiles import _blocks, _emit, normalize_ccp4_torsion_alternates
 
 
-RECIPE_IDS = ("torsion-alternates-v1", "5cm-reviewed-torsion-v1")
+TEMPLATE_RECIPE = "alkynyl-methyl-template-v1"
+RECIPE_IDS = ("torsion-alternates-v1", "5cm-reviewed-torsion-v1", TEMPLATE_RECIPE)
 REVIEWED_5CM_SOURCE_SHA256 = (
     "38378c7df4eef73a0bd2be40059b2c3dd2b98618a4eeb7e91f6ec3427f7e7858")
 REVIEWED_5CM_CANDIDATE_SHA256 = (
@@ -94,13 +95,43 @@ def _verify_allowlist(original: list[dict], expected: list[dict], actual: list[d
     return changes
 
 
+def _prepare_torsions(snapshot, work, candidate, original_blocks, recipe, source_bytes):
+    original = [deepcopy(block.values) for block in original_blocks]
+    reviewed = deepcopy(original)
+    events = []
+    adapter_input = snapshot
+    if recipe == "5cm-reviewed-torsion-v1":
+        events.append(_reviewed_reference(reviewed))
+        adapter_input = work / "reviewed.cif"
+        adapter_input.write_text("\n".join(
+            _emit(values) if values != block.values else block.text
+            for block, values in zip(original_blocks, reviewed)), encoding="utf-8")
+
+    expected = []
+    for values in reviewed:
+        normalized, _ = normalize_torsion_block(values)
+        expected.append(normalized)
+    adapter_audits = []
+    adapter_changed = normalize_ccp4_torsion_alternates(
+        adapter_input, candidate, audit=adapter_audits)
+    if not adapter_changed and recipe == "torsion-alternates-v1":
+        # The existing text adapter uses universal newlines. A semantic
+        # no-op here is an exact byte copy, including supplier line endings.
+        candidate.write_bytes(source_bytes)
+    events.extend(event for audit in adapter_audits for event in audit["events"])
+    actual = [block.values for block in _blocks(candidate)]
+    changes = _verify_allowlist(original, expected, actual)
+    return changes, events
+
+
 def prepare_dictionary(source: Path, output: Path, *, recipe: str) -> dict:
     """Prepare one exclusive derivative and return a review receipt.
 
-    ``torsion-alternates-v1`` wraps the existing content-based adapter; unknown
+    ``torsion-alternates-v1`` wraps the existing content-based adapter. Unknown
     conflicts remain visible. ``5cm-reviewed-torsion-v1`` requires the exact
     historical SHA-256, changes one demonstrated C2/C2' reference and uses that
-    adapter. Neither recipe changes bonds, protonation, phosphates or chirality.
+    adapter. The alkynyl methyl recipe moves four template positions along the
+    declared terminal bond. Its receipt includes the measured and target lengths.
 
     The output is a candidate, never automatic adoption. Assessment is read-only;
     native interpretation and achieved model geometry are explicitly not run.
@@ -128,34 +159,14 @@ def prepare_dictionary(source: Path, output: Path, *, recipe: str) -> dict:
         snapshot.parent.mkdir()
         snapshot.write_bytes(source_bytes)
         original_blocks = _blocks(snapshot)
-        original = [deepcopy(block.values) for block in original_blocks]
-        reviewed = deepcopy(original)
-        events = []
         before = assess_dictionaries([snapshot], stage="source")
-        adapter_input = snapshot
-        if recipe == "5cm-reviewed-torsion-v1":
-            events.append(_reviewed_reference(reviewed))
-            adapter_input = work / "reviewed.cif"
-            adapter_input.write_text("\n".join(
-                _emit(values) if values != block.values else block.text
-                for block, values in zip(original_blocks, reviewed)), encoding="utf-8")
-
-        expected = []
-        for values in reviewed:
-            normalized, _ = normalize_torsion_block(values)
-            expected.append(normalized)
         candidate = work / "candidate" / output.name
         candidate.parent.mkdir()
-        adapter_audits = []
-        adapter_changed = normalize_ccp4_torsion_alternates(
-            adapter_input, candidate, audit=adapter_audits)
-        if not adapter_changed and recipe == "torsion-alternates-v1":
-            # The existing text adapter uses universal newlines. A semantic
-            # no-op here is an exact byte copy, including supplier line endings.
-            candidate.write_bytes(source_bytes)
-        events.extend(event for audit in adapter_audits for event in audit["events"])
-        actual = [block.values for block in _blocks(candidate)]
-        changes = _verify_allowlist(original, expected, actual)
+        if recipe == TEMPLATE_RECIPE:
+            from .cif_template_candidate import prepare_template
+            changes, events = prepare_template(snapshot, candidate, original_blocks, before)
+        else:
+            changes, events = _prepare_torsions(snapshot, work, candidate, original_blocks, recipe, source_bytes)
         candidate_bytes = candidate.read_bytes()
         if (recipe == "5cm-reviewed-torsion-v1"
                 and _sha(candidate_bytes) != REVIEWED_5CM_CANDIDATE_SHA256):
@@ -192,7 +203,7 @@ def prepare_dictionary(source: Path, output: Path, *, recipe: str) -> dict:
         "audit_kind": "cif_restraint_preparation",
         "status": "PREPARED",
         "recipe_id": recipe,
-        "adapter_policy": TORSION_POLICY,
+        "adapter_policy": TEMPLATE_RECIPE if recipe == TEMPLATE_RECIPE else TORSION_POLICY,
         "source": _artifact(source, source_bytes),
         "output": _artifact(output, candidate_bytes),
         "source_preserved": True,

@@ -116,6 +116,23 @@ refined coordinates are separate evidence.
 In the [PDU comparison](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold),
 the dictionary placed two bonded carbons 1.607 Å apart while the restraint
 specified 1.470 Å. Coot followed the supplied coordinates at both model sites.
+The independent 5PC definition gave the opposite error, 1.364 Å against the
+same 1.470 Å target. Once the target itself has been checked against the
+chemistry, prepare a separate candidate for a dictionary with one such group.
+The recipe reads its explicit bond orders, charges and three attached hydrogens.
+
+```sh
+nasolve cif-doctor prepare original.cif --recipe alkynyl-methyl-template-v1 \
+  --output adjusted.cif --report adjustment.json
+```
+
+The recipe translates the methyl along the existing bond in the restraint
+Cartesian coordinates. It preserves the remaining CIF text and checks every
+other template bond. A declared link, residue modification or leaving atom
+involving the methyl group requires review, as do ambiguous groups, declared
+chirality, isotope labels and incomplete positions. ReadySet retained
+both 5PC starts. Five Phenix cycles gave terminal bonds of 1.481 and 1.479 Å.
+A template change alone gives no basis for choosing a refined conformation.
 
 ## Inspecting a phosphate at a crystal boundary
 
@@ -13861,12 +13878,12 @@ C4′–O4′–C1′–C2 torsion, then applies that existing normalizer. Other
 including another file named `5CM.cif`, are refused. This is not a general
 prime-name correction rule.
 
-Both recipes preserve the original bytes, refuse existing destinations and
-return hashes, field-level changes and before/after assessment. `PREPARED`
-means a candidate file was created; it does not mean native qualification or
-automatic adoption. Preparation's exit code follows the candidate assessment;
-invalid candidates visibly remain blocked from adoption. The recipes do not edit coordinates, invent protonation or bond
-orders, install the diagnostic DF/DP candidates or rewrite a frozen run.
+The [alkynyl methyl recipe](#checking-the-coordinates-coot-starts-from)
+prepares a separate starting-coordinate trial. All three recipes preserve the
+original file, refuse existing destinations and report hashes, changes and
+before/after assessments. `PREPARED` records the creation of the candidate.
+The exit code follows its assessment. Native checking and any choice of model
+are separate steps.
 
 ## Offline runner for the public control ZIP
 
