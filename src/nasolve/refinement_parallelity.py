@@ -220,6 +220,11 @@ def _code(policy=None):
         _need(isinstance(legacy,dict) and set(legacy)=={'cif_counted_phase.py','cif_counted_refinement.py'}
               and all(isinstance(value,str) for value in legacy.values()), 'Invalid frozen v7 helper source set')
         frozen.update(legacy)
+    if policy in (V10_POLICY_ID, V11_POLICY_ID):
+        single = json.loads((package / 'data/refinement-runtime-single-phosphate-sources.json').read_text())
+        _need(isinstance(single, dict) and set(single) == {'cif_phosphate_runtime.py'}
+              and isinstance(single['cif_phosphate_runtime.py'], str), 'Invalid frozen single-phosphate runtime')
+        frozen.update(single)
     if policy == V10_POLICY_ID:
         legacy = json.loads((package / 'data/refinement-runtime-v10-sources.json').read_text())
         _need(isinstance(legacy, dict) and set(legacy) == {'cif_phosphate_restraints.py'}

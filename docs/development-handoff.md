@@ -1,22 +1,31 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-23, C557 protecting an explicit choice of crystal phosphates — Rowan**.
+Updated **2026-11-24, C558 testing two crystal phosphates together — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
-C557 closes a command-line ambiguity revealed by the two-crossover recipe.
+C558 put both declared PDU:PDU crossovers into one native Phenix fit.
+Two bonds, eight angles and six torsions survived five cycles. The second
+bond went from 2.993 Å in the matched one-link control to 1.627 Å. Its
+C4′–C3′–O3′–P torsion still needs review. Both fits used exactly the
+same final working and free sets. The written PDU side arms and the distinct
+D:1 terminal phosphate were also checked. See the
+[measurements and scope](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold).
+The next implementation step is inheriting the full chosen set in a numbered
+AutoRefine child. Historical single-phosphate workers retain their exact
+source bytes. A separate Willow handoff needs the existing deposition image
+decoder exposed under a shared name before integration.
+With Gemmi 0.7.5 the physically relocated wheel passed 177 focused tests
+and 14 subtests across phosphate selection, native execution, recovery and CLI
+behavior. The ordinary project Python passed 133 tests and 14 subtests, with
+27 skipped. The native force check compared 48 coordinate derivatives and
+restored the original Phenix geometry after a deliberate second-source error.
+
+C557 closed a command-line ambiguity revealed by the two-crossover recipe.
 AutoRefine and Doctor's `phosphate-image` previously accepted two different
 `--registered-continuation` options and used only the last. Both commands
 now report the conflicting IDs before they read a model or reserve a run.
 Repeating the same ID still works. Existing requests and saved rounds keep
 their original format. The two real crossovers can be inspected separately.
-Joint enforcement and restart in a numbered refinement remain the next task.
-Both command regressions failed before the change. The source and physically
-relocated wheel each passed 75 focused tests and 14 subtests using
-`python -B -m pytest -q -p no:cacheprovider tests/test_refinement_phosphate.py tests/test_phosphate_continuation.py tests/test_phosphate_image.py tests/test_cli.py`
-with bytecode disabled and the tested package on `PYTHONPATH`.
-The ordinary CLI also reopened both distinct C290 edges separately on each
-build. Repeating either ID gave byte-identical output. Asking for both in
-one refinement or inspection exited before touching the supplied files.
 
 **C556 returns to the actual PDU preparation.** The C290 ordinary Coot
 construction ended before ReadySet. Its first whole-model diagnostic named

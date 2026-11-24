@@ -1,6 +1,6 @@
 """Apply source-qualified phosphate angles and torsions in their declared crystal image."""
 from collections import Counter
-from contextlib import contextmanager
+from contextlib import ExitStack, contextmanager
 from functools import wraps
 from inspect import signature
 from math import fsum
@@ -158,6 +158,7 @@ class RegisteredPhosphateRuntime:
         self.owned = WeakKeyDictionary()
         self.selections = Counter()
         self.calls = Counter()
+        self.joint_calls = Counter()
         self.restored = False
 
     def attach(self, model):
@@ -196,18 +197,56 @@ class RegisteredPhosphateRuntime:
         self.owned[child] = terms
         self.selections[len(parent.labels), len(ordered), len(terms.selected)] += 1
 
+    @staticmethod
+    def check_group(inspections):
+        """Require distinct ester ends on the same explicitly registered crystal copy."""
+        if not inspections:
+            raise ValueError("At least one registered phosphate is required")
+        identifiers, donors, acceptors = [], set(), set()
+        first = inspections[0]
+        keys = ("copy_id", "registered_graph_sha256", "sources")
+        for observation in inspections:
+            edge = observation["registered_continuation"]
+            if observation["model_sha256"] != first["model_sha256"]:
+                raise ValueError("Registered phosphate set spans different model inputs")
+            if any(edge[k] != first["registered_continuation"][k] for k in keys):
+                raise ValueError("All crystal phosphates must use the same source registration")
+            identifier = edge["continuation_id"]
+            if type(identifier) is not int or identifier < 1 or identifier in identifiers:
+                raise ValueError("A phosphate continuation ID is invalid or appears twice")
+            donor = observation["o3"][0]
+            acceptor = observation["phosphate"][0]
+            if donor in donors:
+                raise ValueError(f"Two registered continuations use the same O3′ at {donor}")
+            if acceptor in acceptors:
+                raise ValueError(f"Two registered continuations use the same phosphorus at {acceptor}")
+            identifiers.append(identifier)
+            donors.add(donor)
+            acceptors.add(acceptor)
+        return tuple(identifiers)
+
     @contextmanager
-    def active(self):
-        """Install only after native model preparation; follow actual geometry selections."""
+    def active(self, *additional):
+        """Own the native hooks once for all requested links in this Phenix process.
+
+        Each linkage retains its own source, symmetry operator and mapped atom
+        selections. A full model and every selected child acquire all applicable
+        corrections in the same native evaluation.
+        """
         from cctbx.geometry_restraints.manager import manager as Geometry
         from mmtbx.model import manager as Model
         from phenix.refinement.fsr import preprocess
+        owners = (self, *additional)
+        if additional:
+            self.check_group([o.inspection for o in owners])
+            if any(o.model_bytes != self.model_bytes for o in additional):
+                raise ValueError("Registered phosphate owners received different starting models")
         finalize, process = preprocess.finalize_model, Model.process
         select, energies = Geometry.select, Geometry.energies_sites
         energy_args = signature(energies)
         preparing = False
-        if self.restored or self.full is not None or any(hasattr(f, "_nasolve_phosphate")
-                for f in (finalize, process, select, energies)):
+        if (any(o.restored or o.full is not None for o in owners)
+                or any(hasattr(f, "_nasolve_phosphate") for f in (finalize, process, select, energies))):
             raise ValueError("Registered phosphate execution is already owned or finished")
 
         @wraps(finalize)
@@ -223,21 +262,24 @@ class RegisteredPhosphateRuntime:
         def make_model(model, *args, **kwargs):
             result = process(model, *args, **kwargs)
             if preparing and kwargs.get("make_restraints") is True:
-                self.attach(model)
+                for owner in owners:
+                    owner.attach(model)
             return result
 
         @wraps(select)
         def selected(geometry, selection=None, iselection=None):
             child = select(geometry, selection=selection, iselection=iselection)
-            if geometry in self.owned:
-                self._follow(geometry, child, iselection if iselection is not None else selection.iselection())
+            for owner in owners:
+                if geometry in owner.owned:
+                    ids = iselection if iselection is not None else selection.iselection()
+                    owner._follow(geometry, child, ids)
             return child
 
         @wraps(energies)
         def score(geometry, *args, **kwargs):
-            owner = self.owned.get(geometry)
-            if owner is None:
-                if self.live_terms is not None:
+            projections = [owner.owned.get(geometry) for owner in owners]
+            if any(projected is None for projected in projections):
+                if any(owner.live_terms is not None for owner in owners):
                     raise ValueError("Phenix requested energies from an untracked phosphate manager")
                 return energies(geometry, *args, **kwargs)
             bound = energy_args.bind(geometry, *args, **kwargs)
@@ -246,13 +288,23 @@ class RegisteredPhosphateRuntime:
             extension = options["extension_objects"]
             if any(isinstance(obj, PhosphateImageForces) for obj in extension):
                 raise ValueError("A phosphate correction is already attached to this evaluation")
-            if owner.selected:
-                options["extension_objects"] = [*extension, owner]
-            self.calls[len(owner.selected), bool(options["compute_gradients"])] += 1
-            return energies(*bound.args, **bound.kwargs)
+            options["extension_objects"] = [*extension, *(p for p in projections if p.selected)]
+            result = energies(*bound.args, **bound.kwargs)
+            gradient = bool(options["compute_gradients"])
+            counts = tuple(len(projected.selected) for projected in projections)
+            for owner, count in zip(owners, counts):
+                owner.calls[count, gradient] += 1
+            self.joint_calls[counts, gradient] += 1
+            return result
 
-        hooks = [(preprocess,"finalize_model",finalize,finalizer), (Model,"process",process,make_model),
-                 (Geometry,"select",select,selected), (Geometry,"energies_sites",energies,score)]
+        hooks = [(preprocess, "finalize_model", finalize, finalizer), (Model, "process", process, make_model),
+                 (Geometry, "select", select, selected), (Geometry, "energies_sites", energies, score)]
+
+        def release(owner):
+            for geo, terms in list(owner.owned.items()):
+                terms.release(geo)
+            owner.restored = all(getattr(host, name) is original for host, name, original, _ in hooks)
+
         try:
             for host, name, original, wrapped in hooks:
                 if getattr(host, name) is not original:
@@ -264,6 +316,6 @@ class RegisteredPhosphateRuntime:
             for host, name, original, wrapped in reversed(hooks):
                 if getattr(host, name) is wrapped:
                     setattr(host, name, original)
-            for geo, terms in list(self.owned.items()):
-                terms.release(geo)
-            self.restored = all(getattr(host, name) is original for host, name, original, _ in hooks)
+            with ExitStack() as cleanup:
+                for owner in owners:
+                    cleanup.callback(release, owner)

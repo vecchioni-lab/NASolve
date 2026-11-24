@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current work order, 2026-11-23.** This is the one unfinished-work queue. The
+**Current work order, 2026-11-24.** This is the one unfinished-work queue. The
 [capability table](cif-doctor.md#current-capability-boundary) records demonstrated
 support; the [handoff](development-handoff.md) says where work stopped. Old notes
 record what was known then. They do not create a second set of instructions.
@@ -243,16 +243,19 @@ pass individually. C556 reports both phosphates that require crystal
 information. Simon confirmed D:7–C:8 alongside B:7–B:1 for the PDU:PDU
 construct. The [two-edge declaration](recipes/5w6w-pdu-backbone-continuations.json)
 replays on the complete 42-site registrations for both starting models and
-all three fitted controls. D:7–C:8 is still printed as a nonbonded contact
-in every fitted control. The two existing PDU starting-model captures already
+all three earlier fitted controls. Each printed D:7–C:8 as a nonbonded
+contact. The two existing PDU starting-model captures already
 provide four intact T→G reference links for D:7–C:8 and two A→C reference
 links for B:7–B:1. Each gives a 1.607 Å bond, four angles and three torsions.
 AutoRefine currently carries one source-bound continuation per round.
 It refuses two different IDs in the same command before allocating an attempt.
-Carry both distinct images into ordinary preparation,
-preserve the separate D:1 terminus, then check which bonds, angles and
-nonbonded exclusions Phenix actually used at both sites. Review the resulting
-PDU geometry, local fit and original free reflections before selection.
+The [two-junction test](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold)
+now carries both distinct images through a five-cycle standalone refinement.
+The PDU tip heights were 0.283 and 0.476 Å, close to the corresponding
+single-link control. The D:7 torsion still merits local inspection. Next
+carry the complete chosen set through ordinary preparation and numbered
+restart. Verify both links, the separate D:1 terminus, PDU geometry, local
+fit and original Free-R assignments in the actual written child.
 
 C537 checks which modeled atoms actually reached a native covalent plane.
 The historical GEO omitted C5A at both PDU sites. The corrected GEO included

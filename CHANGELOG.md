@@ -12,6 +12,11 @@ entries are reconstructed from repository history.
   Phenix model and reflection CIFs, retain a crystal's processing data and
   free flags, and check what wwPDB preserved after processing.
 
+- The Phenix phosphate-restraint engine can evaluate independently registered
+  O3′–P linkages in their respective crystal images during the same refinement.
+  A five-cycle test used two crossovers. Numbered AutoRefine currently accepts
+  one continuation and retains its earlier workers for replay.
+
 - When several inspected phosphates each lack both OP3 and a verified local
   incoming O3′–P link, the preparation diagnostic names those sites together.
   This helps locate representation breaks for review before chemistry is assigned.

@@ -190,12 +190,20 @@ Register the declaration against the actual coordinates before using it.
 In the saved MR and Coot models, the two distances are 3.340 and 3.017 Å.
 In all three subsequent five-cycle PDU comparison models, Phenix restrained
 B:7–B:1 and treated D:7–C:8 as a nonbonded contact with a 3.4 Å target.
-The latter gap measured 2.934, 3.043 and 2.993 Å. A preparation carrying
-both crystal bonds still needs a native refinement check. Four intact T→G
+The latter gap measured 2.934, 3.043 and 2.993 Å. Four intact T→G
 links in the same model agree on the bond, four angles and three torsions
 for the D:7 crossover. The native bond target is 1.607 Å. Two intact
 A→C links supply the reference for the central B strand. This declaration
 does not establish ligation or occupancy in individual crystal copies.
+
+C558 applied both declared bonds, all eight crossing angles and all six
+torsions together in five standalone Phenix 2.2.1-6174 cycles. B:7–B:1
+finished at 1.645 Å and D:7–C:8 at 1.627 Å. The crossover's O3′–P–OP1
+and O3′–P–OP2 angles finished at 112.5° and 107.2°. Its C4′–C3′–O3′–P
+torsion remained 4.9 reference standard deviations from its target, so
+the repaired bond alone cannot establish the backbone conformation.
+D:1 retained all eleven terminal restraints. The same 1,778 working and
+124 free reflections were retained in the one-link and two-link fits.
 
 ### Crossovers in the FT–Hg scaffold
 
