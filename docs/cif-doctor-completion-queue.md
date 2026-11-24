@@ -296,8 +296,12 @@ five-cycle trials ended at 1.481/1.479 Å. The separate preparation recipe
 reproduced the exact trial dictionaries for both PDU and 5PC. Next compare
 a chemically plausible second local starting geometry at the D:7 crossover.
 At +40.7°, the existing onefold donor torsion supplies only 1.26% of its
-maximum turning force. Keep the original branch, protected endpoints and free
-set for a matched comparison.
+maximum turning force. C572 tested four intact T→G shapes at both written
+checkpoints. Moving just O3′ into the desired torsion distorted two phosphate
+angles to 64° and 145°. A rigid linkage also stretched a bond in the adjacent
+sugar. Next let the two sugars and intervening phosphate adjust together,
+anchoring the flanking bases. Keep the original branch, protected endpoints
+and free set for a matched refinement.
 
 C537 checks which modeled atoms actually reached a native covalent plane.
 The historical GEO omitted C5A at both PDU sites. The corrected GEO included

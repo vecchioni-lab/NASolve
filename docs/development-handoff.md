@@ -1,9 +1,18 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-24, C571 testing the terminal template correction on an independent modified base — Rowan**.
+Updated **2026-11-24, C572 checking possible starting shapes for the D:7 crossover — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
-**Q06.** C571 makes the separate alkynyl methyl starting-coordinate trial
+**Q06.** C572 compared four ordinary T→G linkages with the D:7 crossover in
+both existing PDU checkpoints. Forcing the donor torsion by moving O3′ alone
+gave phosphate angles of 64° and 145° in the second model. Copying an intact
+linkage as a rigid group stretched the O5′–C5′ sugar bond in every example.
+The next experiment can let both sugars and P adjust while anchoring the bases.
+The comparison was numerical and used the existing native maps. Each
+checkpoint's four joint overlays and two oxygen rotations reproduced from
+its saved local positions. See the [crossover measurements](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold).
+
+C571 makes the separate alkynyl methyl starting-coordinate trial
 available through the existing CIF Doctor preparation command. One graph-valid
 component and one unambiguous terminal methyl are required. The recipe
 preserves the original charge, restraint rows, other bond lengths and all CIF
@@ -16,9 +25,8 @@ standalone five-cycle trials used the checked C437 native plane correction,
 58 plane-pair terms, all eleven protected D:1 terms, 2,142 working and 125
 free reflections. The 1.364/1.470 Å starting distances became 1.481/1.479 Å.
 The tip heights were 0.007/0.013 Å and R-free was 0.2276/0.2273. Both fits
-remain available. Next inspect an independent D:7 sugar–phosphate start.
-The written donor torsion sat close to the maximum of its periodic energy
-and therefore exerted little turning force.
+remain available. Rebuilding both from the archived C305 scaffold reproduced
+the two Coot and the two ReadySet coordinate files byte for byte.
 
 The additive recipe uses the existing preparation receipt. It leaves default
 assessment and existing recipes compatible. A stale PostMR test double now

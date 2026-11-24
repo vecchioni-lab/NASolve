@@ -358,8 +358,24 @@ of 15.673. Its turning force was **1.26%** of this term's maximum. The B:7
 control retained **85.8%**. A small virtual rotation gave the same derivative
 as the native atom gradients. These are single-term measurements on the
 written coordinates. The total refinement force includes neighboring geometry
-and diffraction. An independent local backbone starting conformation is the
-next comparison for D:7.
+and diffraction.
+
+Four intact T→G steps supplied alternative local shapes for D:7–C:8. Across
+both written checkpoints, fitting four donor sugar atoms and the acceptor P
+could reproduce a plausible torsion or a plausible O3′–P distance separately.
+For example, in the second checkpoint the A:9–A:10 shape gave −149.5° and
+a 1.188 Å bond. D:2–D:3 gave 1.614 Å and +60.1°. Moving a six-atom linkage
+as a rigid group between two fixed sugars stretched the recipient O5′–C5′
+bond to 1.76–2.45 Å there, from 1.436 Å.
+
+With the two fitted O3′ bond lengths fixed, moving only O3′ around their
+intersection circle could reach −140°. At that position the O3′–P–OP2 angle
+collapsed to 63.9° and O3′–P–O5′ opened to 145.2°. The native targets were
+108° and 104°. This numerical trial moved O3′ by 1.50 Å. The existing
+4.19 Å unfilled map was weak at the written O3′ and P (−1.86 and −1.18
+whole-map rms units). A jointly adjustable sugar–phosphate fragment with
+anchored flanking bases is the next starting model to test against the data.
+Both existing refinements and their selections are preserved.
 
 One standalone five-cycle Phenix refinement used the corrected returned model,
 the two registered crystal partners, the original reflection flags and the seven
