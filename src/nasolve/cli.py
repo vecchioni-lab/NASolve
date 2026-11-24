@@ -383,6 +383,8 @@ def build_parser() -> argparse.ArgumentParser:
     cif_assess.add_argument("--run", type=Path, help="assess a completed run's frozen checkpoint bundle")
     cif_assess.add_argument("--bundle", type=Path, help="assess an activated portable runtime bundle")
     cif_assess.add_argument("--checkpoint", help="checkpoint ID/bookmark (requires --run)")
+    cif_assess.add_argument("--template-bonds", action="store_true",
+                            help="measure heavy-atom bonds in each dictionary coordinate set against its own distance targets")
     cif_assess.add_argument("--bond-targets", nargs="?", const=True, type=Path, metavar="GEO",
                             help="compare the bond lengths and sigmas Phenix requested with the supplied CIFs; give a GEO with --model, or use the recorded geometry with --run")
     cif_assess.add_argument("--b-factors-at", action="append", metavar="CHAIN:NUMBER",
@@ -2208,7 +2210,7 @@ def _cif_doctor(args: argparse.Namespace) -> int:
                 if args.run is not None or args.dictionaries or args.model is not None or args.checkpoint is not None or args.stage != "standalone":
                     raise ValueError("--bundle selects its frozen model/resources; omit --run, dictionaries, --model, --checkpoint and --stage")
                 from .cif_runtime_bundle import assess_runtime_bundle
-                payload = assess_runtime_bundle(args.bundle)
+                payload = assess_runtime_bundle(args.bundle, template_bonds=args.template_bonds)
             elif args.run is not None:
                 if args.refined_planes is not None and args.refined_planes is not True:
                     raise ValueError("--run uses its recorded geometry. Give --refined-planes without a GEO path.")
@@ -2218,7 +2220,8 @@ def _cif_doctor(args: argparse.Namespace) -> int:
                     raise ValueError("--run selects its frozen model/bundle; omit dictionaries, --model and --stage")
                 payload = assess_run(args.run, checkpoint=args.checkpoint, refined_planes=bool(args.refined_planes),
                                      refined_links=args.refined_links, contact_sites=args.contacts_at,
-                                     b_factor_sites=args.b_factors_at, bond_targets=args.bond_targets is True)
+                                     b_factor_sites=args.b_factors_at, bond_targets=args.bond_targets is True,
+                                     template_bonds=args.template_bonds)
             else:
                 if not args.dictionaries or args.checkpoint is not None:
                     raise ValueError("Provide dictionary paths, or --run with an optional --checkpoint")
@@ -2229,6 +2232,9 @@ def _cif_doctor(args: argparse.Namespace) -> int:
                 if args.refined_planes is not None and model is None:
                     raise ValueError("Standalone --refined-planes requires a GEO path and --model PDB")
                 payload = assess_dictionaries(paths, stage=args.stage, model=model)
+                if args.template_bonds:
+                    from .cif_template_bonds import read_template_bonds
+                    payload["template_bonds"] = read_template_bonds(paths, payload)
                 if args.bond_targets is not None or args.refined_planes is not None:
                     from .model_assessment import file_sha256
                     from .refinement_component_bonds import apply_bond_target_review, read_component_bond_targets
@@ -2273,6 +2279,17 @@ def _cif_doctor(args: argparse.Namespace) -> int:
             print(text, end="")
         else:
             print(f"CIF Doctor: {payload.get('status', 'PREPARED')}")
+            for item in payload.get("template_bonds", {}).get("components", []):
+                label = f"Dictionary {item['input_index'] + 1}, {item['component']}"
+                if "reason" in item:
+                    print(f"{label} template bonds unavailable ({item['reason']}).")
+                for coords in item["coordinate_sets"]:
+                    measured = [r for r in coords["bonds"] if "distance_A" in r]
+                    print(f"{label}, {coords['family']} measured {len(measured)}/{len(coords['bonds'])} heavy-atom bonds.")
+                    if measured:
+                        row = max(measured, key=lambda r: abs(r["minus_target_A"]))
+                        print(f"  {'–'.join(row['atoms'])} has the largest difference. "
+                              f"Coordinates {row['distance_A']:.3f} Å, target {row['target_A']:.3f} Å.")
             for field, stage in (("preflight_printed_planes", "Preflight"), ("refined_printed_planes", "Final")):
                 if field not in payload:
                     continue

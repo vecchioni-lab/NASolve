@@ -64,7 +64,7 @@ def test_read_only_run_uses_selected_checkpoint_without_runtime_discovery(tmp_pa
         assert main(['cif-doctor', 'assess', '--run', str(tmp_path),
                      '--checkpoint', 'refine-002', '--json']) == 2
     assess.assert_called_once_with(tmp_path, checkpoint='refine-002', refined_planes=False, refined_links=False,
-                                   contact_sites=None, b_factor_sites=None, bond_targets=False)
+                                   contact_sites=None, b_factor_sites=None, bond_targets=False, template_bonds=False)
     discover.assert_not_called()
     assert json.loads(stream.getvalue()) == audit
 

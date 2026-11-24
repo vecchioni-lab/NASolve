@@ -8,6 +8,11 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `cif-doctor assess --template-bonds` compares the heavy-atom distances
+  in each dictionary coordinate set with its own refinement targets. It accepts
+  standalone CIFs, the frozen dictionary of a numbered checkpoint or an
+  activated bundle. The comparison leaves chemical decisions with the caller.
+
 - `autorefine --prepared-backbone-source RUN` can fit a reviewed ReadySet
   candidate in a numbered checkpoint. It checks the Coot construction,
   every declared crystal junction, the actual parent restraints and the

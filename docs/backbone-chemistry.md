@@ -309,6 +309,31 @@ was `-x+y,-x,z`. Those atoms were 3.340 Å apart before fitting. Substituting
 before starting the wrong fit. Integral cell translations matter as well.
 An existing crystal bond with an unreadable image requires review.
 
+C569 repeated ordinary construction from the same MR solution with the
+corrected PDU dictionary present at the first Coot mutation. Its Cartesian
+template put C5B–C5M at 1.6074 Å while its target was 1.470(20) Å. In a
+private comparison, moving the terminal methyl and its three dictionary
+hydrogens along that bond gave a template distance of 1.4700 Å. All
+restraint rows, other template bond lengths and the other 860 model atom
+coordinates were preserved. ReadySet retained both as built. The same
+seven restraint inputs by chemical content, original amplitudes, 124 free
+reflections and both crossover declarations went into each five-cycle fit.
+
+| A:12 / B:4 | Original dictionary positions | Adjusted terminal positions |
+| --- | --- | --- |
+| Coot / ReadySet terminal C–C distance (Å) | 1.607 / 1.608 | 1.470 / 1.470 |
+| Phenix terminal C–C distance (Å) | 1.443 / 1.456 | 1.455 / 1.501 |
+| Phenix tip height above six-atom ring (Å) | 0.242 / 0.187 | 0.445 / 0.081 |
+| B:7–B:1 / D:7–C:8 phosphate distance (Å) | 1.632 / 1.641 | 1.644 / 1.616 |
+| R-work / R-free | 0.2213 / 0.2856 | 0.2207 / 0.2833 |
+
+The correction improved the starting bond at both sites. After refinement
+the tip lay closer to its ring at B:4 and farther away at A:12. The D:7
+donor torsion was +37.6° and +30.9° respectively. Both endpoints remain
+unselected. Use the new template comparison to find candidate construction
+problems across components. A general repair needs an independent component
+and a separate check of its geometry after native refinement.
+
 One standalone five-cycle Phenix refinement used the corrected returned model,
 the two registered crystal partners, the original reflection flags and the seven
 effective restraint files. The R values were read at the start and end of the

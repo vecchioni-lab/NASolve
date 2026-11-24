@@ -94,6 +94,29 @@ for an invalid input. Chemical acceptance and portal validation are separate
 steps. [PDBx sequence identifiers](https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_atom_site.label_seq_id.html)
 and [crystal partners](https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_struct_conn.ptnr2_symmetry.html).
 
+## Checking the coordinates Coot starts from
+
+A dictionary may declare a good restraint and supply coordinates that put its
+two atoms at a different distance. Run the existing assessment on the exact
+dictionary, or on the checkpoint whose dictionary Phenix actually received.
+
+```sh
+nasolve cif-doctor assess ligand.cif --template-bonds
+nasolve cif-doctor assess --run RUN --checkpoint ID --template-bonds --json
+```
+
+The report compares every explicit heavy-atom bond with the declared
+`value_dist`. It identifies Cartesian restraint coordinates, CCD ideal
+coordinates and CCD model coordinates separately. The distance, target, signed
+difference and available restraint width appear in JSON. A width measures a
+restraint's tolerance. It gives no experimental uncertainty for a built model.
+A missing coordinate or target remains visible. Measured Coot, ReadySet and
+refined coordinates are separate evidence.
+
+In the [PDU comparison](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold),
+the dictionary placed two bonded carbons 1.607 Å apart while the restraint
+specified 1.470 Å. Coot followed the supplied coordinates at both model sites.
+
 ## Inspecting a phosphate at a crystal boundary
 
 When a strand may continue into the next crystal copy, identify the phosphorus,

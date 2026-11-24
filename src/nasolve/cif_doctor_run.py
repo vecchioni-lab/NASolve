@@ -172,6 +172,7 @@ def assess_run(
     run: Path, *, checkpoint: str | None = None, refined_planes: bool = False,
     refined_links: bool = False, contact_sites: list[str] | tuple[str, ...] | None = None,
     b_factor_sites: list[str] | tuple[str, ...] | None = None, bond_targets: bool = False,
+    template_bonds: bool = False,
 ) -> dict[str, object]:
     """Assess a selected run/checkpoint without creating or modifying artifacts.
 
@@ -232,6 +233,9 @@ def assess_run(
     if not isinstance(model_descriptor, dict) or model_descriptor.get("sha256") != model_ref["sha256"]:
         raise CheckpointError("CIF assessor model inventory does not match the selected checkpoint")
     model_descriptor["frozen_reference"] = dict(model_ref)
+    if template_bonds:
+        from .cif_template_bonds import read_template_bonds
+        receipt["template_bonds"] = read_template_bonds(restraints, receipt)
 
     outputs = selected.get("outputs", {})
     if (refined_planes or refined_links or contact_sites or bond_targets) and not isinstance(outputs, Mapping):

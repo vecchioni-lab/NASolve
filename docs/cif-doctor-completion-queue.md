@@ -284,10 +284,13 @@ the returned model and its seven actual restraint inputs. Its matched native
 reference steps are among those 38 local bonds. C567 preserves that bundle
 and its observations in a fresh, unselected ordinary child. C568 distinguishes
 the same two atoms across different crystal images and refuses the observed
-25.189 Å alternative before fitting. Next test the corrected dictionary from
-the beginning of ordinary Coot construction with the same scaffold and the
-same reflections. Distinguish
-the original Coot source from its ReadySet return when binding that run.
+25.189 Å alternative before fitting. C569 traced the corrected dictionary
+from its first use by Coot and found a 1.607 Å coordinate template against a
+1.470 Å bond target. Correcting the starting coordinates fixed construction
+at both sites. Five-cycle refinement improved the tip height at one site and
+worsened it at the other. Keep that comparison unselected. Next use the
+ordinary run's recorded Coot construction and ReadySet root directly, and
+qualify terminal-group template repair on a second component before adoption.
 
 C537 checks which modeled atoms actually reached a native covalent plane.
 The historical GEO omitted C5A at both PDU sites. The corrected GEO included

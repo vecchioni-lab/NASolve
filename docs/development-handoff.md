@@ -1,9 +1,33 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-24, C568 checking the crystal copy before fitting a phosphate — Rowan**.
+Updated **2026-11-24, C569 comparing the PDU construction coordinates with the refinement target — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
-**Q06.** C568 checks which crystal copy Phenix already joins when both atom
+**Q06.** C569 starts with the corrected dictionary already present when Coot
+mutates the scaffold. The PDU terminal C–C restraint called for 1.470 Å.
+Its template placed the two atoms 1.607 Å apart. Coot built 1.607/1.608 Å
+at A:12/B:4. In a separate dictionary with only four starting positions
+changed, Coot built 1.470/1.470 Å. Only the two methyl carbons moved among
+862 written atoms. ReadySet retained both builds. Five matched Phenix
+2.2.1-6174 cycles gave mixed changes in tip height, and the D:7 torsion is
+still unresolved. Keep both fits available for review. Coot was 1.3.3.
+
+The optional `template_bonds` assessment section uses
+`dictionary-template-bonds-v1`. Existing checkpoint and assessment schemas
+need no migration. The initial seven regressions failed. Source and a
+relocated wheel each passed 267 focused tests and 21 subtests. Invoke
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider`
+on `test_cif_template_bonds`, `test_cif_doctor_degenerate_geometry`,
+`test_cif_doctor_run`, `test_cif_runtime_bundle`, `test_cif_doctor_cli`,
+`test_cif_doctor`, `test_refinement_component_bonds`,
+`test_cif_linear_bond_reference`, `test_prepared_crystal_backbone`,
+`test_refinement_prepared_backbone` and `test_cli`, all under `tests/` with
+a `.py` extension. Six prior phosphate reports remained identical. Product
+changes cover the optional assessor and its CLI/run/bundle entry points.
+Models, observations and native work directories stay in the local checkout.
+[Measurements and next use](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold).
+
+**C568.** C568 checks which crystal copy Phenix already joins when both atom
 names match the proposed linkage. The genuine B:7 O3′–B:1 P native capture
 contained a 1.607 Å target. The registered atoms were 3.340 Å apart in that
 copy and 25.189 Å apart in another. Previously both declarations qualified.
