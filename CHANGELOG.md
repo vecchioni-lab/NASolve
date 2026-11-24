@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record coupled Hg/DNA refinement and the ordinary receiving boundary
+
+- Complete the matched Hg-XYZ freedom comparison with both registered crystal
+  links, original phases/Free-R and protected Hg B/Q/f′/f″. Retain paired maps,
+  environmental-B previews and explicit unselected scientific status.
+- Preserve two failed strict FFT derivative diagnostics and document reuse of
+  the established direct-summation check without changing native fit policy.
+- Scope the two missing ordinary-endpoint contracts with Cedar: mixed parameter
+  protections and anomalous/experimental-phase ancestry. Preserve legacy metal
+  XYZ replay; no new schema/runtime/default, scientific upload or full-suite claim.
+
 ### Record joint crystal-link refinement and environmental-B previews
 
 - Complete the matched source-bound five-cycle comparison with both confirmed

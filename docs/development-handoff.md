@@ -7,36 +7,30 @@ observation and storage owners; it introduces no new scientific policy.
 
 ## Current metal-science edge
 
-A01 remains partial; A02 f″ remains gated. The
-[joint DNA XYZ/group-B comparison](metal-development-handoff.md#a01-joint-dna-2026-11-24)
-completes two five-cycle Phenix 2.2.1-6174 fits with **both confirmed crystal
-connections**, original phases/Free-R, 858 DNA XYZ/42 B groups and fixed Hg.
-B7→B1 is 1.649/1.658 Å; the previously open D7→C8 closes to 1.621/1.638 Å.
-Hg coordination is about 172.2°; Rwork/Rfree are 0.3054/0.3341 and 0.3061/0.3366.
-No selected parent: the first phosphate stays strained and its maps remain weak.
+A01 remains partial; A02 scientific quantitation remains gated. The
+[coupled Hg/DNA comparison](metal-development-handoff.md#a01-coupled-metal-2026-11-24)
+completes both five-cycle Phenix 2.2.1-6174 fits with Hg XYZ newly free, 42 DNA
+B groups unchanged and Hg B/Q/f′/f″ fixed. Both declared crystal connections,
+original HL/MLHL and original Free-R remain. Hg moves 0.089 / 0.086 Å;
+Rwork is 0.3066 / 0.3059 and Rfree 0.3371 / 0.3362. Neither endpoint is selected.
+Maps, local phosphate geometry and asymmetric ligand B remain review evidence.
 
-The existing environmental-B helper previews base-mean values 85.85/86.62 Å²
-versus N3-donor means 94.59/95.36 Å² from the returned models. Saved Hg remains
-B69.52/Q1/f″0 unmeasured; neither model changes. The first phosphate's installed
-bonded terms favor opening, and no reported OP2 contact is inside its vdW
-distance. Complete force balance and coupled metal/base placement remain open.
+28 changed-observer controls and 114 independent preflight checks precede the
+fits. Two failed strict FFT derivative attempts remain stopped and preserved;
+the established A430 direct-summation diagnostic then passes at its original
+tighter bound, with native FFT baseline exactly restored and fit policy unchanged.
+Cold fit/output, written-image, environmental-B and sole-policy comparison
+checks pass; exact counts/commands are in the metal handoff. Both fits stop.
+The fresh report is `ScienceCheckouts/Hazel/2026-11-24_ft-coupled-metal/index.html`.
 
-Both preflights and fits are stopped. Reuse 105 joint preflight checks, 130
-cold fit/output checks, 18 Cedar written-image checks, 20 saved R-factor checks,
-44 B-preview checks, 94 bonded-term checks and 84 contact checks. Local real-space
-calls processed zero DNA; global real-space execution is not qualified. Native
-Rfree is recovered with its own amplitude scale, not the unrescaled FMODEL ratio.
-
-Next scope coupled Hg/base XYZ freedom with explicit native mask/protection
-observations under the same joint chemistry; consult prior all-atom attempts.
-Do not silently adopt these standalone results as ordinary/f″ parents.
-The current evidence is `Alder/a01-joint-dna-20261124-01/`; the visual report is
-`ScienceCheckouts/Hazel/2026-11-24_ft-two-connections/index.html`.
-Earlier one-link and scope receipts remain linked in the metal handoff.
-
-This checkpoint changes four maintained documents only. Cedar V12 is frozen
-for the private experiment, not a new Alder integration. No maintained runtime,
-schema, default, migration, scientific upload, pruning or full-suite claim.
+Next reuse Cedar C567's ordinary prepared-backbone/numbered-round owner and
+close two explicit receiving contracts: mixed XYZ/group-B/native protections,
+and original anomalous/experimental-phase ancestry. Existing metal XYZ v1 is
+not this protocol; preserve its replay and never invent ordinary ancestry.
+The pinned local `a01-joint-metal-xyz-20261124-03/receiving-scope.md` records the
+design. No further native job, schema extension or shared integration tonight.
+Four maintained documents change; no runtime/default/migration change,
+scientific upload, automatic pruning or new full-suite claim.
 
 ## Qualified integration checkpoint — test-only amendment
 

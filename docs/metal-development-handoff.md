@@ -11,111 +11,113 @@ not a second queue.
 <a id="a01-current-science-coupled-placement-does-not-survive-open-refinement"></a>
 <a id="a01-dna-stage-admission-2026-11-24"></a>
 <a id="a01-joint-dna-2026-11-24"></a>
+<a id="a01-coupled-metal-2026-11-24"></a>
 
-## Current A01 — both crystal connections refine together; no selected parent
+## Current A01 — coupled Hg/DNA XYZ comparison complete; no selected endpoint
 
-The source-bound original/constructed comparison now runs with **both confirmed
-B7→B1 and D7→C8 connections** through the frozen Cedar V12 joint owner. Two
-complete five-cycle **Phenix 2.2.1-6174** fits free the same 858 DNA XYZ values
-and 42 residue B groups; Hg XYZ/B/Q/f′/f″ stay fixed. Exactly six initial XYZ
-values differ between arms. Original indexed HL/MLHL and all 1,151 observations,
-including 59 original Free reflections, remain unchanged. D:1 stays chemically
-terminal with p5*END and P/OP1/OP2/OP3 retained. A01 partial; A02 gated.
+Both five-cycle **Phenix 2.2.1-6174** fits now allow Hg XYZ to move with the
+858 DNA atoms, while retaining the same 42 DNA residue B groups and fixed
+Hg B/Q/f′/f″. Both confirmed B7→B1 and D7→C8 crystal links remain active
+through the same frozen Cedar V12 owner. Each start exactly matches its prior
+fixed-Hg control; **only the coordinate selection adds Hg**. Original HL/MLHL,
+1,151 observations, 59 original Free reflections, source chemistry and D:1
+terminal protection remain. A01 partial; A02 scientific quantitation remains gated.
 
 | Returned measurement | Original start | Constructed start |
 | --- | ---: | ---: |
-| Rwork / Rfree | 0.3054 / 0.3341 | 0.3061 / 0.3366 |
-| B7-image O3′–B1 P (Å) | 1.649 | 1.658 |
-| D7-image O3′–C8 P (Å) | 1.621 | 1.638 |
-| B1 / C8 OP2–P–O5′ (degrees) | 91.21 / 107.96 | 92.97 / 109.09 |
-| N3–Hg–N3 (degrees) | 172.16 | 172.21 |
-| Hg–N3 A12 / B4 (Å) | 2.031 / 1.985 | 2.010 / 2.004 |
-| A12 / B4 base-only mean B (Å²) | 51.11 / 120.58 | 51.56 / 121.68 |
-| Preview Hg B, base-mean / N3-donor-mean (Å²) | 85.85 / 94.59 | 86.62 / 95.36 |
+| Rwork / Rfree | 0.3066 / 0.3371 | 0.3059 / 0.3362 |
+| Hg movement (Å) | 0.089 | 0.086 |
+| N3–Hg–N3 (degrees) | 174.03 | 173.65 |
+| Hg–N3 A12 / B4 (Å) | 2.029 / 1.997 | 2.028 / 2.004 |
+| B7→B1 / D7→C8 P–O3′ (Å) | 1.653 / 1.620 | 1.658 / 1.628 |
+| B1 / C8 OP2–P–O5′ (degrees) | 93.20 / 108.20 | 93.49 / 107.97 |
+| A12 / B4 base-only mean B (Å²) | 50.60 / 125.30 | 48.34 / 125.48 |
 
-The second connection closes from 3.111 Å in both starts, whereas earlier
-one-link fits left it at 2.993/3.051 Å. Its phosphate angle is now close to the
-108° source target. The first phosphate remains substantially strained. Both
-Hg pairs are nearly linear, but these small R differences do not choose a
-winner. The prior one-link comparison used V11; it is historical context,
-not a code-identical single-variable control for this V12 pair.
+The fixed-Hg controls were Rwork/Rfree **0.3054/0.3341** and **0.3061/0.3366**.
+Hg moves 0.089 / 0.086 Å in the new pair. This is a controlled test of
+coupled freedom, not evidence that freeing another parameter must improve a
+bounded result. Native weight optimization remains enabled in both policies;
+its selected weights can respond to the changed selection. Do not select by
+small R differences alone or call these five-cycle endpoints converged.
 
-**Maps and environmental B:** original/constructed B1 P main/difference density
-is 0.112/−2.953 and 0.092/−2.863σ; C8 P is 0.029/−2.670 and 0.018/−2.660σ.
-Hg is 5.226/−2.487 and 5.204/−2.528σ. These are model-assisted 5.06 Å maps
-including Free-R, not independent validation. Saved Hg remains B=69.52 Å²,
-Q=1, f″=0 **unmeasured**. The existing environmental-B helper previews both
-policies from the actual returned models and captured CIF graphs: nine non-H
-atoms per base, excluding sugar/phosphate, or the two explicit N3 donors.
-The base mismatch is retained; no expected B range is imposed. Proposed bytes
-exist only in memory and are discarded. No saved B assignment, f″ fit or
-parent selection. Written-PDB rounding explains small differences from native
-full-precision means. B4's donor B is 138.06/139.15 Å², distinct from its base mean.
+**Maps/B:** Hg main/difference density is 5.332 / 5.233
+and -2.392 / -2.498σ. B1 P main/difference is
+0.140 / 0.098 and -2.941 / -2.859σ;
+C8 P is -0.005 / 0.012 and -2.712 / -2.672σ.
+These model-assisted 5.06 Å maps include Free-R. The existing environmental-B
+helper previews Hg B **87.95 / 86.91 Å²** from equally weighted bases,
+or **96.69 / 95.65 Å²** from the two exact N3 donors. Captured CIF graphs
+select nine non-H atoms per base and exclude sugar/backbone. Saved Hg stays
+B69.52/Q1/f″0 unmeasured; preview bytes are discarded. Between-base B mismatch
+remains explicit. No saved environmental-B assignment or f″ fit.
 
-**The first phosphate has a real remaining conflict, not a missing restraint.**
-Exactly one local 108°/3° OP2–P–O5′ term remains installed; current raw penalties
-are 31.307/25.115. All five bonded OP2 terms are present. Their summed partial
-opening slopes are −4.190/−3.691 native units per degree. The final reported
-nonbonded environment has 20/18 OP2 contact rows (including reciprocal image
-rows); none lies inside its reported van der Waals distance. Minimum clearances
-are +0.236/+0.418 Å. This does not reconstruct the complete diffraction/nonbonded
-force balance or establish stationarity. It supports neither a duplicate angle
-restraint nor another weight grid. Use Cedar C561's written-image reader beside
-raw GEO: cross-image GEO model/residual values use untransformed coordinates,
-whereas the qualified runtime corrects actual energies/gradients.
+**Qualification and a preserved diagnostic failure:** 28 changed-observer
+controls pass. The first strict FFT derivative probe failed; a second zero-cycle
+attempt retained its complete step-dependent mismatch. Both stopped before the
+second arm or any fit. The earlier A430 method already separates the native FFT
+baseline from direct-summation derivative diagnostics; the new caller should
+have consulted that method first. Reusing it on a detached manager preserves
+the native FFT fit policy and exactly reproduces/restores its baseline. Nine Hg
+Cartesian work-MLHL checks per arm pass the unchanged, stricter historical
+1e−7 + 1e−4-relative tolerance, with errors 1.19e−9/6.55e−10. This does **not**
+turn the failed strict FFT finite differences into passes or qualify FFT numerical
+derivatives. Keep this distinction explicit before any future force probe.
 
-**Execution/validation:** both zero-cycle preflights pass **105 independent
-checks**, including 24 full/DNA-sliced geometry finite-difference probes per arm
-(maximum errors 1.25e−6/9.84e−7). Both owners retain their seven image terms,
-bond/exclusion sets and source references. Fits take **510.77/481.75 s**;
-actual reciprocal XYZ target calls are 2,915/2,677, group-ADP calls 371/368,
-with 92 full stage observations per arm. Both processes and preflights stop.
-**130** cold fit/output checks, **18** existing Cedar image-geometry checks,
-**20** saved R-factor checks, **44** environmental-B preview checks,
-**94** bonded-attribution checks and **84** saved-contact checks pass.
-The three paired PNG/SVG views were visually reviewed. These are private
-scientific assertions/readbacks, not a fresh pytest/full-suite claim.
+**114** independent zero-cycle checks qualify source state, 2,577 XYZ parameters,
+protected non-XYZ flags and both joint owners; 24 joint-geometry derivative
+checks per arm also pass. The complete fits take **476.95 / 509.46 s**, with actual XYZ
+parameter flags observed at target evaluations and original phases/Free-R,
+Hg B/Q/f′/f″ and DNA ADP membership protected throughout. All processes stop.
+Cold fit/output checks: **135**; Cedar written-image checks:
+**93**; environmental-B preview checks: **44**;
+same-input fixed/moving comparison checks: **68**. Three paired PNG/SVG
+figures are visually reviewed. These are bounded private science assertions,
+not a full-suite or new maintained-runtime claim. Local real-space calls still
+process zero DNA; global real-space refinement is not qualified.
 
-Both atomic isotropic ADP back-trace controls stay disabled; ordinary bulk-
-solvent/scaling remains enabled. Local real-space calls process zero DNA
-residues: global real-space optimization is not qualified. Native Rwork/Rfree
-are independently recovered from saved f-models using Phenix's separate work
-and free amplitude scales. An unrescaled exported FMODEL free residual is a
-different statistic; do not replace the recorded Rfree with that lower number.
+**Next A01 receiving boundary — two specific contracts, not another fit grid.**
+Cedar **C567** already carries exact prepared Coot/ReadySet candidates, captured
+restraints, original observations/Free-R, terminal intent and all registered
+images into an unselected ordinary round with `numbered-prepared-backbone-v1`.
+Reuse `autorefine --prepared-backbone-source`, `--registered-continuations` and
+`--native-receipt` with their required lineage/topology arguments. Rowan confirms
+two missing contracts: **mixed XYZ/group-B parameter scope and actual native
+protection**, and **original anomalous/experimental-phase ancestry**. The local
+`receiving-scope.md` pins their owners, evidence and future focused validation.
 
-**Next A01 boundary:** review the remaining geometry and scope coupled Hg/base
-XYZ freedom under the same joint chemistry, phases, Free-R and fixed Hg B/Q/f′/f″.
-Check previous all-atom attempts before running: neither those older fits nor
-the current fixed-Hg comparison qualifies the new joint moving-metal state.
-Any changed freedom needs explicit native masks/protection observations and a
-separate bounded protocol. Do not silently promote either fitted endpoint or
-fabricate ordinary checkpoint ancestry. The existing diagnostic f″ bridge is
-distinct from scientific acceptance, but this standalone joint experiment does
-not yet satisfy its ordinary endpoint/provenance interface. Source-backed
-receiving and the unresolved geometry are the named gaps; no automatic f″,
-cap/weight grid, new chemical target or global real-space mode follows.
+Existing metal XYZ v1 specifies individual ADP refinement; these group-B/joint
+results cannot be relabelled as v1 or given fabricated ordinary ancestry.
+Preserve legacy replay and the source's unaccepted state. A small explicit
+ordinary-endpoint adaptation should feed the existing environmental-B/f″
+machinery, with scientific eligibility separate from diagnostic provenance.
+No schema extension, integration, new native job or endpoint adoption follows
+tonight. Remaining local phosphate/DF chemistry and scientific selection stay
+visible; no new chemical target, cap/weight grid or unrelated deposition work.
 
-**Evidence/restart:** `branch-artifacts/Alder/a01-joint-dna-20261124-01/` retains
-plans/source pins, frozen V12/observer code, exact native argument arrays,
-preflight/fit process stops, independent receipts, written models/maps and
-editable figures. Runners **A677–A688** record the methods; `README.md` records
-exact commands. The new compact report is
-`ScienceCheckouts/Hazel/2026-11-24_ft-two-connections/index.html` and links
-models/maps without copying them. Important geometry/proof nodes remain local;
-no pruning, science upload or portability claim. Four maintained documents
-change; no maintained runtime/schema/default/migration change. The V12 package
-is frozen from Cedar for this experiment, not silently integrated into Alder.
+**Evidence/restart:** `branch-artifacts/Alder/a01-joint-metal-xyz-20261124-03/`
+contains plans, exact commands/process stops, frozen code, source pins, final
+models/maps, independent receipts, paired figures and `receiving-scope.md`.
+Runners **A690–A706** and `README.md` record the preparation, failed probes,
+corrected method and review. Failed attempts `-01`/`-02` remain preserved.
+The report is `ScienceCheckouts/Hazel/2026-11-24_ft-coupled-metal/index.html`.
+It links products rather than copying them. Important XYZ/proof nodes stay
+local; cheap f″ retirement remains a separate A04 lifecycle. No science upload,
+automatic pruning or portability claim. Four maintained documents change;
+no maintained runtime/schema/default/migration or fresh full-suite change.
 
 ### Preceding evidence retained
 
-`2ec9c11f:docs/metal-development-handoff.md` retains the one-link comparison
-and joint-source scope in full. Its 21 observer controls, 102 fit/output checks,
-94 saved-term checks, C561 readback and 189 joint-source checks remain evidence;
-do not rerun them unchanged. The source scope binds both FT-specific connections,
-A:1–A:21, D:1 chemistry, exact native reference groups and operators `-y,x-y,z`
-and `-x+y,-x,z`; PDU is not substituted as topology authority.
-Earlier checkouts stay intact. Pure-helper qualification at `7c2e1c41` remains
-53 focused/99 adjacent/53 installed cases and 531 cold replay checks.
+`c2fd9a8f:docs/metal-development-handoff.md` retains the completed fixed-Hg V12
+pair, 105 joint initialization checks, 130 fit/output checks, environmental-B
+previews and local bonded/contact attribution. Its original first-phosphate
+bonded terms favor opening; none of the saved OP2 contacts lies inside its
+reported vdW distance. That partial evidence is not a complete force balance.
+The comparison and maps remain at `a01-joint-dna-20261124-01/` and
+`ScienceCheckouts/Hazel/2026-11-24_ft-two-connections/index.html`, unchanged.
+`2ec9c11f` retains the earlier V11 one-link pair and 189 joint-source checks;
+do not treat that V11→V12 contrast as a code-identical single-variable control.
+Pure-helper qualification at `7c2e1c41` remains 53 focused/99 adjacent/53 installed
+cases and 531 cold replay checks. Reuse these receipts without unchanged reruns.
 
 <a id="a01-feasible-step-2026-11-24"></a>
 <a id="a01-allowance-comparison-2026-11-24"></a>
