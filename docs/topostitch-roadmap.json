@@ -4,7 +4,7 @@
   "updated": "2026-11-24",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "66e9760ed3d728fe2639d0962ba43ec11c59f104",
+  "audited_code_commit": "d05bbfb9e540284a85f04ed72fd7294e4eb848a8",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -1113,7 +1113,8 @@
         "W257 maintains exact declared-edge path projection bound to complete original CIF sites.121source/121installed; Willowfull2705pass/4skip/234subtests; four real W249 path/boundary replays exact. Original protected/unknown-boundary intent and unregistered atoms survive. No polymer semantic/all-annotation approval or writer.",
         "W258: 143focused source/143relocated installed;208installation-file hashes;full Willow2727passed/4skipped/234subtests. Four original3LNA/5LNA controls preserve80/87rows,71/74H-bonds;14/15endpoint references change while physical endpoints agree within5.03e-15 A. Explicit blank/unknown and missing polymer-locator review defects reproduced/fixed. No writer/native call.",
         "W259: 168 focused source and 168 relocated installed checks; 210 installation-file hashes. Full Willow: 2752 passed, 4 skipped, 234 subtests. Four original 3LNA/5LNA controls each retain 62 declared/observed positions, no unresolved/unmodeled positions and exact W258 connection reports. Synthetic controls cover unmodeled positions, alternative monomers, shared entities, conflicting labels and unregistered polymers; Rowan uncertainty regression fixed. No writer/native call.",
-        "W260: 225 focused source and 225 relocated installed checks; 210 installation hashes. Full Willow2786 passed/4 skipped/234 subtests. Four original controls preserve exact W259 report digests: all four literal entity texts match, two canonical texts match and two remain unavailable because modified-parent fields are absent. Multi-parent expansion, quoted-null lookalikes and source drift guarded. Compact 82/75-category inventory exposes six TLS groups per source plus assembly/reference dependencies. No native run or writer."
+        "W260: 225 focused source and 225 relocated installed checks; 210 installation hashes. Full Willow2786 passed/4 skipped/234 subtests. Four original controls preserve exact W259 report digests: all four literal entity texts match, two canonical texts match and two remain unavailable because modified-parent fields are absent. Multi-parent expansion, quoted-null lookalikes and source drift guarded. Compact 82/75-category inventory exposes six TLS groups per source plus assembly/reference dependencies. No native run or writer.",
+        "W261: 158 focused source and 158 relocated installed checks, two subtests and 212 installation-file hashes. Four real controls retain 62 sites,60 edges and exact W259 coverage digests; four source paths become eight recut paths. ASU target reuse stays neutral across reserialization. No native job or writer."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
@@ -1137,14 +1138,15 @@
         "E_ORIGINAL_CIF_PATH_PROJECTION",
         "E_ORIGINAL_CIF_CONNECTION_TRANSPORT",
         "E_ORIGINAL_CIF_POLYMER_COVERAGE",
-        "E_ORIGINAL_CIF_SEQUENCE_TEXT"
+        "E_ORIGINAL_CIF_SEQUENCE_TEXT",
+        "E_ORIGINAL_CIF_FRAGMENT_LINEAGE"
       ],
       "last_audit": {
         "date": "2026-11-24",
-        "code_commit": "66e9760ed3d728fe2639d0962ba43ec11c59f104",
-        "reviewer": "Linden; parent/null and output-policy guidance from Rowan",
-        "human_update": 260,
-        "scope": "Source sequence-text evidence and fragment-policy dependency audit; writer/native gates open"
+        "code_commit": "d05bbfb9e540284a85f04ed72fd7294e4eb848a8",
+        "reviewer": "Linden; ASU target reuse review from Rowan",
+        "human_update": 261,
+        "scope": "Read-only fragment lineage; full oligo identity and writer gates open"
       }
     },
     {
@@ -7104,6 +7106,65 @@
           "size": 4528
         }
       ]
+    },
+    "E_ORIGINAL_CIF_FRAGMENT_LINEAGE": {
+      "kind": "Maintained original CIF fragment lineage",
+      "date": "2026-11-24",
+      "human_update": 261,
+      "code_commit": "d05bbfb9e540284a85f04ed72fd7294e4eb848a8",
+      "reference": "docs/topostitch-periodic.md#w261--carry-fragment-lineage-without-inventing-full-oligo-identity",
+      "result": "158 focused source and 158 relocated installed checks, two subtests and 212 installation-file hashes. Four real controls retain 62 sites,60 edges and exact W259 coverage digests; four source paths become eight recut paths. ASU target reuse stays neutral across reserialization. No native job or writer.",
+      "limitation": "Registry-only mappings do not verify an independent oligo target; physical copy/nick/repeat phase and output entity/assembly/TLS policy remain open. Generated science excluded from Git.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w261-fragment-lineage/before.log",
+          "sha256": "bf2d4f04c15fbc6498f97834dbd5e7cab2bd474abc11b5dab99da210dcf3f3be",
+          "size": 30407
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w261-fragment-lineage/review-before.log",
+          "sha256": "6e480a125df7af39d6284b2230ad1086af6e0d9a17ee74fd8975bd94d0d3de12",
+          "size": 2483
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w261-fragment-lineage/focused-reviewed.log",
+          "sha256": "af74c0b9d87a9c16f3dd6841fda97e75583073788bded6a67220dfcb2f5bc9cc",
+          "size": 278
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w261-fragment-lineage/reviewed-install/qualification.json",
+          "sha256": "605e489c19d06672ce689264bbd952f5fbe176abc0a9da2bdc12b1ad53a93735",
+          "size": 13195
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w261-fragment-lineage/reviewed-install/installed-tests.log",
+          "sha256": "014657a8e780042874a5b048b7301d0f9c5f2ebd62862f96aa275560364ccfae",
+          "size": 278
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w261-fragment-lineage/real-file-lineage-reviewed.json",
+          "sha256": "0f425d00facb1d0828a8203aa6ec5235942120343e42c45f9d584bc061499752",
+          "size": 592348
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w261-fragment-lineage/reviewed-hashes.json",
+          "sha256": "57df8c08056d6d2f88e9f1638f17ee8e90ea892c021d6660120bb05389a925c2",
+          "size": 228
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w261-fragment-lineage/validation.json",
+          "sha256": "3ea6c41dd3404dceb20d0941e57167c94e999c0a6993ef46c28b45c2329edc64",
+          "size": 3744
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -8644,8 +8705,8 @@
       {
         "number": 261,
         "title": "Retain fragment source/copy lineage without inferring a full oligo",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "d05bbfb9e540284a85f04ed72fd7294e4eb848a8"
       }
     ]
   },

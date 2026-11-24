@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W261, 2026-11-24** (code pin follows qualification).
+**Current maintained slice: W261, 2026-11-24** (code `d05bbfb9e540284a85f04ed72fd7294e4eb848a8`).
 [Fragment lineage](topostitch-preview.md#carry-original-identity-through-visible-fragments-w261)
 retains original CIF sites/atoms/author labels, registered copy/logical identities
 and proposed path/images through the existing owners. Every declared backbone
