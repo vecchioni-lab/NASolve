@@ -8,34 +8,38 @@ observation and storage owners; it introduces no new scientific policy.
 ## Current metal-science edge
 
 A01 remains partial; A02 f″ remains gated. The
-[constructed-seed receiving comparison](metal-development-handoff.md#a01-constructed-seed-receiving-2026-11-24)
-now shows a local crystal connection surviving the same W252 phased refinement:
-P–O3′ 1.618→1.615 Å and C3′–O3′ 1.454→1.448 Å, while the original-start control
-remains distorted. The seed is separately source/chemistry/output-qualified,
-not a converged or selected parent. All 853 other coordinates and B/Q/f′/f″ stay
-fixed. Native execution is complete/stopped; 2,204 endpoint, 939 chemistry/source
-and 4,718 receiving cold checks pass. Prior iteration-limit/unavailable-audit
-verdicts remain intact.
+[matched DNA XYZ/group-B comparison](metal-development-handoff.md#a01-dna-stage-admission-2026-11-24)
+now completes both five-cycle native fits with original phases/Free-R, the same
+858 DNA atoms/42 B groups and fixed Hg XYZ/B/Q/f′/f″. Rwork/Rfree are
+0.3084/0.3333 and 0.3054/0.3340. Both starts close the large phosphate gap and
+produce nearly linear Hg coordination; weak phosphate maps and remaining
+geometry prevent parent selection. Base-only B values differ strongly between
+the two ligands; no environmental B or f″ quantitation has run.
 
-Rwork/Rfree remain high (0.3081/0.3427), with weak/negative local map support.
-Do not promote the model or infer f″. The [matched DNA-only XYZ/group-B design](metal-development-handoff.md#a01-dna-only-comparison-design-2026-11-24)
-now has 1,240 source/input and 20 source/design checks: 858 DNA atoms and 42 groups,
-with Hg XYZ/Q/B/f′/f″ held throughout. Explicit groups and disabled atomic ADP
-back-trace are required. Both exact inputs now [pass native initialization](metal-development-handoff.md#a01-dna-initialization-2026-11-24)
-through the existing V11 owner (zero cycles; 88 cold checks), with source phases,
-flags and fixed Hg observed. A recovered selector-serialization failure remains
-preserved. Optimization-stage admission is next; no broader fit has run.
-The old whole-model control lacks the join. D7→C8 and coupled metal/base
-placement remain distinct.
-The report/figure is `ScienceCheckouts/Hazel/2026-11-24_ft-seed-receiving/index.html`.
-Exact evidence is under the three `Alder/a01-constructed-seed-*` anchors dated
-20261124-01. No additional native work is queued for this comparison.
+The local phosphate angle is present once at its original 108° target, but
+remains 93.9°/89.2°. Its bonded potentials favor opening, not a new duplicate
+restraint. Cedar C561's existing written-image reader supplies physical image
+geometry beside the raw native GEO. The actual real-space mode processed zero
+DNA residues; global real-space execution is not qualified.
 
-The [pure helpers](topostitch-feasible-diagnostics.md) at `7c2e1c41` retain 53
-focused + 99 adjacent + 53 installed tests and 531 cold replay assertions.
-This follow-up changes documentation only; reuse those receipts. No raw science
-commit, pruning, runtime/schema/default change or full-suite rerun. The prior
-integration checkpoint below does not imply new release qualification.
+Both fits and preflights are stopped. Reuse 21 observer controls, 102 independent
+protocol/output checks, 94 cold term checks and the exact C561 readback; no new
+refinement is needed to close this comparison. Both FT-specific declared crystal
+connections now pass source/frame/reference and C560/C564 joint-scope checks
+(189 cold checks). D:1 remains terminal. D7→C8 still spans 2.993/3.051 Å in the
+written outputs, providing the next broad geometry question. Next initialize
+the existing joint owner with both image-force/exclusion sets and protected
+Hg/HL/Free-R before considering a new fit. No new native job is queued tonight.
+No cap/weight grid, ordinary checkpoint ancestry or f″ eligibility is inferred.
+The local evidence is `Alder/a01-dna-stage-admission-20261124-01/`;
+the reports are `ScienceCheckouts/Hazel/2026-11-24_ft-dna-relaxation/index.html`
+and its read-only follow-up `joint-scope.html`.
+
+The [pure helpers](topostitch-feasible-diagnostics.md) at `7c2e1c41` retain
+53 focused/99 adjacent/53 installed cases and 531 cold replay checks.
+This update changes documentation only, with relevant document/link checks.
+No shared runtime/schema/default/migration change, scientific upload, pruning,
+unchanged full suite or new integration qualification.
 
 ## Qualified integration checkpoint — test-only amendment
 

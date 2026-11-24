@@ -12,30 +12,23 @@ the [anomalous workflow](metal-anomalous-doctor.md) and [restraint design](metal
 own scientific contracts. A mechanism passing tests does not close its scientific
 gate. Update milestone status, evidence, limitations and next action together.
 
-A01 now demonstrates one source-qualified, nonstationary constructed seed
-surviving the existing six-atom phased receiver: P–O3′ 1.618→1.615 Å, while the
-same protocol from the original displaced phosphate remains distorted. Fresh
-endpoint and chemistry admission precede the matched run; original optimizer
-and unavailable-audit verdicts are unchanged. **A01 partial; A02 gated.**
-Rwork/Rfree remain 0.3081/0.3427 and local maps weak/negative, so there is no
-selected parent or f″ eligibility. See the [current handoff](metal-development-handoff.md#a01-constructed-seed-receiving-2026-11-24).
+**A01 partial; A02 f″ gated.** The [matched open-DNA comparison](metal-development-handoff.md#a01-dna-stage-admission-2026-11-24)
+now completes both five-cycle XYZ/group-B fits with original phases/Free-R and
+fixed Hg. Both produce nearly linear coordination and close the first crystal
+connection; Rfree remains about 0.334 and phosphate maps/geometry do not support
+parent selection. The installed local angle restraint is present and strained.
+No f″ quantitation or global real-space DNA qualification follows.
 
-The [two-arm DNA-only XYZ/group-B design](metal-development-handoff.md#a01-dna-only-comparison-design-2026-11-24)
-is now input-qualified (1,240 cold checks plus 20 source/design assertions).
-Both source-bound standalone arms now [pass native initialization](metal-development-handoff.md#a01-dna-initialization-2026-11-24):
-actual MLHL, explicit 858-atom DNA mask, 42 ADP groups, fixed Hg XYZ/Q/B/f′/f″,
-original work/free/HL and image forces. Zero refinement cycles; 88 cold checks.
-Next qualify invariance through actual optimization stages before the paired fit.
-No fabricated numbered ancestry, broader fit or parent selection.
-The old whole-model control lacks the same join and cannot be silently reused.
-Compare actual maps/scaling and broad geometry; preserve the constructed-start
-versus converged-parent distinction. D7→C8, coupled metal/base placement and
-whole-model publication remain separate. No further allowance/cap/weight grid.
-
-The current native comparison and all source/return checks are complete/stopped;
-reuse them and the 53 focused/99 adjacent/53 installed helper tests. No new native
-work is needed to close this comparison. Source rounding/derivative checks now
-qualify this actual PDB seed, not a universal new output or adoption policy.
+**Next A01 step:** initialize both declared crystal connections through Cedar's
+existing joint owner, observing both image-force/exclusion sets and protected
+Hg/HL/Free-R. The FT-specific source/frame/reference and joint grouping already
+pass 189 cold checks; D:1 stays terminal. D7→C8 is still 2.993/3.051 Å in the
+written one-join outputs, giving the next substantial geometry question.
+No new native job is queued tonight. Reuse completed fits, observer controls,
+cold readbacks and helper tests; no further cap/weight grid. The handoff owns
+exact commands, evidence and limitations. The local visual report is
+`ScienceCheckouts/Hazel/2026-11-24_ft-dna-relaxation/index.html`, with the later
+read-only scope in `joint-scope.html`.
 
 A01 next-input review now includes [DF C2 chemical target provenance](metal-df-c2-angle-audit.md). A source-consistent fragment is available, but its eLBOW angles are not independent chemistry authority. Retain explicit source-state uncertainty and coupled-target review; routine donor-state integration remains deferred. No automatic 120° substitution.
 

@@ -8,6 +8,22 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record matched open-DNA refinement and phosphate force attribution
+
+- Complete the source-bound original/constructed five-cycle XYZ/group-B
+  comparison with Hg held fixed, original MLHL/HL/Free-R, written-state checks
+  and paired maps. Keep both endpoints unselected and f″ gated.
+- Resolve the missing-angle question from saved native reports and scalar
+  potentials; reuse Cedar's written crystal-image reader. Record local-only
+  real-space execution, asymmetric ligand B, exact receipts and next joint-edge
+  admission boundary without another optimization grid.
+- Qualify both FT-specific crystal connections against existing joint-source
+  checks and retain the terminal D1 phosphate. Scope joint native initialization
+  without a new fit or checkpoint adoption.
+- Condense the current queue with earlier details preserved at their Git/evidence
+  anchors. Documentation only; no runtime/schema/default/migration change,
+  scientific artifact upload or full-suite claim.
+
 ### Record matched DNA-only native initialization
 
 - Qualify both exact source-bound inputs through the existing native owner with

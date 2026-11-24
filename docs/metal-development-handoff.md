@@ -8,227 +8,159 @@ owns feature completion. The earlier chronological diary is preserved as
 not a second queue.
 
 <a id="a01-current-science-attachment-stiffness-transfers-strain"></a>
-
 <a id="a01-current-science-coupled-placement-does-not-survive-open-refinement"></a>
+<a id="a01-dna-stage-admission-2026-11-24"></a>
 
-**Late chemical-provenance clarification:** the [DF C2-angle audit](metal-df-c2-angle-audit.md) separates eLBOW source consistency from independent chemical validation. The earlier final sulfur-angle split is 135.3°/108.7°; generated targets remain chemically provisional. Routine donor-state integration stays deferred and is not a new immediate A01 prerequisite. A retained base fragment exists (124 read-only checks), but no replacement or target change is admitted.
+## Current A01 — matched DNA XYZ/group-B fits complete; no selected parent
+
+Two source-bound standalone **five-cycle Phenix 2.2.1-6174 fits** now compare
+the original model and constructed phosphate seed. Exactly six starting XYZ
+values differ. Both free the same 858 DNA coordinates and 42 residue B groups,
+retain MLHL with the same 1,151 observations/HL and 59 original Free reflections,
+and hold Hg XYZ/B/Q/f′/f″ throughout. The registered B7→B1 crystal connection and
+all original chemistry are retained. This completes the bounded execution
+comparison, **not A01 scientific acceptance**. A01 remains partial; A02 is gated.
+
+| Returned measurement | Original start | Constructed start |
+| --- | ---: | ---: |
+| Rwork / Rfree | 0.3084 / 0.3333 | 0.3054 / 0.3340 |
+| B7-image O3′–B1 P (Å) | 1.648 | 1.677 |
+| B7 C3′–O3′ (Å) | 1.487 | 1.508 |
+| B1 OP2–P–O5′ (degrees) | 93.87 | 89.21 |
+| N3–Hg–N3 (degrees) | 172.10 | 170.37 |
+| Hg–N3 A12 / B4 (Å) | 2.017 / 2.030 | 2.006 / 1.992 |
+| A12 / B4 base-only mean B (Å²) | 53.91 / 124.28 | 50.40 / 121.32 |
+
+Both starts now close the large phosphate gap and give a nearly linear Hg pair.
+The crystal connection still has weak main density and negative difference
+density: original/constructed P is 0.038/0.039σ in 2mFo−DFc and −2.986/−2.876σ in
+mFo−DFc. Hg has strong main density (5.020/5.241σ), with negative difference
+density (−2.586/−2.482σ). These are model-assisted 5.06 Å maps including Free-R;
+neither map support nor tiny between-arm R differences establish a winner.
+Hg remains B=69.52 Å², Q=1, f″=0 **unmeasured**. No environmental-B assignment,
+f″ sweep or parent selection. Base B means exclude sugar/backbone; group-ADP
+refinement retains inherited within-group B differences, so B4's mean differs
+from its N3 B (141.75/138.79 Å²). Do not force either to an expected range.
+
+**Protocol evidence:** 21 positive/negative observer controls pass before the
+pair. Original/constructed preflights take 11.16/9.15 s; complete fits take
+374.53/467.00 s. All four owned processes exit/stay stopped. Actual reciprocal
+XYZ target evaluations are 2,150/2,736; group-ADP evaluations 354/361; 92 full
+stage observations per arm preserve Hg and indexed phases/Free-R. Independent
+cold reading of source arrays, returned states, written models and maps passes
+**102 checks**. All 858 DNA B values move; fixed atomic scattering/occupancy and
+native/output bindings are preserved. No ordinary numbered ancestry is invented.
+
+Both atomic isotropic ADP back-trace controls remain disabled; ordinary
+bulk-solvent/scaling stays enabled. The compiled real-space mode is **local
+only**, and each of its ten calls processes zero DNA residues. Thus these are
+actual reciprocal XYZ/group-B fits, **not a qualification of global real-space
+DNA optimization**. No mode was silently changed during the comparison.
+
+**The local phosphate-angle force is present.** Reusing A622's scalar method
+on these new endpoints (not its old capped-search states) gives **94 cold
+inventory/scalar checks**. Both initial/final native reports contain exactly
+one OP2–P–O5′ term: target 108°, restraint width 3°, final raw penalties
+22.189/39.234. All five bonded terms touching OP2 are present. Opening that angle
+by rotating only OP2 at fixed P–OP2 length lowers their summed potential:
+−3.551/−4.511 native units per degree. This partial derivative says nothing
+about the complete MLHL/nonbonded force or stationarity, and does not authorize
+another restraint, relaxed weight or search grid. Restraint widths are not
+experimental error bars.
+
+Cedar **C561 (`51be01f4`)** already measures written crystal-image geometry.
+Its existing `measure_written_phosphate` helper reads both checksummed outputs;
+the ordinary `phosphate-image --restraint-deviations` CLI remains reserved for
+legitimate saved checkpoints. Eight image terms per arm are recorded. The raw
+native GEO prints cross-image model/residual values using untransformed sites:
+original O3′–P–OP2 is printed as 47.20°, whereas the declared-image measurement
+from written coordinates is 109.924°. Runtime corrected forces remain qualified;
+the local within-residue angle is unaffected. Use the Cedar readback alongside
+the raw GEO, not that cross-image printed value as physical geometry.
+
+**Next boundary — joint source scope now qualified, native initialization pending.**
+The read-only A674 follow-up reuses the FT-specific investigator declaration,
+original registration and the two existing exact-model chemistry captures.
+**189 cold checks** admit both B7→B1 and D7→C8 through Cedar C564's competing-
+partner checks and C560's existing joint grouping. A:1–A:21 is verified; D:1
+retains its chemical boundary, p5*END modification and P/OP1/OP2/OP3 atoms.
+B7→B1 uses native references A16→A17 and B5→B6; D7→C8 uses A9→A10,
+C11→C12, D2→D3 and D5→D6. The declared oxygen-image operators are respectively
+`-y,x-y,z` and `-x+y,-x,z`. The B/C/D-only registration is not an A-chain/metal
+sequence-design or complete pairing authority. No PDU topology is substituted.
+
+The second gap is a substantial remaining defect: **D7→C8 is 2.993/3.051 Å** in
+the actual written one-join outputs, versus the native 1.607 Å target. Both
+prospective original/constructed starts have that gap at 3.111 Å. Written
+endpoint geometry is diagnostic only; those fitted outputs lack fresh
+exact-model chemistry captures and are not silently promoted as new parents.
+This supports testing the missing declared connection before chasing small
+angular differences at the repaired first join.
+
+Next freeze the current multi-phosphate owner and initialize an explicitly
+declared new branch with both owners in one active context. Observe both bonds,
+fourteen image angle/torsion terms, both exclusion sets and joint/sliced calls,
+alongside the existing Hg, DNA-mask, phase and Free-R protections. The earlier
+single-owner worker cannot be reused unchanged, and the inherited one-join
+scope must not be silently altered. Only after that boundary qualifies may a
+separately declared fit run. No further native job is queued tonight.
+Coupled metal/base placement, ordinary checkpoint publication and independent
+DF target chemistry remain open; A01 partial/A02 gated.
+
+The compact scope receipt is
+`branch-artifacts/Alder/a01-two-connection-scope-20261124-01/scope-review.json`
+(about 118 KB with its caller-correction note, no copied models). The checkout's
+new `joint-scope.html` links the completed comparison without changing its
+published report. A first cold caller used a nonexistent review-receipt path;
+reading A645's actual writer resolved the reference before any native work.
+No scientific input or model was changed.
+
+**Evidence/restart:** `branch-artifacts/Alder/a01-dna-stage-admission-20261124-01/`
+contains plan, exact commands/process stops, frozen observer/owner, source pins,
+native products, `cold-review.json`, `phosphate-attribution.json`,
+`cedar-written-geometry.json` and editable paired figures. Runners A664–A672
+retain preparation, 21 controls, execution and review methods; the local README
+records exact commands. Approximately 20.2 MB of proof/input/output material
+is retained. The new checkout is
+`ScienceCheckouts/Hazel/2026-11-24_ft-dna-relaxation/index.html`; it links models,
+maps and figures instead of duplicating them. Earlier checkouts stay unchanged.
+No scientific upload, automatic pruning or portability claim.
+
+This checkpoint changes four maintained documents only. No runtime, schema,
+default or migration change; no unchanged suite/native rerun. The pure-helper
+qualification at `7c2e1c41` remains 53 focused/99 adjacent/53 installed cases and
+531 cold replay checks. Relevant document/link checks are recorded separately.
 
 <a id="a01-feasible-step-2026-11-24"></a>
 <a id="a01-allowance-comparison-2026-11-24"></a>
-
 <a id="a01-constructed-seed-receiving-2026-11-24"></a>
-
-## Current A01 — constructed geometry survives a local phased fit
-
-One independently admitted, **nonstationary constructed seed** now completes
-exactly the existing W252 three-cycle/six-atom MLHL receiving protocol. The
-phosphate connection survives, unlike the original-start local fit. This is
-local construction/retention evidence, **not a selected parent or whole-model
-solution**. A01 remains partial; A02 f″ remains gated.
-
-| Measurement | Original-start output | Constructed seed | Constructed-start output |
-| --- | ---: | ---: | ---: |
-| B7 image O3′–B1 P (Å) | 1.997 | 1.618 | 1.615 |
-| B7 C3′–O3′ (Å) | 1.772 | 1.454 | 1.448 |
-| B1 OP2–P–O5′ (degrees) | 58.14 | 99.81 | 104.23 |
-| Rwork | 0.3067 | — | 0.3081 |
-| Rfree | 0.3425 | — | 0.3427 |
-
-The earlier 200-step search still has ITERATION_LIMIT and residual 5.1472;
-its no-candidate/unavailable full-Cartesian-audit verdict remains unchanged.
-The new seed role receives its own fresh full-feasible and actual-PDB-centred
-derivative audits: 150 evaluations, maximum errors 4.884e-5/4.885e-5 at the
-unchanged 1e-3 bound. Exact masked serialization preserves all other bytes.
-**2,204 independent cold checks** authenticate the endpoint. Sugar signs survive;
-there are no new descriptive short contacts. Distance thresholds and conservative
-bonded-image exclusions are not a chemical VDW certificate.
-
-A fresh Cedar fixed-coordinate capture binds the actual `c307fc65` seed, with
-**939 additional source/chemistry checks**: identical complete monomer definitions,
-native proxies and supplied requests, source-bound image/reference chemistry,
-original observations/HL/Free-R and atom identities. The wrong parent is refused.
-Fixed f′/f″ values are inherited unchanged into a new validated model binding;
-the original scattering packet and native capture remain immutable. The inherited
-native chemistry REVIEW/unsupported-charge scope is not relabelled scientific PASS.
-
-Phenix **2.2.1-6174** completes/stops the endpoint audit in **102.83 s**, fresh
-capture in **2.68 s**, and preflight plus receiving fit in **54.38 s**. The receiver
-uses the exact W252 runtime/controls: three cycles, 60 iterations, wxc scale 0.5,
-six canonical XYZ atoms, fixed B/Q/f′/f″, 1,151 reflections/HL and 59 original
-Free observations. Its 1.5 Å movement limit is relative to each input, distinct
-from construction's 2 Å original-parent limit. Maximum receiving motion is
-0.367 Å. **4,718 independent cold checks** preserve all 853 other coordinates,
-atomic state, source data, complete image forces and actual return bytes.
-The original-start control is reused without rerunning it. Native adaptive
-weights/scaling can differ; common observation scales are recorded (254.634
-versus 254.897), and tiny R differences are not significance with 59 Free data.
-
-**Maps do not yet validate this placement.** The matched figure uses actual
-returned model/coefficient pairs, the same source-defined camera and Å scale,
-and faint fixed-base context. At the constructed-start returned P/O3′ positions,
-2mFo−DFc is −0.086/−0.134σ and mFo−DFc is −3.431/−3.845σ. Original-start values
-were 0.220/0.430σ and −2.712/−2.557σ. These 5.06 Å model-assisted maps include Free-R
-reflections. Better geometry does not establish better density support. Hg remains
-Q=1, B=69.52 Å² and f″=0 (unmeasured); environmental-B preparation has not run.
-
-**Next:** admit optimization-stage observation for the initialization-qualified
-DNA-only XYZ/group-B comparison below,
-holding Hg XYZ/Q/B/f′/f″ throughout while retaining the declared crystal connection
-and complete source chemistry. The earlier
-whole-model control lacks the same join and cannot silently substitute. Review
-actual maps, scaling and broad geometry before any parent selection. D7→C8,
-coupled metal/base placement and f″ remain separate; no further search-allowance,
-cap or weight grid is justified by this comparison alone.
-
-**Evidence and restart:** local `branch-artifacts/Alder/` contains
-`a01-constructed-seed-admission-20261124-01/`,
-`a01-constructed-seed-capture-20261124-01/`, and
-`a01-constructed-seed-receiving-20261124-01/`. Runners A641–A651 retain exact
-commands, hashes, failures, measurements and the source/receiver distinction.
-A642's first cold caller failed because the Phenix dispatcher ignored PYTHONPATH;
-explicit source loading corrected the reviewer without repeating native work.
-The inherited diagnostic-plan descriptions are historical context; its explicit
-CONSTRUCTED_NONSTATIONARY_SEED role, frozen adapter and fresh admission define
-this separate experiment, not optimizer promotion.
-The report is `ScienceCheckouts/Hazel/2026-11-24_ft-seed-receiving/index.html`,
-with editable SVG and exact measurements linked. About 56.9 MB of local proof
-nodes are retained; the report links rather than duplicates models/maps. No
-pruning, scientific upload or portability claim. All jobs are stopped.
-
-The [pure-helper contract](topostitch-feasible-diagnostics.md) remains at
-`7c2e1c41`: reuse 53 focused, 99 adjacent, 53 installed and 531 cold replay checks.
-This follow-up uses existing owners and changes documentation only; no runtime,
-shared caller, schema, default, migration or full-suite rerun. The earlier
-allowance comparison and its 4,703 checks remain at their original anchors and
-Git checkpoint `f769a8d0`; they are not repeated or rewritten.
-
 <a id="a01-dna-only-comparison-design-2026-11-24"></a>
-
-### Next experiment — matched DNA relaxation with Hg held fixed
-
-The two-arm input design is complete; **no broader fit has run**. Compare the
-original `7aade3c4` model with the constructed `c307fc65` seed, not their already
-locally refined products. Exactly six starting XYZ values differ; the remaining
-853 coordinates and all atom identities, B/Q and scattering terms match.
-Both actual-model captures pass existing Cedar input/continuation admission.
-**1,240 cold source/input checks** pass and the existing 20-file V11 runtime
-payload authenticates. This establishes input parity, not execution qualification.
-
-| Scope | Matched declaration for both arms |
-| --- | --- |
-| Movable coordinates | The 858 source-identified DNA atoms; explicit exact mask |
-| Group B | 42 explicit DNA residue groups; exclude the Hg residue |
-| Protected Hg | Original XYZ, Q=1, B=69.52 Å², f′ and f″ throughout |
-| Data | Same 1,151 reflections, 59 original Free observations and HL phases; actual MLHL required |
-| Chemistry | Same ordered three CIF/five PHIL resources and complete registered B7→B1 image terms |
-| Scaling | Keep bulk-solvent/scaling; disable atomic overall isotropic ADP back-trace in both arms |
-| Products | Preserve original, seed and both independent outputs; no selected parent or f″ |
-
-The installed **Phenix 2.2.1-6174 source** explains two required controls. Default
-one-group-per-residue ADP selection includes Hg; use explicit `group_selection`
-with the 42 DNA groups instead. Excluding Hg from those groups alone does not
-protect its B against overall ADP back-trace. Set both
-`main.apply_overall_isotropic_scale_to_adp=False` and
-`bulk_solvent_and_scale.apply_back_trace=False`, then observe the actual metal
-state through execution. This is an intentional protocol change relative to the
-old whole-model recipe, applied identically to both arms.
-
-The actual `phenix.refine` global real-space route is
-`xyz_real_space.run_global`: it passes `sites_individual` to the minimizer.
-The separate standalone driver's `selection=None` is **not** evidence that this
-route ignores its mask. Global real-space execution is conditional on Rwork>0.3;
-observe whether it runs, subsequent symmetry projection and any rollback.
-These are static source findings, not a completed native freeze test.
-Twenty additional source/design assertions authenticate those findings and the
-identical 42-group membership. No inherited scientific REVIEW is relabelled PASS.
-
-**Remaining admission work:** use the existing V11 owner with a truthful research
-execution contract or legitimate original-registration checkpoint ancestry.
-Neither exact input currently has an ordinary numbered registry; do not invent
-one or reuse unrelated PDU lineage. Observe compiled MLHL/HL/Free-R, exact XYZ/ADP
-masks, protected Hg state and all eight image terms/exclusions while the owner is
-active. A geometry probe after owner teardown would omit the image forces.
-Capture synchronized native/written state and matching maps before teardown.
-Keep W252's narrow fixed-B guards intact; add a distinct bounded observer for
-DNA group-B rather than weakening them. Only then run two sequential identical
-protocols, with source/technical failures stopping the pair.
-
-**Receipt and restart:** `branch-artifacts/Alder/a01-whole-model-join-design-20261124-01/`
-retains immutable `comparison-design.json`, the later `confirmed-dna-scope.json`,
-source hashes, group membership and the design log. Runners A652/A653 use
-`PYTHONDONTWRITEBYTECODE=1 /private/tmp/alder-validation-20261121-01/bin/python -B`
-with their explicit runner paths; results are 1,240 and 20 cold assertions.
-They execute no Phenix fit and create no model. Reuse the completed local native
-comparison and existing focused tests. This addendum changes four documentation
-files and the small local checkout only: no runtime/schema/default/migration,
-scientific upload, pruning or full-suite claim. The next pass starts at protocol
-admission, not another seed search or replay of completed tests. A01 remains
-partial and A02 remains gated.
-
 <a id="a01-dna-initialization-2026-11-24"></a>
 
-### Native initialization now qualifies both exact starting models
+### Preceding evidence — construction, local receiving, design and initialization
 
-The bounded follow-up used the existing frozen V11 phosphate and compatible
-refinement owners in an explicitly **standalone research caller**. Both original
-and constructed inputs complete **Phenix 2.2.1-6174 dry runs**: 9.71 s and 6.12 s,
-zero refinement cycles, all owned processes stopped. No checkpoint ancestry was
-invented. The source-bound standalone pattern is consistent with Cedar's C558
-example; this is not ordinary numbered-run adoption or a full fit.
+Git checkpoint `f3ee67b6:docs/metal-development-handoff.md` retains the detailed
+earlier account. The nonstationary constructed seed had separate endpoint and
+actual-model chemistry admission (2,204/939 cold checks); its original optimizer
+still has ITERATION_LIMIT and residual 5.1472. W252's matched three-cycle/six-atom
+receiver preserved the constructed connection at P–O3′ 1.615 Å, versus 1.997 Å
+from the original start, with high Rfree and weak maps (4,718 cold checks).
+Those findings qualify local retention, not a selected parent or convergence.
+The original control was reused without repeating it.
 
-| Actual initialized and returned state | Original | Constructed |
-| --- | ---: | ---: |
-| DNA atoms in coordinate mask | 858 | 858 |
-| Explicit DNA group-B groups | 42 | 42 |
-| Reflections / original Free observations | 1,151 / 59 | 1,151 / 59 |
-| Effective target | MLHL | MLHL |
-| Hg B (Å²) / Q | 69.52 / 1.00 | 69.52 / 1.00 |
-| Refinement cycles executed | 0 | 0 |
+The later DNA-only design passed 1,240 input checks and 20 source/mask assertions.
+Both native dry runs then passed, with zero cycles and 88 cold checks; a failed
+quoted-residue selector attempt and its source-safe correction remain preserved.
+Those initialized inputs and the exact 20-file V11 owner feed the completed
+comparison above. Do not rerun initialization or old helper tests unchanged.
+Private evidence remains under `a01-constructed-seed-{admission,capture,receiving}-20261124-01/`,
+`a01-whole-model-join-design-20261124-01/` and
+`a01-dna-initialization-20261124-{01,02}/`. Runners A641–A663 and the earlier
+`2026-11-24_ft-seed-receiving` checkout retain commands, failures and limits.
 
-The observer checks actual source-indexed HL/Free-R, original observations under
-the admitted native scaling, exact atom identities, coordinate/ADP masks and
-fixed scattering. Hg XYZ/f′/f″ are unchanged, as are **all** starting coordinates,
-B and Q during these dry runs. Atomic isotropic ADP back-trace is disabled.
-One explicit geometry-gradient call per arm verifies all image angle/torsion
-forces while the owner is active, with the image bond and four second-shell
-exclusions intact. This is an initialization check, **not optimizer execution**.
-Native/output/observer bindings restore after each run. No final model or map
-is written or selected.
-
-**A real caller failure was recovered without changing scientific scope.**
-Attempt 01 stopped before the initialized-driver observer: this installed native
-selector treats quoted `resid '1'` and `resname 'DG'` as empty matches, while
-their unquoted forms select the expected atoms. A small direct parser diagnosis
-isolated the issue. Attempt 02 uses unquoted safe source identifiers in the 43
-DNA declarations; the exact membership assertions are unchanged. The failed
-attempt, logs, parser result and stopped process remain intact, and its second
-arm was not launched. No native owner or W252 fixed-B guard was changed.
-
-**Validation and limits:** 10,354 live assertions per successful arm primarily
-cover repeated per-atom state invariants; **88 cold receipt/state checks** confirm
-the saved state, exact input retention, matched non-XYZ state and stopped jobs.
-Indexed HL/Free-R equality was checked inside the frozen native observer against
-independently read source arrays; cold review authenticates that receipt/method,
-not a second native array reconstruction. Source/caller code and all input
-checksums are retained. Neither dry run demonstrates fixed Hg during later
-coordinate, real-space, ADP or scaling optimization stages.
-
-**Next:** add bounded observations at those actual stages inside the existing
-owner, then admit the two matched fits only if the fixed-metal, target, phase,
-selection and image-force contracts hold. Preserve original/seed and independent
-outputs; no parent selection, environmental-B assignment or f″. A01 remains
-partial; A02 remains gated. Do not repeat the completed initialization or geometry
-checks without a changed input, code or unresolved admission question.
-
-**Evidence:** local `branch-artifacts/Alder/a01-dna-initialization-20261124-01/`
-holds the failure and parser diagnosis; `a01-dna-initialization-20261124-02/`
-holds the matched dry runs, `cold-review.json`, exact commands and restart.
-Runners A656–A662 are private experimental preparation/observation/report methods.
-The two evidence nodes occupy about **8.64 MB**, retained as source/recovery
-proof; the checkout links to them rather than copying model/map files. This
-follow-up updates four maintained documentation files and the existing local
-checkout only. No shared runtime/schema/default/migration change, generated
-science in Git, automatic pruning, full suite or unchanged native replay.
+The [DF C2 audit](metal-df-c2-angle-audit.md) still distinguishes eLBOW source
+consistency from independent chemical authority. Source targets remain
+provisional; no automatic 120° replacement or new donor-state prerequisite.
 
 <a id="a01-phosphate-cap-2026-11-24"></a>
 
