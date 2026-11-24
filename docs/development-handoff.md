@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W264, 2026-11-24** (code pin follows qualification).
+**Current maintained slice: W264, 2026-11-24** (code `5f0dbcb4afe726b853b402424d450507331a329f`).
 [Declared TLS transport](topostitch-preview.md#carry-one-declared-tls-motion-through-a-uniform-image-w264)
 now preserves one group's origin/T/L/S under a shared proper crystal image.
 Each original LNA control has six uniform groups; each recut has two uniform and

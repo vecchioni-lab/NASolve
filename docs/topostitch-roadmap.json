@@ -4,7 +4,7 @@
   "updated": "2026-11-24",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "635171a0419c9887f1bf404760d9d6489a114d9c",
+  "audited_code_commit": "5f0dbcb4afe726b853b402424d450507331a329f",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -1116,7 +1116,8 @@
         "W260: 225 focused source and 225 relocated installed checks; 210 installation hashes. Full Willow2786 passed/4 skipped/234 subtests. Four original controls preserve exact W259 report digests: all four literal entity texts match, two canonical texts match and two remain unavailable because modified-parent fields are absent. Multi-parent expansion, quoted-null lookalikes and source drift guarded. Compact 82/75-category inventory exposes six TLS groups per source plus assembly/reference dependencies. No native run or writer.",
         "W261: 158 focused source and 158 relocated installed checks, two subtests and 212 installation-file hashes. Four real controls retain 62 sites,60 edges and exact W259 coverage digests; four source paths become eight recut paths. ASU target reuse stays neutral across reserialization. No native job or writer.",
         "W262: 169 focused source and 169 relocated installed checks, two subtests and 212 installation-file hashes. Eleven missing-API regressions now pass. Exact target-document binding rebuilds existing registration with original source polymer roles; all target codes retained. Four real default reports equal W261 exactly. Known ASU target reuse remains neutral; no writer or native job.",
-        "W263: 184 focused source and184 relocated installed checks,two subtests and212 installation-file hashes. Four real controls retain four reference ranges and62 positions; source cuts have four segments,recuts ten across eight paths. Every segment retains align_id/ref_id; W262 fragment hashes exact. Explicit scheme resolves unknown atom insertion fields without rewriting; unknown/reversed/unmodeled cases stay reviewable. No database interpolation,native call or writer."
+        "W263: 184 focused source and184 relocated installed checks,two subtests and212 installation-file hashes. Four real controls retain four reference ranges and62 positions; source cuts have four segments,recuts ten across eight paths. Every segment retains align_id/ref_id; W262 fragment hashes exact. Explicit scheme resolves unknown atom insertion fields without rewriting; unknown/reversed/unmodeled cases stay reviewable. No database interpolation,native call or writer.",
+        "W264: 200 focused source/200 relocated installed checks,two subtests,214 installation-file hashes. Four real controls: original6 uniform TLS groups,recut2 uniform/4 mixed.18 complete read-only Phenix2.2.1-6174/cctbx comparisons bound raw U transport to5.33e-15 A2 and Python/native agreement to3.55e-15 A2. Separate default-trace reinterpretation changes source TLS U up to2.46919 A2; raw S retained. Mixed groups not split or transported; no refinement or writer."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
@@ -1143,14 +1144,15 @@
         "E_ORIGINAL_CIF_SEQUENCE_TEXT",
         "E_ORIGINAL_CIF_FRAGMENT_LINEAGE",
         "E_ORIGINAL_CIF_TARGET_DOCUMENT",
-        "E_ORIGINAL_CIF_REFERENCE_RANGES"
+        "E_ORIGINAL_CIF_REFERENCE_RANGES",
+        "E_ORIGINAL_CIF_TLS_TRANSPORT"
       ],
       "last_audit": {
         "date": "2026-11-24",
-        "code_commit": "635171a0419c9887f1bf404760d9d6489a114d9c",
-        "reviewer": "Linden; scope and link-slot review from Rowan",
-        "human_update": 263,
-        "scope": "Source reference membership; database correspondence and writer gates open"
+        "code_commit": "5f0dbcb4afe726b853b402424d450507331a329f",
+        "reviewer": "Linden; membership and trace-convention review from Rowan",
+        "human_update": 264,
+        "scope": "Uniform-image raw TLS field; mixed motion/native convention/writer gates open"
       }
     },
     {
@@ -7293,6 +7295,77 @@
           "size": 4352
         }
       ]
+    },
+    "E_ORIGINAL_CIF_TLS_TRANSPORT": {
+      "kind": "Uniform-image declared TLS transport",
+      "date": "2026-11-24",
+      "human_update": 264,
+      "code_commit": "5f0dbcb4afe726b853b402424d450507331a329f",
+      "reference": "docs/topostitch-periodic.md#w264--carry-declared-tls-without-inventing-new-motion-groups",
+      "result": "200 focused source/200 relocated installed checks,two subtests,214 installation-file hashes. Four real controls: original6 uniform TLS groups,recut2 uniform/4 mixed.18 complete read-only Phenix2.2.1-6174/cctbx comparisons bound raw U transport to5.33e-15 A2 and Python/native agreement to3.55e-15 A2. Separate default-trace reinterpretation changes source TLS U up to2.46919 A2; raw S retained. Mixed groups not split or transported; no refinement or writer.",
+      "limitation": "Raw nine-component S convention only; source provenance/positivity, native trace-default equivalence, mixed-group shared parameters, uncertainties and writer remain open. Scientific payloads local.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w264-tls-transport/before.log",
+          "sha256": "d1a63b08baddb6f78ed5e1fc732ff6209d074e8ea4f99ee5eccc17718eb2384d",
+          "size": 28398
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w264-tls-transport/review-before.log",
+          "sha256": "f9ab901fb3ec1b049fecf3024860ec307daed368aaf161449a1eb475377a4808",
+          "size": 5185
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w264-tls-transport/focused-reviewed.log",
+          "sha256": "946eecc129f7d3b73230cc45359da95357e5415a37055fd1d25710d75de375b0",
+          "size": 278
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w264-tls-transport/reviewed-install/qualification.json",
+          "sha256": "2b3d91f62977ff3ebe55392ee5652e589b510540c01843c66d308bf26abac4e6",
+          "size": 13394
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w264-tls-transport/reviewed-install/installed-tests.log",
+          "sha256": "4132b3cc541d46808f63610bdf8d82d9c21e4616eff042a8e5df89c98cd2161c",
+          "size": 278
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w264-tls-transport/real-tls-transport-reviewed.json",
+          "sha256": "b4ee3b77ef388713a61d8d81dc6f9f20ee6d1a0c675066c422332e755aa2dcd2",
+          "size": 420974
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w264-tls-transport/native-cases-reviewed.json",
+          "sha256": "37ca92a86ebb791505367d51880821ed3dffbd0726049cd05bd1a2419fd594a8",
+          "size": 434528
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w264-tls-transport/native-validation-reviewed.json",
+          "sha256": "1b106d75d7b97aa2b2e617dcbf2daba399fd6f9d507978f6f9fe242359e700d6",
+          "size": 11269
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w264-tls-transport/reviewed-hashes.json",
+          "sha256": "65039257b05bcfc4fb98591cd84f4d12e109785ed2700f282bd5e4c4005e5c78",
+          "size": 216
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w264-tls-transport/validation.json",
+          "sha256": "d2e6288b816e19dd15963035541d1316e71f62bed0b7efabe334881a7dd37012",
+          "size": 4867
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -8851,8 +8924,8 @@
       {
         "number": 264,
         "title": "Transport one declared TLS motion under a uniform crystal image",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "5f0dbcb4afe726b853b402424d450507331a329f"
       }
     ]
   },
