@@ -203,3 +203,36 @@ def test_written_restraints_use_the_registered_image_and_the_intact_links(tmp_pa
         measure_written_phosphate(model, row, model_sha256="0"*64)
     with pytest.raises(ValueError, match="crystal frame"):
         measure_written_phosphate(model, dict(row, space_group="P -1"), model_sha256=digest)
+
+
+@pytest.mark.parametrize(("kind", "indices", "native_image", "expected"), [
+    ("bond_asu", [10, 9], {"status": "RECORDED", "operator": "-x+y,-x,z"}, None),
+    ("bond_asu", [9, 10], {"status": "RECORDED", "operator": "-y,x-y,z"}, None),
+    ("bond_asu", [10, 9], {"status": "RECORDED", "operator": "-x+y,-x,z+1"}, "-x+y,-x,z+1"),
+    ("bond_asu", [9, 10], {"status": "RECORDED", "operator": "-x+y,-x,z"}, "-y,x-y,z"),
+    ("bond_simple", [9, 10], None, "x,y,z"),
+    ("bond_asu", [10, 9], {"status": "UNSUPPORTED"}, "unresolved"),
+])
+def test_compare_the_same_phosphate_atoms_in_the_actual_native_image(kind, indices, native_image, expected):
+    pytest.importorskip("gemmi")
+    from nasolve.cif_phosphate_reference import reference_link_terms
+    native = capture()
+    details = native["geometry"]["proxy_details"]
+    extra = dict(details["bond_simple"][0], i_seqs=indices, origin_id=4,
+                 atoms=[native["atoms"][i]["label"] for i in indices], symmetry_operation=native_image)
+    details[kind].append(extra)
+    native["geometry"]["proxy_counts"][kind] += 1
+    old = read(native)
+    actual = reference_link_terms(native, phosphate="A:6", o3="A:5", o3_image="-x+y,-x,z")
+    assert actual["groups"] == old["groups"] and old["status"] == "AGREEING_REFERENCES"
+    if expected is None:
+        assert actual == old
+    elif expected == "unresolved":
+        assert actual["status"] == "UNRESOLVED_ENDPOINT_IMAGE" and "unresolved" in actual["reason"].lower()
+    else:
+        assert actual["status"] == "COMPETING_ENDPOINT_BOND"
+        assert actual["existing_o3_images"] == [expected] and actual["requested_o3_image"] == "-x+y,-x,z"
+        assert expected in actual["reason"]
+    extra["origin_id"] = 2
+    native["restraint_policy"] = {"origin_ids": {"hydrogen bonds": 2}}
+    assert reference_link_terms(native, phosphate="A:6", o3="A:5", o3_image="-x+y,-x,z") == read(native)

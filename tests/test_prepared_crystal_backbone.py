@@ -235,8 +235,9 @@ def test_one_native_capture_binds_both_image_partners_without_selecting_the_cand
         captures.append(path)
         proof = dict(status="REVIEW", execution=dict(returncode=0), inputs=[row], phenix_version="test")
         return proof, {}, {path: path.read_bytes()}
-    def references(native, *, phosphate, o3):
+    def references(native, *, phosphate, o3, o3_image):
         assert (phosphate, o3) in {("A:1", "A:9"), ("B:1", "B:9")}
+        assert o3_image == ("x-1,y,z" if phosphate == "A:1" else "x+1,y,z")
         if native_case == "competing" and o3 == "B:9":
             return dict(status="COMPETING_ENDPOINT_BOND", reason="B:9 O3′ already has a native partner")
         ref = inspection()["native_reference_links"]

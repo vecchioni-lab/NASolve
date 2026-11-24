@@ -13,9 +13,9 @@ from .cif_dihedral_conditioning import dihedral_geometry
 from .cif_phosphate_continuation import _endpoint_atoms
 from .cif_phosphate_restraints import _reference_group
 from .topostitch_contacts import _angle
-from .topostitch_graph import _operator
+from .topostitch_graph import _bounded, _inverse, _operator
 from .topostitch_images import _cartesian, _fractional
-from .topostitch_periodic import _op_key, crystal_from_pdb_bytes
+from .topostitch_periodic import _gemmi, _op_key, crystal_from_pdb_bytes
 
 
 def _packed(value):
@@ -52,14 +52,42 @@ def _recorded_parameters(kind, row, atom_count):
     return parameters
 
 
-def reference_link_terms(native, *, phosphate, o3):
+def _bond_image(value, *, invert=False):
+    if not isinstance(value, str) or not 0 < len(value) <= 128:
+        raise ValueError("Require a recorded crystal bond operator")
+    gemmi = _gemmi()
+    try:
+        op = _bounded(gemmi.Op(value))
+        return (_inverse(op, gemmi.Op("x,y,z")) if invert else op).triplet()
+    except RuntimeError as exc:
+        raise ValueError("Invalid crystal bond operator") from exc
+
+
+def _existing_oxygen_image(kind, row, phosphorus_first):
+    # Phenix maps the second atom onto the first. Express both stored orders
+    # with P fixed so that the full cell translation can be compared literally.
+    value = row.get("symmetry_operation")
+    if kind == "bond_asu":
+        if not isinstance(value, dict) or value.get("status") != "RECORDED":
+            return None
+        value = value.get("operator")
+    elif "symmetry_operation" in row and value is None:
+        value = "x,y,z"
+    try:
+        return _bond_image(value, invert=not phosphorus_first)
+    except ValueError:
+        return None
+
+
+def reference_link_terms(native, *, phosphate, o3, o3_image=None):
     """Group reference links by their recorded terms. No restraints are proposed.
 
     Require an observed, positive, ordinary covalent O3′–P bond between distinct
     sites. Exclude the queried pair, keeping it independent of its references.
     Preserve signed atom order for torsions and chirality, duplicate terms and
     zero weights. Report any other non-hydrogen-bond O3′–P distance sharing the
-    proposed donor or acceptor. Other three-residue terms are outside the comparison.
+    proposed donor or acceptor. When an image is given, compare any bond using
+    the exact same atoms with that specific copy, including its cell translation.
     """
     mappings = _mappings(native)
     if phosphate not in mappings or o3 not in mappings:
@@ -80,6 +108,9 @@ def reference_link_terms(native, *, phosphate, o3):
     references = {}
     between = Counter()
     competing = set()
+    expected_image = _bond_image(o3_image) if o3_image is not None else None
+    other_images = set()
+    unresolved_image = False
     policy = native.get("restraint_policy")
     origins = policy.get("origin_ids") if isinstance(policy, dict) else None
     hydrogen_origin = origins.get("hydrogen bonds") if isinstance(origins, dict) else None
@@ -96,10 +127,17 @@ def reference_link_terms(native, *, phosphate, o3):
             if len(indices) != 2:
                 raise ValueError("Native reference bond needs two endpoints")
             left, right = named["atoms"]
-            if left[1] == "P":
+            phosphorus_first = left[1] == "P"
+            if phosphorus_first:
                 left, right = right, left
                 indices = indices[::-1]
             source, target = left[0], right[0]
+            if expected_image is not None and (left, right) == ((o3, "O3'"), (phosphate, "P")):
+                image = _existing_oxygen_image(kind, row, phosphorus_first)
+                if image is None:
+                    unresolved_image = True
+                elif image != expected_image:
+                    other_images.add(image)
             between[frozenset((source, target))] += 1
             if ((left[1], right[1]) == ("O3'", "P") and (source == o3 or target == phosphate)
                     and (source, target) != (o3, phosphate)):
@@ -155,21 +193,35 @@ def reference_link_terms(native, *, phosphate, o3):
         result.update(status="COMPETING_ENDPOINT_BOND", reference_status=status,
                       competing_endpoint_bonds=[list(pair) for pair in pairs],
                       reason=f"Phenix already restrains {observed}. That shares an atom with the proposed {o3} O3′ to {phosphate} P bond.")
+    if other_images or unresolved_image:
+        reasons = [result["reason"]] if competing else []
+        observed = sorted(other_images)
+        if observed:
+            reasons.append(f"Phenix already joins {o3} O3′ to {phosphate} P in crystal image "
+                           + ", ".join(observed) + f". The requested O3′ image is {expected_image}.")
+        if unresolved_image:
+            reasons.append(f"The image of an existing {o3} O3′–{phosphate} P bond is unresolved.")
+        result.update(status="COMPETING_ENDPOINT_BOND" if competing or observed else "UNRESOLVED_ENDPOINT_IMAGE",
+                      reference_status=status, requested_o3_image=expected_image, existing_o3_images=observed,
+                      unresolved_endpoint_image=unresolved_image, reason=" ".join(reasons))
     return result
 
 
-def read_phosphate_references(receipt, model_bytes, *, phosphate, o3):
-    _, references = read_phosphate_reference_set(receipt, model_bytes, [(phosphate, o3)])
+def read_phosphate_references(receipt, model_bytes, *, phosphate, o3, o3_image=None):
+    _, references = read_phosphate_reference_set(receipt, model_bytes, [(phosphate, o3)], o3_images=[o3_image])
     return references[0]
 
 
-def read_phosphate_reference_set(receipt, model_bytes, endpoints):
+def read_phosphate_reference_set(receipt, model_bytes, endpoints, *, o3_images=None):
     """Check one preserved native interpretation, then read each named (P site, O3′ site)."""
     path = Path(receipt).expanduser().resolve(strict=True)
     try:
         proof, native, snapshots = _capture(path, model_bytes)
         _native_atoms(native, model_bytes)
-        references = [reference_link_terms(native, phosphate=p, o3=o) for p, o in endpoints]
+        endpoints = list(endpoints)
+        images = [None] * len(endpoints) if o3_images is None else o3_images
+        references = [reference_link_terms(native, phosphate=p, o3=o, o3_image=image)
+                      for (p, o), image in zip(endpoints, images, strict=True)]
     except (KeyError, IndexError, TypeError, AttributeError) as exc:
         raise ValueError("Incomplete native phosphate reference capture") from exc
     if any(p.read_bytes() != data for p, data in snapshots.items()):

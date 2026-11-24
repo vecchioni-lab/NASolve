@@ -282,10 +282,11 @@ its own meaning. C565 accounts for the two registered partners, the local
 backbone and D:1 in one read of the original construction. C566 also binds
 the returned model and its seven actual restraint inputs. Its matched native
 reference steps are among those 38 local bonds. C567 preserves that bundle
-and its observations in a fresh, unselected ordinary child. Next check the
-specific crystal image when the native input already bonds the very same
-two atoms. Then test the corrected dictionary from the beginning of ordinary
-Coot construction with the same scaffold and the same reflections. Distinguish
+and its observations in a fresh, unselected ordinary child. C568 distinguishes
+the same two atoms across different crystal images and refuses the observed
+25.189 Å alternative before fitting. Next test the corrected dictionary from
+the beginning of ordinary Coot construction with the same scaffold and the
+same reflections. Distinguish
 the original Coot source from its ReadySet return when binding that run.
 
 C537 checks which modeled atoms actually reached a native covalent plane.

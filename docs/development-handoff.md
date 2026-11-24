@@ -1,9 +1,25 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-24, C567 carrying the reviewed PDU preparation into a numbered refinement — Rowan**.
+Updated **2026-11-24, C568 checking the crystal copy before fitting a phosphate — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
-**Q06.** C567 produced the first ordinary numbered fit of the C566 candidate.
+**Q06.** C568 checks which crystal copy Phenix already joins when both atom
+names match the proposed linkage. The genuine B:7 O3′–B:1 P native capture
+contained a 1.607 Å target. The registered atoms were 3.340 Å apart in that
+copy and 25.189 Å apart in another. Previously both declarations qualified.
+The ordinary command now names both images before allocating a round, and a
+missing native image requires review. The intended B junction and the other
+D:7–C:8 junction still qualified. This was an interpretation and refusal
+control. The last completed fits are the C567 models below.
+
+The residue-level inspector includes the requested and competing O3′ images
+only when they conflict or the existing image is unknown. Earlier receipts
+need no migration. C568 used the same 15 focused files and command as C567.
+Source and a relocated wheel each passed 415 tests and 62 subtests. The six
+historical phosphate reports reproduced byte for byte. The next comparison
+follows the corrected dictionary from its first use in Coot.
+
+**C567.** C567 produced the first ordinary numbered fit of the C566 candidate.
 A new receiving run completed Coot 1.3.3 and ReadySet with the corrected
 dictionary. Its named checkpoints identify the original C290 Coot model and
 its corrected ReadySet return. Five real Phenix 2.2.1-6174 cycles through the

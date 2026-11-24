@@ -37,7 +37,9 @@ entries are reconstructed from repository history.
   of the fit with `cif-doctor phosphate-image --saved-continuation-id ID`.
   Before allocating a round, AutoRefine checks whether the input chemistry
   already gives either O3′ or P another partner. The diagnostic names the
-  conflicting atoms. Inspector JSON retains the evidence from the intact
+  conflicting atoms and distinguishes different crystal copies of the same pair.
+  An existing crystal bond whose image is unavailable requires review.
+  Inspector JSON retains the evidence from the intact
   reference links. Older one-link workers retain their original source bytes.
   Add `--restraint-deviations` to measure the written bond, four angles and
   three torsions against the fitted targets. JSON includes the actual values

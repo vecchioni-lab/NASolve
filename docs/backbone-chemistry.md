@@ -302,6 +302,13 @@ their rings. The D:7 donor torsion stayed at +36.0° against a native target
 of −140° with a 35° width. D:7 O3′ and C:8 P were at −1.80 and −1.18
 whole-map rms in the unfilled 2mFo−DFc map. Both fits stayed unselected.
 
+Check the actual partner image even when the atom names agree. In a native
+input containing the B:7 O3′–B:1 P restraint, the O3′ image relative to P
+was `-x+y,-x,z`. Those atoms were 3.340 Å apart before fitting. Substituting
+`-y,x-y,z` gave 25.189 Å. The ordinary command now reports both images
+before starting the wrong fit. Integral cell translations matter as well.
+An existing crystal bond with an unreadable image requires review.
+
 One standalone five-cycle Phenix refinement used the corrected returned model,
 the two registered crystal partners, the original reflection flags and the seven
 effective restraint files. The R values were read at the start and end of the

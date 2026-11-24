@@ -169,7 +169,8 @@ def _inspect_coordinates(model, *, phosphate, o3, o3_image=None, nearest_image=F
             raise ValueError("Printed geometry changed during inspection")
     if native_receipt is not None:
         from .cif_phosphate_reference import read_phosphate_references
-        observations["native_reference_links"] = read_phosphate_references(native_receipt, raw, phosphate=phosphate, o3=o3)
+        observations["native_reference_links"] = read_phosphate_references(native_receipt, raw, phosphate=phosphate, o3=o3,
+                                                                           o3_image=op.triplet() if op is not None else None)
     if model.read_bytes() != raw:
         raise ValueError("Model changed during phosphate inspection")
     return dict(policy_id="phosphate-image-observation-v1", model_sha256=sha256(raw).hexdigest(),

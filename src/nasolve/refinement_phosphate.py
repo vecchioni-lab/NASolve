@@ -138,7 +138,7 @@ def prepare_intent(run, registry, parent, choice, *, phenix_version, python_exec
                     for reg in registrations]
     for observation in observations:
         reference = observation["native_reference_links"]
-        if reference["status"] == "COMPETING_ENDPOINT_BOND":
+        if reference["status"] in ("COMPETING_ENDPOINT_BOND", "UNRESOLVED_ENDPOINT_IMAGE"):
             raise ValueError(reference["reason"])
     if len(observations) > 1:
         RegisteredPhosphateRuntime.check_group(observations)

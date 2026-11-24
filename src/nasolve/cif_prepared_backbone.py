@@ -65,13 +65,15 @@ def _native_candidate(source, candidate, receipt, paths, observations, local, in
     _need(all(row["model_sha256"] == audit["input_sha256"] for row in transferred),
           "Candidate crystal coordinates differ from the audited native input")
     endpoints = [(row["phosphate"][0], row["o3"][0]) for row in transferred]
-    proof, references = read_phosphate_reference_set(receipt, candidate_bytes, endpoints)
+    proof, references = read_phosphate_reference_set(receipt, candidate_bytes, endpoints,
+                                                     o3_images=[row["o3_image"] for row in transferred])
     _need(proof["status"] == "REVIEW" and proof["execution"]["returncode"] == 0,
           "Require a successful native interpretation of these candidate inputs")
     local_links = {tuple(link) for link in links}
     partners = []
     for row, ref in zip(transferred, references, strict=True):
-        _need(ref["status"] != "COMPETING_ENDPOINT_BOND", ref.get("reason", "Competing phosphate bond"))
+        _need(ref["status"] not in ("COMPETING_ENDPOINT_BOND", "UNRESOLVED_ENDPOINT_IMAGE"),
+              ref.get("reason", "Unverified phosphate bond"))
         measured = measure_written_phosphate(candidate, dict(row, native_reference_links=ref),
                                              model_sha256=audit["input_sha256"])
         matched = ref["groups"][0]["links"]
