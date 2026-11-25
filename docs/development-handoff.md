@@ -7,16 +7,16 @@ observation and storage owners; it introduces no new scientific policy.
 
 ## Current metal-science edge
 
-A01 remains partial; A02 quantitation remains gated. The explicit reciprocal guard
-v3 now witnesses exact native F/sigma normalization while retaining original
-ordered indexing/Free-R/HL, source checksums and invariant Rwork/Rfree. Strict
-v1/v2 remain unchanged. Focused/native/installed checks and dry initialization pass.
-The requested cycle reaches 464 actual XYZ target observations, then is stopped
-cleanly at 179.39 s near its 180 s bound in native weight-search clash scoring/Reduce.
-Group-B/returned-output closure remain pending; there is no completed cycle or new
-accepted model. Hooks restore and the owned process group is empty. Next: measure
-native versus observer costs and bound a completion check realistically before
-prepared-numbered adoption. [Exact evidence and checkout](metal-development-handoff.md).
+A01 remains partial; A02 stays gated. Opt-in timing now measures nested native
+and observer wall time without double-counting. A matched 90-second FT_Hg sample
+reaches 193 XYZ calls: checks use 35.13 s, native work 49.42 s (Reduce 3.97 s),
+with 5.48 s uninstrumented. Thus Reduce alone does not explain the earlier timeout.
+Eight partial receipts survive; the shared process owner verifies closure at 91.61 s
+and all hooks restore. Group-B/returned-output closure is still pending. Forty-five
+focused and 45 installed checks, source/installed native controls and 78 cold checks
+pass. The earlier failed diagnostic remains preserved. Next: localize repeated
+observer work without weakening scientific checks, then budget a complete cycle.
+[Exact evidence and checkout](metal-development-handoff.md).
 
 The next named
 subgoal is [source-bound ordinary parent admission](metal-ordinary-receiving.md#current-admission-boundary-and-next-a01-subgoal).

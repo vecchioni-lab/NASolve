@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Measure explicit mixed-refinement runtime costs
+
+- Add opt-in bounded wall-clock timing with disjoint exclusive attribution,
+  nested/partial snapshots and interrupted-call accounting. Existing scientific
+  guards/default receipts are unchanged unless timing is explicitly requested.
+- Qualify focused, installed and native controls, then a matched 90-second FT_Hg
+  diagnostic with compact partial evidence and verified shared-owner closure.
+  No group-B/output acceptance, checkpoint migration or process-owner rewrite.
+
 ### Record evidence-view design and reporting precision
 
 - Record the parameter-protection figure as a future single-solve/campaign

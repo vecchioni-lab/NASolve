@@ -18,27 +18,26 @@ Hg moves 0.089 / 0.086 Å; Rfree is 0.3371 / 0.3362. Existing B machinery
 previews base/donor alternatives from the returned models without changing them.
 No selected endpoint, f″ result or global real-space qualification follows.
 
-**Latest A01 increment:** explicit runtime v3 witnesses the native common F/sigma
-normalization, preserving original source/ordered index/Free-R/HL ownership and
-Rwork/Rfree invariance. Strict v1/v2 remain unchanged. Focused/native/installed
-checks and fresh initialization pass. The requested cycle reaches **464 actual
-XYZ target observations** before a clean 179.39-second interruption in native
-weight-search clash scoring. Group B/output remain unqualified; no cycle completes
-or endpoint is accepted. See the [current handoff](metal-development-handoff.md)
-and `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/normalization-runtime.html`.
+**Latest A01 increment:** runtime cost is now measured with opt-in exclusive
+nested timing and compact partial checkpoints. A matched 90-second FT_Hg diagnostic
+reaches 193 XYZ calls; checks take 35.13 s and native work 49.42 s (Reduce 3.97 s).
+The owned process group closes at 91.61 s with hooks restored. Group B and returned
+output remain unqualified. Forty-five focused and 45 installed tests plus native
+controls and 78 cold checks pass. See the [current handoff](metal-development-handoff.md)
+and `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/runtime-timing.html`.
 
-**Next A01 subgoal:** measure observer versus native weight-search/Reduce cost,
-then complete one realistically bounded cycle with durable partial evidence and
-graceful stopping, preserving scientific settings. Qualify group-B/output/process
-closure before prepared/ordinary numbered integration. Do not duplicate unchanged
-fit experiments. Real-space identity, FT ordinary ancestry and explicit mixed-policy
-receiving remain separate gates; prior command/source-selector proof stays valid.
+**Next A01 subgoal:** localize repeated work within XYZ observation and optimize
+only with the same exact scientific checks, using controlled replay where possible.
+Then budget a complete optimized cycle realistically with durable partial evidence
+and shared-owner closure. Do not rerun unchanged fits merely to accumulate calls.
+Qualify group-B/output closure before ordinary numbered integration. Real-space
+identity, FT ordinary ancestry and explicit mixed-policy receiving remain separate.
 
-**Protocol clarification:** saved source/command/EFF retain both weight-search
-requests; compiled XYZ/B memberships match despite EFF text reformatting. Disabling
-weight search or fixing numerical weights would be a different scientific control,
-not qualification of the unchanged recipe. Retained evidence has no per-stage cost
-attribution. See the handoff's saved-protocol audit; no further fit was run.
+**Protocol clarification:** source/command/EFF retain both weight-search requests;
+compiled XYZ/B memberships match despite EFF formatting. Disabling optimization
+or fixing numerical weights changes scientific policy. The earlier 464-call stop
+had no timing attribution; the new 193-call diagnostic measures cost without
+changing those settings or establishing a complete-cycle duration.
 
 **Latest mechanical increment:** the passive diffraction observer now carries
 independently read source captures to the active manager and actual native HL

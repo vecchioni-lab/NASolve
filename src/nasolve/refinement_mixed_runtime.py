@@ -6,6 +6,7 @@ caller admits the prepared endpoint, scientific policy, sources and output/stop
 proof. Real-space/sliced models and multiprocess dispatch are outside v1.
 """
 from collections import Counter
+from contextlib import nullcontext
 from copy import deepcopy
 from functools import wraps
 from hashlib import sha256
@@ -57,7 +58,11 @@ class MixedRuntimeGuard:
     output files, ancestry, external process closure or geometry are accepted.
     The caller persists the summary even when the guarded operation raises.
     """
-    def __init__(self, scope, diffraction, *, cell_roundoff_ulps=0, witness_native_normalization=False):
+    def __init__(self, scope, diffraction, *, cell_roundoff_ulps=0, witness_native_normalization=False, timing=None):
+        if timing is not None:
+            from .refinement_runtime_timing import RuntimeTiming
+            if not isinstance(timing, RuntimeTiming):raise ValueError("Require explicit RuntimeTiming")
+        self._timing = timing
         if type(witness_native_normalization) is not bool:
             raise ValueError('Native normalization must be an explicit boolean')
         if witness_native_normalization and cell_roundoff_ulps != 4:
@@ -86,6 +91,18 @@ class MixedRuntimeGuard:
             from .refinement_normalization import NativeScaleWitness
             self.diffraction = NativeScaleWitness(diffraction)
             self._record['policy_id'] = 'native-reciprocal-xyz-group-b-guard-v3'
+
+    def _measure(self, category, label):
+        return nullcontext() if self._timing is None else self._timing.measure(category, label)
+
+    def _call_native(self, role, original, native, args, kwargs):
+        if self._timing is None:return original(native, *args, **kwargs)
+        label = role
+        if role == "stage":
+            func = args[0] if args else kwargs["func"]
+            label += ":" + getattr(func, "__name__", "unknown")
+        with self._measure("native", label):
+            return original(native, *args, **kwargs)
 
     def _fail(self, exc):
         if self._failed is None:
@@ -149,7 +166,7 @@ class MixedRuntimeGuard:
         fo=fm.f_obs().data();fc=abs(fm.f_model()).data()
         divisor=float(flex.sum(fo*fc)/flex.sum(fc*fc))
         r_before=(fm.r_work(),fm.r_free())
-        value=original(fm,*args,**kwargs)
+        value=self._call_native("normalization", original, fm, args, kwargs)
         self.diffraction.check_order(fm.f_obs().indices())
         after, phases_after = _capture(fm.f_obs(),fm.r_free_flags(),fm.hl_coeffs(),
                                       cell_roundoff_ulps=self._cell_roundoff_ulps)
@@ -160,36 +177,37 @@ class MixedRuntimeGuard:
     def _wrapper(self, role, original):
         @wraps(original)
         def observed(native, *args, **kwargs):
-            try:
-                self._live()
-                if role == 'normalization':
-                    value = self._normalize(native, original, args, kwargs)
-                elif role == 'initialize':
-                    if self._driver is not None:
-                        raise ValueError('Duplicate mixed runtime initialization')
-                    self._record['initial'] = self._model(native, initial=True)
-                    self._driver = native
-                    value = original(native, *args, **kwargs)
-                    self._model(native)
-                elif role == 'stage':
-                    if self._driver is None:
-                        raise ValueError('Macro stage entered before checked initialization')
-                    func = args[0] if args else kwargs['func']
-                    enabled = native.tt.status(func)
-                    if enabled:self._model(native)
-                    value = original(native, *args, **kwargs)
-                    if enabled:
-                        self._model(native);self._counts['enabled_stages'] += 1
-                else:
-                    self._optimizer(role, native)
-                    value = original(native, *args, **kwargs)
-                    self._optimizer(role, native)
-                self._live()
-                self._counts[role] += 1
-                return value
-            except BaseException as exc:
-                self._fail(exc)
-                raise
+            with self._measure("observer", role):
+                try:
+                    self._live()
+                    if role == 'normalization':
+                        value = self._normalize(native, original, args, kwargs)
+                    elif role == 'initialize':
+                        if self._driver is not None:
+                            raise ValueError('Duplicate mixed runtime initialization')
+                        self._record['initial'] = self._model(native, initial=True)
+                        self._driver = native
+                        value = self._call_native(role, original, native, args, kwargs)
+                        self._model(native)
+                    elif role == 'stage':
+                        if self._driver is None:
+                            raise ValueError('Macro stage entered before checked initialization')
+                        func = args[0] if args else kwargs['func']
+                        enabled = native.tt.status(func)
+                        if enabled:self._model(native)
+                        value = self._call_native(role, original, native, args, kwargs)
+                        if enabled:
+                            self._model(native);self._counts['enabled_stages'] += 1
+                    else:
+                        self._optimizer(role, native)
+                        value = self._call_native(role, original, native, args, kwargs)
+                        self._optimizer(role, native)
+                    self._live()
+                    self._counts[role] += 1
+                    return value
+                except BaseException as exc:
+                    self._fail(exc)
+                    raise
         return observed
 
     def __enter__(self):
@@ -267,6 +285,7 @@ class MixedRuntimeGuard:
     def summary(self):
         record = deepcopy(self._record)
         record['counts'] = dict(self._counts)
+        if self._timing is not None:record['timing'] = self._timing.summary()
         if self._normalization:
             record['native_normalization'] = self.diffraction.summary()
         return record

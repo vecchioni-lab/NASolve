@@ -15,7 +15,58 @@ not a second queue.
 
 <a id="a01-parameter-scope-2026-11-25"></a>
 
-## Current A01 — witnessed normalization and partial actual XYZ execution
+## Current A01 — measured runtime cost and durable partial evidence
+
+An opt-in synchronous timing observer now separates exclusive native work from
+runtime checks, including nested callbacks and interruptions. Inclusive timings
+are explicitly overlapping; exclusive categories plus uninstrumented time
+partition the measured interval. Defaults, numerical checks and v1/v2/v3 scientific
+policies are unchanged. Timing appears only when explicitly requested; this is
+wall-clock diagnostic evidence, including instrumentation overhead, not CPU cost.
+The caller owns persistence and process lifecycle.
+
+A matched **Phenix 2.2.1-6174 / Python 3.11.15** diagnostic keeps the existing FT_Hg
+starting model, restraints, phases, original Free-R, optimized XYZ/ADP weights,
+reciprocal-only policy and frozen Q/f′/f″ unchanged. It reaches **193 completed
+XYZ calls** and stops at its declared 90-second worker alarm; the shared campaign
+process owner verifies closure at **91.61 seconds**. All guard,
+Reduce and phosphate hooks restore; eight compact partial checkpoints survive.
+No group-B stage, complete macrocycle, returned model or f″ result is claimed.
+
+Measured window **90.06 s**: observer checks **35.13 s**,
+native work **49.42 s**, including **3.97 s Reduce**;
+uninstrumented work **5.48 s** and partial-checkpoint I/O
+**0.032 s**. XYZ checks alone use 32.57 s versus 26.32 s in native
+XYZ target calls. Reduce is therefore not the sole or dominant measured cost in
+this bounded sample. This is not an optimized-versus-baseline speed comparison,
+and an interrupted sample cannot predict whole-cycle duration reliably.
+
+**Validation:** 45 focused tests (0.68 s), 45 installed tests (0.76 s), four source
+actual-native normalization/hook controls (1.928 s), two installed native controls
+(0.537 s) plus restoration, and 78 cold evidence checks. Prior-guard
+replay fails the two new timing-API regressions, as expected. Initial diagnostic
+01 failed before optimization because the diagnostic Reduce adapter replaced a
+class with a function; preserve its TypeError and verified stop. Diagnostic 02
+times the class constructor while preserving class identity. This correction is
+local diagnostic machinery, not a production process-owner change.
+
+**Evidence:** `a01-runtime-timing-20261125-01/` (tests, installed wheel and retained
+failed attempt), `a01-runtime-timing-20261125-02/` (timed control/review), runners
+A811–A820 under the existing Alder artifact anchor. Exact commands/source/log
+hashes are retained; package staging was removed. Both attempts plus qualification
+occupy about 6.35 MB at review; no input model/reflection
+copies, maps or scientific outputs are committed. No full suite or new default.
+Local checkout: `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/runtime-timing.html`.
+
+**Next A01 step:** identify repeated work within the measured XYZ observations
+before optimizing it, preserving every live-state/target/source check. Use a
+controlled replay or a separately bounded diagnostic, not another unchanged fit
+just to collect more calls. Then assign a realistic completion budget for the
+unchanged optimized route and qualify group B plus returned-model/process closure.
+Real-space identity, ordinary FT ancestry and mixed-policy receiving remain open;
+A01 stays partial and A02 gated.
+
+## Previous A01 boundary — witnessed normalization and partial actual XYZ execution
 
 The full verified-input command now reaches actual reciprocal XYZ optimization
 under explicit guard v3. Its separately witnessed normalization records the
