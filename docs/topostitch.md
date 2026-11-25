@@ -286,6 +286,65 @@ qualified shared TLS/native convention and equal degrees of freedom. Freeze or
 explicitly qualify any grouping, restraint or NCS policy that would otherwise
 be re-inferred differently from the new chain representation.
 
+### Chemistry extensions: Hg and LNA (planned)
+
+Simon added these two extensions on 2026-11-25. Keep them in B11 / PUB05 after
+the simpler first panel, with case-specific readiness audits; they do not expand
+W276 or authorize new runs. Hazel owns the metal case and its evidence, Rowan
+owns native chemistry, and Linden owns representative selection/comparison.
+
+**Hg in an independently chosen image — Alder/Cedar stress.** Select an existing
+modeled Hg site with reviewed donor/coordination intent and suitable bound data.
+Move that site's representative independently of its DNA partners, carrying its
+exact image relations so coordination crosses the chosen ASU boundary. This is
+one existing Hg orbit, not an added mercury, an extra copy or a new species. Keep
+site identity, multiplicity, occupancy, B/U and scattering assignments; rotate
+anisotropic U through the existing owner. A genuinely new Hg hypothesis belongs
+to a separate composition/metal-inference experiment.
+
+Audit every declared donor–Hg distance, applicable donor–Hg–donor angle and
+coordination restraint/exclusion against the same physical neighborhood before
+and after the recut. Retain the actual interaction type and force policy: metal
+coordination is not automatically a covalent bond, and close atoms do not create
+missing intent. Bind wavelength, anomalous data/mate convention, f′/f″ settings,
+Free-R assignment and any supplied experimental-phase inputs. Include anomalous
+complex-scattering and donor-image checks where supported; a neutral-atom Fcalc
+comparison alone does not qualify the metal claim. Do not add phase information
+or merge anomalous mates to make the comparison pass.
+
+Use a small isolation sequence: unchanged representation, Hg-only re-imaging,
+then (once the DNA-only panel passes) the combined fragmented-DNA/Hg case. Reuse
+the earlier control and DNA-only evidence only when exact input hashes, runtime
+and protocol match; otherwise declare a matched panel. This separates metal-site
+handling from backbone handling without a combinatorial search. Preserve Alder's
+fixed-site/fixed-B/occupancy/f″ guards and actual active-variable policy in every
+sibling. A fixed-Hg run can validate image handling, not recovery or fitting of
+the Hg site. Release metal variables only in a separately qualified matched scope.
+
+**LNA in fragmented DNA — Cedar stress.** Reuse a reviewed existing 3LNA/5LNA
+source as a candidate, preserving the modified components, all atoms, locked-sugar
+ring bonds, attachment geometry, chirality, source-supported pucker and applicable
+pair/stack restraints. Keep dictionary versions and atom mappings exact; a
+canonicalizing alias, deleted modification or altered restraint target cannot
+count as success. Working aliases such as the previously bound A1C3T→ACL mapping
+remain explicit working mappings, not permission to relabel deposited chemistry.
+Re-image each complete modified nucleotide together, then audit both its internal
+chemistry and the adjacent phosphodiester neighborhoods after native interpretation,
+refinement and reload. Compare to the same unfragmented LNA model, not a DNA mutant.
+
+Existing 3LNA/5LNA metadata and recut evidence are reusable precedents, not a
+qualified all-fragment refinement result. The unassigned R3 physical nick remains
+unassigned; an LNA case does not justify closing it. Freeze an explicitly supported
+chemistry/continuation scope, or choose another known-topology case if that ambiguity
+prevents the proposed claim. Candidate choice and exact readiness are pending the
+owner review; no metal or LNA model is selected by this note.
+
+The paper may add a donor–Hg–donor view across the boundary and a locked-sugar/
+phosphate detail, reconstructed in the common physical frame beside the dispersed
+ASU. Label coordination intent, fixed versus fitted quantities and retained
+modifications. Combine LNA and metal stress in one model only if an existing
+qualified source actually contains both; do not invent a hybrid for the figure.
+
 ### Staged measurements and stop rules
 
 1. **Before refinement:** audit all atoms, orbit multiplicities, graph edges and

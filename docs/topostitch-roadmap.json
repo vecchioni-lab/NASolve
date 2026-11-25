@@ -8635,7 +8635,7 @@
         "P05",
         "P06"
       ],
-      "remaining": "PUB05, planning only. After scoped mixed-image export, complete chemistry and restart gates, compare original, predeclared 2-or-3-nt blocks and individual-nucleotide images on one frozen source/data/Free-R panel. Prefer a preserved computational-frame workflow first; direct all-seam native refinement is a separate claim requiring term/exclusion/gradient qualification. Preserve deposited ADPs, original shared TLS meaning, atom inventory and unresolved true nicks. Preflight scattering equivalence before matched refinement; record mapped geometry, maps, R statistics and failures. Reuse W246/W249 and W256-W275, not another benchmark bank. Protocol and figure: docs/topostitch.md#maximally-fragmented-asu-refinement-stress-test-planned. Revisit at relevant P03/P04/P05 scoped audits; current W276 and release priorities unchanged."
+      "remaining": "PUB05, planning only. After scoped mixed-image export, complete chemistry and restart gates, compare original, predeclared 2-or-3-nt blocks and individual-nucleotide images on one frozen source/data/Free-R panel. Prefer a preserved computational-frame workflow first; direct all-seam native refinement is a separate claim requiring term/exclusion/gradient qualification. Preserve deposited ADPs, original shared TLS meaning, atom inventory and unresolved true nicks. Preflight scattering equivalence before matched refinement; record mapped geometry, maps, R statistics and failures. Reuse W246/W249 and W256-W275, not another benchmark bank. Protocol and figure: docs/topostitch.md#maximally-fragmented-asu-refinement-stress-test-planned. Revisit at relevant P03/P04/P05 scoped audits; current W276 and release priorities unchanged. Later extensions: independently re-image an existing Hg with source-bound coordination/anomalous policy (Hazel/Alder), and a reviewed LNA model with unchanged modified chemistry (Rowan/Cedar). Exact cases pending; no added metal, invented hybrid, canonicalized LNA or assigned R3 nick. See docs/topostitch.md#chemistry-extensions-hg-and-lna-planned."
     }
   ],
   "deferred": [
@@ -10275,6 +10275,41 @@
     "readiness": "Freeze exact source/data/Free-R, topology and image assignments only after prerequisites. Current W275 uniform-asym/TLS export does not support this experiment.",
     "claim_boundary": "Representation preservation is separate from damage recovery and from native all-seam proxy support. No scientific pass or successful refinement claimed.",
     "future_recovery": "Optional separate experiment: generate one common-frame perturbation and map it equivalently into all conditions.",
-    "next_action": "At the next relevant scoped gate audit, check readiness against the linked protocol; do not divert W276, create inputs, or run native jobs from this note."
+    "next_action": "At the next relevant scoped gate audit, check readiness against the linked protocol; do not divert W276, create inputs, or run native jobs from this note.",
+    "chemistry_extensions": [
+      {
+        "id": "existing_hg_separate_image",
+        "status": "PLANNED_NOT_RUN_OWNER_CASE_PENDING",
+        "owner": "Hazel / Alder evidence; Rowan / Cedar native chemistry",
+        "trigger": "After simpler B11 panel and qualified metal image/chemistry/scattering scope",
+        "comparison": [
+          "Unchanged exact metal-bearing source",
+          "Only existing Hg representative re-imaged",
+          "Combined DNA fragmentation and Hg image after both isolated cases qualify"
+        ],
+        "preserve": [
+          "One existing Hg orbit, identity and multiplicity",
+          "Declared donor coordination type and complete applicable terms/exclusions",
+          "Fixed-site/B/U/occupancy and f-prime/f-double-prime policy",
+          "Wavelength, anomalous-mate convention, data/Free-R and any supplied phases"
+        ],
+        "claim_limit": "Re-imaging is not adding Hg; fixed-Hg comparison is not site-fitting or recovery evidence. Exact matching prior controls may be reused."
+      },
+      {
+        "id": "lna_modified_chemistry",
+        "status": "PLANNED_NOT_RUN_OWNER_CASE_PENDING",
+        "owner": "Rowan / Cedar chemistry; Linden / Willow representation",
+        "trigger": "After simpler B11 panel and qualified modified-residue native chemistry/restart scope",
+        "candidate_family": "Existing reviewed 3LNA/5LNA, subject to exact source and known-topology scope",
+        "preserve": [
+          "Complete original modified component, dictionary and atom mapping",
+          "Locked-sugar bonds, chirality, supported pucker and attachments",
+          "Adjacent phosphate and applicable pair/stack geometry",
+          "Explicit unresolved R3 nick phase"
+        ],
+        "claim_limit": "Compare the same LNA model before/after representation change; working aliases do not authorize canonicalization or chemical relabelling."
+      }
+    ],
+    "chemistry_extension_reference": "docs/topostitch.md#chemistry-extensions-hg-and-lna-planned"
   }
 }

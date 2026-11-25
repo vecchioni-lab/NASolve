@@ -23,6 +23,8 @@ entries are reconstructed from repository history.
   representations, gated on mixed-image export, complete chemistry and restart.
 - Separate preserved computational-frame operation, direct native symmetry
   support and later damage recovery; retain invariant/scattering/geometry checks.
+- Queue later existing-Hg image/coordination and LNA modified-chemistry panels
+  with Alder/Cedar ownership, exact-source gates and unchanged composition.
 - Planning only: no runtime/schema changes, generated inputs or new execution.
 
 ### W275 — Save and replay reviewed whole-asym diagnostic exports
