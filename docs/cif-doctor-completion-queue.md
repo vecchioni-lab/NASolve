@@ -327,8 +327,10 @@ original restraint widths toward the target with R-work within 0.0004 of the con
 The other PDU crystal bond lengthened to 1.684 Å. Establish the sugar and
 phosphate reference classes and check all neighboring geometry before any
 automatic intervention. C582 [remeasures existing OneDep findings](pdb-deposition.md#remeasuring-a-returned-geometry-table)
-on an exact source and candidate. A forward screen still needs independently
-justified sugar and phosphate references. Keep the DF donor-state and PDU whole-arm decisions
+on an exact source and candidate. C583 measured every occupied ring on the
+four existing endpoints. The repaired D:7 thymidine angle coincided with
+a flatter sugar. A forward screen still needs independently justified sugar
+and phosphate references. Keep the DF donor-state and PDU whole-arm decisions
 on Q06. See the
 [native comparison](backbone-chemistry.md#crossovers-in-the-ft-hg-scaffold).
 
@@ -1040,7 +1042,7 @@ sites while rechecking the frozen files before return.
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |
 | **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must receive the same chosen model and chemical/restraint meaning. | Complete for recorded alternatives, selected-model phasing, Coot, cold inspection and the ordinary five-cycle refinement handoff. Actual chemical survival/effective restraint behavior is Q06; no default activation or historical migration. |
-| **Q06 — show what survives real refinement** | Inspect the whole substituent, sugar, backbone and pair in the final Phenix model. | Open. PDU and 5PC retain the corrected terminal target. Both PDU crystal phosphates survive restart. C574 and C580 test two independent junctions. The FT–Hg sugar improves when chemistry carries more weight, with a measurable cost to diffraction fit. Next test a local repair at ordinary weight. The PDU whole-arm decision and DF donor-state target remain open. |
+| **Q06 — show what survives real refinement** | Inspect the whole substituent, sugar, backbone and pair in the final Phenix model. | Open. PDU and 5PC retain the corrected terminal target. Both PDU crystal phosphates survive restart. A local correction improved the FT–Hg and PDU-scaffold angles at fixed diffraction weight. The latter flattened the D:7 sugar and lengthened the other crystal bond. Check independent sugar and phosphate references before choosing a repair. The PDU whole-arm and DF donor-state decisions remain open. |
 | **Q07 — prove the pieces work together** | Refine the eight named pairs with ATL alongside, including PDU and DF/A1AAZ. | The known thirteen-change scaffold completed two ordinary five-cycle rounds (C497/C505). Both retained all 38 backbone links, 211 frame restraints, protected phosphate angles and original Free-R flags. Two close ATL contacts remain. The separate closure test uses eight unfamiliar catalogue substitutions, including compatible modified backbones and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
 | **Q09 — preserve the correct sugar hand and fluorine geometry** | Carry the L-DNA, FANA, L-FANA and L-FDNA learning into ordinary model building/refinement. | Use atom connectivity and stereochemistry, not lists of residue names; complete linked and held-out controls. |

@@ -339,6 +339,8 @@ def build_parser() -> argparse.ArgumentParser:
     residue_sites.add_argument("--site", action="append", metavar="CHAIN:NUMBER", help="residue to inspect (repeatable)")
     residue_sites.add_argument("--all-sites", action="store_true", help="screen every modeled residue and summarize the largest discrepancies")
     residue_geometry.add_argument("--geometry", type=Path, metavar="FINAL_GEO", help="matching final Phenix geometry for an explicit PDB")
+    residue_geometry.add_argument("--sugar-pucker", action="store_true",
+                                  help="measure sugar ring phase and amplitude from occupied atoms and five native bonds")
     residue_geometry.add_argument("--checkpoint", help="explicit checkpoint ID or bookmark and its recorded final geometry")
     reference = residue_geometry.add_mutually_exclusive_group()
     reference.add_argument("--reference-pdb", type=Path, metavar="PDB", help="compare with this earlier PDB and its --reference-geometry")
@@ -2192,7 +2194,7 @@ def _cif_doctor(args: argparse.Namespace) -> int:
         try:
             result = inspect_residue_geometry(args.model, args.site, geometry=args.geometry, checkpoint=args.checkpoint,
                                              reference_pdb=args.reference_pdb, reference_geometry=args.reference_geometry,
-                                             reference_checkpoint=args.reference_checkpoint)
+                                             reference_checkpoint=args.reference_checkpoint, sugar_pucker=args.sugar_pucker)
         except (OSError, ValueError, CheckpointError) as exc:
             print(str(exc), file=sys.stderr)
             return 1
@@ -2203,7 +2205,9 @@ def _cif_doctor(args: argparse.Namespace) -> int:
             print_geometry_change(result)
         else:
             print_residue_geometry(result)
-        return 0 if result["status"] == "OBSERVED" else 2
+        readings = (result["reference"], result["current"]) if "reference" in result else (result,)
+        rings_ready = all(r.get("sugar_puckers", {}).get("status", "MEASURED") == "MEASURED" for r in readings)
+        return 0 if result["status"] == "OBSERVED" and rings_ready else 2
     if args.cif_action == "phosphate-image":
         return _cif_phosphate_image(args)
     if args.cif_action == "prepared-backbone":

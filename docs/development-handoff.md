@@ -1,7 +1,24 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-25, C582 remeasurement of returned deposition findings — Rowan**.
+Updated **2026-11-25, C583 sugar shape after refinement — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**.
+
+**C583.** The optional `--sugar-pucker` reading in `cif-doctor residue-geometry`
+adds each ring's five signed torsions, phase, amplitude and coverage. This
+works with the existing selected-site, whole-model and named-checkpoint
+inputs. The earlier geometry report gave bonds and angles only. The
+new calculation lives in `refinement_sugar_pucker.py` and uses the existing
+native bond and coordinate readers. Only the requested report gains a
+`sugar_puckers` field. Existing records need no migration. All four archived
+five-cycle Phenix 2.2.1-6174 endpoints were read with Gemmi 0.7.5.
+[The FT and PDU sugar measurements](backbone-chemistry.md#crossovers-in-the-ft-hg-scaffold)
+show where one local angle improved as the ring flattened. Chemical
+reference selection and its effect on the neighboring junction remain open.
+
+For focused validation on source, run
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_refinement_sugar_pucker.py tests/test_refinement_residue_geometry.py tests/test_refinement_geometry_change.py tests/test_refinement_phosphate.py tests/test_refinement_component_planes.py tests/test_cif_deposition_links.py tests/test_deposition_geometry.py`.
+The installed replay substitutes the wheel import path. Both passed 84 tests.
+No new refinement, full regression or experimental inputs were required.
 
 **C582.** `cif-doctor deposition-geometry` can now reproduce reported
 standard and Mogul bond lengths and angles from a nucleic-acid coordinate

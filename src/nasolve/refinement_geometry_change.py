@@ -46,6 +46,8 @@ def geometry_change(reference, current):
         result = {k: report[k] for k in ("model_sha256", "geometry_sha256", "site_selection")}
         if "checkpoint" in report:
             result["checkpoint"] = report["checkpoint"]
+        if "sugar_puckers" in report:
+            result["sugar_puckers"] = report["sugar_puckers"]
         return result
 
     earlier, later = ({s["site"]: s for s in report["sites"]} for report in (reference, current))
@@ -100,6 +102,10 @@ def geometry_change(reference, current):
 
 
 def print_geometry_change(report):
+    for name in ("reference", "current"):
+        if "sugar_puckers" in report[name]:
+            from .refinement_sugar_pucker import print_sugar_puckers
+            print_sugar_puckers(report[name]["sugar_puckers"], name.capitalize())
     counts = report["matched"]
     print(f"Compared {counts['bonds']} bonds and {counts['angles']} angles with the same printed targets and weights.")
     for direction, sign in (("away from", 1), ("toward", -1)):

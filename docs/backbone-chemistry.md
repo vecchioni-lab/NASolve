@@ -567,6 +567,19 @@ under 0.02 map standard deviations and had opposite signs. These controls
 justify checking the entire junction before retaining a local correction.
 Transferable library widths and the crossover conformation remain open.
 
+**C583, what happened to the five-membered rings.** The same four endpoints
+gave 42 occupied, covalently closed sugar rings per fit. At FT–Hg B:7 (DA)
+the local correction changed the phase from 126.7° to 128.6° and the amplitude
+from 43.1° to 44.1°. At D:7 on the PDU scaffold the residue is **ordinary
+thymidine**. Its phase changed from 3.7° to 6.4° while the amplitude fell from
+20.8° to 15.0°. Tightening that angle flattened the sugar. The actual PDU
+at B:4 retained a large amplitude, 65.1° and 64.0° in the two fits. These
+are readings of written models. The diffraction evidence for choosing a
+sugar conformation remains open. At low resolution a measured pucker alone
+cannot establish the right reference for a new restraint.
+[Measurement](cif-doctor.md#seeing-how-a-sugar-ring-changed) ·
+[NA Valence Geometry Working Group](https://pmc.ncbi.nlm.nih.gov/articles/PMC12791123/).
+
 ## Building a requested 5'-terminal phosphate
 
 When a site is explicitly declared as a 5'-terminal phosphate, PostMR runs an

@@ -95,6 +95,25 @@ an absent chemical restraint has no printed value to score.
 When a validation-data CIF is available, use
 [`deposition-geometry` to remeasure its findings](pdb-deposition.md#remeasuring-a-returned-geometry-table).
 
+### Seeing how a sugar ring changed
+
+Add `--sugar-pucker` to the same command, with `NASolve[topology]` installed.
+Doctor checks for the five occupied ring atoms C4′, O4′, C1′, C2′ and C3′
+and a positive native covalent bond along each edge. Component codes can
+differ from standard DNA or RNA. Missing edges, a changed element and
+ambiguous prime/star names are shown. `--all-sites` counts metals and sites
+without any of these ring names separately. An explicitly requested site
+with unavailable pucker gives exit 2.
+
+The five endocyclic torsions give the phase around the pseudorotation
+cycle and the amplitude of puckering, both in degrees. If all five atoms
+can be projected to one plane within their written PDB rounding boxes,
+the phase remains unresolved. Mirroring the sugar changes its numerical
+phase by 180°. Interpret handedness and the appropriate chemical reference
+before assigning an endo/exo class. The measurement also works on two named
+checkpoints and leaves their selection untouched.
+[Altona–Sundaralingam worked example in 3DNA](https://x3dna.org/articles/conformation-of-the-sugar-ring-in-nucleic-acid-structures).
+
 ## Checking which atoms Phenix put in a residue plane
 
 To see whether a base substituent actually reached a ring-plane restraint,

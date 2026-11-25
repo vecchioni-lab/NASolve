@@ -8,6 +8,10 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `cif-doctor residue-geometry --sugar-pucker` measures the shape of a
+  five-membered nucleotide sugar ring in a written refinement. It shows
+  the phase and amplitude for comparisons between two models or checkpoints.
+
 - `cif-doctor deposition-geometry` remeasures nucleic-acid bonds and angles
   listed in a returned wwPDB validation CIF. It can compare the same atoms
   in a revised coordinate file against the original reported references.

@@ -74,7 +74,7 @@ def _rows_for_sites(kind, text, labels, coordinates, components, atom_counts):
     return results
 
 
-def _read(model, geometry, sites):
+def _read(model, geometry, sites, *, sugar_pucker=False):
     raw, labels = _model_labels(model)
     model_hash = sha256(raw).hexdigest()
     coordinates = dict(labels.values())
@@ -99,22 +99,26 @@ def _read(model, geometry, sites):
     status = next(iter(statuses)) if len(statuses) == 1 else "PARTIAL" if statuses else "TOO_FEW_ATOMS"
     if file_sha256(model) != model_hash or (geometry is not None and file_sha256(geometry) != geo_hash):
         raise ValueError("Model or geometry changed during the inspection")
-    return dict(policy_id="printed-residue-geometry-v1", status=status, sites=residues, coverage=coverage,
+    result = dict(policy_id="printed-residue-geometry-v1", status=status, sites=residues, coverage=coverage,
                 site_selection="all_model_sites" if all_sites else "named_sites",
                 model_sha256=model_hash, geometry_sha256=geo_hash,
                 scope="Intramonomer geometry in one crystal image, evaluated against the printed Phenix targets. "
                       "Signed widths are (coordinate value minus printed ideal) / printed sigma, before any bond slack. "
                       "These values describe refinement restraints; independent chemical validation is a separate measurement.")
+    if sugar_pucker:
+        from .refinement_sugar_pucker import read_sugar_puckers
+        result["sugar_puckers"] = read_sugar_puckers(raw, labels, residues, all_sites=all_sites)
+    return result
 
 
-def _checkpoint_geometry(run, record, sites):
+def _checkpoint_geometry(run, record, sites, *, sugar_pucker=False):
     model_ref = record.get("model")
     if not isinstance(model_ref, dict) or not isinstance(model_ref.get("sha256"), str):
         raise CheckpointError("Checkpoint needs a written model with a recorded checksum")
     pdb = _ref_path(model_ref, "model", run)
     final = _final_geometry(run, record)
     geo, geo_ref = final if final is not None else (None, None)
-    result = _read(pdb, geo, sites)
+    result = _read(pdb, geo, sites, sugar_pucker=sugar_pucker)
     pdb_snapshot = _reference(pdb, run)
     geo_snapshot = _reference(geo, run) if geo is not None else None
     if (not (result["model_sha256"] == pdb_snapshot["sha256"] == model_ref["sha256"].lower()) or
@@ -130,7 +134,7 @@ def _checkpoint_geometry(run, record, sites):
 
 
 def inspect_residue_geometry(model, sites, *, geometry=None, checkpoint=None, reference_pdb=None,
-                             reference_geometry=None, reference_checkpoint=None):
+                             reference_geometry=None, reference_checkpoint=None, sugar_pucker=False):
     """Read one written model or compare it with an explicitly named reference."""
     if sites is not None:
         validate_contact_sites(sites)
@@ -144,7 +148,7 @@ def inspect_residue_geometry(model, sites, *, geometry=None, checkpoint=None, re
     earlier = None
     if reference_pdb is not None:
         pdb, geo = (Path(path).expanduser() for path in (reference_pdb, reference_geometry))
-        earlier = _read(pdb, geo, sites)
+        earlier = _read(pdb, geo, sites, sugar_pucker=sugar_pucker)
         files.extend(((pdb, {"sha256": earlier["model_sha256"]}), (geo, {"sha256": earlier["geometry_sha256"]})))
     if source.is_dir() or source.name == "report.json" or checkpoint is not None:
         if not checkpoint or not checkpoint.strip():
@@ -156,16 +160,17 @@ def inspect_residue_geometry(model, sites, *, geometry=None, checkpoint=None, re
             run, registry, _, report_ref, registry_ref = _checked_registry(source)
             if reference_checkpoint is not None:
                 old = resolve_checkpoint(registry, reference_checkpoint)
-                earlier, snapshots = _checkpoint_geometry(run, old, sites)
+                earlier, snapshots = _checkpoint_geometry(run, old, sites, sugar_pucker=sugar_pucker)
                 files.extend(snapshots)
-            current, snapshots = _checkpoint_geometry(run, resolve_checkpoint(registry, checkpoint), sites)
+            current, snapshots = _checkpoint_geometry(run, resolve_checkpoint(registry, checkpoint), sites,
+                                                     sugar_pucker=sugar_pucker)
             files.extend(snapshots)
             _require_unchanged(run / "report.json", report_ref)
             _require_registry_unchanged(registry_path(run), registry_ref)
     else:
         if geometry is None:
             raise ValueError("An explicit PDB needs its matching --geometry FINAL_GEO")
-        current = _read(source, Path(geometry).expanduser(), sites)
+        current = _read(source, Path(geometry).expanduser(), sites, sugar_pucker=sugar_pucker)
     for path, reference in files:
         _require_unchanged(path, reference)
     if earlier is None:
@@ -202,6 +207,9 @@ def print_residue_geometry(result, *, rows_per_site=4):
     """Print the largest raw discrepancies, with the unit, origin and coverage."""
     if "checkpoint" in result:
         print(f"Checkpoint {result['checkpoint']['id']}.")
+    if "sugar_puckers" in result:
+        from .refinement_sugar_pucker import print_sugar_puckers
+        print_sugar_puckers(result["sugar_puckers"])
     print("Distances and angles against the printed Phenix targets, in restraint widths.")
 
     def show(site, row, unit):
