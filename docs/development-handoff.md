@@ -1,7 +1,31 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-25, C576 two independent starts at the FT–Hg junction — Rowan**.
+Updated **2026-11-25, C577 the B:7 sugar after five native cycles — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**.
+
+The B:7 sugar-to-base angle could be built at 115.1° with both bases free
+during construction. Five cycles of Phenix 2.2.1-6174 reopened it to 122.5°
+against 114.3°. Both image bonds finished near 1.62 Å, and the fixed Hg
+kept the two N3 donors. A replay of its matched control retained the exact
+coordinate, geometry and unrounded return files and localized the largest
+angle change to the second coordinate-fitting cycle. See the
+[measured controls and common maps](backbone-chemistry.md#crossovers-in-the-ft-hg-scaffold).
+Q06 stays open. The compact local kit records the graph-derived moving
+atoms, reconstruction methods, pair geometry, source hashes and choices.
+
+The optional `residue-geometry --reference-checkpoint ID` compares two
+numbered checkpoints. For standalone models supply `--reference-pdb` and
+`--reference-geometry`. It matches identical printed restraints and names
+changed or unassessed terms. Ordinary single-model output and checkpoint
+schemas stay compatible. The changes are in `cli.py`,
+`refinement_residue_geometry.py` and `refinement_geometry_change.py`.
+Source and physically relocated wheel each passed 181 focused tests and 7
+subtests with the C576 command below plus
+`tests/test_{refinement_geometry_change,refinement_component_bonds}.py`.
+Five authentic before/after readings each matched 920 bonds and 1,319 angles.
+Ten historical single-model reports kept their exact output and all fifteen
+source and installed reports agreed. Full regression is deferred. Raw models,
+maps and reflection files remain in the private workspace.
 
 Four existing five-cycle FT–Hg fits located a recurrent sugar distortion
 beside the B:7–B:1 crystal bond. B:7 C4′–C3′–O3′ opened from 111–114°
@@ -16,8 +40,7 @@ agreed to within 1.5 × 10⁻¹⁴. See the [FT–Hg controls](backbone-chemistr
 preserved both crystal links and all 59 free reflections. B:1 OP2–P–O5′
 reached 108.7° with the A:16–A:17 start, against 108°. In both cases B:7
 C2′–C1′–N9 opened above 122° against 114.3°. At 5.06 Å the two common
-working-only maps gave no consistent preference. The next question under Q06
-is what opens that sugar-to-base angle. DF coverage and the PDU whole-arm
+working-only maps gave no consistent preference. C577 above traces that sugar-to-base angle. DF coverage and the PDU whole-arm
 decision remain open. See the [measured outcomes](backbone-chemistry.md#crossovers-in-the-ft-hg-scaffold).
 
 `cif-doctor phosphate-image --flanking-geometry` reads the written junction

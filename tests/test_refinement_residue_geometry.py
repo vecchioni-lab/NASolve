@@ -106,6 +106,14 @@ def test_checkpoint_uses_only_its_own_checked_geometry_after_relocation(tmp_path
     assert read["checkpoint"]["id"] == child["id"] and read["geometry_sha256"] == file_sha256(geo)
     assert main([*args, "--geometry", str(geo)]) == 1 and "recorded" in capsys.readouterr().err
     assert _snapshot(shifted) == before
+    assert main([*args, "--reference-checkpoint", "first-refinement"]) == 0
+    same = json.loads(capsys.readouterr().out)
+    assert same["reference"]["checkpoint"]["id"] == same["current"]["checkpoint"]["id"] == child["id"]
+    assert same["matched"] == {"angles": 1, "bonds": 3} and not same["changes"]
+    assert main([*args, "--reference-checkpoint", "postmr"]) == 2
+    partial = json.loads(capsys.readouterr().out)
+    assert partial["reference"]["geometry_sha256"] is None and partial["status"] == "PARTIAL"
+    assert _snapshot(shifted) == before
     tampered = run / child["outputs"]["final_geometry"]["relative_path"]
     tampered.write_bytes(tampered.read_bytes() + b"\n")
     assert main(args) == 1 and "changed after it was frozen" in capsys.readouterr().err

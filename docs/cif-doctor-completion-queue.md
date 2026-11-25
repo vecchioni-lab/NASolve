@@ -307,8 +307,15 @@ FT–Hg scaffold. C576 has now tested both adjoining sugars there against the
 archived five-cycle fixed-Hg controls. A transferred start repaired the B:1
 phosphate angle, while both new fits opened the sugar-to-base angle at B:7.
 The two common working-only maps gave opposite small mean differences. Keep
-both models available. Identify which forces open the glycosidic angle before
-changing the constructor or a chemical target. See the
+both models available. C577 traced the largest opening to the second
+coordinate-fit cycle. The native glycosidic angle resisted opening and other
+sugar bonds and the adenine plane supplied counterpressure. Giving both
+bases room during construction brought B:7 to 115.1° but it reopened to
+122.5° in the fixed-Hg native fit. Keep the two saved shapes unselected.
+For this crossover, use the existing matched evidence first. A future
+fixed-weight comparison should measure both sugars, intact pairing and both
+registered bonds. Keep the quantitative DF chemical-state scope on the Q06
+queue alongside the PDU whole-arm decision. See the
 [native comparison](backbone-chemistry.md#crossovers-in-the-ft-hg-scaffold).
 
 C537 checks which modeled atoms actually reached a native covalent plane.
@@ -1019,7 +1026,7 @@ sites while rechecking the frozen files before return.
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |
 | **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must receive the same chosen model and chemical/restraint meaning. | Complete for recorded alternatives, selected-model phasing, Coot, cold inspection and the ordinary five-cycle refinement handoff. Actual chemical survival/effective restraint behavior is Q06; no default activation or historical migration. |
-| **Q06 — show what survives real refinement** | Inspect the whole substituent, sugar, backbone and pair in the final Phenix model. | Open. PDU and 5PC retain the corrected terminal target. The PDU:PDU scaffold retained two crystal phosphates on restart. C574 compared distinct D:7 starts, neighboring sugars and common density. Next apply this comparison at an independently declared junction, record which atoms and crystal partners were protected, and define DF coverage beyond the tested nonmetal pair. |
+| **Q06 — show what survives real refinement** | Inspect the whole substituent, sugar, backbone and pair in the final Phenix model. | Open. PDU and 5PC retain the corrected terminal target. The PDU:PDU scaffold retained two crystal phosphates on restart. C574 compared distinct D:7 starts, neighboring sugars and common density. C575–C577 have now applied the comparison to the independently declared FT–Hg junction. Letting both bases move repaired the starting sugar angle, which reopened after refinement. Keep the independent DF donor-state scope and PDU whole-arm decision open. |
 | **Q07 — prove the pieces work together** | Refine the eight named pairs with ATL alongside, including PDU and DF/A1AAZ. | The known thirteen-change scaffold completed two ordinary five-cycle rounds (C497/C505). Both retained all 38 backbone links, 211 frame restraints, protected phosphate angles and original Free-R flags. Two close ATL contacts remain. The separate closure test uses eight unfamiliar catalogue substitutions, including compatible modified backbones and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
 | **Q09 — preserve the correct sugar hand and fluorine geometry** | Carry the L-DNA, FANA, L-FANA and L-FDNA learning into ordinary model building/refinement. | Use atom connectivity and stereochemistry, not lists of residue names; complete linked and held-out controls. |

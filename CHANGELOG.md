@@ -8,6 +8,10 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `cif-doctor residue-geometry` compares two written models against the Phenix
+  restraints that both fits used. It identifies newly distorted or improved
+  bonds and angles and reports where the chemical targets or coverage differ.
+
 - `cif-doctor phosphate-image --flanking-geometry` checks the bonds and angles
   inside both residues at a fitted crystal junction and at its intact reference
   links. It reads the named checkpoint’s final Phenix geometry listing.

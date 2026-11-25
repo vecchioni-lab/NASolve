@@ -488,6 +488,38 @@ model has been selected. Read each endpoint with its own final GEO using
 `phosphate-image --flanking-geometry`. The option includes the internal
 bonds and angles of the named reference residues as well as the junction.
 
+**C577, why the B:7 sugar opens.** An instrumented replay of the A:16–A:17
+trial produced the same final coordinate file, final GEO and unrounded
+returned model byte for byte. The B:7 C2′–C1′–N9 angle moved from 119.12° to
+122.85°. The biggest opening, 3.44°, occurred during the second cycle's
+coordinate fit against diffraction. Its own ordinary angle restraint opposed
+that opening. At the written endpoint, projecting the native forces along
+the angle showed counterpressure from the C3′–C2′ bond and the adenine plane
+that includes C1′. Two finite-difference step sizes reproduced the chemical
+gradient. This measures one direction in a coupled sugar and base.
+
+A separate construction let the complete B:7 adenine and B:1 cytosine move
+with the sugars. The original five pairing distances, two pair planes and
+both crystal links stayed active. All six sugar stereocentres retained their
+hand. Of 859 atoms, 822 stayed fixed in construction. The B:7 sugar-to-base
+angle reached 115.1° against 114.3°. After five native cycles it returned to
+122.5°, compared with 122.8° when the bases had stayed fixed in construction.
+B:1 OP2–P–O5′ finished at 107.8° against 108°. A different B:1 sugar angle
+finished 6.24 restraint widths from its target. The two crystal bonds were
+1.625 and 1.624 Å. The fixed mercury retained both N3 contacts at 1.995 and
+2.021 Å. Neither fit introduced a non-neighbour contact within 2.2 Å around
+these 37 atoms. The original 1,092 working and 59 free observations and
+experimental phase coefficients matched exactly.
+
+In the two endpoints R-free was 0.3367 and 0.3314. Native weight
+optimization used free-set scores. The common supplied-phase and 37-atom
+omit maps gave small opposite differences (−0.09 and +0.05 map standard
+deviations respectively, released minus anchored). The data extend to
+5.06 Å. Keep both shapes for review. Preserve the native sugar and base
+targets. A fair future comparison can hold the relative coordinate weight
+fixed across both starts and include an independent junction. The existing
+PDU fixed-weight comparison is documented above.
+
 ## Building a requested 5'-terminal phosphate
 
 When a site is explicitly declared as a 5'-terminal phosphate, PostMR runs an

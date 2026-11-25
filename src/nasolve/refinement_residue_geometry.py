@@ -107,11 +107,45 @@ def _read(model, geometry, sites):
                       "These values describe refinement restraints; independent chemical validation is a separate measurement.")
 
 
-def inspect_residue_geometry(model, sites, *, geometry=None, checkpoint=None):
-    """Inspect an explicit PDB and GEO, or the model and final GEO of one checkpoint."""
+def _checkpoint_geometry(run, record, sites):
+    model_ref = record.get("model")
+    if not isinstance(model_ref, dict) or not isinstance(model_ref.get("sha256"), str):
+        raise CheckpointError("Checkpoint needs a written model with a recorded checksum")
+    pdb = _ref_path(model_ref, "model", run)
+    final = _final_geometry(run, record)
+    geo, geo_ref = final if final is not None else (None, None)
+    result = _read(pdb, geo, sites)
+    pdb_snapshot = _reference(pdb, run)
+    geo_snapshot = _reference(geo, run) if geo is not None else None
+    if (not (result["model_sha256"] == pdb_snapshot["sha256"] == model_ref["sha256"].lower()) or
+            (geo_ref is not None and
+             not (result["geometry_sha256"] == geo_snapshot["sha256"] == geo_ref["sha256"].lower()))):
+        raise CheckpointError("Residue geometry differs from the frozen model or geometry")
+    result["checkpoint"] = dict(id=record["id"], parent=record.get("parent"),
+                                model=pdb_snapshot, geometry=geo_snapshot)
+    files = [(pdb, pdb_snapshot)]
+    if geo is not None:
+        files.append((geo, geo_snapshot))
+    return result, files
+
+
+def inspect_residue_geometry(model, sites, *, geometry=None, checkpoint=None, reference_pdb=None,
+                             reference_geometry=None, reference_checkpoint=None):
+    """Read one written model or compare it with an explicitly named reference."""
     if sites is not None:
         validate_contact_sites(sites)
+    if (reference_pdb is None) != (reference_geometry is None):
+        raise ValueError("Supply --reference-pdb and --reference-geometry together")
+    if reference_checkpoint is not None and (reference_pdb is not None or not checkpoint):
+        raise ValueError("--reference-checkpoint requires a current --checkpoint in the same run")
+
     source = Path(model).expanduser()
+    files = []
+    earlier = None
+    if reference_pdb is not None:
+        pdb, geo = (Path(path).expanduser() for path in (reference_pdb, reference_geometry))
+        earlier = _read(pdb, geo, sites)
+        files.extend(((pdb, {"sha256": earlier["model_sha256"]}), (geo, {"sha256": earlier["geometry_sha256"]})))
     if source.is_dir() or source.name == "report.json" or checkpoint is not None:
         if not checkpoint or not checkpoint.strip():
             raise ValueError("A numbered run needs an explicit --checkpoint")
@@ -120,31 +154,24 @@ def inspect_residue_geometry(model, sites, *, geometry=None, checkpoint=None):
         from .cif_numerical_replay import numerical_replay_scope
         with numerical_replay_scope():
             run, registry, _, report_ref, registry_ref = _checked_registry(source)
-            record = resolve_checkpoint(registry, checkpoint)
-            model_ref = record.get("model")
-            if not isinstance(model_ref, dict) or not isinstance(model_ref.get("sha256"), str):
-                raise CheckpointError("Checkpoint needs a written model with a recorded checksum")
-            pdb = _ref_path(model_ref, "model", run)
-            final = _final_geometry(run, record)
-            geo, geo_ref = final if final is not None else (None, None)
-            result = _read(pdb, geo, sites)
-            pdb_snapshot = _reference(pdb, run)
-            geo_snapshot = _reference(geo, run) if geo is not None else None
-            if (not (result["model_sha256"] == pdb_snapshot["sha256"] == model_ref["sha256"].lower()) or
-                    (geo_ref is not None and
-                     not (result["geometry_sha256"] == geo_snapshot["sha256"] == geo_ref["sha256"].lower()))):
-                raise CheckpointError("Residue geometry differs from the frozen model or geometry")
-            result["checkpoint"] = dict(id=record["id"], parent=record.get("parent"),
-                                        model=pdb_snapshot, geometry=geo_snapshot)
-            _require_unchanged(pdb, pdb_snapshot)
-            if geo is not None:
-                _require_unchanged(geo, geo_snapshot)
+            if reference_checkpoint is not None:
+                old = resolve_checkpoint(registry, reference_checkpoint)
+                earlier, snapshots = _checkpoint_geometry(run, old, sites)
+                files.extend(snapshots)
+            current, snapshots = _checkpoint_geometry(run, resolve_checkpoint(registry, checkpoint), sites)
+            files.extend(snapshots)
             _require_unchanged(run / "report.json", report_ref)
             _require_registry_unchanged(registry_path(run), registry_ref)
-            return result
-    if geometry is None:
-        raise ValueError("An explicit PDB needs its matching --geometry FINAL_GEO")
-    return _read(source, Path(geometry).expanduser(), sites)
+    else:
+        if geometry is None:
+            raise ValueError("An explicit PDB needs its matching --geometry FINAL_GEO")
+        current = _read(source, Path(geometry).expanduser(), sites)
+    for path, reference in files:
+        _require_unchanged(path, reference)
+    if earlier is None:
+        return current
+    from .refinement_geometry_change import geometry_change
+    return geometry_change(earlier, current)
 
 
 def flanking_residue_geometry(model, geometry, inspection, *, model_sha256, geometry_sha256):

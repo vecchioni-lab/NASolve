@@ -332,6 +332,10 @@ def build_parser() -> argparse.ArgumentParser:
     residue_sites.add_argument("--all-sites", action="store_true", help="screen every modeled residue and summarize the largest discrepancies")
     residue_geometry.add_argument("--geometry", type=Path, metavar="FINAL_GEO", help="matching final Phenix geometry for an explicit PDB")
     residue_geometry.add_argument("--checkpoint", help="explicit checkpoint ID or bookmark and its recorded final geometry")
+    reference = residue_geometry.add_mutually_exclusive_group()
+    reference.add_argument("--reference-pdb", type=Path, metavar="PDB", help="compare with this earlier PDB and its --reference-geometry")
+    reference.add_argument("--reference-checkpoint", metavar="ID", help="compare two explicit checkpoints in this run")
+    residue_geometry.add_argument("--reference-geometry", type=Path, metavar="GEO", help="matching Phenix geometry for --reference-pdb")
     residue_geometry.add_argument("--json", action="store_true", help="print all observed rows, their origins and file hashes")
     phosphate_image = cif_sub.add_parser("phosphate-image", help="inspect a named O3' crystal image at a phosphate (requires NASolve[topology])")
     phosphate_image.add_argument("model", type=Path, metavar="PDB_OR_RUN", help="exact written PDB with CRYST1, or a numbered run with --checkpoint")
@@ -2162,12 +2166,17 @@ def _cif_doctor(args: argparse.Namespace) -> int:
     if args.cif_action == "residue-geometry":
         from .refinement_residue_geometry import inspect_residue_geometry, print_residue_geometry
         try:
-            result = inspect_residue_geometry(args.model, args.site, geometry=args.geometry, checkpoint=args.checkpoint)
+            result = inspect_residue_geometry(args.model, args.site, geometry=args.geometry, checkpoint=args.checkpoint,
+                                             reference_pdb=args.reference_pdb, reference_geometry=args.reference_geometry,
+                                             reference_checkpoint=args.reference_checkpoint)
         except (OSError, ValueError, CheckpointError) as exc:
             print(str(exc), file=sys.stderr)
             return 1
         if args.json:
             print(json.dumps(result, indent=2, sort_keys=True, allow_nan=False))
+        elif "reference" in result:
+            from .refinement_geometry_change import print_geometry_change
+            print_geometry_change(result)
         else:
             print_residue_geometry(result)
         return 0 if result["status"] == "OBSERVED" else 2

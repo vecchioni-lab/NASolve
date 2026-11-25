@@ -51,6 +51,25 @@ every row, printed sigma, weight, bond slack, site coverage and file hashes.
 The ranking uses the unadjusted difference from the target. A zero weight or
 positive slack can reduce the force a discrepancy actually produces.
 
+To see which dimensions moved toward or away from their targets, supply the
+starting PDB and its own matching GEO, or two explicit checkpoints from one run.
+
+```sh
+nasolve cif-doctor residue-geometry fitted.pdb --geometry fitted_final.geo --all-sites \
+  --reference-pdb start.pdb --reference-geometry start.geo
+nasolve cif-doctor residue-geometry dataset/AutoMR/run_001 --checkpoint refine-002 \
+  --reference-checkpoint refine-001 --site B:7
+```
+
+The comparison pairs each term by residue, component, atom identities and
+origin. Its endpoints may appear in either order in the GEO. Only unique terms
+with identical printed ideals, sigmas, weights and bond slack contribute a
+change in restraint widths. The JSON records changed definitions, absent
+terms or sites, ambiguous duplicates and incomplete readings. A partial
+reading returns status 2. Positive changes mean farther from the printed
+target. This measures the two shapes. Establishing what moved the atoms
+requires evidence from the refinement itself.
+
 Doctor checks the printed model values against the coordinates at their
 written precision. Phenix commonly writes both `refined_001.geo` at the start
 and `refined_001_final.geo` at the end. A stale or incomplete section is
