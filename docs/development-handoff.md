@@ -1,5 +1,14 @@
 # NASolve development handoff — Willow
 
+**Current code/qualification: W281, 2026-11-25** (source `f40f5bc65b0a44e339bc5c7416499041ddf2bd93`).
+The graph-descent observer explicitly maps all unique atom identities and checks
+same-crystal representatives through Cedar's image reader. Genuine PDU descent:
+862 atoms, 32 reordered records, 42 nodes/40 edges retained; max same-atom movement
+2.8160 Å. A changed lattice image is refused. Original registration and selected
+checkpoint are unchanged. 140 source/140 relocated installed checks pass; no
+native run. This observation is distinct from an ordinary registration/preview.
+[Scope and scientific control](topostitch-preview.md#follow-a-registered-graph-into-a-refined-model-w281).
+
 **Current code/qualification: W280, 2026-11-25** (source `9f73abe89d3c416eb6596466e1febe25391a48b5`).
 `inspect_checkpoint_inputs` observes saved schema-2 refined parents through an
 explicit trusted Cedar registry reader without inventing a bend or preparation.
@@ -165,7 +174,7 @@ controls are reused; no deposited tensor or coordinate was changed. See
 [exact scope and commands](topostitch-periodic.md#w271--plan-output-fields-and-separate-native-tls-interpretation).
 No product code, installed artifact or runtime schema changed.
 
-**Next W281; P03 remains partial.** Bind a full-precision source and physical graph to the authenticated parent through existing owners; inspect actual identity/file compatibility first. No invented 3LNA history, observation conversion, new fit for demonstration or broadened native thermal/chemistry admission.
+**Next W282; P03 remains partial.** Build one ordinary recut preview using the separately attested descent and existing Pine registration/preview owners. Preserve original provenance, actual changed-image refusal and selection. Compare declared connections before/after; no new fit or automatic native restart.
 
 **Return later — B11 / PUB05:** Simon requested a maximally fragmented ASU
 refinement stress test on 2026-11-25. The [frozen-panel plan](topostitch.md#maximally-fragmented-asu-refinement-stress-test-planned)

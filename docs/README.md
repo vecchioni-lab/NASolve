@@ -7,6 +7,10 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Current graph descent: W281.** [Refined atom correspondence](topostitch-preview.md#follow-a-registered-graph-into-a-refined-model-w281)
+  preserves declared topology through explicit atom reordering and same-image
+  checks. 140 source/140 installed; genuine 862-atom PDU control and image refusal.
+
 - **Current input observer: W280.** [Exact checkpoint inputs](topostitch-preview.md#observe-refined-checkpoint-inputs-without-a-preview-w280)
   can be inspected without a bend preview, through a trusted registry owner.
   173 source/173 installed checks and one genuine PDU parent readback; no new fit.
