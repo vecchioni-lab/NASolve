@@ -19,9 +19,10 @@ entries are reconstructed from repository history.
 
 ### W285 — Separate native connection images from chemical typing
 
-- Record Cedar’s reported matched refinement showing five contact labels depend
-  on restraint input form despite identical final atom positions. Keep the
-  controlled result distinct from geometry acceptance and pending artifact review.
+- Bind Cedar C585’s matched refinement to its committed documentation and verified
+  archive/member hashes: five contact labels depend on restraint input form despite
+  identical final atom positions at written PDB precision. Close the provisional
+  reference while retaining the separate geometry and metadata-repair gates.
 
 - Account for all 49 original CIF rows through the existing native geometry
   reader. Preserve five base-contact `covale` rows as explicit chemical-review

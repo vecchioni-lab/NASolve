@@ -5063,17 +5063,31 @@ A future mmCIF writer must keep image evidence, chemical intent and observed
 geometry distinct. Do not turn every native User-supplied distance restraint
 into a chemical linkage or silently rewrite existing classifications.
 
-**Cedar follow-up, owner-reported 2026-11-25.** Rowan compared native
+**Cedar follow-up C585, evidence verified 2026-11-25.** Rowan compared native
 hydrogen-bond settings with five explicit distance edits using identical
 atom-specific targets and widths on the same PDU starting model. After five
-cycles both gave the same 862 final atom positions. The native route wrote
+cycles both gave the same 862 final atom positions **at written PDB precision**.
+The native route wrote
 `hydrog` for these five rows; the explicit-edit route wrote `covale`. All 7,924
 initial nonbonded interactions, including their closest-approach distances,
 matched. Thus this controlled comparison separates output classification from
 coordinate behavior. It does not establish geometry acceptance, equality under
 arbitrary restraint settings, or unchanged thermal/reflection outputs. These
-are Cedar's reported results, not a Willow rerun; the committed Cedar evidence
-reference is pending. The historical distances above remain their own result.
+are Cedar's results, not a Willow rerun. Willow verified the supplied archive
+and result-member SHA-256 values and read the compact measurements: coordinate
+RMS/max differences are zero at written precision; both fits report
+R-work/R-free 0.2078/0.2693. The historical distances above remain their own result.
+See [Cedar C585](https://github.com/vecchioni-lab/NASolve/blob/34724cca4d2b933a4f96779622eec45ed9d5fce5/docs/backbone-chemistry.md#how-phenix-labels-base-pair-restraints-in-the-pdu-scaffold).
+
+The immutable local evidence is NASolve anchor
+`branch-artifacts/cedar/c558-two-crystal-phosphates/C585 PDU pair restraints and deposition labels.zip`
+(34,175 bytes; SHA-256
+`9a310bb91c1c48c3188b088ea1e2a302ac0b0a26a1a4a5c00f1803f1852d9f7f`).
+Its `measurements/five-cycle-returns.json` member has SHA-256
+`b3a35a4ed4500beaa432a61c71d87b8fd19bee5a781f665bfa99d8692a37abe3`.
+The starting-contact comparison is in `measurements/native-starting-tables.json`,
+SHA-256 `186fc5467ffca11fd637869884a4f32a131c51ba868c4782634d5e2c10e0e914`.
+The evidence reference is closed; full metadata repair remains gated.
 
 The writer requirement is now more specific: recover the intended contact class
 from qualified chemistry/intent evidence, rather than interpreting the supplied
