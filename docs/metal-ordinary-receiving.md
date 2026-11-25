@@ -21,6 +21,24 @@ fields before inserting replacements. It preserves scientific scalar literals,
 including fixed f′, instead of whole-object PHIL float formatting. No operational
 paths or execution/admission authority are introduced by this receipt.
 
+## New source-to-target handoff qualification
+
+The passive `refinement_diffraction_observation` helper now reuses existing metal
+signatures/audits. Its schema-1 `exact-merged-hl-observation-v1` reference pins
+independently admitted merged observations, boolean Free-R and HL captures, plus
+original data/phase-file hashes. It reads no files and supplies no ancestry.
+The old common amplitude-scaling allowance is explicitly disallowed for this
+scope. Native arrays must be aligned, positive, crystal-consistent and bound to
+the actual MLHL target manager. Parameter strategy stays independently protected.
+
+25 source and 25 installed native cases pass. One 7.90-second dry handoff retains
+1,151 observations, 59 Free assignments and 1,151 HL coefficients at three complete
+model/target observations alongside the unchanged parameter observer. Zero cycles,
+zero optimizer evaluations, both links and all protected Hg values retained. This
+closes source-capture comparison through the private receiving control; **step 2's
+ordinary ancestry/admission and steps 3–5's integration remain open**. Do not rerun
+the qualified dry control merely because this prospective checklist remains open.
+
 ## Ordered integration steps
 
 1. **Admit a legitimate prepared parent.** Reuse Cedar's `PreparedBackbone`,

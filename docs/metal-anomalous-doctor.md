@@ -638,6 +638,25 @@ append restricted selections after an existing `all` field: native repeated fiel
 are additive. Full selection text belongs once with the protected geometry parent,
 not in every f″ increment.
 
+**Exact diffraction observation.** `refinement_diffraction_observation` provides
+`make_reference`, `DiffractionReference.state`, `observe_diffraction` and
+`observe_target`. It reuses existing metal reflection/phase signatures and audits;
+it introduces no source parser. An independently admitted source capture pins
+merged amplitude/sigma/boolean Free-R rows and indexed HL coefficients plus exact
+data/phase-file SHA-256 values. Source captures must have positive F/sigma and
+complete unique indexed coverage. Native observation requires aligned arrays,
+matching array crystal frames, merged HL/Free-R and actual MLHL target ownership.
+Both manager and target must retain exact values; the shared f″ audit's common
+amplitude scaling allowance does not apply here. Crystal agreement with the source
+model, native-code binding and original checkpoint ancestry remain independent.
+
+Schema-1 `exact-merged-hl-observation-v1` references are detached from caller
+mutation and explicitly checksum-bound. Each small receipt proves only its own
+observation. Twenty-five source and 25 installed native cases plus one zero-cycle
+FT handoff qualify this helper. The initialized fmodel creates the observed native
+target; this is not an optimizer evaluation. Historical individual-ADP and
+coordinate-only guards remain unchanged. No callbacks or processes are installed.
+
 **Receiving boundary.** Source/checkpoint admission, dictionaries/restraints,
 crystal frame, indexed phases and original anomalous observations/Free-R remain
 with their existing owners. A checksum does not supply those inputs or prove

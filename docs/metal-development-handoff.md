@@ -15,7 +15,47 @@ not a second queue.
 
 <a id="a01-parameter-scope-2026-11-25"></a>
 
-## Current A01 — scoped writer and literal composition qualified
+## Current A01 — exact diffraction handoff qualified
+
+**Latest bounded step:** `refinement_diffraction_observation` reuses the existing
+metal reflection/phase signature and audit owners, independently of XYZ/B strategy.
+The caller pins an independently admitted source capture and both source-file
+hashes; the observer requires exact merged F/sigma/Free-R/HL values in the active
+manager and actual native HL target. It rejects common amplitude scaling and
+integer flags, rather than coercing or silently normalizing them. The source reader,
+crystal/chemical admission, parameter observer and execution owner remain separate.
+No file discovery, parser, callbacks, executor or historical payload changes.
+
+**Qualification:** 25/25 source and 25/25 installed native cases pass under
+Phenix 2.2.1-6174; ordinary focused tests plus shared phase/reflection callers give
+**100 passed, 11 native skips, 18 subtests passed in 6.18 seconds**. The new
+regression failed before implementation. Installation removes its owned build
+source, verifies module origin and reads back the exact real source packet; its
+temporary build/installation is removed. No full suite.
+
+A complete **7.90-second dry initialization, zero cycles**, passes three pairs of
+active-manager/native-target checks against 1,151 original observations, 59 original
+Free assignments and 1,151 HL coefficients. Source reading uses the existing pinned
+independent phase owner. The native target is constructed by the initialized
+fmodel; zero optimizer evaluations occur. Both crystal links, 859 XYZ atoms,
+42 DNA-only B groups and all protected Hg values remain unchanged. This is a
+source-to-target mechanical handoff, not ordinary parent admission or a new fit.
+
+**117 cold checks** pass; local evidence is **8.33 MiB**. The first cold harness
+incorrectly counted pytest 9 subtests in JUnit totals and is preserved; corrected
+accounting used the same test evidence without rerunning it. Exact commands and
+pins: `branch-artifacts/Alder/a01-diffraction-observer-20261125-01/README.md`,
+runners A750–A755. Compact checkout:
+`ScienceCheckouts/Hazel/2026-11-25_parameter-protection/diffraction-handoff.html`.
+Generated science stays outside Git. A01 partial; A02 quantitation gated.
+
+Next connect legitimate prepared-parent admission and versioned continuous
+observation to the existing ordinary owner, followed by protected output/process
+closure. Do not repeat this dry check without changed code/inputs or a new question.
+The [receiving contract](metal-ordinary-receiving.md) records these remaining gates.
+
+## Earlier same-session checkpoint — scoped writing and literal composition
+
 
 **Latest bounded step:** the maintained native compositor replaces the private
 FT-specific splice below. It removes every occurrence of exactly eight XYZ/B/

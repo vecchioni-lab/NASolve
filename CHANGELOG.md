@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Add passive exact merged-observation and HL target checks
+
+- Reuse existing indexed reflection/phase signatures and audits in a strategy-
+  independent observer. Pin independently admitted source captures and require
+  exact merged amplitudes/sigmas, Free-R membership and HL coefficients in both
+  active manager and actual native target. Refuse common amplitude rescaling,
+  stale managers, unaligned arrays, integer-flag coercion and crystal mismatch.
+- Qualify source/installed native cases and one zero-cycle receiving handoff,
+  while retaining exact XYZ/B selections and protected metal values. No new
+  source parser, callback owner, executor, default or historical payload change.
+- Schema-1 references identify source bytes but do not authorize checkpoint
+  ancestry. Ordinary admission, continuous execution and scientific acceptance
+  remain separate; no existing artifact migration or full-suite claim.
+
 ### Preserve scientific literals when composing scoped refinement parameters
 
 - Add an opt-in native PHIL compositor that replaces all occurrences of the

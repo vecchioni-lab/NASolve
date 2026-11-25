@@ -18,7 +18,14 @@ Hg moves 0.089 / 0.086 Å; Rfree is 0.3371 / 0.3362. Existing B machinery
 previews base/donor alternatives from the returned models without changing them.
 No selected endpoint, f″ result or global real-space qualification follows.
 
-**Current mechanical increment:** the general native literal compositor is
+**Latest mechanical increment:** the passive diffraction observer now carries
+independently read source captures to the active manager and actual native HL
+target without changing F/sigma/Free-R/HL or XYZ/B selections. Source/installed
+native cases pass (25 each); one 7.90-second zero-cycle handoff and 117 cold checks
+qualify this boundary. Ordinary parent admission, continuous versioned execution,
+output closure and geometry acceptance remain open. No new fitted endpoint.
+
+**Previous mechanical increment:** the general native literal compositor is
 qualified by 15 source/15 installed native cases, exact real-policy replay and a
 7.18-second zero-cycle initialization. It preserves non-owned scientific values
 while replacing repeated XYZ/B fields. No new fitted endpoint or phase admission

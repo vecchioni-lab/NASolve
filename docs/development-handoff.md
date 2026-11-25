@@ -7,7 +7,15 @@ observation and storage owners; it introduces no new scientific policy.
 
 ## Current metal-science edge
 
-A01 remains partial; A02 scientific quantitation remains gated. The explicit
+A01 remains partial; A02 scientific quantitation remains gated. The latest passive
+indexed diffraction observer passes 25 source/25 installed native cases and a
+7.90-second zero-cycle source-to-active-manager/target handoff. It preserves all
+1,151 observations, 59 original Free assignments and HL coefficients alongside
+exact XYZ/B selections and protected Hg values. Focused tests give 100 passed,
+11 native skips and 18 subtests; 117 cold evidence checks pass. No scientific fit
+or ordinary parent adoption follows. See the [current metal handoff](metal-development-handoff.md#a01-parameter-scope-2026-11-25).
+
+The explicit
 [mixed XYZ/group-B observer and scoped writer](metal-development-handoff.md#a01-parameter-scope-2026-11-25)
 now carry exact source-bound coordinate/B selections into a dry initialized native
 receiver. Thirty writer regressions, 126 native compiler/binding checks and 111

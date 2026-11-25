@@ -24,6 +24,13 @@ checkpoint adoption. The [ordinary receiving contract](metal-ordinary-receiving.
 separates this composer from source/phase admission, continuous parameter capture
 and the existing process/output owners.
 
+`refinement_diffraction_observation` composes existing metal indexed signatures/
+audits into a passive, strategy-independent check. Its caller-pinned source
+reference requires exact merged F/sigma/Free-R/HL in the active manager and actual
+HL target. It does not read files or establish checkpoint ancestry; source crystal,
+chemical and parameter checks stay with existing owners. Ordinary runtime adoption
+remains versioned work under the [receiving contract](metal-ordinary-receiving.md).
+
 Historical counted V5–V8 code preparation now obtains `topostitch_native_recipe.py`
 from `data/refinement-runtime-native-recipe-sources.json`, retaining its already
 qualified SHA-256. Modern direct callers retain the newer explicit native-crystal
