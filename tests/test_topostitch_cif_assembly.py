@@ -160,3 +160,59 @@ def test_absent_assembly_is_unavailable_and_invalid_bounds_rejected(tmp_path):
     for bad in (True,float('nan'),-.1,.1):
         options['max_rotation_component_error']=bad
         with pytest.raises(ValueError,match='bounds'):observe(root,model,options)
+
+
+
+def view_binding(kw):
+    kw=dict(kw);bounds={k:kw.pop(k)for k in ('max_rotation_component_error','max_translation_component_error_angstrom','max_assembly_position_error_angstrom')}
+    cedar=kw.pop('cedar_source');return kw,bounds,cedar
+
+
+def test_ordinary_view_recomputes_exact_assembly_without_changing_default_scene(tmp_path):
+    from nasolve.topostitch_view import representative_scene,write_preview_view
+    old=tmp_path/'old';old.mkdir();root,model,kw,_=fixture(old);expected=observe(root,model,kw);binding,bounds,cedar=view_binding(kw)
+    options=dict(original_cif=model,cif_binding=binding,cedar_source=cedar)
+    baseline=representative_scene(root,**options)
+    scene=write_preview_view(root,tmp_path/'view.html',assembly_bounds=bounds,**options)
+    assert scene['original_cif_assemblies']==expected
+    assert {k:v for k,v in scene.items()if k!='original_cif_assemblies'}==baseline
+    relative=[p.relative_to(old)for p in(root,model,cedar)];moved=tmp_path/'moved';shutil.move(old,moved)
+    root,model,cedar=[moved/p for p in relative]
+    assert not old.exists()
+    assert representative_scene(root,original_cif=model,cif_binding=binding,cedar_source=cedar,assembly_bounds=bounds)==scene
+
+
+@pytest.mark.parametrize('problem',['missing_cif','missing_binding','unknown_bound','bad_bound','drift'])
+def test_assembly_view_refuses_unbound_or_changed_inputs_before_output(tmp_path,monkeypatch,problem):
+    from nasolve.topostitch_view import write_preview_view
+    root,model,kw,_=fixture(tmp_path);binding,bounds,cedar=view_binding(kw)
+    options=dict(original_cif=model,cif_binding=binding,cedar_source=cedar,assembly_bounds=bounds)
+    if problem=='missing_cif':options['original_cif']=None
+    elif problem=='missing_binding':options['cif_binding']=None
+    elif problem=='unknown_bound':bounds['unknown']=1.
+    elif problem=='bad_bound':bounds['max_rotation_component_error']=True
+    elif problem=='drift':
+        import nasolve.topostitch_cif_assembly as module
+        before=module.observe_relabel_cif_assemblies
+        def drift(*a,**k):
+            result=before(*a,**k);(root/'source.pdb').write_bytes((root/'source.pdb').read_bytes()+b'REMARK changed\n');return result
+        monkeypatch.setattr(module,'observe_relabel_cif_assemblies',drift)
+    out=tmp_path/'bad.html'
+    with pytest.raises(ValueError):write_preview_view(root,out,**options)
+    assert not out.exists()
+
+
+def test_assembly_view_cli_embeds_separate_actual_matrices_and_images(tmp_path):
+    from nasolve.topostitch_view import main
+    import re
+    root,model,kw,_=fixture(tmp_path);binding,bounds,cedar=view_binding(kw)
+    bp=tmp_path/'binding.json';bp.write_text(json.dumps(binding));rp=tmp_path/'rounding.json';rp.write_text(json.dumps(bounds));out=tmp_path/'view.html'
+    args=[str(root),'--out',str(out),'--original-cif',str(model),'--cif-binding',str(bp),'--cedar-source',str(cedar),'--assembly-bounds',str(rp)]
+    assert main(args)==0
+    html=out.read_text();scene=json.loads(re.search(r'<script id="scene" type="application/json">(.*?)</script>',html,re.S)[1])
+    assert scene['original_cif_assemblies']==observe(root,model,kw)
+    assert 'Assembly images' in html and 'Supplied Cartesian matrix' in html
+    assert str(tmp_path)not in html
+    rp.write_text('null');args[args.index('--out')+1]=str(tmp_path/'invalid.html')
+    with pytest.raises(SystemExit)as e:main(args)
+    assert e.value.code==2 and not(tmp_path/'invalid.html').exists()

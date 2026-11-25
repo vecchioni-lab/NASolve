@@ -1125,7 +1125,7 @@
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "W267: make W266 original assembly matrices, fractional-image matches and mixed-path partitions inspectable in the existing ordinary recut viewer, using explicit source binding and rounding bounds. Preserve default TLS-only behavior and no authority change; no second GUI, assembly writer or native fit. Then review original-instance/total-ADP coverage and output entity policy with Rowan before materialization.",
+      "next_action": "W268: audit complete original assembly-instance and total-ADP coverage using existing source/image/transport owners. Distinguish exact declared crystal images from rounded supplied matrices, identify any missing public contract before coding, and coordinate output entity policy with Rowan. Do not repeat W249 ASU Fcalc or W264 TLS experiments; no writer or native fit until those gates are explicit.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -7779,8 +7779,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 266,
-    "next": 267,
+    "current": 267,
+    "next": 268,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -9186,6 +9186,12 @@
         "title": "Resolve original assembly images from their actual matrices",
         "state": "RECORDED",
         "code_commit": "6322b479539815128febb307a143a092648d15cd"
+      },
+      {
+        "number": 267,
+        "title": "Inspect actual assembly images through the ordinary recut viewer",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   },

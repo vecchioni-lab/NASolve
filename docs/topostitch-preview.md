@@ -4363,3 +4363,38 @@ paths keep multiple partitions; no output asym/entity IDs are assigned. This is
 an optional schema-1 observation, not an assembly writer, biological assembly
 approval, total-ADP transport or proof of full finite-set equivalence. No existing
 call, default, saved packet or shared Cedar owner changes.
+
+## Inspect assembly references beside the saved cut (W267)
+
+The existing `nasolve-topostitch-view` command can additionally recompute the
+W266 assembly observation for one representative preview. Keep the same explicit
+`--original-cif`, eight-key `--cif-binding` and compatible `--cedar-source` used
+for original TLS inspection, and add `--assembly-bounds rounding.json`:
+
+```json
+{
+  "max_rotation_component_error": 1e-8,
+  "max_translation_component_error_angstrom": 1e-6,
+  "max_assembly_position_error_angstrom": 1e-5
+}
+```
+
+These are the declared matrix-rounding allowances used for the LNA controls,
+not universal experimental tolerances. All three keys are required; null,
+unknown keys, invalid values and missing original-source binding are refused
+before output. The API equivalent is `assembly_bounds=...` on
+`representative_scene` or `write_preview_view`. Numerical qualification remains
+owned by the W266 observer. Saved reports are not accepted as trusted input.
+
+The optional **Assembly images** section separates curated/depositor operators,
+supplied Cartesian matrices, exact matched fractional images, whole-cell shifts
+and rounding differences. Generator rows show source atom counts, image/asym
+partitions and endpoint-transport error; complete evidence remains expandable.
+The additive scene member is `original_cif_assemblies`. No original-CIF option
+means the ordinary scene; omitting assembly bounds retains TLS-only behavior.
+
+The 3D canvas still shows the saved ASU representative proposal, not an expanded
+biological assembly. This is inspection, not an assembly editor, molecule-count
+assignment, total-ADP/instance-equivalence proof or model writer. Multiple-cut and
+bend views retain the existing original-CIF restriction. Paths stay explicit CLI
+arguments; the scene contains source/report hashes, not operational host paths.

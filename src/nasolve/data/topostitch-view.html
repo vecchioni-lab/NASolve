@@ -29,6 +29,7 @@
 <section class="section" id="contacts-section"><h2>Proposed contact distances</h2><table><thead><tr><th>Atom pair</th><th>Original</th><th>Candidate</th></tr></thead><tbody id="contact-rows"></tbody></table><p class="footnote">Distances in Å. Dashed contacts are hypotheses, not new covalent bonds.</p></section>
 <section class="section" id="native-links-section" hidden><h2>Existing links across the cut</h2><p class="footnote" id="native-links-summary"></p><pre id="native-links-detail"></pre><p class="footnote">These bonds were interpreted in the source. A proposed image relation does not enable bond or angle restraints.</p></section>
 <section class="section" id="backbone-intent-section" hidden><h2>Backbone intent</h2><p class="footnote" id="backbone-intent-summary"></p><pre id="backbone-intent-detail"></pre><p class="footnote">Continuation preserves existing P/OP1/OP2 even with an unresolved partner. A chemical boundary has separate terminal-phosphate intent. No atoms or restraints are changed.</p></section>
+<section class="section" id="assembly-section" hidden><h2>Assembly images</h2><p class="footnote" id="assembly-summary"></p><div id="assembly-operators"></div><details><summary>Complete assembly evidence</summary><pre id="assembly-evidence"></pre></details><p class="footnote">The supplied matrix and its matched crystal image remain separate. Mixed paths need more than one image correction. Inspection does not approve an assembly, change its molecule count or write a model.</p></section>
 <section class="section" id="tls-section" hidden><h2>Original TLS groups</h2><p class="footnote" id="tls-summary"></p><div id="tls-groups"></div><details><summary>Complete TLS evidence</summary><pre id="tls-evidence"></pre></details><p class="footnote">Mixed images remain one original group needing review. No new refinement groups, atom displacement parameters or model coordinates are written. Raw S conventions remain unresolved.</p></section>
 <details id="boundary-section" hidden><summary>Declared boundaries and coverage</summary><pre id="boundaries"></pre></details>
 <details><summary>Symmetry, scope and provenance</summary><pre id="provenance"></pre></details>
@@ -84,6 +85,29 @@ if(r.mapping_issues.length)detail+='\nMapping: '+r.mapping_issues.join(', ');
 return detail;
 }).join('\n\n'));
 }
+document.getElementById('assembly-section').hidden=!scene.original_cif_assemblies;
+document.getElementById('assembly-operators').replaceChildren();
+if(scene.original_cif_assemblies){
+const assembly=scene.original_cif_assemblies;
+const mixed=assembly.mixed_image_path_numbers;
+text('assembly-summary',Object.values(assembly.namespaces).reduce((n,ns)=>n+ns.generators.length,0)+' original generator rows · '+(mixed.length?'mixed-image paths '+mixed.join(', '):'no mixed-image paths'));
+for(const [namespace,ns] of Object.entries(assembly.namespaces)){
+for(const operator of ns.operators){
+const detail=document.createElement('details'),summary=document.createElement('summary'),body=document.createElement('pre');
+const matches=operator.symmetry_matches,match=matches.length===1?matches[0]:null,row=operator.raw_fields;
+const qualified=operator.status==='MATCH_WITHIN_DECLARED_BOUNDS';
+summary.textContent=(namespace==='curated'?'Curated':'Depositor')+' operator '+(row.id??'?')+' → '+(qualified?'crystal '+(match.declared_operation_ids.join(', ')||'image'):'needs review');
+const matrix=[1,2,3].map(i=>[1,2,3].map(j=>row['matrix['+i+']['+j+']']??'?').join('  ')+'  |  '+(row['vector['+i+']']??'?')).join('\n');
+body.textContent='Supplied Cartesian matrix (translation in Å)\n'+matrix;
+if(match)body.textContent+='\n\nMatched fractional image: '+match.operator_xyz+'\nWhole-cell shift from group representative: '+match.lattice_shift.join(', ')+'\nLargest rounding difference at source atoms: '+match.maximum_source_position_error_angstrom.toExponential(3)+' Å';
+if(operator.issues.length)body.textContent+='\nReview: '+operator.issues.join('; ');
+const affected=ns.generators.filter(g=>g.raw_fields.oper_expression===row.id);
+body.textContent+='\n\n'+affected.map(g=>'Generator row '+g.source_row_number+': '+g.member_atom_ids.length+' source atoms; '+g.partitions.length+' image/asym partitions\n'+(g.maximum_position_transport_error_angstrom===null?'Unresolved: '+g.issues.join('; '):'Largest original-position transport error: '+g.maximum_position_transport_error_angstrom.toExponential(3)+' Å')).join('\n\n');
+detail.append(summary,body);document.getElementById('assembly-operators').append(detail);
+}
+}
+text('assembly-evidence',JSON.stringify(assembly,null,2));
+}
 document.getElementById('tls-section').hidden=!scene.original_cif_tls;
 document.getElementById('tls-groups').replaceChildren();
 if(scene.original_cif_tls){
@@ -109,7 +133,7 @@ text('angle-change',representative?edges.length:scene.backbone_audit.max_angle_c
 if(scene.backbone_audit?.max_torsion_change_degrees!==undefined)text('torsion','Largest torsion change: '+scene.backbone_audit.max_torsion_change_degrees.toFixed(2)+'°');
 for(const row of scene.contacts){const tr=document.createElement('tr');for(const value of [row.atoms.map(i=>siteName(atoms[i])).join(' ↔ '),row.before_angstrom.toFixed(2),row.after_angstrom.toFixed(2)]){const td=document.createElement('td');td.textContent=value;tr.append(td);}document.getElementById('contact-rows').append(tr);}
 if(!scene.contacts.length)document.getElementById('contacts-section').style.display='none';
-text('provenance',JSON.stringify({space_group:scene.crystal?.space_group??null,cell:scene.crystal?.cell_parameters??null,image:representative?'Per-node proposal and per-edge partner images':candidate?.target_image?.operator_xyz??'Identity / no mate chosen',source_image_review:scene.source_image_assessment,candidate_image_review:scene.candidate_image_assessment,scope:scene.scope,source_sha256:scene.source_model_sha256,candidate_sha256:scene.candidate_model_sha256,preview_sha256:scene.preview_receipt_sha256,representative_preview_sha256:scene.representative_preview_sha256,proposal_sha256:scene.proposal_sha256,registered_graph_sha256:scene.registered_graph_sha256,source_orbit_issues:scene.source_orbit_issues,original_cif_sha256:scene.original_cif_tls?.original_model_sha256,tls_observation_sha256:scene.original_cif_tls?.report_sha256,backbone_intent_sha256:scene.backbone_intent?.report_sha256,native_link_observation_sha256:scene.native_links?.report_sha256,native_source_capture_sha256:scene.native_links?.native_receipt_sha256},null,2));
+text('provenance',JSON.stringify({space_group:scene.crystal?.space_group??null,cell:scene.crystal?.cell_parameters??null,image:representative?'Per-node proposal and per-edge partner images':candidate?.target_image?.operator_xyz??'Identity / no mate chosen',source_image_review:scene.source_image_assessment,candidate_image_review:scene.candidate_image_assessment,scope:scene.scope,source_sha256:scene.source_model_sha256,candidate_sha256:scene.candidate_model_sha256,preview_sha256:scene.preview_receipt_sha256,representative_preview_sha256:scene.representative_preview_sha256,proposal_sha256:scene.proposal_sha256,registered_graph_sha256:scene.registered_graph_sha256,source_orbit_issues:scene.source_orbit_issues,original_cif_sha256:scene.original_cif_tls?.original_model_sha256,tls_observation_sha256:scene.original_cif_tls?.report_sha256,assembly_observation_sha256:scene.original_cif_assemblies?.report_sha256,backbone_intent_sha256:scene.backbone_intent?.report_sha256,native_link_observation_sha256:scene.native_links?.report_sha256,native_source_capture_sha256:scene.native_links?.native_receipt_sha256},null,2));
 }
 populate();
 function project(p){let [x,y,z]=p.map((v,i)=>v-center[i]);const X=Math.cos(yaw)*x+Math.sin(yaw)*z,Z=-Math.sin(yaw)*x+Math.cos(yaw)*z,Y=Math.cos(pitch)*y-Math.sin(pitch)*Z,depth=Math.sin(pitch)*y+Math.cos(pitch)*Z;const scale=.39*Math.min(width,height)*zoom/radius;return [width/2+pan[0]+X*scale,height/2+pan[1]-Y*scale,depth];}

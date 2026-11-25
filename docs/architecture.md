@@ -1257,15 +1257,11 @@ references. It compares supplied Cartesian matrices to proper crystal operations
 without replacing them; curated/depositor namespaces and unqualified expressions
 remain separate. Raw H G⁻¹ endpoint checks do not assign output asym/entity IDs,
 transport total ADPs or activate a native assembly/refinement policy.
-
-
-
-
-
-
-
-
-
+With explicit `--assembly-bounds`, the same ordinary recut viewer recomputes this
+observer and adds `original_cif_assemblies` to one source-bound scene. It separates
+supplied matrices from exact image matches and displays unresolved evidence.
+The ASU canvas and default/TLS-only behavior stay unchanged; no expanded assembly
+or writer is introduced.
 
 
 `topostitch_recipe` freezes complete canonical NARestraints selections for explicit

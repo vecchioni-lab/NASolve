@@ -14387,3 +14387,38 @@ owner was changed. A new optional observation schema is additive. **P03 remains
 partial:** physical assembly interpretation, product-expression grammar, output
 entities, total-ADP/complete-instance checks, shared TLS refinement and a writer
 are not delivered by coordinate-reference preservation.
+
+## W267 — Inspect actual assembly references beside the existing 3LNA cut
+
+The ordinary installed recut inspector now consumes W266 directly through an
+explicit source binding and separate three-key rounding-bounds JSON. It displays
+raw Cartesian matrices and matched crystal images separately, preserving curated
+and depositor namespaces and mixed-path partitions. Existing scenes and TLS-only
+mode are unchanged. This extends the existing renderer; it does not create a
+second GUI or accept a saved report as authority.
+
+The actual 3LNA `both_routes` preview displays **1,271 atoms** and embeds the
+**exact W266 report** (`8d9aba6c4dd9570d3f9e25fb1e8fba1a7e989e0d000fc1ad2395f3ff346eb81e`).
+Mixed-image paths remain **3 and 6**. The curated/depositor operator 2/3 distinction
+is now inspectable beside the cut. This is a downstream consumer of previously
+qualified geometry, not another refinement or independent assembly experiment.
+
+**Validation:** two missing-capability failures before implementation; **158
+focused source checks (29.95 s) / 158 installed checks (22.18 s), two existing
+skips each**. Default-scene equality, exact observer equality, absent/invalid
+binding, input drift, CLI null handling and relocation are covered. The installed
+CLI reproduces the exact report after original staged inputs/build/installation
+paths are removed; all 216 installed files are checked, including the HTML asset.
+Original inputs remain byte-identical; Python 3.10 syntax and generated inline
+JavaScript parsing pass. Browser rendering was not executed. No full-suite or
+native repeat; W265's complete suite remains the prior baseline.
+
+Exact commands, source/owner pins and artifact checksums: NASolve anchor
+`branch-artifacts/willow/w267-assembly-inspector/validation.json`.
+The standalone `3LNA-assembly-inspector.html` in that directory is local-only.
+Source changes are confined to `topostitch_view.py`, its existing HTML asset and
+assembly tests. The optional scene field and CLI/API argument are additive, with
+no migration. No Cedar or crystallographic owner changes; combined-branch runtime
+integration is not claimed. The canvas remains the ASU preview. P03 is partial:
+complete assembly-instance/total-ADP qualification and output entity policy are
+still required before a maintained materializer.

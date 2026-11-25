@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W267 — Inspect assembly references beside the saved ASU cut
+
+- Extend the existing recut viewer with optional explicit assembly-rounding bounds.
+  Display raw matrices, exact crystal images, namespace IDs and mixed partitions;
+  recompute evidence from the bound source. Ordinary/TLS-only behavior is unchanged.
+- Qualify 158 source/158 relocated installed checks, two existing skips each, and
+  the exact installed 3LNA report. Generated JavaScript syntax passes; no browser
+  render or new native experiment. No assembly expansion, writer or policy change.
+
 ### W266 — Observe original assembly and true symmetry-image references
 
 - Add a read-only source-bound assembly observer using existing fragment and

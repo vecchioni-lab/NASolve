@@ -1,29 +1,31 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W266, 2026-11-25** (code `6322b479539815128febb307a143a092648d15cd`).
-The [original assembly observer](topostitch-preview.md#observe-original-assembly-images-without-rewriting-them-w266)
-now resolves simple assembly references through the actual Cartesian matrices and
-declared crystal group, retaining curated/depositor IDs as separate namespaces.
-Every supplied matrix and exact matched fractional image remains inspectable;
-no matrix is snapped, no new coordinates or ADPs written.
+**Current maintained slice: W267, 2026-11-25** (source pin follows qualification).
+The [ordinary assembly inspector](topostitch-preview.md#inspect-assembly-references-beside-the-saved-cut-w267)
+now shows actual raw matrices, exact crystal-image matches and original generator
+membership beside the saved ASU cut. An explicit three-key rounding-bounds file
+opts in; source hashes and the original eight-key binding are still required.
+Curated/depositor namespaces remain separate, with complete evidence expandable.
 
-**Four actual controls:** original/recut 3LNA and 5LNA retain W262 fragment digests.
-Each generator accounts for all 1,271/1,275 atoms. Recuts produce ten image/asym
-partitions across eight paths; paths 3/6 are mixed. 3LNA's depositor 2/3 map to actual
-source symmetry 3/2, while curated 2/3 map to 2/3. Maximum raw H G⁻¹ endpoint error
-**1.59e-14 Å**. Separate raw-to-exact rounding is up to 2.22e-7 Å for depositor
-matrices; it is measured, not silently corrected. Inline generator matrices agree
-with their own namespace. Supporting references remain explicit.
+**Actual 3LNA:** the relocated installed command displays all **1,271 atoms** and
+embeds the exact W266 report. Mixed-image paths **3/6** and the reversed depositor
+2/3 numbering remain inspectable. The 3D canvas is still the ASU proposal, not a
+new biological assembly or a changed molecule count. No coordinates/ADPs change.
 
-**268 focused source  / 268 relocated installed checks**, 216 installed-file hashes.
-The installed API reproduces the exact 3LNA recut report after staged source/build/
-installation relocation. Missing API, contradictory extra fields and CIF-null
-numeric conversion failures were reproduced before fixes. No full-suite or native
-repeat: W265's 2,853/four skips/234 subtests is the baseline. Original inputs and the shared Cedar
-owner hashes are unchanged. Exact commands and evidence: NASolve anchor
-`branch-artifacts/willow/w266-assembly-references/validation.json`.
+**158 focused source / 158 relocated installed checks**, two existing skips each;
+216 installed-file hashes, including the HTML asset. Input bytes and shared Cedar
+owner are unchanged. Generated JavaScript syntax passes; browser rendering was
+not executed. No full-suite/native repeat; W265's full 2,853/four skips/234 subtests
+is the baseline. Exact commands and pins: NASolve anchor
+`branch-artifacts/willow/w267-assembly-inspector/validation.json`.
 
-**Next W267; P03 remains partial.** W267: make W266 original assembly matrices, fractional-image matches and mixed-path partitions inspectable in the existing ordinary recut viewer, using explicit source binding and rounding bounds. Preserve default TLS-only behavior and no authority change; no second GUI, assembly writer or native fit. Then review original-instance/total-ADP coverage and output entity policy with Rowan before materialization.
+W266 source `6322b479539815128febb307a143a092648d15cd` remains the assembly owner:
+268 source/268 installed checks and four original/recut LNA controls. Each generator
+retains 1,271/1,275 atoms; eight recut paths yield ten image/asym partitions. Raw
+H G⁻¹ endpoint error is at most 1.59e-14 Å. Separate raw-to-exact matrix rounding
+reaches 2.22e-7 Å; it is observed, never silently corrected.
+
+**Next W268; P03 remains partial.** W268: audit complete original assembly-instance and total-ADP coverage using existing source/image/transport owners. Distinguish exact declared crystal images from rounded supplied matrices, identify any missing public contract before coding, and coordinate output entity policy with Rowan. Do not repeat W249 ASU Fcalc or W264 TLS experiments; no writer or native fit until those gates are explicit.
 
 W264 source `5f0dbcb4afe726b853b402424d450507331a329f` retains its uniform-image
 qualification: 200 source/200 installed checks, 18 native comparisons, raw U

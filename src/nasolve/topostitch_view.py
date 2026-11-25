@@ -139,8 +139,18 @@ def _validate_tls_binding(original_cif, cif_binding):
         raise ValueError('Original CIF inspection requires its explicit path and complete path-free CIF binding')
 
 
+_ASSEMBLY_BOUND_KEYS = frozenset(('max_rotation_component_error',
+    'max_translation_component_error_angstrom', 'max_assembly_position_error_angstrom'))
+
+
+def _validate_assembly_bounds(original_cif, assembly_bounds):
+    if assembly_bounds is not None and (original_cif is None or not isinstance(assembly_bounds,dict)
+            or set(assembly_bounds) != _ASSEMBLY_BOUND_KEYS):
+        raise ValueError('Assembly inspection requires an original CIF and all three explicit rounding bounds')
+
+
 def representative_scene(directory, *, native_receipt=None, cedar_source=None, backbone_intent=False,
-                         original_cif=None, cif_binding=None):
+                         original_cif=None, cif_binding=None, assembly_bounds=None):
     """Inspect a frozen representative proposal, including exact edge images.
 
     Points are display coordinates, never a new chemical bond or materialized
@@ -150,6 +160,7 @@ def representative_scene(directory, *, native_receipt=None, cedar_source=None, b
     if type(backbone_intent) is not bool:
         raise ValueError('backbone_intent must be a boolean')
     _validate_tls_binding(original_cif, cif_binding)
+    _validate_assembly_bounds(original_cif, assembly_bounds)
     if cedar_source is not None and native_receipt is None and original_cif is None:
         raise ValueError('A trusted Cedar source requires an explicit native receipt or original CIF binding')
     from .topostitch_registration import _fingerprint
@@ -230,6 +241,13 @@ def representative_scene(directory, *, native_receipt=None, cedar_source=None, b
         tls = observe_relabel_cif_tls(root, original_cif, cedar_source=cedar_source, **cif_binding)
         if cif_binding['expected_receipt_sha256'] != scene['preview_receipt_sha256']:
             raise ValueError('Original CIF TLS observation belongs to a different preview')
+        if assembly_bounds is not None:
+            from .topostitch_cif_assembly import observe_relabel_cif_assemblies
+            assemblies=observe_relabel_cif_assemblies(root,original_cif,cedar_source=cedar_source,**cif_binding,**assembly_bounds)
+            if (assemblies['preview_receipt_sha256']!=scene['preview_receipt_sha256']
+                    or assemblies['original_model_sha256']!=tls['original_model_sha256']):
+                raise ValueError('Assembly observation belongs to different source inputs')
+            scene['original_cif_assemblies']=assemblies
         if ((root/'preview.json').read_bytes() != receipt_bytes
                 or any((root/receipt['artifacts'][k]['relative_path']).read_bytes() != v for k,v in snapshots.items())):
             raise ValueError('Representative preview changed during TLS inspection')
@@ -354,8 +372,9 @@ def _html(scene,preference=None):
     return re.sub('__SCENE_JSON__|__PREFERENCE_JSON__',lambda match:payloads[match.group()],template)
 
 
-def write_preview_view(directory,output_path,*,native_receipt=None,cedar_source=None,comparison_directories=(),preference_path=None,backbone_intent=False,original_cif=None,cif_binding=None,**options):
+def write_preview_view(directory,output_path,*,native_receipt=None,cedar_source=None,comparison_directories=(),preference_path=None,backbone_intent=False,original_cif=None,cif_binding=None,assembly_bounds=None,**options):
     _validate_tls_binding(original_cif, cif_binding)
+    _validate_assembly_bounds(original_cif, assembly_bounds)
     if cedar_source is not None and native_receipt is None and original_cif is None:
         raise ValueError('A trusted Cedar source requires an explicit native receipt or original CIF binding')
     if type(backbone_intent) is not bool:
@@ -376,7 +395,7 @@ def write_preview_view(directory,output_path,*,native_receipt=None,cedar_source=
         if any(k not in defaults or type(v) is not type(defaults[k]) or v!=defaults[k] for k,v in options.items()):
             raise ValueError('Representative preview already declares its images; bend-search options do not apply')
         scene=(representative_comparison(roots,native_receipt=native_receipt,cedar_source=cedar_source,backbone_intent=backbone_intent) if comparison_directories
-               else representative_scene(root,native_receipt=native_receipt,cedar_source=cedar_source,backbone_intent=backbone_intent,original_cif=original_cif,cif_binding=cif_binding))
+               else representative_scene(root,native_receipt=native_receipt,cedar_source=cedar_source,backbone_intent=backbone_intent,original_cif=original_cif,cif_binding=cif_binding,assembly_bounds=assembly_bounds))
     else:
         if original_cif is not None:raise ValueError('Original CIF TLS inspection requires a representative preview')
         if backbone_intent:raise ValueError('Backbone intent observation requires a representative preview')
@@ -406,11 +425,15 @@ def main(argv=None):
     parser.add_argument('--cedar-source',type=Path,help='Explicit trusted developer Cedar source; default uses installed owners')
     parser.add_argument('--original-cif',type=Path,help='Original coordinate CIF for read-only TLS membership inspection')
     parser.add_argument('--cif-binding',type=Path,help='Path-free JSON with exact source/preview/owner hashes, aliases and working-file precision bounds')
+    parser.add_argument('--assembly-bounds',type=Path,help='Optional JSON with all three assembly rounding bounds; requires original CIF binding')
     args=parser.parse_args(argv)
     try:
         binding=None if args.cif_binding is None else _json(args.cif_binding.read_bytes())
+        assembly_bounds=None if args.assembly_bounds is None else _json(args.assembly_bounds.read_bytes())
+        if args.assembly_bounds is not None and not isinstance(assembly_bounds,dict):
+            raise ValueError('Assembly bounds must be a JSON object')
         scene=write_preview_view(args.preview,args.out,candidate_index=args.candidate,radius_angstrom=args.radius,
-        periodic=args.periodic,max_pairs=args.max_pairs,max_image_tests=args.max_image_tests,native_receipt=args.native_receipt,cedar_source=args.cedar_source,comparison_directories=args.compare,preference_path=args.preference,backbone_intent=args.backbone_intent,original_cif=args.original_cif,cif_binding=binding)
+        periodic=args.periodic,max_pairs=args.max_pairs,max_image_tests=args.max_image_tests,native_receipt=args.native_receipt,cedar_source=args.cedar_source,comparison_directories=args.compare,preference_path=args.preference,backbone_intent=args.backbone_intent,original_cif=args.original_cif,cif_binding=binding,assembly_bounds=assembly_bounds)
     except (OSError,ValueError,RuntimeError,ImportError) as exc:parser.exit(2,f'{parser.prog}: {exc}\n')
     detail=(str(len(scene['alternatives']))+' explicit cuts; none selected' if 'alternatives' in scene
             else str(len(scene['atoms']))+' displayed atom instances; proposal remains unreviewed')
