@@ -1,5 +1,15 @@
 # NASolve development handoff — Willow
 
+**Current code/qualification: W280, 2026-11-25** (source `9f73abe89d3c416eb6596466e1febe25391a48b5`).
+`inspect_checkpoint_inputs` observes saved schema-2 refined parents through an
+explicit trusted Cedar registry reader without inventing a bend or preparation.
+Exact model/observations/phases/ordered restraints and metadata are pinned across
+two reads; selection is unchanged. 173 source and 173 relocated installed checks
+pass. One exact relocated PDU `refine-003` readback preserves 862 atoms, the
+original observations and seven restraints; current stays `postmr`. No native
+execution or chemistry/thermal/recut admission. Existing motion/preparation
+scopes stay unchanged. [Scope and checks](topostitch-preview.md#observe-refined-checkpoint-inputs-without-a-preview-w280).
+
 **Current audit: W279, 2026-11-25; product code remains W278.**
 The same exact 3LNA source/export have 1,271 anisotropic rows **and six TLS groups**;
 residual-ADP flag is null. Existing native readback/scattering evidence remains
@@ -155,7 +165,7 @@ controls are reused; no deposited tensor or coordinate was changed. See
 [exact scope and commands](topostitch-periodic.md#w271--plan-output-fields-and-separate-native-tls-interpretation).
 No product code, installed artifact or runtime schema changed.
 
-**Next W280; P03 remains partial.** Evaluate the genuine numbered PDU lineage from Cedar C560/C579 through existing readiness owners. Rowan confirms the 3LNA repair was a separate Phenix experiment, with no verified ordinary NASolve checkpoint for this recut. Keep 3LNA diagnostic; no fabricated history, observation conversion, chemistry change or repeat fit for export demonstration. Fixed-deposited-ADP/source-frame native interpretation remains a separate qualification.
+**Next W281; P03 remains partial.** Bind a full-precision source and physical graph to the authenticated parent through existing owners; inspect actual identity/file compatibility first. No invented 3LNA history, observation conversion, new fit for demonstration or broadened native thermal/chemistry admission.
 
 **Return later — B11 / PUB05:** Simon requested a maximally fragmented ASU
 refinement stress test on 2026-11-25. The [frozen-panel plan](topostitch.md#maximally-fragmented-asu-refinement-stress-test-planned)

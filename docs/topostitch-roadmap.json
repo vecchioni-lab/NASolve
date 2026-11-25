@@ -4,7 +4,7 @@
   "updated": "2026-11-25",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "6b0997d1e407d06e6886072befe611caa478b142",
+  "audited_code_commit": "9f73abe89d3c416eb6596466e1febe25391a48b5",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -1132,13 +1132,14 @@
         "W276:206source/206installed,2skips; complete synced export receipt published without overwrite. Historical actual packet replay exact after relocation; no schema/native change.",
         "W277:63source/63installed; existing cut-preview command exports explicit reviewed whole-asym packets and replays with trusted producer receipt digest. Legacy paths/defaults intact; no native call.",
         "W278:22source/22installed,2skips; existing viewer verifies saved exports with producer digest and frozen source replay. Actual1271-atom3LNA view preserves source packet; explicit working-display precision, no native execution.",
-        "W279 read-only restart audit: six TLS groups coexist with 1271 deposited anisotropic rows; residual flag unset. Existing prepared-child and same-representative/PDB inheritance contracts do not admit this diagnostic CIF by themselves. No new native run."
+        "W279 read-only restart audit: six TLS groups coexist with 1271 deposited anisotropic rows; residual flag unset. Existing prepared-child and same-representative/PDB inheritance contracts do not admit this diagnostic CIF by themselves. No new native run.",
+        "W280: preview-independent exact parent input observer through an explicit trusted registry reader. Genuine relocated PDU refined parent preserves model, original observations and seven restraints; existing preparation refusal and canonical motion scopes unchanged. No new native run."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "W280: evaluate the genuine numbered PDU lineage from Cedar C560/C579 through existing readiness owners. Rowan confirms no verified ordinary NASolve parent for the separate 3LNA Phenix repair; keep that export diagnostic. No observation conversion, chemistry changes, invented ancestry or repeated fit. Explicit thermal/source-frame native admission remains separate.",
+      "next_action": "W281: bind full-precision original/source output and physical graph to one authenticated genuine parent using existing CIF/source/registration owners. Inspect actual file/identity compatibility before extending adapters. No invented lineage, observation conversion, repeated fit or automatic mixed-image restart.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -1175,14 +1176,15 @@
         "E_ATOMIC_EXPORT_RECEIPT",
         "E_EXPORT_COMMAND_HANDOFF",
         "E_EXPORT_INSPECTOR",
-        "E_EXPORT_RESTART_READINESS"
+        "E_EXPORT_RESTART_READINESS",
+        "E_CHECKPOINT_INPUT_OBSERVER"
       ],
       "last_audit": {
         "date": "2026-11-25",
-        "human_update": 279,
-        "code_commit": "6b0997d1e407d06e6886072befe611caa478b142",
-        "reviewer": "Linden; existing-owner scope requested by Rowan",
-        "scope": "Read-only restart readiness audit; P03 remains partial and native execution gated"
+        "human_update": 280,
+        "code_commit": "9f73abe89d3c416eb6596466e1febe25391a48b5",
+        "reviewer": "Linden; coordinated scope with Rowan",
+        "scope": "Input context only: 173 source/173 installed; one exact existing PDU parent readback, no recut/native admission."
       }
     },
     {
@@ -8779,6 +8781,119 @@
           "size": 4021
         }
       ]
+    },
+    "E_CHECKPOINT_INPUT_OBSERVER": {
+      "kind": "Preview-independent checkpoint input observation",
+      "date": "2026-11-25",
+      "human_update": 280,
+      "code_commit": "9f73abe89d3c416eb6596466e1febe25391a48b5",
+      "reference": "docs/topostitch-preview.md#observe-refined-checkpoint-inputs-without-a-preview-w280",
+      "result": "173 source and 173 relocated installed tests; exact PDU refine-003 model/original observations/seven ordered restraints observed through Cedar. Selected postmr and input bytes/mtimes unchanged. No native execution.",
+      "limitation": "Schema 2 only; explicit trusted registry reader owns history. No source-CIF/recut frame join, thermal/chemical/motion/native restart admission or process locking. 3LNA parent remains unbound.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w280-numbered-parent/after.log",
+          "sha256": "d00e97b5ca65a062d0cab5f17723ecc9d7c988ccada22922507f5aab4a85f98d",
+          "size": 99
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w280-numbered-parent/audit.json",
+          "sha256": "c8172c3b2b68b7072e6d299f74c91d3b5398d0bd8ecb44b8ef8224c1004ac5b2",
+          "size": 28624
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w280-numbered-parent/audit.log",
+          "sha256": "d3b7d9af64f5961ffd407aa4d186ece39cb37e8f1c1f4cac0df8e8f6ce160799",
+          "size": 544
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w280-numbered-parent/audit.py",
+          "sha256": "32ecf376f6d3c34fcbed42b3585e0b904fb09e17699bf3182e3c7a21feace24f",
+          "size": 4674
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w280-numbered-parent/before.log",
+          "sha256": "30293a079a44cb73aca60ee0c9064abfac5b9921ec57f2a53bc094a0abddaccd",
+          "size": 8511
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w280-numbered-parent/focused-command-error.log",
+          "sha256": "b4e96e094c3ebf5440d0dff00cf5bd8a74a8fd82f892739f8f8b8d3ffd78fa43",
+          "size": 104
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w280-numbered-parent/focused.log",
+          "sha256": "480a7aeee3b71e7aa3c521a8765cb4647b5a9811859e05b524e2d1fed5c5701c",
+          "size": 260
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w280-numbered-parent/install.log",
+          "sha256": "4002a846d91f90147b746a33b9dd289b81eca67b1cbf82875d2cd788f4859e4f",
+          "size": 1097
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w280-numbered-parent/installation.json",
+          "sha256": "68c6447664b6fcd6e79a1b19730fccfbb93c31b28996fbec400f74f6f2a3c7a8",
+          "size": 12436
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w280-numbered-parent/installed-api.log",
+          "sha256": "214732ff8e2263018b729fe8b576e9c9c6de20abc3ecf667e9da98097db5c301",
+          "size": 26
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w280-numbered-parent/installed-tests.log",
+          "sha256": "62a0d2b2b8eaaee0c6acdd1b2b25ca69cbc8e9ffd74d4e515746aa196fc6140d",
+          "size": 260
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w280-numbered-parent/qualification.log",
+          "sha256": "545ffa4a629fea24a84a0400ad5527ecb1b9c0d07225b1f6b9543fc0bfc71d95",
+          "size": 70
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w280-numbered-parent/qualify.py",
+          "sha256": "850cd616b0d9cbf5d93fc412a50a39f9b0d1d4fa799b0bb410325e632d8a94e3",
+          "size": 2931
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w280-numbered-parent/replay.json",
+          "sha256": "e90217cfeb9bea635bc7a1f3028d76646c4df86e12ea521aa651377abe3d9549",
+          "size": 3653
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w280-numbered-parent/replay.log",
+          "sha256": "22c761ac21eab4963c45611fa65f317519e1beaf6202f6830bfc20d93034590d",
+          "size": 180
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w280-numbered-parent/replay.py",
+          "sha256": "afd7571502d978a872b61ea684bb92ac198e72d74753b6c629db7c6812e69596",
+          "size": 1817
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w280-numbered-parent/validation.json",
+          "sha256": "154cb296462f09d2e2d8c98b873be3084d1e8847784fd0153a1b0a98a99bbbc6",
+          "size": 14351
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -8960,8 +9075,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 279,
-    "next": 280,
+    "current": 280,
+    "next": 281,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -10445,6 +10560,12 @@
         "title": "Audit actual 3LNA thermal metadata and existing restart owners",
         "state": "RECORDED",
         "code_commit": "6b0997d1e407d06e6886072befe611caa478b142"
+      },
+      {
+        "number": 280,
+        "title": "Observe exact refined-parent inputs without a preview",
+        "state": "RECORDED",
+        "code_commit": "9f73abe89d3c416eb6596466e1febe25391a48b5"
       }
     ]
   },

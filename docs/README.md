@@ -7,6 +7,10 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Current input observer: W280.** [Exact checkpoint inputs](topostitch-preview.md#observe-refined-checkpoint-inputs-without-a-preview-w280)
+  can be inspected without a bend preview, through a trusted registry owner.
+  173 source/173 installed checks and one genuine PDU parent readback; no new fit.
+
 - **Current restart audit: W279.** [Existing-owner readiness](topostitch-preview.md#native-restart-readiness-after-export-w279-audit)
   records six TLS groups alongside deposited anisotropic tensors and finds the
   matching reflection CIF. Genuine parent/data bindings and native thermal policy
