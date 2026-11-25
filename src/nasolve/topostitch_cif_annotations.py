@@ -339,3 +339,34 @@ def prepare_connection_annotation_proposal(model, *, expected_model_sha256,
             'Only covale/hydrog type and two partner image fields; no CIF application or portable replay packet'])
     result['report_sha256']=_fingerprint(result)
     return result
+
+
+def load_connection_annotation_proposal(proposal, model, *, expected_proposal_sha256,
+        expected_model_sha256, changes, evidence, expected_image_owner_sha256,
+        cedar_source=None):
+    """Reproduce a saved review against independently supplied original inputs.
+
+    The trusted proposal digest binds raw file bytes, not its self-reported
+    fingerprint. Reuse the proposal builder and compare canonical typed JSON;
+    a rehashed edit, even false replaced by zero, cannot become approval. Paths,
+    change requests and evidence bindings are never adopted from the report.
+    This is read-only replay, not application or a portable packet loader.
+    """
+    from .topostitch_preview import _json
+    path = Path(proposal); raw = path.read_bytes()
+    if (not isinstance(expected_proposal_sha256, str)
+            or re.fullmatch(r'[0-9a-f]{64}', expected_proposal_sha256) is None
+            or sha256(raw).hexdigest() != expected_proposal_sha256):
+        raise ValueError('Annotation proposal differs from requested file binding')
+    saved = _json(raw)
+    # Existing canonical serialization rejects nonfinite JSON and distinguishes
+    # booleans from integers; Python object equality alone cannot do the latter.
+    saved_digest = _fingerprint(saved)
+    rebuilt = prepare_connection_annotation_proposal(model,
+        expected_model_sha256=expected_model_sha256, changes=changes, evidence=evidence,
+        expected_image_owner_sha256=expected_image_owner_sha256, cedar_source=cedar_source)
+    if saved_digest != _fingerprint(rebuilt):
+        raise ValueError('Annotation proposal does not reproduce from its explicit sources')
+    if path.read_bytes() != raw:
+        raise ValueError('Annotation proposal changed during replay')
+    return saved

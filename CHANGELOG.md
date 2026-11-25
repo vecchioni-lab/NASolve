@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W287 — Reopen saved connection proposals against original inputs
+
+- Add read-only replay with a trusted raw-file digest and independently supplied
+  source, changes and evidence. Reuse the existing proposal builder and typed
+  canonical fingerprint; reject edited/rehashed reports and changing files.
+- Existing proposal schema and export gates remain unchanged. Reopening does not
+  apply metadata or approve chemistry, endpoints, native execution or selection.
+
+
 ### W286 — Prepare explicit connection-annotation proposals
 
 - Add a read-only proposal API for source-bound contact types and partner images.

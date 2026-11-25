@@ -304,3 +304,60 @@ def test_annotation_proposal_refuses_late_input_drift(tmp_path,monkeypatch,targe
             yield mutate
     monkeypatch.setattr(module,'_image_owner',changing)
     with pytest.raises(ValueError,match='changed'):propose_annotations(model,args)
+
+
+def reopen_annotation_proposal(path, model, args, pin=None):
+    from nasolve.topostitch_cif_annotations import load_connection_annotation_proposal
+    return load_connection_annotation_proposal(path, model,
+        expected_proposal_sha256=pin or sha256(path.read_bytes()).hexdigest(), **args)
+
+
+def test_annotation_proposal_cold_replay(tmp_path):
+    root, model, kw, args = annotation_proposal_fixture(tmp_path)
+    expected = propose_annotations(model, args)
+    path = tmp_path/'proposal.json'
+    path.write_text(json.dumps(expected, indent=2)+'\n')
+    assert reopen_annotation_proposal(path, model, args) == expected
+    assert not expected['applied'] and not expected['scientific_acceptance']
+
+
+@pytest.mark.parametrize('defect', ['raw_hash', 'rehash', 'boolean_integer',
+    'duplicate_key', 'nonfinite', 'different_request', 'source', 'evidence'])
+def test_annotation_proposal_replay_refuses_changed_inputs(tmp_path, defect):
+    from nasolve.topostitch_registration import _fingerprint
+    root, model, kw, args = annotation_proposal_fixture(tmp_path)
+    report = propose_annotations(model, args)
+    path = tmp_path/'proposal.json'; path.write_text(json.dumps(report))
+    pin = sha256(path.read_bytes()).hexdigest()
+    if defect == 'raw_hash':
+        path.write_bytes(path.read_bytes()+b'\n')
+    elif defect in ('rehash', 'boolean_integer'):
+        report['applied'] = True if defect == 'rehash' else 0
+        report.pop('report_sha256'); report['report_sha256'] = _fingerprint(report)
+        path.write_text(json.dumps(report)); pin = None
+    elif defect == 'duplicate_key':
+        path.write_text('{"applied":false,'+path.read_text()[1:]); pin = None
+    elif defect == 'nonfinite':
+        path.write_text(path.read_text().replace('"applied": false', '"applied": NaN')); pin = None
+    elif defect == 'different_request':
+        args['changes'][0]['fields']['ptnr1_symmetry'] = '1_555'
+    elif defect == 'source':
+        model.write_bytes(model.read_bytes()+b'\n')
+    elif defect == 'evidence':
+        args['evidence']['images']['path'].write_text('changed evidence')
+    with pytest.raises(ValueError):
+        reopen_annotation_proposal(path, model, args, pin)
+
+
+def test_annotation_proposal_replay_rechecks_saved_bytes(tmp_path, monkeypatch):
+    from nasolve import topostitch_cif_annotations as module
+    root, model, kw, args = annotation_proposal_fixture(tmp_path)
+    path = tmp_path/'proposal.json'; path.write_text(json.dumps(propose_annotations(model, args)))
+    original = module.prepare_connection_annotation_proposal
+    def changing(*a, **kw):
+        result = original(*a, **kw)
+        path.write_bytes(path.read_bytes()+b'\n')
+        return result
+    monkeypatch.setattr(module, 'prepare_connection_annotation_proposal', changing)
+    with pytest.raises(ValueError, match='changed during replay'):
+        reopen_annotation_proposal(path, model, args)
