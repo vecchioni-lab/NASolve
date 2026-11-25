@@ -1144,7 +1144,7 @@
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "Coordinate a reviewed metadata proposal using W284 design/entity provenance and W285 native images. Review the five base-contact covale classifications independently of image matching; do not convert arbitrary native distance terms to chemical bonds. Keep original rows/bytes and unapplied proposals intact. Apply a separate derivative only after evidence, then reuse existing export/all40-edge coverage and later native owners. No new fit or delayed stress test to bypass metadata gates.",
+      "next_action": "Bind Rowan\u2019s reported matched hydrogen-bond/explicit-distance comparison to its committed Cedar evidence. Then coordinate a reviewed metadata proposal using W284 design/entity provenance and W285 native images. Classify the five base contacts from qualified chemistry/intent rather than restraint form or covale tags. Preserve original rows/bytes and unapplied proposals; native equivalence does not establish accepted geometry. Apply a separate derivative only after evidence, then reuse export/all40-edge coverage and later native owners. No repeated fit or stress test.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -9330,7 +9330,18 @@
           "sha256": "c7e72c3b174fb47ccf55bf4cf174b21abd30677d14ddcddefe724d7237771c49",
           "size": 1089
         }
-      ]
+      ],
+      "cedar_followup": {
+        "date": "2026-11-25",
+        "status": "OWNER_REPORTED_PENDING_ARTIFACT_REFERENCE",
+        "owner": "Rowan / Cedar",
+        "source_chat": "01a0b525-9fb0-7461-8965-a007e51305d9",
+        "scope": "Matched native hydrogen-bond settings versus explicit distance edits with identical atom-specific targets/widths on the same PDU start; five cycles each.",
+        "reported_result": "Same862 final atom positions; five native hydrog versus explicit-edit covale output rows; all7924 initial nonbonded interactions including closest-approach distances match.",
+        "willow_rerun": false,
+        "annotation_applied": false,
+        "limits": "No general chemistry rule, geometry acceptance, thermal/reflection equivalence or complete metadata authority follows. Committed Cedar evidence reference awaited."
+      }
     }
   },
   "benchmarks": [

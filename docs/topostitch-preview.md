@@ -5063,6 +5063,23 @@ A future mmCIF writer must keep image evidence, chemical intent and observed
 geometry distinct. Do not turn every native User-supplied distance restraint
 into a chemical linkage or silently rewrite existing classifications.
 
+**Cedar follow-up, owner-reported 2026-11-25.** Rowan compared native
+hydrogen-bond settings with five explicit distance edits using identical
+atom-specific targets and widths on the same PDU starting model. After five
+cycles both gave the same 862 final atom positions. The native route wrote
+`hydrog` for these five rows; the explicit-edit route wrote `covale`. All 7,924
+initial nonbonded interactions, including their closest-approach distances,
+matched. Thus this controlled comparison separates output classification from
+coordinate behavior. It does not establish geometry acceptance, equality under
+arbitrary restraint settings, or unchanged thermal/reflection outputs. These
+are Cedar's reported results, not a Willow rerun; the committed Cedar evidence
+reference is pending. The historical distances above remain their own result.
+
+The writer requirement is now more specific: recover the intended contact class
+from qualified chemistry/intent evidence, rather than interpreting the supplied
+restraint form or a `covale` output tag as proof of covalency. Keep the source
+row/digest and its proposed reclassification auditable. No rewrite was applied.
+
 The W284 experimental-sequence and physical-oligo/entity gates remain. Before
 full export, qualify a source-bound metadata proposal with actual design evidence,
 review the five base-contact classifications, and retain original row IDs/digests.

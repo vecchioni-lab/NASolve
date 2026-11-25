@@ -5,6 +5,10 @@ All 49 original CIF connection rows have unique saved native atom-pair/image
 matches. The recut preserves their physical endpoints; no annotation is applied.
 Five `covale` rows are base-to-base distance terms with strained native geometry,
 so image evidence must stay separate from chemical classification.
+Rowan reports a controlled five-cycle comparison with identical final atom
+positions but `hydrog` versus `covale` output labels for these five contacts.
+This is owner-reported evidence pending its committed Cedar reference; no Willow
+rerun or metadata rewrite. Preserve contact intent separately from restraint form.
 [Native evidence and writer requirements](topostitch-preview.md#native-connection-images-versus-chemical-types-w285).
 W284's experimental-sequence and physical-oligo/entity gates remain; no product,
 model, selection or native change. W282 remains the graphical result. Coordinated
