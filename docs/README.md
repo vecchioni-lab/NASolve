@@ -7,6 +7,10 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Current image accounting: W285.** [Native images and chemical types](topostitch-preview.md#native-connection-images-versus-chemical-types-w285)
+  finds unique native matches for all 49 CIF rows and flags five base-contact
+  `covale` classifications for review. No annotations or coordinates changed.
+
 - **Current authority audit: W284.** [Archived reference and entity evidence](topostitch-preview.md#archived-sequence-and-entity-authority-w284)
   distinguishes 40 matching reference targets from two inherited source choices.
   Physical oligo/entity provenance remains required for complete metadata repair.

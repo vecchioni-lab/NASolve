@@ -5025,3 +5025,55 @@ no executable behavior or artifact schema and runs no native calculation, new
 installation or full suite. The current product remains W281. Local scientific
 records stay outside Git; roadmap references retain hashes. The existing delayed
 fragmented-ASU/LNA/nonzero-f″ metal gates are unchanged.
+
+
+## Native connection images versus chemical types (W285)
+
+The remaining source-image question now has bounded native evidence. Cedar's
+existing `refinement_link_geometry` reader parses all 1,007 printed bond rows
+from the exact saved final geometry: 958 covalent-geometry, 38 Bond-like and
+11 User-supplied. Each of the **49 original CIF connection rows** has exactly
+one native atom-pair match. This establishes 47 explicit same-image pairs and
+two symmetry-image phosphate pairs from the native report, rather than assuming
+identity for absent CIF fields. Original atom-site author components absent in
+the CIF are corroborated by the exact paired PDB, as in W283.
+
+After the W282 whole-C recut, 34 matched relative images are identity and 15
+are nonidentity. Physical endpoint transport agrees within 7.59e-15 Å, and
+full-precision CIF distances agree with printed native distances within
+0.000500 Å. This is native image evidence only; the original CIF is unchanged,
+its image columns remain missing, and W283's two-row proposal remains unapplied.
+
+**Chemical type is a separate gate.** Five rows tagged `covale` in the CIF
+are inter-residue base-atom distance terms in the native User-supplied section:
+
+| Row | Pair | Printed distance | Native target / width |
+| --- | --- | --- | --- |
+| C00019 | A:11 DT N3 — B:5 DA N1 | 1.911 Å | 2.800 / 0.200 Å |
+| C00020 | A:11 DT O4 — B:5 DA N6 | 1.869 Å | 2.800 / 0.200 Å |
+| C00023 | A:13 DC O2 — B:3 DG N2 | 1.943 Å | 2.800 / 0.200 Å |
+| C00024 | A:13 DC N3 — B:3 DG N1 | 2.560 Å | 2.800 / 0.200 Å |
+| C00025 | A:13 DC N4 — B:3 DG O6 | 3.088 Å | 2.800 / 0.200 Å |
+
+These are retained strained contacts, not accepted geometry. A native distance
+term does not establish a covalent chemical bond. The other six `covale` rows
+are four PDU intramonomer terms and the two phosphate links. The 38 `hydrog`
+rows have native Bond-like matches; complete pairing is still unqualified.
+A future mmCIF writer must keep image evidence, chemical intent and observed
+geometry distinct. Do not turn every native User-supplied distance restraint
+into a chemical linkage or silently rewrite existing classifications.
+
+The W284 experimental-sequence and physical-oligo/entity gates remain. Before
+full export, qualify a source-bound metadata proposal with actual design evidence,
+review the five base-contact classifications, and retain original row IDs/digests.
+Only then apply a separate derivative and reuse existing export/coverage owners.
+No new fit or deferred stress test is needed to resolve these metadata questions.
+
+Local `accounting.json`, `audit.py`, commands and opening report are under
+NASolve anchor `branch-artifacts/willow/w285-native-connection-images/`.
+All inputs, selected `postmr` and original proposal bytes remain unchanged.
+No product/schema, native execution, installation or full-suite repetition was
+introduced. The existing Cedar parser SHA is
+`37e5479771da9fcbe8b66b045f56dda573fc4fb212c096de50d5c6243b95f5cb`.
+Historical Phenix 2.2.1-6174 complete-run evidence was reread; this is not a new
+refinement. Scientific files stay local; the ledger retains their checksums.

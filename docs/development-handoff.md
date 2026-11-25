@@ -1,6 +1,17 @@
 # NASolve development handoff — Willow
 
-**Current science audit: W284; product code remains W281.**
+**Current science audit: W285; product code remains W281.**
+All 49 original CIF connection rows have unique saved native atom-pair/image
+matches. The recut preserves their physical endpoints; no annotation is applied.
+Five `covale` rows are base-to-base distance terms with strained native geometry,
+so image evidence must stay separate from chemical classification.
+[Native evidence and writer requirements](topostitch-preview.md#native-connection-images-versus-chemical-types-w285).
+W284's experimental-sequence and physical-oligo/entity gates remain; no product,
+model, selection or native change. W282 remains the graphical result. Coordinated
+with Rowan; stop this bounded accounting at a clean checkpoint, without another
+fit or a guessed metadata writer. Deferred stress tests retain their prior gates.
+
+**Previous science audit: W284; product code remains W281.**
 The archived reference and recipe hashes match, but reference+PDU substitutions
 reproduce 40/42 targets. A:13 DC and B:3 DG are inherited from the exact original
 `C_G.pdb`, unchanged through construction/refinement. No correction is inferred.

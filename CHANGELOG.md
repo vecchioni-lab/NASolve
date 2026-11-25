@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W285 — Separate native connection images from chemical typing
+
+- Account for all 49 original CIF rows through the existing native geometry
+  reader. Preserve five base-contact `covale` rows as explicit chemical-review
+  findings; do not infer covalency from a distance restraint. Evidence only;
+  all sources, unapplied proposals and runtime behavior remain unchanged.
+
 ### W284 — Trace archived sequence authority before metadata repair
 
 - Bind the actual reference and recipe to their saved hashes and distinguish two

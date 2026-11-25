@@ -1137,13 +1137,14 @@
         "W281: explicit full atom identity bijection carries source graph into same-representative coordinate descendants without replacing the original registration. Genuine PDU positive and changed-image refusal; source graph/current indices stay distinct.",
         "W282: existing Pine owners build a separate explicit descendant registration and ordinary whole-C preview. Genuine PDU40-link/160-angle comparison preserves existing physical geometry and immutable source provenance.",
         "W283: genuine descendant CIF export fails closed on missing entity identity. All49 connection rows retained; only two existing phosphate-image proposals have graph/native/paired-PDB evidence, unapplied. Remaining metadata must be qualified separately.",
-        "W284: exact archived reference/recipe trace exposes two inherited source choices outside explicit PDU substitutions. Separate modeled labels from experimental/full-oligo/entity authority before writing metadata."
+        "W284: exact archived reference/recipe trace exposes two inherited source choices outside explicit PDU substitutions. Separate modeled labels from experimental/full-oligo/entity authority before writing metadata.",
+        "W285: all49 original CIF rows have unique native atom-pair/image evidence; physical images remain invariant under recut. Five base-distance covale rows are explicit chemical-review findings. Annotation application and entity/experimental-sequence authority remain separate."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "Review the W284 matrix with Rowan. Complete metadata repair needs explicit physical-oligo/entity provenance and review of inherited A13DC/B3DG; neither is implied by the matching family-reference hash. Preserve W283 two-row proposal and all47 unresolved annotations. Reuse existing label/sequence/graph owners once evidence is supplied; keep export/native admission strict. Do not repeat fits or deferred stress tests to work around metadata gaps.",
+      "next_action": "Coordinate a reviewed metadata proposal using W284 design/entity provenance and W285 native images. Review the five base-contact covale classifications independently of image matching; do not convert arbitrary native distance terms to chemical bonds. Keep original rows/bytes and unapplied proposals intact. Apply a separate derivative only after evidence, then reuse existing export/all40-edge coverage and later native owners. No new fit or delayed stress test to bypass metadata gates.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -1185,14 +1186,15 @@
         "E_REGISTERED_GRAPH_DESCENT",
         "E_DESCENDANT_ORDINARY_PREVIEW",
         "E_DESCENDANT_CIF_EXPORT_GAPS",
-        "E_ARCHIVED_METADATA_AUTHORITY"
+        "E_ARCHIVED_METADATA_AUTHORITY",
+        "E_NATIVE_CONNECTION_IMAGE_ACCOUNTING"
       ],
       "last_audit": {
         "date": "2026-11-25",
-        "human_update": 284,
+        "human_update": 285,
         "code_commit": "f40f5bc65b0a44e339bc5c7416499041ddf2bd93",
-        "reviewer": "Linden; evidence trace requested by Rowan",
-        "scope": "Exact declared/archive inputs, sequence/recipe reconstruction and unchanged four-model identity lineage; no product/native change. P03 remains partial."
+        "reviewer": "Linden; chemical/image distinction coordinated with Rowan",
+        "scope": "Existing native reader and exact source49-row accounting; no product/native change, P03 remains partial."
       }
     },
     {
@@ -9288,6 +9290,47 @@
           "size": 811
         }
       ]
+    },
+    "E_NATIVE_CONNECTION_IMAGE_ACCOUNTING": {
+      "kind": "Exact native bond-image accounting for original CIF rows",
+      "date": "2026-11-25",
+      "human_update": 285,
+      "code_commit": "f40f5bc65b0a44e339bc5c7416499041ddf2bd93",
+      "reference": "docs/topostitch-preview.md#native-connection-images-versus-chemical-types-w285",
+      "result": "49 unique native matches:47 original same-image/two symmetry. Recut34 identity/15 nonidentity; max endpoint error7.59e-15A and printed-distance error0.000500A. Five inter-residue base-distance rows tagged covale require separate chemical review. Original files and proposal unchanged.",
+      "limitation": "No annotations applied. Native restraint origin/image does not establish chemical type, accepted geometry, complete pairing or entity/experimental-sequence authority. No export/native restart qualification.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w285-native-connection-images/README.md",
+          "sha256": "57fa5b97a7142bd9024a9124ef12a85173e4e69529ea05006ebdea12a49d8eb1",
+          "size": 2802
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w285-native-connection-images/accounting.json",
+          "sha256": "01d232b472ad438ef875b7445df615a5aac2f8480f5e401a52e7b7df04d0ae2a",
+          "size": 111177
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w285-native-connection-images/audit.log",
+          "sha256": "6de7a653d36c94fc2e561a714543b61700f91dd9cb39381a3f419df235b45a34",
+          "size": 517
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w285-native-connection-images/audit.py",
+          "sha256": "ab686ffd1d1a5480d685e19b3e5936be50f8aeb60d34dcf97daf4b936ca62d3a",
+          "size": 8362
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w285-native-connection-images/validation.json",
+          "sha256": "c7e72c3b174fb47ccf55bf4cf174b21abd30677d14ddcddefe724d7237771c49",
+          "size": 1089
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -9469,8 +9512,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 284,
-    "next": 285,
+    "current": 285,
+    "next": 286,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -10982,6 +11025,12 @@
       {
         "number": 284,
         "title": "Trace archived sequence and recipe authority without inventing entities",
+        "state": "RECORDED",
+        "code_commit": "f40f5bc65b0a44e339bc5c7416499041ddf2bd93"
+      },
+      {
+        "number": 285,
+        "title": "Account for native connection images separately from chemical meaning",
         "state": "RECORDED",
         "code_commit": "f40f5bc65b0a44e339bc5c7416499041ddf2bd93"
       }
