@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W279 — Audit existing-owner restart readiness
+
+- Record actual 3LNA anisotropic/TLS coexistence and unset residual flag; distinguish
+  preserved scattering state from a qualified native thermal-refinement policy.
+- Map the export to existing Cedar parent/data/chemistry/frame requirements and
+  retain the restart gate. Read-only audit; no product/schema or native change.
+
 ### W278 — Inspect saved exports through the existing viewer
 
 - Require the trusted producer receipt digest and regenerate the saved packet

@@ -7,10 +7,15 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Current restart audit: W279.** [Existing-owner readiness](topostitch-preview.md#native-restart-readiness-after-export-w279-audit)
+  records six TLS groups alongside deposited anisotropic tensors and finds the
+  matching reflection CIF. Genuine parent/data bindings and native thermal policy
+  remain unqualified; no new refinement or product change.
+
 - **Current saved-export inspection: W278.** [Trusted export viewer](topostitch-preview.md#inspect-a-verified-saved-export-w278)
   replays the verified packet and labels the working-coordinate drawing. 22 source/
   22 installed, two skips; actual 3LNA page generated, fresh browser render unverified.
-  Native restart/ordinary child readiness is next; no new refinement.
+  W279 audits native restart/ordinary child readiness; no new refinement.
 
 - **Explicit command boundary: W277.** [Export and trusted replay](topostitch-preview.md#export-and-replay-through-the-cut-preview-command-w277)
   use the existing cut-preview command; 63 source/63 installed checks pass.

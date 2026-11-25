@@ -1,6 +1,21 @@
 # NASolve development handoff — Willow
 
-**Current code/qualification: W278, 2026-11-25** (source `6b0997d1e407d06e6886072befe611caa478b142`).
+**Current audit: W279, 2026-11-25; product code remains W278.**
+The same exact 3LNA source/export have 1,271 anisotropic rows **and six TLS groups**;
+residual-ADP flag is null. Existing native readback/scattering evidence remains
+valid, but no native TLS/decomposition or ordinary-child policy follows from it.
+Cedar C560/C563-C568/C578 owners require genuine parent/data/native inputs and
+supported frame transfer; diagnostic packet/60-edge coverage do not supply them.
+The inherited continuation reader is PDB-column/same-representative scoped.
+The declared deposition reflection CIF exists, including free-status rows; its
+data/Free-R interpretation and genuine parent remain unbound. The inspected
+three-file dataset folder has no run registry; this is not a global absence claim.
+[Readiness and smallest integration](topostitch-preview.md#native-restart-readiness-after-export-w279-audit)
+are recorded with exact local file hashes. No code/test/native run or model change
+in this audit. Keep restart gated; next bind a real source context and qualify its
+explicit fixed-deposited-ADP input policy through existing owners, without a fit.
+
+**Last implemented qualification: W278, 2026-11-25** (source `6b0997d1e407d06e6886072befe611caa478b142`).
 The existing viewer now consumes a saved export through its trusted producer
 receipt digest and existing loader. It displays captured working-preview positions
 and labels, explicitly distinguishing those from the verified full-precision CIF.
@@ -140,7 +155,7 @@ controls are reused; no deposited tensor or coordinate was changed. See
 [exact scope and commands](topostitch-periodic.md#w271--plan-output-fields-and-separate-native-tls-interpretation).
 No product code, installed artifact or runtime schema changed.
 
-**Next W279; P03 remains partial.** W279: audit existing Cedar/Pine native restart and ordinary-child owners before any new execution. Current raw-TLS preservation policy does not authorize native reinterpretation or shared-group refinement. Bind one explicit supported route and source/observations, reuse prior controls, and preserve diagnostic-only state until qualified. No repeated fits or speculative mixed-image writer.
+**Next W280; P03 remains partial.** Evaluate the genuine numbered PDU lineage from Cedar C560/C579 through existing readiness owners. Rowan confirms the 3LNA repair was a separate Phenix experiment, with no verified ordinary NASolve checkpoint for this recut. Keep 3LNA diagnostic; no fabricated history, observation conversion, chemistry change or repeat fit for export demonstration. Fixed-deposited-ADP/source-frame native interpretation remains a separate qualification.
 
 **Return later — B11 / PUB05:** Simon requested a maximally fragmented ASU
 refinement stress test on 2026-11-25. The [frozen-panel plan](topostitch.md#maximally-fragmented-asu-refinement-stress-test-planned)

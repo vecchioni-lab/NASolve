@@ -4695,3 +4695,69 @@ selection, chemistry edit, new refinement, native restart or acceptance occurs.
 The optional `verified_export` scene field is additive; legacy preview/viewer
 paths and frozen export receipt formats are unchanged. The Python equivalent is
 `write_export_view(directory, output_path, expected_receipt_sha256=..., cedar_source=...)`.
+
+
+## Native restart readiness after export (W279 audit)
+
+**Read-only audit, 2026-11-25; no new native initialization, fit or checkpoint.**
+W278 completes diagnostic export inspection, not admission to refinement. The
+same pinned 3LNA original and whole-A export each contain **1,271 atom rows,
+1,271 anisotropic rows, six `_pdbx_refine_tls` rows marked `refined` and six TLS
+groups**. `_refine.pdbx_TLS_residual_ADP_flag` is null. The legacy
+`_refine_ls_tls` categories are absent; looking only there would miss the TLS
+metadata. Local inventory records both spellings and preserves the initial
+incomplete-category inventory separately.
+
+The existing native control confirms the as-deposited per-atom scattering state
+and correct coordinate/U transport. Metadata presence and a null residual flag
+cannot establish how a new native job should decompose or refine ADPs. Preserve
+the deposited U values; do not add TLS U, silently drop TLS metadata, zeroize raw
+S or split a shared group as a restart shortcut. W264's actual R3 controls and
+W271's separate nonzero-trace counterexample remain the relevant evidence.
+
+| Contract | What the export carries | Remaining native/ordinary requirement |
+| --- | --- | --- |
+| Identity and periodic graph | Original atoms/labels, source mappings, all 60 declared backbone edges and image relations | Actual native chemistry, force/exclusion and complete term inventory; C578 coverage alone is not force admission. |
+| Frame and ADPs | Explicit proper image transforms, preserved deposited tensors and raw TLS policy | Demonstrate the chosen native strategy consumes the intended scattering state. `preserve_raw_no_restart` remains literal. |
+| C566/C567 preparation and child | Source CIF/preview, diagnostic reports and exact packet hashes | Genuine construction/parent, original observation/Free-R identity, ordered recipe/dictionary/native input bindings and receiving-child proof. None are created by this export packet. |
+| C568 continuation inheritance | Declared physical links survive the recut | Current inherited-continuation owner parses PDB endpoint columns and checks the same closest representatives. It does not admit an arbitrary full-precision CIF recut by treating it as a small coordinate descendant. |
+| Manual import | Existing checkpoint owner can retain a REVIEW child | Its `compatibility.validated=False` is not native recut/thermal approval; do not use import to bypass source or frame admission. |
+
+The declared `paper_r3:3LNA/` dataset contains the original coordinate CIF,
+`9Z65_structure_factors.cif` and a display script. The reflection CIF is present
+(SHA-256 `f425e28e3996fb071ca561b228eeca44c6b63f621b8a3e4f59fd1b9a4c6f1ac0`).
+Its `r9z65sf` block has 2,637 reflection rows, including 1,418 `o` and 66 `f`
+status rows, and 1,153 null-status rows; separate STARANISO and AIMLESS blocks
+also exist. Presence of these columns is not a qualified data selection or proof
+of the original Free-R interpretation. No conversion or native job ran.
+There is no numbered run report/registry in this declared three-file folder or
+the saved export. This is a bounded inventory, not a search for or claim about
+possible parent runs elsewhere. The local `context-inventory.json` records exact
+anchor-relative inputs, hashes, columns and counts.
+
+Rowan confirmed that the 3LNA repair was a separate Phenix experiment; no
+verified ordinary NASolve checkpoint for this exact recut is known to the owner.
+Keep 3LNA diagnostic. The genuine numbered PDU lineage already exercised by
+C560/C579 is the next candidate for an existing-owner readiness check, without
+converting its observations, changing its chemistry or inventing a 3LNA parent.
+
+**Smallest next integration:** join one genuine original-parent observation/Free-R
+and ordered restraint context to the exact exported-source identity through
+existing Pine/Cedar owners. Record absent bindings as unavailable; do not invent
+Coot/ReadySet or AutoMR ancestry. Qualify an explicitly fixed deposited-ADP,
+no-active-TLS native input policy before motion; the presence of an `adp_mode=none`
+option is not that proof. Prefer the existing qualified **source computational
+frame** for execution and exact mapped return before a general dispersed-frame
+restart. A fresh interpretation must prove identity, occupancy, U, source terms
+and any native input normalization in that declared scope. It need not fit the
+model merely to demonstrate admission. Direct recut execution remains a separate
+qualification if the existing owners cannot represent its file format or images.
+
+Cedar sources consulted: completion queue C560/C563–C568 and C578;
+`refinement_prepared_backbone`, `cif_prepared_backbone`,
+`cif_phosphate_continuation`, `refinement_phosphate`, `cif_phosphate_restraints`,
+`autorefine` and `checkpoints`. Exact inspected file hashes, model bindings and
+limits are local under NASolve anchor
+`branch-artifacts/willow/w279-restart-readiness/readiness.json`.
+The sources were read, not merged or modified; neither this audit nor their PDU
+qualification is a tested combined-branch 3LNA restart.

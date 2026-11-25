@@ -1131,13 +1131,14 @@
         "W275: 203source/203relocated installed,2skips each;218files;six missing-API failures demonstrated. Actual9artifact3LNA export retains1271atoms/60declared links and exactly reproduces W272 native-tested CIF bytes. Source and installed replay regenerate identical model/reports after relocation;existing output,source drift,missing coverage,rehash tampering and interrupted publication qualified. No native/refinement/checkpoint.",
         "W276:206source/206installed,2skips; complete synced export receipt published without overwrite. Historical actual packet replay exact after relocation; no schema/native change.",
         "W277:63source/63installed; existing cut-preview command exports explicit reviewed whole-asym packets and replays with trusted producer receipt digest. Legacy paths/defaults intact; no native call.",
-        "W278:22source/22installed,2skips; existing viewer verifies saved exports with producer digest and frozen source replay. Actual1271-atom3LNA view preserves source packet; explicit working-display precision, no native execution."
+        "W278:22source/22installed,2skips; existing viewer verifies saved exports with producer digest and frozen source replay. Actual1271-atom3LNA view preserves source packet; explicit working-display precision, no native execution.",
+        "W279 read-only restart audit: six TLS groups coexist with 1271 deposited anisotropic rows; residual flag unset. Existing prepared-child and same-representative/PDB inheritance contracts do not admit this diagnostic CIF by themselves. No new native run."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "W279: audit existing Cedar/Pine native restart and ordinary-child owners before any new execution. Current raw-TLS preservation policy does not authorize native reinterpretation or shared-group refinement. Bind one explicit supported route and source/observations, reuse prior controls, and preserve diagnostic-only state until qualified. No repeated fits or speculative mixed-image writer.",
+      "next_action": "W280: evaluate the genuine numbered PDU lineage from Cedar C560/C579 through existing readiness owners. Rowan confirms no verified ordinary NASolve parent for the separate 3LNA Phenix repair; keep that export diagnostic. No observation conversion, chemistry changes, invented ancestry or repeated fit. Explicit thermal/source-frame native admission remains separate.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -1173,14 +1174,15 @@
         "E_WHOLE_ASYM_EXPORT",
         "E_ATOMIC_EXPORT_RECEIPT",
         "E_EXPORT_COMMAND_HANDOFF",
-        "E_EXPORT_INSPECTOR"
+        "E_EXPORT_INSPECTOR",
+        "E_EXPORT_RESTART_READINESS"
       ],
       "last_audit": {
         "date": "2026-11-25",
-        "human_update": 278,
+        "human_update": 279,
         "code_commit": "6b0997d1e407d06e6886072befe611caa478b142",
-        "reviewer": "Linden; Rowan coordinating native boundary",
-        "scope": "Saved-export inspection scoped complete; P03 remains partial for native restart/mixed-image and broader science gates"
+        "reviewer": "Linden; existing-owner scope requested by Rowan",
+        "scope": "Read-only restart readiness audit; P03 remains partial and native execution gated"
       }
     },
     {
@@ -8706,6 +8708,77 @@
           "size": 815891
         }
       ]
+    },
+    "E_EXPORT_RESTART_READINESS": {
+      "kind": "Read-only original/recut native restart readiness",
+      "date": "2026-11-25",
+      "human_update": 279,
+      "code_commit": "6b0997d1e407d06e6886072befe611caa478b142",
+      "reference": "docs/topostitch-preview.md#native-restart-readiness-after-export-w279-audit",
+      "result": "Exact 3LNA original/export each have 1271 atoms/anisotropic rows and six pdbx TLS groups; residual flag null. Matching deposited reflection CIF exists, with multiple blocks and free-status rows. Existing C560/C563-C568/C578 contracts reviewed. No native run, model change or parent fabrication.",
+      "limitation": "Observation file present, but genuine 3LNA ordinary-parent/data/native input join and native ADP policy remain unqualified. No registry in the declared dataset folder/export; no global absence claim. Coverage/export do not authorize restart; complete mixed-image/file-format transfer remains outside current inherited PDB continuation scope.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w279-restart-readiness/inventory.py",
+          "sha256": "f82c7b8375784e4c72c1c1bcc182dd09753ab57a457a405b9cd5deae2c6d3768",
+          "size": 1650
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w279-restart-readiness/inventory.json",
+          "sha256": "7badb9a961c713bfa2d392e1521f6d81e1a785232666626dd234903b681afd33",
+          "size": 4375
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w279-restart-readiness/inventory.log",
+          "sha256": "f61924c9e11623e0528ee66578439242301241019d3e1c254f7fdb5e5d2cbda3",
+          "size": 476
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w279-restart-readiness/inventory_complete.py",
+          "sha256": "b369b4e755f5dfe76ebd21e830e647d148d1f094509cae31f90348fd24d6a971",
+          "size": 1705
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w279-restart-readiness/inventory-complete.json",
+          "sha256": "65d0098b0a25078f8b92bd908afa65a724f7f9ea2513943f6c747a7668c48d49",
+          "size": 30772
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w279-restart-readiness/inventory-complete.log",
+          "sha256": "d066a55edfd1dbc3cea83f9d54ddf0b4934fbbea4d4ed5c874aa3c658368fb11",
+          "size": 584
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w279-restart-readiness/readiness.json",
+          "sha256": "d5aac306c7df144affabb6a0462918672095cf6dce6561315c8aee494105a6f7",
+          "size": 9359
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w279-restart-readiness/context_inventory.py",
+          "sha256": "5a43cba24f7d29d7f32e191d7ecb951187fcd5f69e10e95a6b6567f1b1b4dc14",
+          "size": 1855
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w279-restart-readiness/context-inventory.json",
+          "sha256": "a268ab0be29e55fbbad8c37948a52844148a3c467638f3d01e3a582c22da3870",
+          "size": 4021
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w279-restart-readiness/context-inventory.log",
+          "sha256": "a268ab0be29e55fbbad8c37948a52844148a3c467638f3d01e3a582c22da3870",
+          "size": 4021
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -8887,8 +8960,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 278,
-    "next": 279,
+    "current": 279,
+    "next": 280,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -10364,6 +10437,12 @@
       {
         "number": 278,
         "title": "Inspect saved exports through trusted producer identity",
+        "state": "RECORDED",
+        "code_commit": "6b0997d1e407d06e6886072befe611caa478b142"
+      },
+      {
+        "number": 279,
+        "title": "Audit actual 3LNA thermal metadata and existing restart owners",
         "state": "RECORDED",
         "code_commit": "6b0997d1e407d06e6886072befe611caa478b142"
       }
