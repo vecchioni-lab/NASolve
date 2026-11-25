@@ -14678,3 +14678,51 @@ explicit annotations. Do not manufacture missing bonds or an R3 nick. The
 ordinary save/restart wrapper follows that gate. When a later native step acts on
 geometry, Cedar's donor-sugar and flank checks matter: two short seam bonds alone
 do not qualify the neighboring sugar. A pure representative change is not repair.
+
+
+## W273 — Account for serialized backbone links
+
+The exact W272 reviewed 3LNA CIF now has a source-bound audit against all **60
+declared backbone edges**, using the saved graph/site projection and Cedar's
+qualified deposition reader. **51** edges are implicit ordinary links only,
+**7** are both ordinary and explicitly annotated, and **2** require explicit
+connection records. Cedar reads **58 ordinary steps and 9 explicit O3′–P rows**,
+with no unmatched declaration or sequence conflict. Overall reader status is
+`CHECKED`; that is a geometry observation, not scientific approval.
+
+Moving the whole A chain places **A:116 → D:107** in the identity image at
+**1.609463 Å**. **B:117 → B:101** retains image `-y,x-y,z` at **1.608016 Å**.
+All 60 distances lie between **1.59909 and 1.62140 Å**. Comparing the original
+and repacked representations changes distances by at most **3.33e-15 Å** and
+O3′–P–OP1/OP2/O5′ angles by **3.41e-13°**. No bending, refinement, added chemistry,
+or assignment of the R3-averaged physical nick occurred.
+
+Four local discriminating controls qualify the distinction: omit the A–D
+record and edge90 is missing; give the B seam the wrong image and edge91
+conflicts; duplicate occupied O3′ and the reader refuses ambiguity; omit the
+seven redundant ordinary annotations and all 60 edges remain covered. Altered
+models existed only in an automatically removed temporary directory. The
+original/draft/product modules are unchanged; no new retained coordinate model.
+No repeated Fcalc/native/refinement execution. W272's exact-byte native evidence
+still applies. Coverage is not synonymous with writing every edge as `struct_conn`;
+W272's conservative `all_declared_graph_links_written=False` remains accurate.
+
+Exact experiment/inputs/controls: NASolve anchor
+`branch-artifacts/willow/w273-backbone-coverage/validation.json`. The runner and
+scientific JSON remain local. No product API, default, schema or installation
+changed. W272's completed **185 source / 185 installed**, two skips each, are
+reused. A complete-suite attempt prompted by the supplied generic contract was
+stopped after Rowan confirmed the current branch-focused window: **1,417 passed,
+one skipped, 234 subtests, 96.91 s**, then owned-process SIGINT/exit2. This is
+**incomplete**, not a new full-suite pass. Complete regression is deferred to the
+integration gate; W265 remains the prior completed full baseline.
+
+**Next boundary:** Cedar's public reader returns individual explicit links but
+only aggregate ordinary measurements. The source-pinned local experiment reused
+its private coordinate/measurement helpers; that is not a maintained interface.
+Agree public per-step ordinary endpoint/model/component/altloc evidence with
+Rowan before generic coverage integration. Then the immutable save wrapper can
+require both whole-asym eligibility and full serialized graph coverage. Missing,
+conflicting or ambiguous links remain explicit refusals—never invented bonds.
+Mixed paths, native TLS restart, flanking sugar geometry and physical nick phase
+retain their separate gates. No repeated whole-LNA panel is needed for this step.

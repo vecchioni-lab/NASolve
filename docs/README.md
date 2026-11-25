@@ -7,6 +7,11 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Current science audit: W273.** [Every serialized backbone edge](topostitch-periodic.md#w273--account-for-serialized-backbone-links)
+  is accounted for in the exact whole-chain draft: 58 ordinary links, nine
+  explicit records with seven overlaps, 60 unique edges. No new geometry or
+  runtime code; maintained ordinary output awaits the public evidence boundary.
+
 - **Current draft boundary: W272.** [Reviewed whole-asym CIF drafts](topostitch-preview.md#prepare-a-reviewed-whole-asym-cif-draft-w272)
   preserves source labels/categories, re-expresses metadata coherently and passes
   exact installed/native readback. 185 source/185 installed checks, two skips;

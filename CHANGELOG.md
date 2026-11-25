@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W273 — Audit every declared backbone edge in the whole-chain draft
+
+- Account for 60 actual serialized backbone links using the existing Cedar
+  reader and saved graph; distinguish ordinary and explicit/image annotations.
+- Record discriminating missing/image/ambiguity controls and the public ordinary
+  evidence dependency before a maintained save wrapper. No runtime/schema change.
+- Keep the interrupted full-suite attempt explicit; completed focused/installed
+  checks remain W272, with complete regression deferred to integration.
+
 ### W272 — Prepare source-bound whole-asym CIF drafts
 
 - Add an explicit in-memory draft API that reuses source, connection, assembly

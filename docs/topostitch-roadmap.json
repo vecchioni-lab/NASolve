@@ -1125,13 +1125,14 @@
         "W269: 172 focused source/172 relocated installed checks, two existing skips each; 216 installed-file hashes. Eight missing-API regressions reproduced. Four actual W268 controls match exact source/assembly/scalar hashes,3813/3825 instance counts and deposited-U metrics. Complete installed relocated3LNA report exact. Duplicate multiplicity, unresolved/partial generators, unwrapped shifts, mixed/isotropic modes, source races and damaged partitions/tensors qualified.",
         "W270: Four saved original/recut LNA eligibility checks plus one nonidentity in-memory3LNA whole-A preview (16nodes). Whole-asym/TLS uniformity passes unchanged/whole-A; eight-path cuts fail on A/B/D and4TLS groups. Inventory covers66/59 coordinate categories plus2attached definition blocks each,82/75 category occurrences. Source ASU target/copy distinguished from full physical strands; R3 nick remains unassigned.",
         "W271: 82/75 original category occurrences have explicit output actions;27 sensitive columns per source are null/absent. 3LNA supplied polymer mass center matches within3.73e-7 A and changes15.9132 A under whole-A recut. Two new native synthetic controls: raw TLS invariant1.11e-16 A2; nonzero-trace x rotation changes native S33 interpretation3.66519 A2, zero-trace control2.22e-16 A2. Prior R3 native controls reused, not rerun.",
-        "W272: 185 focused source/185 relocated installed,2 skips each;218 installed files. Five missing-API and four pre-guard metadata regressions demonstrated. Exact installed3LNA document/report after relocation. New whole-A draft retains1271 atoms and re-expresses327 deposited U tensors;3813 serialized assembly instances per namespace retain endpoints within4.27e-14 A. Complete Phenix2.2.1-6174 native readback XYZ1.07e-14 A/U3.55e-15 A2;1484-index relative Fcalc4.28e-15. No fit or native TLS restart."
+        "W272: 185 focused source/185 relocated installed,2 skips each;218 installed files. Five missing-API and four pre-guard metadata regressions demonstrated. Exact installed3LNA document/report after relocation. New whole-A draft retains1271 atoms and re-expresses327 deposited U tensors;3813 serialized assembly instances per namespace retain endpoints within4.27e-14 A. Complete Phenix2.2.1-6174 native readback XYZ1.07e-14 A/U3.55e-15 A2;1484-index relative Fcalc4.28e-15. No fit or native TLS restart.",
+        "W273: Exact W2723LNA draft:all60 declared backbone edges covered (51ordinary-only,7both,2explicit-only),58ordinary/9explicit;Cedar CHECKED,zero unmatched/sequence conflicts. Distances1.59909\u20131.62140A;source/output distance change<=3.33e-15A and phosphate-angle change<=3.41e-13deg. Four discriminating controls;source/draft untouched. No native repeat."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "W273: audit complete declared-backbone coverage in the serialized whole-asym draft through the existing Cedar reader and saved graph. Distinguish implicit ordinary links from explicit symmetry annotations; preserve original intent and unresolved nick phase. Reuse exact W272 native/scattering evidence, no duplicate fit/Fcalc. Full coverage precedes an ordinary immutable-output wrapper; mixed paths and native restart stay separate.",
+      "next_action": "W274: agree public Cedar per-ordinary-step endpoint/measurement evidence (current public report is aggregate), then maintain graph-to-serialized-link coverage before an atomic immutable output wrapper. Preserve missing/ambiguous links, original labels and unresolved R3 nick phase; no private-reader dependency or guessed bonds. Full regression remains deferred to integration under the current coordinated window.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -1161,14 +1162,15 @@
         "E_ASSEMBLY_INSTANCE_OBSERVER",
         "E_WHOLE_ASYM_ELIGIBILITY",
         "E_WHOLE_ASYM_OUTPUT_PLAN",
-        "E_WHOLE_ASYM_DRAFT"
+        "E_WHOLE_ASYM_DRAFT",
+        "E_WHOLE_ASYM_BACKBONE_COVERAGE"
       ],
       "last_audit": {
         "date": "2026-11-25",
-        "human_update": 272,
+        "human_update": 273,
         "code_commit": "a8a96c1b40c48baab8c161b5ad17d0de24e5da62",
-        "reviewer": "Linden; boundary coordinated with Rowan",
-        "scope": "Whole-asym draft/native readback scoped; P03 remains PARTIAL, ordinary wrapper/full graph/native restart open"
+        "reviewer": "Linden; next API boundary coordinated with Rowan",
+        "scope": "Exact whole-chain backbone coverage qualified;P03 PARTIAL,maintained coverage/public ordinary evidence/output wrapper/native restart remain open"
       }
     },
     {
@@ -8166,6 +8168,53 @@
           "size": 12646
         }
       ]
+    },
+    "E_WHOLE_ASYM_BACKBONE_COVERAGE": {
+      "kind": "Read-only exact-draft backbone coverage and discriminating controls",
+      "date": "2026-11-25",
+      "human_update": 273,
+      "code_commit": "a8a96c1b40c48baab8c161b5ad17d0de24e5da62",
+      "reference": "docs/topostitch-periodic.md#w273--account-for-serialized-backbone-links",
+      "result": "Exact W2723LNA draft:all60 declared backbone edges covered (51ordinary-only,7both,2explicit-only),58ordinary/9explicit;Cedar CHECKED,zero unmatched/sequence conflicts. Distances1.59909\u20131.62140A;source/output distance change<=3.33e-15A and phosphate-angle change<=3.41e-13deg. Four discriminating controls;source/draft untouched. No native repeat.",
+      "limitation": "One bound actual draft and declared graph;no generic writer,force activation,physical nick assignment or new native/refinement acceptance. Full-suite attempt interrupted at1417pass/1skip/234subtests on coordinator instruction,not a completed full-suite qualification.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w273-backbone-coverage/audit.py",
+          "sha256": "897ba25ffeb3f9b733cc5a472ffaf1be541009ace4dac1d056e95d8ff47a3173",
+          "size": 12124
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w273-backbone-coverage/audit.log",
+          "sha256": "24c8ee7e052ae768a5aca54371f99b99a963a806caab00a163dbbd0530858e46",
+          "size": 1580
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w273-backbone-coverage/paths.json",
+          "sha256": "b51b09cf984875a05191ceca8e0d888fcb614d57b5ef4838455c6a11364cd995",
+          "size": 51195
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w273-backbone-coverage/coverage.json",
+          "sha256": "6057179660b98968e93a787c8a9e3f2a328637ad41210df3a2148c8c79607f1e",
+          "size": 115870
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w273-backbone-coverage/full-suite.log",
+          "sha256": "2f0046b3e2a6ab3a53aeb38576420afc638761492b280fc2044942c890c4ff4b",
+          "size": 1899
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w273-backbone-coverage/validation.json",
+          "sha256": "db900dfeb4d3bcb9a0fdd58027b26b99ee25945815469287e053a199d8bdbcf5",
+          "size": 4485
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -8331,8 +8380,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 272,
-    "next": 273,
+    "current": 273,
+    "next": 274,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -9772,6 +9821,12 @@
       {
         "number": 272,
         "title": "Prepare reviewed whole-asym CIF drafts with exact native readback",
+        "state": "RECORDED",
+        "code_commit": "a8a96c1b40c48baab8c161b5ad17d0de24e5da62"
+      },
+      {
+        "number": 273,
+        "title": "Account for every backbone edge in the serialized whole-chain draft",
         "state": "RECORDED",
         "code_commit": "a8a96c1b40c48baab8c161b5ad17d0de24e5da62"
       }

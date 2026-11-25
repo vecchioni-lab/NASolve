@@ -174,7 +174,8 @@ operators must update inline matrices and membership flags together. No category
 plan alone is permission to emit an unqualified file. W272 now provides the
 [explicit in-memory draft boundary](topostitch-preview.md#prepare-a-reviewed-whole-asym-cif-draft-w272)
 with readback and a source-specific native control. Complete declared-backbone
-coverage and an ordinary immutable-output wrapper remain next; native restart
+coverage is now qualified for the exact actual draft by W273. A maintained
+ordinary-output wrapper remains next; native restart
 and mixed-path output stay separate.
 
 The fragmented W246 two-rung ASU is a stress test, not a preferred physical cut.
@@ -262,6 +263,14 @@ application; it closes no repair, inference, stacking or covalent-closure gate.
 
 
 <a id="next-bounded-coordinate-control-planned-after-w135"></a>
+
+W273's [serialized backbone audit](topostitch-periodic.md#w273--account-for-serialized-backbone-links)
+accounts for all 60 declared edges in the actual whole-A draft, distinguishing
+ordinary adjacency from explicit connection/image annotations. Coverage does not
+activate native restraints or assign the R3 physical nick. The next ordinary-save
+boundary requires maintained per-step evidence through Cedar's public interface;
+the local experiment's pinned private helpers are not a production dependency.
+
 ### Longer coordinate control and matched scientific gate
 
 **W138:** candidate `d8656b22` on the Cedar code base qualifies the explicit
