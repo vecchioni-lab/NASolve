@@ -429,6 +429,8 @@ was +37.3° against −140° with a width of 35°. Its O3′ and C:8 P sampled
 and arm measurements demonstrate restraint survival. The local crossover
 conformation remains open. This experiment created no numbered checkpoint.
 
+<a id="crossovers-in-the-ft-hg-scaffold"></a>
+
 ### Crossovers in the FT–Hg scaffold
 
 In the separate FT_Hg construct, the investigator declared the central B
