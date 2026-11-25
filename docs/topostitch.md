@@ -171,7 +171,11 @@ Recalculate supplied present-polymer centers only under an explicit source-match
 weighting convention; preserve null/absent centers. Keep raw TLS field transport
 separate from native S33 zeroization and restart compatibility. Derived assembly
 operators must update inline matrices and membership flags together. No category
-plan is permission to emit an unqualified file.
+plan alone is permission to emit an unqualified file. W272 now provides the
+[explicit in-memory draft boundary](topostitch-preview.md#prepare-a-reviewed-whole-asym-cif-draft-w272)
+with readback and a source-specific native control. Complete declared-backbone
+coverage and an ordinary immutable-output wrapper remain next; native restart
+and mixed-path output stay separate.
 
 The fragmented W246 two-rung ASU is a stress test, not a preferred physical cut.
 Prioritize readable contiguous duplex segments for final inspection/export;

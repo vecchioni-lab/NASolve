@@ -14624,3 +14624,57 @@ tests representative bookkeeping; it is not a proposed chemical nick pattern
 or deposition cut. The current ASU canvas omits surrounding symmetry copies.
 Practical final cuts should favour contiguous, readable duplex segments while
 preserving construct intent and all periodic connections.
+
+
+## W272 — Prepare and read back a whole-asym CIF draft
+
+The [maintained draft API](topostitch-preview.md#prepare-a-reviewed-whole-asym-cif-draft-w272)
+now composes the existing source/frame, connection, TLS and assembly owners.
+It returns bytes and a bound receipt after exact category readback. No ordinary
+file writer, new default or checkpoint selection. Every coordinate-block category
+needs an explicit reviewed raw-row digest; this is caller evidence, not an
+independent claim that arbitrary metadata is safe to copy. Unknown semantics
+require review; unsupported coordinate/uncertainty fields and mixed/unresolved
+membership refuse. Conflicting supplied generator flags/lists/text refuse before
+any rewrite. Original source labels, component templates and scalar B/Q survive.
+
+**Before/after regression evidence:** five missing-API failures; then an inherited
+fixture's renumbered polymer labels exposed its stale contact labels (retained
+initial refusal, corrected fixture). Four newly added metadata refusals were
+also tested against the exact pinned pre-guard source: all four fail before and
+pass afterward. Final **185 source / 185 installed**, two existing skips each,
+**218 installed files**, Python 3.10 syntax and entry help. The exact actual
+3LNA output bytes and report survive package/staged-input relocation with those
+original temporary paths removed. No full-suite repeat; W265 remains the baseline.
+
+**One new actual output:** W270's whole-A proposal retains **1,271 atoms**;
+**327** deposited tensors are re-expressed, with **no TLS U added**. The original
+coordinate CIF is unchanged. Both serialized assembly namespaces retain **3,813**
+labelled occurrences; raw endpoints differ by at most **4.27e-14 Å**. Source
+scalar/loop layout and attached definitions survive, and the supplied polymer
+center is updated under W271's verified convention. The initial diagnostic
+predating generator-ID preservation remains historical; only the reviewed output
+is linked as the current result.
+
+**Independent native readback:** Phenix **2.2.1-6174 / Python 3.11.15**, complete
+read-only parse and direct IT1992 scattering, not a dry-run or refinement. Labels,
+B/Q, elements/charge, ADP modes and multiplicities remain exact. XYZ/U errors
+against the bound proposed state are **1.07e-14 Å / 3.55e-15 Å²**; **1,484** fixed
+prior indices give relative complex-Fcalc difference **4.28e-15**. The final
+metadata guards reproduce those exact native-tested output bytes, so the native
+calculation was not repeated after a rejection-only change. This does not qualify
+native TLS restart or chemistry enforcement.
+
+Exact commands, inputs, failed/initial/final receipts and installation evidence:
+NASolve anchor `branch-artifacts/willow/w272-whole-asym-draft/validation.json`.
+Only product code/tests/docs are committed; generated crystallography stays local.
+The existing inspector displays the same whole-A proposal using its working-PDB
+display precision; full-precision mmCIF is linked separately. No viewer code or
+interactive browser-render claim is added.
+
+**Next:** use the existing Cedar reader and graph to account for every declared
+backbone edge in this exact output, distinguishing ordinary implicit links from
+explicit annotations. Do not manufacture missing bonds or an R3 nick. The
+ordinary save/restart wrapper follows that gate. When a later native step acts on
+geometry, Cedar's donor-sugar and flank checks matter: two short seam bonds alone
+do not qualify the neighboring sugar. A pure representative change is not repair.

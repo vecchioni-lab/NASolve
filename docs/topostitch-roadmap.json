@@ -4,7 +4,7 @@
   "updated": "2026-11-25",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "05bde4790e013e79f841f3649a372211bbcc22fe",
+  "audited_code_commit": "a8a96c1b40c48baab8c161b5ad17d0de24e5da62",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -1124,13 +1124,14 @@
         "W268: Four exact original/recut LNA controls retain3813/3825 labelled assembly instances. Raw deposited-U transport max1.07e-14 A2; skipping tensor rotation produces6.51/4.87 A2 errors. Full exact C3 set closure observed with246 permuted instance labels; partial generator82missing/82extra and one-atom cell shift3missing/3extra correctly fail. Original ADPs/TLS-derived U kept separate; prior W249 native evidence hash-verified, not rerun.",
         "W269: 172 focused source/172 relocated installed checks, two existing skips each; 216 installed-file hashes. Eight missing-API regressions reproduced. Four actual W268 controls match exact source/assembly/scalar hashes,3813/3825 instance counts and deposited-U metrics. Complete installed relocated3LNA report exact. Duplicate multiplicity, unresolved/partial generators, unwrapped shifts, mixed/isotropic modes, source races and damaged partitions/tensors qualified.",
         "W270: Four saved original/recut LNA eligibility checks plus one nonidentity in-memory3LNA whole-A preview (16nodes). Whole-asym/TLS uniformity passes unchanged/whole-A; eight-path cuts fail on A/B/D and4TLS groups. Inventory covers66/59 coordinate categories plus2attached definition blocks each,82/75 category occurrences. Source ASU target/copy distinguished from full physical strands; R3 nick remains unassigned.",
-        "W271: 82/75 original category occurrences have explicit output actions;27 sensitive columns per source are null/absent. 3LNA supplied polymer mass center matches within3.73e-7 A and changes15.9132 A under whole-A recut. Two new native synthetic controls: raw TLS invariant1.11e-16 A2; nonzero-trace x rotation changes native S33 interpretation3.66519 A2, zero-trace control2.22e-16 A2. Prior R3 native controls reused, not rerun."
+        "W271: 82/75 original category occurrences have explicit output actions;27 sensitive columns per source are null/absent. 3LNA supplied polymer mass center matches within3.73e-7 A and changes15.9132 A under whole-A recut. Two new native synthetic controls: raw TLS invariant1.11e-16 A2; nonzero-trace x rotation changes native S33 interpretation3.66519 A2, zero-trace control2.22e-16 A2. Prior R3 native controls reused, not rerun.",
+        "W272: 185 focused source/185 relocated installed,2 skips each;218 installed files. Five missing-API and four pre-guard metadata regressions demonstrated. Exact installed3LNA document/report after relocation. New whole-A draft retains1271 atoms and re-expresses327 deposited U tensors;3813 serialized assembly instances per namespace retain endpoints within4.27e-14 A. Complete Phenix2.2.1-6174 native readback XYZ1.07e-14 A/U3.55e-15 A2;1484-index relative Fcalc4.28e-15. No fit or native TLS restart."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "W272: implement the smallest whole-asym in-memory CIF row edit through existing owners, preserving category scalar/loop layout and exact source labels. Treat raw TLS export separately from native restart; require supplied polymer center policy and complete assembly-generator metadata rewriting. Qualify readback and refusal controls before exclusive-create output. Unknown fields/categories, mixed memberships and unresolved output references block writing; full eight-path cut and physical R3 nick remain separate.",
+      "next_action": "W273: audit complete declared-backbone coverage in the serialized whole-asym draft through the existing Cedar reader and saved graph. Distinguish implicit ordinary links from explicit symmetry annotations; preserve original intent and unresolved nick phase. Reuse exact W272 native/scattering evidence, no duplicate fit/Fcalc. Full coverage precedes an ordinary immutable-output wrapper; mixed paths and native restart stay separate.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -1159,14 +1160,15 @@
         "E_ASSEMBLY_INSTANCE_ADP_AUDIT",
         "E_ASSEMBLY_INSTANCE_OBSERVER",
         "E_WHOLE_ASYM_ELIGIBILITY",
-        "E_WHOLE_ASYM_OUTPUT_PLAN"
+        "E_WHOLE_ASYM_OUTPUT_PLAN",
+        "E_WHOLE_ASYM_DRAFT"
       ],
       "last_audit": {
         "date": "2026-11-25",
-        "human_update": 271,
-        "code_commit": "05bde4790e013e79f841f3649a372211bbcc22fe",
-        "reviewer": "Linden; TLS ownership coordinated with Rowan",
-        "scope": "Explicit output plan and new convention counterexample; no maintained writer or native restart approval"
+        "human_update": 272,
+        "code_commit": "a8a96c1b40c48baab8c161b5ad17d0de24e5da62",
+        "reviewer": "Linden; boundary coordinated with Rowan",
+        "scope": "Whole-asym draft/native readback scoped; P03 remains PARTIAL, ordinary wrapper/full graph/native restart open"
       }
     },
     {
@@ -7949,6 +7951,221 @@
           "size": 3508
         }
       ]
+    },
+    "E_WHOLE_ASYM_DRAFT": {
+      "kind": "Source-bound whole-asym in-memory CIF draft and independent native readback",
+      "date": "2026-11-25",
+      "human_update": 272,
+      "code_commit": "a8a96c1b40c48baab8c161b5ad17d0de24e5da62",
+      "reference": "docs/topostitch-periodic.md#w272--prepare-and-read-back-a-whole-asym-cif-draft",
+      "result": "185 focused source/185 relocated installed,2 skips each;218 installed files. Five missing-API and four pre-guard metadata regressions demonstrated. Exact installed3LNA document/report after relocation. New whole-A draft retains1271 atoms and re-expresses327 deposited U tensors;3813 serialized assembly instances per namespace retain endpoints within4.27e-14 A. Complete Phenix2.2.1-6174 native readback XYZ1.07e-14 A/U3.55e-15 A2;1484-index relative Fcalc4.28e-15. No fit or native TLS restart.",
+      "limitation": "Expert in-memory draft with explicit category-retention review, not an ordinary writer/deposition or native-restart approval. Existing connection rows only; complete graph coverage remains open. Scientific artifacts local, original sources unchanged;327 output tensors re-expressed without added TLS U.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/before.log",
+          "sha256": "b260580401abb59066731c93eb28b47c0751c209aafa6676d7c1a4b697461577",
+          "size": 8933
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/initial.log",
+          "sha256": "93f6e24ae8ed1356112b04605b4f0c9c6499f4018e218bf590ca7709c5e84a84",
+          "size": 11887
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/fixture-reviewed.log",
+          "sha256": "0581cf98a3563fb282b197639ae13f25b37d1211607c2be0e693f2c68cb44abb",
+          "size": 98
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/expanded.log",
+          "sha256": "f632551b9e7d3e554f01ab720b42b568ccc08b81e3f246c4d42cdc42098fe947",
+          "size": 98
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/focused.log",
+          "sha256": "2cd4f8bf033999bf309496e8931474d38fa0c56c0a3001e2f48c8a341303ee3f",
+          "size": 272
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/focused-final.log",
+          "sha256": "7cb1b6b62640eeb401dd66d91df2044f3284f0f729472bf04635869ecb0dbe9b",
+          "size": 272
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/real_draft.py",
+          "sha256": "e5a8b0cef10e10e86c56f74a61cdf6b5e00ecdd576a374db322b4585ff63654e",
+          "size": 5657
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/real-draft.log",
+          "sha256": "0662e5fb710c09b561559a81aa4c432aaa8931a41ef5387531fbad580d9a331d",
+          "size": 318
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/real-draft.json",
+          "sha256": "82ca58d836a7791f683db556310b308142dd7014e4c859b4494f7ac6f9a57e23",
+          "size": 10133
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/replay_reviewed.py",
+          "sha256": "aefc2c56f5aa9ae952823bc64853e30871f4e3e3cd8cff0a7ebe655c21b66a82",
+          "size": 6029
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/replay-reviewed.log",
+          "sha256": "a598e39bb6ff17ae33ca6165f1703cf9c1f7eb36f1c2888f36c9ae5e42886dd6",
+          "size": 240
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/real-draft-reviewed.json",
+          "sha256": "f32fcdd843dfaa68346cd1c96e8e681703b7f8773a16d2b85697d7c5577f3542",
+          "size": 15147
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/expected-state.json",
+          "sha256": "e37f3efe26a04e61693951422f9c0121555855fada264be3214f5a4aa5926928",
+          "size": 244476
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/3LNA-whole-A-reviewed.cif",
+          "sha256": "a1dca94b9d1ddb6d86bbef1b67d8bafd8bbddbe231d5cc62e4a4ad4444a6d42d",
+          "size": 380792
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/native_readback.py",
+          "sha256": "b080412563b3af9ab6ddda714952ff64a817272917877c20e3b1487b3a3c660f",
+          "size": 4593
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/native-readback.log",
+          "sha256": "5a70cb0c5c62b7fc6b831d69196c517f7964551e1ed399172ff2bae03dfb3b90",
+          "size": 188
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/native-readback.json",
+          "sha256": "0eab8348dc8cba9550100a058688e89d3054da877b337d7f650d358d2f936476",
+          "size": 2168
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/qualify.py",
+          "sha256": "dd700ade7db720e5045073f6d0dc6b89273236a5c418476bf783fa845155c562",
+          "size": 6693
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/installation.json",
+          "sha256": "9f5b122400ff7a78fe9c1aaa2aff9191cc49532fe1cbcba23f0fdf9e9d6e9836",
+          "size": 39554
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/qualification.log",
+          "sha256": "c9be4bd93047d58db6de4e9e2ce71e82c26b1c0f7c953a96ec748540ffa09cd1",
+          "size": 100
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/qualify_final.py",
+          "sha256": "9780feb9d0577b71f0c63df4f5eb152bffd198ac08fcf6191136f321396cfcf1",
+          "size": 6714
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/installation-final.json",
+          "sha256": "5399a29374bd42731b11d59e7bde40758186d3f6bdbd9d7d0b863c83c68ebbab",
+          "size": 39633
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/qualification-final.log",
+          "sha256": "c9be4bd93047d58db6de4e9e2ce71e82c26b1c0f7c953a96ec748540ffa09cd1",
+          "size": 100
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/final-install.log",
+          "sha256": "4754f6b4ea7574da9ec2979f62f12f73be812de9e9cfcbec3987839c8eb2136a",
+          "size": 1105
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/final-installed-tests.log",
+          "sha256": "f170fe3cfd8be4ac25f32e15686ab28c8f4bbf922b913a21bf1e83170d9317c7",
+          "size": 272
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/final-installed-entry-help.log",
+          "sha256": "4aed80d07d50c2df141abd3b239494370248ad77f02e7c22d36ad7086f5f183f",
+          "size": 2550
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/final-installed-real-replay.log",
+          "sha256": "3f14ffd04eca16eb71f5e13b23695dcf62e54ea3c09aef3e775b8590df16b15b",
+          "size": 76
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/guard_regression.py",
+          "sha256": "eec2595673bda2fc187787346a44a1b74cb7a3f3a36184c62acb630efab35899",
+          "size": 2080
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/guard-before.log",
+          "sha256": "14ecc6ed9fcde30f2ca6b773ddaf0683592584a63c778a7d68f4431bf80a9859",
+          "size": 5490
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/guard-regression.json",
+          "sha256": "9e77bd9cbf453df0d0f050fd4615e6f19e5075a6db685ae8947d7f37c9e79cc9",
+          "size": 420
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/build_view.py",
+          "sha256": "7fe8f3cbc168982a454a6c400381f8134657606ca27aa3a5f4ab909e1c5ad810",
+          "size": 1212
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/view.log",
+          "sha256": "75a38c27b67775802438bee32cddccd177a35592172a6028e3bfe27db49fe450",
+          "size": 85
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/view.json",
+          "sha256": "c6c5ca8ea42a05c40f24bb13ee45b256267c7e68a4452333444729611944c4e1",
+          "size": 801
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w272-whole-asym-draft/validation.json",
+          "sha256": "c8daab3b71b6a373b2954ebcd28f24bf7b0c83701a50aed672978212cbc74b52",
+          "size": 12646
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -8114,8 +8331,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 271,
-    "next": 272,
+    "current": 272,
+    "next": 273,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -9551,6 +9768,12 @@
         "title": "Plan whole-asym output fields and separate raw TLS from native restart",
         "state": "RECORDED",
         "code_commit": "05bde4790e013e79f841f3649a372211bbcc22fe"
+      },
+      {
+        "number": 272,
+        "title": "Prepare reviewed whole-asym CIF drafts with exact native readback",
+        "state": "RECORDED",
+        "code_commit": "a8a96c1b40c48baab8c161b5ad17d0de24e5da62"
       }
     ]
   },

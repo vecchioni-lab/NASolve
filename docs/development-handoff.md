@@ -1,35 +1,37 @@
 # NASolve development handoff — Willow
 
-**Current code: W269; latest output plan: W271, 2026-11-25** (code `05bde4790e013e79f841f3649a372211bbcc22fe`).
-The [instance observer](topostitch-preview.md#observe-labelled-assembly-instances-and-deposited-adps-w269)
-now accounts for original generator/atom occurrences and deposited atomic ADPs
-through the existing assembly/source/frame owners. It keeps duplicate multiplicity,
-isotropic/anisotropic modes, unresolved references and whole-cell shifts explicit.
-W266 default reports and the W267 inspector remain unchanged. No TLS U is added,
-no output entities inferred and no model or native policy written.
+**Current code: W272, 2026-11-25** (source `a8a96c1b40c48baab8c161b5ad17d0de24e5da62`).
+The [whole-asym draft API](topostitch-preview.md#prepare-a-reviewed-whole-asym-cif-draft-w272)
+returns source-bound CIF bytes plus a receipt through the existing owners. It
+requires explicit category-retention review, uniform original-asym/TLS images
+and supported references. Original labels/templates/scalars survive; XYZ/U/raw
+TLS, assembly generators and supplied polymer center are re-expressed together.
+No ordinary writer, default change, native TLS restart or model selection.
 
-**172 focused source / 172 relocated installed checks**, two existing skips each.
-Eight missing-API failures reproduced before implementation. Four actual controls
-match W268's exact source/assembly/scalar hashes, instance counts and tensor metrics;
-the complete installed 3LNA report is identical after input/package relocation.
-Python 3.10 syntax, installation-file hashes and viewer entry help pass. Exact
-commands: NASolve anchor
-`branch-artifacts/willow/w269-assembly-instance-observer/validation.json`.
-No full-suite/native repeat; W265's 2,853/four skips/234 subtests is the baseline.
+**185 focused source / 185 relocated installed**, two skips each; 218 installed
+files. Five missing-API and four pinned pre-guard failures demonstrate the new
+regressions. Exact actual 3LNA output bytes/report survive relocation; Python 3.10
+syntax and entry help pass. No full-suite repeat. Exact commands/receipts:
+NASolve anchor `branch-artifacts/willow/w272-whole-asym-draft/validation.json`.
 
-**Scientific finding, W268:** all 3,813/3,825 labelled assembly instances survive;
-deposited U transport differs by at most 1.07e-14 Å². These complete exact C3 sets
-permit 246 instance-label permutations per recut. First-generator/whole-cell-shift
-controls fail (82/3 missing and extra instances). Raw rounded matrices and exact
-images remain separate; deposited U and TLS-derived U are not interchangeable.
-This is finite assembly coverage, distinct from W62 infinite-crystal permutations
-and W249's reused native Fcalc. The product replay is not another experiment.
+**Science:** 1,271 original atoms retained; 327 output U tensors re-expressed,
+no TLS U added and immutable source unchanged. Each serialized assembly namespace
+retains 3,813 labelled occurrences with endpoint error <=4.27e-14 Å. Complete
+Phenix2.2.1-6174 read-only parsing/scattering retains labels/B/Q/ADP modes; native
+XYZ/U errors <=1.07e-14 Å/3.55e-15 Å², relative complex-Fcalc difference4.28e-15
+on1,484 fixed indices. This is faithful representation, not a refinement or
+accepted physical cut. Existing connection rows only; whole graph coverage open.
 
-**Inspector W267:** source `7ff57017bd1aba8ac5d776f8838f68aef9f3bc8c`; 158 source/
-158 installed checks with two skips. Actual 3LNA HTML shows 1,271 atoms, mixed paths
-3/6 and namespace-specific operator IDs. JavaScript syntax passes; browser rendering
-was not executed. The ASU canvas is not an expanded biological assembly. W266 source
-`6322b479539815128febb307a143a092648d15cd` retains its 268/268 owner qualification.
+**Human checkout:** GitHub anchor
+`ScienceCheckouts/Linden/2026-11-25_whole-chain-export/index.html`
+(or `open_checkout.py`). It links the actual whole-chain inspector, full-precision
+CIF and native/software receipts; five local links and opener syntax verified.
+No original model is selected and no browser-render validation is claimed.
+
+The prior W269 instance observer (source05bde4790e013e79f841f3649a372211bbcc22fe)
+and W267 inspector remain unchanged. W265's full2853/four skips/234subtests is the
+prior full-suite baseline, not a combined-branch qualification. The new whole-A
+viewer reuses the existing asset; no browser render executed.
 
 **W270 narrow route agreed with Rowan:** whole original asym units with one image
 per asym and per TLS group, retaining original labels/sequence/copy declarations.
@@ -51,7 +53,15 @@ controls are reused; no deposited tensor or coordinate was changed. See
 [exact scope and commands](topostitch-periodic.md#w271--plan-output-fields-and-separate-native-tls-interpretation).
 No product code, installed artifact or runtime schema changed.
 
-**Next W272; P03 remains partial.** W272: implement the smallest whole-asym in-memory CIF row edit through existing owners, preserving category scalar/loop layout and exact source labels. Treat raw TLS export separately from native restart; require supplied polymer center policy and complete assembly-generator metadata rewriting. Qualify readback and refusal controls before exclusive-create output. Unknown fields/categories, mixed memberships and unresolved output references block writing; full eight-path cut and physical R3 nick remain separate.
+**Next W273; P03 remains partial.** W273: audit complete declared-backbone coverage in the serialized whole-asym draft through the existing Cedar reader and saved graph. Distinguish implicit ordinary links from explicit symmetry annotations; preserve original intent and unresolved nick phase. Reuse exact W272 native/scattering evidence, no duplicate fit/Fcalc. Full coverage precedes an ordinary immutable-output wrapper; mixed paths and native restart stay separate.
+
+
+Rowan's receiving gate remains separate: two good symmetry-bond lengths can hide
+a donor-sugar/flank distortion. Include those measurements when a native
+save/refine route acts on the reslice; this pure image change does not repair it.
+Hazel's Alder da98e7e0 scoped parameter writer/receiving evidence is owner-reported,
+not merged here. Preserve literal precision and the fixed-B phased guard's old
+meaning; no shared phase/parameter writer was changed by W272.
 
 W264 source `5f0dbcb4afe726b853b402424d450507331a329f` retains its uniform-image
 qualification: 200 source/200 installed checks, 18 native comparisons, raw U

@@ -7,6 +7,11 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Current draft boundary: W272.** [Reviewed whole-asym CIF drafts](topostitch-preview.md#prepare-a-reviewed-whole-asym-cif-draft-w272)
+  preserves source labels/categories, re-expresses metadata coherently and passes
+  exact installed/native readback. 185 source/185 installed checks, two skips;
+  no ordinary file writer or native restart approval.
+
 - **Current output plan: W271.** [Category fields and native TLS boundary](topostitch-periodic.md#w271--plan-output-fields-and-separate-native-tls-interpretation)
   explicitly plans 82/75 category occurrences, finds a center-of-mass update,
   and separates raw TLS export from native S33 interpretation. No model writer.
