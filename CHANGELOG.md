@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W266 — Observe original assembly and true symmetry-image references
+
+- Add a read-only source-bound assembly observer using existing fragment and
+  crystal-image owners. Retain curated/depositor namespaces, raw matrices,
+  exact fractional matches, lattice shifts and original membership.
+- Preserve raw H G⁻¹ endpoints; unresolved references, contradictory inline
+  matrices and CIF nulls remain reviewable. No output labels, ADP writes or fit.
+- Qualify 268 source/268 relocated installed checks and four existing LNA controls.
+  Actual 3LNA operator 2/3 namespace distinction and mixed-image paths 3/6 survive;
+  maximum raw endpoint transport error 1.59e-14 Å. No full-suite/native repeat.
+
 ### W265 — Inspect original TLS membership through the existing recut viewer
 
 - Add optional explicit original-CIF/binding arguments to the installed viewer.

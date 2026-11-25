@@ -4326,3 +4326,40 @@ The scene's coordinates, atom inventory, graph and approval state are unchanged.
 The generated HTML is standalone with no network requests. Input and installation
 relocation were exercised using the installed command; browser visual rendering
 was not verified because the browser tool refused the local file protocol.
+
+## Observe original assembly images without rewriting them (W266)
+
+`topostitch_cif_assembly.observe_relabel_cif_assemblies(directory, model,
+max_rotation_component_error=..., max_translation_component_error_angstrom=...,
+max_assembly_position_error_angstrom=..., **fragment_binding)` composes the
+existing original-CIF/fragment binding with assembly-reference inspection. Supply
+the same exact model/preview/owner hashes, explicit aliases, working precision
+bounds and compatible Cedar owner as W265. The three additional assembly bounds
+are explicit rounding allowances, not motion allowances. Supported upper limits
+are 1e-5 per rotation component, 1e-3 Å per translation component and 0.01 Å per
+source position. A translation allowance must also distinguish lattice images.
+The actual LNA checks used 1e-8, 1e-6 Å and 1e-5 Å respectively.
+
+Curated and depositor tables remain separate namespaces. Every raw assembly,
+generator, operator and support category is retained. The observer resolves only
+single unparenthesized operator IDs and explicit label-asym lists. Unknown,
+duplicate, missing/unregistered membership, unsupported product expressions or
+contradictory inline matrices remain visible review items. Unknown/inapplicable
+CIF matrix fields cannot become numeric zero. Supporting assembly references are
+observed separately; original oligomeric counts are never recalculated from cuts.
+
+For a proper Cartesian matrix, numerical rotation/translation/position checks
+against the declared space group determine its exact fractional-image match and
+whole-cell shift. Original symmetry-table IDs are reported from those operations;
+operator names and row numbers never choose the image. The **supplied matrix**
+and its **exact matched operation**, with measured rounding differences, remain
+separately inspectable. No matrix is silently snapped or normalized.
+
+For each resolved generator, all observed atom IDs are partitioned by original
+label-asym, proposed path and representative image G. The original Cartesian
+operation H yields a proposed correction H G⁻¹. The observer verifies each raw
+physical endpoint through this correction and retains its maximum error. Mixed
+paths keep multiple partitions; no output asym/entity IDs are assigned. This is
+an optional schema-1 observation, not an assembly writer, biological assembly
+approval, total-ADP transport or proof of full finite-set equivalence. No existing
+call, default, saved packet or shared Cedar owner changes.

@@ -1,16 +1,15 @@
 # NASolve documentation map
 
-Updated **2026-11-24** for **`willow`**. Start with the
+Updated **2026-11-25** for **`willow`**. Start with the
 [current development handoff](development-handoff.md) for the proven edge,
 remaining gates and next bounded task. Historical handoffs are evidence, not
 current instructions; other branches retain their own status and validation pins.
 
 ## What's current?
 
-- **Current TLS inspection: W265.** [Ordinary recut viewer](topostitch-preview.md#inspect-original-tls-groups-in-the-ordinary-recut-viewer-w265)
-  exposes exact original group/image membership after relocation. Four mixed
-  groups remain unsplit; separate native per-atom U checks agree within 3.55e-15 Å².
-  225 source/225 installed; full Willow 2,853 passed/four skips/234 subtests.
+- **Current assembly mapping: W266.** [Original assembly images](topostitch-preview.md#observe-original-assembly-images-without-rewriting-them-w266)
+  retains actual matrices and exact symmetry matches in separate curated/depositor
+  namespaces. 268 source/268 installed checks; four real controls, no writer.
 
 - **Current sequence-text evidence: W260.** [Literal and canonical text](topostitch-preview.md#compare-original-literal-and-canonical-sequence-text-w260)
   reuses the shared tokenizer, preserves unresolved modified parents, and keeps
@@ -119,7 +118,7 @@ current instructions; other branches retain their own status and validation pins
   The failed direct result and three remaining moving-region outliers stay
   explicit. This is same-family synthetic recovery, not general experimental repair.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W265, next W266.
+  [generated human view](topostitch-roadmap.md). Current W266, next W267.
   Continue original polymer/sequence semantics and supported output in Pine; coordinate feasible
   endpoint/convergence qualification with Alder and chemistry receiving with Cedar.
   Prior synthetic recovery and near-target bond controls remain closed evidence;

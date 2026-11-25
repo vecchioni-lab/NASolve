@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "topostitch-development-roadmap",
-  "updated": "2026-11-24",
+  "updated": "2026-11-25",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
   "audited_code_commit": "5f0dbcb4afe726b853b402424d450507331a329f",
@@ -1124,7 +1124,7 @@
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "W266: read-only original assembly-reference observer using existing CIF source and fragment/image owners. Preserve curated/depositor operator namespaces, raw assembly/generator/operator/support rows and original asym/atom membership; do not assign output IDs. Exercise the demonstrated 3LNA operator2/3 namespace swap and mixed-image paths3/6, unresolved references and relocation. Single-ID actual controls do not qualify general operation-expression products. Source convention/shared TLS fitting, total-versus-residual ADPs, output entities and edited-child lifecycle remain with existing owners. No new writer, GUI or native fit.",
+      "next_action": "W267: make W266 original assembly matrices, fractional-image matches and mixed-path partitions inspectable in the existing ordinary recut viewer, using explicit source binding and rounding bounds. Preserve default TLS-only behavior and no authority change; no second GUI, assembly writer or native fit. Then review original-instance/total-ADP coverage and output entity policy with Rowan before materialization.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -7688,8 +7688,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 265,
-    "next": 266,
+    "current": 266,
+    "next": 267,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -9089,6 +9089,12 @@
         "title": "Inspect shared original TLS membership through the ordinary recut viewer",
         "state": "RECORDED",
         "code_commit": "6e90105f8c2b12a5444578dd1ba356087ece79a8"
+      },
+      {
+        "number": 266,
+        "title": "Resolve original assembly images from their actual matrices",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   },

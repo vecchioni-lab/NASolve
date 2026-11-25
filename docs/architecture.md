@@ -1252,6 +1252,12 @@ bindings for a single representative scene. It recomputes the TLS observer and
 renders original group/image member IDs; it never trusts a saved report as input
 or derives independent refinement groups from image partitions. The binding JSON
 contains checksums/aliases/bounds only; paths remain explicit CLI arguments.
+`topostitch_cif_assembly` composes original fragment/source identity with assembly
+references. It compares supplied Cartesian matrices to proper crystal operations
+without replacing them; curated/depositor namespaces and unqualified expressions
+remain separate. Raw H G⁻¹ endpoint checks do not assign output asym/entity IDs,
+transport total ADPs or activate a native assembly/refinement policy.
+
 
 
 

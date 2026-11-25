@@ -1,33 +1,29 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W265, 2026-11-24** (code `6e90105f8c2b12a5444578dd1ba356087ece79a8`).
-The [ordinary recut inspector](topostitch-preview.md#inspect-original-tls-groups-in-the-ordinary-recut-viewer-w265)
-now shows original TLS groups and exact atom/image membership from a freshly
-verified original CIF. The installed command reproduces the exact W264 3LNA
-report after staged input/package relocation: four mixed/two uniform groups,
-738 unique mixed members and all 1,271 source atoms. Default viewers are unchanged.
+**Current maintained slice: W266, 2026-11-25** (source pin follows qualification).
+The [original assembly observer](topostitch-preview.md#observe-original-assembly-images-without-rewriting-them-w266)
+now resolves simple assembly references through the actual Cartesian matrices and
+declared crystal group, retaining curated/depositor IDs as separate namespaces.
+Every supplied matrix and exact matched fractional image remains inspectable;
+no matrix is snapped, no new coordinates or ADPs written.
 
-The separate complete **Phenix 2.2.1-6174** shared-motion diagnostic carries each
-mixed member using one immutable original group: eight derived images, 82 moved
-atoms, max per-atom TLS U-frame difference **3.55e-15 Å²**. It does not test
-inter-atom covariance or implement native parameter ties. The maintained observer
-continues to mark mixed groups for review. No atom ADPs, coordinates or chemistry
-are changed, and no output model or writer is approved.
+**Four actual controls:** original/recut 3LNA and 5LNA retain W262 fragment digests.
+Each generator accounts for all 1,271/1,275 atoms. Recuts produce ten image/asym
+partitions across eight paths; paths 3/6 are mixed. 3LNA's depositor 2/3 map to actual
+source symmetry 3/2, while curated 2/3 map to 2/3. Maximum raw H G⁻¹ endpoint error
+**1.59e-14 Å**. Separate raw-to-exact rounding is up to 2.22e-7 Å for depositor
+matrices; it is measured, not silently corrected. Inline generator matrices agree
+with their own namespace. Supporting references remain explicit.
 
-**225 focused source / 225 relocated installed checks**, two skips/two subtests,
-214 installed-file hashes. Two before-change regressions retained. Full Willow:
-**2,853 passed, four skips, 234 subtests (128.00 s)**; completed before Rowan's later
-focused-only message, with no repeat planned. Installed public CLI and generated
-JavaScript syntax verified; browser visual rendering unavailable because the
-browser tool blocked local file URLs. Evidence/commands: NASolve anchor
-`branch-artifacts/willow/w265-shared-tls-motion/validation.json`.
+**268 focused source  / 268 relocated installed checks**, 216 installed-file hashes.
+The installed API reproduces the exact 3LNA recut report after staged source/build/
+installation relocation. Missing API, contradictory extra fields and CIF-null
+numeric conversion failures were reproduced before fixes. No full-suite or native
+repeat: W265's 2,853/four skips/234 subtests is the baseline. Original inputs and the shared Cedar
+owner hashes are unchanged. Exact commands and evidence: NASolve anchor
+`branch-artifacts/willow/w266-assembly-references/validation.json`.
 
-The installation audit also records existing unshipped DP/DZ/5CM provenance JSON
-sidecars; all maintained Python and the changed shipped HTML match. This omission
-was sent to Rowan; no unrelated ligand/packaging change is included. Scientific
-payloads remain local. The human checkout is
-`ScienceCheckouts/Linden/2026-11-24_sequence-and-cut-review/index.html`, with the
-ordinary TLS view linked beside sequence/path evidence.
+**Next W267; P03 remains partial.** W267: make W266 original assembly matrices, fractional-image matches and mixed-path partitions inspectable in the existing ordinary recut viewer, using explicit source binding and rounding bounds. Preserve default TLS-only behavior and no authority change; no second GUI, assembly writer or native fit. Then review original-instance/total-ADP coverage and output entity policy with Rowan before materialization.
 
 W264 source `5f0dbcb4afe726b853b402424d450507331a329f` retains its uniform-image
 qualification: 200 source/200 installed checks, 18 native comparisons, raw U
@@ -36,8 +32,6 @@ source field by up to 2.46919 Å²; total deposited ADPs were not changed. W261�
 preserve target/fragment/reference identity: four references become ten recut
 segments across eight paths, retaining all 62 positions. Nick/repeat phase and
 output entity policy remain unresolved. Rowan owns the separate 3LNA OneDep audit.
-
-**Next W266; P03 remains partial.** W266: read-only original assembly-reference observer using existing CIF source and fragment/image owners. Preserve curated/depositor operator namespaces, raw assembly/generator/operator/support rows and original asym/atom membership; do not assign output IDs. Exercise the demonstrated 3LNA operator2/3 namespace swap and mixed-image paths3/6, unresolved references and relocation. Single-ID actual controls do not qualify general operation-expression products. Source convention/shared TLS fitting, total-versus-residual ADPs, output entities and edited-child lifecycle remain with existing owners. No new writer, GUI or native fit.
 
 The [planning audit](topostitch-periodic.md#w265-planning-limit-declared-motion-and-assembly-references)
 now records two concrete boundaries. Positive-definite latent motions can share

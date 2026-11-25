@@ -14345,3 +14345,45 @@ Local, hash-bound planning receipts are `covariance-identifiability.json` and
 `branch-artifacts/willow/w265-shared-tls-motion/`. Their scripts and primary source
 links are retained. These augment the sealed W265 validation; they do not change
 its acceptance or require another full-suite/native run. P03 remains partial.
+
+## W266 — Resolve assembly images from their actual matrices
+
+The maintained read-only observer now carries W265's original assembly-reference
+finding into a source-bound API. It reuses original CIF binding, fragment lineage,
+proper crystal images and the existing endpoint arithmetic bound. Curated and
+depositor IDs, raw matrices, source symmetry rows and supporting references remain
+separate. Single operator IDs are resolved; expressions, unknowns and conflicting
+declarations remain review items. See the [API contract](topostitch-preview.md#observe-original-assembly-images-without-rewriting-them-w266).
+
+**Actual files:** four existing controls, original and two-route cuts of 3LNA/5LNA,
+preserve every prior fragment-report digest. Each generator retains all
+**1,271 / 1,275** original atoms. Both recuts have **eight paths, ten image/asym
+partitions per generator**, with mixed images on paths **3 and 6**. 3LNA has three
+curated and three historical depositor generators; 5LNA has three curated and
+no depositor generators. Original declared counts and support rows remain intact.
+
+For 3LNA, curated operation 2 matches actual source symmetry 2 (`-y,x-y,z`), while
+depositor operation 2 matches source symmetry 3 (`-x+y,-x,z`); operation 3 reverses
+that relation. The 8-decimal depositor matrices differ from exact crystal-image
+positions by up to **2.22e-7 Å**, compared with **9.12e-10 Å** for the curated
+matrices. These are recorded rounding effects, not changes made to a model.
+The raw-matrix endpoint correction H G⁻¹ preserves all tested endpoints within
+**1.59e-14 Å**. A reused P4₃ screw/lattice test explicitly distinguishes this order
+from the incorrect G⁻¹ H. No independent Phenix or refinement run was needed.
+
+**Validation:** 14 missing-API failures; three extra declaration regressions;
+one reproduced CIF `.`→False→numeric-zero failure, now rejected. **268 focused
+source (21.99 s), 268 relocated installed (23.06 s), 216 installed-file hashes**.
+The installed API reproduces the exact actual 3LNA recut report after its staged
+original input, build and initial installation paths are removed. Source inputs
+and shared Cedar owner SHA remain unchanged. Python 3.12.14/Gemmi 0.7.5, Python3.10
+syntax checked. No full-suite repeat under Rowan's focused-only instruction;
+W265's full 2,853/four skips/234 subtests remains the integration baseline.
+
+Exact commands, pins and local observations: NASolve anchor
+`branch-artifacts/willow/w266-assembly-references/validation.json`. Scientific
+payloads remain local, excluded from Git. No existing schema/default or shared
+owner was changed. A new optional observation schema is additive. **P03 remains
+partial:** physical assembly interpretation, product-expression grammar, output
+entities, total-ADP/complete-instance checks, shared TLS refinement and a writer
+are not delivered by coordinate-reference preservation.
