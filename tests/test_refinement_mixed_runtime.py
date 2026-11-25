@@ -167,3 +167,29 @@ def test_summary_is_compact_and_detached(scene):
     import json
     r=g.summary();assert r['counts']['xyz']==100 and len(json.dumps(r))<5000
     r['counts']['xyz']=0;assert g.summary()['counts']['xyz']==100
+
+
+def test_roundoff_policy_is_explicit_and_separately_versioned(scene):
+    strict=scene.guard();assert strict.summary()['policy_id'].endswith('-v1')
+    tolerant=MixedRuntimeGuard(scene.scope,reference(),cell_roundoff_ulps=4)
+    assert tolerant.summary()['policy_id'].endswith('-v2')
+    assert tolerant.summary()['unit_cell_roundoff_ulps']==4
+    for value in [True,1,8,4.0]:
+        with pytest.raises(ValueError):MixedRuntimeGuard(scene.scope,reference(),cell_roundoff_ulps=value)
+
+
+def test_roundoff_rule_is_applied_at_native_target_boundaries(scene):
+    s=scene
+    cell=(20.,21.,22.,90.,90.,math.nextafter(math.nextafter(90.,math.inf),math.inf))
+    s.flags.unit_cell=lambda:NS(parameters=lambda:cell)
+    g=MixedRuntimeGuard(s.scope,reference(),cell_roundoff_ulps=4)
+    with g:
+        s.driver.write_before_run_outputs();step(s);g.finish(s.driver,dry_run=False)
+    assert g.summary()['status']=='OBSERVED'
+    g=MixedRuntimeGuard(s.scope,reference(),cell_roundoff_ulps=4)
+    with pytest.raises(ValueError):
+        with g:
+            s.driver.write_before_run_outputs()
+            s.group.action=lambda:s.fo.values.__setitem__(0,8.00000001)
+            step(s)
+    assert g.summary()['status']=='FAILED' and g.summary()['bindings_restored']

@@ -15,41 +15,36 @@ not a second queue.
 
 <a id="a01-parameter-scope-2026-11-25"></a>
 
-## Current A01 — reciprocal runtime guard, initialization qualified
+## Current A01 — cell representation qualified; native scaling blocks execution
 
-The [separately versioned guard](metal-ordinary-receiving.md#explicit-reciprocal-xyzgroup-b-runtime-guard)
-now checks the declared reciprocal XYZ/group-B scope and exact MLHL source at
-initialization, macro stages and target-call boundaries around the existing
-execution owner. Caught failures remain latched; completion is explicit and hooks
-restore on success/failure. Counter-based summaries stay small. Real-space/sliced
-models and multiprocess dispatch explicitly refuse; old V11/V12 remain unchanged.
+The verified command reaches native bulk-solvent scaling. Strict v1 correctly
+refuses a two-ULP gamma difference. Explicit guard v2 permits only four ULP of
+unit-cell representation difference; full space-group operators, indexing and
+source F/sigma/Free-R/HL checks remain unchanged. Default v1 stays exact.
 
-**Validation:** 17 source and 17 installed controlled-dispatch tests; an installed
-actual-native-hook failure/restoration check; 65 cold source/loaded/wheel checks.
-One 8.99-second native zero-cycle initialization passes three full observations
-for 859 atoms/42 B groups with both crystal links, original diffraction/Free-R/HL
-and protected state. This private FT control explicitly declares reciprocal-only
-scope. It is not a new native fit, ordinary source adoption or actual native
-optimizer-call qualification. All prior fitted results retain their original pins.
+**Validation:** 33 focused tests (15 native skips), 29 actual-native cases,
+19 installed dispatch tests plus 29 installed native cases/hook restoration.
+A fresh 8.11-second zero-cycle initialization passes. The 22.79-second one-cycle
+attempt then refuses changed F/sigma before any XYZ or group-B target calls.
+A 7.48-second passive diagnostic traces the native normalization: both F and
+sigma multiply by 254.633987526; all 1,151 rows, 59 Free assignments and HL remain
+unchanged. Rwork across that operation is invariant at 0.3387822269. This is a
+normalization observation, not a refined endpoint or evidence of fit quality.
+All hooks restore and processes stop. Prior failed attempts remain preserved.
 
-Evidence: `a01-mixed-runtime-guard-20261125-01/` under the Alder artifact anchor,
-runners A776–A780; exact commands and code hashes in README/review/package receipts.
-About 5.1 MB, including software and dry output; summary 2,593 bytes. No science
-input/model/map copies. Temporary package staging removed. Compact checkout:
-`ScienceCheckouts/Hazel/2026-11-25_parameter-protection/runtime-guard.html`.
+Evidence: `a01-mixed-runtime-roundoff-20261125-01/` and
+`a01-mixed-runtime-cycle-20261125-01` through `-04` under the Alder artifact
+anchor; runners A781–A795. `review.json` and package/execution receipts pin exact
+commands and sources. Compact checkout: `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/scale-boundary.html`.
+No full suite, science uploads or checkpoint migration.
 
-**Next A01 step:** qualify actual native reciprocal optimizer callbacks, then
-connect the explicit mixed declaration through the newer prepared/backbone and
-ordinary numbered runtime with output/process closure. Real-space identity remains
-separate. The prior command adapter permits file changes only, so mixed scope or
-MLHL target changes require a new declared receiving policy. FT ordinary ancestry
-is still absent; genuine PDU has no HL. A01 partial; A02 gated. No full suite.
-
-Prior command qualification remains in `a01-command-binding-20261125-01/`:
-14 source/14 installed native cases, 34 neighbouring tests/21 subtests and genuine
-PDU returned-model command readback (11 inputs/eight restraints). Prior selector
-qualification remains in `a01-parameter-files-20261125-01/`. Reuse both; no repeat
-is needed for unchanged code. All owned jobs stopped at delivery.
+**Next A01 step:** qualify a separate explicit native normalization contract,
+retaining original source identity and exact index/Free-R/HL ownership; do not
+extend cell tolerance to amplitude changes. Then qualify actual native optimizer
+calls/output closure before prepared/numbered dispatch adoption. Existing v1
+command-binding permits file changes only, not a changed scope/target. Real-space
+identity and FT ordinary ancestry remain open; PDU has no HL. A01 partial; A02
+gated. Reuse prior command/source-selector evidence; do not repeat unchanged fits.
 
 ## Earlier boundary — ordinary admission made explicit
 

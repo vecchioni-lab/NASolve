@@ -59,6 +59,13 @@ restraint, output and process owners remain required. No historic runtime bytes,
 ordinary defaults or numbered dispatch are changed. See the
 [qualified initialization and limits](metal-ordinary-receiving.md#explicit-reciprocal-xyzgroup-b-runtime-guard).
 
+The guard's explicit v2 `cell_roundoff_ulps=4` option tolerates only finite
+unit-cell representation roundoff while preserving full space-group operators.
+Default v1 remains exact. Native common F/sigma normalization is observed and
+currently refused by the separate exact-source contract; a fitted endpoint or
+ordinary dispatch adoption is not yet qualified. See the same receiving contract
+for measured scale, preserved failures and next integration boundary.
+
 Historical counted V5–V8 code preparation now obtains `topostitch_native_recipe.py`
 from `data/refinement-runtime-native-recipe-sources.json`, retaining its already
 qualified SHA-256. Modern direct callers retain the newer explicit native-crystal

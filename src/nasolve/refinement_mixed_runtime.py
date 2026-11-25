@@ -17,7 +17,7 @@ import platform
 
 from .refinement_parameter_scope import ParameterScope, scope_digest
 from .refinement_parameter_native import observe_model, observe_xyz, observe_group, capture_atoms
-from .refinement_diffraction_observation import DiffractionReference, observe_diffraction, observe_target
+from .refinement_diffraction_observation import DiffractionReference, observe_diffraction, observe_target, _cell_roundoff_policy
 
 POLICY_ID = 'native-reciprocal-xyz-group-b-guard-v1'
 _ACTIVE = None
@@ -56,7 +56,8 @@ class MixedRuntimeGuard:
     output files, ancestry, external process closure or geometry are accepted.
     The caller persists the summary even when the guarded operation raises.
     """
-    def __init__(self, scope, diffraction):
+    def __init__(self, scope, diffraction, *, cell_roundoff_ulps=0):
+        self._cell_roundoff_ulps = _cell_roundoff_policy(cell_roundoff_ulps)
         if not isinstance(scope, ParameterScope) or not isinstance(diffraction, DiffractionReference):
             raise ValueError('Require pinned parameter and diffraction references')
         if scope.record()['real_space']:
@@ -67,12 +68,14 @@ class MixedRuntimeGuard:
         self._driver = None; self._entered = False; self._finished = False
         self._failed = None; self._verify = None; self._pid = None
         self._counts = Counter()
-        self._record = dict(schema_version=1, policy_id=POLICY_ID, status='NOT_STARTED',
+        self._record = dict(schema_version=1, policy_id=POLICY_ID if not cell_roundoff_ulps else 'native-reciprocal-xyz-group-b-guard-v2', status='NOT_STARTED',
             scope_sha256=scope_digest(scope.record()),
             source_model_sha256=scope.record()['source_model_sha256'],
             diffraction_sha256=scope_digest(diffraction.record()),
             bindings_restored=False, counts={},
             scientific_approval='NOT_RUN', real_space=False, single_process=True)
+        if cell_roundoff_ulps:
+            self._record['unit_cell_roundoff_ulps'] = cell_roundoff_ulps
 
     def _fail(self, exc):
         if self._failed is None:
@@ -95,8 +98,9 @@ class MixedRuntimeGuard:
             raise ValueError('Mixed runtime requires one X-ray diffraction model')
         fm = driver.fmodels.fmodel_xray()
         state = observe_model(self.scope, driver.model, fm, driver.params, initial=initial)
-        observe_diffraction(self.diffraction, fm)
-        observe_target(self.diffraction, fm, fm.target_functor(alpha_beta=fm.alpha_beta()))
+        observe_diffraction(self.diffraction, fm, cell_roundoff_ulps=self._cell_roundoff_ulps)
+        observe_target(self.diffraction, fm, fm.target_functor(alpha_beta=fm.alpha_beta()),
+                       cell_roundoff_ulps=self._cell_roundoff_ulps)
         self._counts['model'] += 1
         return state
 
@@ -111,7 +115,7 @@ class MixedRuntimeGuard:
             observe_group(self.scope, minimizer)
             fm = minimizer.fmodel; target = minimizer.target_functor
         self.scope.state(capture_atoms(fm.xray_structure))
-        observe_target(self.diffraction, fm, target)
+        observe_target(self.diffraction, fm, target, cell_roundoff_ulps=self._cell_roundoff_ulps)
 
     def _wrapper(self, role, original):
         @wraps(original)

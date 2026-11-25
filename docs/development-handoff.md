@@ -7,16 +7,15 @@ observation and storage owners; it introduces no new scientific policy.
 
 ## Current metal-science edge
 
-A01 remains partial; A02 quantitation remains gated. The newest
-[reciprocal mixed-parameter guard](metal-ordinary-receiving.md#explicit-reciprocal-xyzgroup-b-runtime-guard)
-adds separately versioned callback enforcement and restoration around the existing
-owner. Seventeen source/17 installed controlled-dispatch cases, actual-native
-failure restoration and one 8.99-second zero-cycle initialization pass. No native
-optimizer qualification or fitted endpoint follows. Real-space/sliced-model and
-multiprocess scope explicitly refuse; historical workers/defaults remain unchanged.
-The next boundary is actual native callback qualification and deliberate prepared/
-numbered mixed-policy integration, retaining output/process closure. Prior verified
-complete-command/source-selector evidence remains valid and need not be repeated.
+A01 remains partial; A02 quantitation remains gated. Explicit reciprocal guard
+v2 admits only four ULP of unit-cell roundoff; strict v1/default remains exact.
+Focused/native/installed checks and zero-cycle initialization pass. A fresh
+one-cycle attempt stops before optimizer calls on native common F/sigma scaling.
+The passive diagnostic measures a 254.634 factor, unchanged original indices/
+Free-R/HL and invariant Rwork. This compatibility failure is preserved; no new
+fitted model or ordinary adoption is claimed. Next is separately witnessed native
+normalization, then optimizer/output/process closure and declared prepared-policy
+integration. See [exact evidence and limits](metal-development-handoff.md).
 
 The next named
 subgoal is [source-bound ordinary parent admission](metal-ordinary-receiving.md#current-admission-boundary-and-next-a01-subgoal).

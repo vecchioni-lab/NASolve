@@ -8,6 +8,7 @@ remain separate. Frozen individual-ADP and coordinate-only protocols are unchang
 """
 from copy import deepcopy
 import json
+import math
 import re
 from types import SimpleNamespace
 
@@ -81,7 +82,23 @@ class DiffractionReference:
                     phases=phases['count'], target=target)
 
 
-def _capture(fo, flags, hl):
+def _cell_roundoff_policy(value):
+    _require(type(value) is int and value in (0, 4),
+             'Cell roundoff allowance must be explicitly 0 or 4 ULP')
+    return value
+
+
+def _same_cell(left, right, allowance):
+    if allowance == 0:
+        return left == right
+    return len(left) == len(right) == 6 and all(
+        math.isfinite(a) and math.isfinite(b)
+        and abs(a-b) <= allowance * max(math.ulp(a), math.ulp(b))
+        for a, b in zip(left, right))
+
+
+def _capture(fo, flags, hl, *, cell_roundoff_ulps=0):
+    allowance = _cell_roundoff_policy(cell_roundoff_ulps)
     _require(fo is not None and flags is not None and hl is not None,
              'Missing native observations, Free-R or HL')
     _require(list(fo.indices()) == list(flags.indices()) == list(hl.indices()),
@@ -93,7 +110,7 @@ def _capture(fo, flags, hl):
     _require(all(type(value) is bool for value in flags.data()),
              'Native Free-R assignments must be boolean membership')
     _require(all(array.space_group() == fo.space_group()
-                 and array.unit_cell().parameters() == fo.unit_cell().parameters()
+                 and _same_cell(array.unit_cell().parameters(), fo.unit_cell().parameters(), allowance)
                  for array in (flags, hl)), 'Native diffraction crystal frames differ')
     from .metal._xyz_native import reflection_signature, phase_signature
     holder=SimpleNamespace(f_obs=lambda:fo, r_free_flags=lambda:flags)
@@ -102,18 +119,20 @@ def _capture(fo, flags, hl):
                                  allow_nan=False))
 
 
-def observe_diffraction(reference, fmodel):
+def observe_diffraction(reference, fmodel, *, cell_roundoff_ulps=0):
     """Observe the active manager; caller retains native-source/version binding."""
-    captures=_capture(fmodel.f_obs(), fmodel.r_free_flags(), fmodel.hl_coeffs())
+    captures=_capture(fmodel.f_obs(), fmodel.r_free_flags(), fmodel.hl_coeffs(),
+                      cell_roundoff_ulps=cell_roundoff_ulps)
     return reference.state(*captures, target=fmodel.target_name)
 
 
-def observe_target(reference, fmodel, functor):
+def observe_target(reference, fmodel, functor, *, cell_roundoff_ulps=0):
     """Observe actual target arrays for XYZ or group B without broadening either."""
     _require(functor.manager is fmodel, 'Target owns a different diffraction manager')
-    observe_diffraction(reference, fmodel)
+    observe_diffraction(reference, fmodel, cell_roundoff_ulps=cell_roundoff_ulps)
     core=functor.core
     _require(getattr(core,'spacialization',None) == 'hl', 'Target is not HL-specialized')
     captures=_capture(getattr(core,'f_obs',None), getattr(core,'r_free_flags',None),
-                      getattr(core,'experimental_phases',None))
+                      getattr(core,'experimental_phases',None),
+                      cell_roundoff_ulps=cell_roundoff_ulps)
     return reference.state(*captures, target=fmodel.target_name)

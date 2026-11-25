@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Distinguish native cell roundoff from observation normalization
+
+- Add an explicit cell-only four-ULP guard v2; strict default/v1 stays unchanged.
+  Keep exact space-group operators, indexing, Free-R, HL and amplitude contracts.
+- Qualify source/native/installed controls and fresh initialization; preserve the
+  native cycle refusal on common F/sigma normalization before optimizer calls.
+  Record the measured scale separately. No completed fit, ordinary adoption,
+  original data changes, historical payload changes or checkpoint migration.
+
 ### Enforce an explicit reciprocal XYZ/group-B runtime scope
 
 - Add a separately versioned native guard around existing execution, with exact

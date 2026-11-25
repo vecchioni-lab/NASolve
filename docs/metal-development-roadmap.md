@@ -18,20 +18,19 @@ Hg moves 0.089 / 0.086 Å; Rfree is 0.3371 / 0.3362. Existing B machinery
 previews base/donor alternatives from the returned models without changing them.
 No selected endpoint, f″ result or global real-space qualification follows.
 
-**Latest A01 increment:** the separate reciprocal XYZ/group-B runtime guard now
-passes 17 source/17 installed controlled-dispatch checks, actual-native failure
-restoration and a new 8.99-second zero-cycle initialization (859 atoms, 42 B groups,
-two links, three full model observations). No fit or native optimizer qualification
-is claimed. Real-space and multiprocess scope explicitly refuse. See the
-[runtime boundary](metal-ordinary-receiving.md#explicit-reciprocal-xyzgroup-b-runtime-guard).
+**Latest A01 increment:** an explicit four-ULP cell-only guard v2 passes focused,
+native and installed checks; strict v1 remains unchanged. Native initialization
+passes, but the fresh cycle stops before XYZ/group-B calls because Phenix scales
+F and sigma by 254.634. A passive diagnostic confirms unchanged Free-R/HL and
+invariant Rwork across that normalization. This is a preserved compatibility
+blocker, not a new fitted endpoint. See the [current handoff](metal-development-handoff.md).
 
-**Next A01 subgoal:** qualify the actual native reciprocal optimizer callbacks,
-then receive Cedar's prepared/backbone interfaces and connect the explicitly
-versioned mixed declaration through the ordinary numbered owner with output and
-process closure. Real-space sliced/auxiliary models need their own identity proof.
-Keep prior complete-command/source-selector evidence; their v1 policy permits
-file rebinding only. Do not relabel altered scope/target as historical V11/V12.
-FT private ancestry remains unavailable; PDU has no HL. No new endpoint acceptance.
+**Next A01 subgoal:** explicitly witness native common-scale normalization,
+then qualify actual native optimizer/output/process closure before adopting the
+prepared/ordinary numbered interfaces. Preserve original observations and exact
+index/flag/HL ownership. Do not loosen the cell rule for amplitudes. Real-space
+identity, FT ordinary ancestry and mixed-policy receiving remain separate gates.
+Prior command/source-selector evidence stays valid; no unchanged fit repeat.
 
 **Latest mechanical increment:** the passive diffraction observer now carries
 independently read source captures to the active manager and actual native HL

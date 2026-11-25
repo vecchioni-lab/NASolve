@@ -120,6 +120,49 @@ class NativeChecks(unittest.TestCase):
         self.core=SimpleNamespace(spacialization='hl',f_obs=self.fo,r_free_flags=self.flags,experimental_phases=self.hl)
         self.functor=SimpleNamespace(manager=self.fm,core=self.core)
 
+    def test_opt_in_cell_roundoff_keeps_strict_default(self):
+        import math
+        values=list(self.flags.unit_cell().parameters())
+        values[-1]=math.nextafter(math.nextafter(values[-1],math.inf),math.inf)
+        cs=crystal.symmetry(unit_cell=values,space_group_symbol='P1')
+        self.flags=self.flags.customized_copy(crystal_symmetry=cs)
+        self.assertNotEqual(self.flags.unit_cell().parameters(),self.fo.unit_cell().parameters())
+        with self.assertRaisesRegex(ValueError,'crystal'):observe_diffraction(reference(),self.fm)
+        self.assertEqual(observe_diffraction(reference(),self.fm,cell_roundoff_ulps=4)['observations'],3)
+        self.core.r_free_flags=self.flags
+        self.assertTrue(observe_target(reference(),self.fm,self.functor,cell_roundoff_ulps=4)['exact_source_values'])
+        self.flags=self.flags.customized_copy(data=flex.bool([True,True,False]))
+        with self.assertRaises(ValueError):observe_diffraction(reference(),self.fm,cell_roundoff_ulps=4)
+
+    def test_roundoff_cannot_admit_different_cell_or_group(self):
+        for cs in [crystal.symmetry(unit_cell=(20,21,22,90,90,90.000001),space_group_symbol='P1'),
+                   crystal.symmetry(unit_cell=(20,21,22,90,90,90),space_group_symbol='P-1')]:
+            self.flags=self.flags.customized_copy(crystal_symmetry=cs)
+            with self.assertRaisesRegex(ValueError,'crystal'):observe_diffraction(reference(),self.fm,cell_roundoff_ulps=4)
+
+    def test_same_number_different_space_group_operators_refuse(self):
+        from cctbx import sgtbx
+        original=sgtbx.space_group_info('R 3:H').group()
+        changed=sgtbx.space_group_info('R 3:R').group()
+        self.assertEqual(original.type().number(),changed.type().number())
+        self.assertNotEqual(original,changed)
+        # Deliberately inconsistent synthetic frame: the operator comparison
+        # must refuse before any use of the reciprocal arrays.
+        cell=(20,21,22,90,90,90)
+        cs=crystal.symmetry(unit_cell=cell,space_group=original,
+                            assert_is_compatible_unit_cell=False)
+        other=crystal.symmetry(unit_cell=cell,space_group=changed,
+                               assert_is_compatible_unit_cell=False)
+        self.fo=self.fo.customized_copy(crystal_symmetry=cs)
+        self.flags=self.flags.customized_copy(crystal_symmetry=other)
+        self.hl=self.hl.customized_copy(crystal_symmetry=cs)
+        with self.assertRaisesRegex(ValueError,'crystal'):
+            observe_diffraction(reference(),self.fm,cell_roundoff_ulps=4)
+
+    def test_arbitrary_roundoff_allowances_refuse(self):
+        for value in [True,1,8,-1,4.0]:
+            with self.subTest(value=value),self.assertRaises(ValueError):observe_diffraction(reference(),self.fm,cell_roundoff_ulps=value)
+
     def test_native_arrays(self):
         self.assertEqual(observe_diffraction(reference(),self.fm)['observations'],3)
 

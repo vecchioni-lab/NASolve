@@ -294,12 +294,37 @@ guard summary is 2,593 bytes. Exact commands and failures are in
 Checkout: `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/runtime-guard.html`.
 No full suite or new fitted endpoint.
 
-**Next:** qualify real native optimizer callbacks for this explicit reciprocal
-policy, then receive prepared/backbone interfaces and connect a newly declared
-mixed policy to the ordinary numbered owner with complete output/process closure.
-Real-space coverage requires separate auxiliary/sliced-model identity proof.
-The command-binding v1 still permits only file rebinding; a scope/target change
-must be explicit in a new receiving policy. A01 partial; A02 quantitation gated.
+### Explicit cell representation and native normalization boundary
+
+`cell_roundoff_ulps=4` opts into `native-reciprocal-xyz-group-b-guard-v2` and
+records `unit_cell_roundoff_ulps: 4`. The default zero keeps v1 behavior/receipt.
+Only integer 0 or 4 is valid. Finite cell parameters may differ by at most four
+times their larger machine ULP; full space-group operators remain exact. This
+rule does not change reflection values, indexing, Free-R or HL permissions.
+Same-number R3:H/R3:R and materially different cells explicitly refuse.
+
+33 focused tests/15 native skips, 29 source-native and 29 installed-native cases,
+19 installed controlled-dispatch cases and actual-hook restoration pass under
+Phenix2.2.1-6174. Fresh zero-cycle initialization passes in8.11s. The one-cycle
+attempt stops after22.79s during initial bulk-solvent scaling, before optimizer
+calls, on the unchanged exact-source observation rule. An additional7.48s passive
+diagnostic observes `apply_scale_k1_to_f_obs`: sc=0.003927205514531679, so both
+F and sigma multiply254.63398752617874–254.6339875261788. All1151 indices,59 Free
+members and HL remain exact; Rwork0.33878222692706655→0.3387822269270665. The native
+routine is a normalization, but v2 does not authorize it. No cycle completes.
+
+Failed attempts remain immutable. Source/loaded/wheel, full-operator and external
+stop checks are in `a01-mixed-runtime-roundoff-20261125-01/review.json`; diagnostic
+receipts in `a01-mixed-runtime-cycle-20261125-04`. Runners A781–A795 and compact
+checkout `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/scale-boundary.html`.
+No native installation, historical payload or original observation file changes.
+
+**Next:** declare and qualify separately witnessed native normalization, then
+actual reciprocal optimizer/output/process closure before prepared-numbered
+adoption. Preserve source identity and exact index/Free-R/HL assignment; never
+extend cell tolerance to amplitude changes. Command-binding v1 permits file
+rebinding only; mixed scope/target changes need a new receiving policy. Real-space
+identity and ordinary FT ancestry remain open. A01 partial; A02 gated.
 
 ## Ordered integration steps
 
