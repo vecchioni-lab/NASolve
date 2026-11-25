@@ -4,7 +4,7 @@
   "updated": "2026-11-25",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "a8a96c1b40c48baab8c161b5ad17d0de24e5da62",
+  "audited_code_commit": "b45e2ba06a3039da4a3935408aea5e328cb18bfb",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -1126,13 +1126,14 @@
         "W270: Four saved original/recut LNA eligibility checks plus one nonidentity in-memory3LNA whole-A preview (16nodes). Whole-asym/TLS uniformity passes unchanged/whole-A; eight-path cuts fail on A/B/D and4TLS groups. Inventory covers66/59 coordinate categories plus2attached definition blocks each,82/75 category occurrences. Source ASU target/copy distinguished from full physical strands; R3 nick remains unassigned.",
         "W271: 82/75 original category occurrences have explicit output actions;27 sensitive columns per source are null/absent. 3LNA supplied polymer mass center matches within3.73e-7 A and changes15.9132 A under whole-A recut. Two new native synthetic controls: raw TLS invariant1.11e-16 A2; nonzero-trace x rotation changes native S33 interpretation3.66519 A2, zero-trace control2.22e-16 A2. Prior R3 native controls reused, not rerun.",
         "W272: 185 focused source/185 relocated installed,2 skips each;218 installed files. Five missing-API and four pre-guard metadata regressions demonstrated. Exact installed3LNA document/report after relocation. New whole-A draft retains1271 atoms and re-expresses327 deposited U tensors;3813 serialized assembly instances per namespace retain endpoints within4.27e-14 A. Complete Phenix2.2.1-6174 native readback XYZ1.07e-14 A/U3.55e-15 A2;1484-index relative Fcalc4.28e-15. No fit or native TLS restart.",
-        "W273: Exact W2723LNA draft:all60 declared backbone edges covered (51ordinary-only,7both,2explicit-only),58ordinary/9explicit;Cedar CHECKED,zero unmatched/sequence conflicts. Distances1.59909\u20131.62140A;source/output distance change<=3.33e-15A and phosphate-angle change<=3.41e-13deg. Four discriminating controls;source/draft untouched. No native repeat."
+        "W273: Exact W2723LNA draft:all60 declared backbone edges covered (51ordinary-only,7both,2explicit-only),58ordinary/9explicit;Cedar CHECKED,zero unmatched/sequence conflicts. Distances1.59909\u20131.62140A;source/output distance change<=3.33e-15A and phosphate-angle change<=3.41e-13deg. Four discriminating controls;source/draft untouched. No native repeat.",
+        "W274: 197source/197relocated installed,2skips each;218files;12missing-API failures plus one tuple/list round-trip failure corrected. Actual public-reader60-edge report equals W273 within6.66e-16A/2.84e-14deg and is exact after package/input relocation. Wrong original frame flags edge90. No native/model output."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "W274: agree public Cedar per-ordinary-step endpoint/measurement evidence (current public report is aggregate), then maintain graph-to-serialized-link coverage before an atomic immutable output wrapper. Preserve missing/ambiguous links, original labels and unresolved R3 nick phase; no private-reader dependency or guessed bonds. Full regression remains deferred to integration under the current coordinated window.",
+      "next_action": "W275: immutable export/replay boundary for supported reviewed drafts,using existing artifact anchors and receipt-last packet semantics;require complete coverage,preserve source and expose remaining native/geometry review.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -1163,14 +1164,15 @@
         "E_WHOLE_ASYM_ELIGIBILITY",
         "E_WHOLE_ASYM_OUTPUT_PLAN",
         "E_WHOLE_ASYM_DRAFT",
-        "E_WHOLE_ASYM_BACKBONE_COVERAGE"
+        "E_WHOLE_ASYM_BACKBONE_COVERAGE",
+        "E_SERIALIZED_BACKBONE_COVERAGE"
       ],
       "last_audit": {
         "date": "2026-11-25",
-        "human_update": 273,
-        "code_commit": "a8a96c1b40c48baab8c161b5ad17d0de24e5da62",
-        "reviewer": "Linden; next API boundary coordinated with Rowan",
-        "scope": "Exact whole-chain backbone coverage qualified;P03 PARTIAL,maintained coverage/public ordinary evidence/output wrapper/native restart remain open"
+        "human_update": 274,
+        "code_commit": "b45e2ba06a3039da4a3935408aea5e328cb18bfb",
+        "reviewer": "Linden with Rowan public-reader handoff",
+        "scope": "Maintained public-reader coverage qualified;P03 PARTIAL,immutable output/native restart/mixed cuts remain open"
       }
     },
     {
@@ -8215,6 +8217,179 @@
           "size": 4485
         }
       ]
+    },
+    "E_SERIALIZED_BACKBONE_COVERAGE": {
+      "kind": "Maintained source-bound public-reader coverage observer",
+      "date": "2026-11-25",
+      "human_update": 274,
+      "code_commit": "b45e2ba06a3039da4a3935408aea5e328cb18bfb",
+      "reference": "docs/topostitch-preview.md#account-for-serialized-backbone-links-through-cedar-w274",
+      "result": "197source/197relocated installed,2skips each;218files;12missing-API failures plus one tuple/list round-trip failure corrected. Actual public-reader60-edge report equals W273 within6.66e-16A/2.84e-14deg and is exact after package/input relocation. Wrong original frame flags edge90. No native/model output.",
+      "limitation": "Explicit Cedar C578 reader binding required;single model/no registered alternates;coverage is not geometry/coordinate acceptance,force activation,nick assignment or output authorization.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/replay.py",
+          "sha256": "13d3af89657ab527a2909007aad28afe612b4bcfabae1737fc2434d4cc8978a4",
+          "size": 4512
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/replay.log",
+          "sha256": "fbbd771eda560fd76c0a3fe45e591f6865ab2e1f9baa9c0b8fb8a98ce61b5c63",
+          "size": 349
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/replay.json",
+          "sha256": "7512aafda38cf59588a8773233cce8ad40de1bac8a948bb80bef92f12e70fb94",
+          "size": 1450
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/actual-coverage.json",
+          "sha256": "735e8754514829d17dbbe8636e76a29e344355dc26ab7e6b3fd6e3505d591e61",
+          "size": 149741
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/wrong-frame-coverage.json",
+          "sha256": "defb9c0e8a303aa6a5b36ca7dc1fae9396448bd5f6680834cf2fc370783bb6df",
+          "size": 150728
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/regression.py",
+          "sha256": "bfff065c5c87f3948c5becfabe9bdd7ef81fd18d0e6916e21b693525828dcac1",
+          "size": 2128
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/regression.log",
+          "sha256": "a07bd2a7f86af6d1c025dc76ed26342aeaed15774dbf0b6a3bff6aecf32e24aa",
+          "size": 76
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/regression.json",
+          "sha256": "4224ebc9e5c6bb6b4c7436b6802d3a89075dd94a321dbbb38ca11cdfb14f7e64",
+          "size": 256
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/before-tests.log",
+          "sha256": "cb183243b541f46cf3d3e5df6c77387dd70b3ea0a80cd64f2a9280a25480c985",
+          "size": 23596
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/initial-tests.log",
+          "sha256": "74925c091b67cb6169bc05b219ee01848cec3a31d0015b1cb589a01dbb5d66de",
+          "size": 99
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/focused.log",
+          "sha256": "1681744078471ce9559e09c35b86d62f70282d2692ad20d9abef488d8b93b94b",
+          "size": 272
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/focused-final.log",
+          "sha256": "8da5e1e1bb7660e32b9956696a4d0eb82f1c3f285601672f68709bcc3cf24280",
+          "size": 272
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/qualify.py",
+          "sha256": "55b20d95c8d744a27f17cd7da28e38411d7bb9cd006fd107616fa9174776cccd",
+          "size": 6254
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/qualification.log",
+          "sha256": "3b3d08072e25dfbd1fabc392f8ae7cb9deaeeeaea73876b5b83622aacf57a335",
+          "size": 497
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/installation.json",
+          "sha256": "e9fb5d6fc864ebbb40af52d110542c50f6be65a2d3dc87a4369e6f7cca37abd6",
+          "size": 13377
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/installed-tests.log",
+          "sha256": "e52ed3f947b616a35d07fbab63982f16531cb946f0e53bebb1b71e8072a25f8b",
+          "size": 272
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/installed-real-replay.log",
+          "sha256": "8903069ada437adf55d05c13dd6479c4f8dca2017a164a58dab7beba4eb61e45",
+          "size": 336
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/json-roundtrip-before.log",
+          "sha256": "bcf3129996cb8e4ab7cd6a6bc6847dd4a176e1657ba72f3e5a2d0c57d1e3b1e0",
+          "size": 1965
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/json-roundtrip-regression.json",
+          "sha256": "047d37e0ff4e379bff1186e984c507a1af32bcb3a6b783c9793d9c3f4a5b310d",
+          "size": 288
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/qualify_final.py",
+          "sha256": "edc62d59bbce75907330b20167ba611919acd1452e6f3ac70aed7f400d13de1a",
+          "size": 6269
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/qualification-final.log",
+          "sha256": "a0b1293cd8523a068b2b2a0835f888b87fbc64ab3bd6a5b55e28193cbf76707c",
+          "size": 91
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/installation-final.json",
+          "sha256": "bc95ca1912da26d2763988892d07378b92f7545ec63d145e0c3f6b3e7859246d",
+          "size": 39853
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/final-installed-tests.log",
+          "sha256": "de41c9251a4cf0233316cb95b99668c41a50270c6063af0d70842270d9296ad8",
+          "size": 272
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/final-installed-real-replay.log",
+          "sha256": "9f506a7f87b578c64b4f29bd4c0efa3465479f158ecf4d7f9efc62bb9eebcf8f",
+          "size": 78
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/final-installed-entry-help.log",
+          "sha256": "4aed80d07d50c2df141abd3b239494370248ad77f02e7c22d36ad7086f5f183f",
+          "size": 2550
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/cleanup.json",
+          "sha256": "e461f013c493fdef8cc06a46186da19155a086a246f69ee47961e2db2eb47438",
+          "size": 153
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w274-public-backbone-coverage/validation.json",
+          "sha256": "6b360bb6bf6d35e7453000ea5668038ef60ecfe26c9f5d729c242242e03fc3e9",
+          "size": 10341
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -8380,8 +8555,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 273,
-    "next": 274,
+    "current": 274,
+    "next": 275,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -9829,6 +10004,12 @@
         "title": "Account for every backbone edge in the serialized whole-chain draft",
         "state": "RECORDED",
         "code_commit": "a8a96c1b40c48baab8c161b5ad17d0de24e5da62"
+      },
+      {
+        "number": 274,
+        "title": "Consume public per-step backbone evidence with exact installed replay",
+        "state": "RECORDED",
+        "code_commit": "b45e2ba06a3039da4a3935408aea5e328cb18bfb"
       }
     ]
   },

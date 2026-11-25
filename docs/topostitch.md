@@ -268,8 +268,9 @@ W273's [serialized backbone audit](topostitch-periodic.md#w273--account-for-seri
 accounts for all 60 declared edges in the actual whole-A draft, distinguishing
 ordinary adjacency from explicit connection/image annotations. Coverage does not
 activate native restraints or assign the R3 physical nick. The next ordinary-save
-boundary requires maintained per-step evidence through Cedar's public interface;
-the local experiment's pinned private helpers are not a production dependency.
+boundary now has [maintained per-step evidence through Cedar’s public interface](topostitch-preview.md#account-for-serialized-backbone-links-through-cedar-w274).
+The local experiment’s pinned private helpers are not a production dependency;
+immutable artifact publication/replay is the next step.
 
 ### Longer coordinate control and matched scientific gate
 

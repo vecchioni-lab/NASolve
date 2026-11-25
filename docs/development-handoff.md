@@ -1,20 +1,36 @@
 # NASolve development handoff — Willow
 
-**Current science audit: W273, 2026-11-25; code remains W272.** All **60**
-declared backbone edges are accounted for in the exact whole-A CIF: 51 ordinary
-only, seven ordinary plus explicit, two explicit only. Cedar reads 58 ordinary
-steps/nine explicit O3′–P rows, zero unmatched/sequence conflicts. A116→D107 now
-uses identity at 1.609463 Å; B117→B101 remains `-y,x-y,z` at 1.608016 Å. Source/output
-length/angle differences are round-off. Four controls distinguish missing,
-wrong-image, duplicate endpoints and harmless redundant ordinary annotations.
-No new native run or geometry repair. [Evidence](topostitch-periodic.md#w273--account-for-serialized-backbone-links).
+**Current code/qualification: W274, 2026-11-25** (source `b45e2ba06a3039da4a3935408aea5e328cb18bfb`).
+The [serialized-backbone observer](topostitch-preview.md#account-for-serialized-backbone-links-through-cedar-w274)
+now uses Cedar's public per-step API, with no private Cedar helper dependency.
+It accounts for every declared edge, preserves ordinary/explicit overlap and
+flags missing, wrong-image, ambiguous and unexpected links across declared nicks.
+LONG/PARTIAL_ANGLES remain geometry review, distinct from known connectivity.
+
+**197 focused source / 197 relocated installed**, two skips each; 218 installed
+files. Twelve tests fail on the exact previous module. Installed replay caught a
+tuple/list mismatch in saved reports; a new round-trip assertion fails before the
+normalization fix and passes afterward. The installed actual 60-edge report is
+now exactly equal after package/staged-input relocation. Commands and all initial/
+final evidence: NASolve anchor
+`branch-artifacts/willow/w274-public-backbone-coverage/validation.json`.
+
+**Cedar interface:** commit `42da4bb1697eb6278fc3a74fc305b0a798d7b9fc`, public module
+SHA `fbcdb7b4f5e9ceb698e7e9b16e487194a855cdd651d695553092d3771d08e751`.
+Pass an explicit compatible source/hash until integration. This qualifies the
+specific reader boundary, not a merged-branch build. No existing default changes.
+
+**Science remains W273's exact draft:** 60 edges, 51 ordinary only/seven both/two
+explicit only. Public-reader geometry agrees within 6.66e-16 Å / 2.84e-14°;
+supplying the original CIF against the new whole-A graph correctly flags edge90's
+image conflict. No new coordinate, native calculation, refinement or nick choice.
 
 **Testing window:** W272's completed 185 source / 185 installed checks stand. One full-suite
 attempt was stopped on Rowan's confirmed focused-window instruction: 1,417 passes,
 one skip, 234 subtests, 96.91 s, SIGINT/exit 2. It is incomplete; full regression remains
 an integration gate. No source/installed test or native evidence is relabelled.
 
-**Current code: W272, 2026-11-25** (source `a8a96c1b40c48baab8c161b5ad17d0de24e5da62`).
+**Underlying draft API: W272, 2026-11-25** (source `a8a96c1b40c48baab8c161b5ad17d0de24e5da62`).
 The [whole-asym draft API](topostitch-preview.md#prepare-a-reviewed-whole-asym-cif-draft-w272)
 returns source-bound CIF bytes plus a receipt through the existing owners. It
 requires explicit category-retention review, uniform original-asym/TLS images
@@ -68,7 +84,7 @@ controls are reused; no deposited tensor or coordinate was changed. See
 [exact scope and commands](topostitch-periodic.md#w271--plan-output-fields-and-separate-native-tls-interpretation).
 No product code, installed artifact or runtime schema changed.
 
-**Next W274; P03 remains partial.** W274: agree public Cedar per-ordinary-step endpoint/measurement evidence (current public report is aggregate), then maintain graph-to-serialized-link coverage before an atomic immutable output wrapper. Preserve missing/ambiguous links, original labels and unresolved R3 nick phase; no private-reader dependency or guessed bonds. Full regression remains deferred to integration under the current coordinated window.
+**Next W275; P03 remains partial.** W275: immutable export/replay boundary for supported reviewed drafts,using existing artifact anchors and receipt-last packet semantics;require complete coverage,preserve source and expose remaining native/geometry review.
 
 
 Rowan's receiving gate remains separate: two good symmetry-bond lengths can hide

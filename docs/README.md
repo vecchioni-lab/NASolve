@@ -7,10 +7,14 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Current reader integration: W274.** [Serialized backbone coverage](topostitch-preview.md#account-for-serialized-backbone-links-through-cedar-w274)
+  consumes Cedar's public per-step evidence. 197 source/197 installed, two skips;
+  exact actual-file replay after relocation. No ordinary writer or native restart.
+
 - **Current science audit: W273.** [Every serialized backbone edge](topostitch-periodic.md#w273--account-for-serialized-backbone-links)
   is accounted for in the exact whole-chain draft: 58 ordinary links, nine
   explicit records with seven overlaps, 60 unique edges. No new geometry or
-  runtime code; maintained ordinary output awaits the public evidence boundary.
+  runtime code in that audit; W274 now supplies the maintained public-reader consumer.
 
 - **Current draft boundary: W272.** [Reviewed whole-asym CIF drafts](topostitch-preview.md#prepare-a-reviewed-whole-asym-cif-draft-w272)
   preserves source labels/categories, re-expresses metadata coherently and passes
