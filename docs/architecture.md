@@ -8,6 +8,22 @@ while preserving protected B/Q/f′/f″ values. It supplies no executor, callba
 installation, force or selection decision. Ordinary numbered-runtime integration
 and phase ancestry remain separate; historical metal XYZ protocols are unchanged.
 
+The same recipe writer now accepts explicit `parameter_scope` / `scope_model`
+arguments. `refinement_parameter_text` reuses the existing PDB/atom-selector owners,
+checks exact source bytes, inventory and initial XYZ/B/Q, and refuses ambiguous
+native identities. It emits only declared XYZ atoms and ordered B groups, with
+protected atomic ADP controls and fixed scattering flags. Omission leaves ordinary
+bytes unchanged. The full native observer remains the execution authority;
+parameter serialization alone does not bind an ordinary checkpoint or phases.
+Whole-object PHIL formatting rounds float literals, so original fixed-scattering
+inputs must not be silently reformatted during receiving composition.
+
+Historical counted V5–V8 code preparation now obtains `topostitch_native_recipe.py`
+from `data/refinement-runtime-native-recipe-sources.json`, retaining its already
+qualified SHA-256. Modern direct callers retain the newer explicit native-crystal
+binding. Existing policy identifiers/digests and saved payloads are unchanged;
+this repairs new preparation of old policies without adopting new helper behavior.
+
 Explicit ordinary `observe_declared_sites=True` uses graph-valid projections from
 checked preparation to record non-triple modified sites as well as triples. The
 v9 request retains exact frozen v3 native code and all established execution/source/

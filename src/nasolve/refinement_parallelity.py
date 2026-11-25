@@ -183,6 +183,14 @@ def _code(policy=None):
         _need(isinstance(legacy,dict) and set(legacy)=={'cif_counted_phase.py','cif_counted_refinement.py'}
               and all(isinstance(value,str) for value in legacy.values()), 'Invalid frozen v7 helper source set')
         frozen.update(legacy)
+    if policy in _COUNTED_POLICIES:
+        # Live recipe helpers may evolve independently; old native policies must
+        # retain their already-qualified bytes rather than silently adopt them.
+        legacy=json.loads((package/'data/refinement-runtime-native-recipe-sources.json').read_text())
+        _need(isinstance(legacy,dict) and set(legacy)=={'topostitch_native_recipe.py'}
+              and isinstance(legacy['topostitch_native_recipe.py'],str),
+              'Invalid frozen native-recipe helper source set')
+        frozen.update(legacy)
     expected=_SOURCES[policy]
     values={name:frozen[name].encode('utf-8') if name in frozen else (package/name).read_bytes()
             for name in expected}

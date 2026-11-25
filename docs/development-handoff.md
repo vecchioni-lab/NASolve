@@ -8,24 +8,25 @@ observation and storage owners; it introduces no new scientific policy.
 ## Current metal-science edge
 
 A01 remains partial; A02 scientific quantitation remains gated. The explicit
-[mixed XYZ/group-B observer](metal-development-handoff.md#a01-parameter-scope-2026-11-25)
-now checks source-bound initialization, compiled selections, actual optimizer
-parameters and protected atomic values without FT-specific names/counts.
-74 focused and 74 installed tests pass. Four saved five-cycle endpoints replay;
-one new Phenix 2.2.1-6174 cycle observes 573 XYZ/69 group-B evaluations and
-20 model states, followed by 80 independent cold checks. Hg moves 0.0925 Å while
-B/Q/f′/f″ remain fixed. Its Rwork/Rfree 0.30985/0.34224 is mechanics evidence,
-not a selected solution. A failed initial harness remains recorded; all jobs stop.
+[mixed XYZ/group-B observer and scoped writer](metal-development-handoff.md#a01-parameter-scope-2026-11-25)
+now carry exact source-bound coordinate/B selections into a dry initialized native
+receiver. Thirty writer regressions, 126 native compiler/binding checks and 111
+installed writer/observer/payload checks pass. Sixteen ordinary writer outputs
+remain byte-identical. The dry receiver preserves original HL/Free-R/scattering,
+both crystal links and protected Hg B/Q/f′/f″; it performs no optimization.
+The failed whole-PHIL rounding attempt remains preserved alongside the corrected
+literal-preserving composition. Earlier actual-cycle and endpoint evidence stays
+at its original source hashes rather than being claimed for this writer.
 
-The follow-on 39-check native selection control reuses exact atom export and
-qualifies PHIL formatting. It demonstrates that appending restricted selections
-after `all` retains the broad fields, so the ordinary writer must construct scoped
-fields directly. No additional refinement, writer activation or phase change.
+Adjacent focused testing found a pre-existing historical helper mismatch after
+`b0133082`. A packaged frozen native-recipe resource restores the exact old V5–V8
+payload bytes while retaining the modern live helper. All 140 affected compatibility,
+counted-caller and crystal-binding checks pass; the initial 35 failures/156 passes
+remain recorded. No historical policy hashes or saved artifacts were changed.
 
-Next compose this helper with Cedar C567/C570's ordinary versioned receiving
-owner, and separately close original anomalous/experimental-phase ancestry.
-No CLI/default activation, shared runtime replacement, ordinary checkpoint
-adoption, legacy metal XYZ migration, science upload or new full-suite claim.
+Next compose with Cedar's versioned ordinary receiving owner and independently
+bind original anomalous/experimental-phase ancestry. No CLI/default activation,
+new native executor, ordinary checkpoint adoption, scientific selection or upload.
 The last full integration qualification remains exactly as recorded below.
 
 ## Qualified integration checkpoint — test-only amendment

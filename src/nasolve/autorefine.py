@@ -12,7 +12,10 @@ import tempfile
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Callable, Mapping, Sequence
+from typing import TYPE_CHECKING, Callable, Mapping, Sequence
+
+if TYPE_CHECKING:
+    from .refinement_parameter_scope import ParameterScope
 
 from .ligand_profiles import validate_model_phosphate_policy
 from .phosphate import PhosphateError, requested_op3_sites
@@ -322,7 +325,33 @@ def write_recipe_parameters(
     anomalous_groups: Mapping[str, Mapping[str, object]] | None = None,
     counted_protocol: str | None = None,
     counted_crystal: Mapping[str, object] | None = None,
+    parameter_scope: ParameterScope | None = None,
+    scope_model: bytes | None = None,
 ) -> tuple[str, ...]:
+    """Write one recipe; optional exact parameter selections never widen defaults.
+
+    The explicit scope is a serialization API only. Its caller must separately
+    authenticate source/scattering/phase ancestry and observe actual native
+    compiled selections and optimizer state throughout execution. No ordinary
+    caller or CLI enables this option implicitly.
+    """
+    scoped = None
+    if parameter_scope is not None or scope_model is not None:
+        from .refinement_parameter_text import selection_text
+        try:
+            scoped = selection_text(parameter_scope, scope_model)
+        except (TypeError, ValueError) as exc:
+            raise AutoRefineError(str(exc)) from exc
+        if not (
+            counted_protocol is None and adp_mode == "group"
+            and refine_coordinates is True and refine_occupancies is False
+            and type(real_space_sites) is bool and real_space_sites == scoped.real_space
+            and anomalous_mode in {"off", "fixed"}
+        ):
+            raise AutoRefineError(
+                "Explicit parameter scope requires matching XYZ/real-space, group B, "
+                "fixed occupancy/scattering choices and no counted control"
+            )
     if counted_protocol is not None:
         from .refinement_counted import control_iteration_cap
         try:
@@ -396,6 +425,12 @@ def write_recipe_parameters(
             reflection_arrays.append((phase_file, [phase_labels]))
 
     lines: list[str] = []
+    if scoped is not None:
+        lines.extend([
+            "# Explicit parameter-scope SHA-256: " + scoped.scope_sha256,
+            "# Source-model SHA-256: " + scoped.source_sha256,
+            "# Selection text only; native binding/observation and ancestry remain required.",
+        ])
     if selector_policy.use_data_manager:
         lines.append("data_manager {")
         for reflection_file, label_sets in reflection_arrays:
@@ -436,18 +471,29 @@ def write_recipe_parameters(
             "    apply_overall_isotropic_scale_to_adp = False",
             "    find_and_add_hydrogens = False",
         ] if counted_protocol is not None else []),
+        *([
+            "    apply_overall_isotropic_scale_to_adp = False",
+            "    find_and_add_hydrogens = False",
+        ] if scoped is not None else []),
         "  }",
+        *([
+            "  bulk_solvent_and_scale {",
+            "    apply_back_trace = False",
+            "  }",
+        ] if scoped is not None else []),
         "  refine {",
         "    strategy = " + " ".join(f"*{strategy}" for strategy in strategies),
         "    sites {",
-        "      individual = all",
+        "      individual = " + (json.dumps(scoped.xyz) if scoped is not None else "all"),
         "    }",
     ])
     if adp_mode == "group":
         lines.extend([
             "    adp {",
-            "      group_adp_refinement_mode = one_adp_group_per_residue",
-            "      group = all",
+            "      group_adp_refinement_mode = " + (
+                "group_selection" if scoped is not None else "one_adp_group_per_residue"),
+            *(["      group = " + json.dumps(group) for group in scoped.groups]
+              if scoped is not None else ["      group = all"]),
             "    }",
         ])
     elif adp_mode == "individual":
@@ -467,7 +513,8 @@ def write_recipe_parameters(
             f'        selection = "{escaped}"',
             f"        f_prime = {group.get('f_prime', 0)}",
             f"        f_double_prime = {group.get('f_double_prime', 0)}",
-            ("        refine = f_prime *f_double_prime" if anomalous_mode == "fdp-only"
+            ("        refine = None" if scoped is not None and anomalous_mode == "fixed"
+             else "        refine = f_prime *f_double_prime" if anomalous_mode == "fdp-only"
              else "        refine = *f_prime *f_double_prime"),
             "      }",
             "    }",
@@ -490,6 +537,7 @@ def write_recipe_parameters(
             "  pdb_interpretation.restraints_library.cdl = False",
             "  pdb_interpretation.restraints_library.cdl_nucleotides.enable = False",
         ] if counted_protocol is not None else []),
+        *(["  pdb_interpretation.sort_atoms = False"] if scoped is not None else []),
         "  output {",
         "    write_final_geo_file = True",
         "  }",

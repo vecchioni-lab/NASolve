@@ -8,6 +8,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Add explicit source-bound XYZ/group-B parameter writing
+
+- Let Python callers supply a pinned parameter scope and its exact PDB bytes to
+  the existing recipe writer. Construct exact XYZ/B fields directly, retain
+  fixed occupancy/scattering choices, and disable atomic ADP back-trace/rescaling.
+- Keep ordinary parameter bytes and defaults unchanged. Qualify native compiled
+  flags/source binding and a dry initialized receiver; retain separate original
+  MLHL/scattering policy and the failed whole-PHIL rounding diagnostic.
+- Preserve historical counted V5–V8 native-recipe bytes in a packaged frozen
+  resource after the live crystal-binding helper evolved. Do not update old
+  policy hashes or replace the modern live helper.
+- Ordinary versioned runtime adoption, phase ancestry and scientific acceptance
+  remain open. No new optimization, CLI/campaign activation, artifact migration
+  or full-suite claim.
+
 ### Qualify exact atom selections for the ordinary refinement handoff
 
 - Reuse existing atom identity export in four native PHIL/selection/formatting

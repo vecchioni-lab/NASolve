@@ -18,25 +18,24 @@ Hg moves 0.089 / 0.086 Å; Rfree is 0.3371 / 0.3362. Existing B machinery
 previews base/donor alternatives from the returned models without changing them.
 No selected endpoint, f″ result or global real-space qualification follows.
 
-**Next A01 step:** compose the now-qualified explicit XYZ/group-B protection
-helper with Cedar C567/C570's versioned ordinary prepared-backbone/numbered-round
-owner. The helper and read-only native adapter pass 74 focused/74 installed tests,
-four saved endpoint replays and one newly observed native cycle; this does not
-activate ordinary callbacks. Retain source/state/optimizer/output/stopping proof.
-Separately close original anomalous/HL/Free-R ancestry before adapting the endpoint
-to existing metal B/f″ readers. Preserve metal XYZ v1 replay and source REVIEW
-state; do not relabel private controls or invent ancestry. Exact evidence and
-remaining scientific gates are in the [handoff](metal-development-handoff.md#a01-parameter-scope-2026-11-25).
-39 native PHIL/cache/formatting checks now qualify the existing exact selector
-export. Appending restricted fields after `all` retains the broad fields;
-construct scoped fields directly with `group_selection`. The ordinary writer's
-current `group = all` must become an explicit scoped
-choice for this policy, with metal exclusions, no ADP back-trace and versioned
-native observation. Keep its existing source/process owner. The current checkout
-is `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/index.html`, with the
-`selection-text.html` addendum. The parser control changes no active writer/runtime.
-No new cap/weight grid or unchanged native/test replay. Consult A430 before strict
-derivative probes: direct-summation diagnostics and native FFT baselines differ.
+**Next A01 step:** compose the explicit parameter observer and now-qualified
+scoped writer with Cedar's versioned ordinary prepared-backbone/numbered-round
+owner. Thirty writer regressions, 126 native compiled/source-binding checks and
+one zero-cycle initialized receiver qualify the current boundary. The dry receiver
+retains original phases/Free-R/scattering and both crystal links; it does not
+activate ordinary callbacks or produce a new fitted endpoint. The whole-PHIL
+rounding failure is retained; preserve original scientific literals during
+composition. Exact selection text must replace `all`, never append to it.
+
+Historical counted V5–V8 payload preparation again uses its exact old native-recipe
+bytes, with 140 focused checks; modern live crystal binding remains separate.
+Installed verification passes 111 focused writer/observer/payload tests. No
+unchanged native fit or full suite. Evidence and remaining gates are in the
+[handoff](metal-development-handoff.md#a01-parameter-scope-2026-11-25), with compact
+checkout `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/scoped-writer.html`.
+Retain input/state/optimizer/output/stopping proof and bind original anomalous/
+HL/Free-R ancestry before endpoint-to-B/f″ adoption. Preserve legacy XYZ replay
+and source REVIEW state. No automatic acceptance or new cap/weight grid.
 
 A01 next-input review now includes [DF C2 chemical target provenance](metal-df-c2-angle-audit.md). A source-consistent fragment is available, but its eLBOW angles are not independent chemistry authority. Retain explicit source-state uncertainty and coupled-target review; routine donor-state integration remains deferred. No automatic 120° substitution.
 

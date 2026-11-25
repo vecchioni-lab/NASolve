@@ -587,18 +587,41 @@ links. Focused pure/native checks, installed readback and four saved five-cycle
 endpoint replays are documented in the [current handoff](metal-development-handoff.md#a01-parameter-scope-2026-11-25).
 This establishes a reusable protection mechanism, not a solved metal structure.
 
-**Selection text qualification.** The existing exact atom-selector exporter is
-reused for source-bound XYZ and ordered B-group expressions. Four native PHIL,
-atom-selection and formatting controls preserve exact atom indices, including
-alternate/insertion/segment identities and explicit groups spanning residues.
-This demonstrates syntax and membership, not an implemented ordinary writer or
-native-driver acceptance. In the negative control, appending restricted fields
-after existing `all` fields retains the broad selections. The receiving
-`write_recipe_parameters` must construct those fields directly and use
-`group_adp_refinement_mode = group_selection`, rather than append an apparent
-override. Native compiled/optimizer checks remain mandatory; a parsed selection
-is not proof of execution. Full text belongs once with its protected geometry
-parent, not duplicated into every f″ increment.
+**Explicit parameter writer.** `write_recipe_parameters` now accepts
+`parameter_scope=scope, scope_model=source_bytes`. These arguments must be supplied
+together. The source-bound serializer reuses existing atom identity export and
+requires matching source checksum, atom inventory and initialized XYZ/B/Q. It
+rejects anisotropic sources, ambiguous case-normalized identities and unsafe
+selection tokens. Full native identity/scattering binding remains a separate check.
+The caller must explicitly choose coordinate refinement, matching real-space intent,
+group B, fixed occupancy and anomalous mode `off` or `fixed`; incompatible or counted
+controls refuse before writing. No ordinary caller/CLI currently forwards the option.
+
+XYZ expressions and each disjoint B group replace the writer's ordinary `all`
+fields directly, using `group_adp_refinement_mode = group_selection`. The scoped
+recipe disables atomic ADP back-trace, atomic overall B rescaling, hydrogen addition
+and atom sorting. In explicit fixed-scattering mode the native group has no f′/f″
+refinement flags. Existing requirements for anomalous observations remain; this
+option does not itself establish merged MLHL geometry semantics. Optional omission
+preserves all 16 measured ordinary recipe outputs byte-for-byte.
+
+Thirty focused writer tests and 126 native checks cover nine compiled/source-bound
+cases, including alternate/insertion/segment identities and nonresidue groups.
+Compiled native flags and formatting of selection fields are distinct from actual
+optimizer execution. One new dry receiver consumes eight writer-owned fields with
+the independently retained original scientific policy: 859 XYZ atoms, 42 B groups
+covering 858 DNA atoms, three complete model observations, original HL/Free-R and
+both crystal links. No optimization or ordinary numbered-round adoption occurs.
+
+**Numerical text matters.** Native whole-object PHIL formatting uses ten significant
+digits for floats. A failed dry initialization correctly refuses the rounded fixed
+f′ reference. The corrected private composer retains original scientific literals
+and replaces only the exact writer-owned fields. The writer already preserves
+Python float representations; no fixed-state tolerance was relaxed. Keep this
+failure and source pins when implementing the future ordinary receiver. Do not
+append restricted selections after an existing `all` field: native repeated fields
+are additive. Full selection text belongs once with the protected geometry parent,
+not in every f″ increment.
 
 **Receiving boundary.** Source/checkpoint admission, dictionaries/restraints,
 crystal frame, indexed phases and original anomalous observations/Free-R remain
@@ -606,9 +629,9 @@ with their existing owners. A checksum does not supply those inputs or prove
 ancestry. The record contains no operational file paths. Store one protected
 scope with its important geometry parent, rather than copying it into every
 cheap f″ sibling. Ordinary numbered-round integration and its versioned callback
-capture remain pending. Its parameter writer already supports group ADP but
-currently selects every residue; an explicit scoped choice must exclude protected
-atoms and disable atomic ADP back-trace. Existing fixed-scattering options do not
+capture remain pending. The explicit writer now supplies scoped group ADP and protected atomic
+ADP controls; the ordinary execution owner must opt in and retain matching native
+observations throughout the run. Existing fixed-scattering options do not
 by themselves establish the merged-observation/MLHL geometry policy. Local real-space strategy can be declared, but this
 adapter does not establish full-model real-space execution. Existing
 `metal-phased-xyz-v1` individual-ADP replay remains unchanged; a mixed-group result

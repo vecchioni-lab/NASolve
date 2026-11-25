@@ -15,99 +15,72 @@ not a second queue.
 
 <a id="a01-parameter-scope-2026-11-25"></a>
 
-## Current A01 — parameter observation and exact selection text qualified
+## Current A01 — scoped writer and dry receiver qualified
 
-**Publication audit:** the compact checkout is published at
-`ScienceCheckouts/Hazel/2026-11-25_parameter-protection/index.html`.
-All native jobs/tests are stopped. The original pause and failed attempts remain
-preserved; no completed fit was repeated. The final audit passes **67** checks;
-that observer checkpoint measured **20.23 MB** of local evidence and a **6.8 KB**
-checkout (the small selection addendum is measured separately). The exact commit
-and push outcome belong to the local `delivery.json` receipt. Browser preview of a local file URL was blocked; content/link checks are
-used without claiming rendered visual inspection.
-
-The new explicit `refinement_parameter_scope` / `refinement_parameter_native`
-helpers extract the demonstrated FT parameter protections without FT-specific
-counts, atom names or B ranges. Exact XYZ selection, ordered isotropic B groups,
-all-atom Q/f′/f″ protection, compiled flags and actual optimizer parameters are
-checked separately. Native binding verifies supplied source PDB identity/XYZ/B/Q
-and explicit scattering references. No default caller, force, checkpoint schema,
-legacy metal XYZ replay or selected scientific endpoint changes.
+The existing parameter writer now has explicit `parameter_scope` / `scope_model`
+arguments. Exact source bytes, atom inventory and initial XYZ/B/Q bind the chosen
+XYZ atoms and ordered B groups. Protected metal B can remain fixed while its
+coordinates move with DNA. Ordinary callers/defaults remain unchanged; no new
+executor, checkpoint schema, chemical target or phase policy was introduced.
 See the [method/interface descriptor](metal-anomalous-doctor.md#explicit-mixed-xyzgroup-b-parameter-observation).
 
-**Prior-work boundary:** A691/A698 supplied the FT-specific observation;
-`metal/motion_scope.py` only inventories restraint boundaries; Willow's phased
-guard has a different fixed-B coordinate-only policy. Cedar C567/C570 own
-ordinary prepared-backbone/numbered refinement, not yet integrated here. No
-second importer, executor, phase reader or invented ordinary ancestry was added.
+**Qualification:** 30 focused writer regressions pass, including exact fixed f′/f″
+literals; the initial regression fails before implementation. Sixteen ordinary
+recipe files remain byte-identical. Phenix 2.2.1-6174 passes 126 native compiler/
+source-binding checks across nine cases. These check actual compiled XYZ/B flags,
+fixed native scattering flags and refusal of broadened selections/back-trace;
+they do not execute an optimizer. Three initial harness failures (missing combined
+DataManager master, lost PHIL types during master copying, and an unprocessed
+synthetic chemical model) remain preserved with their narrow causes.
 
-**Validation:** the new test module fails before implementation (missing API);
-70 initial tests pass, then 71 cover typed selection/scattering rejection. The
-final source-element regression fails before its fix; **74 final focused tests**
-and **74 installed tests** pass, including charge-preserving element checks, after removing the
-owned temporary build source; that build/install is cleaned up. **36 cold checks**
-replay four prior five-cycle endpoints, and the wrong fixed-Hg scope rejects a
-moving-Hg endpoint. The replay predates the later group/reference type tightening;
-its exact source hashes remain in its receipt. **14 native binding controls**
-check the final adapter. **17 delta checks** establish that the only later change
-to the one-cycle adapter is the stricter initialization element predicate; all
-runtime observation functions and the pure checker stay exact. The cycle retains
-its original source hash and is not relabelled as a later-source execution.
+One complete **dry initialization**, 8.33 seconds, consumes eight writer-owned
+fields alongside the exact retained original MLHL/scattering policy. It records
+three full native model observations, 859 XYZ atoms and 42 B groups covering the
+858 DNA atoms. All source XYZ/B/Q/scattering, original observations/HL/Free-R and
+both registered crystal links remain exact. Hg B=69.52 Å², Q=1, f′=−8.100181579589844 e,
+f″=0 **unmeasured**. These are starting values, not new environmental-B estimates
+or quantitation. Zero optimization cycles; callbacks restore and the process stops.
+The first dry attempt stopped after 6.46 seconds because whole-PHIL formatting
+rounded fixed f′. The corrected private composer preserves original literals;
+no guard tolerance was relaxed. This is not ordinary numbered-round adoption.
 
-One new **Phenix 2.2.1-6174** dry initialization and one complete one-cycle
-adapter check pass, with **20** model observations, **573** actual reciprocal
-XYZ and **69** actual group-B evaluations. **80 independent cold checks** verify
-sources, indexed phases/Free-R, both crystal links, output pairing and stopped
-processes. Hg moves **0.0925 Å**; B **69.52 Å²**, Q **1**, f′ **−8.10018 e** and
-f″ **0, unmeasured** remain fixed. Rwork/Rfree **0.30985/0.34224** is a one-cycle
-mechanics result, not a replacement for the five-cycle science comparison.
-The first dry-run harness failed because it still required a deliberately omitted
-force-probe count; its completed initialization and failure remain preserved.
-The corrected dry run does not claim a new derivative probe, while the actual
-fit still requires both joint forces. No unchanged derivative tests or full suite.
+**Adjacent compatibility repair:** 35 counted tests originally stopped before the
+writer at a historical payload mismatch introduced when the live native-crystal
+helper changed in `b0133082`. Preserve that failure: the other 156 tests passed.
+A packaged frozen resource now supplies the original native-recipe bytes, SHA-256
+`1739b2a7cf11d802bfa9293d7b79b9edcf7bb1ad868b53d4c1b1996b461d7748`, to V5–V8.
+Old policy hashes and saved payloads stay exact; the modern live helper stays
+available. A new regression fails before repair. All 140 focused compatibility,
+counted-caller and current crystal-binding tests pass afterward, including seven
+new controls and the 35 previously blocked cases. Installed-wheel verification passes 111 writer,
+observer and historical-payload tests after removing the temporary build source;
+the temporary installation is also removed. The final cold review passes 94 checks;
+its initial over-strict cross-process bit comparison is retained. Cartesian roundoff
+is at most 1.78×10⁻¹⁴ Å, within the unchanged 10⁻⁷ Å initialization guard; every
+new dry-run snapshot is bit-identical. Local evidence is 14.01 MiB and the checkout
+is 7.9 KB. No full suite or science rerun.
 
-**Receiving selection text:** 39 Phenix 2.2.1-6174 PHIL/cache/formatting checks
-reuse the existing `metal.export.atom_selection` owner. All-XYZ and fixed-Hg FT
-selections retain 42 B groups/858 DNA B atoms; an explicit nonresidue group and
-synthetic alternate/insertion/segment identities also round-trip exactly.
-These are native parser checks, not another driver/refinement execution.
-A useful negative control shows that appending scoped fields after existing
-`all` fields retains the broad selections: 859 XYZ atoms and 43 B groups,
-including Hg. The full driver may additionally reject the overlap; it was not
-run. `write_recipe_parameters` must render the scoped fields directly with
-`group_adp_refinement_mode = group_selection`, then retain actual native checks.
-No new identity parser, parameter-writer activation or phase semantics were added.
+**Evidence:** `branch-artifacts/Alder/a01-scoped-writer-20261125-01/` retains exact
+commands, hashes, native harness failures, `dry-native` (rounded-policy refusal),
+`dry-native-02` (passed), packaging and source/compatibility receipts. Runners
+A725 onward own this step. Generated science and reports remain outside Git.
+The compact checkout addendum is
+`ScienceCheckouts/Hazel/2026-11-25_parameter-protection/scoped-writer.html`.
+The earlier observer checkpoint `732eaa0c` and selection checkpoint `ad47e86f`
+retain their original 74/74 helper tests, one actual cycle, four saved endpoint
+replays and 39 selector controls under `a01-parameter-scope-20261125-01/` and
+`a01-selection-text-20261125-01/`; they were not repeated or relabelled.
 
-**Next:** compose this explicit observer with Cedar's versioned ordinary
-numbered-round owner and retain callback/output/stopping evidence; separately
-bind original anomalous/experimental-phase ancestry. Then adapt a legitimate
+**Next:** compose the explicit scope/writer with Cedar's versioned ordinary
+prepared-backbone and numbered-round owner, including source binding, continuous
+native parameter observation, output synchronization and known-stopped evidence.
+Bind original anomalous/HL/Free-R ancestry separately. Only then adapt a legitimate
 endpoint to existing environmental-B/f″ readers. Full-model real-space execution,
-scientific selection and local phosphate/DF chemistry remain open. A01 partial;
-A02 scientific quantitation remains gated. No new angle/weight grid.
-The pinned receiving review identifies the concrete writer gap: ordinary group
-ADP currently emits `group = all`, which includes the metal. Add explicit scoped
-selection/no-backtrace choices through a new versioned policy, preserving old
-native payloads; reuse the existing process/preparation owners. Fixed-scattering
-mode currently assumes anomalous observations and is not by itself the merged
-MLHL geometry contract.
-
-**Evidence:** `branch-artifacts/Alder/a01-parameter-scope-20261125-01/` contains
-exact commands, source pins, negative controls, installed receipt, saved-state
-replay and native attempts `native-01` (failed harness) / `native-02` (passed).
-Runners A708–A720 retain the methods. Private models/maps remain excluded from
-Git. The linked root handoff retains the earlier full integration qualification;
-this is not a new full pass. `ordinary-receiving-review.json` pins the current
-Cedar source and next adapter boundaries. `final-geo-handoff.json` corrects a
-message that supplied a starting GEO: the actual prior science readers already
-use `_final.geo`, so their measurements and models remain unchanged. All native
-processes have returned and stopped.
-The selection follow-on is `a01-selection-text-20261125-01/`, with exact commands,
-source/text pins and the 39-check receipt from A721/A722. The checkout addendum
-is `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/selection-text.html`.
-Complete FT text is about 146 KB, retained once per geometry parent; shared f″
-children should reuse it through A04. The final observer implementation remains `732eaa0c` with 74 tests; its earlier
-intermediate receipts retain their exact scope.
-This follow-on changes documentation only; no full or unchanged runtime rerun.
+geometry acceptance and local phosphate/DF chemistry remain open. A01 partial;
+A02 scientific quantitation gated. The chemistry branch owns the separate B7/B1 starting-shape
+trial; do not duplicate it or run another angle/weight grid.
+The last full integration qualification remains the root handoff's recorded
+full execution plus focused test-only amendment, not a new full pass.
 
 ## Scientific baseline — coupled Hg/DNA comparison, no selected endpoint
 
