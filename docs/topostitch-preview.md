@@ -4668,3 +4668,29 @@ This additive stdout contract is not a new coordinate/receipt schema or a
 checkpoint registry entry. A handoff remains review-required, unselected and not
 native-restart-qualified. Inspector consumption is the next separate integration
 step; no automated inspection, refinement, selection or native execution starts.
+
+
+## Inspect a verified saved export (W278)
+
+```bash
+nasolve-topostitch-view new-export --export-sha256 DIGEST_FROM_PRODUCER \
+  --cedar-source /path/to/cedar/src --out export-view.html
+```
+
+The same viewer verifies and regenerates the packet through the export owner
+before rendering its captured representative preview. Supply the trusted
+`receipt.sha256` from the W277 handoff. Export mode refuses comparison/native/
+external-CIF/bend options; its source is the packet itself. Output must be new and
+outside the frozen packet. Every artifact is checked again after scene assembly.
+
+The page says **Saved CIF verified · Needs review** and explicitly identifies
+its drawing as saved **working-preview coordinates and labels**. The full-precision
+CIF is verified separately, not substituted into the drawing. Original component
+aliases and working-coordinate precision therefore keep their original scope.
+The ordinary inspector's atom/image controls and backbone-intent display are
+reused; provenance includes the exact exported-CIF and receipt hashes. No model
+selection, chemistry edit, new refinement, native restart or acceptance occurs.
+
+The optional `verified_export` scene field is additive; legacy preview/viewer
+paths and frozen export receipt formats are unchanged. The Python equivalent is
+`write_export_view(directory, output_path, expected_receipt_sha256=..., cedar_source=...)`.

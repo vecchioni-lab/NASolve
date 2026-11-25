@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W278 — Inspect saved exports through the existing viewer
+
+- Require the trusted producer receipt digest and regenerate the saved packet
+  before displaying its working preview. Recheck artifacts after scene assembly.
+- Label verified CIF versus working-preview coordinates and retain review status.
+  Refuse mixed preview options, changed inputs and writes inside frozen exports.
+- No native run, model selection, geometry acceptance or stored-packet change.
+
 ### W277 — Expose explicit export and trusted replay in the existing command
 
 - Add whole-asym export/replay modes to `nasolve-topostitch-cut-preview`, with

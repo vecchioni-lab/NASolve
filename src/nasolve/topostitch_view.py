@@ -372,6 +372,37 @@ def _html(scene,preference=None):
     return re.sub('__SCENE_JSON__|__PREFERENCE_JSON__',lambda match:payloads[match.group()],template)
 
 
+def write_export_view(directory, output_path, *, expected_receipt_sha256, cedar_source):
+    """Inspect a verified export using its frozen working-preview display frame.
+
+    The full-precision CIF is regenerated/verified by its existing owner; this
+    scene does not replace the drawing with serialized CIF coordinates or grant
+    scientific acceptance. Explicit digest admission remains caller-owned.
+    """
+    from .topostitch_cif_output import load_whole_asym_cif
+    root=Path(directory).resolve();out=Path(output_path).absolute()
+    if out.exists() or out.is_symlink():raise FileExistsError(out)
+    if out.resolve().is_relative_to(root):raise ValueError('Write the view outside the frozen export directory')
+    receipt=load_whole_asym_cif(root,expected_receipt_sha256=expected_receipt_sha256,
+                              cedar_source=cedar_source)
+    scene=representative_scene(root/'preview',backbone_intent=True)
+    if scene['preview_receipt_sha256']!=receipt['artifacts']['preview/preview.json']['sha256']:
+        raise ValueError('Export preview changed during view construction')
+    scene['verified_export']=dict(receipt_sha256=expected_receipt_sha256,
+        status=receipt['status'],output=receipt['artifacts']['representative.cif'],
+        complete_declared_backbone_coverage=receipt['complete_declared_backbone_coverage'],
+        display_coordinates='saved_working_preview',serialized_cif_coordinates_rendered=False,
+        coordinate_component_bound_angstrom=receipt['options']['max_coordinate_component_error_angstrom'],
+        native_restart_qualified=False,selection_applied=False,scientific_acceptance=False)
+    html=_html(scene)
+    if (sha256((root/'export.json').read_bytes()).hexdigest()!=expected_receipt_sha256
+            or any(sha256((root/ref['relative_path']).read_bytes()).hexdigest()!=ref['sha256']
+                   for ref in receipt['artifacts'].values())):
+        raise ValueError('Export artifacts changed during view construction')
+    with out.open('x',encoding='utf-8') as stream:stream.write(html)
+    return scene
+
+
 def write_preview_view(directory,output_path,*,native_receipt=None,cedar_source=None,comparison_directories=(),preference_path=None,backbone_intent=False,original_cif=None,cif_binding=None,assembly_bounds=None,**options):
     _validate_tls_binding(original_cif, cif_binding)
     _validate_assembly_bounds(original_cif, assembly_bounds)
@@ -426,7 +457,22 @@ def main(argv=None):
     parser.add_argument('--original-cif',type=Path,help='Original coordinate CIF for read-only TLS membership inspection')
     parser.add_argument('--cif-binding',type=Path,help='Path-free JSON with exact source/preview/owner hashes, aliases and working-file precision bounds')
     parser.add_argument('--assembly-bounds',type=Path,help='Optional JSON with all three assembly rounding bounds; requires original CIF binding')
+    parser.add_argument('--export-sha256',help='Inspect a saved whole-asym export using the trusted producer receipt file digest')
     args=parser.parse_args(argv)
+    if args.export_sha256 is not None:
+        if (args.cedar_source is None or args.compare or args.preference is not None
+                or args.candidate is not None or args.radius is not None or args.periodic
+                or args.max_pairs!=100_000 or args.max_image_tests!=100_000
+                or args.native_receipt is not None or args.original_cif is not None
+                or args.cif_binding is not None or args.assembly_bounds is not None
+                or args.backbone_intent):
+            parser.error('Export inspection requires explicit Cedar source and cannot mix preview options')
+        try:
+            scene=write_export_view(args.preview,args.out,expected_receipt_sha256=args.export_sha256,
+                                    cedar_source=args.cedar_source)
+        except (OSError,ValueError,RuntimeError,ImportError) as exc:parser.exit(2,f'{parser.prog}: {exc}\n')
+        print(f'Read-only export view: {args.out}\n{len(scene["atoms"])} working-preview atoms; CIF verified, no model selected.')
+        return 0
     try:
         binding=None if args.cif_binding is None else _json(args.cif_binding.read_bytes())
         assembly_bounds=None if args.assembly_bounds is None else _json(args.assembly_bounds.read_bytes())
