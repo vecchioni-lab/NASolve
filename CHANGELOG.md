@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W282 — Demonstrate ordinary descendant recut inspection
+
+- Record a genuine PDU descendant preview built through existing registration
+  and preview owners. The D:7–C:8 symmetry connection becomes an in-cell display
+  contact while all 40 declared bonds and 160 angles remain unchanged. Local
+  diagnostics only; no native execution, selected model or runtime change.
+
 ### W281 — Follow graph identities through a coordinate refinement
 
 - Add a read-only source-to-descendant graph observation with explicit atom

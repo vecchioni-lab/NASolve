@@ -1,5 +1,15 @@
 # NASolve development handoff — Willow
 
+**Current science audit: W282; product code remains W281.**
+The existing ordinary preview now consumes a separately rebuilt/attested PDU
+registration: whole C moves to its declared image, bringing D:7→C:8 from a
+32.0511 Å direct display gap to its existing 1.6347 Å bond distance. All 40 image
+bonds and 160 angles remain unchanged; the B-boundary stays in symmetry. Source
+registration and selected `postmr` are untouched. [Comparison and limits](topostitch-preview.md#ordinary-recut-preview-of-an-attested-descendant-w282).
+Open local NASolve anchor `branch-artifacts/willow/w282-descendant-preview/PDU-descendant-recut.html`.
+This is a representative change, not a bend or new refinement; no fresh browser
+render was checked. Pairing remains incomplete.
+
 **Current code/qualification: W281, 2026-11-25** (source `f40f5bc65b0a44e339bc5c7416499041ddf2bd93`).
 The graph-descent observer explicitly maps all unique atom identities and checks
 same-crystal representatives through Cedar's image reader. Genuine PDU descent:
@@ -174,7 +184,7 @@ controls are reused; no deposited tensor or coordinate was changed. See
 [exact scope and commands](topostitch-periodic.md#w271--plan-output-fields-and-separate-native-tls-interpretation).
 No product code, installed artifact or runtime schema changed.
 
-**Next W282; P03 remains partial.** Build one ordinary recut preview using the separately attested descent and existing Pine registration/preview owners. Preserve original provenance, actual changed-image refusal and selection. Compare declared connections before/after; no new fit or automatic native restart.
+**Next W283; P03 remains partial.** Evaluate the existing whole-asym CIF export using the genuine parent paired CIF and explicit precision/category policy. Hold unsupported metadata and native restart; no repeated fit or new chemistry.
 
 **Return later — B11 / PUB05:** Simon requested a maximally fragmented ASU
 refinement stress test on 2026-11-25. The [frozen-panel plan](topostitch.md#maximally-fragmented-asu-refinement-stress-test-planned)

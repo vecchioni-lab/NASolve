@@ -7,6 +7,10 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Current ordinary preview: W282.** [Genuine descendant recut](topostitch-preview.md#ordinary-recut-preview-of-an-attested-descendant-w282)
+  moves one whole chain to its declared image while retaining all 40 bonds and
+  160 angles. Existing owners only; original registration/selection untouched.
+
 - **Current graph descent: W281.** [Refined atom correspondence](topostitch-preview.md#follow-a-registered-graph-into-a-refined-model-w281)
   preserves declared topology through explicit atom reordering and same-image
   checks. 140 source/140 installed; genuine 862-atom PDU control and image refusal.

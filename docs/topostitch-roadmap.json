@@ -1134,13 +1134,14 @@
         "W278:22source/22installed,2skips; existing viewer verifies saved exports with producer digest and frozen source replay. Actual1271-atom3LNA view preserves source packet; explicit working-display precision, no native execution.",
         "W279 read-only restart audit: six TLS groups coexist with 1271 deposited anisotropic rows; residual flag unset. Existing prepared-child and same-representative/PDB inheritance contracts do not admit this diagnostic CIF by themselves. No new native run.",
         "W280: preview-independent exact parent input observer through an explicit trusted registry reader. Genuine relocated PDU refined parent preserves model, original observations and seven restraints; existing preparation refusal and canonical motion scopes unchanged. No new native run.",
-        "W281: explicit full atom identity bijection carries source graph into same-representative coordinate descendants without replacing the original registration. Genuine PDU positive and changed-image refusal; source graph/current indices stay distinct."
+        "W281: explicit full atom identity bijection carries source graph into same-representative coordinate descendants without replacing the original registration. Genuine PDU positive and changed-image refusal; source graph/current indices stay distinct.",
+        "W282: existing Pine owners build a separate explicit descendant registration and ordinary whole-C preview. Genuine PDU40-link/160-angle comparison preserves existing physical geometry and immutable source provenance."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "W282: one ordinary recut preview from the separately attested genuine descendant. Rebuild a new explicit registration through existing Pine owners, retain original provenance and changed-image refusal, preserve selected checkpoint, and compare all declared links before/after. No new fit or automatic native restart.",
+      "next_action": "W283: evaluate the existing whole-asym CIF exporter on this genuine-parent paired CIF/ordinary preview, with explicit original-source precision and reviewed category policies. Reuse existing owners; hold unsupported metadata and native restart rather than infer authority. No repeated fit.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -1179,14 +1180,15 @@
         "E_EXPORT_INSPECTOR",
         "E_EXPORT_RESTART_READINESS",
         "E_CHECKPOINT_INPUT_OBSERVER",
-        "E_REGISTERED_GRAPH_DESCENT"
+        "E_REGISTERED_GRAPH_DESCENT",
+        "E_DESCENDANT_ORDINARY_PREVIEW"
       ],
       "last_audit": {
         "date": "2026-11-25",
-        "human_update": 281,
+        "human_update": 282,
         "code_commit": "f40f5bc65b0a44e339bc5c7416499041ddf2bd93",
-        "reviewer": "Linden; coordinated with Rowan",
-        "scope": "140 source/140 installed; genuine source/current graph correspondence, no recut/native admission."
+        "reviewer": "Linden; coordinated comparison with Rowan",
+        "scope": "Existing ordinary producer/replay/view and all40-link/160-angle actual comparison; no code/native changes."
       }
     },
     {
@@ -9039,6 +9041,119 @@
           "size": 14048
         }
       ]
+    },
+    "E_DESCENDANT_ORDINARY_PREVIEW": {
+      "kind": "Ordinary preview of an attested refined descendant",
+      "date": "2026-11-25",
+      "human_update": 282,
+      "code_commit": "f40f5bc65b0a44e339bc5c7416499041ddf2bd93",
+      "reference": "docs/topostitch-preview.md#ordinary-recut-preview-of-an-attested-descendant-w282",
+      "result": "Existing Pine builder/replay/view: seven C residues/144 atoms change representative; D7-C8 direct gap32.0511->1.6347 A. All40 physical bond distances and160 angles preserved; B symmetry boundary unchanged. Original source/registration and postmr selection intact.",
+      "limitation": "Local explicit producer, not automatic descendant registration API. No new geometry, native run, file export or restart admission; pairing incomplete. Fresh browser render unverified.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w282-descendant-preview/PDU-descendant-recut.html",
+          "sha256": "dd99d08a010ca72c6a0b77d79d80fa00ddcdf14e1c509d4b40913bfe4199b2ea",
+          "size": 551165
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w282-descendant-preview/README.md",
+          "sha256": "86246b4fcc7c3b9c715bd87ac2bd58ea4927683622a843a16278029441f6cd6d",
+          "size": 1323
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w282-descendant-preview/build.log",
+          "sha256": "05a22307bdc65a41f64482ade393c1c5de094622b8eb5e2d4fa5d3392c10052a",
+          "size": 953
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w282-descendant-preview/build.py",
+          "sha256": "e1cdf40764a4e8b8582ca171c0deca20ac2f295ad98dfeac90fcff914349db3d",
+          "size": 7866
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w282-descendant-preview/derived-inputs/discovery.json",
+          "sha256": "2c3729e2485c7d8fc8af59822e68b783d514df7c060fe6ea48fe1cdbf015ff97",
+          "size": 1653
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w282-descendant-preview/derived-inputs/proposal.json",
+          "sha256": "08181eb83f6d1dc547ac6b8e2fa9b6832df79e23e6de35be9ef3a85c5b9dd613",
+          "size": 1072
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w282-descendant-preview/derived-inputs/registration.json",
+          "sha256": "fbd3e97cd69c856d0141519a2f2718b8be81647a34cdb3511dd9d1cc38068540",
+          "size": 10882
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w282-descendant-preview/geometry.json",
+          "sha256": "bc75af3538e63562aad28a1c85f0fb9ba7ac3928061074ef2245dbb81987ba88",
+          "size": 35373
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w282-descendant-preview/geometry.log",
+          "sha256": "a4dc8ded3bb890c4258322c55183aa77250b7ae4e95ee2c3e46ba49c5e47c7eb",
+          "size": 1616
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w282-descendant-preview/geometry.py",
+          "sha256": "4f603662557cb0b28d44df3f2545aaa3ccd8dd99f2304017b7b8ce15f4234409",
+          "size": 3395
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w282-descendant-preview/node-order-comparison.log",
+          "sha256": "f478d7b4780724672e9b41637e6abc8c793d63b3b7770ebdbcfd97db299a218a",
+          "size": 283
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w282-descendant-preview/result.json",
+          "sha256": "3edefd2f85a7fe6358ea96cbae1ba857889d847c34d1e8848fb54cfb2fbe6545",
+          "size": 47638
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w282-descendant-preview/whole-C-preview/discovery.json",
+          "sha256": "2c3729e2485c7d8fc8af59822e68b783d514df7c060fe6ea48fe1cdbf015ff97",
+          "size": 1653
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w282-descendant-preview/whole-C-preview/preview.json",
+          "sha256": "30145b71260f973dc5205e8b24cb3589af38a4a9082fabf60d613ab721dd7609",
+          "size": 321633
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w282-descendant-preview/whole-C-preview/proposal.json",
+          "sha256": "08181eb83f6d1dc547ac6b8e2fa9b6832df79e23e6de35be9ef3a85c5b9dd613",
+          "size": 1072
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w282-descendant-preview/whole-C-preview/registration.json",
+          "sha256": "fbd3e97cd69c856d0141519a2f2718b8be81647a34cdb3511dd9d1cc38068540",
+          "size": 10882
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w282-descendant-preview/whole-C-preview/source.pdb",
+          "sha256": "69d3f1183bd952aa31237176dd65e37400278aac80c6bf624045ceea677c219f",
+          "size": 74502
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -9220,8 +9335,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 281,
-    "next": 282,
+    "current": 282,
+    "next": 283,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -10715,6 +10830,12 @@
       {
         "number": 281,
         "title": "Carry graph identities through a genuine refined descendant",
+        "state": "RECORDED",
+        "code_commit": "f40f5bc65b0a44e339bc5c7416499041ddf2bd93"
+      },
+      {
+        "number": 282,
+        "title": "Preview an ordinary recut from the attested PDU descendant",
         "state": "RECORDED",
         "code_commit": "f40f5bc65b0a44e339bc5c7416499041ddf2bd93"
       }

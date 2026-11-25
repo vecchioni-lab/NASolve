@@ -4878,3 +4878,49 @@ Evidence and exact commands remain local under NASolve anchor
 bound descent observation and its original provenance, or keep the endpoint
 held. Do not silently edit registration hashes, infer replacement chemistry or
 reuse an earlier native capture as if it described the final endpoint.
+
+
+## Ordinary recut preview of an attested descendant (W282)
+
+W282 uses the W280 input binding and W281 atom/image correspondence to create
+one ordinary preview through existing Pine owners. `build_construct_registration`
+rebuilds a **separate** registration from the current `ModelAssessment` and the
+exact original logical target and mappings. Its source label includes the W281
+descent digest. Target, copy mappings, identity relations and semantics remain
+identical; the old registration is never overwritten. Discovery is bound to this
+new record, then the ordinary preview builder, replay and viewer run unchanged.
+This is an explicit local producer experiment, not an automatic descendant
+registration API or a new artifact schema.
+
+The selected image for all seven C-chain residues is `-x+y,-x,z`, making the
+existing D:7→C:8 continuation an identity-image edge. The 144 affected atoms move
+only between equivalent crystal representatives; the largest displayed change
+is 74.40 Å and is **not a physical bend**.
+
+| Connection | Direct display gap before → after | Physical image bond before → after | Image after |
+| --- | --- | --- | --- |
+| D:7→C:8 | 32.0511 → 1.6347 Å | 1.6347 → 1.6347 Å | `x,y,z` |
+| B:7→B:1 | 23.6836 → 23.6836 Å | 1.6700 → 1.6700 Å | `-y,x-y,z` |
+
+All **40** declared O3′–P distances and **160** angles are preserved: maximum
+changes are 3.56×10⁻¹⁵ Å and 3.42×10⁻¹³°. At D:7→C:8, C3′–O3′–P,
+O3′–P–O5′, O3′–P–OP1 and O3′–P–OP2 remain respectively 121.92277°,
+104.60724°, 108.86487° and 109.97798°. The corresponding B-boundary angles
+also remain unchanged. These are observed existing geometries, not newly
+optimized targets. Pairing inventory is still incomplete; none is inferred.
+
+The endpoint has genuine Cedar construction/ordinary history, preserved through
+separate provenance. The standard preview itself grants no such ancestry or
+native authority. The W281 shifted-image refusal remains relevant. An initial
+literal comparison of node-index lists refused because the source-order mapping
+and freshly built descendant lists enumerate the same atom membership differently;
+the corrected comparison checks all node metadata and exact index membership.
+It does not relax the unique atom bijection or assume equal array positions.
+
+Local opening report and standard inspector are under NASolve anchor
+`branch-artifacts/willow/w282-descendant-preview/README.md` and
+`PDU-descendant-recut.html`. `result.json` and `geometry.json` carry pre/post
+comparisons and exact upstream hashes. All original files and selected `postmr`
+remain unchanged. No coordinate export, native initialization or refinement ran;
+no new code/schema or installation changed. Existing focused/installed controls
+were reused; no full suite or new browser-render qualification is claimed.
