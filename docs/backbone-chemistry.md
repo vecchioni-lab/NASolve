@@ -689,6 +689,38 @@ C585 and C586. The earlier C581 replay note described it as a legacy arm.
 The two phosphates retained their image restraints and the terminal D:1
 retained its eleven native terms in all new fits. Each fit remains unselected.
 
+### When the B:4 tip left the ring plane
+
+C588 observed the forces during the same two five-cycle fits that had the
+extra planes. The Phenix 2.2.1-6174 working diffraction score used least
+squares for cycles 1–2 and maximum likelihood for cycles 3–5. Its numerical
+weight stayed at 12. The same 1,778 working reflections and 124 held-out
+reflections appeared in the live target in every cycle.
+
+| B:4 tip height above the six ring atoms (Å) | End of cycle 2 | End of cycle 3 | Final written model |
+| --- | ---: | ---: | ---: |
+| Two extra arm planes | 0.032 | 0.631 | 0.419 |
+| The same planes and five stronger flanking contacts | 0.027 | 0.634 | 0.510 |
+
+The first two columns use unrounded coordinates at the last gradient call
+of the indicated cycle. Moving the six ring atoms changes their fitted
+plane. The projection accounts for that movement as well as movement of
+the terminal carbon. At B:4 the working diffraction term favored a smaller
+height in all 109 evaluations during cycles 1–2 and a larger height in all
+166 during cycles 3–5. The added plane favored flattening at all 275
+evaluations. By the end of cycle five the rest of the chemical restraints
+also favored flattening in both models. A:12 ended at 0.047 and 0.094 Å in
+the written models.
+
+Both replays reproduced the 862-atom coordinate file and final GEO from
+their respective uninstrumented fits byte for byte. These are local changes
+in the refinement score. The maps at 4.19 Å do not resolve an individual
+terminal carbon reliably in this comparison. Atomic displacement, solvent
+and scale estimates were also updated during refinement. To distinguish
+their influence from the target switch, compare the two diffraction scores
+on the same coordinates, displacement parameters and scale before changing
+a restraint or selecting a model.
+
 ## Building a requested 5'-terminal phosphate
 
 When a site is explicitly declared as a 5'-terminal phosphate, PostMR runs an

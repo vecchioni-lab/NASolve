@@ -347,9 +347,13 @@ Combining the changes brought it to 0.510 Å, with a 1.683 Å central crystal
 bond. The close fit to the plane containing the tip overstates the improvement.
 C587 added the fitted plane and independent ring to the same inspection.
 Leaving the tip out rotated the B:4 plane by 3.72° or 4.53°, depending on
-the flanking contacts. Trace the working diffraction and local geometry
-forces that bear on the remaining B:4 distortion before trying a new
-width. The general correction remains open.
+the flanking contacts. C588 traced the displacement through all five
+cycles. In both fits the working diffraction contribution reversed as the
+target switched from least squares to maximum likelihood in cycle three.
+The chemical plane continued to pull the carbon toward its ring. Compare
+both diffraction targets at the same coordinates, atomic displacement and
+scale before changing a restraint. The general correction remains open.
+[Cycle-resolved evidence](backbone-chemistry.md#when-the-b4-tip-left-the-ring-plane).
 Willow owns the explicit, evidence-backed connection-type proposal. Preserve
 the hydrogen-bond identity separately from the genuine crystal covalent links.
 [Measured local controls](backbone-chemistry.md#how-far-local-restraints-carry-the-pdu-arms-at-the-original-diffraction-weight).

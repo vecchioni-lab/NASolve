@@ -1,7 +1,39 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-25, C587 measuring tilt in a ring restraint — Rowan**.
+Updated **2026-11-25, C588 following a PDU arm through native refinement — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**.
+
+**C588, Q06.** Both five-cycle Phenix 2.2.1-6174 replays reproduced their
+C586 coordinates and final geometry files byte for byte. The B:4 tip moved
+out chiefly in the third cycle. The added plane continued to flatten it.
+The working diffraction term reversed at the native switch from least
+squares to maximum likelihood. The positions of A:12 and B:4 followed
+different paths despite the same dictionary and soft plane.
+[Five-cycle results and next comparison](backbone-chemistry.md#when-the-b4-tip-left-the-ring-plane).
+
+This checkpoint changes the handoff, backbone guide and completion queue.
+The local replay and figure are kept with the C586 evidence in
+`branch-artifacts/cedar/c558-two-crystal-phosphates/`. Each experiment ran
+the frozen preflight and complete native refinement. All 275 reciprocal
+gradient readings were checked against the native accumulator and the added
+plane against two finite differences. Both process groups stopped cleanly.
+The replay kit is **C588 PDU arm through five refinement cycles.zip**.
+From its moved installation, with the original kit directory gone, the
+following command rebuilt the combined case from C586 and its declared
+inputs. It reproduced the full PDB, final GEO and all 140 live gradient
+readings byte for byte. Filename arguments below denote the matching
+archives and the original observation MTZ, whose hashes the kit verifies.
+
+```sh
+python -B methods/replay_c588.py C586.zip C574.zip C581.zip C585.zip observations.mtz NEW_LOCATION /path/to/phenix.python both
+```
+
+The historical G:5PC C474 SHA and measurements remain on file. Its
+recorded temporary run no longer supplies the final GEO and report for a
+fresh C587 checkpoint reading. Reuse the existing measured 5PC control
+until its exact retained files can be identified. The candidate, chemistry
+defaults and checkpoint schemas require no change. C587 was the last
+software change and passed the focused source and installed checks below.
 
 **C587, Q06.** CIF Doctor already measured a terminal alkynyl carbon against
 the six atoms of its ring. The existing `assess --refined-planes` inspection
