@@ -453,10 +453,11 @@ controls used those exact declared partners, experimental phases and 59 free
 reflections. Two starting models differed at six atoms of B:7 and B:1. Each
 was fitted with Hg either fixed or free to move in XYZ. The original and
 altered starts had B:7 C4′–C3′–O3′ angles of 111.2° and 114.5°, against
-109.7°. After refinement all four angles were 126.4–129.3°. The two intact
-A→C references in the same models ended at 110.4–114.4°. B:1 OP2–P–O5′
+109.7°. After refinement all four angles were 126.3–129.3°. The two intact
+A→C references, A:16–A:17 and B:5–B:6, ended at 110.4–114.4°. B:1 OP2–P–O5′
 also closed to 91.2–93.5° against 108°, even as the crystal O3′–P bond
-shortened to 1.649–1.658 Å. The ordinary angle targets were present.
+shortened to 1.649–1.658 Å. Each of these angles had one ordinary covalent
+target in each initial and final Phenix geometry table.
 
 Fixing Hg did not prevent this strain. These controls establish where the
 distortion appeared but do not isolate its cause. The next FT trial should
