@@ -186,6 +186,65 @@ HL, and receive Cedar's existing prepared/runtime interfaces before ordinary FT
 adoption. No second executor, new checkpoint, default callsite or historical
 payload change was introduced here.
 
+## Complete command binding, without execution
+
+`refinement_command_binding.bind_command` now consumes the existing checked
+request, exact anchored input references, an explicitly admitted returned-model
+reference and the saved file-selector derivative. It replays that derivative,
+checks its receipt and bytes, and calls the existing ordinary command builder.
+The child command uses the returned endpoint rather than replaying the parent's
+starting model. It preserves every ordered dictionary/restraint, original data,
+Free-R selector/test value, optional separate HL source/quartet and non-file
+command argument. Native typed PHIL verifies selector agreement. Additional
+arguments, duplicate overrides, hidden policy file dependencies, changed science,
+SAflags and unsupported command layouts refuse instead of being guessed.
+
+This Python interface returns argv, ordered resolved paths and a schema-1
+`declared-refinement-command-binding-v1` receipt. References own provenance;
+absolute argv paths are execution spellings. The source owner must independently
+admit parent/endpoint chemistry and original diffraction meaning. The adapter
+performs no allocation, file write, process launch or checkpoint selection.
+Opaque inherited restraint content stays with its existing source/input owners.
+The current executable still requires caller qualification. Supported policies
+use ordinary DataManager selectors and separate optional HL; shared-file HL,
+legacy selectors, changed scientific recipes and custom command shapes need
+separate qualification. There is no new default caller or artifact migration.
+
+Fourteen native source and fourteen installed checks pass under Phenix
+2.2.1-6174/Python 3.11.15. They include actual existing numbered-request freezing
+without execution and a complete synthetic command rebuilt after the original
+input path is removed. Focused neighbouring checks: 34 passed, 2 native skips,
+32 deselected and 21 subtests passed. The installed build source and installation
+are removed; all NASolve imports resolve inside that temporary installation.
+
+The genuine PDU parent is admitted through the current Cedar reader, then this
+Alder adapter prepares a nonexecuted command: **11 ordered inputs, eight restraint
+files**, returned model SHA
+`a6abf2bb9e2a2281feec4ca4eaa0d1fc7d56644a68a6c8c09fdd010b22c71ece`, original
+`IMEAN,SIGIMEAN` and `FreeR_flag`, no experimental HL. Its old starting model SHA
+is `d0769bf55a82893a86dd5b1673a189a988bb6c54f2798fe03b234ab8f262c801`.
+A tiny generated policy beside the immutable run is removed after capture;
+no model/map/data is copied, and original report/registry pins remain unchanged.
+The captured command is a planning receipt, not a live executable checkpoint.
+This combined reader/adapter control is not an Alder/Cedar branch merge.
+
+Evidence: `branch-artifacts/Alder/a01-command-binding-20261125-01/`, runners
+A772–A774. Preserve the expected pre-implementation import failure, the initial
+Phenix launcher path failure, and the first native pass's failures: raw untyped
+PHIL extraction lost repeated label groups, while two tests expected the wrong
+existing-owner exception class. Native typed extraction fixes the production
+selector comparison; tests now preserve existing CheckpointError semantics.
+No full suite or native refinement ran. Checkout:
+`ScienceCheckouts/Hazel/2026-11-25_parameter-protection/command-binding.html`.
+
+**Next A01 boundary:** receive the newer prepared/backbone/runtime interfaces
+and introduce the explicitly versioned mixed XYZ/group-B policy under the
+existing numbered owner. Compose scoped policy, source admission and continuous
+parameter/diffraction observers before a native run; preserve output/process
+closure. The new adapter deliberately permits only a file-rebound scientific
+policy, so it must not be used to smuggle a changed scope into V11/V12. The FT
+private chain still lacks ordinary ancestry. A01 partial; A02 remains gated.
+
 ## Ordered integration steps
 
 1. **Admit a legitimate prepared parent.** Reuse Cedar's `PreparedBackbone`,

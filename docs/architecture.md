@@ -39,6 +39,15 @@ All non-file literals/effective definitions and labels stay exact. It is not a
 command relocator, source-admission API or complete ordinary child policy. No
 default caller uses it. See the [source/child selector boundary](metal-ordinary-receiving.md#declared-source-to-child-file-selectors).
 
+`refinement_command_binding.bind_command` now uses the existing checked-request
+reader, anchored file resolver and ordinary command builder to return a complete
+nonexecuted command with the explicitly admitted returned endpoint. It replays
+file-policy derivation, preserves ordered inputs/non-file arguments and checks
+native selector agreement. The schema-1 receipt carries portable references;
+there is no new executor, checkpoint allocation or default caller. Source/endpoint
+admission and versioned mixed-policy runtime/output closure remain separate.
+See [complete command binding](metal-ordinary-receiving.md#complete-command-binding-without-execution).
+
 Historical counted V5–V8 code preparation now obtains `topostitch_native_recipe.py`
 from `data/refinement-runtime-native-recipe-sources.json`, retaining its already
 qualified SHA-256. Modern direct callers retain the newer explicit native-crystal

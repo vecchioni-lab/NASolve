@@ -15,29 +15,37 @@ not a second queue.
 
 <a id="a01-parameter-scope-2026-11-25"></a>
 
-## Current A01 — declared source-to-child file selector qualified
+## Current A01 — complete command binding qualified without execution
 
-The [bounded file-selector adapter](metal-ordinary-receiving.md#declared-source-to-child-file-selectors)
-now derives an in-memory policy from a genuine ordinary PDU parent through the
-existing checked request and declared input resolver. Exactly one DataManager
-observation selector changes; original labels and all scientific literals stay
-exact. Genuine absent HL remains absent. No command, checkpoint or refinement is
-created, and the PDU run is unchanged.
+The [complete-command adapter](metal-ordinary-receiving.md#complete-command-binding-without-execution)
+connects the checked request, anchored inputs and exact derived policy to the
+existing command builder. It takes an explicitly admitted returned endpoint,
+preserves ordered restraints and original data/Free-R/optional phases, and refuses
+unbound files, conflicting overrides or changed scientific policy. No executor,
+checkpoint/default activation or native runtime policy changes.
 
-Fifteen source/15 installed native cases, exact installed genuine-policy replay,
-an old-path-gone synthetic relocation and 26 cold checks pass. Source Python has
-four pure checks with native cases explicitly skipped; native tests execute all
-15. The same wheel is reused for the added relocation control; temporary build/
-install trees are removed. Two invalid legacy-field test fixtures and one blocked
-lazy native hardware-query import are preserved with their harness corrections.
-No production validator was weakened. Evidence: `a01-parameter-files-20261125-01/`
-under the Alder artifact anchor (A765–A770), 1.79 MiB. Compact checkout:
-`ScienceCheckouts/Hazel/2026-11-25_parameter-protection/parameter-files.html`.
+**Validation:** 14 native source and 14 installed tests pass; 34 neighbouring
+checks pass with 2 native skips, 32 deselected and 21 subtests. Tests include
+old-path-gone command relocation and existing numbered-request freezing without
+execution. A genuine PDU read through Cedar prepares 11 ordered inputs/eight
+restraints using the returned endpoint, original mean data and FreeR_flag.
+Missing HL stays missing. The temporary generated policy is removed, and source
+report/registry pins stay unchanged. No model/map copy, native fit or full suite.
+All final commands, source hashes and preserved initial failures are in
+`a01-command-binding-20261125-01/` under the Alder artifact anchor, runners
+A772–A774. The compact checkout is
+`ScienceCheckouts/Hazel/2026-11-25_parameter-protection/command-binding.html`.
 
-**Next A01 step:** connect the admitted parent/source packet and derived policy to
-the existing complete child-command/numbered owner. This helper changes Miller
-file selectors only; other file fields, continuous observation and output closure
-remain separate. No phased eligibility without genuine HL. A01 partial; A02 gated.
+**Next A01 step:** deliberately receive Cedar's newer prepared/runtime interfaces
+and bind the mixed XYZ/group-B policy and continuous parameter/diffraction guards
+under a new runtime version, with existing output/process closure. This adapter
+supports an unchanged scientific policy with rebound files only; it does not
+qualify changed strategy/scope under V11/V12. FT ordinary ancestry remains absent;
+PDU has no HL. A01 partial; A02 quantitation gated. All jobs stopped at delivery.
+
+Previous file-selector evidence remains in `a01-parameter-files-20261125-01/`
+(A765–A770): 15 source/15 installed native checks, 26 cold checks and genuine
+policy replay. No need to repeat that unchanged boundary.
 
 ## Earlier boundary — ordinary admission made explicit
 

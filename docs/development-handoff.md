@@ -8,12 +8,14 @@ observation and storage owners; it introduces no new scientific policy.
 ## Current metal-science edge
 
 A01 remains partial; A02 scientific quantitation remains gated. The latest
-in-memory file-selector adapter qualifies one genuine PDU source-to-child PHIL
-derivative, preserving original observation labels and all scientific literals.
-Fifteen source/15 installed native cases, exact replay, old-path-gone synthetic
-relocation and 26 cold checks pass. No HL, command, checkpoint or fit is invented.
-The [remaining command/ordinary boundary](metal-ordinary-receiving.md#declared-source-to-child-file-selectors)
-stays explicit; no full suite or complete-run portability claim.
+[complete-command binding](metal-ordinary-receiving.md#complete-command-binding-without-execution)
+qualifies returned-model selection, ordered anchored inputs, exact derived policy
+and original command settings. Fourteen native source/14 installed cases and
+34 neighbouring checks (21 subtests) pass. Genuine PDU readback retains 11 inputs,
+eight restraints and original mean-data/Free-R choices; absent HL stays absent.
+No native fit or full suite. The next boundary is explicitly versioned mixed-
+policy integration through Cedar's prepared/runtime/numbered owners; existing
+payloads and defaults stay unchanged.
 
 The next named
 subgoal is [source-bound ordinary parent admission](metal-ordinary-receiving.md#current-admission-boundary-and-next-a01-subgoal).

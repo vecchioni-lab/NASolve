@@ -18,23 +18,20 @@ Hg moves 0.089 / 0.086 Å; Rfree is 0.3371 / 0.3362. Existing B machinery
 previews base/donor alternatives from the returned models without changing them.
 No selected endpoint, f″ result or global real-space qualification follows.
 
-**Latest A01 increment:** exact declared observation-file rebinding now passes
-15 source/15 installed native cases, genuine PDU policy replay, an old-path-gone
-synthetic relocation and 26 cold checks. One Miller selector changes; scientific
-literals and absent HL stay unchanged. The
-[source-to-child boundary](metal-ordinary-receiving.md#declared-source-to-child-file-selectors)
-still requires the existing complete command/numbered owner and genuine phased
-inputs; no new checkpoint or fit follows.
+**Latest A01 increment:** complete command binding now passes 14 native source/
+14 installed tests and 34 focused neighbouring checks (21 subtests). Genuine PDU
+readback assembles 11 ordered inputs/eight restraints with its returned endpoint,
+original data/Free-R and no invented HL. Synthetic old-path-gone relocation and
+existing numbered-request freezing pass without executing refinement. See the
+[complete-command boundary](metal-ordinary-receiving.md#complete-command-binding-without-execution).
 
-**Next A01 subgoal — ordinary source admission and child-command binding:** resolve the original data,
-Free-R/HL choices and literal parameter policy from a genuine recorded parent.
-The FT private chain has no ordinary report/registry; do not manufacture one.
-The [concrete interface and negative cases](metal-ordinary-receiving.md#current-admission-boundary-and-next-a01-subgoal)
-identify the prepared-PostMR integration dependency and distinguish file validity
-from original-source semantics. Twenty boundary checks and a genuine PDU ordinary
-source-family read are recorded; PDU has no experimental HL and cannot stand in
-for phased FT admission. Preserve its separate cross-environment refusal. No
-native refinement or new geometry fit.
+**Next A01 subgoal — versioned ordinary mixed-policy integration:** receive Cedar's
+prepared/backbone/runtime interfaces deliberately; compose scoped XYZ/group-B
+policy, original source admission and continuous parameter/diffraction observation
+under the existing numbered owner with output/process closure. The command adapter
+accepts file rebinding only, not an altered scientific recipe under historical
+V11/V12. FT private ancestry remains unavailable; PDU is an ordinary mechanical
+control without HL. No new native fit or endpoint acceptance in this increment.
 
 **Latest mechanical increment:** the passive diffraction observer now carries
 independently read source captures to the active manager and actual native HL
@@ -50,9 +47,9 @@ while replacing repeated XYZ/B fields. No new fitted endpoint or phase admission
 follows. See the [ordinary receiving sequence](metal-ordinary-receiving.md); its
 checklist replaces repeating already-qualified private composition experiments.
 
-**Next A01 step:** compose the explicit parameter observer and now-qualified
-scoped writer with Cedar's versioned ordinary prepared-backbone/numbered-round
-owner. Thirty writer regressions, 126 native compiled/source-binding checks and
+**Earlier scoped-writer qualification:** the explicit parameter observer and
+scoped writer remain qualified prerequisites for versioned ordinary integration.
+Thirty writer regressions, 126 native compiled/source-binding checks and
 one zero-cycle initialized receiver qualify the current boundary. The dry receiver
 retains original phases/Free-R/scattering and both crystal links; it does not
 activate ordinary callbacks or produce a new fitted endpoint. The whole-PHIL

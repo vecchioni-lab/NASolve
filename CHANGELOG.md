@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bind verified inputs into complete refinement commands
+
+- Reuse existing checked requests, anchored input resolution and the ordinary
+  command builder with an explicitly admitted returned model. Preserve ordered
+  restraints, original observations, Free-R and optional phases; replay the exact
+  file-policy derivative and refuse conflicting overrides or hidden dependencies.
+- Add an opt-in schema-1 command-binding receipt, focused source/installed and
+  old-path-gone controls, plus a genuine PDU command preview without execution.
+- No default/runtime policy, executor, checkpoint migration, branch merge or
+  native refinement change. Mixed XYZ/group-B execution remains a separate gate.
+
 ### Preserve scientific literals when rebinding declared observation selectors
 
 - Add an opt-in in-memory DataManager Miller-file adapter using exact historical
