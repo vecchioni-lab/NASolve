@@ -1,6 +1,6 @@
 # Metal development handoff — current state
 
-Updated **24 November 2026**. Active feature branch: **Alder**. The
+Updated **25 November 2026**. Active feature branch: **Alder**. The
 [root integration handoff](development-handoff.md) owns the current combined
 source, full validation and delivery. The [A01–A09 roadmap](metal-development-roadmap.md)
 owns feature completion. The earlier chronological diary is preserved as
@@ -13,7 +13,83 @@ not a second queue.
 <a id="a01-joint-dna-2026-11-24"></a>
 <a id="a01-coupled-metal-2026-11-24"></a>
 
-## Current A01 — coupled Hg/DNA XYZ comparison complete; no selected endpoint
+<a id="a01-parameter-scope-2026-11-25"></a>
+
+## Current A01 — reusable mixed-parameter observation qualified
+
+**Publication audit:** the compact checkout is published at
+`ScienceCheckouts/Hazel/2026-11-25_parameter-protection/index.html`.
+All native jobs/tests are stopped. The original pause and failed attempts remain
+preserved; no completed fit was repeated. The final audit passes **67** checks;
+local evidence occupies **20.23 MB** and the checkout **6.8 KB**. The exact commit
+and push outcome belong to the local `delivery.json` receipt. Browser preview of a local file URL was blocked; content/link checks are
+used without claiming rendered visual inspection.
+
+The new explicit `refinement_parameter_scope` / `refinement_parameter_native`
+helpers extract the demonstrated FT parameter protections without FT-specific
+counts, atom names or B ranges. Exact XYZ selection, ordered isotropic B groups,
+all-atom Q/f′/f″ protection, compiled flags and actual optimizer parameters are
+checked separately. Native binding verifies supplied source PDB identity/XYZ/B/Q
+and explicit scattering references. No default caller, force, checkpoint schema,
+legacy metal XYZ replay or selected scientific endpoint changes.
+See the [method/interface descriptor](metal-anomalous-doctor.md#explicit-mixed-xyzgroup-b-parameter-observation).
+
+**Prior-work boundary:** A691/A698 supplied the FT-specific observation;
+`metal/motion_scope.py` only inventories restraint boundaries; Willow's phased
+guard has a different fixed-B coordinate-only policy. Cedar C567/C570 own
+ordinary prepared-backbone/numbered refinement, not yet integrated here. No
+second importer, executor, phase reader or invented ordinary ancestry was added.
+
+**Validation:** the new test module fails before implementation (missing API);
+70 initial tests pass, then 71 cover typed selection/scattering rejection. The
+final source-element regression fails before its fix; **74 final focused tests**
+and **74 installed tests** pass, including charge-preserving element checks, after removing the
+owned temporary build source; that build/install is cleaned up. **36 cold checks**
+replay four prior five-cycle endpoints, and the wrong fixed-Hg scope rejects a
+moving-Hg endpoint. The replay predates the later group/reference type tightening;
+its exact source hashes remain in its receipt. **14 native binding controls**
+check the final adapter. **17 delta checks** establish that the only later change
+to the one-cycle adapter is the stricter initialization element predicate; all
+runtime observation functions and the pure checker stay exact. The cycle retains
+its original source hash and is not relabelled as a later-source execution.
+
+One new **Phenix 2.2.1-6174** dry initialization and one complete one-cycle
+adapter check pass, with **20** model observations, **573** actual reciprocal
+XYZ and **69** actual group-B evaluations. **80 independent cold checks** verify
+sources, indexed phases/Free-R, both crystal links, output pairing and stopped
+processes. Hg moves **0.0925 Å**; B **69.52 Å²**, Q **1**, f′ **−8.10018 e** and
+f″ **0, unmeasured** remain fixed. Rwork/Rfree **0.30985/0.34224** is a one-cycle
+mechanics result, not a replacement for the five-cycle science comparison.
+The first dry-run harness failed because it still required a deliberately omitted
+force-probe count; its completed initialization and failure remain preserved.
+The corrected dry run does not claim a new derivative probe, while the actual
+fit still requires both joint forces. No unchanged derivative tests or full suite.
+
+**Next:** compose this explicit observer with Cedar's versioned ordinary
+numbered-round owner and retain callback/output/stopping evidence; separately
+bind original anomalous/experimental-phase ancestry. Then adapt a legitimate
+endpoint to existing environmental-B/f″ readers. Full-model real-space execution,
+scientific selection and local phosphate/DF chemistry remain open. A01 partial;
+A02 scientific quantitation remains gated. No new angle/weight grid.
+The pinned receiving review identifies the concrete writer gap: ordinary group
+ADP currently emits `group = all`, which includes the metal. Add explicit scoped
+selection/no-backtrace choices through a new versioned policy, preserving old
+native payloads; reuse the existing process/preparation owners. Fixed-scattering
+mode currently assumes anomalous observations and is not by itself the merged
+MLHL geometry contract.
+
+**Evidence:** `branch-artifacts/Alder/a01-parameter-scope-20261125-01/` contains
+exact commands, source pins, negative controls, installed receipt, saved-state
+replay and native attempts `native-01` (failed harness) / `native-02` (passed).
+Runners A708–A720 retain the methods. Private models/maps remain excluded from
+Git. The linked root handoff retains the earlier full integration qualification;
+this is not a new full pass. `ordinary-receiving-review.json` pins the current
+Cedar source and next adapter boundaries. `final-geo-handoff.json` corrects a
+message that supplied a starting GEO: the actual prior science readers already
+use `_final.geo`, so their measurements and models remain unchanged. All native
+processes have returned and stopped.
+
+## Scientific baseline — coupled Hg/DNA comparison, no selected endpoint
 
 Both five-cycle **Phenix 2.2.1-6174** fits now allow Hg XYZ to move with the
 858 DNA atoms, while retaining the same 42 DNA residue B groups and fixed
@@ -75,7 +151,7 @@ figures are visually reviewed. These are bounded private science assertions,
 not a full-suite or new maintained-runtime claim. Local real-space calls still
 process zero DNA; global real-space refinement is not qualified.
 
-**Next A01 receiving boundary — two specific contracts, not another fit grid.**
+**Prior receiving scope — reuse rather than another fit grid.**
 Cedar **C567** already carries exact prepared Coot/ReadySet candidates, captured
 restraints, original observations/Free-R, terminal intent and all registered
 images into an unselected ordinary round with `numbered-prepared-backbone-v1`.
@@ -90,8 +166,8 @@ results cannot be relabelled as v1 or given fabricated ordinary ancestry.
 Preserve legacy replay and the source's unaccepted state. A small explicit
 ordinary-endpoint adaptation should feed the existing environmental-B/f″
 machinery, with scientific eligibility separate from diagnostic provenance.
-No schema extension, integration, new native job or endpoint adoption follows
-tonight. Remaining local phosphate/DF chemistry and scientific selection stay
+That design checkpoint introduced no schema extension, integration, native job
+or endpoint adoption; the explicit observation helper above is its next bounded step. Remaining local phosphate/DF chemistry and scientific selection stay
 visible; no new chemical target, cap/weight grid or unrelated deposition work.
 
 **Evidence/restart:** `branch-artifacts/Alder/a01-joint-metal-xyz-20261124-03/`

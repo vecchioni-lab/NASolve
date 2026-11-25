@@ -2,6 +2,12 @@
 
 NASolve orchestrates external crystallographic programs; it does not reimplement them.
 
+The opt-in [mixed XYZ/group-B observer](metal-anomalous-doctor.md#explicit-mixed-xyzgroup-b-parameter-observation)
+checks exact initialized state, compiled selection and actual optimizer freedom
+while preserving protected B/Q/f′/f″ values. It supplies no executor, callback
+installation, force or selection decision. Ordinary numbered-runtime integration
+and phase ancestry remain separate; historical metal XYZ protocols are unchanged.
+
 Explicit ordinary `observe_declared_sites=True` uses graph-valid projections from
 checked preparation to record non-triple modified sites as well as triples. The
 v9 request retains exact frozen v3 native code and all established execution/source/

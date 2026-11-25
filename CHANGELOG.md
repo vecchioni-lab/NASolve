@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Add explicit mixed XYZ/group-B parameter observation
+
+- Add a general, caller-pinned scope checker and read-only Phenix adapter for
+  exact XYZ/group-B membership and protected atomic values, including actual
+  optimizer flags/counts and source-bound initialization. Reject scattering
+  element substitutions even when an accompanying reference matches them; retain
+  explicit charge annotations for the same source element.
+- Qualify focused/installed rejection controls, four saved endpoint replays and
+  one bounded native cycle; retain a failed harness attempt and compact evidence.
+- Keep ordinary callback integration, phase ancestry and scientific acceptance
+  open. No default/CLI/checkpoint migration, legacy XYZ change or full-suite claim.
+
 ### Record coupled Hg/DNA refinement and the ordinary receiving boundary
 
 - Complete the matched Hg-XYZ freedom comparison with both registered crystal

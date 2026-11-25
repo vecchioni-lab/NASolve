@@ -545,6 +545,63 @@ experiments are A01 qualification evidence, with exact scope and native executio
 status in the [handoff](metal-development-handoff.md). Scientific geometry acceptance
 continues to precede anomalous quantitation.
 
+## Explicit mixed XYZ/group-B parameter observation
+
+The opt-in Python helpers in `refinement_parameter_scope` and
+`refinement_parameter_native` describe which coordinates and isotropic B groups
+may change while every atom's Q (occupancy), f′ and f″ remains fixed. A metal
+can be inside or outside the coordinate selection while its B stays protected.
+Explicit ordered atom indices and groups own this decision; the helper does not
+recognize a particular metal, residue name, dataset or preferred B-factor range.
+It preserves signed scattering values without interpreting them as measurements.
+
+`make_scope` freezes the source-model checksum, complete initialized native state,
+XYZ indices and ordered B groups. `ParameterScope` checks a caller-pinned packet
+and returns detached copies. Its `state`, `compiled`, `xyz_parameters` and
+`group_parameters` methods distinguish unchanged protected values, effective
+compiled choices and the actual optimizer parameter vectors. Disjoint B groups
+have one shift each. All atoms must be isotropic; anisotropic, TLS, occupancy,
+anomalous, rigid-body and torsion refinement need separate policies. Atomic ADP
+back-trace and overall atomic ADP rescaling are refused for this scope.
+
+The read-only native `bind_scope` compares supplied PDB identity/order/XYZ/B/Q
+with actual initialized atoms and independently supplied scattering references.
+Native scattering elements must match source elements; charge annotations remain
+explicit without authorizing an element substitution.
+`observe_model` checks both the model and diffraction objects; `observe_xyz` and
+`observe_group` inspect the actual minimizers. None starts a process, installs a
+callback, changes a parameter, writes a model or selects a checkpoint. The
+execution owner must invoke observations throughout its relevant stages and
+retain its existing output synchronization/stopping proof. A final-state check
+alone cannot certify the intervening optimization. Full-precision native checks
+must not be applied directly to rounded PDB output.
+
+**Methods and evidence.** The explicit scope compares exact atom identities and
+parameter membership, with fixed numerical tolerances for protected Cartesian
+coordinates, B, occupancy and scattering values. The native adapter validates
+source initialization, active modes, coordinate gradient flags, group membership
+and parameter counts. In a one-cycle Phenix 2.2.1-6174 FT_Hg control it observes
+573 coordinate and 69 group-B evaluations plus 20 full-model observations, while
+the independent earlier observer verifies original HL/Free-R and both crystal
+links. Focused pure/native checks, installed readback and four saved five-cycle
+endpoint replays are documented in the [current handoff](metal-development-handoff.md#a01-parameter-scope-2026-11-25).
+This establishes a reusable protection mechanism, not a solved metal structure.
+
+**Receiving boundary.** Source/checkpoint admission, dictionaries/restraints,
+crystal frame, indexed phases and original anomalous observations/Free-R remain
+with their existing owners. A checksum does not supply those inputs or prove
+ancestry. The record contains no operational file paths. Store one protected
+scope with its important geometry parent, rather than copying it into every
+cheap f″ sibling. Ordinary numbered-round integration and its versioned callback
+capture remain pending. Its parameter writer already supports group ADP but
+currently selects every residue; an explicit scoped choice must exclude protected
+atoms and disable atomic ADP back-trace. Existing fixed-scattering options do not
+by themselves establish the merged-observation/MLHL geometry policy. Local real-space strategy can be declared, but this
+adapter does not establish full-model real-space execution. Existing
+`metal-phased-xyz-v1` individual-ADP replay remains unchanged; a mixed-group result
+cannot be relabelled as that protocol. No CLI/campaign/default activation or
+scientific eligibility is introduced.
+
 ## Implemented explicit XYZ weight controls
 
 The API-only XYZ adapter accepts `xyz_weight_scale` in `make_plan` and `run_xyz`.

@@ -1,36 +1,27 @@
 # NASolve development handoff — integrated development base
 
-Updated **24 November 2026**. Active integration target: **Alder**. The everyday
+Updated **25 November 2026**. Active integration target: **Alder**. The everyday
 Pine and the separate Cedar/Willow branches are not changed by this integration. This base
 combines the existing metal feature with the qualified shared chemistry, native
 observation and storage owners; it introduces no new scientific policy.
 
 ## Current metal-science edge
 
-A01 remains partial; A02 scientific quantitation remains gated. The
-[coupled Hg/DNA comparison](metal-development-handoff.md#a01-coupled-metal-2026-11-24)
-completes both five-cycle Phenix 2.2.1-6174 fits with Hg XYZ newly free, 42 DNA
-B groups unchanged and Hg B/Q/f′/f″ fixed. Both declared crystal connections,
-original HL/MLHL and original Free-R remain. Hg moves 0.089 / 0.086 Å;
-Rwork is 0.3066 / 0.3059 and Rfree 0.3371 / 0.3362. Neither endpoint is selected.
-Maps, local phosphate geometry and asymmetric ligand B remain review evidence.
+A01 remains partial; A02 scientific quantitation remains gated. The explicit
+[mixed XYZ/group-B observer](metal-development-handoff.md#a01-parameter-scope-2026-11-25)
+now checks source-bound initialization, compiled selections, actual optimizer
+parameters and protected atomic values without FT-specific names/counts.
+74 focused and 74 installed tests pass. Four saved five-cycle endpoints replay;
+one new Phenix 2.2.1-6174 cycle observes 573 XYZ/69 group-B evaluations and
+20 model states, followed by 80 independent cold checks. Hg moves 0.0925 Å while
+B/Q/f′/f″ remain fixed. Its Rwork/Rfree 0.30985/0.34224 is mechanics evidence,
+not a selected solution. A failed initial harness remains recorded; all jobs stop.
 
-28 changed-observer controls and 114 independent preflight checks precede the
-fits. Two failed strict FFT derivative attempts remain stopped and preserved;
-the established A430 direct-summation diagnostic then passes at its original
-tighter bound, with native FFT baseline exactly restored and fit policy unchanged.
-Cold fit/output, written-image, environmental-B and sole-policy comparison
-checks pass; exact counts/commands are in the metal handoff. Both fits stop.
-The fresh report is `ScienceCheckouts/Hazel/2026-11-24_ft-coupled-metal/index.html`.
-
-Next reuse Cedar C567's ordinary prepared-backbone/numbered-round owner and
-close two explicit receiving contracts: mixed XYZ/group-B/native protections,
-and original anomalous/experimental-phase ancestry. Existing metal XYZ v1 is
-not this protocol; preserve its replay and never invent ordinary ancestry.
-The pinned local `a01-joint-metal-xyz-20261124-03/receiving-scope.md` records the
-design. No further native job, schema extension or shared integration tonight.
-Four maintained documents change; no runtime/default/migration change,
-scientific upload, automatic pruning or new full-suite claim.
+Next compose this helper with Cedar C567/C570's ordinary versioned receiving
+owner, and separately close original anomalous/experimental-phase ancestry.
+No CLI/default activation, shared runtime replacement, ordinary checkpoint
+adoption, legacy metal XYZ migration, science upload or new full-suite claim.
+The last full integration qualification remains exactly as recorded below.
 
 ## Qualified integration checkpoint — test-only amendment
 

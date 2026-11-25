@@ -1,6 +1,6 @@
 # Post-merge metal-coordination roadmap
 
-Updated **24 November 2026**. Working branch **Alder**. The feature milestones
+Updated **25 November 2026**. Working branch **Alder**. The feature milestones
 below are numbered **A01–A09** and are explicitly **post-merge work**. A09 is
 further deferred until after the main build and core A01–A08 work. These are
 not prerequisites for merging the current experimental implementation.
@@ -18,16 +18,21 @@ Hg moves 0.089 / 0.086 Å; Rfree is 0.3371 / 0.3362. Existing B machinery
 previews base/donor alternatives from the returned models without changing them.
 No selected endpoint, f″ result or global real-space qualification follows.
 
-**Next A01 step:** reuse Cedar C567's ordinary prepared-backbone/numbered-round
-owner. Scope and implement its missing mixed XYZ/group-B/native-protection
-contract and original anomalous/HL/Free-R phase-ancestry contract before adapting
-the endpoint to existing metal B/f″ readers. Preserve metal XYZ v1 replay and
-source REVIEW state; do not relabel private controls or invent ancestry.
-The pinned receiving scope and exact validation are in the handoff. No new
-cap/weight grid or unchanged native/test replay. Consult A430 before strict
-derivative probes: direct-summation diagnostics and native FFT baselines are
-distinct. The current report is
-`ScienceCheckouts/Hazel/2026-11-24_ft-coupled-metal/index.html`.
+**Next A01 step:** compose the now-qualified explicit XYZ/group-B protection
+helper with Cedar C567/C570's versioned ordinary prepared-backbone/numbered-round
+owner. The helper and read-only native adapter pass 74 focused/74 installed tests,
+four saved endpoint replays and one newly observed native cycle; this does not
+activate ordinary callbacks. Retain source/state/optimizer/output/stopping proof.
+Separately close original anomalous/HL/Free-R ancestry before adapting the endpoint
+to existing metal B/f″ readers. Preserve metal XYZ v1 replay and source REVIEW
+state; do not relabel private controls or invent ancestry. Exact evidence and
+remaining scientific gates are in the [handoff](metal-development-handoff.md#a01-parameter-scope-2026-11-25).
+The ordinary writer's current `group = all` must become an explicit scoped
+choice for this policy, with metal exclusions, no ADP back-trace and versioned
+native observation. Keep its existing source/process owner. The current checkout
+is `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/index.html`.
+No new cap/weight grid or unchanged native/test replay. Consult A430 before strict
+derivative probes: direct-summation diagnostics and native FFT baselines differ.
 
 A01 next-input review now includes [DF C2 chemical target provenance](metal-df-c2-angle-audit.md). A source-consistent fragment is available, but its eLBOW angles are not independent chemistry authority. Retain explicit source-state uncertainty and coupled-target review; routine donor-state integration remains deferred. No automatic 120° substitution.
 
