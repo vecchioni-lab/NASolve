@@ -1,6 +1,20 @@
 # NASolve development handoff — Willow
 
-**Current code/qualification: W275, 2026-11-25** (source `4e106e111b089c935a9f1bcb51908a461349943b`).
+**Current code/qualification: W276, 2026-11-25** (source `6f6c644fe601823ff314bc097b8dbc4b692b5fd0`).
+Complete canonical export receipt bytes are now synced in a same-directory
+private temporary file and published by a no-clobber hard link. Existing receipt
+schema/bytes and historical loading remain compatible. No shared campaign/Cedar
+code, chemistry, checkpoint or native behavior changed.
+
+**206 focused source / 206 relocated installed**, two skips each, 218 installed
+files; three demonstrated fail-before regressions. The actual W275 export replays
+exactly after staged input/build/package paths are removed. No new model or native
+run. Exact installation commands and hashes, focused logs and scope are under
+NASolve anchor `branch-artifacts/willow/w276-atomic-export/validation.json`.
+Whole-packet power-loss durability is not claimed; digest/artifact verification
+remains mandatory. Trusted producer-to-consumer command wiring is next.
+
+**Previous code/qualification: W275, 2026-11-25** (source `4e106e111b089c935a9f1bcb51908a461349943b`).
 The [immutable diagnostic export](topostitch-preview.md#save-and-replay-an-immutable-whole-asym-export-w275)
 now composes the reviewed whole-asym draft and public backbone reader. Nine
 anchored artifacts capture the original CIF/preview, representative CIF and two
@@ -97,7 +111,7 @@ controls are reused; no deposited tensor or coordinate was changed. See
 [exact scope and commands](topostitch-periodic.md#w271--plan-output-fields-and-separate-native-tls-interpretation).
 No product code, installed artifact or runtime schema changed.
 
-**Next W276; P03 remains partial.** W276: first qualify atomic publication of completed export receipts and trusted file-digest admission for automated consumers, reusing existing publication/ownership mechanisms. Then expose reviewed diagnostic export/replay through the existing cut-preview command and inspector handoff with explicit policy/source bindings. No second writer or implicit native refinement; a truncated receipt remains a partial attempt.
+**Next W277; P03 remains partial.** W277: wire reviewed whole-asym export and replay into the existing cut-preview command with producer-derived receipt file digest and explicit policies. Preserve legacy preview behavior and require a caller-supplied trusted digest for incoming exports; inspector handoff next. No implicit checkpoint/native execution.
 
 **Return later — B11 / PUB05:** Simon requested a maximally fragmented ASU
 refinement stress test on 2026-11-25. The [frozen-panel plan](topostitch.md#maximally-fragmented-asu-refinement-stress-test-planned)
