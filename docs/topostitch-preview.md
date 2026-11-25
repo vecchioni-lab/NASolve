@@ -5185,3 +5185,35 @@ C585's matched result does not establish geometry acceptance. A future applicati
 boundary must reproduce this proposal against exact source/evidence, preserve
 all unrelated categories, publish a separate derivative and maintain strict
 export/native admission. It must not treat the proposal fingerprint as approval.
+
+
+### Reopen a saved annotation proposal (W287)
+
+`load_connection_annotation_proposal(proposal, model, *,
+expected_proposal_sha256, expected_model_sha256, changes, evidence,
+expected_image_owner_sha256, cedar_source=None)` reopens this existing report
+without introducing an application or approval schema. Supply the trusted **raw
+file SHA-256**, separately from the report's internal `report_sha256`, and the
+same independently supplied original inputs used by the proposal builder.
+No paths, requested edits or evidence authority are adopted from the saved report.
+
+The loader uses the existing duplicate-key-rejecting JSON reader and proposal
+builder. It compares canonical typed fingerprints, not Python dictionary equality:
+`false` and `0` must remain different. Rehashed edits, changed input bindings,
+nonfinite JSON and proposal-file changes during replay refuse. It returns the
+same unapplied report; verification does not make its evidence scientifically valid.
+
+Ten missing-loader regressions preceded the change. The same four focused CIF
+modules pass **81 source / 81 relocated installed** checks; all 94 Python source
+hashes match. The actual saved 49-row W286 proposal reopens exactly in each
+installation, and a rehashed false-to-zero authority edit refuses. Original
+sources/evidence and selected `postmr` remain unchanged. No new CIF, native run,
+CLI option, schema migration or full-suite repeat. Exact validation commands and
+local evidence use NASolve anchor `branch-artifacts/willow/w287-annotation-replay/`.
+Installed-package relocation reused explicit scientific input anchors; this is
+not a claim that the scientific run is independently portable.
+
+This closes the saved-review reproduction substep. Before writing a separate
+metadata derivative, distinguish explicit image/type edits from the unresolved
+physical-oligo/entity and experimental-sequence decisions. Preserve all unrelated
+categories, and keep chemistry, geometry, export and native admission independent.

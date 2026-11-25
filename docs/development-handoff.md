@@ -1,22 +1,23 @@
 # NASolve development handoff — Willow
 
-**Current implementation and qualification: W286, 2026-11-25.**
-`prepare_connection_annotation_proposal` produces an explicit read-only review
-of contact-type and partner-image edits with exact source/row/evidence bindings.
-It retains every original row and gives each field its own evidence references;
-identity/entity/coordinate changes and scientific/native approval are excluded.
-[API and actual result](topostitch-preview.md#review-explicit-connection-annotation-proposals-w286).
-Source `ce624261f4cd47b584a6f2ec9de2ef595e9e3486`: 15 fail-before cases;
-**71 focused source / 71 relocated installed** checks, all 94 Python source hashes
-matching, plus exact installed replay of the real 49-row proposal. It proposes
-98 source-frame image fields and only five C585-attested type corrections
-(43 hydrog / 6 covale). Original models, selected `postmr` and W283 proposal
-remain unchanged; strict source-path admission still refuses missing entities.
-No CIF, checkpoint or native run is produced. Existing schemas/defaults remain
-compatible; the proposal report is additive version 1. Local evidence/commands:
-NASolve anchor `branch-artifacts/willow/w286-annotation-proposal/validation.json`.
-No full-suite repetition in this focused window. Next review the proposal before
-any application; W284 sequence/physical-oligo/entity questions remain separate.
+**Current implementation and qualification: W287, 2026-11-25.**
+The W286 source/row/evidence-bound proposal API now has a read-only saved-report
+loader. [Cold replay contract](topostitch-preview.md#reopen-a-saved-annotation-proposal-w287)
+checks a trusted raw-file digest and reproduces the review from independent
+original inputs through the existing builder; typed canonical comparison rejects
+rehashed edits, including false replaced by zero. No new schema or migration.
+Source `f68a6a930d1730553ea63f67cacbdd31cc890600`: ten missing-loader fail-before
+cases; **81 focused source / 81 relocated installed** checks, all 94 Python source
+hashes matching. The actual saved 49-row W286 proposal reopens exactly, retaining
+98 source-frame image fields and five C585-attested type corrections (43 hydrog /
+6 covale proposed). Sources, selected `postmr` and older proposals stay unchanged.
+No CIF, coordinates, checkpoint, native process or approval is produced. Strict
+source/export admission is unchanged. Local commands and evidence: NASolve anchor
+`branch-artifacts/willow/w287-annotation-replay/validation.json`; local artifacts
+remain excluded from Git. No full-suite repeat for this focused additive API.
+Next review the reproducible proposal before application; W284 experimental
+sequence and physical-oligo/entity authority remain distinct unresolved gates.
+Deferred fragmentation/metal stress tests retain their established prerequisites.
 
 **Previous science audit: W285; product code at that checkpoint remained W281.**
 All 49 original CIF connection rows have unique saved native atom-pair/image

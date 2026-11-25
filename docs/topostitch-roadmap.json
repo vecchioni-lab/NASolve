@@ -4,7 +4,7 @@
   "updated": "2026-11-25",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "ce624261f4cd47b584a6f2ec9de2ef595e9e3486",
+  "audited_code_commit": "f68a6a930d1730553ea63f67cacbdd31cc890600",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -1139,13 +1139,14 @@
         "W283: genuine descendant CIF export fails closed on missing entity identity. All49 connection rows retained; only two existing phosphate-image proposals have graph/native/paired-PDB evidence, unapplied. Remaining metadata must be qualified separately.",
         "W284: exact archived reference/recipe trace exposes two inherited source choices outside explicit PDU substitutions. Separate modeled labels from experimental/full-oligo/entity authority before writing metadata.",
         "W285: all49 original CIF rows have unique native atom-pair/image evidence; physical images remain invariant under recut. Five base-distance covale rows are explicit chemical-review findings. Annotation application and entity/experimental-sequence authority remain separate.",
-        "W286 adds a read-only connection proposal API with source/row/per-field evidence bindings and existing-owner image decoding. Actual49-row source/installed replay proposes98 image fields+5 typed contact corrections without applying metadata or weakening strict source/export gates."
+        "W286 adds a read-only connection proposal API with source/row/per-field evidence bindings and existing-owner image decoding. Actual49-row source/installed replay proposes98 image fields+5 typed contact corrections without applying metadata or weakening strict source/export gates.",
+        "W287 reopens saved proposals with a trusted raw-file digest and independent original inputs through the existing builder. Typed canonical replay rejects rehashed edits; 81 source/81 installed checks and exact real49-row replay. No application/native authority."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "Review the W286 explicit49-row proposal before any application. Full metadata output still needs W284 physical-oligo/entity and experimental-sequence provenance. A future separate derivative must reproduce the exact source/evidence proposal, preserve unrelated categories and retain independent chemical/geometry/export/native gates. The report fingerprint is not approval. Reuse existing owners; do not repeat fits or delayed stress tests to bypass metadata questions.",
+      "next_action": "Saved-review reproduction is closed by W287. Review W286 proposed image/type edits separately from W284 physical-oligo/entity and experimental-sequence authority. Before a separate metadata derivative, declare those authorities and prove unrelated-category preservation; keep chemical/geometry/export/native gates independent. No new fit or deferred stress test substitutes for metadata evidence.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -1189,14 +1190,15 @@
         "E_DESCENDANT_CIF_EXPORT_GAPS",
         "E_ARCHIVED_METADATA_AUTHORITY",
         "E_NATIVE_CONNECTION_IMAGE_ACCOUNTING",
-        "E_CONNECTION_ANNOTATION_PROPOSAL"
+        "E_CONNECTION_ANNOTATION_PROPOSAL",
+        "E_CONNECTION_ANNOTATION_REPLAY"
       ],
       "last_audit": {
         "date": "2026-11-25",
-        "human_update": 286,
-        "code_commit": "ce624261f4cd47b584a6f2ec9de2ef595e9e3486",
-        "reviewer": "Linden; bounded proposal scope agreed with Rowan",
-        "scope": "15 fail-before cases,71 focused source/71 relocated installed,exact real49-row replay; no CIF or native execution. P03 remains partial."
+        "human_update": 287,
+        "code_commit": "f68a6a930d1730553ea63f67cacbdd31cc890600",
+        "reviewer": "Linden; replay scope agreed with Rowan",
+        "scope": "10 fail-before cases;81 focused source/81 relocated installed;real49-row cold replay and rehashed typed refusal. P03 remains partial."
       }
     },
     {
@@ -9470,6 +9472,101 @@
           "size": 1934
         }
       ]
+    },
+    "E_CONNECTION_ANNOTATION_REPLAY": {
+      "kind": "Source-bound saved annotation proposal cold replay",
+      "date": "2026-11-25",
+      "human_update": 287,
+      "code_commit": "f68a6a930d1730553ea63f67cacbdd31cc890600",
+      "reference": "docs/topostitch-preview.md#reopen-a-saved-annotation-proposal-w287",
+      "result": "W287 reopens saved proposals with a trusted raw-file digest and independent original inputs through the existing builder. Typed canonical replay rejects rehashed edits; 81 source/81 installed checks and exact real49-row replay. No application/native authority.",
+      "limitation": "Read-only report reproduction;no semantic approval,CIF application,entity repair,checkpoint or native change. Package relocated;explicit scientific inputs reused. No full-suite/native repeat.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w287-annotation-replay/README.md",
+          "sha256": "ddbd1b48808358f503613efca5a564a96d7866a6f33bee5eaa42ec6535096d23",
+          "size": 1795
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w287-annotation-replay/before.log",
+          "sha256": "74fe966b26bdcb46000939bcd3d455903aab29f5bf0ae81dc31b267cf3ce75da",
+          "size": 29492
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w287-annotation-replay/focused.log",
+          "sha256": "771e7bcff21b05adb7a520457479ea73307f15a3f1c76be4750ed0c3420c1ba6",
+          "size": 180
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w287-annotation-replay/install.log",
+          "sha256": "04d3ce8b563a74b9af4aa26f22e69910b159246b084312d031bddb4c991fc203",
+          "size": 1097
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w287-annotation-replay/installation.json",
+          "sha256": "8a39f0f420e6b75edf3c353279ab88490d13383753c01cfce2e941ba1b10763d",
+          "size": 13391
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w287-annotation-replay/installed-api.log",
+          "sha256": "aa9bf879d88668d9f849b6d079f1fca1c072043d029db593eaacc13fb405f1c8",
+          "size": 36
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w287-annotation-replay/installed-replay.log",
+          "sha256": "a32bd7d09b5f158cf9e24980caaebf0051ba1429f85389e990ad408a33ddf7f3",
+          "size": 119
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w287-annotation-replay/installed-tests.log",
+          "sha256": "573feaa81915f5a276f8170c6a3583bb0a1e7034ae9f1d179c088f2f7533aada",
+          "size": 180
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w287-annotation-replay/qualification.log",
+          "sha256": "ab99e10b0cedd10bb884a2a58e550095307594c7aae7a63650e7d6b5e6e4a546",
+          "size": 69
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w287-annotation-replay/qualify.py",
+          "sha256": "07fe429653ea5ac28a36900ff3fd9b08c7ee31dabba6d054df2ce0a7ff1ab453",
+          "size": 3283
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w287-annotation-replay/replay.log",
+          "sha256": "a32bd7d09b5f158cf9e24980caaebf0051ba1429f85389e990ad408a33ddf7f3",
+          "size": 119
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w287-annotation-replay/replay.py",
+          "sha256": "cdd4ae7740bded197cb462b70818c40207280173c60b3e24fee7a26defd2895a",
+          "size": 3329
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w287-annotation-replay/result.json",
+          "sha256": "9488b55233d4b6753efe596d4881f1a7cd5fafc3d6d3a85ad781b5e1e82e4674",
+          "size": 498
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w287-annotation-replay/validation.json",
+          "sha256": "6878e29166efab28bc3960e0ac5eb7b8a7cce04667e7affddad2adc299108ae0",
+          "size": 2194
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -9651,8 +9748,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 286,
-    "next": 287,
+    "current": 287,
+    "next": 288,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -11178,6 +11275,12 @@
         "title": "Prepare explicit source-bound connection annotation proposals",
         "state": "RECORDED",
         "code_commit": "ce624261f4cd47b584a6f2ec9de2ef595e9e3486"
+      },
+      {
+        "number": 287,
+        "title": "Reopen saved connection proposals against independently bound sources",
+        "state": "RECORDED",
+        "code_commit": "f68a6a930d1730553ea63f67cacbdd31cc890600"
       }
     ]
   },
