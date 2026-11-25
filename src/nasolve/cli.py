@@ -320,6 +320,13 @@ def build_parser() -> argparse.ArgumentParser:
     cif_catalogue.add_argument("--ccd-root", required=True, type=Path,
                                help="explicit CCD directory containing a/data_CODE.cif etc.; no discovery")
     cif_catalogue.add_argument("--json", action="store_true", help="print the complete coverage census")
+    deposition_geometry = cif_sub.add_parser("deposition-geometry", help="remeasure nucleic-acid bond and angle findings from a wwPDB validation CIF")
+    deposition_geometry.add_argument("model", type=Path, help="exact coordinate mmCIF assessed by the report")
+    deposition_geometry.add_argument("--validation", type=Path, required=True, help="matching wwPDB validation-data mmCIF")
+    deposition_geometry.add_argument("--candidate", type=Path, help="revised coordinate mmCIF with the same atom and residue identities")
+    deposition_geometry.add_argument("--family", choices=("all", "standard", "mogul"), default="all",
+                                     help="reported reference family to reproduce (default: both)")
+    deposition_geometry.add_argument("--json", action="store_true", help="include source hashes, atom identities, targets and coordinate measurements")
     deposition_links = cif_sub.add_parser("deposition-links", help="check ordinary nucleic-acid steps and declared O3'–P crystal links in a coordinate mmCIF")
     deposition_links.add_argument("model", type=Path, help="exact coordinate mmCIF (requires NASolve[topology])")
     deposition_links.add_argument("--processed", type=Path, help="optional returned coordinate mmCIF to check for missing covalent declarations")
@@ -2166,6 +2173,18 @@ def _cif_deposition_links(args: argparse.Namespace) -> int:
 
 def _cif_doctor(args: argparse.Namespace) -> int:
     """Offline assessment/preparation and explicitly requested native candidates."""
+    if args.cif_action == "deposition-geometry":
+        from .cif_deposition_geometry import inspect_deposition_geometry, print_deposition_geometry
+        try:
+            result = inspect_deposition_geometry(args.model, args.validation, candidate=args.candidate, family=args.family)
+        except (OSError, ValueError, RuntimeError) as exc:
+            print(str(exc), file=sys.stderr)
+            return 1
+        if args.json:
+            print(json.dumps(result, indent=2, allow_nan=False))
+        else:
+            print_deposition_geometry(result)
+        return 0 if result["status"] == "REMEASURED" else 2
     if args.cif_action == "deposition-links":
         return _cif_deposition_links(args)
     if args.cif_action == "residue-geometry":

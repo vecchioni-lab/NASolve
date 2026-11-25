@@ -326,7 +326,9 @@ local sugar-angle width in each scaffold. Both angles moved about three
 original restraint widths toward the target with R-work within 0.0004 of the controls.
 The other PDU crystal bond lengthened to 1.684 Å. Establish the sugar and
 phosphate reference classes and check all neighboring geometry before any
-automatic intervention. Keep the DF donor-state and PDU whole-arm decisions
+automatic intervention. C582 [remeasures existing OneDep findings](pdb-deposition.md#remeasuring-a-returned-geometry-table)
+on an exact source and candidate. A forward screen still needs independently
+justified sugar and phosphate references. Keep the DF donor-state and PDU whole-arm decisions
 on Q06. See the
 [native comparison](backbone-chemistry.md#crossovers-in-the-ft-hg-scaffold).
 

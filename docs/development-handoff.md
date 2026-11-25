@@ -1,7 +1,26 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-25, C581 local sugar restraints at fixed diffraction weight — Rowan**.
+Updated **2026-11-25, C582 remeasurement of returned deposition findings — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**.
+
+**C582.** `cif-doctor deposition-geometry` can now reproduce reported
+standard and Mogul bond lengths and angles from a nucleic-acid coordinate
+mmCIF. Earlier versions read native Phenix restraints and crystal links.
+The new read-only command accepts a validation-data CIF and an optional
+revision. Its version 1 JSON includes both kinds of reference, input hashes,
+candidate values, and coverage. Existing inputs and checkpoints require no
+migration. The implementation lives in `cif_deposition_geometry.py`, reuses
+the coordinate reader in `cif_deposition_links.py`, and enters through the
+normal CLI. See the [real 5LNA and 9CKB observations](pdb-deposition.md#remeasuring-a-returned-geometry-table).
+The earlier 3LNA return had no standard rows and nine of ten Mogul rows
+matched to their printed precision. A future forward screen needs independent
+reference selection and coverage beyond returned findings.
+
+Both source and installed wheel passed 27 focused tests using
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_deposition_geometry.py tests/test_cif_deposition_links.py tests/test_deposition_ordinary_steps.py`.
+The installed check used the wheel's import path and the same three test
+modules. All three real returns were reread with Gemmi 0.7.5. C582 required
+no external refinement, full regression or additional experimental files in Git.
 
 **C581.** The FT–Hg B:7 attachment angle and the PDU:PDU D:7 sugar angle both
 improved in five actual Phenix 2.2.1-6174 cycles after halving one local

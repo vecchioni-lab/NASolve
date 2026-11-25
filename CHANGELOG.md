@@ -8,6 +8,10 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `cif-doctor deposition-geometry` remeasures nucleic-acid bonds and angles
+  listed in a returned wwPDB validation CIF. It can compare the same atoms
+  in a revised coordinate file against the original reported references.
+
 - `cif-doctor residue-geometry` now shows how far the atoms actually moved
   when a refinement changed a bond or angle restraint's width. Both models
   can be read on the original scale even if Phenix changed the term's origin.

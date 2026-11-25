@@ -92,6 +92,8 @@ invalid input. A complete reading can still contain severe distortions.
 These are Phenix's effective targets for the actual model and restraint inputs.
 An independent wwPDB check can assign a different target or uncertainty, and
 an absent chemical restraint has no printed value to score.
+When a validation-data CIF is available, use
+[`deposition-geometry` to remeasure its findings](pdb-deposition.md#remeasuring-a-returned-geometry-table).
 
 ## Checking which atoms Phenix put in a residue plane
 
