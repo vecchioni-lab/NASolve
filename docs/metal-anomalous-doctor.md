@@ -657,6 +657,29 @@ FT handoff qualify this helper. The initialized fmodel creates the observed nati
 target; this is not an optimizer evaluation. Historical individual-ADP and
 coordinate-only guards remain unchanged. No callbacks or processes are installed.
 
+**Declared file selectors.** `refinement_parameter_files.rebind_miller_files`
+accepts exact policy bytes/checksum and a list of caller-authenticated bindings.
+Each binding has `historical_file`, `resolved_file`, `sha256` and an existing
+portable `source_reference` with the same checksum. The source owner verifies
+those files and their parent/request ancestry; this transformer reads no
+crystallographic data. It changes only `data_manager.miller_array.file` literal
+nodes, checks native typing and preserves all other literal/effective definitions.
+Every used selector needs an exact mapping; all mappings must be used, and distinct
+files cannot collapse. Includes, variables, disabled/unknown definitions and
+unanchored/conflicting references refuse. No basename discovery or general string
+replacement is used.
+
+Schema-1 `literal-datamanager-file-rebinding-v1` receipts retain the source-policy
+and result hashes, portable binding references and change count. Resolved filenames
+record execution spelling; they are not the sole operational provenance. Command
+arguments, other file fields and native child adoption remain separately owned.
+The genuine PDU control binds the historical selector from its exact checked
+request to the resolved original observations, retaining `IMEAN,SIGIMEAN` and
+`FreeR_flag`. It adds no HL. Fifteen source and 15 installed native cases pass,
+including declared-file relocation after removing the old path; installed replay
+reproduces the genuine derivative exactly. No refinement or complete-run
+portability follows. See the [receiving contract](metal-ordinary-receiving.md#declared-source-to-child-file-selectors).
+
 **Receiving boundary.** Source/checkpoint admission, dictionaries/restraints,
 crystal frame, indexed phases and original anomalous observations/Free-R remain
 with their existing owners. A checksum does not supply those inputs or prove

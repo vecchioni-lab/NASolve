@@ -31,6 +31,14 @@ HL target. It does not read files or establish checkpoint ancestry; source cryst
 chemical and parameter checks stay with existing owners. Ordinary runtime adoption
 remains versioned work under the [receiving contract](metal-ordinary-receiving.md).
 
+`refinement_parameter_files.rebind_miller_files` changes only explicitly bound
+DataManager Miller-array filenames through native literal nodes. Existing owners
+must authenticate each historical-command/input-reference mapping and checksum;
+its receipt retains the portable source reference alongside execution spelling.
+All non-file literals/effective definitions and labels stay exact. It is not a
+command relocator, source-admission API or complete ordinary child policy. No
+default caller uses it. See the [source/child selector boundary](metal-ordinary-receiving.md#declared-source-to-child-file-selectors).
+
 Historical counted V5–V8 code preparation now obtains `topostitch_native_recipe.py`
 from `data/refinement-runtime-native-recipe-sources.json`, retaining its already
 qualified SHA-256. Modern direct callers retain the newer explicit native-crystal

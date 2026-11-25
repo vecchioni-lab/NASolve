@@ -18,7 +18,15 @@ Hg moves 0.089 / 0.086 Å; Rfree is 0.3371 / 0.3362. Existing B machinery
 previews base/donor alternatives from the returned models without changing them.
 No selected endpoint, f″ result or global real-space qualification follows.
 
-**Next A01 subgoal — ordinary source admission:** resolve the original data,
+**Latest A01 increment:** exact declared observation-file rebinding now passes
+15 source/15 installed native cases, genuine PDU policy replay, an old-path-gone
+synthetic relocation and 26 cold checks. One Miller selector changes; scientific
+literals and absent HL stay unchanged. The
+[source-to-child boundary](metal-ordinary-receiving.md#declared-source-to-child-file-selectors)
+still requires the existing complete command/numbered owner and genuine phased
+inputs; no new checkpoint or fit follows.
+
+**Next A01 subgoal — ordinary source admission and child-command binding:** resolve the original data,
 Free-R/HL choices and literal parameter policy from a genuine recorded parent.
 The FT private chain has no ordinary report/registry; do not manufacture one.
 The [concrete interface and negative cases](metal-ordinary-receiving.md#current-admission-boundary-and-next-a01-subgoal)

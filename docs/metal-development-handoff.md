@@ -15,7 +15,32 @@ not a second queue.
 
 <a id="a01-parameter-scope-2026-11-25"></a>
 
-## Current A01 — receiving admission boundary made explicit
+## Current A01 — declared source-to-child file selector qualified
+
+The [bounded file-selector adapter](metal-ordinary-receiving.md#declared-source-to-child-file-selectors)
+now derives an in-memory policy from a genuine ordinary PDU parent through the
+existing checked request and declared input resolver. Exactly one DataManager
+observation selector changes; original labels and all scientific literals stay
+exact. Genuine absent HL remains absent. No command, checkpoint or refinement is
+created, and the PDU run is unchanged.
+
+Fifteen source/15 installed native cases, exact installed genuine-policy replay,
+an old-path-gone synthetic relocation and 26 cold checks pass. Source Python has
+four pure checks with native cases explicitly skipped; native tests execute all
+15. The same wheel is reused for the added relocation control; temporary build/
+install trees are removed. Two invalid legacy-field test fixtures and one blocked
+lazy native hardware-query import are preserved with their harness corrections.
+No production validator was weakened. Evidence: `a01-parameter-files-20261125-01/`
+under the Alder artifact anchor (A765–A770), 1.79 MiB. Compact checkout:
+`ScienceCheckouts/Hazel/2026-11-25_parameter-protection/parameter-files.html`.
+
+**Next A01 step:** connect the admitted parent/source packet and derived policy to
+the existing complete child-command/numbered owner. This helper changes Miller
+file selectors only; other file fields, continuous observation and output closure
+remain separate. No phased eligibility without genuine HL. A01 partial; A02 gated.
+
+## Earlier boundary — ordinary admission made explicit
+
 
 The [ordinary receiving contract](metal-ordinary-receiving.md#current-admission-boundary-and-next-a01-subgoal)
 now records the precise FT ancestry blocker and all original data/phase/parameter

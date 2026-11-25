@@ -7,7 +7,15 @@ observation and storage owners; it introduces no new scientific policy.
 
 ## Current metal-science edge
 
-A01 remains partial; A02 scientific quantitation remains gated. The next named
+A01 remains partial; A02 scientific quantitation remains gated. The latest
+in-memory file-selector adapter qualifies one genuine PDU source-to-child PHIL
+derivative, preserving original observation labels and all scientific literals.
+Fifteen source/15 installed native cases, exact replay, old-path-gone synthetic
+relocation and 26 cold checks pass. No HL, command, checkpoint or fit is invented.
+The [remaining command/ordinary boundary](metal-ordinary-receiving.md#declared-source-to-child-file-selectors)
+stays explicit; no full suite or complete-run portability claim.
+
+The next named
 subgoal is [source-bound ordinary parent admission](metal-ordinary-receiving.md#current-admission-boundary-and-next-a01-subgoal).
 A read-only trace confirms the private FT source chain has no ordinary registry;
 no parent was invented. Existing input/parent refusals and two separate source/

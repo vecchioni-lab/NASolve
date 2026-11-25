@@ -143,6 +143,49 @@ rebind declared, checksummed original files and freeze its own policy. The liter
 compositor does not perform path rebasing. No basename lookup, arbitrary path
 replacement or reuse of a historical host path as sole authority is allowed.
 
+## Declared source-to-child file selectors
+
+The next bounded mechanism is now qualified without executing a child.
+`refinement_parameter_files.rebind_miller_files` accepts the original policy
+bytes/checksum and exact source-owner mappings: historical filename, resolved
+execution spelling, source checksum and portable source reference. Native PHIL
+literal-node translation changes only DataManager Miller-array `file` fields.
+All labels, ordering and non-file literals/effective settings remain exact.
+Missing/unused/ambiguous mappings, unknown native definitions and unanchored or
+conflicting checksums refuse. This adapter neither reads crystallographic inputs
+nor establishes parent ancestry; existing owners authenticate those mappings.
+
+A genuine PDU `refine-001` control uses Cedar
+`3453a9f89248381503bda0107b7d28fe35a24feb` to validate the ordinary parent, checked
+request and original observations. The historical filename comes from the exact
+recorded input argument; its resolved path comes from that argument's declared
+checksummed reference. Exactly one selector changes. `IMEAN,SIGIMEAN`, `FreeR_flag`
+and every other scientific setting remain unchanged. Two conflicting mappings
+refuse. Experimental HL remains absent. Source/result policy hashes and portable
+context are retained in the compact receipt. Nothing is written into the PDU run.
+
+**Qualification:** 15 source and 15 installed native cases, exact installed replay
+of the genuine derivative, and 26 cold checks. The installed relocation control
+removes the original synthetic input path and resolves the new copy through the
+existing declared-reference owner. It is file-selector qualification, not proof
+that the entire run relocates. The owned build/install trees are removed; the
+same wheel is reused for the added relocation check. Local evidence is 1.79 MiB.
+
+Two initial native tests used invalid legacy field names and correctly refused;
+the final non-Miller-path case uses the existing valid output prefix. An initial
+read-only harness blocked CCTBX's lazy hardware-memory query. Preloading the native
+Program before that guard corrected the harness; no refinement was launched and
+no validation tolerance changed. Evidence and exact commands are under
+`branch-artifacts/Alder/a01-parameter-files-20261125-01/`, runners A765–A770.
+
+**Remaining A01 boundary:** assemble the complete child command and all file
+references through the existing numbered owner, preserving the admitted source
+packet and literal policy derivation. Other PHIL paths and command arguments are
+not rebound by this helper. Continue to withhold phased admission without genuine
+HL, and receive Cedar's existing prepared/runtime interfaces before ordinary FT
+adoption. No second executor, new checkpoint, default callsite or historical
+payload change was introduced here.
+
 ## Ordered integration steps
 
 1. **Admit a legitimate prepared parent.** Reuse Cedar's `PreparedBackbone`,

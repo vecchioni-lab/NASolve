@@ -8,6 +8,20 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve scientific literals when rebinding declared observation selectors
+
+- Add an opt-in in-memory DataManager Miller-file adapter using exact historical
+  filenames and caller-verified portable input references/checksums. Retain
+  labels, order and every non-file literal/effective definition; refuse missing,
+  unused, ambiguous or conflicting mappings. Do not discover by basename.
+- Qualify a genuine ordinary PDU parent through the existing Cedar reader,
+  source/installed native cases, exact installed policy replay and a synthetic
+  relocation after the old input path is removed. Genuine absent HL stays absent.
+- This schema-1 receipt covers Miller-array file selectors only. Command inputs,
+  other paths, complete ordinary child adoption and full-run portability remain
+  with existing owners. No refinement, checkpoint migration, default or full-suite
+  change; preserve initial invalid-fixture/import-guard failures.
+
 ### Record the ordinary-parent admission boundary
 
 - Preserve the private FT source chain and exact observation, HL and parameter
