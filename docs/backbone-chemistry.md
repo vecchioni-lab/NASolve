@@ -602,6 +602,56 @@ modified sites. Choosing a transferable correction still requires evidence
 for the whole junction and its fit to diffraction.
 [Reference and reading instructions](cif-doctor.md#inspecting-a-phosphate-at-a-crystal-boundary).
 
+### How Phenix labels base-pair restraints in the PDU scaffold
+
+**C585.** The two Watson–Crick pairs flanking PDU are A:11 DT with B:5 DA,
+and A:13 DC with B:3 DG. Willow traced five inter-base rows labeled
+`covale` in the native coordinate mmCIF. In the saved refinement, the
+five rows came from the NARestraints hydrogen-bond distances. Both the
+printed Phenix restraints and the actual source recipe were checked.
+
+Five new five-cycle Phenix 2.2.1-6174 fits used the same start, displacement
+model, PDU dictionaries, two registered crystal phosphates, 1,778
+working and 124 held-out reflections. The original C581 local fit supplied
+the matched control. Halving the five distance widths from 0.20 to 0.10 Å
+while retaining the 2.80 Å targets brought the shortest contact from 1.816
+to 2.032 Å. It remained compressed.
+
+For a separate comparison we obtained the five atom-specific target lengths
+and widths from Phenix. One fit supplied those values as distance edits.
+The other supplied just the five native secondary-structure hydrogen bonds,
+preserving the original pair angles and planes in both. All 7,924 initial
+nonbonded contacts and their distance limits agreed. After refinement, all
+862 written atom positions agreed to PDB precision. Both fits gave
+R-work/R-free of 0.2078/0.2693. All five rows were `covale` for distance
+edits and `hydrog` for native hydrogen bonds. This separates the chemical
+meaning of the exported rows from the quality of the coordinates.
+
+Changing just the working diffraction weight gave the following results.
+Weight 4 was chosen as the integer nearest the geometric midpoint of 1 and
+12. The test set was kept out of the weight choice.
+
+| Weight | A:11 O4···B:5 N6 | B:7 O3′···B:1 P | B:4 PDU tip to ring plane | R-work / R-free |
+| ---: | ---: | ---: | ---: | ---: |
+| 12 | 2.352 Å | 1.683 Å | 0.590 Å | 0.2078 / 0.2693 |
+| 4 | 2.564 Å | 1.627 Å | 0.009 Å | 0.2287 / 0.2873 |
+| 1 | 2.711 Å | 1.609 Å | 0.028 Å | 0.2554 / 0.3125 |
+
+At weights 4 and 1, all 53 independently referenced dimensions at each
+crystal junction lay within the published outer ranges. At weight 4 the
+A:13 O2···B:3 N2 contact remained short at 2.447 Å. The second crystal
+phosphodiester measured 1.609 Å. Both PDU tips approached their ring planes.
+The better geometry costs 0.0209 in R-work relative to weight 12. This leaves
+the uniform weight and the whole-arm correction open.
+
+For the earlier C581 sugar-width comparison, rebuilding its two fixed
+19-atom omit maps reproduced the archived parent and starting-position
+samples. Both maps excluded all 124 test reflections. At 4.19 Å, changing
+the D:7 sugar width shifted the mean sampled density over the 19 omitted
+atoms by less than 0.003 map standard deviations in every map and solvent
+comparison. The density gives little leverage between these two sugar fits.
+These omit comparisons concern the original C581 siblings.
+
 ## Building a requested 5'-terminal phosphate
 
 When a site is explicitly declared as a 5'-terminal phosphate, PostMR runs an

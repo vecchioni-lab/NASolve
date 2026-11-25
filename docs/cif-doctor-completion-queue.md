@@ -335,7 +335,19 @@ its interval and the far B:7→B:1 bond remained long. The FT B:7 angle was
 already within the independent interval. Check local diffraction support
 and the remaining phosphate and sugar distortions together before choosing
 a correction. References for substituted backbone chemistry still need
-separate qualification. Keep the DF donor-state and PDU whole-arm decisions
+separate qualification. C585 then traced five compressed flanking base-pair
+contacts to the archived NARestraints distance edits. With equal targets
+and widths, two native five-cycle fits gave identical written coordinates
+and different mmCIF bond types. A global weight of 4 brought both crystal
+junctions into the published ranges and the two PDU tips close to their
+planes, at a cost of 0.0209 in R-work. Keep these fits unselected. The next
+bounded geometry question is whether the strained canonical flanks can be
+regularized **locally at the higher data weight**, with the two crystal
+junctions, both arms and working diffraction checked together. First reuse
+the C585 controls. The separate export task is to carry the recipe's
+hydrogen-bond identity through final mmCIF alongside genuine crystal covalent
+links. [Measured native controls](backbone-chemistry.md#how-phenix-labels-base-pair-restraints-in-the-pdu-scaffold).
+Keep the DF donor-state and PDU whole-arm decisions
 on Q06. See the
 [native comparison](backbone-chemistry.md#crossovers-in-the-ft-hg-scaffold).
 

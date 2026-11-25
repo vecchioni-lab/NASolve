@@ -68,6 +68,19 @@ Compare the **exact upload** to the processed **coordinate** mmCIF from the same
 
 Keep each submitted pair, its checksums, the matching processed coordinates and validation report together by revision. Record which warnings cleared, which need a curator, and which revisions have only local checks. Read the standard polymer geometry table as well as the modified-residue section. A satisfactory diffraction check can accompany local sugar or base outliers.
 
+## Check the chemical type of a base-pair contact
+
+Phenix 2.2.1-6174 can write a base-pair hydrogen bond as `covale` in
+`_struct_conn.conn_type_id` when its distance came from a geometry edit.
+On a PDU test scaffold, five such contacts were written as `hydrog` when
+the same atom-specific distances and widths were supplied as native
+Watson–Crick restraints. The two five-cycle fits had identical written
+coordinates. For deposition, trace an apparent inter-base covalent bond to
+the pair recipe and the model atoms. Preserve separately declared chemical
+bonds, including the O3′–P links across crystal symmetry. The measured
+distance and restraint origin alone cannot identify the chemistry.
+[Five-contact comparison](backbone-chemistry.md#how-phenix-labels-base-pair-restraints-in-the-pdu-scaffold).
+
 ## What the locked-DNA depositions established
 
 The depositor confirmed that 3LNA (9Z65) passed OneDep on 24 November 2026. The preliminary report has zero standard outliers among 1,348 bonds and 2,065 angles, no chain breaks, and DCC Rwork/Rfree of 0.2008/0.2124. Two expected 1.61 Å symmetry phosphodiesters appear as close contacts. The separate ligand table retains observations on the two locked thymines, including their cage angles. The deposited R factors in the XML and the reported ligand geometry support the phosphate-repaired revision. The later reference-guided cage fit remains a local comparison. The separate 5LNA (9ZS1) return also had zero standard bond-length or bond-angle outliers and no chain breaks.

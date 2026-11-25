@@ -1,7 +1,32 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-25, C584 independent junction geometry — Rowan**.
+Updated **2026-11-25, C585 base-pair geometry and deposition labels — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**.
+
+**C585.** Five completed five-cycle Phenix 2.2.1-6174 fits and two native
+working-only omit maps qualify the paired-base labeling issue that Willow
+found. With five atom-specific target lengths and widths held identical,
+native hydrogen bonds and distance edits produced the same 862 written
+coordinates and R factors. Phenix wrote all five rows as `hydrog` and
+`covale`, respectively. At lower working diffraction weights the two crystal
+phosphates and the PDU arms improved. Even the middle weight cost 0.0209 in
+R-work. The [measurements](backbone-chemistry.md#how-phenix-labels-base-pair-restraints-in-the-pdu-scaffold)
+and [deposition guidance](pdb-deposition.md#check-the-chemical-type-of-a-base-pair-contact)
+are recorded. Each fit is an unselected sibling.
+
+This checkpoint changes the backbone guide, deposition guide, completion
+queue and handoff. Runtime, schema and migration behavior are unchanged.
+The compact local evidence archive is
+`branch-artifacts/cedar/c558-two-crystal-phosphates/C585 PDU pair restraints and deposition labels.zip`.
+Its `Read first.txt` gives exact reconstruction commands, and its manifest
+verifies the methods, native receipts and numerical results from
+`read-final.py`, `read-native-start.py` and `read-omit-maps.py`.
+The measured return table has SHA-256
+`b3a35a4ed4500beaa432a61c71d87b8fd19bee5a781f665bfa99d8692a37abe3`.
+No new model or diffraction data are in Git. The preceding C584 source and
+wheel each passed 107 focused checks. This documentation and native-controls
+checkpoint required no full regression. Next compare local geometry repair
+at the same diffraction weight and preserve pair intent for deposition.
 
 **C584.** The existing `cif-doctor phosphate-image` inspection now accepts
 `--na-val-2026`. On request it adds the published outer intervals for
