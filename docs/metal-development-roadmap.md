@@ -18,6 +18,16 @@ Hg moves 0.089 / 0.086 Å; Rfree is 0.3371 / 0.3362. Existing B machinery
 previews base/donor alternatives from the returned models without changing them.
 No selected endpoint, f″ result or global real-space qualification follows.
 
+**Next A01 subgoal — ordinary source admission:** resolve the original data,
+Free-R/HL choices and literal parameter policy from a genuine recorded parent.
+The FT private chain has no ordinary report/registry; do not manufacture one.
+The [concrete interface and negative cases](metal-ordinary-receiving.md#current-admission-boundary-and-next-a01-subgoal)
+identify the prepared-PostMR integration dependency and distinguish file validity
+from original-source semantics. Twenty boundary checks and a genuine PDU ordinary
+source-family read are recorded; PDU has no experimental HL and cannot stand in
+for phased FT admission. Preserve its separate cross-environment refusal. No
+native refinement or new geometry fit.
+
 **Latest mechanical increment:** the passive diffraction observer now carries
 independently read source captures to the active manager and actual native HL
 target without changing F/sigma/Free-R/HL or XYZ/B selections. Source/installed

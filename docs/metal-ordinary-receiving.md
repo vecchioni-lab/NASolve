@@ -39,6 +39,110 @@ closes source-capture comparison through the private receiving control; **step 2
 ordinary ancestry/admission and steps 3–5's integration remain open**. Do not rerun
 the qualified dry control merely because this prospective checklist remains open.
 
+## Current admission boundary and next A01 subgoal
+
+The FT private source chain is pinned, but **is not an ordinary parent**. The
+W252 source plan pins the W250 request (`79159dd316d25d2ef1da82e26fb7af89855b082047a5d7a2305b16c25c6b331e`),
+whose model/data/phase references resolve to
+`a01-donor-continuation-20261123-01/pair_flanks/AutoRefine/round_001/`
+under the local Alder artifact anchor. The containing `pair_flanks` directory has
+neither an ordinary `report.json` nor `AutoRefine/checkpoints.json`. The current
+private dry receiver also lacks both. Existing `read_registry` refuses each;
+round-like directory names do not establish checkpoint lineage.
+
+| Pinned private input | SHA-256 |
+| --- | --- |
+| Model referenced by the W250 request | `7aade3c43099cb67cf218120b62bbcb3ab9273e813de9ce92e9c178f24dd40e8` |
+| Original observations | `500eceff5acb0ddae49ba1316da4074c36498a7c64e2cb20ff202193d9f740a2` |
+| Original HL source | `ffb8f116dd597f2347f2a8150d7343b3ada2911b694e24ddebfa79cf530cd4c0` |
+| Retained original scientific parameter text | `a88f8e32f2ec4789f10a342944ace45949a9bce5454d78a6e8ebb574423961d3` |
+| Qualified composed parameter text | `fc36a2e02e85323a4356d66b0b3a1b0a95d83dfedea7746f07689f4d3dbcd812` |
+
+A read-only boundary review (20 checks) also exercises the existing ordinary
+reader through its **synthetic fake-executable fixture**, not a genuine scientific
+parent. It refuses changed parameter bytes, changed HL bytes, a conflicting parent
+ID and a different declared phase path even when that path has identical bytes.
+Checked ordinary execution already binds the exact `autorefine.params` through
+its ordered, checksummed request. An uncorrected `round.json` absolute parameter
+path alone supplies no equivalent proof.
+
+Two synthetic cases remain readable by the general file/registry owner: reordered
+phase-label metadata and a run-report observation source conflicting with the
+saved registry. This does not establish exact merged-HL admission. The new metal
+handoff must compare declared original source identity and actual selected
+Free-R/HL values independently. Do not loosen the native checks to accept these
+cases, or treat generic registry readability as their scientific validation.
+
+**One next A01 subgoal: source-bound ordinary parent admission.** Consume the
+existing preparation/registry reader's verified run, report, registry and exact
+parent, plus the checked execution request where present. The interface must:
+
+- Resolve model, ordered restraints, original observations, approved HL source and
+  literal policy through declared anchors/checksums; pin report/registry state
+  across the read. Refuse missing or conflicting original provenance explicitly.
+- Match original observation bytes to the parent and frozen report source. Bind
+  original Free-R column/test value and HL quartet through the source reader,
+  checking actual indexed values using the already-qualified passive observer.
+  Metadata-only label agreement is insufficient.
+- Bind parameter bytes to the exact checked request; use the literal compositor
+  only after this admission. A new child policy must have its own declared
+  provenance; do not relabel private parameter text as an ordinary parent policy.
+- Return the resolved input bundle and compact provenance to the existing
+  numbered-run owner. It must not create a second executor or bypass source
+  REVIEW, chemistry, topology, frozen-runtime or output/stopping checks.
+
+Integration dependency: Cedar's `PreparedBackbone`, `PhosphateRequest` and the
+associated prepared PostMR publication path are not yet present on this Alder
+base. Receive those existing interfaces deliberately; do not create a synthetic
+ordinary FT parent. A genuine ordinary PDU example may test general provenance,
+but cannot establish FT chemistry. The native zero-cycle control is already
+qualified; no repeat is needed to prove this filesystem/lineage boundary.
+
+Evidence: `branch-artifacts/Alder/a01-ordinary-admission-20261125-02/review.json`,
+runner A759. A758's initial synthetic harness used an unresolved macOS temporary
+path in a direct owner call; the existing owner correctly refused the alias.
+The failure is preserved in `a01-ordinary-admission-20261125-01/failure.json`;
+the corrected control uses the normalized path returned by `read_registry`.
+No production code, native execution or real run changed in this boundary review.
+
+### Genuine ordinary control, with an explicit missing-phase limit
+
+A separately supplied, checksummed PDU run was read successfully through Cedar
+`42da4bb1697eb6278fc3a74fc305b0a798d7b9fc` using Phenix Python 3.11.15 and native
+Gemmi 0.7.5. `refine-001` has parent `postmr`, V12 checked execution and prepared-
+backbone provenance; `refine-002` is its direct child. Both resolve the original
+observations and exact literal parameter requests. Neither records experimental
+HL. This is positive **ordinary source-family** evidence, not a positive phased
+metal admission, FT chemistry result or new refinement.
+
+| Recorded source family | Verified value |
+| --- | --- |
+| Report SHA-256 | `4221289c6f89b8cf4502dc4523423e146631c1a1d8f6af52504ce27f5a46726f` |
+| Registry SHA-256 | `ba86c80e80fa727b7359796d55af1dd1e0d2d569283b86b69262e13a26fc4f76` |
+| Original observation SHA-256, both parents and report | `12e384b148c823ac19d37efb2c7dad3e4d2eb69c07b10c5fdb9ea0c6a52a8691` |
+| `refine-001` literal parameter SHA-256 | `6ab8f90f5b524c4038833bc895114f5c1da7f5183244184c48109c39b629a213` |
+| `refine-002` literal parameter SHA-256 | `bb3c583c3af52f47e497b54c544d4535da359b4946540f8608d6f7e19d9ce583` |
+| Experimental HL | Absent; phased admission remains unproved |
+
+Exact local commands and run-anchor provenance remain in A760–A763 and
+`a01-ordinary-admission-20261125-02/`. The run/report/registry/model/execution pins
+remain unchanged. Read-only process guards prohibit launching a refinement.
+The Python 3.12.14/Gemmi 0.7.5 read independently refused a last-bit phosphate-angle
+comparison; the coordinating chemistry branch reproduced the difference as
+108.74217535393781° versus 108.74217535393782°. Preserve that cross-environment
+refusal and its separate Cedar compatibility follow-up. Bare Phenix Python first
+lacked `openpyxl`; the successful read uses the established supplemental pure-
+Python site directory, retaining native Gemmi first. Alder's older runtime reader
+separately refuses the newer V12 source. None of these outcomes is silently
+substituted for another environment's qualification.
+
+The saved PDU PHIL retains its **historical DataManager source path**. The exact
+bytes establish policy provenance; they are not a portable executable input by
+themselves. A receiving child must use the existing file-selector/input owner to
+rebind declared, checksummed original files and freeze its own policy. The literal
+compositor does not perform path rebasing. No basename lookup, arbitrary path
+replacement or reuse of a historical host path as sole authority is allowed.
+
 ## Ordered integration steps
 
 1. **Admit a legitimate prepared parent.** Reuse Cedar's `PreparedBackbone`,

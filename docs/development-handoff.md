@@ -7,7 +7,14 @@ observation and storage owners; it introduces no new scientific policy.
 
 ## Current metal-science edge
 
-A01 remains partial; A02 scientific quantitation remains gated. The latest passive
+A01 remains partial; A02 scientific quantitation remains gated. The next named
+subgoal is [source-bound ordinary parent admission](metal-ordinary-receiving.md#current-admission-boundary-and-next-a01-subgoal).
+A read-only trace confirms the private FT source chain has no ordinary registry;
+no parent was invented. Existing input/parent refusals and two separate source/
+label semantics are documented, with Cedar prepared-publication integration as
+the explicit dependency. This boundary review changed no production behavior.
+
+The latest passive
 indexed diffraction observer passes 25 source/25 installed native cases and a
 7.90-second zero-cycle source-to-active-manager/target handoff. It preserves all
 1,151 observations, 59 original Free assignments and HL coefficients alongside

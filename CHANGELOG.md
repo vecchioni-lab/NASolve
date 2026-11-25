@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record the ordinary-parent admission boundary
+
+- Preserve the private FT source chain and exact observation, HL and parameter
+  hashes without assigning invented ordinary checkpoint ancestry.
+- Record existing file/parent refusal controls and distinguish registry file
+  validity from original-source and selected-label meaning. Specify one next
+  A01 admission interface through the existing prepared-publication owners.
+- Documentation/evidence only: no production behavior, native execution, schema
+  migration, second executor or full-suite claim.
+
 ### Add passive exact merged-observation and HL target checks
 
 - Reuse existing indexed reflection/phase signatures and audits in a strategy-

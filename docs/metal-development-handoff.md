@@ -15,7 +15,34 @@ not a second queue.
 
 <a id="a01-parameter-scope-2026-11-25"></a>
 
-## Current A01 — exact diffraction handoff qualified
+## Current A01 — receiving admission boundary made explicit
+
+The [ordinary receiving contract](metal-ordinary-receiving.md#current-admission-boundary-and-next-a01-subgoal)
+now records the precise FT ancestry blocker and all original data/phase/parameter
+hashes. Its pinned private source chain has no ordinary report/registry; both the
+ancestor and current dry receiver are correctly refused. No numbered parent was
+invented. Twenty read-only boundary checks include four synthetic conflicting-
+parent/input refusals and two explicitly unresolved original-source/phase-label
+semantics. The synthetic ordinary fixture is not a genuine scientific parent.
+
+A genuine PDU ordinary control now validates under the source owner's established
+Phenix Python 3.11.15/Gemmi 0.7.5 environment: prepared `refine-001` and its direct
+child preserve original observation and literal policy references. Neither has
+experimental HL, so this does not qualify phased FT admission. The separate 3.12
+last-bit angle refusal, bare-environment dependency failure and older Alder V12
+refusal remain recorded. Saved parameter host paths still require declared input
+rebinding for a child; the compositor is not a path-rebasing mechanism. No fit ran.
+
+**Next A01 subgoal:** bind original observations, Free-R/HL selections and literal
+policy to a genuinely recorded ordinary parent, through Cedar's existing prepared
+PostMR/numbered-source interfaces. Those newer owners are not yet on this Alder
+base. The general file reader alone does not establish exact source/label meaning.
+No new native run, production code or full suite in this review; A01 remains
+partial and A02 gated. Evidence and the preserved initial temporary-path harness
+refusal are indexed in the linked contract.
+
+## Qualified mechanism — exact diffraction handoff
+
 
 **Latest bounded step:** `refinement_diffraction_observation` reuses the existing
 metal reflection/phase signature and audit owners, independently of XYZ/B strategy.
