@@ -24,8 +24,14 @@ payload bytes while retaining the modern live helper. All 140 affected compatibi
 counted-caller and crystal-binding checks pass; the initial 35 failures/156 passes
 remain recorded. No historical policy hashes or saved artifacts were changed.
 
-Next compose with Cedar's versioned ordinary receiving owner and independently
-bind original anomalous/experimental-phase ancestry. No CLI/default activation,
+The maintained native literal compositor additionally passes 15 source and 15
+installed native cases, exact installed FT-policy replay and a 7.18-second
+zero-cycle receiver. Fifty-five cold checks preserve the new source-bound
+receipt, original HL/Free-R, protected metal values and both links. These are
+mechanical qualifications, not another geometry fit. The
+[ordinary receiving contract](metal-ordinary-receiving.md) now orders the remaining
+source admission, versioned observation and output handoff. Reuse the existing
+phase writer and original anomalous/experimental-phase ancestry owners. No CLI/default activation,
 new native executor, ordinary checkpoint adoption, scientific selection or upload.
 The last full integration qualification remains exactly as recorded below.
 

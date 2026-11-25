@@ -8,6 +8,19 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve scientific literals when composing scoped refinement parameters
+
+- Add an opt-in native PHIL compositor that replaces all occurrences of the
+  eight XYZ/group-B/protection fields while retaining every other literal and
+  effective definition, including full-precision fixed f′. Reject unknown,
+  disabled or externally expanded policy input before composing.
+- Return a compact schema-1 checksum receipt; introduce no file/process owner,
+  checkpoint migration or default caller. Native source and installed checks
+  pass, including exact FT_Hg replay and a zero-cycle initialized receiver.
+- Document the versioned ordinary receiving contract and existing source owners.
+  Continuous ordinary execution, phase admission and endpoint selection remain
+  separate gates; historical runtime payloads stay unchanged.
+
 ### Add explicit source-bound XYZ/group-B parameter writing
 
 - Let Python callers supply a pinned parameter scope and its exact PDB bytes to

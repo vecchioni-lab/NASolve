@@ -15,7 +15,36 @@ not a second queue.
 
 <a id="a01-parameter-scope-2026-11-25"></a>
 
-## Current A01 — scoped writer and dry receiver qualified
+## Current A01 — scoped writer and literal composition qualified
+
+**Latest bounded step:** the maintained native compositor replaces the private
+FT-specific splice below. It removes every occurrence of exactly eight XYZ/B/
+protection fields and preserves other scientific literals and effective settings.
+Its returned schema-1 receipt pins policy, source, scope and result. No ordinary
+caller, executor, checkpoint schema or frozen runtime payload changes.
+
+Source and installed **15/15 native cases** pass under Phenix 2.2.1-6174; ordinary
+Python has **6 passed, 9 native skips**. Installed replay reproduces the actual
+FT policy bytes and receipt. A complete **dry initialization, 7.18 seconds, zero
+cycles**, preserves 859 XYZ atoms, 42 B groups covering 858 DNA atoms, original
+HL/Free-R/scattering and both links across three full-state observations. The
+compositor replaces 48 old definitions for its eight fields. Hg starting B=69.52,
+Q=1, f′=−8.100181579589844, f″=0 unmeasured remain unchanged. No new map, endpoint,
+environmental B or f″ estimate. Fifty-five cold checks pass; evidence is 7.91 MiB.
+
+Exact commands and failures are in
+`branch-artifacts/Alder/a01-literal-composition-20261125-01/README.md` (A743–A748):
+initial missing-API regression, one native test-message capitalization mismatch,
+and an installed harness substitution SyntaxError are preserved. The latter was
+corrected using JSON arguments and the same wheel, without a rebuild or native fit.
+Generated inputs/results stay outside Git. Compact checkout:
+`ScienceCheckouts/Hazel/2026-11-25_parameter-protection/literal-composition.html`.
+
+The [ordinary receiving contract](metal-ordinary-receiving.md) is the authoritative
+next implementation sequence. A01 remains partial; A02 quantitation remains gated.
+The following writer qualification belongs to commit `da98e7e0`; its evidence is
+retained rather than rerun or relabelled.
+
 
 The existing parameter writer now has explicit `parameter_scope` / `scope_model`
 arguments. Exact source bytes, atom inventory and initial XYZ/B/Q bind the chosen

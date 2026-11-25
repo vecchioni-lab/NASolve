@@ -17,6 +17,12 @@ bytes unchanged. The full native observer remains the execution authority;
 parameter serialization alone does not bind an ordinary checkpoint or phases.
 Whole-object PHIL formatting rounds float literals, so original fixed-scattering
 inputs must not be silently reformatted during receiving composition.
+`refinement_parameter_composition.compose_parameters` now validates the typed
+native master and replaces only eight owned fields through literal PHIL nodes.
+All other literal/effective definitions must match. It performs no execution or
+checkpoint adoption. The [ordinary receiving contract](metal-ordinary-receiving.md)
+separates this composer from source/phase admission, continuous parameter capture
+and the existing process/output owners.
 
 Historical counted V5–V8 code preparation now obtains `topostitch_native_recipe.py`
 from `data/refinement-runtime-native-recipe-sources.json`, retaining its already

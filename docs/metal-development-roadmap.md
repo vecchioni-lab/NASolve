@@ -18,6 +18,13 @@ Hg moves 0.089 / 0.086 Å; Rfree is 0.3371 / 0.3362. Existing B machinery
 previews base/donor alternatives from the returned models without changing them.
 No selected endpoint, f″ result or global real-space qualification follows.
 
+**Current mechanical increment:** the general native literal compositor is
+qualified by 15 source/15 installed native cases, exact real-policy replay and a
+7.18-second zero-cycle initialization. It preserves non-owned scientific values
+while replacing repeated XYZ/B fields. No new fitted endpoint or phase admission
+follows. See the [ordinary receiving sequence](metal-ordinary-receiving.md); its
+checklist replaces repeating already-qualified private composition experiments.
+
 **Next A01 step:** compose the explicit parameter observer and now-qualified
 scoped writer with Cedar's versioned ordinary prepared-backbone/numbered-round
 owner. Thirty writer regressions, 126 native compiled/source-binding checks and

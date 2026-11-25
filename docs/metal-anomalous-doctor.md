@@ -615,8 +615,23 @@ both crystal links. No optimization or ordinary numbered-round adoption occurs.
 
 **Numerical text matters.** Native whole-object PHIL formatting uses ten significant
 digits for floats. A failed dry initialization correctly refuses the rounded fixed
-f′ reference. The corrected private composer retains original scientific literals
-and replaces only the exact writer-owned fields. The writer already preserves
+f′ reference. The initial corrected private composer retained original scientific literals.
+The maintained `refinement_parameter_composition.compose_parameters` now replaces
+all occurrences of the eight owned fields using typed native PHIL literal nodes.
+It checks both non-owned literals and their effective definitions, rejects
+unknown/disabled fields, includes, variables and PHIL attribute redefinitions,
+and returns bytes plus a compact schema-1 checksum receipt. It writes no file and
+starts no process. Input comments/whitespace may change; scientific values may not.
+Relative paths retain meaning only in the caller's original declared context.
+
+Fifteen native cases pass both from source and an installed wheel; installed
+composition reproduces the real FT policy and receipt byte-for-byte. A second
+zero-cycle initialization takes 7.18 seconds with three complete state checks,
+859 XYZ atoms and 42 DNA-only B groups. This is the maintained composer's evidence,
+not another fitted model. Source-only Python runs six checks and explicitly skips
+nine native cases. The earlier phase-policy writer in `topostitch_phased` already
+preserves explicit fixed-scattering literals; reuse that policy rather than
+introducing another phase writer. See the [receiving contract](metal-ordinary-receiving.md). The writer already preserves
 Python float representations; no fixed-state tolerance was relaxed. Keep this
 failure and source pins when implementing the future ordinary receiver. Do not
 append restricted selections after an existing `all` field: native repeated fields
