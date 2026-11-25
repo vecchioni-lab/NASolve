@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Planned — fragmented-ASU refinement publication experiment
+
+- Record B11 / PUB05: matched readable, short-block and per-nucleotide image
+  representations, gated on mixed-image export, complete chemistry and restart.
+- Separate preserved computational-frame operation, direct native symmetry
+  support and later damage recovery; retain invariant/scattering/geometry checks.
+- Planning only: no runtime/schema changes, generated inputs or new execution.
+
 ### W275 — Save and replay reviewed whole-asym diagnostic exports
 
 - Add a fresh-directory export packet containing the source CIF/preview,

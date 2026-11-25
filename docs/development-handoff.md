@@ -99,6 +99,13 @@ No product code, installed artifact or runtime schema changed.
 
 **Next W276; P03 remains partial.** W276: first qualify atomic publication of completed export receipts and trusted file-digest admission for automated consumers, reusing existing publication/ownership mechanisms. Then expose reviewed diagnostic export/replay through the existing cut-preview command and inspector handoff with explicit policy/source bindings. No second writer or implicit native refinement; a truncated receipt remains a partial attempt.
 
+**Return later — B11 / PUB05:** Simon requested a maximally fragmented ASU
+refinement stress test on 2026-11-25. The [frozen-panel plan](topostitch.md#maximally-fragmented-asu-refinement-stress-test-planned)
+compares readable, 2-or-3-nt blocks and single-nucleotide representations. Revisit
+after scoped P03 mixed-image output, P04 complete chemistry and P05 restart audits;
+P06 owns the final comparison. Prefer preserved computational-frame refinement
+first; direct all-seam native support is a separate claim. No run/code/figure now,
+no invented nick/TLS split, and no change to W276 or initial release priorities.
 
 Rowan's receiving gate remains separate: two good symmetry-bond lengths can hide
 a donor-sugar/flank distortion. Include those measurements when a native

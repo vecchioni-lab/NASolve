@@ -194,6 +194,154 @@ Existing cut-preview command/inspector wiring is next; checkpoint selection and
 native restart remain separate owners and gates.
 
 
+## Maximally fragmented ASU refinement stress test (planned)
+
+**B11 / PUB05; requested by Simon, 2026-11-25. Planning only: no new models,
+refinement, benchmark result or figure.** Revisit this after the relevant P03
+mixed-image export, P04 chemistry and P05 restart capabilities are qualified.
+Keep W276's ordinary export/inspector integration first. This is a downstream
+publication experiment, not another initial-release blocker or an instruction
+to create a parallel refinement engine.
+
+**Question:** can NASolve accept an intentionally fragmented representation of
+DNA, preserve the same periodic molecule and refine it as reliably as a readable
+representation? Call this a *maximally fragmented ASU representation*, not a
+worst physical model. Each whole nucleotide changes its chosen image; no atoms
+are removed, no chemical bonds are cut and no repair is implied. Preserving an
+already good model tests invariance and workflow robustness, not recovery from
+damage. A later, separately declared perturbation can test recovery.
+
+### Revisit gates and ownership
+
+- **P03, Pine/Willow:** qualified per-residue mixed-image serialization and inverse
+  mapping, with original atom/sequence/component identity, all connection endpoints,
+  entity/reference/assembly fields, occupancies, total deposited ADPs and labelled
+  orbit multiplicity retained. W275 supports uniform original-asym/TLS images;
+  it does not pass this gate. Reuse W246/W249's awkward cuts and W256–W275's
+  source/metadata/readback owners; add only the missing scale/composition evidence.
+- **P04, Cedar with Willow audit:** complete source-bound chemistry across all
+  affected seams: bonds, angles, torsions, chirality, planes, declared pair/stack
+  terms, nonbonded interactions and exclusions. Inspect the *actual native*
+  inventory and effective parameters, not just connection records. True nicks,
+  absent atoms and undecidable partners retain their original meanings.
+- **P05, existing checkpoint/process owners:** a reviewed child can be saved,
+  reloaded and refined with the same image/identity mappings and declared policy;
+  stale mappings, interrupted outputs and duplicate force installation refuse.
+  Reuse the persistent inspector and receipt/digest ownership. The experiment
+  needs this scoped restart capability, not unrelated completion of the whole GUI.
+- **P06, publication audit:** predeclare the exact case, protocol, numerical
+  tolerances, comparisons and claims before native execution. Revisit B11 when
+  each preceding scoped gate changes; record which remains missing rather than
+  rerunning the earlier small-cut controls. Linden owns this plan; Rowan owns
+  native execution/chemistry coordination. No chemistry-owner code is changed here.
+
+### Separate two legitimate refinement routes
+
+**Route A — preserved computational frame, preferred first.** Accept and inspect
+arbitrary representative images, authenticate an inverse mapping into the same
+qualified native frame, refine there, then return the result to each requested
+representation. Verify the actual process inputs and output mapping. This tests
+end-to-end representation independence. It is not evidence that Phenix directly
+refined a model with every backbone edge represented by a symmetry proxy.
+
+**Route B — native refinement in the dispersed representatives, later.** Run in
+the fragmented frame only after the complete native interaction and exclusion
+machinery supports it. Compare source/transformed target terms and correctly
+rotated Cartesian gradients at matched physical coordinates before fitting.
+Include a bounded seam finite-difference check through existing audit owners.
+A bond-only implementation or a silently canonicalized model cannot support this
+claim. If Route B is unavailable, publish Route A with that limitation instead of
+blocking the useful workflow or overstating the result.
+
+### Minimal, frozen experiment panel
+
+Use one source with reviewed topology, usable observations and a bound Free-R
+assignment for the first refinement panel; choose it at the readiness audit.
+Existing 3LNA can supply representation precedents, but its unassigned R3 nick
+phase cannot become an invented chemical truth. Prefer a simpler fully declared
+case for the first all-seam chemistry claim; qualification on one case is not a
+claim about all groups, special positions or modified residues.
+
+| Condition | Chosen representatives | Purpose |
+| --- | --- | --- |
+| Control | Original readable representation; the same export/reload path | Isolate fragmentation from serialization or workflow changes. |
+| Blocks | One predeclared block size, 2 **or** 3 consecutive nucleotides along declared strand paths | Intermediate boundary density; block size chosen before results, preserve real nicks/junctions. |
+| Single nucleotides | One distinct full image transform per nucleotide | Maximum residue-boundary fragmentation for this source. |
+
+Move every atom and alternate conformer of a nucleotide coherently. Keep all
+non-nucleotide context and special-position multiplicities accounted for. Distinct
+images mean a space-group operation **plus integer lattice translation**; there
+need not be as many distinct rotational operations as nucleotides. Use a
+reproducible bounded image assignment, including nonidentity rotations where
+available and nonzero translations, rather than arbitrarily distant coordinates
+that mostly test numeric range. Record the transform table and inverse, occupied
+cell span and number of physical backbone edges requiring nonidentity relative
+operators. Any symmetry-related duplicate orbit is an error, not a new molecule.
+
+Keep the starting per-atom deposited ADPs fixed and equivalent for the initial
+coordinate-refinement comparison, with matched occupancies and scattering policy.
+Do not create an independent TLS group per fragment or add TLS U to total
+already-deposited U. A later thermal-parameter refinement claim needs separately
+qualified shared TLS/native convention and equal degrees of freedom. Freeze or
+explicitly qualify any grouping, restraint or NCS policy that would otherwise
+be re-inferred differently from the new chain representation.
+
+### Staged measurements and stop rules
+
+1. **Before refinement:** audit all atoms, orbit multiplicities, graph edges and
+   true terminal chemistry; independently read native output and compare complex
+   Fcalc in the same cell/setting over the predeclared common reflection set
+   (prefer all available applicable indices). Preserve anomalous conventions.
+   Compare mapped geometry/ADPs and inverse round trips. Record numeric tolerances
+   from serialization/native controls before seeing the stress result. Equal
+   R values alone cannot establish equivalence; missing connectivity can leave
+   Fcalc unchanged.
+2. **Matched refinement and restart:** use identical measured data, Free-R flags,
+   refinement variables, scientific target, weights/policy, cycle/stopping budget,
+   mask/scale treatment, software versions and declared seeds. Capture actual
+   retained reflection membership and effective settings; do not assume matching
+   PHIL files imply matching objectives. Qualify mask/scaling invariance rather
+   than silently disabling the production treatment. Save/reload a child through
+   the ordinary owner. Reuse a matched identity control; add a bounded repeat only
+   if needed to establish numerical nondeterminism before equivalence thresholds.
+3. **After refinement:** map atoms back with the saved exact transforms, without
+   an unconstrained best-fit alignment. Compare density on the same fixed crystal
+   grid; do not move a global map independently with each residue. Report
+   Rwork/Rfree, reflection/test counts, maximum/RMS coordinate differences, all
+   seam lengths/angles/torsions, chirality, pair/stack geometry, clashes and
+   residual density. Compare common-frame densities with explicit map provenance.
+   Log runtime and memory as observations; do not tune representations on Rfree.
+   Comparable endpoints within predeclared bounds are the hypothesis, not
+   guaranteed identical optimizer trajectories. A generic R < 0.3 gate does not
+   establish representation equivalence.
+
+Stop escalation at the first missing invariant or unsupported native term. Keep
+that failure and its exact scope; a successful 2–3-nt panel remains a valid bounded
+result if the single-nucleotide case is unsupported. Do not loosen geometry or
+remove atoms to improve R factors. Reuse existing deliberate missing/wrong-image,
+ADP, duplication and nick negatives; add a new one only for an uncovered boundary.
+If recovery is studied later, perturb once in the common physical frame, map that
+same perturbed model into every representation, and predeclare the recovery budget.
+Do not mix that result with the initial representation-preservation experiment.
+
+### Paper figure and retained record
+
+Three compact panels: **(A)** readable / block / single-nucleotide ASUs, colored
+by original strand and labelled as representative choices; **(B)** those same
+models reconstructed into one identical, bounded crystal neighborhood to show
+continuous DNA; **(C)** before/after refinement and seam-geometry comparisons,
+including failures, alongside explicit Route A/B and ADP/TLS policy labels. Use
+common views/scales for comparable panels; an exploded inset must be labelled as
+schematic, never presented as the physical lattice. Reuse the inspector and shared
+ChimeraX styling. A figure of fragmentation alone is not a refinement result.
+
+Retain one frozen declaration, transform/identity mappings, original data/Free-R
+bindings, native versions/effective targets, immutable model/checkpoint receipts
+and a compact comparison table. Link large local science artifacts rather than
+copying them into another test bank. The [publication shortlist](campaign-model-roadmap.md#nasolve-publication-demonstrations)
+and machine roadmap B11 point here; no new run directory is needed until a gated
+experiment is actually authorized and ready.
+
 ## Explicit sticky-end enforcement during refinement (planned W122)
 
 **User direction, 2026-11-17: planning only; no implementation or new runs.**

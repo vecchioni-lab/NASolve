@@ -8624,6 +8624,18 @@
         "S06"
       ],
       "remaining": "Reuse registered inputs where appropriate: declared canonical 8D93 contacts first, independent 5W6W/DOHU next, then 7R96 user-proposed mismatches after exact sequence/contact inventory and separate plane-only qualification. Include healthy/displaced, wrong partner/image/register, missing-atom and duplicate-native controls; compare matched enabled/disabled refinement, geometry/packing and original data/Free-R where available. No new inputs, execution or validated geometry result from this plan. W37 first-guessed5W6W identity-image pairs are numerical fixtures, not reviewed healthy sticky ends; retain their175.96degree-angle/large-step DERIVATIVE_REVIEW and audit exact contact/image identity before reuse. Local W-catalogue identity/terminal inventory is now recorded through the existing sequence-family owner; actual C_G and noPO4 variants differ from seq_base and have distinct D1 phosphate content. These are derived search models, not automatically healthy deposited controls. No inference, mutation, native fit or geometry qualification; bind exact actual inventory/terminal intent before use."
+    },
+    {
+      "id": "B11",
+      "case": "Maximally fragmented ASU: blocks and one whole nucleotide per symmetry image",
+      "state": "PLANNED_NOT_RUN",
+      "jobs": [
+        "P03",
+        "P04",
+        "P05",
+        "P06"
+      ],
+      "remaining": "PUB05, planning only. After scoped mixed-image export, complete chemistry and restart gates, compare original, predeclared 2-or-3-nt blocks and individual-nucleotide images on one frozen source/data/Free-R panel. Prefer a preserved computational-frame workflow first; direct all-seam native refinement is a separate claim requiring term/exclusion/gradient qualification. Preserve deposited ADPs, original shared TLS meaning, atom inventory and unresolved true nicks. Preflight scattering equivalence before matched refinement; record mapped geometry, maps, R statistics and failures. Reuse W246/W249 and W256-W275, not another benchmark bank. Protocol and figure: docs/topostitch.md#maximally-fragmented-asu-refinement-stress-test-planned. Revisit at relevant P03/P04/P05 scoped audits; current W276 and release priorities unchanged."
     }
   ],
   "deferred": [
@@ -8658,6 +8670,10 @@
     {
       "scope": "Symmetry-spanning phosphate angle enforcement",
       "trigger": "W68 narrows the gate: existing symmetry-angle kernels pass synthetic/source-native controls, but ordinary input/reconstruction and proxy persistence remain unqualified. Coordinate a complete image-bearing term lifecycle with Cedar, including exclusions and surrounding terms. Preserve P/OP1/OP2 intent; never activate a symmetry bond alone."
+    },
+    {
+      "scope": "Maximally fragmented ASU refinement publication stress test (B11 / PUB05)",
+      "trigger": "Revisit after scoped P03 mixed-image output, P04 complete chemistry and P05 restart qualifications; P06 owns final comparative audit. Existing W276 priorities remain first. See docs/topostitch.md#maximally-fragmented-asu-refinement-stress-test-planned. Planning only; no new run, physical nick choice, thermal-group split or initial-release blocker."
     }
   ],
   "history_reconciliation": [
@@ -10229,5 +10245,36 @@
         "scope": "Seven observed central-strand sites, separate untouched context; no full-assembly closure or automatic enforcement"
       }
     }
-  ]
+  ],
+  "fragmented_asu_refinement_plan": {
+    "status": "PLANNED_NOT_RUN",
+    "requested_date": "2026-11-25",
+    "benchmark": "B11",
+    "publication_case": "PUB05",
+    "reference": "docs/topostitch.md#maximally-fragmented-asu-refinement-stress-test-planned",
+    "owner": "Linden / Pine-Willow; Rowan / Cedar native coordination",
+    "runtime_authority": false,
+    "code_or_execution_started": false,
+    "initial_release_blocker": false,
+    "changes_current_priority": false,
+    "revisit_at": [
+      "P03 scoped mixed-image export audit",
+      "P04 complete native chemistry audit",
+      "P05 scoped immutable restart audit"
+    ],
+    "conditions": [
+      "Original readable ASU through matched export/reload",
+      "Predeclared blocks of 2 or 3 whole nucleotides",
+      "One distinct full symmetry/lattice image per whole nucleotide"
+    ],
+    "route_priority": [
+      "Preserved qualified computational frame with authenticated input/output mappings",
+      "Direct dispersed-frame native refinement only after independent complete-interaction qualification"
+    ],
+    "thermal_policy": "Initially matched fixed deposited total ADPs and occupancy; no independent fragment TLS groups. Any later ADP/TLS refinement requires equal degrees of freedom and separate convention/restart qualification.",
+    "readiness": "Freeze exact source/data/Free-R, topology and image assignments only after prerequisites. Current W275 uniform-asym/TLS export does not support this experiment.",
+    "claim_boundary": "Representation preservation is separate from damage recovery and from native all-seam proxy support. No scientific pass or successful refinement claimed.",
+    "future_recovery": "Optional separate experiment: generate one common-frame perturbation and map it equivalently into all conditions.",
+    "next_action": "At the next relevant scoped gate audit, check readiness against the linked protocol; do not divert W276, create inputs, or run native jobs from this note."
+  }
 }
