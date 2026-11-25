@@ -321,9 +321,13 @@ bases room during construction brought B:7 to 115.1° but it reopened to
 At C580 both exact starts completed five cycles at common coordinate weights
 of 1 and 12. The bases-free model retained a 116.8° sugar angle at weight 1
 and 121.4° at 12. Reducing diffraction weight helped the sugar but cost
-0.020 in R-work. Use these controls and the earlier PDU pair to test a local
-correction while retaining the ordinary diffraction fit. Keep the quantitative DF chemical-state scope on the Q06
-queue alongside the PDU whole-arm decision. See the
+0.020 in R-work. C581 held the global coefficient at 12 and changed one
+local sugar-angle width in each scaffold. Both angles moved about three
+original restraint widths toward the target with R-work within 0.0004 of the controls.
+The other PDU crystal bond lengthened to 1.684 Å. Establish the sugar and
+phosphate reference classes and check all neighboring geometry before any
+automatic intervention. Keep the DF donor-state and PDU whole-arm decisions
+on Q06. See the
 [native comparison](backbone-chemistry.md#crossovers-in-the-ft-hg-scaffold).
 
 C537 checks which modeled atoms actually reached a native covalent plane.

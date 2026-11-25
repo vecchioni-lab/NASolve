@@ -8,6 +8,10 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `cif-doctor residue-geometry` now shows how far the atoms actually moved
+  when a refinement changed a bond or angle restraint's width. Both models
+  can be read on the original scale even if Phenix changed the term's origin.
+
 - Numbered refinements now reopen across Python versions when the same
   coordinates reproduce their four crystal-phosphate angles to seven
   significant figures. Saved measurements and restraint targets retain

@@ -1,7 +1,24 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-25, C580 matched FT–Hg sugar and phosphate refinements — Rowan**.
+Updated **2026-11-25, C581 local sugar restraints at fixed diffraction weight — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**.
+
+**C581.** The FT–Hg B:7 attachment angle and the PDU:PDU D:7 sugar angle both
+improved in five actual Phenix 2.2.1-6174 cycles after halving one local
+width at fixed diffraction weight. The PDU scaffold also exposes a longer
+neighboring crystal bond. [Measurements and limits](backbone-chemistry.md#crossovers-in-the-ft-hg-scaffold)
+and the [Q06 queue](cif-doctor-completion-queue.md) give the next chemical check.
+The existing `residue-geometry` comparison now reports both coordinates in
+units of the original width when a single active term with the same ideal is
+reweighted. The additive JSON field is `reweighted`. The two definitions
+still receive their existing unmatched status. All input and checkpoint
+formats are compatible. No change to refinement or selection defaults.
+
+Focused validation used `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider`
+on `tests/test_{refinement_geometry_change,refinement_residue_geometry,phosphate_image,phosphate_restraints,refinement_phosphate,refinement_link_geometry}.py`.
+The source and installed wheel each passed 115 tests with Gemmi 0.7.5.
+No full regression was run. The private replay archive retains methods and
+compact evidence. The repository contains no new experimental inputs.
 
 **C580.** Both FT–Hg starting models completed five new Phenix 2.2.1-6174
 cycles at each of two matched coordinate weights. With the bases free at

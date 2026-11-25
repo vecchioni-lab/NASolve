@@ -70,6 +70,14 @@ reading returns status 2. Positive changes mean farther from the printed
 target. This measures the two shapes. Establishing what moved the atoms
 requires evidence from the refinement itself.
 
+If Phenix changes the width of a bond or angle, `reweighted` gives both
+coordinate measurements and both distances from the target in units of the
+**original** width. It can follow a native term into the `User supplied` GEO
+section. The atoms must identify exactly one active term in each table, with
+the same printed ideal and bond slack. Each row names both origins and widths.
+The changed definition still counts toward partial coverage. Choosing a width
+for future refinements requires independent chemical support.
+
 Doctor checks the printed model values against the coordinates at their
 written precision. Phenix commonly writes both `refined_001.geo` at the start
 and `refined_001_final.geo` at the end. A stale or incomplete section is

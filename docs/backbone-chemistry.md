@@ -540,9 +540,32 @@ None of the 1,319 checked within-residue angles exceeded four restraint
 widths, compared with twelve at weight 12. R-work/R-free increased from
 0.3081/0.3328 to 0.3282/0.3400. This establishes sensitivity to the
 diffraction weight at 5.06 Å. It leaves the choice of conformation open.
-For a general repair, test whether a local correction can preserve the
-junction at the working model's diffraction weight. Use the saved PDU
-comparison as a second junction.
+The two-scaffold experiment below keeps the working diffraction weight.
+
+**C581, keeping diffraction weight and changing one local angle.** The FT–Hg
+test used the same built coordinates, experimental phases, fixed Hg and
+working coordinate weight of 12 as C580. The only chemical change halved the
+B:7 sugar-to-base angle width. A second test used the previously chosen
+D:2–D:3 start on the PDU:PDU scaffold. Two fresh five-cycle fits used the
+same global weights and differed only in the width of the D:7 sugar angle.
+Both scaffolds descend from 5W6W and use different diffraction observations.
+
+| After five Phenix cycles | Control | Local change | Original ideal and width | R-work / R-free, control → changed |
+| --- | ---: | ---: | --- | --- |
+| FT–Hg B:7 C2′–C1′–N9 | 121.41° | 116.60° | 114.3° ± 1.4° | 0.3081 / 0.3328 → 0.3077 / 0.3306 |
+| PDU:PDU D:7 O3′–C3′–C2′ | 99.08° | 106.45° | 109.4° ± 2.5° | 0.2041 / 0.2762 → 0.2041 / 0.2740 |
+
+The FT sugar moved from 5.08 to 1.64 original widths from its target. The
+PDU sugar moved from 4.13 to 1.18. Both fits kept the original free sets and
+two registered crystal links. The FT Hg–N3 contacts stayed at 2.00 and
+2.03 Å, and both sugar hands were retained at the PDU junction. The FT B:1
+sugar still has an angle 5.81 widths from its target. On PDU the other
+crystal bond, B:7→B:1, grew from 1.671 to 1.684 Å. The largest reported
+local overlap at D:7 grew by 0.03 Å and the second PDU tip remained 0.67 Å
+from its ring plane. Both small working-only map differences in FT were
+under 0.02 map standard deviations and had opposite signs. These controls
+justify checking the entire junction before retaining a local correction.
+Transferable library widths and the crossover conformation remain open.
 
 ## Building a requested 5'-terminal phosphate
 
