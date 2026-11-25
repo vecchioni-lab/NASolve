@@ -1,7 +1,25 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-25, C574 testing both sugars at a crystal crossover — Rowan**.
+Updated **2026-11-25, C575 comparing both sides of the FT–Hg junction — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**.
+
+Four existing five-cycle FT–Hg fits located a recurrent sugar distortion
+beside the B:7–B:1 crystal bond. B:7 C4′–C3′–O3′ opened from 111–114°
+to 126–129°, with the mercury both fixed and movable. Two intact A→C steps
+stayed at 110–114°. The six changed starting atoms were confined to B:7
+and B:1. The prior four native fits were read from their preserved inputs,
+original and final geometry tables and written coordinates. Source and
+relocated Cedar agreed on all readings. Eight earlier crystal-edge reports
+agreed to within 1.5 × 10⁻¹⁴. See the [FT–Hg controls](backbone-chemistry.md#crossovers-in-the-ft-hg-scaffold).
+
+**Next Q06 experiment.** Start with the B:7–B:1 junction on this independent
+crystal. Allow both adjoining sugars to adjust during construction, retain
+the existing fixed-metal arm as the first native control, and preserve both
+declared links, the original experimental phases and all 59 free reflections.
+Measure both sugars, the B:1 OP2–P–O5′ angle, local density and the established
+metal site after fitting. The DF coverage and broader closure queue remain open.
+
+**C574, PDU:PDU.**
 
 **Q06 remains open.** The PDU:PDU trial produced a plausible second backbone
 turn and exposed a cost of fitting it. At ordinary weights the D:2–D:3
@@ -23,13 +41,9 @@ tests and 21 subtests. The prior nine test modules below were run with
 added. Raw diffraction, models and maps stay in the local lab workspace.
 Checkpoint schemas and default reads are unchanged.
 
-**Next.** Take the paired-start comparison to one independent, declared
-junction. Use the same observations, preserve each crystal partner, measure
-both adjacent sugars and report movement of explicitly protected sites.
-For a metal scaffold, establish that protection from its actual native fit
-before changing coordinates. Retain the selected model when the available
-diffraction cannot choose. Reconcile metal-associated DF coverage separately
-with the existing nonmetal DF:A control.
+The five input sets were recreated from one shared PDB and the changed
+coordinate fields, using a relocated local record. One equal-weight
+five-cycle replay reproduced the whole PDU output PDB byte for byte.
 
 **Previous handoff.** Updated **2026-11-25, C573 reading the bonds and angles Phenix actually fitted — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**.

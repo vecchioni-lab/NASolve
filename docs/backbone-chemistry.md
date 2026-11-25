@@ -445,7 +445,27 @@ ordinary O3′–P links in each copy plus six image connections gives one close
 3.027 Å, compared with 1.593–1.639 Å in its ordinary backbone. At the second
 gap the O3′–P–OP2 angle measures 55.79°. Keep this conditional strand map with
 the construct. Ligation, nick state, occupancy and native enforcement remain
-open. Reslicing must preserve the declared images and report the current gaps.
+open for that source model. Reslicing must preserve the declared images and
+report the current gaps.
+
+**C575, after fitting the two FT–Hg junctions.** Four later five-cycle native
+controls used those exact declared partners, experimental phases and 59 free
+reflections. Two starting models differed at six atoms of B:7 and B:1. Each
+was fitted with Hg either fixed or free to move in XYZ. The original and
+altered starts had B:7 C4′–C3′–O3′ angles of 111.2° and 114.5°, against
+109.7°. After refinement all four angles were 126.4–129.3°. The two intact
+A→C references in the same models ended at 110.4–114.4°. B:1 OP2–P–O5′
+also closed to 91.2–93.5° against 108°, even as the crystal O3′–P bond
+shortened to 1.649–1.658 Å. The ordinary angle targets were present.
+
+Fixing Hg did not prevent this strain. These controls establish where the
+distortion appeared but do not isolate its cause. The next FT trial should
+let both adjoining sugars and the phosphate change their starting shape,
+then test whether the improvement survives refinement. Track Hg and its
+donor geometry, the original experimental phases and free set, the second D:7–C:8 crossover
+and both native controls for comparison. The reported starting inspections
+belong to their own inputs. The final readings used each written PDB and its
+own final geometry table.
 
 ## Building a requested 5'-terminal phosphate
 

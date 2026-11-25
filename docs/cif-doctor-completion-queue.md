@@ -304,7 +304,10 @@ flanking bases anchored. Two distinct shapes survived five full cycles at
 identical weights. The common working-only omit maps did not resolve which
 shape occurs at 4.19 Å. The original selection stands. Next carry the
 comparison to an independent, explicitly declared junction and track both
-neighboring sugars and the protected sites. See the
+neighboring sugars and the protected sites. C575 checked four existing
+five-cycle FT–Hg fits and found the largest local distortion at the B:7
+sugar adjoining B:1. The next paired-start experiment should test that
+junction with the metal protected. See the
 [native comparison](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold).
 
 C537 checks which modeled atoms actually reached a native covalent plane.
