@@ -4815,3 +4815,66 @@ and Python 3.10 syntax are checked. No CLI entry or full suite was needed for th
 isolated observer; no shared runtime or executor changed. Local commands,
 readbacks and checksums are under NASolve anchor
 `branch-artifacts/willow/w280-numbered-parent/`.
+
+
+## Follow a registered graph into a refined model (W281)
+
+Phenix may reorder atoms even when every chemical identity survives refinement.
+`observe_registered_graph_descent` in `nasolve.topostitch_graph` follows the
+original declared graph into a coordinate descendant using an explicit atom
+identity bijection. It retains the original registration and discovery records,
+reuses the source-bound graph reader, and takes the trusted Cedar
+`closest_atom_images` function as an explicit application dependency.
+
+The caller supplies the expected source-graph and descendant-model SHA-256
+values, original source/discovery/registration files, unchanged continuation
+intent, and an image-separation threshold covering both PDB rounding errors
+(at least `2*sqrt(3)*0.001` Å). The same exact cell and space-group setting,
+complete unique atom identities, record/element/charge and occupied status must
+survive. Every atom must retain the unique nearest identity image. Missing or
+ambiguous identities, changed images, unresolved nodes and input drift are
+refused. Numeric occupancies, ADPs and coordinates may change in a refinement;
+this observation does not assert unchanged scattering or good geometry.
+
+The distinct `topostitch-registered-graph-descent` result includes the explicit
+source-to-descendant atom-index mapping. Node indices and unregistered atom
+indices refer to the descendant PDB order. Logical nodes, routes and periodic
+edge operators stay unchanged. It is **not** a rehashed replacement registration
+or a normal recut-preview input. Checkpoint/construction ancestry remains the
+responsibility of the existing owners; `checkpoint_ancestry_verified` and all
+runtime/chemistry/restart authority fields remain false in this geometric report.
+
+**Genuine control, coordinated with Rowan:** Cedar's construction and registry
+readers bind original PDU construction `c813a651…` to the already refined,
+unselected `refine-003` model `69d3f118…`. All **862 atoms** correspond; **32**
+change record position. The **42-node, 40-edge** graph retains 38 ordinary
+backbone edges and two explicit symmetry continuations. Maximum same-atom
+movement since construction is **2.8160 Å**; the smallest gap between the nearest
+and second-nearest image is **0.72438 Å**, above Cedar's **0.003464 Å** rounding
+margin. A temporary copy with one atom translated by a unit-cell vector is
+refused. The original registration, models, observations and current `postmr`
+selection remain untouched. No native initialization, new fit or parameter
+change ran. This is a correspondence result on an existing refinement, not a new
+bending result or physical validation of every declared edge.
+
+The registry-declared model CIF also maps uniquely to all 862 PDB atoms. Its
+largest literal differences are 0.0005000000000024 Å in a coordinate component,
+0.00488 Å² in B and zero in occupancy, consistent with the written PDB precision.
+That inventory identifies a possible future original-CIF source; it does not
+replace the source-bound CIF loader or qualify an export.
+
+Validation: eight tests fail before the observer exists; the final graph, recut,
+scattering and checkpoint set passes **140 source and 140 relocated installed
+checks**. The tests cover unique reordering, unregistered atom indices, missing/
+duplicate identities, occupancy-status/frame changes, image ambiguity, exact
+bindings and input drift. Controlled image-reader cases test the adapter; the
+real PDU positive/refusal use Cedar's maintained enumerator. Installed source
+bytes and Python 3.10 syntax match, and disposable installation/refusal copies
+were removed. No shared mechanics changed and the full suite was not repeated.
+Evidence and exact commands remain local under NASolve anchor
+`branch-artifacts/willow/w281-source-graph-join/`.
+
+**Next:** teach the existing recut-preview consumer to accept an explicitly
+bound descent observation and its original provenance, or keep the endpoint
+held. Do not silently edit registration hashes, infer replacement chemistry or
+reuse an earlier native capture as if it described the final endpoint.

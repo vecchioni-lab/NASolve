@@ -241,3 +241,97 @@ def test_relabel_rejects_type_changed_report_even_when_python_values_compare_equ
     assert changed==report  # Python equality alone loses this schema distinction.
     with pytest.raises(ValueError,match='inconsistent'):
         relabel(changed,[])
+
+
+def descendant_case(tmp_path):
+    model, discovery, registration, _ = registered(tmp_path)
+    # Keep an unregistered water as explicit retained context.
+    lines = model.read_text().splitlines()
+    template = next(s for s in lines if s.startswith('ATOM  '))
+    water = 'HETATM'+template[6:12]+' O  '+' '+'HOH'+' '+'Z'+' 999'+template[26:]
+    water = water[:76]+' O'+water[78:]
+    model.write_text('\n'.join(s for s in lines if s != 'END')+'\n'+water+'\nEND\n')
+    reg = json.loads(registration.read_bytes()); reg['model']['sha256'] = sha256(model.read_bytes()).hexdigest()
+    registration.write_text(json.dumps(reg))
+    declaration = json.loads(discovery.read_bytes())
+    declaration.update(model_sha256=reg['model']['sha256'],registration_sha256=sha256(registration.read_bytes()).hexdigest())
+    discovery.write_text(json.dumps(declaration))
+    original = model.read_bytes()
+    # Reverse records while keeping a single contiguous block per residue/chain.
+    lines = original.decode().splitlines()
+    atoms = [s for s in lines if s.startswith(('ATOM  ', 'HETATM'))]
+    child = tmp_path/'descendant.pdb'
+    child.write_text(next(s for s in lines if s.startswith('CRYST1'))+'\n'+'\n'.join(reversed(atoms))+'\nEND\n')
+    source_graph = build_registered_periodic_graph(model, discovery, registration)
+    return model, child, discovery, registration, source_graph
+
+
+def identity_reader(fixed, moving, cell, group, gemmi):
+    # Controlled dependency: real crystal-image enumeration is owned by Cedar.
+    import math
+    distance = math.dist(fixed, moving)
+    return ({'image': {'operator_xyz': 'x,y,z'}, 'distance_A': distance},
+            {'image': {'operator_xyz': 'x+1,y,z'}, 'distance_A': distance+10})
+
+
+def observe_descent(case, **overrides):
+    from nasolve.topostitch_graph import observe_registered_graph_descent
+    model, child, discovery, registration, graph = case
+    opts = dict(expected_graph_sha256=graph['report_sha256'],
+                expected_descendant_sha256=sha256(child.read_bytes()).hexdigest(),
+                closest_image_reader=identity_reader, image_separation_angstrom=0.004)
+    return observe_registered_graph_descent(model, child, discovery, registration, **dict(opts, **overrides))
+
+
+def test_graph_descent_maps_reordered_atoms_without_rewriting_registration(tmp_path):
+    case = descendant_case(tmp_path)
+    before = {p: p.read_bytes() for p in case[:4]}
+    result = observe_descent(case)
+    count = result['atom_count']
+    assert result['source_to_descendant_atom_indices'] == list(reversed(range(count)))
+    assert case[4]['scope']['unrepresented_atom_indices'] == [count-1]
+    assert result['scope']['unrepresented_atom_indices'] == [0]
+    assert result['periodic_graph'] == case[4]['periodic_graph']
+    assert result['source_registered_graph_sha256'] == case[4]['report_sha256']
+    assert result['registration_rewritten'] is False and result['runtime_authority'] is False
+    assert result['checkpoint_ancestry_verified'] is False
+    for old, new in zip(case[4]['nodes'], result['nodes']):
+        assert new['atom_indices'] == [count-1-i for i in old['atom_indices']]
+        assert new['logical_site'] == old['logical_site']
+    assert all(p.read_bytes() == b for p,b in before.items())
+
+
+@pytest.mark.parametrize('change', ['missing', 'duplicate', 'occupancy', 'cell'])
+def test_graph_descent_refuses_identity_occupancy_or_frame_damage(tmp_path, change):
+    case = descendant_case(tmp_path); child = case[1]; lines = child.read_text().splitlines()
+    index = next(i for i,s in enumerate(lines) if s.startswith(('ATOM  ', 'HETATM')))
+    if change == 'missing': lines.pop(index)
+    elif change == 'duplicate': lines.insert(index, lines[index])
+    elif change == 'occupancy': lines[index] = lines[index][:54]+'  0.00'+lines[index][60:]
+    else: lines[0] = cryst1((31,30,40,90,90,90), 'P 43').strip()
+    child.write_text('\n'.join(lines)+'\n')
+    with pytest.raises(ValueError): observe_descent(case)
+
+
+@pytest.mark.parametrize('operator,gap', [('x+1,y,z', 10), ('x,y,z', 0.001)])
+def test_graph_descent_refuses_changed_or_ambiguous_representatives(tmp_path, operator, gap):
+    def images(*args):
+        return ({'image': {'operator_xyz': operator}, 'distance_A': 1},
+                {'image': {'operator_xyz': 'x-1,y,z'}, 'distance_A': 1+gap})
+    with pytest.raises(ValueError, match='Changed or ambiguous'):
+        observe_descent(descendant_case(tmp_path), closest_image_reader=images)
+
+
+def test_graph_descent_keeps_hashes_and_input_lifetime_explicit(tmp_path):
+    case = descendant_case(tmp_path)
+    with pytest.raises(ValueError, match='graph'):
+        observe_descent(case, expected_graph_sha256='0'*64)
+    with pytest.raises(ValueError, match='descendant'):
+        observe_descent(case, expected_descendant_sha256='0'*64)
+    with pytest.raises(ValueError, match='separation'):
+        observe_descent(case, image_separation_angstrom=0.001)
+    def drift(*args):
+        case[1].write_bytes(case[1].read_bytes()+b'REMARK changed\n')
+        return identity_reader(*args)
+    with pytest.raises(ValueError, match='changed during'):
+        observe_descent(case, closest_image_reader=drift)

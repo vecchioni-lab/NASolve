@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W281 — Follow graph identities through a coordinate refinement
+
+- Add a read-only source-to-descendant graph observation with explicit atom
+  reordering and unique same-crystal image checks. Original registration stays
+  immutable; missing identities, image ambiguity and input drift are refused.
+  No recut, checkpoint or native force policy is changed.
+
 ### W280 — Observe exact checkpoint inputs without a bend preview
 
 - Add an explicit trusted-reader adapter for saved parent inputs, including

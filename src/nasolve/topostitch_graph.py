@@ -437,3 +437,111 @@ def propose_forest_representatives(report, *, selected_edge_ids, anchor_node_ids
                      'Use the registered source-bound preview owner before atom-level inspection; no model or persistent choice written'])
     result['proposal_sha256']=_fingerprint(result)
     return result
+
+
+def observe_registered_graph_descent(source_model, descendant_model, discovery, registration, *,
+        expected_graph_sha256, expected_descendant_sha256, closest_image_reader,
+        image_separation_angstrom, extra_edges=(), backbone_continuations=()):
+    """Carry declared graph identities into a same-representative coordinate descendant.
+
+    Reuse the source-bound graph reader and Cedar's explicitly trusted
+    ``closest_atom_images`` callable. Every unique atom identity must survive;
+    changed record order is mapped explicitly, never assumed to be index identity.
+    A changed/ambiguous nearest image or crystal is refused. The separation must
+    cover both PDB coordinate-rounding errors (2*sqrt(3)*0.001 Angstrom).
+
+    This is a geometric correspondence observation, not checkpoint ancestry,
+    chemistry or native restart admission. The caller must authenticate original
+    construction and descendant history separately through their existing owners.
+    Original registration/discovery stay immutable. The returned distinct report
+    is not a replacement registration or an accepted recut-preview input.
+    """
+    from copy import deepcopy
+    import math
+    import re
+    import gemmi
+    from .topostitch_scattering import _serialized_structure, _parsed_identity
+
+    if any(not isinstance(v,str) or re.fullmatch(r'[0-9a-f]{64}',v) is None
+           for v in (expected_graph_sha256,expected_descendant_sha256)):
+        raise ValueError('Require exact source graph and descendant SHA-256 bindings')
+    if not callable(closest_image_reader):
+        raise ValueError('Require an explicit trusted closest-image reader')
+    if (type(image_separation_angstrom) not in (int,float)
+            or not math.isfinite(image_separation_angstrom)
+            or image_separation_angstrom < 2*math.sqrt(3)*.001):
+        raise ValueError('Image separation must cover PDB coordinate rounding')
+    paths=list(map(Path,(source_model,descendant_model,discovery,registration)))
+    frozen={p:p.read_bytes() for p in paths}
+    if sha256(frozen[paths[1]]).hexdigest()!=expected_descendant_sha256:
+        raise ValueError('Unexpected descendant model bytes')
+    graph=build_registered_periodic_graph(paths[0],paths[2],paths[3],
+        extra_edges=extra_edges,backbone_continuations=backbone_continuations)
+    if graph['report_sha256']!=expected_graph_sha256:
+        raise ValueError('Unexpected registered source graph')
+    if graph['scope']['unresolved_node_ids']:
+        raise ValueError('Unresolved registered nodes cannot be carried into a descendant')
+    source=_serialized_structure(frozen[paths[0]],'pdb')
+    descendant=_serialized_structure(frozen[paths[1]],'pdb')
+    group=source.find_spacegroup();other=descendant.find_spacegroup()
+    if (group is None or other is None or source.cell.parameters!=descendant.cell.parameters
+            or group.hall!=other.hall):
+        raise ValueError('Graph descent requires the same crystal frame')
+    old=list(source[0].all());new=list(descendant[0].all())
+    from .topostitch_recipe import model_atom_rows
+    for raw,parsed in ((frozen[paths[0]],old),(frozen[paths[1]],new)):
+        written=model_atom_rows(raw)
+        xyz=[tuple(float(line[start:start+8]) for start in (30,38,46))
+             for line in raw.decode('ascii').splitlines() if line.startswith(('ATOM  ','HETATM'))]
+        if written!=[_parsed_identity(a) for a in parsed] or xyz!=[tuple(a.atom.pos) for a in parsed]:
+            raise ValueError('Parser changed source or descendant PDB atom record order')
+    old_keys=[_fingerprint(_parsed_identity(a)) for a in old]
+    new_keys=[_fingerprint(_parsed_identity(a)) for a in new]
+    if (not old or len(set(old_keys))!=len(old) or len(set(new_keys))!=len(new)
+            or set(old_keys)!=set(new_keys)):
+        raise ValueError('Require a complete unique atom identity bijection')
+    lookup={key:i for i,key in enumerate(new_keys)};order=[lookup[key] for key in old_keys]
+    shifts=[];gaps=[]
+    for i,a in enumerate(old):
+        b=new[order[i]]
+        def properties(v):
+            return v.residue.het_flag,v.atom.element,v.atom.charge,v.atom.occ>0
+        if properties(a)!=properties(b):
+            raise ValueError('Graph descendant changed record, element, charge or occupancy status')
+        first,second=closest_image_reader(tuple(a.atom.pos),tuple(b.atom.pos),source.cell,group,gemmi)
+        distances=(first['distance_A'],second['distance_A'])
+        if any(type(v) not in (int,float) or not math.isfinite(v) or v<0 for v in distances):
+            raise ValueError('Invalid closest-image distance observation')
+        gap=distances[1]-distances[0]
+        if first['image']['operator_xyz']!='x,y,z' or gap<=image_separation_angstrom:
+            raise ValueError('Changed or ambiguous crystal representative at source atom '+str(i))
+        shifts.append(distances[0]);gaps.append(gap)
+    nodes=deepcopy(graph['nodes'])
+    for node in nodes:
+        node['atom_indices']=[order[i] for i in node['atom_indices']]
+    scope=deepcopy(graph['scope'])
+    scope['unrepresented_atom_indices']=sorted(order[i] for i in scope['unrepresented_atom_indices'])
+    result=dict(schema_version=1,kind='topostitch-registered-graph-descent',
+        status='SAME_REPRESENTATIVE_GRAPH_OBSERVATION',
+        source_model_sha256=graph['source_model_sha256'],descendant_model_sha256=expected_descendant_sha256,
+        source_registered_graph_sha256=expected_graph_sha256,
+        source_registration_sha256=graph['registration_file_sha256'],
+        source_discovery_sha256=graph['discovery_file_sha256'],
+        atom_count=len(old),source_to_descendant_atom_indices=order,
+        reordered_atom_count=sum(i!=j for i,j in enumerate(order)),
+        max_atom_shift_angstrom=max(shifts),minimum_image_separation_angstrom=min(gaps),
+        required_image_separation_angstrom=image_separation_angstrom,
+        periodic_graph=deepcopy(graph['periodic_graph']),nodes=nodes,scope=scope,
+        declared_routes=deepcopy(graph['declared_routes']),edge_origins=deepcopy(graph['edge_origins']),
+        declared_continuations=deepcopy(graph.get('declared_continuations',[])),
+        atom_index_basis='DESCENDANT_PDB_ATOM_RECORD_ORDER',
+        checkpoint_ancestry_verified=False,registration_rewritten=False,coordinates_written=False,
+        runtime_authority=False,chemical_admission=False,native_restart_qualified=False,
+        scientific_acceptance=False,
+        limitations=['Geometric correspondence only; authenticate genuine checkpoint/construction history separately',
+            'Declared edge images retained; no new partner, bond inference, force admission or recut',
+            'ADPs and numeric occupancies may change during refinement; no scattering-invariance or thermal-policy claim'])
+    result['report_sha256']=_fingerprint(result)
+    if any(p.read_bytes()!=raw for p,raw in frozen.items()):
+        raise ValueError('Graph descent inputs changed during observation')
+    return result
