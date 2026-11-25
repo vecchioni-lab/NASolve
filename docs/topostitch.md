@@ -17,7 +17,7 @@ model and report missing information, competing choices and unsupported chemistr
 | `nasolve-topostitch-inspect` | Describe verified ends, periodic images, canonical contacts and declared-topology windows; print a review report. |
 | `nasolve-topostitch-fit` | Propose bounded motion for one explicitly chosen canonical pairing; convergence does not establish a successful repair. |
 | `nasolve-topostitch-preview` | Write a separate bend-preview candidate with fixed anchors, transformed ANISOU and serialized-backbone checks. |
-| `nasolve-topostitch-cut-preview` | Describe verified graph IDs/binding with `--describe-graph`, or freeze an explicit image/forest proposal; write no replacement ASU. |
+| `nasolve-topostitch-cut-preview` | Describe graph IDs or freeze a proposal; explicit `--export-preview` / `--replay-export` also save and verify reviewed whole-asym diagnostic CIFs. No checkpoint or native restart. |
 | `nasolve-topostitch-view` | Inspect replayed proposals in an offline HTML view, compare explicit cuts and save a source-bound preference. |
 
 A declared backbone continuation can now retain its directed partner and exact

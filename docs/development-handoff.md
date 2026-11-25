@@ -1,6 +1,19 @@
 # NASolve development handoff — Willow
 
-**Current code/qualification: W276, 2026-11-25** (source `6f6c644fe601823ff314bc097b8dbc4b692b5fd0`).
+**Current code/qualification: W277, 2026-11-25** (source `2a14f7ea437d492911b42956db1c45e35c4c345b`).
+The existing cut-preview command now supports explicit reviewed export and
+trusted-digest replay; a run-relative stdout handoff binds receipt/model bytes.
+Legacy preview/description behavior remains intact. No policy inference,
+checkpoint, native execution or inspector integration is enabled.
+
+**63 focused source / 63 relocated installed checks pass**, including installed
+entry help, source-path removal, mixed-mode refusal and changed-receipt rejection.
+Two CLI regressions fail before the adapter. Exact commands/hashes and limitations:
+NASolve anchor `branch-artifacts/willow/w277-export-command/validation.json`.
+W276's actual scientific replay is reused; no repeat native calculation or model
+copy. Stored receipt schema is unchanged; the stdout handoff is additive schema1.
+
+**Previous code/qualification: W276, 2026-11-25** (source `6f6c644fe601823ff314bc097b8dbc4b692b5fd0`).
 Complete canonical export receipt bytes are now synced in a same-directory
 private temporary file and published by a no-clobber hard link. Existing receipt
 schema/bytes and historical loading remain compatible. No shared campaign/Cedar
@@ -111,7 +124,7 @@ controls are reused; no deposited tensor or coordinate was changed. See
 [exact scope and commands](topostitch-periodic.md#w271--plan-output-fields-and-separate-native-tls-interpretation).
 No product code, installed artifact or runtime schema changed.
 
-**Next W277; P03 remains partial.** W277: wire reviewed whole-asym export and replay into the existing cut-preview command with producer-derived receipt file digest and explicit policies. Preserve legacy preview behavior and require a caller-supplied trusted digest for incoming exports; inspector handoff next. No implicit checkpoint/native execution.
+**Next W278; P03 remains partial.** W278: let the existing inspector consume a saved whole-asym export using its trusted producer receipt file digest and existing source/preview owners. Keep visualization read-only and scientific acceptance separate; do not add a second writer or native/checkpoint execution.
 
 **Return later — B11 / PUB05:** Simon requested a maximally fragmented ASU
 refinement stress test on 2026-11-25. The [frozen-panel plan](topostitch.md#maximally-fragmented-asu-refinement-stress-test-planned)

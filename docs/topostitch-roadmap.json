@@ -4,7 +4,7 @@
   "updated": "2026-11-25",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "6f6c644fe601823ff314bc097b8dbc4b692b5fd0",
+  "audited_code_commit": "2a14f7ea437d492911b42956db1c45e35c4c345b",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -1129,13 +1129,14 @@
         "W273: Exact W2723LNA draft:all60 declared backbone edges covered (51ordinary-only,7both,2explicit-only),58ordinary/9explicit;Cedar CHECKED,zero unmatched/sequence conflicts. Distances1.59909\u20131.62140A;source/output distance change<=3.33e-15A and phosphate-angle change<=3.41e-13deg. Four discriminating controls;source/draft untouched. No native repeat.",
         "W274: 197source/197relocated installed,2skips each;218files;12missing-API failures plus one tuple/list round-trip failure corrected. Actual public-reader60-edge report equals W273 within6.66e-16A/2.84e-14deg and is exact after package/input relocation. Wrong original frame flags edge90. No native/model output.",
         "W275: 203source/203relocated installed,2skips each;218files;six missing-API failures demonstrated. Actual9artifact3LNA export retains1271atoms/60declared links and exactly reproduces W272 native-tested CIF bytes. Source and installed replay regenerate identical model/reports after relocation;existing output,source drift,missing coverage,rehash tampering and interrupted publication qualified. No native/refinement/checkpoint.",
-        "W276:206source/206installed,2skips; complete synced export receipt published without overwrite. Historical actual packet replay exact after relocation; no schema/native change."
+        "W276:206source/206installed,2skips; complete synced export receipt published without overwrite. Historical actual packet replay exact after relocation; no schema/native change.",
+        "W277:63source/63installed; existing cut-preview command exports explicit reviewed whole-asym packets and replays with trusted producer receipt digest. Legacy paths/defaults intact; no native call."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "W277: wire reviewed whole-asym export and replay into the existing cut-preview command with producer-derived receipt file digest and explicit policies. Preserve legacy preview behavior and require a caller-supplied trusted digest for incoming exports; inspector handoff next. No implicit checkpoint/native execution.",
+      "next_action": "W278: let the existing inspector consume a saved whole-asym export using its trusted producer receipt file digest and existing source/preview owners. Keep visualization read-only and scientific acceptance separate; do not add a second writer or native/checkpoint execution.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -1169,14 +1170,15 @@
         "E_WHOLE_ASYM_BACKBONE_COVERAGE",
         "E_SERIALIZED_BACKBONE_COVERAGE",
         "E_WHOLE_ASYM_EXPORT",
-        "E_ATOMIC_EXPORT_RECEIPT"
+        "E_ATOMIC_EXPORT_RECEIPT",
+        "E_EXPORT_COMMAND_HANDOFF"
       ],
       "last_audit": {
         "date": "2026-11-25",
-        "human_update": 276,
-        "code_commit": "6f6c644fe601823ff314bc097b8dbc4b692b5fd0",
-        "reviewer": "Linden; scope coordinated with Rowan",
-        "scope": "Atomic diagnostic completion scoped complete; CLI consumer and broader P03 scientific gates remain open"
+        "human_update": 277,
+        "code_commit": "2a14f7ea437d492911b42956db1c45e35c4c345b",
+        "reviewer": "Linden; Rowan coordinating shared scope",
+        "scope": "Explicit CLI export/replay scoped complete; P03 partial for inspector/native/mixed-path gates"
       }
     },
     {
@@ -8572,6 +8574,53 @@
           "size": 43109
         }
       ]
+    },
+    "E_EXPORT_COMMAND_HANDOFF": {
+      "kind": "Explicit command producer/consumer export handoff",
+      "date": "2026-11-25",
+      "human_update": 277,
+      "code_commit": "2a14f7ea437d492911b42956db1c45e35c4c345b",
+      "reference": "docs/topostitch-preview.md#export-and-replay-through-the-cut-preview-command-w277",
+      "result": "63source/63relocated installed;two CLI failure regressions before adapter. Producer digest survives relocation/removal of original fixture paths; changed receipt rejected; legacy preview tests pass and installed command help includes new flags. No native run.",
+      "limitation": "Explicit diagnostic export/replay only. Inspector consumption, checkpoint/native restart and mixed-image output remain open.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w277-export-command/focused.log",
+          "sha256": "96c2aa2e7d7e902dba315c709df6d824f13cf0dc39b67d7a8118c6e5a69b6169",
+          "size": 100
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w277-export-command/qualify.py",
+          "sha256": "761071f9e6fe62d19e62f236baed4376c036c10d9bb092d92a198d13f6dee7db",
+          "size": 2789
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w277-export-command/installation.json",
+          "sha256": "563f52f2a7ea9e8edc9fead2c7d14d9ddc2329dae7d16f8b81cc4d38ec1ec294",
+          "size": 12310
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w277-export-command/installed-tests.log",
+          "sha256": "457dea3974d6c82fb842c935c576c5e9b033c45ad8691b33041df7693adfeec4",
+          "size": 100
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w277-export-command/installed-help.log",
+          "sha256": "f13253452460b2d3087afdb0d849b25c407587147f0c599f4b5b5aa677037515",
+          "size": 1994
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w277-export-command/validation.json",
+          "sha256": "daa26bc66a916c57ccd9ef47a234815d6ef2b1b0d9be11fa681a7e05297f58be",
+          "size": 14636
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -8753,8 +8802,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 276,
-    "next": 277,
+    "current": 277,
+    "next": 278,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -10220,6 +10269,12 @@
         "title": "Publish complete export receipts atomically without clobbering",
         "state": "RECORDED",
         "code_commit": "6f6c644fe601823ff314bc097b8dbc4b692b5fd0"
+      },
+      {
+        "number": 277,
+        "title": "Connect reviewed export and trusted replay to the existing command",
+        "state": "RECORDED",
+        "code_commit": "2a14f7ea437d492911b42956db1c45e35c4c345b"
       }
     ]
   },

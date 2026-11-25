@@ -7,6 +7,11 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Current explicit command boundary: W277.** [Export and trusted replay](topostitch-preview.md#export-and-replay-through-the-cut-preview-command-w277)
+  use the existing cut-preview command; 63 source/63 installed checks pass.
+  W276 publishes receipts atomically; the inspector consumer is next. No native
+  restart, checkpoint selection or broader mixed-path approval.
+
 - **Current save/replay boundary: W275.** [Immutable diagnostic exports](topostitch-preview.md#save-and-replay-an-immutable-whole-asym-export-w275)
   preserve source snapshots and regenerate all derived bytes after relocation.
   203 source/203 installed, two skips; actual CIF equals the native-tested draft.
