@@ -106,9 +106,11 @@ after scoped P03 mixed-image output, P04 complete chemistry and P05 restart audi
 P06 owns the final comparison. Prefer preserved computational-frame refinement
 first; direct all-seam native support is a separate claim. No run/code/figure now,
 no invented nick/TLS split, and no change to W276 or initial release priorities. Later [Hg-image and LNA extensions](topostitch.md#chemistry-extensions-hg-and-lna-planned)
-reuse existing reviewed molecules; Hazel/Rowan candidate checks are pending. An
-existing Hg is re-imaged, not added; original modified chemistry and unresolved
-R3 nick intent survive. No chemistry or execution scope is advanced.
+reuse existing molecules. Hazel recommends original FT_Hg as a diagnostic candidate
+only: fixed f″ = 0 does not test nonzero anomalous response, and geometry REVIEW /
+private ancestry remain. Rowan's LNA candidate review is pending. Re-image existing
+Hg without adding metal; modified chemistry and unresolved R3 nick intent survive.
+No chemistry or execution scope is advanced.
 
 Rowan's receiving gate remains separate: two good symmetry-bond lengths can hide
 a donor-sugar/flank distortion. Include those measurements when a native

@@ -8635,7 +8635,7 @@
         "P05",
         "P06"
       ],
-      "remaining": "PUB05, planning only. After scoped mixed-image export, complete chemistry and restart gates, compare original, predeclared 2-or-3-nt blocks and individual-nucleotide images on one frozen source/data/Free-R panel. Prefer a preserved computational-frame workflow first; direct all-seam native refinement is a separate claim requiring term/exclusion/gradient qualification. Preserve deposited ADPs, original shared TLS meaning, atom inventory and unresolved true nicks. Preflight scattering equivalence before matched refinement; record mapped geometry, maps, R statistics and failures. Reuse W246/W249 and W256-W275, not another benchmark bank. Protocol and figure: docs/topostitch.md#maximally-fragmented-asu-refinement-stress-test-planned. Revisit at relevant P03/P04/P05 scoped audits; current W276 and release priorities unchanged. Later extensions: independently re-image an existing Hg with source-bound coordination/anomalous policy (Hazel/Alder), and a reviewed LNA model with unchanged modified chemistry (Rowan/Cedar). Exact cases pending; no added metal, invented hybrid, canonicalized LNA or assigned R3 nick. See docs/topostitch.md#chemistry-extensions-hg-and-lna-planned."
+      "remaining": "PUB05, planning only. After scoped mixed-image export, complete chemistry and restart gates, compare original, predeclared 2-or-3-nt blocks and individual-nucleotide images on one frozen source/data/Free-R panel. Prefer a preserved computational-frame workflow first; direct all-seam native refinement is a separate claim requiring term/exclusion/gradient qualification. Preserve deposited ADPs, original shared TLS meaning, atom inventory and unresolved true nicks. Preflight scattering equivalence before matched refinement; record mapped geometry, maps, R statistics and failures. Reuse W246/W249 and W256-W275, not another benchmark bank. Protocol and figure: docs/topostitch.md#maximally-fragmented-asu-refinement-stress-test-planned. Revisit at relevant P03/P04/P05 scoped audits; current W276 and release priorities unchanged. Later extensions: independently re-image an existing Hg with source-bound coordination/anomalous policy (Hazel/Alder), and a reviewed LNA model with unchanged modified chemistry (Rowan/Cedar). Hazel recommends original FT_Hg as a diagnostic candidate only: fixed f-double-prime zero cannot test nonzero anomalous response; geometry REVIEW and private ancestry persist. LNA candidate/readiness pending; no added metal, invented hybrid, canonicalized LNA or assigned R3 nick. See docs/topostitch.md#chemistry-extensions-hg-and-lna-planned."
     }
   ],
   "deferred": [
@@ -10279,7 +10279,7 @@
     "chemistry_extensions": [
       {
         "id": "existing_hg_separate_image",
-        "status": "PLANNED_NOT_RUN_OWNER_CASE_PENDING",
+        "status": "OWNER_RECOMMENDED_DIAGNOSTIC_NOT_SELECTED_OR_RUN",
         "owner": "Hazel / Alder evidence; Rowan / Cedar native chemistry",
         "trigger": "After simpler B11 panel and qualified metal image/chemistry/scattering scope",
         "comparison": [
@@ -10293,7 +10293,25 @@
           "Fixed-site/B/U/occupancy and f-prime/f-double-prime policy",
           "Wavelength, anomalous-mate convention, data/Free-R and any supplied phases"
         ],
-        "claim_limit": "Re-imaging is not adding Hg; fixed-Hg comparison is not site-fitting or recovery evidence. Exact matching prior controls may be reused."
+        "claim_limit": "Re-imaging is not adding Hg; fixed-Hg comparison is not site-fitting or recovery evidence. Exact matching prior controls may be reused.",
+        "candidate_review": {
+          "reviewer": "Hazel / Alder",
+          "date": "2026-11-25",
+          "case": "FT_Hg exact original W252 input; not a coupled endpoint",
+          "owner_reported_only": true,
+          "independently_requalified_here": false,
+          "source_model_sha256": "7aade3c43099cb67cf218120b62bbcb3ab9273e813de9ce92e9c178f24dd40e8",
+          "imported_recipe_sha256": "6403b3ee9386055b68ad827ef339c7e7531b2374655da8566c8096e38511fc91",
+          "operational_input_bindings": "Not frozen in this plan; retain Alder ownership and bind exact complete artifact anchors at readiness audit",
+          "mercury_state": "Existing isotropic Hg with fixed f-double-prime zero, UNMEASURED",
+          "coordination": "Two intended N3 donors; no inferred S2 coordination or covalent bond",
+          "limitations": [
+            "Fixed zero f-double-prime does not test nonzero Hg anomalous-response invariance or metal-count quantitation",
+            "Imported distance and diagnostic angle/direction proxies are not independently validated chemical truth",
+            "Original geometry remains REVIEW; private non-ordinary ancestry; coupled endpoints unselected with DNA strain",
+            "Original observations, Free-R and experimental phases remain owner-bound; no silent scattering changes or new data copies"
+          ]
+        }
       },
       {
         "id": "lna_modified_chemistry",

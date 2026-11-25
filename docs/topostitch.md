@@ -321,6 +321,24 @@ fixed-site/fixed-B/occupancy/f″ guards and actual active-variable policy in ev
 sibling. A fixed-Hg run can validate image handling, not recovery or fitting of
 the Hg site. Release metal variables only in a separately qualified matched scope.
 
+**Owner-recommended Hg candidate, not selected:** Hazel's 2026-11-25 read-only
+review identifies the exact original FT_Hg/W252 input as a useful second-stage
+diagnostic. The Hg is isotropic with fixed f″ = 0 (unmeasured), so this state can
+test scattering/coordination representation but cannot demonstrate nonzero Hg
+anomalous-response invariance or metal-count quantitation. Any later nonzero-f″
+control needs separately justified, declared scattering inputs; no silent change
+to this original state. The intended donors are the two N3 sites; no S2 interaction
+or covalent bond is inferred. Imported Hg-distance and diagnostic angle/direction
+proxies are not independently established chemical truth.
+
+Alder's original source remains geometry REVIEW and has private, non-ordinary
+ancestry; the subsequent coupled endpoints are unselected and strained, not
+reference truth. Original anomalous observations, Free-R and experimental-phase
+inputs are retained by Alder. The ledger records the owner-reported source and
+recipe hashes for later exact matching; no files were copied or independently
+requalified here. Freeze the complete anchors, source chemistry and native policy
+at the readiness audit before making this a benchmark input.
+
 **LNA in fragmented DNA — Cedar stress.** Reuse a reviewed existing 3LNA/5LNA
 source as a candidate, preserving the modified components, all atoms, locked-sugar
 ring bonds, attachment geometry, chirality, source-supported pucker and applicable
@@ -336,8 +354,8 @@ Existing 3LNA/5LNA metadata and recut evidence are reusable precedents, not a
 qualified all-fragment refinement result. The unassigned R3 physical nick remains
 unassigned; an LNA case does not justify closing it. Freeze an explicitly supported
 chemistry/continuation scope, or choose another known-topology case if that ambiguity
-prevents the proposed claim. Candidate choice and exact readiness are pending the
-owner review; no metal or LNA model is selected by this note.
+prevents the proposed claim. Exact LNA candidate/readiness remain pending Rowan
+review; neither a metal nor an LNA model is selected by this note.
 
 The paper may add a donor–Hg–donor view across the boundary and a locked-sugar/
 phosphate detail, reconstructed in the common physical frame beside the dispersed
