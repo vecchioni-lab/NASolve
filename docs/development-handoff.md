@@ -1,6 +1,24 @@
 # NASolve development handoff — Willow
 
-**Current science audit: W285; product code remains W281.**
+**Current implementation and qualification: W286, 2026-11-25.**
+`prepare_connection_annotation_proposal` produces an explicit read-only review
+of contact-type and partner-image edits with exact source/row/evidence bindings.
+It retains every original row and gives each field its own evidence references;
+identity/entity/coordinate changes and scientific/native approval are excluded.
+[API and actual result](topostitch-preview.md#review-explicit-connection-annotation-proposals-w286).
+Source `ce624261f4cd47b584a6f2ec9de2ef595e9e3486`: 15 fail-before cases;
+**71 focused source / 71 relocated installed** checks, all 94 Python source hashes
+matching, plus exact installed replay of the real 49-row proposal. It proposes
+98 source-frame image fields and only five C585-attested type corrections
+(43 hydrog / 6 covale). Original models, selected `postmr` and W283 proposal
+remain unchanged; strict source-path admission still refuses missing entities.
+No CIF, checkpoint or native run is produced. Existing schemas/defaults remain
+compatible; the proposal report is additive version 1. Local evidence/commands:
+NASolve anchor `branch-artifacts/willow/w286-annotation-proposal/validation.json`.
+No full-suite repetition in this focused window. Next review the proposal before
+any application; W284 sequence/physical-oligo/entity questions remain separate.
+
+**Previous science audit: W285; product code at that checkpoint remained W281.**
 All 49 original CIF connection rows have unique saved native atom-pair/image
 matches. The recut preserves their physical endpoints; no annotation is applied.
 Five `covale` rows are base-to-base distance terms with strained native geometry,

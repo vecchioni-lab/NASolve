@@ -7,6 +7,10 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Current proposal API: W286.** [Explicit annotation review](topostitch-preview.md#review-explicit-connection-annotation-proposals-w286)
+  binds each proposed field to exact source/evidence while preserving strict
+  export admission. 71 source / 71 installed; genuine 49-row replay, no CIF write.
+
 - **Current image accounting: W285.** [Native images and chemical types](topostitch-preview.md#native-connection-images-versus-chemical-types-w285)
   finds unique native matches for all 49 CIF rows and flags five base-contact
   `covale` classifications for review. No annotations or coordinates changed.
