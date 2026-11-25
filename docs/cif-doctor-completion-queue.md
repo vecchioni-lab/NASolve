@@ -2462,6 +2462,13 @@ full suite on the final combined source, relevant ordinary/native controls and
 relocation with original paths unavailable. Exercise macOS/Linux process/path
 assumptions for supported environments; record any untested platform explicitly.
 
+At integration, keep Willow W35's fallback to the named RMSD header in
+the returned Phenix PDB alongside Cedar/Alder's final log-table reader and
+Cedar's per-cycle target and weight observations. On the C586 plane-only
+return, both sources gave bond RMSD 0.037 Å and angle RMSD 4.408°.
+Exercise W35's missing-log case, the preference for a valid final log,
+and C589's target-switch case together on the merged reader.
+
 Current qualified source and pending full candidates are recorded once in the
 maintained [handoff](development-handoff.md); qualification follows the exact
 source, not a branch name. Historical C391 `8ccec55b` passed 11,983 tests with two
