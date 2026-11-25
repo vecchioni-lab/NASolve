@@ -8,6 +8,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record evidence-view design and reporting precision
+
+- Record the parameter-protection figure as a future single-solve/campaign
+  evidence-toggle reference. No GUI behavior is activated.
+- Specify at most four significant figures for displayed Rwork; preserve full
+  precision in scientific evidence and calculations.
+
 ### Witness native normalization during explicit mixed refinement
 
 - Add opt-in runtime guard v3 with a pinned native normalization hook and compact

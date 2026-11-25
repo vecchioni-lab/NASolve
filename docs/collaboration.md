@@ -17,6 +17,12 @@ Keep one current queue and a short current handoff. Replace superseded status
 instead of adding another milestone diary. Link immutable Git history or the
 existing evidence ledger for older results; do not duplicate those records.
 
+In human-facing reports and figures, display Rwork to **at most four significant
+figures** (for example, `0.3388`). Keep full precision in machine-readable evidence
+and calculations; display rounding must never change tests, selection criteria or
+stored scientific values. Use similarly restrained precision for companion fit
+statistics when appropriate.
+
 ## Documentation roles
 
 The root `README.md` is the human-facing operating guide. `architecture.md` and

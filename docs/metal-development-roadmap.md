@@ -517,6 +517,15 @@ to decide at each step; keep advanced chemistry, fit settings and provenance
 compact until opened. Record agreed choices, rejected alternatives, unresolved
 questions and a small set of tasks the final interface must support.
 
+The 25 November parameter-protection checkout is an explicit visual reference
+for this session: `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/normalization-runtime-display-v2.html`
+(PNG and editable SVG alongside it). Carry forward its compact evidence stages,
+clear incomplete-state styling and readable metrics. The proposed interface must
+let the user toggle which evidence is visible for **one solve or a whole campaign**,
+while keeping dataset/site/geometry scope clear. This is a design requirement for
+A05/A06, not an implemented GUI. Rwork display is capped at four significant figures;
+full-precision source evidence remains available.
+
 Specific design topics include:
 
 - Clear dataset/structure/site context and easy switching, with a sensible first

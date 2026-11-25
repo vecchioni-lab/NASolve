@@ -63,6 +63,12 @@ The earlier cell-only v2 qualification and native scale refusal remain preserved
 at `a01-mixed-runtime-roundoff-20261125-01/` and cycle attempts 01–04. Their
 `scale-boundary.html` checkout is historical evidence, not the latest stopping point.
 
+The preferred display revision is `normalization-runtime-display-v2.html`
+(with PNG/SVG alongside it), showing Rwork/Rfree to four significant figures.
+Original figures and full-precision evidence remain unchanged. A05 records this
+layout as a future single-solve/campaign evidence-toggle reference; no GUI work
+or additional fit is included.
+
 ### Saved-protocol audit after the bounded stop
 
 Read-only native PHIL/EFF parsing confirms `optimize_xyz_weight=True` and
