@@ -146,10 +146,8 @@ def test_missing_origin_cannot_identify_a_reference_bond():
     with pytest.raises(ValueError, match="bond origin"):
         read(native)
 
-def test_written_restraints_use_the_registered_image_and_the_intact_links(tmp_path):
+def written_links(tmp_path):
     pytest.importorskip("gemmi")
-    from hashlib import sha256
-    from nasolve.cif_phosphate_reference import measure_written_phosphate
     from .test_phosphate_restraints import inspection
 
     row = inspection()
@@ -173,6 +171,14 @@ def test_written_restraints_use_the_registered_image_and_the_intact_links(tmp_pa
                              f"{x:8.3f}{y+i*4:8.3f}{z:8.3f}{occupancy:6.2f}{30:6.2f}          {name[0]:>2}")
     model = tmp_path / "written.pdb"
     model.write_text("\n".join([*lines, "END", ""]))
+    return model, row, links, lines
+
+
+def test_written_restraints_use_the_registered_image_and_the_intact_links(tmp_path):
+    from hashlib import sha256
+    from nasolve.cif_phosphate_reference import measure_written_phosphate
+
+    model, row, links, lines = written_links(tmp_path)
     digest = sha256(model.read_bytes()).hexdigest()
     report = measure_written_phosphate(model, row, model_sha256=digest)
     assert report["written_model_sha256"] == digest
@@ -215,6 +221,42 @@ def test_written_restraints_use_the_registered_image_and_the_intact_links(tmp_pa
         measure_written_phosphate(model, row, model_sha256="0"*64)
     with pytest.raises(ValueError, match="crystal frame"):
         measure_written_phosphate(model, dict(row, space_group="P -1"), model_sha256=digest)
+
+
+def test_flanking_geometry_keeps_both_residues_and_intact_links_visible(tmp_path):
+    from nasolve.model_assessment import file_sha256
+    from nasolve.refinement_residue_geometry import flanking_residue_geometry
+
+    model, row, links, lines = written_links(tmp_path)
+    # A correct O3′–P distance can coexist with an incorrect angle inside the donor sugar.
+    atoms = [f'pdb="{line[12:27]}"' for line in lines[1:4]]
+    geo = tmp_path / "final.geo"
+    geo.write_text(f"Bond angle | covalent geometry | restraints: 1\nSorted by residual:\nangle {atoms[0]}\n"
+                   f"      {atoms[1]}\n      {atoms[2]}\n ideal model delta sigma weight residual\n"
+                   " 110.00 90.00 20.00 2.00e+00 2.50e-01 100.0\n")
+    digest = file_sha256(model)
+    def inspect(path, pin):
+        return flanking_residue_geometry(model, path, row, model_sha256=digest, geometry_sha256=pin)
+
+    report = inspect(geo, file_sha256(geo))
+    assert [report["junction"], *report["ordinary_links"]] == [list(pair) for pair in links]
+    assert [s["site"] for s in report["sites"]] == [site for pair in links for site in pair]
+    donor, acceptor, *controls = report["sites"]
+    angle, = donor["angles"]["rows"]
+    assert angle["signed_widths"] == -10 and angle["atoms"] == ["O3'", "C3'", "C4'"]
+    assert acceptor["angles"]["status"] == "NO_SITE_ROWS" and report["status"] == "PARTIAL"
+    assert all(site["bonds"]["status"] == "NOT_RECORDED" for site in controls)
+    assert inspect(None, None)["status"] == "NOT_RECORDED"
+    with pytest.raises(ValueError, match="geometry checksum"):
+        inspect(geo, "0"*64)
+    with pytest.raises(ValueError, match="model checksum"):
+        flanking_residue_geometry(model, geo, row, model_sha256="0"*64, geometry_sha256=file_sha256(geo))
+    changed = deepcopy(row)
+    changed["o3"][1] = "RY9"
+    with pytest.raises(ValueError, match="native reference component"):
+        flanking_residue_geometry(model, geo, changed, model_sha256=digest, geometry_sha256=file_sha256(geo))
+    geo.write_text(geo.read_text().replace("90.00", "92.00"))
+    assert inspect(geo, file_sha256(geo))["sites"][0]["angles"]["status"] == "UNASSESSED"
 
 
 def test_a_stationary_periodic_torsion_can_be_at_the_minimum_or_the_barrier():

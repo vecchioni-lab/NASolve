@@ -461,14 +461,32 @@ also closed to 91.2–93.5° against 108°, even as the crystal O3′–P bond
 shortened to 1.649–1.658 Å. Each of these angles had one ordinary covalent
 target in each initial and final Phenix geometry table.
 
-Fixing Hg did not prevent this strain. These controls establish where the
-distortion appeared but do not isolate its cause. The next FT trial should
-let both adjoining sugars and the phosphate change their starting shape,
-then test whether the improvement survives refinement. Track Hg and its
-donor geometry, the original experimental phases and free set, the second D:7–C:8 crossover
-and both native controls for comparison. The reported starting inspections
-belong to their own inputs. The final readings used each written PDB and its
-own final geometry table.
+**C576, allowing both sugars to move during construction.** Each trial changed
+19 coordinates at B:7 and B:1. All six checked sugar stereocentres kept
+their handedness. The B:5–B:6 template squeezed B:7 OP2–P–O5′ to 41.2°
+in construction, against 108°. The relaxed written start and the A:16–A:17
+template went through five cycles of the same fixed-Hg Phenix 2.2.1-6174
+protocol. Each had its own native chemistry inspection and two registered
+crystal links. The supplied phase coefficients and original 59 Free-R flags
+matched at initialization and on return.
+
+| After refinement | Archived original | Relaxed written start | A:16–A:17 start | Native target |
+| --- | ---: | ---: | ---: | ---: |
+| B:7 O3′–B:1 P (Å) | 1.650 | 1.653 | 1.638 | 1.607 |
+| B:7 C4′–C3′–O3′ (°) | 129.3 | 116.4 | 101.1 | 109.7 |
+| B:1 OP2–P–O5′ (°) | 91.2 | 97.3 | 108.7 | 108.0 |
+| R-free | 0.3341 | 0.3363 | 0.3367 | |
+
+Both new fits opened B:7 C2′–C1′–N9 to 122.3–122.8°, against 114.3° with a
+1.4° restraint width. All four fixed-Hg endpoints passed the same local
+2.2 Å crystal-contact screen. The two new Hg–N3 distances were 1.99–2.03 Å,
+and the N3–Hg–N3 angle was 172.0–172.7°. The two sugar paths finish 1.08 Å
+apart RMS over 19 atoms. At 5.06 Å, their average sampled densities differ by
+0.13 map standard deviations in a working-only supplied-phase map and 0.10
+in the opposite direction in a common 19-atom omit difference map. Neither
+model has been selected. Read each endpoint with its own final GEO using
+`phosphate-image --flanking-geometry`. The option includes the internal
+bonds and angles of the named reference residues as well as the junction.
 
 ## Building a requested 5'-terminal phosphate
 

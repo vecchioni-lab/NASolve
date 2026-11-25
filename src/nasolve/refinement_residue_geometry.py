@@ -147,7 +147,31 @@ def inspect_residue_geometry(model, sites, *, geometry=None, checkpoint=None):
     return _read(source, Path(geometry).expanduser(), sites)
 
 
-def print_residue_geometry(result):
+def flanking_residue_geometry(model, geometry, inspection, *, model_sha256, geometry_sha256):
+    """Read each residue at the fitted junction and the same native reference links once."""
+    from .cif_phosphate_restraints import _reference_group
+
+    group = _reference_group(inspection)
+    donor, donor_code, _ = inspection["o3"]
+    acceptor, acceptor_code, _ = inspection["phosphate"]
+    junction = [donor, acceptor]
+    expected = {}
+    for left, right in [junction, *group["links"]]:
+        for site, code in ((left, donor_code), (right, acceptor_code)):
+            if expected.setdefault(site, code) != code:
+                raise ValueError(f"Conflicting native reference components at {site}")
+    report = _read(model, geometry, list(expected))
+    if report["model_sha256"] != model_sha256:
+        raise ValueError("Flanking residues differ from the recorded model checksum")
+    if report["geometry_sha256"] != geometry_sha256:
+        raise ValueError("Flanking residues differ from the recorded final geometry checksum")
+    for site in report["sites"]:
+        if site["component"] != expected[site["site"]]:
+            raise ValueError(f"Written residue at {site['site']} differs from the native reference component")
+    return dict(report, junction=junction, ordinary_links=group["links"])
+
+
+def print_residue_geometry(result, *, rows_per_site=4):
     """Print the largest raw discrepancies, with the unit, origin and coverage."""
     if "checkpoint" in result:
         print(f"Checkpoint {result['checkpoint']['id']}.")
@@ -187,5 +211,5 @@ def print_residue_geometry(result):
                 print(" ", section["reason"])
             if section["other_image_count"]:
                 print(f"  {section['other_image_count']} rows involve another crystal image.")
-            for row in rows[:4]:
+            for row in rows[:rows_per_site]:
                 show(site, row, unit)

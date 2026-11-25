@@ -381,6 +381,20 @@ explicit reason the angle cannot be interpreted reliably.
 nasolve cif-doctor phosphate-image RUN --checkpoint refine-003 --saved-continuation-id 2 --torsion-response
 ```
 
+An O3′–P distance can close while the adjoining sugar or phosphate distorts.
+Add `--flanking-geometry` to check both residues against the covalent targets
+in the same fit. The report identifies the intact, chemically matched links
+that supplied the crossing restraints and checks their residues too. The
+plain-text view shows the largest discrepancy for each residue’s bonds and
+angles. `--json` includes each measured term, its target, width and source.
+A missing listing or a printed value that disagrees with the written model
+leaves the affected readings unassessed. An incomplete reading returns exit
+status 2. The size of a discrepancy alone does not set that status.
+
+```bash
+nasolve cif-doctor phosphate-image RUN --checkpoint refine-003 --saved-continuation-id 2 --flanking-geometry
+```
+
 The report measures the written model, reads its final geometry listing and
 shows how many bond, angle and torsion restraints Phenix applied during this
 fit. It also reports the starting and final work/free counts. Inspection can

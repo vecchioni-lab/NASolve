@@ -349,6 +349,8 @@ def build_parser() -> argparse.ArgumentParser:
                               help="inspect this member of the phosphate set fitted in the named checkpoint")
     phosphate_image.add_argument("--restraint-deviations", action="store_true",
                                 help="measure the saved fit's bond, four angles and three torsions against the native targets and intact links")
+    phosphate_image.add_argument("--flanking-geometry", action="store_true",
+                                help="read the fitted bond and both residues' internal bonds and angles alongside the matching intact links")
     phosphate_image.add_argument("--torsion-response", action="store_true",
                                 help="also report each periodic torsion's barrier height fraction and relative turning force")
     _phosphate_topology_arguments(phosphate_image)
@@ -1795,12 +1797,14 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
             if args.checkpoint is None or registered is None:
                 raise ValueError("--registration-checkpoint needs a numbered run, --checkpoint and --registered-continuation")
             options["registration_checkpoint"] = args.registration_checkpoint
-        if args.restraint_deviations or args.torsion_response:
+        if args.restraint_deviations or args.torsion_response or args.flanking_geometry:
             if args.checkpoint is None:
                 raise ValueError("Restraint deviations require a saved continuation in a numbered checkpoint")
             options["restraint_deviations"] = True
             if args.torsion_response:
                 options["torsion_response"] = True
+            if args.flanking_geometry:
+                options["flanking_geometry"] = True
         if args.checkpoint is None:
             if args.saved_continuation or args.saved_continuation_id is not None:
                 raise ValueError("--saved-continuation needs a numbered run and --checkpoint")
@@ -1849,6 +1853,13 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
                                       f"with {response['fraction_of_peak_slope']:.1%} of its peak turning force.")
                             elif response:
                                 print(f"  Turning force unassessed. {response['reason']}.")
+            if fit and "flanking_residue_geometry" in fit:
+                from .refinement_residue_geometry import print_residue_geometry
+
+                flanks = fit["flanking_residue_geometry"]
+                print("Residues beside the crystal bond  " + " → ".join(flanks["junction"]))
+                print("Matching intact links  " + ", ".join(" → ".join(pair) for pair in flanks["ordinary_links"]))
+                print_residue_geometry(flanks, rows_per_site=1)
             transfer = result.get("registered_continuation", {}).get("frame_transfer")
             if transfer is not None:
                 print(f"Registration from {transfer['source_checkpoint']}. "
@@ -1915,7 +1926,8 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
             for group in reference["groups"]:
                 pairs = ", ".join(source + " to " + target for source, target in group["links"])
                 print(f"  {pairs} share {len(group['terms'])} recorded covalent terms")
-    return 0
+    flanks = result.get("numbered_refinement", {}).get("flanking_residue_geometry")
+    return 2 if flanks and flanks["status"] != "OBSERVED" else 0
 
 
 def _cif_link_native(args: argparse.Namespace) -> int:

@@ -1,6 +1,6 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-25, C575 comparing both sides of the FT–Hg junction — Rowan**.
+Updated **2026-11-25, C576 two independent starts at the FT–Hg junction — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**.
 
 Four existing five-cycle FT–Hg fits located a recurrent sugar distortion
@@ -12,12 +12,23 @@ original and final geometry tables and written coordinates. Source and
 relocated Cedar agreed on all readings. Eight earlier crystal-edge reports
 agreed to within 1.5 × 10⁻¹⁴. See the [FT–Hg controls](backbone-chemistry.md#crossovers-in-the-ft-hg-scaffold).
 
-**Next Q06 experiment.** Start with the B:7–B:1 junction on this independent
-crystal. Allow both adjoining sugars to adjust during construction, retain
-the existing fixed-metal arm as the first native control, and preserve both
-declared links, the original experimental phases and all 59 free reflections.
-Measure both sugars, the B:1 OP2–P–O5′ angle, local density and the established
-metal site after fitting. The DF coverage and broader closure queue remain open.
+**C576 completed that comparison.** Two new five-cycle fixed-Hg refinements
+preserved both crystal links and all 59 free reflections. B:1 OP2–P–O5′
+reached 108.7° with the A:16–A:17 start, against 108°. In both cases B:7
+C2′–C1′–N9 opened above 122° against 114.3°. At 5.06 Å the two common
+working-only maps gave no consistent preference. The next question under Q06
+is what opens that sugar-to-base angle. DF coverage and the PDU whole-arm
+decision remain open. See the [measured outcomes](backbone-chemistry.md#crossovers-in-the-ft-hg-scaffold).
+
+`cif-doctor phosphate-image --flanking-geometry` reads the written junction
+and its reference residues against the same fit’s final GEO. The option adds
+one report field. Checkpoint data and existing command output are compatible.
+Twelve earlier saved-junction reads retained identical output. Source and
+relocated wheel each passed 168 tests and seven subtests with
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src` and pytest `-q -p no:cacheprovider`
+on `tests/test_{phosphate_reference_links,phosphate_continuation,refinement_residue_geometry,refinement_phosphate,cif_doctor_run,phosphate_image,phosphate_restraints,refinement_link_geometry}.py`.
+These were focused checks. Scientific models, observations, maps and live
+Phenix directories are held in the private workspace.
 
 **C574, PDU:PDU.**
 

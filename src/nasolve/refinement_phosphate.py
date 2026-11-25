@@ -313,7 +313,8 @@ def validate_lineage(run, registry, parent, intent):
     _check_inherited_scope(prior, ancestor["id"], observations, construction_sha256=construction_hash)
 
 
-def saved_refinement(run, checkpoint, *, identifier=None, restraint_deviations=False, torsion_response=False):
+def saved_refinement(run, checkpoint, *, identifier=None, restraint_deviations=False, torsion_response=False,
+                     flanking_geometry=False):
     """Read the restraint evidence from this completed checkpoint's own fit."""
     from .refinement_parallelity import PHOSPHATE_POLICIES, read_execution_request, validate_execution
 
@@ -355,12 +356,20 @@ def saved_refinement(run, checkpoint, *, identifier=None, restraint_deviations=F
         evidence["registered_continuation_ids"] = identifiers
     if "postmr_construction_sha256" in intent:
         evidence["postmr_construction_sha256"] = intent["postmr_construction_sha256"]
-    if restraint_deviations or torsion_response:
+    if restraint_deviations or torsion_response or flanking_geometry:
         from .cif_phosphate_reference import measure_written_phosphate
         model = checkpoint.get("model")
         path = _ref_path(model, "written phosphate model", run)
         evidence["written_restraint_geometry"] = measure_written_phosphate(
             path, observation, model_sha256=model.get("sha256"), torsion_response=torsion_response)
+        if flanking_geometry:
+            from .cif_doctor_run import _final_geometry
+            from .refinement_residue_geometry import flanking_residue_geometry
+
+            geo, reference = _final_geometry(run, checkpoint) or (None, {})
+            evidence["flanking_residue_geometry"] = flanking_residue_geometry(
+                path, geo, observation, model_sha256=model["sha256"].lower(),
+                geometry_sha256=reference["sha256"].lower() if geo is not None else None)
     return intent["ancestor"], _frozen_registration(run, intent, observation), evidence
 
 

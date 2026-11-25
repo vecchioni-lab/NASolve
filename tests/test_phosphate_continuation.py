@@ -228,7 +228,7 @@ def test_inherited_edge_requires_the_same_local_chemistry_and_image(tmp_path, ch
     with pytest.raises(ValueError, match=message):
         inspect_inherited_continuation(source, child, RegisteredContinuation(9, reg, disc, edges))
 
-@pytest.mark.parametrize("reading", ["--restraint-deviations", "--torsion-response"])
+@pytest.mark.parametrize("reading", ["--restraint-deviations", "--torsion-response", "--flanking-geometry"])
 def test_restraint_deviations_require_a_fitted_checkpoint(tmp_path, capsys, reading):
     model, _ = inputs(tmp_path)
     args = ["cif-doctor", "phosphate-image", str(model), "--nearest-image", "--phosphate", "B:1", "--o3", "A:7",

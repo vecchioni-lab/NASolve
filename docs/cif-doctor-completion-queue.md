@@ -302,13 +302,14 @@ angles to 64° and 145°. A rigid linkage also stretched a bond in the adjacent
 sugar. C574 let both sugars and the intervening phosphate adjust with the
 flanking bases anchored. Two distinct shapes survived five full cycles at
 identical weights. The common working-only omit maps did not resolve which
-shape occurs at 4.19 Å. The original selection stands. Next carry the
-comparison to an independent, explicitly declared junction and track both
-neighboring sugars and the protected sites. C575 checked four existing
-five-cycle FT–Hg fits and found the largest local distortion at the B:7
-sugar adjoining B:1. The next paired-start experiment should test that
-junction with the metal protected. See the
-[native comparison](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold).
+shape occurs at 4.19 Å. C575 identified B:7 sugar strain on the independent
+FT–Hg scaffold. C576 has now tested both adjoining sugars there against the
+archived five-cycle fixed-Hg controls. A transferred start repaired the B:1
+phosphate angle, while both new fits opened the sugar-to-base angle at B:7.
+The two common working-only maps gave opposite small mean differences. Keep
+both models available. Identify which forces open the glycosidic angle before
+changing the constructor or a chemical target. See the
+[native comparison](backbone-chemistry.md#crossovers-in-the-ft-hg-scaffold).
 
 C537 checks which modeled atoms actually reached a native covalent plane.
 The historical GEO omitted C5A at both PDU sites. The corrected GEO included

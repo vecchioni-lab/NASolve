@@ -8,6 +8,10 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `cif-doctor phosphate-image --flanking-geometry` checks the bonds and angles
+  inside both residues at a fitted crystal junction and at its intact reference
+  links. It reads the named checkpoint’s final Phenix geometry listing.
+
 - `cif-doctor phosphate-image --torsion-response` shows how strongly each
   fitted backbone torsion can turn the atoms at their written positions.
   The report also measures the same torsion on the intact reference links.

@@ -103,6 +103,7 @@ def read_checkpoint_phosphate_image(run: Path, *, checkpoint: str, phosphate: st
                                    native_receipt: Path | None = None, registered=None, registration_checkpoint: str | None = None,
                                    saved_continuation: bool = False, saved_continuation_id: int | None = None,
                                    restraint_deviations: bool = False, torsion_response: bool = False,
+                                   flanking_geometry: bool = False,
                                    duplex_partners=None, partner_images=None):
     """Inspect only the named checkpoint's model and its own optional final GEO."""
     from .cif_numerical_replay import numerical_replay_scope
@@ -111,7 +112,7 @@ def read_checkpoint_phosphate_image(run: Path, *, checkpoint: str, phosphate: st
     if not isinstance(checkpoint, str) or not checkpoint.strip():
         raise CheckpointError("Phosphate inspection needs an explicit checkpoint ID or bookmark")
     saved = saved_continuation or saved_continuation_id is not None
-    if (restraint_deviations or torsion_response) and not saved:
+    if (restraint_deviations or torsion_response or flanking_geometry) and not saved:
         raise CheckpointError("Restraint deviations require a saved continuation in a numbered checkpoint")
     if saved and (any(x is not None for x in (registered, registration_checkpoint, phosphate, o3, o3_image)) or nearest_image):
         raise CheckpointError("A saved continuation supplies its own registration, endpoints and crystal image")
@@ -126,6 +127,8 @@ def read_checkpoint_phosphate_image(run: Path, *, checkpoint: str, phosphate: st
                 member["restraint_deviations"] = True
             if torsion_response:
                 member["torsion_response"] = True
+            if flanking_geometry:
+                member["flanking_geometry"] = True
             registration_checkpoint, registered, native_fit = saved_refinement(run, selected, **member)
     frozen_model = selected.get("model")
     if not isinstance(frozen_model, Mapping):
