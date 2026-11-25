@@ -15,13 +15,14 @@ not a second queue.
 
 <a id="a01-parameter-scope-2026-11-25"></a>
 
-## Current A01 — reusable mixed-parameter observation qualified
+## Current A01 — parameter observation and exact selection text qualified
 
 **Publication audit:** the compact checkout is published at
 `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/index.html`.
 All native jobs/tests are stopped. The original pause and failed attempts remain
 preserved; no completed fit was repeated. The final audit passes **67** checks;
-local evidence occupies **20.23 MB** and the checkout **6.8 KB**. The exact commit
+that observer checkpoint measured **20.23 MB** of local evidence and a **6.8 KB**
+checkout (the small selection addendum is measured separately). The exact commit
 and push outcome belong to the local `delivery.json` receipt. Browser preview of a local file URL was blocked; content/link checks are
 used without claiming rendered visual inspection.
 
@@ -65,6 +66,18 @@ force-probe count; its completed initialization and failure remain preserved.
 The corrected dry run does not claim a new derivative probe, while the actual
 fit still requires both joint forces. No unchanged derivative tests or full suite.
 
+**Receiving selection text:** 39 Phenix 2.2.1-6174 PHIL/cache/formatting checks
+reuse the existing `metal.export.atom_selection` owner. All-XYZ and fixed-Hg FT
+selections retain 42 B groups/858 DNA B atoms; an explicit nonresidue group and
+synthetic alternate/insertion/segment identities also round-trip exactly.
+These are native parser checks, not another driver/refinement execution.
+A useful negative control shows that appending scoped fields after existing
+`all` fields retains the broad selections: 859 XYZ atoms and 43 B groups,
+including Hg. The full driver may additionally reject the overlap; it was not
+run. `write_recipe_parameters` must render the scoped fields directly with
+`group_adp_refinement_mode = group_selection`, then retain actual native checks.
+No new identity parser, parameter-writer activation or phase semantics were added.
+
 **Next:** compose this explicit observer with Cedar's versioned ordinary
 numbered-round owner and retain callback/output/stopping evidence; separately
 bind original anomalous/experimental-phase ancestry. Then adapt a legitimate
@@ -88,6 +101,13 @@ Cedar source and next adapter boundaries. `final-geo-handoff.json` corrects a
 message that supplied a starting GEO: the actual prior science readers already
 use `_final.geo`, so their measurements and models remain unchanged. All native
 processes have returned and stopped.
+The selection follow-on is `a01-selection-text-20261125-01/`, with exact commands,
+source/text pins and the 39-check receipt from A721/A722. The checkout addendum
+is `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/selection-text.html`.
+Complete FT text is about 146 KB, retained once per geometry parent; shared f″
+children should reuse it through A04. The final observer implementation remains `732eaa0c` with 74 tests; its earlier
+intermediate receipts retain their exact scope.
+This follow-on changes documentation only; no full or unchanged runtime rerun.
 
 ## Scientific baseline — coupled Hg/DNA comparison, no selected endpoint
 

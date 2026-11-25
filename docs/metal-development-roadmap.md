@@ -27,10 +27,14 @@ Separately close original anomalous/HL/Free-R ancestry before adapting the endpo
 to existing metal B/f″ readers. Preserve metal XYZ v1 replay and source REVIEW
 state; do not relabel private controls or invent ancestry. Exact evidence and
 remaining scientific gates are in the [handoff](metal-development-handoff.md#a01-parameter-scope-2026-11-25).
-The ordinary writer's current `group = all` must become an explicit scoped
+39 native PHIL/cache/formatting checks now qualify the existing exact selector
+export. Appending restricted fields after `all` retains the broad fields;
+construct scoped fields directly with `group_selection`. The ordinary writer's
+current `group = all` must become an explicit scoped
 choice for this policy, with metal exclusions, no ADP back-trace and versioned
 native observation. Keep its existing source/process owner. The current checkout
-is `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/index.html`.
+is `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/index.html`, with the
+`selection-text.html` addendum. The parser control changes no active writer/runtime.
 No new cap/weight grid or unchanged native/test replay. Consult A430 before strict
 derivative probes: direct-summation diagnostics and native FFT baselines differ.
 

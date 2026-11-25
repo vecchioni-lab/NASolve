@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Qualify exact atom selections for the ordinary refinement handoff
+
+- Reuse existing atom identity export in four native PHIL/selection/formatting
+  controls, preserving explicit XYZ and B groups without residue-name assumptions.
+- Record the additive `all`-selection trap and require direct scoped-field
+  construction in the future receiving writer. Retain the compact negative
+  control and report; no active writer/runtime/default or phase-policy change.
+
 ### Add explicit mixed XYZ/group-B parameter observation
 
 - Add a general, caller-pinned scope checker and read-only Phenix adapter for

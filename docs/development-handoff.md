@@ -17,6 +17,11 @@ one new Phenix 2.2.1-6174 cycle observes 573 XYZ/69 group-B evaluations and
 B/Q/f′/f″ remain fixed. Its Rwork/Rfree 0.30985/0.34224 is mechanics evidence,
 not a selected solution. A failed initial harness remains recorded; all jobs stop.
 
+The follow-on 39-check native selection control reuses exact atom export and
+qualifies PHIL formatting. It demonstrates that appending restricted selections
+after `all` retains the broad fields, so the ordinary writer must construct scoped
+fields directly. No additional refinement, writer activation or phase change.
+
 Next compose this helper with Cedar C567/C570's ordinary versioned receiving
 owner, and separately close original anomalous/experimental-phase ancestry.
 No CLI/default activation, shared runtime replacement, ordinary checkpoint

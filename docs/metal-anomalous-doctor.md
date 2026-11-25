@@ -587,6 +587,19 @@ links. Focused pure/native checks, installed readback and four saved five-cycle
 endpoint replays are documented in the [current handoff](metal-development-handoff.md#a01-parameter-scope-2026-11-25).
 This establishes a reusable protection mechanism, not a solved metal structure.
 
+**Selection text qualification.** The existing exact atom-selector exporter is
+reused for source-bound XYZ and ordered B-group expressions. Four native PHIL,
+atom-selection and formatting controls preserve exact atom indices, including
+alternate/insertion/segment identities and explicit groups spanning residues.
+This demonstrates syntax and membership, not an implemented ordinary writer or
+native-driver acceptance. In the negative control, appending restricted fields
+after existing `all` fields retains the broad selections. The receiving
+`write_recipe_parameters` must construct those fields directly and use
+`group_adp_refinement_mode = group_selection`, rather than append an apparent
+override. Native compiled/optimizer checks remain mandatory; a parsed selection
+is not proof of execution. Full text belongs once with its protected geometry
+parent, not duplicated into every f″ increment.
+
 **Receiving boundary.** Source/checkpoint admission, dictionaries/restraints,
 crystal frame, indexed phases and original anomalous observations/Free-R remain
 with their existing owners. A checksum does not supply those inputs or prove
