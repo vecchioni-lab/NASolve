@@ -63,6 +63,38 @@ The earlier cell-only v2 qualification and native scale refusal remain preserved
 at `a01-mixed-runtime-roundoff-20261125-01/` and cycle attempts 01–04. Their
 `scale-boundary.html` checkout is historical evidence, not the latest stopping point.
 
+### Saved-protocol audit after the bounded stop
+
+Read-only native PHIL/EFF parsing confirms `optimize_xyz_weight=True` and
+`optimize_adp_weight=True` in the original source, declared command policy and
+actual EFF; `fix_wxc`/`fix_wxu` remain unset. The earlier reciprocal-only declaration
+explicitly removed real-space XYZ. The execution override changes five requested
+cycles to one and dry initialization to actual execution. EFF selection strings
+are reformatted, but native selection compilation on the checksummed source model
+proves identical 859-atom XYZ membership and all 42 B groups (858 atoms).
+
+The log records bulk-solvent scaling, target setup, riding-H setup, NQH flips,
+weight computation and entry to reciprocal XYZ. It does not record entry to ADP;
+the guard likewise reports zero group-B calls. Thus the enabled ADP weight option
+is a request, not evidence of its actual operation. Only total elapsed time,
+callback counts and an interruption stack survive. There is no retained timing
+breakdown between observation checks, native optimization and Reduce; the stack
+location must not be used as time attribution.
+
+A predeclared fixed-weight diagnostic **would change the scientific protocol**.
+Turning off XYZ weight optimization removes the native candidate-weight search;
+turning search off alone does not establish an explicitly fixed absolute weight.
+Any such control must name the changed flags/weight values, remain separately
+labelled and unselected, and cannot qualify the unchanged optimized-weight route.
+No additional fit was run. The preferred completion question preserves the native
+settings; do not run another fit merely to accumulate group-B counts.
+
+Evidence: `a01-witnessed-normalization-20261125-01/saved-protocol-audit.json`,
+runners A805–A807. The first audit's overly narrow expected-difference assertion
+and diagnostic are retained; corrected parsing accounts for dry-run override and
+proves selection membership instead of comparing formatted strings. Phenix
+2.2.1-6174, read-only parameter/selection compilation only; no suite or refinement.
+
 ## Earlier boundary — ordinary admission made explicit
 
 

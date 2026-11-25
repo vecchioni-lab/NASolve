@@ -365,6 +365,15 @@ Command-binding v1 still permits only file changes; mixed scope/target receiving
 real-space identity and FT ordinary ancestry are separate gates. A01 partial;
 A02 quantitation gated. Reuse existing admission/command evidence.
 
+The subsequent read-only saved-protocol audit confirms optimized XYZ/ADP weights
+remain requested in the actual EFF. Native compilation proves unchanged XYZ/B
+memberships despite selection-string reformatting. The explicit reciprocal-only,
+one-cycle, non-dry declaration is retained. Only total runtime/counters and the
+interrupted stack are available; no stage/observer/Reduce time split can be
+claimed. A fixed-weight control changes the scientific protocol and requires its
+own declaration/limits; it cannot substitute for completion of the optimized
+recipe. See `saved-protocol-audit.json` in the same evidence directory. No new fit.
+
 ## Ordered integration steps
 
 1. **Admit a legitimate prepared parent.** Reuse Cedar's `PreparedBackbone`,

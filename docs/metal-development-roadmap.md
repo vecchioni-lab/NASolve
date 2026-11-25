@@ -34,6 +34,12 @@ closure before prepared/ordinary numbered integration. Do not duplicate unchange
 fit experiments. Real-space identity, FT ordinary ancestry and explicit mixed-policy
 receiving remain separate gates; prior command/source-selector proof stays valid.
 
+**Protocol clarification:** saved source/command/EFF retain both weight-search
+requests; compiled XYZ/B memberships match despite EFF text reformatting. Disabling
+weight search or fixing numerical weights would be a different scientific control,
+not qualification of the unchanged recipe. Retained evidence has no per-stage cost
+attribution. See the handoff's saved-protocol audit; no further fit was run.
+
 **Latest mechanical increment:** the passive diffraction observer now carries
 independently read source captures to the active manager and actual native HL
 target without changing F/sigma/Free-R/HL or XYZ/B selections. Source/installed
