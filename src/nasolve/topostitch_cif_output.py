@@ -300,3 +300,182 @@ def prepare_whole_asym_cif(directory, model, *, reviewed_categories, tls_policy,
             'No mixed-asym/TLS images, uncertainty covariance transport, native readback or deposition approval'])
     report['report_sha256']=_fingerprint(report)
     return data,report
+
+
+
+def _backbone_coverage(graph, site_labels, evidence):
+    """Match a declared graph to public Cedar rows, without inferring a bond."""
+    def label(value):
+        if value is None:
+            return None
+        if not isinstance(value, (list, tuple)) or len(value) != 4:
+            raise ValueError('Cedar endpoint evidence lacks four label fields')
+        if any(not isinstance(v, str) for v in value):
+            raise ValueError('Cedar endpoint evidence has unsupported label fields')
+        return tuple(value)
+
+    node_by_label = {value: node for node, value in site_labels.items()}
+    if len(node_by_label) != len(site_labels):
+        raise ValueError('Ambiguous original site labels in backbone coverage')
+    ordinary = evidence.get('ordinary', {}).get('steps')
+    declared = evidence.get('declared')
+    if not isinstance(ordinary, list) or not isinstance(declared, list):
+        raise ValueError('Require public Cedar per-step ordinary and declared evidence')
+    node_by_position = {(v[0], int(v[1])): n for n, v in site_labels.items()}
+    if len(node_by_position) != len(site_labels):
+        raise ValueError('Ambiguous registered sequence positions')
+    model = evidence['_coverage_model']
+    rows = []
+    for kind, records in (('ordinary', ordinary), ('explicit', declared)):
+        for number, record in enumerate(records, 1):
+            left, right = label(record['O3_label']), label(record['P_label'])
+            operation = record.get('operator_on_P')
+            if operation is not None and not isinstance(operation, str):
+                raise ValueError('Unsupported Cedar endpoint image evidence')
+            if kind == 'ordinary':
+                status = record.get('status')
+                expected_op = None if status == 'SEQUENCE_GAP' else 'x,y,z'
+                if record.get('model') != model or operation != expected_op:
+                    raise ValueError('Ordinary step model/image differs from supported contract')
+                if status not in {'MEASURED', 'LONG', 'PARTIAL_ANGLES', 'SEQUENCE_GAP',
+                                  'UNMEASURED', 'ALTERNATE_LABEL_REVIEW'}:
+                    raise ValueError('Unsupported Cedar ordinary step status')
+                observations = [record]
+                eligible = status in {'MEASURED', 'LONG', 'PARTIAL_ANGLES'}
+                represents_link = status != 'SEQUENCE_GAP'
+            else:
+                observations = record.get('observations')
+                if not isinstance(observations, list):
+                    raise ValueError('Missing explicit-link observations')
+                eligible = True
+                represents_link = True
+            measured = [o for o in observations if o.get('model') == model
+                        and isinstance(o.get('distance_A'), (int, float))
+                        and not isinstance(o['distance_A'], bool)
+                        and math.isfinite(o['distance_A']) and o['distance_A'] >= 0]
+            a, b = node_by_label.get(left), node_by_label.get(right)
+            if kind == 'ordinary':
+                # Position associates a missing endpoint with its declared site;
+                # it never supplies a component/alternate label or measurement.
+                if left is None:
+                    a = node_by_position.get((record.get('label_asym_id'), record.get('from_label_seq_id')))
+                if right is None:
+                    b = node_by_position.get((record.get('label_asym_id'), record.get('to_label_seq_id')))
+            rows.append(dict(kind=kind, row_number=number, connection_id=record.get('id'),
+                source_node_id=a, target_node_id=b,
+                operator_xyz=operation, measurable=eligible and len(measured) == 1,
+                represents_link=represents_link, evidence=record))
+    results = []; matched = set(); keys = set()
+    for edge in graph['edges']:
+        if edge['kind'] != 'covalent_backbone':
+            continue
+        key = (edge['source'], edge['target'], edge['target_operator_xyz'])
+        if key in keys or any(node not in site_labels for node in key[:2]):
+            raise ValueError('Duplicate or unresolved declared backbone edge')
+        keys.add(key)
+        candidates = [(i, r) for i, r in enumerate(rows)
+            if (r['source_node_id'], r['target_node_id']) == key[:2] and r['represents_link']]
+        exact = [(i, r) for i, r in candidates if r['operator_xyz'] == key[2]]
+        conflicts = [r for _, r in candidates if r['operator_xyz'] != key[2]]
+        usable = [r for _, r in exact if r['measurable']]
+        counts = {kind: sum(r['kind'] == kind for r in usable) for kind in ('ordinary', 'explicit')}
+        status = ('CONFLICTING_IMAGE' if conflicts else 'AMBIGUOUS' if max(counts.values()) > 1
+                  else 'UNMEASURED' if any(not r['measurable'] for _, r in exact)
+                  else 'COVERED' if usable else 'MISSING')
+        matched.update(i for i, _ in exact)
+        results.append(dict(edge_id=edge['edge_id'], source_node_id=key[0], target_node_id=key[1],
+            target_operator_xyz=key[2], status=status, ordinary_count=counts['ordinary'],
+            explicit_count=counts['explicit'], rows=[r for _, r in exact], conflicts=conflicts))
+    unexpected = [r for i, r in enumerate(rows) if i not in matched and r['represents_link']
+                  and r['source_node_id'] is not None and r['target_node_id'] is not None]
+    outside = [r for r in rows if r['source_node_id'] is None or r['target_node_id'] is None]
+    gaps = [r for r in rows if not r['represents_link']]
+    return dict(edges=results, unexpected_registered_links=unexpected,
+        outside_registered_scope=outside, sequence_gaps=gaps,
+        complete_declared_backbone_coverage=bool(results) and not unexpected
+            and all(r['status'] == 'COVERED' for r in results))
+
+
+def observe_whole_asym_cif_backbone(directory, model, serialized_model, *,
+        expected_output_sha256, expected_deposition_owner_sha256, cedar_source=None,
+        **source_binding):
+    """Account for a serialized draft's declared links through Cedar's public API.
+
+    Source labels and atom inventory must be retained. Ordinary sequence gaps,
+    missing/ambiguous endpoints, extra links across a declared nick and conflicting
+    crystal images remain explicit. Coverage is separate from geometry quality,
+    physical nick assignment, coordinate/scattering equivalence and acceptance.
+    This observer writes nothing and never activates a restraint or output flow.
+    """
+    import json
+    import gemmi
+    from .topostitch_cif_source import observe_relabel_cif_paths
+    from .topostitch_cif_annotations import _deposition_owner
+    from .topostitch_recut_bundle import _FILES
+
+    root = Path(directory); model = Path(model); output = Path(serialized_model)
+    frozen = {p: p.read_bytes() for p in [model, output, root/'preview.json',
+              *(root/n for n in _FILES.values())]}
+    if sha256(frozen[output]).hexdigest() != expected_output_sha256:
+        raise ValueError('Serialized CIF differs from the requested output binding')
+    paths = observe_relabel_cif_paths(root, model, **source_binding)
+    graph = json.loads(frozen[root/'preview.json'])['observation']['graph_relabeling']['periodic_graph']
+    def atom_rows(data):
+        doc = gemmi.cif.read_string(data.decode('ascii'))
+        blocks = [b for b in doc if '_atom_site.' in b.get_mmcif_category_names()]
+        if len(blocks) != 1:
+            raise ValueError('Require one coordinate block for serialized coverage')
+        rows = _rows(blocks[0], '_atom_site.')
+        result = {r['id']: r for r in rows}
+        if len(result) != len(rows):
+            raise ValueError('Duplicate serialized atom identity')
+        return result
+    original = atom_rows(frozen[model]); emitted = atom_rows(frozen[output])
+    fields = ('group_PDB', 'type_symbol', 'label_atom_id', 'label_alt_id', 'label_comp_id',
+        'label_asym_id', 'label_entity_id', 'label_seq_id', 'auth_atom_id', 'auth_comp_id',
+        'auth_asym_id', 'auth_seq_id', 'pdbx_PDB_ins_code', 'pdbx_PDB_model_num')
+    if original.keys() != emitted.keys() or any(
+            original[k].get(f) != emitted[k].get(f) for k in original for f in fields):
+        raise ValueError('Serialized atom inventory or source labels changed')
+    models = {r.get('pdbx_PDB_model_num') or '1' for r in emitted.values()}
+    if len(models) != 1:
+        raise ValueError('Require one unambiguous coordinate model for coverage')
+    site_labels = {}
+    for row in paths['registered_original_sites']:
+        label = row['original_label']
+        alts = {emitted[k].get('label_alt_id') or '' for k in row['original_atom_ids']}
+        if alts != {''}:
+            raise ValueError('Registered alternate labels require a separate coverage policy')
+        site_labels[row['node_id']] = (label['label_asym_id'], str(int(label['label_seq_id'])),
+                                      label['label_comp_id'], '')
+    with _deposition_owner(cedar_source, expected_deposition_owner_sha256) as owner:
+        try:
+            public = owner.inspect_deposition_links(output, include_ordinary_steps=True)
+        except TypeError as exc:
+            raise ValueError('Require Cedar public per-step ordinary evidence') from exc
+    # The public owner may return tuples; a saved observation must round-trip
+    # as exactly the same JSON value, without platform-specific container types.
+    public = json.loads(json.dumps(public, allow_nan=False))
+    evidence = public['model']
+    if evidence.get('sha256') != expected_output_sha256:
+        raise ValueError('Cedar observation differs from the bound serialized output')
+    coverage = _backbone_coverage(graph, site_labels, {**evidence, '_coverage_model': next(iter(models))})
+    if any(p.read_bytes() != data for p, data in frozen.items()):
+        raise ValueError('Source or serialized output changed during backbone coverage')
+    result = dict(schema_version=1, kind='topostitch-serialized-backbone-coverage',
+        status='COMPLETE' if coverage['complete_declared_backbone_coverage'] else 'REVIEW_REQUIRED',
+        original_model_sha256=paths['original_model_sha256'], output_sha256=expected_output_sha256,
+        preview_receipt_sha256=paths['preview_receipt_sha256'], path_projection_sha256=paths['report_sha256'],
+        representative_graph_sha256=graph['graph_sha256'], deposition_owner_sha256=expected_deposition_owner_sha256,
+        deposition_owner_api='inspect_deposition_links(include_ordinary_steps=True)',
+        original_atom_count=len(original), original_labels_retained=True,
+        cedar_observation=public, **coverage,
+        coordinates_or_scattering_verified=False, geometry_accepted=False,
+        physical_nick_phase_assigned=False, file_written=False, runtime_authority=False,
+        scientific_acceptance=False,
+        limitations=['Declared links only; no missing bonds, restraints or physical nick inference',
+            'Coverage is distinct from geometry quality and coordinate/scattering equivalence',
+            'Only retained original labels with one model and no registered alternate labels',
+            'Unregistered context and sequence gaps remain explicit, not added to the graph'])
+    result['report_sha256'] = _fingerprint(result)
+    return result

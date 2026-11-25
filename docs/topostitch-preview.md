@@ -4510,3 +4510,56 @@ This was complete read-only execution, not a dry-run or refinement. It does not
 qualify TLS restart, native restraints, deposition acceptance or an adopted cut.
 The original source is unchanged; diagnostics stay local under NASolve anchor
 `branch-artifacts/willow/w272-whole-asym-draft/`. No full-suite repeat.
+
+
+### Account for serialized backbone links through Cedar (W274)
+
+`observe_whole_asym_cif_backbone` in `nasolve.topostitch_cif_output` compares a
+saved declared graph with the **actual serialized CIF**, retaining original atom
+IDs/site labels. It reuses the qualified source/path binding and Cedar's public
+`inspect_deposition_links(..., include_ordinary_steps=True)` interface. No second
+bond/image parser, chemical inference, output writer or restraint activation.
+
+```python
+from nasolve.topostitch_cif_output import observe_whole_asym_cif_backbone
+
+coverage = observe_whole_asym_cif_backbone(
+    preview_directory,
+    original_cif,
+    serialized_cif,
+    expected_output_sha256=draft_receipt["output_sha256"],
+    cedar_source=cedar_source_directory,
+    expected_deposition_owner_sha256=reviewed_reader_sha256,
+    **source_binding,
+)
+```
+
+`source_binding` is the same seven original-source controls used by W256:
+preview/model hashes, component aliases and explicit XYZ/U/B/occupancy precision
+bounds. Do not pass the assembly bounds used by the separate draft API. Until
+owner integration, pass an explicit compatible Cedar source and exact module
+hash; an old aggregate-only reader is refused. Cedar C578 supplies this public
+interface; the tested source revision and hash are in the current handoff.
+
+The additive schema1 `topostitch-serialized-backbone-coverage` report lists each
+declared edge, matched ordinary/explicit rows, image conflicts, unexpected links
+between registered sites, sequence gaps and observations outside registered scope.
+An ordinary adjacency across a declared nick cannot override that intent. Missing
+or ambiguous endpoint labels stay unresolved; the consumer never picks a candidate.
+Only one model with retained source labels and no registered alternate labels is
+supported in this first scope. Changes to atom inventory/labels or any input during
+inspection refuse. Reports contain hashes, not operational absolute input paths.
+
+`status="COMPLETE"` means the declared backbone links are accounted for, not that
+the structure is good. `LONG` and `PARTIAL_ANGLES` ordinary rows can establish
+known connectivity while retaining Cedar's geometry review. `SEQUENCE_GAP`,
+`UNMEASURED` and `ALTERNATE_LABEL_REVIEW` do not establish a covered bond. The
+report explicitly leaves geometry acceptance, coordinate/scattering equivalence,
+physical nick assignment and runtime authority false. No missing annotation is
+invented, no coordinate is written, and W272's draft behavior remains unchanged.
+
+The actual 3LNA whole-A draft accounts for 60 unique links through 58 ordinary
+steps and nine explicit records (seven overlaps). Supplying the original CIF
+against that proposed graph correctly flags the A–D image conflict. An immutable
+save/replay wrapper remains the next boundary; a coverage report alone cannot
+authorize native restart or a selected checkpoint.

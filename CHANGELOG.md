@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W274 — Consume public per-step backbone evidence
+
+- Add a source-bound serialized-CIF coverage observer using Cedar's public
+  per-step interface. Preserve ordinary/explicit overlap, missing or ambiguous
+  endpoints, unexpected links across declared nicks and image conflicts.
+- Keep known connectivity separate from long-link or partial-angle geometry
+  review. Verify immutable labels/input hashes and preserve unregistered scope.
+- No automatic writer, inferred bond, native restart, checkpoint selection or
+  existing-default change; the new report is an additive schema1 observation.
+
 ### W273 — Audit every declared backbone edge in the whole-chain draft
 
 - Account for 60 actual serialized backbone links using the existing Cedar
