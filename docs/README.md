@@ -7,9 +7,14 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Current explicit command boundary: W277.** [Export and trusted replay](topostitch-preview.md#export-and-replay-through-the-cut-preview-command-w277)
+- **Current saved-export inspection: W278.** [Trusted export viewer](topostitch-preview.md#inspect-a-verified-saved-export-w278)
+  replays the verified packet and labels the working-coordinate drawing. 22 source/
+  22 installed, two skips; actual 3LNA page generated, fresh browser render unverified.
+  Native restart/ordinary child readiness is next; no new refinement.
+
+- **Explicit command boundary: W277.** [Export and trusted replay](topostitch-preview.md#export-and-replay-through-the-cut-preview-command-w277)
   use the existing cut-preview command; 63 source/63 installed checks pass.
-  W276 publishes receipts atomically; the inspector consumer is next. No native
+  W276 publishes receipts atomically; W278 adds the inspector consumer. No native
   restart, checkpoint selection or broader mixed-path approval.
 
 - **Current save/replay boundary: W275.** [Immutable diagnostic exports](topostitch-preview.md#save-and-replay-an-immutable-whole-asym-export-w275)

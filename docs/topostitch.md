@@ -18,7 +18,7 @@ model and report missing information, competing choices and unsupported chemistr
 | `nasolve-topostitch-fit` | Propose bounded motion for one explicitly chosen canonical pairing; convergence does not establish a successful repair. |
 | `nasolve-topostitch-preview` | Write a separate bend-preview candidate with fixed anchors, transformed ANISOU and serialized-backbone checks. |
 | `nasolve-topostitch-cut-preview` | Describe graph IDs or freeze a proposal; explicit `--export-preview` / `--replay-export` also save and verify reviewed whole-asym diagnostic CIFs. No checkpoint or native restart. |
-| `nasolve-topostitch-view` | Inspect replayed proposals in an offline HTML view, compare explicit cuts and save a source-bound preference. |
+| `nasolve-topostitch-view` | Inspect replayed proposals or trusted saved exports in offline HTML; compare explicit cuts and save a source-bound preference. No approval or selection. |
 
 A declared backbone continuation can now retain its directed partner and exact
 symmetry image across proposed cuts. Both endpoint boundaries must already be
@@ -190,8 +190,9 @@ activate native restraints or assign the R3 physical nick. The next ordinary-sav
 boundary now has [maintained per-step evidence through Cedar’s public interface](topostitch-preview.md#account-for-serialized-backbone-links-through-cedar-w274).
 The local experiment’s pinned private helpers are not a production dependency;
 [immutable diagnostic publication/replay](topostitch-preview.md#save-and-replay-an-immutable-whole-asym-export-w275) is now qualified for the supported whole-asym route.
-Existing cut-preview command/inspector wiring is next; checkpoint selection and
-native restart remain separate owners and gates.
+W277/W278 now connect this diagnostic packet to explicit cut-preview commands and
+the existing inspector; checkpoint selection and native restart remain separate
+owners and gates.
 
 
 ## Maximally fragmented ASU refinement stress test (planned)

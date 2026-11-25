@@ -4,7 +4,7 @@
   "updated": "2026-11-25",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "2a14f7ea437d492911b42956db1c45e35c4c345b",
+  "audited_code_commit": "6b0997d1e407d06e6886072befe611caa478b142",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -1130,13 +1130,14 @@
         "W274: 197source/197relocated installed,2skips each;218files;12missing-API failures plus one tuple/list round-trip failure corrected. Actual public-reader60-edge report equals W273 within6.66e-16A/2.84e-14deg and is exact after package/input relocation. Wrong original frame flags edge90. No native/model output.",
         "W275: 203source/203relocated installed,2skips each;218files;six missing-API failures demonstrated. Actual9artifact3LNA export retains1271atoms/60declared links and exactly reproduces W272 native-tested CIF bytes. Source and installed replay regenerate identical model/reports after relocation;existing output,source drift,missing coverage,rehash tampering and interrupted publication qualified. No native/refinement/checkpoint.",
         "W276:206source/206installed,2skips; complete synced export receipt published without overwrite. Historical actual packet replay exact after relocation; no schema/native change.",
-        "W277:63source/63installed; existing cut-preview command exports explicit reviewed whole-asym packets and replays with trusted producer receipt digest. Legacy paths/defaults intact; no native call."
+        "W277:63source/63installed; existing cut-preview command exports explicit reviewed whole-asym packets and replays with trusted producer receipt digest. Legacy paths/defaults intact; no native call.",
+        "W278:22source/22installed,2skips; existing viewer verifies saved exports with producer digest and frozen source replay. Actual1271-atom3LNA view preserves source packet; explicit working-display precision, no native execution."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "W278: let the existing inspector consume a saved whole-asym export using its trusted producer receipt file digest and existing source/preview owners. Keep visualization read-only and scientific acceptance separate; do not add a second writer or native/checkpoint execution.",
+      "next_action": "W279: audit existing Cedar/Pine native restart and ordinary-child owners before any new execution. Current raw-TLS preservation policy does not authorize native reinterpretation or shared-group refinement. Bind one explicit supported route and source/observations, reuse prior controls, and preserve diagnostic-only state until qualified. No repeated fits or speculative mixed-image writer.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -1171,14 +1172,15 @@
         "E_SERIALIZED_BACKBONE_COVERAGE",
         "E_WHOLE_ASYM_EXPORT",
         "E_ATOMIC_EXPORT_RECEIPT",
-        "E_EXPORT_COMMAND_HANDOFF"
+        "E_EXPORT_COMMAND_HANDOFF",
+        "E_EXPORT_INSPECTOR"
       ],
       "last_audit": {
         "date": "2026-11-25",
-        "human_update": 277,
-        "code_commit": "2a14f7ea437d492911b42956db1c45e35c4c345b",
-        "reviewer": "Linden; Rowan coordinating shared scope",
-        "scope": "Explicit CLI export/replay scoped complete; P03 partial for inspector/native/mixed-path gates"
+        "human_update": 278,
+        "code_commit": "6b0997d1e407d06e6886072befe611caa478b142",
+        "reviewer": "Linden; Rowan coordinating native boundary",
+        "scope": "Saved-export inspection scoped complete; P03 remains partial for native restart/mixed-image and broader science gates"
       }
     },
     {
@@ -8621,6 +8623,89 @@
           "size": 14636
         }
       ]
+    },
+    "E_EXPORT_INSPECTOR": {
+      "kind": "Read-only trusted saved-export inspector",
+      "date": "2026-11-25",
+      "human_update": 278,
+      "code_commit": "6b0997d1e407d06e6886072befe611caa478b142",
+      "reference": "docs/topostitch-preview.md#inspect-a-verified-saved-export-w278",
+      "result": "22source/22relocated installed,2skips each;four fail-before regressions. Installed asset/source hashes exact; JavaScript syntax passes. Actual 3LNA1271-atom working view verifies frozen export; packet unchanged. No native call.",
+      "limitation": "Working-preview display, not serialized-CIF coordinates. No fresh browser render, checkpoint/native restart or scientific approval.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w278-export-inspector/before.log",
+          "sha256": "ac8d75394315605f0e6af966641be87edc4acce88af5f8d1dd58d603675946c3",
+          "size": 7915
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w278-export-inspector/focused.log",
+          "sha256": "cdb4196fb450fa23827bf7683146e92b2b183f66cdb7e3dd83555a90f96e7a14",
+          "size": 110
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w278-export-inspector/qualify.py",
+          "sha256": "b474c809a31d297a52f97dfb6eb0fc6141cf91b6d7d27c4512426a481426d01f",
+          "size": 2930
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w278-export-inspector/installation.json",
+          "sha256": "86611d98a25f073aa4f77f4af4d05fac01426a637721a7316255734daec5e001",
+          "size": 12385
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w278-export-inspector/installed-tests.log",
+          "sha256": "b960476de33b34151917582835e043c959fa7db3dbb79a1bf2d03addfbf814b5",
+          "size": 110
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w278-export-inspector/installed-help.log",
+          "sha256": "5ca3255eca9ead342d6812051593569fd935b94c202969834a72e41cfd4c5ad2",
+          "size": 2774
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w278-export-inspector/javascript.json",
+          "sha256": "6d7a0cfe61a52712720a7a4f8af9aae8d3f2cf6cf3fac8f9174484a4c24c4bf5",
+          "size": 168
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w278-export-inspector/actual.py",
+          "sha256": "7991ad3986d861d21422cd5c987fdadea0c06bdc9c1e9c52cbf89b39938a5741",
+          "size": 1474
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w278-export-inspector/actual.log",
+          "sha256": "973e799af2cca9dfceca970c3220bd77d3918b402e5b3883e250f8d911ac77fa",
+          "size": 107
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w278-export-inspector/actual.json",
+          "sha256": "4e1d57f85298b23012d4866773953ae9e0a3177682a8d77744d7e6f34533af34",
+          "size": 1368812
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w278-export-inspector/validation.json",
+          "sha256": "9b743bbd64c6f40ef4e0512b562806b4fe9789b40eaaf0c8b77eebe1ab253021",
+          "size": 15254
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w278-export-inspector/3LNA-export-inspector.html",
+          "sha256": "dd1b3b515856ce69375775dfb14526f8c8138b0d6f9ead97d6cbf1c0418f9802",
+          "size": 815891
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -8802,8 +8887,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 277,
-    "next": 278,
+    "current": 278,
+    "next": 279,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -10275,6 +10360,12 @@
         "title": "Connect reviewed export and trusted replay to the existing command",
         "state": "RECORDED",
         "code_commit": "2a14f7ea437d492911b42956db1c45e35c4c345b"
+      },
+      {
+        "number": 278,
+        "title": "Inspect saved exports through trusted producer identity",
+        "state": "RECORDED",
+        "code_commit": "6b0997d1e407d06e6886072befe611caa478b142"
       }
     ]
   },

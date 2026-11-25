@@ -1,6 +1,22 @@
 # NASolve development handoff — Willow
 
-**Current code/qualification: W277, 2026-11-25** (source `2a14f7ea437d492911b42956db1c45e35c4c345b`).
+**Current code/qualification: W278, 2026-11-25** (source `6b0997d1e407d06e6886072befe611caa478b142`).
+The existing viewer now consumes a saved export through its trusted producer
+receipt digest and existing loader. It displays captured working-preview positions
+and labels, explicitly distinguishing those from the verified full-precision CIF.
+No coordinates, source packet, model selection or native runtime are changed.
+
+**22 focused source / 22 relocated installed**, two existing skips each; four
+fail-before regressions. Installed viewer asset/source hashes and JavaScript syntax
+pass. Actual 3LNA inspection retains 1,271 atoms and its exact saved CIF/receipt;
+original packet unchanged. Fresh browser rendering is **not verified**. Local
+page: NASolve anchor `branch-artifacts/willow/w278-export-inspector/3LNA-export-inspector.html`.
+Exact commands, source/installed manifests and limits: same directory's
+`validation.json`. No full-suite or native repetition; science artifacts excluded
+from Git. The next boundary needs existing-owner native restart/child readiness,
+not another recut or inspector implementation.
+
+**Previous code/qualification: W277, 2026-11-25** (source `2a14f7ea437d492911b42956db1c45e35c4c345b`).
 The existing cut-preview command now supports explicit reviewed export and
 trusted-digest replay; a run-relative stdout handoff binds receipt/model bytes.
 Legacy preview/description behavior remains intact. No policy inference,
@@ -124,7 +140,7 @@ controls are reused; no deposited tensor or coordinate was changed. See
 [exact scope and commands](topostitch-periodic.md#w271--plan-output-fields-and-separate-native-tls-interpretation).
 No product code, installed artifact or runtime schema changed.
 
-**Next W278; P03 remains partial.** W278: let the existing inspector consume a saved whole-asym export using its trusted producer receipt file digest and existing source/preview owners. Keep visualization read-only and scientific acceptance separate; do not add a second writer or native/checkpoint execution.
+**Next W279; P03 remains partial.** W279: audit existing Cedar/Pine native restart and ordinary-child owners before any new execution. Current raw-TLS preservation policy does not authorize native reinterpretation or shared-group refinement. Bind one explicit supported route and source/observations, reuse prior controls, and preserve diagnostic-only state until qualified. No repeated fits or speculative mixed-image writer.
 
 **Return later — B11 / PUB05:** Simon requested a maximally fragmented ASU
 refinement stress test on 2026-11-25. The [frozen-panel plan](topostitch.md#maximally-fragmented-asu-refinement-stress-test-planned)

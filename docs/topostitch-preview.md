@@ -4612,8 +4612,9 @@ without hard-link support refuse publication; there is no non-atomic fallback.
 
 The example above hashes a newly created local packet for immediate replay. An
 automated consumer must instead receive its expected file digest from the trusted
-producer/handoff; hashing an arbitrary incoming file is not admission. That
-producer-to-consumer wiring remains the next command/inspector integration gate.
+producer/handoff; hashing an arbitrary incoming file is not admission. W277
+now supplies the explicit producer-to-consumer command handoff; W278 consumes it
+in the existing inspector.
 
 Every operational artifact reference uses the existing `run` anchor and exact
 relative path. There is no basename search or dependency on the original input
@@ -4666,8 +4667,8 @@ packet through the existing loader and prints the same bound references.
 
 This additive stdout contract is not a new coordinate/receipt schema or a
 checkpoint registry entry. A handoff remains review-required, unselected and not
-native-restart-qualified. Inspector consumption is the next separate integration
-step; no automated inspection, refinement, selection or native execution starts.
+native-restart-qualified. W278 adds explicit inspector consumption; no automated inspection, refinement,
+selection or native execution starts.
 
 
 ## Inspect a verified saved export (W278)
