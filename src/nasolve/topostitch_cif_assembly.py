@@ -212,3 +212,111 @@ def observe_relabel_cif_assemblies(directory, model, *, max_rotation_component_e
             'Transported ADPs, complete assembly multiplicity, output labels, native refinement and writer remain unqualified'])
     report['report_sha256']=_fingerprint(report)
     return report
+
+
+
+def observe_relabel_cif_assembly_instances(directory, model, *, max_instances=200_000,
+        **assembly_binding):
+    """Observe complete labelled instances and deposited ADPs without writing.
+
+    Recompute the existing assembly/source bindings. Finite exact-image multisets
+    retain integer lattice shifts and duplicate occurrences. Raw matrices own
+    tensor transport; matched exact images only answer the separate set question.
+    Isotropic/absent tensors remain absent. TLS fields are never added/substituted.
+    """
+    import gemmi
+    from .topostitch_cif_source import load_relabel_cif_source
+    from .topostitch_graph import _compose
+    from .topostitch_recut_bundle import _FILES
+
+    if type(max_instances)is not int or not 1<=max_instances<=2_000_000:
+        raise ValueError('Require an integer instance budget from 1 to 2000000')
+    root=Path(directory);model=Path(model)
+    paths=[model,root/'preview.json',*(root/n for n in _FILES.values())]
+    paths.extend(Path(assembly_binding[k])for k in ('oligo_registration_path','oligo_target_path')
+                 if assembly_binding.get(k)is not None)
+    frozen={p:p.read_bytes()for p in paths}
+    assembly=observe_relabel_cif_assemblies(root,model,**assembly_binding)
+    count=sum(len(g['member_atom_ids'])for ns in assembly['namespaces'].values()for g in ns['generators'])
+    if count>max_instances:raise ValueError('Assembly instance budget exceeded')
+    keys=('expected_receipt_sha256','expected_model_sha256','component_aliases',
+          'max_coordinate_component_error_angstrom','max_u_component_error_angstrom_squared',
+          'max_b_error_angstrom_squared','max_occupancy_error')
+    source=load_relabel_cif_source(root,model,**{k:assembly_binding[k]for k in keys})
+    if any(p.read_bytes()!=v for p,v in frozen.items()):raise ValueError('Source inputs changed during instance observation')
+    states=dict(zip(source.atom_ids,zip(source.u_cart_angstrom_squared,source.frame.images)))
+    block=next(b for b in gemmi.cif.read_string(source.document_bytes.decode('ascii'))
+               if '_atom_site.'in b.get_mmcif_category_names())
+    rows=_rows(block,'_atom_site.')
+    scalars=[[r['id'],r.get('type_symbol'),r.get('occupancy'),r.get('B_iso_or_equiv')]for r in rows]
+    crystal=assembly['crystal'];images={}
+    def image(xyz):
+        if xyz not in images:images[xyz]=crystallographic_image(**crystal,operator_xyz=xyz)
+        return images[xyz]
+    def signature(counter):return _fingerprint(sorted([list(k)+[n]for k,n in counter.items()]))
+    namespaces={}
+    for name,ns in assembly['namespaces'].items():
+        operators={o['raw_fields']['id']:o for o in ns['operators']if o['status']=='MATCH_WITHIN_DECLARED_BOUNDS'}
+        original_ids=[a.get('id')for a in ns['assemblies']];observed=[]
+        for original in ns['assemblies']:
+            aid=original.get('id');generators=[g for g in ns['generators']if g['raw_fields'].get('assembly_id')==aid]
+            unresolved=[g['source_row_number']for g in generators if g['status']!='TRANSPORT_OBSERVED_REVIEW_REQUIRED']
+            result=dict(original_assembly_id=aid,source_generator_rows=[g['source_row_number']for g in generators],
+                        unresolved_generator_rows=unresolved,status='UNRESOLVED_REVIEW')
+            observed.append(result)
+            if not generators or unresolved or not _known_id(aid)or original_ids.count(aid)!=1:continue
+            expected=Counter();covered=Counter();exact_before=Counter();exact_after=Counter()
+            aniso=iso=0;maximum=None;rounding=None;maximum_bound=None
+            for g in generators:
+                operator=operators[g['raw_fields']['oper_expression']];H=_cartesian(operator['raw_fields'])
+                hop=gemmi.Op(operator['symmetry_matches'][0]['operator_xyz']);Hex=image(hop.triplet())
+                for atom_id in g['member_atom_ids']:
+                    expected[(g['source_row_number'],atom_id)]+=1
+                    exact_before[(atom_id,hop.triplet())]+=1
+                for partition in g['partitions']:
+                    G=image(partition['representative_image_xyz']);gop=gemmi.Op(partition['representative_image_xyz'])
+                    correction=CartesianImage(partition['proposed_cartesian_rotation'],partition['proposed_cartesian_translation_angstrom'])
+                    composed=_compose(hop,gop).triplet() # Do not wrap away a whole-cell shift.
+                    for atom_id in partition['original_atom_ids']:
+                        covered[(g['source_row_number'],atom_id)]+=1
+                        exact_after[(atom_id,composed)]+=1
+                        tensor,registered_image=states[atom_id]
+                        if registered_image!=G:raise ValueError('Assembly image differs from the original source frame')
+                        if tensor is None:iso+=1;continue
+                        aniso+=1;before=H.rotate_tensor(tensor);after=correction.rotate_tensor(G.rotate_tensor(tensor))
+                        error=max(abs(a-b)for a,b in zip(before,after))
+                        bound=1e-10+64*max(math.ulp(max(1.,abs(v)))for values in(tensor,before,after)for v in values)
+                        if error>bound:raise ValueError('Deposited tensor transport exceeds floating-point arithmetic bound')
+                        maximum=max(maximum or 0.,error);maximum_bound=max(maximum_bound or 0.,bound)
+                        rounding=max(rounding or 0.,max(abs(a-b)for a,b in zip(before,Hex.rotate_tensor(tensor))))
+            if expected!=covered or any(n!=1 for n in expected.values()):
+                raise ValueError('Assembly instance partition loses or duplicates an original occurrence')
+            result.update(status='LABELLED_INSTANCES_OBSERVED',instance_count=sum(expected.values()),
+                anisotropic_instance_count=aniso,isotropic_instance_count=iso,
+                maximum_raw_U_transport_error_angstrom_squared=maximum,
+                maximum_tensor_arithmetic_bound_angstrom_squared=maximum_bound,
+                maximum_raw_vs_exact_U_difference_angstrom_squared=rounding,
+                unique_exact_image_keys=len(exact_before),
+                original_exact_image_multiset_sha256=signature(exact_before),
+                recut_unchanged_generator_image_multiset_sha256=signature(exact_after),
+                unchanged_generator_exact_set_preserved=exact_before==exact_after,
+                missing_exact_instances=sum((exact_before-exact_after).values()),
+                extra_exact_instances=sum((exact_after-exact_before).values()))
+        namespaces[name]=dict(assemblies=observed,unresolved_generator_rows=[g['source_row_number']for g in ns['generators']
+            if g['status']!='TRANSPORT_OBSERVED_REVIEW_REQUIRED'],
+            unknown_assembly_generator_rows=[g['source_row_number']for g in ns['generators']if g['raw_fields'].get('assembly_id')not in original_ids])
+    if any(p.read_bytes()!=v for p,v in frozen.items()):raise ValueError('Source inputs changed during instance observation')
+    result=dict(schema_version=1,kind='topostitch-original-assembly-instance-observation',
+        original_model_sha256=assembly['original_model_sha256'],preview_receipt_sha256=assembly['preview_receipt_sha256'],
+        assembly_observation_sha256=assembly['report_sha256'],source_binding_sha256=source.observation['report_sha256'],
+        original_scalar_fields_sha256=_fingerprint(scalars),max_instances=max_instances,
+        namespaces=namespaces,tls_U_added_or_substituted=False,atom_ADP_modes_changed=False,
+        coordinates_written=False,atom_adps_written=False,writer_authorized=False,runtime_authority=False,
+        scientific_acceptance=False,limitations=[
+            'Labelled original generator/atom occurrences, not unique physical atoms or biological assembly acceptance',
+            'Exact finite-image multiset comparison retains duplicate occurrences and integer lattice shifts',
+            'Raw supplied matrices own deposited Cartesian U transport; exact matches are separate rounding evidence',
+            'Source B/occupancy remain scalar metadata; missing anisotropic tensors stay absent and are not synthesized from TLS',
+            'No TLS residual inference, output identifiers, serialized model, native parameter policy or writer'])
+    result['report_sha256']=_fingerprint(result)
+    return result

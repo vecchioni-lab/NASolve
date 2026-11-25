@@ -7,10 +7,10 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Current assembly coverage audit: W268.** [Finite instances and deposited ADPs](topostitch-periodic.md#w268--separate-finite-assembly-coverage-deposited-adps-and-tls-motion)
-  accounts for 3,813/3,825 labelled instances, with deposited U separate from TLS.
-  Full C3 closure passes these recuts; partial-generator/lattice controls fail.
-  Evidence-only: W267 remains the maintained viewer; materialization stays open.
+- **Current instance observer: W269.** [Labelled instances and deposited ADPs](topostitch-preview.md#observe-labelled-assembly-instances-and-deposited-adps-w269)
+  maintains W268's bounded audit through existing source/frame owners. 172 source/
+  172 installed checks, two skips; four exact actual-file replays. Default W266
+  reports and the W267 inspector stay unchanged; no writer.
 
 - **Current assembly inspection: W267.** [Assembly references beside the saved cut](topostitch-preview.md#inspect-assembly-references-beside-the-saved-cut-w267)
   brings raw matrices, matched images and mixed partitions into the ordinary viewer.
@@ -124,7 +124,7 @@ current instructions; other branches retain their own status and validation pins
   The failed direct result and three remaining moving-region outliers stay
   explicit. This is same-family synthetic recovery, not general experimental repair.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W268, next W269.
+  [generated human view](topostitch-roadmap.md). Current W269, next W270.
   Continue original polymer/sequence semantics and supported output in Pine; coordinate feasible
   endpoint/convergence qualification with Alder and chemistry receiving with Cedar.
   Prior synthetic recovery and near-target bond controls remain closed evidence;

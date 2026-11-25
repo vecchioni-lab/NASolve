@@ -1127,7 +1127,7 @@
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "W269: add explicitly requested labelled assembly-instance/deposited-ADP observation through the existing W266 owner, source frame and exact composition. Keep default reports byte-equivalent, original raw matrices separate from exact-set closure, missing/isotropic ADP modes explicit, and unresolved/partial/lattice-shift outcomes visible. Do not create output entities, replace or add TLS U, write models or run a new native fit.",
+      "next_action": "W270: coordinate an explicit output entity/asym/reference policy with Rowan before a materializer. Use an independently bound construct target where full oligo identity is required; keep LNA copy/nick phase unresolved rather than inventing it. Decide whether named original instances or a qualified finite-set permutation is the intended assembly contract, retain raw matrix rounding/TLS conventions, and identify the smallest writer case supported by all existing gates. No repeat of completed W249/W264/W268 experiments.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -7907,8 +7907,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 268,
-    "next": 269,
+    "current": 269,
+    "next": 270,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -9326,6 +9326,12 @@
         "title": "Audit finite assembly instances and preserve deposited ADPs separately from TLS",
         "state": "RECORDED",
         "code_commit": "7ff57017bd1aba8ac5d776f8838f68aef9f3bc8c"
+      },
+      {
+        "number": 269,
+        "title": "Maintain bounded labelled assembly-instance and deposited-ADP observation",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   },

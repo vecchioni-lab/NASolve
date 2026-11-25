@@ -1262,6 +1262,12 @@ observer and adds `original_cif_assemblies` to one source-bound scene. It separa
 supplied matrices from exact image matches and displays unresolved evidence.
 The ASU canvas and default/TLS-only behavior stay unchanged; no expanded assembly
 or writer is introduced.
+Its optional instance observer reuses the original source frame and exact graph
+composition. It counts generator/atom occurrences without deduplication, compares
+finite unwrapped image multisets and transports deposited Cartesian U independently
+of TLS. It reports unresolved assemblies and bounded expansion; output labels,
+physical identity and materialization remain outside this observation.
+
 
 
 `topostitch_recipe` freezes complete canonical NARestraints selections for explicit

@@ -4398,3 +4398,35 @@ biological assembly. This is inspection, not an assembly editor, molecule-count
 assignment, total-ADP/instance-equivalence proof or model writer. Multiple-cut and
 bend views retain the existing original-CIF restriction. Paths stay explicit CLI
 arguments; the scene contains source/report hashes, not operational host paths.
+
+## Observe labelled assembly instances and deposited ADPs (W269)
+
+`topostitch_cif_assembly.observe_relabel_cif_assembly_instances(directory, model,
+max_instances=200_000, **assembly_binding)` recomputes W266's source-bound assembly
+observation and the existing original-CIF `ReferenceFrame`. Supply the same exact
+hashes, aliases, precision/assembly-rounding bounds and compatible Cedar source.
+It accepts no saved assembly report as authority. The explicit integer instance
+budget is 1–2,000,000; the default counts generator/atom occurrences across both
+namespaces and refuses excessive expansion.
+
+The optional schema-1 result retains the original assembly/source report hashes,
+original scalar-field digest, curated/depositor namespaces and separate assembly
+IDs. Each fully resolved assembly reports labelled occurrence counts, anisotropic/
+isotropic instance counts, raw H G⁻¹ tensor-transport error and a separate raw-to-
+exact tensor rounding difference. Original B/occupancy are scalar metadata;
+absent anisotropic tensors remain absent. No TLS U is added or substituted.
+Unsupported generators, unknown assembly references and missing declarations stay
+explicit; a partially resolved assembly cannot report complete counts.
+
+`unchanged_generator_exact_set_preserved` compares the finite multisets of exact
+`(original atom ID, affine image)` keys before/after applying the original generator
+set to the recut. Duplicate occurrences are retained, integer lattice shifts are
+not wrapped, and missing/extra counts remain visible. A false result does not
+invalidate the separately observed per-instance H G⁻¹ transport. A true result
+does not establish physical atom uniqueness, biological validity, raw rounded
+matrix equality, output reference semantics or writer authority.
+
+This additive function does not alter W266 reports or the W267 viewer. Inputs are
+rechecked after observation; no coordinates, atomic ADPs, labels, native settings
+or checkpoints are written. Source tensor convention remains the existing bound
+Cartesian-source contract, not a new generic CIF convention converter.

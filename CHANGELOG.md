@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W269 — Observe complete labelled assembly instances and deposited ADPs
+
+- Add a bounded read-only function to the existing assembly owner, preserving
+  original reports and scalar/ADP modes. Keep duplicate instances, unresolved
+  references and finite-set failures explicit; never add or substitute TLS U.
+- Qualify 172 source/172 relocated installed checks, two existing skips each,
+  four exact W268 replays and an exact installed 3LNA report. No default/CLI,
+  Cedar, writer, native run or migration change.
+
 ### W268 — Audit finite assembly instances and deposited atomic ADPs
 
 - Record four read-only LNA controls: complete labelled instance coverage and

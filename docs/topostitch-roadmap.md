@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W268 — Audit finite assembly instances and preserve deposited ADPs separately from TLS.** Next: W269.
+**Current update: W269 — Maintain bounded labelled assembly-instance and deposited-ADP observation.** Next: W270.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W259 | Preserve original polymer coverage and unmodeled sequence positions | RECORDED |
 | W260 | Compare original sequence text and preserve unresolved component parents | RECORDED |
 | W261 | Retain fragment source/copy lineage without inferring a full oligo | RECORDED |
 | W262 | Bind actual target documents through existing registration | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W266 | Resolve original assembly images from their actual matrices | RECORDED |
 | W267 | Inspect actual assembly images through the ordinary recut viewer | RECORDED |
 | W268 | Audit finite assembly instances and preserve deposited ADPs separately from TLS | RECORDED |
+| W269 | Maintain bounded labelled assembly-instance and deposited-ADP observation | IN_PROGRESS |
 
 ## Finish lines
 
@@ -309,7 +309,7 @@ Write a new ASU representative while preserving the physical scattering object e
 - Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.
 - Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap.
 
-**Next action:** W269: add explicitly requested labelled assembly-instance/deposited-ADP observation through the existing W266 owner, source frame and exact composition. Keep default reports byte-equivalent, original raw matrices separate from exact-set closure, missing/isotropic ADP modes explicit, and unresolved/partial/lattice-shift outcomes visible. Do not create output entities, replace or add TLS U, write models or run a new native fit.
+**Next action:** W270: coordinate an explicit output entity/asym/reference policy with Rowan before a materializer. Use an independently bound construct target where full oligo identity is required; keep LNA copy/nick phase unresolved rather than inventing it. Decide whether named original instances or a qualified finite-set permutation is the intended assembly contract, retain raw matrix rounding/TLS conventions, and identify the smallest writer case supported by all existing gates. No repeat of completed W249/W264/W268 experiments.
 **Evidence:** [E_REPRESENTATIVE_SCATTERING](#e_representative_scattering), [E_ORBIT_PERMUTATIONS](#e_orbit_permutations), [E_JOINT_FRAME_TARGET](#e_joint_frame_target), [E_BOUND_TENSOR_TRANSPORT](#e_bound_tensor_transport), [E_SAVED_FRAME_BINDING](#e_saved_frame_binding), [E_SPECIAL_POSITION_SCATTERING](#e_special_position_scattering), [E_STAGGERED_DUPLEX_RECUT](#e_staggered_duplex_recut), [E_SAVED_SCATTERING_BINDING](#e_saved_scattering_binding), [E_TWO_ROUTE_REPRESENTATIVE_OBSERVATION](#e_two_route_representative_observation), [E_SERIALIZATION_READBACK_OBSERVATION](#e_serialization_readback_observation), [E_SERIALIZED_RECUT_OBSERVER](#e_serialized_recut_observer), [E_FULL_PRECISION_BOUNDARY_METADATA](#e_full_precision_boundary_metadata), [E_ORIGINAL_CIF_SOURCE_CONTEXT](#e_original_cif_source_context), [E_ORIGINAL_CIF_PATH_PROJECTION](#e_original_cif_path_projection), [E_ORIGINAL_CIF_CONNECTION_TRANSPORT](#e_original_cif_connection_transport), [E_ORIGINAL_CIF_POLYMER_COVERAGE](#e_original_cif_polymer_coverage), [E_ORIGINAL_CIF_SEQUENCE_TEXT](#e_original_cif_sequence_text), [E_ORIGINAL_CIF_FRAGMENT_LINEAGE](#e_original_cif_fragment_lineage), [E_ORIGINAL_CIF_TARGET_DOCUMENT](#e_original_cif_target_document), [E_ORIGINAL_CIF_REFERENCE_RANGES](#e_original_cif_reference_ranges), [E_ORIGINAL_CIF_TLS_TRANSPORT](#e_original_cif_tls_transport), [E_ORIGINAL_CIF_TLS_INSPECTION](#e_original_cif_tls_inspection), [E_ORIGINAL_CIF_ASSEMBLY](#e_original_cif_assembly), [E_ORIGINAL_CIF_ASSEMBLY_VIEW](#e_original_cif_assembly_view), [E_ASSEMBLY_INSTANCE_ADP_AUDIT](#e_assembly_instance_adp_audit).
 **Last audit:** 2026-11-25, Linden; coverage scope coordinated with Rowan, [W268](https://github.com/vecchioni-lab/NASolve/commit/7ff57017bd1aba8ac5d776f8838f68aef9f3bc8c); Finite labelled assembly and deposited-U coverage for exact LNA controls; no writer or physical identity closure.
 

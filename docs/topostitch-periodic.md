@@ -14484,3 +14484,36 @@ keeping unresolved generators, partial membership and finite-set failure visible
 Reuse original-source binding and exact composition; do not add another tensor or
 permutation engine. Output entity/asym policy, preserved TLS refinement semantics,
 P02 edit loop and materialization remain separate P03 gates.
+
+## W269 — Maintain bounded instance and deposited-ADP observation
+
+The [new optional API](topostitch-preview.md#observe-labelled-assembly-instances-and-deposited-adps-w269)
+turns W268's distinct coverage audit into a reusable function in the existing
+assembly module. It recomputes source/assembly bindings, reuses the existing frame,
+tensor and exact-composition owners, and keeps deposited U separate from TLS.
+No new renderer, parser, permutation engine, native lifecycle or writer is added.
+
+Eight missing-API regressions fail before implementation. **172 focused source
+checks pass (25.92 s), with two existing skips**; the same installed suite passes
+172/two skips after relocation. Cases cover duplicated generators without lost
+multiplicity, unresolved expressions, bounded expansion, closed C3 versus partial
+P4₃ sets, whole-cell shifts, fully isotropic and mixed ADP inventories, source races,
+relocation, partition loss/duplication and a wrong tensor rotation. Existing W266
+report equality and ordinary viewer tests remain intact.
+
+All **four actual W268 controls** reproduce the exact original assembly/source
+report hashes, scalar-field hashes, 3,813/3,825 instance counts and tensor metrics.
+The relocated installed API reproduces the complete 3LNA recut report after its
+staged original input/build/installation paths are removed. Source and installed
+files match exactly, Python 3.10 syntax and the existing viewer entry point pass.
+Source inputs and Cedar's pinned owner are unchanged. No native/full-suite repeat;
+W265 remains the prior full-suite baseline. The preceding W268 audit is the
+scientific comparison; these replays qualify its maintained software consumer.
+
+Exact commands, failures, hashes and installed results: NASolve anchor
+`branch-artifacts/willow/w269-assembly-instance-observer/validation.json`.
+Scientific payloads remain local. Changes are confined to the existing assembly
+module and its tests, plus current documentation. The optional schema-1 report
+requires no migration and confers no runtime/scientific authority. P03 stays
+partial: output entity/asym/reference semantics, independently declared copy/nick
+phase, preserved native TLS policy and a maintained model writer remain open.

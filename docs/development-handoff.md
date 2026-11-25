@@ -1,40 +1,37 @@
 # NASolve development handoff — Willow
 
-**Current code: W267; latest evidence audit: W268, 2026-11-25** (code `7ff57017bd1aba8ac5d776f8838f68aef9f3bc8c`).
-The [ordinary assembly inspector](topostitch-preview.md#inspect-assembly-references-beside-the-saved-cut-w267)
-now shows actual raw matrices, exact crystal-image matches and original generator
-membership beside the saved ASU cut. An explicit three-key rounding-bounds file
-opts in; source hashes and the original eight-key binding are still required.
-Curated/depositor namespaces remain separate, with complete evidence expandable.
+**Current maintained slice: W269, 2026-11-25** (source pin follows qualification).
+The [instance observer](topostitch-preview.md#observe-labelled-assembly-instances-and-deposited-adps-w269)
+now accounts for original generator/atom occurrences and deposited atomic ADPs
+through the existing assembly/source/frame owners. It keeps duplicate multiplicity,
+isotropic/anisotropic modes, unresolved references and whole-cell shifts explicit.
+W266 default reports and the W267 inspector remain unchanged. No TLS U is added,
+no output entities inferred and no model or native policy written.
 
-**Actual 3LNA:** the relocated installed command displays all **1,271 atoms** and
-embeds the exact W266 report. Mixed-image paths **3/6** and the reversed depositor
-2/3 numbering remain inspectable. The 3D canvas is still the ASU proposal, not a
-new biological assembly or a changed molecule count. No coordinates/ADPs change.
+**172 focused source / 172 relocated installed checks**, two existing skips each.
+Eight missing-API failures reproduced before implementation. Four actual controls
+match W268's exact source/assembly/scalar hashes, instance counts and tensor metrics;
+the complete installed 3LNA report is identical after input/package relocation.
+Python 3.10 syntax, installation-file hashes and viewer entry help pass. Exact
+commands: NASolve anchor
+`branch-artifacts/willow/w269-assembly-instance-observer/validation.json`.
+No full-suite/native repeat; W265's 2,853/four skips/234 subtests is the baseline.
 
-**158 focused source / 158 relocated installed checks**, two existing skips each;
-216 installed-file hashes, including the HTML asset. Input bytes and shared Cedar
-owner are unchanged. Generated JavaScript syntax passes; browser rendering was
-not executed. No full-suite/native repeat; W265's full 2,853/four skips/234 subtests
-is the baseline. Exact commands and pins: NASolve anchor
-`branch-artifacts/willow/w267-assembly-inspector/validation.json`.
+**Scientific finding, W268:** all 3,813/3,825 labelled assembly instances survive;
+deposited U transport differs by at most 1.07e-14 Å². These complete exact C3 sets
+permit 246 instance-label permutations per recut. First-generator/whole-cell-shift
+controls fail (82/3 missing and extra instances). Raw rounded matrices and exact
+images remain separate; deposited U and TLS-derived U are not interchangeable.
+This is finite assembly coverage, distinct from W62 infinite-crystal permutations
+and W249's reused native Fcalc. The product replay is not another experiment.
 
-W266 source `6322b479539815128febb307a143a092648d15cd` remains the assembly owner:
-268 source/268 installed checks and four original/recut LNA controls. Each generator
-retains 1,271/1,275 atoms; eight recut paths yield ten image/asym partitions. Raw
-H G⁻¹ endpoint error is at most 1.59e-14 Å. Separate raw-to-exact matrix rounding
-reaches 2.22e-7 Å; it is observed, never silently corrected.
+**Inspector W267:** source `7ff57017bd1aba8ac5d776f8838f68aef9f3bc8c`; 158 source/
+158 installed checks with two skips. Actual 3LNA HTML shows 1,271 atoms, mixed paths
+3/6 and namespace-specific operator IDs. JavaScript syntax passes; browser rendering
+was not executed. The ASU canvas is not an expanded biological assembly. W266 source
+`6322b479539815128febb307a143a092648d15cd` retains its 268/268 owner qualification.
 
-**W268 actual-file audit:** all 3,813/3,825 labelled assembly instances are
-accounted for; deposited U transport differs by at most 1.07e-14 Å². Full exact C3
-sets survive these recuts with 246 instance-label permutations; first-generator
-and whole-cell-shift controls fail (82/3 missing and extra instances respectively).
-Raw rounded matrices remain separate. Deposited U and raw TLS U are not
-interchangeable; no residual is inferred. This extends finite assembly coverage,
-not W62's infinite-crystal proof or W249's native Fcalc. Evidence and limits:
-`branch-artifacts/willow/w268-assembly-adp-audit/validation.json`.
-
-**Next W269; P03 remains partial.** W269: add explicitly requested labelled assembly-instance/deposited-ADP observation through the existing W266 owner, source frame and exact composition. Keep default reports byte-equivalent, original raw matrices separate from exact-set closure, missing/isotropic ADP modes explicit, and unresolved/partial/lattice-shift outcomes visible. Do not create output entities, replace or add TLS U, write models or run a new native fit.
+**Next W270; P03 remains partial.** W270: coordinate an explicit output entity/asym/reference policy with Rowan before a materializer. Use an independently bound construct target where full oligo identity is required; keep LNA copy/nick phase unresolved rather than inventing it. Decide whether named original instances or a qualified finite-set permutation is the intended assembly contract, retain raw matrix rounding/TLS conventions, and identify the smallest writer case supported by all existing gates. No repeat of completed W249/W264/W268 experiments.
 
 W264 source `5f0dbcb4afe726b853b402424d450507331a329f` retains its uniform-image
 qualification: 200 source/200 installed checks, 18 native comparisons, raw U

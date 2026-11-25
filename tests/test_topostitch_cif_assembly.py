@@ -216,3 +216,119 @@ def test_assembly_view_cli_embeds_separate_actual_matrices_and_images(tmp_path):
     rp.write_text('null');args[args.index('--out')+1]=str(tmp_path/'invalid.html')
     with pytest.raises(SystemExit)as e:main(args)
     assert e.value.code==2 and not(tmp_path/'invalid.html').exists()
+
+
+
+def instances(root,model,kw,**options):
+    from nasolve.topostitch_cif_assembly import observe_relabel_cif_assembly_instances
+    return observe_relabel_cif_assembly_instances(root,model,**kw,**options)
+
+
+def test_instance_coverage_preserves_deposited_tensors_and_original_observer(tmp_path):
+    root,model,kw,_=fixture(tmp_path);baseline=observe(root,model,kw)
+    r=instances(root,model,kw);a=r['namespaces']['curated']['assemblies'][0]
+    assert r['assembly_observation_sha256']==baseline['report_sha256']
+    assert observe(root,model,kw)==baseline
+    assert a['status']=='LABELLED_INSTANCES_OBSERVED' and a['instance_count']==252
+    assert a['anisotropic_instance_count']==252 and a['isotropic_instance_count']==0
+    assert a['maximum_raw_U_transport_error_angstrom_squared']<1e-12
+    # Three P43 generators are a finite subset, not the complete infinite crystal.
+    assert not a['unchanged_generator_exact_set_preserved']
+    assert a['missing_exact_instances']>0 and a['extra_exact_instances']>0
+    assert not r['tls_U_added_or_substituted'] and not r['writer_authorized']
+    assert str(tmp_path)not in json.dumps(r)
+
+
+def test_instance_coverage_keeps_duplicate_generator_multiplicity(tmp_path):
+    root,model,kw,_=fixture(tmp_path)
+    def duplicate(doc):
+        t=doc[0].get_mmcif_category('_pdbx_struct_assembly_gen.')
+        for values in t.values():values.append(values[0])
+        doc[0].set_mmcif_category('_pdbx_struct_assembly_gen.',t)
+    kw['expected_model_sha256']=edit(model,duplicate)
+    r=instances(root,model,kw)['namespaces']['curated']['assemblies'][0]
+    assert r['instance_count']==336 and r['unique_exact_image_keys']<336
+    assert r['source_generator_rows']==[1,2,3,4]
+
+
+def test_unresolved_generator_blocks_complete_instance_observation(tmp_path):
+    root,model,kw,_=fixture(tmp_path)
+    def damage(doc):
+        t=doc[0].get_mmcif_category('_pdbx_struct_assembly_gen.');t['oper_expression'][1]='(1)(2)'
+        doc[0].set_mmcif_category('_pdbx_struct_assembly_gen.',t)
+    kw['expected_model_sha256']=edit(model,damage)
+    r=instances(root,model,kw)['namespaces']['curated']['assemblies'][0]
+    assert r['status']=='UNRESOLVED_REVIEW' and r['unresolved_generator_rows']==[2]
+    assert 'instance_count'not in r
+
+
+@pytest.mark.parametrize('budget',[True,0,1,2_000_001])
+def test_instance_budget_refuses_before_expanding(tmp_path,budget):
+    root,model,kw,_=fixture(tmp_path)
+    with pytest.raises(ValueError,match='[Bb]udget|instance'):instances(root,model,kw,max_instances=budget)
+
+
+def test_instance_source_relocation_and_race(tmp_path,monkeypatch):
+    old=tmp_path/'old';old.mkdir();root,model,kw,_=fixture(old);r=instances(root,model,kw)
+    paths=[p.relative_to(old)for p in(root,model,kw['cedar_source'])];moved=tmp_path/'moved';shutil.move(old,moved)
+    root,model,kw['cedar_source']=[moved/p for p in paths]
+    assert not old.exists()and instances(root,model,kw)==r
+    import nasolve.topostitch_cif_source as module
+    original=module.load_relabel_cif_source
+    def drift(*a,**k):
+        value=original(*a,**k);model.write_bytes(model.read_bytes()+b'\n');return value
+    monkeypatch.setattr(module,'load_relabel_cif_source',drift)
+    with pytest.raises(ValueError,match='changed'):instances(root,model,kw)
+
+
+
+def test_complete_threefold_set_can_permute_but_whole_cell_shift_cannot(tmp_path,monkeypatch):
+    import tests.test_topostitch_scattering as scattering
+    original=scattering.fixture
+    for index,image in enumerate(('-y,x-y,z','-y+1,x-y,z')):
+        monkeypatch.setattr(scattering,'fixture',lambda path,op=image:original(path,cell=(30,30,40,90,90,120),group='H 3',image=op))
+        path=tmp_path/str(index);path.mkdir();root,model,kw,_=fixture(path)
+        a=instances(root,model,kw)['namespaces']['curated']['assemblies'][0]
+        assert a['unchanged_generator_exact_set_preserved']is(index==0)
+        assert (a['missing_exact_instances']==0)is(index==0)
+
+
+@pytest.mark.parametrize('isotropic_atoms',[1,84])
+def test_instance_coverage_retains_mixed_and_absent_anisotropic_modes(tmp_path,monkeypatch,isotropic_atoms):
+    import gemmi
+    import tests.test_topostitch_scattering as scattering
+    import tests.test_topostitch_cif_paths as paths_module
+    original=scattering.fixture
+    def working(path):
+        paths,kw=original(path,anisou=isotropic_atoms!=84)
+        if isotropic_atoms==1:
+            lines=paths[0].read_text().splitlines(keepends=True)
+            del lines[next(i for i,s in enumerate(lines)if s.startswith('ANISOU'))]
+            scattering.rebind(paths,''.join(lines))
+            kw['expected_registered_graph_sha256']=scattering.build_registered_periodic_graph(*paths)['report_sha256']
+        return paths,kw
+    monkeypatch.setattr(scattering,'fixture',working)
+    def original_cif(path):
+        root,pin,_=scattering.saved_scattering_packet(path)
+        model=path/'original.cif';gemmi.read_pdb_string((root/'source.pdb').read_text()).make_mmcif_document().write_file(str(model))
+        return root,model,dict(expected_receipt_sha256=pin,expected_model_sha256=sha256(model.read_bytes()).hexdigest(),component_aliases={},max_coordinate_component_error_angstrom=.000501,max_u_component_error_angstrom_squared=.0000501,max_b_error_angstrom_squared=.00501,max_occupancy_error=.00501)
+    monkeypatch.setattr(paths_module,'fixture',original_cif)
+    root,model,kw,_=fixture(tmp_path);a=instances(root,model,kw)['namespaces']['curated']['assemblies'][0]
+    assert a['isotropic_instance_count']==3*isotropic_atoms
+    assert a['anisotropic_instance_count']==3*(84-isotropic_atoms)
+    if isotropic_atoms==84:assert a['maximum_raw_U_transport_error_angstrom_squared']is None
+
+
+@pytest.mark.parametrize('fault',['drop','duplicate','wrong_tensor_rotation'])
+def test_instance_coverage_refuses_partition_or_tensor_damage(tmp_path,monkeypatch,fault):
+    import nasolve.topostitch_cif_assembly as module
+    root,model,kw,_=fixture(tmp_path);original=module.observe_relabel_cif_assemblies
+    def changed(*a,**k):
+        r=original(*a,**k)
+        p=next(p for p in r['namespaces']['curated']['generators'][0]['partitions']if p['representative_image_xyz']!='x,y,z')
+        if fault=='drop':p['original_atom_ids'].pop()
+        elif fault=='duplicate':p['original_atom_ids'].append(p['original_atom_ids'][0])
+        else:p['proposed_cartesian_rotation']=[[1.,0.,0.],[0.,1.,0.],[0.,0.,1.]]
+        return r
+    monkeypatch.setattr(module,'observe_relabel_cif_assemblies',changed)
+    with pytest.raises(ValueError,match='partition|tensor'):instances(root,model,kw)
