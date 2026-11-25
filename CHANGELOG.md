@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W286 — Prepare explicit connection-annotation proposals
+
+- Add a read-only proposal API for source-bound contact types and partner images.
+  Pin each original row and each field's evidence; retain untouched rows and
+  reject identity edits, unbound evidence, unknown images and input drift.
+- Return an additive version-1 proposal report. No CIF application, inferred
+  chemistry, entity repair, checkpoint or native-policy change; strict export
+  admission remains unchanged. Source and relocated installation each pass 71
+  focused checks, including exact replay of the genuine 49-row proposal.
+
 ### W285 — Separate native connection images from chemical typing
 
 - Bind Cedar C585’s matched refinement to its committed documentation and verified

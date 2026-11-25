@@ -204,3 +204,103 @@ def test_polymer_endpoint_needs_explicit_residue_locator_even_when_unique():
     assert _endpoint(row,1,[atom])[0] is None
     row['ptnr1_label_seq_id']='42'
     assert _endpoint(row,1,[atom])==(0,[])
+
+
+def annotation_proposal_fixture(tmp_path):
+    from nasolve.topostitch_cif_annotations import _rows
+    from nasolve.topostitch_registration import _fingerprint
+    root,model,kw,owner=fixture(tmp_path)
+    def incomplete(doc):
+        atoms=doc[0].get_mmcif_category('_atom_site.')
+        atoms['label_entity_id']=[None]*len(atoms['id'])
+        doc[0].set_mmcif_category('_atom_site.',atoms)
+        table=doc[0].get_mmcif_category('_struct_conn.')
+        table.pop('ptnr1_symmetry');table.pop('ptnr2_symmetry')
+        table['conn_type_id'][0]='covale'
+        for values in table.values():values.append(values[0])
+        table['id'][1]='unreviewed';table['conn_type_id'][1]='unknown_kind'
+        doc[0].set_mmcif_category('_struct_conn.',table)
+    kw['expected_model_sha256']=edit(model,incomplete)
+    row=_rows(gemmi.cif.read_file(str(model))[0],'_struct_conn.')[0]
+    evidence={}
+    for name in ('images','chemistry'):
+        path=tmp_path/(name+'.json');path.write_text('{"scope":"controlled test evidence"}')
+        evidence[name]=dict(path=path,sha256=sha256(path.read_bytes()).hexdigest())
+    changes=[dict(connection_id='contact',expected_row_sha256=_fingerprint(row),
+        fields=dict(conn_type_id='hydrog',ptnr1_symmetry='2_555',ptnr2_symmetry='1_555'),
+        evidence=dict(conn_type_id=['chemistry'],ptnr1_symmetry=['images'],ptnr2_symmetry=['images']))]
+    args=dict(expected_model_sha256=kw['expected_model_sha256'],changes=changes,evidence=evidence,
+        cedar_source=kw['cedar_source'],expected_image_owner_sha256=kw['expected_image_owner_sha256'])
+    return root,model,kw,args
+
+
+def propose_annotations(model,kw):
+    from nasolve.topostitch_cif_annotations import prepare_connection_annotation_proposal
+    return prepare_connection_annotation_proposal(model,**kw)
+
+
+def test_annotation_proposal_preserves_incomplete_source_without_approving_export(tmp_path):
+    root,model,source_kw,args=annotation_proposal_fixture(tmp_path)
+    paths=[model,*(x['path']for x in args['evidence'].values())];before={p:p.read_bytes()for p in paths}
+    r=propose_annotations(model,args)
+    assert r['kind']=='topostitch-connection-annotation-proposal' and r['proposed_row_count']==1
+    assert r['source_row_count']==2 and r['proposed_added_columns']==['ptnr1_symmetry','ptnr2_symmetry']
+    changed,retained=r['connections']
+    assert changed['original_fields']['conn_type_id']=='covale' and changed['proposed_fields']['conn_type_id']=='hydrog'
+    assert 'ptnr1_symmetry' not in changed['original_fields']
+    assert changed['proposed_fields']['ptnr1_symmetry']=='2_555'
+    assert changed['original_fields']['details']==changed['proposed_fields']['details']
+    assert retained['original_fields']==retained['proposed_fields'] and not retained['field_changes']
+    assert retained['original_fields']['conn_type_id']=='unknown_kind'
+    assert set(changed['field_changes'])==set(args['changes'][0]['fields'])
+    assert changed['field_changes']['conn_type_id']['evidence_ids']==['chemistry']
+    assert not any(r[k] for k in ('applied','coordinates_written','evidence_semantics_validated',
+        'endpoint_identity_validated','chemical_semantics_validated','native_restart_qualified','runtime_authority'))
+    assert str(tmp_path)not in json.dumps(r) and json.loads(json.dumps(r))==r
+    assert all(p.read_bytes()==b for p,b in before.items())
+    with pytest.raises(ValueError,match='complete original CIF site label'):
+        observe(root,model,source_kw)
+
+
+@pytest.mark.parametrize('defect,reason',[
+    ('source_hash','source'),('row_hash','row'),('evidence_hash','evidence'),
+    ('missing_evidence','evidence'),('unknown_evidence','evidence'),('empty_evidence','evidence'),
+    ('identity_edit','field'),('unknown_image','image'),('unknown_type','type'),
+    ('duplicate_change','Duplicate'),('unknown_row','connection'),('duplicate_source','Duplicate')])
+def test_annotation_proposal_refuses_unbound_or_out_of_scope_changes(tmp_path,defect,reason):
+    root,model,source_kw,args=annotation_proposal_fixture(tmp_path)
+    c=args['changes'][0]
+    if defect=='source_hash':args['expected_model_sha256']='0'*64
+    elif defect=='row_hash':c['expected_row_sha256']='0'*64
+    elif defect=='evidence_hash':args['evidence']['images']['sha256']='0'*64
+    elif defect=='missing_evidence':c['evidence'].pop('conn_type_id')
+    elif defect=='unknown_evidence':c['evidence']['conn_type_id']=['absent']
+    elif defect=='empty_evidence':c['evidence']['conn_type_id']=[]
+    elif defect=='identity_edit':c['fields']['ptnr1_label_asym_id']='new';c['evidence']['ptnr1_label_asym_id']=['images']
+    elif defect=='unknown_image':c['fields']['ptnr1_symmetry']='999_555'
+    elif defect=='unknown_type':c['fields']['conn_type_id']='invented'
+    elif defect=='duplicate_change':args['changes'].append(dict(c))
+    elif defect=='unknown_row':c['connection_id']='absent'
+    elif defect=='duplicate_source':
+        def duplicate(doc):
+            t=doc[0].get_mmcif_category('_struct_conn.');t['id'][1]=t['id'][0];doc[0].set_mmcif_category('_struct_conn.',t)
+        args['expected_model_sha256']=edit(model,duplicate)
+    with pytest.raises(ValueError,match=reason):propose_annotations(model,args)
+
+
+@pytest.mark.parametrize('target',['source','evidence'])
+def test_annotation_proposal_refuses_late_input_drift(tmp_path,monkeypatch,target):
+    from contextlib import contextmanager
+    from nasolve import topostitch_cif_annotations as module
+    root,model,source_kw,args=annotation_proposal_fixture(tmp_path)
+    original=module._image_owner
+    @contextmanager
+    def changing(*a,**kw):
+        with original(*a,**kw) as decode:
+            def mutate(code,operations):
+                path=model if target=='source' else args['evidence']['images']['path']
+                path.write_bytes(path.read_bytes()+b'\n')
+                return decode(code,operations)
+            yield mutate
+    monkeypatch.setattr(module,'_image_owner',changing)
+    with pytest.raises(ValueError,match='changed'):propose_annotations(model,args)

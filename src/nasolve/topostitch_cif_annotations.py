@@ -215,3 +215,127 @@ def observe_relabel_cif_connections(directory, model, *, expected_image_owner_sh
             'Physical endpoint invariance does not establish chemical, sequence, density or restraint validity'])
     report['report_sha256'] = _fingerprint(report)
     return report
+
+
+
+def prepare_connection_annotation_proposal(model, *, expected_model_sha256,
+        changes, evidence, expected_image_owner_sha256, cedar_source=None):
+    """Return an unapplied, source-bound review of explicit connection edits.
+
+    Each change names one existing connection ID, its canonical original-row
+    digest, proposed fields, and evidence IDs for each field. Evidence maps IDs
+    to explicit ``path``/``sha256`` pairs. Only contact type (covale/hydrog) and
+    the two partner image codes may be proposed. Unknown untouched rows survive.
+
+    This does not require or repair entity metadata, resolve endpoints, infer
+    chemical intent, or read meaning from evidence contents. File hashes bind
+    evidence bytes, not their scientific validity. The original operation table
+    and an explicitly pinned Cedar decoder must validate proposed image codes.
+    Return values contain hashes, not host paths; replay requires the caller's
+    original inputs. No CIF writer, approval, checkpoint or native job is invoked.
+    """
+    import gemmi
+
+    def digest(value):
+        return isinstance(value,str) and re.fullmatch(r'[0-9a-f]{64}',value) is not None
+
+    model=Path(model)
+    data=model.read_bytes()
+    if not digest(expected_model_sha256) or sha256(data).hexdigest()!=expected_model_sha256:
+        raise ValueError('Annotation proposal source differs from requested binding')
+    doc=gemmi.cif.read_string(data.decode('ascii'))
+    blocks=[b for b in doc if '_atom_site.' in b.get_mmcif_category_names()]
+    if len(blocks)!=1:
+        raise ValueError('Annotation proposal requires one original coordinate block')
+    block=blocks[0]; rows=_rows(block,'_struct_conn.')
+    by_id={}
+    for number,row in enumerate(rows,1):
+        key=row.get('id')
+        if not _known(key):raise ValueError('Missing original connection ID')
+        if key in by_id:raise ValueError('Duplicate original connection ID: '+key)
+        by_id[key]=(number,row)
+    operations,issues=_operations(block,gemmi)
+    if issues:raise ValueError('Unresolved original operation table: '+'; '.join(issues))
+    if not isinstance(changes,list) or not changes:
+        raise ValueError('Require nonempty explicit annotation changes')
+    try:
+        changes=json.loads(json.dumps(changes,allow_nan=False))
+    except (TypeError,ValueError) as exc:
+        raise ValueError('Annotation changes must be finite JSON values') from exc
+    if not isinstance(evidence,dict) or not evidence:
+        raise ValueError('Require explicitly pinned annotation evidence')
+    snapshots={model:data}; documents={}
+    for key,reference in evidence.items():
+        if not isinstance(key,str) or re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.-]*',key) is None:
+            raise ValueError('Invalid annotation evidence ID')
+        if not isinstance(reference,dict) or set(reference)!={'path','sha256'} or not digest(reference['sha256']):
+            raise ValueError('Require explicit evidence path and SHA-256')
+        path=Path(reference['path']); raw=path.read_bytes()
+        if sha256(raw).hexdigest()!=reference['sha256']:
+            raise ValueError('Annotation evidence differs from requested binding: '+key)
+        if path in snapshots and snapshots[path]!=raw:
+            raise ValueError('Annotation source or evidence changed during snapshot')
+        snapshots[path]=raw
+        documents[key]=dict(sha256=reference['sha256'],size_bytes=len(raw))
+    permitted={'conn_type_id','ptnr1_symmetry','ptnr2_symmetry'}
+    proposed={};used=set();added=set()
+    columns=list(block.get_mmcif_category('_struct_conn.'))
+    with _image_owner(cedar_source,expected_image_owner_sha256) as decode:
+        for change in changes:
+            if not isinstance(change,dict) or set(change)!={'connection_id','expected_row_sha256','fields','evidence'}:
+                raise ValueError('Unsupported annotation change fields')
+            key=change['connection_id']
+            if not isinstance(key,str) or key not in by_id:
+                raise ValueError('Unknown original connection ID')
+            if key in proposed:raise ValueError('Duplicate proposed connection ID: '+key)
+            number,row=by_id[key]
+            if not digest(change['expected_row_sha256']) or _fingerprint(row)!=change['expected_row_sha256']:
+                raise ValueError('Original connection row differs from requested binding: '+key)
+            fields=change['fields'];support=change['evidence']
+            if not isinstance(fields,dict) or not fields or set(fields)-permitted:
+                raise ValueError('Unsupported annotation field; identities and other metadata are immutable')
+            if not isinstance(support,dict) or set(support)!=set(fields):
+                raise ValueError('Every proposed field needs its own evidence IDs')
+            details={};new=dict(row)
+            for field,value in sorted(fields.items()):
+                ids=support[field]
+                if (not isinstance(ids,list) or not ids or any(not isinstance(i,str) or i not in documents for i in ids)
+                        or len(set(ids))!=len(ids)):
+                    raise ValueError('Missing, duplicate or unknown annotation evidence ID')
+                if not _known(value):raise ValueError('Proposed annotation field must be an explicit string')
+                if field in row and row[field]==value:
+                    raise ValueError('Proposed annotation field is unchanged: '+field)
+                item=dict(original_present=field in row,original_value=row.get(field),
+                    proposed_value=value,evidence_ids=list(ids))
+                if field=='conn_type_id':
+                    if value not in ('covale','hydrog'):
+                        raise ValueError('Unsupported proposed connection type')
+                else:
+                    op=decode(value,operations)
+                    if op is None:raise ValueError('Proposed image code is unresolved: '+value)
+                    item['operator_xyz']=op.triplet()
+                used.update(ids);new[field]=value;details[field]=item
+                if field not in columns:added.add(field)
+            proposed[key]=dict(source_row_number=number,original_row_sha256=_fingerprint(row),
+                original_fields=dict(row),proposed_fields=new,field_changes=details)
+    if used!=set(documents):raise ValueError('Unused annotation evidence would overstate proposal scope')
+    if any(path.read_bytes()!=raw for path,raw in snapshots.items()):
+        raise ValueError('Annotation source or evidence changed before proposal return')
+    connections=[proposed.get(row['id'],dict(source_row_number=number,
+        original_row_sha256=_fingerprint(row),original_fields=dict(row),
+        proposed_fields=dict(row),field_changes={})) for number,row in enumerate(rows,1)]
+    result=dict(schema_version=1,kind='topostitch-connection-annotation-proposal',
+        original_model_sha256=expected_model_sha256,coordinate_block=block.name,
+        original_connection_category_sha256=_fingerprint(rows),source_columns=columns,
+        source_row_count=len(rows),proposed_row_count=len(proposed),
+        proposed_added_columns=sorted(added),image_owner_sha256=expected_image_owner_sha256,
+        evidence=documents,connections=connections,source_and_evidence_hashes_verified=True,
+        applied=False,coordinates_written=False,evidence_semantics_validated=False,
+        endpoint_identity_validated=False,chemical_semantics_validated=False,
+        native_restart_qualified=False,runtime_authority=False,scientific_acceptance=False,
+        limitations=['Explicit proposal only; hash-bound evidence is not independent semantic approval',
+            'Original rows and unknown metadata retained; no sequence/entity/identity repair',
+            'Image-code decoding does not verify physical endpoint identity or chemical meaning',
+            'Only covale/hydrog type and two partner image fields; no CIF application or portable replay packet'])
+    result['report_sha256']=_fingerprint(result)
+    return result

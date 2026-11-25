@@ -5108,3 +5108,80 @@ introduced. The existing Cedar parser SHA is
 `37e5479771da9fcbe8b66b045f56dda573fc4fb212c096de50d5c6243b95f5cb`.
 Historical Phenix 2.2.1-6174 complete-run evidence was reread; this is not a new
 refinement. Scientific files stay local; the ledger retains their checksums.
+
+
+## Review explicit connection-annotation proposals (W286)
+
+`topostitch_cif_annotations.prepare_connection_annotation_proposal` turns explicit
+caller declarations into a source-bound **unapplied review**, including when the
+original CIF lacks entity metadata. It does not weaken the existing source-path
+or export gates. There is no new CLI mode or automatic repair; current commands,
+receipts, previews and output schemas remain compatible.
+
+Supply the original coordinate CIF, its expected SHA-256, the explicitly pinned
+Cedar image owner, and a list of changes. Each change names an existing connection
+ID and its original canonical raw-row fingerprint. Only `conn_type_id` (`covale`
+or `hydrog`) and `ptnr1_symmetry` / `ptnr2_symmetry` may be proposed. Identity,
+sequence, entity, coordinate and other metadata fields are outside this boundary.
+The source must have one coordinate block, unique connection IDs and an explicit
+unambiguous operation table. All proposed image codes are decoded through the
+existing trusted Cedar owner; no missing image defaults to identity.
+
+Each field independently names its evidence IDs. The `evidence` argument maps
+those IDs to explicit `path`/`sha256` dictionaries. The API reads and rechecks
+those exact documents; it does not search for them, interpret their contents or
+approve their scientific meaning. Missing/duplicate/unknown evidence IDs,
+unused evidence, unchanged field edits, stale source/row/file hashes and late
+source/evidence changes refuse. Caller change records are snapshotted before use.
+
+A change has this shape (values shown are illustrative):
+
+```python
+{
+    "connection_id": "C00019",
+    "expected_row_sha256": original_row_digest,
+    "fields": {"conn_type_id": "hydrog", "ptnr1_symmetry": "1_555"},
+    "evidence": {"conn_type_id": ["chemistry"], "ptnr1_symmetry": ["images"]},
+}
+```
+
+The additive version-1 report kind is `topostitch-connection-annotation-proposal`.
+It retains every original row in source order, proposed fields, per-field evidence,
+explicit missing-versus-null distinctions, source/evidence digests and decoded
+proposed operators. Unreviewed rows and unknown original types stay unchanged.
+The report's `report_sha256` is its canonical fingerprint, not a signature or
+scientific approval. Evidence file locators are omitted from the report; original
+raw annotation text remains intact. Replay requires the caller's exact inputs;
+this is not a portable run/export packet or an application/approval record.
+`applied`, `coordinates_written`, `evidence_semantics_validated`,
+`endpoint_identity_validated`, `chemical_semantics_validated`,
+`native_restart_qualified` and `runtime_authority` remain false.
+
+The actual W285 case now produces 49 proposed rows: 98 explicitly evidenced
+**source-frame** image fields, plus exactly the five C585-attested `covale`→`hydrog`
+corrections. The proposal contains 43 `hydrog` and six `covale` rows. C585's actual
+original NARestraints digest and the five exact atom-pair identities were checked
+before declaring those corrections. These are not silently inferred by the API.
+The four PDU intramonomer and two phosphate row types are retained. Source files,
+selected `postmr` and W283's separate two-row recut proposal stay unchanged.
+The strict source-path observer still refuses the original missing entity label.
+No CIF, coordinates, native process or selected child is produced.
+
+Validation: 15 fail-before cases; **71 focused source / 71 relocated installed**
+checks over `test_topostitch_cif_annotations.py`, `test_topostitch_cif_paths.py`,
+`test_topostitch_cif_output.py`, and `test_topostitch_cif_export.py`, using
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src:<optional-dependencies> python -m pytest
+-p no:cacheprovider -q` with those modules. The wheel was installed offline, moved,
+and replayed after its original build/install paths were removed. Its Python
+source hashes match the checkout; the real proposal replays exactly. Installation
+staging was removed. Exact commands, source hashes, proposal and results are local
+under NASolve anchor `branch-artifacts/willow/w286-annotation-proposal/`.
+No full-suite or native repetition was requested for this additive read-only slice.
+Local science remains outside Git.
+
+Next review the proposal separately from application. W284's physical-oligo/entity
+and experimental-sequence questions remain required for full metadata output;
+C585's matched result does not establish geometry acceptance. A future application
+boundary must reproduce this proposal against exact source/evidence, preserve
+all unrelated categories, publish a separate derivative and maintain strict
+export/native admission. It must not treat the proposal fingerprint as approval.
