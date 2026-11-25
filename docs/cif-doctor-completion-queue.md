@@ -318,9 +318,11 @@ coordinate-fit cycle. The native glycosidic angle resisted opening and other
 sugar bonds and the adenine plane supplied counterpressure. Giving both
 bases room during construction brought B:7 to 115.1° but it reopened to
 122.5° in the fixed-Hg native fit. Keep the two saved shapes unselected.
-For this crossover, use the existing matched evidence first. A future
-fixed-weight comparison should measure both sugars, intact pairing and both
-registered bonds. Keep the quantitative DF chemical-state scope on the Q06
+At C580 both exact starts completed five cycles at common coordinate weights
+of 1 and 12. The bases-free model retained a 116.8° sugar angle at weight 1
+and 121.4° at 12. Reducing diffraction weight helped the sugar but cost
+0.020 in R-work. Use these controls and the earlier PDU pair to test a local
+correction while retaining the ordinary diffraction fit. Keep the quantitative DF chemical-state scope on the Q06
 queue alongside the PDU whole-arm decision. See the
 [native comparison](backbone-chemistry.md#crossovers-in-the-ft-hg-scaffold).
 
@@ -1032,7 +1034,7 @@ sites while rechecking the frozen files before return.
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |
 | **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must receive the same chosen model and chemical/restraint meaning. | Complete for recorded alternatives, selected-model phasing, Coot, cold inspection and the ordinary five-cycle refinement handoff. Actual chemical survival/effective restraint behavior is Q06; no default activation or historical migration. |
-| **Q06 — show what survives real refinement** | Inspect the whole substituent, sugar, backbone and pair in the final Phenix model. | Open. PDU and 5PC retain the corrected terminal target. The PDU:PDU scaffold retained two crystal phosphates on restart. C574 compared distinct D:7 starts, neighboring sugars and common density. C575–C577 have now applied the comparison to the independently declared FT–Hg junction. Letting both bases move repaired the starting sugar angle, which reopened after refinement. Keep the independent DF donor-state scope and PDU whole-arm decision open. |
+| **Q06 — show what survives real refinement** | Inspect the whole substituent, sugar, backbone and pair in the final Phenix model. | Open. PDU and 5PC retain the corrected terminal target. Both PDU crystal phosphates survive restart. C574 and C580 test two independent junctions. The FT–Hg sugar improves when chemistry carries more weight, with a measurable cost to diffraction fit. Next test a local repair at ordinary weight. The PDU whole-arm decision and DF donor-state target remain open. |
 | **Q07 — prove the pieces work together** | Refine the eight named pairs with ATL alongside, including PDU and DF/A1AAZ. | The known thirteen-change scaffold completed two ordinary five-cycle rounds (C497/C505). Both retained all 38 backbone links, 211 frame restraints, protected phosphate angles and original Free-R flags. Two close ATL contacts remain. The separate closure test uses eight unfamiliar catalogue substitutions, including compatible modified backbones and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
 | **Q09 — preserve the correct sugar hand and fluorine geometry** | Carry the L-DNA, FANA, L-FANA and L-FDNA learning into ordinary model building/refinement. | Use atom connectivity and stereochemistry, not lists of residue names; complete linked and held-out controls. |
@@ -2249,6 +2251,17 @@ penalty fell from 27.04 to 0.23. This isolates one improvement and its cost.
 The correct metal-bound targets and their survival during a fresh refinement
 remain open. Simon would favour supported local chemistry at this small
 R-work cost. This observation is specific to this dataset.
+
+C580 reread the native geometry from nine completed fixed-Hg FT controls.
+N1–C2–S1 finished between 126.8° and 128.2° against the same 126.83°
+dictionary target in all nine. These fits demonstrate delivery of that
+target under the tested conditions. The earlier 135.3° result remains tied
+to its separate fit. For a public cross-check, 9E20 is a 4.72 Å DF–Hg–5IU
+structure with two Hg sites. The Hg nearer the two N3 atoms is 3.01 and
+3.08 Å from them. Both deposited metal-link rows describe O4 contacts
+to the other Hg. These coordinates provide a second example of the chemical
+environment, with insufficient information to set a precise N3-bound sulfur
+angle. [9E20 coordinate deposition](https://www.rcsb.org/structure/9E20)
 
 **C374 DF source-state confirmation:** exact original, numerical, plane-added and
 refinement dictionaries retain OP2 charge0/HOP2 and a single P–OP2 bond. Its

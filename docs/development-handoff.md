@@ -1,7 +1,19 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-25, C579 reopening a registered phosphate on another Python installation — Rowan**.
+Updated **2026-11-25, C580 matched FT–Hg sugar and phosphate refinements — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**.
+
+**C580.** Both FT–Hg starting models completed five new Phenix 2.2.1-6174
+cycles at each of two matched coordinate weights. With the bases free at
+construction, B:7 finished at 116.8° at weight 1 and 121.4° at 12 against
+a 114.3° target. The chemistry improvement cost 0.020 in R-work and 0.007
+in R-free. Both crystal bonds and the fixed Hg site survived. A read of the
+nine available native endpoints also distinguished the DF sulfur target
+actually delivered from the one that would be ideal for its donor state.
+The [measured FT–Hg controls](backbone-chemistry.md#crossovers-in-the-ft-hg-scaffold)
+and [Q06 queue](cif-doctor-completion-queue.md) record the limits and next
+experiment. This is documentation of local complete fits. No executable,
+schema, restraint default or selected checkpoint changed at C580.
 
 **C579.** Hazel’s Python 3.12.14 installation refused a genuine numbered
 PDU restart that opened in Phenix Python 3.11.15. The same coordinates

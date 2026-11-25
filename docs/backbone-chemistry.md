@@ -516,9 +516,33 @@ optimization used free-set scores. The common supplied-phase and 37-atom
 omit maps gave small opposite differences (−0.09 and +0.05 map standard
 deviations respectively, released minus anchored). The data extend to
 5.06 Å. Keep both shapes for review. Preserve the native sugar and base
-targets. A fair future comparison can hold the relative coordinate weight
-fixed across both starts and include an independent junction. The existing
-PDU fixed-weight comparison is documented above.
+targets. The matched weight comparison follows below. The independent PDU
+fixed-weight comparison is documented above.
+
+**C580, can the sugar angle survive refinement?** Both starting models were
+fitted for five cycles with a common coordinate weight of 1, taken from the
+earlier PDU control, and again at 12, within the 11–14 range used by the
+ordinary FT fit. Between these two controls only the relative reciprocal
+coordinate weight changed. Both used the original observations, flags,
+phase coefficients, metal scattering, base-pair and crystal-bond restraints.
+The native coordinate minimizer confirmed the requested weight at every
+evaluation. The 42 DNA groups continued to refine their displacement factors.
+
+| B:7 C2′–C1′–N9, target 114.3° ± 1.4° | Built | Standard Phenix | Fixed 12 | Fixed 1 |
+| --- | ---: | ---: | ---: | ---: |
+| Bases held during construction | 119.1° | 122.8° | 122.9° | 118.3° |
+| Bases free during construction | 115.1° | 122.5° | 121.4° | 116.8° |
+
+At weight 1 the bases-free model kept both crystal bonds at 1.61–1.62 Å,
+and its two base pairs had plane differences of 2.8° and 3.8°. Both Hg–N3
+distances were 2.08–2.09 Å. All six sugar stereocentres kept their hand.
+None of the 1,319 checked within-residue angles exceeded four restraint
+widths, compared with twelve at weight 12. R-work/R-free increased from
+0.3081/0.3328 to 0.3282/0.3400. This establishes sensitivity to the
+diffraction weight at 5.06 Å. It leaves the choice of conformation open.
+For a general repair, test whether a local correction can preserve the
+junction at the working model's diffraction weight. Use the saved PDU
+comparison as a second junction.
 
 ## Building a requested 5'-terminal phosphate
 
