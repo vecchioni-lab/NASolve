@@ -124,12 +124,12 @@ sweep; no joint native execution or scientific parent is claimed here.
 No Cedar/Alder implementation was merged or changed here.
 
 **Human checkout:** GitHub anchor
-`ScienceCheckouts/Linden/2026-11-25_assembly-images/index.html` and `open_report.py`
-link the actual installed 3LNA inspector and exact validation evidence. The report
-separates assembly namespace/image identity from physical movement; no new bend,
-refinement or deposition-ready recut is claimed. The prior sequence/cut checkout
-remains linked and unchanged. Local links and Python 3.10 opener syntax pass;
-browser rendering is unverified. These are inspection reports, not the P02 editor.
+`ScienceCheckouts/Linden/2026-11-25_assembly-images/checkout.html` and
+`open_checkout.py` show the actual installed 3LNA inspector, finite assembly/tensor
+coverage and the W270 whole-asym eligibility boundary. Five local links and the
+Python 3.10 opener pass; browser rendering remains unverified. The earlier
+`index.html` inspector checkout is retained unchanged. No new bend, refinement,
+R-factor gain or deposition-ready model is claimed. Exact data stay local.
 
 W254's compact failed-proposal reporting remains validated (274 source/274
 installed, one skip each); W255 used it to identify the rejected OP2 proposal.
