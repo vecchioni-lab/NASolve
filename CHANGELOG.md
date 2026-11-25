@@ -8,6 +8,11 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `cif-doctor phosphate-image --na-val-2026` compares a named standard DNA
+  or RNA phosphodiester and its two sugars with published population ranges.
+  The comparison uses the specified crystal copy and reports individual
+  measurements, coverage and the original reference.
+
 - `cif-doctor residue-geometry --sugar-pucker` measures the shape of a
   five-membered nucleotide sugar ring in a written refinement. It shows
   the phase and amplitude for comparisons between two models or checkpoints.

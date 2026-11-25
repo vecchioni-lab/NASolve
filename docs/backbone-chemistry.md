@@ -580,6 +580,28 @@ cannot establish the right reference for a new restraint.
 [Measurement](cif-doctor.md#seeing-how-a-sugar-ring-changed) ·
 [NA Valence Geometry Working Group](https://pmc.ncbi.nlm.nih.gov/articles/PMC12791123/).
 
+**C584, comparing two crystal junctions with independent DNA ranges.**
+The four C581 five-cycle models supplied two declared phosphodiesters each.
+Each comparison measured 53 sugar, glycosidic and phosphate dimensions.
+The two scaffolds use opposite crystal operations for the equivalent named
+links. The measurements used each scaffold's own recorded operation.
+
+| Change at fixed diffraction weight | Control | Local change | Published DNA outer interval |
+| --- | ---: | ---: | --- |
+| FT–Hg B:7 DA, N9–C1′–C2′ | 121.41° | 116.60° | 107.12–123.10° |
+| PDU scaffold D:7 DT, C2′–C3′–O3′ | 99.08° | 106.45° | 101.17–120.02° |
+| PDU scaffold B:7 O3′ to B:1 P | 1.671 Å | 1.684 Å | 1.539–1.640 Å |
+
+The FT angle stayed inside the published interval even when it lay five
+widths from the restraint Phenix used. The PDU scaffold's D:7 sugar angle
+crossed into the interval as the ring flattened. Its other crystal bond was
+already long and lengthened further. Four out of 53 terms around D:7 and
+seven around B:7 fell outside the published ranges in the changed PDU model.
+This comparison supplies an independent screen for canonical sugars beside
+modified sites. Choosing a transferable correction still requires evidence
+for the whole junction and its fit to diffraction.
+[Reference and reading instructions](cif-doctor.md#inspecting-a-phosphate-at-a-crystal-boundary).
+
 ## Building a requested 5'-terminal phosphate
 
 When a site is explicitly declared as a 5'-terminal phosphate, PostMR runs an

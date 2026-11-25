@@ -52,7 +52,8 @@ class PhosphateEndpointUnavailable(ValueError):
 
 
 def inspect_phosphate_image(model, *, phosphate=None, o3=None, o3_image=None, nearest_image=False, geometry=None,
-                            native_receipt=None, registered=None, duplex_partners=None, partner_images=None):
+                            native_receipt=None, registered=None, duplex_partners=None, partner_images=None,
+                            na_val_2026=False):
     """Inspect a manual pair or resolve an explicit registered continuation on this model."""
     if registered is not None:
         from .cif_phosphate_continuation import inspect_registered_continuation
@@ -64,7 +65,15 @@ def inspect_phosphate_image(model, *, phosphate=None, o3=None, o3_image=None, ne
             raise ValueError("Manual phosphate inspection requires both --phosphate and --o3")
         result = _inspect_coordinates(model, phosphate=phosphate, o3=o3, o3_image=o3_image, nearest_image=nearest_image,
                                       geometry=geometry, native_receipt=native_receipt)
-    return with_duplex_direction(model, result, duplex_partners, partner_images)
+    result = with_duplex_direction(model, result, duplex_partners, partner_images)
+    return with_population_reference(model, result, na_val_2026)
+
+
+def with_population_reference(model, inspection, requested):
+    if not requested:
+        return inspection
+    from .junction_population_reference import inspect_junction_reference
+    return dict(inspection, na_val_2026=inspect_junction_reference(model, inspection))
 
 
 def with_duplex_direction(model, inspection, partners, images):

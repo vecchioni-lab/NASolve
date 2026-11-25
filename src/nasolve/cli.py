@@ -349,6 +349,8 @@ def build_parser() -> argparse.ArgumentParser:
     residue_geometry.add_argument("--json", action="store_true", help="print all observed rows, their origins and file hashes")
     phosphate_image = cif_sub.add_parser("phosphate-image", help="inspect a named O3' crystal image at a phosphate (requires NASolve[topology])")
     phosphate_image.add_argument("model", type=Path, metavar="PDB_OR_RUN", help="exact written PDB with CRYST1, or a numbered run with --checkpoint")
+    phosphate_image.add_argument("--na-val-2026", action="store_true",
+                                help="compare standard DNA or RNA junction bonds and angles with published outer limits")
     phosphate_image.add_argument("--checkpoint", help="read this checkpoint ID or bookmark and its recorded final geometry")
     phosphate_image.add_argument("--phosphate", metavar="CHAIN:NUMBER", help="coordinate site containing P for an explicit or nearest-image inspection")
     phosphate_image.add_argument("--o3", metavar="CHAIN:NUMBER", help="coordinate site containing O3' for an explicit or nearest-image inspection")
@@ -1806,7 +1808,7 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
             raise ValueError("Topology input files require --registered-continuation ID")
         options = dict(phosphate=args.phosphate, o3=args.o3, o3_image=args.o3_image,
                        nearest_image=args.nearest_image, native_receipt=args.native_receipt, registered=registered,
-                       duplex_partners=args.duplex_partners, partner_images=args.partner_images)
+                       duplex_partners=args.duplex_partners, partner_images=args.partner_images, na_val_2026=args.na_val_2026)
         if args.registration_checkpoint is not None:
             if args.checkpoint is None or registered is None:
                 raise ValueError("--registration-checkpoint needs a numbered run, --checkpoint and --registered-continuation")
@@ -1834,9 +1836,23 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
     except (OSError, ValueError, RuntimeError) as exc:
         print(f"CIF Doctor: {exc}", file=sys.stderr)
         return 1
+    population = result.get("na_val_2026")
+    partial = population is not None and population["status"] != "MEASURED"
     if args.json:
         print(json.dumps(result, indent=2, sort_keys=True, allow_nan=False))
     else:
+        if population is not None:
+            print(f"Population reference {population['source']}")
+            if population["status"] == "UNASSESSED":
+                print(f"Published junction comparison unavailable. {population['reason']}.")
+            else:
+                print(f"Published {population['family']} junction ranges. {population['measured_count']} measurements, "
+                      f"{population['outside_count']} outside the outer limits, {population['missing_count']} unavailable.")
+                for row in population["terms"]:
+                    if row["outside"]:
+                        low, high = row["interval"]
+                        print(f"  {row['group']} {row['feature']}  {row['observed']:.3f}{row['unit']} "
+                              f"(published {low:.3f} to {high:.3f}{row['unit']})")
         if "checkpoint" in result:
             print(f"Checkpoint {result['checkpoint']['id']}.")
             fit = result.get("numbered_refinement")
@@ -1887,14 +1903,14 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
                   f"to {acceptor['logical_site']} P in image {declared['target_operator_xyz']}.")
             if declared["measurement_status"] == "UNRESOLVED":
                 print(f"Coordinate measurement unavailable. {declared['reason']}.")
-                return 0
+                return 2 if partial else 0
         ranking = result.get("image_ranking")
         if ranking is not None:
             for label, row in zip(("Nearest", "Next nearest"), ranking["closest_two"]):
                 print(f"{label} copy of {args.o3} O3'  {row['image']['operator_xyz']}  {row['distance_A']:.3f} Å")
             if result["o3_image"] is None:
                 print("The saved coordinate precision leaves the image ambiguous. Supply --o3-image to inspect a chosen copy.")
-                return 0
+                return 2 if partial else 0
         print(f"{result['phosphate'][0]} P to {result['o3'][0]} O3' in image {result['o3_image']} measures {result['distance_A']:.3f} Å.")
         present = [name for name, atom in result["phosphate_atoms"].items() if atom is not None]
         print("Phosphate site contains " + ", ".join(present) + ".")
@@ -1941,7 +1957,7 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
                 pairs = ", ".join(source + " to " + target for source, target in group["links"])
                 print(f"  {pairs} share {len(group['terms'])} recorded covalent terms")
     flanks = result.get("numbered_refinement", {}).get("flanking_residue_geometry")
-    return 2 if flanks and flanks["status"] != "OBSERVED" else 0
+    return 2 if partial or (flanks and flanks["status"] != "OBSERVED") else 0
 
 
 def _cif_link_native(args: argparse.Namespace) -> int:

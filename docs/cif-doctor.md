@@ -242,6 +242,24 @@ nasolve cif-doctor phosphate-image final.pdb --phosphate B:1 --o3 B:7 \
   --o3-image=-x+y,-x,z --geometry final.geo
 ```
 
+Add `--na-val-2026` to compare the written coordinates with the outer limits
+from the NA Valence Geometry Working Group. The same option works with a saved
+checkpoint and a registered continuation. Assign the endpoints and the crystal
+copy first. A nearest-image search alone leaves the comparison unassessed.
+The O3′ residue and all its atoms are placed in the assigned image. The report
+covers the two sugars, their attachments to their bases and their shared
+phosphate. It uses the OP1 and OP2 labels written in the model.
+
+Both sugars must have the named standard DNA or RNA chemistry and matching
+stereochemistry. Modified or mixed-family junctions, substituted phosphates
+and uncertain sugar hands need their own references. Unavailable positions
+are shown in the coverage. `--json` includes each value, its units, the two
+published boundaries and the source hashes. A value outside the range calls
+for inspection. OneDep, the active Phenix restraints and this population
+comparison can assign different significance to the same angle.
+[Working group paper](https://doi.org/10.1093/nar/gkaf1335) ·
+[Published tables, CC BY 4.0](https://doi.org/10.5281/zenodo.17286401).
+
 If the donor and phosphate lie in two consecutive stacked pairs on the same
 duplex arm, supply their opposite residues to measure where OP1 and OP2 point.
 For the **internal A11→A12 step** of the 5W6W scaffold, A11 pairs with B5 and

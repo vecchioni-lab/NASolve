@@ -329,8 +329,13 @@ phosphate reference classes and check all neighboring geometry before any
 automatic intervention. C582 [remeasures existing OneDep findings](pdb-deposition.md#remeasuring-a-returned-geometry-table)
 on an exact source and candidate. C583 measured every occupied ring on the
 four existing endpoints. The repaired D:7 thymidine angle coincided with
-a flatter sugar. A forward screen still needs independently justified sugar
-and phosphate references. Keep the DF donor-state and PDU whole-arm decisions
+a flatter sugar. C584 compared both crystal junctions on all four models
+with published outer ranges for standard DNA. The D:7 sugar moved inside
+its interval and the far B:7→B:1 bond remained long. The FT B:7 angle was
+already within the independent interval. Check local diffraction support
+and the remaining phosphate and sugar distortions together before choosing
+a correction. References for substituted backbone chemistry still need
+separate qualification. Keep the DF donor-state and PDU whole-arm decisions
 on Q06. See the
 [native comparison](backbone-chemistry.md#crossovers-in-the-ft-hg-scaffold).
 

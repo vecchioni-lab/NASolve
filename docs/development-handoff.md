@@ -1,7 +1,32 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-25, C583 sugar shape after refinement — Rowan**.
+Updated **2026-11-25, C584 independent junction geometry — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**.
+
+**C584.** The existing `cif-doctor phosphate-image` inspection now accepts
+`--na-val-2026`. On request it adds the published outer intervals for
+standard DNA or RNA, checks sugar stereochemistry and reports each dimension
+at the chosen crystal copy. Existing inputs, defaults and checkpoints require
+no migration. The additive JSON field is `na_val_2026`. The implementation is
+in `junction_population_reference.py` with entry points in `cli.py`,
+`cif_phosphate_image.py` and `cif_doctor_run.py`. The 103 packaged reference
+rows in `data/chemical_references/na_val_2026_junctions.json` identify the
+original archive, authors, license and source table hashes.
+
+Gemmi 0.7.5 reread eight junctions in four existing five-cycle Phenix
+2.2.1-6174 models. The FT and PDU results support different conclusions
+about tightening one local angle. A separate reading of the deposited 1RNA
+U2→A3 step returned 59 RNA measurements, including the 2′ hydroxyl.
+This change required no new refinement or experimental coordinates in Git.
+[Two measured crossovers](backbone-chemistry.md#crossovers-in-the-ft-hg-scaffold) ·
+[Public RNA control](https://www.rcsb.org/structure/1RNA).
+
+Source validation used
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider tests/test_junction_population_reference.py tests/test_phosphate_image.py tests/test_phosphate_duplex.py tests/test_phosphate_continuation.py tests/test_refinement_phosphate.py tests/test_refinement_sugar_pucker.py`.
+The source and installed wheel each passed 107 focused checks, including
+checkpoint relocation. Full regression was deferred. The population ranges
+are a screening reference. Modified-sugar coverage and automatic decisions
+about restraint strengths remain open.
 
 **C583.** The optional `--sugar-pucker` reading in `cif-doctor residue-geometry`
 adds each ring's five signed torsions, phase, amplitude and coverage. This
