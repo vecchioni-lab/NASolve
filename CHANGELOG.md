@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W276 — Publish complete export receipts atomically
+
+- Publish the existing canonical receipt bytes only after a temporary file is
+  complete and synced; use a no-clobber link rather than exposing an open final file.
+- Refuse competing completion markers and retain incomplete packet evidence.
+  Receipt schema and historical packet replay remain unchanged; full multi-file
+  power-loss durability and automatic consumer admission are not implied.
+
 ### Planned — fragmented-ASU refinement publication experiment
 
 - Record B11 / PUB05: matched readable, short-block and per-nucleotide image

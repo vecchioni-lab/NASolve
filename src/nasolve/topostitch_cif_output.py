@@ -533,6 +533,27 @@ def _export_receipt(options, artifacts, draft, coverage):
     return receipt
 
 
+def _publish_export_receipt(path, data):
+    """Publish complete bytes without replacing a competing completion marker.
+
+    Follow campaign_records' same-directory temporary/fsync/link protocol while
+    preserving this receipt's existing canonical bytes and schema. Atomic visibility
+    is not a guarantee that the entire multi-file packet survives power loss;
+    readers must still supply the trusted digest and verify every artifact.
+    """
+    import os
+    import tempfile
+    fd, temporary = tempfile.mkstemp(prefix='.export-', dir=path.parent)
+    try:
+        with os.fdopen(fd, 'wb') as stream:
+            stream.write(data)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.link(temporary, path)
+    finally:
+        os.unlink(temporary)
+
+
 def write_whole_asym_cif(directory, model, *, output_directory, cedar_source=None, **draft_options):
     """Save one reviewed diagnostic CIF and replay evidence in a fresh directory.
 
@@ -565,8 +586,7 @@ def write_whole_asym_cif(directory, model, *, output_directory, cedar_source=Non
         raise ValueError('Written whole-asym artifacts differ from prepared bytes')
     if any(path.read_bytes() != snapshots[name] for name, path in paths.items()):
         raise ValueError('Original inputs changed during whole-asym export publication')
-    with (root/'export.json').open('xb') as stream:
-        stream.write(_export_json(receipt))
+    _publish_export_receipt(root/'export.json', _export_json(receipt))
     return receipt
 
 

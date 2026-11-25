@@ -97,3 +97,46 @@ def test_receipt_binding_and_external_artifact_paths_are_refused(tmp_path):
         load_whole_asym_cif(output,expected_receipt_sha256='0'*64,cedar_source=kw['cedar_source'])
     p=output/'export.json';r=json.loads(p.read_text());r['artifacts']['original.cif']['relative_path']='../original.cif';p.write_text(json.dumps(r))
     with pytest.raises(ValueError,match='exact local anchored'):load(output,kw)
+
+
+def test_completion_receipt_is_invisible_until_complete_bytes_are_synced(tmp_path,monkeypatch):
+    import os
+    root,original,kw,_,_=fixture(tmp_path);output=tmp_path/'atomic'
+    sync=os.fsync;observed=[]
+    def inspect(fd):
+        pending=list(output.glob('.export-*'))
+        if pending:
+            data=pending[0].read_bytes()
+            if data:
+                assert json.loads(data)['kind']=='topostitch-whole-asym-cif-export'
+                assert not(output/'export.json').exists()
+                observed.append(data)
+        return sync(fd)
+    monkeypatch.setattr(os,'fsync',inspect)
+    result=write(root,original,output,kw)
+    assert observed and (output/'export.json').read_bytes()==observed[0]
+    assert json.loads(observed[0])==result and not list(output.glob('.export-*'))
+    assert load(output,kw)==result
+
+
+def test_receipt_sync_failure_leaves_no_completion_marker(tmp_path,monkeypatch):
+    import os
+    root,original,kw,_,_=fixture(tmp_path);output=tmp_path/'sync-failed'
+    def fail(fd):raise OSError('simulated receipt sync failure')
+    monkeypatch.setattr(os,'fsync',fail)
+    with pytest.raises(OSError,match='receipt sync failure'):write(root,original,output,kw)
+    assert output.exists() and not(output/'export.json').exists()
+    assert not list(output.glob('.export-*'))
+    with pytest.raises(FileExistsError):write(root,original,output,kw)
+
+
+def test_competing_completion_receipt_is_never_overwritten(tmp_path,monkeypatch):
+    import os
+    root,original,kw,_,_=fixture(tmp_path);output=tmp_path/'raced';link=os.link
+    def race(source,destination,*args,**kwargs):
+        if Path(destination)==output/'export.json':Path(destination).write_bytes(b'competing writer')
+        return link(source,destination,*args,**kwargs)
+    monkeypatch.setattr(os,'link',race)
+    with pytest.raises(FileExistsError):write(root,original,output,kw)
+    assert (output/'export.json').read_bytes()==b'competing writer'
+    assert not list(output.glob('.export-*'))

@@ -4601,11 +4601,19 @@ and `coverage.json`. `export.json` is the last file written and marks a complete
 packet. As with existing preview packets, interrupted partial directories remain
 inspectable and are not overwritten or silently cleaned up. This is receipt-last
 completion, not a claim of an atomic filesystem transaction.
-A present filename alone is not completion: a power loss can leave a partial
-`export.json`, which the digest-bound loader must reject. Rowan's W275 review
-found no diagnostic-export blocker, but before an automated workflow watches this
-receipt, publish its completed bytes atomically and pass a trusted file digest
-into that consumer. Reuse existing publication/ownership mechanisms.
+W276 publishes the completed canonical receipt through a same-directory temporary
+file, flush/fsync and a no-clobber hard link, following the existing campaign
+publication pattern. A competing completion marker is never replaced. A failed
+pre-publication write leaves the packet partial; temporary receipt files are
+cleaned up after handled failures. No multi-file power-loss durability is claimed:
+all artifacts and the caller-supplied trusted receipt digest still need validation.
+The same receipt schema/bytes and old packet loading remain supported. Filesystems
+without hard-link support refuse publication; there is no non-atomic fallback.
+
+The example above hashes a newly created local packet for immediate replay. An
+automated consumer must instead receive its expected file digest from the trusted
+producer/handoff; hashing an arbitrary incoming file is not admission. That
+producer-to-consumer wiring remains the next command/inspector integration gate.
 
 Every operational artifact reference uses the existing `run` anchor and exact
 relative path. There is no basename search or dependency on the original input
