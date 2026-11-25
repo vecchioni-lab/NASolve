@@ -1,5 +1,28 @@
 # NASolve development handoff — Willow
 
+**Latest science: W288, 2026-11-25; maintained code remains W287.**
+With identical native coordinate coefficients in all five cycles, the original
+2.824 Å symmetry gap recovers to **1.61590 Å**, near the seeded **1.61420 Å** result.
+Final endpoints differ by max **0.06113 Å**, six-moving-atom RMS **0.03359 Å**.
+[Protocol, exact comparisons and limits](topostitch-periodic.md#w288--the-original-pose-catches-up-under-matched-coordinate-weights).
+This removes much of W241's adaptive-weight contrast; it does not prove a unique
+basin or accepted repair. Torsions remain near 3σ; Rwork/Rfree remain about
+0.312/0.369. No selection. Both fits preserve 862 atoms, 856 held coordinates, B/Q,
+1,909 indices/124 Free-R assignments and all source bindings. The first exact-frame
+preflight refusal is preserved; a separate successor used the existing roundoff
+observer, then completed both controls. No maintained source/schema/default change.
+The local patched receiver and native evidence are excluded from Git.
+
+Checkout: ScienceCheckouts anchor
+`Linden/2026-11-25_matched-weight-recovery/index.html` (figure and three-model
+ChimeraX script; five actions checked headlessly). Evidence: NASolve anchor
+`branch-artifacts/willow/w288-matched-weight/validation.json`.
+Next inspect exact returned model/map pairs and fixed-boundary density before
+expanding the movable window. Do not repeat the matched-weight panel or begin
+another fit tonight; coordinate with Rowan after the shared budget resets.
+Delayed fragmentation and nonzero-f″ metal stress tests retain their prerequisites.
+
+
 **Current implementation and qualification: W287, 2026-11-25.**
 The W286 source/row/evidence-bound proposal API now has a read-only saved-report
 loader. [Cold replay contract](topostitch-preview.md#reopen-a-saved-annotation-proposal-w287)

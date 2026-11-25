@@ -7,6 +7,11 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Latest science: W288.** [Matched native coordinate weights](topostitch-periodic.md#w288--the-original-pose-catches-up-under-matched-coordinate-weights)
+  let the original 2.824 Å gap recover to 1.616 Å, close to the seeded endpoint.
+  Local geometry recovers; torsions/density and diffraction acceptance remain open.
+  Maintained code stays W287; no product mode or selected model changed.
+
 - **Current proposal replay: W287.** [Reopen an explicit annotation review](topostitch-preview.md#reopen-a-saved-annotation-proposal-w287)
   against independently bound original inputs; rehashed edits refuse. 81 source /
   81 installed checks and exact saved 49-row replay; no metadata application.

@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W288 — Resolve the local starting-pose comparison at matched weights
+
+- Record two complete fixed-coefficient native controls: the original gap recovers
+  near the geometry-seeded endpoint. Preserve the initial frame-roundoff refusal,
+  exact comparison evidence, residual torsion/density limits and compact checkout.
+- Local experiment only; no maintained code, default, schema, checkpoint or selected
+  model change. Keep broader bending and deferred stress-test gates separate.
+
 ### W287 — Reopen saved connection proposals against original inputs
 
 - Add read-only replay with a trusted raw-file digest and independently supplied

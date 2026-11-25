@@ -13295,7 +13295,9 @@ verified relative paths/hashes, not copied into the checkout. The bond/angle
 figure was rendered and visually checked. ChimeraX **1.12** headless opening and
 initial comparison pass; interactive browser/GUI behavior was not retested here.
 
-**Next bounded question:** qualify and expose the effective native weight policy
+**Follow-up:** [W288 completes the local matched-coefficient comparison](#w288--the-original-pose-catches-up-under-matched-coordinate-weights); the following was the original W241 question.
+
+**Next bounded question at W241:** qualify and expose the effective native weight policy
 before treating a paired run as a fixed-objective comparison. If a mechanistic
 control is then justified, predeclare one common native `fix_wxc`, keep the same
 models/observations/mask and inspect geometry plus maps; do not choose that value
@@ -14726,3 +14728,70 @@ require both whole-asym eligibility and full serialized graph coverage. Missing,
 conflicting or ambiguous links remain explicit refusals—never invented bonds.
 Mixed paths, native TLS restart, flanking sugar geometry and physical nick phase
 retain their separate gates. No repeated whole-LNA panel is needed for this step.
+
+
+## W288 — The original pose catches up under matched coordinate weights
+
+Two complete **Phenix 2.2.1-6174** five-cycle controls repeat the *starting-model
+question*, not the W241 adaptive protocol. The 28 explicit original source/input
+references still match. Each arm uses native `fix_wxc=wc=1`; a scoped observer
+checks actual parameters and the returned `(wxc, wxc_scale, wc)=(1,1,1)` in all
+five cycles. The common unit coefficient was predeclared as a mechanistic control,
+not chosen by Free-R or proposed as a production default. Both retain the six-atom
+mask, 100-iteration cap, seed 15403, one CPU, fixed B/Q and all original restraints.
+
+| After five cycles | Original pose start | Geometry-seed start |
+| --- | ---: | ---: |
+| O3′–P connection (Å) | 1.615904 | 1.614199 |
+| O3′–P–OP1 / OP2 (degrees) | 107.081 / 110.607 | 107.126 / 110.254 |
+| Max local bond / angle deviation (native σ) | 0.509 / 1.830 | 0.394 / 1.729 |
+| Max image torsion deviation (native σ) | 2.922 | 2.966 |
+| Maximum movement from that start (Å) | 1.859147 | 0.023043 |
+| Rwork / Rfree | 0.311689 / 0.368611 | 0.311726 / 0.368769 |
+| Complete seven-term gradient calls | 160 | 129 |
+
+The original closes from **2.824291 Å**, approaching the seeded local endpoint.
+The two final written models differ by at most **0.061131 Å**, with **0.033591 Å
+RMS over the six movable atoms**. The all-atom RMS of 0.002802 Å includes 856
+unchanged atoms and must not be presented as the moving-region displacement.
+This weakens the earlier initialization/basin interpretation: much of W241's
+contrast disappears with matched coordinate coefficients. It does not prove
+convergence, a unique basin, or density-supported repair. Bulk-solvent scaling
+and likelihood nuisance state were not globally frozen. Rwork/Rfree remain poor,
+residual torsions approach 3σ, and neither model is selected or scientifically accepted.
+
+The first preflight stopped at the legacy exact cell/frame check. Offline
+readback showed all 862 atoms/BQ and observations unchanged, with maximum frame
+roundoff 4.27e-14 Å. A separately pinned successor used the **existing** 1e-10
+roundoff observer; the original failure and plan remain intact. Two fresh
+preflights and both fits then completed. No new tolerance or silently repaired
+input. Both arms have identical 117 runtime-source hashes, initial frame/mask/BQ
+and observations; all 1,909 indices and 124 Free-R assignments survive. Native
+observers restore and owned workers stop. Existing native kernels reproduce all
+116 W241 measurements before evaluating 58 new terms and six relative-handedness
+checks. These signs do not establish general phosphate stereochemistry.
+
+This is a local experimental receiver copy plus explicit source patch and sealed
+plan, reusing existing Willow/Cedar/native owners. It introduces **no maintained
+product mode, default, counted policy, schema, checkpoint or selected model**.
+No source/install/full-suite repetition for unchanged product code. Exact commands,
+source/output bindings, failed/successful phase receipts and measurements are
+local under NASolve anchor `branch-artifacts/willow/w288-matched-weight/`; these
+scientific artifacts are excluded from Git. The linked code checkpoint remains
+`f68a6a930d1730553ea63f67cacbdd31cc890600` (W287).
+
+Open the ScienceCheckouts anchor
+`Linden/2026-11-25_matched-weight-recovery/index.html` for the rendered figure and
+Python-openable ChimeraX comparison. All three model hashes and five view actions
+pass headless ChimeraX 1.12; the displayed image distances match the calculation.
+The figure was visually inspected. Fresh interactive GUI/browser qualification
+was not performed. Model/map files are not duplicated into the checkout.
+
+**Next bounded step:** inspect each returned model with its own exact maps in the
+same crystal frame, and distinguish those from the held-original model-assisted
+map. Compare the moving phosphate atoms and fixed sugar boundary before widening
+the editable region. Preserve Free-R/map provenance and noise uncertainty; no
+automatic density cutoff or model selection. Broader bending, stacking recovery,
+chemical validation and end-to-end stitching remain open. Do not repeat this
+matched-coefficient panel, tune weights on Free-R, or use the delayed fragmentation
+or nonzero-f″ metal stress tests to bypass those gates.

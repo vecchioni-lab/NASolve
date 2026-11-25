@@ -3538,10 +3538,12 @@ No private native logs, coordinates or diffraction data are committed.
 `fix_wxc=wc=1`, one counted cycle, explicit process/selection/target constraints
 and its own disabled-changing-target conditions. That qualification cannot be
 transferred to Willow's five-cycle six-atom protocol with bulk scaling enabled.
-The next fixed-objective experiment stays queued: declare its common weight and
-native scope through those existing owners, then independently qualify it.
-No second weighting engine, fixed-mode switch or extra native experiment is
-introduced by W242.
+W288 now qualifies a separately pinned local experiment with common native
+coordinate coefficients, using the existing receiver and observed native weights.
+[Its measured result and limits](topostitch-periodic.md#w288--the-original-pose-catches-up-under-matched-coordinate-weights)
+do not extend counted scope or add a maintained fixed-weight product mode.
+Matched coefficients do not freeze the entire likelihood/scaling objective.
+No second weighting engine or fixed-mode switch is introduced by W242.
 
 
 ## Preserve Cartesian ADPs through native return (W243)
