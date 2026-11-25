@@ -8,6 +8,11 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- Numbered refinements now reopen across Python versions when the same
+  coordinates reproduce their four crystal-phosphate angles to seven
+  significant figures. Saved measurements and restraint targets retain
+  their original precision.
+
 - `cif-doctor deposition-links --ordinary-steps` exposes the two atom labels,
   distance and three phosphate angles at each sequence step. This lets a crystal
   recut check each backbone connection against its recorded partners.

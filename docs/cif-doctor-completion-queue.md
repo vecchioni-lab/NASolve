@@ -308,8 +308,11 @@ archived five-cycle fixed-Hg controls. A transferred start repaired the B:1
 phosphate angle, while both new fits opened the sugar-to-base angle at B:7.
 The C578 deposition reader now supplies all ordinary backbone partners and
 phosphate angles after reslicing. Its 3LNA cross-check with Willow accounted
-for all 60 expected edges before and after the recut. This addresses exported
-topology. The two common working-only FT–Hg maps gave opposite small mean differences. Keep
+for all 60 expected edges before and after the recut. C579 also verified
+that two relocated ordinary PDU lineages reopen in Python 3.11 and 3.12
+with the same six model and native geometry checksums. This clears the
+coordinate-angle discrepancy that Alder found during handoff. The two
+common working-only FT–Hg maps gave opposite small mean differences. Keep
 both models available. C577 traced the largest opening to the second
 coordinate-fit cycle. The native glycosidic angle resisted opening and other
 sugar bonds and the adenine plane supplied counterpressure. Giving both

@@ -4,6 +4,40 @@ from pathlib import Path
 import pytest
 
 
+def test_registered_phosphate_replay_uses_physical_precision_only_for_coordinate_angles():
+    from copy import deepcopy
+    from math import inf, nan
+    from nasolve.refinement_phosphate import _same_observation
+
+    name = "O3'-P-OP2"
+    saved = {"coordinate_angles_degrees": {"C3'-O3'-P": None, "O3'-P-OP1": 110.0,
+                                          name: 108.74217535393782, "O3'-P-O5'": 109.0},
+             "o3_image": "-x+y,-x,z", "o3": ["B:7", "DA", "O3'"], "model_sha256": "a" * 64,
+             "distance_A": 1.6123456789, "registered_continuation": {"continuation_id": 1}}
+    rebuilt = deepcopy(saved)
+    # The same numbered PDU file gave these two values in Python 3.11 and 3.12.
+    rebuilt["coordinate_angles_degrees"][name] = 108.74217535393781
+    assert _same_observation(rebuilt, saved)
+    # Straddle a decimal rounding boundary. Half a unit in the seventh figure
+    # at this angle is 0.00005 degrees, independently of the rounding grid.
+    rebuilt["coordinate_angles_degrees"][name] = 108.74214
+    assert _same_observation(rebuilt, saved)
+    for value in (108.74211, 108.75, None, True, "108.7422", nan, inf, -1.0, 181.0):
+        bad = deepcopy(rebuilt)
+        bad["coordinate_angles_degrees"][name] = value
+        assert not _same_observation(bad, saved)
+    for key, value in (("o3_image", "x,y,z"), ("o3", ["B:6", "DA", "O3'"]),
+                       ("model_sha256", "b" * 64), ("distance_A", 1.6123456789000001),
+                       ("registered_continuation", {"continuation_id": True})):
+        assert not _same_observation(dict(rebuilt, **{key: value}), saved)
+    angles = rebuilt["coordinate_angles_degrees"]
+    for altered in (dict(angles, **{"C3'-O3'-P": 0.0}), dict(angles, unrelated=1.0),
+                    {key: val for key, val in angles.items() if key != "O3'-P-OP1"}):
+        assert not _same_observation(dict(rebuilt, coordinate_angles_degrees=altered), saved)
+    assert _same_observation({"coordinate_angles_degrees": None}, {"coordinate_angles_degrees": None})
+    assert not _same_observation({}, {"coordinate_angles_degrees": None})
+
+
 def test_autorefine_accepts_the_same_registered_edge_inputs_as_inspection():
     from nasolve.cli import build_parser
     from nasolve.refinement_phosphate import request_from_args

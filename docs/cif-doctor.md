@@ -432,6 +432,13 @@ The report measures the written model, reads its final geometry listing and
 shows how many bond, angle and torsion restraints Phenix applied during this
 fit. It also reports the starting and final work/free counts. Inspection can
 run after moving the dataset and leaves the selected checkpoint in place.
+
+When reopening a saved crystal-phosphate link, NASolve compares its four
+angles calculated from coordinates to half a unit in their seventh
+significant figure (0.00005° at 109°). This accommodates small arithmetic
+differences between Python installations. The coordinate files, atom
+identities, crystal image and native chemical restraints retain their
+exact checks. The reader preserves the original numbers in the record.
 A manual edit or an ordinary fit has no such native result of its own. An
 optional `--native-receipt` here must belong to the model being **inspected**;
 the fit already records the fingerprint of its **starting** model's receipt.

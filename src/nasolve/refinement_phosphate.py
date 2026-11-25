@@ -2,12 +2,14 @@
 from dataclasses import dataclass, replace
 from hashlib import sha256
 import json
+from math import floor, log10
 from pathlib import Path
 import re
 
 from .campaign_records import path_in, read_record
 from .checkpoint_candidate import _lineage
 from .checkpoints import _file_reference, _ref_path, resolve_checkpoint
+from .cif_geometry_report_replay import _exact
 from .cif_dictionary_sites import _bind_capture_inputs, _bind_capture_input_pins
 from .cif_phosphate_continuation import RegisteredContinuation, inspect_inherited_continuation
 from .cif_phosphate_restraints import phosphate_bond_phil
@@ -294,6 +296,33 @@ def _read_intent(run, root, request):
     return intent
 
 
+def _same_observation(rebuilt, recorded):
+    """Compare a saved phosphate reading; only its four coordinate angles can round."""
+    angle_key = "coordinate_angles_degrees"
+    if rebuilt.keys() != recorded.keys() or any(
+        not _exact(value, recorded[key]) for key, value in rebuilt.items() if key != angle_key
+    ):
+        return False
+    angles, saved = rebuilt.get(angle_key), recorded.get(angle_key)
+    if _exact(angles, saved):
+        return True
+    if not isinstance(angles, dict) or not isinstance(saved, dict) or angles.keys() != saved.keys():
+        return False
+    for name, angle in angles.items():
+        old = saved[name]
+        if _exact(angle, old):
+            continue
+        if (name not in ("C3'-O3'-P", "O3'-P-OP1", "O3'-P-OP2", "O3'-P-O5'")
+                or type(angle) is not float or type(old) is not float
+                or not (0 < angle <= 180 and 0 < old <= 180)):
+            return False
+        # Half a unit in the seventh significant figure; avoid decimal bin boundaries.
+        half_unit = 0.5 * 10.0 ** (floor(log10(max(angle, old))) - 6)
+        if abs(angle - old) > half_unit:
+            return False
+    return True
+
+
 def validate_lineage(run, registry, parent, intent):
     """Cold replay binds the original topology and current coordinate frame without Phenix."""
     ancestor, source = _original(run, registry, parent, intent["ancestor"])
@@ -308,7 +337,7 @@ def validate_lineage(run, registry, parent, intent):
     for recorded in observations:
         registered = _frozen_registration(run, intent, recorded)
         actual = inspect_inherited_continuation(source, model, registered)
-        if actual != {key: value for key, value in recorded.items() if key != "native_reference_links"}:
+        if not _same_observation(actual, {k: v for k, v in recorded.items() if k != "native_reference_links"}):
             raise ValueError("The registered phosphate observation differs from the original or selected parent")
     _check_inherited_scope(prior, ancestor["id"], observations, construction_sha256=construction_hash)
 

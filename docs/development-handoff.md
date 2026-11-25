@@ -1,8 +1,31 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-25, C578 measuring ordinary backbone steps across a crystal recut — Rowan**.
+Updated **2026-11-25, C579 reopening a registered phosphate on another Python installation — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**.
 
+**C579.** Hazel’s Python 3.12.14 installation refused a genuine numbered
+PDU restart that opened in Phenix Python 3.11.15. The same coordinates
+and crystal image gave 108.7422° in both installations. Their last binary
+digit differed. The cold reader in `refinement_phosphate.py` now compares
+only the four angles calculated from coordinates to half a unit in the
+seventh significant figure. The user guide describes the rule. Stored
+numbers, geometry targets, coordinates, identities, operation and input
+checksums retain their precision. There is no change to the checkpoint
+schema and existing runs need no migration.
+
+Both interpreters opened both physically relocated PDU lineages with
+Gemmi 0.7.5, including all six fitted models and their final geometry.
+The regression in `tests/test_refinement_phosphate.py` checks a decimal
+rounding boundary, a changed angle, image, atom, distance and checksum,
+plus absent and invalid observations. Both source installations and the
+relocated wheel passed 96 tests each with
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider`
+on `tests/test_{refinement_phosphate,phosphate_image,phosphate_restraints,cif_deposition_links,deposition_ordinary_steps,refinement_geometry_change,refinement_residue_geometry}.py`.
+This was a read-only checkpoint test. No generated models or reflections
+are included. Alder still owns authentication of the child refinement's
+parameter file. Q06 remains open for the chemistry described below.
+
+**C578.**
 At Willow's request, the deposition reader can now return the label
 identities and three phosphate angles at every ordinary O3′–P step.
 Use `deposition-links --ordinary-steps --json` or the
