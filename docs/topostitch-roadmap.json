@@ -1122,13 +1122,14 @@
         "W266: 268 focused source/268 relocated installed checks;216 installed-file hashes. Four original/recut3LNA/5LNA controls preserve fragment digests. Each generator retains1271/1275 atoms; recuts have8 paths,10 image/asym partitions,mixed paths3/6. Actual curated/depositor2/3 IDs resolve separately from matrices; raw-to-exact rounding is explicit. Raw H G^-1 endpoint preservation within1.59e-14 A. Exact installed relocated3LNA replay; no native/full-suite repeat.",
         "W267: 158 focused source/158 relocated installed checks, two existing skips each; 216 installed files. Actual installed 3LNA inspector embeds the exact W266 report, 1271 atoms and mixed paths3/6 after input/build/install relocation. Default scene equality, input drift, binding and CLI checks pass; inline JavaScript syntax passes, browser rendering unverified.",
         "W268: Four exact original/recut LNA controls retain3813/3825 labelled assembly instances. Raw deposited-U transport max1.07e-14 A2; skipping tensor rotation produces6.51/4.87 A2 errors. Full exact C3 set closure observed with246 permuted instance labels; partial generator82missing/82extra and one-atom cell shift3missing/3extra correctly fail. Original ADPs/TLS-derived U kept separate; prior W249 native evidence hash-verified, not rerun.",
-        "W269: 172 focused source/172 relocated installed checks, two existing skips each; 216 installed-file hashes. Eight missing-API regressions reproduced. Four actual W268 controls match exact source/assembly/scalar hashes,3813/3825 instance counts and deposited-U metrics. Complete installed relocated3LNA report exact. Duplicate multiplicity, unresolved/partial generators, unwrapped shifts, mixed/isotropic modes, source races and damaged partitions/tensors qualified."
+        "W269: 172 focused source/172 relocated installed checks, two existing skips each; 216 installed-file hashes. Eight missing-API regressions reproduced. Four actual W268 controls match exact source/assembly/scalar hashes,3813/3825 instance counts and deposited-U metrics. Complete installed relocated3LNA report exact. Duplicate multiplicity, unresolved/partial generators, unwrapped shifts, mixed/isotropic modes, source races and damaged partitions/tensors qualified.",
+        "W270: Four saved original/recut LNA eligibility checks plus one nonidentity in-memory3LNA whole-A preview (16nodes). Whole-asym/TLS uniformity passes unchanged/whole-A; eight-path cuts fail on A/B/D and4TLS groups. Inventory covers66/59 coordinate categories plus2attached definition blocks each,82/75 category occurrences. Source ASU target/copy distinguished from full physical strands; R3 nick remains unassigned."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "W270: coordinate an explicit output entity/asym/reference policy with Rowan before a materializer. Use an independently bound construct target where full oligo identity is required; keep LNA copy/nick phase unresolved rather than inventing it. Decide whether named original instances or a qualified finite-set permutation is the intended assembly contract, retain raw matrix rounding/TLS conventions, and identify the smallest writer case supported by all existing gates. No repeat of completed W249/W264/W268 experiments.",
+      "next_action": "W271: verify the no-write whole-asym output plan through existing owners, with one image per original asym/TLS group, preserved entity/sequence/copy labels, explicit per-category retain/transform/review actions and scalar/loop layout. Keep raw matrix namespaces and native TLS convention explicit; unresolved categories/mixed memberships block emission. Actual R3 nick/copy phase remains unresolved; full eight-path relabeling is separate. No repeated W249/W264/W268 calculation or premature writer.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -1155,14 +1156,15 @@
         "E_ORIGINAL_CIF_ASSEMBLY",
         "E_ORIGINAL_CIF_ASSEMBLY_VIEW",
         "E_ASSEMBLY_INSTANCE_ADP_AUDIT",
-        "E_ASSEMBLY_INSTANCE_OBSERVER"
+        "E_ASSEMBLY_INSTANCE_OBSERVER",
+        "E_WHOLE_ASYM_ELIGIBILITY"
       ],
       "last_audit": {
         "date": "2026-11-25",
-        "human_update": 269,
+        "human_update": 270,
         "code_commit": "05bde4790e013e79f841f3649a372211bbcc22fe",
-        "reviewer": "Linden; successor scope coordinated with Rowan",
-        "scope": "Bounded instance/deposited-ADP observation, not output entity/asym semantics or writer"
+        "reviewer": "Linden; narrow whole-asym route agreed with Rowan",
+        "scope": "Membership/source declaration eligibility only; category plan/native TLS/writer and full mixed-path materializer open"
       }
     },
     {
@@ -7827,6 +7829,71 @@
           "size": 4227
         }
       ]
+    },
+    "E_WHOLE_ASYM_ELIGIBILITY": {
+      "kind": "Whole-asym no-write eligibility and construct declaration contract",
+      "date": "2026-11-25",
+      "human_update": 270,
+      "code_commit": "05bde4790e013e79f841f3649a372211bbcc22fe",
+      "reference": "docs/topostitch-periodic.md#w270--bound-the-first-writer-route-without-assigning-an-r3-nick",
+      "result": "Four saved original/recut LNA eligibility checks plus one nonidentity in-memory3LNA whole-A preview (16nodes). Whole-asym/TLS uniformity passes unchanged/whole-A; eight-path cuts fail on A/B/D and4TLS groups. Inventory covers66/59 coordinate categories plus2attached definition blocks each,82/75 category occurrences. Source ASU target/copy distinguished from full physical strands; R3 nick remains unassigned.",
+      "limitation": "Evidence/planning only, no new maintained API or writer. Uniform membership is not output-category/TLS/native qualification. Original operators and source declarations preserved; no physical copy/repeat/nick inference, entity assignment, coordinate output or native run. Science local; W269 install/test qualification unchanged.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w270-whole-asym-eligibility/audit.py",
+          "sha256": "e18b610036f6a7f31761a46397e631b135183a9256221e43af2f6105469b57db",
+          "size": 8552
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w270-whole-asym-eligibility/audit.log",
+          "sha256": "efcef9525e485e981d265ec33519b7af8fad1f55352c870b1e259ab1f6ea89c9",
+          "size": 583
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w270-whole-asym-eligibility/audit_reviewed.py",
+          "sha256": "83dceeaf98cdd8c984d759f3dc66d9fa38b199f4f71f06687da594d9cec23110",
+          "size": 8637
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w270-whole-asym-eligibility/audit-reviewed.log",
+          "sha256": "c406c1bf6ce1485aa09c92c2ef1d3c13e95e72208899d9661f311876d159f0c4",
+          "size": 1789
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w270-whole-asym-eligibility/eligibility.json",
+          "sha256": "f3005ecde571a68737dadbe70e02209acb567f6813050de6b3709355a0635af4",
+          "size": 108353
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w270-whole-asym-eligibility/attachments.py",
+          "sha256": "d24f8a0809b4ef709970e5c786b6a94c479f84dd6dc9994c69722c71ab1d47e9",
+          "size": 1845
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w270-whole-asym-eligibility/attachments.log",
+          "sha256": "52cbab73b81712106298ac0a08af295920acc7dc1dc7771554762a428e6bf72d",
+          "size": 43
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w270-whole-asym-eligibility/attached-definitions.json",
+          "sha256": "dd4c56812028d6259f52237659592c110ec4ce81a0168c4635dc0acc045c061c",
+          "size": 8415
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w270-whole-asym-eligibility/validation.json",
+          "sha256": "3ccd4ca2e3ba3a8f2688d1d72495d71cb07d7ff37353c013be767f4dba5d4a60",
+          "size": 3354
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -7992,8 +8059,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 269,
-    "next": 270,
+    "current": 270,
+    "next": 271,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -9415,6 +9482,12 @@
       {
         "number": 269,
         "title": "Maintain bounded labelled assembly-instance and deposited-ADP observation",
+        "state": "RECORDED",
+        "code_commit": "05bde4790e013e79f841f3649a372211bbcc22fe"
+      },
+      {
+        "number": 270,
+        "title": "Qualify whole-asym membership and retain unresolved physical strand/nick identity",
         "state": "RECORDED",
         "code_commit": "05bde4790e013e79f841f3649a372211bbcc22fe"
       }

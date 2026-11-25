@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W270 — Scope whole-asym export without inventing strand or nick identity
+
+- Record the agreed first-writer contract: one image per original asym/TLS group,
+  preserved source labels and explicit unsupported mixed memberships/categories.
+- Qualify four saved membership checks and one nonidentity in-memory whole-A
+  preview; inventory all 82/75 category occurrences including attached definitions.
+- Preserve source-declared R3 nick ambiguity and distinguish COMPLETE ASU mapping
+  from physical strand/copy identity. No product writer, native run or model output.
+
 ### W269 — Observe complete labelled assembly instances and deposited ADPs
 
 - Add a bounded read-only function to the existing assembly owner, preserving

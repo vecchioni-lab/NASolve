@@ -127,6 +127,44 @@ refinement. Reuse the already qualified source/scattering controls; a new native
 run is not the first next step. P02 graphical review and changed-child/inverse-edit
 lifecycle remain separate acceptance gates.
 
+### Narrow first writer route: whole original asym units (W270)
+
+**Agreed with Rowan; eligibility contract only.** A first writer can be narrower
+than the full eight-path LNA cut. Require one proper crystal image for every atom
+of each original `struct_asym` and one image for every declared TLS group. Preserve
+source entity, sequence, copy, author and atom labels. Mixed memberships are an
+explicit unsupported case, not a reason to split a chemical entity or independently
+refine derived TLS groups. Existing source/frame, connection, TLS and assembly
+owners supply the observations; no new parser or symmetry engine is needed.
+
+The actual-file no-write check covers both original/recut LNA controls and a
+nonidentity in-memory 3LNA whole-A proposal (all 16 registered A sites). That
+proposal and the unchanged controls pass uniform membership. Both eight-path cuts
+fail on original A/B/D and four TLS groups. This checks the narrow scope only:
+all 82/75 source category occurrences, including two attached component blocks
+per file, are inventoried but not all have qualified output actions. Unclassified
+categories block writing. Component template coordinates are retained, not moved
+with the observed model. Source scalar/loop layout must also survive.
+
+The existing `sequence-family-target` plus source-bound construct registration can
+name caller-declared full strands and copies when supplied and verified through
+W262. For these actual files, however, the only saved target is the coordinate-
+derived 62-site `reviewed-R3-pdb-coordinates` target, with one `COMPLETE` copy named
+`R3`. That means complete ASU mapping, not complete physical strand/copy knowledge.
+The fragment reports remain `SOURCE_LINEAGE_ONLY`; no independent oligo target is
+bound. Original source prose names A+D as a 31-nt strand, C as a 14-nt strand, and
+B as a 17-nt repeat of a linear 51-nt strand. It explicitly leaves the one physical
+nick symmetry-averaged and unassigned to a copy. Preserve that unresolved state,
+original operators and declared sequence; do not infer a circular strand, choose
+a nick phase or create termini from the visible cut.
+
+**Before emission:** enumerate explicit retain/transform/review actions for every
+category and attached block; retain raw matrix namespaces/rounding, resolve the
+native TLS convention and original shared-group policy, and qualify scalar layout
+and endpoint references through existing owners. A uniform-membership pass is not
+writer permission. Keep full mixed-path relabeling, physical repeat/nick phase,
+entity assignment and the persistent P02 edit/refine loop queued separately.
+
 ## Explicit sticky-end enforcement during refinement (planned W122)
 
 **User direction, 2026-11-17: planning only; no implementation or new runs.**

@@ -7,6 +7,11 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Current output contract: W270.** [Whole-asym eligibility](topostitch.md#narrow-first-writer-route-whole-original-asym-units-w270)
+  keeps source labels and requires uniform asym/TLS images. A nonidentity whole-A
+  preview passes membership; both eight-path LNA cuts remain unsupported. R3 nick
+  phase stays explicitly unresolved; all categories inventoried, no writer.
+
 - **Current instance observer: W269.** [Labelled instances and deposited ADPs](topostitch-preview.md#observe-labelled-assembly-instances-and-deposited-adps-w269)
   maintains W268's bounded audit through existing source/frame owners. 172 source/
   172 installed checks, two skips; four exact actual-file replays. Default W266
@@ -124,7 +129,7 @@ current instructions; other branches retain their own status and validation pins
   The failed direct result and three remaining moving-region outliers stay
   explicit. This is same-family synthetic recovery, not general experimental repair.
 - **One audited queue:** [Machine roadmap](topostitch-roadmap.json) and its
-  [generated human view](topostitch-roadmap.md). Current W269, next W270.
+  [generated human view](topostitch-roadmap.md). Current W270, next W271.
   Continue original polymer/sequence semantics and supported output in Pine; coordinate feasible
   endpoint/convergence qualification with Alder and chemistry receiving with Cedar.
   Prior synthetic recovery and near-target bond controls remain closed evidence;

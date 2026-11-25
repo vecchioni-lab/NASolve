@@ -14517,3 +14517,50 @@ module and its tests, plus current documentation. The optional schema-1 report
 requires no migration and confers no runtime/scientific authority. P03 stays
 partial: output entity/asym/reference semantics, independently declared copy/nick
 phase, preserved native TLS policy and a maintained model writer remain open.
+
+## W270 — Bound the first writer route without assigning an R3 nick
+
+Rowan and Linden selected an **identity-preserving whole-asym repack** as a smaller
+first writer target than mixed-path relabeling. The [contract](topostitch.md#narrow-first-writer-route-whole-original-asym-units-w270)
+requires uniform image ownership per original asym and per declared TLS group,
+retains source labels/sequences and leaves all unclassified metadata unsupported.
+This update records a no-write eligibility check, not an available export command.
+
+**Five checks:** the two unchanged LNA controls have four uniform original asym
+units and six uniform TLS groups. The two saved eight-path cuts are unsupported:
+A/B/D are mixed, as are TLS groups 1–4. A separately requested nonidentity whole-A
+3LNA preview, made through the existing in-memory recut owner, changes all **16 A
+nodes** and passes both membership conditions. No coordinate model is written;
+physical/chemical acceptance and native TLS/output behavior remain unqualified.
+
+All **66/59 coordinate-block categories**, plus **two attached component-definition
+blocks per file**, are inventoried: **82/75 category occurrences** in total.
+Each has a source digest and explicit required action or unresolved policy. Ideal
+component-template coordinates are not transformed with model atoms. The source
+bytes, original operators and chemical identities remain unchanged. This inventory
+is not proof that every category can yet be rewritten safely.
+
+**Construct meaning:** both original CIFs explicitly describe A+D as one 31-nt
+helical strand, C as 14 nt, and B as one 17-nt crystallographic repeat of a linear
+51-nt central strand. They explicitly leave its single physical nick averaged
+over R3 and unassigned to a copy. The saved registration's `COMPLETE` copy `R3`
+and 62-site target establish ASU coverage only. W262's independent target-document
+route is available, but these controls have none bound and remain
+`SOURCE_LINEAGE_ONLY`. No source operator, physical copy, repeat phase, chemical
+nick or output entity is invented. An explicit unresolved result is the intended
+outcome for that part of the problem.
+
+Python 3.12.14/Gemmi 0.7.5; diagnostic scripts parse as Python 3.10. The first local
+harness used the proposal field name where the API requires its `expected_` form;
+that failed attempt is retained, and the corrected adapter completes. No product
+code, native run or test/install/full-suite repeat; W269 remains the qualified
+172/172 code baseline with two existing skips. Exact inputs, source declarations,
+category digests, nonidentity request and validation commands are local under
+NASolve anchor `branch-artifacts/willow/w270-whole-asym-eligibility/validation.json`.
+
+**Next W271:** specify and verify the no-write whole-asym output plan through the
+existing owners, with explicit per-category actions, source scalar/loop layout and
+native TLS convention. Keep eligibility separate from emission. A first writer
+must refuse unresolved categories/mixed memberships; the full eight-path LNA
+materializer and physical nick phase remain separate gates. Do not repeat the
+completed W249/W264/W268 calculations merely to reconfirm those limits.

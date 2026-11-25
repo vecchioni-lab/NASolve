@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W269, 2026-11-25** (code `05bde4790e013e79f841f3649a372211bbcc22fe`).
+**Current code: W269; latest eligibility contract: W270, 2026-11-25** (code `05bde4790e013e79f841f3649a372211bbcc22fe`).
 The [instance observer](topostitch-preview.md#observe-labelled-assembly-instances-and-deposited-adps-w269)
 now accounts for original generator/atom occurrences and deposited atomic ADPs
 through the existing assembly/source/frame owners. It keeps duplicate multiplicity,
@@ -31,7 +31,18 @@ and W249's reused native Fcalc. The product replay is not another experiment.
 was not executed. The ASU canvas is not an expanded biological assembly. W266 source
 `6322b479539815128febb307a143a092648d15cd` retains its 268/268 owner qualification.
 
-**Next W270; P03 remains partial.** W270: coordinate an explicit output entity/asym/reference policy with Rowan before a materializer. Use an independently bound construct target where full oligo identity is required; keep LNA copy/nick phase unresolved rather than inventing it. Decide whether named original instances or a qualified finite-set permutation is the intended assembly contract, retain raw matrix rounding/TLS conventions, and identify the smallest writer case supported by all existing gates. No repeat of completed W249/W264/W268 experiments.
+**W270 narrow route agreed with Rowan:** whole original asym units with one image
+per asym and per TLS group, retaining original labels/sequence/copy declarations.
+Two unchanged controls and a nonidentity 3LNA whole-A preview (16 nodes) pass that
+membership scope. Both eight-path cuts fail on A/B/D and four TLS groups. All
+82/75 category occurrences are inventoried, including attached components; output
+policy remains unresolved and no model is written. Original prose identifies
+A+D31/C14/B17-of51 but explicitly leaves the R3-averaged nick unassigned. The
+saved 62-site COMPLETE R3 registration is an ASU mapping, not a physical-copy or
+nick-phase declaration. Exact evidence: NASolve anchor
+`branch-artifacts/willow/w270-whole-asym-eligibility/validation.json`.
+
+**Next W271; P03 remains partial.** W271: verify the no-write whole-asym output plan through existing owners, with one image per original asym/TLS group, preserved entity/sequence/copy labels, explicit per-category retain/transform/review actions and scalar/loop layout. Keep raw matrix namespaces and native TLS convention explicit; unresolved categories/mixed memberships block emission. Actual R3 nick/copy phase remains unresolved; full eight-path relabeling is separate. No repeated W249/W264/W268 calculation or premature writer.
 
 W264 source `5f0dbcb4afe726b853b402424d450507331a329f` retains its uniform-image
 qualification: 200 source/200 installed checks, 18 native comparisons, raw U
