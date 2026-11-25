@@ -156,3 +156,96 @@ def test_valid_declared_phase_is_included_in_binding(bound):
     checkpoints.save_registry(run,r)
     result=load(bound)[2]
     assert result['context']['inputs'][2]==dict(role='phases',**r['checkpoints'][0]['phases'])
+
+
+def inspect_inputs(bound, **overrides):
+    from nasolve.topostitch_checkpoint import inspect_checkpoint_inputs
+    run, _, _ = bound
+    registry = json.loads(checkpoints.registry_path(run).read_bytes())
+    parent = next(r for r in registry['checkpoints'] if r['id'] == 'refine-001')
+    options = dict(checkpoint='refine-001', expected_checkpoint_id='refine-001',
+                   expected_model_sha256=parent['model']['sha256'], registry_reader=checkpoints.read_registry)
+    return inspect_checkpoint_inputs(run, **dict(options, **overrides))
+
+
+def test_refined_inputs_without_preview_preserve_roles_and_relocate(bound, tmp_path):
+    run, preview, _ = bound
+    shutil.rmtree(preview)
+    before = {p: (p.read_bytes(), p.stat().st_mtime_ns) for p in run.parent.parent.rglob('*') if p.is_file()}
+    result = inspect_inputs(bound)
+    assert result['kind'] == 'topostitch-checkpoint-input-observation'
+    assert result['context']['checkpoint_id'] == 'refine-001'
+    assert 'preview_receipt_sha256' not in result['context']
+    assert [r['role'] for r in result['context']['inputs']] == ['model', 'observations', 'restraint', 'restraint']
+    assert not any(result[k] for k in ('runtime_authority', 'chemical_admission', 'motion_admission', 'native_restart_qualified', 'selection_applied', 'locking'))
+    assert str(run) not in json.dumps(result)
+    assert all((p.read_bytes(), p.stat().st_mtime_ns) == value for p, value in before.items())
+    dataset = run.parent.parent
+    moved = tmp_path/'relocated-input-dataset'
+    shutil.move(str(dataset), moved)
+    assert not dataset.exists()
+    new = (moved/'AutoMR'/run.name, preview, None)
+    assert inspect_inputs(new, expected_context_sha256=result['context_sha256']) == result
+
+
+def test_checkpoint_input_reader_failure_and_different_registry_propagate(bound):
+    def refuse(run):
+        raise ValueError('native history is not authenticated')
+    with pytest.raises(ValueError, match='history'):
+        inspect_inputs(bound, registry_reader=refuse)
+    def changed(run):
+        path, record = checkpoints.read_registry(run)
+        record['current'] = 'refine-001'
+        return path, record
+    with pytest.raises(ValueError, match='unchanged saved'):
+        inspect_inputs(bound, registry_reader=changed)
+    with pytest.raises(ValueError, match='trusted registry reader'):
+        inspect_inputs(bound, registry_reader=None)
+
+
+def test_checkpoint_input_model_and_context_pins_refuse_rebound_data(bound):
+    with pytest.raises(ValueError, match='model'):
+        inspect_inputs(bound, expected_model_sha256='0'*64)
+    old = inspect_inputs(bound)
+    run = bound[0]
+    _, registry = checkpoints.read_registry(run)
+    row = next(r for r in registry['checkpoints'] if r['id'] == 'refine-001')
+    p = checkpoints.inherited_paths(row, run)['observations']
+    p.write_bytes(b'replaced observed data')
+    row['observations'] = checkpoints._file_reference(p, run)
+    checkpoints.save_registry(run, registry)
+    with pytest.raises(ValueError, match='context changed'):
+        inspect_inputs(bound, expected_context_sha256=old['context_sha256'])
+
+
+@pytest.mark.parametrize("change", ["restraint", "selection"])
+def test_checkpoint_input_change_during_owner_read_is_refused(bound, change):
+    calls = []
+    def reader(run):
+        calls.append(run)
+        result = checkpoints.read_registry(run)
+        if len(calls) == 2:
+            row = next(r for r in result[1]['checkpoints'] if r['id'] == 'refine-001')
+            if change == 'restraint':
+                p = checkpoints.inherited_paths(row, run)['restraints'][0]
+                p.write_bytes(p.read_bytes()+b'changed')
+            else:
+                saved = json.loads(checkpoints.registry_path(run).read_bytes())
+                saved['current'] = 'refine-001'
+                checkpoints.registry_path(run).write_text(json.dumps(saved))
+        return result
+    with pytest.raises((checkpoints.CheckpointError, ValueError), match='changed'):
+        inspect_inputs(bound, registry_reader=reader)
+    assert len(calls) == 2
+
+
+def test_checkpoint_input_inspection_does_not_admit_selection_or_new_schema(bound):
+    with pytest.raises(ValueError, match='checkpoint identity'):
+        inspect_inputs(bound, checkpoint=None)
+    run = bound[0]; path = checkpoints.registry_path(run)
+    record = json.loads(path.read_bytes()); record['schema_version'] = 3
+    path.write_text(json.dumps(record))
+    def reader(run):
+        return run, json.loads(path.read_bytes())
+    with pytest.raises(ValueError, match='schema-2'):
+        inspect_inputs(bound, registry_reader=reader)

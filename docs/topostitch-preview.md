@@ -4761,3 +4761,57 @@ limits are local under NASolve anchor
 `branch-artifacts/willow/w279-restart-readiness/readiness.json`.
 The sources were read, not merged or modified; neither this audit nor their PDU
 qualification is a tested combined-branch 3LNA restart.
+
+
+## Observe refined checkpoint inputs without a preview (W280)
+
+A refined checkpoint has valid input history but is not an original PostMR
+preparation. `inspect_checkpoint_inputs` in `nasolve.topostitch_checkpoint`
+now observes a saved schema-2 parent independently of a bend preview:
+
+```python
+observed = inspect_checkpoint_inputs(
+    run_directory,
+    checkpoint="refine-003",
+    expected_checkpoint_id="refine-003",
+    expected_model_sha256=trusted_model_sha256,
+    registry_reader=trusted_cedar_checkpoints.read_registry,
+)
+```
+
+The application supplies the trusted Cedar reader; it is never imported from a
+saved artifact. Cedar owns authentication of supported run history. Willow
+checks that the returned registry equals the saved bytes and binds the exact
+model, original observations, optional phases and ordered restraints through
+existing anchored/checksummed resolvers. It reads twice and rejects changed
+selection, metadata or input files. Supply `expected_context_sha256` on a later
+call to refuse a rebound context. Explicit checkpoint selection does not change
+the run's current model; omitted `checkpoint` must resolve to the expected ID.
+
+The additive `topostitch-checkpoint-input-observation` report has no preview
+receipt and grants no chemistry, motion, thermal, native restart, selection or
+scientific authority. It does not infer Free-R semantics, convert observations
+or replace a source-frame/recut mapping. Existing bend/preparation readers and
+schemas remain unchanged, including refusal to treat a refined descendant as
+an original checked preparation. Schema 3 and legacy migration are outside this
+adapter's declared scope. Snapshot checks are not locks; dispatch must revalidate.
+
+**Exact read-only control:** the owner-declared, already relocated PDU lineage
+from Cedar C579 reopens at `refine-003`: 862 atoms, original observations and
+seven ordered restraints. The saved current checkpoint stays `postmr`. Original
+input bytes and modification times remain unchanged; no new fit or native
+initialization ran. The written PDB has no ANISOU records or TLS remarks; this
+inventory alone is not a thermal-policy qualification. C579's prior endpoint and
+Python-version checks are reused, not claimed as newly run. The separate 3LNA
+export remains diagnostic because it has no verified ordinary parent binding.
+
+Validation: the new API was absent in five initial failing checks. Six final
+cases cover preview-free relocation, owner failure/mismatch, rebound data/model,
+input/selection drift and explicit scope refusal. The checkpoint, execution,
+preparation and native-window files pass **173 source and 173 installed tests**.
+The installed package is moved after deleting its build/original install paths;
+fixture relocation removes original dataset paths. Exact installed source bytes
+and Python 3.10 syntax are checked. No CLI entry or full suite was needed for this
+isolated observer; no shared runtime or executor changed. Local commands,
+readbacks and checksums are under NASolve anchor
+`branch-artifacts/willow/w280-numbered-parent/`.

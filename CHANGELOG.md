@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W280 — Observe exact checkpoint inputs without a bend preview
+
+- Add an explicit trusted-reader adapter for saved parent inputs, including
+  refined descendants. Bind model, observations and ordered restraints; reject
+  changed metadata or selection across reads. Existing preview behavior stays
+  compatible. This observer grants no native restart or chemical authority.
+
 ### W279 — Audit existing-owner restart readiness
 
 - Record actual 3LNA anisotropic/TLS coexistence and unset residual flag; distinguish

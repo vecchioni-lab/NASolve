@@ -1,4 +1,4 @@
-"""Read-only checkpoint binding for an existing registered bend preview.
+"""Read-only checkpoint inputs, with optional binding to a registered bend preview.
 
 This is input admission, not a run lock, native chemistry check or dispatcher.
 The executor must re-read at dispatch and consume frozen inputs under its own
@@ -33,13 +33,14 @@ def _reference(value):
     return {k:value[k] for k in ('anchor','relative_path','sha256','size')}
 
 
-def _snapshot(run_directory, checkpoint, expected_checkpoint_id, preview_pin):
+def _snapshot(run_directory, checkpoint, expected_checkpoint_id, preview_pin, *, registry_reader=None):
     registry_path=checkpoints.registry_path(Path(run_directory))
     run=registry_path.parent.parent
     report_path=run/'report.json'
     report_bytes=report_path.read_bytes()
     registry_bytes=registry_path.read_bytes()  # Deliberately require a saved registry.
-    resolved,registry=checkpoints.read_registry(run)
+    reader=checkpoints.read_registry if registry_reader is None else registry_reader
+    resolved,registry=reader(run)
     if (resolved!=run or registry!=_json(registry_bytes)
             or type(registry.get('schema_version')) is not int or registry['schema_version']!=2):
         raise ValueError('Require an unchanged saved schema-2 checkpoint registry')
@@ -75,6 +76,55 @@ def _snapshot(run_directory, checkpoint, expected_checkpoint_id, preview_pin):
         preview_receipt_sha256=preview_pin,inputs=[dict(role=role,**ref) for role,ref in references])
     return context,model_bytes
 
+
+
+def inspect_checkpoint_inputs(run_directory, *, expected_checkpoint_id,
+        expected_model_sha256, registry_reader, checkpoint=None, expected_context_sha256=None):
+    """Observe one saved parent's exact inputs without requiring a bend preview.
+
+    ``registry_reader`` is an explicit trusted dependency with Cedar's
+    ``read_registry`` contract; it must authenticate supported history or raise.
+    It is executable application code, never an artifact-supplied callback.
+    This adapter pins its returned registry to the actual saved bytes and reuses
+    the existing anchored input resolver. Schema 2 only; no migration is implied.
+
+    A refined descendant may be observed without calling it an original checked
+    preparation or admitting its chemistry, thermal model, Free-R interpretation,
+    recut, deformation or next native restart. An unusable or unexpected selected
+    parent is refused. An explicit checkpoint leaves current selection alone.
+    The returned digest can pin a later observation. Two snapshots detect drift;
+    the execution owner must still revalidate and own input lifetime at dispatch.
+    """
+    model_pin=_pin(expected_model_sha256)
+    if expected_context_sha256 is not None:_pin(expected_context_sha256)
+    if not callable(registry_reader):
+        raise ValueError('Require an explicit trusted registry reader')
+    if (not isinstance(expected_checkpoint_id,str) or not expected_checkpoint_id.strip()
+            or checkpoint is not None and (not isinstance(checkpoint,str) or not checkpoint.strip())):
+        raise ValueError('Require an explicit expected checkpoint identity')
+
+    def read():
+        context,source=_snapshot(run_directory,checkpoint,expected_checkpoint_id,None,
+                                 registry_reader=registry_reader)
+        if sha256(source).hexdigest()!=model_pin:
+            raise ValueError('Checkpoint model differs from the expected source bytes')
+        # No invented preview receipt or original-preparation claim.
+        context.pop('preview_receipt_sha256')
+        return context,source
+
+    before,source=read()
+    pin=recipe_digest(before)
+    if expected_context_sha256 is not None and pin!=expected_context_sha256:
+        raise ValueError('Checkpoint input context changed since the previous read')
+    after,latest=read()
+    if before!=after or source!=latest:
+        raise ValueError('Checkpoint inputs or selection changed during observation')
+    return dict(schema_version=1,kind='topostitch-checkpoint-input-observation',
+        context=before,context_sha256=pin,
+        history_validation='DELEGATED_TO_EXPLICIT_REGISTRY_READER',
+        runtime_authority=False,chemical_admission=False,motion_admission=False,
+        native_restart_qualified=False,selection_applied=False,locking=False,
+        scientific_acceptance=False)
 
 def load_checkpoint_bend_motion(run_directory, preview_directory, *, expected_checkpoint_id,
         expected_receipt_sha256, checkpoint=None, expected_checkpoint_context_sha256=None):
