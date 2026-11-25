@@ -7,6 +7,10 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Current output plan: W271.** [Category fields and native TLS boundary](topostitch-periodic.md#w271--plan-output-fields-and-separate-native-tls-interpretation)
+  explicitly plans 82/75 category occurrences, finds a center-of-mass update,
+  and separates raw TLS export from native S33 interpretation. No model writer.
+
 - **Current output contract: W270.** [Whole-asym eligibility](topostitch.md#narrow-first-writer-route-whole-original-asym-units-w270)
   keeps source labels and requires uniform asym/TLS images. A nonidentity whole-A
   preview passes membership; both eight-path LNA cuts remain unsupported. R3 nick

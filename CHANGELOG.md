@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W271 — Plan whole-asym output fields and separate native TLS restart
+
+- Classify every original category occurrence and require coherent assembly,
+  center-of-mass, coordinate/tensor and scalar/loop output handling.
+- Record a new native nonzero-trace TLS counterexample and zero-trace control;
+  reuse prior R3 source-image evidence. No deposited ADP or coordinate changes.
+- Clarify that the fragmented two-rung ASU is a bookkeeping stress test, not a
+  physical nick or preferred deposition cut. No runtime/schema or writer change.
+
 ### W270 — Scope whole-asym export without inventing strand or nick identity
 
 - Record the agreed first-writer contract: one image per original asym/TLS group,

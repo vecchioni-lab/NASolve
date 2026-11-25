@@ -165,6 +165,18 @@ and endpoint references through existing owners. A uniform-membership pass is no
 writer permission. Keep full mixed-path relabeling, physical repeat/nick phase,
 entity assignment and the persistent P02 edit/refine loop queued separately.
 
+
+W271 now [plans the output categories and native TLS boundary](topostitch-periodic.md#w271--plan-output-fields-and-separate-native-tls-interpretation).
+Recalculate supplied present-polymer centers only under an explicit source-matched
+weighting convention; preserve null/absent centers. Keep raw TLS field transport
+separate from native S33 zeroization and restart compatibility. Derived assembly
+operators must update inline matrices and membership flags together. No category
+plan is permission to emit an unqualified file.
+
+The fragmented W246 two-rung ASU is a stress test, not a preferred physical cut.
+Prioritize readable contiguous duplex segments for final inspection/export;
+physical nicks and symmetry boundaries remain distinct.
+
 ## Explicit sticky-end enforcement during refinement (planned W122)
 
 **User direction, 2026-11-17: planning only; no implementation or new runs.**

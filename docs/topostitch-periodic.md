@@ -14564,3 +14564,63 @@ native TLS convention. Keep eligibility separate from emission. A first writer
 must refuse unresolved categories/mixed memberships; the full eight-path LNA
 materializer and physical nick phase remain separate gates. Do not repeat the
 completed W249/W264/W268 calculations merely to reconfirm those limits.
+
+
+## W271 — Plan output fields and separate native TLS interpretation
+
+W270's whole-asym membership gate is necessary but does not make a file ready
+to write. W271 assigns an explicit action to all **82/75** original category
+occurrences, including attached component templates. Context, source labels,
+unmodeled sequence positions, fixed crystal/observation data and original
+refinement history remain. Coordinates, deposited Cartesian U, declared
+connection image references, raw TLS parameters and assembly generators each
+use their existing owner. Unknown categories or additional coordinate/uncertainty
+fields remain unsupported until reviewed. The actual sources have **27 sensitive
+columns each, all null/absent**; this is not a blanket safe-copy rule.
+
+Preserve original scalar/loop layout, except that a generator category growing
+to several rows becomes one loop. Do not duplicate a category. Retain attached
+component template coordinates unchanged. Retain original operator IDs within
+their curated/depositor namespace and append collision-free derived **H G^-1**
+operators; partition generator membership by whole original-asym image. Update
+inline matrices, chain lists and `all_chains`/`at_unit_matrix` flags together.
+Keep original rounded H, not its separately matched exact crystal operation.
+
+The populated 3LNA `_struct.pdbx_center_of_mass_*` values reproduce the present
+polymer elemental-mass center to **3.73e-7 Å** (all source atoms are polymeric,
+all occupancies one). W270's whole-A change moves that representative center by
+**15.9132 Å**. A writer must recalculate it under a declared matching convention;
+blind copying is wrong. Preserve absent/null values rather than inventing them.
+Other occupancy/absent-atom conventions require separate qualification. The
+[wwPDB item definition](https://mmcif.west.k8s.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_struct.pdbx_center_of_mass_x.html)
+identifies this as a polymer-chain center; the calculation and source match are
+our local evidence, not a dictionary-specified weighting algorithm.
+
+**TLS convention:** cctbx's `zeroize_trace=True` replaces S33 by `-(S11+S22)`.
+That axis-specific operation is not equivalent to removing an isotropic trace
+from all three diagonal entries. A new synthetic proper x rotation with
+nonzero S trace preserves the raw nine-component TLS field to **1.11e-16 Å²**,
+but native zeroization before/after transport differs by **3.66519 Å²**. A
+zero-trace control stays within **2.22e-16 Å²**. The existing W264 3LNA/5LNA
+source-image controls already pass both raw/native comparisons because their
+R3 rotations preserve the distinguished z axis; their exact receipts were
+reused, not rerun. No deposited displacement tensor was changed. Raw TLS export
+and native restart eligibility must remain separate; neither silently changes
+the source S convention or adds TLS motion to deposited total U.
+
+These are two **complete read-only cctbx evaluations**, Phenix **2.2.1-6174 /
+Python 3.11.15**, not a dry-run or refinement. The dispatcher/library/source
+bindings and exact commands are in NASolve anchor
+`branch-artifacts/willow/w271-whole-asym-output-plan/validation.json` and its
+linked native receipt. Product code remains W269; its 172 source/172 installed
+checks (two skips each) are unchanged. No redundant suite/install run or new
+coordinate file. P03 remains PARTIAL. Next: bounded row edits and readback,
+then exclusive-create output; the eight-path cut and physical nick phase are
+separate gates.
+
+**Inspection clarification:** W246's “teeth” are four complete nucleotides
+(two paired rungs) moved to equivalent images. This deliberately awkward ASU
+tests representative bookkeeping; it is not a proposed chemical nick pattern
+or deposition cut. The current ASU canvas omits surrounding symmetry copies.
+Practical final cuts should favour contiguous, readable duplex segments while
+preserving construct intent and all periodic connections.

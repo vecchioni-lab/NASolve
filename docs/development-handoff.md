@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current code: W269; latest eligibility contract: W270, 2026-11-25** (code `05bde4790e013e79f841f3649a372211bbcc22fe`).
+**Current code: W269; latest output plan: W271, 2026-11-25** (code `05bde4790e013e79f841f3649a372211bbcc22fe`).
 The [instance observer](topostitch-preview.md#observe-labelled-assembly-instances-and-deposited-adps-w269)
 now accounts for original generator/atom occurrences and deposited atomic ADPs
 through the existing assembly/source/frame owners. It keeps duplicate multiplicity,
@@ -42,7 +42,16 @@ saved 62-site COMPLETE R3 registration is an ASU mapping, not a physical-copy or
 nick-phase declaration. Exact evidence: NASolve anchor
 `branch-artifacts/willow/w270-whole-asym-eligibility/validation.json`.
 
-**Next W271; P03 remains partial.** W271: verify the no-write whole-asym output plan through existing owners, with one image per original asym/TLS group, preserved entity/sequence/copy labels, explicit per-category retain/transform/review actions and scalar/loop layout. Keep raw matrix namespaces and native TLS convention explicit; unresolved categories/mixed memberships block emission. Actual R3 nick/copy phase remains unresolved; full eight-path relabeling is separate. No repeated W249/W264/W268 calculation or premature writer.
+**W271 output plan:** all 82/75 category occurrences have explicit actions.
+Populated 3LNA polymer COM matches source within 3.73e-7 Å and changes 15.9132 Å
+under whole-A repacking; it must be updated, not copied. Two new read-only native
+controls show raw TLS transport preserved but nonzero-trace/native S33 handling
+not generally rotation-covariant (3.66519 Å² counterexample). Prior R3 source
+controls are reused; no deposited tensor or coordinate was changed. See
+[exact scope and commands](topostitch-periodic.md#w271--plan-output-fields-and-separate-native-tls-interpretation).
+No product code, installed artifact or runtime schema changed.
+
+**Next W272; P03 remains partial.** W272: implement the smallest whole-asym in-memory CIF row edit through existing owners, preserving category scalar/loop layout and exact source labels. Treat raw TLS export separately from native restart; require supplied polymer center policy and complete assembly-generator metadata rewriting. Qualify readback and refusal controls before exclusive-create output. Unknown fields/categories, mixed memberships and unresolved output references block writing; full eight-path cut and physical R3 nick remain separate.
 
 W264 source `5f0dbcb4afe726b853b402424d450507331a329f` retains its uniform-image
 qualification: 200 source/200 installed checks, 18 native comparisons, raw U

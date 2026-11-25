@@ -1123,13 +1123,14 @@
         "W267: 158 focused source/158 relocated installed checks, two existing skips each; 216 installed files. Actual installed 3LNA inspector embeds the exact W266 report, 1271 atoms and mixed paths3/6 after input/build/install relocation. Default scene equality, input drift, binding and CLI checks pass; inline JavaScript syntax passes, browser rendering unverified.",
         "W268: Four exact original/recut LNA controls retain3813/3825 labelled assembly instances. Raw deposited-U transport max1.07e-14 A2; skipping tensor rotation produces6.51/4.87 A2 errors. Full exact C3 set closure observed with246 permuted instance labels; partial generator82missing/82extra and one-atom cell shift3missing/3extra correctly fail. Original ADPs/TLS-derived U kept separate; prior W249 native evidence hash-verified, not rerun.",
         "W269: 172 focused source/172 relocated installed checks, two existing skips each; 216 installed-file hashes. Eight missing-API regressions reproduced. Four actual W268 controls match exact source/assembly/scalar hashes,3813/3825 instance counts and deposited-U metrics. Complete installed relocated3LNA report exact. Duplicate multiplicity, unresolved/partial generators, unwrapped shifts, mixed/isotropic modes, source races and damaged partitions/tensors qualified.",
-        "W270: Four saved original/recut LNA eligibility checks plus one nonidentity in-memory3LNA whole-A preview (16nodes). Whole-asym/TLS uniformity passes unchanged/whole-A; eight-path cuts fail on A/B/D and4TLS groups. Inventory covers66/59 coordinate categories plus2attached definition blocks each,82/75 category occurrences. Source ASU target/copy distinguished from full physical strands; R3 nick remains unassigned."
+        "W270: Four saved original/recut LNA eligibility checks plus one nonidentity in-memory3LNA whole-A preview (16nodes). Whole-asym/TLS uniformity passes unchanged/whole-A; eight-path cuts fail on A/B/D and4TLS groups. Inventory covers66/59 coordinate categories plus2attached definition blocks each,82/75 category occurrences. Source ASU target/copy distinguished from full physical strands; R3 nick remains unassigned.",
+        "W271: 82/75 original category occurrences have explicit output actions;27 sensitive columns per source are null/absent. 3LNA supplied polymer mass center matches within3.73e-7 A and changes15.9132 A under whole-A recut. Two new native synthetic controls: raw TLS invariant1.11e-16 A2; nonzero-trace x rotation changes native S33 interpretation3.66519 A2, zero-trace control2.22e-16 A2. Prior R3 native controls reused, not rerun."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "W271: verify the no-write whole-asym output plan through existing owners, with one image per original asym/TLS group, preserved entity/sequence/copy labels, explicit per-category retain/transform/review actions and scalar/loop layout. Keep raw matrix namespaces and native TLS convention explicit; unresolved categories/mixed memberships block emission. Actual R3 nick/copy phase remains unresolved; full eight-path relabeling is separate. No repeated W249/W264/W268 calculation or premature writer.",
+      "next_action": "W272: implement the smallest whole-asym in-memory CIF row edit through existing owners, preserving category scalar/loop layout and exact source labels. Treat raw TLS export separately from native restart; require supplied polymer center policy and complete assembly-generator metadata rewriting. Qualify readback and refusal controls before exclusive-create output. Unknown fields/categories, mixed memberships and unresolved output references block writing; full eight-path cut and physical R3 nick remain separate.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -1157,14 +1158,15 @@
         "E_ORIGINAL_CIF_ASSEMBLY_VIEW",
         "E_ASSEMBLY_INSTANCE_ADP_AUDIT",
         "E_ASSEMBLY_INSTANCE_OBSERVER",
-        "E_WHOLE_ASYM_ELIGIBILITY"
+        "E_WHOLE_ASYM_ELIGIBILITY",
+        "E_WHOLE_ASYM_OUTPUT_PLAN"
       ],
       "last_audit": {
         "date": "2026-11-25",
-        "human_update": 270,
+        "human_update": 271,
         "code_commit": "05bde4790e013e79f841f3649a372211bbcc22fe",
-        "reviewer": "Linden; narrow whole-asym route agreed with Rowan",
-        "scope": "Membership/source declaration eligibility only; category plan/native TLS/writer and full mixed-path materializer open"
+        "reviewer": "Linden; TLS ownership coordinated with Rowan",
+        "scope": "Explicit output plan and new convention counterexample; no maintained writer or native restart approval"
       }
     },
     {
@@ -7894,6 +7896,59 @@
           "size": 3354
         }
       ]
+    },
+    "E_WHOLE_ASYM_OUTPUT_PLAN": {
+      "kind": "Whole-asym field/category output plan and native TLS convention counterexample",
+      "date": "2026-11-25",
+      "human_update": 271,
+      "code_commit": "05bde4790e013e79f841f3649a372211bbcc22fe",
+      "reference": "docs/topostitch-periodic.md#w271--plan-output-fields-and-separate-native-tls-interpretation",
+      "result": "82/75 original category occurrences have explicit output actions;27 sensitive columns per source are null/absent. 3LNA supplied polymer mass center matches within3.73e-7 A and changes15.9132 A under whole-A recut. Two new native synthetic controls: raw TLS invariant1.11e-16 A2; nonzero-trace x rotation changes native S33 interpretation3.66519 A2, zero-trace control2.22e-16 A2. Prior R3 native controls reused, not rerun.",
+      "limitation": "No product writer or model output; raw source S and deposited tensors unchanged. Source R3 special case is not arbitrary-rotation/native restart approval. Source COM convention qualified only for all-present polymer atoms with unit occupancy. No full suite/install repeat for unchanged product code.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w271-whole-asym-output-plan/tls_convention.py",
+          "sha256": "c1bd4738efe32e971baf53c8c65d2da0909da5ff862e253e5abb14f0276b62c6",
+          "size": 6164
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w271-whole-asym-output-plan/tls-convention.log",
+          "sha256": "365efc0fb61205d6bfd3d1e36d44d6f014c66dbfaee0a99912fa2542b626b266",
+          "size": 239
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w271-whole-asym-output-plan/tls-convention.json",
+          "sha256": "c4fdbd4faae3987b13eafad4bb7775b72f0279e39c15185e56ed9589e84c790c",
+          "size": 7591
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w271-whole-asym-output-plan/category_plan.py",
+          "sha256": "0e016472ef85176bb7ac4c57dfb4d0c03b7bb5023e6f0aa6bec636c9dee7ccad",
+          "size": 9873
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w271-whole-asym-output-plan/category-plan.log",
+          "sha256": "18c1678dc5a2afa8698550019dc9d0ef166e21af28c82c19310f14490a5b8173",
+          "size": 234
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w271-whole-asym-output-plan/category-plan.json",
+          "sha256": "4bf6a0eb88f85d83a2ba7563c101142f193c3460ac63eb241ebb4ac014c2ea33",
+          "size": 140930
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w271-whole-asym-output-plan/validation.json",
+          "sha256": "d06e9424de038f944953277466f7d30719f9525d44ebe767a314d4c2b12af01e",
+          "size": 3508
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -8059,8 +8114,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 270,
-    "next": 271,
+    "current": 271,
+    "next": 272,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -9488,6 +9543,12 @@
       {
         "number": 270,
         "title": "Qualify whole-asym membership and retain unresolved physical strand/nick identity",
+        "state": "RECORDED",
+        "code_commit": "05bde4790e013e79f841f3649a372211bbcc22fe"
+      },
+      {
+        "number": 271,
+        "title": "Plan whole-asym output fields and separate raw TLS from native restart",
         "state": "RECORDED",
         "code_commit": "05bde4790e013e79f841f3649a372211bbcc22fe"
       }
