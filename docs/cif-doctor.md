@@ -146,6 +146,18 @@ definitions and ambiguous rings carry a reason. The selected-site native
 capture, when present, provides a separate reading before coordinate rounding.
 Pairing and density support still need independent assessment.
 
+For a plane that includes the full source ring and the tip at positive
+weight, `tip_plane_comparisons` gives the printed tip distance, the height
+recalculated with those weights, and the height and tilt when the tip is
+left out. Extra weighted members stay in the fit. The independent six-atom
+ring measurement remains available alongside it. An empty list means no
+qualifying plane was found in the available tables. A null list means the
+table or arm could not be assessed. If a qualifying plane has an unusable
+extra atom, its entry names the atom and leaves the fit unassessed.
+Use the GEO and coordinates from the same stage. The largest discrepancy
+between their reported and recalculated distances is included for inspection.
+See the [two PDU sites after refinement](backbone-chemistry.md#how-far-local-restraints-carry-the-pdu-arms-at-the-original-diffraction-weight).
+
 ## Checking backbone continuity before deposition
 
 With `NASolve[topology]` installed, supply the coordinate mmCIF you intend to

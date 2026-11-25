@@ -86,7 +86,55 @@ def _source_plane(name, members, modeled, covalent, sections):
     )
 
 
-def _written_ring_arms(raw, labels, by_code):
+def _tip_plane_comparisons(arm, positions, planes):
+    """Measure how much a printed intra-residue plane moves when its tip is omitted."""
+    from math import acos, degrees
+    import numpy as np
+    from .refinement_plane_departures import _fit_plane_offsets
+
+    if planes is None or arm["status"] != "MEASURED":
+        return None
+    tip = arm["arm_atoms"][-1]
+    required = set(arm["ring_atoms"]) | {tip}
+    comparisons = []
+    for plane in planes:
+        active = {m["atom"]: m for m in plane["members"] if m["weight"] > 0}
+        if not required <= active.keys():
+            continue
+        missing = sorted(active.keys() - positions.keys())
+        result = dict(origin=plane["origin"], section_index=plane["section_index"],
+                      positive_member_count=len(active), unavailable_atoms=missing,
+                      printed_tip_distance_A=abs(active[tip]["delta_A"]),
+                      tip_to_all_members_plane_A=None, tip_to_other_members_plane_A=None,
+                      tilt_on_omitting_tip_deg=None, max_printed_distance_difference_A=None,
+                      status="UNASSESSED", reason=None)
+        comparisons.append(result)
+        if missing:
+            result["reason"] = "A positive-weight plane member is missing, unoccupied or has a different element"
+            continue
+        points = np.asarray([positions[name] for name in active])
+        weights = np.asarray([m["weight"] for m in active.values()])
+        all_members, reason = _fit_plane_offsets(points, weights)
+        if all_members is None:
+            result["reason"] = reason
+            continue
+        offset, normal = all_members
+        result["tip_to_all_members_plane_A"] = abs(offset(positions[tip]))
+        result["max_printed_distance_difference_A"] = max(
+            abs(abs(offset(positions[name])) - abs(m["delta_A"])) for name, m in active.items()
+        )
+        weights[list(active).index(tip)] = 0.
+        other_members, reason = _fit_plane_offsets(points, weights)
+        if other_members is None:
+            result["reason"] = reason
+            continue
+        other_offset, other_normal = other_members
+        result.update(status="MEASURED", tip_to_other_members_plane_A=abs(other_offset(positions[tip])),
+                      tilt_on_omitting_tip_deg=degrees(acos(min(1., abs(float(normal @ other_normal))))))
+    return comparisons
+
+
+def _written_ring_arms(raw, labels, by_code, native):
     from .cif_plane_coverage import dictionary_ring_arm_paths
     from .refinement_plane_departures import measure_ring_arm
 
@@ -119,17 +167,19 @@ def _written_ring_arms(raw, labels, by_code):
         definitions = by_code[code]
         hashes = sorted({d["definition_sha256"] for d in definitions})
         identity = dict(site=site, component=code, definition_sha256s=hashes)
+        planes = native.get((site, code), []) if native is not None else None
         if len(hashes) != 1:
-            result.append(dict(identity, status="UNASSESSED", reason="Conflicting supplied component definitions"))
+            result.append(dict(identity, status="UNASSESSED", reason="Conflicting supplied component definitions", tip_plane_comparisons=None))
             continue
         definition = graphs[code][hashes[0]]
         if definition["status"] == "UNASSESSED":
-            result.append(dict(identity, status="UNASSESSED", reason=definition["reason"]))
+            result.append(dict(identity, status="UNASSESSED", reason=definition["reason"], tip_plane_comparisons=None))
             continue
         for path in definition["arms"]:
             observation = measure_ring_arm(path["arm"], path["rings"], coords)
             if observation["missing_atoms"]:
                 observation["reason"] = "A required coordinate is missing, unoccupied or has a different element"
+            observation["tip_plane_comparisons"] = _tip_plane_comparisons(observation, coords, planes)
             result.append(dict(identity, **observation))
     return result
 
@@ -143,7 +193,7 @@ def read_component_planes(model, geometry, components):
     """
     model, geometry = Path(model), Path(geometry)
     raw, data = model.read_bytes(), geometry.read_bytes()
-    parsed = labels = None
+    parsed = labels = native = None
     by_code = defaultdict(list)
     for component in components:
         by_code[component["component_id"]].append(component)
@@ -184,7 +234,7 @@ def read_component_planes(model, geometry, components):
     return dict(
         policy_id="printed-component-plane-members-v1", model_sha256=sha256(raw).hexdigest(),
         geometry_sha256=sha256(data).hexdigest(), status=status, reason=reason, sections=sections, sites=sites,
-        written_ring_arms=_written_ring_arms(raw, labels, by_code),
+        written_ring_arms=_written_ring_arms(raw, labels, by_code, native),
         scope="Printed intramonomer planes at modeled sites of supplied components. Exact membership compares positive covalent members only.",
         scientific_approval="NOT_ASSESSED",
     )

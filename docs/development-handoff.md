@@ -1,7 +1,31 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-25, C586 local flanking contacts and PDU arm planes — Rowan**.
+Updated **2026-11-25, C587 measuring tilt in a ring restraint — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**.
+
+**C587, Q06.** CIF Doctor already measured a terminal alkynyl carbon against
+the six atoms of its ring. The existing `assess --refined-planes` inspection
+now measures how far the printed restraint plane tilts toward that carbon.
+Both explicit-file and named-checkpoint inspections use the same reader.
+The additive observation is `written_ring_arms[].tip_plane_comparisons`.
+Refinements, saved registries and earlier reports need no migration.
+The reader and its regression cases are in `refinement_component_planes.py`
+and `test_refinement_component_planes.py`. The guide and changelog describe
+the output. Five new cases failed on the old reader. The focused command
+below passed **123 tests and seven subtests** from source and again from a
+relocated installed wheel, with Gemmi 0.7.5 available. Use
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src` in the source environment.
+
+```sh
+python -B -m pytest -q -p no:cacheprovider tests/test_refinement_component_planes.py tests/test_refinement_plane_departures.py tests/test_cif_plane_coverage.py tests/test_cif_doctor_run.py tests/test_refinement_geometry_change.py tests/test_refinement_component_bonds.py
+```
+
+Both CLI copies gave identical observations at the two PDU sites in each
+of four saved Phenix 2.2.1-6174 fits. The B:4 plane in the plane-only fit
+tilted 3.72° toward the tip. The next question is what keeps the tip out
+of the ring plane during refinement. This change reread existing fits.
+Full regression was deferred. Only code, documentation and synthetic
+tests are included in the branch.
 
 **C586, Q06.** Three five-cycle Phenix 2.2.1-6174 fits and the existing C585
 reference compare two local changes at working diffraction weight 12. Four

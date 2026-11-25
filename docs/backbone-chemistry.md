@@ -675,8 +675,12 @@ The second crystal bond stayed between 1.612 and 1.627 Å in all four fits.
 Combining the changes gave less improvement in the B:4 tip than the planes
 alone. Phenix placed this tip only 0.061 Å from the seven-atom plane in the
 plane-only fit, while the height above the six ring atoms was 0.419 Å.
-Adding the tip to a fitted plane lets that plane tilt toward the tip. Both
-measurements matter when checking a chemical repair.
+Adding the tip lets the fitted plane tilt toward it. With the C587
+inspection, leaving the tip out rotated the B:4 plane by 3.72° in the
+plane-only fit and 4.53° with both changes. The corresponding A:12 rotations
+were 0.41° and 0.80°. Across all four measured planes, the distances
+recalculated from written coordinates agreed with the printed table to
+within 0.001 Å. No tip plane was found in either control that omitted it.
 
 The PDU dictionary matches C569's adjusted Cartesian template byte for byte.
 It supplies a 1.431 Å C5–C5A target, a 1.470 Å C5B–C5M target and a base

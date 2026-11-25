@@ -8,6 +8,11 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `cif-doctor assess --refined-planes` shows how far a ring-attached
+  alkynyl tip lies from the fitted restraint plane and how much that
+  plane tilts toward the tip. It uses the written coordinates and the
+  weights Phenix reports for that residue.
+
 - `cif-doctor phosphate-image --na-val-2026` compares a named standard DNA
   or RNA phosphodiester and its two sugars with published population ranges.
   The comparison uses the specified crystal copy and reports individual

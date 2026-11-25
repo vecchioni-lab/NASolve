@@ -345,9 +345,11 @@ Strengthening the five contacts moved four closer to their targets. Adding
 two arm planes separately brought the B:4 tip to 0.419 Å from the ring.
 Combining the changes brought it to 0.510 Å, with a 1.683 Å central crystal
 bond. The close fit to the plane containing the tip overstates the improvement.
-Read the fitted plane and independent ring side by side, and use the working
-diffraction and local geometry forces to distinguish the remaining B:4 strain
-before trying a new width. The general correction remains open.
+C587 added the fitted plane and independent ring to the same inspection.
+Leaving the tip out rotated the B:4 plane by 3.72° or 4.53°, depending on
+the flanking contacts. Trace the working diffraction and local geometry
+forces that bear on the remaining B:4 distortion before trying a new
+width. The general correction remains open.
 Willow owns the explicit, evidence-backed connection-type proposal. Preserve
 the hydrogen-bond identity separately from the genuine crystal covalent links.
 [Measured local controls](backbone-chemistry.md#how-far-local-restraints-carry-the-pdu-arms-at-the-original-diffraction-weight).

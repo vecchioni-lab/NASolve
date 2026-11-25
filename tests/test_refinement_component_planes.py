@@ -67,6 +67,7 @@ def test_dictionary_alkyne_measurement_works_without_a_printed_plane(tmp_path, c
     report = direct(capsys,[cif],model,geo)
     assert report["status"] == "NOT_RECORDED"
     good, absent = report["written_ring_arms"]
+    assert good["tip_plane_comparisons"] is None
     assert good["site"] == "B:4" and good["arm_atoms"] == ["Q0","Q6","Q7","Q8"]
     assert good["arm_distances_angstrom"]["Q8"] == pytest.approx(.4)
     assert good["bond_directions"]["segments"][-1]["length_A"] > 1
@@ -218,3 +219,71 @@ def test_registered_plane_read_uses_only_the_named_checkpoints_geometry(tmp_path
     assert payload["refined_printed_planes"]["geometry_sha256"] == file_sha256(actual/final.relative_to(run))
     assert payload["refined_printed_planes"]["sites"][0]["dictionary_planes"][0]["status"] == "EXACT_MODELED_MEMBERS"
     assert _snapshot(moved) == before
+
+
+def tip_plane(model, members, *, zero_weight=(), foreign=None, tip_weight=100):
+    records = [line for line in model.read_text().splitlines() if line.startswith("ATOM")]
+    rows = ["Planarity | User supplied | restraints: 1", "Sorted by residual:",
+            "delta sigma weight rms_deltas residual"]
+    for i, atom in enumerate(members):
+        residue = 5 if atom == foreign else 4
+        label, = [line[12:27] for line in records
+                  if line[12:16].strip() == atom and int(line[22:26]) == residue]
+        weight = tip_weight if atom == "Q8" else 100
+        if atom in zero_weight:
+            weight = 0
+        prefix, summary = ("plane ", " 0.10 1.0") if i == 0 else ("      ", "")
+        rows.append(f'{prefix}pdb="{label}" -0.180 0.1 {weight}{summary}')
+    return "\n".join(rows) + "\n"
+
+
+def test_measures_tip_against_the_same_plane_with_and_without_its_own_weight(tmp_path, capsys):
+    cif, model, geo = arm_inputs(tmp_path)
+    ring = [f"Q{i}" for i in range(6)]
+    geo.write_text(tip_plane(model, [*ring, "Q8"]))
+    arm, = direct(capsys, [cif], model, geo)["written_ring_arms"]
+    comparison, = arm["tip_plane_comparisons"]
+    assert (comparison["status"], comparison["origin"], comparison["section_index"]) == ("MEASURED", "User supplied", 1)
+    assert arm["arm_distances_angstrom"]["Q8"] == pytest.approx(.4)
+    assert comparison["tip_to_other_members_plane_A"] == pytest.approx(.4)
+    assert 0 < comparison["tip_to_all_members_plane_A"] < .1
+    assert 3 < comparison["tilt_on_omitting_tip_deg"] < 7
+    # The artificial GEO carries unrelated deltas. Keep the printed observation
+    # separate from the geometry recomputed on the supplied coordinates.
+    assert comparison["printed_tip_distance_A"] == pytest.approx(.18)
+    assert comparison["max_printed_distance_difference_A"] > .1
+
+    geo.write_text(tip_plane(model, [*ring, "Q8"], tip_weight=10))
+    lighter, = direct(capsys, [cif], model, geo)["written_ring_arms"][0]["tip_plane_comparisons"]
+    assert lighter["tip_to_all_members_plane_A"] > comparison["tip_to_all_members_plane_A"]
+    assert lighter["tilt_on_omitting_tip_deg"] < comparison["tilt_on_omitting_tip_deg"]
+    assert lighter["tip_to_other_members_plane_A"] == pytest.approx(.4)
+
+    geo.write_text(tip_plane(model, [*ring, "Q8", "Q9"]))
+    comparison, = direct(capsys, [cif], model, geo)["written_ring_arms"][0]["tip_plane_comparisons"]
+    assert comparison["positive_member_count"] == 8
+    assert comparison["tip_to_other_members_plane_A"] != pytest.approx(.4)
+
+
+@pytest.mark.parametrize("zero,foreign", [(["Q8"], None), (["Q1"], None), ([], "Q3")])
+def test_tip_comparison_requires_the_whole_positive_ring_and_tip_at_one_site(tmp_path, capsys, zero, foreign):
+    cif, model, geo = arm_inputs(tmp_path, second_site=True)
+    geo.write_text(tip_plane(model, [*(f"Q{i}" for i in range(6)), "Q8"], zero_weight=zero, foreign=foreign))
+    measured, missing = direct(capsys, [cif], model, geo)["written_ring_arms"]
+    assert measured["tip_plane_comparisons"] == []
+    assert missing["tip_plane_comparisons"] is None
+
+
+def test_unoccupied_extra_member_prevents_a_partial_plane_fit(tmp_path, capsys):
+    cif, model, geo = arm_inputs(tmp_path)
+    records = model.read_text().splitlines(keepends=True)
+    index = next(i for i, row in enumerate(records) if row[12:16].strip() == "Q9")
+    records[index] = records[index][:54] + "  0.00" + records[index][60:]
+    model.write_text("".join(records))
+    geo.write_text(tip_plane(model, [*(f"Q{i}" for i in range(6)), "Q8", "Q9"]))
+    arm, = direct(capsys, [cif], model, geo)["written_ring_arms"]
+    comparison, = arm["tip_plane_comparisons"]
+    assert arm["status"] == "MEASURED"
+    assert comparison["status"] == "UNASSESSED"
+    assert comparison["unavailable_atoms"] == ["Q9"]
+    assert comparison["tip_to_all_members_plane_A"] is None
