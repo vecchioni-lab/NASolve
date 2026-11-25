@@ -1,6 +1,37 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-25, C573 reading the bonds and angles Phenix actually fitted — Rowan**.
+Updated **2026-11-25, C574 testing both sugars at a crystal crossover — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**.
+
+**Q06 remains open.** The PDU:PDU trial produced a plausible second backbone
+turn and exposed a cost of fitting it. At ordinary weights the D:2–D:3
+alternative compressed a neighboring sugar angle to 96.5°. With identical
+weights for both starts, the two donor turns finished at +21.9° and −135.6°.
+The largest sugar-angle deviation in the second model was 2.65 restraint
+widths, but R-free rose to 0.3086 from 0.2801 at ordinary weights. The two
+common omit maps gave little separation at 4.19 Å. Both crystal bonds and
+the 124 held-out observations survived. No candidate was selected. See the
+[five-cycle comparison](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold).
+
+`cif-doctor phosphate-image --torsion-response` is an optional readout of
+each periodic restraint's energy and turning force at the written coordinates.
+Across 120 readings the normalized values agreed with native Phenix
+2.2.1-6174 to 5.4 × 10⁻¹⁵. Six historical checkpoint reports retained their
+original hashes. Source and a relocated installation each passed 206 focused
+tests and 21 subtests. The prior nine test modules below were run with
+`tests/test_{phosphate_reference_links,phosphate_restraints,phosphate_runtime}.py`
+added. Raw diffraction, models and maps stay in the local lab workspace.
+Checkpoint schemas and default reads are unchanged.
+
+**Next.** Take the paired-start comparison to one independent, declared
+junction. Use the same observations, preserve each crystal partner, measure
+both adjacent sugars and report movement of explicitly protected sites.
+For a metal scaffold, establish that protection from its actual native fit
+before changing coordinates. Retain the selected model when the available
+diffraction cannot choose. Reconcile metal-associated DF coverage separately
+with the existing nonmetal DF:A control.
+
+**Previous handoff.** Updated **2026-11-25, C573 reading the bonds and angles Phenix actually fitted — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**.
 
 `cif-doctor residue-geometry` now reads either named residues or the whole

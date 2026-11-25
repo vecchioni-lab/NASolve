@@ -2,7 +2,7 @@
 from collections import Counter, defaultdict
 from hashlib import sha256
 import json
-from math import degrees, dist, isfinite, sqrt
+from math import degrees, dist, isfinite, radians, sin, sqrt
 from pathlib import Path
 
 from .cif_attachment_native import _capture, _native_atoms
@@ -262,7 +262,21 @@ def _written_measurement(term, points, target, width, gemmi):
     return dict(result, delta=delta, delta_in_widths=delta / width)
 
 
-def measure_written_phosphate(model, starting_inspection, *, model_sha256):
+def _periodic_response(measurement, periodicity):
+    """Fractions of the barrier and peak angular slope for a qualified positive-period native torsion."""
+    if measurement["value"] is None:
+        return dict(status="UNASSESSED", reason=measurement["reason"])
+    if measurement["near_collinear_review"]:
+        return dict(status="UNASSESSED", reason="The near-collinear atom path makes the written torsion unstable")
+    # cctbx uses E = K * (1 - cos(n * delta)). Normalization cancels K.
+    delta = measurement["delta"]
+    phase = radians(periodicity * delta)
+    return dict(status="MEASURED", fraction_of_barrier=sin(phase / 2) ** 2,
+                fraction_of_peak_slope=abs(sin(phase)),
+                degrees_to_nearest_maximum=max(0., 180. / periodicity - abs(delta)))
+
+
+def measure_written_phosphate(model, starting_inspection, *, model_sha256, torsion_response=False):
     """Measure a fitted crystal bond and its ordinary reference links in the written model.
 
     All donor atoms follow the registered image. The ordinary links retain the
@@ -310,6 +324,9 @@ def measure_written_phosphate(model, starting_inspection, *, model_sha256):
                    target=target, restraint_width=width, written=written, ordinary_links=ordinary)
         if kind == "dihedral":
             row["periodicity"] = params["periodicity"]
+            if torsion_response:
+                for measurement in [written, *ordinary]:
+                    measurement["periodic_response"] = _periodic_response(measurement, row["periodicity"])
         terms.append(row)
     return dict(written_model_sha256=written_digest, reference_terms_sha256=group["terms_sha256"],
                 o3_site=donor, phosphate_site=acceptor, oxygen_operator_xyz=starting_inspection["o3_image"],

@@ -8,6 +8,10 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `cif-doctor phosphate-image --torsion-response` shows how strongly each
+  fitted backbone torsion can turn the atoms at their written positions.
+  The report also measures the same torsion on the intact reference links.
+
 - `cif-doctor residue-geometry` measures within-residue bonds and angles
   against the targets in the final Phenix GEO. Inspect specific residues or
   screen the whole PDB. An explicit checkpoint supplies its own files, and

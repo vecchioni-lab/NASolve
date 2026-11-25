@@ -349,6 +349,8 @@ def build_parser() -> argparse.ArgumentParser:
                               help="inspect this member of the phosphate set fitted in the named checkpoint")
     phosphate_image.add_argument("--restraint-deviations", action="store_true",
                                 help="measure the saved fit's bond, four angles and three torsions against the native targets and intact links")
+    phosphate_image.add_argument("--torsion-response", action="store_true",
+                                help="also report each periodic torsion's barrier height fraction and relative turning force")
     _phosphate_topology_arguments(phosphate_image)
     phosphate_image.add_argument("--duplex-partners", nargs=2, metavar=("O3_PARTNER", "P_PARTNER"),
                                  help="measure oxygen direction across two assigned stacked pairs; give each opposite CHAIN:NUMBER")
@@ -1793,10 +1795,12 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
             if args.checkpoint is None or registered is None:
                 raise ValueError("--registration-checkpoint needs a numbered run, --checkpoint and --registered-continuation")
             options["registration_checkpoint"] = args.registration_checkpoint
-        if args.restraint_deviations:
+        if args.restraint_deviations or args.torsion_response:
             if args.checkpoint is None:
                 raise ValueError("Restraint deviations require a saved continuation in a numbered checkpoint")
             options["restraint_deviations"] = True
+            if args.torsion_response:
+                options["torsion_response"] = True
         if args.checkpoint is None:
             if args.saved_continuation or args.saved_continuation_id is not None:
                 raise ValueError("--saved-continuation needs a numbered run and --checkpoint")
@@ -1839,6 +1843,12 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
                             unit = "Å" if term["kind"] == "bond_simple" else "°"
                             print(f"{names} {measurement['value']:.3f}{unit}, target {term['target']:.3f}{unit}, "
                                   f"{measurement['delta_in_widths']:+.2f} restraint widths.")
+                            response = measurement.get("periodic_response")
+                            if response and response["status"] == "MEASURED":
+                                print(f"  This torsion is at {response['fraction_of_barrier']:.1%} of its barrier "
+                                      f"with {response['fraction_of_peak_slope']:.1%} of its peak turning force.")
+                            elif response:
+                                print(f"  Turning force unassessed. {response['reason']}.")
             transfer = result.get("registered_continuation", {}).get("frame_transfer")
             if transfer is not None:
                 print(f"Registration from {transfer['source_checkpoint']}. "

@@ -369,6 +369,18 @@ restraint width comes from the weight used in refinement. Assess local density
 separately. Missing or unoccupied atoms and undefined torsions have an explicit
 reason.
 
+For a saved crystal bond, add `--torsion-response` to include these
+measurements and show why a badly twisted bond can persist. The report gives
+the fraction of the periodic energy barrier and the fraction of the largest
+turning force available from that one restraint. At the top of its barrier a
+torsion has high energy and very little turning force. Other geometry terms
+and the diffraction still act on those atoms. Near-collinear paths give an
+explicit reason the angle cannot be interpreted reliably.
+
+```bash
+nasolve cif-doctor phosphate-image RUN --checkpoint refine-003 --saved-continuation-id 2 --torsion-response
+```
+
 The report measures the written model, reads its final geometry listing and
 shows how many bond, angle and torsion restraints Phenix applied during this
 fit. It also reports the starting and final work/free counts. Inspection can

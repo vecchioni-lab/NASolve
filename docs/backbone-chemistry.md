@@ -377,6 +377,35 @@ whole-map rms units). A jointly adjustable sugar–phosphate fragment with
 anchored flanking bases is the next starting model to test against the data.
 Both existing refinements and their selections are preserved.
 
+**C574, fitting the two sugars together.** In the 5W6W-derived PDU:PDU
+scaffold, 19 atoms could move during construction, spanning the two sugars and
+C:8 P, OP1 and OP2. The other 843 atoms, including the bases, anchored the
+fragment. Four intact T→G steps supplied independent starting shapes. The
+D:2–D:3 start reached −136.3° against the native −140° donor torsion, with
+all six local stereocentre signs preserved. It was chosen before inspecting
+diffraction. Five cycles of Phenix 2.2.1-6174 then fitted the complete models
+with both registered crystal bonds and the same 1,778 working and 124 free
+reflections.
+
+| Starting shape and refinement weights | D:7 donor turn | D:7 O3′–C:8 P | Largest sugar-angle deviation at D:7 or C:8, in native restraint widths | R-work / R-free |
+| --- | ---: | ---: | ---: | ---: |
+| Written shape, ordinary weights | +43.0° | 1.635 Å | 2.73 | 0.2022 / 0.2741 |
+| D:2–D:3 start, ordinary weights | −122.5° | 1.627 Å | 5.17 | 0.2017 / 0.2801 |
+| C:11–C:12 start, ordinary weights | −58.4° | 1.626 Å | 3.30 | 0.2079 / 0.2662 |
+| Written shape, fixed weights | +21.9° | 1.616 Å | 1.68 | 0.2492 / 0.3134 |
+| D:2–D:3 start, same fixed weights | −135.6° | 1.606 Å | 2.65 | 0.2451 / 0.3086 |
+
+The ordinary D:2–D:3 fit compressed D:7 C2′–C3′–O3′ to 96.5° against
+109.4°. Fixing the weights improved local geometry and worsened the overall
+diffraction agreement. Both PDU methyl tips in the fixed alternative lay
+within 0.14 Å of their base planes. Two common maps omitted all 19 atoms,
+used only working amplitudes and differed in bulk-solvent treatment. Across
+those 19 atoms, the ordinary alternative minus the ordinary written-shape
+control averaged −0.047 and −0.003 whole-map rms units in the difference
+maps. Nearby samples share density. At 4.19 Å there is insufficient evidence
+to choose a local conformation. Keep the alternatives available and carry
+the two-sugar check forward to an independently declared junction.
+
 One standalone five-cycle Phenix refinement used the corrected returned model,
 the two registered crystal partners, the original reflection flags and the seven
 effective restraint files. The R values were read at the start and end of the

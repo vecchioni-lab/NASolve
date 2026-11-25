@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-**Current work order, 2026-11-24.** This is the one unfinished-work queue. The
+**Current work order, 2026-11-25.** This is the one unfinished-work queue. The
 [capability table](cif-doctor.md#current-capability-boundary) records demonstrated
 support; the [handoff](development-handoff.md) says where work stopped. Old notes
 record what was known then. They do not create a second set of instructions.
@@ -299,9 +299,13 @@ At +40.7°, the existing onefold donor torsion supplies only 1.26% of its
 maximum turning force. C572 tested four intact T→G shapes at both written
 checkpoints. Moving just O3′ into the desired torsion distorted two phosphate
 angles to 64° and 145°. A rigid linkage also stretched a bond in the adjacent
-sugar. Next let the two sugars and intervening phosphate adjust together,
-anchoring the flanking bases. Keep the original branch, protected endpoints
-and free set for a matched refinement.
+sugar. C574 let both sugars and the intervening phosphate adjust with the
+flanking bases anchored. Two distinct shapes survived five full cycles at
+identical weights. The common working-only omit maps did not resolve which
+shape occurs at 4.19 Å. The original selection stands. Next carry the
+comparison to an independent, explicitly declared junction and track both
+neighboring sugars and the protected sites. See the
+[native comparison](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold).
 
 C537 checks which modeled atoms actually reached a native covalent plane.
 The historical GEO omitted C5A at both PDU sites. The corrected GEO included
@@ -1011,7 +1015,7 @@ sites while rechecking the frozen files before return.
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |
 | **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must receive the same chosen model and chemical/restraint meaning. | Complete for recorded alternatives, selected-model phasing, Coot, cold inspection and the ordinary five-cycle refinement handoff. Actual chemical survival/effective restraint behavior is Q06; no default activation or historical migration. |
-| **Q06 — show what survives real refinement** | Inspect the whole substituent, sugar, backbone and pair in the final Phenix model. | Open. The corrected terminal target reaches Phenix for both PDU and 5PC. A better bond can coexist with a larger bend. C513–C517 locate that bend and measure how the saved B values affect its calculated diffraction signal. The separate PDU:PDU scaffold retained both registered crystal phosphates through an ordinary restart. Compare an independent D:7 backbone starting geometry and its local density, and define the supported scope for DF beyond the tested nonmetal pair. |
+| **Q06 — show what survives real refinement** | Inspect the whole substituent, sugar, backbone and pair in the final Phenix model. | Open. PDU and 5PC retain the corrected terminal target. The PDU:PDU scaffold retained two crystal phosphates on restart. C574 compared distinct D:7 starts, neighboring sugars and common density. Next apply this comparison at an independently declared junction, record which atoms and crystal partners were protected, and define DF coverage beyond the tested nonmetal pair. |
 | **Q07 — prove the pieces work together** | Refine the eight named pairs with ATL alongside, including PDU and DF/A1AAZ. | The known thirteen-change scaffold completed two ordinary five-cycle rounds (C497/C505). Both retained all 38 backbone links, 211 frame restraints, protected phosphate angles and original Free-R flags. Two close ATL contacts remain. The separate closure test uses eight unfamiliar catalogue substitutions, including compatible modified backbones and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
 | **Q09 — preserve the correct sugar hand and fluorine geometry** | Carry the L-DNA, FANA, L-FANA and L-FDNA learning into ordinary model building/refinement. | Use atom connectivity and stereochemistry, not lists of residue names; complete linked and held-out controls. |

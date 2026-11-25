@@ -188,6 +188,17 @@ def test_written_restraints_use_the_registered_image_and_the_intact_links(tmp_pa
     peers = torsion["ordinary_links"]
     assert [[t["o3_site"], t["phosphate_site"]] for t in peers] == links[1:]
     assert [t["value"] for t in peers] == pytest.approx([-90, 90])
+    assert "periodic_response" not in torsion["written"]
+    response = measure_written_phosphate(model, row, model_sha256=digest, torsion_response=True)
+    measured = next(t for t in response["terms"] if t["atoms"] == torsion["atoms"])
+    for sample in [measured["written"], *measured["ordinary_links"]]:
+        observed = sample["periodic_response"]
+        assert observed["status"] == "MEASURED"
+        assert observed["fraction_of_peak_slope"] == pytest.approx(0.9271838546)
+        assert observed["fraction_of_barrier"] == pytest.approx(0.3126967033)
+        assert observed["degrees_to_nearest_maximum"] == pytest.approx(56.)
+    only_bond, = [t for t in response["terms"] if t["kind"] == "bond_simple"]
+    assert "periodic_response" not in only_bond["written"]
     missing = terms["O3'", "P", "OP2"]["ordinary_links"][1]
     assert missing["value"] is None and "OP2" in missing["reason"]
     assert all(t["value"] is not None for t in bond["ordinary_links"])
@@ -196,13 +207,25 @@ def test_written_restraints_use_the_registered_image_and_the_intact_links(tmp_pa
                  for line in lines]
     straight = tmp_path / "collinear.pdb"
     straight.write_text("\n".join([*collinear, "END", ""]))
-    changed = measure_written_phosphate(straight, row, model_sha256=sha256(straight.read_bytes()).hexdigest())
+    changed = measure_written_phosphate(straight, row, model_sha256=sha256(straight.read_bytes()).hexdigest(), torsion_response=True)
     undefined = next(t for t in changed["terms"] if t["atoms"] == torsion["atoms"])["ordinary_links"][0]
     assert undefined["value"] is None and "Collinear" in undefined["reason"]
+    assert undefined["periodic_response"]["status"] == "UNASSESSED"
     with pytest.raises(ValueError, match="checksum"):
         measure_written_phosphate(model, row, model_sha256="0"*64)
     with pytest.raises(ValueError, match="crystal frame"):
         measure_written_phosphate(model, dict(row, space_group="P -1"), model_sha256=digest)
+
+
+def test_a_stationary_periodic_torsion_can_be_at_the_minimum_or_the_barrier():
+    from nasolve.cif_phosphate_reference import _periodic_response
+    for delta, barrier in ((0., 0.), (-60., 1.)):
+        sample = dict(value=delta, delta=delta, near_collinear_review=False)
+        result = _periodic_response(sample, 3)
+        assert result["fraction_of_peak_slope"] == pytest.approx(0, abs=1e-14)
+        assert result["fraction_of_barrier"] == pytest.approx(barrier)
+    sample["near_collinear_review"] = True
+    assert _periodic_response(sample, 3)["status"] == "UNASSESSED"
 
 
 @pytest.mark.parametrize(("kind", "indices", "native_image", "expected"), [
