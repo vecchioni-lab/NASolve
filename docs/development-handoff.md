@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W266, 2026-11-25** (source pin follows qualification).
+**Current maintained slice: W266, 2026-11-25** (code `6322b479539815128febb307a143a092648d15cd`).
 The [original assembly observer](topostitch-preview.md#observe-original-assembly-images-without-rewriting-them-w266)
 now resolves simple assembly references through the actual Cartesian matrices and
 declared crystal group, retaining curated/depositor IDs as separate namespaces.

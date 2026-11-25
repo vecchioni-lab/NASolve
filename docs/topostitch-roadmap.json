@@ -1118,7 +1118,8 @@
         "W262: 169 focused source and 169 relocated installed checks, two subtests and 212 installation-file hashes. Eleven missing-API regressions now pass. Exact target-document binding rebuilds existing registration with original source polymer roles; all target codes retained. Four real default reports equal W261 exactly. Known ASU target reuse remains neutral; no writer or native job.",
         "W263: 184 focused source and184 relocated installed checks,two subtests and212 installation-file hashes. Four real controls retain four reference ranges and62 positions; source cuts have four segments,recuts ten across eight paths. Every segment retains align_id/ref_id; W262 fragment hashes exact. Explicit scheme resolves unknown atom insertion fields without rewriting; unknown/reversed/unmodeled cases stay reviewable. No database interpolation,native call or writer.",
         "W264: 200 focused source/200 relocated installed checks,two subtests,214 installation-file hashes. Four real controls: original6 uniform TLS groups,recut2 uniform/4 mixed.18 complete read-only Phenix2.2.1-6174/cctbx comparisons bound raw U transport to5.33e-15 A2 and Python/native agreement to3.55e-15 A2. Separate default-trace reinterpretation changes source TLS U up to2.46919 A2; raw S retained. Mixed groups not split or transported; no refinement or writer.",
-        "W265: 225 focused source/225 relocated installed checks,two skips/two subtests each;214 installed-file hashes. Full Willow2853 passed,4 skipped,234 subtests. Installed ordinary viewer reproduces exact W264 3LNA report after staged input/package relocation:4 mixed/2 uniform TLS groups,738 unique mixed members,1271 atoms. Separate complete Phenix2.2.1-6174 shared-original-motion diagnostic:4 groups,8 derived images,82 moved members; max per-atom U error3.55e-15 A2. No independent parameters,native fitting or writer."
+        "W265: 225 focused source/225 relocated installed checks,two skips/two subtests each;214 installed-file hashes. Full Willow2853 passed,4 skipped,234 subtests. Installed ordinary viewer reproduces exact W264 3LNA report after staged input/package relocation:4 mixed/2 uniform TLS groups,738 unique mixed members,1271 atoms. Separate complete Phenix2.2.1-6174 shared-original-motion diagnostic:4 groups,8 derived images,82 moved members; max per-atom U error3.55e-15 A2. No independent parameters,native fitting or writer.",
+        "W266: 268 focused source/268 relocated installed checks;216 installed-file hashes. Four original/recut3LNA/5LNA controls preserve fragment digests. Each generator retains1271/1275 atoms; recuts have8 paths,10 image/asym partitions,mixed paths3/6. Actual curated/depositor2/3 IDs resolve separately from matrices; raw-to-exact rounding is explicit. Raw H G^-1 endpoint preservation within1.59e-14 A. Exact installed relocated3LNA replay; no native/full-suite repeat."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
@@ -1147,14 +1148,15 @@
         "E_ORIGINAL_CIF_TARGET_DOCUMENT",
         "E_ORIGINAL_CIF_REFERENCE_RANGES",
         "E_ORIGINAL_CIF_TLS_TRANSPORT",
-        "E_ORIGINAL_CIF_TLS_INSPECTION"
+        "E_ORIGINAL_CIF_TLS_INSPECTION",
+        "E_ORIGINAL_CIF_ASSEMBLY"
       ],
       "last_audit": {
-        "date": "2026-11-24",
-        "code_commit": "6e90105f8c2b12a5444578dd1ba356087ece79a8",
-        "reviewer": "Linden; ordinary-inspection boundary coordinated with Rowan",
-        "human_update": 265,
-        "scope": "Source-bound public TLS inspection; positive-definite correlation non-uniqueness and assembly-reference planning audited. P03/writer remains partial."
+        "date": "2026-11-25",
+        "human_update": 266,
+        "code_commit": "6322b479539815128febb307a143a092648d15cd",
+        "reviewer": "Linden; scope and raw-matrix/order boundary coordinated with Rowan",
+        "scope": "Assembly reference and per-generator position transport only; writer, total-ADP/whole-assembly gates open"
       }
     },
     {
@@ -7523,6 +7525,95 @@
           "size": 79229
         }
       ]
+    },
+    "E_ORIGINAL_CIF_ASSEMBLY": {
+      "kind": "Original assembly/image-reference observation",
+      "date": "2026-11-25",
+      "human_update": 266,
+      "code_commit": "6322b479539815128febb307a143a092648d15cd",
+      "reference": "docs/topostitch-periodic.md#w266--resolve-assembly-images-from-their-actual-matrices",
+      "result": "268 focused source/268 relocated installed checks;216 installed-file hashes. Four original/recut3LNA/5LNA controls preserve fragment digests. Each generator retains1271/1275 atoms; recuts have8 paths,10 image/asym partitions,mixed paths3/6. Actual curated/depositor2/3 IDs resolve separately from matrices; raw-to-exact rounding is explicit. Raw H G^-1 endpoint preservation within1.59e-14 A. Exact installed relocated3LNA replay; no native/full-suite repeat.",
+      "limitation": "Single operator IDs only; raw matrices never snapped. Curated/depositor namespaces and supporting declarations remain distinct. No total-ADP/full assembly-set qualification, output entities, native refinement or writer; scientific payloads local.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w266-assembly-references/before.log",
+          "sha256": "38e4b5531da3fa2fc2b0465399fff26c220d06f1839b191a685cb960f87261a9",
+          "size": 38992
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w266-assembly-references/extra-before.log",
+          "sha256": "a274f9906d227cac23361bf0274c2659cd3bf0169b1092720024de58f6d95957",
+          "size": 4310
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w266-assembly-references/null-before.log",
+          "sha256": "5cd64fdcced39b26f1de6aaed3e529b2f0263d8dd9541ad277d442511ae3dfb5",
+          "size": 3007
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w266-assembly-references/focused-reviewed.log",
+          "sha256": "b5f29bde20daf218273dd0139a1a740a5b135a98def93b16cf56689a039fb420",
+          "size": 341
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w266-assembly-references/replay.py",
+          "sha256": "257651a82713feda1cc598c0784be99ef3682961d30c0a5cdca22d70469f219c",
+          "size": 3253
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w266-assembly-references/real-replay-reviewed.log",
+          "sha256": "b58afa3a013ad2f39e015150ebfb9561ee9f33820e3e5d518e9c89a02f5d6199",
+          "size": 232
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w266-assembly-references/real-assembly-observations.json",
+          "sha256": "ba567c1f18a2350d0c09971fb6cee5aa06cfc350f5132e489a542fa559f1a3f3",
+          "size": 1466384
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w266-assembly-references/qualify.py",
+          "sha256": "17630ac1ee31036e80f347d3f256bc1c0b9ca58f0fe733243ff6b5f2cfae0ed5",
+          "size": 6160
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w266-assembly-references/installation.json",
+          "sha256": "14e70cb966cf13d2ccb8a69394d45011b70f79097fd00ce119064f52c9ba2946",
+          "size": 39443
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w266-assembly-references/installed-tests.log",
+          "sha256": "19121a7ec6c2a939b9daf009ceea8e37cdd5c040dd60fe4d6f582d9bd8fd0102",
+          "size": 341
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w266-assembly-references/installed-entry-help.log",
+          "sha256": "679f832493614317c65fa5fac6b3e1ffece34e513efd47cd27eb3a45ab5ed56e",
+          "size": 2314
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w266-assembly-references/installed-real-replay.log",
+          "sha256": "2c5a9f054440fa1da8633e66692e88fa4df8e8cafdba20416a614887dd7cdff5",
+          "size": 144
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w266-assembly-references/validation.json",
+          "sha256": "1e4981f939228beef9d0c7575a062117c0376eb0f95fa516afb7740b26c88c98",
+          "size": 4810
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -9093,8 +9184,8 @@
       {
         "number": 266,
         "title": "Resolve original assembly images from their actual matrices",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "6322b479539815128febb307a143a092648d15cd"
       }
     ]
   },
