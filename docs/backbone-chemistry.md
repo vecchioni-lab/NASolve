@@ -652,6 +652,39 @@ atoms by less than 0.003 map standard deviations in every map and solvent
 comparison. The density gives little leverage between these two sugar fits.
 These omit comparisons concern the original C581 siblings.
 
+### How far local restraints carry the PDU arms at the original diffraction weight
+
+C586 kept the working diffraction weight at 12. It reused C585's atom-specific
+hydrogen-bond targets and strengthened only the five contacts flanking PDU by
+a factor of three. A second comparison transferred the C470 soft plane to
+each PDU, using the six ring atoms and the terminal carbon from its dictionary
+graph at a width of 0.10 Å. The three new five-cycle fits and the saved
+reference have identical starting coordinates and the same 1,778 working
+and 124 held-out reflections. The starting native geometry tables differ only
+in the declared contacts or planes. All 7,924 nonbonded contacts are shared.
+
+| Local treatment | A:11 O4···B:5 N6 (Å) | B:4 tip above ring (Å) | B:7 O3′···B:1 P (Å) | R-work |
+| --- | ---: | ---: | ---: | ---: |
+| Reference | 2.352 | 0.590 | 1.683 | 0.2078 |
+| Five stronger contacts | 2.705 | 0.543 | 1.672 | 0.2026 |
+| Two extra arm planes | 2.360 | 0.419 | 1.660 | 0.2077 |
+| Both changes | 2.703 | 0.510 | 1.683 | 0.2036 |
+
+Four of the five contacts moved closer to their targets when strengthened.
+The second crystal bond stayed between 1.612 and 1.627 Å in all four fits.
+Combining the changes gave less improvement in the B:4 tip than the planes
+alone. Phenix placed this tip only 0.061 Å from the seven-atom plane in the
+plane-only fit, while the height above the six ring atoms was 0.419 Å.
+Adding the tip to a fitted plane lets that plane tilt toward the tip. Both
+measurements matter when checking a chemical repair.
+
+The PDU dictionary matches C569's adjusted Cartesian template byte for byte.
+It supplies a 1.431 Å C5–C5A target, a 1.470 Å C5B–C5M target and a base
+plane containing C5A. This identifies the exact PDU input behind C581,
+C585 and C586. The earlier C581 replay note described it as a legacy arm.
+The two phosphates retained their image restraints and the terminal D:1
+retained its eleven native terms in all new fits. Each fit remains unselected.
+
 ## Building a requested 5'-terminal phosphate
 
 When a site is explicitly declared as a 5'-terminal phosphate, PostMR runs an

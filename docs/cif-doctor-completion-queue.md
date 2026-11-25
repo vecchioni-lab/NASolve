@@ -340,13 +340,17 @@ contacts to the archived NARestraints distance edits. With equal targets
 and widths, two native five-cycle fits gave identical written coordinates
 and different mmCIF bond types. A global weight of 4 brought both crystal
 junctions into the published ranges and the two PDU tips close to their
-planes, at a cost of 0.0209 in R-work. Keep these fits unselected. The next
-bounded geometry question is whether the strained canonical flanks can be
-regularized **locally at the higher data weight**, with the two crystal
-junctions, both arms and working diffraction checked together. First reuse
-the C585 controls. The separate export task is to carry the recipe's
-hydrogen-bond identity through final mmCIF alongside genuine crystal covalent
-links. [Measured native controls](backbone-chemistry.md#how-phenix-labels-base-pair-restraints-in-the-pdu-scaffold).
+planes, at a cost of 0.0209 in R-work. Keep these fits unselected. C586 answered the local comparison at weight 12.
+Strengthening the five contacts moved four closer to their targets. Adding
+two arm planes separately brought the B:4 tip to 0.419 Å from the ring.
+Combining the changes brought it to 0.510 Å, with a 1.683 Å central crystal
+bond. The close fit to the plane containing the tip overstates the improvement.
+Read the fitted plane and independent ring side by side, and use the working
+diffraction and local geometry forces to distinguish the remaining B:4 strain
+before trying a new width. The general correction remains open.
+Willow owns the explicit, evidence-backed connection-type proposal. Preserve
+the hydrogen-bond identity separately from the genuine crystal covalent links.
+[Measured local controls](backbone-chemistry.md#how-far-local-restraints-carry-the-pdu-arms-at-the-original-diffraction-weight).
 Keep the DF donor-state and PDU whole-arm decisions
 on Q06. See the
 [native comparison](backbone-chemistry.md#crossovers-in-the-ft-hg-scaffold).

@@ -1,32 +1,29 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-25, C585 base-pair geometry and deposition labels — Rowan**.
+Updated **2026-11-25, C586 local flanking contacts and PDU arm planes — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**.
 
-**C585.** Five completed five-cycle Phenix 2.2.1-6174 fits and two native
-working-only omit maps qualify the paired-base labeling issue that Willow
-found. With five atom-specific target lengths and widths held identical,
-native hydrogen bonds and distance edits produced the same 862 written
-coordinates and R factors. Phenix wrote all five rows as `hydrog` and
-`covale`, respectively. At lower working diffraction weights the two crystal
-phosphates and the PDU arms improved. Even the middle weight cost 0.0209 in
-R-work. The [measurements](backbone-chemistry.md#how-phenix-labels-base-pair-restraints-in-the-pdu-scaffold)
-and [deposition guidance](pdb-deposition.md#check-the-chemical-type-of-a-base-pair-contact)
-are recorded. Each fit is an unselected sibling.
+**C586, Q06.** Three five-cycle Phenix 2.2.1-6174 fits and the existing C585
+reference compare two local changes at working diffraction weight 12. Four
+of five flanking contacts improved with narrower widths. The two soft arm
+planes alone gave the lowest B:4 tip height in this set, 0.419 Å relative to
+the six ring atoms. Phenix printed 0.061 Å relative to the plane containing
+the tip. None of the four models is selected. Both crystal links, the
+D:1 terminal phosphate and the 1,778/124 work/free split survived.
+[Four measured outcomes](backbone-chemistry.md#how-far-local-restraints-carry-the-pdu-arms-at-the-original-diffraction-weight).
 
-This checkpoint changes the backbone guide, deposition guide, completion
-queue and handoff. Runtime, schema and migration behavior are unchanged.
-The compact local evidence archive is
-`branch-artifacts/cedar/c558-two-crystal-phosphates/C585 PDU pair restraints and deposition labels.zip`.
-Its `Read first.txt` gives exact reconstruction commands, and its manifest
-verifies the methods, native receipts and numerical results from
-`read-final.py`, `read-native-start.py` and `read-omit-maps.py`.
-The measured return table has SHA-256
-`b3a35a4ed4500beaa432a61c71d87b8fd19bee5a781f665bfa99d8692a37abe3`.
-No new model or diffraction data are in Git. The preceding C584 source and
-wheel each passed 107 focused checks. This documentation and native-controls
-checkpoint required no full regression. Next compare local geometry repair
-at the same diffraction weight and preserve pair intent for deposition.
+Changed the backbone guide, completion queue and this handoff. No runtime or
+schema migration. The local **C586 Local pair and arm geometry at fixed
+diffraction weight.zip** in `branch-artifacts/cedar/c558-two-crystal-phosphates/`
+holds the methods, settings and compact measurements. Its `Read first.txt`
+gives the replay command. All three final coordinate files and their
+initial geometry lists were checked with `methods/measure_local.py`.
+A fourth five-cycle fit from the relocated kit reproduced the combined model
+and its final native geometry file byte for byte, including all 862 positions.
+C585 established that the two base-pair naming routes produced identical
+coordinates and different deposition labels. See the [deposition guidance](pdb-deposition.md#check-the-chemical-type-of-a-base-pair-contact).
+The last software check at C584 passed 107 focused source and 107 installed
+tests. C585–C586 used native controls. Full regression was deferred.
 
 **C584.** The existing `cif-doctor phosphate-image` inspection now accepts
 `--na-val-2026`. On request it adds the published outer intervals for
