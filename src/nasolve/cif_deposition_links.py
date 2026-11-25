@@ -32,13 +32,15 @@ class _Coordinates:
     sequence_tables: list
     sequence_conflicts: set
 
+    def locate(self, site, atom, component=None, alt=None):
+        candidates = [(key, xyz) for key, xyz in self.sites.get(site, {}).items()
+                      if key[1] == atom and (not component or key[0] == component)
+                      and (not alt or not key[2] or key[2] == alt)]
+        return candidates[0] if len(candidates) == 1 else None
+
     def point(self, site, atom, component=None, alt=None):
-        candidates = [xyz for (comp, name, loc), xyz in self.sites.get(site, {}).items()
-                      if name == atom and (not component or comp == component)
-                      and (not alt or not loc or loc == alt)]
-        if len(candidates) == 1:
-            return candidates[0]
-        return None
+        match = self.locate(site, atom, component, alt)
+        return match[1] if match is not None else None
 
 
 def _number(value, gemmi):
@@ -120,11 +122,38 @@ def _coordinates(block, gemmi):
     return _Coordinates(sites, authors, sorted(models), cell, ops, unlabelled, list(sequences), conflicts)
 
 
-def _ordinary(c, maximum):
+def _ordinary_step(c, step, left, right, maximum):
+    model, chain = step["model"], step["label_asym_id"]
+    first, last = step["from_label_seq_id"], step["to_label_seq_id"]
+
+    def label(number, match):
+        return (chain, str(number), match[0][0], match[0][2]) if match else None
+
+    oxygen, phosphorus = label(first, left), label(last, right)
+
+    def phosphate_atom(name):
+        return c.point((model, chain, last), name, phosphorus[2], phosphorus[3])
+
+    geometry = _phosphate_geometry(left[1] if left else None, right[1] if right else None, phosphate_atom)
+    distance = geometry["distance_A"]
+    if distance is None:
+        status = "UNMEASURED"
+    elif oxygen[3] and phosphorus[3] and oxygen[3] != phosphorus[3]:
+        status = "ALTERNATE_LABEL_REVIEW"
+    elif distance > maximum:
+        status = "LONG"
+    elif any(v is None for v in geometry.values()):
+        status = "PARTIAL_ANGLES"
+    else:
+        status = "MEASURED"
+    return dict(step, status=status, O3_label=oxygen, P_label=phosphorus, operator_on_P="x,y,z", **geometry)
+
+
+def _ordinary(c, maximum, include_steps=False):
     chains = defaultdict(list)
     for model, ch, n in c.sites:
         chains[model, ch].append(n)
-    measured, long_steps, unmeasured, gaps = [], [], [], []
+    measured, long_steps, unmeasured, gaps, details = [], [], [], [], []
     for (model, ch), numbers in sorted(chains.items()):
         ordered = sorted(numbers)
         for a, b in zip(ordered, ordered[1:]):
@@ -135,18 +164,28 @@ def _ordinary(c, maximum):
                     step[side + "_author"] = next(iter(author))
             if b != a + 1:
                 gaps.append(step)
+                if include_steps:
+                    details.append(dict(step, status="SEQUENCE_GAP", O3_label=None, P_label=None,
+                                        operator_on_P=None, **_phosphate_geometry(None, None, None)))
                 continue
-            left, right = c.point((model, ch, a), "O3'"), c.point((model, ch, b), "P")
-            if left is None or right is None:
+            left = c.locate((model, ch, a), "O3'")
+            right = c.locate((model, ch, b), "P")
+            distance = None if left is None or right is None else dist(left[1], right[1])
+            if distance is None:
                 unmeasured.append(step)
-                continue
-            d = dist(left, right)
-            measured.append(d)
-            if d > maximum:
-                long_steps.append({**step, "distance_A": d})
-    return {"measured": len(measured), "minimum_A": min(measured, default=None),
-            "maximum_A": max(measured, default=None), "long_steps": long_steps,
-            "unmeasured": unmeasured, "sequence_gaps": gaps}
+            else:
+                measured.append(distance)
+                if distance > maximum:
+                    long_steps.append(dict(step, distance_A=distance))
+            if include_steps:
+                details.append(_ordinary_step(c, step, left, right, maximum))
+
+    result = {"measured": len(measured), "minimum_A": min(measured, default=None),
+              "maximum_A": max(measured, default=None), "long_steps": long_steps,
+              "unmeasured": unmeasured, "sequence_gaps": gaps}
+    if include_steps:
+        result["steps"] = details
+    return result
 
 
 def resolve_deposition_image(code, operations):
@@ -174,6 +213,15 @@ def _endpoint(row, side):
             row.get(group + "label_comp_id") or "", row.get(f"pdbx_ptnr{side}_label_alt_id") or "")
 
 
+def _phosphate_geometry(o3, phosphorus, image):
+    distance = dist(o3, phosphorus) if o3 is not None and phosphorus is not None else None
+    result = {"distance_A": distance}
+    for atom, field in (("OP1", "O3_P_OP1_deg"), ("OP2", "O3_P_OP2_deg"), ("O5'", "O3_P_O5prime_deg")):
+        third = image(atom) if distance is not None else None
+        result[field] = _angle([o3, phosphorus, third]) if third is not None else None
+    return result
+
+
 def _observe(c, model, oxygen, phosphorus, relative, gemmi):
     oc, on, om, oa = oxygen
     pc, pn, pm, pa = phosphorus
@@ -187,11 +235,7 @@ def _observe(c, model, oxygen, phosphorus, relative, gemmi):
     p = image("P")
     if o3 is None or p is None:
         return {"model": model, "distance_A": None}
-    result = {"model": model, "distance_A": dist(o3, p)}
-    for name in ("OP1", "OP2", "O5'"):
-        third = image(name)
-        result["O3_P_" + name.replace("'", "prime") + "_deg"] = _angle([o3, p, third]) if third is not None else None
-    return result
+    return {"model": model, **_phosphate_geometry(o3, p, image)}
 
 
 def _declared(block, c, gemmi):
@@ -220,7 +264,7 @@ def _declared(block, c, gemmi):
     return found, keys
 
 
-def _inspect(path, maximum, gemmi):
+def _inspect(path, maximum, gemmi, include_ordinary_steps):
     raw = Path(path).read_bytes()
     try:
         data = gzip.decompress(raw) if raw.startswith(b"\x1f\x8b") else raw
@@ -232,7 +276,7 @@ def _inspect(path, maximum, gemmi):
         raise ValueError("Supply a coordinate mmCIF with one atom_site data block")
     block = blocks[0]
     c = _coordinates(block, gemmi)
-    ordinary = _ordinary(c, maximum)
+    ordinary = _ordinary(c, maximum, include_ordinary_steps)
     declared, keys = _declared(block, c, gemmi)
     unresolved = [r["id"] for r in declared if not r["observations"]
                   or any(v["distance_A"] is None for v in r["observations"])]
@@ -241,6 +285,7 @@ def _inspect(path, maximum, gemmi):
     missing_oxygen_angles = [r["id"] for r in declared if any(
         obs.get("O3_P_OP1_deg") is None or obs.get("O3_P_OP2_deg") is None for obs in r["observations"])]
     review = bool(c.unlabelled or not ordinary["measured"] or ordinary["long_steps"] or ordinary["sequence_gaps"]
+                  or any(s["status"] != "MEASURED" for s in ordinary.get("steps", ()))
                   or ordinary["unmeasured"] or unresolved or extended or missing_oxygen_angles or c.sequence_conflicts)
     return {"sha256": sha256(raw).hexdigest(), "status": "REVIEW" if review else "CHECKED",
             "ordinary": ordinary, "declared": declared, "unmeasured_declarations": unresolved,
@@ -263,18 +308,18 @@ def _same_backbone(a, b):
     return bool(a.sites)
 
 
-def inspect_deposition_links(model, *, processed=None, maximum=2.2):
-    """Read ordinary steps without struct_conn, then measure explicit O3'–P records in their named images."""
+def inspect_deposition_links(model, *, processed=None, maximum=2.2, include_ordinary_steps=False):
+    """Read sequence steps and declared O3'–P images. Opt in for labels and geometry at each ordinary step."""
     try:
         import gemmi
     except ImportError as exc:
         raise ValueError("Deposition linkage inspection requires NASolve[topology]") from exc
     if not isfinite(maximum) or maximum <= 0:
         raise ValueError("The maximum step distance must be a positive finite number")
-    source, a, expected = _inspect(model, maximum, gemmi)
+    source, a, expected = _inspect(model, maximum, gemmi, include_ordinary_steps)
     report = {"schema_version": 1, "maximum_step_A": maximum, "status": source["status"], "model": source}
     if processed is not None:
-        returned, b, actual = _inspect(processed, maximum, gemmi)
+        returned, b, actual = _inspect(processed, maximum, gemmi, include_ordinary_steps)
         comparable = (_same_backbone(a, b) and not source["unmeasured_declarations"]
                       and not returned["unmeasured_declarations"])
         missing = sorted(expected - actual) if comparable else None

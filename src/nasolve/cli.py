@@ -324,6 +324,7 @@ def build_parser() -> argparse.ArgumentParser:
     deposition_links.add_argument("model", type=Path, help="exact coordinate mmCIF (requires NASolve[topology])")
     deposition_links.add_argument("--processed", type=Path, help="optional returned coordinate mmCIF to check for missing covalent declarations")
     deposition_links.add_argument("--max-step", type=float, default=2.2, metavar="ANGSTROMS", help="flag O3'–P distances above this length (default 2.2 Å)")
+    deposition_links.add_argument("--ordinary-steps", action="store_true", help="include each sequence step, its atom labels and three phosphate angles in the JSON reading")
     deposition_links.add_argument("--json", action="store_true", help="print distances, image angles and both file hashes")
     residue_geometry = cif_sub.add_parser("residue-geometry", help="inspect the bonds and angles Phenix used inside named residues")
     residue_geometry.add_argument("model", type=Path, metavar="PDB_OR_RUN", help="exact PDB or a numbered run with --checkpoint")
@@ -2130,7 +2131,8 @@ def _cif_deposition_links(args: argparse.Namespace) -> int:
     from .cif_deposition_links import inspect_deposition_links
 
     try:
-        result = inspect_deposition_links(args.model, processed=args.processed, maximum=args.max_step)
+        result = inspect_deposition_links(args.model, processed=args.processed, maximum=args.max_step,
+                                          include_ordinary_steps=args.ordinary_steps)
     except (OSError, ValueError, RuntimeError) as exc:
         print(f"CIF Doctor: {exc}", file=sys.stderr)
         return 1
@@ -2145,6 +2147,9 @@ def _cif_deposition_links(args: argparse.Namespace) -> int:
                       f"{len(steps['long_steps'])} long, {len(steps['unmeasured'])} unmeasured, "
                       f"{len(steps['sequence_gaps'])} sequence gaps. "
                       f"{len(data['declared'])} declared O3'-P links.")
+                if "steps" in steps:
+                    complete = sum(row["status"] == "MEASURED" for row in steps["steps"])
+                    print(f"  {complete} of {len(steps['steps'])} ordinary steps have complete phosphate geometry within the distance limit.")
                 for step in steps["long_steps"][:5]:
                     names = []
                     for side in ("from", "to"):

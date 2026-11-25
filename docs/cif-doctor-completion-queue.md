@@ -306,7 +306,10 @@ shape occurs at 4.19 Å. C575 identified B:7 sugar strain on the independent
 FT–Hg scaffold. C576 has now tested both adjoining sugars there against the
 archived five-cycle fixed-Hg controls. A transferred start repaired the B:1
 phosphate angle, while both new fits opened the sugar-to-base angle at B:7.
-The two common working-only maps gave opposite small mean differences. Keep
+The C578 deposition reader now supplies all ordinary backbone partners and
+phosphate angles after reslicing. Its 3LNA cross-check with Willow accounted
+for all 60 expected edges before and after the recut. This addresses exported
+topology. The two common working-only FT–Hg maps gave opposite small mean differences. Keep
 both models available. C577 traced the largest opening to the second
 coordinate-fit cycle. The native glycosidic angle resisted opening and other
 sugar bonds and the adenine plane supplied counterpressure. Giving both

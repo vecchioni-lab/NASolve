@@ -1,9 +1,29 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-25, C577 the B:7 sugar after five native cycles — Rowan**.
+Updated **2026-11-25, C578 measuring ordinary backbone steps across a crystal recut — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**.
 
-The B:7 sugar-to-base angle could be built at 115.1° with both bases free
+At Willow's request, the deposition reader can now return the label
+identities and three phosphate angles at every ordinary O3′–P step.
+Use `deposition-links --ordinary-steps --json` or the
+[public Python interface](cif-doctor.md#checking-backbone-continuity-before-deposition).
+Linden's saved 3LNA graph had 60 edges in the original and recut model.
+Both files gave 51 ordinary-only, seven ordinary and explicitly declared,
+and two explicit-only edges. All 58 ordinary distances and three angles
+agreed with the graph measurements within 7 × 10⁻¹⁶ Å and 3 × 10⁻¹⁴°.
+This was a read-only comparison. Willow owns the choice to write or select
+an output. Neither compact report changed.
+
+C578 changes `cif_deposition_links.py` and `cli.py`. Opt-in output adds
+`ordinary.steps`. Default output and checkpoint schemas remain compatible.
+Source and relocated wheel each passed 86 focused tests with
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider`
+on `tests/test_{deposition_ordinary_steps,cif_deposition_links,topostitch_registration,refinement_geometry_change,refinement_residue_geometry,phosphate_image,phosphate_reference_links}.py`.
+The source and installed reads of the two real models agreed. No scientific
+files were committed. The next Willow gate consumes these named edges in its
+ordinary export. Q06's chemistry gate below remains open.
+
+**C577, the FT–Hg sugar after refinement.** The B:7 sugar-to-base angle could be built at 115.1° with both bases free
 during construction. Five cycles of Phenix 2.2.1-6174 reopened it to 122.5°
 against 114.3°. Both image bonds finished near 1.62 Å, and the fixed Hg
 kept the two N3 donors. A replay of its matched control retained the exact

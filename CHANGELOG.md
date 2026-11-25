@@ -8,6 +8,10 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `cif-doctor deposition-links --ordinary-steps` exposes the two atom labels,
+  distance and three phosphate angles at each sequence step. This lets a crystal
+  recut check each backbone connection against its recorded partners.
+
 - `cif-doctor residue-geometry` compares two written models against the Phenix
   restraints that both fits used. It identifies newly distorted or improved
   bonds and angles and reports where the chemical targets or coverage differ.

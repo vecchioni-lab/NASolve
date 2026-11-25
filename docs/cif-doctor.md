@@ -128,6 +128,20 @@ reflection file, preserved deposition metadata and interpretation of the return.
 nasolve cif-doctor deposition-links model.cif --processed returned.cif --json
 ```
 
+Add `--ordinary-steps --json` to obtain each ordinary step, including sequence
+gaps and unresolved endpoints. In Python, use
+`inspect_deposition_links(path, include_ordinary_steps=True)` and read
+`report["model"]["ordinary"]["steps"]`. A processed comparison has its own
+step table. Each resolved endpoint gives label asym ID, label sequence ID,
+component and occupied alternate ID. The model number accompanies the pair.
+Direct neighbors use `x,y,z` on P. Distances are in Å and the three
+O3′–P–OP1/OP2/O5′ angles are in degrees. Identity geometry also works
+without a cell. Different alternate labels, ambiguous atoms, absent oxygen
+angles, gaps and long steps request review. Existing compact readings use
+the same distance calculation. Joining these rows to a declared strand graph
+can distinguish an ordinary connection, a named image bond and a genuine
+design nick.
+
 Doctor walks consecutive nucleotide positions within each model and label
 chain, measures the direct O3′–P distance, and checks any supplied sequence
 tables against the coordinate labels. This reading gives the same distances
