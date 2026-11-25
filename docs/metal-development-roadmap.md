@@ -526,6 +526,14 @@ while keeping dataset/site/geometry scope clear. This is a design requirement fo
 A05/A06, not an implemented GUI. Rwork display is capped at four significant figures;
 full-precision source evidence remains available.
 
+User-selected exemplars are collected locally in
+`ScienceCheckouts/exemplary images/index.html`: the 24 November FT_Hg base-pair/
+metal-pocket and phosphate figures (PNG/editable SVG), plus the original
+parameter-protection HTML layout. The gallery preserves source links/checksums
+and scientific caveats. Reuse the faint atom constellation, sparse labels, soft
+map contours and matched comparison scale; a visual exemplar is not a selected
+scientific solution. No crystallographic inputs are duplicated there.
+
 Specific design topics include:
 
 - Clear dataset/structure/site context and easy switching, with a sensible first
