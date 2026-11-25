@@ -4430,3 +4430,83 @@ This additive function does not alter W266 reports or the W267 viewer. Inputs ar
 rechecked after observation; no coordinates, atomic ADPs, labels, native settings
 or checkpoints are written. Source tensor convention remains the existing bound
 Cartesian-source contract, not a new generic CIF convention converter.
+
+
+## Prepare a reviewed whole-asym CIF draft (W272)
+
+`nasolve.topostitch_cif_output.prepare_whole_asym_cif(directory, model, *,
+reviewed_categories, tls_policy, center_policy, **binding)` returns
+`(document_bytes, receipt)` without writing or selecting a model. Use the exact
+saved representative packet and original coordinate mmCIF, with the existing
+source precision controls, explicit Cedar owner/hash and assembly-rounding bounds.
+No extra oligo-target options or implicit source lookup are accepted by this route.
+
+`reviewed_categories` maps **every original coordinate-block category** to the
+existing `_fingerprint(_rows(block, category))` digest after reviewing its output
+policy. The W271 source-specific category plan is one reviewed example. Missing,
+extra or changed digests refuse; simply auto-generating those hashes does not
+constitute semantic review. The caller owns the decision that all remaining
+metadata can be retained unchanged. There is no universal dictionary classifier
+or ordinary user-facing writer yet. Unknown frame-sensitive metadata requires a
+new explicit policy, not a blanket safe-copy declaration.
+
+The supported explicit policies are `tls_policy="preserve_raw_no_restart"` and
+`center_policy="unit_occupancy_present_polymer_mass"`. One image must cover every
+atom of each original label-asym and each complete declared TLS group. The draft
+retains atom/chain/entity/sequence/copy labels, original scalar B/Q/charge and
+ADP modes, all attached component definitions, and historical refinement values.
+It re-expresses full-precision Cartesian XYZ/U and raw TLS parameters; no TLS U is
+added to deposited total ADPs. Populated coordinate/TLS uncertainties, additional
+fractional coordinate columns and anisotropic B columns are outside this scope.
+
+Existing `_struct_conn` endpoints are encoded through the original symmetry
+table and checked by the pinned Cedar decoder. Their metadata and type survive;
+missing graph annotations are **not** inferred or silently created. The exact
+preview remains the external declared-graph authority. Native seam chemistry and
+complete in-file graph coverage remain later gates.
+
+Original assembly operator IDs remain in their curated/depositor namespaces.
+Derived raw **H G^-1** matrices receive collision-free IDs; generator rows are
+partitioned by original-asym image, retaining each source occurrence. Keep an
+original generator ID for its first partition and record all derived rows in
+`assembly_generator_lineage`. Inline matrices, author-chain lists and identity/
+all-chain flags are updated together. Conflicting supplied generator flags,
+author-chain lists or symmetry text are refused before rewriting. Raw matrix rounding is not replaced by
+exact symmetry. Unresolved operators/support/membership and helical metadata
+refuse. The flag and chain-list semantics follow the
+[wwPDB generator definitions](https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Categories/pdbx_struct_assembly_gen_depositor_info.html).
+
+If a polymer center is supplied, require complete present-polymer membership,
+unit occupancy and a source center matching elemental-mass weighting to the
+explicit implementation bound **5.01e-7 Å** per coordinate before recalculating.
+Preserve absent/null centers and unchanged center text for an identity proposal.
+Other center conventions remain unsupported. Scalar categories remain scalar;
+growing generator categories become one loop without duplicate categories.
+Every category is parsed back and compared with the proposed rows before return.
+
+The additive schema-1 receipt binds source/preview/output, reviewed categories,
+the existing owner reports, actual changed categories and assembly row lineage.
+It reports the count of re-expressed deposited tensors. `file_written`,
+`native_restart_qualified`, `all_declared_graph_links_written`,
+`retention_semantics_independently_approved`, `scientific_acceptance` and
+`runtime_authority` remain false. No existing schema/default/CLI is changed.
+
+Qualification: **185 focused source / 185 relocated installed checks**, two
+existing skips each; 218 installed files, exact actual 3LNA draft bytes/report
+after package and staged-input relocation, Python 3.10 syntax and viewer entry
+help. Five missing-API regressions failed before implementation. Four additional
+metadata-refusal regressions fail on the exact pinned pre-guard implementation
+and pass in the final source/installed suite. An inherited
+fixture's contact labels had to follow its earlier polymer renumbering; that
+initial refusal is retained separately from the passing qualification.
+
+One exact 3LNA whole-A diagnostic re-expresses **327 of 1,271** deposited tensors.
+Both serialized assembly namespaces retain **3,813** labelled occurrences;
+maximum raw endpoint error **4.27e-14 Å**. Independent **Phenix 2.2.1-6174 /
+Python 3.11.15** parsing retains labels/B/Q/elements/charge/ADP modes/multiplicity;
+XYZ/U readback errors are **1.07e-14 Å / 3.55e-15 Å²**. Direct IT1992 calculated
+scattering on **1,484** fixed prior indices differs relatively by **4.28e-15**.
+This was complete read-only execution, not a dry-run or refinement. It does not
+qualify TLS restart, native restraints, deposition acceptance or an adopted cut.
+The original source is unchanged; diagnostics stay local under NASolve anchor
+`branch-artifacts/willow/w272-whole-asym-draft/`. No full-suite repeat.

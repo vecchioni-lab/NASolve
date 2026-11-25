@@ -17,6 +17,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W272 — Prepare source-bound whole-asym CIF drafts
+
+- Add an explicit in-memory draft API that reuses source, connection, assembly
+  and TLS owners. Require caller-reviewed category fingerprints; preserve original
+  labels, scalar/loop layout, component templates and scalar displacement state.
+- Re-express XYZ/deposited U/raw TLS, preserve assembly occurrence lineage and
+  update supplied polymer centers under a checked convention. Refuse mixed
+  asym/TLS images, unresolved references and unsupported uncertainty fields.
+- Qualify 185 source and 185 relocated installed checks, two existing skips each;
+  exact installed 3LNA bytes/report and independent native parse/scattering pass.
+  No CLI/default change, automatic file write, native restart or model selection.
+
 ### W271 — Plan whole-asym output fields and separate native TLS restart
 
 - Classify every original category occurrence and require coherent assembly,
