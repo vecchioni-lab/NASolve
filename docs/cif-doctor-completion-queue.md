@@ -352,7 +352,9 @@ cycles. In both fits the working diffraction contribution reversed as the
 target switched from least squares to maximum likelihood in cycle three.
 The chemical plane continued to pull the carbon toward its ring. Compare
 both diffraction targets at the same coordinates, atomic displacement and
-scale before changing a restraint. The general correction remains open.
+scale before changing a restraint. C589 now records Phenix's own target
+announcement per cycle in new AutoRefine round reports. The phased FT–Hg
+control kept a single target throughout. The general correction remains open.
 [Cycle-resolved evidence](backbone-chemistry.md#when-the-b4-tip-left-the-ring-plane).
 Willow owns the explicit, evidence-backed connection-type proposal. Preserve
 the hydrogen-bond identity separately from the genuine crystal covalent links.

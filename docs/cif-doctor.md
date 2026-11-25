@@ -14398,6 +14398,16 @@ unrecognized evidence reports an unknown weight. In the five-cycle A:PDU
 comparison the last chosen weights were 10.000 and 1.517. The coordinates from
 that comparison alone cannot isolate how much of the change came from the plane.
 
+In new round reports, `statistics.diffraction_target_steps` records the
+native cycle number, the stated number of cycles, and the target named in
+that cycle's **Set refinement target** section. A completed target
+announcement can precede an interrupted coordinate fit. Missing or
+ambiguous announcements leave that cycle unreported. The list is omitted
+when none are available. Older saved reports retain their original fields.
+On the [two PDU replays](backbone-chemistry.md#when-the-b4-tip-left-the-ring-plane),
+the coordinate weight stayed at 12 while the target changed in cycle three.
+The five-cycle FT–Hg control used its experimental-phase target throughout.
+
 When a captured positive-weight angle has an exact 180° target and any two of
 its atoms have distinct known positions in the fitted group or its linear
 continuation, the report measures the third against the original plane. The

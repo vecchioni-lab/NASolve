@@ -8,6 +8,11 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- AutoRefine round reports record which diffraction target Phenix
+  announced in each numbered cycle when the native log identifies it.
+  This can reveal a change from least squares to maximum likelihood at a
+  constant coordinate weight.
+
 - `cif-doctor assess --refined-planes` shows how far a ring-attached
   alkynyl tip lies from the fitted restraint plane and how much that
   plane tilts toward the tip. It uses the written coordinates and the

@@ -1,7 +1,30 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-25, C588 following a PDU arm through native refinement — Rowan**.
+Updated **2026-11-25, C589 recording the native diffraction target — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**.
+
+**C589.** The existing AutoRefine round report recorded the chosen coordinate
+weight. It now also reports an unambiguous native diffraction target
+announcement under `statistics.diffraction_target_steps`. The source and
+relocated wheel readers agreed on all 25 announcements in five saved native
+Phenix 2.2.1-6174 logs. All four PDU controls changed to maximum likelihood
+on cycle three despite a constant coefficient of 12. The independent FT–Hg
+fit with measured phases kept the `mlhl` target for all five cycles, which
+also matched its live target observer. No new fit was needed for this check.
+
+The change is in `src/nasolve/autorefine.py` and `tests/test_autorefine.py`,
+with the field documented in the CIF Doctor guide and changelog. Two
+line-ending cases failed before the change. The following focused command
+passed **61 tests and 52 subtests** from source and again from a moved
+wheel installation, including the ordinary
+round-report and checkpoint route. Source validation used
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`. No full regression was run.
+Older reports require no migration. The detailed list stays in the round
+report. Checkpoint metrics, selection rules and chemistry are unchanged.
+
+```sh
+python -B -m pytest -q -p no:cacheprovider tests/test_autorefine.py tests/test_checkpoints.py
+```
 
 **C588, Q06.** Both five-cycle Phenix 2.2.1-6174 replays reproduced their
 C586 coordinates and final geometry files byte for byte. The B:4 tip moved

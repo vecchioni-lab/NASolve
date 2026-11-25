@@ -234,6 +234,9 @@ def make_refine(
         "Path('refined_001.reflections.cif').write_text('data_reflections\\n')\n"
     ) + mtz_outputs + phase_change_code + (
         "print('Start: r_work = 0.412 r_free = 0.438 bonds = 0.012 angles = 1.82')\n"
+        "print('***** REFINEMENT MACRO_CYCLE 1 OF 5 *****')\n"
+        "print('===== Set refinement target =====')\n"
+        "print('  using refinement target ls_wunit_k1')\n"
         "print('Macrocycle 1: r_work = 0.331 r_free = 0.359')\n"
         f"print('Final: r_work = {final_work} r_free = {final_free} bonds = 0.009 angles = 1.21')\n"
         "print('clashscore = 4.8')\n"
@@ -1020,6 +1023,11 @@ class AutoRefineTests(unittest.TestCase):
             )
             first_report = json.loads(first.report_path.read_text())
             self.assertEqual(first_report["phenix_version"], PHENIX_21)
+            self.assertEqual(first_report["statistics"]["diffraction_target_steps"], [
+                {"macro_cycle": 1, "total_cycles": 5, "target": "ls_wunit_k1"}
+            ])
+            records, _, _ = list_checkpoints(run)
+            self.assertNotIn("diffraction_target_steps", records[-1].metrics)
             self.assertEqual(
                 first_report["reflection_selector_mode"],
                 DATA_MANAGER_FILE_SCOPED,
@@ -1508,6 +1516,36 @@ class AutoRefineTests(unittest.TestCase):
             with self.subTest(fragment=fragment):
                 result = parse_refinement_statistics(xyz + fragment)["coordinate_weight_steps"]
                 self.assertEqual(result, [{"step": 1, "source": "unreported", "weight": None, "trial_count": None}])
+
+    def test_statistics_reads_diffraction_targets_only_from_their_native_cycle(self):
+        def cycle(n):
+            return f"***** REFINEMENT MACRO_CYCLE {n} OF 5 ******\n"
+        def section(name):
+            return f"====== {name} =======\n"
+        def reported(name):
+            return "  using refinement target " + name + "  \n"
+        target = section("Set refinement target")
+        noise = section("XYZ individual (reciprocal space)") + reported("ignored")
+        text = target + reported("before_any_cycle")
+        text += cycle(1) + target + reported("ls_wunit_k1") + noise
+        text += cycle(2) + noise
+        text += cycle(3) + target + reported("ml") + noise
+        text += cycle(4) + target + reported("ml") + reported("ls_wunit_k1")
+        text += cycle(5) + target + reported("mlhl")
+        for linebreak in ("\n", "\r\n"):
+            with self.subTest(linebreak=linebreak):
+                stats = parse_refinement_statistics(text.replace("\n", linebreak))
+                self.assertEqual(stats["diffraction_target_steps"], [
+                    {"macro_cycle": 1, "total_cycles": 5, "target": "ls_wunit_k1"},
+                    {"macro_cycle": 3, "total_cycles": 5, "target": "ml"},
+                    {"macro_cycle": 5, "total_cycles": 5, "target": "mlhl"},
+                ])
+        for body in (noise, target, "Job complete\n" + target + reported("ml"),
+                     target + reported(""), target + reported("unknown target"),
+                     target + reported("ml") + target + reported("ls_wunit_k1")):
+            with self.subTest(body=body):
+                self.assertNotIn("diffraction_target_steps", parse_refinement_statistics(cycle(1) + body))
+        self.assertNotIn("diffraction_target_steps", parse_refinement_statistics(cycle(6) + target + reported("ml")))
 
     def test_statistics_parser_reads_completed_native_step_table(self):
         # Phenix 2.2.1 prints candidate criteria and initial geometry too; neither
