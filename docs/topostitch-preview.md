@@ -4633,3 +4633,38 @@ geometry is flagged for review. Native TLS restart, full mixed-path cuts, chemic
 nick assignment and ordinary checkpoint/GUI integration remain separate gates.
 The actual supported 3LNA export reproduces W272's native-tested coordinate bytes;
 this does not constitute a new refinement or a general native-restart approval.
+
+
+## Export and replay through the cut-preview command (W277)
+
+Legacy preview construction and `--describe-graph` retain their behavior. The
+same installed command now offers explicit whole-asym export and read-only replay:
+
+```bash
+nasolve-topostitch-cut-preview original.cif --export-preview saved-preview \
+  --export-options reviewed-options.json --cedar-source /path/to/cedar/src \
+  --out new-export
+nasolve-topostitch-cut-preview --replay-export new-export \
+  --expected-export-sha256 DIGEST_FROM_PRODUCER --cedar-source /path/to/cedar/src
+```
+
+`reviewed-options.json` contains the exact W272 draft keywords (source/preview/
+owner hashes, component aliases, precision and assembly bounds, category review,
+TLS and center policies). It contains no input/output paths. The existing draft
+owner rejects missing/extra fields; the CLI neither chooses policies nor guesses
+chemistry. Export/replay cannot be mixed with discovery, registration, proposal or
+graph-description arguments. Existing destinations remain protected.
+
+Successful export prints a schema-1 `topostitch-whole-asym-export-handoff` JSON
+object with run-relative receipt/model references, byte sizes and SHA-256 values.
+The receipt file digest is computed from the trusted producer's canonical return
+and checked against the written file before printing. Save that trusted handoff
+and supply `receipt.sha256` to replay; do not generate a new expected hash from an
+untrusted incoming file. References are relative to the explicitly chosen export
+directory, not a global filesystem search. Replay validates and regenerates the
+packet through the existing loader and prints the same bound references.
+
+This additive stdout contract is not a new coordinate/receipt schema or a
+checkpoint registry entry. A handoff remains review-required, unselected and not
+native-restart-qualified. Inspector consumption is the next separate integration
+step; no automated inspection, refinement, selection or native execution starts.

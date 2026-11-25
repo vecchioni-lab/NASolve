@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W277 — Expose explicit export and trusted replay in the existing command
+
+- Add whole-asym export/replay modes to `nasolve-topostitch-cut-preview`, with
+  caller-reviewed options and explicit Cedar source. Legacy previews stay intact.
+- Emit a run-relative JSON handoff with the producer-derived receipt file digest;
+  require that trusted digest for replay, and reject mixed modes or changed output.
+- No checkpoint, native execution, policy inference or inspector integration.
+
 ### W276 — Publish complete export receipts atomically
 
 - Publish the existing canonical receipt bytes only after a temporary file is

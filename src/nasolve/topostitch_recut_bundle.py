@@ -612,16 +612,81 @@ def observe_relabel_serialization(directory, model, *, expected_receipt_sha256,
     return result
 
 
+def _whole_asym_export_command(parser, args):
+    """Use the existing exporter/loader; never derive trust from incoming bytes."""
+    from .topostitch_cif_output import write_whole_asym_cif, load_whole_asym_cif, _export_json
+    if args.describe_graph or args.discovery is not None or args.registration is not None or args.proposal is not None:
+        parser.error('Export/replay cannot be mixed with preview construction or graph description')
+    if args.export_preview is not None and args.replay_export is not None:
+        parser.error('Choose export or replay, not both')
+    if args.cedar_source is None:
+        parser.error('Export/replay requires explicit --cedar-source')
+    replay = args.replay_export is not None
+    if replay:
+        if any(x is not None for x in (args.model,args.out,args.export_options)):
+            parser.error('Replay accepts only its directory, trusted digest and Cedar source')
+        if args.expected_export_sha256 is None:
+            parser.error('Replay requires --expected-export-sha256 from the trusted producer')
+        root=args.replay_export
+    else:
+        if args.model is None or args.out is None or args.export_options is None:
+            parser.error('Export requires original CIF, --out and --export-options')
+        if args.expected_export_sha256 is not None:
+            parser.error('--expected-export-sha256 belongs to replay only')
+        root=args.out
+    try:
+        if replay:
+            receipt=load_whole_asym_cif(root,expected_receipt_sha256=args.expected_export_sha256,
+                                        cedar_source=args.cedar_source)
+            data=(root/'export.json').read_bytes()
+            if sha256(data).hexdigest()!=args.expected_export_sha256:
+                raise ValueError('Export receipt changed before handoff')
+            digest=args.expected_export_sha256
+        else:
+            options=_json(args.export_options.read_bytes())
+            if not isinstance(options,dict):raise ValueError('Export options must be a JSON object')
+            # Paths belong to explicit CLI arguments, never the policy document.
+            if any(k in options for k in ('directory','model','output_directory','cedar_source')):
+                raise ValueError('Export options must be path-free draft policies/bindings')
+            receipt=write_whole_asym_cif(args.export_preview,args.model,output_directory=root,
+                                        cedar_source=args.cedar_source,**options)
+            data=_export_json(receipt)
+            digest=sha256(data).hexdigest()
+            if (root/'export.json').read_bytes()!=data:
+                raise ValueError('Export receipt changed before handoff')
+        result=dict(schema_version=1,kind='topostitch-whole-asym-export-handoff',
+            status=receipt['status'],receipt=dict(anchor='run',relative_path='export.json',
+                sha256=digest,size_bytes=len(data)),output=receipt['artifacts']['representative.cif'],
+            complete_declared_backbone_coverage=receipt['complete_declared_backbone_coverage'],
+            selection_applied=False,checkpoint_created=False,native_restart_qualified=False,
+            runtime_authority=False)
+    except (OSError,ValueError,RuntimeError,TypeError) as exc:
+        parser.exit(2,f'{parser.prog}: {exc}\n')
+    print(json.dumps(result,indent=2,allow_nan=False))
+    return 0
+
+
 def main(argv=None):
     parser=argparse.ArgumentParser(prog='nasolve-topostitch-cut-preview',
-        description='Freeze an explicit representative proposal for review; no edited model or chemical link.')
-    parser.add_argument('model',type=Path)
-    parser.add_argument('--discovery',type=Path,required=True)
-    parser.add_argument('--registration',type=Path,required=True)
+        description='Review representative proposals or explicitly export/replay a diagnostic whole-asym CIF; no checkpoint, refinement or chemistry change.')
+    parser.add_argument('model',type=Path,nargs='?')
+    parser.add_argument('--discovery',type=Path)
+    parser.add_argument('--registration',type=Path)
     parser.add_argument('--proposal',type=Path,help='Exact proposal JSON; required when building a preview')
     parser.add_argument('--out',type=Path,help='New immutable preview directory; required when building')
     parser.add_argument('--describe-graph',action='store_true',help='Print verified graph IDs/checksum and optional proposal binding; does not validate or build a cut')
+    parser.add_argument('--export-preview',type=Path,help='Saved whole-asym preview to export with the explicit original CIF positional argument')
+    parser.add_argument('--export-options',type=Path,help='Complete reviewed path-free draft options JSON; no inferred policies')
+    parser.add_argument('--cedar-source',type=Path,help='Explicit compatible Cedar source for export/replay')
+    parser.add_argument('--replay-export',type=Path,help='Verify an existing diagnostic export; writes no files')
+    parser.add_argument('--expected-export-sha256',help='Trusted producer file digest for export.json; required for replay')
     args=parser.parse_args(argv)
+    if args.export_preview is not None or args.replay_export is not None:
+        return _whole_asym_export_command(parser,args)
+    if any(x is not None for x in (args.export_options,args.cedar_source,args.expected_export_sha256)):
+        parser.error('Export options require --export-preview or --replay-export')
+    if args.model is None or args.discovery is None or args.registration is None:
+        parser.error('Preview/description requires model, --discovery and --registration')
     if args.describe_graph and args.out is not None:
         parser.error('--describe-graph cannot be combined with --out')
     if not args.describe_graph and (args.proposal is None or args.out is None):
