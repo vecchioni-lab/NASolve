@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W267, 2026-11-25** (source pin follows qualification).
+**Current maintained slice: W267, 2026-11-25** (code `7ff57017bd1aba8ac5d776f8838f68aef9f3bc8c`).
 The [ordinary assembly inspector](topostitch-preview.md#inspect-assembly-references-beside-the-saved-cut-w267)
 now shows actual raw matrices, exact crystal-image matches and original generator
 membership beside the saved ASU cut. An explicit three-key rounding-bounds file
@@ -107,13 +107,12 @@ sweep; no joint native execution or scientific parent is claimed here.
 No Cedar/Alder implementation was merged or changed here.
 
 **Human checkout:** GitHub anchor
-`ScienceCheckouts/Linden/2026-11-24_sequence-and-cut-review/index.html` and
-`open_report.py` show retained sequence coverage, missing parent evidence and the
-four-to-eight path example. Five local links and Python 3.10 opener syntax pass;
-no browser render check is claimed. Earlier connection/source-path reports remain
-linked and unchanged. These are compact static reports, not the future P02 editor.
-No newly bent model or deposition-ready recut is claimed. Exact W255–W260 scope,
-failures and next actions are in the periodic ledger and machine roadmap.
+`ScienceCheckouts/Linden/2026-11-25_assembly-images/index.html` and `open_report.py`
+link the actual installed 3LNA inspector and exact validation evidence. The report
+separates assembly namespace/image identity from physical movement; no new bend,
+refinement or deposition-ready recut is claimed. The prior sequence/cut checkout
+remains linked and unchanged. Local links and Python 3.10 opener syntax pass;
+browser rendering is unverified. These are inspection reports, not the P02 editor.
 
 W254's compact failed-proposal reporting remains validated (274 source/274
 installed, one skip each); W255 used it to identify the rejected OP2 proposal.
