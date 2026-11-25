@@ -18,20 +18,20 @@ Hg moves 0.089 / 0.086 Å; Rfree is 0.3371 / 0.3362. Existing B machinery
 previews base/donor alternatives from the returned models without changing them.
 No selected endpoint, f″ result or global real-space qualification follows.
 
-**Latest A01 increment:** complete command binding now passes 14 native source/
-14 installed tests and 34 focused neighbouring checks (21 subtests). Genuine PDU
-readback assembles 11 ordered inputs/eight restraints with its returned endpoint,
-original data/Free-R and no invented HL. Synthetic old-path-gone relocation and
-existing numbered-request freezing pass without executing refinement. See the
-[complete-command boundary](metal-ordinary-receiving.md#complete-command-binding-without-execution).
+**Latest A01 increment:** the separate reciprocal XYZ/group-B runtime guard now
+passes 17 source/17 installed controlled-dispatch checks, actual-native failure
+restoration and a new 8.99-second zero-cycle initialization (859 atoms, 42 B groups,
+two links, three full model observations). No fit or native optimizer qualification
+is claimed. Real-space and multiprocess scope explicitly refuse. See the
+[runtime boundary](metal-ordinary-receiving.md#explicit-reciprocal-xyzgroup-b-runtime-guard).
 
-**Next A01 subgoal — versioned ordinary mixed-policy integration:** receive Cedar's
-prepared/backbone/runtime interfaces deliberately; compose scoped XYZ/group-B
-policy, original source admission and continuous parameter/diffraction observation
-under the existing numbered owner with output/process closure. The command adapter
-accepts file rebinding only, not an altered scientific recipe under historical
-V11/V12. FT private ancestry remains unavailable; PDU is an ordinary mechanical
-control without HL. No new native fit or endpoint acceptance in this increment.
+**Next A01 subgoal:** qualify the actual native reciprocal optimizer callbacks,
+then receive Cedar's prepared/backbone interfaces and connect the explicitly
+versioned mixed declaration through the ordinary numbered owner with output and
+process closure. Real-space sliced/auxiliary models need their own identity proof.
+Keep prior complete-command/source-selector evidence; their v1 policy permits
+file rebinding only. Do not relabel altered scope/target as historical V11/V12.
+FT private ancestry remains unavailable; PDU has no HL. No new endpoint acceptance.
 
 **Latest mechanical increment:** the passive diffraction observer now carries
 independently read source captures to the active manager and actual native HL

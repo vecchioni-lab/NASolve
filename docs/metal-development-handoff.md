@@ -15,37 +15,41 @@ not a second queue.
 
 <a id="a01-parameter-scope-2026-11-25"></a>
 
-## Current A01 — complete command binding qualified without execution
+## Current A01 — reciprocal runtime guard, initialization qualified
 
-The [complete-command adapter](metal-ordinary-receiving.md#complete-command-binding-without-execution)
-connects the checked request, anchored inputs and exact derived policy to the
-existing command builder. It takes an explicitly admitted returned endpoint,
-preserves ordered restraints and original data/Free-R/optional phases, and refuses
-unbound files, conflicting overrides or changed scientific policy. No executor,
-checkpoint/default activation or native runtime policy changes.
+The [separately versioned guard](metal-ordinary-receiving.md#explicit-reciprocal-xyzgroup-b-runtime-guard)
+now checks the declared reciprocal XYZ/group-B scope and exact MLHL source at
+initialization, macro stages and target-call boundaries around the existing
+execution owner. Caught failures remain latched; completion is explicit and hooks
+restore on success/failure. Counter-based summaries stay small. Real-space/sliced
+models and multiprocess dispatch explicitly refuse; old V11/V12 remain unchanged.
 
-**Validation:** 14 native source and 14 installed tests pass; 34 neighbouring
-checks pass with 2 native skips, 32 deselected and 21 subtests. Tests include
-old-path-gone command relocation and existing numbered-request freezing without
-execution. A genuine PDU read through Cedar prepares 11 ordered inputs/eight
-restraints using the returned endpoint, original mean data and FreeR_flag.
-Missing HL stays missing. The temporary generated policy is removed, and source
-report/registry pins stay unchanged. No model/map copy, native fit or full suite.
-All final commands, source hashes and preserved initial failures are in
-`a01-command-binding-20261125-01/` under the Alder artifact anchor, runners
-A772–A774. The compact checkout is
-`ScienceCheckouts/Hazel/2026-11-25_parameter-protection/command-binding.html`.
+**Validation:** 17 source and 17 installed controlled-dispatch tests; an installed
+actual-native-hook failure/restoration check; 65 cold source/loaded/wheel checks.
+One 8.99-second native zero-cycle initialization passes three full observations
+for 859 atoms/42 B groups with both crystal links, original diffraction/Free-R/HL
+and protected state. This private FT control explicitly declares reciprocal-only
+scope. It is not a new native fit, ordinary source adoption or actual native
+optimizer-call qualification. All prior fitted results retain their original pins.
 
-**Next A01 step:** deliberately receive Cedar's newer prepared/runtime interfaces
-and bind the mixed XYZ/group-B policy and continuous parameter/diffraction guards
-under a new runtime version, with existing output/process closure. This adapter
-supports an unchanged scientific policy with rebound files only; it does not
-qualify changed strategy/scope under V11/V12. FT ordinary ancestry remains absent;
-PDU has no HL. A01 partial; A02 quantitation gated. All jobs stopped at delivery.
+Evidence: `a01-mixed-runtime-guard-20261125-01/` under the Alder artifact anchor,
+runners A776–A780; exact commands and code hashes in README/review/package receipts.
+About 5.1 MB, including software and dry output; summary 2,593 bytes. No science
+input/model/map copies. Temporary package staging removed. Compact checkout:
+`ScienceCheckouts/Hazel/2026-11-25_parameter-protection/runtime-guard.html`.
 
-Previous file-selector evidence remains in `a01-parameter-files-20261125-01/`
-(A765–A770): 15 source/15 installed native checks, 26 cold checks and genuine
-policy replay. No need to repeat that unchanged boundary.
+**Next A01 step:** qualify actual native reciprocal optimizer callbacks, then
+connect the explicit mixed declaration through the newer prepared/backbone and
+ordinary numbered runtime with output/process closure. Real-space identity remains
+separate. The prior command adapter permits file changes only, so mixed scope or
+MLHL target changes require a new declared receiving policy. FT ordinary ancestry
+is still absent; genuine PDU has no HL. A01 partial; A02 gated. No full suite.
+
+Prior command qualification remains in `a01-command-binding-20261125-01/`:
+14 source/14 installed native cases, 34 neighbouring tests/21 subtests and genuine
+PDU returned-model command readback (11 inputs/eight restraints). Prior selector
+qualification remains in `a01-parameter-files-20261125-01/`. Reuse both; no repeat
+is needed for unchanged code. All owned jobs stopped at delivery.
 
 ## Earlier boundary — ordinary admission made explicit
 

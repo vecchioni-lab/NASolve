@@ -48,6 +48,17 @@ there is no new executor, checkpoint allocation or default caller. Source/endpoi
 admission and versioned mixed-policy runtime/output closure remain separate.
 See [complete command binding](metal-ordinary-receiving.md#complete-command-binding-without-execution).
 
+`refinement_mixed_runtime.MixedRuntimeGuard` supplies an opt-in, separately
+versioned native callback context for reciprocal XYZ/group-B and exact merged
+MLHL data. It reuses the passive scope/diffraction checkers, latches failures,
+requires explicit completion and restores only its own bindings. Source-pinned
+callbacks observe initialization, enabled macro stages and target evaluations;
+compact counters avoid per-evaluation snapshots. Real-space/sliced models and
+multiprocess execution remain unqualified and explicitly refuse. Existing
+restraint, output and process owners remain required. No historic runtime bytes,
+ordinary defaults or numbered dispatch are changed. See the
+[qualified initialization and limits](metal-ordinary-receiving.md#explicit-reciprocal-xyzgroup-b-runtime-guard).
+
 Historical counted V5–V8 code preparation now obtains `topostitch_native_recipe.py`
 from `data/refinement-runtime-native-recipe-sources.json`, retaining its already
 qualified SHA-256. Modern direct callers retain the newer explicit native-crystal

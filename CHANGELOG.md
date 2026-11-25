@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Enforce an explicit reciprocal XYZ/group-B runtime scope
+
+- Add a separately versioned native guard around existing execution, with exact
+  parameter/diffraction checks at initialization, stages and optimizer boundaries,
+  latched failures, explicit completion and restoration on success/interruption.
+- Pin callback sources and keep compact counters. Explicitly refuse real-space/
+  sliced-model and multiprocess scope until independently qualified.
+- Qualify controlled dispatch, installed native-hook restoration and one native
+  zero-cycle initialization. No new fit, ordinary dispatch, historical payload,
+  artifact migration or full-suite change; actual native optimizer coverage remains
+  a separate gate.
+
 ### Bind verified inputs into complete refinement commands
 
 - Reuse existing checked requests, anchored input resolution and the ordinary

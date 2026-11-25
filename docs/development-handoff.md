@@ -7,15 +7,16 @@ observation and storage owners; it introduces no new scientific policy.
 
 ## Current metal-science edge
 
-A01 remains partial; A02 scientific quantitation remains gated. The latest
-[complete-command binding](metal-ordinary-receiving.md#complete-command-binding-without-execution)
-qualifies returned-model selection, ordered anchored inputs, exact derived policy
-and original command settings. Fourteen native source/14 installed cases and
-34 neighbouring checks (21 subtests) pass. Genuine PDU readback retains 11 inputs,
-eight restraints and original mean-data/Free-R choices; absent HL stays absent.
-No native fit or full suite. The next boundary is explicitly versioned mixed-
-policy integration through Cedar's prepared/runtime/numbered owners; existing
-payloads and defaults stay unchanged.
+A01 remains partial; A02 quantitation remains gated. The newest
+[reciprocal mixed-parameter guard](metal-ordinary-receiving.md#explicit-reciprocal-xyzgroup-b-runtime-guard)
+adds separately versioned callback enforcement and restoration around the existing
+owner. Seventeen source/17 installed controlled-dispatch cases, actual-native
+failure restoration and one 8.99-second zero-cycle initialization pass. No native
+optimizer qualification or fitted endpoint follows. Real-space/sliced-model and
+multiprocess scope explicitly refuse; historical workers/defaults remain unchanged.
+The next boundary is actual native callback qualification and deliberate prepared/
+numbered mixed-policy integration, retaining output/process closure. Prior verified
+complete-command/source-selector evidence remains valid and need not be repeated.
 
 The next named
 subgoal is [source-bound ordinary parent admission](metal-ordinary-receiving.md#current-admission-boundary-and-next-a01-subgoal).

@@ -245,6 +245,62 @@ closure. The new adapter deliberately permits only a file-rebound scientific
 policy, so it must not be used to smuggle a changed scope into V11/V12. The FT
 private chain still lacks ordinary ancestry. A01 partial; A02 remains gated.
 
+## Explicit reciprocal XYZ/group-B runtime guard
+
+`refinement_mixed_runtime.MixedRuntimeGuard` adds the separate
+`native-reciprocal-xyz-group-b-guard-v1` observation contract. It surrounds the
+existing native execution owner, reusing `ParameterScope` and
+`DiffractionReference` at initialization, enabled macro-stage boundaries and
+before/after actual reciprocal XYZ and group-B target calls. It checks exact
+compiled selections, fixed atom fields and original merged observations/Free-R/HL.
+`finish` must receive the same initialized driver returned by the existing owner.
+A caught callback error stays latched; missing completion or changed bindings
+cannot yield a successful receipt. Callback sources are pinned for the installed
+Phenix 2.2.1-6174 Darwin/arm64 profile. Nested/reused guards refuse. Hook restoration
+runs on success, exceptions and interruption; foreign replacement code is reported
+rather than overwritten. Summaries retain counters and initial/final receipts,
+not one full snapshot per target evaluation.
+
+**Explicit scope:** reciprocal XYZ plus ordered isotropic B groups, fixed Q/f′/f″,
+exact merged MLHL data and one process. Real-space/sliced-model refinement is
+refused at declaration; it is not silently removed from a requested recipe. The
+caller still authenticates source/endpoint and full native runtime, installs the
+existing restraint/image and output owners, persists failure evidence and verifies
+external process closure. The guard supplies no forces, executor, input discovery,
+numbered dispatch or model selection. Its receipt is not a scientific pass.
+Historic V11/V12 workers and every existing native payload remain unchanged.
+
+**Qualification:** 17 source and 17 installed controlled-dispatch tests pass,
+including protected XYZ/B/Q/f′/f″, Free-R/HL and selection failures, caught-error
+latching, interruption, native-hook replacement, dry-versus-fit distinctions and
+bounded summary size after 100 target pairs. The dispatch fixtures are synthetic
+and exercise the existing scientific checkers; they are not native optimizer
+qualification. An installed check separately replaces/restores the actual native
+hooks around an intentional failure, without invoking a driver.
+
+One **8.99-second owned native initialization** through the existing frozen
+execution and registered-phosphate owners gives three complete model observations,
+859 XYZ atoms, 42 B groups and two retained crystal links. Original diffraction/
+Free-R/HL and protected atom state match; all hooks restore. The test explicitly
+derives `real_space=False` from the retained private FT scope and records that
+change. Zero cycles and zero optimizer evaluations; no prior FT fitted result is
+requalified, and no ordinary FT ancestry is invented. The outer process stops
+successfully. No source model, map or diffraction input is copied or changed.
+
+65 cold checks bind source, loaded modules, installed wheel and final evidence.
+Temporary build/install trees are removed; local evidence is about 5.1 MB and the
+guard summary is 2,593 bytes. Exact commands and failures are in
+`branch-artifacts/Alder/a01-mixed-runtime-guard-20261125-01/`, runners A776–A780.
+Checkout: `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/runtime-guard.html`.
+No full suite or new fitted endpoint.
+
+**Next:** qualify real native optimizer callbacks for this explicit reciprocal
+policy, then receive prepared/backbone interfaces and connect a newly declared
+mixed policy to the ordinary numbered owner with complete output/process closure.
+Real-space coverage requires separate auxiliary/sliced-model identity proof.
+The command-binding v1 still permits only file rebinding; a scope/target change
+must be explicit in a new receiving policy. A01 partial; A02 quantitation gated.
+
 ## Ordered integration steps
 
 1. **Admit a legitimate prepared parent.** Reuse Cedar's `PreparedBackbone`,
