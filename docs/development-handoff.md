@@ -22,6 +22,12 @@ public-reader qualification and corrected tuple/list report round trip remain
 recorded in its own validation; no earlier evidence is relabelled. Scientific
 artifacts are local and excluded from Git.
 
+**Independent review:** Rowan found no diagnostic-export blocker. Before automated
+consumption, qualify atomic completed-receipt publication and trusted file-digest
+admission; filename existence alone is not completion. Current loading rejects
+damaged receipts. Local review: NASolve anchor
+`branch-artifacts/willow/w275-immutable-cif-export/review.json`.
+
 **Cedar interface:** commit `42da4bb1697eb6278fc3a74fc305b0a798d7b9fc`, public module
 SHA `fbcdb7b4f5e9ceb698e7e9b16e487194a855cdd651d695553092d3771d08e751`.
 Pass an explicit compatible source/hash until integration. This qualifies the
@@ -91,7 +97,7 @@ controls are reused; no deposited tensor or coordinate was changed. See
 [exact scope and commands](topostitch-periodic.md#w271--plan-output-fields-and-separate-native-tls-interpretation).
 No product code, installed artifact or runtime schema changed.
 
-**Next W276; P03 remains partial.** W276: expose reviewed diagnostic export/replay through the existing cut-preview command and inspector handoff,using explicit policy/source bindings and existing checkpoint ownership;do not add a second writer or start native refinement implicitly.
+**Next W276; P03 remains partial.** W276: first qualify atomic publication of completed export receipts and trusted file-digest admission for automated consumers, reusing existing publication/ownership mechanisms. Then expose reviewed diagnostic export/replay through the existing cut-preview command and inspector handoff with explicit policy/source bindings. No second writer or implicit native refinement; a truncated receipt remains a partial attempt.
 
 
 Rowan's receiving gate remains separate: two good symmetry-bond lengths can hide

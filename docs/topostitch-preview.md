@@ -4601,6 +4601,11 @@ and `coverage.json`. `export.json` is the last file written and marks a complete
 packet. As with existing preview packets, interrupted partial directories remain
 inspectable and are not overwritten or silently cleaned up. This is receipt-last
 completion, not a claim of an atomic filesystem transaction.
+A present filename alone is not completion: a power loss can leave a partial
+`export.json`, which the digest-bound loader must reject. Rowan's W275 review
+found no diagnostic-export blocker, but before an automated workflow watches this
+receipt, publish its completed bytes atomically and pass a trusted file digest
+into that consumer. Reuse existing publication/ownership mechanisms.
 
 Every operational artifact reference uses the existing `run` anchor and exact
 relative path. There is no basename search or dependency on the original input

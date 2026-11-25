@@ -1134,7 +1134,7 @@
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "W276: expose reviewed diagnostic export/replay through the existing cut-preview command and inspector handoff,using explicit policy/source bindings and existing checkpoint ownership;do not add a second writer or start native refinement implicitly.",
+      "next_action": "W276: first qualify atomic publication of completed export receipts and trusted file-digest admission for automated consumers, reusing existing publication/ownership mechanisms. Then expose reviewed diagnostic export/replay through the existing cut-preview command and inspector handoff with explicit policy/source bindings. No second writer or implicit native refinement; a truncated receipt remains a partial attempt.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -8400,7 +8400,7 @@
       "code_commit": "4e106e111b089c935a9f1bcb51908a461349943b",
       "reference": "docs/topostitch-preview.md#save-and-replay-an-immutable-whole-asym-export-w275",
       "result": "203source/203relocated installed,2skips each;218files;six missing-API failures demonstrated. Actual9artifact3LNA export retains1271atoms/60declared links and exactly reproduces W272 native-tested CIF bytes. Source and installed replay regenerate identical model/reports after relocation;existing output,source drift,missing coverage,rehash tampering and interrupted publication qualified. No native/refinement/checkpoint.",
-      "limitation": "Expert supported-scope diagnostic export with caller-reviewed metadata,not a CLI/checkpoint/native-restart or physical-cut approval. Mixed paths/nick phase and persistent GUI remain open;scientific files stay local.",
+      "limitation": "Expert supported-scope diagnostic export with caller-reviewed metadata,not a CLI/checkpoint/native-restart or physical-cut approval. Mixed paths/nick phase and persistent GUI remain open;scientific files stay local. Rowan read-only review found no diagnostic blocker; atomic completed-receipt publication and trusted digest admission are required before an automated consumer watches for completion. Current loader rejects damaged receipts.",
       "artifacts": [
         {
           "anchor": "NASolve",
@@ -8503,6 +8503,12 @@
           "path": "branch-artifacts/willow/w275-immutable-cif-export/validation.json",
           "sha256": "7c613704a1be3427b20f0d820b6f6bb5063967e4ccafc10db1c045e8dea2cfc0",
           "size": 16304
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w275-immutable-cif-export/review.json",
+          "sha256": "cf0da7588217ba26e5af0fad659e39e05ac7dd101f575567283d1a607f77f1eb",
+          "size": 500
         }
       ]
     }
