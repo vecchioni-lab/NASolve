@@ -23,8 +23,9 @@ entries are reconstructed from repository history.
   representations, gated on mixed-image export, complete chemistry and restart.
 - Separate preserved computational-frame operation, direct native symmetry
   support and later damage recovery; retain invariant/scattering/geometry checks.
-- Queue later existing-Hg image/coordination and LNA modified-chemistry panels
-  with Alder/Cedar ownership, exact-source gates and unchanged composition.
+- Keep LNA chemistry planned; defer metal B/occupancy/f″ recovery until Alder
+  supplies a qualified nonzero-f″ case and recovery/identifiability tools. Query
+  Hazel at that later gate; fixed-zero-f″ FT_Hg is historical, not selected.
 - Planning only: no runtime/schema changes, generated inputs or new execution.
 
 ### W275 — Save and replay reviewed whole-asym diagnostic exports

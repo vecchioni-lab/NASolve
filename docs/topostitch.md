@@ -293,51 +293,57 @@ the simpler first panel, with case-specific readiness audits; they do not expand
 W276 or authorize new runs. Hazel owns the metal case and its evidence, Rowan
 owns native chemistry, and Linden owns representative selection/comparison.
 
-**Hg in an independently chosen image — Alder/Cedar stress.** Select an existing
-modeled Hg site with reviewed donor/coordination intent and suitable bound data.
-Move that site's representative independently of its DNA partners, carrying its
-exact image relations so coordination crosses the chosen ASU boundary. This is
-one existing Hg orbit, not an added mercury, an extra copy or a new species. Keep
-site identity, multiplicity, occupancy, B/U and scattering assignments; rotate
-anisotropic U through the existing owner. A genuinely new Hg hypothesis belongs
-to a separate composition/metal-inference experiment.
+**Metal recovery across symmetry — deferred until Alder is ready.** Simon's
+updated direction is to use a metal case with **nonzero f″ (`fdp`)** and eventually
+demonstrate B-factor, occupancy and f″ recovery across symmetry representations.
+Table the metal extension now. Query Hazel at a later Alder readiness audit when
+its supported nonzero-f″ scattering, parameter controls and recovery diagnostics
+are qualified; do not request another candidate or run in the meantime. Keep the
+canonical and LNA plans independent of this additional dependency.
 
-Audit every declared donor–Hg distance, applicable donor–Hg–donor angle and
-coordination restraint/exclusion against the same physical neighborhood before
-and after the recut. Retain the actual interaction type and force policy: metal
-coordination is not automatically a covalent bond, and close atoms do not create
-missing intent. Bind wavelength, anomalous data/mate convention, f′/f″ settings,
-Free-R assignment and any supplied experimental-phase inputs. Include anomalous
-complex-scattering and donor-image checks where supported; a neutral-atom Fcalc
-comparison alone does not qualify the metal claim. Do not add phase information
-or merge anomalous mates to make the comparison pass.
+The previous FT_Hg/W252 original with fixed f″ = 0 is **not the selected recovery
+case** and will not be run as a substitute. Its owner-reported review/hash record
+remains historical provenance in the ledger, with its geometry REVIEW, private
+ancestry and diagnostic coordination-target limits intact. Do not change its f″
+in place or call a fixed parameter recovered. A suitable future metal case and
+complete source/data/phase bindings remain undecided.
 
-Use a small isolation sequence: unchanged representation, Hg-only re-imaging,
-then (once the DNA-only panel passes) the combined fragmented-DNA/Hg case. Reuse
-the earlier control and DNA-only evidence only when exact input hashes, runtime
-and protocol match; otherwise declare a matched panel. This separates metal-site
-handling from backbone handling without a combinatorial search. Preserve Alder's
-fixed-site/fixed-B/occupancy/f″ guards and actual active-variable policy in every
-sibling. A fixed-Hg run can validate image handling, not recovery or fitting of
-the Hg site. Release metal variables only in a separately qualified matched scope.
+At the later Hazel handoff, freeze an existing metal-bearing source with reviewed
+metal identity, coordination and wavelength/anomalous-data evidence. First re-image
+an existing metal independently of its DNA partners while preserving its orbit,
+occupancy, B/U, f′/f″ and donor-image relations. Compare complex scattering, geometry
+and applicable complete coordination/exclusion terms in the same physical frame.
+This preservation step is separate from **recovery**; no metal is added and no
+coordination contact is automatically converted into a covalent bond. Account for
+special-position multiplicity and correctly rotated anisotropic U when applicable.
 
-**Owner-recommended Hg candidate, not selected:** Hazel's 2026-11-25 read-only
-review identifies the exact original FT_Hg/W252 input as a useful second-stage
-diagnostic. The Hg is isotropic with fixed f″ = 0 (unmeasured), so this state can
-test scattering/coordination representation but cannot demonstrate nonzero Hg
-anomalous-response invariance or metal-count quantitation. Any later nonzero-f″
-control needs separately justified, declared scattering inputs; no silent change
-to this original state. The intended donors are the two N3 sites; no S2 interaction
-or covalent bond is inferred. Imported Hg-distance and diagnostic angle/direction
-proxies are not independently established chemical truth.
+Then use Alder's qualified refinement and calibration owners for matched parameter
+recovery, rather than adding a second fitter in Willow:
 
-Alder's original source remains geometry REVIEW and has private, non-ordinary
-ancestry; the subsequent coupled endpoints are unselected and strained, not
-reference truth. Original anomalous observations, Free-R and experimental-phase
-inputs are retained by Alder. The ledger records the owner-reported source and
-recipe hashes for later exact matching; no files were copied or independently
-requalified here. Freeze the complete anchors, source chemistry and native policy
-at the readiness audit before making this a benchmark input.
+- Establish a declared reference and informative anomalous observations with
+  unchanged Free-R, wavelength, scaling policy, f′ policy and any supplied phases.
+  A known-input synthetic or semi-synthetic control can test numeric recovery;
+  an experimental reference is evidence with uncertainty, not exact truth.
+- Predeclare perturbed starting values and the same allowed variables in the
+  ordinary and re-imaged representations. The initial fixed-ADP policy of the
+  canonical B11 panel is only a preservation control; this extension requires
+  separately qualified release of B/occupancy/f″ through Alder's normal guards.
+- Test one parameter at a time with the other relevant quantities controlled;
+  assess parameter coupling and identifiability before any joint B/occupancy/f″
+  claim. Nonzero f″ by itself does not demonstrate that all three are separately
+  recoverable. Preserve uncertain or underdetermined results and report intervals
+  or other qualified uncertainty diagnostics, not only a best-fit triple.
+- Compare trajectories/endpoints, coordination, maps, R statistics and parameter
+  errors against the declared reference under one frozen budget. Start with
+  metal-only re-imaging, then combine with DNA fragmentation after the isolated
+  panels pass. Exact prior controls may be reused only with matching inputs,
+  runtime and scientific settings. Do not tune the panel on Free-R or weaken
+  existing fixed-metal guards to obtain a result.
+
+Revisit trigger: Hazel confirms a supported nonzero-f″ case **and** the scoped
+B/occupancy/f″ recovery/uncertainty tools, while B11's representation, chemistry
+and restart gates are ready. Until then, status stays deferred, with no selected
+metal dataset, new run, copied inputs or claimed anomalous/parameter recovery.
 
 **LNA in fragmented DNA — Cedar stress.** Reuse a reviewed existing 3LNA/5LNA
 source as a candidate, preserving the modified components, all atoms, locked-sugar
