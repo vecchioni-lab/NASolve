@@ -18,19 +18,21 @@ Hg moves 0.089 / 0.086 Å; Rfree is 0.3371 / 0.3362. Existing B machinery
 previews base/donor alternatives from the returned models without changing them.
 No selected endpoint, f″ result or global real-space qualification follows.
 
-**Latest A01 increment:** an explicit four-ULP cell-only guard v2 passes focused,
-native and installed checks; strict v1 remains unchanged. Native initialization
-passes, but the fresh cycle stops before XYZ/group-B calls because Phenix scales
-F and sigma by 254.634. A passive diagnostic confirms unchanged Free-R/HL and
-invariant Rwork across that normalization. This is a preserved compatibility
-blocker, not a new fitted endpoint. See the [current handoff](metal-development-handoff.md).
+**Latest A01 increment:** explicit runtime v3 witnesses the native common F/sigma
+normalization, preserving original source/ordered index/Free-R/HL ownership and
+Rwork/Rfree invariance. Strict v1/v2 remain unchanged. Focused/native/installed
+checks and fresh initialization pass. The requested cycle reaches **464 actual
+XYZ target observations** before a clean 179.39-second interruption in native
+weight-search clash scoring. Group B/output remain unqualified; no cycle completes
+or endpoint is accepted. See the [current handoff](metal-development-handoff.md)
+and `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/normalization-runtime.html`.
 
-**Next A01 subgoal:** explicitly witness native common-scale normalization,
-then qualify actual native optimizer/output/process closure before adopting the
-prepared/ordinary numbered interfaces. Preserve original observations and exact
-index/flag/HL ownership. Do not loosen the cell rule for amplitudes. Real-space
-identity, FT ordinary ancestry and mixed-policy receiving remain separate gates.
-Prior command/source-selector evidence stays valid; no unchanged fit repeat.
+**Next A01 subgoal:** measure observer versus native weight-search/Reduce cost,
+then complete one realistically bounded cycle with durable partial evidence and
+graceful stopping, preserving scientific settings. Qualify group-B/output/process
+closure before prepared/ordinary numbered integration. Do not duplicate unchanged
+fit experiments. Real-space identity, FT ordinary ancestry and explicit mixed-policy
+receiving remain separate gates; prior command/source-selector proof stays valid.
 
 **Latest mechanical increment:** the passive diffraction observer now carries
 independently read source captures to the active manager and actual native HL

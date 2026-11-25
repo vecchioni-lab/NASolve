@@ -15,36 +15,53 @@ not a second queue.
 
 <a id="a01-parameter-scope-2026-11-25"></a>
 
-## Current A01 — cell representation qualified; native scaling blocks execution
+## Current A01 — witnessed normalization and partial actual XYZ execution
 
-The verified command reaches native bulk-solvent scaling. Strict v1 correctly
-refuses a two-ULP gamma difference. Explicit guard v2 permits only four ULP of
-unit-cell representation difference; full space-group operators, indexing and
-source F/sigma/Free-R/HL checks remain unchanged. Default v1 stays exact.
+The full verified-input command now reaches actual reciprocal XYZ optimization
+under explicit guard v3. Its separately witnessed normalization records the
+native positive divisor and requires the exact corresponding division of both
+F and sigma, original ordered indices/Free-R/HL and invariant Rwork **and** Rfree.
+Unwitnessed ratios, individual reflection changes and another manager refuse.
+Strict v1/v2 remain unchanged. The ledger holds one current array state and at
+most 128 compact normalization receipts, not a snapshot per target call.
 
-**Validation:** 33 focused tests (15 native skips), 29 actual-native cases,
-19 installed dispatch tests plus 29 installed native cases/hook restoration.
-A fresh 8.11-second zero-cycle initialization passes. The 22.79-second one-cycle
-attempt then refuses changed F/sigma before any XYZ or group-B target calls.
-A 7.48-second passive diagnostic traces the native normalization: both F and
-sigma multiply by 254.633987526; all 1,151 rows, 59 Free assignments and HL remain
-unchanged. Rwork across that operation is invariant at 0.3387822269. This is a
-normalization observation, not a refined endpoint or evidence of fit quality.
-All hooks restore and processes stop. Prior failed attempts remain preserved.
+**Validation:** 52 focused tests (17 native skips), 38 installed tests, two source
+and two installed actual-native hook checks plus restoration. Fresh native dry
+initialization passes in 8.19 seconds. One requested cycle reaches **464 successful
+XYZ target observations**, 13 model observations and five completed stages. It
+was interrupted gracefully at **179.39 seconds** near its 180-second limit while
+native XYZ weight-search clash scoring/Reduce was active. No scientific guard
+failure occurred after normalization. This stack location is not a phase-timing
+measurement. **Group B and written-output closure were not reached; no macrocycle
+completed, model was accepted, or f″ was measured.** Hooks restore; the owned
+process group is empty. No second fit was launched.
 
-Evidence: `a01-mixed-runtime-roundoff-20261125-01/` and
-`a01-mixed-runtime-cycle-20261125-01` through `-04` under the Alder artifact
-anchor; runners A781–A795. `review.json` and package/execution receipts pin exact
-commands and sources. Compact checkout: `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/scale-boundary.html`.
-No full suite, science uploads or checkpoint migration.
+The single witnessed normalization multiplies F and sigma by 254.633987526.
+Rwork 0.33878222692706655→0.3387822269270665 and Rfree
+0.28229610972825153→0.2822961097282515 are invariant across that operation;
+these are not a new endpoint's fit statistics. Original source files are exact.
 
-**Next A01 step:** qualify a separate explicit native normalization contract,
-retaining original source identity and exact index/Free-R/HL ownership; do not
-extend cell tolerance to amplitude changes. Then qualify actual native optimizer
-calls/output closure before prepared/numbered dispatch adoption. Existing v1
-command-binding permits file changes only, not a changed scope/target. Real-space
-identity and FT ordinary ancestry remain open; PDU has no HL. A01 partial; A02
-gated. Reuse prior command/source-selector evidence; do not repeat unchanged fits.
+**Evidence:** `a01-witnessed-normalization-20261125-01/` and
+`a01-mixed-runtime-cycle-20261125-05/` under the Alder artifact anchor; runners
+A796–A804, 133 cold source/input/wheel/stopping checks. Exact commands, hashes,
+interruption and native version (Phenix 2.2.1-6174/Python 3.11.15) are retained.
+About 8.1 MB of local evidence, no duplicated science inputs; temporary package
+staging removed. Checkout:
+`ScienceCheckouts/Hazel/2026-11-25_parameter-protection/normalization-runtime.html`,
+with visually checked PNG and editable SVG. No full suite, science upload or
+historical artifact migration.
+
+**Next A01 step:** measure native weight-search/Reduce versus observer cost and
+set a realistic bounded completion allowance with durable progress/graceful stop;
+preserve the requested weight settings. Complete actual group-B and returned-model
+checks before ordinary prepared/numbered adoption. Do not repeat unchanged private
+fits as a new scientific test. Command-binding v1 still permits file changes only;
+mixed scope/target receiving needs a declared policy. Real-space identity and FT
+ordinary ancestry remain open; PDU has no HL. A01 partial; A02 gated.
+
+The earlier cell-only v2 qualification and native scale refusal remain preserved
+at `a01-mixed-runtime-roundoff-20261125-01/` and cycle attempts 01–04. Their
+`scale-boundary.html` checkout is historical evidence, not the latest stopping point.
 
 ## Earlier boundary — ordinary admission made explicit
 

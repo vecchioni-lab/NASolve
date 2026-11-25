@@ -23,9 +23,10 @@ POLICY_ID = 'native-reciprocal-xyz-group-b-guard-v1'
 _ACTIVE = None
 
 
-def _native_bindings():
+def _native_bindings(*, normalization=False):
     """Admit the callback sources, without modifying a native installation."""
-    profile = json.loads(Path(__file__).with_name('data').joinpath('refinement-mixed-native-profile.json').read_text())
+    profile_name = 'refinement-mixed-normalization-native-profile.json' if normalization else 'refinement-mixed-native-profile.json'
+    profile = json.loads(Path(__file__).with_name('data').joinpath(profile_name).read_text())
     if (platform.system(), platform.machine()) != (profile['system'], profile['machine']):
         raise ValueError('Mixed runtime callback platform is not qualified')
     modules = {name:importlib.import_module(name) for name in profile['modules']}
@@ -56,7 +57,12 @@ class MixedRuntimeGuard:
     output files, ancestry, external process closure or geometry are accepted.
     The caller persists the summary even when the guarded operation raises.
     """
-    def __init__(self, scope, diffraction, *, cell_roundoff_ulps=0):
+    def __init__(self, scope, diffraction, *, cell_roundoff_ulps=0, witness_native_normalization=False):
+        if type(witness_native_normalization) is not bool:
+            raise ValueError('Native normalization must be an explicit boolean')
+        if witness_native_normalization and cell_roundoff_ulps != 4:
+            raise ValueError('Witnessed native policy requires explicit four-ULP cell scope')
+        self._normalization = witness_native_normalization
         self._cell_roundoff_ulps = _cell_roundoff_policy(cell_roundoff_ulps)
         if not isinstance(scope, ParameterScope) or not isinstance(diffraction, DiffractionReference):
             raise ValueError('Require pinned parameter and diffraction references')
@@ -76,6 +82,10 @@ class MixedRuntimeGuard:
             scientific_approval='NOT_RUN', real_space=False, single_process=True)
         if cell_roundoff_ulps:
             self._record['unit_cell_roundoff_ulps'] = cell_roundoff_ulps
+        if self._normalization:
+            from .refinement_normalization import NativeScaleWitness
+            self.diffraction = NativeScaleWitness(diffraction)
+            self._record['policy_id'] = 'native-reciprocal-xyz-group-b-guard-v3'
 
     def _fail(self, exc):
         if self._failed is None:
@@ -97,10 +107,12 @@ class MixedRuntimeGuard:
         if driver.fmodels.fmodel_neutron() is not None:
             raise ValueError('Mixed runtime requires one X-ray diffraction model')
         fm = driver.fmodels.fmodel_xray()
+        if self._normalization:
+            self.diffraction.check_order(fm.f_obs().indices(), initial=initial)
         state = observe_model(self.scope, driver.model, fm, driver.params, initial=initial)
         observe_diffraction(self.diffraction, fm, cell_roundoff_ulps=self._cell_roundoff_ulps)
-        observe_target(self.diffraction, fm, fm.target_functor(alpha_beta=fm.alpha_beta()),
-                       cell_roundoff_ulps=self._cell_roundoff_ulps)
+        target = fm.target_functor(alpha_beta=fm.alpha_beta())
+        self._target(fm, target)
         self._counts['model'] += 1
         return state
 
@@ -115,14 +127,44 @@ class MixedRuntimeGuard:
             observe_group(self.scope, minimizer)
             fm = minimizer.fmodel; target = minimizer.target_functor
         self.scope.state(capture_atoms(fm.xray_structure))
+        self._target(fm, target)
+
+    def _target(self, fm, target):
+        if self._normalization:
+            self.diffraction.check_order(fm.f_obs().indices())
+            self.diffraction.check_order(target.core.f_obs.indices())
         observe_target(self.diffraction, fm, target, cell_roundoff_ulps=self._cell_roundoff_ulps)
+
+    def _normalize(self, fm, original, args, kwargs):
+        if self._driver is None or fm is not self._driver.fmodels.fmodel_xray():
+            raise ValueError('Normalization requires the checked active diffraction manager')
+        if fm.twin_law is not None:
+            raise ValueError('Witnessed native normalization excludes twinned models')
+        from .refinement_diffraction_observation import _capture
+        from cctbx.array_family import flex
+        self.diffraction.check_order(fm.f_obs().indices())
+        before, phases_before = _capture(fm.f_obs(),fm.r_free_flags(),fm.hl_coeffs(),
+                                        cell_roundoff_ulps=self._cell_roundoff_ulps)
+        self.diffraction.state(before,phases_before,target=fm.target_name)
+        fo=fm.f_obs().data();fc=abs(fm.f_model()).data()
+        divisor=float(flex.sum(fo*fc)/flex.sum(fc*fc))
+        r_before=(fm.r_work(),fm.r_free())
+        value=original(fm,*args,**kwargs)
+        self.diffraction.check_order(fm.f_obs().indices())
+        after, phases_after = _capture(fm.f_obs(),fm.r_free_flags(),fm.hl_coeffs(),
+                                      cell_roundoff_ulps=self._cell_roundoff_ulps)
+        self.diffraction.record_event(before,after,phases_before,phases_after,
+            divisor=divisor,r_before=r_before,r_after=(fm.r_work(),fm.r_free()))
+        return value
 
     def _wrapper(self, role, original):
         @wraps(original)
         def observed(native, *args, **kwargs):
             try:
                 self._live()
-                if role == 'initialize':
+                if role == 'normalization':
+                    value = self._normalize(native, original, args, kwargs)
+                elif role == 'initialize':
                     if self._driver is not None:
                         raise ValueError('Duplicate mixed runtime initialization')
                     self._record['initial'] = self._model(native, initial=True)
@@ -155,8 +197,10 @@ class MixedRuntimeGuard:
         if self._entered or self._record['status'] != 'NOT_STARTED' or _ACTIVE is not None:
             raise ValueError('Mixed runtime guards cannot nest or be reused')
         try:
-            hooks, profile, self._verify = _native_bindings()
-            if set(hooks) != {'initialize','stage','xyz','group_B'}:
+            hooks, profile, self._verify = (_native_bindings(normalization=True)
+                if self._normalization else _native_bindings())
+            expected = {'normalization'} if self._normalization else set()
+            if set(hooks) != expected | {'initialize','stage','xyz','group_B'}:
                 raise ValueError('Incomplete native callback contract')
             self._hooks = hooks
             self._originals = {key:getattr(cls,name) for key,(cls,name) in hooks.items()}
@@ -223,4 +267,6 @@ class MixedRuntimeGuard:
     def summary(self):
         record = deepcopy(self._record)
         record['counts'] = dict(self._counts)
+        if self._normalization:
+            record['native_normalization'] = self.diffraction.summary()
         return record

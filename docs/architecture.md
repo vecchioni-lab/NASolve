@@ -61,10 +61,14 @@ ordinary defaults or numbered dispatch are changed. See the
 
 The guard's explicit v2 `cell_roundoff_ulps=4` option tolerates only finite
 unit-cell representation roundoff while preserving full space-group operators.
-Default v1 remains exact. Native common F/sigma normalization is observed and
-currently refused by the separate exact-source contract; a fitted endpoint or
-ordinary dispatch adoption is not yet qualified. See the same receiving contract
-for measured scale, preserved failures and next integration boundary.
+Default v1 remains exact. Explicit v3 additionally witnesses the pinned native
+F/sigma normalization method: exact observed division, original ordered index/
+Free-R/HL ownership, invariant Rwork/Rfree and exact subsequent target state.
+Its bounded ledger changes no source files or numerical conditioning. Strict
+v1/v2 remain unchanged. Actual XYZ callbacks now have partial native execution
+coverage; group-B and returned-output completion remain pending after a bounded
+interruption. No ordinary dispatch/endpoint adoption follows; see the receiving
+contract for precise receipts, failures and next qualification.
 
 Historical counted V5–V8 code preparation now obtains `topostitch_native_recipe.py`
 from `data/refinement-runtime-native-recipe-sources.json`, retaining its already

@@ -319,12 +319,51 @@ receipts in `a01-mixed-runtime-cycle-20261125-04`. Runners A781–A795 and compa
 checkout `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/scale-boundary.html`.
 No native installation, historical payload or original observation file changes.
 
-**Next:** declare and qualify separately witnessed native normalization, then
-actual reciprocal optimizer/output/process closure before prepared-numbered
-adoption. Preserve source identity and exact index/Free-R/HL assignment; never
-extend cell tolerance to amplitude changes. Command-binding v1 permits file
-rebinding only; mixed scope/target changes need a new receiving policy. Real-space
-identity and ordinary FT ancestry remain open. A01 partial; A02 gated.
+### Witnessed native normalization and actual XYZ calls
+
+`witness_native_normalization=True` with explicit `cell_roundoff_ulps=4` selects
+`native-reciprocal-xyz-group-b-guard-v3`. Its additional pinned hook observes
+`mmtbx.f_model.f_model.manager.apply_scale_k1_to_f_obs`; it does not replace the
+normalization algorithm or disable numerical conditioning. The source reference
+remains immutable. `NativeScaleWitness` reuses `audit_reflections`, additionally
+requiring **exact** division by the observed positive divisor (or the native
+0.9–1.1 no-op), exact original flags/HL, unchanged bound index order and invariant
+Rwork/Rfree (1e-12 relative/absolute). Only the checked active manager is admitted;
+twins refuse. A target's values must equal the last witnessed state exactly.
+Changed single observations, unequal F/sigma scaling, stale/unwitnessed states,
+changed source/HL, reordered indices and foreign managers refuse. The default
+strict v1/v2 observers and their receipts do not change.
+
+The schema-1 guard v3 receipt adds `native_normalization`, with separate
+`witnessed-native-common-scale-v1` policy, source/current/order hashes, at most 128
+small event records and cumulative numerical multiplier. Live memory holds one
+current array capture; no target-by-target snapshots are stored. This is numerical
+source continuity, not an f″ calibration or checkpoint/geometry approval.
+
+**Qualification:** 52 focused tests/17 native skips; 38 installed controlled tests;
+two source/two installed actual native hook cases and restoration. A fresh 8.19 s
+zero-cycle initialization passes. One bounded cycle produces 464 successful XYZ
+target observations, 13 model checks and 5 completed stages. It is deliberately
+interrupted at 179.39 s near its 180 s bound in native weight-search clash scoring/
+Reduce. The saved stack identifies the interruption site, not where all time was
+spent. All hooks restore; no process remains in its owned group. Group B and
+written output are not reached; no cycle completes. Source F/sigma are unchanged
+on disk; one witnessed native multiplier 254.633987526 preserves Rwork and Rfree.
+No new endpoint statistics, maps, model selection or f″ result are claimed.
+
+133 cold checks pin exact source/input/wheel/runtime evidence under
+`a01-witnessed-normalization-20261125-01/` and cycle05; runners A796–A804.
+Checkout `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/normalization-runtime.html`
+includes visually reviewed PNG/editable SVG. About 8.1 MB local evidence, temporary
+package staging removed. No full suite or generated science files in Git.
+
+**Next:** distinguish observer cost from native weight-search/Reduce cost and
+provide durable progress/graceful stopping for a realistically bounded completion
+check, retaining requested scientific settings. Complete actual group-B and
+returned-output/process closure before ordinary prepared/numbered adoption.
+Command-binding v1 still permits only file changes; mixed scope/target receiving,
+real-space identity and FT ordinary ancestry are separate gates. A01 partial;
+A02 quantitation gated. Reuse existing admission/command evidence.
 
 ## Ordered integration steps
 

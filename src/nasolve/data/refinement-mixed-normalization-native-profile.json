@@ -1,0 +1,41 @@
+{
+  "profile_id": "phenix-2.2.1-6174-mixed-reciprocal-normalization-guard-v1",
+  "system": "Darwin",
+  "machine": "arm64",
+  "distribution_attestation": false,
+  "scope": "Callback adapter only; existing execution owner admits complete native runtime",
+  "bindings": {
+    "initialize": [
+      "phenix.refinement.driver",
+      "refine",
+      "write_before_run_outputs"
+    ],
+    "stage": [
+      "phenix.refinement.macro_cycle",
+      "run",
+      "call"
+    ],
+    "xyz": [
+      "mmtbx.refinement.minimization",
+      "lbfgs",
+      "compute_target"
+    ],
+    "group_B": [
+      "mmtbx.refinement.group",
+      "group_minimizer",
+      "get_tg"
+    ],
+    "normalization": [
+      "mmtbx.f_model.f_model",
+      "manager",
+      "apply_scale_k1_to_f_obs"
+    ]
+  },
+  "modules": {
+    "phenix.refinement.driver": "efd97e5cc7f9b38c7bc6904dcaacd3c04c50cfa58b13d5747403469f1328a5aa",
+    "phenix.refinement.macro_cycle": "d1803d0256e09de48c5f7069af680625db35cfe11ddb7d6e19b3fad09590c868",
+    "mmtbx.refinement.minimization": "3f96adc487ae6c238fc925725b09363f428e40a68cc942e9130ae05e644c069e",
+    "mmtbx.refinement.group": "8941a8d2266e7a107772eec3a9a5ca75ad478d3e4f064bcda8eb6abcbb3e114a",
+    "mmtbx.f_model.f_model": "e0872bad140cd94d0c01651b3b9b97f0611e2e2cd2ce964cca50acb662a9810e"
+  }
+}

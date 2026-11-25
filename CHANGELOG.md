@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Witness native normalization during explicit mixed refinement
+
+- Add opt-in runtime guard v3 with a pinned native normalization hook and compact
+  scale ledger. Require the exact witnessed F/sigma division, original ordered
+  indices/Free-R/HL and invariant Rwork/Rfree; reject unwitnessed changed arrays.
+- Preserve strict v1/v2, original files, historical workers and native numerical
+  conditioning. No checkpoint migration or ordinary default activation.
+- Qualify focused/source/installed controls and464 actual XYZ target calls in a
+  bounded interrupted cycle. Group-B/output closure and complete-cycle evidence
+  remain pending; no new selected model or f″ result is claimed.
+
 ### Distinguish native cell roundoff from observation normalization
 
 - Add an explicit cell-only four-ULP guard v2; strict default/v1 stays unchanged.

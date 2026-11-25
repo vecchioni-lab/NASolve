@@ -7,15 +7,16 @@ observation and storage owners; it introduces no new scientific policy.
 
 ## Current metal-science edge
 
-A01 remains partial; A02 quantitation remains gated. Explicit reciprocal guard
-v2 admits only four ULP of unit-cell roundoff; strict v1/default remains exact.
-Focused/native/installed checks and zero-cycle initialization pass. A fresh
-one-cycle attempt stops before optimizer calls on native common F/sigma scaling.
-The passive diagnostic measures a 254.634 factor, unchanged original indices/
-Free-R/HL and invariant Rwork. This compatibility failure is preserved; no new
-fitted model or ordinary adoption is claimed. Next is separately witnessed native
-normalization, then optimizer/output/process closure and declared prepared-policy
-integration. See [exact evidence and limits](metal-development-handoff.md).
+A01 remains partial; A02 quantitation remains gated. The explicit reciprocal guard
+v3 now witnesses exact native F/sigma normalization while retaining original
+ordered indexing/Free-R/HL, source checksums and invariant Rwork/Rfree. Strict
+v1/v2 remain unchanged. Focused/native/installed checks and dry initialization pass.
+The requested cycle reaches 464 actual XYZ target observations, then is stopped
+cleanly at 179.39 s near its 180 s bound in native weight-search clash scoring/Reduce.
+Group-B/returned-output closure remain pending; there is no completed cycle or new
+accepted model. Hooks restore and the owned process group is empty. Next: measure
+native versus observer costs and bound a completion check realistically before
+prepared-numbered adoption. [Exact evidence and checkout](metal-development-handoff.md).
 
 The next named
 subgoal is [source-bound ordinary parent admission](metal-ordinary-receiving.md#current-admission-boundary-and-next-a01-subgoal).
