@@ -174,13 +174,25 @@ operators must update inline matrices and membership flags together. No category
 plan alone is permission to emit an unqualified file. W272 now provides the
 [explicit in-memory draft boundary](topostitch-preview.md#prepare-a-reviewed-whole-asym-cif-draft-w272)
 with readback and a source-specific native control. Complete declared-backbone
-coverage is now qualified for the exact actual draft by W273. A maintained
-ordinary-output wrapper remains next; native restart
-and mixed-path output stay separate.
+coverage is qualified by W273/W274. W275 adds immutable diagnostic save/replay;
+ordinary command/inspector wiring remains next. Native restart and mixed-path
+output stay separate.
 
 The fragmented W246 two-rung ASU is a stress test, not a preferred physical cut.
 Prioritize readable contiguous duplex segments for final inspection/export;
 physical nicks and symmetry boundaries remain distinct.
+
+
+W273's [serialized backbone audit](topostitch-periodic.md#w273--account-for-serialized-backbone-links)
+accounts for all 60 declared edges in the actual whole-A draft, distinguishing
+ordinary adjacency from explicit connection/image annotations. Coverage does not
+activate native restraints or assign the R3 physical nick. The next ordinary-save
+boundary now has [maintained per-step evidence through Cedar’s public interface](topostitch-preview.md#account-for-serialized-backbone-links-through-cedar-w274).
+The local experiment’s pinned private helpers are not a production dependency;
+[immutable diagnostic publication/replay](topostitch-preview.md#save-and-replay-an-immutable-whole-asym-export-w275) is now qualified for the supported whole-asym route.
+Existing cut-preview command/inspector wiring is next; checkpoint selection and
+native restart remain separate owners and gates.
+
 
 ## Explicit sticky-end enforcement during refinement (planned W122)
 
@@ -263,15 +275,6 @@ application; it closes no repair, inference, stacking or covalent-closure gate.
 
 
 <a id="next-bounded-coordinate-control-planned-after-w135"></a>
-
-W273's [serialized backbone audit](topostitch-periodic.md#w273--account-for-serialized-backbone-links)
-accounts for all 60 declared edges in the actual whole-A draft, distinguishing
-ordinary adjacency from explicit connection/image annotations. Coverage does not
-activate native restraints or assign the R3 physical nick. The next ordinary-save
-boundary now has [maintained per-step evidence through Cedar’s public interface](topostitch-preview.md#account-for-serialized-backbone-links-through-cedar-w274).
-The local experiment’s pinned private helpers are not a production dependency;
-immutable artifact publication/replay is the next step.
-
 ### Longer coordinate control and matched scientific gate
 
 **W138:** candidate `d8656b22` on the Cedar code base qualifies the explicit

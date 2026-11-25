@@ -7,9 +7,14 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Current save/replay boundary: W275.** [Immutable diagnostic exports](topostitch-preview.md#save-and-replay-an-immutable-whole-asym-export-w275)
+  preserve source snapshots and regenerate all derived bytes after relocation.
+  203 source/203 installed, two skips; actual CIF equals the native-tested draft.
+  No CLI/checkpoint/native restart or mixed-path acceptance.
+
 - **Current reader integration: W274.** [Serialized backbone coverage](topostitch-preview.md#account-for-serialized-backbone-links-through-cedar-w274)
   consumes Cedar's public per-step evidence. 197 source/197 installed, two skips;
-  exact actual-file replay after relocation. No ordinary writer or native restart.
+  exact actual-file replay after relocation. W275 now supplies diagnostic save/replay; native restart remains separate.
 
 - **Current science audit: W273.** [Every serialized backbone edge](topostitch-periodic.md#w273--account-for-serialized-backbone-links)
   is accounted for in the exact whole-chain draft: 58 ordinary links, nine
@@ -21,14 +26,14 @@ current instructions; other branches retain their own status and validation pins
   exact installed/native readback. 185 source/185 installed checks, two skips;
   no ordinary file writer or native restart approval.
 
-- **Current output plan: W271.** [Category fields and native TLS boundary](topostitch-periodic.md#w271--plan-output-fields-and-separate-native-tls-interpretation)
+- **Output-policy evidence: W271.** [Category fields and native TLS boundary](topostitch-periodic.md#w271--plan-output-fields-and-separate-native-tls-interpretation)
   explicitly plans 82/75 category occurrences, finds a center-of-mass update,
-  and separates raw TLS export from native S33 interpretation. No model writer.
+  and separates raw TLS export from native S33 interpretation. Native restart remains a separate gate.
 
-- **Current output contract: W270.** [Whole-asym eligibility](topostitch.md#narrow-first-writer-route-whole-original-asym-units-w270)
+- **Supported output scope: W270.** [Whole-asym eligibility](topostitch.md#narrow-first-writer-route-whole-original-asym-units-w270)
   keeps source labels and requires uniform asym/TLS images. A nonidentity whole-A
   preview passes membership; both eight-path LNA cuts remain unsupported. R3 nick
-  phase stays explicitly unresolved; all categories inventoried, no writer.
+  phase stays explicitly unresolved; W275 uses this scope for diagnostic exports.
 
 - **Current instance observer: W269.** [Labelled instances and deposited ADPs](topostitch-preview.md#observe-labelled-assembly-instances-and-deposited-adps-w269)
   maintains W268's bounded audit through existing source/frame owners. 172 source/

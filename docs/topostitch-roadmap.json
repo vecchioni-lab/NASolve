@@ -4,7 +4,7 @@
   "updated": "2026-11-25",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "b45e2ba06a3039da4a3935408aea5e328cb18bfb",
+  "audited_code_commit": "4e106e111b089c935a9f1bcb51908a461349943b",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -1127,13 +1127,14 @@
         "W271: 82/75 original category occurrences have explicit output actions;27 sensitive columns per source are null/absent. 3LNA supplied polymer mass center matches within3.73e-7 A and changes15.9132 A under whole-A recut. Two new native synthetic controls: raw TLS invariant1.11e-16 A2; nonzero-trace x rotation changes native S33 interpretation3.66519 A2, zero-trace control2.22e-16 A2. Prior R3 native controls reused, not rerun.",
         "W272: 185 focused source/185 relocated installed,2 skips each;218 installed files. Five missing-API and four pre-guard metadata regressions demonstrated. Exact installed3LNA document/report after relocation. New whole-A draft retains1271 atoms and re-expresses327 deposited U tensors;3813 serialized assembly instances per namespace retain endpoints within4.27e-14 A. Complete Phenix2.2.1-6174 native readback XYZ1.07e-14 A/U3.55e-15 A2;1484-index relative Fcalc4.28e-15. No fit or native TLS restart.",
         "W273: Exact W2723LNA draft:all60 declared backbone edges covered (51ordinary-only,7both,2explicit-only),58ordinary/9explicit;Cedar CHECKED,zero unmatched/sequence conflicts. Distances1.59909\u20131.62140A;source/output distance change<=3.33e-15A and phosphate-angle change<=3.41e-13deg. Four discriminating controls;source/draft untouched. No native repeat.",
-        "W274: 197source/197relocated installed,2skips each;218files;12missing-API failures plus one tuple/list round-trip failure corrected. Actual public-reader60-edge report equals W273 within6.66e-16A/2.84e-14deg and is exact after package/input relocation. Wrong original frame flags edge90. No native/model output."
+        "W274: 197source/197relocated installed,2skips each;218files;12missing-API failures plus one tuple/list round-trip failure corrected. Actual public-reader60-edge report equals W273 within6.66e-16A/2.84e-14deg and is exact after package/input relocation. Wrong original frame flags edge90. No native/model output.",
+        "W275: 203source/203relocated installed,2skips each;218files;six missing-API failures demonstrated. Actual9artifact3LNA export retains1271atoms/60declared links and exactly reproduces W272 native-tested CIF bytes. Source and installed replay regenerate identical model/reports after relocation;existing output,source drift,missing coverage,rehash tampering and interrupted publication qualified. No native/refinement/checkpoint."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "W275: immutable export/replay boundary for supported reviewed drafts,using existing artifact anchors and receipt-last packet semantics;require complete coverage,preserve source and expose remaining native/geometry review.",
+      "next_action": "W276: expose reviewed diagnostic export/replay through the existing cut-preview command and inspector handoff,using explicit policy/source bindings and existing checkpoint ownership;do not add a second writer or start native refinement implicitly.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -1165,14 +1166,15 @@
         "E_WHOLE_ASYM_OUTPUT_PLAN",
         "E_WHOLE_ASYM_DRAFT",
         "E_WHOLE_ASYM_BACKBONE_COVERAGE",
-        "E_SERIALIZED_BACKBONE_COVERAGE"
+        "E_SERIALIZED_BACKBONE_COVERAGE",
+        "E_WHOLE_ASYM_EXPORT"
       ],
       "last_audit": {
         "date": "2026-11-25",
-        "human_update": 274,
-        "code_commit": "b45e2ba06a3039da4a3935408aea5e328cb18bfb",
-        "reviewer": "Linden with Rowan public-reader handoff",
-        "scope": "Maintained public-reader coverage qualified;P03 PARTIAL,immutable output/native restart/mixed cuts remain open"
+        "human_update": 275,
+        "code_commit": "4e106e111b089c935a9f1bcb51908a461349943b",
+        "reviewer": "Linden;Cedar public interface coordinated with Rowan",
+        "scope": "Whole-asym save/replay scoped complete;P03 PARTIAL for full mixed-path/native/ordinary workflow gates"
       }
     },
     {
@@ -8390,6 +8392,119 @@
           "size": 10341
         }
       ]
+    },
+    "E_WHOLE_ASYM_EXPORT": {
+      "kind": "Immutable diagnostic export and exact regenerated replay",
+      "date": "2026-11-25",
+      "human_update": 275,
+      "code_commit": "4e106e111b089c935a9f1bcb51908a461349943b",
+      "reference": "docs/topostitch-preview.md#save-and-replay-an-immutable-whole-asym-export-w275",
+      "result": "203source/203relocated installed,2skips each;218files;six missing-API failures demonstrated. Actual9artifact3LNA export retains1271atoms/60declared links and exactly reproduces W272 native-tested CIF bytes. Source and installed replay regenerate identical model/reports after relocation;existing output,source drift,missing coverage,rehash tampering and interrupted publication qualified. No native/refinement/checkpoint.",
+      "limitation": "Expert supported-scope diagnostic export with caller-reviewed metadata,not a CLI/checkpoint/native-restart or physical-cut approval. Mixed paths/nick phase and persistent GUI remain open;scientific files stay local.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w275-immutable-cif-export/export_actual.py",
+          "sha256": "352e18e9547e32ed4ed2f571e2f29b70eea644dc17279e91484b753289d0d49f",
+          "size": 3702
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w275-immutable-cif-export/actual.log",
+          "sha256": "e1caafc7212a27b194f799ab285ebaf20bd00aa45c77c59b6518cfb0d1671ea4",
+          "size": 182
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w275-immutable-cif-export/actual.json",
+          "sha256": "0999736b0734e53d853c5e29891abb2262609693830d3fefcfb2de814b9122e7",
+          "size": 8715
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w275-immutable-cif-export/regression.py",
+          "sha256": "93d6ac0c3e7b5abec42075039bd1462d49c0a225918110eb5de39339f89723b7",
+          "size": 2118
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w275-immutable-cif-export/regression.log",
+          "sha256": "d3c5d31d17d50429fa5e3806879bf0035c856a3c4ad6bd1d5b9444c6709b34d0",
+          "size": 73
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w275-immutable-cif-export/regression.json",
+          "sha256": "4b25324fd7d4d49f5939f0c8027b8603e5e22b6daa77f6ce37ad3d0ac35e22a9",
+          "size": 255
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w275-immutable-cif-export/before-tests.log",
+          "sha256": "7d4b24254848a7261513caee37bc6927300442e91e58fe0d0822e1a0a0c413d4",
+          "size": 11081
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w275-immutable-cif-export/initial-tests.log",
+          "sha256": "854cfa5cd7c1dfc7c3008e8c8d7458445da91fc5046f68406c539619118ffc64",
+          "size": 98
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w275-immutable-cif-export/focused.log",
+          "sha256": "7ca7bfd24f4006ed94e83dd097fd57ce7b03ebd7680afe26af5720121fc40482",
+          "size": 272
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w275-immutable-cif-export/qualify.py",
+          "sha256": "a3865b3f631c734c6fa360d540a244d42217e8505777700098ea3230165d1c8b",
+          "size": 5747
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w275-immutable-cif-export/qualification.log",
+          "sha256": "528b631f10ab1007c8f8501abf5a27844cf8695d4ece0c38ab989156c1d67c60",
+          "size": 88
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w275-immutable-cif-export/installation.json",
+          "sha256": "6b96ba54e3e6bfb019a7fbcbf02eaf687df48da3417c9d70a142fc55e433378b",
+          "size": 39222
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w275-immutable-cif-export/installed-tests.log",
+          "sha256": "eb133031e53277f48ea0104e5510da7abd7433f6cb163c90cb9b5225208274d4",
+          "size": 272
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w275-immutable-cif-export/installed-real-replay.log",
+          "sha256": "0c1fbce80b63cad5dc192a721e814f8c373d8adf0b218eef75a0c9bd42bcb75f",
+          "size": 113
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w275-immutable-cif-export/installed-entry-help.log",
+          "sha256": "4aed80d07d50c2df141abd3b239494370248ad77f02e7c22d36ad7086f5f183f",
+          "size": 2550
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w275-immutable-cif-export/whole-A-export/export.json",
+          "sha256": "d4d73c49e523975a6ef6be178954b4e51a325bece71afc1870733d1163a774f2",
+          "size": 9152
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w275-immutable-cif-export/validation.json",
+          "sha256": "7c613704a1be3427b20f0d820b6f6bb5063967e4ccafc10db1c045e8dea2cfc0",
+          "size": 16304
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -8555,8 +8670,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 274,
-    "next": 275,
+    "current": 275,
+    "next": 276,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -10010,6 +10125,12 @@
         "title": "Consume public per-step backbone evidence with exact installed replay",
         "state": "RECORDED",
         "code_commit": "b45e2ba06a3039da4a3935408aea5e328cb18bfb"
+      },
+      {
+        "number": 275,
+        "title": "Save and replay immutable whole-asym diagnostic exports",
+        "state": "RECORDED",
+        "code_commit": "4e106e111b089c935a9f1bcb51908a461349943b"
       }
     ]
   },

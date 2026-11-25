@@ -1,26 +1,33 @@
 # NASolve development handoff — Willow
 
-**Current code/qualification: W274, 2026-11-25** (source `b45e2ba06a3039da4a3935408aea5e328cb18bfb`).
-The [serialized-backbone observer](topostitch-preview.md#account-for-serialized-backbone-links-through-cedar-w274)
-now uses Cedar's public per-step API, with no private Cedar helper dependency.
-It accounts for every declared edge, preserves ordinary/explicit overlap and
-flags missing, wrong-image, ambiguous and unexpected links across declared nicks.
-LONG/PARTIAL_ANGLES remain geometry review, distinct from known connectivity.
+**Current code/qualification: W275, 2026-11-25** (source `4e106e111b089c935a9f1bcb51908a461349943b`).
+The [immutable diagnostic export](topostitch-preview.md#save-and-replay-an-immutable-whole-asym-export-w275)
+now composes the reviewed whole-asym draft and public backbone reader. Nine
+anchored artifacts capture the original CIF/preview, representative CIF and two
+reports; `export.json` is written last. Existing outputs, source drift, missing
+coverage and altered/rehashed derived models refuse. Partial interrupted packets
+remain inspectable. No CLI/default/checkpoint/native behavior changed.
 
-**197 focused source / 197 relocated installed**, two skips each; 218 installed
-files. Twelve tests fail on the exact previous module. Installed replay caught a
-tuple/list mismatch in saved reports; a new round-trip assertion fails before the
-normalization fix and passes afterward. The installed actual 60-edge report is
-now exactly equal after package/staged-input relocation. Commands and all initial/
-final evidence: NASolve anchor
-`branch-artifacts/willow/w274-public-backbone-coverage/validation.json`.
+**203 focused source / 203 relocated installed**, two skips each; 218 installed
+files. Six new tests fail against the exact W274 source before the patch. Actual
+3LNA save/source replay and installed replay retain **1,271 atoms / 60 declared
+backbone links**, with coordinate bytes **identical to W272's native-tested CIF**.
+Installed package and staged inputs are relocated after their original paths are
+removed; derived bytes/reports regenerate exactly. Unit relocation also deletes
+all original fixture inputs. No native/scattering/refinement repeat.
+
+Exact commands, failures, manifests and results: NASolve anchor
+`branch-artifacts/willow/w275-immutable-cif-export/validation.json`. W274's 197/197
+public-reader qualification and corrected tuple/list report round trip remain
+recorded in its own validation; no earlier evidence is relabelled. Scientific
+artifacts are local and excluded from Git.
 
 **Cedar interface:** commit `42da4bb1697eb6278fc3a74fc305b0a798d7b9fc`, public module
 SHA `fbcdb7b4f5e9ceb698e7e9b16e487194a855cdd651d695553092d3771d08e751`.
 Pass an explicit compatible source/hash until integration. This qualifies the
 specific reader boundary, not a merged-branch build. No existing default changes.
 
-**Science remains W273's exact draft:** 60 edges, 51 ordinary only/seven both/two
+**Underlying science remains W273's exact draft:** 60 edges, 51 ordinary only/seven both/two
 explicit only. Public-reader geometry agrees within 6.66e-16 Å / 2.84e-14°;
 supplying the original CIF against the new whole-A graph correctly flags edge90's
 image conflict. No new coordinate, native calculation, refinement or nick choice.
@@ -36,7 +43,8 @@ returns source-bound CIF bytes plus a receipt through the existing owners. It
 requires explicit category-retention review, uniform original-asym/TLS images
 and supported references. Original labels/templates/scalars survive; XYZ/U/raw
 TLS, assembly generators and supplied polymer center are re-expressed together.
-No ordinary writer, default change, native TLS restart or model selection.
+The draft function itself writes nothing; W275 supplies diagnostic publication.
+No default change, native TLS restart or model selection.
 
 **185 focused source / 185 relocated installed**, two skips each; 218 installed
 files. Five missing-API and four pinned pre-guard failures demonstrate the new
@@ -52,12 +60,11 @@ XYZ/U errors <=1.07e-14 Å/3.55e-15 Å², relative complex-Fcalc difference4.28e
 on1,484 fixed indices. This is faithful representation, not a refinement or
 accepted physical cut. Existing connection rows only; W273 now verifies complete declared backbone coverage for this exact draft.
 
-**Human checkout:** latest coverage appendix at GitHub anchor
-`ScienceCheckouts/Linden/2026-11-25_whole-chain-export/coverage.html`; original export report
-`ScienceCheckouts/Linden/2026-11-25_whole-chain-export/index.html`
-(or `open_checkout.py`). It links the actual whole-chain inspector, full-precision
-CIF and native/software receipts; five local links and opener syntax verified.
-No original model is selected and no browser-render validation is claimed.
+**Human checkout:** GitHub anchor
+`ScienceCheckouts/Linden/2026-11-25_whole-chain-export/export.html`.
+It links the actual exported mmCIF, existing inspector, per-link evidence and
+exact validation. Earlier `index.html` / `coverage.html` remain intact. Seven
+local links/checksums verified; no browser-render validation or model selection.
 
 The prior W269 instance observer (source05bde4790e013e79f841f3649a372211bbcc22fe)
 and W267 inspector remain unchanged. W265's full2853/four skips/234subtests is the
@@ -68,8 +75,8 @@ viewer reuses the existing asset; no browser render executed.
 per asym and per TLS group, retaining original labels/sequence/copy declarations.
 Two unchanged controls and a nonidentity 3LNA whole-A preview (16 nodes) pass that
 membership scope. Both eight-path cuts fail on A/B/D and four TLS groups. All
-82/75 category occurrences are inventoried, including attached components; output
-policy remains unresolved and no model is written. Original prose identifies
+82/75 category occurrences were inventoried, including attached components. The
+output policy was unresolved at W270 and is addressed by W271–W275. Original prose identifies
 A+D31/C14/B17-of51 but explicitly leaves the R3-averaged nick unassigned. The
 saved 62-site COMPLETE R3 registration is an ASU mapping, not a physical-copy or
 nick-phase declaration. Exact evidence: NASolve anchor
@@ -84,15 +91,17 @@ controls are reused; no deposited tensor or coordinate was changed. See
 [exact scope and commands](topostitch-periodic.md#w271--plan-output-fields-and-separate-native-tls-interpretation).
 No product code, installed artifact or runtime schema changed.
 
-**Next W275; P03 remains partial.** W275: immutable export/replay boundary for supported reviewed drafts,using existing artifact anchors and receipt-last packet semantics;require complete coverage,preserve source and expose remaining native/geometry review.
+**Next W276; P03 remains partial.** W276: expose reviewed diagnostic export/replay through the existing cut-preview command and inspector handoff,using explicit policy/source bindings and existing checkpoint ownership;do not add a second writer or start native refinement implicitly.
 
 
 Rowan's receiving gate remains separate: two good symmetry-bond lengths can hide
 a donor-sugar/flank distortion. Include those measurements when a native
 save/refine route acts on the reslice; this pure image change does not repair it.
-Hazel's Alder da98e7e0 scoped parameter writer/receiving evidence is owner-reported,
-not merged here. Preserve literal precision and the fixed-B phased guard's old
-meaning; no shared phase/parameter writer was changed by W272.
+Hazel's Alder diffraction/file-adapter handoffs (318ce934 / 0c3f426c) are
+owner-reported, not merged here. Original observation/literal parameter binding
+is protected; the complete ordinary child command/runtime adoption remains open.
+The fixed-B phased guard retains its old meaning. Willow changed no shared
+phase/parameter writer or native force during this push.
 
 W264 source `5f0dbcb4afe726b853b402424d450507331a329f` retains its uniform-image
 qualification: 200 source/200 installed checks, 18 native comparisons, raw U
