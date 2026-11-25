@@ -1615,6 +1615,13 @@ the uploaded and processed coordinates using the existing deposition reader.
 Carry the missing records to biocuration and check the next returned model.
 Routine adoption awaits that external outcome and the scientific stress tests.
 
+C573 now reads the written final PDB and the actual Phenix bond and angle
+targets for any named residue or the whole model. The PDU test covered
+924 bonds and 1,323 angles across 42 residues. An independent FT–Hg fit
+exposed a starting-versus-final GEO mix-up and verified the final table
+across its 42 nucleotide residues. Empirical wwPDB targets and reslice
+correspondence remain separate work. [Native geometry screen](cif-doctor.md#checking-bonds-and-angles-in-the-refined-model)
+
 **Queued for Cedar and Willow · check ordinary DNA geometry before upload.**
 Cedar should screen every standard nucleotide in the final coordinate mmCIF,
 including atoms held fixed during refinement. Use the applicable wwPDB reference

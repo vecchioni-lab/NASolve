@@ -1,6 +1,26 @@
 # NASolve development handoff — current state
 
-Updated **2026-11-24, C572 checking possible starting shapes for the D:7 crossover — Rowan**.
+Updated **2026-11-25, C573 reading the bonds and angles Phenix actually fitted — Rowan**.
+Active branch **cedar**, worktree **NASolve-c96**.
+
+`cif-doctor residue-geometry` now reads either named residues or the whole
+model from an explicit PDB/final GEO pair or a numbered checkpoint. It exposes
+the original restraint target, weight and width, including user edits. In a
+five-cycle FT–Hg fit, the starting GEO was inconsistent with the final PDB.
+The final GEO covered 920 internal bonds and 1,319 angles. The 42 nucleotide
+residues were measured and the isolated Hg was counted separately. Both PDU
+crossover checkpoints also gave complete readings. No checkpoint schema,
+native weight, chemistry or selection changed. Raw model files stay local.
+
+Source and physically relocated installation each passed 158 focused tests
+plus 21 subtests. The six historical phosphate readbacks retained their
+earlier hashes. The command was
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -p no:cacheprovider`
+on `tests/test_{refinement_residue_geometry,phosphate_image,refinement_component_bonds,refinement_link_geometry,phosphate_duplex,phosphate_continuation,refinement_phosphate,cif_doctor_run,cli}.py`.
+The private evidence identifies Phenix 2.2.1-6174 and its two native geometry
+tables. Continue Q06 with the matched crossover comparison.
+
+**Previous handoff.** Updated **2026-11-24, C572 checking possible starting shapes for the D:7 crossover — Rowan**.
 Active branch **cedar**, worktree **NASolve-c96**. Current scaffold B transfer is **`3dff6357`**.
 
 **Q06.** C572 compared four ordinary T→G linkages with the D:7 crossover in

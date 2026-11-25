@@ -8,6 +8,11 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `cif-doctor residue-geometry` measures within-residue bonds and angles
+  against the targets in the final Phenix GEO. Inspect specific residues or
+  screen the whole PDB. An explicit checkpoint supplies its own files, and
+  the report identifies missing measurements and tables from a different model.
+
 - `cif-doctor prepare --recipe alkynyl-methyl-template-v1` writes a separate
   trial dictionary for one neutral alkynyl methyl. It moves the terminal
   carbon and its three explicit hydrogens to the dictionary's own bond target.

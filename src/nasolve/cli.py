@@ -325,6 +325,14 @@ def build_parser() -> argparse.ArgumentParser:
     deposition_links.add_argument("--processed", type=Path, help="optional returned coordinate mmCIF to check for missing covalent declarations")
     deposition_links.add_argument("--max-step", type=float, default=2.2, metavar="ANGSTROMS", help="flag O3'–P distances above this length (default 2.2 Å)")
     deposition_links.add_argument("--json", action="store_true", help="print distances, image angles and both file hashes")
+    residue_geometry = cif_sub.add_parser("residue-geometry", help="inspect the bonds and angles Phenix used inside named residues")
+    residue_geometry.add_argument("model", type=Path, metavar="PDB_OR_RUN", help="exact PDB or a numbered run with --checkpoint")
+    residue_sites = residue_geometry.add_mutually_exclusive_group(required=True)
+    residue_sites.add_argument("--site", action="append", metavar="CHAIN:NUMBER", help="residue to inspect (repeatable)")
+    residue_sites.add_argument("--all-sites", action="store_true", help="screen every modeled residue and summarize the largest discrepancies")
+    residue_geometry.add_argument("--geometry", type=Path, metavar="FINAL_GEO", help="matching final Phenix geometry for an explicit PDB")
+    residue_geometry.add_argument("--checkpoint", help="explicit checkpoint ID or bookmark and its recorded final geometry")
+    residue_geometry.add_argument("--json", action="store_true", help="print all observed rows, their origins and file hashes")
     phosphate_image = cif_sub.add_parser("phosphate-image", help="inspect a named O3' crystal image at a phosphate (requires NASolve[topology])")
     phosphate_image.add_argument("model", type=Path, metavar="PDB_OR_RUN", help="exact written PDB with CRYST1, or a numbered run with --checkpoint")
     phosphate_image.add_argument("--checkpoint", help="read this checkpoint ID or bookmark and its recorded final geometry")
@@ -2129,6 +2137,18 @@ def _cif_doctor(args: argparse.Namespace) -> int:
     """Offline assessment/preparation and explicitly requested native candidates."""
     if args.cif_action == "deposition-links":
         return _cif_deposition_links(args)
+    if args.cif_action == "residue-geometry":
+        from .refinement_residue_geometry import inspect_residue_geometry, print_residue_geometry
+        try:
+            result = inspect_residue_geometry(args.model, args.site, geometry=args.geometry, checkpoint=args.checkpoint)
+        except (OSError, ValueError, CheckpointError) as exc:
+            print(str(exc), file=sys.stderr)
+            return 1
+        if args.json:
+            print(json.dumps(result, indent=2, sort_keys=True, allow_nan=False))
+        else:
+            print_residue_geometry(result)
+        return 0 if result["status"] == "OBSERVED" else 2
     if args.cif_action == "phosphate-image":
         return _cif_phosphate_image(args)
     if args.cif_action == "prepared-backbone":

@@ -64,11 +64,12 @@ def _compare(atoms, image_ops, sample, reversed_order, origin, values, mate, ide
                 asymmetric_unit_degrees=asu, crystal_mate_degrees=crystal)
 
 
-def printed_phosphate_angles(text, labels, samples, mate, gemmi, members):
-    """Read complete native bond-angle sections. Values describe the written PDB and cell."""
+def visit_printed_angles(text, labels, visit):
+    """Visit the rows of complete native bond-angle sections and return their counts.
+
+    A caller must discard collected rows if a later row or section is incomplete.
+    """
     sections = {}
-    matches = []
-    identity = gemmi.Op("x,y,z")
     origin = None
     count = 0
     lines = iter(text.splitlines())
@@ -104,12 +105,27 @@ def printed_phosphate_angles(text, labels, samples, mate, gemmi, members):
                      "unsupported printed angle or precision")
             count += 1
             _require(count <= sections[origin], "more angles than declared")
-            reverse = atoms not in samples
-            sample = samples.get(atoms[::-1] if reverse else atoms)
-            if sample is not None:
-                matches.append(_compare(atoms, ops, sample, reverse, origin, values, mate, identity, gemmi, members))
+            visit(atoms, ops, origin, values)
         _require(origin is None or count == sections[origin], "incomplete angle section")
-    except (StopIteration, ValueError) as exc:
-        return dict(status="UNASSESSED", reason=str(exc) or "Incomplete printed angle row", sections=None, matches=None)
+    except StopIteration as exc:
+        raise ValueError("Incomplete printed angle row") from exc
+    return sections
+
+
+def printed_phosphate_angles(text, labels, samples, mate, gemmi, members):
+    """Read complete native bond-angle sections. Values describe the written PDB and cell."""
+    matches = []
+    identity = gemmi.Op("x,y,z")
+
+    def collect(atoms, ops, origin, values):
+        reverse = atoms not in samples
+        sample = samples.get(atoms[::-1] if reverse else atoms)
+        if sample is not None:
+            matches.append(_compare(atoms, ops, sample, reverse, origin, values, mate, identity, gemmi, members))
+
+    try:
+        sections = visit_printed_angles(text, labels, collect)
+    except ValueError as exc:
+        return dict(status="UNASSESSED", reason=str(exc), sections=None, matches=None)
     return dict(status="OBSERVED" if sections else "NOT_RECORDED", sections=sections,
                 matches=matches if sections else None)

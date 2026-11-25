@@ -37,6 +37,14 @@ The separate `export_final_f_model` option writes an MTZ useful for checking sca
 - Match the working and held-out observations to the original refinement input by Miller index, retaining anomalous mate identity where applicable. Check the actual numeric test-flag convention and each assignment. Compare Fobs **and** sigma against the amplitudes used, allowing for a documented common scale. For these files, `o` and `f` marked the working and free observations. Rows with missing measurements could still carry map coefficients.
 - First reproduce the reported Rwork and Rfree from each set’s exported Fobs and scaled model amplitudes. Then independently calculate them from the **outgoing coordinates**, measured Fobs and original flags, recomputing scattering, solvent and scales. Record both readings and the settings. The first catches stale statistics or a mixed file pair. The second can catch a model that disagrees with otherwise self-consistent exported columns.
 
+For an initial geometry screen, give CIF Doctor the exact final PDB and
+`*_final.geo`. It verifies the lengths and angles at the coordinates in
+that file, including modified residues and held atoms. In a five-cycle
+metal–DNA example the starting GEO disagreed with the final coordinates.
+The final GEO matched 920 within-residue bonds and 1,319 angles. The isolated
+metal had no internal angles to measure. Independent wwPDB reference values
+and inter-residue links need their own checks. [Command and coverage](cif-doctor.md#checking-bonds-and-angles-in-the-refined-model)
+
 ## Check what survives OneDep
 
 When carrying a connection to another crystal copy, decode each partner's

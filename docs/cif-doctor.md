@@ -32,6 +32,40 @@ identifies unsupported selections and files it could only partly read.
 A numbered checkpoint supplies its own ordered inputs. For a standalone
 reading, include the actual PHIL files beside the CIF on the command line.
 
+## Checking bonds and angles in the refined model
+
+To see which chemical dimensions moved during a fit, open the final coordinates
+and their **final** Phenix geometry table. A checkpoint supplies both files.
+Use `--all-sites` for a survey or repeat `--site` to inspect a neighborhood.
+
+```sh
+nasolve cif-doctor residue-geometry dataset/AutoMR/run_001 --checkpoint refine-002 --site D:7 --site C:8
+nasolve cif-doctor residue-geometry refined_001.pdb --geometry refined_001_final.geo --all-sites
+```
+
+Each reading gives the atoms, measured length in Å or angle in degrees,
+printed target, origin and signed deviation in units of the printed sigma.
+The short view shows the four largest absolute discrepancies in each group.
+With `--all-sites` it ranks them across the whole model. Add `--json` for
+every row, printed sigma, weight, bond slack, site coverage and file hashes.
+The ranking uses the unadjusted difference from the target. A zero weight or
+positive slack can reduce the force a discrepancy actually produces.
+
+Doctor checks the printed model values against the coordinates at their
+written precision. Phenix commonly writes both `refined_001.geo` at the start
+and `refined_001_final.geo` at the end. A stale or incomplete section is
+reported as unassessed. A site with too few modeled atoms for the requested
+measurement is counted separately. Each site needs a single fixed-column PDB
+identity. Internal rows spanning different crystal images are counted
+separately. Use the [crystal phosphate reading](#inspecting-a-phosphate-at-a-crystal-boundary)
+for a declared cross-residue junction. The exit code is 0 when eligible
+measurements were observed, 2 for missing or incomplete coverage and 1 for an
+invalid input. A complete reading can still contain severe distortions.
+
+These are Phenix's effective targets for the actual model and restraint inputs.
+An independent wwPDB check can assign a different target or uncertainty, and
+an absent chemical restraint has no printed value to score.
+
 ## Checking which atoms Phenix put in a residue plane
 
 To see whether a base substituent actually reached a ring-plane restraint,
