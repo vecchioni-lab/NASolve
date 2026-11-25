@@ -1136,13 +1136,14 @@
         "W280: preview-independent exact parent input observer through an explicit trusted registry reader. Genuine relocated PDU refined parent preserves model, original observations and seven restraints; existing preparation refusal and canonical motion scopes unchanged. No new native run.",
         "W281: explicit full atom identity bijection carries source graph into same-representative coordinate descendants without replacing the original registration. Genuine PDU positive and changed-image refusal; source graph/current indices stay distinct.",
         "W282: existing Pine owners build a separate explicit descendant registration and ordinary whole-C preview. Genuine PDU40-link/160-angle comparison preserves existing physical geometry and immutable source provenance.",
-        "W283: genuine descendant CIF export fails closed on missing entity identity. All49 connection rows retained; only two existing phosphate-image proposals have graph/native/paired-PDB evidence, unapplied. Remaining metadata must be qualified separately."
+        "W283: genuine descendant CIF export fails closed on missing entity identity. All49 connection rows retained; only two existing phosphate-image proposals have graph/native/paired-PDB evidence, unapplied. Remaining metadata must be qualified separately.",
+        "W284: exact archived reference/recipe trace exposes two inherited source choices outside explicit PDU substitutions. Separate modeled labels from experimental/full-oligo/entity authority before writing metadata."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "W284: with Rowan specify the source-bound missing-metadata repair boundary before implementation. Require companion-model evidence for author labels, actual construct/entity/sequence provenance, and explicit images for every remaining connection; preserve raw source and unapplied proposals. Do not default images to identity or drop rows. Reuse export/coverage only after qualification; no repeated fit.",
+      "next_action": "Review the W284 matrix with Rowan. Complete metadata repair needs explicit physical-oligo/entity provenance and review of inherited A13DC/B3DG; neither is implied by the matching family-reference hash. Preserve W283 two-row proposal and all47 unresolved annotations. Reuse existing label/sequence/graph owners once evidence is supplied; keep export/native admission strict. Do not repeat fits or deferred stress tests to work around metadata gaps.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -1183,14 +1184,15 @@
         "E_CHECKPOINT_INPUT_OBSERVER",
         "E_REGISTERED_GRAPH_DESCENT",
         "E_DESCENDANT_ORDINARY_PREVIEW",
-        "E_DESCENDANT_CIF_EXPORT_GAPS"
+        "E_DESCENDANT_CIF_EXPORT_GAPS",
+        "E_ARCHIVED_METADATA_AUTHORITY"
       ],
       "last_audit": {
         "date": "2026-11-25",
-        "human_update": 283,
+        "human_update": 284,
         "code_commit": "f40f5bc65b0a44e339bc5c7416499041ddf2bd93",
-        "reviewer": "Linden; scoped with Rowan",
-        "scope": "Actual-source negative export and two-row graph/native image proposal, no product/native change; P03 remains partial."
+        "reviewer": "Linden; evidence trace requested by Rowan",
+        "scope": "Exact declared/archive inputs, sequence/recipe reconstruction and unchanged four-model identity lineage; no product/native change. P03 remains partial."
       }
     },
     {
@@ -9245,6 +9247,47 @@
           "size": 1793
         }
       ]
+    },
+    "E_ARCHIVED_METADATA_AUTHORITY": {
+      "kind": "Archived construct metadata authority matrix",
+      "date": "2026-11-25",
+      "human_update": 284,
+      "code_commit": "f40f5bc65b0a44e339bc5c7416499041ddf2bd93",
+      "reference": "docs/topostitch-preview.md#archived-sequence-and-entity-authority-w284",
+      "result": "Exact reference/recipe hashes bind. Reference plus recorded PDU substitutions matches40/42 targets; A13DC/B3DG are inherited from exact original C_G model through MR, construction and refinement. No inputs or current postmr changed.",
+      "limitation": "Modeled identities do not establish experimental full-oligo/entity authority. No declared deposition-template pointer in inspected records; no global absence claim. W283 proposal remains unapplied; no export/native/sequence repair.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w284-metadata-authority/README.md",
+          "sha256": "6799b1ac3edea1c6b7d1663513abecf4f2d62bfccda40bb42c61e709e145d55a",
+          "size": 3113
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w284-metadata-authority/audit.log",
+          "sha256": "db75bff12ff5304baed75db645aa49600f480f5e7c2875f45708406579acc5d4",
+          "size": 577
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w284-metadata-authority/audit.py",
+          "sha256": "8d993c91de5b4361f6bf48997353649729afbd7562d461704d5a506a5bb5c3b4",
+          "size": 8765
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w284-metadata-authority/matrix.json",
+          "sha256": "70c91f2e10478269ceaeaf78bc9aa3d5c941d00a254b1049014577d5d733ff1c",
+          "size": 10396
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w284-metadata-authority/validation.json",
+          "sha256": "af6058974928a1c41d1caf5dd589fc7e5b61705e458f5ae58374434a69d6c222",
+          "size": 811
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -9426,8 +9469,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 283,
-    "next": 284,
+    "current": 284,
+    "next": 285,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -10933,6 +10976,12 @@
       {
         "number": 283,
         "title": "Identify genuine CIF metadata gaps and retain an unapplied two-link proposal",
+        "state": "RECORDED",
+        "code_commit": "f40f5bc65b0a44e339bc5c7416499041ddf2bd93"
+      },
+      {
+        "number": 284,
+        "title": "Trace archived sequence and recipe authority without inventing entities",
         "state": "RECORDED",
         "code_commit": "f40f5bc65b0a44e339bc5c7416499041ddf2bd93"
       }

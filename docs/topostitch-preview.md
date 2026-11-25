@@ -4983,3 +4983,45 @@ rows, or weaken strict export admission. Once those inputs exist, reuse the curr
 export/coverage owners and recheck all 40 graph edges before native restart work.
 The deferred fragmented-ASU/LNA/nonzero-f″ metal tests remain queued behind their
 existing P03–P05/Alder prerequisites.
+
+
+## Archived sequence and entity authority (W284)
+
+Following W283, the actual archived reference/recipe were traced through the
+existing loaders. The `w-metal-scaffold` content digest exactly matches the
+original registration, and all four archived frame-sequence blocks match that
+reference. The `5w6w` source/configuration hashes also match the saved recipe
+intent, including explicit D:1 terminal phosphate permission.
+
+The reference with the run's explicit A:12/B:4 PDU substitutions reproduces
+**40/42** registered targets. At A:13 it predicts DT while the model has DC;
+at B:3 it predicts DA while the model has DG. Both model identities already
+occur in the original `C_G.pdb`, read at the exact report-declared location and
+verified against its recorded digest. They persist through the checksum-bound
+MR input, construction and refined endpoint. Construction changes exactly A:12
+DC→PDU and B:4 DG→PDU. This establishes inherited model choices, not experimental
+sequence confirmation or evidence that these sites need correction.
+
+| Metadata | Supported evidence | Still unqualified |
+| --- | --- | --- |
+| Author labels / modeled components | Unique PDB/CIF correspondence and bound model lineage | Experimental sequence correctness |
+| ASU target inventory | Exact sequence document, registration and explicit substitutions | Two inherited source choices require design review |
+| Terminal phosphate | Exact recipe permission for D:1 | Unspecified ends and physical nick phase |
+| Full oligos / entity membership | No sequence file/override in this run; no SEQRES in four inspected models | Physical oligo assignment across ASU fragments |
+| Deposition template | No pointer in inspected report/construction/registration/recipe | No global absence claim or implicit external-template authority |
+| Connection images | Two W283 graph/native proposals | Other 47 original rows |
+
+The existing family reference describes labeled ASU sites. Its hash alone must
+not promote four coordinate fragments into four complete synthesized oligos.
+Before a complete metadata writer, review the inherited sequence choices and
+supply actual physical-oligo/entity provenance. Missing image annotations need
+separate evidence. Keep source files immutable and proposed repair distinct from
+an applied derivative; retain strict exporter refusal in the meantime.
+
+Local matrix, scripts, commands and opening report are under NASolve anchor
+`branch-artifacts/willow/w284-metadata-authority/`. All inspected inputs and the
+selected `postmr` remain unchanged. This documentation/evidence checkpoint adds
+no executable behavior or artifact schema and runs no native calculation, new
+installation or full suite. The current product remains W281. Local scientific
+records stay outside Git; roadmap references retain hashes. The existing delayed
+fragmented-ASU/LNA/nonzero-f″ metal gates are unchanged.

@@ -1,6 +1,15 @@
 # NASolve development handoff — Willow
 
-**Current science audit: W283; product code remains W281.**
+**Current science audit: W284; product code remains W281.**
+The archived reference and recipe hashes match, but reference+PDU substitutions
+reproduce 40/42 targets. A:13 DC and B:3 DG are inherited from the exact original
+`C_G.pdb`, unchanged through construction/refinement. No correction is inferred.
+[Authority matrix and next boundary](topostitch-preview.md#archived-sequence-and-entity-authority-w284)
+separate modeled identities from experimental sequence and physical oligo/entity
+membership. Full CIF metadata repair remains gated; W283's two-row proposal is
+unapplied, the other 47 rows unresolved. No product/native/selection change.
+
+**Previous science audit: W283; product code remains W281.**
 The genuine PDU paired CIF lacks entity labels and connection-image columns.
 The existing exporter refuses before writing an output. Two phosphate rows have
 an unapplied graph/native-attested image proposal; the other 47 rows and entity

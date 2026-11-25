@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W284 — Trace archived sequence authority before metadata repair
+
+- Bind the actual reference and recipe to their saved hashes and distinguish two
+  inherited search-model identities from explicit PDU substitutions. Preserve
+  unresolved physical-oligo/entity authority. Evidence and planning only; no
+  model, sequence, runtime or installed-code change.
+
 ### W283 — Record genuine descendant export gaps
 
 - Preserve the observed missing-entity export refusal and all original connection
