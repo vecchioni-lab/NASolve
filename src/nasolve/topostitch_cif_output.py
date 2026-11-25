@@ -479,3 +479,136 @@ def observe_whole_asym_cif_backbone(directory, model, serialized_model, *,
             'Unregistered context and sequence gaps remain explicit, not added to the graph'])
     result['report_sha256'] = _fingerprint(result)
     return result
+
+
+
+def _export_inputs(directory, model):
+    from .topostitch_recut_bundle import _FILES
+    root = Path(directory)
+    return {'original.cif': Path(model), 'preview/preview.json': root/'preview.json',
+            **{'preview/'+name: root/name for name in _FILES.values()}}
+
+
+def _export_json(value):
+    import json
+    return (json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False)+'\n').encode('utf-8')
+
+
+def _prepare_export_payload(snapshots, options, cedar_source):
+    """Use frozen, relocated inputs and existing scientific owners before writing."""
+    import tempfile
+    from .topostitch_inspect import _keys
+    required = set(_SOURCE_KEYS+_BOUNDS+('expected_deposition_owner_sha256',
+                   'reviewed_categories', 'tls_policy', 'center_policy'))
+    _keys(options, required)
+    with tempfile.TemporaryDirectory(prefix='nasolve-whole-asym-') as temporary:
+        root = Path(temporary)
+        for name, data in snapshots.items():
+            path = root/name; path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(data)
+        data, draft = prepare_whole_asym_cif(root/'preview', root/'original.cif',
+                                            cedar_source=cedar_source, **options)
+        output = root/'representative.cif'; output.write_bytes(data)
+        binding = {k: options[k] for k in _SOURCE_KEYS+('expected_deposition_owner_sha256',)}
+        coverage = observe_whole_asym_cif_backbone(root/'preview', root/'original.cif', output,
+            expected_output_sha256=draft['output_sha256'], cedar_source=cedar_source, **binding)
+        if not coverage['complete_declared_backbone_coverage']:
+            raise ValueError('Whole-asym export requires complete declared backbone coverage')
+    return {**snapshots, 'representative.cif': data,
+            'draft.json': _export_json(draft), 'coverage.json': _export_json(coverage)}, draft, coverage
+
+
+def _export_receipt(options, artifacts, draft, coverage):
+    receipt = dict(schema_version=1, kind='topostitch-whole-asym-cif-export',
+        status='EXPORTED_REVIEW_REQUIRED', options=options, artifacts=artifacts,
+        draft_report_sha256=draft['report_sha256'], coverage_report_sha256=coverage['report_sha256'],
+        output_sha256=draft['output_sha256'], complete_declared_backbone_coverage=True,
+        checkpoint_created=False, selection_applied=False, native_restart_qualified=False,
+        geometry_accepted=False, scientific_acceptance=False, runtime_authority=False,
+        limitations=['Reviewed diagnostic export, not a selected checkpoint or native TLS restart',
+            'Original sources and explicit policy retained; semantic review remains caller-owned',
+            'Coverage is not geometry repair, physical nick assignment or scattering acceptance',
+            'Replay requires the explicitly hash-bound compatible Cedar reader'])
+    receipt['report_sha256'] = _fingerprint(receipt)
+    return receipt
+
+
+def write_whole_asym_cif(directory, model, *, output_directory, cedar_source=None, **draft_options):
+    """Save one reviewed diagnostic CIF and replay evidence in a fresh directory.
+
+    Require W272's explicit policies and W274's complete graph coverage. Preserve
+    original sources and use run-relative references. As with preview packets,
+    export.json is written last; an interrupted partial directory is not complete
+    and is never silently removed or reused. No checkpoint or native job starts.
+    """
+    import json
+    from .run_context import artifact_reference
+    root = Path(output_directory)
+    if root.exists() or root.is_symlink():
+        raise FileExistsError('Whole-asym export already exists: '+str(root))
+    paths = _export_inputs(directory, model)
+    snapshots = {name: path.read_bytes() for name, path in paths.items()}
+    options = json.loads(_export_json(draft_options))
+    payload, draft, coverage = _prepare_export_payload(snapshots, options, cedar_source)
+    if any(path.read_bytes() != snapshots[name] for name, path in paths.items()):
+        raise ValueError('Original inputs changed before whole-asym export publication')
+    root.mkdir()
+    artifacts = {}
+    for name, data in payload.items():
+        path = root/name; path.parent.mkdir(parents=True, exist_ok=True)
+        with path.open('xb') as stream:
+            stream.write(data)
+        artifacts[name] = {**artifact_reference(path, root), 'sha256': sha256(data).hexdigest(),
+                           'size_bytes': len(data)}
+    receipt = _export_receipt(options, artifacts, draft, coverage)
+    if any((root/name).read_bytes() != data for name, data in payload.items()):
+        raise ValueError('Written whole-asym artifacts differ from prepared bytes')
+    if any(path.read_bytes() != snapshots[name] for name, path in paths.items()):
+        raise ValueError('Original inputs changed during whole-asym export publication')
+    with (root/'export.json').open('xb') as stream:
+        stream.write(_export_json(receipt))
+    return receipt
+
+
+def load_whole_asym_cif(directory, *, expected_receipt_sha256, cedar_source=None):
+    """Verify anchored files and independently reproduce the saved draft/reports.
+
+    Rehashing a changed derived file cannot make it replay. The supplied original
+    coordinate file and preview are resolved only inside this packet; no original
+    host path or basename search is used. Cedar remains an explicit dependency.
+    """
+    import re
+    from .run_context import resolve_artifact_path
+    from .topostitch_inspect import _keys
+    from .topostitch_preview import _json
+    root = Path(directory); manifest = root/'export.json'; data = manifest.read_bytes()
+    if sha256(data).hexdigest() != expected_receipt_sha256:
+        raise ValueError('Whole-asym export receipt differs from requested binding')
+    receipt = _json(data)
+    if not isinstance(receipt, dict) or type(receipt.get('schema_version')) is not int or receipt['schema_version'] != 1 or receipt.get('kind') != 'topostitch-whole-asym-cif-export':
+        raise ValueError('Unsupported whole-asym export receipt')
+    inputs = _export_inputs(root/'preview', root/'original.cif')
+    names = {*inputs, 'representative.cif', 'draft.json', 'coverage.json'}
+    references = receipt.get('artifacts')
+    if not isinstance(references, dict) or set(references) != names:
+        raise ValueError('Incomplete whole-asym export artifact inventory')
+    frozen = {}
+    for name, ref in references.items():
+        _keys(ref, {'anchor', 'relative_path', 'sha256', 'size_bytes'})
+        if (ref['anchor'] != 'run' or ref['relative_path'] != name
+                or not isinstance(ref['sha256'], str) or not re.fullmatch('[0-9a-f]{64}', ref['sha256'])
+                or type(ref['size_bytes']) is not int or ref['size_bytes'] < 0):
+            raise ValueError('Require exact local anchored whole-asym artifacts')
+        path = resolve_artifact_path(ref, root)
+        if path is None or path.stat().st_size != ref['size_bytes']:
+            raise ValueError('Missing or changed whole-asym export artifact')
+        frozen[name] = path.read_bytes()
+        if sha256(frozen[name]).hexdigest() != ref['sha256']:
+            raise ValueError('Whole-asym export artifact changed during read')
+    payload, draft, coverage = _prepare_export_payload({n: frozen[n] for n in inputs}, receipt['options'], cedar_source)
+    expected = _export_receipt(receipt['options'], references, draft, coverage)
+    if payload != frozen or _fingerprint(expected) != _fingerprint(receipt):
+        raise ValueError('Whole-asym export does not reproduce from its frozen sources')
+    if manifest.read_bytes() != data or any((root/n).read_bytes() != b for n, b in frozen.items()):
+        raise ValueError('Whole-asym export changed during replay')
+    return receipt

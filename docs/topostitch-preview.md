@@ -4563,3 +4563,60 @@ steps and nine explicit records (seven overlaps). Supplying the original CIF
 against that proposed graph correctly flags the A–D image conflict. An immutable
 save/replay wrapper remains the next boundary; a coverage report alone cannot
 authorize native restart or a selected checkpoint.
+
+
+### Save and replay an immutable whole-asym export (W275)
+
+`write_whole_asym_cif` composes the reviewed draft and public backbone-coverage
+owners into a **diagnostic export packet**. It requires the same explicit category,
+TLS, center and source/assembly policies as W272, plus a compatible Cedar per-step
+reader. Complete declared backbone coverage is required before publication.
+No checkpoint, native job, force, physical nick or accepted structure is created.
+
+```python
+from hashlib import sha256
+from pathlib import Path
+from nasolve.topostitch_cif_output import (
+    write_whole_asym_cif, load_whole_asym_cif,
+)
+
+receipt = write_whole_asym_cif(
+    preview_directory, original_cif,
+    output_directory=export_directory,
+    cedar_source=cedar_source_directory,
+    **reviewed_draft_options,
+)
+receipt_file = Path(export_directory) / "export.json"
+replayed = load_whole_asym_cif(
+    export_directory,
+    expected_receipt_sha256=sha256(receipt_file.read_bytes()).hexdigest(),
+    cedar_source=cedar_source_directory,
+)
+```
+
+The destination's parent must exist. The destination itself must be new; an
+existing directory or symlink is refused. Nine hash/size-bound artifacts retain
+the original CIF, the five-file source preview, `representative.cif`, `draft.json`
+and `coverage.json`. `export.json` is the last file written and marks a complete
+packet. As with existing preview packets, interrupted partial directories remain
+inspectable and are not overwritten or silently cleaned up. This is receipt-last
+completion, not a claim of an atomic filesystem transaction.
+
+Every operational artifact reference uses the existing `run` anchor and exact
+relative path. There is no basename search or dependency on the original input
+directory. Cedar is an explicit, hash-bound software dependency supplied at replay;
+its host path is not stored as an operational reference. Source inputs are frozen
+before preparation and checked for drift before and during publication.
+
+Loading validates the caller's **file SHA-256** for `export.json` (distinct from
+the receipt's internal `report_sha256`), all file hashes/sizes and exact local
+references. It then regenerates the CIF and both reports from the captured inputs.
+Rehashing a damaged derived CIF cannot make it pass. Unknown changes or incompatible
+algorithm/owner behavior refuse rather than silently migrate a saved packet.
+
+The additive schema1 `topostitch-whole-asym-cif-export` remains
+`EXPORTED_REVIEW_REQUIRED`. Known long links can remain covered while their
+geometry is flagged for review. Native TLS restart, full mixed-path cuts, chemical
+nick assignment and ordinary checkpoint/GUI integration remain separate gates.
+The actual supported 3LNA export reproduces W272's native-tested coordinate bytes;
+this does not constitute a new refinement or a general native-restart approval.

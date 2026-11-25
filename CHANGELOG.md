@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W275 — Save and replay reviewed whole-asym diagnostic exports
+
+- Add a fresh-directory export packet containing the source CIF/preview,
+  reviewed representative CIF and source-bound draft/coverage receipts.
+- Require full declared backbone coverage and exact local artifact anchors;
+  refuse source drift, existing destinations and incomplete/altered output.
+- Recompute derived bytes on replay, including after original input paths are
+  removed. Receipt-last completion preserves interrupted partial evidence.
+- No CLI/default, checkpoint selection, native restart or chemistry change.
+
 ### W274 — Consume public per-step backbone evidence
 
 - Add a source-bound serialized-CIF coverage observer using Cedar's public
