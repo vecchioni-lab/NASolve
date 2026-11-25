@@ -4924,3 +4924,62 @@ comparisons and exact upstream hashes. All original files and selected `postmr`
 remain unchanged. No coordinate export, native initialization or refinement ran;
 no new code/schema or installation changed. Existing focused/installed controls
 were reused; no full suite or new browser-render qualification is claimed.
+
+
+## Genuine descendant CIF export gaps (W283)
+
+The W282 genuine-parent preview reaches a real input-format boundary. Its paired
+Phenix CIF has complete atom/residue chain locators but all 862 atom rows lack
+`label_entity_id`; `_struct_asym` contains only `id`, with no entity/polymer
+sequence tables. The existing source-path observer and whole-asym exporter refuse
+`Registered node 1 lacks one complete original CIF site label` before publication.
+No export directory or coordinate file is created. This is an observed refusal,
+not a completed native restart or a missing-CIF repair.
+
+An independent raw-table/explicit Cedar decoder audit finds 49 `_struct_conn`
+rows (38 `hydrog`, 11 `covale`) without either partner-symmetry column: 98 unknown
+endpoint images. Connection rows also supply author component IDs missing from
+`_atom_site`. Original labels, all rows and source bytes are retained. For example,
+author C:8 is label C:1; that difference is not evidence of a sequence mutation.
+The current strict reader remains unchanged.
+
+A separate, **unapplied two-row proposal** binds C00048 and C00049 to the W281
+registered graph, the authentic completed native phosphate witness and the final
+geometry file. The native witness holds P fixed and transforms O3′; the graph
+holds O3′ fixed and transforms P. The operators are inverses, so the bond is the
+same periodic bond under a common change of representative. This is not an
+assertion of identical absolute endpoint positions. Four missing author-component
+fields are corroborated by the exact paired PDB with unique identities and the
+previously measured serialization bound; the source CIF is not silently enriched.
+
+| Row | Bond | Proposed recut codes, P / O3′ | Full-precision CIF distance |
+| --- | --- | --- | --- |
+| C00048 | B:7 O3′ → B:1 P | `2_555` / `1_555` | 1.670058 Å |
+| C00049 | D:7 O3′ → C:8 P | `1_555` / `1_555` | 1.634283 Å |
+
+Codes refer to this source's explicit operation table. Both proposed endpoint
+transports agree within 1e-12 Å. The other 47 rows remain unresolved, as do entity
+metadata and complete pairing. Small differences from W282's distances reflect
+CIF versus rounded PDB precision, not another fit. No model, restraint, source
+registration or selected `postmr` was changed.
+
+Evidence lives under NASolve anchor
+`branch-artifacts/willow/w283-descendant-cif-export/`: `result.json`,
+`two-phosphate-proposal.json`, exact commands in `validation.json`, and an opening
+`README.md`. The ledger hashes the scripts, positive observations and preserved
+refusal logs. These local experimental files are excluded from Git. This is a
+read-only actual-source experiment; no new product behavior/schema, installation,
+full-suite or native execution was introduced. Historical Phenix 2.2.1-6174
+complete-run evidence was reread. Cedar's changed reader at
+`49bdd664471a278296a8da0b8419cf55f39bd581` was reviewed and explicitly repinned;
+its symmetry decoder is unchanged. Source-owner pin refusal is retained.
+
+Next, specify an explicit metadata-repair boundary with Rowan: author-component
+fields need exact companion-model evidence; entity/sequence assignment needs a
+real construct definition; every remaining connection needs its own native or
+other declared image evidence. Keep a proposal separate from an applied derivative.
+Do not default absent images to identity, fabricate full oligos, drop unhandled
+rows, or weaken strict export admission. Once those inputs exist, reuse the current
+export/coverage owners and recheck all 40 graph edges before native restart work.
+The deferred fragmented-ASU/LNA/nonzero-f″ metal tests remain queued behind their
+existing P03–P05/Alder prerequisites.

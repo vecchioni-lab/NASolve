@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W283 — Record genuine descendant export gaps
+
+- Preserve the observed missing-entity export refusal and all original connection
+  rows. Bind two proposed phosphate images to graph/native evidence without
+  applying them; remaining metadata stays unresolved. Documentation/evidence only,
+  with no model, runtime, checkpoint or installed-code change.
+
 ### W282 — Demonstrate ordinary descendant recut inspection
 
 - Record a genuine PDU descendant preview built through existing registration

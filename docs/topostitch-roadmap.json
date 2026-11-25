@@ -1135,13 +1135,14 @@
         "W279 read-only restart audit: six TLS groups coexist with 1271 deposited anisotropic rows; residual flag unset. Existing prepared-child and same-representative/PDB inheritance contracts do not admit this diagnostic CIF by themselves. No new native run.",
         "W280: preview-independent exact parent input observer through an explicit trusted registry reader. Genuine relocated PDU refined parent preserves model, original observations and seven restraints; existing preparation refusal and canonical motion scopes unchanged. No new native run.",
         "W281: explicit full atom identity bijection carries source graph into same-representative coordinate descendants without replacing the original registration. Genuine PDU positive and changed-image refusal; source graph/current indices stay distinct.",
-        "W282: existing Pine owners build a separate explicit descendant registration and ordinary whole-C preview. Genuine PDU40-link/160-angle comparison preserves existing physical geometry and immutable source provenance."
+        "W282: existing Pine owners build a separate explicit descendant registration and ordinary whole-C preview. Genuine PDU40-link/160-angle comparison preserves existing physical geometry and immutable source provenance.",
+        "W283: genuine descendant CIF export fails closed on missing entity identity. All49 connection rows retained; only two existing phosphate-image proposals have graph/native/paired-PDB evidence, unapplied. Remaining metadata must be qualified separately."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "W283: evaluate the existing whole-asym CIF exporter on this genuine-parent paired CIF/ordinary preview, with explicit original-source precision and reviewed category policies. Reuse existing owners; hold unsupported metadata and native restart rather than infer authority. No repeated fit.",
+      "next_action": "W284: with Rowan specify the source-bound missing-metadata repair boundary before implementation. Require companion-model evidence for author labels, actual construct/entity/sequence provenance, and explicit images for every remaining connection; preserve raw source and unapplied proposals. Do not default images to identity or drop rows. Reuse export/coverage only after qualification; no repeated fit.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -1181,14 +1182,15 @@
         "E_EXPORT_RESTART_READINESS",
         "E_CHECKPOINT_INPUT_OBSERVER",
         "E_REGISTERED_GRAPH_DESCENT",
-        "E_DESCENDANT_ORDINARY_PREVIEW"
+        "E_DESCENDANT_ORDINARY_PREVIEW",
+        "E_DESCENDANT_CIF_EXPORT_GAPS"
       ],
       "last_audit": {
         "date": "2026-11-25",
-        "human_update": 282,
+        "human_update": 283,
         "code_commit": "f40f5bc65b0a44e339bc5c7416499041ddf2bd93",
-        "reviewer": "Linden; coordinated comparison with Rowan",
-        "scope": "Existing ordinary producer/replay/view and all40-link/160-angle actual comparison; no code/native changes."
+        "reviewer": "Linden; scoped with Rowan",
+        "scope": "Actual-source negative export and two-row graph/native image proposal, no product/native change; P03 remains partial."
       }
     },
     {
@@ -9154,6 +9156,95 @@
           "size": 74502
         }
       ]
+    },
+    "E_DESCENDANT_CIF_EXPORT_GAPS": {
+      "kind": "Genuine descendant export refusal and unapplied image proposal",
+      "date": "2026-11-25",
+      "human_update": 283,
+      "code_commit": "f40f5bc65b0a44e339bc5c7416499041ddf2bd93",
+      "reference": "docs/topostitch-preview.md#genuine-descendant-cif-export-gaps-w283",
+      "result": "Existing export refuses missing label_entity_id on862 atoms; raw49 connections lack98 partner images. Two phosphate rows corroborated by original graph, native witness and final geometry; proposal only. All sources/current postmr unchanged.",
+      "limitation": "Other47 connections, missing author/entity/sequence metadata and complete pairing unresolved. No full export, metadata repair, native execution or restart qualification.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w283-descendant-cif-export/README.md",
+          "sha256": "dab96ce32a8c48534f44ebbf8953703b87f60d7b14d41a7d5686a1ff0b620223",
+          "size": 3072
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w283-descendant-cif-export/audit.log",
+          "sha256": "1b070e52c3ae71678312f17478a36c12510d6f3a33ba3d8ff32a7f13a50b97ed",
+          "size": 409
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w283-descendant-cif-export/audit.py",
+          "sha256": "49cee70a5239b4e212422f8834b7ad89c160fef47e705fd36f301c492cc80b53",
+          "size": 6877
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w283-descendant-cif-export/connection-observer.json",
+          "sha256": "212e922d6df883ea1adb7a7a9bb16757c636f2aae06dae36913f177bdb83cb99",
+          "size": 101
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w283-descendant-cif-export/endpoint-label-refusal.log",
+          "sha256": "3055d1740e134d27254f04e2b7ee88ec0e9de0faa80fe8120dce125dd1e1b508",
+          "size": 350
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w283-descendant-cif-export/owner-pin-refusal.log",
+          "sha256": "452b409df5b15b65f45017e0130b8944c14e5c152b4f833443962c67b4223807",
+          "size": 332
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w283-descendant-cif-export/proposal.log",
+          "sha256": "06ccc6522958d9f8b74268adbd4b7f28389eb94cf8d8271526ad7b9f716cc495",
+          "size": 447
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w283-descendant-cif-export/propose.py",
+          "sha256": "b0e185aea5447cb395613b44be01561b341f72b170c2a9a166d583b32a28ca61",
+          "size": 10926
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w283-descendant-cif-export/raw-connection-images.json",
+          "sha256": "fe954e6718ee3098182a57292cba6046cb38de5d816db0a40cea74a7378d303a",
+          "size": 15683
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w283-descendant-cif-export/result.json",
+          "sha256": "32280a9a5048fff53e05aaa8f984a1b373fa177029876986c6e54dc9e89493c8",
+          "size": 14315
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w283-descendant-cif-export/source-label-refusal.log",
+          "sha256": "7d95e73b99d047d0c4de3ec41af29aacca3d44ae1b6757c54a2e6aaeac193b19",
+          "size": 930
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w283-descendant-cif-export/two-phosphate-proposal.json",
+          "sha256": "c5b82f0b704fff2dfbb128566143229508da40d73545517274cf82a15339aaf9",
+          "size": 9465
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w283-descendant-cif-export/validation.json",
+          "sha256": "7d044000ae2400e3bff7b754fdf83f1d2cb595b4510fda10f3683c70dc72e5fb",
+          "size": 1793
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -9335,8 +9426,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 282,
-    "next": 283,
+    "current": 283,
+    "next": 284,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -10836,6 +10927,12 @@
       {
         "number": 282,
         "title": "Preview an ordinary recut from the attested PDU descendant",
+        "state": "RECORDED",
+        "code_commit": "f40f5bc65b0a44e339bc5c7416499041ddf2bd93"
+      },
+      {
+        "number": 283,
+        "title": "Identify genuine CIF metadata gaps and retain an unapplied two-link proposal",
         "state": "RECORDED",
         "code_commit": "f40f5bc65b0a44e339bc5c7416499041ddf2bd93"
       }

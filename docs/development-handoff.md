@@ -1,6 +1,17 @@
 # NASolve development handoff — Willow
 
-**Current science audit: W282; product code remains W281.**
+**Current science audit: W283; product code remains W281.**
+The genuine PDU paired CIF lacks entity labels and connection-image columns.
+The existing exporter refuses before writing an output. Two phosphate rows have
+an unapplied graph/native-attested image proposal; the other 47 rows and entity
+metadata remain unresolved. Author-component fields absent in the CIF are
+corroborated only for the four proposed endpoints by its exact paired PDB.
+[Measured gaps and next boundary](topostitch-preview.md#genuine-descendant-cif-export-gaps-w283).
+No product/schema/native/selection change. W282 remains the useful visual result;
+its all-edge geometry comparison is preserved. Next specify source-bound metadata
+repair with Rowan, without guessing missing pairs or weakening export admission.
+
+**Previous science audit: W282; product code remains W281.**
 The existing ordinary preview now consumes a separately rebuilt/attested PDU
 registration: whole C moves to its declared image, bringing D:7→C:8 from a
 32.0511 Å direct display gap to its existing 1.6347 Å bond distance. All 40 image

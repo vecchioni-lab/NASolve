@@ -7,6 +7,10 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Current export gate: W283.** [Genuine CIF gaps](topostitch-preview.md#genuine-descendant-cif-export-gaps-w283)
+  records missing entity/image metadata and an unapplied two-link proposal.
+  Strict export refuses; no model or native policy changed.
+
 - **Current ordinary preview: W282.** [Genuine descendant recut](topostitch-preview.md#ordinary-recut-preview-of-an-attested-descendant-w282)
   moves one whole chain to its declared image while retaining all 40 bonds and
   160 angles. Existing owners only; original registration/selection untouched.
