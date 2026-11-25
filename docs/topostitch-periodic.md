@@ -14422,3 +14422,65 @@ no migration. No Cedar or crystallographic owner changes; combined-branch runtim
 integration is not claimed. The canvas remains the ASU preview. P03 is partial:
 complete assembly-instance/total-ADP qualification and output entity policy are
 still required before a maintained materializer.
+
+## W268 — Separate finite assembly coverage, deposited ADPs and TLS motion
+
+A read-only actual-file audit extends W266's per-generator endpoint observations
+to **complete labelled assembly instances** and the original deposited atomic
+ADPs. It uses the existing source `ReferenceFrame`, exact image composition and
+tensor owners. W62 already covers infinite crystal/lattice permutations; this
+new question concerns the finite, explicitly declared assembly generator set.
+W249's independent full-precision native tensor/Fcalc evidence is hash-checked
+against its committed ledger and reused, not rerun.
+
+**Four controls:** original/recut 3LNA and 5LNA. Each 3LNA namespace accounts for
+**3,813 generator/atom instances**, and 5LNA for **3,825**. Original generator-row
+and atom IDs remain distinct, with no loss, duplication or coincident-site merge.
+Every source atom is anisotropic in these inputs; original B, occupancy, element,
+mode and full-precision six-component U are retained. Raw H G⁻¹ transport preserves
+U to **1.07e-14 Å²** (maximum component error). Omitting the representative's tensor
+rotation gives **6.51 Å² / 4.87 Å²** errors for 3LNA/5LNA: correct positions alone
+cannot establish complete preservation.
+
+**A bounded simplification:** the full original C3 generator set is closed under
+these particular recuts. Exact affine `(original atom ID, image)` multisets agree
+without wrapping integer cell shifts; **246 instances** per recut change generator
+labels. Thus mixed-image paths need distinct corrections to preserve each named
+original instance, but the *whole exact set* can also survive a qualified instance
+permutation. This is not an automatic choice of output assembly semantics.
+For the rounded supplied matrices, the corresponding set difference is measured
+separately: up to **1.22e-7 Å / 6.97e-8 Å²** for 3LNA depositor coordinates/U.
+No raw matrix is silently replaced by its exact match.
+
+**Limits exercised:** retaining only the first generator fails finite coverage
+(**82 missing + 82 extra** instances); translating one atom by one unit cell fails
+(**three missing + three extra**). A modulo-cell comparison would incorrectly pass
+the latter. Deliberate instance loss/duplication is detected. These tests prevent
+promoting this C3 example into a rule for partial assemblies or lattice shifts.
+Special/coincident physical identity, unobserved atoms and biological acceptance
+remain outside this labelled numerical coverage.
+
+**Deposited ADPs are not the TLS field.** The six original TLS groups cover all
+source atoms, but their raw derived U differs from deposited U by up to
+**4.124 / 2.911 Å²**. This difference is not a validated residual: native S convention
+and refinement provenance are still separate gates. We neither replace deposited
+U with TLS U nor add TLS again. Phenix documents its output B factors as total
+ADPs and describes TLS-derived ANISOU records in its
+[refinement FAQ](https://phenix-online.org/documentation/faqs/refine.html).
+B-versus-U trace discrepancies in these original files are below 0.000382 Å²;
+raw B values remain unchanged, without rounding or rederivation.
+
+Commands, complete measurements, input/source hashes and negative controls:
+NASolve anchor `branch-artifacts/willow/w268-assembly-adp-audit/validation.json`.
+Python 3.12.14/Gemmi 0.7.5; both diagnostic scripts parse as Python 3.10. No product
+code, native job, coordinates or ADPs were written. No test/install/full-suite
+repeat is warranted for this evidence-only slice; W267 remains the installed-code
+qualification. The reused W249 run was a complete read-only Phenix 2.2.1-6174 /
+Python 3.11.15 calculation, not a refinement or dry run. All science stays local.
+
+**Next:** make this explicitly requested instance/deposited-ADP observation a
+bounded consumer of the existing W266 owner, preserving its default report and
+keeping unresolved generators, partial membership and finite-set failure visible.
+Reuse original-source binding and exact composition; do not add another tensor or
+permutation engine. Output entity/asym policy, preserved TLS refinement semantics,
+P02 edit loop and materialization remain separate P03 gates.

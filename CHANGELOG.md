@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W268 — Audit finite assembly instances and deposited atomic ADPs
+
+- Record four read-only LNA controls: complete labelled instance coverage and
+  raw tensor transport to round-off, with original ADPs separate from TLS U.
+- Demonstrate finite C3 set preservation for these recuts, plus failed partial-
+  generator and whole-cell-shift controls. No general assembly/writer approval.
+- Reuse the pinned independent W249 native evidence; no product code, native run,
+  test-suite or installation repeat. Scientific diagnostics remain local.
+
 ### W267 — Inspect assembly references beside the saved ASU cut
 
 - Extend the existing recut viewer with optional explicit assembly-rounding bounds.

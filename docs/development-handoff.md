@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W267, 2026-11-25** (code `7ff57017bd1aba8ac5d776f8838f68aef9f3bc8c`).
+**Current code: W267; latest evidence audit: W268, 2026-11-25** (code `7ff57017bd1aba8ac5d776f8838f68aef9f3bc8c`).
 The [ordinary assembly inspector](topostitch-preview.md#inspect-assembly-references-beside-the-saved-cut-w267)
 now shows actual raw matrices, exact crystal-image matches and original generator
 membership beside the saved ASU cut. An explicit three-key rounding-bounds file
@@ -25,7 +25,16 @@ retains 1,271/1,275 atoms; eight recut paths yield ten image/asym partitions. Ra
 H G⁻¹ endpoint error is at most 1.59e-14 Å. Separate raw-to-exact matrix rounding
 reaches 2.22e-7 Å; it is observed, never silently corrected.
 
-**Next W268; P03 remains partial.** W268: audit complete original assembly-instance and total-ADP coverage using existing source/image/transport owners. Distinguish exact declared crystal images from rounded supplied matrices, identify any missing public contract before coding, and coordinate output entity policy with Rowan. Do not repeat W249 ASU Fcalc or W264 TLS experiments; no writer or native fit until those gates are explicit.
+**W268 actual-file audit:** all 3,813/3,825 labelled assembly instances are
+accounted for; deposited U transport differs by at most 1.07e-14 Å². Full exact C3
+sets survive these recuts with 246 instance-label permutations; first-generator
+and whole-cell-shift controls fail (82/3 missing and extra instances respectively).
+Raw rounded matrices remain separate. Deposited U and raw TLS U are not
+interchangeable; no residual is inferred. This extends finite assembly coverage,
+not W62's infinite-crystal proof or W249's native Fcalc. Evidence and limits:
+`branch-artifacts/willow/w268-assembly-adp-audit/validation.json`.
+
+**Next W269; P03 remains partial.** W269: add explicitly requested labelled assembly-instance/deposited-ADP observation through the existing W266 owner, source frame and exact composition. Keep default reports byte-equivalent, original raw matrices separate from exact-set closure, missing/isotropic ADP modes explicit, and unresolved/partial/lattice-shift outcomes visible. Do not create output entities, replace or add TLS U, write models or run a new native fit.
 
 W264 source `5f0dbcb4afe726b853b402424d450507331a329f` retains its uniform-image
 qualification: 200 source/200 installed checks, 18 native comparisons, raw U

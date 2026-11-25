@@ -1120,13 +1120,14 @@
         "W264: 200 focused source/200 relocated installed checks,two subtests,214 installation-file hashes. Four real controls: original6 uniform TLS groups,recut2 uniform/4 mixed.18 complete read-only Phenix2.2.1-6174/cctbx comparisons bound raw U transport to5.33e-15 A2 and Python/native agreement to3.55e-15 A2. Separate default-trace reinterpretation changes source TLS U up to2.46919 A2; raw S retained. Mixed groups not split or transported; no refinement or writer.",
         "W265: 225 focused source/225 relocated installed checks,two skips/two subtests each;214 installed-file hashes. Full Willow2853 passed,4 skipped,234 subtests. Installed ordinary viewer reproduces exact W264 3LNA report after staged input/package relocation:4 mixed/2 uniform TLS groups,738 unique mixed members,1271 atoms. Separate complete Phenix2.2.1-6174 shared-original-motion diagnostic:4 groups,8 derived images,82 moved members; max per-atom U error3.55e-15 A2. No independent parameters,native fitting or writer.",
         "W266: 268 focused source/268 relocated installed checks;216 installed-file hashes. Four original/recut3LNA/5LNA controls preserve fragment digests. Each generator retains1271/1275 atoms; recuts have8 paths,10 image/asym partitions,mixed paths3/6. Actual curated/depositor2/3 IDs resolve separately from matrices; raw-to-exact rounding is explicit. Raw H G^-1 endpoint preservation within1.59e-14 A. Exact installed relocated3LNA replay; no native/full-suite repeat.",
-        "W267: 158 focused source/158 relocated installed checks, two existing skips each; 216 installed files. Actual installed 3LNA inspector embeds the exact W266 report, 1271 atoms and mixed paths3/6 after input/build/install relocation. Default scene equality, input drift, binding and CLI checks pass; inline JavaScript syntax passes, browser rendering unverified."
+        "W267: 158 focused source/158 relocated installed checks, two existing skips each; 216 installed files. Actual installed 3LNA inspector embeds the exact W266 report, 1271 atoms and mixed paths3/6 after input/build/install relocation. Default scene equality, input drift, binding and CLI checks pass; inline JavaScript syntax passes, browser rendering unverified.",
+        "W268: Four exact original/recut LNA controls retain3813/3825 labelled assembly instances. Raw deposited-U transport max1.07e-14 A2; skipping tensor rotation produces6.51/4.87 A2 errors. Full exact C3 set closure observed with246 permuted instance labels; partial generator82missing/82extra and one-atom cell shift3missing/3extra correctly fail. Original ADPs/TLS-derived U kept separate; prior W249 native evidence hash-verified, not rerun."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
         "Independently verify before/after unrefined calculated structure factors in the same cell/setting, reciprocal round trips and relocation. Recutting must not be used to hide a physical gap."
       ],
-      "next_action": "W268: audit complete original assembly-instance and total-ADP coverage using existing source/image/transport owners. Distinguish exact declared crystal images from rounded supplied matrices, identify any missing public contract before coding, and coordinate output entity policy with Rowan. Do not repeat W249 ASU Fcalc or W264 TLS experiments; no writer or native fit until those gates are explicit.",
+      "next_action": "W269: add explicitly requested labelled assembly-instance/deposited-ADP observation through the existing W266 owner, source frame and exact composition. Keep default reports byte-equivalent, original raw matrices separate from exact-set closure, missing/isotropic ADP modes explicit, and unresolved/partial/lattice-shift outcomes visible. Do not create output entities, replace or add TLS U, write models or run a new native fit.",
       "evidence": [
         "E_REPRESENTATIVE_SCATTERING",
         "E_ORBIT_PERMUTATIONS",
@@ -1151,14 +1152,15 @@
         "E_ORIGINAL_CIF_TLS_TRANSPORT",
         "E_ORIGINAL_CIF_TLS_INSPECTION",
         "E_ORIGINAL_CIF_ASSEMBLY",
-        "E_ORIGINAL_CIF_ASSEMBLY_VIEW"
+        "E_ORIGINAL_CIF_ASSEMBLY_VIEW",
+        "E_ASSEMBLY_INSTANCE_ADP_AUDIT"
       ],
       "last_audit": {
         "date": "2026-11-25",
-        "human_update": 267,
+        "human_update": 268,
         "code_commit": "7ff57017bd1aba8ac5d776f8838f68aef9f3bc8c",
-        "reviewer": "Linden; downstream-consumer scope coordinated with Rowan",
-        "scope": "Actual original assembly evidence in ordinary viewer; full-instance/ADP and materialization gates remain open"
+        "reviewer": "Linden; coverage scope coordinated with Rowan",
+        "scope": "Finite labelled assembly and deposited-U coverage for exact LNA controls; no writer or physical identity closure"
       }
     },
     {
@@ -7687,6 +7689,59 @@
           "size": 4134
         }
       ]
+    },
+    "E_ASSEMBLY_INSTANCE_ADP_AUDIT": {
+      "kind": "Finite original assembly/deposited-ADP coverage audit",
+      "date": "2026-11-25",
+      "human_update": 268,
+      "code_commit": "7ff57017bd1aba8ac5d776f8838f68aef9f3bc8c",
+      "reference": "docs/topostitch-periodic.md#w268--separate-finite-assembly-coverage-deposited-adps-and-tls-motion",
+      "result": "Four exact original/recut LNA controls retain3813/3825 labelled assembly instances. Raw deposited-U transport max1.07e-14 A2; skipping tensor rotation produces6.51/4.87 A2 errors. Full exact C3 set closure observed with246 permuted instance labels; partial generator82missing/82extra and one-atom cell shift3missing/3extra correctly fail. Original ADPs/TLS-derived U kept separate; prior W249 native evidence hash-verified, not rerun.",
+      "limitation": "Evidence-only diagnostic, not new maintained API. Finite-set closure only for these declared C3 assemblies/recuts; rounded raw matrices separately measured. No physical unique-atom/biological acceptance, inferred TLS residual, writer, output labels, new native run or product-code/test/install changes.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w268-assembly-adp-audit/audit.py",
+          "sha256": "2c1c8d8ce988d5fa731c8de44d54302da9434f754305c1b636909a363d8ac4cb",
+          "size": 12478
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w268-assembly-adp-audit/audit.log",
+          "sha256": "089c3de8d0767afbbd547edadc38405b45e29a249b7725207ecf2034636cf3ba",
+          "size": 441
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w268-assembly-adp-audit/coverage.json",
+          "sha256": "be416968677cff91e7da40385351e9a31fda2927ffca1c0d9bc43d211e0a685d",
+          "size": 20101
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w268-assembly-adp-audit/limits.py",
+          "sha256": "3e8c9214667a931eab755181507ba52f4115d56d2f7e9e1a368fd39849f3d858",
+          "size": 4453
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w268-assembly-adp-audit/limits.log",
+          "sha256": "29fa2683e2f8e36a21d72817001c7f42d593406df773b5e2c55c8c2075e7caf6",
+          "size": 1477
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w268-assembly-adp-audit/limits.json",
+          "sha256": "8ed6a074e004d45fc51b6a6ca4f96876a45742cc32fb53714d43e0ac1e963925",
+          "size": 2900
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w268-assembly-adp-audit/validation.json",
+          "sha256": "9f6b8ebbe4e3366d2b12e305cfc6df972079699420eb756d4ad6c5a26ef13d16",
+          "size": 3481
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -7852,8 +7907,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 267,
-    "next": 268,
+    "current": 268,
+    "next": 269,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -9263,6 +9318,12 @@
       {
         "number": 267,
         "title": "Inspect actual assembly images through the ordinary recut viewer",
+        "state": "RECORDED",
+        "code_commit": "7ff57017bd1aba8ac5d776f8838f68aef9f3bc8c"
+      },
+      {
+        "number": 268,
+        "title": "Audit finite assembly instances and preserve deposited ADPs separately from TLS",
         "state": "RECORDED",
         "code_commit": "7ff57017bd1aba8ac5d776f8838f68aef9f3bc8c"
       }
