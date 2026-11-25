@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**Current maintained slice: W269, 2026-11-25** (source pin follows qualification).
+**Current maintained slice: W269, 2026-11-25** (code `05bde4790e013e79f841f3649a372211bbcc22fe`).
 The [instance observer](topostitch-preview.md#observe-labelled-assembly-instances-and-deposited-adps-w269)
 now accounts for original generator/atom occurrences and deposited atomic ADPs
 through the existing assembly/source/frame owners. It keeps duplicate multiplicity,

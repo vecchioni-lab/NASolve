@@ -4,7 +4,7 @@
   "updated": "2026-11-25",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "5f0dbcb4afe726b853b402424d450507331a329f",
+  "audited_code_commit": "05bde4790e013e79f841f3649a372211bbcc22fe",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -1121,7 +1121,8 @@
         "W265: 225 focused source/225 relocated installed checks,two skips/two subtests each;214 installed-file hashes. Full Willow2853 passed,4 skipped,234 subtests. Installed ordinary viewer reproduces exact W264 3LNA report after staged input/package relocation:4 mixed/2 uniform TLS groups,738 unique mixed members,1271 atoms. Separate complete Phenix2.2.1-6174 shared-original-motion diagnostic:4 groups,8 derived images,82 moved members; max per-atom U error3.55e-15 A2. No independent parameters,native fitting or writer.",
         "W266: 268 focused source/268 relocated installed checks;216 installed-file hashes. Four original/recut3LNA/5LNA controls preserve fragment digests. Each generator retains1271/1275 atoms; recuts have8 paths,10 image/asym partitions,mixed paths3/6. Actual curated/depositor2/3 IDs resolve separately from matrices; raw-to-exact rounding is explicit. Raw H G^-1 endpoint preservation within1.59e-14 A. Exact installed relocated3LNA replay; no native/full-suite repeat.",
         "W267: 158 focused source/158 relocated installed checks, two existing skips each; 216 installed files. Actual installed 3LNA inspector embeds the exact W266 report, 1271 atoms and mixed paths3/6 after input/build/install relocation. Default scene equality, input drift, binding and CLI checks pass; inline JavaScript syntax passes, browser rendering unverified.",
-        "W268: Four exact original/recut LNA controls retain3813/3825 labelled assembly instances. Raw deposited-U transport max1.07e-14 A2; skipping tensor rotation produces6.51/4.87 A2 errors. Full exact C3 set closure observed with246 permuted instance labels; partial generator82missing/82extra and one-atom cell shift3missing/3extra correctly fail. Original ADPs/TLS-derived U kept separate; prior W249 native evidence hash-verified, not rerun."
+        "W268: Four exact original/recut LNA controls retain3813/3825 labelled assembly instances. Raw deposited-U transport max1.07e-14 A2; skipping tensor rotation produces6.51/4.87 A2 errors. Full exact C3 set closure observed with246 permuted instance labels; partial generator82missing/82extra and one-atom cell shift3missing/3extra correctly fail. Original ADPs/TLS-derived U kept separate; prior W249 native evidence hash-verified, not rerun.",
+        "W269: 172 focused source/172 relocated installed checks, two existing skips each; 216 installed-file hashes. Eight missing-API regressions reproduced. Four actual W268 controls match exact source/assembly/scalar hashes,3813/3825 instance counts and deposited-U metrics. Complete installed relocated3LNA report exact. Duplicate multiplicity, unresolved/partial generators, unwrapped shifts, mixed/isotropic modes, source races and damaged partitions/tensors qualified."
       ],
       "acceptance": [
         "Preserve atom-orbit inventory/multiplicity, chemistry, occupancy and displacement parameters; rotate ANISOU correctly and update logical mappings without losing or duplicating atoms.",
@@ -1153,14 +1154,15 @@
         "E_ORIGINAL_CIF_TLS_INSPECTION",
         "E_ORIGINAL_CIF_ASSEMBLY",
         "E_ORIGINAL_CIF_ASSEMBLY_VIEW",
-        "E_ASSEMBLY_INSTANCE_ADP_AUDIT"
+        "E_ASSEMBLY_INSTANCE_ADP_AUDIT",
+        "E_ASSEMBLY_INSTANCE_OBSERVER"
       ],
       "last_audit": {
         "date": "2026-11-25",
-        "human_update": 268,
-        "code_commit": "7ff57017bd1aba8ac5d776f8838f68aef9f3bc8c",
-        "reviewer": "Linden; coverage scope coordinated with Rowan",
-        "scope": "Finite labelled assembly and deposited-U coverage for exact LNA controls; no writer or physical identity closure"
+        "human_update": 269,
+        "code_commit": "05bde4790e013e79f841f3649a372211bbcc22fe",
+        "reviewer": "Linden; successor scope coordinated with Rowan",
+        "scope": "Bounded instance/deposited-ADP observation, not output entity/asym semantics or writer"
       }
     },
     {
@@ -7742,6 +7744,89 @@
           "size": 3481
         }
       ]
+    },
+    "E_ASSEMBLY_INSTANCE_OBSERVER": {
+      "kind": "Bounded source-bound assembly instance and deposited-ADP observer",
+      "date": "2026-11-25",
+      "human_update": 269,
+      "code_commit": "05bde4790e013e79f841f3649a372211bbcc22fe",
+      "reference": "docs/topostitch-periodic.md#w269--maintain-bounded-instance-and-deposited-adp-observation",
+      "result": "172 focused source/172 relocated installed checks, two existing skips each; 216 installed-file hashes. Eight missing-API regressions reproduced. Four actual W268 controls match exact source/assembly/scalar hashes,3813/3825 instance counts and deposited-U metrics. Complete installed relocated3LNA report exact. Duplicate multiplicity, unresolved/partial generators, unwrapped shifts, mixed/isotropic modes, source races and damaged partitions/tensors qualified.",
+      "limitation": "Additive read-only schema1 API in existing assembly owner; default W266 and W267 unchanged. Deposited U never replaced by or added to TLS. Finite labelled set is not physical/biological identity or an output policy. No model writer, output labels, native run, full-suite repeat or migration; science local only.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w269-assembly-instance-observer/before.log",
+          "sha256": "882bcf9ef95750a5611d500891be17dabd639e64b9faaf930ce912c529e92fc4",
+          "size": 15607
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w269-assembly-instance-observer/assembly-tests.log",
+          "sha256": "775c57021de32b781eec4fb2af10ddeda7bb1df58ff975879c2fc53415d3df78",
+          "size": 99
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w269-assembly-instance-observer/focused.log",
+          "sha256": "4d55f1a335d4feab56090ae0009914c046ca11212698ef1842305b43caa5f352",
+          "size": 272
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w269-assembly-instance-observer/replay.py",
+          "sha256": "d6206be991ba3fe7f7bce342f845404a90e89cc4a033939ba473c5b049a5b257",
+          "size": 3232
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w269-assembly-instance-observer/replay.log",
+          "sha256": "b03da39e4003aa521b4395c6e8aaf50e06fdc4729a2e241c75ef37a84254c7bc",
+          "size": 404
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w269-assembly-instance-observer/real-observations.json",
+          "sha256": "c88638510f0597732d8a731acd8094650afbe5daef243b1e3f773b04f3f8e5e5",
+          "size": 17517
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w269-assembly-instance-observer/qualify.py",
+          "sha256": "3f52f0487d879ca622e05b5850773c1b4190baa90aaffb42932148cd0ab3b152",
+          "size": 6526
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w269-assembly-instance-observer/installation.json",
+          "sha256": "622e329b29d688a5af8b84f2765ca5355703ba1d686dc0730011fe84912374fb",
+          "size": 39156
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w269-assembly-instance-observer/installed-tests.log",
+          "sha256": "ffa69c5c1d8365fdcd9aa9216626261651466f486c4140dd3acbf3bfbcf4fd29",
+          "size": 272
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w269-assembly-instance-observer/installed-entry-help.log",
+          "sha256": "4aed80d07d50c2df141abd3b239494370248ad77f02e7c22d36ad7086f5f183f",
+          "size": 2550
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w269-assembly-instance-observer/installed-real-replay.log",
+          "sha256": "c71d137760643785c616fbcc83c56e1b2447e85c79b8965c211d671b4a8a97ab",
+          "size": 69
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w269-assembly-instance-observer/validation.json",
+          "sha256": "66343892b57fd26d1c04701f14101f25ecf406d74b14ab7530bdb78c7f47ab96",
+          "size": 4227
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -9330,8 +9415,8 @@
       {
         "number": 269,
         "title": "Maintain bounded labelled assembly-instance and deposited-ADP observation",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "05bde4790e013e79f841f3649a372211bbcc22fe"
       }
     ]
   },
