@@ -1407,6 +1407,15 @@ return, both sources gave bond RMSD 0.037 Å and angle RMSD 4.408°.
 Exercise W35's missing-log case, the preference for a valid final log,
 and C589's target-switch case together on the merged reader.
 
+Verify two other shared entry points on the installed integration candidate.
+Willow registers five TopoStitch commands in addition to `nasolve`. Exercise those
+commands and the existing chemistry entry point from that installation.
+For Coot inspection, Alder already carries both Willow's map-origin record and
+Cedar's check on the prepared model and dictionaries. Reuse that combined path.
+Open a chosen preparation with an inherited map and verify which checkpoint
+owns the coordinates, chemical definitions and map. The navigation record can
+identify an inherited map even when its coefficient-generation policy is unknown.
+
 Current qualified source and pending full candidates are recorded once in the
 maintained [handoff](development-handoff.md); qualification follows the exact
 source, not a branch name. Historical C391 `8ccec55b` passed 11,983 tests with two
