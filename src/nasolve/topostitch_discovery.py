@@ -266,7 +266,11 @@ def plan_editable_windows(discovery_report: dict, *, max_base_pairs: int,
     return {'schema_version': 1, 'kind': 'topostitch-editable-window-proposals',
             'discovery_sha256': sha256(json.dumps(discovery_report, sort_keys=True, separators=(',', ':')).encode()).hexdigest(),
             'max_base_pairs': max_base_pairs, 'fixed_anchor_pairs': fixed_anchor_pairs,
-            'ends': records, 'selected_window': None, 'runtime_authority': False,
+            'ends': records,
+            'planning_status': ('WINDOWS_FOR_REVIEW' if any(r['windows'] for r in records) else
+                                'DUPLEX_PARTNERS_UNSPECIFIED' if not values['duplex_pairs']
+                                and not values['pairing_inventory_complete'] else 'NO_EDITABLE_WINDOWS'),
+            'selected_window': None, 'runtime_authority': False,
             'geometry_feasibility_evaluated': False, 'combined_overlap_checked': False,
             'changes': [], 'limitations': [
                 'Logical movement scope only; source coordinate mapping still required',

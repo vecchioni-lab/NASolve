@@ -276,7 +276,7 @@ def _interior_window(discovery, trial):
     return window
 
 
-def _prepare(model_path, discovery_path, registration_path, trial_path=None, *, trial_value=None):
+def _prepare_window(model_path, discovery_path, registration_path, trial_path=None, *, trial_value=None):
     if (trial_path is None) == (trial_value is None):
         raise ValueError('Supply exactly one explicit trial path or trial value')
     paths = {'source':Path(model_path),'discovery':Path(discovery_path),
@@ -326,6 +326,68 @@ def _prepare(model_path, discovery_path, registration_path, trial_path=None, *, 
     required = moving | set(window['fixed_sites']) | {s for pair in links for s in pair}
     registry = validate_construct_registration(_json(snapshots['registration']))
     sites,before = _mapped_residues(snapshots['source'],registry,window['copy_id'],required)
+    if any(path.read_bytes() != snapshots[name] for name,path in paths.items()):
+        raise ValueError('Preview inputs changed while being read')
+    return paths,snapshots,trial,window,registry,sites,before,links,mapping['coverage_complete']
+
+
+def inspect_bend_window(model_path, discovery_path, *, registration_path, trial_path):
+    """Inspect one explicit preview's scope without rendering any coordinates.
+
+    Reuse the same terminal/interior selection, source pins and canonical residue
+    mapping as preview construction. Indices refer to the complete source PDB
+    ATOM/HETATM record order. Fixed context includes the separately named anchors.
+    No motion, strain, packing, ADP transport or native feasibility is evaluated;
+    a valid scope may still fail construction or refinement. Physical partners
+    remain caller-declared, never inferred from soft contact restraints.
+
+    The caller owns checkpoint/thermal admission and must recheck these source
+    and trial digests before acting. This fresh read-only report is not approval
+    or a saved-report replay API. Existing schema-1/2/3 trials remain unchanged.
+    """
+    paths,snapshots,trial,window,registry,sites,before,links,coverage = _prepare_window(
+        model_path,discovery_path,registration_path,trial_path)
+    lines=[line for line in snapshots['source'].decode('ascii').splitlines()
+           if line[:6] in ('ATOM  ','HETATM')]
+    indices={site:[] for site in sites.values()}
+    for i,line in enumerate(lines):
+        site=_site(line)
+        if site in indices: indices[site].append(i)
+    moving=set(window['movable_sites']);anchors=set(window['fixed_sites'])
+    def role(logical):
+        return 'movable' if logical in moving else 'fixed_anchor' if logical in anchors else 'context_neighbour'
+    residues=[dict(logical_site=logical,
+        coordinate_site=dict(chain=site.chain,residue_number=site.residue_number,insertion_code=site.insertion_code),
+        role=role(logical),atom_indices=indices[site]) for logical,site in sorted(sites.items())]
+    movable=sorted(i for row in residues if row['role']=='movable' for i in row['atom_indices'])
+    fixed=sorted(i for row in residues if row['role']=='fixed_anchor' for i in row['atom_indices'])
+    selected=set(movable)
+    if any(path.read_bytes() != snapshots[name] for name,path in paths.items()):
+        raise ValueError('Preview inputs changed while being read')
+    return dict(schema_version=1,kind='topostitch-window-inspection',status='WINDOW_FOR_REVIEW',
+        source_model_sha256=sha256(snapshots['source']).hexdigest(),
+        discovery_file_sha256=sha256(snapshots['discovery']).hexdigest(),
+        registration_file_sha256=sha256(snapshots['registration']).hexdigest(),
+        trial_file_sha256=sha256(snapshots['trial']).hexdigest(),
+        window=window,residues=residues,atom_count=len(lines),
+        atom_index_basis='SOURCE_PDB_ATOM_HETATM_RECORD_ORDER',movable_atom_indices=movable,
+        fixed_anchor_atom_indices=fixed,fixed_context_atom_indices=[i for i in range(len(lines)) if i not in selected],
+        backbone_links=[dict(from_site=a,to_site=b,from_role=role(a),to_role=role(b)) for a,b in links],
+        discovery_coverage_complete=coverage,image_policy='source_representatives_only',
+        candidate_written=False,geometry_feasibility_evaluated=False,runtime_authority=False,
+        scientific_acceptance=False,limitations=[
+            'Declared canonical paired scope only; no inferred partners or physical-oligo authority',
+            'Representation continuations and changed images are not traversed by this window owner',
+            'No coordinate rendering, strain, packing, ADP transport or native-restart qualification',
+            'A valid scope may fail preview construction; recheck parent and input bindings before any action'])
+
+
+def _prepare(model_path, discovery_path, registration_path, trial_path=None, *, trial_value=None):
+    paths,snapshots,trial,window,registry,sites,before,links,coverage = _prepare_window(
+        model_path,discovery_path,registration_path,trial_path,trial_value=trial_value)
+    version=trial['schema_version'];moving=set(window['movable_sites'])
+    rotation=_vector(trial['rotation_vector_degrees'],'rotation_vector_degrees')
+    translation=_vector(trial['translation_angstrom'],'translation_angstrom')
     origin_pair = window['ordered_pairs'][trial['origin_pair_index']] if version==3 else window['movable_pairs'][0]
     origin = _mean([_plane(before[s])[0] for s in origin_pair])
     if version==3:
@@ -338,7 +400,7 @@ def _prepare(model_path, discovery_path, registration_path, trial_path=None, *, 
             weights.update({s:t*t*(3-2*t) for s in pair})
     transforms = {sites[s]:(_rotation(rotation,w),w) for s,w in weights.items()}
     candidate,atom_count,tensor_count = _render(snapshots['source'],transforms,origin,translation)
-    _,after = _mapped_residues(candidate,registry,window['copy_id'],required)
+    _,after = _mapped_residues(candidate,registry,window['copy_id'],set(sites))
     displacement = max(math.dist(point,after[s][name]) for s in moving for name,point in before[s].items())
     if displacement > trial['max_atom_displacement_angstrom']:
         raise TrialLimitError(f'Atom displacement {displacement:.6g} A exceeds trial limit')
@@ -354,7 +416,7 @@ def _prepare(model_path, discovery_path, registration_path, trial_path=None, *, 
         'window':window,'terminal_origin_angstrom':list(origin),
         'site_weights':weights,'trial':trial,'transformed_atom_count':atom_count,
         'rotated_anisou_count':tensor_count,'max_atom_displacement_angstrom':displacement,
-        'backbone_audit':audit,'discovery_coverage_complete':mapping['coverage_complete'],
+        'backbone_audit':audit,'discovery_coverage_complete':coverage,
         'workflow':{'execution_state':'CANDIDATE_BUILT','review_state':'UNREVIEWED','refinement_state':'NOT_ATTEMPTED'},
         'geometry_validated':False,'runtime_authority':False,
         'limitations':['Explicit single-window transform; no partner selection or automatic fitting',
@@ -494,11 +556,16 @@ def main(argv=None):
     parser.add_argument('discovery',type=Path)
     parser.add_argument('--registration',required=True,type=Path)
     parser.add_argument('--trial',required=True,type=Path)
-    parser.add_argument('--out',required=True,type=Path,help='New output directory; must not exist')
+    mode=parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument('--out',type=Path,help='New output directory; must not exist')
+    mode.add_argument('--inspect-window',action='store_true',help='Review moving residues and fixed anchors without generating coordinates')
     args = parser.parse_args(argv)
     try:
-        report = build_bend_preview(args.model,args.discovery,registration_path=args.registration,
-                                   trial_path=args.trial,output_directory=args.out)
+        if args.inspect_window:
+            report = inspect_bend_window(args.model,args.discovery,registration_path=args.registration,trial_path=args.trial)
+        else:
+            report = build_bend_preview(args.model,args.discovery,registration_path=args.registration,
+                                       trial_path=args.trial,output_directory=args.out)
     except (OSError,ValueError,RuntimeError) as exc:
         parser.exit(2,f'{parser.prog}: {exc}\n')
     print(json.dumps(report,indent=2,sort_keys=True,allow_nan=False))

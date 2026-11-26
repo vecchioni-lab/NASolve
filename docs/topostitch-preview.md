@@ -5,6 +5,75 @@ window and terminal motion. It preserves the source model and fixed anchors.
 This is a controlled trial generator: it does not find the best placement, close
 an atomistic backbone, refine a model or recommend campaign adoption.
 
+## Review a window before generating coordinates (W291)
+
+The ordinary preview command can now inspect the selected scope without writing
+coordinates. Use the same explicit model, registration, discovery and schema-1/2/3
+trial that would be used for the preview:
+
+```sh
+nasolve-topostitch-preview source.pdb discovery.json \
+  --registration registration.json --trial trial.json --inspect-window
+```
+
+`--inspect-window` and `--out` are mutually exclusive. The former prints a
+schema-1 `topostitch-window-inspection` JSON report. The latter retains the
+existing candidate-building behavior. The equivalent read-only Python API is
+`inspect_bend_window(model, discovery, registration_path=..., trial_path=...)`
+in `nasolve.topostitch_preview`.
+
+This reuses the existing terminal/interior window selection and canonical residue
+mapping. The report identifies each moving residue, fixed anchor and neighbouring
+backbone residue; its zero-based atom indices use the complete source PDB
+ATOM/HETATM record order. `fixed_context_atom_indices` contains **all** nonmoving
+atoms, including the separately listed anchors. It also carries ordinary backbone
+links touching the movement scope and exact model/discovery/registration/trial
+file digests. No host path is needed to interpret the report.
+
+`WINDOW_FOR_REVIEW` means the declared scope maps to the supplied source. It does
+not mean that displacement, strain, base planes, packing, ADP transport or native
+restart have passed. A scope can pass inspection while its later preview exceeds
+a motion limit. Representation continuations and changed images are not traversed;
+modified residues and undeclared pairing are not admitted by this canonical owner.
+A caller must recheck the current parent and input digests before acting. This is
+a fresh inspection, not a saved-report approval or replay interface.
+
+The existing `nasolve-topostitch-inspect ... --windows` report also adds
+`planning_status`: `WINDOWS_FOR_REVIEW`, `DUPLEX_PARTNERS_UNSPECIFIED` when an
+incomplete inventory declares no pairs, or `NO_EDITABLE_WINDOWS`. An explicitly
+complete inventory with no pairs is distinct from missing partner information.
+Existing trial schemas, window identities, preview receipts and defaults do not
+change; consumers of window-proposal reports should accept this additive field.
+
+**Genuine-parent check:** the W280/W282 PDU `refine-003` parent, resolved through its
+declared dataset/run anchors and Cedar's trusted registry reader, has four strand
+routes and no declared duplex pairs. Source and relocated installed inspection
+both report `DUPLEX_PARTNERS_UNSPECIFIED` with incomplete assessment and no selected
+window. Original inputs remain byte-identical and current selection remains
+`postmr`. Soft contact restraints do not establish the missing designed partners
+or physical oligos. This is an upstream scope boundary, not a geometry result.
+
+**Validation:** eight distinct regression cases were observed failing before their
+respective fixes; **161 focused source and 161 relocated installed tests pass**
+across interior preview, preview, discovery, fit and checkpoint modules. The
+installed console script passes help and positive inspection; the genuine PDU
+observation reproduces exactly. All 94 installed Python modules match source.
+The original package/build paths are removed before installed checks; explicit
+input relocation is tested with original paths gone. This does not qualify whole
+scientific-run portability or a combined Pine/Cedar/Alder release.
+
+Exact commands, dependency file hashes, results and the trusted-reader pin are
+local under the NASolve anchor `branch-artifacts/willow/w291-window-review/` in
+`installation.json`, `source-genuine-pdu.json` and `qualify.py`. Focused commands
+set `PYTHONDONTWRITEBYTECODE=1` and explicit `PYTHONPATH`; Phenix's launcher resets
+that variable, so the recorded bootstrap restores those same roots in-process.
+Validation uses Phenix **2.2.1-6174** Python 3.11.15, SciPy 1.17.1, Gemmi 0.7.5 and
+installed NARestraints 1.1.3 with openpyxl 3.1.5. Initial launcher/import failures
+are preserved. No native refinement or full-suite run was performed: the change
+is confined to read-only window inspection and its existing preview consumers.
+Scientific inputs, reports and temporary dependency copies are excluded from Git;
+task-owned installation staging was removed.
+
 ## Reuse a saved motion in backend code
 
 `load_bend_motion` replays a preview pinned by its exact receipt digest and returns

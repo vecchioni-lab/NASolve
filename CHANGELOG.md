@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W291 — Inspect an explicit bend window before generating coordinates
+
+- Add `nasolve-topostitch-preview --inspect-window` and the matching read-only API
+  to expose moving residues, fixed anchors/context, ordinary backbone links and
+  source-order atom indices through the existing selection/mapping owners.
+- Distinguish unspecified duplex partners from an explicitly empty complete
+  inventory in window-proposal reports. Additive report fields only; existing
+  trial schemas, preview behavior and native admission remain unchanged.
+- Eight distinct fail-before regressions; 161 focused source / 161 relocated
+  installed checks and exact genuine-parent inspection. No native fit or selection.
+
 ### W290 — Inspect endpoint maps and the fixed sugar boundary
 
 - Bind both saved phosphate endpoints to their own maps and native observations;

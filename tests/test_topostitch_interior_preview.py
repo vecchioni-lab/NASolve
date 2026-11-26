@@ -94,3 +94,89 @@ def test_changed_parent_snapshot_refused_before_motion(tmp_path):
     changed=(out/'source.pdb').read_bytes()+b'REMARK different parent\n'
     with pytest.raises(ValueError,match='Current parent bytes differ'):
         load_bend_motion(out,expected_receipt_sha256=pin,parent_model_bytes=changed)
+
+
+@pytest.mark.parametrize('interior', [False, True])
+def test_window_inspection_precedes_rendering_and_matches_preview(tmp_path, monkeypatch, interior):
+    from nasolve import topostitch_preview as preview
+    paths=setup(tmp_path) if interior else setup_preview(tmp_path,anisou=False,extended=True)
+    snapshots={p:p.read_bytes() for p in paths[:4]}
+    with monkeypatch.context() as m:
+        def forbidden(*args,**kwargs):
+            raise AssertionError('Window review must not render or audit a candidate')
+        m.setattr(preview,'_render',forbidden)
+        m.setattr(preview,'_audit_links',forbidden)
+        m.setattr(preview,'_plane',forbidden)
+        review=preview.inspect_bend_window(paths[0],paths[1],registration_path=paths[2],trial_path=paths[3])
+    assert all(p.read_bytes()==raw for p,raw in snapshots.items())
+    assert set(tmp_path.iterdir())==set(paths[:4])
+    assert review['status']=='WINDOW_FOR_REVIEW'
+    assert review['candidate_written'] is review['geometry_feasibility_evaluated'] is review['runtime_authority'] is False
+    assert str(tmp_path) not in json.dumps(review)
+    made=build(paths,tmp_path/'preview')
+    assert review['window']==made['window']
+    lines=[l for l in paths[0].read_text().splitlines() if l.startswith(('ATOM  ','HETATM'))]
+    movable=set(made['window']['movable_sites']);anchors=set(made['window']['fixed_sites'])
+    expected=[i for i,l in enumerate(lines) if l[21]+':'+str(int(l[22:26])) in movable]
+    fixed=[i for i,l in enumerate(lines) if l[21]+':'+str(int(l[22:26])) in anchors]
+    assert review['movable_atom_indices']==expected
+    assert review['fixed_anchor_atom_indices']==fixed
+    assert sorted(review['fixed_context_atom_indices']+expected)==list(range(len(lines)))
+    assert review['trial_file_sha256']==sha256(paths[3].read_bytes()).hexdigest()
+    assert review['backbone_links']
+
+
+def test_window_inspection_does_not_claim_displacement_feasibility(tmp_path):
+    from nasolve import topostitch_preview as preview
+    paths=setup(tmp_path);t=json.loads(paths[3].read_bytes());t['max_atom_displacement_angstrom']=.001
+    paths[3].write_text(json.dumps(t))
+    report=preview.inspect_bend_window(paths[0],paths[1],registration_path=paths[2],trial_path=paths[3])
+    assert report['geometry_feasibility_evaluated'] is False
+    with pytest.raises(ValueError,match='displacement'):build(paths,tmp_path/'too-far')
+    assert not (tmp_path/'too-far').exists()
+
+
+def test_window_inspection_refuses_source_drift_during_mapping(tmp_path,monkeypatch):
+    from nasolve import topostitch_preview as preview
+    paths=setup(tmp_path);original=preview._mapped_residues
+    def changed(*args,**kwargs):
+        result=original(*args,**kwargs)
+        paths[0].write_bytes(paths[0].read_bytes()+b'REMARK changed while reading\n')
+        return result
+    monkeypatch.setattr(preview,'_mapped_residues',changed)
+    with pytest.raises(ValueError,match='changed while being read'):
+        preview.inspect_bend_window(paths[0],paths[1],registration_path=paths[2],trial_path=paths[3])
+
+
+def test_window_inspection_relocates_without_original_paths(tmp_path):
+    from nasolve import topostitch_preview as preview
+    source=tmp_path/'source';source.mkdir();paths=setup(source)
+    expected=preview.inspect_bend_window(paths[0],paths[1],registration_path=paths[2],trial_path=paths[3])
+    moved=tmp_path/'moved';source.rename(moved)
+    shifted=[moved/p.name for p in paths[:4]]
+    assert preview.inspect_bend_window(shifted[0],shifted[1],registration_path=shifted[2],trial_path=shifted[3])==expected
+
+
+def test_normal_preview_cli_can_inspect_without_creating_output(tmp_path,capsys):
+    from nasolve import topostitch_preview as preview
+    paths=setup(tmp_path)
+    args=[str(paths[0]),str(paths[1]),'--registration',str(paths[2]),'--trial',str(paths[3]),'--inspect-window']
+    assert preview.main(args)==0
+    report=json.loads(capsys.readouterr().out)
+    assert report['kind']=='topostitch-window-inspection' and report['candidate_written'] is False
+    assert set(tmp_path.iterdir())==set(paths[:4])
+    with pytest.raises(SystemExit) as error:preview.main(args+['--out',str(tmp_path/'bad')])
+    assert error.value.code==2 and not (tmp_path/'bad').exists()
+
+
+@pytest.mark.parametrize('complete,expected', [(False,'DUPLEX_PARTNERS_UNSPECIFIED'),(True,'NO_EDITABLE_WINDOWS')])
+def test_unspecified_pairs_have_an_explicit_window_status(tmp_path,complete,expected):
+    from nasolve.topostitch_discovery import plan_editable_windows
+    from nasolve.topostitch_inspect import load_registered_end_assignments
+    paths=setup(tmp_path);d=json.loads(paths[1].read_bytes())
+    d['duplex_pairs']=[];d['pairing_inventory_complete']=complete;paths[1].write_text(json.dumps(d))
+    _,ends,_,mapping=load_registered_end_assignments(paths[0],paths[1],paths[2])
+    report=plan_editable_windows(mapping['discovery_assessment'],max_base_pairs=6,fixed_anchor_pairs=1)
+    assert not ends and report['ends']==[]
+    assert report['planning_status']==expected
+    assert report['selected_window'] is None and report['runtime_authority'] is False
