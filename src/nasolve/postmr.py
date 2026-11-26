@@ -2484,16 +2484,24 @@ def _prepare_postmr(
     if _furanose_input is not None:
         coot_plan = tuple(action for action in actions if action.method != FURANOSE_METHOD)
         coot_sources = {c:p for c,p in construction_sources.items() if c != _furanose_input.code}
+    from .postmr_canonical_input import ordinary_ribose_inputs
+    ribose_choices, ribose_review = ordinary_ribose_inputs(coot_plan, coot_sources,
+        data_root=data_root, ready_set_executable=ready_set_executable, passthrough_sites=passthrough_sites,
+        site_dictionary_paths=staged['site_dictionary_paths'] if staged is not None else None,
+        mirrored=isinstance(report.get('inputs'), Mapping) and report['inputs'].get('mirror') is True)
     construction = construct_postmr_model(
         coot_input, coot_plan, coot_sources, after_coot,
         coot_executable=coot_executable, environment=environment,
         coot_directory=coot_dir, reference_model=original, inherit_scaffold_b=True,
         allow_op3_sites=allowed_op3, passthrough_sites=passthrough_sites,
         **({'site_dictionary_paths':staged['site_dictionary_paths']} if staged is not None else {}),
+        **({'canonical_seed_dictionaries': ribose_choices} if ribose_choices else {}),
     )
     coot_actions = tuple(a for a in actions if a.method in {"coot-mutate-base", "coot-parent-overlap"})
     coot_log = construction["coot_log"]
     coordinate_restoration = construction["coordinate_restoration"]
+    for site, reason in ribose_review.items():
+        coordinate_restoration[site]["ribose_parent_review"] = reason
 
     terminal_ready = model_dir / "terminal_phosphate_model.pdb"
     try:

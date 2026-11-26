@@ -18,6 +18,41 @@ ANCHOR = 'canonical_parent_input'
 REPORT = 'canonical_input.json'
 
 
+def ordinary_ribose_inputs(actions, dictionaries, *, data_root=None, ready_set_executable=None,
+                          passthrough_sites=(), site_dictionary_paths=None, mirrored=False):
+    """Choose a same-base deoxy→ribose parent only when the modified source supports its scaffold."""
+    from .curated_ligands import ligand_dictionary, validate_ligand_dictionary
+    from .postmr_conformation import parent_conformation_plan
+    chosen, review = {}, {}
+    if mirrored:
+        return chosen, review
+    corresponding = {"DA": "A", "DC": "C", "DG": "G", "DU": "U"}
+    cached = {}
+
+    def source(code):
+        if code not in cached:
+            path = ligand_dictionary(code, data_root, ready_set_executable=ready_set_executable)
+            validate_ligand_dictionary(code, path)
+            cached[code] = path
+        return cached[code]
+
+    for action in actions:
+        if (action.method != 'coot-parent-overlap' or action.site in passthrough_sites
+                or action.parent_code not in RNA_PARENTS
+                or corresponding.get(action.before) != action.parent_code):
+            continue
+        try:
+            effective = (site_dictionary_paths or {}).get(action.site, dictionaries[action.after])
+            template = source(action.parent_code)
+            plan = parent_conformation_plan(effective, action.after, action.parent_code, ribose_template=template)
+            if plan['status'] != 'MATCH_PARENT_CHI':
+                raise ValueError(plan['reason'])
+            chosen[action.site] = (source(action.before), template)
+        except (OSError, ValueError, KeyError) as exc:
+            review[action.site] = str(exc)
+    return chosen, review
+
+
 def canonical_input_plan(actions, dictionaries, passthrough_sites=()):
     """Validate explicit site choices without allocating output or guessing sources."""
     by_site = {a.site: a for a in actions}

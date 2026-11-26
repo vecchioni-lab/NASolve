@@ -8,7 +8,7 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
-- Explicit PostMR construction can prepare a canonical RNA parent from the
+- Ordinary PostMR can prepare a canonical RNA parent from the
   corresponding deoxy residue. The two source dictionaries must agree on the
   retained chemistry. NASolve adds the 2′ oxygen with the reference ribose hand
   and records the local geometry for replay. With a matching N-linked ribose

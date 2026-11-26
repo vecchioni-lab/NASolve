@@ -36,9 +36,12 @@ phosphorothioate carried an extra OP3 and failed ordinary phosphate preparation.
 C596 built true G, C and A parents. C597 carried their ribose sugars through native
 Coot placement of 2MG, 5MC and 6MZ. All six neighboring links, the sugar hand and
 the original scaffold displacement values survived. Three unwanted internal OP3
-oxygens were removed through the existing phosphate check. Next test normal
-PostMR preparation and a returned refinement. The sulfur linkage remains a
-separate chemical state. The [Q12 workbook sweep](cif-doctor-completion-queue.md#q12--resolve-catalogue-mappings-and-maintain-support-coverage)
+oxygens were removed through the existing phosphate check. C598 reproduced
+this on a fresh Phaser solution through a normal three-site mutation card. The
+whole-model pairing/stacking file was already compiled when checked preparation
+tried to compile it again. The next step is to pass the verified compiler output
+into the existing request and then measure a returned refinement. The sulfur
+linkage remains a separate chemical state. The [Q12 workbook sweep](cif-doctor-completion-queue.md#q12--resolve-catalogue-mappings-and-maintain-support-coverage)
 follows the eight-site challenge.
 [Release and tested installation](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.4).
 

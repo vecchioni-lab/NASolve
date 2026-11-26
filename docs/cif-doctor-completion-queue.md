@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 26 November 2026, after C597. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 26 November 2026, after C598. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -985,7 +985,12 @@ and preserved all six neighboring O3′–P distances. Coot subsequently built
 The ordinary phosphate check refused the result. C597 then matched the native base
 orientation to the parent and restored the verified ribose. All six flanking bonds
 and all 791 unselected atoms were preserved. The internal OP3 proof passed at all
-three sites. The remaining five sites and actual refinement have separate outcomes.
+three sites. C598 used the same rule from a normal input card on a fresh Phaser
+solution (TFZ 17.1). All 791 unselected atoms and the six links were preserved.
+NARestraints compiled 19 pairs and 38 stacks. The checked request then tried to
+interpret those already compiled restraints as new instructions and stopped at
+the disabled secondary-structure setting. Reuse the explicit compiler receipt.
+The remaining five sites and actual refinement have separate outcomes.
 
 After the qualified Q06 consumer is available, add a separate builder generalization
 control before the proposed Cedar integration with main. Mutate **eight residues** into

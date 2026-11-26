@@ -1,5 +1,7 @@
 """An explicitly proven ribose is protected during whole-base placement."""
+from dataclasses import replace
 from math import dist, radians
+import shutil
 
 import pytest
 
@@ -12,6 +14,31 @@ from nasolve.postmr_conformation import parent_conformation_plan
 from nasolve.postmr_restoration import _atom_records, restore_graph_site, source_graph_fragment
 from tests.test_postmr_ribose_parent import SOURCE, TEMPLATE, frame
 from tests.test_postmr_canonical_seed import selected
+
+
+def test_ordinary_prep_chooses_only_source_qualified_ribose_sites(tmp_path):
+    from nasolve.postmr_canonical_input import ordinary_ribose_inputs
+
+    library = tmp_path / "ligands"
+    library.mkdir()
+    for code, source in (("DG", SOURCE), ("G", TEMPLATE)):
+        shutil.copyfile(source, library / (code + ".cif"))
+    target = local_component(tmp_path)
+    action = MutationAction("A:1", "DG", "RXG", "coot-parent-overlap", parent_code="G")
+    unqualified = tmp_path / "unqualified"
+    unqualified.mkdir()
+    mismatch = local_component(unqualified, "wrong_marker")
+    actions = (action, replace(action, site="A:2"), replace(action, site="A:3"),
+               replace(action, site="A:4", before="DT"), replace(action, site="A:5", method="none"))
+    options = dict(data_root=tmp_path, ready_set_executable=tmp_path / "phenix.ready_set",
+                   passthrough_sites=("A:3",), site_dictionary_paths={"A:2": mismatch})
+    chosen, review = ordinary_ribose_inputs(actions, {"RXG": target}, **options)
+    assert chosen == {"A:1": (library / "DG.cif", library / "G.cif")}
+    assert set(review) == {"A:2"} and "stereo" in review["A:2"]
+    assert ordinary_ribose_inputs(actions, {"RXG": target}, mirrored=True, **options) == ({}, {})
+    (library / "G.cif").unlink()
+    chosen, review = ordinary_ribose_inputs((action,), {"RXG": target}, **options)
+    assert chosen == {} and "G" in review["A:1"]
 
 
 def local_component(tmp_path, defect=None):

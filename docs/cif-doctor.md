@@ -14877,7 +14877,12 @@ incoming identity and an eligible canonical parent outside the passthrough sites
 The source-matched ribose conversion above also uses this entry point. Inputs freeze
 under `Coot/canonical_seeds`; the original model and actions remain authority for
 context/restoration, while only the native action's incoming identity follows the
-seed. No current production/CLI caller opts in automatically.
+seed. From C598, a new ordinary PostMR run selects the same-base deoxy-to-ribose
+route when the effective modified dictionary supports the canonical sugar and
+N-glycosidic frame. The chosen sources freeze with the run. A mirrored or
+experimental passthrough site retains its own construction policy. An unavailable
+or chemically incompatible reference is recorded for review if construction
+returns.
 
 `read_canonical_parent_input(directory)` verifies the local-anchor schema-1 receipt,
 source bytes and every pure construction proof, then compares the reconstructed final
