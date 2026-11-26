@@ -1,409 +1,134 @@
 # Post-merge metal-coordination roadmap
 
-Updated **25 November 2026**. Working branch **Alder**. The feature milestones
-below are numbered **A01–A09** and are explicitly **post-merge work**. A09 is
-further deferred until after the main build and core A01–A08 work. These are
-not prerequisites for merging the current experimental implementation.
-Historical implementation receipts A37–A40 retain their existing labels and
-scientific limits; they are evidence references, not this milestone sequence.
+Updated **26 November 2026** after a documentation and storage audit. Working
+branch **Alder**, audited implementation `5d2eeed9`. The feature milestones
+**A01–A09** below remain explicitly post-merge work; A09 follows the main build.
+Merge qualification, scientific acceptance and feature completion are separate.
 
-The [handoff](metal-development-handoff.md) owns exact validation and pending work;
-the [anomalous workflow](metal-anomalous-doctor.md) and [restraint design](metal-restraint-builder.md)
-own scientific contracts. A mechanism passing tests does not close its scientific
-gate. Update milestone status, evidence, limitations and next action together.
+This is the single forward queue. The [metal handoff](metal-development-handoff.md)
+retains experiment evidence and validation; the [anomalous workflow](metal-anomalous-doctor.md),
+[restraint design](metal-restraint-builder.md) and [screen contract](metal-screen.md)
+define behavior and intent. Earlier per-experiment roadmap paragraphs remain
+recoverable in Git at `5d2eeed9`; their old “next” statements are not parallel tasks.
+No experiment, checkpoint or science checkout was removed by this audit.
 
-**A01 partial; A02 scientific quantitation gated.** The [coupled Hg/DNA comparison](metal-development-handoff.md#a01-coupled-metal-2026-11-24)
-completes both five-cycle fits with both crystal links and Hg XYZ newly free.
-Hg moves 0.089 / 0.086 Å; Rfree is 0.3371 / 0.3362. Existing B machinery
-previews base/donor alternatives from the returned models without changing them.
-No selected endpoint, f″ result or global real-space qualification follows.
+## Original aim and usable entry points
 
-**Latest A01 increment:** runtime cost is now measured with opt-in exclusive
-nested timing and compact partial checkpoints. A matched 90-second FT_Hg diagnostic
-reaches 193 XYZ calls; checks take 35.13 s and native work 49.42 s (Reduce 3.97 s).
-The owned process group closes at 91.61 s with hooks restored. Group B and returned
-output remain unqualified. Forty-five focused and 45 installed tests plus native
-controls and 78 cold checks pass. See the [current handoff](metal-development-handoff.md)
-and `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/runtime-timing.html`.
+The aim remains a general metal-solution workflow: discover supported sites from
+experimental data, construct and refine chemically declared alternatives, derive
+metal B from each refined environment, compare frozen f″/Q responses and maps,
+and let the user inspect and select plausible solutions across a campaign.
+The supplied solved models are comparison references, not constructor inputs.
+Timing and protection mechanisms enable that workflow; neither is its endpoint.
 
-**Next A01 subgoal:** localize repeated work within XYZ observation and optimize
-only with the same exact scientific checks, using controlled replay where possible.
-Then budget a complete optimized cycle realistically with durable partial evidence
-and shared-owner closure. Do not rerun unchanged fits merely to accumulate calls.
-Qualify group-B/output closure before ordinary numbered integration. Real-space
-identity, FT ordinary ancestry and explicit mixed-policy receiving remain separate.
+The following entry points exist on the audited branch. Availability here is
+not a claim that an integrated automatic screen is released or that a generated
+model is scientifically accepted. The [operating guide](../README.md#inspect-generated-models-for-metal-recipes)
+and `src/nasolve/metal/cli.py` own their exact options.
 
-**Protocol clarification:** source/command/EFF retain both weight-search requests;
-compiled XYZ/B memberships match despite EFF formatting. Disabling optimization
-or fixing numerical weights changes scientific policy. The earlier 464-call stop
-had no timing attribution; the new 193-call diagnostic measures cost without
-changing those settings or establishing a complete-cycle duration.
+| Intended step | Available now | Remaining delivery |
+| --- | --- | --- |
+| Build explicit metal hypotheses on generated DNA | `metal inspect`, `preview`, `build`, `geometry`, verification and legacy-restraint import | General construction across multiple site contexts; source-qualified chemistry and whole-model optimization. W A:12/B:4 is the current importer, not a universal site rule. A01/A03. |
+| Discover sites from anomalous data and retain phases | Declared phase-restrained XYZ API and existing upstream AutoSol mechanisms | Integrated free-metal screen, covalent I/Br/Se anchors, coherent cluster image mapping, evidence-led count alternatives and explicit no-metal continuation. A03/A06/A07. |
+| Obtain an open XYZ/B model | Existing XYZ API and historical returned controls; explicit mixed-scope writer/guard and timing | Complete the current reciprocal XYZ/group-B route, bind written output and process closure, then review geometry/maps/fit. Historical controls do not qualify a later guard. A01. |
+| Quantify anomalous response | `metal fdp`, explicit occupancy scans, comparisons and signed cluster atom-equivalent summaries | Scientifically qualified parents, response/convergence controls, adaptive branching and ambiguity handling. f″ fits hold Q fixed per point; sibling trials vary Q. A02/A03. |
+| Inspect and choose | Verified saved-result catalog, `serve-workbench`, grouped reviews, map/Coot inspection | Dedicated user GUI session, editing, coupled execution/selection and side-by-side geometry decisions. A05/A06. |
+| Run many datasets without excessive storage | Compact records, input/parent transport, owned child/session and budget mechanisms | Accepted scientific regeneration, safe output retirement and campaign-wide scheduling. Compression/readback alone does not authorize deletion. A04 before fan-out. |
 
-**Latest mechanical increment:** the passive diffraction observer now carries
-independently read source captures to the active manager and actual native HL
-target without changing F/sigma/Free-R/HL or XYZ/B selections. Source/installed
-native cases pass (25 each); one 7.90-second zero-cycle handoff and 117 cold checks
-qualify this boundary. Ordinary parent admission, continuous versioned execution,
-output closure and geometry acceptance remain open. No new fitted endpoint.
+## Current A01 evidence and protected-site boundary
 
-**Previous mechanical increment:** the general native literal compositor is
-qualified by 15 source/15 installed native cases, exact real-policy replay and a
-7.18-second zero-cycle initialization. It preserves non-owned scientific values
-while replacing repeated XYZ/B fields. No new fitted endpoint or phase admission
-follows. See the [ordinary receiving sequence](metal-ordinary-receiving.md); its
-checklist replaces repeating already-qualified private composition experiments.
+**A01 is partial; A02 scientific quantitation remains gated.** Older five-cycle
+coupled Hg/DNA controls returned inspectable models with both crystal links, but
+remain unaccepted geometry comparisons. Their Rfree values of 0.3371/0.3362 and
+local chemistry/maps still need scientific interpretation. The current mixed
+route has not yet returned a complete observed XYZ/group-B endpoint.
 
-**Earlier scoped-writer qualification:** the explicit parameter observer and
-scoped writer remain qualified prerequisites for versioned ordinary integration.
-Thirty writer regressions, 126 native compiled/source-binding checks and
-one zero-cycle initialized receiver qualify the current boundary. The dry receiver
-retains original phases/Free-R/scattering and both crystal links; it does not
-activate ordinary callbacks or produce a new fitted endpoint. The whole-PHIL
-rounding failure is retained; preserve original scientific literals during
-composition. Exact selection text must replace `all`, never append to it.
+The current FT_Hg control scope permits 859 XYZ atoms and 42 DNA B groups
+(858 atoms); Hg B
+is protected, as are all Q/f′/f″ values. These are explicit per-parameter rules,
+not a claim that a “protected metal” cannot move. Source/compiled membership and
+actual XYZ optimizer flags have been checked; actual group-B completion remains
+open. The v3 guard retains original ordered
+Free-R/HL and witnesses the native common F/sigma normalization; immutable source
+files stay exact. Real-space/sliced and multiprocess scopes remain refused.
 
-Historical counted V5–V8 payload preparation again uses its exact old native-recipe
-bytes, with 140 focused checks; modern live crystal binding remains separate.
-Installed verification passes 111 focused writer/observer/payload tests. No
-unchanged native fit or full suite. Evidence and remaining gates are in the
-[handoff](metal-development-handoff.md#a01-parameter-scope-2026-11-25), with compact
-checkout `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/scoped-writer.html`.
-Retain input/state/optimizer/output/stopping proof and bind original anomalous/
-HL/Free-R ancestry before endpoint-to-B/f″ adoption. Preserve legacy XYZ replay
-and source REVIEW state. No automatic acceptance or new cap/weight grid.
-
-A01 next-input review now includes [DF C2 chemical target provenance](metal-df-c2-angle-audit.md). A source-consistent fragment is available, but its eLBOW angles are not independent chemistry authority. Retain explicit source-state uncertainty and coupled-target review; routine donor-state integration remains deferred. No automatic 120° substitution.
-
-Historical source-intake context below predates the qualified local receiver; its
-pending-enforcement wording is not the current local-run verdict.
-
-The preceding independent FT source audit identified two input boundaries
-(the new intake above resolves reference/frame binding, not native enforcement):
-B:1 has an investigator-declared B:7→B:1 symmetry continuation; exact source
-operator/frame binding now qualifies, while native enforcement remains pending. The investigator
-also confirmed C/D crossover after the A:1–A:21 condition was verified. The private endpoint needs a legitimate ordinary checkpoint
-before W173 intake. The existing modified/metal movement restriction remains.
-Preserve all phosphates, the 19 supplied pair planes and the separate generic
-sequence versus selected-model distinction; see the current handoff. No native
-recipe/fit was produced from those incomplete declarations.
-
-A01's source-bound symmetry review now gives explicit B:1–B:7 and C:8–D:7
-contact hypotheses (3.100/3.027 Å in the current parent). The investigator then
-confirmed B:7→B:1 and C/D crossover topology; exact image realization remains
-source-derived and native enforcement unqualified. The existing
-non-FT synthetic continuation reader preserves declared, unknown and chemical
-boundaries. Whole-model enforcement/slicing provenance remain open; A02 is gated.
-The follow-up same-image angle readback shows near-local O3′-vertex angles but
-long P–O3′ gaps and substantial phosphate-side distortion, especially D:7→C:8.
-Inverse views agree; 38 ordinary links provide descriptive context, not targets.
-No coordinate repair or new native enforcement is implied.
-Cedar's conditional threefold graph supplies the intended 21-site B cycle and
-three D/C crossover paths; ligation/nick state and enforcement remain unverified.
-
-A04 now exposes pinned historical result inspection through the normal CLI
-(`metal inspect-recorded-fdp`), with 53 focused tests and exact relocated installed
-Hg/Ag₄ readback. This closes a workflow surface only; no fresh fit, scientific
-acceptance, campaign cleanup or exact regeneration authority follows.
-
-A04's completed-batch handoff now issues exact independently pinned trial/result
-selections with shared parent identities, using existing archive/durable record
-owners. Sixteen final focused tests and installed two-trial synthetic readback
-cover completion and interruption; indexing adds no parent replay. Safe pruning,
-new parent-session execution and automatic campaign publication remain open.
-The real three-attempt FT_Hg readback also passes 48 checks with original access
-blocked: 134,901 B archive plus 1,810 B receipt, exact saved values and FreeR_flag
-selection. These historical low-B poor-fit controls validate recovery only;
-protected-parent storage is additional and scientific/retirement gates stay open.
-Whole-publication inspection now shares one archive expansion across all named
-attempts; 51 focused tests and installed real readback qualify exact rows and
-late-selection refusal. This is a read-only comparison improvement, not an
-execution session or retirement contract.
-The subsequent private audit-boundary study recovers exact freeze checks from
-selected native evidence, but saves only 16.5% versus compressing complete trial
-files. Keep full compressed proof nodes; use explicit historical-only compact
-children for ordinary increments. The fresh process-only prepare/run/inspect route now exercises shared parent
-transport and native-process ownership with durable outcomes and safe explicit
-retry. Qualification is 112 focused tests plus the late-parent-change control,
-and relocated installed simulated execution. A separate explicit Python owner now
-seals exact output-byte evidence only after verified completion, with 47 focused
-tests and relocated installed readback. Required output presence is not scientific
-validity; no automatic invocation or pruning follows. Later checkpoints below
-connect scientific parent/input admission, freeze auditing, compact publication
-and explicit reservations. Broader native qualification, scheduling and retirement
-remain open. The normal read-only `verify-fdp-child-inputs` bridge now checks the
-ordinary source checkpoint and replays `_input_bundle` → `make_plan` → `parameters`
-inside the protected parent view. Eighty focused tests plus two role-link controls,
-installed readback and exact retained Hg/Ag4 input recovery qualify this bounded
-relationship. This is not fresh Free-R/scattering acquisition or native admission.
-The copied worker now pins its complete maintained helper set in schema-2
-requests; old request inspection is preserved. One actual owned Phenix child
-reproduces the poor-fit historical Hg control with frozen-state/Free-R audits.
-The normal opt-in audited-child command now composes derivation, fresh metadata/
-Sasaki/Free-R, execution and scientific/output audits. One installed Ag4 child
-exactly reproduces the historical high-B poor-fit control, with negative terms
-retained and no count acceptance. The explicit offline session reader now
-verifies those saved results after relocation without originals/native execution,
-preserving Q/B/Free-R and signed site contributions. Explicit read-only parent
-retention now shares one snapshot across repeated derivations, with full digest
-checks and fresh ordinary scientific replay on each use. Qualification is 95
-focused tests, 74 relocated installed tests and four exact saved Hg/Ag4 input
-reads. Each read still rehashes 11.05 MB for the measured 4.73 MB parent; there is
-no scientific-pass cache; trial inputs remain individually copied. The opt-in
-retained execution/cold-review route now preserves one explicit
-scope identity across each child's fresh scientific gates and shared process
-owner. Process/review v2 distinguish completed reads from outer cleanup; one-shot
-v1 remains unchanged. Qualification is 162 focused tests, a final 42-test version
-check and 38 relocated installed tests, plus unchanged real Hg/Ag4 cold evidence.
-No native rerun or automatic acceptance/pruning occurs. The maintained publisher
-now also packages compact audited results and shared exact inputs while checking
-explicit protected parent/full-review references. Qualification is 46 focused
-checks, 13 final publication checks and 13 installed checks plus one real cold
-Ag4 reopening and missing-protection refusal. The 142 KB archive references 2.37 MB
-of existing protected evidence; it does not replace it. Explicit cooperative reservations now qualify two concurrent claims and
-known-stopped settlement with 77 focused, 31 final and 31 relocated installed
-checks. An incomplete child keeps its allowance; settlement deletes no files.
-The first explicit `run_child` caller now reserves before one-shot expansion
-and launch; 83 focused and 21 relocated installed checks preserve stopped versus
-interrupted ownership and no-budget behavior. The ordinary retained-parent owner now records verified closure and settles its
-explicit allowance; the existing child launcher borrows that live held scope and
-reserves only child growth. Focused/installed checks and exact real-parent readback
-qualify this boundary. Active readers, missing closure or uncertain cleanup keep
-parent charges held; uncertain children retain independent charges. Physical
-reclaim remains unverified. Explicit owned preflight now closes the metadata,
-scattering and Free-R process gap before the main child, with 90 focused/50
-installed checks and three real native input inspections (no refinement).
-An explicit v3 ledger now admits the entire owned audited session before native
-inspection and retains its charge until a complete review is explicitly settled.
-Whole-session qualification was 146 focused/67 installed checks. The bounded
-failed-session follow-up now passes 165 focused/86 installed checks: completed
-preflight plus a verified stopped native child can explicitly release a newly
-bound failed session's allowance, without accepting science or deleting files.
-That earlier step kept all preflight failures held. No new native science was
-rerun. The sealed partial-preflight follow-up now passes 184 focused/105 installed
-checks. A newly bound failed input inspection can explicitly release future
-headroom only with its outer/phase stops verified and no main child/review; files
-remain. Missing or uncertain seals stay held. Unsealed-attempt recovery, bounded
-campaign scheduling and output retirement need their own qualification.
-Read-only held-session diagnosis now names the blocked receipt/phase and exposes
-an explicit-path CLI (117 focused/19 installed checks plus two cold witnesses).
-It releases nothing and does not recover an abandoned process; the existing
-settlement remains the authority. That diagnostic addition left prior runtime modules unchanged.
-The next forward-only prerequisite now binds new budgeted preflight/main process
-owners to their complete session declaration and unique reservation before launch.
-137 distinct focused cases, nine installed tests and four cold relocated readbacks
-qualify same-input owner refusal and historical compatibility. Missing-terminal
-and unsealed recovery remain open; no old record is upgraded and no allowance is
-released merely because the new binding exists.
-See the [implemented retained-parent contract](metal-campaign-storage.md#implemented-retained-parent-release-and-child-consumption).
-Arbitrary protection ancestry is not inferred. Read/execution lifetime qualification does not establish capacity or
-close the A01/A02 science gates.
-Typed reader-control support remains with Willow W186. No historical parent or
-process identity is promoted; A01's current FT geometry gate is unchanged.
-
-**Scientific milestone: A01 — ligand geometry and open XYZ/B foundation.**
-**Parallel engineering step: A04 — compact records and protected parent transport.**
-A04 measures saved trials while A01 remains unresolved; it does not bypass A02
-or authorize large fan-out. The read-only projection substep now retains complete results with shared
-experiment metadata. Exact input and explicit parent-layout transport use the
-shared archive owner. Scientific parent selection, complete execution identity
-and the compact child lifecycle remain next before retirement. A small
-19 November rehearsal recovers four requests from a 251,197-byte archive;
-it does not yet retain complete parents or qualify native regeneration.
-A later bounded rehearsal recovers both legacy PostMR roots and metal parents
-from 782,402 bytes, then exactly reproduces two historical frozen-f″ result
-records. This is recovery feasibility, not a new production retention contract;
-modern checked ancestry is now recovered in a separate bounded diagnostic proof.
-That proof preserves all 392 source files, uses 35.7 MB of compressed parts and
-passes 876 cold checks with source reads denied. The explicit parent-layout
-adapter is now implemented with focused and installed recovery qualification. A private cold execution cross-binding now ties one saved historical Hg result
-to its exact parent, executable inputs, worker/native pins and observed runtime
-profile (213 assertions / 11 refusals, no new native job). Complete software
-identity, scientific session lifecycle and pruning remain open. The maintained
-recorded-result inspector now reads pinned historical results without original
-trial folders; 117 focused tests and 718 installed assertions qualify Hg/Ag4
-recovery and mismatch/partial refusals. Its recorded status does not confer a
-fresh scientific audit or cleanup authority. The full registry walk belongs
-to parent intake, not the current frozen-trial verification path; avoid a redundant
-per-point validation cache. The [storage contract](metal-campaign-storage.md#modern-parent-recovery-proof)
-owns the measured scope, prototype refusals and next production boundaries.
-Source-preserving construction, explicit restraint coverage and actual-state
-B export have mechanical evidence. Matched geometry, phase, iteration, map and
-scale controls leave the FT_Hg open-fit geometry gate unresolved. New native XYZ
-execution retains compact optimizer-stopping evidence: a completed job cannot
-silently stand for a converged minimizer. Independent convergence and scientific
-acceptance remain unassessed. A02 has not advanced.
-
-A later saved-evidence audit confirms exact source/effective/native transfer of
-all surviving local heavy-atom bond/angle/plane terms in two FT_Hg controls.
-Their achieved geometry remains strained; this closes a transfer check, not A01.
-Shared non-triple declared-site capture now has a matched one-cycle native
-no-change check and independent cold readback; it is not an Alder integration or
-accepted geometry. C412 now supplies checked-parent ordinary continuation evidence; consume that
-qualified boundary on the agreed merged base without treating it as a metal
-endpoint or root-free archive proof. Refine Doctor forwarding remains separate. Avoid repeating the completed
-private weight/iteration controls without new evidence.
-The investigator confirmed the Hg-bound donor-state hypothesis, with both N3
-hydrogens replaced, but later on 19 November deferred routine donor-state
-integration until after NASolve is built. The approved matched neutral/deprotonated
-DF–Hg–DT research comparison is complete: the DF attachment shortens but remains
-long, with essentially unchanged R values and remaining sulfur strain. The
-[handoff](metal-development-handoff.md) records the pair and independent review. Shared Q13 owns
-any generalized state qualification needed for that comparison; adopting C409
-is not an immediate A01 gate or a prerequisite for otherwise qualified FT_Hg
-work. Existing geometry and evidence standards still apply. The separate
-C408 matching-data PDU control demonstrates bounded perturbed recovery; it
-does not qualify experimental accuracy or FT_Hg and need not be repeated.
-A private C413/C415 consumer rehearsal now passes the selected 2,761 tests and
-70 subtests in two bounded parts, followed by a relocated installed read of both
-saved geometry reports and four compact f″ requests. This is interface evidence;
-active source adoption, the next combined integration gate and A01 scientific
-acceptance remain separate. Reuse its exact receipts rather than repeating the
-same checks or adding a second geometry calculator.
-Construction remains chemistry/connectivity driven: PDU and DF are qualification
-examples, with related and unchanged-good cases needed before general repair claims.
-
-Latest controls separate the final B transfer from the R deterioration and show
-that the longer geometry-only preparation returns after a native line-search
-error. Exact passive evaluator capture now shows identical XYZ/raw residual with
-different normalization denominators after a neighbor-list change. A private
-constant-denominator control retains every dynamic proxy, improves local geometry
-and gets past the earlier line-search failure, but reaches its 1,000-step cap.
-The subsequent original-profile real-data replay is exact and all 84 XYZ calls
-reach their iteration limits, without reproducing the same-site failure. A saved
-proxy audit instead exposes pooled pair/covalent bond metrics forcing automatic
-weight selection into its Rfree fallback. A matched private covalent-eligibility
-control improves local DF/Hg geometry but worsens Rwork/Rfree; forcing all five
-searches does not rescue the fit. All 105 calls in that forced-search control
-reach their 25-step caps. A matched 100-step allowance recovers Rwork/Rfree to
-0.29624/0.29234 with improved Hg geometry, but all five chosen fits still hit
-the limit and the attachment remains long. A 400-step allowance improves local
-geometry but worsens Rwork/Rfree to 0.31129/0.30495; all 97 trials, including
-all five chosen fits, return line-search errors. Saved maps retain strong
-negative Hg residuals before environmental-B preparation. The exact passive
-replay demonstrates a normalization-dependent target change at identical
-coordinates, with unchanged data terms and geometry identical within rounding. A repair is
-not yet qualified; this does not close A01. These are distinct from the earlier
-pooled-selector experiment; failed unselected trials remain explicit.
-A subsequent bounded one-cycle real-data intervention fixes only the returned
-geometry contribution at the common initial denominator, with an exact replayed
-baseline and unchanged diffraction/raw restraint contributions. Its completed
-results and remaining scientific limits are recorded first in the handoff.
-No normalization policy or f″ parent is adopted.
-Production changes are limited to compact passive weight-selection reporting;
-no selector policy, chemical repair or accepted f″ parent follows.
-The [handoff](metal-development-handoff.md) records prior attempts, exact validation,
-private evidence and compatibility limits. Consult it before scheduling new tests.
+The latest matched timing sample completes 193 XYZ calls, then stops at its
+90-second worker bound with all hooks restored and process closure at 91.61 s.
+Observer checks take 35.13 s, native work 49.42 s including 3.97 s in Reduce.
+Eight compact partial receipts survive. The earlier 464-call stop has its own
+source pins and no time split. Neither stop supplies actual group-B/output closure,
+a completed macrocycle, accepted model or measured f″. See the
+[current record](metal-development-handoff.md#current-a01--measured-runtime-cost-and-durable-partial-evidence)
+and the local `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/runtime-timing.html`.
+The audit reused those receipts; it ran no tests or fits.
 
 ## Immediate bridge from A01 to quantitative trials
 
-The explicit coordination-topology adapter now separates exact metal contacts
-from covalent/NAR authority without hiding unwanted neighbors. Its 309 focused
-tests and 269-check saved FT_Hg readback close this bounded accounting substep.
-The legacy whole-model result remains REVIEW: supplied-PHIL delivery and four
-qualified local junctions do not supply the missing whole-context authority.
-Consume this adapter with the shared retained-parent work; do not repeat its
-native control or use it to bypass modified/metal endpoint admission. A01 stays
-partial and A02 stays gated; no new milestone or cluster default is introduced.
+Only two next decisions govern the near-term work:
 
-A later current-parent check now refuses the stale full capture against the
-refined FT_Hg endpoint: all 859 XYZ/B values changed, while Q did not. A fresh
-fixed-coordinate interpretation of that exact endpoint preserves all 210
-supplied terms, 1,009 bonds and the expected observed contact counts; 260 cold
-checks pass. This is new parent observation, not retained-manager admission or
-an accepted solution. Complete shared admission and actual XYZ/ADP validation
-still precede f″. A04 software/execution binding can progress in parallel while
-that supported motion interface is pending; do not repeat the same capture.
+1. **Return one fully checked, inspectable FT_Hg model.** If observer overhead
+   prevents a practical completion allowance, localize repeated checks once with
+   a controlled replay and preserve every live-state/target protection. Then run
+   the unchanged optimized recipe with a realistic bound and durable progress;
+   qualify group-B execution, full-precision final state, serialized output and
+   stopped processes. Inspect local chemistry, both crystal links, coordination,
+   Rwork/Rfree and paired maps. A01's target Rwork remains below 0.3; a low R value
+   alone does not accept the geometry. Timing optimization is subordinate to this
+   deliverable. Straight and bent bridges remain hypotheses; the human endpoint
+   is not ground truth.
+2. **Admit the endpoint through the existing owners before quantitative fan-out.**
+   Receive the prepared-parent and numbered-runtime interfaces deliberately,
+   bind original observations/Free-R/HL and a separately declared mixed policy,
+   and close the output lineage. Do not invent ordinary ancestry for the private
+   FT control or treat the genuine PDU example without HL as phased FT admission.
+   Once the geometry is scientifically qualified, derive metal B from refined
+   base-only/donor atoms (exclude sugar/backbone; retain between-base mismatch),
+   freeze XYZ/B/f′ and demonstrate a small fixed-Q f″ response set. Establish A04
+   regeneration/retirement authority before broad grids or campaigns.
+   The existing frozen f″ worker uses model phases without external HL restraints;
+   keep that distinction from MLHL geometry explicit until the downstream phase
+   policy is qualified. Preserved phase lineage alone does not resolve it.
 
-The 20 November [current-state profiles](metal-development-handoff.md#a01-current-state-profiles)
-close the exact-state capture/finite-motion experiment. The neutral source fit
-reproduces exactly; contraction gains reverse, while modest reorientation can
-lower the target with essentially unchanged attachment angles. These are
-completed diagnostics, not accepted models. Small fractional deviations are
-descriptive; broad geometry and combined scientific evidence guide review.
+No serial 90/180-second fits merely to increase callback counts; no repeat of the
+unchanged zero-cycle, normalization, source-selector or group-membership controls.
+No new angle/weight/start-pose grid without a distinct scientific question and
+matched comparison. Do not disable weight optimization, loosen protected-state
+checks, clamp high B, or change chemical state to obtain a pass. Reuse the existing
+force/placement/retention evidence before revisiting FT geometry. Routine donor-state
+automation and A09 hydration remain deferred. Mixed Au/Ag, clusters and anomalous
+background cases follow the first qualified endpoint; cluster placement/rotation
+and coupled DNA accommodation retain their [explicit contract](metal-restraint-builder.md#cluster-placement-and-coupled-dna-accommodation-20-november-intent).
 
-The 23 November coherent base/attachment retention control is now complete:
-26 source widths halved, targets unchanged, exact native transfer verified.
-Rwork/Rfree improve to 0.2841/0.2925 and attachment to 1.545 Å; common-scale base
-and attachment deviations fall. Hg–O4 remains 1.376 Å, negative density at Hg
-strengthens and optimizer limits persist. See the [retention comparison](metal-development-handoff.md#a01-connected-base-retention--23-november).
-This closes a mechanical sensitivity question, not A01 or an f″ parent gate.
-Audit the remaining contact and existing controls before one new recovery step;
-do not repeat the same arm or promote a weight/default by R statistics alone.
+## Shared interfaces: reuse rather than parallel implementations
 
-The subsequent four-donor-approach hypothesis is also complete: Hg–O4 reaches
-2.390 Å and the bridge163.2° with attachment1.551 Å. Final Rwork/Rfree are
-0.3115/0.3454; exact final-scale audit explains much of the written-B contrast
-and records where the R separation emerges. This improves local geometry without
-scientific admission. See the [completed control and scale frames](metal-development-handoff.md#completed-outcome-and-scale-frame-distinction).
-No angle/weight grid follows. The unchanged continuation is now complete and
-retains the improved local geometry; see the current handoff. Its different
-cycle budget is not a matched causal comparison. The new remaining question is
-coupled flank/context placement. Donor-state automation remains deferred.
+| Owner | Reuse boundary | Not conferred by that boundary |
+| --- | --- | --- |
+| Cedar preparation/refinement | `refinement_prepared_backbone`, `refinement_phosphate`, ordinary AutoRefine, registered physical phosphate/link chemistry, exclusions and native image forces; shared process/output/storage owners | A private successful fit is not an ordinary prepared parent. Reported target/weight diagnostics do not qualify metal chemistry or change frozen source-policy identity. |
+| Willow topology/inspection | Logical site/image registration, representative transport, bounded placement, existing model/map readback; `topostitch_phased.NativePhasedGuard` and `topostitch_endpoint.audit_masked_endpoint` only at their qualified scopes | Six-atom coordinate-only receiving does not authorize whole-duplex/group-B/metal motion. W287 annotation replay is not prepared-input or chemistry authority; W288 local geometry is not an accepted diffraction endpoint. |
+| Alder metal refinement | Explicit protected XYZ/B/Q/f′/f″ scope, live mixed-target checks, metal recipes, environmental B, frozen response/count comparisons and branch admission | Source/state protection and timing do not establish structural correctness, converged f″ or a selected solution. |
 
-1. **A01:** the coupled starting-pose and exact final-state force questions are
-   complete. A matched native capture reproduces the noon model byte-for-byte;
-   saved replay qualifies 26 target/force samples with complete native pair constants.
-   Three closed pair/flank directions and one reversible Hg–O4 hold distinguish
-   small aggregate-score gains from local contact deterioration. The contact is
-   present in the native calculation; its worsening is pooled with stronger angle
-   gains. Holding its already-too-short distance preserves a small shared gain,
-   but rigid motion leaves the 1.674 Å DF attachment unchanged. No accepted
-   endpoint or f″ parent follows. See the [current A01 record](metal-development-handoff.md#a01-current-science-final-state-forces-and-a-contact-preserving-comparison).
-   Next scope source-backed internal base/attachment repair coupled to allowed
-   pair/flank motion, explaining how geometry survives optimization rather than
-   merely changing its initial pose. Use Cedar chemistry/geometry and Willow
-   transport; retain named local witnesses alongside work-only scores. Exact state,
-   derivative/closure and identity checks precede any new fit. Reuse completed
-   weight, angle, pivot, stiffness, split-B and start-pose controls. No new geometry
-   engine, adopted bad-contact target, repeated grid or relaxed tolerance follows.
-   The bounded split-base follow-up is complete: the shared source graph agrees
-   with the nine-atom partition and native attachment targets. Extra attachment
-   freedom permits a tiny shared improvement (1.67390 → 1.67059 Å) while holding
-   Hg–O4, but preserves internal ring/sugar strain. Six derivative checks and
-   13,944 cold geometry assertions pass. Do not repeat that step or fit solely
-   for this tiny gain. The next contract must retain source-backed internal
-   geometry during coupled optimization, reusing shared graph/rotation/native
-   term owners; no qualified general internal-deformation owner exists yet.
-   A subsequent bounded check now qualifies simultaneous attachment-distance and
-   adjacent-angle correction in the same tangent space under all nine holds.
-   Its least-motion direction improves raw geometry but worsens work MLHL; this
-   does not exclude other feasible directions. All 54 strict derivative checks
-   and 451 independent assertions pass. Eleven internal observables remain rigid
-   invariants. First-order feasibility is now answered; finite source retention,
-   internal repair and scientific admission remain open. No new fitted structure,
-   repeated fit/grid, full suite or f″ parent follows.
-   Straight versus bent FT_Hg remain competing hypotheses: the investigator's
-   same-data endpoint is a comparator, not ground truth, and straightness alone
-   is not an acceptance criterion. Current attachment/contact defects remain
-   distinct from that geometry choice.
-2. **A01 → A02:** qualify an open XYZ/B endpoint through local chemistry,
-   coordination, Rwork/Rfree, stopping evidence and maps. Derive environmental
-   metal B from the actual refined donors/base-only atoms, report disagreement
-   between bases, and then freeze XYZ/all ADPs/f′ for declared fixed-Q f″ trials.
-   First demonstrate a small Hg occupancy-response set before widening the grid.
-3. **A04, before fan-out:** retain the complete protected modern parent once per
-   bounded session; check each trial's exact inputs and frozen state. The legacy and modern
-   ancestry recovery proofs now exist; use the qualified transport adapter, then qualify trusted software identity
-   and the scientific child lifecycle before any retirement. Keep structural parents; regenerate cheap frozen
-   increments from verified inputs and compact statistics under a disk budget.
-4. **A02/A03 → A07:** apply the same mechanics to mixed Au/Ag, then cluster totals
-   and anomalous-background controls. Preserve element identities, occupancies,
-   cancellation and ambiguity. Withhold human endpoints from construction and
-   search; compare against them only after the candidate record is frozen.
-   Representative data then support the dedicated A05 GUI discussion and A06
-   campaign integration. A09 hydration remains deferred after the main build.
+The [ordinary receiving contract](metal-ordinary-receiving.md#ordered-integration-steps)
+owns the ordered integration boundary. Preserve historical native payloads and
+receipts; use existing phase, symmetry, map and process owners instead of creating
+a second executor, protection scheme or map parser. Upstream newer interfaces are
+dependencies to receive, not evidence that they are already on this Alder base.
 
-The [cluster placement contract](metal-restraint-builder.md#cluster-placement-and-coupled-dna-accommodation-20-november-intent)
-adds an explicit A03 → A02 → A07 experiment: whole-cluster pose proposals and
-bounded coupled DNA opening/closing, followed by open XYZ/B, branch-specific
-environmental B and frozen f″/Q reassessment. Nucleobase anchoring is the default
-cluster hypothesis; exceptions need strong recorded evidence. Keep cluster
-shape separate from local metal coordination and preserve count ambiguity.
-This is planned work, not a qualified movement mode or accepted cluster fit.
+## Local storage audit — 26 November
 
-These are bounded bridges to the existing milestones, not additional milestone
-numbers or a promise that one profile resolves A01. Reuse recorded controls and
-stop when the next hypothesis requires different evidence.
+At `5d2eeed9`, the clean worktree occupied 75.35 MiB allocated; branch-owned local
+artifacts occupied 2.65 GiB across 236 immediate directories. The largest FT
+foundation, triage, force and local-preparation directories remain referenced
+scientific evidence, not disposable caches. They were retained along with all
+unique runs, unrelated dirty work, collaboration notes and science checkouts.
+Only the ignored pytest cache was retired: five reproducible cache files, 3,872
+logical bytes / 20 KiB allocated; its failure cache was empty and exact-path
+reference searches found none. This is small housekeeping, not bulk recovery.
+
+The local audit receipt is `branch-artifacts/Alder/docs-audit-20261126-01/`
+under the usual NASolve artifact anchor. Detailed per-experiment roadmap prose
+was consolidated into this queue; its exact pre-audit content remains in Git and
+the scientific handoff retains underlying evidence. No product code, tests, native
+jobs, branch integration, artifact schema or deletion policy changed.
 
 ## Merge checkpoint
 

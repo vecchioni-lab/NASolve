@@ -1,11 +1,20 @@
 # Metal development handoff — current state
 
-Updated **25 November 2026**. Active feature branch: **Alder**. The
+Updated **26 November 2026** (documentation audit; latest science 25 November). Active feature branch: **Alder**. The
 [root integration handoff](development-handoff.md) owns the current combined
 source, full validation and delivery. The [A01–A09 roadmap](metal-development-roadmap.md)
 owns feature completion. The earlier chronological diary is preserved as
 [evidence through 18 November](history/metal-development-handoff-2026-11-18.md),
 not a second queue.
+
+The [audited forward queue](metal-development-roadmap.md#immediate-bridge-from-a01-to-quantitative-trials)
+has two decisions: return a fully checked and inspectable FT_Hg XYZ/group-B model,
+then admit its source/policy/output through the existing owners before quantitative
+fan-out. Timing is an enabling measurement, not a substitute for that endpoint.
+The roadmap now separates usable entry points, planned metal-screen behavior and
+Cedar/Willow/Alder authority; earlier experiment sections below retain their own
+scope and source pins. The docs-only audit ran no tests or fits. Local inventory
+and cache-retirement evidence: `branch-artifacts/Alder/docs-audit-20261126-01/`.
 
 <a id="a01-current-science-attachment-stiffness-transfers-strain"></a>
 <a id="a01-current-science-coupled-placement-does-not-survive-open-refinement"></a>

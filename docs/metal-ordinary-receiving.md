@@ -357,20 +357,21 @@ Checkout `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/normalization-r
 includes visually reviewed PNG/editable SVG. About 8.1 MB local evidence, temporary
 package staging removed. No full suite or generated science files in Git.
 
-**Next:** distinguish observer cost from native weight-search/Reduce cost and
-provide durable progress/graceful stopping for a realistically bounded completion
-check, retaining requested scientific settings. Complete actual group-B and
-returned-output/process closure before ordinary prepared/numbered adoption.
-Command-binding v1 still permits only file changes; mixed scope/target receiving,
-real-space identity and FT ordinary ancestry are separate gates. A01 partial;
-A02 quantitation gated. Reuse existing admission/command evidence.
+**Current boundary (26 November audit):** the later opt-in timing control has
+measured observer/native costs and retained partial progress with shared-owner
+closure. It does not complete group B or written output. Follow the roadmap's
+[two next decisions](metal-development-roadmap.md#immediate-bridge-from-a01-to-quantitative-trials):
+return an inspectable mixed-scope endpoint, then admit its source/policy/output
+through existing owners before quantitative fan-out. Command-binding v1 permits
+only file changes; mixed-policy receiving, real-space identity and FT ordinary
+ancestry remain separate. Reuse existing admission/command evidence.
 
 The subsequent read-only saved-protocol audit confirms optimized XYZ/ADP weights
 remain requested in the actual EFF. Native compilation proves unchanged XYZ/B
 memberships despite selection-string reformatting. The explicit reciprocal-only,
-one-cycle, non-dry declaration is retained. Only total runtime/counters and the
-interrupted stack are available; no stage/observer/Reduce time split can be
-claimed. A fixed-weight control changes the scientific protocol and requires its
+one-cycle, non-dry declaration is retained. That earlier receipt contains only total runtime/counters and the
+interrupted stack; it cannot inherit the time split measured in the later
+193-call diagnostic. A fixed-weight control changes the scientific protocol and requires its
 own declaration/limits; it cannot substitute for completion of the optimized
 recipe. See `saved-protocol-audit.json` in the same evidence directory. No new fit.
 

@@ -18,8 +18,8 @@ pass. The earlier failed diagnostic remains preserved. Next: localize repeated
 observer work without weakening scientific checks, then budget a complete cycle.
 [Exact evidence and checkout](metal-development-handoff.md).
 
-The next named
-subgoal is [source-bound ordinary parent admission](metal-ordinary-receiving.md#current-admission-boundary-and-next-a01-subgoal).
+The separate ordinary integration
+dependency is [source-bound ordinary parent admission](metal-ordinary-receiving.md#current-admission-boundary-and-next-a01-subgoal).
 A read-only trace confirms the private FT source chain has no ordinary registry;
 no parent was invented. Existing input/parent refusals and two separate source/
 label semantics are documented, with Cedar prepared-publication integration as

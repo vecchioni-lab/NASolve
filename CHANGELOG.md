@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Reconcile metal roadmap with usable workflow and retained evidence
+
+- Consolidate superseded experiment-status prose into one forward queue while
+  preserving historical evidence. Distinguish existing recipe/frozen-f″/viewer
+  entry points from the planned integrated metal screen and qualified endpoint.
+- Correct the stale timing-next-step description and document shared preparation,
+  topology, protection and inspection boundaries. Documentation only; no runtime,
+  schema, native experiment or scientific acceptance change.
+
 ### Measure explicit mixed-refinement runtime costs
 
 - Add opt-in bounded wall-clock timing with disjoint exclusive attribution,
