@@ -4,7 +4,7 @@
   "updated": "2026-11-26",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "f68a6a930d1730553ea63f67cacbdd31cc890600",
+  "audited_code_commit": "4d10f97e66e03d604f955e7e237af5423952f0ac",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -294,7 +294,8 @@
         "W240 provides an installed opt-in native-phosphate route through existing Cedar image chemistry. Complete preflight/one-cycle fit preserves fixed source-frame context and data;261 source/261 installed checks. Chemical recovery remains unaccepted.",
         "W241 completes the paired original-vs-W235 seed receiving question under the same requested native recipe: local seed geometry survives five cycles with all fixed context/data preserved. Effective native weights differ strongly; this is not an isolated basin test or scientific acceptance.",
         "W288: two complete five-cycle Phenix2.2.1-6174 local experiments at identical observed(1,1,1) coordinate coefficients. Original seam2.824291\u21921.615904A;seed1.614199A. Max endpoint difference0.061131A/six-atom RMS0.033591A. Original local bond/angle maxima0.509/1.830sigma;residual torsions2.97sigma. Rwork/free~0.312/0.369;not accepted.",
-        "W290 closes the W288 endpoint-map inspection decision: both own maps agree locally, while several fixed sugar sites remain weak. Native mask still six atoms; no broad duplex motion or density-driven choice."
+        "W290 closes the W288 endpoint-map inspection decision: both own maps agree locally, while several fixed sugar sites remain weak. Native mask still six atoms; no broad duplex motion or density-driven choice.",
+        "W291 exposes the existing explicit terminal/interior window through normal read-only CLI review before rendering.161 source/161 relocated-installed checks. Genuine PDU ordinary parent truthfully has no declared paired context; no window or wider motion invented."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
@@ -302,7 +303,7 @@
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient.",
         "Internal helix recovery explicitly compares neighbouring base-plane orientation, spacing, lateral offset/overlap and twist before deformation, after placement and after restrained recovery, including fixed-flank transitions. Within-pair coplanarity and between-pair stacking remain distinct; allow supported curvature/nonuniform twist rather than enforcing universal parallelism. Connectivity, sugar-sign retention and R factors alone do not close this gate. Investigator emphasis2026-11-22; planning only, reuse existing frame/geometry owners."
       ],
-      "next_action": "Define one explicit coupled sugar/backbone window through existing topology/window owners before broader native motion. Preserve glycosidic/base geometry, paired-base register/planes/stacking, fixed anchors, packing and protected chemistry; weak map samples alone do not identify a unique displacement. Coordinate admission with Cedar; six-atom qualification does not extend automatically. W241/W288 comparison and W290 map question are closed; do not repeat or tune against Free-R. Broader bending and campaign acceptance remain open.",
+      "next_action": "Choose the smallest source-qualified coupled sugar/backbone scope with Cedar. Whole paired-residue motion requires explicit reviewed partners/images; W291 exposes their absence in the genuine PDU parent rather than inferring them from soft contacts. Assess whether a narrower fixed-base sugar/backbone mask can use existing native owners without new physical-oligo claims. Preserve glycosidic/base geometry, pair register/planes/stacking, anchors, packing and protected chemistry. No broader native motion until that scope is qualified; six-atom admission does not transfer. W288/W290 questions are closed; no repeated weight or Free-R-driven panel.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -400,14 +401,15 @@
         "E_REGISTERED_PHOSPHATE_ENTRY",
         "E_SEEDED_RECEIVING_WEIGHT_AUDIT",
         "E_MATCHED_COORDINATE_WEIGHT_RECOVERY",
-        "E_ENDPOINT_DENSITY_BOUNDARY"
+        "E_ENDPOINT_DENSITY_BOUNDARY",
+        "E_WINDOW_SCOPE_INSPECTION"
       ],
       "last_audit": {
         "date": "2026-11-26",
-        "human_update": 290,
-        "code_commit": "f68a6a930d1730553ea63f67cacbdd31cc890600",
-        "reviewer": "Linden; endpoint-map inspection coordinated with Rowan",
-        "scope": "Own-map and fixed sugar review complete; no wider native window, scientific selection or acceptance."
+        "human_update": 291,
+        "code_commit": "4d10f97e66e03d604f955e7e237af5423952f0ac",
+        "reviewer": "Linden; scope and genuine-parent route coordinated with Rowan",
+        "scope": "Read-only window inspection qualified; genuine missing-pair boundary established. No wider geometry/native admission or acceptance."
       }
     },
     {
@@ -9893,6 +9895,55 @@
       "discarded_controller_preflight_ffts": 4,
       "maintained_code_changed": false,
       "new_native_refinements": 0
+    },
+    "E_WINDOW_SCOPE_INSPECTION": {
+      "kind": "Read-only explicit window and genuine-parent scope inspection",
+      "date": "2026-11-26",
+      "human_update": 291,
+      "code_commit": "4d10f97e66e03d604f955e7e237af5423952f0ac",
+      "reference": "docs/topostitch-preview.md#review-a-window-before-generating-coordinates-w291",
+      "result": "Existing terminal/interior selection and canonical mapping exposed by inspect_bend_window and preview --inspect-window, with source-order indices, fixed context and touching ordinary backbone links. Eight distinct fail-before cases;161 focused source/161 relocated installed checks,94 exact module hashes. Real refine-003 source/installed observation reproduces:four routes,no declared duplex pairs,DUPLEX_PARTNERS_UNSPECIFIED,no selected window,current postmr unchanged.",
+      "limitation": "Scope inspection does not render coordinates, evaluate strain/packing/ADP transport or admit native motion. Existing canonical source-representative windows cannot cross undeclared partners or representation seams. Soft contact restraints do not provide experimental oligos. No whole-run portability, full suite, native fit, combined release or scientific acceptance.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w291-window-review/installation.json",
+          "sha256": "5595e98dd3eb94d98ecdbee837ae61b1339e7f7425f1d978549f8f220ea0bf5f",
+          "size": 40711
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w291-window-review/source-genuine-pdu.json",
+          "sha256": "1c3855d0440306f57c8a676315b0cc72e4c4a6a3c5ed214eee9e9c234dbbf9c2",
+          "size": 9046
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w291-window-review/qualify.py",
+          "sha256": "88794019c3ec3f800d72e678b98a4f4203703275c9ef66a443dd5e3a975525b9",
+          "size": 5870
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w291-window-review/observe.py",
+          "sha256": "e2ae67c1e0a9f374442e8d3b9483aca130b9647f36c3fefb16817e7ebdc34d8d",
+          "size": 4831
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w291-window-review/fail-before.log",
+          "sha256": "51dc8ac9fa52e1a8e3422681aecf5ca3fd1bb83bf64bfd854394255a8cdc450a",
+          "size": 27395
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w291-window-review/complete-empty-fail-before.log",
+          "sha256": "5c86be0c5682166516ed5a7051c804860d05f81cd649589ca1d790aee8ebf2a5",
+          "size": 1786
+        }
+      ],
+      "maintained_code_changed": true,
+      "new_native_refinements": 0
     }
   },
   "benchmarks": [
@@ -10074,8 +10125,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 290,
-    "next": 291,
+    "current": 291,
+    "next": 292,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -11625,6 +11676,12 @@
         "title": "Inspect each recovered phosphate in its own map and assess the fixed sugar boundary",
         "state": "RECORDED",
         "code_commit": "f68a6a930d1730553ea63f67cacbdd31cc890600"
+      },
+      {
+        "number": 291,
+        "title": "Inspect an explicit bend window before generating coordinates",
+        "state": "RECORDED",
+        "code_commit": "4d10f97e66e03d604f955e7e237af5423952f0ac"
       }
     ]
   },

@@ -7,6 +7,10 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Latest maintained code, W291:** [review a window before motion](topostitch-preview.md#review-a-window-before-generating-coordinates-w291)
+  exposes moving residues, fixed anchors/context and links through the normal
+  preview command. 161 source / 161 relocated-installed checks; genuine PDU
+  inspection reports missing declared pairs without inventing a window.
 - **W290:** [endpoint-map inspection](topostitch-periodic.md#w290--inspect-the-closed-phosphate-and-its-fixed-sugar-boundary)
   confirms similar density around both recovered phosphates and weak support at
   several fixed sugar atoms. The next task is an explicit coupled window, with
@@ -14,7 +18,7 @@ current instructions; other branches retain their own status and validation pins
 - **W288 remains the latest refinement:** the original 2.824 Å gap recovers to
   1.616 Å near the seeded result at matched coordinate weights. Residual torsions
   and poor diffraction still prevent acceptance. Do not rerun the weight panel.
-- **Latest maintained code, W287:** [saved annotation replay](topostitch-preview.md#reopen-a-saved-annotation-proposal-w287)
+- **W287:** [saved annotation replay](topostitch-preview.md#reopen-a-saved-annotation-proposal-w287)
   reproduces an explicit review from bound original inputs. 81 source / 81 installed
   checks at that checkpoint; no metadata application or scientific approval.
 - **Pine output:** whole-original-asym diagnostic CIF save/replay/inspection is
@@ -29,7 +33,7 @@ current instructions; other branches retain their own status and validation pins
   [preview/API contracts](topostitch-preview.md) retain methods, failures and pins.
   Earlier synthetic recovery, native controls and software PASS results retain
   their recorded scopes. W290 adds read-only map calculations and 20 cold checks;
-  no new refinement or application test-suite run.
+  W291 adds scoped source/installation tests. Neither adds a native refinement.
 
 ## Publication demonstration plan
 

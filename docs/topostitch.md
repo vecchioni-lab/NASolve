@@ -1,6 +1,6 @@
 # TopoStitch: periodic DNA connections, recutting and repair
 
-Current scope, **2026-11-26 (W290 inspection)**: explicit placement proposals,
+Current scope, **2026-11-26 (W291 window review)**: explicit placement proposals,
 source-bound ASU inspection, whole-original-asym **diagnostic** CIF save/replay,
 and opt-in local six-atom native receiving are available on `willow` within their
 qualified scopes. Automatic end repair, mixed-fragment output, persistent child/
@@ -18,7 +18,7 @@ model and report missing information, competing choices and unsupported chemistr
 | --- | --- |
 | `nasolve-topostitch-inspect` | Describe verified ends, periodic images, canonical contacts and declared-topology windows; print a review report. |
 | `nasolve-topostitch-fit` | Propose bounded canonical-pair motion; explicit `native-phosphate` uses compatible Cedar owners for bounded six-atom receiving. Neither route establishes scientific acceptance or selects a checkpoint. |
-| `nasolve-topostitch-preview` | Write a separate bend-preview candidate with fixed anchors, transformed ANISOU and serialized-backbone checks. |
+| `nasolve-topostitch-preview` | Inspect explicit scope with `--inspect-window`, or write a separate candidate with `--out`, fixed anchors, transformed ANISOU and serialized-backbone checks. |
 | `nasolve-topostitch-cut-preview` | Describe graph IDs or freeze a proposal; explicit `--export-preview` / `--replay-export` also save and verify reviewed whole-asym diagnostic CIFs. No checkpoint or native restart. |
 | `nasolve-topostitch-view` | Inspect replayed proposals or trusted saved exports in offline HTML; compare explicit cuts and save a source-bound preference. No approval or selection. |
 

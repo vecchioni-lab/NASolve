@@ -1,7 +1,7 @@
 # NASolve development handoff — Willow
 
-**W290 density inspection, 2026-11-26.** Latest refinement: **W288**. Latest
-maintained code: **W287**, `f68a6a930d1730553ea63f67cacbdd31cc890600`.
+**W291 window inspection, 2026-11-26.** Latest refinement: **W288**. Latest
+maintained code: **W291**, `4d10f97e66e03d604f955e7e237af5423952f0ac`.
 The [audited roadmap](topostitch-roadmap.md) owns status and the next decision;
 [periodic evidence](topostitch-periodic.md) and [API contracts](topostitch-preview.md)
 own exact methods, commands, hashes and limitations. This handoff is not a run diary.
@@ -22,6 +22,7 @@ must work without an AI service. A representation change does not repair a gap.
 | Whole-original-asym diagnostic CIF export | W272–278 preserve qualified source categories, images, tensors and backbone coverage; save/replay/inspect available | Mixed-fragment entity policy, native TLS restart, genuine source/parent join and persistent operation/refine loop |
 | W286/W287 connection review | Source/row/evidence-bound unapplied proposals and independent saved-report replay | Explicit metadata authority, application and separate chemistry/export/native admission |
 | W290 endpoint-map comparison | Same 1,909 indices/124 Free-R; P near 2.52σ in both maps, weak fixed sugar support | Explicit coupled-window chemistry/packing before broader native motion; no map-based acceptance |
+| W291 pre-motion scope review | Existing terminal/interior windows expose moving residues, fixed anchors/context and adjacent links without rendering | Genuine PDU has no declared duplex partners; wider chemistry/native motion remains gated |
 | Offline model/density and cut inspection | Installed renderers, map/model roles, saved preference and trusted export views | General stage/campaign integration and supported human edit/re-enter/refine lifecycle |
 
 **Availability is branch-specific.** The inspected local Pine checkout is still
@@ -41,8 +42,9 @@ maintained fixed-weight product mode or recommended production weight.
 
 ## Next decisions
 
-1. **Stitching:** W290 completes the own-map/fixed-sugar inspection. Define one
-   explicit coupled sugar/backbone window using existing topology/window owners;
+1. **Stitching:** W290 completes the own-map/fixed-sugar inspection; W291 exposes
+   existing paired windows for review before rendering. With Cedar, choose the
+   smallest source-qualified coupled sugar/backbone scope;
    preserve base/glycosidic geometry, pair register/planes/stacking, anchors and
    native packing. Weak density does not identify a unique displacement. Coordinate
    wider native admission with Cedar; do not extend the six-atom scope implicitly.
@@ -52,8 +54,11 @@ maintained fixed-weight product mode or recommended production weight.
    with its proven data/thermal route. Use source-frame native refinement and
    derived views; keep physical strand/entity assignments unresolved without a
    designed-oligo source. Native soft pair restraints do not supply that authority.
-   Inspect existing topology/window readers for one concrete boundary before
-   another metadata writer or GUI action. The 3LNA export remains the strong
+   W291 confirms the concrete boundary: four routes, no declared duplex partners;
+   the normal window inspector reports that absence without selecting a window.
+   Whole paired-residue motion needs reviewed partner/image context. Assess a
+   narrower fixed-base sugar/backbone mask through existing native owners before
+   adding metadata or broader motion. The 3LNA export remains the strong
    metadata/scattering control without a qualified ordinary parent/TLS restart.
    Whole-asym diagnostic export is not deposition readiness.
 
@@ -81,6 +86,12 @@ references and thermal/TLS semantics. File readback alone cannot prove those.
 
 <a id="validation-and-scientific-interpretation"></a>
 ## Validation and compatibility
+
+**W291: 161 focused source / 161 relocated installed checks pass**, with eight
+fail-before cases, exact genuine-parent replay and 94 matching module hashes.
+Existing trial/preview formats stay unchanged; inspection adds a report and a
+window-planning status. No native fit, selection, full suite or combined release.
+Exact commands/dependency pins are in the linked API evidence.
 
 **W290: no product changes, native fits or merges.** Six successful FFTs of saved
 coefficients, 93 contour meshes and 20 cold source/numeric/checkout checks pass.
