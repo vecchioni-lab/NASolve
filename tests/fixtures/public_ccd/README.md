@@ -36,3 +36,10 @@ aromatic Y. It tests a separate graph-based reader correction: qualified rings
 may become aromatic, but their bridge stays single. Source bytes stay exact;
 renamed/reordered controls exclude a PIM-name exception. This is an isolated
 public control, not a curated production dictionary or experimental model.
+
+The canonical deoxyguanosine and guanosine dictionaries provide an offline
+control for adding the 2′ hydroxyl with the source ribose stereochemistry.
+Both files are the public CCD downloads retrieved on 26 November 2026.
+
+- [DG](https://files.rcsb.org/ligands/download/DG.cif), SHA-256 `87b9c4eddf89edcbc7aba4f77ed2159bb572e9c8092409d893998be426d872f2`.
+- [G](https://files.rcsb.org/ligands/download/G.cif), SHA-256 `4fbcf5b5222d7c7f0a761676cffa9bb997daa8f76d41fdb7657aa59e969b85fa`.

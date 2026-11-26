@@ -1,4 +1,4 @@
-"""Explicit canonical base seeds that retain a modified model's DNA scaffold.
+"""Explicit canonical parents that retain the starting heavy-atom scaffold.
 
 This is coordinate construction, not dictionary qualification or refinement.
 The caller supplies both chemical authorities and persists any returned output.
@@ -10,11 +10,12 @@ from pathlib import Path
 import re
 
 from .cif_stereochemistry_audit import _values, _coordinates, _volume
+from .postmr_ribose import RNA_PARENTS, ribose_parent_seed
 from .postmr_conformation import (
     _PARENT_ROLES, MATCH_TOLERANCE_DEGREES, parent_conformation_plan,
 )
 from .postmr_restoration import (
-    _atom_records, _frame, _dot, _sub, _cross, source_graph_fragment,
+    _model_records, _frame, _dot, _sub, _cross, source_graph_fragment,
 )
 
 POLICY_ID = 'postmr-explicit-canonical-base-seed-v1'
@@ -51,45 +52,9 @@ def _template_coordinates(dictionary, component, graph):
     return family, xyz
 
 
-def _model_records(data, site, component):
-    match = re.fullmatch(r'([^\s:]):(-?[0-9]+)', site) if isinstance(site, str) else None
-    if match is None:
-        raise ValueError('Require one explicit PDB chain and integer residue site')
-    chain, number = match[1], int(match[2])
-    lines = data.decode('ascii').splitlines(keepends=True)
-    indices, serials = [], set()
-    for i, line in enumerate(lines):
-        kind = line[:6].strip()
-        if kind in {'MODEL', 'ENDMDL', 'CONECT', 'ANISOU', 'SIGATM', 'SIGUIJ'}:
-            raise ValueError('Model/atom-reference records require a separate construction owner')
-        if kind not in {'ATOM', 'HETATM', 'TER'}:
-            continue
-        if kind == 'TER' and not line[6:].strip():
-            continue
-        field = line[6:11].strip()
-        if not field.isascii() or not field.isdecimal() or not 0 < int(field) <= 99999:
-            raise ValueError('Require positive decimal PDB atom/TER serials')
-        serial = int(field)
-        if serial in serials:
-            raise ValueError('Duplicate PDB atom/TER serial')
-        serials.add(serial)
-        if kind == 'TER' and len(line.rstrip()) < 26:
-            continue
-        try:
-            residue = int(line[22:26])
-        except ValueError as exc:
-            raise ValueError('Malformed PDB residue number') from exc
-        if line[21:22] == chain and residue == number:
-            if line[26:27].strip():
-                raise ValueError('Insertion-coded construction site is ambiguous')
-            if line[17:20].strip() != component:
-                raise ValueError('Selected atom/TER component differs from the declared source')
-            indices.append(i)
-    atoms = _atom_records([lines[i] for i in indices], component)
-    return lines, indices, atoms, max(serials)
-
-
 def _seed(data, site, source, code, template, parent):
+    if parent in RNA_PARENTS:
+        return ribose_parent_seed(data, site, source, code, template, parent)
     if parent not in _PARENT_ROLES:
         raise ValueError('Require an explicit supported canonical DNA parent')
     if not isinstance(code, str) or not re.fullmatch(r'[A-Z0-9]{1,3}', code):
@@ -205,7 +170,8 @@ def canonical_parent_seed(model, site, source_dictionary, source_component,
                           canonical_dictionary, canonical_component):
     """Return model bytes and compact provenance from a model path or immutable bytes.
 
-    Standard unbridged DNA, a shared N-glycosidic frame and matching model/template
+    A canonical RNA parent may add the single source-proven 2′ hydroxyl to an
+    otherwise identical deoxy residue. For DNA, a shared N-glycosidic frame and matching model/template
     sugar hand are required. Preserve the incoming sugar, phosphate atom set and
     glycosidic anchor exactly. Place the complete explicit canonical base rigidly;
     unrelated records stay byte-identical. This does not certify either supplied

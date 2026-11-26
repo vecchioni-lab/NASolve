@@ -8,6 +8,11 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- Explicit PostMR construction can prepare a canonical RNA parent from the
+  corresponding deoxy residue. The two source dictionaries must agree on the
+  retained chemistry. NASolve adds the 2′ oxygen with the reference ribose hand
+  and records the local geometry for replay.
+
 - Diagnostic runners assembled from a wheel installation verify the captured
   NARestraints package against its installed file record. A virtual environment
   inside another repository can no longer give the runner the wrong Git revision.

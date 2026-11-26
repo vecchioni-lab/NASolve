@@ -10,6 +10,7 @@ from __future__ import annotations
 from hashlib import sha256
 from math import dist, isfinite, sqrt
 from pathlib import Path
+import re
 
 from .cif_linked_preparation import atom_rows, component_values
 
@@ -117,6 +118,44 @@ def _atom_records(lines, expected_code):
         records[name] = {'line': line, 'xyz': point, 'element': element}
     if not records: raise ValueError('Selected coordinate site is absent')
     return records
+
+
+def _model_records(data, site, component):
+    match = re.fullmatch(r'([^\s:]):(-?[0-9]+)', site) if isinstance(site, str) else None
+    if match is None:
+        raise ValueError('Require one explicit PDB chain and integer residue site')
+    chain, number = match[1], int(match[2])
+    lines = data.decode('ascii').splitlines(keepends=True)
+    indices, serials = [], set()
+    for i, line in enumerate(lines):
+        kind = line[:6].strip()
+        if kind in {'MODEL', 'ENDMDL', 'CONECT', 'ANISOU', 'SIGATM', 'SIGUIJ'}:
+            raise ValueError('Model/atom-reference records require a separate construction owner')
+        if kind not in {'ATOM', 'HETATM', 'TER'}:
+            continue
+        if kind == 'TER' and not line[6:].strip():
+            continue
+        field = line[6:11].strip()
+        if not field.isascii() or not field.isdecimal() or not 0 < int(field) <= 99999:
+            raise ValueError('Require positive decimal PDB atom/TER serials')
+        serial = int(field)
+        if serial in serials:
+            raise ValueError('Duplicate PDB atom/TER serial')
+        serials.add(serial)
+        if kind == 'TER' and len(line.rstrip()) < 26:
+            continue
+        try:
+            residue = int(line[22:26])
+        except ValueError as exc:
+            raise ValueError('Malformed PDB residue number') from exc
+        if line[21:22] == chain and residue == number:
+            if line[26:27].strip():
+                raise ValueError('Insertion-coded construction site is ambiguous')
+            if line[17:20].strip() != component:
+                raise ValueError('Selected atom/TER component differs from the declared source')
+            indices.append(i)
+    atoms = _atom_records([lines[i] for i in indices], component)
+    return lines, indices, atoms, max(serials)
 
 
 def _dot(a,b): return sum(x*y for x,y in zip(a,b))

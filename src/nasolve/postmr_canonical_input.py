@@ -11,6 +11,7 @@ from .campaign_records import path_in, read_record, write_record
 from .cif_dictionary_sites import _read
 from .cif_dictionary_store import _snapshot_destination
 from .postmr_canonical_seed import canonical_parent_seed
+from .postmr_ribose import RNA_PARENTS
 
 POLICY_ID = 'postmr-explicit-canonical-parent-input-v1'
 ANCHOR = 'canonical_parent_input'
@@ -26,7 +27,7 @@ def canonical_input_plan(actions, dictionaries, passthrough_sites=()):
     for action in actions:
         if action.site not in dictionaries:
             continue
-        if (action.method != 'coot-parent-overlap' or action.parent_code not in {'DA', 'DC', 'DG', 'DT'}
+        if (action.method != 'coot-parent-overlap' or action.parent_code not in {'DA', 'DC', 'DG', 'DT'} | RNA_PARENTS
                 or action.before == action.parent_code or action.site in passthrough_sites):
             raise ValueError('Canonical seed choice requires an eligible modified-parent overlap')
         paths = dictionaries[action.site]

@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 26 November 2026, after C595. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 26 November 2026, after C596. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -977,6 +977,13 @@ C595 uses the published NARestraints workbook and loader together. A fresh
 Cedar installation follows the latest stable package. The environment check
 can compare versions or run offline. Numbered release archives and workbook
 fingerprints remain available for historical replay. [NARestraints v1.1.4](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.4).
+
+C596 supplied real G, C and A parents for C:12, A:7 and B:5 on the same
+42-site frame. The canonical parents added three correctly oriented 2′ oxygens
+and preserved all six neighboring O3′–P distances. Coot subsequently built
+2MG, 5MC and 6MZ with an extra OP3 at each site and displaced the flanks.
+The ordinary phosphate check refused the result. Next verify base orientation,
+restore the checked ribose scaffold, and reuse the internal OP3 proof.
 
 After the qualified Q06 consumer is available, add a separate builder generalization
 control before the proposed Cedar integration with main. Mutate **eight residues** into

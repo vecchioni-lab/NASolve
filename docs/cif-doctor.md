@@ -14839,11 +14839,31 @@ Phenix rerun, target change or historical migration. See
 `source_bound_canonical_roundtrip_2026_11_16` for exact commands and limitations.
 
 
+### Keeping the deoxy scaffold when an RNA parent is requested
+
+For a declared DNA and RNA source pair with the same base, the explicit canonical
+parent builder compares the named bonds, elements, charges and stereochemistry.
+The only permitted chemical change is replacing one C2′ hydrogen with a neutral
+hydroxyl. The coordinate model retains every existing heavy atom. The new oxygen
+inherits the occupancy and displacement of C2′. Its position satisfies the
+reference C2′–O2′ distance and both C1′/C3′–C2′–O2′ angles on the ribose side of
+the ring. Source, template and observed sugar hands are checked at the three
+shared centres. The constructed RNA inherits the observed sugar pucker.
+The saved construction record reconstructs the result from its
+two dictionaries and starting coordinates after relocation.
+
+The C596 control built G, C and A at three internal sites on a DNA scaffold.
+All six adjacent O3′–P distances remained 1.605–1.617 Å. In the subsequent native
+Coot 1.3.3 replacements with 2MG, 5MC and 6MZ, an extra OP3 and altered links
+prevented ordinary phosphate preparation. Measure each returned modified residue
+before using a constructed parent in refinement. [Eight-site transfer control](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
+
 ### Explicit canonical input in ordinary construction (C349)
 
 `construct_postmr_model(..., canonical_seed_dictionaries={site: (source, template)})`
 uses the existing Coot stage. Each explicit overlap site must have a distinct
-incoming identity, canonical DNA parent and no passthrough conflict. Inputs freeze
+incoming identity and an eligible canonical parent outside the passthrough sites.
+The source-matched ribose conversion above also uses this entry point. Inputs freeze
 under `Coot/canonical_seeds`; the original model and actions remain authority for
 context/restoration, while only the native action's incoming identity follows the
 seed. No current production/CLI caller opts in automatically.
