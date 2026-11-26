@@ -16,11 +16,13 @@ The chemical plane was active. These 4.19 Å data leave the individual carbon
 unresolved. Keep the qualified parent and mark B:4 for review.
 [Measurements and scope](backbone-chemistry.md#two-diffraction-scores-on-the-same-pdu-model).
 
-Resume with the two short contacts beside ATL in the existing thirteen-change
-mixed scaffold. Compare the two recorded rounds, their exact atom identities,
-source chemistry and neighboring sugar/backbone geometry before trying a new fit.
-The independent eight-unfamiliar-residue challenge follows this transfer check.
-[Q06 into Q07](cif-doctor-completion-queue.md#the-next-small-steps).
+C591 identified both neighboring partners at A:11 in the first ordinary mixed
+round. One contact reaches the preceding sugar, the other the following O5′.
+The second round retains the two ATL-atom overlap values. Its compact record
+omits their opposite endpoints. The new optional printed-contact screen preserves
+every qualifying pair. Use the prior observations when planning the independent
+eight-residue challenge and retain explicit review where sugar or phosphorus
+stereochemistry is unresolved. [Mixed-scaffold evidence and transfer criteria](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
 
 ## What already works
 

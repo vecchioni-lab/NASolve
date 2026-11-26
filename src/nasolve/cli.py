@@ -430,6 +430,10 @@ def build_parser() -> argparse.ArgumentParser:
         "--contacts-at", action="append", metavar="CHAIN:NUMBER",
         help="read Phenix nonbonded contacts for this residue before and after refinement; may be repeated (requires --run)",
     )
+    cif_assess.add_argument(
+        "--min-contact-overlap", type=float, metavar="ANGSTROMS",
+        help="list every printed contact at the chosen sites whose overlap reaches this value (requires --contacts-at)",
+    )
     cif_assess.add_argument("--model", type=Path, help="optional PDB atom inventory (standalone only)")
     cif_assess.add_argument("--stage", choices=("source", "effective", "standalone"), default="standalone")
     cif_assess.add_argument("--output", type=Path, help="new JSON receipt; existing files are refused")
@@ -2292,6 +2296,8 @@ def _cif_doctor(args: argparse.Namespace) -> int:
         else:
             if args.refined_planes is True and args.run is None:
                 raise ValueError("--refined-planes requires --run or an explicit GEO path with --model PDB")
+            if args.min_contact_overlap is not None and not args.contacts_at:
+                raise ValueError("--min-contact-overlap requires --contacts-at")
             if args.contacts_at and args.run is None:
                 raise ValueError("--contacts-at requires --run")
             if args.b_factors_at and args.run is None:
@@ -2316,6 +2322,7 @@ def _cif_doctor(args: argparse.Namespace) -> int:
                     raise ValueError("--run selects its frozen model/bundle; omit dictionaries, --model and --stage")
                 payload = assess_run(args.run, checkpoint=args.checkpoint, refined_planes=bool(args.refined_planes),
                                      refined_links=args.refined_links, contact_sites=args.contacts_at,
+                                     minimum_contact_overlap=args.min_contact_overlap,
                                      b_factor_sites=args.b_factors_at, bond_targets=args.bond_targets is True,
                                      template_bonds=args.template_bonds)
             else:
@@ -2462,6 +2469,18 @@ def _cif_doctor(args: argparse.Namespace) -> int:
                         shorter = sum(values["shorter_than_vdw"] > 0 for values in atoms.values())
                         print(f"{stage} {site} {group['component']}: {shorter} of {len(atoms)} atoms have a "
                               "reported distance below the Phenix van der Waals distance.")
+                    screen = contacts.get("overlap_screen")
+                    if screen is not None:
+                        matches = screen["contacts"]
+                        print(f"{stage} has {len(matches)} printed contacts with overlap of at least "
+                              f"{screen['minimum_overlap_A']:g} Å at the chosen sites.")
+                        for row in matches[:8]:
+                            left, right = (" ".join(end) for end in row["endpoints"])
+                            image = row["image_of_second_atom"]
+                            suffix = f" (second atom at {image})" if image else ""
+                            print(f"  {left} to {right}{suffix}  {row['overlap_A']:.3f} Å overlap")
+                        if len(matches) > 8:
+                            print("  Use --json for the complete contact list.")
             for field, stage in (("preflight_links", "Preflight"), ("refined_links", "Refined")):
                 if field not in payload:
                     continue

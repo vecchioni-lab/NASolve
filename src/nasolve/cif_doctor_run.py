@@ -184,6 +184,7 @@ def read_checkpoint_phosphate_image(run: Path, *, checkpoint: str, phosphate: st
 def assess_run(
     run: Path, *, checkpoint: str | None = None, refined_planes: bool = False,
     refined_links: bool = False, contact_sites: list[str] | tuple[str, ...] | None = None,
+    minimum_contact_overlap: float | None = None,
     b_factor_sites: list[str] | tuple[str, ...] | None = None, bond_targets: bool = False,
     template_bonds: bool = False,
 ) -> dict[str, object]:
@@ -202,6 +203,11 @@ def assess_run(
         raise ValueError("The refined link option must be boolean")
     if type(bond_targets) is not bool:
         raise ValueError("The bond target option must be boolean")
+    if minimum_contact_overlap is not None:
+        from .refinement_contact_geometry import validate_contact_overlap
+        if not contact_sites:
+            raise ValueError("A minimum overlap requires sites selected with --contacts-at")
+        validate_contact_overlap(minimum_contact_overlap)
     if contact_sites is not None:
         from .refinement_contact_geometry import read_refined_contacts, validate_contact_sites
         validate_contact_sites(contact_sites)
@@ -313,7 +319,8 @@ def assess_run(
             if refined_links:
                 observations_at_stage["links"] = read_prepared_link_geometry(context, coords, geo, allow_unassessed=recorded)
             if contact_sites:
-                observations_at_stage["contacts"] = read_refined_contacts(coords, geo, contact_sites)
+                observations_at_stage["contacts"] = read_refined_contacts(
+                    coords, geo, contact_sites, minimum_overlap=minimum_contact_overlap)
             if bond_targets:
                 from .refinement_component_bonds import read_component_bond_targets
                 observations_at_stage["bond_targets"] = read_component_bond_targets(

@@ -64,7 +64,8 @@ def test_read_only_run_uses_selected_checkpoint_without_runtime_discovery(tmp_pa
         assert main(['cif-doctor', 'assess', '--run', str(tmp_path),
                      '--checkpoint', 'refine-002', '--json']) == 2
     assess.assert_called_once_with(tmp_path, checkpoint='refine-002', refined_planes=False, refined_links=False,
-                                   contact_sites=None, b_factor_sites=None, bond_targets=False, template_bonds=False)
+                                   contact_sites=None, minimum_contact_overlap=None, b_factor_sites=None,
+                                   bond_targets=False, template_bonds=False)
     discover.assert_not_called()
     assert json.loads(stream.getvalue()) == audit
 
@@ -93,6 +94,21 @@ def test_nonbonded_contacts_need_a_run(tmp_path, capsys):
     source = _graph(tmp_path / "source.cif")
     assert main(["cif-doctor", "assess", str(source), "--contacts-at", "B:4"]) == 1
     assert "--contacts-at requires --run" in capsys.readouterr().err
+
+
+def test_contact_overlap_requires_sites_and_names_the_crystal_partner(tmp_path, capsys):
+    assert main(["cif-doctor", "assess", "--run", str(tmp_path), "--min-contact-overlap", "0.4"]) == 1
+    assert "requires --contacts-at" in capsys.readouterr().err
+    row = {"endpoints": [["A:2", "DC", "N4"], ["B:4", "Z99", "N2T"]],
+           "overlap_A": .45, "image_of_second_atom": "-x+y,-x,z"}
+    audit = {"status": "REVIEW", "refined_contacts": {"status": "OBSERVED", "sites": {},
+             "overlap_screen": {"minimum_overlap_A": .4, "contacts": [row]}}}
+    with patch("nasolve.cif_doctor_run.assess_run", return_value=audit) as assess:
+        assert main(["cif-doctor", "assess", "--run", str(tmp_path), "--contacts-at", "B:4",
+                     "--min-contact-overlap", "0.4"]) == 2
+    assert assess.call_args.kwargs["minimum_contact_overlap"] == .4
+    text = capsys.readouterr().out
+    assert "at least 0.4 Å" in text and "A:2 DC N4 to B:4 Z99 N2T (second atom at -x+y,-x,z)" in text
 
 
 def test_b_factors_require_a_run_and_use_the_selected_sites(tmp_path, capsys):

@@ -8,6 +8,11 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- With `cif-doctor assess --run RUN --contacts-at SITE`, an optional
+  `--min-contact-overlap ANGSTROMS` lists all local contacts meeting that
+  cutoff in the saved Phenix tables, including additional partners at the
+  same atom and the printed crystal image of the second atom.
+
 - AutoRefine round reports record which diffraction target Phenix
   announced in each numbered cycle when the native log identifies it.
   This can reveal a change from least squares to maximum likelihood at a

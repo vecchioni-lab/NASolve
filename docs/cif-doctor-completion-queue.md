@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 26 November 2026, after C590. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 26 November 2026, after C591. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -39,7 +39,9 @@ The next transfer check examines the locked-sugar contacts on a separate mixed s
    evidence can distinguish a better local model. [Fixed-state evidence](backbone-chemistry.md#two-diffraction-scores-on-the-same-pdu-model).
 2. **Q06 into Q07, transfer to an independent case.** Reuse the neutral DF–adenine fit and
    the mixed scaffold's two existing five-cycle rounds. Classify the remaining close ATL
-   contacts, then plan the separate eight-residue builder challenge with unchanged source
+   contacts. C591 can retain every printed pair above an explicit overlap cutoff,
+   including a second partner at the same atom. Check the existing mixed-scaffold
+   evidence described below. Then plan the eight-residue builder challenge with unchanged source
    dictionaries. Prefer unfamiliar catalogue ligands. Select exact sites and compatible
    sugar/backbone contexts, and include a phosphorothioate if its substitution and
    stereochemistry are specified. Record what was constructed, what Phenix kept after
@@ -895,6 +897,22 @@ model or establishes pair restraints.
    membership, unchanged intensities and flags, four source sugar centres and
    final geometry at PDU, 5PC, DF and ATL. The local contacts and unfamiliar
    eight-residue challenge remain open.
+
+C591 distinguished the local contacts in two different locked-sugar experiments.
+The earlier placement control (C483) ended with DG A:10 C2′ close to ATL A:11 O4′,
+and an internal ATL C6–C6′ contact. In the registered thirteen-change model (C497),
+the two contacts instead involved the preceding sugar **A:10 C2′ to ATL A:11 C6**
+(0.572 Å overlap) and the following backbone **ATL A:11 C2′ to A:12 O5′** (0.557 Å).
+Both are between neighbors in the same crystal copy. Through the second five-cycle
+round, the largest printed overlaps on ATL C6 and C2′ changed to 0.586 and 0.528 Å.
+The compact second-round record names the two ATL atoms. It lacks the opposite
+endpoints, so those measurements alone cannot show that the partners were identical.
+The original temporary model and GEO at the declared C505 location have expired.
+The pair distances, both covalent junctions and the four sugar stereocentres
+have their own retained measurements.
+Use `--contacts-at A:11 --min-contact-overlap 0.4 --json` on the next native
+return to save both endpoints, crystal operator and van der Waals reference in a
+small record. A new fit is only warranted by a distinct chemical or placement test.
 
 Done when an ordinary invocation acquires or repairs the necessary dictionaries,
 qualifies the selected state and produces inspectable refinement artifacts with

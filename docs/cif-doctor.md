@@ -14371,6 +14371,16 @@ The printed contacts describe packing at that checkpoint. Hydrogen-bond
 intent, a covalent connection across symmetry, diffraction support and the
 cause of a strained bond each require their own evidence.
 
+To list **every** qualifying pair at the selected sites, add
+`--min-contact-overlap 0.4` for a 0.4 Å inclusive screen. Keep `--json`
+for the complete list. The text report shows the first eight pairs in
+decreasing order of overlap. Each printed interaction appears once even when
+both residues were requested. The second atom and its crystal operator stay
+in the order printed by Phenix. An observed empty list means every measured
+overlap missed the chosen cutoff. A missing or incomplete table has no result.
+This reading describes contacts in the native model. Interpreting a contact
+as a clash, metal bond or intended symmetry link still requires the chemistry.
+
 To see which starting B values a refinement inherited, run
 `nasolve cif-doctor assess --run RUN --checkpoint ID --b-factors-at B:4 --json`.
 Repeat the site option to compare a base with its neighbours. The report

@@ -131,7 +131,8 @@ class CifDoctorRunTests(unittest.TestCase):
             moved = relocated / run.relative_to(original)
             original_files = _snapshot(relocated)
             self.assertIsNone(assess_run(moved, refined_links=True)["refined_links"])
-            result = assess_run(moved, checkpoint="first-refinement", refined_links=True, contact_sites=["B:4"])
+            result = assess_run(moved, checkpoint="first-refinement", refined_links=True,
+                                contact_sites=["B:4"], minimum_contact_overlap=.4)
             links = result["refined_links"]
             self.assertEqual((links["status"], len(links["links"])), ("OBSERVED", 3))
             self.assertIsNone(links["preparation_checkpoint"])
@@ -140,6 +141,9 @@ class CifDoctorRunTests(unittest.TestCase):
             contacts = result["refined_contacts"]
             self.assertEqual(contacts["geometry_sha256"], links["geometry_sha256"])
             self.assertEqual(contacts["sites"]["B:4"]["atoms"]["N2T"]["largest_overlap_A"], .4)
+            self.assertEqual([c["overlap_A"] for c in contacts["overlap_screen"]["contacts"]], [.4])
+            with self.assertRaisesRegex(ValueError, "requires.*contacts"):
+                assess_run(moved, minimum_contact_overlap=.4)
             self.assertEqual(original_files, _snapshot(relocated))
             actual = moved / geo.relative_to(run)
             # An intact same-name neighbor must never substitute for the changed selected file.

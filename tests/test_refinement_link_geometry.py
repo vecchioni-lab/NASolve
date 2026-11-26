@@ -175,6 +175,39 @@ def test_contact_environment_keeps_signed_gaps_and_images_of_the_second_atom(tmp
     assert result["scientific_approval"] == "NOT_ASSESSED"
 
 
+def test_contact_cutoff_keeps_weaker_neighbours_once_in_printed_atom_order(tmp_path):
+    from nasolve.refinement_contact_geometry import read_refined_contacts
+
+    model, path, labels, _ = geometry(tmp_path)
+    pairs = [
+        nonbonded(labels[3], labels[5], "2.800", "3.200"),
+        nonbonded(labels[5], labels[2], "4.200", "4.800", "-x+y,-x,z"),
+        nonbonded(labels[5], labels[4], "3.501", "3.900", "x+1,y,z"),
+    ]
+    with path.open("a") as f:
+        f.write("Nonbonded | unspecified | interactions: 3\n" + "".join(pairs))
+    sites = ["A:2", "B:4"]
+    old = read_refined_contacts(model, path, sites)
+    assert "overlap_screen" not in old
+    result = read_refined_contacts(model, path, sites, minimum_overlap=.4)
+    assert old["sites"] == result["sites"]
+    assert result["sites"]["B:4"]["atoms"]["N2T"]["largest_overlap_A"] == .6
+    screen = result["overlap_screen"]
+    assert screen["minimum_overlap_A"] == .4
+    assert [(r["overlap_A"], r["image_of_second_atom"]) for r in screen["contacts"]] == [
+        (.6, "-x+y,-x,z"), (.4, None)]
+    assert screen["contacts"][0]["endpoints"] == [["B:4", "Z99", "N2T"], ["A:2", "DC", "N4"]]
+    assert screen["contacts"][1]["endpoints"] == [["A:2", "DC", "N3"], ["B:4", "Z99", "N2T"]]
+    assert read_refined_contacts(model, path, sites, minimum_overlap=.61)["overlap_screen"]["contacts"] == []
+
+    path.write_text(path.read_text().replace("interactions: 3", "interactions: 4"))
+    invalid = read_refined_contacts(model, path, sites, minimum_overlap=.4)
+    assert invalid["status"] == "UNASSESSED" and invalid["overlap_screen"]["contacts"] is None
+    for cutoff in (float("nan"), float("inf"), -0.1, True):
+        with pytest.raises(ValueError, match="overlap"):
+            read_refined_contacts(model, path, sites, minimum_overlap=cutoff)
+
+
 @pytest.mark.parametrize("change", ["missing", "empty", "truncated", "wrong-distance", "wrong-label", "bad-image"])
 def test_contact_environment_distinguishes_omitted_empty_and_invalid_tables(tmp_path, change):
     from nasolve.refinement_contact_geometry import read_refined_contacts

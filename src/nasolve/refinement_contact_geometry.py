@@ -70,6 +70,11 @@ def validate_contact_sites(sites):
         raise ValueError("Choose distinct residue sites in CHAIN:NUMBER form")
 
 
+def validate_contact_overlap(value):
+    if type(value) not in (float, int) or value < 0 or not Decimal(str(value)).is_finite():
+        raise ValueError("Minimum contact overlap must be a finite nonnegative distance in angstroms")
+
+
 def _retain_largest(summary, value_field, rows_field, overlap, row):
     highest = summary[value_field]
     if highest is None or overlap > highest:
@@ -79,13 +84,16 @@ def _retain_largest(summary, value_field, rows_field, overlap, row):
         summary[rows_field].append(row)
 
 
-def read_refined_contacts(model, geometry, sites):
+def read_refined_contacts(model, geometry, sites, *, minimum_overlap=None):
     """Measure printed vdW minus distance, retaining each atom's most crowded contacts.
 
     A negative maximum is a gap. Crystal images use the distance and ordered
     operator in Phenix's table. These measurements do not assign contact chemistry.
     """
     validate_contact_sites(sites)
+    if minimum_overlap is not None:
+        validate_contact_overlap(minimum_overlap)
+    matching = []
     model, geometry = Path(model), Path(geometry)
     raw, labels = _model_labels(model)
     sites_by_name = {site: {} for site in sites}
@@ -107,16 +115,19 @@ def read_refined_contacts(model, geometry, sites):
     reason = None
     try:
         for ends, actual, vdw, image, origin in _contacts(data.decode("utf-8"), labels, sections):
-            for key in dict.fromkeys(ends):
-                if key not in selected:
-                    continue
+            chosen = [key for key in dict.fromkeys(ends) if key in selected]
+            if not chosen:
+                continue
+            overlap = float(Decimal(vdw) - Decimal(actual))
+            row = dict(endpoints=[list(e) for e in ends], origin=origin,
+                       model_A=float(actual), vdw_A=float(vdw), image_of_second_atom=image)
+            if minimum_overlap is not None and overlap >= minimum_overlap:
+                matching.append(dict(row, overlap_A=overlap))
+            for key in chosen:
                 summary = selected[key]
-                overlap = float(Decimal(vdw) - Decimal(actual))
                 summary["printed_contacts"] += 1
                 summary["shorter_than_vdw"] += int(overlap > 0)
                 summary["image_contacts"] += int(image is not None)
-                row = dict(endpoints=[list(e) for e in ends], origin=origin,
-                           model_A=float(actual), vdw_A=float(vdw), image_of_second_atom=image)
                 _retain_largest(summary, "largest_overlap_A", "largest_contacts", overlap, row)
                 if image is not None:
                     _retain_largest(summary, "largest_image_overlap_A", "largest_image_contacts", overlap, row)
@@ -125,7 +136,13 @@ def read_refined_contacts(model, geometry, sites):
     if model.read_bytes() != raw or geometry.read_bytes() != data:
         raise ValueError("Checkpoint files changed during the nonbonded contact reading")
     status = "UNASSESSED" if reason else "OBSERVED" if sections else "NOT_RECORDED"
-    return dict(policy_id="phenix-printed-local-contacts-v1", status=status, reason=reason,
-                sections=sections if reason is None else None, requested_sites=list(sites),
-                sites=sites_by_name if status == "OBSERVED" else None, model_sha256=sha256(raw).hexdigest(),
-                geometry_sha256=sha256(data).hexdigest(), scientific_approval="NOT_ASSESSED")
+    result = dict(policy_id="phenix-printed-local-contacts-v1", status=status, reason=reason,
+                  sections=sections if reason is None else None, requested_sites=list(sites),
+                  sites=sites_by_name if status == "OBSERVED" else None, model_sha256=sha256(raw).hexdigest(),
+                  geometry_sha256=sha256(data).hexdigest(), scientific_approval="NOT_ASSESSED")
+    if minimum_overlap is not None:
+        result["overlap_screen"] = dict(
+            minimum_overlap_A=minimum_overlap,
+            contacts=sorted(matching, key=lambda row: -row["overlap_A"]) if status == "OBSERVED" else None,
+        )
+    return result
