@@ -56,8 +56,10 @@ from 38.6° to 8.9°. One pair contact remained long at 3.932 Å. C602 now catch
 all four conflicting sugar centres before refinement. Replaying the same source-derived
 dictionary clears that check. C603 also catches three sugar bonds called aromatic
 in that return. The Phenix pucker adjustment replaced all three bond targets but
-kept the competing plane. Next qualify the literal component and the measured
-native adjustment separately. The sulfur linkage
+kept the competing plane. C604 replays the installed `rna2p` table against every
+component row and active restraint in the original two native reads. All six reads
+for 2MG, 5MC and 6MZ were explained. Next bind this result to separate literal
+qualification, then test the returned three-site model. The sulfur linkage
 remains a separate chemical state. The [Q12 workbook sweep](cif-doctor-completion-queue.md#q12--resolve-catalogue-mappings-and-maintain-support-coverage)
 follows the eight-site challenge.
 [Release and tested installation](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.4).

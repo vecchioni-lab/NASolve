@@ -74,25 +74,31 @@ def _inputs(root):
     return p,paths,models,base/'isolated.phil'
 
 
+def _owned_native_capture(root, ref, i, p, model, candidate, phil, state):
+    """Read one original completed seed through its recorded job and checked files."""
+    receipt=_resolve(root,ref);phase=f'native-{i:03d}'
+    _need(receipt.name=='native_receipt.json' and receipt.parent.parent==root/'native'/f'{i:03d}', 'Native capture belongs to another phase')
+    job=state['phases'][phase]['job'];finished=state['phases'][phase]['finished']
+    _need(job['cwd']==dict(anchor=ANCHOR,path=receipt.parent.relative_to(root).as_posix())
+          and job['timeout_seconds']<=min(p['native_timeout_seconds'],p['total_timeout_seconds']), 'Native ownership/deadline differs')
+    _need(finished['status']=='COMPLETED' and finished['returncode']==0,
+          f"Native qualification failed for {_SEEDS[i]} seed ({finished['status']}, return code {finished['returncode']}); inspect {receipt}")
+    capture,native,_=_capture(receipt,_read(model))
+    _bind_capture(capture,p['consumer'],model,[candidate],[phil])
+    rows=capture['inputs'];spec=_json(_read(receipt.parent/'native_spec.json'))
+    _need(spec==dict(policy_id=NATIVE_POLICY_ID,model=rows[0]['path'],dictionaries=[rows[1]['path']],phil_files=[rows[2]['path']],
+        phil_namespace_policy='direct',inventory_detail='linked',policy_inventory=True,energy_inventory=True), 'Isolated native specification differs')
+    _need(capture['execution']['timeout_seconds']==job['timeout_seconds'], 'Native deadline differs from its owned intent')
+    _need(set(_tree(receipt.parent))=={'native_receipt.json'}|{r['path'] for r in capture['outputs']}, 'Native capture inventory differs')
+    return native
+
+
 def _derive(root, refs, state):
     p,paths,models,phil=_inputs(root)
     _need(isinstance(refs,list) and len(refs)==2, 'Require both independent native captures')
     qualifications=[];signatures=[];failures=[]
     for i,(ref,model) in enumerate(zip(refs,models)):
-        receipt=_resolve(root,ref);phase=f'native-{i:03d}'
-        _need(receipt.name=='native_receipt.json' and receipt.parent.parent==root/'native'/f'{i:03d}', 'Native capture belongs to another phase')
-        job=state['phases'][phase]['job'];finished=state['phases'][phase]['finished']
-        _need(job['cwd']==dict(anchor=ANCHOR,path=receipt.parent.relative_to(root).as_posix())
-              and job['timeout_seconds']<=min(p['native_timeout_seconds'],p['total_timeout_seconds']), 'Native ownership/deadline differs')
-        _need(finished['status']=='COMPLETED' and finished['returncode']==0,
-              f"Native qualification failed for {_SEEDS[i]} seed ({finished['status']}, return code {finished['returncode']}); inspect {receipt}")
-        capture,native,_=_capture(receipt,_read(model))
-        _bind_capture(capture,p['consumer'],model,[paths[1]],[phil])
-        rows=capture['inputs'];spec=_json(_read(receipt.parent/'native_spec.json'))
-        _need(spec==dict(policy_id=NATIVE_POLICY_ID,model=rows[0]['path'],dictionaries=[rows[1]['path']],phil_files=[rows[2]['path']],
-            phil_namespace_policy='direct',inventory_detail='linked',policy_inventory=True,energy_inventory=True), 'Isolated native specification differs')
-        _need(capture['execution']['timeout_seconds']==job['timeout_seconds'], 'Native deadline differs from its owned intent')
-        _need(set(_tree(receipt.parent))=={'native_receipt.json'}|{r['path'] for r in capture['outputs']}, 'Native capture inventory differs')
+        native = _owned_native_capture(root, ref, i, p, model, paths[1], phil, state)
         q=qualify_candidate_native(*paths,model,p['component'],native,bond_representation_policy=p['bond_representation_policy'])
         if q['native_usable'] is not True:
             failed = ', '.join(name for name, passed in q['checks'].items() if not passed)

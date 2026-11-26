@@ -29,6 +29,9 @@ entries are reconstructed from repository history.
 
 - When an isolated component fails native checking, the diagnostic lists the
   affected coordinate seeds, failed checks and any recorded Phenix modifications.
+  `nasolve cif-doctor explain-pucker QUALIFICATION` can reread both jobs and
+  compare the actual bond, angle and torsion targets with the selected Phenix
+  `rna2p` table. Its result keeps the original qualification decision.
 
 - An extra bond reported by eLBOW can now qualify for a fresh atom-order
   recovery after a verified whole-ring aromatic conversion. The recovery binds

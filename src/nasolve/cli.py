@@ -441,6 +441,9 @@ def build_parser() -> argparse.ArgumentParser:
     cif_assess.add_argument("--stage", choices=("source", "effective", "standalone"), default="standalone")
     cif_assess.add_argument("--output", type=Path, help="new JSON receipt; existing files are refused")
     cif_assess.add_argument("--json", action="store_true", help="print the full JSON receipt")
+    pucker = cif_sub.add_parser("explain-pucker", help="compare an isolated Phenix sugar adjustment with the installed targets")
+    pucker.add_argument("qualification", type=Path, help="completed two-seed native job directory")
+    pucker.add_argument("--json", action="store_true", help="show the component, native inputs and exact checks")
     cif_compare = cif_sub.add_parser("compare", help="compare exact same-code source/candidate chemistry")
     cif_compare.add_argument("source", type=Path)
     cif_compare.add_argument("candidate", type=Path)
@@ -2252,6 +2255,25 @@ def _cif_doctor(args: argparse.Namespace) -> int:
         return _cif_publish_preparation(args)
     if args.cif_action in {"prepare-run", "continue-preparation", "prepared-result", "preparation-status"}:
         return _cif_checked_preparation(args)
+    if args.cif_action == "explain-pucker":
+        from .cif_rna_pucker import review_pucker_adjustment
+        try:
+            installation = discover_phenix(load_config(), explicit=args.phenix_root)
+            result = review_pucker_adjustment(args.qualification, installation)
+        except (OSError, ValueError, RuntimeError) as exc:
+            print(str(exc), file=sys.stderr)
+            return 1
+        if args.json:
+            print(json.dumps(result, indent=2, allow_nan=False))
+        else:
+            rows = result["matched_rows"]
+            print(f"{result['component']} {result['modifier']}: {result['status']}. "
+                  f"Matched rows for bonds ({rows['bonds']}), angles ({rows['angles']}) "
+                  f"and torsions ({rows['torsions']}).")
+            for seed in result["seeds"]:
+                if seed["adjusted_checks_failed"]:
+                    print(f"  {seed['seed']}: " + ", ".join(seed["adjusted_checks_failed"]))
+        return 0 if result["status"] == "ADJUSTED_TARGETS_EXPLAINED" else 2
     if args.cif_action == "link-native":
         return _cif_link_native(args)
     if args.cif_action == "link-plan":

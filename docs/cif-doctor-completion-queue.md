@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 26 November 2026, after C603. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 26 November 2026, after C604. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -1025,6 +1025,15 @@ ReadySet wrote 1.292 Å, but Phenix applied a 1.525 Å target in both one-cycle
 runs. The incorrect sugar plane did survive. The independent 6MZ two-seed controls
 matched the actual installed pucker table at 11 bonds, 18 angles and six torsions.
 All four chiral signs held. Keep the two kinds of disagreement distinct.
+
+C604 adds `nasolve cif-doctor explain-pucker QUALIFICATION` for an already
+stopped pair of isolated native reads. It binds the original models, candidate
+and consumer, applies only the three numerical change categories in the selected
+installation's `rna2p` table, and checks every effective definition and active
+restraint again. Across both coordinate seeds, 2MG and 5MC each matched 11 bond,
+18 angle and two torsion rows. 6MZ matched 11, 18 and six. This replay leaves the
+existing stored verdict intact. The table fingerprint identifies the installation
+used for the explanation. Separate literal and linked qualification are still needed.
 
 C601 found the source-preserving generator had introduced a 5.779 Å bond between
 O4′ and ring C2. All 42 source edges were present. The ten bonds of the purine

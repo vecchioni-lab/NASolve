@@ -72,16 +72,23 @@ def definition_projection_checks(native: dict, projections: Mapping[str,tuple[Pa
     for site,(path,code) in projections.items():
         values,_=normalize_torsion_block(component_values(path,code))
         definition=mappings.get(site,{}).get('metadata',{}).get('effective_definition',{})
-        for name,(category,fields) in _CATEGORIES.items():
-            expected=_rows(values,category);actual=definition.get(name)
-            try:
-                left=Counter(_signature(row,fields) for row in expected)
-                right=Counter(_signature(row,fields) for row in actual) if actual is not None else Counter()
-                passed=actual is not None and left==right
-                detail={'expected_rows':len(expected),'observed_rows':len(actual) if actual is not None else None,
-                    'missing_or_changed_rows':sum((left-right).values()),'extra_or_changed_rows':sum((right-left).values())}
-            except (TypeError,ValueError) as exc:passed=False;detail={'error':str(exc)}
-            checks.append({'check':'projected-native-'+name+':'+site,'status':'PASS' if passed else 'REVIEW',**detail})
+        checks.extend(definition_value_checks(values,definition,site))
+    return checks
+
+
+def definition_value_checks(values, definition, site):
+    """Compare normalized in-memory rows against one recorded native definition."""
+    checks = []
+    for name,(category,fields) in _CATEGORIES.items():
+        expected=_rows(values,category);actual=definition.get(name)
+        try:
+            left=Counter(_signature(row,fields) for row in expected)
+            right=Counter(_signature(row,fields) for row in actual) if actual is not None else Counter()
+            passed=actual is not None and left==right
+            detail={'expected_rows':len(expected),'observed_rows':len(actual) if actual is not None else None,
+                'missing_or_changed_rows':sum((left-right).values()),'extra_or_changed_rows':sum((right-left).values())}
+        except (TypeError,ValueError) as exc:passed=False;detail={'error':str(exc)}
+        checks.append({'check':'projected-native-'+name+':'+site,'status':'PASS' if passed else 'REVIEW',**detail})
     return checks
 
 
