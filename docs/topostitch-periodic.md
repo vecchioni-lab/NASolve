@@ -14917,8 +14917,10 @@ new optimizer, relaxed admission or native fit was introduced.
 
 **Validation and checkout:** 75 cold source/mapping/support checks pass, including
 input hashes and refusal of motion at a held base attachment or either outer P.
-No product tests, installation or full suite were repeated for this read-only
-scientific audit. W291 remains the latest maintained code and installed check.
+No product tests or installation were repeated for this read-only scientific
+audit. W291 remains the latest maintained code and installed check; its subsequent
+[complete Willow regression](topostitch-preview.md#review-a-window-before-generating-coordinates-w291)
+passes 3,010 tests and 234 subtests. That does not qualify wider native motion.
 The ChimeraX **1.12** scope script completes headlessly after its initial sandbox
 cache-lock refusal; it retains original file bytes and changes only display
 representatives. The connectivity schematic was visually inspected. Interactive

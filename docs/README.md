@@ -12,7 +12,8 @@ current instructions; other branches retain their own status and validation pins
   bases fixed. The wider receiver is still a gate; no new coordinates or fit.
 - **Latest maintained code, W291:** [review a window before motion](topostitch-preview.md#review-a-window-before-generating-coordinates-w291)
   exposes moving residues, fixed anchors/context and links through the normal
-  preview command. 161 source / 161 relocated-installed checks; genuine PDU
+  preview command. 161 focused source / 161 relocated-installed checks and the
+  complete Willow suite (3,010 tests + 234 subtests, no skips) pass. Genuine PDU
   inspection reports missing declared pairs without inventing a window.
 - **W290:** [endpoint-map inspection](topostitch-periodic.md#w290--inspect-the-closed-phosphate-and-its-fixed-sugar-boundary)
   confirms similar density around both recovered phosphates and weak support at
@@ -36,7 +37,8 @@ current instructions; other branches retain their own status and validation pins
   [preview/API contracts](topostitch-preview.md) retain methods, failures and pins.
   Earlier synthetic recovery, native controls and software PASS results retain
   their recorded scopes. W290 adds read-only map calculations and 20 cold checks;
-  W291 adds scoped source/installation tests. Neither adds a native refinement.
+  W291 adds source/installation checks and a complete Willow regression.
+  Neither adds a native refinement or qualifies a combined branch release.
 
 ## Publication demonstration plan
 

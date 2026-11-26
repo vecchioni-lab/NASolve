@@ -98,8 +98,11 @@ No product code or native evaluation/refinement changed.
 **W291: 161 focused source / 161 relocated installed checks pass**, with eight
 fail-before cases, exact genuine-parent replay and 94 matching module hashes.
 Existing trial/preview formats stay unchanged; inspection adds a report and a
-window-planning status. No native fit, selection, full suite or combined release.
-Exact commands/dependency pins are in the linked API evidence.
+window-planning status. The subsequent complete Willow regression passes
+**3,010 tests + 234 subtests, no skips** (210.47 s, `f19e9515`, Phenix Python
+3.11.15). The earlier missing-Gemmi collection attempt remains explicit. No
+native fit, selection or combined release; exact commands/dependency pins are
+in the linked API evidence. Source bytes are unchanged and staging was removed.
 
 **W290: no product changes, native fits or merges.** Six successful FFTs of saved
 coefficients, 93 contour meshes and 20 cold source/numeric/checkout checks pass.

@@ -35,7 +35,9 @@ entries are reconstructed from repository history.
   inventory in window-proposal reports. Additive report fields only; existing
   trial schemas, preview behavior and native admission remain unchanged.
 - Eight distinct fail-before regressions; 161 focused source / 161 relocated
-  installed checks and exact genuine-parent inspection. No native fit or selection.
+  installed checks and exact genuine-parent inspection. The subsequent complete
+  Willow suite passes 3,010 tests plus 234 subtests with no skips; initial missing
+  optional-dependency collection failure retained. No native fit or selection.
 
 ### W290 — Inspect endpoint maps and the fixed sugar boundary
 

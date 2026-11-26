@@ -9906,8 +9906,8 @@
       "human_update": 291,
       "code_commit": "4d10f97e66e03d604f955e7e237af5423952f0ac",
       "reference": "docs/topostitch-preview.md#review-a-window-before-generating-coordinates-w291",
-      "result": "Existing terminal/interior selection and canonical mapping exposed by inspect_bend_window and preview --inspect-window, with source-order indices, fixed context and touching ordinary backbone links. Eight distinct fail-before cases;161 focused source/161 relocated installed checks,94 exact module hashes. Real refine-003 source/installed observation reproduces:four routes,no declared duplex pairs,DUPLEX_PARTNERS_UNSPECIFIED,no selected window,current postmr unchanged.",
-      "limitation": "Scope inspection does not render coordinates, evaluate strain/packing/ADP transport or admit native motion. Existing canonical source-representative windows cannot cross undeclared partners or representation seams. Soft contact restraints do not provide experimental oligos. No whole-run portability, full suite, native fit, combined release or scientific acceptance.",
+      "result": "Existing terminal/interior selection and canonical mapping exposed by inspect_bend_window and preview --inspect-window, with source-order indices, fixed context and touching ordinary backbone links. Eight distinct fail-before cases;161 focused source/161 relocated installed checks,94 exact module hashes. Real refine-003 source/installed observation reproduces:four routes,no declared duplex pairs,DUPLEX_PARTNERS_UNSPECIFIED,no selected window,current postmr unchanged. Subsequent complete Willow regression at f19e9515:3010 passed,234 subtests passed,no skips,210.47s;source/test hashes unchanged and disposable staging removed.",
+      "limitation": "Scope inspection does not render coordinates, evaluate strain/packing/ADP transport or admit native motion. Existing canonical source-representative windows cannot cross undeclared partners or representation seams. Soft contact restraints do not provide experimental oligos. Full regression is Willow-only under Phenix Python3.11.15, not a combined release or native qualification. Initial default-Python collection failure from missing Gemmi/SciPy is retained. No whole-run portability, native fit or scientific acceptance.",
       "local_receipts": [
         {
           "anchor": "NASolve",
@@ -9944,6 +9944,18 @@
           "path": "branch-artifacts/willow/w291-window-review/complete-empty-fail-before.log",
           "sha256": "5c86be0c5682166516ed5a7051c804860d05f81cd649589ca1d790aee8ebf2a5",
           "size": 1786
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w291-window-review/full-suite-summary.json",
+          "sha256": "909acba34334a30436ec01825f6e8593332b099e4fe2974009602ffee98a5f6d",
+          "size": 2252
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w291-window-review/full_suite.py",
+          "sha256": "3dad27549abf40488aaa6ce3e1208f736f33cdd56c09a739457e2d9a2708d73c",
+          "size": 3981
         }
       ],
       "maintained_code_changed": true,

@@ -69,10 +69,27 @@ set `PYTHONDONTWRITEBYTECODE=1` and explicit `PYTHONPATH`; Phenix's launcher res
 that variable, so the recorded bootstrap restores those same roots in-process.
 Validation uses Phenix **2.2.1-6174** Python 3.11.15, SciPy 1.17.1, Gemmi 0.7.5 and
 installed NARestraints 1.1.3 with openpyxl 3.1.5. Initial launcher/import failures
-are preserved. No native refinement or full-suite run was performed: the change
-is confined to read-only window inspection and its existing preview consumers.
-Scientific inputs, reports and temporary dependency copies are excluded from Git;
-task-owned installation staging was removed.
+are preserved. The subsequent complete Willow regression passes **3,010 tests
+and 234 subtests, with no skips**, in 210.47 seconds at `f19e9515`, using that same
+Phenix Python and isolated pure dependencies. The first ordinary-Python attempt
+stopped at collection (24 skips, five errors) because Gemmi/SciPy were absent;
+it is retained separately. The supplied collaboration contract requested this
+complete check. No source or test bytes changed, and 68,350,157 temporary bytes
+were removed. This is branch regression, not native refinement or a combined release.
+
+The complete command, run from the Willow anchor, is:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src <NASolve>/.venv/bin/python -B \
+  <NASolve>/branch-artifacts/willow/w291-window-review/full_suite.py
+```
+
+`full-suite-summary.json` binds the controller, both attempt logs and
+`full-suite-qualified.json`, which records the exact child command, dependency
+hashes and process environment. The child runs `pytest -q -rs -p no:cacheprovider
+tests` with an owned temporary test directory and the explicit source/dependency
+bootstrap described above. Scientific inputs, reports and dependency copies are
+excluded from Git; all task-owned installation/test staging was removed.
 
 ## Reuse a saved motion in backend code
 
