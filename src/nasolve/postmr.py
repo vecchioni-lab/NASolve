@@ -632,6 +632,29 @@ def _coot_script(
     return "\n".join(lines)
 
 
+def _coot_identity_failure(transcript: str, actions: tuple[MutationAction, ...]) -> str | None:
+    """Explain a verified residue mismatch from our own native script."""
+    planned = {action.site: action for action in actions}
+    for line in transcript.splitlines():
+        fields = line.split()
+        if len(fields) not in (3, 4) or fields[1] not in planned:
+            continue
+        marker, site = fields[:2]
+        action = planned[site]
+        if marker == "NASOLVE_MUTATION_IDENTITY" and len(fields) == 4:
+            expected = action.parent_code if action.method == "coot-parent-overlap" else action.after
+            if fields[2] != expected:
+                continue
+        elif marker == "NASOLVE_RESULT" and len(fields) == 3:
+            expected = action.after
+        else:
+            continue
+        observed = fields[-1]
+        if observed != expected and re.fullmatch(r"[A-Za-z0-9_+-]{1,8}", observed):
+            return f"NASolve requested {expected} at {site}, but Coot read back {observed}"
+    return None
+
+
 def _run_coot(
     input_model: Path,
     output_model: Path,
@@ -705,9 +728,14 @@ def _run_coot(
         raise PostMRPreparationError(f"Could not launch Coot: {exc}") from exc
     log.write_text(completed.stdout, encoding="utf-8")
     if completed.returncode or not output_model.is_file():
-        raise PostMRPreparationError(
-            f"Coot mutation failed with status {completed.returncode}; inspect {log}"
-        )
+        identity_failure = _coot_identity_failure(completed.stdout, actions)
+        if identity_failure:
+            raise PostMRPreparationError(f"{identity_failure}. Inspect {log}")
+        if not output_model.is_file():
+            raise PostMRPreparationError(
+                f"Coot exited with status {completed.returncode} without writing the requested model. Inspect {log}"
+            )
+        raise PostMRPreparationError(f"Coot mutation failed with status {completed.returncode}. Inspect {log}")
     return script, log
 
 

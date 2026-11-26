@@ -8,6 +8,10 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- When Coot exits without producing a PostMR model, NASolve reports the
+  requested and observed residue at the failed site when the native transcript
+  supplies them. The retained Coot log remains available for inspection.
+
 - CIF Doctor compares a workbook's explicit sugar and base attachment atoms
   with the bond in the component dictionary. A disagreement identifies both
   assignments and withholds the candidate linkage sites. Workbooks that lack
