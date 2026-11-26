@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 26 November 2026, after C591. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 26 November 2026, after C592. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -922,6 +922,27 @@ nonconvergence, residual strain and scientific uncertainty separately. A one-off
 runner that chooses its repair from an ATL/PDU name does not satisfy this package.
 
 **Queued closure challenge — held-out mixed modifications (Simon, 2026-11-03):**
+
+C592 fixed the eight sites before construction. Four pairs on the original
+42-site W frame are A:4 LCC / C:12 2MG, A:7 5MC / C:9 SJO, A:11 URX /
+B:5 6MZ and A:19 UY1 / D:4 AS. LCC has the oxygen-bridged locked sugar.
+URX has a different carbon bridge. UY1 is a C-nucleoside. The design asks for
+one sulfur on the original D:4 OP2 side and an internal monoanionic linkage
+from D:3 O3′. The free AS source is neutral and supplies no absolute phosphorus
+stereo assignment. A compatible amide-linked PNA segment remains a separate job.
+
+The ordinary recipe reader accepted all eight codes. NARestraints 1.1.3 wrote
+ten Watson–Crick bonds, sixteen angles, four paired-base planes and four
+parallel groups. Phenix 2.2.1-6174 bound every selection against the eight
+separate source atom inventories. All sixteen flanking backbone links in the
+unmodified host measured 1.596–1.629 Å in the same crystal copy. Five sources
+matched an existing strict attachment pattern. UY1 exposed the earlier PSU
+workbook assumption in this new design. URX's bridge and AS's sulfur remained
+outside the ordinary oxygen-phosphate patterns. The default all-eight
+construction plan stopped at LCC. The explicit single locked-sugar route has
+a separate source-state gate. These results qualify the pairing design;
+the eight-site constructed or refined model remains outstanding.
+
 After the qualified Q06 consumer is available, add a separate builder generalization
 control before the proposed Cedar integration with main. Mutate **eight residues** into
 Watson–Crick pairs spanning different base and sugar modifications, including an

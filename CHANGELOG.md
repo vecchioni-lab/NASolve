@@ -8,6 +8,10 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `cif-doctor profile --explain-base-roles` can show the source sugar–base
+  bond and which workbook role overlaps the sugar when a furanose profile
+  fails. The optional inspection preserves the original admission decision.
+
 - With `cif-doctor assess --run RUN --contacts-at SITE`, an optional
   `--min-contact-overlap ANGSTROMS` lists all local contacts meeting that
   cutoff in the saved Phenix tables, including additional partners at the

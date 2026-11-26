@@ -139,6 +139,54 @@ def test_loader_glycosidic_disagreement_is_visible(tmp_path):
     assert 'NAR_LOADER_ATTACHMENT_DISAGREES_WITH_TOPOLOGY' in report['review_reasons']
 
 
+def test_overlapping_base_roles_explain_a_refusal_without_unlocking_it(tmp_path, capsys):
+    import openpyxl
+
+    path = source(tmp_path / 'ccd')
+    # Use a different sugar atom name and the opposite C/N mapping to the
+    # pseudouridine that exposed the gap. Match by bonds, independently of codes.
+    path.write_text(path.read_text().replace("C1'", "X1'"))
+    book = workbook(tmp_path, [('thymine', row(N1='C5', C5='N1'))])
+    wb = openpyxl.load_workbook(book)
+    sheet = wb['thymine']
+    col = sheet.max_column + 1
+    sheet.cell(1, col, 'C7')
+    sheet.cell(2, col, "X1'")
+    wb.save(book)
+    wb.close()
+    original = snapshot(tmp_path)
+    basic = inspect(path, 'PDU', book)
+    assert basic['topology_status'] == 'NO_MATCH' and 'base_role_review' not in basic
+    args = ['cif-doctor', 'profile', str(path), '--code', 'PDU', '--workbook', str(book),
+            '--explain-base-roles']
+    assert main(args + ['--json']) == 2
+    report = json.loads(capsys.readouterr().out)
+    review = report.pop('base_role_review')
+    assert report == basic
+    assert review['status'] == 'UNIQUE_ROLE_CONFLICT'
+    assert review['source_bond'] == ["X1'", 'N1']
+    assert review['workbook_glycosidic_atom'] == 'C5'
+    assert review['shared_roles'] == [{'base_role': 'C7', 'atom': "X1'", 'backbone_role': 'anomeric'}]
+    assert main(args) == 2
+    assert "X1'" in capsys.readouterr().out
+    assert snapshot(tmp_path) == original
+
+
+def test_role_review_respects_valid_cores_and_search_limits(tmp_path, monkeypatch):
+    from nasolve import cif_attachment_profiles as profiles
+
+    path = source(tmp_path / 'ccd')
+    book = workbook(tmp_path, [('thymine', row())])
+    valid = profiles.inspect_attachment_profile(path, 'PDU', workbook=book, explain_base_roles=True)
+    assert valid['base_role_review']['status'] == 'NOT_RUN'
+    assert valid['topology_status'] == 'MATCH'
+    monkeypatch.setattr(profiles, 'MAX_SEARCH_STEPS', 1)
+    limited = profiles.inspect_attachment_profile(path, 'PDU', workbook=book, explain_base_roles=True)
+    assert limited['topology_status'] == 'SEARCH_LIMIT'
+    assert limited['base_role_review']['status'] == 'NOT_RUN'
+    assert limited['ports'] == {}
+
+
 @pytest.mark.parametrize('target', ['source', 'workbook'])
 def test_changed_inputs_cannot_receive_a_receipt(tmp_path, target):
     import nasolve.cif_attachment_profiles as profiles

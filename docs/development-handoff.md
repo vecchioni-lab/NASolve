@@ -24,6 +24,14 @@ every qualifying pair. Use the prior observations when planning the independent
 eight-residue challenge and retain explicit review where sugar or phosphorus
 stereochemistry is unresolved. [Mixed-scaffold evidence and transfer criteria](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
 
+The independent eight-residue design is now fixed (C592). Phenix resolved all
+ten designed hydrogen-bond selections on the separate CCD monomers.
+Pseudouridine showed how pairing can be correct while the declared sugar
+attachment is wrong. The optional role cross-check identifies the ring C5
+attachment without admitting the sugar for construction. The full panel stopped
+during planning. Follow its actual construction boundaries in the Q07 queue.
+
+
 ## What already works
 
 - **Preparing and handing off a model.** Q04/Q05 closed on the explicit checked route. A

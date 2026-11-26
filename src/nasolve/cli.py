@@ -406,6 +406,8 @@ def build_parser() -> argparse.ArgumentParser:
     cif_profile.add_argument("dictionary", type=Path, help="explicit source component dictionary")
     cif_profile.add_argument("--code", required=True, help="exact component and NARestraints code")
     cif_profile.add_argument("--workbook", required=True, type=Path, help="explicit NARestraints Ligands.xlsx")
+    cif_profile.add_argument("--explain-base-roles", action="store_true",
+                             help="check whether a workbook base role covers part of an unmatched sugar")
     cif_profile.add_argument("--json", action="store_true", help="print complete topology and source-state evidence")
     cif_assess = cif_sub.add_parser("assess", help="read-only dictionary/effective-bundle assessment")
     cif_assess.add_argument("dictionaries", nargs="*", type=Path)
@@ -1760,7 +1762,8 @@ def _cif_profile(args: argparse.Namespace) -> int:
     from .cif_attachment_profiles import inspect_attachment_profile
 
     try:
-        report = inspect_attachment_profile(args.dictionary, args.code, workbook=args.workbook)
+        report = inspect_attachment_profile(args.dictionary, args.code, workbook=args.workbook,
+                                            explain_base_roles=args.explain_base_roles)
         if args.json:
             print(json.dumps(report, indent=2, sort_keys=True, allow_nan=False))
         else:
@@ -1769,6 +1772,13 @@ def _cif_profile(args: argparse.Namespace) -> int:
                 print(f"  {name}: {port['atom_id']} ({port['element']}); declared charge={port['formal_charge']}")
             if report["review_reasons"]:
                 print("Review: " + ", ".join(report["review_reasons"]))
+            if review := report.get("base_role_review"):
+                print("Base-role cross-check:", review["status"])
+                if review["status"] == "UNIQUE_ROLE_CONFLICT":
+                    print("Source sugar–base bond:", "–".join(review["source_bond"]))
+                    print("Workbook glycosidic atom:", review["workbook_glycosidic_atom"])
+                    for item in review["shared_roles"]:
+                        print(f"  {item['atom']} is mapped as {item['base_role']} and belongs to the {item['backbone_role']} position.")
             print("No linkage, leaving atoms or terminal state selected; native qualification not assessed.")
             print("Use --json for source hashes, NAR roles, stereo and bounded-search evidence.")
         return 2  # A topology match remains review evidence, not permission to edit chemistry.

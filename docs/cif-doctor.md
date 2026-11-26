@@ -6449,6 +6449,23 @@ boundary remain unchanged. Existing manifests/receipts need no migration.
 
 ### Source attachment topology and ports (C106)
 
+Use `--explain-base-roles` when the ordinary profile cannot match a source with
+an unambiguous workbook record. The extra read permits workbook base roles
+to overlap the sugar during a second, bounded search of the two existing
+phosphate-bearing furanose patterns. A unique result reports the sugar–base
+bond and every overlapping role. The ordinary result, its available ports and
+its permitted actions retain their original meaning. Ambiguous, incomplete and
+unmatched searches report their own status.
+
+For 2′-O-methylpseudouridine (UY1), the source bonds C1′ to ring C5. The
+workbook names N1 for attachment and assigns its C7 role to sugar C1′.
+NARestraints still selects the correct Watson–Crick contacts. Its paired-base
+plane includes C1′, which is nearly coplanar with the ring in the source ideal
+coordinates. These are distinct decisions about attachment, pairing and plane
+membership. The same source-bond discrepancy is visible in PSU, P2U and B8H.
+The [earlier workbook audit](#broader-evidence-and-remaining-work) documented
+the PSU example. The current diagnostic explains it on additional source graphs.
+
 ```bash
 nasolve cif-doctor profile /path/to/source.cif --code ATL \
   --workbook /path/to/Ligands.xlsx --json
