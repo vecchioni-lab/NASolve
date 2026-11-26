@@ -3,12 +3,15 @@ from copy import deepcopy
 
 ANNOTATION_COLUMNS = {'C5-mod', 'C7-mod'}
 _METADATA = {'Ligand code','Name','Abbreviation','Base Analog','Phosphate','Sugar Type','SugarType',
-    'Saenger','Notes','Ref','Entries','Function','Source sheet','Glycosidic atom'}
+    'Saenger','Notes','Ref','Entries','Function','Source sheet','Glycosidic atom','Backbone attachment atom'}
 _CONTEXT = ('Base Analog','Phosphate','Sugar Type','SugarType','Saenger','Function','Source sheet','Glycosidic atom')
 
 
 def role_signature(record):
-    return {'context':{k:record.get(k) for k in _CONTEXT},
+    context = {k: record.get(k) for k in _CONTEXT}
+    if record.get("Backbone attachment atom") is not None:
+        context["Backbone attachment atom"] = record["Backbone attachment atom"]
+    return {'context':context,
         'atom_roles':{k:str(v).strip() for k,v in record.items()
             if k not in _METADATA|ANNOTATION_COLUMNS and v not in (None,'')}}
 

@@ -224,6 +224,23 @@ def inspect_attachment_profile(source, code, *, workbook, explain_base_roles=Fal
             if report["topology_status"] == "MATCH":
                 identifier, binding = matches[0]
                 profile = next(p for p in PROFILES if p.identifier == identifier)
+                if record.get("Backbone attachment atom") is not None:
+                    # Every supported profile has one edge from the ring into its backbone.
+                    backbone_role, = [
+                        right if left == "base" else left
+                        for left, right, _ in profile.edges if "base" in (left, right)
+                    ]
+                    source_bond = [binding[backbone_role], binding["base"]]
+                    workbook_bond = [record["Backbone attachment atom"], record.get("Glycosidic atom")]
+                    report["declared_attachment_check"] = {
+                        "profile": identifier,
+                        "source_bond": source_bond,
+                        "workbook_bond": workbook_bond,
+                        "agrees": source_bond == workbook_bond,
+                    }
+                    if source_bond != workbook_bond:
+                        report["topology_status"] = "DECLARED_ATTACHMENT_CONFLICT"
+            if report["topology_status"] == "MATCH":
                 report.update(matched_profile=identifier, bindings=binding)
                 inventory = {a["atom_id"]: a for a in selected[0]["inventory"]["atoms"]}
                 def atom_evidence(atom):

@@ -8,6 +8,11 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- CIF Doctor compares a workbook's explicit sugar and base attachment atoms
+  with the bond in the component dictionary. A disagreement identifies both
+  assignments and withholds the candidate linkage sites. Workbooks that lack
+  the optional backbone atom retain their previous behavior.
+
 - `cif-doctor profile --explain-base-roles` can show the source sugar–base
   bond and which workbook role overlaps the sugar when a furanose profile
   fails. The optional inspection preserves the original admission decision.

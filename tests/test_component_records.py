@@ -47,3 +47,14 @@ def test_ordinary_narestraints_loader_refuses_conflicting_aliases():
     records=deepcopy(load_residue_records())
     matches=[r for r in records if r['Ligand code']=='5PC'];matches[-1]['O2']='DIFFERENT'
     with pytest.raises(PostMRPreparationError,match='unambiguous'):_patch_narestraints_records(records,{'5PC'})
+
+
+def test_explicit_backbone_attachment_is_chemical_context_for_aliases():
+    from nasolve.component_records import resolve_component_record, role_signature
+
+    original = {'Ligand code': 'Z99', 'N1': 'N1', 'Glycosidic atom': 'N1'}
+    declared = {**original, 'Backbone attachment atom': "C1'"}
+    assert 'Backbone attachment atom' not in role_signature(original)['context']
+    assert role_signature(declared)['atom_roles'] == role_signature(original)['atom_roles']
+    with pytest.raises(ValueError, match='unambiguous'):
+        resolve_component_record([declared, {**declared, 'Backbone attachment atom': "C2'"}], 'Z99')

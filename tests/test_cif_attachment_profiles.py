@@ -172,6 +172,35 @@ def test_overlapping_base_roles_explain_a_refusal_without_unlocking_it(tmp_path,
     assert snapshot(tmp_path) == original
 
 
+@pytest.mark.parametrize("backbone, base, agrees", [
+    ("C1'", "N1", True), ("C2'", "N1", False), ("C1'", "C5", False),
+])
+def test_explicit_workbook_attachment_checks_both_source_bond_endpoints(tmp_path, backbone, base, agrees):
+    import openpyxl
+
+    path = source(tmp_path / 'ccd')
+    # Preserve the same ring membership while changing which ring atom the loader declares.
+    other = 'C5' if base == 'N1' else 'N1'
+    book = workbook(tmp_path, [('thymine', row(N1=base, C5=other))])
+    wb = openpyxl.load_workbook(book)
+    sheet = wb['thymine']
+    col = sheet.max_column + 1
+    sheet.cell(1, col, 'Backbone attachment atom')
+    sheet.cell(2, col, backbone)
+    wb.save(book)
+    wb.close()
+    report = inspect(path, 'PDU', book)
+    assert report['declared_attachment_check'] == {
+        'profile': 'unbridged-furanose-phosphate-v1',
+        'source_bond': ["C1'", 'N1'], 'workbook_bond': [backbone, base], 'agrees': agrees}
+    assert report['operational_signature']['context']['Backbone attachment atom'] == backbone
+    assert 'Backbone attachment atom' not in report['operational_signature']['atom_roles']
+    assert report['topology_status'] == ('MATCH' if agrees else 'DECLARED_ATTACHMENT_CONFLICT')
+    assert bool(report['ports']) == agrees
+    if not agrees:
+        assert report['matched_profile'] is None and report['bindings'] == {}
+
+
 def test_role_review_respects_valid_cores_and_search_limits(tmp_path, monkeypatch):
     from nasolve import cif_attachment_profiles as profiles
 

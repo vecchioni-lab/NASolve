@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 26 November 2026, after C592. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 26 November 2026, after C593. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -41,10 +41,9 @@ The next transfer check examines the locked-sugar contacts on a separate mixed s
    the mixed scaffold's two existing five-cycle rounds. Classify the remaining close ATL
    contacts. C591 can retain every printed pair above an explicit overlap cutoff,
    including a second partner at the same atom. Check the existing mixed-scaffold
-   evidence described below. Then plan the eight-residue builder challenge with unchanged source
-   dictionaries. Prefer unfamiliar catalogue ligands. Select exact sites and compatible
-   sugar/backbone contexts, and include a phosphorothioate if its substitution and
-   stereochemistry are specified. Record what was constructed, what Phenix kept after
+   evidence described below. The eight-residue design and its sulfur side are now fixed.
+   Next qualify a real RNA parent on the DNA scaffold and a source-backed internal
+   sulfur linkage. The four pseudouridine attachment corrections are upstream for review. Record what was constructed, what Phenix kept after
    refinement, and which sites require review. The known 13-change scaffold and the
    unfamiliar panel answer different questions. [Mixed-scaffold criteria](#q07--one-mixed-scaffold-ordinary-acceptance-run).
 3. **Join the branches on a returned molecule.** Willow/Pine owns strand identity, residue
@@ -942,6 +941,28 @@ outside the ordinary oxygen-phosphate patterns. The default all-eight
 construction plan stopped at LCC. The explicit single locked-sugar route has
 a separate source-state gate. These results qualify the pairing design;
 the eight-site constructed or refined model remains outstanding.
+
+C593 compared the complete named atom and bond graphs in wwPDB and Phenix
+2.2.1-6174 for PSU, P2U, B8H and UY1. Each sugar C1′ bonds to C5. NARestraints
+had inferred N1 and mapped C1′ to the thymine methyl role. The upstream correction
+names both ends separately and keeps N1 in the base. All 614 other records read
+back identically. Across the eight separate monomer inventories, native Phenix
+bound the same ten bonds, sixteen angles, four planes and four parallel groups.
+Only UY1's sugar C1′ left its pair plane and parallel group. Six of the eight
+source graphs now match an existing attachment pattern. An old loader paired
+with the corrected workbook is reported as an explicit conflict. [Upstream
+workbook, loader and exact source comparison](https://github.com/vecchioni-lab/NARestraints/pull/6).
+
+In the four independently admitted substitutions, Coot 1.3.3 first received
+C:12 DG → RNA G as the parent for 2MG. It returned success from the mutation
+call and then read the residue back as DG. Construction stopped before writing
+the model. In a separate D:4-only construction, Coot wrote AS with P–S at
+2.130 Å and an internal OP3 at 1.623 Å. The two adjacent O3′–P links changed
+from 1.612/1.602 Å to 1.865/1.338 Å. Ordinary phosphate preparation refused
+the missing OP2 and produced no prepared model. Retain that check. A valid
+return needs the sulfur on the specified side, the linked charge and leaving
+group, and acceptable flank geometry. The neutral isolated AS dictionary alone
+does not establish those facts. Neither control reached diffraction refinement.
 
 After the qualified Q06 consumer is available, add a separate builder generalization
 control before the proposed Cedar integration with main. Mutate **eight residues** into
