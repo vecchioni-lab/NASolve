@@ -78,7 +78,7 @@ def prepare_linked_control_models(frame,numerical,code,output):
     (output/'control_receipt.json').write_text(json.dumps(r,indent=2)+'\n');return r
 
 
-def _heavy_proxy_checks(native,projected,code,site):
+def _heavy_proxy_checks(native,projected,code,site,*,minimum_plane_atoms=3):
     values,_=normalize_torsion_block(component_values(projected,code));atoms={a['i_seq']:a for a in native['atoms']}
     heavy={a['atom_id'] for a in atoms.values() if _site(a)==site}
     details=native['geometry']['proxy_details'];checks={};key=lambda ns:min(tuple(ns),tuple(ns)[::-1])
@@ -91,10 +91,19 @@ def _heavy_proxy_checks(native,projected,code,site):
     expected=Counter(('const_dihedral' if int(r['period'])==0 else 'dihedral',_torsion_signature([r['atom_id_'+str(i)] for i in range(1,5)],r['value_angle'],r['period'],r.get('alt_value_angle')),format(_torsion_weight(r),'.10g')) for r in _rows(values,'_chem_comp_tor') if all(r['atom_id_'+str(i)] in heavy for i in range(1,5)))
     actual=Counter((kind,_torsion_signature(names(r),r['angle_ideal'],r['periodicity'],r.get('alt_angle_ideals')),format(float(r['weight']),'.10g')) for kind in ['dihedral','const_dihedral'] for r in selected(kind))
     checks['exact-heavy-torsions']=expected==actual
-    planes={}
+    planes={};missing_atoms=set()
     for r in _rows(values,'_chem_comp_plane_atom'):
         if r['atom_id'] in heavy:planes.setdefault(r['plane_id'],[]).append((r['atom_id'],format(1/float(r['dist_esd'])**2,'.10g')))
-    checks['exact-heavy-planes']=Counter(tuple(sorted(p)) for p in planes.values() if len(p)>=3)==Counter(tuple(sorted(zip(names(r),(format(float(w),'.10g') for w in r['weights'])))) for r in selected('planarity'))
+        else:missing_atoms.add(r['atom_id'])
+    # Phenix creates a component planarity force only with four coordinate atoms.
+    # The three-atom rule is retained solely to replay older sealed site checks.
+    omitted_ok=True
+    if minimum_plane_atoms==4 and missing_atoms:
+        elements=atom_rows(values)
+        omitted_ok=all(elements.get(n,{}).get('type_symbol','').upper() in {'H','D'} for n in missing_atoms)
+    expected_planes=Counter(tuple(sorted(p)) for p in planes.values() if len(p)>=minimum_plane_atoms)
+    observed_planes=Counter(tuple(sorted(zip(names(r),(format(float(w),'.10g') for w in r['weights'])))) for r in selected('planarity'))
+    checks['exact-heavy-planes']=omitted_ok and expected_planes==observed_planes
     def chir(center,ns,sign,both):
         parity=-1 if sum(ns[i]>ns[j] for i in range(3) for j in range(i+1,3))%2 else 1
         return center,tuple(sorted(ns)),0 if both else parity*sign,both

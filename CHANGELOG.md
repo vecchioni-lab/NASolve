@@ -22,6 +22,12 @@ entries are reconstructed from repository history.
   the workbook. Reopening the complete request uses that copy for the pairing
   recipe when its fingerprint matches the original compiler record.
 
+- Fresh linked-site checks follow the Phenix requirement for four modeled atoms
+  in a component planarity restraint. An omitted hydrogen can leave three points
+  and no active plane. Missing heavy atoms, changed plane membership or weights,
+  and unexpected planes require review. Saved site checks retain their original
+  interpretation. Base-pair parallelity is a separate restraint.
+
 - For source-backed internal RNA, ordinary dictionary acquisition can now verify
   the source and candidate coordinates twice, with Phenix's normal RNA pucker
   adjustment and with the literal dictionary. Each returned restraint must match

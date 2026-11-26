@@ -81,7 +81,10 @@ reopened with the original runs and entire Phenix installation inaccessible. C60
 inaccessible. 5MC also qualified. For 6MZ, a fresh atom-order recovery preserved all
 42 source bonds after eLBOW introduced a 5.779 Å edge. The combined request reused
 all three numerical dictionaries. Its linked check still required reconciliation of
-the native pucker targets and a plane that had only three atoms in the scaffold. The sulfur linkage
+the native pucker targets and a plane that had only three atoms in the scaffold.
+C610 traced that plane to C6, N6, C9 and an unmodeled hydrogen. Phenix omitted the
+three-point plane and retained every member and weight of the 11-atom base plane.
+Fresh site checks now reproduce this distinction and still flag a missing heavy atom. The sulfur linkage
 remains a separate chemical state. The [Q12 workbook sweep](cif-doctor-completion-queue.md#q12--resolve-catalogue-mappings-and-maintain-support-coverage)
 follows the eight-site challenge.
 [Release and tested installation](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.4).

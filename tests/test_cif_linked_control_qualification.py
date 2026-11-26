@@ -83,3 +83,40 @@ def test_linked_controls_require_projected_chemistry_links_and_usable_mechanics(
     r=qualify_linked_control(a,b,m,p,c,'ZZZ')
     assert r['status']==('LINKED_CONTROL_MECHANICS_PASS' if defect in {'none','unsupported_charge'} else 'REVIEW'),r['checks']
     assert not r['automatic_adoption'] and not r['requires_cif_review']
+
+
+@pytest.mark.parametrize('mode,present,expected', [
+    ('legacy', (), False), ('resolved', (), True),
+    ('resolved', ('P','OP1','OP2'), False),
+    ('resolved', ('P','OP1','OP2',"O5'"), False),
+])
+def test_linked_plane_with_hydrogen_absent(tmp_path, mode, present, expected):
+    from nasolve.cif_linked_control import _heavy_proxy_checks
+    from nasolve.cif_linked_preparation import _render, component_values
+    _,native,_,_,path=case(tmp_path)
+    values=component_values(path,'ZZZ')
+    for k,v in {'comp_id':'ZZZ','atom_id':'H1','type_symbol':'H','type_energy':'H','charge':'0','partial_charge':'0'}.items():
+        values['_chem_comp_atom.'+k].append(v)
+    members=['P','OP1','OP2','H1']
+    values.update({'_chem_comp_plane_atom.comp_id':['ZZZ']*4,
+        '_chem_comp_plane_atom.plane_id':['test_plane']*4,
+        '_chem_comp_plane_atom.atom_id':members,'_chem_comp_plane_atom.dist_esd':['0.02']*4})
+    path.write_text(_render(values,'ZZZ'))
+    if present:
+        indices={a['atom_id']:a['i_seq'] for a in native['atoms'] if a['identity']['resseq']=='2'}
+        native['geometry']['proxy_details']['planarity'].append({
+            'i_seqs':[indices[n] for n in present], 'weights':[2500.]*len(present)})
+    minimum=4 if mode=='resolved' else 3
+    assert _heavy_proxy_checks(native,path,'ZZZ','A:2',minimum_plane_atoms=minimum)['exact-heavy-planes'] is expected
+    if mode=='resolved' and not present:
+        values['_chem_comp_atom.type_symbol'][-1]='O'
+        path.write_text(_render(values,'ZZZ'))
+        assert not _heavy_proxy_checks(native,path,'ZZZ','A:2',minimum_plane_atoms=minimum)['exact-heavy-planes']
+    # A genuinely present fourth point must still be checked, including its weight.
+    values['_chem_comp_plane_atom.atom_id'][-1]="O5'"
+    path.write_text(_render(values,'ZZZ'))
+    checks=_heavy_proxy_checks(native,path,'ZZZ','A:2',minimum_plane_atoms=minimum)
+    assert checks['exact-heavy-planes'] is (len(present)==4)
+    if len(present)==4:
+        native['geometry']['proxy_details']['planarity'][0]['weights'][0]+=100.
+        assert not _heavy_proxy_checks(native,path,'ZZZ','A:2',minimum_plane_atoms=minimum)['exact-heavy-planes']

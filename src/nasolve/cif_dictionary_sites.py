@@ -21,6 +21,7 @@ FULL_MODEL_POLICY_ID = 'cif-stored-dictionary-sites-v3'
 SOURCE_NAMES_POLICY_ID = 'cif-stored-dictionary-sites-v4'
 FURANOSE_POLICY_ID = 'cif-stored-internal-furanose-sites-v1'
 CONSTRUCTION_POLICY_ID = 'cif-stored-construction-dictionaries-v1'
+COORDINATE_PLANE_POLICY = 'phenix-component-plane-four-resolved-atoms-v1'
 ANCHOR = 'dictionary_site_directory'
 _SNAPSHOT_FILES = ('resolution.json', 'entry/manifest.json', 'entry/source.cif',
     'entry/dictionary.cif', 'entry/qualification.json', 'entry/provenance.json')
@@ -230,6 +231,7 @@ def prepare_dictionary_sites(snapshot, model, contexts, output, *, consumer, exp
     _need(output!=snapshot and snapshot not in output.parents, 'Cannot publish inside the frozen snapshot')
     resolve_dictionary_snapshot(snapshot); _consumer(consumer)
     controls={'consumer':consumer,'contexts':contexts,'expected_links':expected_links,
+        'coordinate_plane_policy':COORDINATE_PLANE_POLICY,
         'terminal_resource':None,'supplementary_dictionaries':[],'supplementary_phils':[]}
     if native_context is not None:
         from .cif_native_context import validate_native_context
@@ -287,6 +289,9 @@ def read_dictionary_sites(output):
     _need(report.get('files')==_files(root), 'Site artifact inventory or checksum differs')
     controls={k:report[k] for k in ('consumer','contexts','expected_links','terminal_resource',
         'supplementary_dictionaries','supplementary_phils')}
+    if 'coordinate_plane_policy' in report:
+        _need(report['coordinate_plane_policy']==COORDINATE_PLANE_POLICY, 'Unknown coordinate plane policy')
+        controls['coordinate_plane_policy']=COORDINATE_PLANE_POLICY
     if report['policy_id'] in {CONTEXT_POLICY_ID,FULL_MODEL_POLICY_ID,SOURCE_NAMES_POLICY_ID,FURANOSE_POLICY_ID}:
         _need('native_context' in report, 'Missing frozen native context')
         controls['native_context']=report['native_context']
@@ -324,6 +329,7 @@ def read_dictionary_sites(output):
     expected=_report(root,controls,saved,links,policy)
     _need(_bytes(report)==_bytes(expected), 'Site preparation claim differs from frozen evidence')
     return {'report':report,'snapshot':saved,'preparation':preparation,**inputs,
+        'four_atom_plane_sites':{c['site'] for c in controls['contexts'] if 'coordinate_plane_policy' in controls},
         'projections':{c['site']:(root/'prepared'/('projected_'+c['site'].replace(':','_')+'.cif'),
             report['component']) for c in controls['contexts']}}
 
@@ -441,7 +447,9 @@ def _site_native_checks(before, after, prepared):
             check('declared-native-port-elements:'+site,_port_elements(after,context))
             check('exact-site-modifier:'+site,mappings[site].get('chem_mod_ids')=={
                 'status':'RECORDED','ids':[plan['modification_id']] if plan.get('modification_id') else []})
-            for name,value in _heavy_proxy_checks(after,path,code,site).items():check(name+':'+site,value)
+            minimum=4 if site in prepared.get('four_atom_plane_sites',()) else 3
+            for name,value in _heavy_proxy_checks(after,path,code,site,minimum_plane_atoms=minimum).items():
+                check(name+':'+site,value)
             terminal=(prepared['report'].get('native_context') is not None
                 and context.get('five_prime_state')=='phosphate')
             if context.get('incoming_site') is not None or terminal:

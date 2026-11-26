@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 26 November 2026, after C609. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 26 November 2026, after C610. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -1093,7 +1093,11 @@ The 2MG acquisition reopened from 115 distinct local files with its original tre
 store and Phenix installation unavailable. A same-size change to the frozen table
 was rejected. The linked comparison still needs to account for the normal pucker
 and to distinguish a real heavy-atom plane from a definition left with only three
-coordinate atoms.
+coordinate atoms. C610 accounted for the latter. H62 was absent from the B:5
+coordinates. Phenix requires four modeled atoms for a component planarity force.
+The separate 11-atom ring plane and every weight matched. The same native captures
+replayed under their original rules, and only that plane verdict changed on fresh
+preparation. The remaining discrepancies are the native sugar-pucker rows.
 
 C601 found the source-preserving generator had introduced a 5.779 Å bond between
 O4′ and ring C2. All 42 source edges were present. The ten bonds of the purine
