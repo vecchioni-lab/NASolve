@@ -55,6 +55,20 @@ maintained fixed-weight product mode or recommended production weight.
    Do not insert it into the active guard or relabel partial live capture as complete.
    Both endpoint maps use 1,909 reflections/124 Free-R; weak/negative sugar density
    remains. No Free-R-driven trial search or automatic selection.
+
+   **Next-window readiness audit:** W296's frozen discovery contains only B1–B7,
+   no declared duplex pairs, incomplete pairing coverage and two representation
+   boundaries. Its registration maps those seven sites only; the A-chain partners
+   are unmapped. This is distinct from W291's four-route parent. Native A15/B1
+   and A9/B7 plane restraints are useful observations, not physical pairing or
+   oligo authority. First extend source-bound registration and review partner,
+   junction and continuation declarations; an empty protected-site list does not
+   prove there are no junctions. Reuse `plan_editable_windows` and
+   `inspect_bend_window` for the source-frame scope and fixed neighbours. The latter
+   does not traverse representation continuations or changed images, so periodic
+   realization remains a separate qualification before wider native motion.
+   No new fit or repeated missing-partner test was needed for this audit.
+
 2. **Pine integration:** Rowan/Linden agree to use the genuine PDU ordinary parent
    with its proven data/thermal route. Use source-frame native refinement and
    derived views; keep physical strand/entity assignments unresolved without a
