@@ -120,10 +120,17 @@ def prepare_connected_atom_order(source, code, output):
             "chemical_declarations": "PRESERVED", "coordinate_values": "PRESERVED",
             "atom_ordinals": "PRESERVED_AS_SOURCE_METADATA", "reader_dialect": "PRESERVED",
             "native_qualification": "NOT_RUN", "automatic_adoption": False}
-def unlisted_builder_bond(values, code, diagnostic, log):
+def confirmed_aromatic_systems(allowed, converted):
+    """The observed conversions must be whole, unique, source-authorized systems."""
+    return (isinstance(converted, list) and bool(converted)
+            and converted == [system for system in allowed if system in converted])
+
+
+def unlisted_builder_bond(values, code, diagnostic, log, *, allowed_systems=(), converted_systems=()):
     """Identify one extra heavy bond in eLBOW's printed table after a failed build.
 
-    Require every source edge and order exactly once. The failing two-decimal
+    Require every source edge in its verified representation. Only a whole ring
+    conversion observed before the failed build can change its printed orders. The failing two-decimal
     length must identify only the additional row at the table's printed precision.
     A stretched source bond, partial table or retained candidate is ineligible.
     """
@@ -150,8 +157,15 @@ def unlisted_builder_bond(values, code, diagnostic, log):
                 or Decimal(length) <= 0 or Decimal(width) <= 0):
             return None
         printed[edge] = (order.upper(), Decimal(length))
-    if any(edge not in printed or printed[edge][0] != order for edge, order in bonds.items()):
+    if converted_systems and not confirmed_aromatic_systems(allowed_systems, converted_systems):
         return None
+    aromatic = {tuple(edge) for system in converted_systems for edge in system}
+    if not aromatic <= bonds.keys():
+        return None
+    for edge, source_order in bonds.items():
+        expected_order = "AROMATIC" if edge in aromatic else source_order
+        if edge not in printed or printed[edge][0] != expected_order:
+            return None
     additional = printed.keys() - bonds.keys()
     if len(additional) != 1:
         return None
@@ -164,4 +178,7 @@ def unlisted_builder_bond(values, code, diagnostic, log):
     if (consistent != additional or abs(length-specified) >= Decimal("0.0045")
             or order not in {"SINGLE", "DOUBLE", "TRIPLE", "AROMATIC"}):
         return None
-    return {"atoms": list(edge), "native_length_angstrom": float(length), "source_bonds_matched": len(bonds)}
+    proof = {"atoms": list(edge), "native_length_angstrom": float(length), "source_bonds_matched": len(bonds)}
+    if converted_systems:
+        proof["converted_systems"] = converted_systems
+    return proof

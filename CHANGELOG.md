@@ -23,6 +23,11 @@ entries are reconstructed from repository history.
 - When an isolated component fails native checking, the diagnostic lists the
   affected coordinate seeds, failed checks and any recorded Phenix modifications.
 
+- An extra bond reported by eLBOW can now qualify for a fresh atom-order
+  recovery after a verified whole-ring aromatic conversion. The recovery binds
+  the observed conversion to the original source and preserves exact-order
+  historical records.
+
 - Diagnostic runners assembled from a wheel installation verify the captured
   NARestraints package against its installed file record. A virtual environment
   inside another repository can no longer give the runner the wrong Git revision.

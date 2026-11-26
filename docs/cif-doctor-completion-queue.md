@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 26 November 2026, after C600. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 26 November 2026, after C601. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -1008,9 +1008,20 @@ The closest C:12 2MG pair contact shortened to 2.215 Å. Neither result is a
 qualified pair. ReadySet called the 6MZ C4′–C3′ sugar bond aromatic and put
 nine atoms, including four sugar stereocentres, under a common plane. That plane
 was active in the final Phenix geometry file. The starting 6MZ methyl already
-pointed away from its Watson–Crick partner. Compare the frozen source-preserving
-6MZ dictionary on the same coordinates and reflections before adjusting the
-pose. These are hypothetical substitutions in an existing dataset.
+pointed away from its Watson–Crick partner. These are hypothetical substitutions
+in an existing dataset.
+
+C601 found the source-preserving generator had introduced a 5.779 Å bond between
+O4′ and ring C2. All 42 source edges were present. The ten bonds of the purine
+ring used its already approved aromatic representation. The recovery now checks
+those exact observed ring conversions when identifying one additional printed
+bond. It reordered complete atom rows in a fresh attempt and generated all 40
+source atoms with the original formal charges and single sugar bonds. The
+nine-atom sugar plane disappeared. In a matched one-cycle experiment changing
+only the 6MZ dictionary, B:5 base rotation decreased from 38.6° to 8.9°. Its two
+pair contacts ended at 3.096 and 3.932 Å, versus 3.469 and 4.128 Å with ReadySet.
+The shortened 2MG contact persisted. This comparison establishes dictionary
+sensitivity. The remaining 6MZ pair contact and ordinary pucker check stay open.
 
 In both isolated 2MG coordinate seeds, all exact candidate checks passed when
 only the coordinate-dependent pucker adjustment was disabled. With the usual

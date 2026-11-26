@@ -49,8 +49,12 @@ refinement preserved all twelve sugar hands. The B:5 6MZ pair opened to 4.128 Å
 at one contact, while one C:12 2MG contact closed to 2.215 Å. The checked route
 still requires distinct evidence for the literal chemistry and native adjustment.
 The conventional 6MZ output put its sugar under a nine-atom plane and declared
-an aromatic sugar bond. Test the existing source-preserving constructor on this
-case before inventing a new repair. The sulfur linkage
+an aromatic sugar bond. C601 recovered the source chemistry by reusing the
+existing atom-order fix after a verified aromatic-ring conversion. In a matched
+one-cycle refinement, changing only that dictionary reduced B:5 base rotation
+from 38.6° to 8.9°. One pair contact remained long at 3.932 Å. Next separate literal
+component qualification from Phenix’s measured pucker adjustment and keep the
+source conflict visible before an ordinary refinement. The sulfur linkage
 remains a separate chemical state. The [Q12 workbook sweep](cif-doctor-completion-queue.md#q12--resolve-catalogue-mappings-and-maintain-support-coverage)
 follows the eight-site challenge.
 [Release and tested installation](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.4).

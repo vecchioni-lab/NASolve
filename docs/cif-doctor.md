@@ -8211,6 +8211,15 @@ replay and remaining limits are recorded under
 
 ### Explicit connected atom ordering (C116)
 
+When an eLBOW build stops on one extra heavy-atom bond, the acquisition reader
+can verify every source edge in its recorded native spelling. An aromatic
+conversion must cover a complete source-authorized ring and match the observed
+pre-build handoff. The recovery freezes those ring edges for independent
+readback against the original source. Partial conversions, changes elsewhere,
+missing source edges and ambiguous printed distances remain ineligible.
+The [6MZ comparison](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run)
+records the constructed and returned geometries.
+
 `nasolve.cif_connected_atom_order.prepare_connected_atom_order(source, code,
 output)` writes a fresh, separate single-component input. This explicit Python
 API belongs after source-dialect preparation and before native generation; it

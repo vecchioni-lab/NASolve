@@ -50,6 +50,77 @@ def test_reordering_requires_one_extra_heavy_bond_identified_by_the_native_failu
         assert value is None
 
 
+@pytest.mark.parametrize("defect", ["none", "unreported", "partial print", "outside ring", "unapproved system"])
+def test_extra_bond_after_a_whole_authorized_aromatic_conversion(tmp_path, defect):
+    from nasolve.cif_connected_atom_order import unlisted_builder_bond
+    from nasolve.cif_source_representation import generation_representation_contract
+    from nasolve.cif_stereochemistry_audit import _graph
+    from tests.test_cif_purine_representation import POLICY, pair
+
+    source, _ = pair()
+    path = write(tmp_path / "purine.cif", source)
+    contract = generation_representation_contract(path, "Q17", POLICY)
+    systems = contract["allowed_systems"]
+    ring = {tuple(edge) for edge in systems[0]}
+    bonds = _graph(source)[1]
+    rows = {edge: ("aromatic" if edge in ring else order.lower()) for edge, order in bonds.items()}
+    if defect == "partial print":
+        edge = sorted(ring)[0]
+        rows[edge] = bonds[edge].lower()
+    if defect == "outside ring":
+        rows[("C6", "N6")] = "aromatic"
+    observed = [] if defect == "unreported" else systems
+    if defect == "unapproved system":
+        observed = [systems[0][:-1]]
+    text = "\n".join(f"Q17 {a} {b} {order} 1.400 0.020" for (a, b), order in rows.items())
+    text += "\nQ17 C2 R single 5.779 0.040"
+    diagnostic = {"blocking_stage": "NATIVE_BUILDER", "candidate_state": "ABSENT", "builder_started": True,
+                  "native_exception": {"exception_type": "Sorry", "message": "Bond length too long : 5.78"}}
+    proof = unlisted_builder_bond(source, "Q17", diagnostic, text,
+        allowed_systems=systems, converted_systems=observed)
+    if defect == "none":
+        assert proof == {"atoms": ["C2", "R"], "native_length_angstrom": 5.779,
+                         "source_bonds_matched": len(bonds), "converted_systems": systems}
+    else:
+        assert proof is None
+
+
+@pytest.mark.parametrize("defect", ["none", "missing edge", "extra edge", "duplicate", "legacy with conversion"])
+def test_relocated_ring_conversion_proof_is_checked_against_the_original_source(tmp_path, defect):
+    from hashlib import sha256
+    from nasolve import cif_acquisition_recovery as recovery
+    from nasolve.cif_source_representation import generation_representation_contract
+    from nasolve.cif_stereochemistry_audit import _graph
+    from tests.test_cif_purine_representation import POLICY, pair
+
+    values, _ = pair()
+    source = write(tmp_path / "original.cif", values)
+    recipe = {"bond_representation_policy": POLICY, "source_input_policy": recovery.CONNECTED_INPUT_POLICY}
+    request = {"component": "Q17", "recipe": recipe, "source_sha256": sha256(source.read_bytes()).hexdigest()}
+    previous = dict(request, recipe=dict(recipe, source_input_policy=recovery.SOURCE_INPUT_POLICY))
+    systems = generation_representation_contract(source, "Q17", POLICY)["allowed_systems"]
+    pins = ("acquisition_request", "acquisition_attempt", "acquisition_completion",
+            "generation_attempt", "generation_completion", "generation_receipt")
+    consumer = {"version": "fixture"}
+    proof = {"policy_id": recovery.REPRESENTATION_POLICY, "component": "Q17", "attempt": 1,
+        "consumer": recovery._fingerprint(consumer), "previous_dictionary_request": recovery._fingerprint(previous),
+        "records": dict.fromkeys(pins, "a" * 64), "bond": {"atoms": ["C2", "R"],
+        "native_length_angstrom": 5.779, "source_bonds_matched": len(_graph(values)[1]), "converted_systems": systems}}
+    if defect == "missing edge":
+        systems[0].pop()
+    elif defect == "extra edge":
+        systems[0].append(["C6", "N6"])
+    elif defect == "duplicate":
+        systems.append(deepcopy(systems[0]))
+    elif defect == "legacy with conversion":
+        proof["policy_id"] = recovery.POLICY_ID
+    if defect == "none":
+        recovery.validate_connected_order_failure(proof, source, request, consumer)
+    else:
+        with pytest.raises(ValueError, match="(ring conversion|extra bond)"):
+            recovery.validate_connected_order_failure(proof, source, request, consumer)
+
+
 def permute(values, indices):
     return {k: [v[i] for i in indices] if k.lower().startswith("_chem_comp_atom.") else deepcopy(v)
             for k, v in values.items()}
