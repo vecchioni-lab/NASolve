@@ -1,8 +1,8 @@
 # NASolve development handoff — Willow
 
-**W294 ordinary native preflight complete, 2026-11-26.** Latest
-refinement: **W288**. Latest maintained code: **W294**,
-`6cbc9822394c4d9b374fcb03e4bdab615ef01db9`.
+**W295 shared source reader integrated, 2026-11-26.** Latest native preflight:
+**W294**; latest refinement: **W288**. Latest maintained code: **W295**,
+`24deb34e48ae74afd99c8adf609f8716e9f06e1d`.
 The [audited roadmap](topostitch-roadmap.md) owns status and the next decision;
 [periodic evidence](topostitch-periodic.md) and [API contracts](topostitch-preview.md)
 own exact methods, commands, hashes and limitations. This handoff is not a run diary.
@@ -91,6 +91,14 @@ references and thermal/TLS semantics. File readback alone cannot prove those.
 
 <a id="validation-and-scientific-interpretation"></a>
 ## Validation and compatibility
+
+**W295:** current phased guard delegates to Hazel's exact shared source reader.
+The relocated installed guard reproduces all 1,151 FT observations, 59 Free-R
+assignments, HL, crystal and four native-module pins from the historical W252
+reader. **3,041 tests + 238 subtests, no skips; 203 installed focused tests + 4
+subtests** pass. No child processes or refinement in the source comparison, no
+new phases or parent-admission claim. The six-atom/19-atom science gates above
+remain unchanged; full details and source origins are in the periodic evidence.
 
 **W294:** the installed ordinary command completes a zero-cycle Phenix 2.2.1-6174
 preflight with byte-identical candidate, exact observations and 57 unchanged

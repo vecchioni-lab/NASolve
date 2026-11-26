@@ -7,7 +7,11 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Latest maintained code, W294:** [explicit native frame policy](topostitch-periodic.md#w294--complete-ordinary-preflight-with-explicit-frame-roundoff)
+- **Latest maintained code, W295:** [shared source reader](topostitch-periodic.md#w295--share-source-diffraction-reading-with-alder)
+  removes Willow/Alder parser duplication. Installed maintained guard matches all
+  1,151 original FT observations / 59 Free-R / HL / crystal exactly. 3,041 tests +
+  238 subtests and 203 installed focused checks + 4 subtests pass. No new fit.
+- **W294:** [explicit native frame policy](topostitch-periodic.md#w294--complete-ordinary-preflight-with-explicit-frame-roundoff)
   completes the installed ordinary zero-cycle preflight with byte-identical source
   output and unchanged observations. 3,025 tests + 234 subtests and 187 installed
   checks pass. Existing defaults remain; explicit 19-atom admission is next.

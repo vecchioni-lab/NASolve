@@ -4,7 +4,7 @@
   "updated": "2026-11-26",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "6cbc9822394c4d9b374fcb03e4bdab615ef01db9",
+  "audited_code_commit": "24deb34e48ae74afd99c8adf609f8716e9f06e1d",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -771,7 +771,8 @@
         "W288: two complete five-cycle Phenix2.2.1-6174 local experiments at identical observed(1,1,1) coordinate coefficients. Original seam2.824291\u21921.615904A;seed1.614199A. Max endpoint difference0.061131A/six-atom RMS0.033591A. Original local bond/angle maxima0.509/1.830sigma;residual torsions2.97sigma. Rwork/free~0.312/0.369;not accepted.",
         "W290 binds both W288 endpoint maps to1909 indices/124 Free-R, writer state and exact written model sites;20cold checks pass. Both show P near2.52sigma but weak/negative sugar samples. Historical1902-reflection map stays unmatched context. No new coefficients/refinement or scientific selection.",
         "W293: 19-atom/57-variable complete-native finite differences pass at two points and two steps (460 evaluations); all six C1-dependent groups and original proxies retained, 843 atoms held, 1785 work/124 Free unchanged. Raw 7991-row packing capture repeats; full-capture reviewer correctly refuses the partial live envelope. Isolated runtime imports fix current Cedar/Willow composition. Final-source 3013 tests +234 subtests and175 relocated-installed focused checks pass; installed native dry-run reaches unchanged strict-frame refusal (~1e-14 arithmetic), not a completed product preflight. No fit.",
-        "W294 exposes exact/native-roundoff as an optional frozen request policy; omitted ML/MLHL defaults unchanged. Installed ordinary ML preflight now completes0cycles with862 atoms,1909 reflections/124Free, byte-identical candidate and57 exact parallelity groups; hooks restored and worker stopped. 3025 tests+234subtests(no skips),187 relocated-installed checks. Native19-atom scope and refinement remain separate; no new tolerance or force."
+        "W294 exposes exact/native-roundoff as an optional frozen request policy; omitted ML/MLHL defaults unchanged. Installed ordinary ML preflight now completes0cycles with862 atoms,1909 reflections/124Free, byte-identical candidate and57 exact parallelity groups; hooks restored and worker stopped. 3025 tests+234subtests(no skips),187 relocated-installed checks. Native19-atom scope and refinement remain separate; no new tolerance or force.",
+        "W295 receives the exact Alder shared source reader from2a25f57c72ba5038688ec42812066551e2a968a0 and removes the maintained phased guard inline duplicate. Source policies, native pins and actual-target/scattering checks unchanged. Installed guard exactly reproduces pinned W252 source reading on1151FTobservations/59Free/allHL/crystal. 3041 tests+238subtests(no skips),203 installed focused+4subtests; no child execution/refinement in the data comparison."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -921,14 +922,15 @@
         "E_MATCHED_COORDINATE_WEIGHT_RECOVERY",
         "E_ENDPOINT_DENSITY_BOUNDARY",
         "E_COUPLED_NATIVE_RUNTIME",
-        "E_EXPLICIT_NATIVE_FRAME"
+        "E_EXPLICIT_NATIVE_FRAME",
+        "E_SHARED_DIFFRACTION_SOURCE"
       ],
       "last_audit": {
         "date": "2026-11-26",
-        "human_update": 294,
-        "code_commit": "6cbc9822394c4d9b374fcb03e4bdab615ef01db9",
-        "reviewer": "Linden; ordinary route and shared owner reuse coordinated with Rowan",
-        "scope": "Installed six-atom dry-run completes under explicitly requested existing frame policy. No wider admission, fit or scientific acceptance."
+        "human_update": 295,
+        "code_commit": "24deb34e48ae74afd99c8adf609f8716e9f06e1d",
+        "reviewer": "Linden; exact shared reader supplied by Hazel and coordinated with Rowan",
+        "scope": "Shared source reading and installed equivalence only; no native fit, ordinary-parent join or wider scope admission."
       }
     },
     {
@@ -10143,6 +10145,50 @@
       ],
       "maintained_code_changed": true,
       "new_native_refinements": 0
+    },
+    "E_SHARED_DIFFRACTION_SOURCE": {
+      "kind": "Shared source-array owner and installed phased-guard equivalence",
+      "date": "2026-11-26",
+      "human_update": 295,
+      "code_commit": "24deb34e48ae74afd99c8adf609f8716e9f06e1d",
+      "upstream_commit": "2a25f57c72ba5038688ec42812066551e2a968a0",
+      "reference": "docs/topostitch-periodic.md#w295--share-source-diffraction-reading-with-alder",
+      "result": "W295 receives the exact Alder shared source reader from2a25f57c72ba5038688ec42812066551e2a968a0 and removes the maintained phased guard inline duplicate. Source policies, native pins and actual-target/scattering checks unchanged. Installed guard exactly reproduces pinned W252 source reading on1151FTobservations/59Free/allHL/crystal. 3041 tests+238subtests(no skips),203 installed focused+4subtests; no child execution/refinement in the data comparison.",
+      "limitation": "Phenix2.2.1-6174 read-only library validation. No new phase file, process, target, source filtering, tolerance, force, refinement, model selection, ordinary ancestry claim or whole-run portability. Historical frozen workers remain unchanged. Borrowed module/test files are exact upstream bytes; no branch merge. Coupled sugar admission and delayed anomalous/fragmentation experiments retain their gates.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w295-shared-diffraction-source/qualify.py",
+          "sha256": "c6c16e0cb1d2eceb3780e7bd0ec0c77c72c814db4a47781ed2aa9c18aa15df2c",
+          "size": 4970
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w295-shared-diffraction-source/observe_installed.py",
+          "sha256": "dbb583e0522b803bf8d05ac2fd18184b1e712a23ba8163e456fe4c83dd839188",
+          "size": 3525
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w295-shared-diffraction-source/installation.json",
+          "sha256": "4c8b4e012bc81bf594bb3a30c3095e923ff8ecd079d7e61be02cb4182e0040a3",
+          "size": 53379
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w295-shared-diffraction-source/installed-source-equivalence.json",
+          "sha256": "4514c86e8b43fa3ccabb5588e65c3b28032d6ac7922309157813bdb34b53542d",
+          "size": 6926
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w295-shared-diffraction-source/fail-before.log",
+          "sha256": "f941fcafb012c5a419e2e32d5e93229d51c3cc2ddf37d0fd50dce4c2a7dd5b7d",
+          "size": 3355
+        }
+      ],
+      "maintained_code_changed": true,
+      "new_native_refinements": 0
     }
   },
   "benchmarks": [
@@ -10324,8 +10370,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 294,
-    "next": 295,
+    "current": 295,
+    "next": 296,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -11899,6 +11945,12 @@
         "title": "Complete ordinary preflight with explicitly requested existing frame roundoff",
         "state": "RECORDED",
         "code_commit": "6cbc9822394c4d9b374fcb03e4bdab615ef01db9"
+      },
+      {
+        "number": 295,
+        "title": "Share the qualified source diffraction reader with Alder",
+        "state": "RECORDED",
+        "code_commit": "24deb34e48ae74afd99c8adf609f8716e9f06e1d"
       }
     ]
   },
