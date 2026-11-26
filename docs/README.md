@@ -7,11 +7,15 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Latest maintained code, W293:** [coupled forces and isolated native workers](topostitch-periodic.md#w293--qualify-coupled-forces-and-isolate-native-worker-imports)
+- **Latest maintained code, W294:** [explicit native frame policy](topostitch-periodic.md#w294--complete-ordinary-preflight-with-explicit-frame-roundoff)
+  completes the installed ordinary zero-cycle preflight with byte-identical source
+  output and unchanged observations. 3,025 tests + 234 subtests and 187 installed
+  checks pass. Existing defaults remain; explicit 19-atom admission is next.
+- **W293:** [coupled forces and isolated native workers](topostitch-periodic.md#w293--qualify-coupled-forces-and-isolate-native-worker-imports)
   qualifies all 57 coordinates with the six C1-dependent groups retained. Runtime
   imports are isolated; 3,013 tests + 234 subtests and 175 installed checks pass.
-  Ordinary native dry-run reaches the preserved strict-frame refusal. Explicit
-  roundoff intake and wider receiver remain next; no new refinement.
+  Its strict-frame refusal is preserved; W294 resolves explicit arithmetic intake.
+  Wider receiver remains next; no new refinement.
 - **W292:** [coupled two-sugar scope](topostitch-periodic.md#w292--map-a-coupled-sugar-scope-before-wider-native-motion)
   maps 19 moving/843 held atoms. Six plane groups remain C1′-dependent even with
   bases fixed. The wider receiver is still a gate; no new coordinates or fit.

@@ -1,8 +1,8 @@
 # NASolve development handoff — Willow
 
-**W293 coupled native forces and runtime compatibility, 2026-11-26.** Latest
-refinement: **W288**. Latest maintained code: **W293**,
-`3370eb096f1680ec538d6a7978b70b8c64c1d6ad`.
+**W294 ordinary native preflight complete, 2026-11-26.** Latest
+refinement: **W288**. Latest maintained code: **W294**,
+`6cbc9822394c4d9b374fcb03e4bdab615ef01db9`.
 The [audited roadmap](topostitch-roadmap.md) owns status and the next decision;
 [periodic evidence](topostitch-periodic.md) and [API contracts](topostitch-preview.md)
 own exact methods, commands, hashes and limitations. This handoff is not a run diary.
@@ -18,7 +18,7 @@ must work without an AI service. A representation change does not repair a gap.
 | Available on the Willow branch | Proven scope | Remaining gate |
 | --- | --- | --- |
 | Explicit end/image inspection and placement | Registered canonical ends, bounded paired-window proposals and saved previews | Arbitrary-model inference, physical partner capacity, general density-supported deformation |
-| Local native phosphate receiving | Opt-in six-atom source-frame route, exact protected context/data and Cedar image forces | Broad duplex/modified-endpoint motion and ordinary campaign adoption |
+| Local native phosphate receiving | Installed six-atom dry-run completes with explicit existing frame-roundoff policy; exact protected context/data and Cedar image forces | Coupled-sugar/duplex motion and ordinary campaign adoption |
 | W288 matched-coordinate-weight experiment | Original 2.824 Å gap recovers to 1.61590 Å, near seeded 1.61420 Å; no model selected | Residual torsions near 3σ and Rwork/Rfree about 0.312/0.369; no density acceptance |
 | Whole-original-asym diagnostic CIF export | W272–278 preserve qualified source categories, images, tensors and backbone coverage; save/replay/inspect available | Mixed-fragment entity policy, native TLS restart, genuine source/parent join and persistent operation/refine loop |
 | W286/W287 connection review | Source/row/evidence-bound unapplied proposals and independent saved-report replay | Explicit metadata authority, application and separate chemistry/export/native admission |
@@ -46,9 +46,8 @@ maintained fixed-weight product mode or recommended production weight.
 
 1. **Stitching:** W292 maps a 19-atom two-sugar scope on the original W288 source.
    Both bases and outer phosphates stay held; W293 qualifies complete native
-   derivatives including the six C1-dependent groups. The installed ordinary
-   command now reaches Phenix but retains the strict-frame refusal for ~1e-14
-   native arithmetic. Expose the existing roundoff policy explicitly, then admit
+   derivatives including the six C1-dependent groups. W294 completes the installed
+   ordinary dry-run with explicitly requested existing roundoff policy. Now admit
    the wider receiver before a matched trial. Preserve sugar hands/pucker, glycosidic
    geometry and exact held context. Weak density does not identify a unique
    displacement. Coordinate
@@ -92,6 +91,14 @@ references and thermal/TLS semantics. File readback alone cannot prove those.
 
 <a id="validation-and-scientific-interpretation"></a>
 ## Validation and compatibility
+
+**W294:** the installed ordinary command completes a zero-cycle Phenix 2.2.1-6174
+preflight with byte-identical candidate, exact observations and 57 unchanged
+parallelity groups. The optional request policy reuses existing arithmetic bounds;
+legacy defaults stay unchanged. **3,025 tests + 234 subtests, no skips; 187
+relocated-installed focused checks** pass. Source ring shape is measured through
+Cedar's existing pucker reader; no new formula, preferred target, native fit or
+scientific acceptance. The W293 refusal below remains historical evidence.
 
 **W293:** 25 native checks and 460 complete-target evaluations pass for the exact
 19-atom proposal; no refinement. All 57 installed parallelity groups match the
