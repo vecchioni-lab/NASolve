@@ -7,6 +7,12 @@ observation and storage owners; it introduces no new scientific policy.
 
 ## Current metal-science edge
 
+The new metal input owner now refuses observation/phase metadata conflicting with
+the run's recorded original sources and records changing during import. The final
+focused set passes 206 checks; historical replay and phase-free ordinary intake
+remain supported. This is an input-consistency fix, not ordinary FT parent or
+mixed-runtime qualification. [Supply steps and evidence](metal-ordinary-receiving.md#supply-an-ordinary-parent-for-metal-intake).
+
 A01 remains partial; A02 stays gated. The current protected reciprocal XYZ/group-B
 route completes one native macrocycle (573 XYZ / 81 group-B observations) with
 both registered crystal links, exact original Free-R/HL and held Q/f′/f″/Hg B.

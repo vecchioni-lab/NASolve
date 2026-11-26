@@ -10,7 +10,9 @@ import importlib.metadata
 import json
 from pathlib import Path
 
-from ..checkpoints import CheckpointError, read_registry, resolve_checkpoint, inherited_paths
+from ..checkpoints import (CheckpointError, read_registry, resolve_checkpoint,
+                           inherited_paths, registry_path, _required_observations,
+                           _phase_reference, _ref_path)
 from ..postmr import _patch_narestraints_records, PostMRPreparationError
 from ..run_context import artifact_reference, dataset_directory
 from .binding import Atom, AtomKey, ModelSnapshot, ResidueKey, RoleMap
@@ -134,10 +136,58 @@ class MetalContext:
         return result
 
 
+def _metadata_snapshot(run):
+    """Pin the ordinary owner's small records, including an absent registry."""
+    values = []
+    for path in (run / 'report.json', registry_path(run)):
+        try:
+            values.append(path.read_bytes())
+        except FileNotFoundError:
+            values.append(None)
+    return tuple(values)
+
+
+def _check_original_sources(run, report, paths, sources):
+    """Bind new import metadata; numerical Free-R/HL audits remain downstream."""
+    original = _reference(_required_observations(report, run), run)
+    expected = report['inputs'].get('reflections_sha256')
+    if expected is not None and (
+            not isinstance(expected, str) or original['sha256'] != expected.casefold()):
+        raise RecipeError('Original observations differ from the frozen run checksum')
+    if original != sources['observations']:
+        raise RecipeError('Checkpoint observations differ from the original run source')
+    approved = _phase_reference(report, run)
+    selected = paths['phase_metadata']
+    if approved is None:
+        if selected is not None:
+            raise RecipeError('Checkpoint phases have no approved run source')
+        return
+    if selected is None:
+        raise RecipeError('Checkpoint phases omit the approved run source')
+    phase = _ref_path(approved, 'approved phase data', run)
+    if (_reference(phase, run) != sources['phases']
+            or selected.get('labels') != approved['labels']
+            or selected.get('source') != approved['source']):
+        raise RecipeError('Checkpoint phase file or labels differ from the approved run source')
+
+
+def _check_import_unchanged(run, before, paths, sources):
+    for name in ('model', 'observations', 'phases'):
+        current = _reference(paths[name], run) if paths[name] else None
+        if current != sources[name]:
+            raise RecipeError(name + ' changed during metal import')
+    if [_reference(p, run) for p in paths['restraints']] != sources['restraints']:
+        raise RecipeError('Restraints changed during metal import')
+    if _metadata_snapshot(run) != before:
+        raise RecipeError('Run report or checkpoint registry changed during metal import')
+
+
 def load_run_context(run, *, checkpoint='postmr', dataset_id=None, records=None) -> MetalContext:
     """Read one explicit generated W checkpoint; never write a registry/pointer."""
     try:
-        run, registry = read_registry(Path(run))
+        run = registry_path(Path(run)).parent.parent
+        before = _metadata_snapshot(run)
+        run, registry = read_registry(run)
         selected = resolve_checkpoint(registry, checkpoint)
         if selected.get('usable') is not True:
             raise RecipeError('Selected checkpoint is not usable')
@@ -149,6 +199,7 @@ def load_run_context(run, *, checkpoint='postmr', dataset_id=None, records=None)
         sources['restraints'] = [_reference(p, run) for p in paths['restraints']]
         sources['report'] = _reference(run / 'report.json', run)
         sources['phases'] = _reference(paths['phases'], run) if paths['phases'] else None
+        _check_original_sources(run, report, paths, sources)
         imported = read_pdb(paths['model'], checkpoint_id=selected['id'])
         if imported.snapshot.source_sha256 != sources['model']['sha256']:
             raise RecipeError('Model changed during import')
@@ -181,6 +232,7 @@ def load_run_context(run, *, checkpoint='postmr', dataset_id=None, records=None)
                'roles': roles.to_dict(), 'role_corrections': corrections,
                **imported.to_dict(), 'fixed_f_prime': True, 'native_ready': False,
                'qualification': 'Imported generated model; metal geometry and refinement are not qualified'}
+        _check_import_unchanged(run, before, paths, sources)
         doc['context_id'] = digest(doc)
         return MetalContext(run, imported, roles, canonical(doc))
     except (CheckpointError, PostMRPreparationError, OSError, ValueError, ImportError) as exc:

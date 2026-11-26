@@ -63,6 +63,13 @@ The previous timing stops and storage audit stay preserved at their original pin
 
 ## Immediate bridge from A01 to quantitative trials
 
+New-import source consistency is now checked in the existing metal input owner:
+conflicting recorded observation/phase sources and changing records refuse.
+The [supply route](metal-ordinary-receiving.md#supply-an-ordinary-parent-for-metal-intake)
+is demonstrated with a controlled prepared-publication fixture; the real private
+FT parent remains unavailable to ordinary intake. This does not close A01 or
+qualify mixed execution/geometry, and needs no repeated native control.
+
 Only two next decisions govern the near-term work:
 
 1. **Scientifically qualify the inspectable FT_Hg model.** The protected return,

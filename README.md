@@ -1055,6 +1055,13 @@ parent admission and campaign steps. A protected private XYZ/group-B cycle now
 returns paired maps; that execution result does not accept its geometry. A saved
 review bundle is not a selected solution.
 
+New metal imports check that the checkpoint's observations and optional phase
+file/labels agree with the run's recorded original sources. Changed inputs or
+records during import refuse. A valid run without experimental phases remains
+readable; this does not qualify it for phased geometry refinement. See the
+[ordinary-parent supply steps](docs/metal-ordinary-receiving.md#supply-an-ordinary-parent-for-metal-intake)
+if only a private fit or loose model is available.
+
 After the W AutoMR/PostMR stages generate a model, inspect its fixed A:12/B:4
 pair and observation-associated wavelength with:
 

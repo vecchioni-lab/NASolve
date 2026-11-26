@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bind new metal imports to the recorded original sources
+
+- Reject checkpoint observations or phase files/labels that conflict with the
+  run's recorded source, and detect input/report/registry changes during import.
+- Preserve phase-free ordinary intake, explicit paths, context schema 1 and
+  historical hypothesis replay. No native execution, checkpoint adoption or
+  scientific acceptance is added.
+- Document the existing checked-preparation publication route and the genuine
+  ordinary FT parent still needed before mixed-refinement integration.
+
 ### Qualify one protected metal XYZ/group-B return and paired maps
 
 - Record one complete guarded FT_Hg cycle and an exact output-only replay using

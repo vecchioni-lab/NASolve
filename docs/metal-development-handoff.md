@@ -25,6 +25,23 @@ and cache-retirement evidence: `branch-artifacts/Alder/docs-audit-20261126-01/`.
 
 <a id="a01-parameter-scope-2026-11-25"></a>
 
+## A01 input consistency — evening 26 November
+
+New metal imports now reject conflicting recorded observation/phase sources and
+changes during the read, using the existing ordinary owners. Eleven fail-before
+cases and **206 final focused checks** qualify this bounded change. Valid phase-free
+intake, relocated inputs and historical hypothesis replay remain supported.
+The checked-publication-to-import positive control is synthetic below the
+publication boundary; the real private FT source still correctly refuses.
+No native fit, new scientific result, selected-checkpoint change or full suite.
+
+The [operator supply steps and exact limits](metal-ordinary-receiving.md#supply-an-ordinary-parent-for-metal-intake)
+distinguish a genuine completed ordinary preparation from loose private output.
+A01 remains partial: that parent, the versioned mixed runtime/endpoint binding
+and acceptable FT geometry are still needed. Evidence:
+`branch-artifacts/Alder/a01-metal-intake-20261126-01/`; compact checkout:
+`ScienceCheckouts/Hazel/2026-11-26_metal-intake/index.html`.
+
 ## Current A01 — complete protected return and paired maps
 
 The unchanged reciprocal-only FT_Hg recipe now returns under the source-pinned

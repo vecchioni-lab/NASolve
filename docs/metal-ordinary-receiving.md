@@ -420,6 +420,77 @@ valid ordinary ML and explicit `keep`. No new fit or duplicate reader is justifi
 by this audit. Source/test pins and reviewed owners are retained locally at
 `a01-ordinary-record-boundary-20261126-01/review.json`; no tests were rerun.
 
+## Supply an ordinary parent for metal intake
+
+The existing `metal inspect`, `preview` and `build` input owner now refuses a
+checkpoint whose observation file differs from the run's recorded original
+source (including a different declared path with identical bytes), whose saved
+phase source/label order conflicts with approved AutoSol metadata, or whose
+records/inputs change during import. It reuses the ordinary source readers; no
+new registry, executor or parent schema is introduced. The general registry
+reader's historical behavior is unchanged. These checks close the **new metal
+import** metadata gaps documented above, not the entire mixed-policy admission.
+
+Ordinary ML with no approved experimental phases remains valid. Legacy absent
+observation checksums are not retrospectively verified. Existing hypothesis
+replay uses its saved context and retains its historical contract. The new
+check compares declared file/metadata ownership; actual indexed Free-R/HL,
+`ParameterScope`, original recipe/donor provenance and qualified mixed output
+still need their existing scientific/runtime checks.
+
+**What the operator can supply:** an actual ordinary W `AutoMR/run_NNN`
+directory, its exact preparation attempt or checkpoint identifier, and that
+run's unchanged original reflection and approved AutoSol files. A PDB, a private
+`round_001` directory, or an independently copied HL file is insufficient. The
+original Free-R flags must remain with the diffraction data; SAflags are not a
+substitute. A phase-free parent may be inspected but does not establish phased
+FT refinement. No new user action is required merely to read this note.
+
+For an already completed checked preparation, replace the run path and attempt
+number below with its recorded values, then use the existing commands one at a
+time. The first reads the exact result; the second explicitly publishes that
+completed result as the initial ordinary **REVIEW** parent; the third imports it.
+
+```sh
+nasolve cif-doctor prepared-result /path/to/dataset/AutoMR/run_001 --attempt 1
+```
+
+```sh
+nasolve cif-doctor publish-preparation /path/to/dataset/AutoMR/run_001 --attempt 1
+```
+
+```sh
+nasolve metal inspect /path/to/dataset/AutoMR/run_001 --checkpoint postmr --element Hg
+```
+
+Publication cannot replace an existing choice. If a parent is already published,
+inspect its exact checkpoint instead of republishing a different result. An
+interrupted preparation uses `cif-doctor preparation-status` and the existing
+[continuation owner](cif-doctor.md#checked-preparation-and-honest-recovery-c220).
+If no source-backed ordinary run exists, start from the original data through
+normal MR and checked preparation/AutoSol; do not fabricate reports around the
+private fitted model. These steps demonstrate the supported route, not a claim
+that a qualified ordinary FT parent is already available.
+
+**Evidence, 26 November:** 11 fail-before regressions; final focused set **206
+passed in 15.60 s** (Python 3.12.14, pytest 9.1.1). Positive controls include
+phase-free/phased imports, relocation after the old directory is gone, historical
+hypothesis replay, and the existing checked-publication fixture feeding metal
+intake while retaining REVIEW. That publication fixture stubs its lower chemistry
+result; it is not a real FT preparation or numerical HL proof. The actual pinned
+FT private ancestor still refuses in normal CLI with exit 2 for its missing run
+report; original model/data/phase hashes remain unchanged and no registry is
+created. No Phenix/Coot execution, native fit, full suite or scientific acceptance.
+
+Exact commands, logs, source hashes and the unchanged real-source refusal:
+`branch-artifacts/Alder/a01-metal-intake-20261126-01/`, runners A843–A844.
+The stale temporary test environment lacked pytest; the established workspace
+Python ran the checks. A843's unnecessary Gemmi package-metadata lookup failed
+after the expected refusal; A844 records the result without that dependency.
+Both failures are retained. No dependency installation or raw scientific output
+was needed. The compact checkout is
+`ScienceCheckouts/Hazel/2026-11-26_metal-intake/index.html`.
+
 ## Ordered integration steps
 
 1. **Admit a legitimate prepared parent.** Reuse Cedar's `PreparedBackbone`,

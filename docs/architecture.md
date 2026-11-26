@@ -1961,6 +1961,13 @@ pair slots to A:12/B:4 and reuses PostMR's effective donor-role corrections.
 and optionally obtains offline reference scattering; `metal preview` replays
 bindings and can export proposed PHIL edits. Both preserve checkpoint selection.
 Context schema 1 is distinct from immutable recipes and future experiment keys.
+New imports additionally compare selected observations against the original
+report source/checksum and optional phases against approved AutoSol file/label
+metadata through the existing owners. Report/registry bytes and imported input
+bytes must remain unchanged across the read. Phase-free ML and legacy absent
+checksums retain their meanings; no retrospective source proof is invented.
+This is file/metadata consistency, not indexed Free-R/HL or mixed-runtime
+qualification. Saved hypothesis replay continues to use its captured context.
 `metal build` consumes a source-bound placement plan and creates a separate
 numbered `Metal/hypothesis_NNN` review bundle. It preserves parent atom records
 and atomic state, binds the preview to serialized coordinates, and retains
