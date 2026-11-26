@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 26 November 2026, after C611. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 26 November 2026, after C613. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -42,8 +42,11 @@ The next transfer check examines the locked-sugar contacts on a separate mixed s
    contacts. C591 can retain every printed pair above an explicit overlap cutoff,
    including a second partner at the same atom. Check the existing mixed-scaffold
    evidence described below. The eight-residue design and its sulfur side are now fixed.
-   Three canonical ribose parents now survive placement of their modified bases.
-   Qualify the ordinary preparation, returned geometry and source-backed internal sulfur linkage. The four pseudouridine attachment corrections ship in NARestraints 1.1.4. Record what was constructed, what Phenix kept after
+   Three modified riboses kept their hand in a five-cycle coordinate fit. Two completed
+   ordinary preparation and refinement from a fresh Phaser run. Investigate the ring
+   stretching and distinguish the intended OP2 chemistry before promoting the panel.
+   Carry the proven 6MZ recovery into a fresh ordinary run, then test a different
+   attachment and the source-backed internal sulfur linkage. The four pseudouridine attachment corrections ship in NARestraints 1.1.4. Record what was constructed, what Phenix kept after
    refinement, and which sites require review. The known 13-change scaffold and the
    unfamiliar panel answer different questions. [Mixed-scaffold criteria](#q07--one-mixed-scaffold-ordinary-acceptance-run).
 3. **Join the branches on a returned molecule.** Willow/Pine owns strand identity, residue
@@ -1107,6 +1110,47 @@ passed. Its three unavailable formal-charge reports remain explicit. Offline rea
 touched 423 distinct files and rejected an equal-size table substitution. The first
 ordinary execution now receives the same table fingerprint that it froze at intake.
 
+C612 ran ReadySet on the three-site parent and fitted its selected model, combined
+component dictionary and original ordered restraints for five coordinate cycles.
+The first low-level preflight stopped at a parameter namespace. Passing the same
+inputs through the existing AutoRefine parameter adapter succeeded. The returned
+859-atom PDB matched the independent C608 five-cycle control byte for byte.
+An explicitly selected recovered snapshot supplied 6MZ to preparation. The 6MZ–T
+contact remained long at 3.37 Å against 2.80 Å. The three substitutions have
+no independent diffraction observations.
+
+C613 started a separate ordinary Phaser → Coot → ReadySet → AutoRefine run for
+C:12 2MG and A:7 5MC. It reused the two qualified isolated dictionaries. The
+operator supplied only the recipe, input data and search model. All eight sugar
+stereocenters and four flanking links survived the five-cycle fit (1.594–1.609 Å).
+Phenix printed all 50 requested pair distances and 38 native backbone links.
+The ordinary child `refine-001` reached Rwork/Rfree 0.2213/0.2360 on the original
+Free-R assignments. Both the model composition and refinement strategies differ
+from the three-site control. A separate change to the source C2′ stereo declaration
+invalidated the old 6MZ dictionary and its atom-order recovery evidence.
+
+All three modified rings require review before extending this panel. Both trials began
+with 2MG N9–C4 at 1.377 Å and 5MC N3–C4 at 1.326 Å. Their printed targets were
+1.388 Å (σ 0.031) and 1.352 Å (σ 0.024). The two-site ordinary return reached
+1.496 and 1.439 Å. The three-site coordinate-only return reached 1.611 and
+1.573 Å. Its 6MZ N9–C4 also reached 1.530 Å against a 1.393 Å target.
+Two neighboring ordinary DNA ring bonds stayed within 1.2 restraint widths in
+the matched three-site comparisons. Both stock and checked Phenix stretched the
+modified rings in the first cycle. Removing the three local pairs’ eight distance
+and fourteen angle restraints left the distortions. Removing all 193 supplementary
+NARestraints terms also left all three bonds 8.3–14.4 widths long. Conversely,
+with the full pairing and stacking set and zero experimental coordinate weight,
+all three returned within two widths. Without either contribution, all returned
+within 0.6 widths. A positive coordinate weight fixed to one tenth of the stock
+one-cycle reference improved all three ring bonds. Two additional complete stock
+five-cycle fits compared automatic weighting with that fixed coefficient. Deviations
+for 2MG, 5MC and 6MZ changed from 4.9, 3.9 and 2.3 widths to 2.9, 2.9 and 0.9.
+Rwork/Rfree changed from 0.2831/0.2652 to 0.2940/0.2767. Both fits used the same
+full pairing and stacking restraints and Free-R assignments. This is a tradeoff
+on hypothetical substitutions. Next compare source-supported local ring widths
+and neighboring geometry on the same parent before selecting a wider weight change.
+Phosphate protonation is a separate question. See the Q13 note below.
+
 C601 found the source-preserving generator had introduced a 5.779 Å bond between
 O4′ and ring C2. All 42 source edges were present. The ten bonds of the purine
 ring used its already approved aromatic representation. The recovery now checks
@@ -1487,6 +1531,15 @@ Establish the intended linked phosphate state before any general H/charge/target
 transition; coordinate OP3 removal and successful mechanical delivery do not
 decide it. This is not a diagnosed cause of DF glycosidic stretching. Reuse the
 existing Q13 contract; exact hashes live in `df_retained_phosphate_state_2026_11_17`.
+
+C613 found the same OP2 distinction in internal 2MG, 5MC and 6MZ. Each source
+and the ReadySet dictionary retained a neutral OP2 with HOP2 and a single P–OP2
+bond. After the explicit OP3 reaction, Phenix still used P–OP2 targets of
+1.572–1.581 Å. The three neighboring ordinary DNA controls used 1.480 Å for
+both nonbridging bonds. Both five-cycle returns followed the respective targets.
+A chemically declared conversion to an internal monoanionic phosphodiester would
+need to carry H, charge and numerical targets together. Reuse the existing Q13
+source-state work. The present result does not assign a proton from diffraction.
 
 **C265 concrete holdover:** curated 1AP has singly bonded terminal OP3 with charge
 −1 and no H. The explicit native backbone rule supports a neutral hydroxyl leaving

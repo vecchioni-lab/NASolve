@@ -1,7 +1,7 @@
 # NASolve development handoff
 
-Updated 26 November 2026. Cedar is at the Q06 refinement check. Its purpose is to let a
-scientist use a supported modified nucleotide without hand-editing a CIF. Coot builds the
+Updated 26 November 2026. Cedar is testing the first three Q07 substitutions.
+Q06 keeps the PDU B:4 site under review. The aim is for a scientist to use a supported modified nucleotide without hand-editing a CIF. Coot builds the
 residue, NARestraints supplies the intended pairs and stacks, and Cedar checks what
 ReadySet and Phenix actually use. The [completion queue](cif-doctor-completion-queue.md#pipeline-position) owns the work order. The [capability table](cif-doctor.md#current-capability-boundary) owns the support
 claims.
@@ -48,10 +48,26 @@ sugar pucker and two against the literal dictionary) into the linked model.
 The native site-specific modification and pucker matched at all three sites. All
 148 available checks passed. Phenix exposed no formal charges for the three sites.
 The saved result reopened after relocation with the original run, installed workbook,
-Phenix and local cache inaccessible. Preserve the separate native refinement evidence.
-The remaining challenge includes different sugar bridges, a C-linked base and an
-internal phosphorothioate with a specified sulfur side. The proposed catalogue-wide
-mutation sweep belongs to Q12, after this panel. [Queue and scientific boundaries](cif-doctor-completion-queue.md#pipeline-position).
+Phenix and local cache inaccessible.
+
+C612–C613 took the actual ReadySet delivery through five native cycles. All three
+sugars retained their hand. Two substitutions also completed the ordinary Phaser,
+Coot, ReadySet and AutoRefine commands from a fresh run with qualified dictionaries.
+Read the ring bonds before advancing the panel. The two-site fit stretched 2MG
+N9–C4 and 5MC N3–C4 to 1.496 and 1.439 Å. The three-site coordinate-only fit
+stretched them further to 1.611 and 1.573 Å. The targets were 1.388 and 1.352 Å.
+6MZ N9–C4 reached 1.530 Å against 1.393 Å. One-cycle controls localized the large
+stretch to the balance with diffraction. Dropping all external pair and stack terms
+left it, while zero coordinate diffraction weight restored all three bonds to within
+two restraint widths with the complete geometry. With the same full restraint set,
+a lower positive weight reduced the three ring discrepancies to 0.9–2.9 widths in
+five stock cycles. Rfree rose from 0.2652 to 0.2767. Test local chemical restraint
+widths and neighboring geometry before recommending a global weight. The source
+OP2 proton also reaches each linked phosphate dictionary. Reuse the Q13 state
+check before changing it. A fresh three-site run still needs to select the
+proven 6MZ recovery through ordinary preparation.
+The C-linked base, distinct sugar bridges and specified sulfur side remain in Q07.
+The catalogue-wide construction sweep follows in Q12. [Queue and scientific boundaries](cif-doctor-completion-queue.md#pipeline-position).
 
 ## What already works
 
@@ -106,7 +122,10 @@ five-cycle linked Phenix comparison with the same input and Free-R assignments.
 
 The last recorded standalone full Cedar pass is C406 at `58965920`, with 12,043 tests passed, 293
 subtests passed and two native opt-in skips. The later combined C407 experiment had one
-location-dependent fixture failure. The fixture correction has focused coverage. Current
-Cedar and any combined integration revision still require their own full qualification.
+location-dependent fixture failure. The fixture correction has focused coverage.
+C611 passed 419 focused acquisition and linked-chemistry tests and another 108
+focused preparation and sugar tests. C612–C613 used native Phenix 2.2.1-6174,
+Coot 1.3.3 and NARestraints 1.1.4. The trial used the original scaffold observations
+and Free-R flags. Cedar and any combined integration revision still require their own full qualification.
 Provisional integration into Pine and eventual main review are separate decisions. [Archived commands and receipts](history/README.md#november-26-cedar-roadmap-audit) ·
 [CIF Doctor evidence ledger](cif-linked-native-registration-evidence.json).
