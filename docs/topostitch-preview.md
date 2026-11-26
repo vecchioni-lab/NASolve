@@ -3470,6 +3470,17 @@ W240 qualifies Cedar C545 with Phenix **2.2.1-6174**; it does not claim arbitrar
 Cedar/native version compatibility. Install the `topology` extra for Gemmi. This
 route does not require SciPy; the unchanged geometric fitting route still does.
 
+**W293 worker compatibility:** an explicit Cedar package now supplies its native
+runtime and all relative companion imports in an isolated namespace throughout
+worker execution. This avoids mixing older Willow helpers with newer Cedar
+helpers. The worker imports only the refinement and phosphate runtime owners;
+Phenix Python does not need catalogue-only spreadsheet dependencies for that
+step. Controller dependencies remain unchanged. Source pins, request fields,
+six-atom selection, force calculations and exact-frame defaults are unchanged.
+This fixes branch composition; it does not establish arbitrary Cedar-version
+compatibility or qualify a combined release. Exact validation and the separate
+19-atom diagnostic are recorded in the [W293 evidence](topostitch-periodic.md#w293--qualify-coupled-forces-and-isolate-native-worker-imports).
+
 The API is `topostitch_phosphate.run_registered_phosphate_refinement(request_path,
 output_directory, *, phenix, cedar_source=None, timeout_seconds=1200, preflight_only=False)`.
 The historical request uses these mandatory schema-1 fields; W250 adds the

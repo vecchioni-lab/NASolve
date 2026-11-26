@@ -273,8 +273,8 @@ def run_registered_phosphate_refinement(request_path, output_directory, *, pheni
         plan['frozen_files'] = {str(p.relative_to(root)): sha256(p.read_bytes()).hexdigest() for p in root.rglob('*') if p.is_file()}
         _save(root/'plan.json', plan)
         package = Path(__file__).resolve().parent.parent
-        native_package = Path(cedar['cif_attachment_native'].__file__).resolve().parent
-        bootstrap = "import sys;sys.path.insert(0,sys.argv[1]);import nasolve;nasolve.__path__.append(sys.argv[2]);from nasolve.topostitch_phosphate import _worker;_worker(sys.argv[3])"
+        native_package = Path(cedar['cif_attachment_native'].__file__).resolve().parent.parent
+        bootstrap = "import sys;sys.path.insert(0,sys.argv[1]);from nasolve.topostitch_phosphate import _worker;_worker(sys.argv[3],cedar_source=sys.argv[2])"
         frozen_bytes = {root/p: (root/p).read_bytes() for p in plan['frozen_files']}
         frozen_bytes[root/'plan.json'] = (root/'plan.json').read_bytes()
         report = dict(status='FAILED', scientific_acceptance=False, checkpoint_created=False, phases=[])
@@ -314,14 +314,27 @@ def run_registered_phosphate_refinement(request_path, output_directory, *, pheni
         return report
 
 
-def _worker(phase):
-    """Native-only worker, entered by the maintained product process owner."""
+def _worker(phase, *, cedar_source=None):
+    """Bind native owners with their own companions, including in split checkouts.
+
+    Extending the Willow package path would let an older, already-imported
+    companion satisfy a newer Cedar import. Reuse the same isolated owner
+    loader as the controller, and retain that namespace throughout execution.
+    """
+    from .topostitch_captured_job import _cedar_modules
+    names = ('cif_refinement_runtime', 'cif_phosphate_runtime')
+    with _cedar_modules(cedar_source, names) as cedar:
+        return _worker_owned(phase,
+            run_compatible_refinement=cedar['cif_refinement_runtime'].run_compatible_refinement,
+            phosphate_runtime=cedar['cif_phosphate_runtime'].RegisteredPhosphateRuntime)
+
+
+def _worker_owned(phase, *, run_compatible_refinement, phosphate_runtime):
+    """Native execution using the already-bound Cedar owners."""
     from functools import wraps
     from contextlib import nullcontext, contextmanager
     from unittest.mock import patch
     from phenix.programs.phenix_refine import Program
-    from .cif_refinement_runtime import run_compatible_refinement
-    from .cif_phosphate_runtime import RegisteredPhosphateRuntime
     if phase not in ('preflight', 'fit'): raise ValueError('Unknown phase')
     root = Path.cwd().parent; plan = _json((root/'plan.json').read_bytes()); controls = plan['controls']
     if phase == 'fit' and plan.get('preflight_only', False):
@@ -477,7 +490,7 @@ refinement {{
             with patch.object(driver, 'write_before_run_outputs', inspect_initialized), patch.object(lbfgs, 'compute_target', inspect_target):
                 yield
         boundary = phased_boundaries()
-    owner=RegisteredPhosphateRuntime(inspection,raw)
+    owner=phosphate_runtime(inspection,raw)
     report=dict(status='FAILED',phase=phase,scientific_acceptance=False)
     try:
         with patch.object(Program,'validate',validate), boundary, owner.active():

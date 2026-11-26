@@ -14941,3 +14941,102 @@ C1-dependent planes, both sugar hands/pucker, fixed context and packing before
 one predeclared matched recovery. Preserve original observations/Free-R and
 separate the exploratory trial from ordinary receiver admission and scientific
 acceptance. No further six-atom weight sweep or deferred stress test is needed.
+
+
+## W293 — Qualify coupled forces and isolate native worker imports
+
+The exact W292 proposal now passes a **complete native geometry derivative
+check**, using Phenix **2.2.1-6174** and the existing Cedar image-force and
+corrected parallelity owners. This is a dry-run and numerical evaluation, with
+**zero optimization or refinement**. It retains the original W288 `refine-005`
+source; no admission is transferred from the separate ordinary PDU parent.
+
+All **19 selected / 843 held atoms**, all original ordinary proxy memberships
+and parameters, the eight declared seam terms, and all six C1′-dependent
+plane/parallelity groups survive initialization. The full manager has **44
+planarity and 57 parallelity groups**. Against the original capture, only the
+expected one image bond, four angles and three torsions are added. In particular,
+no original chirality, monomer-plane, pair or stack restraint was dropped to make
+the proposed sugar movement easier.
+
+Two probes cover all **57 Cartesian variables**: the original point and a small
+nonuniform displacement, `0.002 sin(i+1)` Å per coordinate. Central differences
+at `1e-4` and `1e-5` Å require **460 full-native objective evaluations**. Worst
+absolute derivative discrepancies are respectively **6.50e-5** and **7.00e-7**,
+within the previously used `1e-3` diagnostic bound. The finite-difference check
+includes native nonbonded forces; it does not prove global physical feasibility
+or successful large-displacement recovery. All model coordinates, B/Q, **1,785
+work / 124 Free-R observations**, and original files are unchanged afterward.
+The worker stopped normally after 80.25 s and restored its hooks; **25 checks pass**.
+
+**Packing boundary:** two actual native pair captures reproduce exactly, with
+**7,991 directed ASU/simple rows**. A separate attempt to feed that live view
+into the existing full-capture arithmetic reviewer refuses because the live view
+explicitly is not a complete capture. The refusal is retained, not bypassed by
+relabeling the payload. Raw repeatability and complete-target numerical agreement
+do not imply that the full packing-review API accepted this evidence. Rowan and
+Linden agree to reuse a shared evaluator with separately checked entry points if
+that additional interface is needed; no duplicate packing kernel was added.
+
+**Maintained compatibility fix:** the ordinary installed command exposed a
+split-checkout import collision: extending Willow's package path allowed its old
+`ligand_profiles` to satisfy a newer Cedar import. The native worker now loads
+Cedar runtime owners and their relative companions in one isolated namespace,
+removed on success or exception. A first broad-loader version also imported
+catalogue code requiring `openpyxl` inside Phenix Python. The final worker loads
+only `cif_refinement_runtime` and `cif_phosphate_runtime`; the controller keeps
+its existing capture/catalogue imports. Three regression cases exercise both
+phases and exception cleanup with an intentionally incompatible old companion
+and unavailable catalogue dependency. Their fail-before logs are retained.
+
+**Code validation:** 174 focused host tests pass, with one explicit iotbx skip.
+Under Phenix Python 3.11.15, the final source passes **3,013 tests + 234 subtests,
+no skips** (239.67 s); the relocated clean installation passes all **175 focused
+checks** and installed CLI help. All installed Python files match the source;
+Python 3.10 syntax checks pass. Original build/install paths are removed before
+installed tests, and 8,081,140 bytes of disposable staging are removed afterward.
+The complete run is justified by changing the shared owner loader; it is a Willow
+software regression, not a native fit or combined release.
+
+The relocated ordinary command now reaches and completes the Phenix dry-run,
+then truthfully returns **FAILED** at the legacy exact-frame guard. Maximum
+changes are **1.4211e-14 Å** in cell lengths, **2.8422e-14°** in angles and
+**4.2633e-14 Å** in the orthogonalization matrix. A read-only postmortem with the
+already-qualified explicit roundoff policy passes; all observations are exactly
+unchanged and fixed coordinates/B/Q remain protected. This does not convert the
+failed command to a pass. An explicit request option is needed before this ML
+route may use that existing policy; strict legacy behavior remains unchanged.
+
+Exact test commands are captured as argv in `installation.json`: source
+`pytest -q -rs -p no:cacheprovider tests`, then the same runner on the relocated
+`test_topostitch_phosphate.py`, `test_topostitch_captured_job.py` and
+`test_topostitch_checkpoint.py`. Both use `PYTHONDONTWRITEBYTECODE=1`, explicit
+source/installed roots and copied pure-Python dependencies. The installed command
+is `nasolve-topostitch-fit native-phosphate --request ordinary-request.json
+--out ordinary-installed-preflight --phenix PHENIX_ROOT --cedar-source CEDAR_SRC
+--timeout 300 --preflight-only`. Exact paths are local provenance in the receipt;
+no whole-run relocation claim follows from this installation check.
+
+The ordinary request schema, six-atom mask, physical force policy, strict ML
+frame default, MLHL guard and checkpoint selection behavior are unchanged. This
+patch is about runtime ownership and dependency isolation, not a general merged
+release or a new 19-atom receiver. Old branch sources, runs, failures and selected
+models remain intact. Generated scientific payloads are excluded from Git.
+
+**Evidence:** NASolve anchor `branch-artifacts/willow/w293-coupled-native/` retains
+`attempt-03/native/science.json`, the two derivative tables, actual live geometry
+and packing, exact process/source/observation pins and stopped receipt. The first
+two probe attempts failed during Python owner imports, before a native run.
+`packing-review-refusal.json` records the separate unsupported review entry.
+`qualify_runtime_imports.py` and `qualification-02/installation.json` record exact
+validation argv, dependencies, source/installed hashes, initial native-command
+outcome and disposable-environment removal. The initial installation qualification
+and its openpyxl failure remain separate evidence, not a final-source pass.
+
+**Next:** complete ordinary native intake, then explicitly admit the source-bound
+coupled scope with sugar stereochemistry/pucker, glycosidic and outer-phosphate
+boundaries and serialized fixed context checked. Reuse this numerical result;
+do not repeat its 460 evaluations without a force change or new concern. One
+predeclared recovery comparison remains downstream; W288 is still the latest
+actual refinement. Fragmentation/LNA and nonzero-f″ metal stress tests remain
+in their existing deferred pipeline.

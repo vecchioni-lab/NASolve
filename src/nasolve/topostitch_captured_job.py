@@ -102,21 +102,21 @@ def _save(path, value, *, compact=False):
 
 
 @contextmanager
-def _cedar(source=None, *, guard_live_policy=False):
-    """Use installed owners, or isolate one explicitly trusted developer checkout.
+def _cedar_modules(source, names):
+    """Load only requested trusted owners in one isolated developer namespace.
 
-    A fresh temporary namespace permits repeated jobs without reusing stale
-    imported developer code. It is removed even if import or execution fails.
+    Native workers can bind runtime helpers without importing catalogue or
+    spreadsheet tools. The caller supplies module names in code, never a saved
+    artifact. Relative imports retain the selected owner's companion modules.
     """
+    if (not isinstance(names, tuple) or not names or len(set(names)) != len(names)
+            or any(not isinstance(n, str) or not n.isidentifier() for n in names)):
+        raise ValueError('Require distinct owner module names')
     package_root = Path(__file__).resolve().parent if source is None else Path(source).resolve(strict=True)/'nasolve'
     name = __package__ if source is None else '_topostitch_cedar_'+uuid4().hex
     if source is not None:
         package=types.ModuleType(name);package.__path__=[str(package_root)];sys.modules[name]=package
     try:
-        names=('cif_attachment_native','cif_native_validation','cif_candidate_usability',
-               'cif_native_nonbonded','cif_native_monomers','cif_fixed_geometry','phenix_runtime',
-               'cif_captured_mixed_gradients','campaign_process','cif_selected_environment')
-        if guard_live_policy:names+=('cif_live_nonbonded_policy',)
         modules={n:importlib.import_module(name+'.'+n) for n in names}
         if any(not Path(m.__file__).resolve().is_relative_to(package_root) for m in modules.values()):
             raise ValueError('Cedar owner resolved outside the selected package')
@@ -125,6 +125,17 @@ def _cedar(source=None, *, guard_live_policy=False):
         if source is not None:
             for key in list(sys.modules):
                 if key==name or key.startswith(name+'.'):del sys.modules[key]
+
+
+@contextmanager
+def _cedar(source=None, *, guard_live_policy=False):
+    """Use installed capture owners or isolate one explicit developer checkout."""
+    names=('cif_attachment_native','cif_native_validation','cif_candidate_usability',
+           'cif_native_nonbonded','cif_native_monomers','cif_fixed_geometry','phenix_runtime',
+           'cif_captured_mixed_gradients','campaign_process','cif_selected_environment')
+    if guard_live_policy:names+=('cif_live_nonbonded_policy',)
+    with _cedar_modules(source,names) as modules:
+        yield modules
 
 
 def _unchanged(*records):

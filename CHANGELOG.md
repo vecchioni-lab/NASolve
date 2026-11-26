@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W293 — Qualify coupled-sugar forces and isolate native worker owners
+
+- Bind the native phosphate worker to the chosen Cedar package and its own
+  companion modules. Load only the two runtime owners in Phenix Python, avoiding
+  mixed-branch imports and unnecessary catalogue/spreadsheet dependencies.
+- Preserve request schemas, six-atom admission, exact-frame defaults, force
+  policy and checkpoint selection. The broader 19-atom numerical diagnostic
+  retains all six C1-dependent plane groups; it is not a wider product receiver
+  or a completed refinement. Full packing-review intake remains a separate gate.
+
+
 ### W292 — Map the proposed two-sugar movement scope
 
 - Record a source-bound 19-atom proposal, its local bonds, sugar signs and complete

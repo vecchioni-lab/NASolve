@@ -489,3 +489,38 @@ def test_native_phased_policy_omits_defaults_without_changing_live_groups(tmp_pa
         assert group.f_prime == expected['f_prime']
         assert group.f_double_prime == expected['f_double_prime']
         assert group.refine == []
+
+
+@pytest.mark.parametrize("phase,fail", [("preflight",False),("fit",False),("preflight",True)])
+def test_native_worker_keeps_cedar_companion_imports_isolated(tmp_path,monkeypatch,phase,fail):
+    import sys
+    import types
+    import nasolve
+    package=tmp_path/'nasolve';package.mkdir()
+    # Native Python need not provide catalogue/spreadsheet dependencies.
+    (package/'cif_attachment_native.py').write_text('raise ImportError("Catalogue-only dependency unavailable")\n')
+    (package/'ligand_profiles.py').write_text('def companion(): return "trusted Cedar"\n')
+    (package/'cif_refinement_runtime.py').write_text(
+        'from .ligand_profiles import companion\ndef run_compatible_refinement(): return companion()\n')
+    (package/'cif_phosphate_runtime.py').write_text(
+        'from .ligand_profiles import companion\nclass RegisteredPhosphateRuntime:\n    value=companion()\n')
+    # An already-imported old companion cannot satisfy the newer Cedar runtime.
+    legacy=types.ModuleType('nasolve.ligand_profiles')
+    monkeypatch.setitem(sys.modules,'nasolve.ligand_profiles',legacy)
+    original_path=list(nasolve.__path__);observed=[]
+    def receive(actual_phase,*,run_compatible_refinement,phosphate_runtime):
+        observed.append(actual_phase)
+        assert run_compatible_refinement()=='trusted Cedar'
+        assert phosphate_runtime.value=='trusted Cedar'
+        assert run_compatible_refinement.__module__.startswith('_topostitch_cedar_')
+        if fail:raise RuntimeError('native execution refused')
+        return 'returned'
+    monkeypatch.setattr(job,'_worker_owned',receive,raising=False)
+    before=set(sys.modules)
+    if fail:
+        with pytest.raises(RuntimeError,match='native execution refused'):
+            job._worker(phase,cedar_source=tmp_path)
+    else:assert job._worker(phase,cedar_source=tmp_path)=='returned'
+    assert observed==[phase] and list(nasolve.__path__)==original_path
+    assert sys.modules['nasolve.ligand_profiles'] is legacy
+    assert not any(n.startswith('_topostitch_cedar_') for n in set(sys.modules)-before)
