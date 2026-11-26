@@ -2147,6 +2147,7 @@ class _PreparedDictionaryInputs:
     components: tuple[str, ...]
     supplementary_phils: tuple[Path, ...]
     furanose_entry_id: str | None = None
+    explicit_na_policy: Path | None = None
 
 
 _PostMRReturn = TypeVar("_PostMRReturn")
@@ -2557,6 +2558,7 @@ def _prepare_postmr(
     compatibility_codes = {
         code: ligand.narestraints_label for code, ligand in CURATED_LIGANDS.items()
     }
+    explicit_na_policy = None
     if selected_scope == "all":
         from .full_model_restraints import prepare_full_model_restraints
         full_root = restraints_dir / "full_model"
@@ -2569,8 +2571,9 @@ def _prepare_postmr(
             raise PostMRPreparationError(f"Full-model NARestraints preparation failed: {exc}") from exc
         narestraints = full_root / narestraints_report["restraint_file"]
         narestraints_report["restraint_file"] = frozen_reference(narestraints, run)
-        narestraints_report["compiler_receipt"] = frozen_reference(
-            full_root / narestraints_report["compiler_receipt"], run)
+        compiler_receipt = full_root / narestraints_report["compiler_receipt"]
+        explicit_na_policy = compiler_receipt.parent
+        narestraints_report["compiler_receipt"] = frozen_reference(compiler_receipt, run)
         narestraints_report["scope_source"] = "explicit-postmr-override" if restraint_scope is not None else "frozen-input-card"
         restraint_paths.append(narestraints)
     elif modified_pairs_only:
@@ -2746,7 +2749,8 @@ def _prepare_postmr(
     if _dictionary_handler is not None:
         return _dictionary_handler(_PreparedDictionaryInputs(
             run, report, prepared, tuple(ligand_codes), tuple(restraint_paths),
-            _furanose_input.entry_id if _furanose_input is not None else None))
+            _furanose_input.entry_id if _furanose_input is not None else None,
+            explicit_na_policy=explicit_na_policy))
 
     copied_cifs: list[Path] = []
     dictionary_input_audit: list[dict] = []

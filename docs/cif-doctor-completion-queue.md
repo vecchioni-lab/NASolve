@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 26 November 2026, after C598. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 26 November 2026, after C599. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -989,8 +989,13 @@ three sites. C598 used the same rule from a normal input card on a fresh Phaser
 solution (TFZ 17.1). All 791 unselected atoms and the six links were preserved.
 NARestraints compiled 19 pairs and 38 stacks. The checked request then tried to
 interpret those already compiled restraints as new instructions and stopped at
-the disabled secondary-structure setting. Reuse the explicit compiler receipt.
-The remaining five sites and actual refinement have separate outcomes.
+the disabled secondary-structure setting. C599 reused its verified compiler receipt
+on a second fresh Phaser solution with the same input card. The checked request
+bound the 50 pair bonds, 86 angles and 57 parallelity restraints. The two isolated
+2MG models both received Phenix’s native `rna2p` sugar adjustment. Native
+interpretation finished, but the isolated exact-target check stopped. Inspect the
+installed sugar targets and their active restraints before advancing. The other
+five sites and diffraction refinement still need their own evidence.
 
 After the qualified Q06 consumer is available, add a separate builder generalization
 control before the proposed Cedar integration with main. Mutate **eight residues** into

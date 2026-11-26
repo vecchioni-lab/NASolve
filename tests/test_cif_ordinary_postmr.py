@@ -13,6 +13,36 @@ def call(run,sdk,data,**kwargs):
     return initialize_ordinary_postmr_request(run,sdk,expected_dialect='CHEMICAL_COMPONENTS_CIF',data_root=data,**kwargs)
 
 
+def test_checked_postmr_binds_the_whole_model_compiler_output_once(tmp_path, monkeypatch):
+    import nasolve.cif_ordinary_postmr as entry
+
+    run, ready, _, data = setup(tmp_path)
+    sdk, _ = sdk_at(tmp_path / 'sdk')
+    sdk.executables['phenix.ready_set'].write_bytes(ready.read_bytes())
+    compiled = run / 'PostMR' / 'Restraints' / 'full_model' / 'compiled'
+    phil = compiled / 'explicit_na_policy.phil'
+    receipt = compiled / 'explicit_na_policy.json'
+
+    def full_model(model, output, **kwargs):
+        assert output == compiled.parent
+        compiled.mkdir(parents=True)
+        phil.write_text("refinement {\n pdb_interpretation {\n  secondary_structure {\n   enabled = False\n  }\n }\n}\n")
+        receipt.write_text('{}')
+        return {'restraint_file': 'compiled/' + phil.name, 'compiler_receipt': 'compiled/' + receipt.name}
+
+    def receive(model, report, components, source_output, output, **kwargs):
+        assert kwargs['explicit_na_policy'] == compiled
+        assert list(kwargs['supplementary_phils']) == [phil]
+        assert kwargs.get('literal_na_inputs') is None
+        return {'test_intake': True}
+
+    monkeypatch.setattr('nasolve.full_model_restraints.prepare_full_model_restraints', full_model)
+    monkeypatch.setattr(entry, 'initialize_postmr_dictionary_request', receive)
+    with patch.object(entry, 'prepare_postmr_literal_inputs', side_effect=AssertionError('Compiled restraints were reinterpreted')):
+        result = call(run, sdk, data, restraint_scope='all')
+    assert result.request == {'test_intake': True}
+
+
 @pytest.mark.parametrize('targets',[False,True])
 @pytest.mark.parametrize('automatic',[False,True])
 @pytest.mark.parametrize('with_phil',[False,True])

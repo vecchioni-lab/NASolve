@@ -38,10 +38,13 @@ Coot placement of 2MG, 5MC and 6MZ. All six neighboring links, the sugar hand an
 the original scaffold displacement values survived. Three unwanted internal OP3
 oxygens were removed through the existing phosphate check. C598 reproduced
 this on a fresh Phaser solution through a normal three-site mutation card. The
-whole-model pairing/stacking file was already compiled when checked preparation
-tried to compile it again. The next step is to pass the verified compiler output
-into the existing request and then measure a returned refinement. The sulfur
-linkage remains a separate chemical state. The [Q12 workbook sweep](cif-doctor-completion-queue.md#q12--resolve-catalogue-mappings-and-maintain-support-coverage)
+whole-model pairing/stacking file was already compiled. C599 bound the genuine
+compiler receipt to the normal request on a second fresh solution. Its 50 pair
+bonds, 86 angles and 57 parallelity restraints reached checked preparation.
+Both isolated 2MG seeds then triggered Phenix’s RNA sugar-pucker adjustment.
+Their exact dictionary checks stopped before diffraction refinement. Check the
+installed sugar targets against those two native readings. The sulfur linkage
+remains a separate chemical state. The [Q12 workbook sweep](cif-doctor-completion-queue.md#q12--resolve-catalogue-mappings-and-maintain-support-coverage)
 follows the eight-site challenge.
 [Release and tested installation](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.4).
 

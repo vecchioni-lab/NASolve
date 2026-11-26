@@ -16,6 +16,10 @@ entries are reconstructed from repository history.
   preserves the sugar, backbone and their displacement values and checks any
   internal OP3 removal against both neighboring links.
 
+- Checked PostMR preparation now reuses the verified whole-model NARestraints
+  output when `restraint_scope = all`. The saved request binds the original model,
+  compiled restraints and sources through the existing compiler receipt.
+
 - Diagnostic runners assembled from a wheel installation verify the captured
   NARestraints package against its installed file record. A virtual environment
   inside another repository can no longer give the runner the wrong Git revision.

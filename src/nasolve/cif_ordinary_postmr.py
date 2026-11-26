@@ -177,7 +177,7 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
                   and _bytes(selected['report']) == _bytes(construction['selection']['report']),
                   'Prepared components differ from the captured source selection')
         literal_inputs = None
-        if inputs.supplementary_phils:
+        if inputs.supplementary_phils and inputs.explicit_na_policy is None:
             prepare_postmr_literal_inputs(inputs.model_path,list(inputs.supplementary_phils),sources,literal,
                 data_root=data_root,ready_set_executable=configured.ready_set_executable)
             literal_inputs = literal
@@ -218,6 +218,7 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
         record = initialize_postmr_dictionary_request(inputs.model_path,inputs.run_report,components,None,request,
             consumer=configured.consumer,ready_set_executable=None,supplementary_phils=list(inputs.supplementary_phils),
             literal_na_inputs=literal_inputs,frozen_sources=sources,construction_inputs=inputs.run_directory,
+            **({'explicit_na_policy': inputs.explicit_na_policy} if inputs.explicit_na_policy is not None else {}),
             **({"select_anionic_phosphate":True} if select_representation else {}),
             continuation_options=continuation_options,
             **({'automatic_plane_support':True} if automatic_plane_support else {}),
