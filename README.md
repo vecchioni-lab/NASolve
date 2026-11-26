@@ -78,7 +78,7 @@ $env:PYTHONPATH = (Join-Path $PWD "src")
 .\.venv\Scripts\python.exe -m nasolve check
 ```
 
-`./nasolve check` discovers and validates Phenix, Coot, and NARestraints. If an
+`./nasolve check` reports the installed NARestraints version and compares it with the latest published GitHub release. Use `./nasolve check --offline` for a local-only check. Fresh installations use the latest stable source archive. Existing environments update only when the operator runs the printed pip command. The check also discovers and validates Phenix and Coot. If an
 external tool is not found automatically, see [Configure external
 tools](#configure-external-tools).
 

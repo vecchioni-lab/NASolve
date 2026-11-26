@@ -8,6 +8,10 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- New installations use the latest stable NARestraints GitHub release. `nasolve check`
+  compares the installed and published versions and offers an upgrade command.
+  `nasolve check --offline` checks the local tools without a network request.
+
 ### Changed
 
 - Added schema-1 semantic `terminal_geometry_protection` checkpoint provenance. Protected sites, sigma, Phenix-derived ideal source, mechanism, and the run-local protection restraint artifact now inherit with refinement/manual children; attempts to stack a second protection record fail closed.
