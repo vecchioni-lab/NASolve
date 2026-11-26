@@ -1,7 +1,8 @@
 # NASolve development handoff — Willow
 
-**W292 coupled-sugar scope, 2026-11-26.** Latest refinement: **W288**. Latest
-maintained code: **W291**, `4d10f97e66e03d604f955e7e237af5423952f0ac`.
+**W293 coupled native forces and runtime compatibility, 2026-11-26.** Latest
+refinement: **W288**. Latest maintained code: **W293**,
+`3370eb096f1680ec538d6a7978b70b8c64c1d6ad`.
 The [audited roadmap](topostitch-roadmap.md) owns status and the next decision;
 [periodic evidence](topostitch-periodic.md) and [API contracts](topostitch-preview.md)
 own exact methods, commands, hashes and limitations. This handoff is not a run diary.
@@ -22,7 +23,7 @@ must work without an AI service. A representation change does not repair a gap.
 | Whole-original-asym diagnostic CIF export | W272–278 preserve qualified source categories, images, tensors and backbone coverage; save/replay/inspect available | Mixed-fragment entity policy, native TLS restart, genuine source/parent join and persistent operation/refine loop |
 | W286/W287 connection review | Source/row/evidence-bound unapplied proposals and independent saved-report replay | Explicit metadata authority, application and separate chemistry/export/native admission |
 | W290 endpoint-map comparison | Same 1,909 indices/124 Free-R; P near 2.52σ in both maps, weak fixed sugar support | Explicit coupled-window chemistry/packing before broader native motion; no map-based acceptance |
-| W292 coupled-sugar proposal | Exact 19-atom mask, 23 local bonds and six source sugar signs; C1-dependent planes identified | Complete native plane/chemistry/packing and wider receiver; no new coordinates or fit |
+| W292/W293 coupled-sugar scope | 19-atom complete-native derivative agreement; all six C1-dependent groups and original proxies retained | Wider receiver, sugar/pucker and endpoint review; full packing-review intake remains open |
 | W291 pre-motion scope review | Existing terminal/interior windows expose moving residues, fixed anchors/context and adjacent links without rendering | Genuine PDU has no declared duplex partners; wider chemistry/native motion remains gated |
 | Offline model/density and cut inspection | Installed renderers, map/model roles, saved preference and trusted export views | General stage/campaign integration and supported human edit/re-enter/refine lifecycle |
 
@@ -44,9 +45,11 @@ maintained fixed-weight product mode or recommended production weight.
 ## Next decisions
 
 1. **Stitching:** W292 maps a 19-atom two-sugar scope on the original W288 source.
-   Both bases and outer phosphates stay held, but six native plane groups still
-   depend on C1′. Qualify the complete Cedar plane/chemistry/packing owner and a
-   wider receiver before a matched trial. Preserve sugar hands/pucker, glycosidic
+   Both bases and outer phosphates stay held; W293 qualifies complete native
+   derivatives including the six C1-dependent groups. The installed ordinary
+   command now reaches Phenix but retains the strict-frame refusal for ~1e-14
+   native arithmetic. Expose the existing roundoff policy explicitly, then admit
+   the wider receiver before a matched trial. Preserve sugar hands/pucker, glycosidic
    geometry and exact held context. Weak density does not identify a unique
    displacement. Coordinate
    wider native admission with Cedar; do not extend the six-atom scope implicitly.
@@ -89,6 +92,15 @@ references and thermal/TLS semantics. File readback alone cannot prove those.
 
 <a id="validation-and-scientific-interpretation"></a>
 ## Validation and compatibility
+
+**W293:** 25 native checks and 460 complete-target evaluations pass for the exact
+19-atom proposal; no refinement. All 57 installed parallelity groups match the
+numerical diagnostic. The final-source complete suite passes **3,013 tests + 234
+subtests, no skips**; relocated install passes **175 focused tests**. The installed
+native command still reports FAILED at its strict-frame guard; read-only review
+under the existing explicit roundoff policy passes. Raw packing repeats exactly,
+but the full-capture reviewer does not admit a partial live envelope. Existing
+request/mask/force/frame defaults and checkpoints remain unchanged.
 
 **W292: read-only scope audit**, 75 cold source/mapping/support checks and a
 ChimeraX 1.12 headless scope-view check. The initial all-planes-fixed assumption

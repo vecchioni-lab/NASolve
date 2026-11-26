@@ -7,10 +7,15 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Latest maintained code, W293:** [coupled forces and isolated native workers](topostitch-periodic.md#w293--qualify-coupled-forces-and-isolate-native-worker-imports)
+  qualifies all 57 coordinates with the six C1-dependent groups retained. Runtime
+  imports are isolated; 3,013 tests + 234 subtests and 175 installed checks pass.
+  Ordinary native dry-run reaches the preserved strict-frame refusal. Explicit
+  roundoff intake and wider receiver remain next; no new refinement.
 - **W292:** [coupled two-sugar scope](topostitch-periodic.md#w292--map-a-coupled-sugar-scope-before-wider-native-motion)
   maps 19 moving/843 held atoms. Six plane groups remain C1′-dependent even with
   bases fixed. The wider receiver is still a gate; no new coordinates or fit.
-- **Latest maintained code, W291:** [review a window before motion](topostitch-preview.md#review-a-window-before-generating-coordinates-w291)
+- **W291:** [review a window before motion](topostitch-preview.md#review-a-window-before-generating-coordinates-w291)
   exposes moving residues, fixed anchors/context and links through the normal
   preview command. 161 focused source / 161 relocated-installed checks and the
   complete Willow suite (3,010 tests + 234 subtests, no skips) pass. Genuine PDU
@@ -37,8 +42,8 @@ current instructions; other branches retain their own status and validation pins
   [preview/API contracts](topostitch-preview.md) retain methods, failures and pins.
   Earlier synthetic recovery, native controls and software PASS results retain
   their recorded scopes. W290 adds read-only map calculations and 20 cold checks;
-  W291 adds source/installation checks and a complete Willow regression.
-  Neither adds a native refinement or qualifies a combined branch release.
+  W291 and W293 add source/installation checks and complete Willow regressions.
+  These do not add a native refinement or qualify a combined branch release.
 
 ## Publication demonstration plan
 
