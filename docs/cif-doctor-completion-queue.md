@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 26 November 2026, after C589. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 26 November 2026, after C590. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -9,15 +9,15 @@ queue, measurements and decisions.
 The original aim was to catch discrepancies between the intended molecule, the dictionary
 selected after ReadySet, and what Phenix actually refines. The ordinary checked route now
 delivers the chosen model and restraints. The main scientific gap is deciding when a
-corrected chemical definition gives acceptable geometry in the returned structure. The
-current PDU experiment isolates one possible cause of a distortion. Its outcome cannot
-establish a universal weight for modified bases. [Original blueprint](https://github.com/vecchioni-lab/NASolve/blob/ef83f1b3741f8de2ad074114183ec243ab9b3d2a/docs/cif-restraint-audit-methods.md).
+corrected chemical definition gives acceptable geometry in the returned structure. In the
+PDU controls, switching the diffraction score reversed the local pull on the methyl tip.
+The next transfer check examines the locked-sugar contacts on a separate mixed scaffold. [Original blueprint](https://github.com/vecchioni-lab/NASolve/blob/ef83f1b3741f8de2ad074114183ec243ab9b3d2a/docs/cif-restraint-audit-methods.md).
 
 | Job | In laboratory terms | What still closes it |
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |
 | **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must receive the same chosen model and chemical/restraint meaning. | Complete for recorded alternatives, selected-model phasing, Coot, cold inspection and the ordinary five-cycle refinement handoff. Actual chemical survival/effective restraint behavior is Q06; no default activation or historical migration. |
-| **Q06 — show what survives real refinement** | Inspect the whole substituent, sugar, backbone and pair in the returned Phenix model. | The PDU/5PC terminal targets, neutral DF–adenine chemistry and both registered crystal links reached native refinement. PDU tip displacement, the sugar/phosphate tradeoff and endpoint density still need a decision. Start with the fixed-state comparison below. Routine metal donor-state integration is deferred under Q13. |
+| **Q06 — show what survives real refinement** | Inspect the whole substituent, sugar, backbone and pair in the returned Phenix model. | The PDU/5PC terminal targets, neutral DF–adenine chemistry and both registered crystal links reached native refinement. The fixed-state PDU test identified opposing local diffraction forces. Keep B:4 in review at 4.19 Å. Sugar/phosphate tradeoffs and endpoint density remain site-specific. Routine metal donor-state integration is deferred under Q13. |
 | **Q07 — prove the pieces work together** | Refine the eight named pairs with ATL alongside, including PDU and DF/A1AAZ. | The known thirteen-change scaffold completed two ordinary five-cycle rounds (C497/C505). Both retained all 38 backbone links, 211 frame restraints, protected phosphate angles and original Free-R flags. Two close ATL contacts remain. The separate closure test uses eight unfamiliar catalogue substitutions, including compatible modified backbones and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
 | **Q09 — preserve the correct sugar hand and fluorine geometry** | Carry the L-DNA, FANA, L-FANA and L-FDNA learning into ordinary model building/refinement. | Use atom connectivity and stereochemistry, not lists of residue names; complete linked and held-out controls. |
@@ -31,16 +31,12 @@ establish a universal weight for modified bases. [Original blueprint](https://gi
 
 ### The next small steps
 
-1. **Q06, PDU.** C586 already crossed local base-pair tightening with two arm planes at a
-   fixed diffraction weight. C587 separated the fitted plane from the six-atom ring. C588
-   found the B:4 tip left the ring at cycle three, when the working diffraction force
-   reversed, while the chemical plane kept pulling inward. C589 reads Phenix's actual
-   per-cycle score. Reuse the saved cycle-two/three state and compare both diffraction
-   scores on identical coordinates, displacement, model factors and solvent/scaling inputs.
-   Reproduce the native gradient first and record any scale or uncertainty estimates
-   inherent to each score. If this fails to explain the distortion, keep the site in review
-   and carry the qualified parent. A new width sweep on the same scaffold would leave the
-   causal question open. [Five-cycle evidence](backbone-chemistry.md#when-the-b4-tip-left-the-ring-plane).
+1. **Q06, PDU checkpoint.** C590 completed the comparison on the same molecular
+   state. In both native five-cycle controls, least squares pulled the B:4 tip inward
+   at the cycle boundary and maximum likelihood pulled it outward. A direct scattering
+   calculation confirmed both directions. The chemical plane stayed active. Keep the
+   qualified parent and mark this site for review. Reopen this experiment if new
+   evidence can distinguish a better local model. [Fixed-state evidence](backbone-chemistry.md#two-diffraction-scores-on-the-same-pdu-model).
 2. **Q06 into Q07, transfer to an independent case.** Reuse the neutral DF–adenine fit and
    the mixed scaffold's two existing five-cycle rounds. Classify the remaining close ATL
    contacts, then plan the separate eight-residue builder challenge with unchanged source

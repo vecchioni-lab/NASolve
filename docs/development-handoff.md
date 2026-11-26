@@ -8,19 +8,19 @@ claims.
 
 ## Where to resume
 
-In two five-cycle Phenix 2.2.1-6174 fits, the B:4 PDU tip was within 0.033 Å of its
-six-membered ring at the end of cycle two. It reached about 0.63 Å in cycle three. The
-diffraction calculation began to favor an outward motion as Phenix changed from least
-squares to maximum likelihood. The added chemical plane continued to pull inward. At 4.19 Å
-the data leave the individual methyl position uncertain. [Measurements, replay and scope](backbone-chemistry.md#when-the-b4-tip-left-the-ring-plane).
+C590 isolated why the PDU at B:4 can leave its base plane during refinement.
+On the same coordinates, diffraction observations, displacement and solvent state,
+least squares pulled its methyl tip toward the ring plane and maximum likelihood
+pulled it away. Both five-cycle controls and a direct scattering calculation agreed.
+The chemical plane was active. These 4.19 Å data leave the individual carbon
+unresolved. Keep the qualified parent and mark B:4 for review.
+[Measurements and scope](backbone-chemistry.md#two-diffraction-scores-on-the-same-pdu-model).
 
-Read the two scores on the **same saved molecular state** at the boundary. First reproduce
-the recorded working-set gradient. Then keep unrounded coordinates, occupancies,
-displacement factors, reflection identities, model structure factors and solvent/scaling
-inputs fixed. Record each score's own scale and likelihood estimates separately. Reuse the
-C588 replay and C589 per-cycle log reader. If the comparison fails to distinguish the
-cause, retain the qualified parent and record B:4 for review. A further intervention needs
-evidence that would change that decision. [Q06 and the following transfer check](cif-doctor-completion-queue.md#the-next-small-steps).
+Resume with the two short contacts beside ATL in the existing thirteen-change
+mixed scaffold. Compare the two recorded rounds, their exact atom identities,
+source chemistry and neighboring sugar/backbone geometry before trying a new fit.
+The independent eight-unfamiliar-residue challenge follows this transfer check.
+[Q06 into Q07](cif-doctor-completion-queue.md#the-next-small-steps).
 
 ## What already works
 

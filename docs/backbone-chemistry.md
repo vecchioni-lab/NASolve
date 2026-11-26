@@ -715,11 +715,41 @@ the written models.
 Both replays reproduced the 862-atom coordinate file and final GEO from
 their respective uninstrumented fits byte for byte. These are local changes
 in the refinement score. The maps at 4.19 Å do not resolve an individual
-terminal carbon reliably in this comparison. Atomic displacement, solvent
-and scale estimates were also updated during refinement. To distinguish
-their influence from the target switch, compare the two diffraction scores
-on the same coordinates, displacement parameters and scale before changing
-a restraint or selecting a model.
+terminal carbon reliably in this comparison. Atomic displacement, solvent and scale estimates also changed between cycles.
+
+### Two diffraction scores on the same PDU model
+
+C590 compared least squares and maximum likelihood on each saved molecular
+state. At the last coordinate evaluation of cycle two and the first of cycle
+three, least squares pulled the B:4 tip toward the base plane and maximum
+likelihood pulled it away. Both the arm-plane control and the control with
+five tighter flanking hydrogen bonds showed this reversal. Changing the
+diffraction score alone was sufficient to reverse the local pull. The chemical
+plane remained active throughout both original five-cycle fits.
+
+Each comparison kept all atom positions, occupancies and displacement factors,
+complex model and calculated structure factors, solvent masks, scale arrays,
+Miller indices and Free-R labels identical. Phenix 2.2.1-6174 fitted its
+least-squares scale on the working observations. Its likelihood treatment used
+its own uncertainty estimates. With 124 free reflections and a largest spacing
+of 41.1 Å the installed estimator used the working set for those estimates.
+The original cached likelihood and a freshly estimated likelihood are recorded
+separately. The size of a derivative has meaning within its scoring function.
+
+Both original five-cycle trajectories, their written 862-atom models and
+printed geometry reproduced exactly. A separate check displaced the seven
+atoms defining the tip height by 0.0005 and 0.0015 Å along the normalized
+height direction and summed their diffraction contributions directly. The
+change in score and the projection calculated independently in reciprocal
+space agreed to within 0.00000007 in the weighted derivative. The first test,
+which recalculated the whole model by FFT at those tiny steps, gave unstable
+slopes. It is retained as a failed numerical check.
+
+Keep the qualified parent and flag B:4 for inspection. The 4.19 Å observations
+leave the methyl position unresolved. This comparison establishes why the
+diffraction term can oppose the plane on this scaffold. It gives no general
+choice of automatic refinement target or restraint width. The next independent
+check is the locked-sugar neighborhood in the registered mixed scaffold.
 
 ## Building a requested 5'-terminal phosphate
 
