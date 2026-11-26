@@ -1147,8 +1147,12 @@ five-cycle fits compared automatic weighting with that fixed coefficient. Deviat
 for 2MG, 5MC and 6MZ changed from 4.9, 3.9 and 2.3 widths to 2.9, 2.9 and 0.9.
 Rwork/Rfree changed from 0.2831/0.2652 to 0.2940/0.2767. Both fits used the same
 full pairing and stacking restraints and Free-R assignments. This is a tradeoff
-on hypothetical substitutions. Next compare source-supported local ring widths
-and neighboring geometry on the same parent before selecting a wider weight change.
+on hypothetical substitutions. The printed bond widths for 2MG, 5MC and 6MZ
+were 0.031, 0.024 and 0.028 Å. Their ordinary G, C and A comparisons were
+0.008, 0.007 and 0.006 Å. These larger uncertainties give the modified bonds
+a weaker restoring force for the same displacement. Keep the modified target lengths and original pair and
+diffraction weights fixed when testing a chemically justified width. Inspect the
+rest of each ring before selecting a change.
 Phosphate protonation is a separate question. See the Q13 note below.
 
 C601 found the source-preserving generator had introduced a 5.779 Å bond between

@@ -62,7 +62,9 @@ left it, while zero coordinate diffraction weight restored all three bonds to wi
 two restraint widths with the complete geometry. With the same full restraint set,
 a lower positive weight reduced the three ring discrepancies to 0.9–2.9 widths in
 five stock cycles. Rfree rose from 0.2652 to 0.2767. Test local chemical restraint
-widths and neighboring geometry before recommending a global weight. The source
+widths and neighboring geometry before recommending a global weight. The printed
+widths were 0.024–0.031 Å for the three modified bonds and 0.006–0.008 Å for their
+ordinary-base comparisons. The source
 OP2 proton also reaches each linked phosphate dictionary. Reuse the Q13 state
 check before changing it. A fresh three-site run still needs to select the
 proven 6MZ recovery through ordinary preparation.
