@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Share the explicit phased-refinement source reader
+
+- Extract the qualified amplitude/Free-R/HL source-array reader for reuse by
+  ordinary mixed-refinement intake and the maintained phased guard. Preserve
+  exact labels, indexed joins, explicit Bijvoet averaging and source checks.
+- Qualify 15 focused native cases and exact equality on the retained FT input
+  capture (1,151 observations, 59 Free-R assignments). No native fit, existing
+  caller switch, historical worker change, schema migration or new acceptance.
+
 ### Qualify the existing indexed phase checks on retained FT inputs
 
 - Record a small read-only native-library control distinguishing legitimate row
