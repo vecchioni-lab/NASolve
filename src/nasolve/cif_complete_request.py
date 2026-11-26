@@ -311,6 +311,9 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
         if 'furanose_reaction' in site:
             _need(recipe_representation_policy(generation['options']['recipe']) is not None,
                   'Stored furanose chemistry requires an explicit isolated qualification policy')
+            table=site['furanose_reaction'].get('rna_pucker_table')
+            _need(table is None or table['pin']==generation['options']['recipe'].get('rna_pucker_table'),
+                  'Linked RNA table differs from the selected acquisition recipe')
         choice = selected['sources'][code]
         components[code] = _component_config(choice['source'],code,choice['source_authority'],controls['consumer'],generation,retained,limits,maximum)
         resource = site['terminal_resource']

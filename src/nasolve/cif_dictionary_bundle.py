@@ -103,6 +103,7 @@ def _inputs(root, controls, children):
         native_options=native_context_options(controls['native_context']),
         preparations=[c['preparation'] for c in children],
         four_atom_plane_sites={s for c in children for s in c['four_atom_plane_sites']},
+        rna_pucker_tables={s:r for c in children for s,r in c['rna_pucker_tables'].items()},
         projections={s:p for c in children for s,p in c['projections'].items()})
 
 
@@ -227,14 +228,16 @@ def inspect_dictionary_bundle_native(output, baseline_receipt, candidate_receipt
         captures.append(native); pins.append(sha256(data).hexdigest())
     before, after = captures
     _need(before['restraint_policy'] == after['restraint_policy'], 'Native restraint policy changed')
+    from .cif_rna_pucker import linked_pucker_expectations
+    aggregate = dict(report=report, projections=prepared['projections'],
+        four_atom_plane_sites=prepared['four_atom_plane_sites'],rna_pucker_tables=prepared['rna_pucker_tables'],
+        preparation=dict(sites=[s for p in prepared['preparations'] for s in p['sites']]))
+    pucker=linked_pucker_expectations(aggregate,after)
     qualification = qualify_terminal_bundle(before, after, prepared['preparations'],
         [tuple(p) for p in report['expected_links']],
         [c['site'] for c in report['contexts'] if c['five_prime_state'] == 'free_OH'],
-        prepared['projections'], native_context=report['native_context'])
-    aggregate = dict(report=report, projections=prepared['projections'],
-        four_atom_plane_sites=prepared['four_atom_plane_sites'],
-        preparation=dict(sites=[s for p in prepared['preparations'] for s in p['sites']]))
-    checks = _site_native_checks(before, after, aggregate)
+        prepared['projections'], native_context=report['native_context'],pucker=pucker)
+    checks = _site_native_checks(before, after, aggregate,pucker=pucker)
     passed = qualification['status'] == 'TERMINAL_BUNDLE_MECHANICS_PASS' and all(r['status'] == 'PASS' for r in checks)
     _need(_read(root/'bundle_receipt.json') == original and _files(root) == report['files']
         and all(_read(p) == data for p,data in snapshots.items()), 'Evidence changed during bundle inspection')

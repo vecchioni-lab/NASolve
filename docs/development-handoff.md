@@ -24,71 +24,34 @@ every qualifying pair. Use the prior observations when planning the independent
 eight-residue challenge and retain explicit review where sugar or phosphorus
 stereochemistry is unresolved. [Mixed-scaffold evidence and transfer criteria](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
 
-The independent eight-residue design is now fixed (C592). Phenix resolved all
-ten designed hydrogen-bond selections on the separate CCD monomers.
-Pseudouridine showed how pairing can be correct while the declared sugar
-attachment is wrong. The optional role cross-check identifies the ring C5
-attachment without admitting the sugar for construction. The full panel stopped
-during planning. C593 followed the fault to NARestraints. Its published v1.1.4 workbook
-and loader give C1′–C5 for four pseudouridines. Phenix read the same ten intended
-pair bonds. Coot left C:12 as DG when asked for an RNA G parent. An isolated D:4
-phosphorothioate carried an extra OP3 and failed ordinary phosphate preparation.
-C596 built true G, C and A parents. C597 carried their ribose sugars through native
-Coot placement of 2MG, 5MC and 6MZ. All six neighboring links, the sugar hand and
-the original scaffold displacement values survived. Three unwanted internal OP3
-oxygens were removed through the existing phosphate check. C598 reproduced
-this on a fresh Phaser solution through a normal three-site mutation card. The
-whole-model pairing/stacking file was already compiled. C599 bound the genuine
-compiler receipt to the normal request on a second fresh solution. Its 50 pair
-bonds, 86 angles and 57 parallelity restraints reached checked preparation.
-Both isolated 2MG seeds then triggered Phenix’s RNA sugar-pucker adjustment.
-Both isolated models matched the unmodified dictionary with the native pucker
-adjustment switched off for that comparison. C600 accounted for the adjusted
-targets from the installed Phenix table. A separate conventional one-cycle
-refinement preserved all twelve sugar hands. The B:5 6MZ pair opened to 4.128 Å
-at one contact, while one C:12 2MG contact closed to 2.215 Å. The checked route
-still requires distinct evidence for the literal chemistry and native adjustment.
-The conventional 6MZ output put its sugar under a nine-atom plane and declared
-an aromatic sugar bond. C601 recovered the source chemistry by reusing the
-existing atom-order fix after a verified aromatic-ring conversion. In a matched
-one-cycle refinement, changing only that dictionary reduced B:5 base rotation
-from 38.6° to 8.9°. One pair contact remained long at 3.932 Å. C602 now catches
-all four conflicting sugar centres before refinement. Replaying the same source-derived
-dictionary clears that check. C603 also catches three sugar bonds called aromatic
-in that return. The Phenix pucker adjustment replaced all three bond targets but
-kept the competing plane. C604 replays the installed `rna2p` table against every
-component row and active restraint in the original two native reads. All six reads
-for 2MG, 5MC and 6MZ were explained. C605 separately verified both coordinate
-seeds for each of the three against the unmodified component definitions.
-A one-cycle whole-model Phenix run with those three source-derived dictionaries
-and Cedar’s checked parallelity kept all twelve sugar hands and six neighboring
-links. Two pair contacts still need review: 2MG O6 to cytosine N4 was 2.135 Å,
-and 6MZ N6 to thymine O4 was 3.906 Å. Both requests were 2.8 Å. C606 followed
-the same starting model through five native cycles. These two distances reached
-2.463 and 3.372 Å. Across 50 declared base-pair contacts, eight exceeded three
-restraint widths at one cycle and one at five. The remaining one was an ordinary
-G:C pair. All twelve sugar hands survived. The existing refined-links reader now
-shows the shortest and longest departures in restraint widths. C607 lets the ordinary
-source-preserving recipe recognize an internal N-linked ribose with a free 2′ hydroxyl.
-The source identifies its phosphate leaving oxygen and both actual backbone partners
-must be recorded. One frozen copy of the NARestraints workbook serves the three sugars
-and the archived pairing recipe. The linked Phenix reader saw the intended sugar and
-normal pucker at all three sites. C608 passed those three site-specific reactions to
-five full coordinate-refinement cycles. The returned PDB bytes matched C606 exactly.
-New isolated literal reads freeze the small native pucker table. The 2MG comparison
-reopened with the original runs and entire Phenix installation inaccessible. C609 now performs both isolated comparisons during ordinary acquisition. A fresh
-2MG result reopened after relocation with the original inputs, cache and installation
-inaccessible. 5MC also qualified. For 6MZ, a fresh atom-order recovery preserved all
-42 source bonds after eLBOW introduced a 5.779 Å edge. The combined request reused
-all three numerical dictionaries. Its linked check still required reconciliation of
-the native pucker targets and a plane that had only three atoms in the scaffold.
-C610 traced that plane to C6, N6, C9 and an unmodeled hydrogen. Phenix omitted the
-three-point plane and retained every member and weight of the 11-atom base plane.
-Fresh site checks now reproduce this distinction and still flag a missing heavy atom. The sulfur linkage
-remains a separate chemical state. The [Q12 workbook sweep](cif-doctor-completion-queue.md#q12--resolve-catalogue-mappings-and-maintain-support-coverage)
-follows the eight-site challenge.
-[Release and tested installation](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.4).
+The independent eight-substitution W-frame challenge is fixed. Its first three
+sites are C:12 2MG, A:7 5MC and B:5 6MZ. Coot placed all three on correctly handed
+ribose sugars. The six flanking bonds and original displacement values survived
+construction. Removing internal OP3 required proof of both backbone links.
+NARestraints 1.1.4 also corrects the C1′–C5 attachment for four pseudouridines.
+[Pair design and earlier controls](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
 
+ReadySet placed four handed sugar carbons under a tight plane in conventional 6MZ.
+A matched one-cycle experiment reduced base rotation from 38.6° to 8.9° when only
+its dictionary changed. Cedar now screens both recipes for this contradiction with
+the source graph. The source-preserving eLBOW route needed a separate atom-order
+recovery after it introduced a 5.779 Å bond. All 42 declared bonds survived recovery.
+
+Using all three source-derived dictionaries, five cycles preserved all twelve sugar
+hands and six neighboring links. Eight of 50 pair contacts lay beyond three restraint
+widths after one cycle and one after five. The 2MG–C and 6MZ–T contacts reached
+2.46 and 3.37 Å. The diffraction was measured on the original W-frame crystal.
+[Native measurements](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
+
+C611 carried the four independent isolated RNA reads (two with the ordinary Phenix
+sugar pucker and two against the literal dictionary) into the linked model.
+The native site-specific modification and pucker matched at all three sites. All
+148 available checks passed. Phenix exposed no formal charges for the three sites.
+The saved result reopened after relocation with the original run, installed workbook,
+Phenix and local cache inaccessible. Preserve the separate native refinement evidence.
+The remaining challenge includes different sugar bridges, a C-linked base and an
+internal phosphorothioate with a specified sulfur side. The proposed catalogue-wide
+mutation sweep belongs to Q12, after this panel. [Queue and scientific boundaries](cif-doctor-completion-queue.md#pipeline-position).
 
 ## What already works
 

@@ -232,3 +232,59 @@ def test_stored_rna_proof_requires_two_independent_reads_in_each_condition(defec
         validate_paired_qualification(q,**args)
     else:
         with pytest.raises(ValueError):validate_paired_qualification(q,**args)
+
+@pytest.mark.parametrize("modifiers,authorized,projects", [
+    (["targeted","rna2p"],True,True), (["targeted"],True,False),
+    (["rna2p"],True,False), (["targeted","rna2p","extra"],True,False),
+    (["rna2p","targeted"],True,False), (["targeted","rna2p"],False,False),
+])
+def test_linked_pucker_requires_site_modifier_and_paired_table(tmp_path,modifiers,authorized,projects):
+    from hashlib import sha256
+    from nasolve.cif_rna_pucker import linked_pucker_expectations
+    from nasolve.ligand_profiles import _emit
+    from nasolve.cif_linked_preparation import _render
+    values,table=_example()
+    values.update({'_chem_comp.group':['RNA'],'_chem_comp_atom.comp_id':['TST']*4,
+        '_chem_comp_atom.atom_id':['AA','BB','CC','DD'],'_chem_comp_atom.type_symbol':['C']*4})
+    path=tmp_path/"projected.cif"; path.write_text(_render(values,"TST"))
+    template=tmp_path/"table.cif"; template.write_text(_emit(table))
+    pin=dict(anchor="phenix_installation",path="lib/python3.11/site-packages/chem_data/geostd/rna_dna/mod_rna2p.cif",
+        size=template.stat().st_size,sha256=sha256(template.read_bytes()).hexdigest())
+    site="X:4"; native={"monomer_mappings":{"rows":[{"site":site,"chem_mod_ids":{"status":"RECORDED","ids":modifiers}}]}}
+    prepared={"preparation":{"sites":[{"site":site,"modification_id":"targeted"}]},
+        "projections":{site:(path,"TST")}, "rna_pucker_tables":{site:(template,pin)} if authorized else {}}
+    adjusted=linked_pucker_expectations(prepared,native)
+    assert bool(adjusted) is projects
+    if projects:
+        assert adjusted[site]["matched_rows"]=={"bonds":1,"angles":1,"torsions":1}
+        assert adjusted[site]["table_sha256"]==pin["sha256"]
+        assert adjusted[site]["values"]["_chem_comp_bond.value_dist"]==["1.53"]
+        assert adjusted[site]["values"]["_chem_comp_plane_atom.atom_id"]==["X"]
+        raw=template.read_bytes();template.write_bytes(b"X"+raw[1:])
+        with pytest.raises(ValueError,match="checksum"):linked_pucker_expectations(prepared,native)
+
+
+@pytest.mark.parametrize("defect", ["none","dictionary-only","force-only","other-bond","ring-force"])
+def test_linked_pucker_checks_definition_and_active_forces_separately(tmp_path,defect):
+    from nasolve.cif_linked_control import _heavy_proxy_checks
+    from nasolve.cif_linked_preparation import component_values
+    from nasolve.cif_terminal_qualification import definition_projection_checks
+    from tests.test_cif_linked_control_qualification import case
+    _,native,_,_,projection=case(tmp_path)
+    values=component_values(projection,"ZZZ")
+    values["_chem_comp_bond.type"][0]="coval"
+    values["_chem_comp_bond.value_dist"][0]="1.53"
+    site="A:2"; files={site:(projection,"ZZZ")}; overlay={site:{"values":values}}
+    definition=native["monomer_mappings"]["rows"][1]["metadata"]["effective_definition"]
+    forces=native["geometry"]["proxy_details"]
+    if defect!="force-only":
+        definition["bonds"][0].update(type="coval",value_dist="1.53")
+    if defect!="dictionary-only":
+        forces["bond_simple"][0]["distance_ideal"]=1.53
+    if defect=="other-bond":forces["bond_simple"][1]["distance_ideal"]+=0.1
+    if defect=="ring-force":forces["planarity"].append({"i_seqs":[1,2,3,4],"weights":[2500.0]*4})
+    compared=definition_projection_checks(native,files,pucker=overlay)
+    assert all(r["status"]=="PASS" for r in compared) is (defect!="force-only")
+    active=_heavy_proxy_checks(native,projection,"ZZZ",site,minimum_plane_atoms=4,projected_values=values)
+    assert all(active.values()) is (defect in {"none","force-only"})
+    assert active["exact-heavy-planes"] is (defect!="ring-force")

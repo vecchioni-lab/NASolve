@@ -121,6 +121,49 @@ def table_bytes(path,pin):
     return data
 
 
+def bound_pucker_file(reference, root=None, *, site_copy=False):
+    """Open one declared table, enforcing its relative layout for frozen inputs."""
+    _need(isinstance(reference,dict) and set(reference)=={"path","pin"}, "Invalid RNA pucker reference")
+    pin=reference["pin"]
+    validate_table_pin(pin)
+    if root is None:
+        _need(isinstance(reference["path"],(str,Path)), "Invalid selected RNA table path")
+        path=Path(reference["path"])
+    else:
+        name="inputs/furanose/rna2p.cif" if site_copy else "furanose/"+pin["sha256"]+".cif"
+        _need(reference["path"]==name, "Invalid frozen RNA table reference")
+        path=Path(root)/name
+    return path,table_bytes(path,pin),pin
+
+
+def _pucker_block(path,pin):
+    data=table_bytes(path,pin)
+    _need(not _duplicate_tags(data.decode("utf-8")),"Duplicate pucker template tags")
+    blocks=_blocks(path)
+    _need(len(blocks)==1 and table_bytes(path,pin)==data,"Ambiguous or changed pucker template")
+    return blocks[0].values
+
+
+def linked_pucker_expectations(prepared,native):
+    """Use the paired table only at a linked site that actually received both modifiers."""
+    from .cif_linked_preparation import component_values
+    tables=prepared.get("rna_pucker_tables",{})
+    if not tables:
+        return {}
+    plans={p["site"]:p for p in prepared["preparation"]["sites"]}
+    observed={r["site"]:r.get("chem_mod_ids") for r in native["monomer_mappings"]["rows"]}
+    output={}
+    for site,(path,pin) in tables.items():
+        modifier=plans[site].get("modification_id")
+        if not modifier or observed.get(site)!={"status":"RECORDED","ids":[modifier,"rna2p"]}:
+            continue
+        projection,code=prepared["projections"][site]
+        values,counts=project_pucker_targets(component_values(projection,code),_pucker_block(path,pin))
+        _need(all(counts.values()),"Linked RNA table has no corresponding targets in a required category")
+        output[site]={"values":values,"matched_rows":counts,"table_sha256":pin["sha256"]}
+    return output
+
+
 def _review_default(root,template,pin):
     """Re-evaluate both recorded native seeds against the identified table bytes."""
     root=Path(root).expanduser().resolve(strict=True)
@@ -131,12 +174,9 @@ def _review_default(root,template,pin):
           "Require a stopped, complete pair of original native jobs")
     original_inventory=_inventory(root)
     consumer=protocol["consumer"]
-    data=table_bytes(template,pin)
-    _need(not _duplicate_tags(data.decode("utf-8")),"Duplicate pucker template tags")
-    blocks=_blocks(template)
-    _need(len(blocks)==1,"Ambiguous pucker template")
+    block=_pucker_block(template,pin)
     code=protocol["component"]
-    projected,counts=project_pucker_targets(_values(paths[1],code),blocks[0].values)
+    projected,counts=project_pucker_targets(_values(paths[1],code),block)
     options={"bond_representation_policy":protocol["bond_representation_policy"]}
     seeds=[]
     signatures=[]
@@ -157,7 +197,8 @@ def _review_default(root,template,pin):
     same=signatures[0]==signatures[1]
     accounted=(all(counts.values()) and same and
                all(s["literal_checks_failed"] and not s["adjusted_checks_failed"] for s in seeds))
-    _need(_inventory(root)==original_inventory and table_bytes(template,pin)==data,
+    table_bytes(template,pin)
+    _need(_inventory(root)==original_inventory,
           "Qualification inputs or selected Phenix pucker table changed during review")
     return {"policy_id":POLICY_ID,"component":code,"phenix_version":consumer["version"],"modifier":"rna2p",
             "table":pin,"source":_ref(paths[0],root),"candidate":_ref(paths[1],root),

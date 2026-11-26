@@ -78,8 +78,9 @@ def prepare_linked_control_models(frame,numerical,code,output):
     (output/'control_receipt.json').write_text(json.dumps(r,indent=2)+'\n');return r
 
 
-def _heavy_proxy_checks(native,projected,code,site,*,minimum_plane_atoms=3):
-    values,_=normalize_torsion_block(component_values(projected,code));atoms={a['i_seq']:a for a in native['atoms']}
+def _heavy_proxy_checks(native,projected,code,site,*,minimum_plane_atoms=3,projected_values=None):
+    original=component_values(projected,code) if projected_values is None else projected_values
+    values,_=normalize_torsion_block(original);atoms={a['i_seq']:a for a in native['atoms']}
     heavy={a['atom_id'] for a in atoms.values() if _site(a)==site}
     details=native['geometry']['proxy_details'];checks={};key=lambda ns:min(tuple(ns),tuple(ns)[::-1])
     def names(row):return tuple(atoms[i]['atom_id'] for i in row['i_seqs'])

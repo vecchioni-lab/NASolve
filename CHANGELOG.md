@@ -32,7 +32,10 @@ entries are reconstructed from repository history.
   the source and candidate coordinates twice, with Phenix's normal RNA pucker
   adjustment and with the literal dictionary. Each returned restraint must match
   its selected numerical target. The recorded Phenix table and consumer identify
-  the cache entry. Earlier requests retain their original qualification rules.
+  the cache entry. The linked-model check uses the same table only when Phenix
+  reports both the selected site modification and the native pucker. The effective
+  dictionary and active forces must independently agree. Earlier requests retain
+  their original qualification rules.
 
 - Newly recorded `cif-doctor verify-pucker` comparisons keep the small native RNA
   target table with the literal read. `--replay` can reconstruct both coordinate

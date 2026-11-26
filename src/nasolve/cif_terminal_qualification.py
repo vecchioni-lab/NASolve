@@ -62,7 +62,7 @@ def projection_site_plan(path: Path, code: str, site: str) -> dict:
             for n,r in atoms.items() if r['type_symbol'].upper() in {'H','D'}}}
 
 
-def definition_projection_checks(native: dict, projections: Mapping[str,tuple[Path,str]]) -> list[dict]:
+def definition_projection_checks(native: dict, projections: Mapping[str,tuple[Path,str]], *, pucker=None) -> list[dict]:
     """Compare every recorded numerical row with the selected projected source.
 
     Formal charge has its own existing gate. Missing optional numerical fields
@@ -70,7 +70,8 @@ def definition_projection_checks(native: dict, projections: Mapping[str,tuple[Pa
     """
     checks=[];mappings={r['site']:r for r in native['monomer_mappings']['rows']}
     for site,(path,code) in projections.items():
-        values,_=normalize_torsion_block(component_values(path,code))
+        adjustment=(pucker or {}).get(site)
+        values,_=normalize_torsion_block(component_values(path,code) if adjustment is None else adjustment['values'])
         definition=mappings.get(site,{}).get('metadata',{}).get('effective_definition',{})
         checks.extend(definition_value_checks(values,definition,site))
     return checks
@@ -252,14 +253,14 @@ def reviewed_torsion_proxy_check(native,path,code,site,term_id):
 def qualify_terminal_bundle(baseline: dict, candidate: dict, preparations: list[dict],
         expected_links: list[tuple[str,str]], free_sites: list[str],
         projections: Mapping[str,tuple[Path,str]], *, reviewed_torsions: Mapping[str,str] | None=None,
-        native_context: dict | None=None) -> dict:
+        native_context: dict | None=None, pucker=None) -> dict:
     """Keep existing gates and add exact source projections and unaffected proxies."""
     prepared=list(preparations);known={s['site'] for p in prepared for s in p['sites']}
     extra=[projection_site_plan(path,code,site) for site,(path,code) in projections.items() if site not in known]
     if extra:prepared.append({'sites':extra})
     result=qualify_linked_bundle(baseline,candidate,prepared,expected_links,free_sites,native_context=native_context)
     result['audit_kind']='cif_terminal_native_bundle_qualification'
-    checks=result['checks'];checks.extend(definition_projection_checks(candidate,projections))
+    checks=result['checks'];checks.extend(definition_projection_checks(candidate,projections,pucker=pucker))
     checks.extend(declared_outgoing_hydrogen_checks(candidate,expected_links))
     def check(name,passes,**evidence):checks.append({'check':name,'status':'PASS' if passes else 'REVIEW',**evidence})
     before={r['site']:r['metadata'].get('effective_definition') for r in baseline['monomer_mappings']['rows']}

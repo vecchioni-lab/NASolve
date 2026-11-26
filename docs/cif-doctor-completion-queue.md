@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 26 November 2026, after C610. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 26 November 2026, after C611. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -1097,7 +1097,15 @@ coordinate atoms. C610 accounted for the latter. H62 was absent from the B:5
 coordinates. Phenix requires four modeled atoms for a component planarity force.
 The separate 11-atom ring plane and every weight matched. The same native captures
 replayed under their original rules, and only that plane verdict changed on fresh
-preparation. The remaining discrepancies are the native sugar-pucker rows.
+preparation. C611 matched the native sugar-pucker rows at all three sites. The
+fresh ordinary request archives one 2,278-byte table for the three sugars, verifies
+it against each selected recipe and carries it into each independently readable site.
+Only a site with paired isolated evidence and the exact targeted modification followed
+by the native `rna2p` receives that comparison. Phenix returned 11 matching bond and
+18 angle changes per site and 2, 2 and 6 torsions. All 148 available linked checks
+passed. Its three unavailable formal-charge reports remain explicit. Offline readback
+touched 423 distinct files and rejected an equal-size table substitution. The first
+ordinary execution now receives the same table fingerprint that it froze at intake.
 
 C601 found the source-preserving generator had introduced a 5.779 Å bond between
 O4′ and ring C2. All 42 source edges were present. The ten bonds of the purine

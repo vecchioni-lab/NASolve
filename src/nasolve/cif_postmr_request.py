@@ -192,6 +192,7 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
                           'Retained RNA dictionary requires the same Phenix pucker table')
                     if pin is not None:
                         item['generation']['rna_pucker_table'] = pin
+                        reaction['rna_pucker_table'] = dict(pin=pin,path=Path(item['generation']['installation_root'])/pin['path'])
     _need(all(_read(p) == data for p,data in literal_originals),
           'Literal original PHIL changed during source freezing')
     # Each independently verified repair in a mixture has its own working proof.

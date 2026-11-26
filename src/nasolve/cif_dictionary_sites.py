@@ -140,12 +140,17 @@ def _derive(root, controls, destination):
     if 'furanose_reaction' in controls:
         from .cif_furanose_reaction import prepare_internal_furanose_sites
         reaction = controls['furanose_reaction']
-        _need(isinstance(reaction,dict) and set(reaction)=={'workbook','contexts'}
+        _need(isinstance(reaction,dict) and set(reaction)-{'rna_pucker_table'}=={'workbook','contexts'}
             and reaction['workbook']=='inputs/furanose/Ligands.xlsx'
             and controls.get('native_context',{}).get('monomer_inventory')=='full_model'
             and policy is not None and not terminal
             and 'phosphate_atom_policy' not in controls and 'construction_targets' not in controls,
             'Stored graph reaction requires qualified numerics and a full internal native context')
+        if 'rna_pucker_table' in reaction:
+            from .cif_rna_pucker import bound_pucker_file
+            _,_,pin=bound_pucker_file(reaction['rna_pucker_table'],root,site_copy=True)
+            _need(pin==manifest['request']['recipe'].get('rna_pucker_table'),
+                  'Site RNA table differs from the isolated acquisition recipe')
         preparation=prepare_internal_furanose_sites(saved['source'],saved['dictionary'],
             root/reaction['workbook'],model,destination,code=manifest['request']['component'],
             contexts=contexts,reaction_contexts=reaction['contexts'],bond_representation_policy=policy)
@@ -250,11 +255,17 @@ def prepare_dictionary_sites(snapshot, model, contexts, output, *, consumer, exp
         for name in _SNAPSHOT_FILES:freeze(Path(snapshot)/name,root/'snapshot'/name)
         freeze(model,root/'inputs/model.pdb')
         if furanose_reaction is not None:
-            _need(isinstance(furanose_reaction,dict) and set(furanose_reaction)=={'workbook','contexts'},
+            _need(isinstance(furanose_reaction,dict) and set(furanose_reaction)-{'rna_pucker_table'}=={'workbook','contexts'},
                 'Require a graph-reaction workbook and explicit port contexts')
             name='inputs/furanose/Ligands.xlsx'
             freeze(furanose_reaction['workbook'],root/name)
             controls['furanose_reaction']={'workbook':name,'contexts':furanose_reaction['contexts']}
+            if 'rna_pucker_table' in furanose_reaction:
+                from .cif_rna_pucker import bound_pucker_file
+                path,_,pin=bound_pucker_file(furanose_reaction['rna_pucker_table'])
+                name='inputs/furanose/rna2p.cif'
+                freeze(path,root/name)
+                controls['furanose_reaction']['rna_pucker_table']=dict(path=name,pin=pin)
         if terminal_resource is not None:
             resource=Path(terminal_resource);record=_resource(resource,consumer)
             controls['terminal_resource']='resources/'+resource.name
@@ -305,7 +316,9 @@ def read_dictionary_sites(output):
         controls['construction_targets']=report['construction_targets']
     inputs=_inputs(root,controls)
     allowed={'snapshot/'+name for name in _SNAPSHOT_FILES}|{'inputs/model.pdb'}
-    if 'furanose_reaction' in controls:allowed.add('inputs/furanose/Ligands.xlsx')
+    reaction=controls.get('furanose_reaction',{})
+    if reaction:allowed.add('inputs/furanose/Ligands.xlsx')
+    if 'rna_pucker_table' in reaction:allowed.add('inputs/furanose/rna2p.cif')
     allowed.update(controls['supplementary_dictionaries']);allowed.update(controls['supplementary_phils'])
     resource=controls['terminal_resource']
     if resource is not None:
@@ -328,7 +341,12 @@ def read_dictionary_sites(output):
             else:_need(original==path.read_bytes(), 'Prepared numerical or policy bytes do not replay')
     expected=_report(root,controls,saved,links,policy)
     _need(_bytes(report)==_bytes(expected), 'Site preparation claim differs from frozen evidence')
+    from .cif_rna_pucker import PAIRED_USABILITY
+    table=reaction.get('rna_pucker_table')
+    tables={c['site']:(root/table['path'],table['pin']) for c in controls['contexts']
+            if table is not None and saved['qualification']['policy_id']==PAIRED_USABILITY}
     return {'report':report,'snapshot':saved,'preparation':preparation,**inputs,
+        'rna_pucker_tables':tables,
         'four_atom_plane_sites':{c['site'] for c in controls['contexts'] if 'coordinate_plane_policy' in controls},
         'projections':{c['site']:(root/'prepared'/('projected_'+c['site'].replace(':','_')+'.cif'),
             report['component']) for c in controls['contexts']}}
@@ -375,7 +393,7 @@ def _port_elements(native, context):
     return all(atoms.get(key)==element for key,element in expected.items())
 
 
-def _site_native_checks(before, after, prepared):
+def _site_native_checks(before, after, prepared, *, pucker=None):
     """Reuse per-site active checks without requiring a free end to have two links."""
     from itertools import combinations
     from math import isfinite
@@ -445,10 +463,17 @@ def _site_native_checks(before, after, prepared):
                 and a['element'].strip().upper()==source_atoms[a['atom_id']]['type_symbol'].upper()
                 for a in atoms.values() if _site(a)==site))
             check('declared-native-port-elements:'+site,_port_elements(after,context))
+            expected_modifiers=[plan['modification_id']] if plan.get('modification_id') else []
+            adjustment=(pucker or {}).get(site)
+            if adjustment is not None:
+                expected_modifiers.append('rna2p')
+                check('recorded-rna-pucker:'+site,True,matched_rows=adjustment['matched_rows'],
+                      table_sha256=adjustment['table_sha256'])
             check('exact-site-modifier:'+site,mappings[site].get('chem_mod_ids')=={
-                'status':'RECORDED','ids':[plan['modification_id']] if plan.get('modification_id') else []})
+                'status':'RECORDED','ids':expected_modifiers})
             minimum=4 if site in prepared.get('four_atom_plane_sites',()) else 3
-            for name,value in _heavy_proxy_checks(after,path,code,site,minimum_plane_atoms=minimum).items():
+            for name,value in _heavy_proxy_checks(after,path,code,site,minimum_plane_atoms=minimum,
+                    projected_values=adjustment['values'] if adjustment is not None else None).items():
                 check(name+':'+site,value)
             terminal=(prepared['report'].get('native_context') is not None
                 and context.get('five_prime_state')=='phosphate')
@@ -512,11 +537,13 @@ def inspect_dictionary_site_native(output, baseline_receipt, candidate_receipt):
         captures.append(native);pins.append(sha256(receipt_bytes).hexdigest())
     before,after=captures
     _need(before['restraint_policy']==after['restraint_policy'], 'Native restraint policy changed')
+    from .cif_rna_pucker import linked_pucker_expectations
+    pucker=linked_pucker_expectations(prepared,after)
     result=qualify_terminal_bundle(before,after,[prepared['preparation']],
         [tuple(p) for p in report['expected_links']],
         [c['site'] for c in report['contexts'] if c['five_prime_state']=='free_OH'],prepared['projections'],
-        native_context=report.get('native_context'))
-    native_checks=_site_native_checks(before,after,prepared)
+        native_context=report.get('native_context'),pucker=pucker)
+    native_checks=_site_native_checks(before,after,prepared,pucker=pucker)
     passed=result['status']=='TERMINAL_BUNDLE_MECHANICS_PASS' and all(r['status']=='PASS' for r in native_checks)
     _need(_read(Path(output)/'site_receipt.json')==original_receipt
         and _files(Path(output).absolute())==report['files'], 'Site evidence changed during native inspection')

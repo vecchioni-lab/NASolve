@@ -229,6 +229,12 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
             **({'automatic_plane_support':True} if automatic_plane_support else {}),
             **({'bond_targets':bond_targets} if bond_targets is not None else {}),
             **({'automatic_bond_targets':True} if automatic_bond_targets else {}),**execution_limits)
+        if select_representation:
+            # Intake freezes a private copy after it has seen the model, sources and workbook.
+            for code,component in record['configuration']['components'].items():
+                pin=component['dictionary_request']['recipe'].get('rna_pucker_table')
+                if pin is not None:
+                    generation[code]=dict(generation[code],rna_pucker_table=pin)
         return PreparedPostMRRequest(inputs.run_directory,request,record,generation)
     result = _prepare_postmr(run_directory,configured.ready_set_executable,phenix_installation=phenix,
         coot_executable=coot_executable,environment=phenix.environment,data_root=data_root,

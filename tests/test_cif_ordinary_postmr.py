@@ -113,7 +113,8 @@ def test_invalid_automatic_plane_choice_refuses_before_tool_configuration(tmp_pa
     assert not (tmp_path/'run').exists()
 
 
-def test_source_selection_reads_frozen_component_before_binding_generation(tmp_path, monkeypatch):
+@pytest.mark.parametrize('table',[None,{'sha256':'a'*64}])
+def test_source_selection_reads_frozen_component_before_binding_generation(tmp_path, monkeypatch,table):
     from nasolve import cif_ordinary_postmr as entry
     from nasolve.cif_acquisition_sources import read_acquisition_sources
     from nasolve.cif_generation_input import ordinary_generation_options
@@ -134,9 +135,11 @@ def test_source_selection_reads_frozen_component_before_binding_generation(tmp_p
         assert kwargs["select_anionic_phosphate"] is True
         assert kwargs["source_ribose_workbook"].is_file() and kwargs['select_native_rna_pucker'] is True
         assert components == [dict(code="DE", generation=selected["DE"])]
-        return {"synthetic": True}
+        frozen={} if table is None else {'rna_pucker_table':table}
+        return {'configuration':{'components':{'DE':{'dictionary_request':{'recipe':frozen}}}}}
 
     monkeypatch.setattr("nasolve.cif_generation_input.source_selected_generation", select)
     monkeypatch.setattr(entry, "initialize_postmr_dictionary_request", freeze)
     result = call(run, sdk, data, generation_options=ordinary_generation_options("source-preserving-v2"))
-    assert result.generation == selected and set(selected) == {"DE"}
+    expected=selected['DE'] if table is None else dict(selected['DE'],rna_pucker_table=table)
+    assert result.generation=={'DE':expected} and 'rna_pucker_table' not in selected['DE']
