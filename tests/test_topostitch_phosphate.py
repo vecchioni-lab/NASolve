@@ -556,3 +556,35 @@ def test_invalid_frame_policy_refuses_before_loading_native_owners(tmp_path,monk
     with pytest.raises(ValueError,match='native_frame_policy'):
         job.run_registered_phosphate_refinement(path,tmp_path/'out',phenix='missing')
     assert not (tmp_path/'out').exists()
+
+
+def test_phased_guard_delegates_source_read_and_retains_native_pins(tmp_path,monkeypatch):
+    import sys
+    from types import SimpleNamespace
+    from nasolve import topostitch_phased as phased
+    from nasolve import refinement_diffraction_source as shared
+    _,spec,packet=phased_request(tmp_path)
+    source=(tmp_path/'model').read_bytes()
+    native=tmp_path/'native.py';native.write_text('# pinned native source\n')
+    actual_import=phased.importlib.import_module
+    modules=('iotbx.reflection_file_reader','mmtbx.f_model.f_model',
+             'mmtbx.refinement.targets','cctbx.xray.target_functors')
+    monkeypatch.setattr(phased.importlib,'import_module',lambda name:
+        SimpleNamespace(__file__=str(native)) if name in modules else actual_import(name))
+    # The guard must not retain a second inline reflection parser.
+    monkeypatch.setitem(sys.modules,'iotbx',SimpleNamespace(reflection_file_reader=SimpleNamespace(
+        any_reflection_file=lambda *a,**k:pytest.fail('Inline source reader called'))))
+    arrays=shared.SourceArrays(object(),observations(),
+        [[[1,0,0],[2,0,0]],[[1.,2.,3.,4.],[5.,6.,7.,8.]]],[[[1,0,0],[2,0,0]],[False,True]])
+    calls=[]
+    def read(**kwargs):calls.append(kwargs);return arrays
+    monkeypatch.setattr(shared,'read_source_arrays',read)
+    files={'data':tmp_path/'data','phases':tmp_path/'phases'}
+    guard=phased.NativePhasedGuard(spec['diffraction'],files,spec,packet,source)
+    assert calls==[dict(data_file=files['data'],phase_file=files['phases'],
+        data_labels=['F','SIGF'],free_label='FreeR_flag',phase_labels=['HLA','HLB','HLC','HLD'],test_flag_value=0)]
+    assert guard.observations is arrays.observations and guard.crystal is arrays.crystal
+    assert guard.reference==dict(hl=arrays.hl,flags=arrays.flags,scattering=packet['atoms'])
+    assert guard.spec is spec['diffraction'] and guard.source==source
+    assert guard._native_hashes=={name:sha256(native.read_bytes()).hexdigest() for name in modules}
+    assert phased._indexed is shared.indexed_values

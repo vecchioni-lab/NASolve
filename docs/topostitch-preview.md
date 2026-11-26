@@ -3871,6 +3871,18 @@ coupled refinement and scientific acceptance remain separate gates.
 
 ## Admit experimental phases and fixed scattering (W250)
 
+**W295 shared source owner:** the maintained `NativePhasedGuard` delegates its
+independent amplitude/Free-R/HL read to `refinement_diffraction_source`, received
+unchanged from Alder. Explicit Bijvoet averaging, positive amplitudes/sigmas,
+exact HL coverage, flag-superset coverage and Miller-index joins retain their
+existing semantics. Target/optimizer/scattering checks and native-module pins
+remain with the guard. The shared reader supplies no runtime or scientific
+permission; ordinary ancestry, exact inputs and selectors remain caller-owned.
+The old `_indexed` name aliases the shared join for compatibility. Historical
+frozen workers and request/report schemas stay unchanged. See the
+[W295 evidence](topostitch-periodic.md#w295--share-source-diffraction-reading-with-alder).
+
+
 `native-phosphate` now has `--preflight-only` (API keyword
 `preflight_only=True`). It creates a new immutable job, runs the same native
 preflight, and returns `PREFLIGHT_COMPLETE_REQUIRES_REVIEW` without a fit or

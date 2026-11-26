@@ -17,6 +17,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W295 — Share the qualified phase and Free-R source reader
+
+- Receive Alder's unchanged `refinement_diffraction_source` owner and native
+  regression cases; delegate the maintained Willow phased guard to that reader.
+- Preserve explicit amplitude/HL/index semantics, source flags with additional
+  reflections, native source pins, actual target/scattering checks and the old
+  private index-helper alias. Historical frozen workers remain untouched.
+- No request or report schema, input filtering, tolerance, force, refinement or
+  model-selection change. Shared source reading does not itself admit a fit.
+
+
 ### W294 — Select the existing native-frame arithmetic policy explicitly
 
 - Add optional `native_frame_policy: exact | native-roundoff` to the registered

@@ -15104,3 +15104,58 @@ mask, source-relative hand/attachment/outer-phosphate checks and retained native
 chemistry before a recovery trial. Reuse existing native coordinate/geometry
 observers and the W293 derivative result. W288 remains the last actual fit; no
 six-atom weight panel or deferred stress test was repeated.
+
+
+## W295 — Share source diffraction reading with Alder
+
+Willow receives Hazel's exact shared reader and 15 native regression cases from
+Alder commit `2a25f57c72ba5038688ec42812066551e2a968a0`. The module SHA256 remains
+`8d841aeec4dd9b6fc48575e682e99bec2c5ff29be595e766dc5e3a52ad1eeaa0`.
+The maintained `NativePhasedGuard` delegates its independent source-array read
+and aliases its former `_indexed` helper to the shared index join. This removes
+the duplicate parser; fixed-scattering validation, native-module pins and actual
+coordinate-target/phase/Free-R checks remain in the guard.
+
+Semantics are unchanged: explicit named amplitude/sigma arrays, explicit Bijvoet
+averaging, exact HL coverage, integer source flags covering all observations
+(with extra flag rows permitted), positive amplitudes/sigmas and index-based
+joins. The shared reader has no process, model-selection, normalization or
+scientific authority. Historical frozen workers, requests, reports, ordinary
+ancestry and force/refinement policy remain unchanged. No new MTZ or fit.
+
+**Validation:** one new delegation regression fails before the change. The
+received native-reader tests cover exact labels, order-independent joins,
+flag supersets, missing/extra HL, wrong crystals, invalid observations, anomalous
+semantics and a real synthetic MTZ read. Focused host checks pass **189 tests +
+4 subtests**, with 14 explicit native-library skips. Phenix Python 3.11.15 passes
+**3,041 tests + 238 subtests, no skips** (218.91 s); the relocated clean install
+passes **203 focused tests + 4 subtests** (6.40 s), CLI help and Python 3.10 syntax.
+All installed Python files equal the source, and the original build/install
+paths are gone before testing. Disposable staging removed: **8,097,218 bytes**.
+
+The actual installed maintained guard independently reproduces the pinned W252
+reader on **1,151 original FT observations / 59 Free-R assignments**: all HL
+coefficients, source/scattering records, four native-module hashes and crystal
+information agree exactly. Every input remains unchanged. This is a read-only
+Phenix **2.2.1-6174** library check with **zero child processes and zero refinement**,
+not an ordinary-parent join, phased fit, anomalous recovery or scientific approval.
+Source and installed tests use `PYTHONDONTWRITEBYTECODE=1`, explicit source/package
+roots and `pytest -q -rs -p no:cacheprovider`; exact argv are in `installation.json`.
+No whole-run relocation or combined-branch release is claimed.
+
+NASolve anchor `branch-artifacts/willow/w295-shared-diffraction-source/` retains
+`qualify.py`, `observe_installed.py`, `installation.json`,
+`installed-source-equivalence.json` and focused/fail-before/full/install logs.
+Exact commands, dependency versions and source/installed/input hashes are in the
+receipts. The installed comparison resolves only the explicit prior
+`branch-artifacts/Alder/a01-diffraction-observer-20261125-01/dry-native/plan.json`
+anchors and verifies its model/scattering/observation/phase and frozen-reader
+pins; it does not search for inputs by basename. Child execution is prohibited
+during the read. Hazel's independent A848 equivalence remains separate evidence,
+not a new Willow run. Generated science remains local and excluded from Git.
+
+This shared dependency supports S06 but does not close the coupled-sugar gate.
+The next TopoStitch task remains explicit 19-atom scope/chemistry admission;
+W293 numerical agreement and W294 ordinary preflight are reused. W288 remains
+the latest actual refinement. Deferred nonzero-f″ and fragmentation stress tests
+remain gated by their existing owners.
