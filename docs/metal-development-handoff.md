@@ -1,6 +1,6 @@
 # Metal development handoff — current state
 
-Updated **26 November 2026** (documentation audit; latest science 25 November). Active feature branch: **Alder**. The
+Updated **26 November 2026** (complete protected return and paired-map review). Active feature branch: **Alder**. The
 [root integration handoff](development-handoff.md) owns the current combined
 source, full validation and delivery. The [A01–A09 roadmap](metal-development-roadmap.md)
 owns feature completion. The earlier chronological diary is preserved as
@@ -8,9 +8,10 @@ owns feature completion. The earlier chronological diary is preserved as
 not a second queue.
 
 The [audited forward queue](metal-development-roadmap.md#immediate-bridge-from-a01-to-quantitative-trials)
-has two decisions: return a fully checked and inspectable FT_Hg XYZ/group-B model,
-then admit its source/policy/output through the existing owners before quantitative
-fan-out. Timing is an enabling measurement, not a substitute for that endpoint.
+has two decisions: scientifically qualify the now-inspectable FT_Hg XYZ/group-B
+model, then admit its source/policy/output through the existing owners before
+quantitative fan-out. The completed private return closes execution coverage;
+its geometry remains unaccepted.
 The roadmap now separates usable entry points, planned metal-screen behavior and
 Cedar/Willow/Alder authority; earlier experiment sections below retain their own
 scope and source pins. The docs-only audit ran no tests or fits. Local inventory
@@ -24,7 +25,89 @@ and cache-retirement evidence: `branch-artifacts/Alder/docs-audit-20261126-01/`.
 
 <a id="a01-parameter-scope-2026-11-25"></a>
 
-## Current A01 — measured runtime cost and durable partial evidence
+## Current A01 — complete protected return and paired maps
+
+The unchanged reciprocal-only FT_Hg recipe now returns under the source-pinned
+v3 guard: **one macrocycle, 573 XYZ and 81 group-B calls**, 859 movable XYZ atoms,
+42 DNA B groups covering 858 atoms, two registered crystal connections. All
+Q/f′/f″ and Hg B remain protected. Original ordered Free-R/HL survive the two
+observed normalization calls. Hooks restore; the shared process owner confirms
+both completed attempts have empty process groups. Phenix **2.2.1-6174**, Python
+**3.11.15**; these were complete one-cycle executions, not dry runs or convergence
+claims. Native parameters, weights, inputs and production source are unchanged.
+
+The first return takes **268.88 s** but inherits disabled map/MTZ output from the
+mechanical probe. Preserve that model and the failed map-assuming cold review.
+A single matched **255.55 s** output replay reproduces all full-precision atoms,
+Rwork/Rfree and PDB bytes exactly before reusing `metal.map_diagnostics.capture`
+on the same completed Fmodel. Active atoms, observations, flags, HL, scales and
+residuals remain unchanged during capture. The two 24,720-byte MTZs contain
+`TWOFOFC,PHITWOFOFC` and `FOFC,PHIFOFC`: work-only, nonfilled, isotropized,
+model-assisted MLHL maps, 1,092 work coefficients, 59 Free excluded, λ=0.92009 Å,
+resolution 5.057 Å. They are not anomalous maps or independent validation.
+Older gallery maps included Free-R; retain that distinction.
+
+**Scientific result:** Rwork/Rfree **0.3098/0.3422**; N3–Hg–N3 **174.6°**, donor
+distances **2.019/2.001 Å**. All 858 DNA B values change (mean 113.37 Å²); Hg
+remains B=69.52 Å², Q=1, f′=−8.100181579589844 e and f″=0 **unmeasured**.
+The PDB is byte-identical to the 25 November parameter-scope control; residual
+differences versus that older observer are at most 1.1e−15. This is new protection
+and output qualification, not an improved scientific endpoint. No five-cycle
+repeat was run: the older matched five-cycle controls already remain unaccepted.
+
+The existing physical-image reader measures both connections. B1 OP2–P–O5′ is
+**87.5°** versus the printed **108°** target; B7 C3′–O3′–P is **128.2°** versus
+119.7°. Ordinary density at B1/C8 P is **0.01/−0.15σ**, difference density
+**−2.97/−2.82σ**. Same-return-map samples at starting and returned sugar/backbone
+positions stay weak. These measurements motivate coupled boundary placement;
+they are not independent map scores or fractional-angle acceptance cutoffs.
+The source DF sulfur targets are 126.83°/115.92°; returned 127.37°/116.02° follows
+that declared dictionary rather than a newly imposed symmetric target.
+
+Read-only environmental B uses the returned bases, excluding sugar/backbone:
+A12 **50.86**, B4 **119.57 Å²**; equal-base mean **85.21**, donor-only mean
+**93.95 Å²**. Mismatch is retained. These are two-decimal PDB previews; proposed
+bytes were discarded. No Hg B reassignment, f″ fit, checkpoint or selection follows.
+
+**Validation and retained failures:** 72 first-model cold checks; 93 paired-map
+checks; 84 existing Cedar written-geometry checks; 28 environmental-B checks.
+An additional offline source/phase audit samples 18 atoms in both saved maps and
+confirms the private result is refused by `_input_bundle`. An initial geometry
+reader lacked the existing supplemental `openpyxl` environment; the corrected
+reader keeps native Gemmi first. An initial environment harness used a wrong
+literal resource path; the corrected version uses the declared frozen source.
+All failed logs remain. No scientific refit was needed for these reader fixes.
+
+**Commands/evidence:** under the established `Alder-artifacts` anchor,
+`a01-protected-return-20261126-01/` and `-02/`; local runners A824–A838.
+The exact command arrays, source/input/log hashes, exit codes and per-check
+results are in `-02/validation.json` and both `execution.json` receipts.
+Native/cold scripts use `PYTHONDONTWRITEBYTECODE=1` with configured Phenix Python;
+rendering also uses a private `MPLCONFIGDIR`. Maintained source and prior focused/
+installed/native test pins are unchanged, so those controls were not repeated.
+No full suite, Coot invocation or production/runtime/schema change. The optional
+checkout Coot launcher is prepared and statically checked, not launch-qualified.
+
+**Storage and handoff:** about 11.2 MiB for both local attempts plus figures at
+review; no duplicated native input files, map MTZs total only 48.3 KiB. No unique
+science is deleted or committed. Figures/HTML and exact source links are in
+`ScienceCheckouts/Hazel/2026-11-26_ft-protected-return/index.html`.
+Compatibility/migration impact: none. The map replayer requires success exit,
+no error, exact replay and map receipts; an intermediate model-success status
+alone must not be interpreted as successful later map capture.
+
+**Next:** geometry and ordinary ancestry remain distinct gates. Reuse the
+coupled sugar/backbone work and existing chemistry/topology owners for a genuinely
+different source-qualified candidate. Receive prepared-parent/mixed-policy/output
+interfaces deliberately; do not relabel the private control as `metal-phased-xyz-v1`
+or an ordinary checkpoint. Existing frozen f″ v1 retains model-phase-only ML and
+the original anomalous quartet; preserving HL lineage does not apply HL restraints.
+Phase sensitivity remains an explicitly separate comparison after admission.
+A01 partial; A02 scientific quantitation remains gated.
+
+<a id="current-a01--measured-runtime-cost-and-durable-partial-evidence"></a>
+
+## Previous A01 — measured runtime cost and durable partial evidence
 
 An opt-in synchronous timing observer now separates exclusive native work from
 runtime checks, including nested callbacks and interruptions. Inclusive timings

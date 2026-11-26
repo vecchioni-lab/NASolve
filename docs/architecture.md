@@ -65,9 +65,10 @@ Default v1 remains exact. Explicit v3 additionally witnesses the pinned native
 F/sigma normalization method: exact observed division, original ordered index/
 Free-R/HL ownership, invariant Rwork/Rfree and exact subsequent target state.
 Its bounded ledger changes no source files or numerical conditioning. Strict
-v1/v2 remain unchanged. Actual XYZ callbacks now have partial native execution
-coverage; group-B and returned-output completion remain pending after a bounded
-interruption. No ordinary dispatch/endpoint adoption follows; see the receiving
+v1/v2 remain unchanged. Actual XYZ and group-B callbacks now have one complete
+private native cycle with source-bound final output and paired-map capture; hooks and process closure
+are verified. The exact model remains scientifically unaccepted. No ordinary
+dispatch/endpoint adoption follows; see the receiving
 contract for precise receipts, failures and next qualification.
 
 Historical counted V5–V8 code preparation now obtains `topostitch_native_recipe.py`

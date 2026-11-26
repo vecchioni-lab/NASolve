@@ -1,6 +1,6 @@
 # Ordinary receiving for mixed XYZ/group-B refinement
 
-Updated 25 November 2026. A01 mechanical integration; A01 science remains partial
+Updated 26 November 2026. A01 mechanical integration; A01 science remains partial
 and A02 quantitation is gated. This is a prospective implementation contract,
 not a claim of ordinary numbered-round qualification.
 
@@ -357,14 +357,27 @@ Checkout `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/normalization-r
 includes visually reviewed PNG/editable SVG. About 8.1 MB local evidence, temporary
 package staging removed. No full suite or generated science files in Git.
 
-**Current boundary (26 November audit):** the later opt-in timing control has
-measured observer/native costs and retained partial progress with shared-owner
-closure. It does not complete group B or written output. Follow the roadmap's
-[two next decisions](metal-development-roadmap.md#immediate-bridge-from-a01-to-quantitative-trials):
-return an inspectable mixed-scope endpoint, then admit its source/policy/output
-through existing owners before quantitative fan-out. Command-binding v1 permits
-only file changes; mixed-policy receiving, real-space identity and FT ordinary
-ancestry remain separate. Reuse existing admission/command evidence.
+**Current boundary (26 November return):** the v3 route now completes a private
+one-cycle reciprocal XYZ/group-B fit with exact returned/written state, paired
+work-only MLHL maps, restored hooks and process closure. The output replay is
+atom-/residual-exact. Its PDB also reproduces the older parameter-scope result;
+Rwork 0.3098 and strained/weakly supported phosphate geometry remain unaccepted.
+See the [complete evidence](metal-development-handoff.md#current-a01--complete-protected-return-and-paired-maps).
+This closes actual execution coverage, not source-bound ordinary receiving.
+Command-binding v1 permits only file changes; mixed-policy receiving, real-space
+identity and FT ordinary ancestry remain separate. Reuse the existing admission,
+command and phase owners; no repeat initialization is required.
+
+The offline downstream audit confirms that the private result is refused by the
+existing f″ `_input_bundle`. Keep that boundary. Existing `metal-frozen-fdp-v1`
+uses the original anomalous quartet with model-phase-only ML, fixed XYZ/ADP/Q/f′
+per point and profiled bulk-solvent/overall scales. External HL survives as source
+lineage but is not applied in that worker. Do not feed the geometry's normalized
+merged array or map coefficients into the anomalous stage, imply applied HL from
+provenance alone, or silently switch phase policy. The existing child-input owner
+already verifies derivation from an admitted parent; extend its supported endpoint
+only after deliberate mixed/ordinary admission. A scientifically matched phase-
+sensitivity comparison remains separate from this source audit.
 
 The subsequent read-only saved-protocol audit confirms optimized XYZ/ADP weights
 remain requested in the actual EFF. Native compilation proves unchanged XYZ/B

@@ -1050,9 +1050,10 @@ candidate sites and whether AutoSol is required are written to `report.json`.
 The commands below provide explicit construction, diagnostics and inspection.
 They are not yet an integrated automatic metal-screen workflow. The current
 [metal roadmap](docs/metal-development-roadmap.md#original-aim-and-usable-entry-points)
-distinguishes these usable entry points from the remaining open XYZ/group-B,
-scientific acceptance and campaign steps. A saved review bundle is not a selected
-solution.
+distinguishes these usable entry points from the remaining geometry, ordinary
+parent admission and campaign steps. A protected private XYZ/group-B cycle now
+returns paired maps; that execution result does not accept its geometry. A saved
+review bundle is not a selected solution.
 
 After the W AutoMR/PostMR stages generate a model, inspect its fixed A:12/B:4
 pair and observation-associated wavelength with:

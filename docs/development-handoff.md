@@ -1,22 +1,30 @@
 # NASolve development handoff — integrated development base
 
-Updated **25 November 2026**. Active integration target: **Alder**. The everyday
+Updated **26 November 2026**. Active integration target: **Alder**. The everyday
 Pine and the separate Cedar/Willow branches are not changed by this integration. This base
 combines the existing metal feature with the qualified shared chemistry, native
 observation and storage owners; it introduces no new scientific policy.
 
 ## Current metal-science edge
 
-A01 remains partial; A02 stays gated. Opt-in timing now measures nested native
-and observer wall time without double-counting. A matched 90-second FT_Hg sample
-reaches 193 XYZ calls: checks use 35.13 s, native work 49.42 s (Reduce 3.97 s),
-with 5.48 s uninstrumented. Thus Reduce alone does not explain the earlier timeout.
-Eight partial receipts survive; the shared process owner verifies closure at 91.61 s
-and all hooks restore. Group-B/returned-output closure is still pending. Forty-five
-focused and 45 installed checks, source/installed native controls and 78 cold checks
-pass. The earlier failed diagnostic remains preserved. Next: localize repeated
-observer work without weakening scientific checks, then budget a complete cycle.
-[Exact evidence and checkout](metal-development-handoff.md).
+A01 remains partial; A02 stays gated. The current protected reciprocal XYZ/group-B
+route completes one native macrocycle (573 XYZ / 81 group-B observations) with
+both registered crystal links, exact original Free-R/HL and held Q/f′/f″/Hg B.
+An output-only replay reproduces every full-precision atom and both R values,
+then captures paired work-only MLHL maps without changing the active model.
+Both process groups stop and hooks restore. Cold checks pass: model 72, paired
+model/maps 93, existing written-phosphate reader 84 and environmental-B preview 28.
+No new unit/full suite or scientific policy change; earlier focused qualification
+is reused at unchanged source hashes.
+
+Rwork/Rfree **0.3098/0.3422**, weak phosphate density and B1 OP2–P–O5′ **87.5°**
+against its recorded 108° target keep scientific acceptance open. The PDB is
+byte-identical to the older parameter-scope control, so this is execution/output
+qualification rather than a new improved geometry. Next: a distinct coupled
+sugar/backbone input and deliberate ordinary parent/mixed-policy admission.
+The offline f″ boundary remains model-phase-only ML with original anomalous
+data; inherited HL is provenance, not an applied restraint in that stage.
+[Exact evidence, failures, commands and checkout](metal-development-handoff.md#current-a01--complete-protected-return-and-paired-maps).
 
 The separate ordinary integration
 dependency is [source-bound ordinary parent admission](metal-ordinary-receiving.md#current-admission-boundary-and-next-a01-subgoal).

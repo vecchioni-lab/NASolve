@@ -1,7 +1,7 @@
 # Post-merge metal-coordination roadmap
 
-Updated **26 November 2026** after a documentation and storage audit. Working
-branch **Alder**, audited implementation `5d2eeed9`. The feature milestones
+Updated **26 November 2026** after the protected-return/map review. Working
+branch **Alder**, unchanged implementation under audit `60a1f084`. The feature milestones
 **A01–A09** below remain explicitly post-merge work; A09 follows the main build.
 Merge qualification, scientific acceptance and feature completion are separate.
 
@@ -30,52 +30,50 @@ and `src/nasolve/metal/cli.py` own their exact options.
 | --- | --- | --- |
 | Build explicit metal hypotheses on generated DNA | `metal inspect`, `preview`, `build`, `geometry`, verification and legacy-restraint import | General construction across multiple site contexts; source-qualified chemistry and whole-model optimization. W A:12/B:4 is the current importer, not a universal site rule. A01/A03. |
 | Discover sites from anomalous data and retain phases | Declared phase-restrained XYZ API and existing upstream AutoSol mechanisms | Integrated free-metal screen, covalent I/Br/Se anchors, coherent cluster image mapping, evidence-led count alternatives and explicit no-metal continuation. A03/A06/A07. |
-| Obtain an open XYZ/B model | Existing XYZ API and historical returned controls; explicit mixed-scope writer/guard and timing | Complete the current reciprocal XYZ/group-B route, bind written output and process closure, then review geometry/maps/fit. Historical controls do not qualify a later guard. A01. |
+| Obtain an open XYZ/B model | Existing XYZ API and historical returned controls; explicit mixed-scope writer/guard and timing | Current reciprocal XYZ/group-B route now returns checked output and paired maps with process closure; scientific geometry/fit and ordinary admission remain. Historical controls do not qualify a later guard. A01. |
 | Quantify anomalous response | `metal fdp`, explicit occupancy scans, comparisons and signed cluster atom-equivalent summaries | Scientifically qualified parents, response/convergence controls, adaptive branching and ambiguity handling. f″ fits hold Q fixed per point; sibling trials vary Q. A02/A03. |
 | Inspect and choose | Verified saved-result catalog, `serve-workbench`, grouped reviews, map/Coot inspection | Dedicated user GUI session, editing, coupled execution/selection and side-by-side geometry decisions. A05/A06. |
 | Run many datasets without excessive storage | Compact records, input/parent transport, owned child/session and budget mechanisms | Accepted scientific regeneration, safe output retirement and campaign-wide scheduling. Compression/readback alone does not authorize deletion. A04 before fan-out. |
 
 ## Current A01 evidence and protected-site boundary
 
-**A01 is partial; A02 scientific quantitation remains gated.** Older five-cycle
-coupled Hg/DNA controls returned inspectable models with both crystal links, but
-remain unaccepted geometry comparisons. Their Rfree values of 0.3371/0.3362 and
-local chemistry/maps still need scientific interpretation. The current mixed
-route has not yet returned a complete observed XYZ/group-B endpoint.
+**A01 is partial; A02 scientific quantitation remains gated.** The current
+protected reciprocal route completes one cycle with both crystal links: 573 XYZ
+and 81 group-B observations, exact returned/written state, restored hooks and
+verified process closure. One output replay reproduces that state exactly and
+captures paired work-only, nonfilled MLHL maps without changing it. This closes
+the execution gap; timing optimization is no longer the immediate blocker.
 
-The current FT_Hg control scope permits 859 XYZ atoms and 42 DNA B groups
-(858 atoms); Hg B
-is protected, as are all Q/f′/f″ values. These are explicit per-parameter rules,
-not a claim that a “protected metal” cannot move. Source/compiled membership and
-actual XYZ optimizer flags have been checked; actual group-B completion remains
-open. The v3 guard retains original ordered
-Free-R/HL and witnesses the native common F/sigma normalization; immutable source
-files stay exact. Real-space/sliced and multiprocess scopes remain refused.
+Scope remains 859 XYZ atoms and 42 DNA B groups (858 atoms). Hg B and all Q/f′/f″
+are protected, while Hg XYZ can move. The v3 guard retains original ordered
+Free-R/HL and witnesses native common F/sigma normalization. Source files stay
+exact. Real-space/sliced and multiprocess scopes remain unqualified.
 
-The latest matched timing sample completes 193 XYZ calls, then stops at its
-90-second worker bound with all hooks restored and process closure at 91.61 s.
-Observer checks take 35.13 s, native work 49.42 s including 3.97 s in Reduce.
-Eight compact partial receipts survive. The earlier 464-call stop has its own
-source pins and no time split. Neither stop supplies actual group-B/output closure,
-a completed macrocycle, accepted model or measured f″. See the
-[current record](metal-development-handoff.md#current-a01--measured-runtime-cost-and-durable-partial-evidence)
-and the local `ScienceCheckouts/Hazel/2026-11-25_parameter-protection/runtime-timing.html`.
-The audit reused those receipts; it ran no tests or fits.
+Rwork/Rfree **0.3098/0.3422**, weak phosphate/sugar density and B1 OP2–P–O5′
+**87.5°** versus its 108° target keep scientific acceptance open. The PDB equals
+the earlier parameter-scope control byte for byte. Older five-cycle original/
+constructed controls (Rfree 0.3371/0.3362) remain evidence, not a reason to repeat
+unchanged fits. Returned base B means **50.86/119.57 Å²** yield previews of
+**85.21 Å²** (base mean) or **93.95 Å²** (donors); neither is applied.
+
+The [current handoff](metal-development-handoff.md#current-a01--complete-protected-return-and-paired-maps)
+owns exact validation and retained failures. Checkout:
+`ScienceCheckouts/Hazel/2026-11-26_ft-protected-return/index.html`.
+The previous timing stops and storage audit stay preserved at their original pins.
 
 ## Immediate bridge from A01 to quantitative trials
 
 Only two next decisions govern the near-term work:
 
-1. **Return one fully checked, inspectable FT_Hg model.** If observer overhead
-   prevents a practical completion allowance, localize repeated checks once with
-   a controlled replay and preserve every live-state/target protection. Then run
-   the unchanged optimized recipe with a realistic bound and durable progress;
-   qualify group-B execution, full-precision final state, serialized output and
-   stopped processes. Inspect local chemistry, both crystal links, coordination,
-   Rwork/Rfree and paired maps. A01's target Rwork remains below 0.3; a low R value
-   alone does not accept the geometry. Timing optimization is subordinate to this
-   deliverable. Straight and bent bridges remain hypotheses; the human endpoint
-   is not ground truth.
+1. **Scientifically qualify the inspectable FT_Hg model.** The protected return,
+   actual group-B execution, serialized state, map capture and stopped processes
+   are complete for the current one-cycle control. Address the weak/strained
+   phosphate and sugar context through a distinct coupled-placement hypothesis
+   with the existing chemistry/topology owners; inspect coordination, both crystal
+   links, local chemistry, maps and Rwork/Rfree. A01's Rwork target remains below
+   0.3, and a low R value alone does not accept geometry. Straight and bent metal
+   bridges remain hypotheses; the human endpoint is not ground truth. Reuse the
+   older five-cycle comparisons instead of repeating them as new science.
 2. **Admit the endpoint through the existing owners before quantitative fan-out.**
    Receive the prepared-parent and numbered-runtime interfaces deliberately,
    bind original observations/Free-R/HL and a separately declared mixed policy,
@@ -174,7 +172,7 @@ the exact source pin, counts, commands and remaining integration boundaries.
 
 | Milestone | Current evidence | Post-merge completion gate | Dependencies |
 | --- | --- | --- | --- |
-| **A01 — Ligand geometry and open XYZ/B foundation** | PARTIAL; native stopping evidence implemented; FT_Hg open-fit geometry gate remains | Qualify exact source chemistry, linkage/terminal context, all intended NARestraints and metal recipe terms; demonstrate open XYZ/B refinement, explicit phase/Free-R policy, active-state B export and inspectable maps. FT_Hg first, then mixed Au/Ag. | Merged development base |
+| **A01 — Ligand geometry and open XYZ/B foundation** | PARTIAL; complete protected one-cycle XYZ/group-B return and paired maps; FT_Hg geometry and ordinary admission remain | Qualify exact source chemistry, linkage/terminal context, all intended NARestraints and metal recipe terms; demonstrate open XYZ/B refinement, explicit phase/Free-R policy, active-state B export and inspectable maps. FT_Hg first, then mixed Au/Ag. | Merged development base |
 | **A02 — Controlled f″/Q quantitation** | PARTIAL; frozen fits, B environments and matched comparisons implemented | Use qualified endpoints; freeze XYZ/all ADPs/f′, prepare metal B from the refined environment, and qualify Q/start/budget responses, mixed elements, cluster sums/cancellation and anomalous-background controls. | A01 |
 | **A03 — Editable recipes and structural alternatives** | PARTIAL; recipe core and candidate comparisons implemented | Source-backed ligand/metal-state targets, saved editable recipes, count/identity alternatives, optional chi flips and multiple/adjacent sites; preserve ambiguity and human choice. | A01–A02 |
 | **A04 — Lean storage and regeneration** | PARTIAL; [inventory/forecast, compact projection and exact input transport](metal-campaign-storage.md) implemented; explicit parent transport, retained execution/cold review and compact publication with declared protected references qualified on bounded controls; v1 one-shot admission and opt-in mixed-scope ledger admission qualified on small controls; ordinary parent closure and retained-child budget admission qualified; owned native preflight qualified; whole audited-session admission and successful/verified-stopped-failure settlement qualified; sealed partial-preflight settlement, read-only held-session diagnosis and forward session/reservation process binding qualified; unsealed-attempt recovery, accepted scientific regeneration, scheduler-wide accounting and pruning pending | Shared pristine parents, compact frozen-trial records, protected important nodes, size-capped map retention, cold native regeneration, crash-safe retirement and campaign disk reservations. | Qualified A01–A02 examples; before large fan-out |

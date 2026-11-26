@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Qualify one protected metal XYZ/group-B return and paired maps
+
+- Record one complete guarded FT_Hg cycle and an exact output-only replay using
+  the existing active-model map capture, with verified fixed state, original
+  Free-R/HL, written output, restored hooks and process closure.
+- Retain the unaccepted geometry, environmental-B previews and explicit MLHL
+  geometry/model-phase-only f″ boundary. Update the forward queue and local
+  science checkout; no product code, scientific default, schema or migration.
+
 ### Reconcile metal roadmap with usable workflow and retained evidence
 
 - Consolidate superseded experiment-status prose into one forward queue while
