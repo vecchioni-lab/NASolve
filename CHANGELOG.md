@@ -16,6 +16,8 @@ entries are reconstructed from repository history.
 - Retain the unaccepted geometry, environmental-B previews and explicit MLHL
   geometry/model-phase-only f″ boundary. Update the forward queue and local
   science checkout; no product code, scientific default, schema or migration.
+- Identify the existing ordinary/metal evidence readers and the missing mixed-policy
+  parent binding, preserving valid phase-free ML and explicit B-keep behavior.
 
 ### Reconcile metal roadmap with usable workflow and retained evidence
 

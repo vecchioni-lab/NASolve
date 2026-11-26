@@ -388,6 +388,38 @@ interrupted stack; it cannot inherit the time split measured in the later
 own declaration/limits; it cannot substitute for completion of the optimized
 recipe. See `saved-protocol-audit.json` in the same evidence directory. No new fit.
 
+## Returned-parent evidence: use the existing owners
+
+The ordinary reader and the metal reader answer different questions. A readable
+ordinary ML checkpoint may legitimately have no external HL; a declared B `keep`
+policy need not infer donors. Neither is missing evidence for its own policy.
+Do not impose the phased metal contract globally or silently turn `keep` into
+environmental calibration.
+
+| Required evidence | Existing owner | Boundary |
+| --- | --- | --- |
+| Ordinary model, observations, ordered restraints, optional phases and exact request/written model | `checkpoints.read_registry` / `inherited_paths`, `refinement_parallelity.validate_checkpoint_execution`; Cedar `refinement_prepared_backbone.validate_trial` for prepared inputs | General ancestry and prepared chemistry; not an implicit metal protected-state certificate. |
+| Declared metal/donor identities and recipe bytes | `metal.materialize.verify_hypothesis` | Replays the captured context/recipe/placement; no inferred missing donors. |
+| Native and serialized ADP/Q/scattering plus original indexed HL/Free-R | `metal.xyz.verify_xyz` / `audit_result` | Qualified `metal-phased-xyz-v1` individual ADP only; not the mixed group-B control. |
+| Refined base/donor B and explicit alternative policy | `metal.environment.calibrate_b` | Required donors and graph membership must resolve for averaging; explicit `keep` remains distinct. |
+| Derived frozen-child inputs joined to the ordinary source | `metal.child_inputs.verify_child_inputs` / `_derive` | Already composes supported endpoint replay, exact ordinary root and byte derivation; grants no scientific acceptance. |
+| Mixed protected fields and phase/target scope | `ParameterScope`, `DiffractionReference`, `MixedRuntimeGuard` | Complete source-bound records and actual execution checks; not ordinary parent admission on their own. |
+
+**Smallest missing source for the current FT route:** a legitimate ordinary
+parent/request reference with approved original HL and exact recipe/donor bindings.
+The private FT chain lacks a report/registry; the genuine ordinary PDU control
+has no HL. Neither can be relabelled to fill the gap. The subsequent product work
+is a versioned mixed-policy binding joining those existing references to complete
+runtime/written-state/stopping proof. It is not a one-field generic-reader fix.
+
+Existing negative cases already cover required B policy, unresolved donors,
+source/phase tampering and native/serialized state disagreement. A future mixed
+ordinary-entry regression must refuse missing required donor, ADP/group or phase
+evidence before allocation/launch, including rehashed conflicts, while retaining
+valid ordinary ML and explicit `keep`. No new fit or duplicate reader is justified
+by this audit. Source/test pins and reviewed owners are retained locally at
+`a01-ordinary-record-boundary-20261126-01/review.json`; no tests were rerun.
+
 ## Ordered integration steps
 
 1. **Admit a legitimate prepared parent.** Reuse Cedar's `PreparedBackbone`,
