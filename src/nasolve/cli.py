@@ -2261,10 +2261,16 @@ def _cif_doctor(args: argparse.Namespace) -> int:
     if args.cif_action in {"prepare-run", "continue-preparation", "prepared-result", "preparation-status"}:
         return _cif_checked_preparation(args)
     if args.cif_action == "verify-pucker":
-        from .cif_rna_pucker import read_literal_pucker, verify_literal_pucker
+        from .cif_rna_pucker import ArchivedPuckerTableUnavailable, read_literal_pucker, verify_literal_pucker
         try:
-            operation = read_literal_pucker if args.replay else verify_literal_pucker
-            result = operation(args.qualification, args.literal, discover_phenix(load_config(), explicit=args.phenix_root))
+            if args.replay and args.phenix_root is None:
+                try:
+                    result = read_literal_pucker(args.qualification, args.literal)
+                except ArchivedPuckerTableUnavailable:
+                    result = read_literal_pucker(args.qualification, args.literal, discover_phenix(load_config()))
+            else:
+                operation = read_literal_pucker if args.replay else verify_literal_pucker
+                result = operation(args.qualification, args.literal, discover_phenix(load_config(), explicit=args.phenix_root))
         except (OSError, ValueError, RuntimeError) as exc:
             print(str(exc), file=sys.stderr)
             return 1

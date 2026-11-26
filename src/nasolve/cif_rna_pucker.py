@@ -1,12 +1,15 @@
 """Explain an observed Phenix RNA pucker adjustment without changing its qualification."""
 from copy import deepcopy
+from hashlib import sha256
 from pathlib import Path
 
 from .campaign_records import path_in
 from .cif_candidate_qualification import inspect_candidate_qualification_processes
 from .cif_candidate_qualification_execution import _inputs, _inventory, _owned_native_capture, _ref
 from .cif_candidate_usability import _check_native_targets, covalent_proxy_signature, qualify_candidate_native
-from .cif_dictionary_sites import _need
+from .cif_dictionary_sites import _need, _read, _safe
+from .cif_dictionary_store import _digest, _hash
+from .cif_elbow_contract import MAX_SOURCE_BYTES
 from .cif_doctor import _duplicate_tags, _number
 from .cif_phenix_configuration import _library, _pin
 from .cif_postmr_cache import verify_current_consumer
@@ -84,9 +87,36 @@ def project_pucker_targets(values, table):
     return result,counts
 
 
-def review_pucker_adjustment(directory, installation):
-    """Re-evaluate two stopped coordinate seeds against the currently selected native table."""
-    root=Path(directory).expanduser().resolve(strict=True)
+class ArchivedPuckerTableUnavailable(ValueError):
+    """The older two-directory comparison needs its original numerical table."""
+
+
+def installed_pucker_table(installation_root):
+    """Identify the table within the same Phenix installation selected for refinement."""
+    root=Path(installation_root).resolve(strict=True)
+    table=_library(root)/_RESOURCE
+    return table, _pin(table,root,source=True)
+
+
+def validate_table_pin(pin):
+    _need(isinstance(pin,dict) and set(pin)=={"anchor","path","size","sha256"}
+          and pin["anchor"]=="phenix_installation" and _safe(pin["path"])
+          and pin["path"].endswith("/site-packages/"+_RESOURCE)
+          and type(pin["size"]) is int and 0<pin["size"]<=MAX_SOURCE_BYTES and _hash(pin["sha256"]),
+          "Require a pinned Phenix RNA pucker table")
+
+
+def table_bytes(path,pin):
+    validate_table_pin(pin)
+    _need(Path(path).stat().st_size==pin["size"],"RNA pucker table size differs")
+    data=_read(path)
+    _need(len(data)==pin["size"] and sha256(data).hexdigest()==pin["sha256"],"RNA pucker table checksum differs")
+    return data
+
+
+def _review_default(root,template,pin):
+    """Re-evaluate both recorded native seeds against the identified table bytes."""
+    root=Path(root).expanduser().resolve(strict=True)
     protocol,paths,models,phil=_inputs(root)
     _need("literal_rna" not in protocol,"Require the original default native qualification")
     state=inspect_candidate_qualification_processes(root)
@@ -94,11 +124,8 @@ def review_pucker_adjustment(directory, installation):
           "Require a stopped, complete pair of original native jobs")
     original_inventory=_inventory(root)
     consumer=protocol["consumer"]
-    verify_current_consumer(installation,installation.executables["phenix.ready_set"],consumer)
-    library_root=Path(installation.root).resolve(strict=True)
-    template=_library(library_root)/_RESOURCE
-    pin=_pin(template,library_root,source=True)
-    _need(not _duplicate_tags(template.read_text()),"Duplicate pucker template tags")
+    data=table_bytes(template,pin)
+    _need(not _duplicate_tags(data.decode("utf-8")),"Duplicate pucker template tags")
     blocks=_blocks(template)
     _need(len(blocks)==1,"Ambiguous pucker template")
     code=protocol["component"]
@@ -123,9 +150,8 @@ def review_pucker_adjustment(directory, installation):
     same=signatures[0]==signatures[1]
     accounted=(all(counts.values()) and same and
                all(s["literal_checks_failed"] and not s["adjusted_checks_failed"] for s in seeds))
-    _need(_inventory(root)==original_inventory and pin==_pin(template,library_root,source=True),
+    _need(_inventory(root)==original_inventory and table_bytes(template,pin)==data,
           "Qualification inputs or selected Phenix pucker table changed during review")
-    verify_current_consumer(installation,installation.executables["phenix.ready_set"],consumer)
     return {"policy_id":POLICY_ID,"component":code,"phenix_version":consumer["version"],"modifier":"rna2p",
             "table":pin,"source":_ref(paths[0],root),"candidate":_ref(paths[1],root),
             "matched_rows":counts,"seeds":seeds,"same_covalent_proxies":same,
@@ -133,8 +159,20 @@ def review_pucker_adjustment(directory, installation):
             "scope":"ISOLATED_COMPONENT_ONLY","qualification_unchanged":True,"automatic_adoption":False}
 
 
+def review_pucker_adjustment(directory, installation):
+    """Check the stopped default reads against the currently selected installation."""
+    root=Path(directory).expanduser().resolve(strict=True)
+    protocol,_,_,_=_inputs(root)
+    ready=installation.executables["phenix.ready_set"]
+    verify_current_consumer(installation,ready,protocol["consumer"])
+    table,pin=installed_pucker_table(installation.root)
+    result=_review_default(root,table,pin)
+    _need(installed_pucker_table(installation.root)[1]==pin,"Installed pucker table changed")
+    verify_current_consumer(installation,ready,protocol["consumer"])
+    return result
+
+
 def _default_basis(directory, installation):
-    from .cif_dictionary_store import _digest
     review=review_pucker_adjustment(directory,installation)
     _need(review["status"]=="ADJUSTED_TARGETS_EXPLAINED","Original Phenix pucker change is unexplained")
     return review,_digest(review)
@@ -148,28 +186,47 @@ def _separate_roots(default_job, literal_job):
     return root,literal
 
 
-def verify_literal_pucker(default_job, literal_job, installation):
+def verify_literal_pucker(default_job, literal_job, installation, *, _attempt_identity=None, _remaining_seconds=None):
     """Check the same isolated component with only the native pucker adjustment disabled."""
     from .cif_candidate_qualification_execution import execute_candidate_qualification
     root,literal=_separate_roots(default_job,literal_job)
     _need(not literal.exists(),"Require a fresh literal qualification directory")
-    _,basis=_default_basis(root,installation)
+    review,basis=_default_basis(root,installation)
+    table,pin=installed_pucker_table(installation.root)
+    _need(pin==review["table"],"Selected RNA table differs from the original pucker review")
     p,paths,_,_=_inputs(root)
     execute_candidate_qualification(*paths,p["component"],p["consumer"],installation,literal,
         native_timeout_seconds=p["native_timeout_seconds"],total_timeout_seconds=p["total_timeout_seconds"],
-        bond_representation_policy=p["bond_representation_policy"],_literal_rna_basis=basis)
+        bond_representation_policy=p["bond_representation_policy"],_literal_rna_basis=basis,
+        _literal_rna_table=(table,pin),_attempt_identity=_attempt_identity,_remaining_seconds=_remaining_seconds)
     return read_literal_pucker(root,literal,installation)
 
 
-def read_literal_pucker(default_job, literal_job, installation):
-    """Recheck both independent directories and the selected native numerical table."""
-    from .cif_candidate_qualification_execution import LITERAL_USABILITY, REPORT, read_candidate_qualification
+def read_literal_pucker(default_job, literal_job, installation=None):
+    """Reopen the four native reads. Older pairs require their selected Phenix installation."""
     root,literal=_separate_roots(default_job,literal_job)
-    review,basis=_default_basis(root,installation)
+    lp,_,_,_=_inputs(literal)
+    pin=lp.get("literal_rna",{}).get("table")
+    if pin is None:
+        if installation is None:
+            raise ArchivedPuckerTableUnavailable("This earlier qualification requires the recorded Phenix installation")
+        review,_=_default_basis(root,installation)
+    else:
+        if installation is not None:
+            verify_current_consumer(installation,installation.executables["phenix.ready_set"],lp["consumer"])
+            _need(installed_pucker_table(installation.root)[1]==pin,"Current native pucker table differs")
+        review=_review_default(root,literal/"inputs/rna2p.cif",pin)
+    return _paired_reads(root,literal,review)[0]
+
+
+def _paired_reads(root,literal,review):
+    from .cif_candidate_qualification_execution import LITERAL_USABILITY, REPORT, read_candidate_qualification
+    _need(review["status"]=="ADJUSTED_TARGETS_EXPLAINED","Original Phenix pucker change is unexplained")
+    basis=_digest(review)
     p,paths,_,_=_inputs(root)
     lp,lpaths,lmodels,_=_inputs(literal)
     strict=read_candidate_qualification(literal)
-    _need(lp.get("literal_rna")=={"default_review_sha256":basis}
+    _need(lp.get("literal_rna",{}).get("default_review_sha256")==basis
           and all(lp[k]==p[k] for k in ("component","consumer","bond_representation_policy","seeds",
                                        "native_timeout_seconds","total_timeout_seconds"))
           and all(a.read_bytes()==b.read_bytes() for a,b in zip(paths,lpaths)),
@@ -178,8 +235,9 @@ def read_literal_pucker(default_job, literal_job, installation):
           all(q["policy_id"]==LITERAL_USABILITY and q["native_usable"] and
               q["checks"]["no_native_pucker_overlay"] for q in strict["seed_qualifications"]),
           "Both literal coordinate seeds must independently satisfy the original chemistry")
-    return {"schema_version":1,"policy_id":"paired-isolated-rna-pucker-v1",
+    summary={"schema_version":1,"policy_id":"paired-isolated-rna-pucker-v1",
             "status":"LITERAL_AND_NATIVE_TARGETS_VERIFIED","component":p["component"],
             "default_review":review,"default_review_sha256":basis,"literal_report":_ref(literal/REPORT,literal),
             "literal_seeds":[s.stem for s in lmodels],"source_and_candidate_identical_across_jobs":True,
             "scope":"ISOLATED_COMPONENT_ONLY","linked_context":"NOT_RUN","automatic_adoption":False}
+    return summary,strict

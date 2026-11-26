@@ -73,8 +73,15 @@ def test_paired_literal_read_requires_the_exact_original_explanation(case,monkey
     native["monomer_mappings"]["rows"][0]["chem_mod_ids"]={"status":"RECORDED","ids":[]}
     m.execute_candidate_qualification(*args,native_timeout_seconds=5,total_timeout_seconds=20)
     default=args[-1]; literal=default.with_name("literal")
-    comparison={"status":"ADJUSTED_TARGETS_EXPLAINED","component":"Q17","table":{"sha256":"c"*64}}
-    monkeypatch.setattr(r,"review_pucker_adjustment",lambda root, installation:dict(comparison))
+    relative="lib/python3/site-packages/chem_data/geostd/rna_dna/mod_rna2p.cif"
+    table=args[-2].root/relative
+    table.parent.mkdir(parents=True);table.write_bytes(b"synthetic pucker table")
+    pin=dict(anchor="phenix_installation",path=relative,size=table.stat().st_size,
+             sha256=sha256(table.read_bytes()).hexdigest())
+    comparison={"status":"ADJUSTED_TARGETS_EXPLAINED","component":"Q17","table":pin}
+    monkeypatch.setattr(r,"installed_pucker_table",lambda root:(table,pin))
+    monkeypatch.setattr(r,"verify_current_consumer",lambda *a:True)
+    monkeypatch.setattr(r,"_review_default",lambda *a:dict(comparison))
     if defect=="unexplained-before-start":
         comparison["status"]="REVIEW"
         with pytest.raises(ValueError,match="unexplained"):
@@ -96,6 +103,8 @@ def test_paired_literal_read_requires_the_exact_original_explanation(case,monkey
             r.read_literal_pucker(default,literal,args[-2])
     else:
         assert r.read_literal_pucker(default,literal,args[-2])==result
+        table.unlink()
+        assert r.read_literal_pucker(default,literal)==result
         assert len(calls)==4
     for conflicting in (default,default/"child",default.parent):
         with pytest.raises(ValueError,match="separate"):

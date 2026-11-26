@@ -22,6 +22,12 @@ entries are reconstructed from repository history.
   the workbook. Reopening the complete request uses that copy for the pairing
   recipe when its fingerprint matches the original compiler record.
 
+- Newly recorded `cif-doctor verify-pucker` comparisons keep the small native RNA
+  target table with the literal read. `--replay` can reconstruct both coordinate
+  seeds after relocation with the Phenix installation offline. An explicitly
+  selected installation is also checked. Earlier comparisons keep their original
+  readback against the matching installation.
+
 - Checked PostMR preparation now reuses the verified whole-model NARestraints
   output when `restraint_scope = all`. The saved request binds the original model,
   compiled restraints and sources through the existing compiler receipt.

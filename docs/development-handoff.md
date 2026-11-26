@@ -73,7 +73,11 @@ source-preserving recipe recognize an internal N-linked ribose with a free 2′ 
 The source identifies its phosphate leaving oxygen and both actual backbone partners
 must be recorded. One frozen copy of the NARestraints workbook serves the three sugars
 and the archived pairing recipe. The linked Phenix reader saw the intended sugar and
-normal pucker at all three sites. Carry both independent isolated reads into ordinary
+normal pucker at all three sites. C608 passed those three site-specific reactions to
+five full coordinate-refinement cycles. The returned PDB bytes matched C606 exactly.
+New isolated literal reads freeze the small native pucker table. The 2MG comparison
+reopened with the original runs and entire Phenix installation inaccessible. Carry
+both independent isolated reads into ordinary
 acquisition before promoting this chemistry. The sulfur linkage
 remains a separate chemical state. The [Q12 workbook sweep](cif-doctor-completion-queue.md#q12--resolve-catalogue-mappings-and-maintain-support-coverage)
 follows the eight-site challenge.

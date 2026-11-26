@@ -146,7 +146,7 @@ def test_verify_pucker_cli_runs_or_reopens_the_requested_jobs(tmp_path, monkeypa
     standard, literal = tmp_path / "default", tmp_path / "literal"
     install = object()
     calls = []
-    def selected(first, second, installation):
+    def selected(first, second, installation=None):
         calls.append((first, second, installation))
         return {"component": "ZZ8"}
     monkeypatch.setattr(cli, "discover_phenix", lambda *a, **k: install)
@@ -154,5 +154,41 @@ def test_verify_pucker_cli_runs_or_reopens_the_requested_jobs(tmp_path, monkeypa
     monkeypatch.setattr(cif_rna_pucker, name, selected)
     args = ["cif-doctor", "verify-pucker", str(standard), str(literal)]
     assert main(args + (["--replay"] if replay else [])) == 0
-    assert calls == [(standard, literal, install)]
+    assert calls == [(standard, literal, None if replay else install)]
     assert "ZZ8: both coordinate seeds" in capsys.readouterr().out
+
+
+def test_archived_table_requires_exact_bounded_bytes(tmp_path):
+    from hashlib import sha256
+    from nasolve.cif_rna_pucker import table_bytes
+    data=b"native numerical table"
+    path=tmp_path/"rna2p.cif"
+    path.write_bytes(data)
+    pin=dict(anchor="phenix_installation",path="lib/python3/site-packages/chem_data/geostd/rna_dna/mod_rna2p.cif",
+             size=len(data),sha256=sha256(data).hexdigest())
+    assert table_bytes(path,pin)==data
+    path.write_bytes(b"x"*len(data))
+    with pytest.raises(ValueError,match="checksum"):
+        table_bytes(path,pin)
+    with pytest.raises(ValueError,match="pinned"):
+        table_bytes(path,dict(pin,path="../mod_rna2p.cif"))
+
+
+def test_only_legacy_pairs_fall_back_to_the_selected_installation(tmp_path,monkeypatch):
+    from nasolve import cli, cif_rna_pucker as p
+    sdk=object()
+    calls=[]
+    def read(a,b,installation=None):
+        calls.append(installation)
+        if installation is None:
+            raise p.ArchivedPuckerTableUnavailable()
+        return {"component":"XYZ"}
+    monkeypatch.setattr(p,"read_literal_pucker",read)
+    monkeypatch.setattr(cli,"discover_phenix",lambda *a,**k:sdk)
+    args=["cif-doctor","verify-pucker",str(tmp_path/"default"),str(tmp_path/"literal"),"--replay"]
+    assert cli.main(args)==0 and calls==[None,sdk]
+    def corrupt(*a):
+        raise ValueError("altered saved table")
+    monkeypatch.setattr(p,"read_literal_pucker",corrupt)
+    monkeypatch.setattr(cli,"discover_phenix",lambda *a:pytest.fail("must preserve the archived failure"))
+    assert cli.main(args)==1

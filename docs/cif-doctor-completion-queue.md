@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 26 November 2026, after C607. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 26 November 2026, after C608. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -1076,6 +1076,14 @@ torsion, plane and chirality definitions matched the corresponding projected sit
 the installed pucker adjustment. The candidate still needs the separate default and
 literal evidence throughout acquisition. A relocated request reconstructed its original
 pair recipe while the original dataset and installed workbook were inaccessible.
+
+C608 then sent the three projected dictionaries, their three site-specific reaction
+dictionaries and their exact residue selections to the same five-cycle refinement.
+The Phenix log confirmed each site modification and native pucker. The returned PDB
+matched C606 byte for byte. This tests compatibility with the normal linked chemistry
+on this scaffold. The three substitutions have no separate measured diffraction.
+A new isolated comparison archives the installed pucker table with its hash. The
+original two-directory comparisons can still be checked with their selected Phenix.
 
 C601 found the source-preserving generator had introduced a 5.779 Å bond between
 O4′ and ring C2. All 42 source edges were present. The ten bonds of the purine
