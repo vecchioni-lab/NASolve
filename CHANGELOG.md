@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Record the retained metal-pocket map interpretation
+
+- Document the shared FT donor/Hg difference-density deficit and its display-level
+  sensitivity, with matched map/profile evidence. Do not infer metal count or Q
+  changes from an isolated displayed contour or an empty high-threshold view.
+- Update the A01 evidence and A05 design notes. Documentation only: no new fit,
+  coefficients, runtime behavior, schema, default or scientific acceptance.
+
 ### Review ordinary-parent input roles across the owner boundary
 
 - Add a read-only, checksummed transfer review that distinguishes inherited

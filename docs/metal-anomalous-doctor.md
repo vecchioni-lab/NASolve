@@ -2082,6 +2082,11 @@ Curated contour presets should be scoped to map type/dataset, expose their sigma
 normalization and remain editable. Lock comparable contour settings across
 side-by-side candidates by default and retain deliberate overrides. Display
 choices do not alter a saved refinement, its R values or candidate ranking.
+The retained FT control illustrates why: its two N3 donors and Hg share negative
+density at −1.5σ, while none of those centres crosses −3σ. The same model and maps
+can therefore look locally empty at a higher cutoff. This is display sensitivity,
+not evidence that occupancy/count is correct. See the [fixed-map interpretation](metal-development-handoff.md#a01-retained-ft-pocket-density-interpretation--late-26-november);
+no automatic threshold or atom-editing rule follows.
 
 Map patterns suggest controlled tests, not automatic atom editing:
 

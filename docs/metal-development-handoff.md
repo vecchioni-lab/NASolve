@@ -25,6 +25,48 @@ and cache-retirement evidence: `branch-artifacts/Alder/docs-audit-20261126-01/`.
 
 <a id="a01-parameter-scope-2026-11-25"></a>
 
+## A01 retained FT pocket-density interpretation — late 26 November
+
+A distinct read-only question used the existing exact-return maps: does the
+negative difference density isolate the Hg atom, or span its donor pocket?
+The full B4 N3 → Hg → A12 N3 path remains **−1.93 to −2.48σ**, while the ordinary
+map stays **+3.81 to +5.43σ**. Exact centre values reproduce the earlier saved
+full-precision samples within 1e−10σ. No model or coefficients changed.
+
+All three centres occupy the same negative connected region at −1.0/−1.5σ,
+confirmed with 0.5/0.25 Å spatial sampling and six-face connectivity. That component
+extends outside the 12 Å inspection cube; its clipped volume is not an atom count.
+At −2σ B4 N3 no longer meets the threshold, while Hg and A12 N3 remain connected.
+At −2.5/−3σ none of the three centres qualifies; other surrounding negative contours
+can still exist. Dense interpolation adds no resolution or independent evidence.
+
+**Decision:** the retained red density does not single out Hg excess, so it does
+not by itself justify deleting Hg, lowering its Q or changing metal count. Keep
+one Hg as a hypothesis while resolving geometry/B/model fit; this analysis neither
+accepts the endpoint nor determines the cause of the deficit. It cannot select a
+straight/bent alternative. The maps remain work-only, nonfilled, model-assisted
+MLHL at 5.057 Å, not omit/anomalous maps. Rwork/Rfree stay 0.3098/0.3422; Hg
+B=69.52 Å², Q=1 and f″=0 unmeasured. A01 partial; A02 gated.
+
+The matched sections plus actual-centre profile retain the faint constellation
+style. This supplies concrete A05 evidence for showing editable contour values
+and their normalization: absence at a chosen display threshold is not scientific
+acceptance. No new automatic contour rule or atom-editing behavior is introduced.
+
+Evidence: `branch-artifacts/Alder/a01-pocket-density-20261126-01/measurement.json`
+and `review.json`; methods A855–A856. Exact commands use
+`PYTHONDONTWRITEBYTECODE=1` with configured Phenix 2.2.1-6174 / Python 3.11.15;
+FFT resolution factor 0.25 and existing eight-point interpolation. Four read-only
+controls verify prior samples, connectivity stability and unchanged source bytes.
+No native refinement, new map coefficients, production changes or full suite.
+The plot's initial font-cache warning is retained; it completed using a private
+cache. PNG visually inspected; HTML checked statically. Source files were not
+copied, committed or uploaded. Compatibility/migration impact: none.
+
+Checkout: `ScienceCheckouts/Hazel/2026-11-26_ft-pocket-density/index.html`, with
+PNG and editable SVG. This closes the map-localization question for this fixed
+model; do not rerun it as a substitute for a new geometry/fit hypothesis.
+
 ## A01 ordinary-parent receiving — evening 26 November
 
 The [maintained-owner transfer review](metal-ordinary-receiving.md#read-only-transfer-from-the-maintained-ordinary-owner)

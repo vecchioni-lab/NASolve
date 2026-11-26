@@ -1,6 +1,6 @@
 # Post-merge metal-coordination roadmap
 
-Updated **26 November 2026** after maintained-owner input-role review. Working
+Updated **26 November 2026** after retained FT map interpretation and owner transfer. Working
 branch **Alder**; the earlier forward-queue audit is retained at `60a1f084`. The feature milestones
 **A01–A09** below remain explicitly post-merge work; A09 follows the main build.
 Merge qualification, scientific acceptance and feature completion are separate.
@@ -55,6 +55,12 @@ the earlier parameter-scope control byte for byte. Older five-cycle original/
 constructed controls (Rfree 0.3371/0.3362) remain evidence, not a reason to repeat
 unchanged fits. Returned base B means **50.86/119.57 Å²** yield previews of
 **85.21 Å²** (base mean) or **93.95 Å²** (donors); neither is applied.
+
+A subsequent fixed-map spatial analysis finds a continuous negative difference
+signal across both N3 donors and Hg (−1.93 to −2.48σ), with positive ordinary
+support throughout (+3.81 to +5.43σ). It does not isolate Hg excess or justify
+changing metal count/Q. This question is closed for the retained model; it is not
+a new fit or geometry acceptance. [Evidence and contour-level implications](metal-development-handoff.md#a01-retained-ft-pocket-density-interpretation--late-26-november).
 
 The [current handoff](metal-development-handoff.md#current-a01--complete-protected-return-and-paired-maps)
 owns exact validation and retained failures. Checkout:
@@ -300,7 +306,10 @@ Specific design topics include:
 - Recipe editing, metal state and ligand overrides without exposing unnecessary
   implementation details; reusable interface modules as the design evolves.
 - Soft map controls for ordinary/difference/anomalous maps, direct Coot access,
-  meaningful tree navigation and clear selected/pinned/recoverable states.
+  meaningful tree navigation and clear selected/pinned/recoverable states. Show
+  editable contour levels and normalization: the retained FT pocket shares a
+  negative region at −1.5σ but none of its three centres crosses −3σ. Empty display
+  contours cannot mean a clean site or trigger atom/count decisions.
 
 Close A05 when, in an agreed prototype, the user can follow where a row came
 from, compare competing solutions, inspect their evidence and choose or defer

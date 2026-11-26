@@ -7,6 +7,13 @@ observation and storage owners; it introduces no new scientific policy.
 
 ## Current metal-science edge
 
+The retained FT maps show a continuous negative difference signal across both
+N3 donors and Hg, rather than singling out the metal. This fixed-map analysis
+informs count/Q restraint: it does not justify deleting Hg or lowering Q by itself.
+It also records why contour levels must remain visible/editable. No new fit,
+model/coefficient change or scientific acceptance follows.
+[Measurements, matched figure and exact limits](metal-development-handoff.md#a01-retained-ft-pocket-density-interpretation--late-26-november).
+
 A read-only maintained-owner transfer now records the genuine PDU parent's input
 roles without widening Alder's historical checkpoint reader: seven inherited
 restraints, a separately generated symmetry bond, and distinct starting/returned
