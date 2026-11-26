@@ -1,10 +1,12 @@
 # TopoStitch: periodic DNA connections, recutting and repair
 
-Current scope, **2026-11-20**: explicit placement proposals and source-bound
-ASU-cut inspection are implemented on `willow`. Automatic sticky-end repair,
-new-ASU materialization and campaign integration remain future work. The
-[audited roadmap](topostitch-roadmap.md) owns milestones and evidence; the full
-design below is not a claim that those later operations are available.
+Current scope, **2026-11-26 (W289 audit)**: explicit placement proposals,
+source-bound ASU inspection, whole-original-asym **diagnostic** CIF save/replay,
+and opt-in local six-atom native receiving are available on `willow` within their
+qualified scopes. Automatic end repair, mixed-fragment output, persistent child/
+refine GUI and campaign adoption remain open. The [audited roadmap](topostitch-roadmap.md)
+owns milestones; the design below does not itself authorize future operations.
+These branch entry points are not all present in the inspected local Pine checkout.
 
 TopoStitch helps a crystallographer separate two problems: whether DNA needs to
 move to make an intended contact, and whether an already connected periodic object
@@ -15,7 +17,7 @@ model and report missing information, competing choices and unsupported chemistr
 | Installed command | Present behavior |
 | --- | --- |
 | `nasolve-topostitch-inspect` | Describe verified ends, periodic images, canonical contacts and declared-topology windows; print a review report. |
-| `nasolve-topostitch-fit` | Propose bounded motion for one explicitly chosen canonical pairing; convergence does not establish a successful repair. |
+| `nasolve-topostitch-fit` | Propose bounded canonical-pair motion; explicit `native-phosphate` uses compatible Cedar owners for bounded six-atom receiving. Neither route establishes scientific acceptance or selects a checkpoint. |
 | `nasolve-topostitch-preview` | Write a separate bend-preview candidate with fixed anchors, transformed ANISOU and serialized-backbone checks. |
 | `nasolve-topostitch-cut-preview` | Describe graph IDs or freeze a proposal; explicit `--export-preview` / `--replay-export` also save and verify reviewed whole-asym diagnostic CIFs. No checkpoint or native restart. |
 | `nasolve-topostitch-view` | Inspect replayed proposals or trusted saved exports in offline HTML; compare explicit cuts and save a source-bound preference. No approval or selection. |
@@ -32,8 +34,9 @@ The [coordinate adapter](topostitch-coordinates.md), [periodic usage guide](topo
 and [bend-preview guide](topostitch-preview.md) describe inputs, optional dependencies,
 commands and limits. Software, installed-package and viewer-logic checks exist;
 actual browser/download/human cut review remains open. Native scientific gates
-also remain open: the tested angle kernel can handle images, but the ordinary
-manager evaluation and proxy-persistence paths are not a qualified seam route.
+remain open beyond the qualified local route: Cedar image forces and complete
+local receiving have controls, while general damaged-duplex repair, faithful
+mixed-ASU restart and ordinary campaign adoption require separate admission.
 Saved preferences do not select a checkpoint or constitute scientific approval.
 
 [Machine-readable intent](topostitch-intent.json) is development metadata, not
@@ -65,9 +68,9 @@ these operations over one graph, not separate recut and stitch ontologies:
 - **Chemistry change:** alter true covalent connectivity or terminal chemistry.
   This is a separately declared operation, never implied by sticky-end repair.
 
-Keep implementation isolated on Willow while reusing Pine foundations. At
-branch creation Willow and Pine have the same source commit: no merge is
-needed. Later synchronize deliberately with reviewed upstream changes; do not
+Keep implementation isolated on Willow while reusing Pine foundations. Willow
+started from Pine at `d7913dd`; this is historical ancestry, not current feature parity.
+Synchronize deliberately with reviewed upstream changes; do not
 merge unrelated active Cedar work just to acquire a future construction API.
 The live GeoTest campaign is a later example, not a hard-coded design target.
 
@@ -116,7 +119,7 @@ original oligo/copy/position binding and separate A16→D1 and B17→B1 boundary
 records. Its deposition entity representation remains an explicit decision gate.
 The current API does not implement that output mode.
 
-**Next bounded gate:** build a read-only proposed-declaration/reference plan before
+**Mixed-fragment gate:** bind the proposed declarations and references before
 any writer. Keep author numbering distinct from sequence positions; inventory
 source categories whose identity or frame could change (including assemblies,
 NCS/TLS, geometry and unobserved-site records) rather than assuming `_struct_conn`
@@ -129,8 +132,8 @@ lifecycle remain separate acceptance gates.
 
 ### Narrow first writer route: whole original asym units (W270)
 
-**Agreed with Rowan; eligibility contract only.** A first writer can be narrower
-than the full eight-path LNA cut. Require one proper crystal image for every atom
+**W270 eligibility, subsequently implemented as a diagnostic route in W272–278.**
+The first writer is narrower than the full eight-path LNA cut. Require one proper crystal image for every atom
 of each original `struct_asym` and one image for every declared TLS group. Preserve
 source entity, sequence, copy, author and atom labels. Mixed memberships are an
 explicit unsupported case, not a reason to split a chemical entity or independently
@@ -175,7 +178,7 @@ plan alone is permission to emit an unqualified file. W272 now provides the
 [explicit in-memory draft boundary](topostitch-preview.md#prepare-a-reviewed-whole-asym-cif-draft-w272)
 with readback and a source-specific native control. Complete declared-backbone
 coverage is qualified by W273/W274. W275 adds immutable diagnostic save/replay;
-ordinary command/inspector wiring remains next. Native restart and mixed-path
+W277/W278 add ordinary command/inspector wiring. Native restart and mixed-path
 output stay separate.
 
 The fragmented W246 two-rung ASU is a stress test, not a preferred physical cut.
@@ -200,8 +203,8 @@ owners and gates.
 **B11 / PUB05; requested by Simon, 2026-11-25. Planning only: no new models,
 refinement, benchmark result or figure.** Revisit this after the relevant P03
 mixed-image export, P04 chemistry and P05 restart capabilities are qualified.
-Keep W276's ordinary export/inspector integration first. This is a downstream
-publication experiment, not another initial-release blocker or an instruction
+Keep P03/P04/P05's remaining source, chemistry and restart gates first; W277/W278
+already supply diagnostic export/inspection. This is a downstream publication experiment, not another initial-release blocker or an instruction
 to create a parallel refinement engine.
 
 **Question:** can NASolve accept an intentionally fragmented representation of
@@ -1186,7 +1189,7 @@ it does not replace the current bending/map-review queue.
 
 **Shared ownership.** Alder owns donor-defined Ag–Ag network hypotheses, cluster
 rigid-body pose and the A03/A07 assessment experiment in
-[Cluster extension and chemical declarations](metal-restraint-builder.md#cluster-extension-and-chemical-declarations).
+[Cluster extension and chemical declarations](https://github.com/vecchioni-lab/NASolve/blob/928aa8e69835789ac48f4567b65560f710469c32/docs/metal-restraint-builder.md#cluster-extension-and-chemical-declarations).
 The clarification is pinned to Alder `928aa8e6`, subsection **Cluster placement
 and coupled DNA accommodation (20 November intent)**. Linking it here does not
 merge the branches or qualify their combined runtime.

@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W289 — Consolidate Willow/Pine guidance and audit integration gaps
+
+- Replace the repeated handoff/index chronology with current capabilities, two
+  decisions and links to preserved exact evidence. Correct stale export/native
+  scope and branch-availability wording; retain historical reference anchors.
+- Audit shared Cedar/Alder/deposition boundaries and remove only regenerable
+  ignored bytecode with tracked sources. Preserve the nonempty historical failure
+  cache, all unique runs/checkouts/collaboration notes and unrelated dirty work.
+- Documentation/cache cleanup only; no product, tests, native fit, schema or merge.
+
 ### W288 — Resolve the local starting-pose comparison at matched weights
 
 - Record two complete fixed-coefficient native controls: the original gap recovers

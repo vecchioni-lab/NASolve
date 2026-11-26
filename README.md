@@ -1209,6 +1209,12 @@ and [GUI placement](docs/gui.md#shared-dynamic-modeldensity-inspector).
 
 ## Experimental TopoStitch inspection and previews
 
+The following extra entry points are available when installed from the `willow`
+branch; the inspected local Pine checkout does not include them. See the
+[current scope and integration gates](docs/topostitch.md). Explicit whole-asym
+CIF exports remain diagnostics, and the opt-in `native-phosphate` route is bounded
+local receiving through compatible Cedar owners, not automatic sticky-end repair.
+
 TopoStitch's read-only backend can inspect explicitly assigned canonical DNA
 ends and propose nearby crystallographic images. It does not yet discover ends
 from an arbitrary model or repair/refine automatically. Install the optional dependency and use

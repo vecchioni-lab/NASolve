@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "topostitch-development-intent",
-  "date": "2026-11-20",
+  "date": "2026-11-26",
   "status": "BOUNDED_PLACEMENT_PROPOSALS_IMPLEMENTED",
   "runtime_authority": false,
   "contract": "docs/topostitch.md",
@@ -1934,5 +1934,7 @@
         "size": 6887
       }
     }
-  }
+  },
+  "current_scope_reference": "docs/development-handoff.md#current-development-edge",
+  "audited_queue_reference": "docs/topostitch-roadmap.json"
 }

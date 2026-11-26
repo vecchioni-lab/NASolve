@@ -1006,6 +1006,16 @@ acceptance and structural assessment.
 
 ## Isolated TopoStitch backend
 
+Current branch capabilities and unresolved integration gates are summarized in
+[the Willow/Pine handoff](development-handoff.md#current-development-edge) and
+tracked in [one roadmap](topostitch-roadmap.md). The dated implementation notes
+below retain their recorded scope; they are not separate current action queues.
+Willow/Pine owns topology, representation and bounded motion; Cedar owns prepared
+chemistry and native execution; Alder owns protected metal/parameter authority.
+Reuse their existing contracts rather than forking parsers, symmetry calculations,
+map readers or atom-protection logic. A source-bound proposal or preserved image
+is not a chemical or execution grant.
+
 The planned [cluster accommodation contract](topostitch.md#cluster-accommodation-bounded-helix-opening-and-closing-w167-planned)
 coordinates Alder's intact-cluster placement/metal hypotheses, Willow's bounded
 DNA opening/closing and Cedar's source chemistry/native exclusions. It reuses

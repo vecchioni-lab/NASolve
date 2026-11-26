@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "topostitch-development-roadmap",
-  "updated": "2026-11-25",
+  "updated": "2026-11-26",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
   "audited_code_commit": "f68a6a930d1730553ea63f67cacbdd31cc890600",
@@ -54,7 +54,8 @@
     "Validate focused behavior and installation during development; complete integration/full regression, native/platform/relocation and human checks before a supported release or merge. Pushing experimental work does not authorize merging.",
     "Keep scientific inputs/results local unless explicitly authorized for publication. Runtime artifacts use declared anchors and checksums; this roadmap grants no runtime permission.",
     "Build an input-driven general method, not a fit to named benchmark structures or datasets. Keep fixture-specific identifiers/transforms in requests, and require independent structure/symmetry and forward/reverse controls before widening supported claims.",
-    "For an explicitly intended phosphate continuation, retaining atoms and activating a symmetry restraint are separate decisions. Investigator-reviewed unrestrained-edge fallback is legitimate when symmetry oxygen geometry fails; never silently remove atoms, invent another construct connection or treat an averaged ASU boundary as a chemical nick."
+    "For an explicitly intended phosphate continuation, retaining atoms and activating a symmetry restraint are separate decisions. Investigator-reviewed unrestrained-edge fallback is legitimate when symmetry oxygen geometry fails; never silently remove atoms, invent another construct connection or treat an averaged ASU boundary as a chemical nick.",
+    "Keep current handoff/index concise: update the present decision and link existing exact evidence instead of appending another chronology. W289 baseline preserves prior text in Git. Availability on Willow is not a merged Pine/Cedar/Alder release."
   ],
   "milestones": [
     {
@@ -959,7 +960,8 @@
         "E_C516_NATIVE_ENTRY_HANDOFF",
         "E_REAL_CANONICAL_PARENT",
         "E_DICTIONARY_PARENT_BINDING",
-        "E_LOCAL_CLOSURE_FIXED_MAP"
+        "E_LOCAL_CLOSURE_FIXED_MAP",
+        "E_WILLOW_PINE_DOC_AUDIT"
       ],
       "last_audit": {
         "date": "2026-11-23",
@@ -1083,7 +1085,8 @@
         "E_BACKBONE_INTENT",
         "E_EXPLICIT_CONTINUATIONS",
         "E_GRAPH_DESCRIPTION",
-        "E_RENDERED_CUT_BROWSER_ACCESS"
+        "E_RENDERED_CUT_BROWSER_ACCESS",
+        "E_WILLOW_PINE_DOC_AUDIT"
       ],
       "last_audit": {
         "date": "2026-11-20",
@@ -1197,7 +1200,8 @@
         "E_ARCHIVED_METADATA_AUTHORITY",
         "E_NATIVE_CONNECTION_IMAGE_ACCOUNTING",
         "E_CONNECTION_ANNOTATION_PROPOSAL",
-        "E_CONNECTION_ANNOTATION_REPLAY"
+        "E_CONNECTION_ANNOTATION_REPLAY",
+        "E_WILLOW_PINE_DOC_AUDIT"
       ],
       "last_audit": {
         "date": "2026-11-25",
@@ -1287,7 +1291,9 @@
         "Expose editable Pine periodic connectivity beyond the ASU, preserving prior user choices and exact logical/image mappings across reslicing or explicitly marking unresolved mappings. Keep intent, proximity and enforcement support separate."
       ],
       "next_action": "Scheduled phosphate follow-up stage 5: restart the immutable reviewed child through existing checkpoint/process owners with fresh strand/image/input bindings and Cedar's single force owner; reject stale mapping or duplicate force installation. Schedule and ownership: docs/topostitch.md#coordinated-phosphate-recut-follow-up. Planning only; no immediate native rerun. Extend the P02 preview into the real immutable operation/refine loop; GUI completion is a release requirement.",
-      "evidence": [],
+      "evidence": [
+        "E_WILLOW_PINE_DOC_AUDIT"
+      ],
       "last_audit": {
         "date": "2026-11-13",
         "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
@@ -1325,7 +1331,7 @@
     "E_SOFTWARE": {
       "kind": "software_validation",
       "code_commit": "5f7aad230eb04728de4211e69c496fa75948eef2",
-      "reference": "docs/topostitch-periodic.md#current-validation-receipt--2026-11-13",
+      "reference": "docs/topostitch-periodic.md#current-validation-receipt--2026-11-14",
       "result": "W38 explicit mask/direct native composition: 45 focused source tests; full Willow checkout 1,323 tests + 229 subtests. Five sandbox-only /bin/ps failures in campaign process tests clear in the full rerun with required access. Installed wheel from separate test tree: 410 tests + 18 subtests (all TopoStitch plus construct-registration/run-context/AutoRefine/Doctor); relocated original-copied-path-absent selection: 107. Lean imports/mask arithmetic and isolated installed native source/perturbed targets pass. This is the Pine-derived Willow suite, not Cedar or a combined integration.",
       "limitation": "Current installed check is focused, not a platform matrix. Native compatibility is the tested read-only capture/review path, not a combined Cedar/Willow build or scientific acceptance.",
       "wheel_sha256": "9ea8fc9912d16f756cebc1acaf18337f79d6b159d658f73383c2123821870cee",
@@ -5795,7 +5801,7 @@
       "date": "2026-11-22",
       "human_update": 219,
       "code_commit": "fd01e6916a4220d25697f842c7f8860d0e42baf7",
-      "reference": "docs/topostitch-periodic.md#w219--a-true-10-a-centroid-stress-case-fails-bounded-recovery",
+      "reference": "docs/topostitch-periodic.md#w219--a-true-10-\u00e5-centroid-stress-case-fails-bounded-recovery",
       "result": "Initial centroid10A/RMS11.123A/max17.857A; longest O3-P10.285A. One preflight/one five-cycle fit retain original atoms,chemistry,mask,data. Four boundary lengths shrink to1.746/1.834/1.700/1.589A; final centroid7.776A/RMS9.756A/max18.486A.",
       "limitation": "RECOVERY REJECTED: A11C1 sugar sign+2.33475 to-2.14440A^3; chain bond18.92sigma/angle32.19sigma; final RW/RF.3670/.4148. Original reviewer refuses, separate negative readback preserved. No retry, ordinary workflow, accepted closure or5Acenterline test.",
       "local_receipts": [
@@ -9734,6 +9740,98 @@
           "size": 263
         }
       ]
+    },
+    "E_WILLOW_PINE_DOC_AUDIT": {
+      "kind": "Documentation, branch-entry-point and recoverable-cache audit",
+      "date": "2026-11-26",
+      "human_update": 289,
+      "code_commit": "f68a6a930d1730553ea63f67cacbdd31cc890600",
+      "reference": "docs/development-handoff.md#current-development-edge",
+      "result": "Consolidated handoff/index, repaired current capability wording and retained historical anchors. Static source inspection verifies five Willow topology scripts versus the local Pine nasolve-only entry. No milestone closure or new science.",
+      "limitation": "Docs only;no product/schema/tests/native fit/merge or fresh combined-release qualification. Original scientific ledgers,unique runs,all collaboration notes/checkouts and unrelated dirty files preserved.",
+      "recoverable_document_baseline_commit": "d30cd0e489898a1c434e7a87fe57fa27622e035e",
+      "consolidated_documents": {
+        "docs/development-handoff.md": {
+          "before_bytes": 81194,
+          "after_bytes": 10890,
+          "before_lines": 1108,
+          "after_lines": 162
+        },
+        "docs/README.md": {
+          "before_bytes": 21426,
+          "after_bytes": 6262,
+          "before_lines": 267,
+          "after_lines": 84
+        }
+      },
+      "cleanup": {
+        "files": [
+          {
+            "path": "src/nasolve/__pycache__/topostitch.cpython-312.pyc",
+            "bytes": 10829,
+            "sha256": "32b739eaa0967f4b7b67127bf7f3a24db3ae7a4e1a6d4ce4af3237b342fa3128",
+            "recoverable_from": "src/nasolve/topostitch.py"
+          },
+          {
+            "path": "src/nasolve/__pycache__/topostitch_coordinates.cpython-312.pyc",
+            "bytes": 23534,
+            "sha256": "bf47fb7ec389f8280580151043ac1d166068d259a3da3765b2910b5cda63e61a",
+            "recoverable_from": "src/nasolve/topostitch_coordinates.py"
+          },
+          {
+            "path": "src/nasolve/__pycache__/topostitch_packing.cpython-312.pyc",
+            "bytes": 26383,
+            "sha256": "915ccbf5746f0dc5842fdf2d6d253a060e302a0d1874c40ee838d9c8042e8254",
+            "recoverable_from": "src/nasolve/topostitch_packing.py"
+          },
+          {
+            "path": "src/nasolve/__pycache__/topostitch_pair_coverage.cpython-312.pyc",
+            "bytes": 34682,
+            "sha256": "1113b27ee02b46736ab0ee955ce08481c39d857b11b6b2944c8adbb57abb15d0",
+            "recoverable_from": "src/nasolve/topostitch_pair_coverage.py"
+          },
+          {
+            "path": "src/nasolve/__pycache__/topostitch_periodic.cpython-312.pyc",
+            "bytes": 24761,
+            "sha256": "95155da3d8e64b370f70438b73b4665f2f4ddeadfbe68a80960c476814c3bdd1",
+            "recoverable_from": "src/nasolve/topostitch_periodic.py"
+          },
+          {
+            "path": "src/nasolve/__pycache__/topostitch_recipe.cpython-312.pyc",
+            "bytes": 15022,
+            "sha256": "1e9879f2b6e7b046a165da281b19745a0a4ea4c87884c4442873444871d4e65e",
+            "recoverable_from": "src/nasolve/topostitch_recipe.py"
+          },
+          {
+            "path": "src/nasolve/__pycache__/topostitch_transport.cpython-312.pyc",
+            "bytes": 45208,
+            "sha256": "02b80aa3e5929db608da5230fc6731980537f199f020493b3529b7c3dd0f7aa0",
+            "recoverable_from": "src/nasolve/topostitch_transport.py"
+          }
+        ],
+        "bytes_reclaimed": 180419,
+        "pytest_cache": "Retained:17 historical failed-case entries;no attempt to reclassify them"
+      },
+      "branch_heads": {
+        "willow": "d30cd0e489898a1c434e7a87fe57fa27622e035e",
+        "pine": "d7913ddd95336fddb7cb266b0bc707ffd768d9ab"
+      },
+      "next_decisions": [
+        "Review W288 endpoint-specific maps with existing inspector before widening movable region;no repeated fit or weight sweep.",
+        "Choose one source-authoritative parent/data/metadata route into reviewed immutable Pine child and persistent GUI;whole-asym diagnostics are not deposition/native restart approval."
+      ],
+      "avoid_redundancy": [
+        "Do not repeat W241/W288 or passed native/scattering controls just to refresh status.",
+        "Do not add another report/hash layer absent a demonstrated missing boundary.",
+        "No parallel parser/symmetry/chemistry/map/protected-atom owner.",
+        "Fragmentation/LNA and nonzero-fdp metal stress tests remain behind their existing gates."
+      ],
+      "link_repairs": [
+        "Restore existing read-first and validation handoff anchors.",
+        "Correct historical validation-date and W219 Unicode section links.",
+        "Bind Alder cluster design link to verified source commit928aa8e6 instead of missing Willow-local section."
+      ],
+      "validation_scope": "Static entry-point/ancestry inspection, local Markdown link/anchor checks, roadmap render/check and git diff --check only. No tests, new installation, native execution or merged-branch qualification."
     }
   },
   "benchmarks": [
@@ -9858,7 +9956,7 @@
         "P05",
         "P06"
       ],
-      "remaining": "PUB05, planning only. After scoped mixed-image export, complete chemistry and restart gates, compare original, predeclared 2-or-3-nt blocks and individual-nucleotide images on one frozen source/data/Free-R panel. Prefer a preserved computational-frame workflow first; direct all-seam native refinement is a separate claim requiring term/exclusion/gradient qualification. Preserve deposited ADPs, original shared TLS meaning, atom inventory and unresolved true nicks. Preflight scattering equivalence before matched refinement; record mapped geometry, maps, R statistics and failures. Reuse W246/W249 and W256-W275, not another benchmark bank. Protocol and figure: docs/topostitch.md#maximally-fragmented-asu-refinement-stress-test-planned. Revisit at relevant P03/P04/P05 scoped audits; current W276 and release priorities unchanged. Later extensions: LNA chemistry remains planned; metal B/occupancy/fdp recovery is DEFERRED until Hazel/Alder has a qualified nonzero-fdp case and scoped recovery/identifiability tools. Query Hazel at that later milestone, not now. The fixed-zero-fdp FT_Hg original is historical only, not a selected substitute. No case selected or recovery claimed. See docs/topostitch.md#chemistry-extensions-hg-and-lna-planned."
+      "remaining": "PUB05, planning only. After scoped mixed-image export, complete chemistry and restart gates, compare original, predeclared 2-or-3-nt blocks and individual-nucleotide images on one frozen source/data/Free-R panel. Prefer a preserved computational-frame workflow first; direct all-seam native refinement is a separate claim requiring term/exclusion/gradient qualification. Preserve deposited ADPs, original shared TLS meaning, atom inventory and unresolved true nicks. Preflight scattering equivalence before matched refinement; record mapped geometry, maps, R statistics and failures. Reuse W246/W249 and W256-W275, not another benchmark bank. Protocol and figure: docs/topostitch.md#maximally-fragmented-asu-refinement-stress-test-planned. Revisit at relevant P03/P04/P05 scoped audits; current P03/P04/P05 and release priorities unchanged. Later extensions: LNA chemistry remains planned; metal B/occupancy/fdp recovery is DEFERRED until Hazel/Alder has a qualified nonzero-fdp case and scoped recovery/identifiability tools. Query Hazel at that later milestone, not now. The fixed-zero-fdp FT_Hg original is historical only, not a selected substitute. No case selected or recovery claimed. See docs/topostitch.md#chemistry-extensions-hg-and-lna-planned."
     }
   ],
   "deferred": [
@@ -9896,7 +9994,7 @@
     },
     {
       "scope": "Maximally fragmented ASU refinement publication stress test (B11 / PUB05)",
-      "trigger": "Revisit after scoped P03 mixed-image output, P04 complete chemistry and P05 restart qualifications; P06 owns final comparative audit. Existing W276 priorities remain first. See docs/topostitch.md#maximally-fragmented-asu-refinement-stress-test-planned. Planning only; no new run, physical nick choice, thermal-group split or initial-release blocker."
+      "trigger": "Revisit after scoped P03 mixed-image output, P04 complete chemistry and P05 restart qualifications; P06 owns final comparative audit. Existing P03/P04/P05 integration gates remain first. See docs/topostitch.md#maximally-fragmented-asu-refinement-stress-test-planned. Planning only; no new run, physical nick choice, thermal-group split or initial-release blocker."
     }
   ],
   "history_reconciliation": [
@@ -9915,8 +10013,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 288,
-    "next": 289,
+    "current": 289,
+    "next": 290,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -11452,6 +11550,12 @@
       {
         "number": 288,
         "title": "Compare original and seeded recovery at matched native coordinate weights",
+        "state": "RECORDED",
+        "code_commit": "f68a6a930d1730553ea63f67cacbdd31cc890600"
+      },
+      {
+        "number": 289,
+        "title": "Audit Willow and Pine delivery gaps and consolidate current guidance",
         "state": "RECORDED",
         "code_commit": "f68a6a930d1730553ea63f67cacbdd31cc890600"
       }
