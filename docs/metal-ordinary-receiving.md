@@ -491,6 +491,64 @@ Both failures are retained. No dependency installation or raw scientific output
 was needed. The compact checkout is
 `ScienceCheckouts/Hazel/2026-11-26_metal-intake/index.html`.
 
+## Indexed phase evidence: reuse the numerical owners
+
+The numerical join already belongs to `NativePhasedGuard` (the pinned installed
+W252 source reader), followed by `DiffractionReference` and the explicit
+`NativeScaleWitness` runtime policy. Do not add another HL parser or infer phase
+meaning from matching filenames/labels alone. The source reader checks full
+crystal operators/cell, maps to the ASU, explicitly averages Bijvoet amplitudes
+when required, and looks up each complete HL quartet by its Miller index. It
+requires complete phase coverage of the observation set and retains original
+Free-R membership. The exact observation/HL signatures then bind numerical values.
+
+A read-only native-library control on the pinned FT originals reproduces all
+**1,151 observations, 59 Free assignments and 1,151 HL quartets** from the retained
+reference. Fourteen discriminating cases pass (five accepted, nine refused):
+
+| Controlled change | Existing owner's outcome |
+| --- | --- |
+| Reverse whole HL source rows, keeping each index/quartet together | Same indexed reference. |
+| Reorder all aligned native arrays before binding runtime order | Same reference; permitted initial ordering. |
+| Reorder only native HL rows | Refuses array misalignment. |
+| Replace one phase index, even with a newly computed signature | Refuses incomplete/different index coverage. |
+| Swap quartets between two indices, or A/B within one quartet | Refuses changed phase coefficients. |
+| Put the HL array in a different cell | Refuses crystal-frame disagreement. |
+| Reorder all arrays after runtime order was bound | Refuses changed native order. |
+| Divide F and σ uniformly without a witnessed event | Strict source owner refuses. |
+| Exercise a permitted F/σ event while retaining original HL | Witness owner accepts; swapped or scaled HL still refuses. |
+
+The normalization case uses an explicit controlled divisor of 2 and synthetic
+invariant R values; it is **not a newly witnessed native scaling event**. Existing
+actual-hook/cycle evidence remains separate. The already-qualified four-ULP cell
+option is explicit: initial strict controls encountered CCTBX copy roundoff, so
+the corrected cases additionally assert the intended phase-specific refusal
+reason. No source tolerance or scientific policy changed. The source crystal
+check remains independently required; `DiffractionReference` itself does not
+encode crystal provenance or ordinary ancestry.
+
+Phenix **2.2.1-6174**, Python **3.11.15**; controlled block **0.84 s**. No refinement,
+Fmodel/target calculation, optimizer, model/MTZ write or repeated FT fit. All
+original and loaded source/native pins remain exact. This exercises existing
+owners; the new ordinary metal importer still performs file/metadata checks,
+not this numerical runtime admission. The ordinary parent and versioned mixed
+binding remain missing. Symmetry/phase-origin transformations beyond the existing
+source reader's ASU mapping are not newly authorized.
+
+Evidence: `branch-artifacts/Alder/a01-phase-index-20261126-02/review.json` and
+`cold-review.json`, runner A847. Preserve `a01-phase-index-20261126-01/`: A845
+refused an outdated owner-code pin from the pre-roundoff capture; A846 retained
+the strict-cell refusal. Current owner hashes are recorded separately from the
+historical source capture; no old qualification was relabelled. No product-code
+change or full/unit-suite repetition. Checkout:
+`ScienceCheckouts/Hazel/2026-11-26_metal-intake/phase-indices.html`.
+
+Before any coupled sugar/phosphate fit, coordinate with the topology owner.
+Willow W293's 19-atom B1/B7 derivative check uses a different source: Cedar remains
+the sole image-force and complete-parallelity owner. Its namespace/ordinary
+preflight and complete packing-capture boundaries remain separate from this FT
+phase control. Neither result authorizes a repeated unchanged FT fit.
+
 ## Ordered integration steps
 
 1. **Admit a legitimate prepared parent.** Reuse Cedar's `PreparedBackbone`,

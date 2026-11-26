@@ -70,6 +70,12 @@ is demonstrated with a controlled prepared-publication fixture; the real private
 FT parent remains unavailable to ordinary intake. This does not close A01 or
 qualify mixed execution/geometry, and needs no repeated native control.
 
+The indexed phase join also has existing qualified owners: a 14-case read-only
+control on the original FT arrays distinguishes row reorder, wrong index, swapped
+HL and permitted F/σ normalization. Reuse those owners in the missing ordinary
+binding; do not create another phase parser or repeat the unchanged FT fit.
+[Evidence and source-specific limits](metal-ordinary-receiving.md#indexed-phase-evidence-reuse-the-numerical-owners).
+
 Only two next decisions govern the near-term work:
 
 1. **Scientifically qualify the inspectable FT_Hg model.** The protected return,

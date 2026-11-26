@@ -42,6 +42,16 @@ and acceptable FT geometry are still needed. Evidence:
 `branch-artifacts/Alder/a01-metal-intake-20261126-01/`; compact checkout:
 `ScienceCheckouts/Hazel/2026-11-26_metal-intake/index.html`.
 
+The subsequent [indexed-phase control](metal-ordinary-receiving.md#indexed-phase-evidence-reuse-the-numerical-owners)
+confirms the existing numerical owners on all 1,151 pinned FT reflections/59 Free:
+14 native-library cases distinguish legitimate row reordering from wrong indices
+or coefficients, including after controlled F/σ normalization. No new reader,
+refinement or scientific result; ordinary mixed binding remains open. Exact
+receipts: `branch-artifacts/Alder/a01-phase-index-20261126-02/`; checkout:
+`ScienceCheckouts/Hazel/2026-11-26_metal-intake/phase-indices.html`.
+Willow's separate W293 coupled-force dry control does not qualify this FT source;
+coordinate before a new coupled fit and retain the current no-repeat boundary.
+
 ## Current A01 — complete protected return and paired maps
 
 The unchanged reciprocal-only FT_Hg recipe now returns under the source-pinned

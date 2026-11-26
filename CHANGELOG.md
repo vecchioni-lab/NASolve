@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Qualify the existing indexed phase checks on retained FT inputs
+
+- Record a small read-only native-library control distinguishing legitimate row
+  reordering from wrong Miller indices, swapped HL coefficients and unsupported
+  phase scaling. Reuse the existing source, observation and normalization owners.
+- Preserve ordinary-parent/mixed-runtime and scientific acceptance boundaries;
+  no product code, native refinement, schema or migration change.
+
 ### Bind new metal imports to the recorded original sources
 
 - Reject checkpoint observations or phase files/labels that conflict with the
