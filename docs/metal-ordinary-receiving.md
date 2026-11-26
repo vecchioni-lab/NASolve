@@ -4,6 +4,89 @@ Updated 26 November 2026. A01 mechanical integration; A01 science remains partia
 and A02 quantitation is gated. This is a prospective implementation contract,
 not a claim of ordinary numbered-round qualification.
 
+## Explicit ordinary-parent binding — 26 November
+
+`refinement_mixed_parent.bind_mixed_parent(run, request_reference=...)` now joins
+ordinary ancestry to the existing mixed runtime. It is an explicit Python input
+and guard interface, **not ordinary numbered dispatch or an integrated metal
+screen**. A valid controlled parent reaches the existing guard; incomplete or
+inconsistent provenance refuses before callback installation. Historical readers,
+workers, policies and selected checkpoints retain their meaning.
+
+The checksummed schema-1 request uses policy ID `ordinary-mixed-parent-binding-v1`:
+
+| Field | Meaning |
+| --- | --- |
+| `checkpoint_id` | Exact usable ordinary checkpoint ID; no moving bookmark alias. |
+| `parent` | Checksummed portable `report`, optional `registry`, `model`, original `observations`, approved AutoSol `phases`, and ordered `restraints` references. Absence of a registry is allowed only for an ordinary-owner-derived valid PostMR root. |
+| `selectors` | Explicit `data_labels`, `free_label`, integer `test_flag_value`, and ordered four `phase_labels`. SAflags refuses. |
+| `scope` | Existing complete `ParameterScope` record, bound to exact parent model bytes. |
+| `policy` | A separately declared source PHIL reference and two ordered `bindings`, each with an explicit `historical_file` and portable `source_reference` for observations then phases. |
+| `runtime` | Explicit existing `cell_roundoff_ulps` and `witness_native_normalization` options. No new normalization or tolerance permission. |
+
+The ordinary reader verifies preparation/checkpoint/execution ancestry. New intake
+also compares report and checkpoint source identities, not merely equal bytes at
+another path. The shared `refinement_diffraction_source.read_source_arrays` is
+extracted from the already-qualified phased owner: exact selected amplitude/Free-R/
+HL arrays, explicit Bijvoet averaging, indexed joins and source crystal agreement.
+HL covers exactly the observations; original integer flags may be a superset.
+No source filtering, invented phase values or intensity conversion is introduced.
+
+The existing file-selector owner rebinds only declared paths; the existing literal
+compositor changes only its eight owned XYZ/B/protection fields. Native admission
+requires MLHL, experimental phases, one process, complete merged observations,
+original Free-R test assignment, and complete disjoint fixed scattering groups
+with f″ = 0 for this geometry stage. It authenticates all initial source atom
+identities, elements, XYZ/B/Q and scattering values. There is no B-range heuristic.
+
+The returned object's `policy` contains the derived bytes; `receipt()` returns
+compact detached provenance; `guard()` supplies the existing runtime lifecycle.
+The guard rechecks ancestry/files before entry and at explicit finish, binds
+initial native model identity to the admitted PDB, and checks the active target's
+full space group and cell against the independently read source. Existing runtime
+parameter, Free-R/HL, target, normalization and hook-restoration checks stay active.
+The execution owner still must freeze the exact derived policy and ordered inputs,
+supply the admitted chemistry/image forces, and close written output and processes.
+No command override or historical counted runtime is repurposed to bypass this.
+
+**Qualification:** 20 new native-library parent cases, together with 14 existing
+command-binding and 15 shared-reader cases: **49 pass** with Phenix 2.2.1-6174,
+Python 3.11.15. The valid case uses synthetic ordinary metadata and tiny real MTZ
+arrays with a controlled dry dispatcher; it is not an external Phenix refinement.
+A relocated wheel passes **35 cases**, with its temporary source copy removed
+and all 179 loaded NASolve modules confirmed inside the installed package. The
+parent relocation case moves its complete synthetic dataset and verifies declared
+references after the original location is gone. This does not certify portability
+of every historical run. Focused host coverage is recorded separately; no full suite.
+
+The extraction also exactly matches the pinned existing owner on the retained FT
+source: **1,151 observations, 59 Free-R assignments, 1,151 HL quartets and the full
+crystal**. Keep this real-source read comparison distinct from the synthetic
+ordinary-parent dry-entry test. Neither is a new fit or a new f″ measurement.
+A genuine ordinary phased FT endpoint is still not available. The named October
+ordinary root lacks approved AutoSol lineage and uses older ligand inputs; do not
+wrap a private fit in a fabricated report/registry. Next connect this receiving API
+to the maintained ordinary execution owner, then obtain a matched parent through
+its existing preparation/AutoSol workflow. Scientific A01 remains partial.
+
+Local evidence: `branch-artifacts/Alder/a01-mixed-parent-20261126-01/`; methods
+A848–A850. Retain the missing-module fail-before record, the initial missing
+`openpyxl` harness failure, the corrected existing checkpoint-error expectations
+and bookmark fixture, and the host build-backend failure. Native checks use the
+established supplemental pure-Python site directory with native Gemmi loaded first;
+wheel build uses existing native setuptools 84.0.0. No dependency was installed.
+
+### AutoSol phase-source convention
+
+Experimental phase evidence comes from the recorded AutoSol result, normally
+`overall_best_refine_data.mtz`; that basename is descriptive, never a discovery
+rule. Resolve the declared source, verify its checksum and selected HL columns,
+and retain original observation/Free-R ownership independently. Dataset-specific
+phase files may be generated/extracted and retained with test inputs when needed,
+with exact source lineage, column mapping, checksums and method recorded. Such a
+copy does not itself create an ordinary approved parent or authorize changing HL.
+No new phase file was needed for the checks above.
+
 ## What is qualified
 
 The explicit scope, passive native observer, source-bound writer and literal

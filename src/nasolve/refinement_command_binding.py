@@ -68,7 +68,7 @@ def _plan(command, count):
         raise ValueError('Incomplete declared refinement command') from exc
 
 
-def _check_policy(policy, plan, observation, phase):
+def _check_policy(policy, plan, observation, phase, *, expected_target="auto"):
     """Require explicit selector agreement and no hidden extra file dependencies."""
     from iotbx import phil
     from iotbx.cli_parser import CCTBXParser
@@ -90,8 +90,8 @@ def _check_policy(policy, plan, observation, phase):
                 and name != 'data_manager.miller_array.file'
                 and [w.value for w in item.words] != ['None']):
             raise ValueError('Additional policy file/output dependency needs an explicit owner: ' + name)
-        if name == 'refinement.main.target' and [w.value for w in item.words] != ['auto']:
-            raise ValueError('Ordinary command target would override the source policy')
+        if name == 'refinement.main.target' and [w.value for w in item.words] != [expected_target]:
+            raise ValueError('Command target differs from the declared policy target')
     extracted = master.fetch(source=tree).extract()
     arrays = getattr(getattr(extracted, 'data_manager', None), 'miller_array', None)
     if arrays is None:
@@ -107,6 +107,7 @@ def _check_policy(policy, plan, observation, phase):
         expected.append((phase, [','.join(plan.phase_labels)]))
     if actual != expected:
         raise ValueError('Parameter selectors differ from the exact command inputs/labels/order')
+    return extracted
 
 
 def bind_command(run, *, request_reference, source_checkpoint, endpoint_reference,

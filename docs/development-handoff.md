@@ -7,6 +7,12 @@ observation and storage owners; it introduces no new scientific policy.
 
 ## Current metal-science edge
 
+The explicit ordinary-parent mixed binding now connects verified ancestry and
+original amplitude/Free-R/AutoSol HL to the existing guard and declared child
+policy/scope. **49 native-library / 35 installed cases pass**; no new native fit,
+FT endpoint, ordinary numbered dispatch or scientific acceptance is claimed.
+[Interface, validation and remaining owner integration](metal-ordinary-receiving.md#explicit-ordinary-parent-binding--26-november).
+
 The new metal input owner now refuses observation/phase metadata conflicting with
 the run's recorded original sources and records changing during import. The final
 focused set passes 206 checks; historical replay and phase-free ordinary intake

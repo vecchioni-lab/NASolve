@@ -1,7 +1,7 @@
 # Post-merge metal-coordination roadmap
 
-Updated **26 November 2026** after the protected-return/map review. Working
-branch **Alder**, unchanged implementation under audit `60a1f084`. The feature milestones
+Updated **26 November 2026** after explicit ordinary-parent binding. Working
+branch **Alder**; the earlier forward-queue audit is retained at `60a1f084`. The feature milestones
 **A01–A09** below remain explicitly post-merge work; A09 follows the main build.
 Merge qualification, scientific acceptance and feature completion are separate.
 
@@ -76,6 +76,13 @@ HL and permitted F/σ normalization. Reuse those owners in the missing ordinary
 binding; do not create another phase parser or repeat the unchanged FT fit.
 [Evidence and source-specific limits](metal-ordinary-receiving.md#indexed-phase-evidence-reuse-the-numerical-owners).
 
+The explicit ordinary-parent binding now joins those numerical owners to a
+verified checkpoint and newly declared child policy/scope. Controlled native-array
+and installed dry-dispatch checks pass; it adds no ordinary numbered executor or
+new FT endpoint. [Exact interface and evidence](metal-ordinary-receiving.md#explicit-ordinary-parent-binding--26-november).
+Do not repeat the completed binding controls as a substitute for the next owner
+integration and genuinely matched scientific parent.
+
 Only two next decisions govern the near-term work:
 
 1. **Scientifically qualify the inspectable FT_Hg model.** The protected return,
@@ -89,7 +96,7 @@ Only two next decisions govern the near-term work:
    older five-cycle comparisons instead of repeating them as new science.
 2. **Admit the endpoint through the existing owners before quantitative fan-out.**
    Receive the prepared-parent and numbered-runtime interfaces deliberately,
-   bind original observations/Free-R/HL and a separately declared mixed policy,
+   connect the now-qualified explicit parent binding to numbered mixed execution,
    and close the output lineage. Do not invent ordinary ancestry for the private
    FT control or treat the genuine PDU example without HL as phased FT admission.
    Once the geometry is scientifically qualified, derive metal B from refined

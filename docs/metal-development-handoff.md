@@ -25,6 +25,29 @@ and cache-retirement evidence: `branch-artifacts/Alder/docs-audit-20261126-01/`.
 
 <a id="a01-parameter-scope-2026-11-25"></a>
 
+## A01 ordinary-parent receiving — evening 26 November
+
+The explicit [ordinary-parent binding](metal-ordinary-receiving.md#explicit-ordinary-parent-binding--26-november)
+now connects a checksummed ordinary checkpoint and separately declared child
+policy/scope to the existing mixed guard. It independently reads original
+amplitude/Free-R/AutoSol HL arrays and binds active target crystal identity.
+**49 focused native-library cases pass; 35 installed cases pass** after temporary
+source removal. These use a synthetic ordinary parent, real tiny MTZ arrays and a
+controlled dry dispatcher: no external refinement, new FT endpoint or f″ result.
+The separate shared-reader equivalence uses all 1,151 real FT reflections/59 Free
+and matches the pinned existing owner exactly. Do not combine these claims.
+
+Next: connect this API to the maintained numbered execution owner and obtain a
+matched ordinary FT preparation/approved AutoSol parent through the existing
+workflow. No verified current phased FT parent has been identified; the older
+ordinary root and current private fit retain their separate provenance. Scientific
+A01 stays partial and A02 stays gated. No unchanged fit was repeated.
+
+Evidence/commands/failures: `branch-artifacts/Alder/a01-mixed-parent-20261126-01/`.
+Checkout: `ScienceCheckouts/Hazel/2026-11-26_metal-intake/ordinary-parent.html`.
+The phase-source convention and authorization for a retained dataset-specific
+phase derivative are recorded in the receiving contract. No derivative was needed.
+
 ## A01 input consistency — evening 26 November
 
 New metal imports now reject conflicting recorded observation/phase sources and

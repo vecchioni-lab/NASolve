@@ -71,6 +71,17 @@ are verified. The exact model remains scientifically unaccepted. No ordinary
 dispatch/endpoint adoption follows; see the receiving
 contract for precise receipts, failures and next qualification.
 
+`refinement_mixed_parent.bind_mixed_parent` now supplies explicit ordinary input
+admission to that guard. Its checksummed request binds exact checkpoint/report/
+registry, model, ordered restraints, original observations, approved AutoSol HL,
+new child policy and parameter scope through existing owners. The shared source
+reader preserves the qualified indexed-array semantics. The guard adapter adds
+source PDB identity and independently read source-crystal checks, revalidating
+ancestry/files at entry and return. It starts no process, allocates no checkpoint
+and does not change ordinary defaults. The maintained execution owner still owns
+exact policy dispatch, chemistry/image forces, written output and process closure.
+See the [explicit receiving API](metal-ordinary-receiving.md#explicit-ordinary-parent-binding--26-november).
+
 Historical counted V5–V8 code preparation now obtains `topostitch_native_recipe.py`
 from `data/refinement-runtime-native-recipe-sources.json`, retaining its already
 qualified SHA-256. Modern direct callers retain the newer explicit native-crystal

@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bind an explicit ordinary parent to the mixed-refinement guard
+
+- Add an opt-in checksummed Python receiving request that binds ordinary ancestry,
+  original amplitude/Free-R/AutoSol HL, ordered restraints, child policy and scope
+  through existing owners. Recheck source identity/crystal through guarded entry
+  and return; preserve historical workers, checkpoint selection and defaults.
+- Qualify controlled native-array dry dispatch and relocated installed reads.
+  No new executor, ordinary numbered dispatch, native fit, scientific endpoint
+  acceptance or artifact migration. Document the next owner integration and the
+  AutoSol phase-source convention.
+
 ### Share the explicit phased-refinement source reader
 
 - Extract the qualified amplitude/Free-R/HL source-array reader for reuse by
