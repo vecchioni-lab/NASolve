@@ -21,12 +21,14 @@ from .cif_restraint_context import derive_restraint_context
 
 
 def initialize_postmr_dictionary_request(model, report, components, source_output, output, *,
-        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, frozen_sources=None, construction_inputs=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, select_anionic_phosphate=False, reader_control_policy=None, **execution_limits):
+        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, frozen_sources=None, construction_inputs=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, select_anionic_phosphate=False, reader_control_policy=None, source_ribose_workbook=None, **execution_limits):
     """Freeze ordinary sources and derived contexts for one existing request.
 
     Components specify code/generation and optional retained_snapshot,
     terminal_resource, phosphate_atom_policy or an explicit furanose_reaction.
     The latter's port declarations must agree with the derived site links.
+    source_ribose_workbook can select that same reaction for source-declared
+    internal RNA. It binds the workbook, source leaving flag and two model links.
     Site/link declarations are
     derived, never supplied as overrides. supplementary_phils is an explicit
     ordered sequence; an empty sequence declares absent custom restraints.
@@ -150,7 +152,7 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     if frozen_sources is None:
         freeze_acquisition_sources(codes, sources, data_root=data_root,
                                    ready_set_executable=ready_set_executable)
-    if frozen_sources is not None or select_anionic_phosphate:
+    if frozen_sources is not None or select_anionic_phosphate or source_ribose_workbook is not None:
         selected = read_acquisition_sources(sources)
         _need(selected['report']['components'] == codes,
               'Frozen source components differ from the complete prepared-model request')
@@ -161,6 +163,20 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
             policy = select_state(selected["sources"][code]["source"], code, item["contexts"])
             if policy is not None:
                 item["phosphate_atom_policy"] = policy
+    if source_ribose_workbook is not None:
+        from hashlib import sha256
+        from .cif_furanose_reaction import select_internal_ribose_reaction
+        model_bytes = _read(model)
+        _need(sha256(model_bytes).hexdigest() == model_context['model_sha256'], 'Prepared RNA model changed')
+        for item in components:
+            if (any(item.get(k) is not None for k in ('furanose_reaction','terminal_resource','phosphate_atom_policy'))
+                    or not item['generation'].get('bond_representation_policy')):
+                continue
+            code = item['code']
+            reaction = select_internal_ribose_reaction(selected['sources'][code]['source'], code,
+                                                       source_ribose_workbook, model_bytes, item['contexts'])
+            if reaction is not None:
+                item['furanose_reaction'] = reaction
     _need(all(_read(p) == data for p,data in literal_originals),
           'Literal original PHIL changed during source freezing')
     # Each independently verified repair in a mixture has its own working proof.

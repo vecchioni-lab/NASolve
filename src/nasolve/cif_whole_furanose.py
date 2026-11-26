@@ -124,6 +124,20 @@ def _source_phosphate_leaving_atom(values, roles):
     return atom
 
 
+def declared_internal_ports(row, sites, leaving_atom):
+    """Describe the two same-image partners of an already audited model site."""
+    if (row['five_prime_state'] != 'linked' or row['three_prime_state'] != 'linked'
+            or row.get('symmetry_operation') not in (None, 'x,y,z') or row.get('experimental_passthrough')):
+        raise ValueError('Placement requires an internal site with two audited backbone links')
+    ports = {}
+    for port, partner, atom in (('phosphate', row['incoming_site'], "O3'"),
+                                ('alcohol', row['outgoing_site'], 'P')):
+        ports[port] = dict(state='linked', symmetry_operation='x,y,z',
+                           partner=dict(site=partner, component=sites[partner]['component'], atom_id=atom))
+    ports['phosphate']['leaving_atom'] = leaving_atom
+    return dict(schema_version=1, site=row['site'], ports=ports)
+
+
 def _ordinary_ports(frame, site, leaving_atom, report):
     """Resolve the two partners from the ordinary phosphate audit on these coordinates."""
     from .cif_model_context import derive_prepared_model_context
@@ -143,16 +157,9 @@ def _ordinary_ports(frame, site, leaving_atom, report):
     if topology['model_sha256'] != sha256(payload).hexdigest():
         raise ValueError('Host model changed during ordinary link determination')
     row, = (r for r in topology['contexts'][code] if r['site'] == site)
-    if row['five_prime_state'] != 'linked' or row['three_prime_state'] != 'linked':
-        raise ValueError('Placement requires an internal site with two audited backbone links')
-    ports = {}
-    for port, partner, atom in (('phosphate', row['incoming_site'], "O3'"),
-                                ('alcohol', row['outgoing_site'], 'P')):
-        ports[port] = dict(state='linked', symmetry_operation='x,y,z',
-                           partner=dict(site=partner, component=sites[partner]['component'], atom_id=atom))
-    ports['phosphate']['leaving_atom'] = leaving_atom
+    context = declared_internal_ports(row, sites, leaving_atom)
     binding = dict(model_sha256=topology['model_sha256'], intent=topology['intent'])
-    return dict(schema_version=1, site=site, ports=ports), binding
+    return context, binding
 
 
 def _derive(root, *, base_anchored=False, model_ports=False):

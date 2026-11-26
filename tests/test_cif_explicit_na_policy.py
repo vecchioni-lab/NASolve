@@ -178,3 +178,39 @@ def test_reader_checks_exact_bytes_inventory_and_maintained_reconstruction(tmp_p
     if defect == 'list_report':r = []
     receipt.write_text(json.dumps(r))
     with pytest.raises(ValueError):read_explicit_na_policy(root)
+
+def test_relocated_explicit_recipe_uses_its_matching_frozen_workbook(tmp_path, monkeypatch):
+    from nasolve.cif_complete_request import _read_owned_compiler
+    from restraints import residue_library
+
+    compiler = compile_fixture(tmp_path)
+    inputs = tmp_path / "staged"
+    inputs.mkdir()
+    (tmp_path / "policy").rename(inputs / "explicit_na")
+    workbook = Path(residue_library.__file__).parent / "data/Ligands.xlsx"
+    digest = compiler["implementation_sha256"]["restraints/data/Ligands.xlsx"]
+    relative = "furanose/" + digest + ".xlsx"
+    archived = inputs / relative
+    archived.parent.mkdir()
+    shutil.copyfile(workbook, archived)
+    context = dict(site="A:2", five_prime_state="linked", three_prime_state="linked",
+                   incoming_site="A:1", outgoing_site="A:3")
+    def port(site, atom):
+        return dict(state="linked", symmetry_operation="x,y,z",
+                    partner=dict(site=site, atom_id=atom, component="DC"))
+    ports = {"phosphate": dict(port("A:1", "O3'"), leaving_atom="OP3"), "alcohol": port("A:3", "P")}
+    controls = {"sites": {"2MG": {"contexts": [context], "furanose_reaction": dict(
+        workbook=relative, contexts=[dict(schema_version=1, site="A:2", ports=ports)])}}}
+    moved = inputs.rename(tmp_path / "moved")
+    real_load = residue_library.load_residue_records
+    seen = []
+    def archived_only(path=None):
+        assert path == moved / relative
+        seen.append(path)
+        return real_load(path)
+    monkeypatch.setattr(residue_library, "load_residue_records", archived_only)
+    assert _read_owned_compiler("explicit_na_policy", moved, controls)["report"] == compiler
+    assert seen and not inputs.exists()
+    (moved / relative).write_bytes(b"substituted workbook")
+    with pytest.raises(ValueError, match="workbook differs"):
+        _read_owned_compiler("explicit_na_policy", moved, controls)

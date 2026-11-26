@@ -215,11 +215,16 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
             item, = [c for c in components if c['code'] == furanose.code]
             item.update(retained_snapshot=stage/'snapshot',
                         furanose_reaction=dict(workbook=built['workbook'], contexts=[built['context']]))
+        source_chemistry = {}
+        if select_representation:
+            from restraints import residue_library
+            source_chemistry = dict(select_anionic_phosphate=True,
+                                    source_ribose_workbook=Path(residue_library.__file__).parent/'data/Ligands.xlsx')
         record = initialize_postmr_dictionary_request(inputs.model_path,inputs.run_report,components,None,request,
             consumer=configured.consumer,ready_set_executable=None,supplementary_phils=list(inputs.supplementary_phils),
             literal_na_inputs=literal_inputs,frozen_sources=sources,construction_inputs=inputs.run_directory,
             **({'explicit_na_policy': inputs.explicit_na_policy} if inputs.explicit_na_policy is not None else {}),
-            **({"select_anionic_phosphate":True} if select_representation else {}),
+            **source_chemistry,
             continuation_options=continuation_options,
             **({'automatic_plane_support':True} if automatic_plane_support else {}),
             **({'bond_targets':bond_targets} if bond_targets is not None else {}),

@@ -16,6 +16,12 @@ entries are reconstructed from repository history.
   preserves the sugar, backbone and their displacement values and checks any
   internal OP3 removal against both neighboring links.
 
+- The source-preserving PostMR recipe can now recognize an internal N-linked
+  ribose with a neutral 2′ hydroxyl from its source graph, workbook roles and
+  two declared backbone links. All qualifying sites share one frozen copy of
+  the workbook. Reopening the complete request uses that copy for the pairing
+  recipe when its fingerprint matches the original compiler record.
+
 - Checked PostMR preparation now reuses the verified whole-model NARestraints
   output when `restraint_scope = all`. The saved request binds the original model,
   compiled restraints and sources through the existing compiler receipt.

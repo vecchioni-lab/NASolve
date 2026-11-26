@@ -32,6 +32,55 @@ def setup(tmp_path, *, bridged=False, rename=False, hand='D', incoming=True, out
     return [paths[0],paths[1],paths[3],paths[4],tmp_path/'reaction'],[c],roles
 
 
+@pytest.mark.parametrize("defect", [None, "other-sugar", "free-end", "symmetry", "retained-OP2", "OP3-present", "no-O2", "role-conflict"])
+def test_ordinary_rna_uses_source_and_workbook_to_join_only_two_audited_links(tmp_path, defect):
+    from nasolve.cif_furanose_reaction import select_internal_ribose_reaction
+    from nasolve.cif_acquisition_preparation import _freeze_furanose
+    from nasolve.cif_stereochemistry_audit import _values
+    from tests.test_cif_catalogue import workbook, row
+    from tests.test_postmr_ribose_transport import local_component, placed_models
+
+    source = local_component(tmp_path, "ether" if defect == "other-sugar" else None)
+    book = workbook(tmp_path, [("guanine", row("RXG", **{"Base Analog": "G", "Sugar Type": "RNA",
+                            "N1": "C2'" if defect == "role-conflict" else "N9"}))])
+    lines, _ = placed_models()
+    sample = lines[0]
+    def partner(code, chain, atom, element):
+        return sample[:12] + f"{atom:>4} {code:>3} {chain}{9:4} " + sample[27:76] + f"{element:>2}\n"
+    if defect == "no-O2":
+        lines = [line for line in lines if line[12:16].strip() != "O2'"]
+    if defect == "OP3-present":
+        op1, = [line for line in lines if line[12:16].strip() == "OP1"]
+        lines.append(op1.replace("OP1", "OP3"))
+    model = ("".join(lines) + partner("DT", "C", "O3'", "O") + partner("DC", "D", "P", "P") + "END\n").encode()
+    context = dict(site="A:1", five_prime_state="linked", three_prime_state="linked",
+                   incoming_site="C:9", outgoing_site="D:9")
+    if defect == "free-end":
+        context.update(three_prime_state="free_OH", outgoing_site=None)
+    if defect == "symmetry":
+        context["symmetry_operation"] = "-x+y,-x,z"
+    if defect == "retained-OP2":
+        values = _values(source, "RXG")
+        ids = values["_chem_comp_atom.atom_id"]
+        flags = values["_chem_comp_atom.pdbx_leaving_atom_flag"]
+        flags[ids.index("OP2")], flags[ids.index("OP3")] = "Y", "N"
+        write(source, values)
+    selected = select_internal_ribose_reaction(source, "RXG", book, model, [context])
+    if defect is not None:
+        assert selected is None
+        return
+    site, = selected["contexts"]
+    assert site["ports"]["phosphate"] == dict(state="linked", symmetry_operation="x,y,z", leaving_atom="OP3",
+                                              partner=dict(site="C:9", component="DT", atom_id="O3'"))
+    assert site["ports"]["alcohol"]["partner"] == dict(site="D:9", component="DC", atom_id="P")
+    item = dict(contexts=[context], furanose_reaction=selected)
+    frozen = _freeze_furanose(item, {}, {})["furanose_reaction"]
+    assert frozen["workbook"] == "furanose/" + selected["workbook_sha256"] + ".xlsx"
+    book.write_bytes(book.read_bytes() + b"changed")
+    with pytest.raises(ValueError, match="changed before freezing"):
+        _freeze_furanose(item, {}, {})
+
+
 def run(paths,contexts):
     from nasolve.cif_furanose_reaction import prepare_furanose_reaction_control
     return prepare_furanose_reaction_control(*paths,code='Z99',contexts=contexts)

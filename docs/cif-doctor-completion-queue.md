@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 26 November 2026, after C606. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 26 November 2026, after C607. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -1067,6 +1067,15 @@ measured 1.603–1.609 Å at five cycles and the three inter-base plane angles w
 6.58–8.36°. The 6MZ glycosidic torsion moved 15.4° from construction. Its
 pair remains open for review. Distances can now be inspected in the ordinary
 `--refined-links` reader without a separate analysis script or a new ranking rule.
+
+C607 selected the existing internal-sugar reaction directly from the three source
+graphs, workbook roles and six declared backbone neighbors. ReadySet chemistry and
+manual end declarations retain their existing authorities. A fresh Phenix whole-model
+read found each site-specific reaction plus `rna2p`. The effective atom, bond, angle,
+torsion, plane and chirality definitions matched the corresponding projected site after
+the installed pucker adjustment. The candidate still needs the separate default and
+literal evidence throughout acquisition. A relocated request reconstructed its original
+pair recipe while the original dataset and installed workbook were inaccessible.
 
 C601 found the source-preserving generator had introduced a 5.779 Å bond between
 O4′ and ring C2. All 42 source edges were present. The ten bonds of the purine

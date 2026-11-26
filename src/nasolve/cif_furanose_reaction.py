@@ -130,6 +130,50 @@ def derive_furanose_reaction(source_path, numerical_path, workbook, model_path, 
     return report, artifacts
 
 
+def select_internal_ribose_reaction(source, code, workbook, model_bytes, contexts):
+    """Select the existing graph reaction for an internal, source-declared RNA ribose."""
+    from .cif_whole_furanose import _source_phosphate_leaving_atom, declared_internal_ports
+    from .postmr_restoration import ribose_hydroxyl
+
+    if not contexts or any(c["five_prime_state"] != "linked" or c["three_prime_state"] != "linked"
+                           or c.get("symmetry_operation") not in (None, "x,y,z")
+                           or c.get("experimental_passthrough") for c in contexts):
+        return None
+    try:
+        values = _projection_values(source, code)
+    except ValueError:
+        # The existing source path still owns multi-component or non-projectable inputs.
+        return None
+    types = [" ".join(t.upper().split()) for t in values.get("_chem_comp.type", ())]
+    groups = {g.strip().upper() for g in values.get("_chem_comp.group", ())} - {"", ".", "?"}
+    if types != ["RNA LINKING"] or groups - {"RNA"}:
+        return None
+    try:
+        graph = _graph(values)
+        ribose_hydroxyl(graph)
+    except ValueError:
+        return None
+    profile = inspect_attachment_profile(source, code, workbook=workbook)
+    if profile["matched_profile"] != "unbridged-furanose-phosphate-v1" or profile["topology_status"] != "MATCH":
+        return None
+    roles = profile["bindings"]
+    if (graph[0][roles["base"]] != "N" or
+            (roles["phosphate"], roles["five_o"], roles["three_o"]) != ("P", "O5'", "O3'")):
+        return None
+    try:
+        leaving = _source_phosphate_leaving_atom(values, roles)
+    except ValueError:
+        return None
+    sites = _model(model_bytes)
+    for context in contexts:
+        site = sites[context["site"]]
+        atoms = site["atoms"]
+        if site["component"] != code or atoms.get("O2'") != "O" or leaving in atoms:
+            return None
+    ports = [declared_internal_ports(c, sites, leaving) for c in contexts]
+    return dict(contexts=ports, workbook=workbook, workbook_sha256=profile["workbook"]["sha256"])
+
+
 def internal_furanose_contexts(contexts, reaction_contexts):
     """Check the two explicit bond declarations before any numerical work."""
     if (not isinstance(contexts,list) or not isinstance(reaction_contexts,list)

@@ -56,13 +56,16 @@ def _freeze_furanose(item, files, originals):
     reaction = item.get('furanose_reaction')
     if reaction is None:
         return {}
-    _need(isinstance(reaction,dict) and set(reaction)=={'contexts','workbook'}
+    _need(isinstance(reaction,dict) and set(reaction) in ({'contexts','workbook'}, {'contexts','workbook','workbook_sha256'})
           and item.get('terminal_resource') is None and item.get('phosphate_atom_policy') is None,
           'Require one explicit internal furanose chemistry declaration')
     internal_furanose_contexts(item['contexts'],reaction['contexts'])
     path = Path(reaction['workbook']); data = _read(path)
     _need(originals.setdefault(path,data)==data, 'Shared furanose workbook changed during freezing')
-    name = 'furanose/'+sha256(data).hexdigest()+'.xlsx'
+    digest = sha256(data).hexdigest()
+    _need('workbook_sha256' not in reaction or reaction['workbook_sha256'] == digest,
+          'Selected furanose workbook changed before freezing')
+    name = 'furanose/'+digest+'.xlsx'
     files[name] = data
     return {'furanose_reaction':{'workbook':name,'contexts':reaction['contexts']}}
 

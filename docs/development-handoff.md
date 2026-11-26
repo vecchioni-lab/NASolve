@@ -68,8 +68,13 @@ the same starting model through five native cycles. These two distances reached
 2.463 and 3.372 Å. Across 50 declared base-pair contacts, eight exceeded three
 restraint widths at one cycle and one at five. The remaining one was an ordinary
 G:C pair. All twelve sugar hands survived. The existing refined-links reader now
-shows the shortest and longest departures in restraint widths. Next carry the
-separate component proofs through ordinary site preparation. The sulfur linkage
+shows the shortest and longest departures in restraint widths. C607 lets the ordinary
+source-preserving recipe recognize an internal N-linked ribose with a free 2′ hydroxyl.
+The source identifies its phosphate leaving oxygen and both actual backbone partners
+must be recorded. One frozen copy of the NARestraints workbook serves the three sugars
+and the archived pairing recipe. The linked Phenix reader saw the intended sugar and
+normal pucker at all three sites. Carry both independent isolated reads into ordinary
+acquisition before promoting this chemistry. The sulfur linkage
 remains a separate chemical state. The [Q12 workbook sweep](cif-doctor-completion-queue.md#q12--resolve-catalogue-mappings-and-maintain-support-coverage)
 follows the eight-site challenge.
 [Release and tested installation](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.4).

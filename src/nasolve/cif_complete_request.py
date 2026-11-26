@@ -132,7 +132,7 @@ def _continuation_parameters(config):
         **repair.compact_evidence_fields(config.get('compact_evidence',False)))
 
 
-def _compiler_input(kind, directory, selected_sources=None, *, reader_control_policy=None):
+def _compiler_input(kind, directory, selected_sources=None, *, reader_control_policy=None, frozen_workbooks=None):
     """Resolve an existing compiler artifact; never compile or guess new intent."""
     if reader_control_policy is not None:
         from .cif_interpretation_controls import POLICY_ID as control_policy
@@ -151,7 +151,7 @@ def _compiler_input(kind, directory, selected_sources=None, *, reader_control_po
                           'Literal compiler source differs from selected acquisition source: '+code)
         return result
     _need(kind == 'explicit_na_policy', 'Unsupported compiler input kind')
-    root = Path(directory); report = read_explicit_na_policy(root)
+    root = Path(directory); report = read_explicit_na_policy(root, frozen_workbooks=frozen_workbooks)
     if selected_sources is not None:
         for code, ref in report['inputs']['sources'].items():
             if code in selected_sources:
@@ -159,6 +159,19 @@ def _compiler_input(kind, directory, selected_sources=None, *, reader_control_po
                       'Explicit compiler source differs from selected acquisition source: '+code)
     return dict(report=report,model=root/report['inputs']['model']['path'],
                 phils=[root/report['compiled_phil']['path']])
+
+
+def _read_owned_compiler(kind, inputs, controls, selected_sources=None):
+    """Replay the pair recipe with the same catalogue frozen for this request's sugars."""
+    workbooks = {}
+    if kind == 'explicit_na_policy':
+        for site in controls['sites'].values():
+            if 'furanose_reaction' in site:
+                path = _furanose_inputs(inputs, site)['furanose_reaction']['workbook']
+                workbooks[path.stem] = path
+    return _compiler_input(kind, inputs/_COMPILER_INPUTS[kind], selected_sources,
+                           reader_control_policy=controls.get('interpretation_controls', {}).get('policy_id'),
+                           frozen_workbooks=workbooks)
 
 
 def _compiler_references(literal_na_inputs, explicit_na_policy):
@@ -269,7 +282,6 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
     names = controls['supplementary_phils']
     _need(isinstance(names,list) and names == [f'phils/{i:03}.phil' for i in range(len(names))], 'Invalid shared PHIL order')
     reader_phils, _ = control_inputs(inputs, controls, prefix='')
-    reader_policy = controls.get('interpretation_controls', {}).get('policy_id')
     if reader_phils: reject_shadow_controls([inputs/n for n in names])
     allowed = {'model.pdb', *names, *[p.relative_to(inputs).as_posix() for p in reader_phils],
                *('sources/'+n for n in _tree(inputs/'sources'))}
@@ -334,7 +346,7 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
           'Reader controls require authenticated typed literal provenance')
     for kind,reference in compiler_refs.items():
         folder = _COMPILER_INPUTS[kind]
-        compiled = _compiler_input(kind,inputs/folder,selected['sources'], reader_control_policy=reader_policy)
+        compiled = _read_owned_compiler(kind, inputs, controls, selected['sources'])
         _need([_read(p) for p in compiled.get('interpretation_control_phils', [])]
               == [_read(p) for p in reader_phils], 'Captured interpretation control bytes or order differ')
         _need(reference == dict(anchor=ANCHOR,path='inputs/'+folder,policy_id=compiled['report']['policy_id'])
@@ -797,7 +809,7 @@ def _result(root, attempt, intent, config, children, bindings):
         **(dict(plane_generation=_plane_outcomes(root,attempt,config)[2]) if 'plane_generation_policy' in config else {}))
     _need(_same({k:v for k,v in report.items() if k != 'record_sha256'},expected), 'Complete request result claims differ')
     return dict(result=report,preparation=prepared,execution=execution,runtime=runtime,
-        **{name:_compiler_input(name,root/'inputs'/folder, reader_control_policy=controls.get('interpretation_controls', {}).get('policy_id')) for name,folder in _COMPILER_INPUTS.items() if name in config},
+        **{name:_read_owned_compiler(name, root/'inputs', controls) for name in _COMPILER_INPUTS if name in config},
         **({'construction_inputs':read_postmr_construction(root/'inputs/construction')} if 'construction_inputs' in config else {}),
         **({'continuation':continued} if 'continuation' in config else {}))
 
