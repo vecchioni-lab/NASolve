@@ -17,6 +17,21 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+
+### W296 — Admit an explicit two-sugar movement scope
+
+- Add optional `movement_scope: coupled-sugars` to the native phosphate request;
+  omission or `connecting-backbone` retains the existing six-atom route.
+- Admit 19 canonical DNA atoms only after checking complete sugar rings, fixed
+  base attachments/outer phosphates, and six source-relative sugar hands. Keep
+  all original native proxy definitions and the existing eight seam terms.
+- Record actual initial/returned native geometry, full-precision and serialized
+  hand checks, and existing Cedar pucker/bond/angle observations. All other
+  coordinates, ADPs, occupancy and bound observations remain protected.
+- This opt-in scope is unphased and experimental. Reports remain unselected;
+  measurable pucker is not a preferred-pucker or packing acceptance claim.
+
+
 ### W295 — Share the qualified phase and Free-R source reader
 
 - Receive Alder's unchanged `refinement_diffraction_source` owner and native

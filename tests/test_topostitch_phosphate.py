@@ -588,3 +588,27 @@ def test_phased_guard_delegates_source_read_and_retains_native_pins(tmp_path,mon
     assert guard.spec is spec['diffraction'] and guard.source==source
     assert guard._native_hashes=={name:sha256(native.read_bytes()).hexdigest() for name in modules}
     assert phased._indexed is shared.indexed_values
+
+
+@pytest.mark.parametrize('scope',['connecting-backbone','coupled-sugars'])
+def test_explicit_movement_scope_is_frozen_without_changing_old_requests(tmp_path,scope):
+    path,spec=request(tmp_path)
+    assert job._request(path)[0]==spec and 'movement_scope' not in spec
+    spec['movement_scope']=scope;path.write_text(json.dumps(spec))
+    assert job._request(path)[0]==spec
+
+
+@pytest.mark.parametrize('scope',[None,True,19,{},'all'])
+def test_unknown_movement_scope_refuses_before_native(tmp_path,monkeypatch,scope):
+    path,spec=request(tmp_path);spec['movement_scope']=scope;path.write_text(json.dumps(spec))
+    import nasolve.topostitch_captured_job as owners
+    monkeypatch.setattr(owners,'_cedar',lambda *a,**k:pytest.fail('Native owner loaded'))
+    with pytest.raises(ValueError,match='movement_scope'):
+        job.run_registered_phosphate_refinement(path,tmp_path/'out',phenix='missing')
+    assert not (tmp_path/'out').exists()
+
+
+def test_coupled_scope_does_not_silently_admit_phased_or_metal_policy(tmp_path):
+    path,spec,_=phased_request(tmp_path);spec['movement_scope']='coupled-sugars';path.write_text(json.dumps(spec))
+    with pytest.raises(ValueError,match='unphased canonical DNA'):
+        job._request(path)

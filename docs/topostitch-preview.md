@@ -3494,6 +3494,33 @@ The chosen field is frozen in the job plan. Earlier builds reject this new field
 no migration is needed for old requests. A preflight PASS is still not a fit or
 scientific acceptance. See [W294 validation](topostitch-periodic.md#w294--complete-ordinary-preflight-with-explicit-frame-roundoff).
 
+**W296 explicit coupled sugars:** schema-1 requests may add
+`"movement_scope": "coupled-sugars"`. Omission or `"connecting-backbone"`
+keeps the original six movable atoms. The wider scope requires two distinct,
+fully occupied canonical DNA residues with unambiguous heavy atoms: eight sugar
+atoms (O5′, C5′, C4′, O4′, C3′, O3′, C2′, C1′) at each endpoint plus the
+acceptor P/OP1/OP2. Both nucleobases and the two outer phosphate groups stay held.
+The source capture must supply all 23 local/attachment bonds, six signed sugar
+centers and C1-dependent monomer planes. Noncanonical chemistry and phased
+coupled requests are refused; existing six-atom MLHL requests are unaffected.
+
+`coupled-scope.json` records source-order indices, native correspondence and
+source-relative signs (schema 1, `topostitch-coupled-sugar-scope`). Each native
+phase saves `coupled-initial.json`, `coupled-returned.json` and
+`coupled-audit.json`; `science.json.geometry_file` binds the actual native GEO
+by phase-relative path and SHA-256. The controller requires every source proxy
+and its parameters to survive, with only the registered one bond/four angles/
+three torsions added. Fit initialization must match qualified preflight.
+Handedness is checked at both full and written precision; the existing Cedar
+observer measures sugar pucker and intramonomer bonds/angles from the exact
+candidate/GEO pair. Neither source-relative signs nor measurable pucker prove
+absolute stereochemistry, preferred sugar conformation or acceptable packing.
+All existing displacement, protected-coordinate, thermal, source/data, process
+and restoration checks still apply. No new optimizer, force owner, automatic
+partner choice or model adoption is introduced. Older builds reject the new
+optional field; old requests need no migration. See the
+[W296 evidence](topostitch-periodic.md#w296--admit-coupled-sugars-through-the-installed-native-route).
+
 The API is `topostitch_phosphate.run_registered_phosphate_refinement(request_path,
 output_directory, *, phenix, cedar_source=None, timeout_seconds=1200, preflight_only=False)`.
 The historical request uses these mandatory schema-1 fields; W250 adds the

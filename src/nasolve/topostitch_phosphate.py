@@ -18,6 +18,7 @@ from .topostitch_inspect import _keys
 from .topostitch_preview import _json
 from .topostitch_recipe import recipe_digest, model_atom_rows
 from .topostitch_endpoint import audit_masked_endpoint
+from .topostitch_phosphate_scope import prepare_coupled_sugars, review_coupled_geometry, observe_coupled_native
 
 
 def _save(path, value):
@@ -31,7 +32,7 @@ def _request(path):
     raw = path.read_bytes(); value = _json(raw)
     _keys(value, {'schema_version', 'kind', 'inputs', 'restraints', 'continuation_id',
                   'cycles', 'iterations', 'max_displacement_angstrom', 'wxc_scale',
-                  'data_labels', 'free_label', 'test_flag_value'}, {'diffraction', 'native_frame_policy'})
+                  'data_labels', 'free_label', 'test_flag_value'}, {'diffraction', 'native_frame_policy', 'movement_scope'})
     if type(value['schema_version']) is not int or value['schema_version'] != 1 or value['kind'] != 'topostitch-phosphate-refinement':
         raise ValueError('Require a schema-1 phosphate refinement request')
     for key, lo, hi in [('continuation_id', 1, 1000000), ('cycles', 1, 5), ('iterations', 1, 200)]:
@@ -46,6 +47,11 @@ def _request(path):
         if not isinstance(value[key], str) or not re.fullmatch(r'[A-Za-z0-9_,()+/\-]+', value[key]):
             raise ValueError('Require explicit native column labels')
     _allow_frame_roundoff(value)
+    scope=value.get('movement_scope','connecting-backbone')
+    if not isinstance(scope,str) or scope not in ('connecting-backbone','coupled-sugars'):
+        raise ValueError('movement_scope must be connecting-backbone or coupled-sugars')
+    if scope=='coupled-sugars' and 'diffraction' in value:
+        raise ValueError('Coupled-sugar admission currently supports unphased canonical DNA only')
     phased = 'diffraction' in value
     if phased:
         from .topostitch_phased import validate_spec
@@ -216,7 +222,8 @@ def run_registered_phosphate_refinement(request_path, output_directory, *, pheni
 
     Input references are resolved relative to the request, with explicit absolute
     paths also supported. The complete native reference capture is authenticated
-    by Cedar. Only six canonical connecting atoms move; all other source bytes,
+    by Cedar. Six connecting atoms move by default; coupled-sugars explicitly
+    admits the source-checked 19-atom sugar scope. All other source bytes,
     Cartesian ADPs and occupancies are protected. Output remains under review.
     """
     from .topostitch_captured_job import _cedar, _unchanged
@@ -242,6 +249,10 @@ def run_registered_phosphate_refinement(request_path, output_directory, *, pheni
             importlib.import_module(namespace+'.'+name)
         if 'diffraction' in spec:
             importlib.import_module(__package__+'.topostitch_native_recipe')
+        coupled=spec.get('movement_scope')=='coupled-sugars'
+        if coupled:
+            for name in ('cif_terminal_qualification','refinement_residue_geometry','refinement_sugar_pucker'):
+                cedar[name]=importlib.import_module(namespace+'.'+name)
         runtime_sources = {}
         for name, module in list(sys.modules.items()):
             if (name.startswith(namespace+'.') or name.startswith(__package__+'.')) and getattr(module, '__file__', None):
@@ -250,7 +261,7 @@ def run_registered_phosphate_refinement(request_path, output_directory, *, pheni
                     original[path] = path.read_bytes()
                     runtime_sources[name.replace(namespace, 'cedar', 1)] = sha256(original[path]).hexdigest()
         # Authenticate full reference evidence before creating any job directory.
-        _, _, capture = cedar['cif_attachment_native']._capture(files['native_receipt'], original[files['model']])
+        _, reference_native, capture = cedar['cif_attachment_native']._capture(files['native_receipt'], original[files['model']])
         original.update(capture)
         sdk = cedar['phenix_runtime'].installation_from_candidate(Path(phenix))
         source = original[files['model']]
@@ -259,7 +270,12 @@ def run_registered_phosphate_refinement(request_path, output_directory, *, pheni
         rows = model_atom_rows(source)
         chosen = [i for i, row in enumerate(rows) if (f"{row['chain']}:{row['residue_number']}", row['atom_name']) in names]
         points = [tuple(float(l[a:b]) for a, b in ((30,38),(38,46),(46,54))) for l in source.splitlines() if l[:6] in (b'ATOM  ', b'HETATM')]
-        if len(chosen) != 6:
+        scope=None
+        if coupled:
+            scope=prepare_coupled_sugars(source,inspection,reference_native,
+                native_owner=cedar['cif_attachment_native'],fixed_owner=cedar['cif_fixed_geometry'])
+            chosen=scope['movable_indices']
+        elif len(chosen) != 6:
             raise ValueError('Require six unambiguous connecting-backbone atoms')
         _masked_result(source, points, chosen, spec['max_displacement_angstrom'])
         root.mkdir(parents=True); inputs = root/'inputs'; inputs.mkdir()
@@ -274,6 +290,7 @@ def run_registered_phosphate_refinement(request_path, output_directory, *, pheni
             dest = capture_root/path.relative_to(files['native_receipt'].parent)
             dest.parent.mkdir(parents=True, exist_ok=True); dest.write_bytes(raw)
         _save(root/'inspection.json', inspection)
+        if coupled:_save(root/'coupled-scope.json',scope)
         (root/'bond.phil').write_text(bond)
         plan = dict(schema_version=1, kind=spec['kind'], controls={k: spec[k] for k in spec if k not in ('inputs','restraints')},
             inputs=frozen, movable_indices=chosen, model_sha256=sha256(source).hexdigest(),
@@ -305,6 +322,28 @@ def run_registered_phosphate_refinement(request_path, output_directory, *, pheni
                 observed = _json((work/'science.json').read_bytes())
                 if observed['status'] != 'COMPLETE_REQUIRES_REVIEW':
                     raise ValueError('Incomplete native phase')
+                if coupled:
+                    initial_view=_json((work/'coupled-initial.json').read_bytes())['native_view']
+                    final_view=_json((work/'coupled-returned.json').read_bytes())['native_view']
+                    returned_points=_json((work/'full-precision-points.json').read_bytes())
+                    audit=review_coupled_geometry(scope,reference_native,initial_view,final_view,returned_points,
+                        fixed_owner=cedar['cif_fixed_geometry'],proxy_owner=cedar['cif_terminal_qualification'])
+                    candidate=work/'candidate.pdb';candidate_bytes=candidate.read_bytes()
+                    rounded=[[float(l[a:b]) for a,b in ((30,38),(38,46),(46,54))]
+                        for l in candidate_bytes.splitlines() if l[:6] in (b'ATOM  ',b'HETATM')]
+                    audit['serialized']=review_coupled_geometry(scope,reference_native,initial_view,final_view,rounded,
+                        fixed_owner=cedar['cif_fixed_geometry'],proxy_owner=cedar['cif_terminal_qualification'])
+                    ref=observed['geometry_file'];declared_geo=work/ref['path'];geo=declared_geo.resolve(strict=True)
+                    if ref['anchor']!='phase' or not geo.is_relative_to(work.resolve()) or declared_geo.is_symlink() or sha256(geo.read_bytes()).hexdigest()!=ref['sha256']:
+                        raise ValueError('Coupled geometry output differs from its native reference')
+                    geometry=cedar['refinement_residue_geometry'].inspect_residue_geometry(candidate,
+                        [r['site'] for r in scope['sites']],geometry=geo,sugar_pucker=True)
+                    if geometry['sugar_puckers']['status']!='MEASURED':
+                        raise ValueError('Coupled native sugar rings are not completely measurable')
+                    audit['residue_geometry']=geometry
+                    _save(work/'coupled-audit.json',audit)
+                    # Protect the exact qualified preflight used by the next phase.
+                    frozen_bytes.update({p:p.read_bytes() for p in work.rglob('*') if p.is_file()})
                 report['phases'].append(phase)
             if preflight_only:
                 report.update(status='PREFLIGHT_COMPLETE_REQUIRES_REVIEW')
@@ -367,6 +406,9 @@ def _worker_owned(phase, *, run_compatible_refinement, phosphate_runtime):
     data = '../'+plan['inputs']['data']
     phased = controls.get('diffraction')
     allow_frame_roundoff = _allow_frame_roundoff(controls)
+    coupled=controls.get('movement_scope')=='coupled-sugars'
+    if coupled and phased is not None:
+        raise ValueError('Coupled phased refinement is not admitted')
     guard = None
     if phased is not None:
         from .topostitch_phased import NativePhasedGuard, policy_text
@@ -501,11 +543,17 @@ refinement {{
             with patch.object(driver, 'write_before_run_outputs', inspect_initialized), patch.object(lbfgs, 'compute_target', inspect_target):
                 yield
         boundary = phased_boundaries()
+    scope_boundary=nullcontext(None)
+    if coupled:
+        namespace=run_compatible_refinement.__module__.rsplit('.',1)[0]
+        collector=importlib.import_module(namespace+'.cif_native_validation').collect_live_geometry
+        scope_boundary=observe_coupled_native(collector,phase=phase,root=root,save=_save,read=_json)
     owner=phosphate_runtime(inspection,raw)
     report=dict(status='FAILED',phase=phase,scientific_acceptance=False)
     try:
-        with patch.object(Program,'validate',validate), boundary, owner.active():
+        with patch.object(Program,'validate',validate), boundary, owner.active(), scope_boundary as finish_scope:
             result=run_compatible_refinement(args,evidence_directory='native-runtime',capture_written_model=True)
+            if coupled:report['geometry_file']=finish_scope(result)
             model=result.model; fm=result.fmodels.fmodel_xray(); final=state(model)
             if guard is not None:
                 if not diffraction_initial:
