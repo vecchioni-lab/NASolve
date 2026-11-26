@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**W289 documentation audit, 2026-11-26.** Latest science: **W288**. Latest
+**W290 density inspection, 2026-11-26.** Latest refinement: **W288**. Latest
 maintained code: **W287**, `f68a6a930d1730553ea63f67cacbdd31cc890600`.
 The [audited roadmap](topostitch-roadmap.md) owns status and the next decision;
 [periodic evidence](topostitch-periodic.md) and [API contracts](topostitch-preview.md)
@@ -21,6 +21,7 @@ must work without an AI service. A representation change does not repair a gap.
 | W288 matched-coordinate-weight experiment | Original 2.824 Å gap recovers to 1.61590 Å, near seeded 1.61420 Å; no model selected | Residual torsions near 3σ and Rwork/Rfree about 0.312/0.369; no density acceptance |
 | Whole-original-asym diagnostic CIF export | W272–278 preserve qualified source categories, images, tensors and backbone coverage; save/replay/inspect available | Mixed-fragment entity policy, native TLS restart, genuine source/parent join and persistent operation/refine loop |
 | W286/W287 connection review | Source/row/evidence-bound unapplied proposals and independent saved-report replay | Explicit metadata authority, application and separate chemistry/export/native admission |
+| W290 endpoint-map comparison | Same 1,909 indices/124 Free-R; P near 2.52σ in both maps, weak fixed sugar support | Explicit coupled-window chemistry/packing before broader native motion; no map-based acceptance |
 | Offline model/density and cut inspection | Installed renderers, map/model roles, saved preference and trusted export views | General stage/campaign integration and supported human edit/re-enter/refine lifecycle |
 
 **Availability is branch-specific.** The inspected local Pine checkout is still
@@ -40,18 +41,21 @@ maintained fixed-weight product mode or recommended production weight.
 
 ## Next decisions
 
-1. **Stitching:** use the existing inspector to compare each W288 endpoint with
-   its own exact maps, keeping the original assisted map separately labelled.
-   Inspect moving phosphates and held sugar boundaries before deciding whether
-   to widen the movable region. Preserve observation/Free-R/map provenance and
-   noise uncertainty. Do not repeat the matched-weight panel or tune by Free-R.
-2. **Pine integration:** agree with Rowan on one authoritative parent/data/metadata
-   route into a reviewed immutable child, using source-frame native refinement
-   and derived views first. The 3LNA export has strong metadata/scattering evidence
-   but no qualified ordinary parent/TLS restart; the genuine PDU parent has missing
-   entity fields and unresolved experimental-sequence/physical-oligo authority.
-   Choose and bind a supported route before another metadata writer or GUI action.
-   Whole-asym diagnostic export must not be advertised as deposition readiness.
+1. **Stitching:** W290 completes the own-map/fixed-sugar inspection. Define one
+   explicit coupled sugar/backbone window using existing topology/window owners;
+   preserve base/glycosidic geometry, pair register/planes/stacking, anchors and
+   native packing. Weak density does not identify a unique displacement. Coordinate
+   wider native admission with Cedar; do not extend the six-atom scope implicitly.
+   Both endpoint maps use 1,909 reflections; the historical 1,902-reflection map
+   stays unmatched context. No repeated weight panel or Free-R-driven search.
+2. **Pine integration:** Rowan/Linden agree to use the genuine PDU ordinary parent
+   with its proven data/thermal route. Use source-frame native refinement and
+   derived views; keep physical strand/entity assignments unresolved without a
+   designed-oligo source. Native soft pair restraints do not supply that authority.
+   Inspect existing topology/window readers for one concrete boundary before
+   another metadata writer or GUI action. The 3LNA export remains the strong
+   metadata/scattering control without a qualified ordinary parent/TLS restart.
+   Whole-asym diagnostic export is not deposition readiness.
 
 ## Pine recuts and shared ownership
 
@@ -78,8 +82,11 @@ references and thermal/TLS semantics. File readback alone cannot prove those.
 <a id="validation-and-scientific-interpretation"></a>
 ## Validation and compatibility
 
-**No tests, product changes, native fits or merges in W289.** Documentation links,
-roadmap synchronization, source entry points and local worktree state were audited.
+**W290: no product changes, native fits or merges.** Six successful FFTs of saved
+coefficients, 93 contour meshes and 20 cold source/numeric/checkout checks pass.
+Earlier local controller errors and four discarded preflight FFTs are retained.
+Figure visually inspected; interactive browser rendering remains untested.
+W289 documentation/link/entry-point audit remains the prior maintenance receipt.
 
 - W287: ten fail-before regressions, **81 focused source / 81 relocated installed**
   checks; 94 Python module hashes match, genuine 49-row proposal cold replay exact.
@@ -99,14 +106,14 @@ roadmap synchronization, source entry points and local worktree state were audit
 
 ## Local science checkout
 
-Latest measured result: ScienceCheckouts anchor
-`Linden/2026-11-25_matched-weight-recovery/index.html`, with the Python-openable
-ChimeraX comparison beside it. Three model hashes and five view actions pass
-headless ChimeraX 1.12; figure rendered and inspected. Fresh interactive browser/
-GUI behavior was not tested. Evidence uses NASolve anchor
-`branch-artifacts/willow/w288-matched-weight/validation.json`.
-Models are linked and checksummed, not copied into the checkout. All previous
-checkouts, collaboration notes, failed attempts and unique runs are preserved.
+Latest inspection: ScienceCheckouts anchor
+`Linden/2026-11-26_endpoint-density/index.html`, linking two offline inspectors,
+a fixed-plane phosphate/boundary figure, exact model/map pairs and the existing
+W288 Python-openable ChimeraX comparison. Evidence uses NASolve anchor
+`branch-artifacts/willow/w290-endpoint-density/verification.json`.
+Only the short index/manifest live in the checkout; models, maps and viewer payloads
+are linked and checksummed. Previous checkouts and failed attempts are preserved.
+The historical roadmap input remains bound to Git `f98e64cb1d04100ec3eff2d52b0dfa506d72048b`.
 
 ## Scientific limits and demonstration gates
 

@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W290 — Inspect endpoint maps and the fixed sugar boundary
+
+- Bind both saved phosphate endpoints to their own maps and native observations;
+  distinguish the older map with seven fewer reflections. Record weak sugar
+  support, residual torsion limits and a compact model/map inspection checkout.
+- Read-only scientific inspection and documentation; no new coefficients, native
+  refinement, maintained code, schema, default or selected model.
+
 ### W289 — Consolidate Willow/Pine guidance and audit integration gaps
 
 - Replace the repeated handoff/index chronology with current capabilities, two

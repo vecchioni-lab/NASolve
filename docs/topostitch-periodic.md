@@ -14795,3 +14795,75 @@ automatic density cutoff or model selection. Broader bending, stacking recovery,
 chemical validation and end-to-end stitching remain open. Do not repeat this
 matched-coefficient panel, tune weights on Free-R, or use the delayed fragmentation
 or nonzero-f″ metal stress tests to bypass those gates.
+
+
+## W290 — Inspect the closed phosphate and its fixed sugar boundary
+
+W290 completes the next W288 decision using saved coefficients, without another
+refinement. Both endpoint maps share **1,909 indices and 124 Free-R assignments**.
+Native written atom coordinates equal their preserved candidates; comparison to
+live returned sites stays within 0.0005 Å/component serialization. The map MTZ
+reorders reflections, so the observer joins unique exact Miller indices and
+checks amplitudes/sigmas against returned observations within float32 precision.
+Native writer/scattering synchronization, model, parameters and logs are bound.
+Map digests were first frozen for W290; no map-production callback was installed
+in W288, so this is not a retroactively complete producer receipt.
+
+| Site | Original-start endpoint, own 2mFo–DFc σ | Seeded endpoint, own 2mFo–DFc σ | Motion policy |
+| --- | ---: | ---: | --- |
+| B1 P | 2.523 | 2.518 | movable |
+| B1 OP2 | 2.257 | 2.282 | movable |
+| B1 C5′ | 0.346 | 0.347 | movable |
+| B1 C4′ | 0.202 | 0.199 | fixed |
+| B1 C1′ | −0.351 | −0.355 | fixed |
+| Image B7 C3′ | 0.963 | 0.964 | fixed |
+| Image B7 C2′ | −1.088 | −1.083 | fixed |
+
+At the **same 18 original-endpoint positions**, the two endpoint maps differ by
+at most 0.01142σ (ordinary) / 0.02734σ (difference). This establishes local
+similarity, not whole-map identity or a selected model. Both retain residual
+image/local torsions near 3/2.3 restraint widths and Rwork/Rfree near 0.312/0.369.
+The phosphate is closed; its sugar/duplex neighbourhood is not yet accepted.
+
+The historical refine-005 map has **1,902 reflections**, a subset missing seven
+from W288. It remains separately labelled context, never a matched before/after
+repair control. All maps are unfilled, unsharpened, isotropized and model-assisted,
+with Free-R reflections included. Each is whole-cell sigma normalized separately.
+These point samples cannot supply an independent validation, absolute electron-
+density difference, noise classification or coordinate-search objective.
+
+Phenix **2.2.1-6174** completes six FFTs of saved arrays through the existing native
+reader/coefficient selector, W237 mesh arithmetic and installed-resource renderer.
+Two offline scenes keep model and map selection independent; each has 18 atoms
+and two complete 31-level map slots. There are 93 distinct source meshes overall.
+All sampled mesh residuals are below 1e-8; lattice translations below 1e-10σ.
+Rotation-related interpolation error reaches 0.05049σ and is retained explicitly.
+All 12 fixed atoms have identical samples across coordinate choices within each
+fixed map. **20 cold checks pass.** The static fixed-plane figure was rendered
+and visually inspected; interactive browser behavior was not tested.
+
+Local controller preflight errors are retained, including the reflection-order
+and historical-count discoveries; four earlier FFTs were discarded before that
+count distinction. No new coefficients, native fit, application test suite,
+installation, maintained code/schema/default, checkpoint or scientific selection.
+Latest maintained code remains `f68a6a930d1730553ea63f67cacbdd31cc890600`.
+
+Exact controllers, plan, sources and results use NASolve anchor
+`branch-artifacts/willow/w290-endpoint-density/`. Commands:
+
+```text
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 <Phenix-2.2.1-6174>/bin/phenix.python -B <artifact>/density_worker.py
+MPLCONFIGDIR=<temporary-font-cache> PYTHONDONTWRITEBYTECODE=1 <Phenix-2.2.1-6174>/bin/phenix.python -B <artifact>/figure.py
+PYTHONDONTWRITEBYTECODE=1 python3 -B <artifact>/audit.py
+```
+
+ScienceCheckouts anchor `Linden/2026-11-26_endpoint-density/index.html` links the
+inspectors, vector/raster figure, paired models/maps and existing W288 ChimeraX
+script; no copied model/map/run trees. Scientific payloads stay outside Git.
+
+**Next:** define one coupled sugar/backbone window with explicit physical strand
+and paired-base context before broader native motion. Retain glycosidic geometry,
+sugar stereochemistry, pair planes/stacking, anchors, packing and protected atoms.
+Weak density is not a unique movement instruction. Cedar must qualify the wider
+native scope; six-atom controls do not authorize it. Do not repeat W241/W288/W290,
+tune by Free-R, or substitute deferred fragmentation/nonzero-f″ stress tests.

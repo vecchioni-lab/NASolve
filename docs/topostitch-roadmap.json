@@ -293,7 +293,8 @@
         "W235 closes the same original seam to1.61303A in one capped six-atom native geometry trial with all856other atoms/BQ held; local and image bond/angle targets recover, torsions remain explicit. Three derivative audits and34cold checks pass; no diffraction fit or acceptance.",
         "W240 provides an installed opt-in native-phosphate route through existing Cedar image chemistry. Complete preflight/one-cycle fit preserves fixed source-frame context and data;261 source/261 installed checks. Chemical recovery remains unaccepted.",
         "W241 completes the paired original-vs-W235 seed receiving question under the same requested native recipe: local seed geometry survives five cycles with all fixed context/data preserved. Effective native weights differ strongly; this is not an isolated basin test or scientific acceptance.",
-        "W288: two complete five-cycle Phenix2.2.1-6174 local experiments at identical observed(1,1,1) coordinate coefficients. Original seam2.824291\u21921.615904A;seed1.614199A. Max endpoint difference0.061131A/six-atom RMS0.033591A. Original local bond/angle maxima0.509/1.830sigma;residual torsions2.97sigma. Rwork/free~0.312/0.369;not accepted."
+        "W288: two complete five-cycle Phenix2.2.1-6174 local experiments at identical observed(1,1,1) coordinate coefficients. Original seam2.824291\u21921.615904A;seed1.614199A. Max endpoint difference0.061131A/six-atom RMS0.033591A. Original local bond/angle maxima0.509/1.830sigma;residual torsions2.97sigma. Rwork/free~0.312/0.369;not accepted.",
+        "W290 closes the W288 endpoint-map inspection decision: both own maps agree locally, while several fixed sugar sites remain weak. Native mask still six atoms; no broad duplex motion or density-driven choice."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
@@ -301,7 +302,7 @@
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient.",
         "Internal helix recovery explicitly compares neighbouring base-plane orientation, spacing, lateral offset/overlap and twist before deformation, after placement and after restrained recovery, including fixed-flank transitions. Within-pair coplanarity and between-pair stacking remain distinct; allow supported curvature/nonuniform twist rather than enforcing universal parallelism. Connectivity, sugar-sign retention and R factors alone do not close this gate. Investigator emphasis2026-11-22; planning only, reuse existing frame/geometry owners."
       ],
-      "next_action": "W288 matched-coordinate-coefficient question is complete; do not repeat W241 or W288 or infer a uniquely accessible seed basin. Review exact endpoint-model/map pairs and moving phosphates/fixed sugar boundary in one frame, separating held-original maps and each endpoint map. Retain observation/Free-R provenance and noise uncertainty before widening the movable window. No Free-R-driven weight sweep. Local coefficient qualification is not a maintained general fixed-weight owner, globally fixed likelihood objective or scientific acceptance. Broader bending, stacking, density, campaign and ASU gates stay open.",
+      "next_action": "Define one explicit coupled sugar/backbone window through existing topology/window owners before broader native motion. Preserve glycosidic/base geometry, paired-base register/planes/stacking, fixed anchors, packing and protected chemistry; weak map samples alone do not identify a unique displacement. Coordinate admission with Cedar; six-atom qualification does not extend automatically. W241/W288 comparison and W290 map question are closed; do not repeat or tune against Free-R. Broader bending and campaign acceptance remain open.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -398,14 +399,15 @@
         "E_NARROW_BACKBONE_NATIVE_CLOSURE",
         "E_REGISTERED_PHOSPHATE_ENTRY",
         "E_SEEDED_RECEIVING_WEIGHT_AUDIT",
-        "E_MATCHED_COORDINATE_WEIGHT_RECOVERY"
+        "E_MATCHED_COORDINATE_WEIGHT_RECOVERY",
+        "E_ENDPOINT_DENSITY_BOUNDARY"
       ],
       "last_audit": {
-        "date": "2026-11-25",
-        "human_update": 288,
+        "date": "2026-11-26",
+        "human_update": 290,
         "code_commit": "f68a6a930d1730553ea63f67cacbdd31cc890600",
-        "reviewer": "Linden; bounded native comparison coordinated with Rowan",
-        "scope": "Local matched-coordinate-coefficient recovery shown;all broader acceptance gates remain partial;no product policy change."
+        "reviewer": "Linden; endpoint-map inspection coordinated with Rowan",
+        "scope": "Own-map and fixed sugar review complete; no wider native window, scientific selection or acceptance."
       }
     },
     {
@@ -497,14 +499,15 @@
         "W254 records compact evidence when an atomic objective call fails: exact proposed-vector/mask digests, optional source hash and first exceeding source atom index/norm/bound.274source/274relocated installed checks; no extra evaluation, new optimizer policy, full coordinate array or retrospective recovery of W253.",
         "W255 records the completed coordinated2A cap comparison and separately bounded projected search/basis audit. Geometry improves but projected residual5.1565 and infeasible PDB rounding prevent a candidate. Alder pure helpers are independently reviewed at7c2e1c41; no Willow default/integration change or duplicate native run.",
         "Coordinated Alder follow-up reported at W258: a separately source-qualified constructed seed retains P-O3 1.615A and C3-O3 1.448A after the exact W252 receiver; no scientific parent/fdp because density remains weak. Broader DNA XYZ/groupB has native zero-cycle initialization only; no Willow native repeat.",
-        "W288: two complete five-cycle Phenix2.2.1-6174 local experiments at identical observed(1,1,1) coordinate coefficients. Original seam2.824291\u21921.615904A;seed1.614199A. Max endpoint difference0.061131A/six-atom RMS0.033591A. Original local bond/angle maxima0.509/1.830sigma;residual torsions2.97sigma. Rwork/free~0.312/0.369;not accepted."
+        "W288: two complete five-cycle Phenix2.2.1-6174 local experiments at identical observed(1,1,1) coordinate coefficients. Original seam2.824291\u21921.615904A;seed1.614199A. Max endpoint difference0.061131A/six-atom RMS0.033591A. Original local bond/angle maxima0.509/1.830sigma;residual torsions2.97sigma. Rwork/free~0.312/0.369;not accepted.",
+        "W290 own-map inspection retains W288 residual image/local torsions near3/2.3 restraint widths and weak fixed sugar boundaries. A closed phosphate is distinct from recovered sugar/duplex geometry."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "The planned2A comparison is complete: do not repeat it or widen the cap automatically. Coordinate source-bound convergence/chemistry assessment with Alder/Cedar. Explicitly scope boundary-endpoint qualification before receiving: feasible-basis force audit, projected stationarity, preserved old centered UNAVAILABLE, and actual serialized-state geometry/gradient/residual are independent. Inspect existing high-precision receiving support before separate PDB lattice proposals. No silent clipping or old-gradient reuse; no candidate/refinement before qualified output and chemistry. Queued from Rowan/Simon: inspect OP1/OP2 orientation relative to a qualified local duplex in its named image before/after gap filling or deformation; good bond lengths and conventional phosphate handedness alone are insufficient. Preserve genuine alternatives and true nicks; unresolved duplex correspondence remains unresolved. Cedar owns source-provenance diagnosis and correction, with no new force or immediate trial here. Scheduled phosphate follow-up stage 4: qualify the combined two-cut geometry only after source intent and pure-recut invariance pass; Cedar remains the sole force owner. Reuse W239\u2013W244 and existing rotated/screw/gap controls; preserve nick and ambiguous-partner negatives. Schedule and ownership: docs/topostitch.md#coordinated-phosphate-recut-follow-up. Planning only; no immediate native rerun. W288 completes the local original/seed comparison at identical observed coordinate coefficients; do not repeat it or infer a uniquely accessible seed basin. Follow S04\u2019s next model/map inspection step before widening the movable region. This local experiment does not extend counted scope, add a maintained fixed-weight owner or freeze the entire likelihood/scaling objective. Preserve residual torsion, density, broader bending/stacking and ASU gates.  A separately named opt-in constructed receiving seed may be nonstationary without claiming optimizer success. It needs actual output/source chemistry/atom/fixed-context qualification and a matched receiving control; new bytes require their own native capture. Preserve current W238 and diagnostic no-candidate authority. Alder has now qualified and run that separately named constructed seed through the matched W252 receiver (09a972b63b3eb85415ffd1a87e383d4b39c51643): do not repeat it. Good local bond retention coexists with weak/negative maps and Rwork/Rfree0.3081/0.3427, so no selected parent or fdp. Broader DNA-only XYZ/group-B comparison has zero-cycle initialization only (f3ee67b604c4e1a51d958b550993f467ef48ea3e); Rowan/Alder own optimization-stage admission with source phases/flags and fixed Hg. Willow continues independent topology metadata work.",
+      "next_action": "Qualify the explicitly chosen coupled sugar/backbone window with Cedar geometry/packing and actual serialized endpoints before native receiving. Keep OP1/OP2 orientation relative to a declared duplex, sugar stereochemistry, paired bases, true nicks and protected metals explicit; do not infer them from proximity or soft restraints. Reuse W239\u2013W244 recut/chemistry controls and the completed W288 comparison. W238 no-candidate and separate constructed-seed authority retain their scopes. Alder owns its broader DNA XYZ/group-B experiment; no repetition or implied adoption here.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -650,14 +653,15 @@
         "E_FAILED_PROPOSAL_OBSERVATION",
         "E_FEASIBLE_CAP_DIAGNOSTICS",
         "E_ALDER_SEED_RECEIVING_COORDINATED",
-        "E_MATCHED_COORDINATE_WEIGHT_RECOVERY"
+        "E_MATCHED_COORDINATE_WEIGHT_RECOVERY",
+        "E_ENDPOINT_DENSITY_BOUNDARY"
       ],
       "last_audit": {
-        "date": "2026-11-25",
-        "human_update": 288,
+        "date": "2026-11-26",
+        "human_update": 290,
         "code_commit": "f68a6a930d1730553ea63f67cacbdd31cc890600",
-        "reviewer": "Linden; bounded native comparison coordinated with Rowan",
-        "scope": "Local matched-coordinate-coefficient recovery shown;all broader acceptance gates remain partial;no product policy change."
+        "reviewer": "Linden; endpoint-map inspection coordinated with Rowan",
+        "scope": "Own-map and fixed sugar review complete; no wider native window, scientific selection or acceptance."
       }
     },
     {
@@ -750,7 +754,8 @@
         "W253: one original-parent geometry+tether trial reaches a near-target O3-P distance but significant boundary/oxygen-angle strain persists. A proposed unconstrained step exceeds the1.5A guard after12accepted steps; failed-last-step derivatives and1789independent checks pass. No convergence, candidate, feasible-bridge claim or automatic bound expansion. Three-state headless view preserves failed origin and exact source bindings.",
         "W255 records the completed coordinated2A cap comparison and separately bounded projected search/basis audit. Geometry improves but projected residual5.1565 and infeasible PDB rounding prevent a candidate. Alder pure helpers are independently reviewed at7c2e1c41; no Willow default/integration change or duplicate native run.",
         "Coordinated Alder follow-up reported at W258: a separately source-qualified constructed seed retains P-O3 1.615A and C3-O3 1.448A after the exact W252 receiver; no scientific parent/fdp because density remains weak. Broader DNA XYZ/groupB has native zero-cycle initialization only; no Willow native repeat.",
-        "W288: two complete five-cycle Phenix2.2.1-6174 local experiments at identical observed(1,1,1) coordinate coefficients. Original seam2.824291\u21921.615904A;seed1.614199A. Max endpoint difference0.061131A/six-atom RMS0.033591A. Original local bond/angle maxima0.509/1.830sigma;residual torsions2.97sigma. Rwork/free~0.312/0.369;not accepted."
+        "W288: two complete five-cycle Phenix2.2.1-6174 local experiments at identical observed(1,1,1) coordinate coefficients. Original seam2.824291\u21921.615904A;seed1.614199A. Max endpoint difference0.061131A/six-atom RMS0.033591A. Original local bond/angle maxima0.509/1.830sigma;residual torsions2.97sigma. Rwork/free~0.312/0.369;not accepted.",
+        "W290 binds both W288 endpoint maps to1909 indices/124 Free-R, writer state and exact written model sites;20cold checks pass. Both show P near2.52sigma but weak/negative sugar samples. Historical1902-reflection map stays unmatched context. No new coefficients/refinement or scientific selection."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -761,7 +766,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "The planned2A comparison is complete: do not repeat it or widen the cap automatically. Coordinate source-bound convergence/chemistry assessment with Alder/Cedar. Explicitly scope boundary-endpoint qualification before receiving: feasible-basis force audit, projected stationarity, preserved old centered UNAVAILABLE, and actual serialized-state geometry/gradient/residual are independent. Inspect existing high-precision receiving support before separate PDB lattice proposals. No silent clipping or old-gradient reuse; no candidate/refinement before qualified output and chemistry. W288 completes the local original/seed comparison at identical observed coordinate coefficients; do not repeat it or infer a uniquely accessible seed basin. Follow S04\u2019s next model/map inspection step before widening the movable region. This local experiment does not extend counted scope, add a maintained fixed-weight owner or freeze the entire likelihood/scaling objective. Preserve residual torsion, density, broader bending/stacking and ASU gates.  A separately named opt-in constructed receiving seed may be nonstationary without claiming optimizer success. It needs actual output/source chemistry/atom/fixed-context qualification and a matched receiving control; new bytes require their own native capture. Preserve current W238 and diagnostic no-candidate authority. Alder has now qualified and run that separately named constructed seed through the matched W252 receiver (09a972b63b3eb85415ffd1a87e383d4b39c51643): do not repeat it. Good local bond retention coexists with weak/negative maps and Rwork/Rfree0.3081/0.3427, so no selected parent or fdp. Broader DNA-only XYZ/group-B comparison has zero-cycle initialization only (f3ee67b604c4e1a51d958b550993f467ef48ea3e); Rowan/Alder own optimization-stage admission with source phases/flags and fixed Hg. Willow continues independent topology metadata work.",
+      "next_action": "After the coupled window and source chemistry are qualified, run one predeclared matched recovery comparison through existing native owners, preserving exact observations/Free-R and inspecting own maps plus a separately labelled fixed reference. Track geometry, packing, content and full recovery as well as Rwork/Rfree. W290 diagnostic maps include Free-R and cannot be a search objective or independent validation; no automatic red-density cutoff. No repeated six-atom weight panel. Alder broader protected DNA/group-B work and delayed nonzero-fdp stress retain their owners/gates.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -897,14 +902,15 @@
         "E_PHASED_GEOMETRY_BOUND",
         "E_FEASIBLE_CAP_DIAGNOSTICS",
         "E_ALDER_SEED_RECEIVING_COORDINATED",
-        "E_MATCHED_COORDINATE_WEIGHT_RECOVERY"
+        "E_MATCHED_COORDINATE_WEIGHT_RECOVERY",
+        "E_ENDPOINT_DENSITY_BOUNDARY"
       ],
       "last_audit": {
-        "date": "2026-11-25",
-        "human_update": 288,
+        "date": "2026-11-26",
+        "human_update": 290,
         "code_commit": "f68a6a930d1730553ea63f67cacbdd31cc890600",
-        "reviewer": "Linden; bounded native comparison coordinated with Rowan",
-        "scope": "Local matched-coordinate-coefficient recovery shown;all broader acceptance gates remain partial;no product policy change."
+        "reviewer": "Linden; endpoint-map inspection coordinated with Rowan",
+        "scope": "Own-map and fixed sugar review complete; no wider native window, scientific selection or acceptance."
       }
     },
     {
@@ -9832,6 +9838,61 @@
         "Bind Alder cluster design link to verified source commit928aa8e6 instead of missing Willow-local section."
       ],
       "validation_scope": "Static entry-point/ancestry inspection, local Markdown link/anchor checks, roadmap render/check and git diff --check only. No tests, new installation, native execution or merged-branch qualification."
+    },
+    "E_ENDPOINT_DENSITY_BOUNDARY": {
+      "kind": "Read-only native endpoint maps and fixed sugar boundary",
+      "date": "2026-11-26",
+      "human_update": 290,
+      "code_commit": "f68a6a930d1730553ea63f67cacbdd31cc890600",
+      "reference": "docs/topostitch-periodic.md#w290--inspect-the-closed-phosphate-and-its-fixed-sugar-boundary",
+      "result": "Both W288 native written endpoints match preserved candidate XYZ and paired 1909 observations/124 Free-R labels. Exact Miller-index joins handle writer row reorder. Own-map P 2.523/2.518 sigma; fixed B1 C4 about0.20 and C1 about-0.35, image B7 C2 about-1.09. At the same18 positions, endpoint-map max differences0.01142 ordinary/0.02734 difference sigma.20cold checks;93meshes;figure visually checked. No new coefficients or fit.",
+      "limitation": "Ordinary unfilled model-assisted maps include Free-R and have separate whole-cell sigma normalization; no independent validation, noise threshold, coordinate-search authority or acceptance. Historical map has1902 reflections, not a matched before/after control. W288 native writer state/parameters/logs and current map digests are bound, but no map-production callback was present. Browser rendering untested; no wider native mask qualified.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w290-endpoint-density/plan.json",
+          "sha256": "2b932a8096dd9c98de00766a0c438378d42d52f5abb0517f895b093bf11003e9",
+          "size": 25967
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w290-endpoint-density/density-review.json",
+          "sha256": "b8015beae9ba36837d226260b56faa503f5c8f5388ccd3b9eb4979ebbc9e2c64",
+          "size": 90458
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w290-endpoint-density/verification.json",
+          "sha256": "f36e3970a932deeec695b808cc3ad18d2891b8f0a1f0ce767a3fd9bca4b3170f",
+          "size": 4410
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w290-endpoint-density/density_worker.py",
+          "sha256": "666ada34bd694c3c0f64d14fd37f4a366abc6845bc8cacc3f0c3b89907f3504c",
+          "size": 16128
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w290-endpoint-density/figure.py",
+          "sha256": "1b07f23f6cf5d64699dc298985cec146d8ab38d0f9506cae3adb44c8ce6ce8c2",
+          "size": 5573
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w290-endpoint-density/audit.py",
+          "sha256": "22a605142b93a21af27459c197def02ffbfebc36138d087b6b8b1d85d47512eb",
+          "size": 7353
+        }
+      ],
+      "checkout": {
+        "anchor": "ScienceCheckouts",
+        "path": "Linden/2026-11-26_endpoint-density/index.html"
+      },
+      "successful_ffts": 6,
+      "discarded_controller_preflight_ffts": 4,
+      "maintained_code_changed": false,
+      "new_native_refinements": 0
     }
   },
   "benchmarks": [
@@ -10013,8 +10074,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 289,
-    "next": 290,
+    "current": 290,
+    "next": 291,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -11556,6 +11617,12 @@
       {
         "number": 289,
         "title": "Audit Willow and Pine delivery gaps and consolidate current guidance",
+        "state": "RECORDED",
+        "code_commit": "f68a6a930d1730553ea63f67cacbdd31cc890600"
+      },
+      {
+        "number": 290,
+        "title": "Inspect each recovered phosphate in its own map and assess the fixed sugar boundary",
         "state": "RECORDED",
         "code_commit": "f68a6a930d1730553ea63f67cacbdd31cc890600"
       }

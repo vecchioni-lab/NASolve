@@ -1,6 +1,6 @@
 # TopoStitch: periodic DNA connections, recutting and repair
 
-Current scope, **2026-11-26 (W289 audit)**: explicit placement proposals,
+Current scope, **2026-11-26 (W290 inspection)**: explicit placement proposals,
 source-bound ASU inspection, whole-original-asym **diagnostic** CIF save/replay,
 and opt-in local six-atom native receiving are available on `willow` within their
 qualified scopes. Automatic end repair, mixed-fragment output, persistent child/

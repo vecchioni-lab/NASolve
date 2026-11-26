@@ -7,13 +7,13 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **W289:** [compact Willow/Pine handoff](development-handoff.md) distinguishes
-  branch-available tools, local experiments and the remaining integrated workflow.
-  The [roadmap](topostitch-roadmap.md) is the only milestone/action queue.
-- **Latest science, W288:** [matched coordinate weights](topostitch-periodic.md#w288--the-original-pose-catches-up-under-matched-coordinate-weights)
-  let the original 2.824 Å gap recover to 1.616 Å near the seeded result. Residual
-  torsions and poor diffraction prevent acceptance. Next inspect exact model/map
-  pairs before widening the movable region; do not rerun the panel.
+- **W290:** [endpoint-map inspection](topostitch-periodic.md#w290--inspect-the-closed-phosphate-and-its-fixed-sugar-boundary)
+  confirms similar density around both recovered phosphates and weak support at
+  several fixed sugar atoms. The next task is an explicit coupled window, with
+  chemistry/packing and paired-base context qualified before native movement.
+- **W288 remains the latest refinement:** the original 2.824 Å gap recovers to
+  1.616 Å near the seeded result at matched coordinate weights. Residual torsions
+  and poor diffraction still prevent acceptance. Do not rerun the weight panel.
 - **Latest maintained code, W287:** [saved annotation replay](topostitch-preview.md#reopen-a-saved-annotation-proposal-w287)
   reproduces an explicit review from bound original inputs. 81 source / 81 installed
   checks at that checkpoint; no metadata application or scientific approval.
@@ -28,7 +28,8 @@ current instructions; other branches retain their own status and validation pins
 - **Exact history:** [periodic/native evidence](topostitch-periodic.md) and
   [preview/API contracts](topostitch-preview.md) retain methods, failures and pins.
   Earlier synthetic recovery, native controls and software PASS results retain
-  their recorded scopes. No new tests or experiments were run in this docs audit.
+  their recorded scopes. W290 adds read-only map calculations and 20 cold checks;
+  no new refinement or application test-suite run.
 
 ## Publication demonstration plan
 
