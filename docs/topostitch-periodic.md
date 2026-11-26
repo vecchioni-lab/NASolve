@@ -15159,3 +15159,144 @@ The next TopoStitch task remains explicit 19-atom scope/chemistry admission;
 W293 numerical agreement and W294 ordinary preflight are reused. W288 remains
 the latest actual refinement. Deferred nonzero-f″ and fragmentation stress tests
 remain gated by their existing owners.
+
+
+## W296 — Admit coupled sugars through the installed native route
+
+**2026-11-26; opt-in scope, not automatic selection.** The original six-atom
+receiver remains the default. `movement_scope: coupled-sugars` permits the W292
+19-atom scope only after binding two canonical sugar rings, their fixed base
+attachments and outer phosphate anchors, six source-relative signed centers and
+all C1-dependent native planes. The wider scope is currently unphased; six-atom
+MLHL behavior is unchanged. The existing masked endpoint and Cedar native force
+owners remain authoritative. No new geometry kernel or optimizer is introduced.
+
+The new observer binds the actual model manager to its original interpretation,
+compares all native proxy definitions at initialization and return, and requires
+the fit to start with the same definitions as preflight. Every source proxy is
+retained; the only additions are one image bond, four angles and three torsions.
+Both full-precision and written coordinates must preserve the six sugar hands.
+The existing Cedar reader measures pucker and intramonomer bonds/angles against
+the exact native GEO: initial `.geo` for preflight, `_final.geo` for the fit.
+Pucker measurability is not a preferred-pucker assertion or absolute stereochemical
+validation. Ordinary before/after context/data/process checks remain active.
+
+**Failures retained.** The first source smoke reached all native scope checks but
+was correctly rejected as `FAILED_INPUT_DRIFT`: Linden edited the helper during
+execution. It is not a qualified pass. Inspection then identified Phenix's separate
+final-GEO filename before any fit. The first qualification suite was interrupted
+at 652 passing tests / 173 subtests to fix that binding; it is not a complete-suite
+pass. Phase-specific lifecycle regressions now cover the distinction and restore
+hooks on either success or refusal. The source smoke's 200-iteration request is
+retained separately; direct inspection of W288's frozen plan established the
+matched trial budget as five cycles of **100** iterations.
+
+**Packing ownership, checked with Rowan.** `cif_live_nonbonded_policy.snapshot_live_nonbonded_policy`
+reads fixed exclusions and exact shell tables without evaluating. In contrast,
+`cif_native_asu.capture_asu_pairs` runs two additional energy evaluations and is
+qualified in an isolated worker. Neither is an authenticated post-exit packing
+observation of the guarded driver. W293's partial-live-capture refusal remains
+valid. A future returned-energy observer must preserve invocation/cache state;
+do not insert the isolated-worker helper as a supposedly passive callback.
+
+Evidence remains local under the NASolve anchor
+`branch-artifacts/willow/w296-coupled-admission/`. Request and returned-state
+artifacts use the existing explicit anchors and hashes. Temporary installed and
+Cedar snapshot paths are qualification provenance, not a claim that every native
+output is relocatable. Raw coordinates, reflections and maps are excluded from
+Git. The completed validation and measurements follow; no scientific result is
+inferred from the implementation alone.
+
+
+**Completed execution.** W296 code is
+`d81ce8ecbe0ae4b1f1cc6a7d1123a39fb0147e60`. A clean snapshot of Cedar
+`2d6de758e40059c4346d9cb80354741bf5456313` was used with Phenix **2.2.1-6174**;
+all snapshot files were subsequently reproduced from that Git commit. One
+installed zero-cycle preflight and one complete **five-cycle / 100-iteration-cap**
+fit completed. The request used `fix_wxc = 1`, `wc = 1`, the existing explicit
+native-roundoff policy and a 2 Å displacement cap. All five printed weight rows
+were 1/1/1. Unlike W288, this trial did not install an exact native-weight callback;
+printed agreement and equal declared protocol do not prove identical objectives.
+Bulk/scale and likelihood state remain adaptive.
+
+The source is the **5W6W-derived central-strand/PDU model**, not FT or 8D93:
+SHA-256 `00ee2b2f9ebc57e1bab1a51abc64a903c204cdddabccf6a8399ef1546c547313`.
+B1 DC and B7 DA are the canonical moving endpoints; B4 PDU remains held. All
+862 atoms survive, with 19 movable / 843 held, original 1,909 observations / 124
+Free-R assignments, unchanged ADPs/occupancies, and restored hooks/stopped workers.
+All original proxies plus eight seam terms survive. The 230 complete force calls
+are execution evidence, not a convergence or scientific-acceptance score.
+
+| Measurement | Prior six-atom endpoint | Coupled-sugar endpoint |
+| --- | ---: | ---: |
+| Image O3′–P distance, Å | 1.615904 | 1.612926 |
+| Maximum local bond width in the common 29-term review | 0.508718 | 0.232722 |
+| Maximum local angle width in that review | 1.829731 | 0.570944 |
+| Maximum local torsion width in that review | 2.332700 | 2.103287 |
+| Maximum image torsion width in that review | 2.921541 | 2.813836 |
+| Rwork | 0.311689 | 0.312951 |
+| Rfree | 0.368611 | 0.366145 |
+
+The old 29-term native-kernel measurement was reproduced exactly before comparing
+this result. These widths are deviations against recorded native targets, not
+independent chemical validation or whole-model scores. Across the two full
+residues, bond maxima are 0.709/0.812σ and angle maxima 1.610/1.867σ. Maximum atom
+motion is 1.86352 Å at OP2; maximum sugar-ring atom motion is 0.27243 Å. Neither
+is a helix-centroid displacement. All six sugar signs survive at full and written
+precision. B1 pucker phase/amplitude changes 126.410°/35.259° to
+133.846°/34.787°; B7 changes 145.697°/42.746° to 136.221°/38.514°. These are
+measurements, not prescribed preferred puckers.
+
+**Plane tradeoff.** Existing Cedar plane-departure and printed-parallelity readers
+were applied to the saved evidence, with no energy evaluations or additional fit.
+C1′ distance from its held-base plane decreases B1 0.03903→0.02365 Å and B7
+0.05684→0.00806 Å. The four C1-dependent plane-angle deltas change
+3.9783→3.9955°, 17.9118→17.9052°, 9.4547→9.3398° and 11.5544→11.1786°.
+Printed sigmas are retained without dividing degree deltas by them. The local
+improvement does not grossly distort these planes, but the held-base pair tilt
+near 17.9° remains; relaxing sugars cannot realign bases that are held.
+
+**Density.** Four FFTs and 62 checked meshes compare the two endpoint maps on the
+same 1,909 indices / 124 Free-R assignments. The existing inspector displays 43
+atoms and 47 recorded bonds in one declared frame, with the map fixed while the
+coordinate model changes. In the fixed coupled-run map, changing from six-atom to
+coupled coordinates changes the 19 point samples by −0.02393 to +0.38973σ in
+2mFo−DFc; B7 O3′ gains the most. Weak/negative sugar density remains, including
+B1 C1′ and B7 C2′. Maps include Free-R and use their own whole-cell normalization;
+this is descriptive evidence, not independent validation or a motion objective.
+Grid interpolation is not exactly symmetry-equivariant away from grid points;
+maximum measured image-sample discrepancy is 0.08297σ, recorded explicitly.
+
+**Validation and files.** Exact commands, environment, dependency/source hashes
+and logs are in `qualification-02/installation.json` and `qualify_v2.py` under the
+local evidence anchor. Focused source invocation:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m pytest -q -rs -p no:cacheprovider \
+  tests/test_topostitch_phosphate_scope.py tests/test_topostitch_phosphate.py \
+  tests/test_topostitch_captured_job.py tests/test_topostitch_checkpoint.py
+```
+
+The ordinary Python run passes **219**, with one native-only skip. Native full
+`pytest -q -rs -p no:cacheprovider tests`, using the absolute Willow `src` root
+and pinned pure dependencies, passes **3,073 tests + 238 subtests, no skips** in
+600.05 s. After deleting the original build/install path, **220 installed focused
+checks**, the CLI help and the actual installed preflight/fit pass. Python 3.10
+syntax checks pass. The harness removes 13,998,282 disposable bytes. A separate
+pinned Cedar snapshot used for plane inspection is also removed.
+
+The local `index.html` links `coupled-density.html`, `open_comparison.py`, the
+native PDB, `coupled-sugars.png` and machine-readable trial/plane/map evidence.
+ChimeraX **1.12** loads all three 862-atom models, reproduces all three image
+seam distances and executes five viewing actions headlessly. The figure was
+visually reviewed; browser/ChimeraX interactive use is not newly certified.
+`verification.json` records cold artifact, payload, reference and link checks.
+The diagnostic candidate preserves original non-coordinate records; the separate
+native writer PDB carries the current refinement summary.
+
+**Decision:** retain this as the new unselected local baseline. S04/S05/S06 remain
+PARTIAL. The next useful questions are a source-authorized base/partner-inclusive
+window and a qualified returned packing observation, not a repeated six-atom or
+weight panel. The residual torsion, held-base tilt and weak sugar density remain
+explicit. No automatic parent/checkpoint adoption, combined-branch release,
+scientific acceptance or broad bending qualification is claimed.

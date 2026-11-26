@@ -7,22 +7,17 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Latest maintained code, W295:** [shared source reader](topostitch-periodic.md#w295--share-source-diffraction-reading-with-alder)
-  removes Willow/Alder parser duplication. Installed maintained guard matches all
-  1,151 original FT observations / 59 Free-R / HL / crystal exactly. 3,041 tests +
-  238 subtests and 203 installed focused checks + 4 subtests pass. No new fit.
-- **W294:** [explicit native frame policy](topostitch-periodic.md#w294--complete-ordinary-preflight-with-explicit-frame-roundoff)
-  completes the installed ordinary zero-cycle preflight with byte-identical source
-  output and unchanged observations. 3,025 tests + 234 subtests and 187 installed
-  checks pass. Existing defaults remain; explicit 19-atom admission is next.
-- **W293:** [coupled forces and isolated native workers](topostitch-periodic.md#w293--qualify-coupled-forces-and-isolate-native-worker-imports)
-  qualifies all 57 coordinates with the six C1-dependent groups retained. Runtime
-  imports are isolated; 3,013 tests + 234 subtests and 175 installed checks pass.
-  Its strict-frame refusal is preserved; W294 resolves explicit arithmetic intake.
-  Wider receiver remains next; no new refinement.
-- **W292:** [coupled two-sugar scope](topostitch-periodic.md#w292--map-a-coupled-sugar-scope-before-wider-native-motion)
-  maps 19 moving/843 held atoms. Six plane groups remain C1′-dependent even with
-  bases fixed. The wider receiver is still a gate; no new coordinates or fit.
+- **Latest code and refinement, W296:** [coupled sugars](topostitch-periodic.md#w296--admit-coupled-sugars-through-the-installed-native-route)
+  complete an installed 19-atom trial: join 1.613 Å, improved local angles, six sugar
+  hands and 843 held atoms retained. C1′ plane distances improve; weak sugar density,
+  residual torsion and held-base tilt remain. Rwork/Rfree 0.313/0.366, unselected.
+  3,073 tests + 238 subtests/no skips, 220 installed checks and actual installed
+  preflight/fit pass. Source is the 5W6W-derived PDU model, not FT or 8D93.
+- **Shared/previous controls:** [W295 source reading](topostitch-periodic.md#w295--share-source-diffraction-reading-with-alder)
+  removes Willow/Alder parser duplication; [W294 frame policy](topostitch-periodic.md#w294--complete-ordinary-preflight-with-explicit-frame-roundoff)
+  retains old defaults; [W293 derivatives](topostitch-periodic.md#w293--qualify-coupled-forces-and-isolate-native-worker-imports)
+  and [W292 scope](topostitch-periodic.md#w292--map-a-coupled-sugar-scope-before-wider-native-motion)
+  support the broader receiver. These receipts retain their original limits.
 - **W291:** [review a window before motion](topostitch-preview.md#review-a-window-before-generating-coordinates-w291)
   exposes moving residues, fixed anchors/context and links through the normal
   preview command. 161 focused source / 161 relocated-installed checks and the
@@ -30,9 +25,9 @@ current instructions; other branches retain their own status and validation pins
   inspection reports missing declared pairs without inventing a window.
 - **W290:** [endpoint-map inspection](topostitch-periodic.md#w290--inspect-the-closed-phosphate-and-its-fixed-sugar-boundary)
   confirms similar density around both recovered phosphates and weak support at
-  several fixed sugar atoms. W292 now maps the proposed coupled scope; complete
-  chemistry/packing remains required before wider native movement.
-- **W288 remains the latest refinement:** the original 2.824 Å gap recovers to
+  several fixed sugar atoms. W296 tests the coupled scope;
+  complete returned packing acceptance remains open.
+- **W288 is the six-atom comparator:** the original 2.824 Å gap recovers to
   1.616 Å near the seeded result at matched coordinate weights. Residual torsions
   and poor diffraction still prevent acceptance. Do not rerun the weight panel.
 - **W287:** [saved annotation replay](topostitch-preview.md#reopen-a-saved-annotation-proposal-w287)
@@ -50,8 +45,8 @@ current instructions; other branches retain their own status and validation pins
   [preview/API contracts](topostitch-preview.md) retain methods, failures and pins.
   Earlier synthetic recovery, native controls and software PASS results retain
   their recorded scopes. W290 adds read-only map calculations and 20 cold checks;
-  W291 and W293 add source/installation checks and complete Willow regressions.
-  These do not add a native refinement or qualify a combined branch release.
+  W296 adds the explicit coupled-sugar fit. None of these
+  receipts qualifies a combined branch release.
 
 ## Publication demonstration plan
 

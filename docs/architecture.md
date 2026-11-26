@@ -1125,12 +1125,19 @@ serialized preview audit. That geometric route writes no models and has no densi
 W240 adds the explicit `native-phosphate` subcommand on the same entry point.
 It freezes a registered continuation request, authenticates native reference input,
 then composes Cedar's existing phosphate runtime and process/refinement owners.
-One preflight precedes one bounded six-atom coordinate-only fit; actual inventory,
+One preflight precedes one bounded coordinate-only fit: six atoms by default, or
+the explicitly admitted 19-atom coupled-sugar scope (W296). Actual inventory,
 fixed context, thermal state and observations are verified before returning a
 source-frame review candidate. No campaign/checkpoint promotion, whole-ASU writer,
 new chemistry kernel or automatic connection inference is introduced. Standalone
 Willow needs explicit compatible Cedar modules. The schema and limitations are
 [documented in the preview guide](topostitch-preview.md#refine-one-registered-phosphate-connection-w240).
+The coupled-sugar admission helper binds complete canonical endpoint rings, fixed
+base attachments/outer phosphates and source-relative sugar hands. Its observer
+compares actual live proxy definitions before/after refinement, preserves the
+original planes and records existing Cedar pucker/geometry measurements. This
+scope is unphased; full packing acceptance and a wider paired window remain gates.
+It does not create a second geometry kernel or a new campaign executor.
 W250 adds an optional source-bound phase/fixed-scattering observer in
 `topostitch_phased`. Dedicated pinned phase and atom-keyed scattering inputs are
 checked at the initialized native-driver boundary, in actual coordinate-target

@@ -1,8 +1,8 @@
 # NASolve development handoff — Willow
 
-**W295 shared source reader integrated, 2026-11-26.** Latest native preflight:
-**W294**; latest refinement: **W288**. Latest maintained code: **W295**,
-`24deb34e48ae74afd99c8adf609f8716e9f06e1d`.
+**W296 coupled-sugar admission and refinement, 2026-11-26.** Latest native
+preflight, refinement and maintained code: **W296**,
+`d81ce8ecbe0ae4b1f1cc6a7d1123a39fb0147e60`.
 The [audited roadmap](topostitch-roadmap.md) owns status and the next decision;
 [periodic evidence](topostitch-periodic.md) and [API contracts](topostitch-preview.md)
 own exact methods, commands, hashes and limitations. This handoff is not a run diary.
@@ -18,12 +18,12 @@ must work without an AI service. A representation change does not repair a gap.
 | Available on the Willow branch | Proven scope | Remaining gate |
 | --- | --- | --- |
 | Explicit end/image inspection and placement | Registered canonical ends, bounded paired-window proposals and saved previews | Arbitrary-model inference, physical partner capacity, general density-supported deformation |
-| Local native phosphate receiving | Installed six-atom dry-run completes with explicit existing frame-roundoff policy; exact protected context/data and Cedar image forces | Coupled-sugar/duplex motion and ordinary campaign adoption |
-| W288 matched-coordinate-weight experiment | Original 2.824 Å gap recovers to 1.61590 Å, near seeded 1.61420 Å; no model selected | Residual torsions near 3σ and Rwork/Rfree about 0.312/0.369; no density acceptance |
+| Local native phosphate receiving | Default six-atom route plus explicit unphased 19-atom coupled-sugar admission; installed preflight and fit complete with original context/data | Wider paired/base motion, packing acceptance and ordinary campaign adoption |
+| W296 coupled-sugar experiment | Original 2.824 Å gap recovers to 1.61293 Å; common-subset local angle maximum improves 1.830→0.571σ; six sugar hands and 843 held atoms preserved | Residual image torsion 2.814σ, held-base tilt near 17.9°, weak sugar density; Rwork/Rfree 0.313/0.366, unselected |
 | Whole-original-asym diagnostic CIF export | W272–278 preserve qualified source categories, images, tensors and backbone coverage; save/replay/inspect available | Mixed-fragment entity policy, native TLS restart, genuine source/parent join and persistent operation/refine loop |
 | W286/W287 connection review | Source/row/evidence-bound unapplied proposals and independent saved-report replay | Explicit metadata authority, application and separate chemistry/export/native admission |
 | W290 endpoint-map comparison | Same 1,909 indices/124 Free-R; P near 2.52σ in both maps, weak fixed sugar support | Explicit coupled-window chemistry/packing before broader native motion; no map-based acceptance |
-| W292/W293 coupled-sugar scope | 19-atom complete-native derivative agreement; all six C1-dependent groups and original proxies retained | Wider receiver, sugar/pucker and endpoint review; full packing-review intake remains open |
+| W292–W296 coupled-sugar scope | Source geometry, native derivatives, actual live definitions, sugar hands/pucker and C1 plane tradeoff checked; no plane removed | Full returned packing-review intake, physical partner authority and whole-duplex motion remain open |
 | W291 pre-motion scope review | Existing terminal/interior windows expose moving residues, fixed anchors/context and adjacent links without rendering | Genuine PDU has no declared duplex partners; wider chemistry/native motion remains gated |
 | Offline model/density and cut inspection | Installed renderers, map/model roles, saved preference and trusted export views | General stage/campaign integration and supported human edit/re-enter/refine lifecycle |
 
@@ -44,16 +44,17 @@ maintained fixed-weight product mode or recommended production weight.
 
 ## Next decisions
 
-1. **Stitching:** W292 maps a 19-atom two-sugar scope on the original W288 source.
-   Both bases and outer phosphates stay held; W293 qualifies complete native
-   derivatives including the six C1-dependent groups. W294 completes the installed
-   ordinary dry-run with explicitly requested existing roundoff policy. Now admit
-   the wider receiver before a matched trial. Preserve sugar hands/pucker, glycosidic
-   geometry and exact held context. Weak density does not identify a unique
-   displacement. Coordinate
-   wider native admission with Cedar; do not extend the six-atom scope implicitly.
-   Both endpoint maps use 1,909 reflections; the historical 1,902-reflection map
-   stays unmatched context. No repeated weight panel or Free-R-driven search.
+1. **Stitching:** use W296 as the new unselected local baseline. The 19-atom
+   receiver now works; do not repeat its derivative checks, weight panel or fit
+   without a new question. Source is the registered 5W6W-derived central-strand/PDU
+   model, canonical DC B1 / DA B7 endpoints, held PDU B4—not FT or 8D93. The sugars
+   improve local angles and C1-to-base plane distances, but cannot realign held
+   bases. Next define a source-authorized base/partner-inclusive window and qualify
+   returned packing observation with Cedar. Its fixed exclusion/shell-table reader
+   is passive; its ASU pair helper performs extra evaluations in an isolated worker.
+   Do not insert it into the active guard or relabel partial live capture as complete.
+   Both endpoint maps use 1,909 reflections/124 Free-R; weak/negative sugar density
+   remains. No Free-R-driven trial search or automatic selection.
 2. **Pine integration:** Rowan/Linden agree to use the genuine PDU ordinary parent
    with its proven data/thermal route. Use source-frame native refinement and
    derived views; keep physical strand/entity assignments unresolved without a
@@ -92,81 +93,44 @@ references and thermal/TLS semantics. File readback alone cannot prove those.
 <a id="validation-and-scientific-interpretation"></a>
 ## Validation and compatibility
 
-**W295:** current phased guard delegates to Hazel's exact shared source reader.
-The relocated installed guard reproduces all 1,151 FT observations, 59 Free-R
-assignments, HL, crystal and four native-module pins from the historical W252
-reader. **3,041 tests + 238 subtests, no skips; 203 installed focused tests + 4
-subtests** pass. No child processes or refinement in the source comparison, no
-new phases or parent-admission claim. The six-atom/19-atom science gates above
-remain unchanged; full details and source origins are in the periodic evidence.
+**W296:** 219 ordinary-Python focused tests pass with one native-only skip;
+**3,073 tests + 238 subtests, no skips** pass in the native full suite. After
+removing original build/install paths, **220 installed focused checks**, CLI help,
+zero-cycle preflight and one complete five-cycle/100-iteration-cap Phenix
+**2.2.1-6174** fit pass. Clean Cedar
+`2d6de758e40059c4346d9cb80354741bf5456313` was pinned and independently reproduced
+from Git. All source/input bytes remain unchanged; hooks restore and workers stop.
+ChimeraX **1.12** loads three models and executes five controls headlessly; 35 cold
+artifact/reference/payload/link checks pass. Interactive use is not newly certified.
 
-**W294:** the installed ordinary command completes a zero-cycle Phenix 2.2.1-6174
-preflight with byte-identical candidate, exact observations and 57 unchanged
-parallelity groups. The optional request policy reuses existing arithmetic bounds;
-legacy defaults stay unchanged. **3,025 tests + 234 subtests, no skips; 187
-relocated-installed focused checks** pass. Source ring shape is measured through
-Cedar's existing pucker reader; no new formula, preferred target, native fit or
-scientific acceptance. The W293 refusal below remains historical evidence.
+`movement_scope` is an additive schema-1 request field; omission keeps the six-atom
+route. Coupled scope is currently unphased and requires complete canonical endpoint
+chemistry. The exact native definitions, existing masked-coordinate guard and
+Cedar pucker/plane readers remain the owners. No optimizer, tolerance, force kernel,
+checkpoint adoption or combined release change. Read
+[W296 evidence](topostitch-periodic.md#w296--admit-coupled-sugars-through-the-installed-native-route)
+for exact commands, schemas, source identity, failed/interrupted evidence and all
+remaining scientific limits. Generated models, maps and reflections remain local.
+Installation relocation is not a whole-scientific-run portability claim.
 
-**W293:** 25 native checks and 460 complete-target evaluations pass for the exact
-19-atom proposal; no refinement. All 57 installed parallelity groups match the
-numerical diagnostic. The final-source complete suite passes **3,013 tests + 234
-subtests, no skips**; relocated install passes **175 focused tests**. The installed
-native command still reports FAILED at its strict-frame guard; read-only review
-under the existing explicit roundoff policy passes. Raw packing repeats exactly,
-but the full-capture reviewer does not admit a partial live envelope. Existing
-request/mask/force/frame defaults and checkpoints remain unchanged.
-
-**W292: read-only scope audit**, 75 cold source/mapping/support checks and a
-ChimeraX 1.12 headless scope-view check. The initial all-planes-fixed assumption
-failed because C1′ belongs to six groups; those dependencies are retained.
-No product code or native evaluation/refinement changed.
-
-**W291: 161 focused source / 161 relocated installed checks pass**, with eight
-fail-before cases, exact genuine-parent replay and 94 matching module hashes.
-Existing trial/preview formats stay unchanged; inspection adds a report and a
-window-planning status. The subsequent complete Willow regression passes
-**3,010 tests + 234 subtests, no skips** (210.47 s, `f19e9515`, Phenix Python
-3.11.15). The earlier missing-Gemmi collection attempt remains explicit. No
-native fit, selection or combined release; exact commands/dependency pins are
-in the linked API evidence. Source bytes are unchanged and staging was removed.
-
-**W290: no product changes, native fits or merges.** Six successful FFTs of saved
-coefficients, 93 contour meshes and 20 cold source/numeric/checkout checks pass.
-Earlier local controller errors and four discarded preflight FFTs are retained.
-Figure visually inspected; interactive browser rendering remains untested.
-W289 documentation/link/entry-point audit remains the prior maintenance receipt.
-
-- W287: ten fail-before regressions, **81 focused source / 81 relocated installed**
-  checks; 94 Python module hashes match, genuine 49-row proposal cold replay exact.
-  Sources, evidence, selection and existing schemas/defaults stay unchanged.
-- W288: two complete five-cycle Phenix **2.2.1-6174** fits after two fresh preflights;
-  the earlier exact-frame refusal is preserved. Existing roundoff policy was
-  explicitly adopted in a separate successor, not a new tolerance. Both arms share
-  117 runtime-source pins, all 862 atoms/856 held XYZ/BQ, 1,909 indices/124 Free-R
-  assignments, ten native weight observations, restored hooks and stopped workers.
-  Reproduced 116 old term values before measuring 58 new values/six relative signs.
-- Earlier C374 joined-package qualification remains the exact historical receipt
-  in roadmap evidence `E_C374_JOINED_PACKAGE`, at its recorded W117/C373 pins.
-  It is not a current branch merge or qualification of later software.
-- Full-suite, skipped-case, native and relocation claims remain bound to their
-  exact historical commits. No fresh release-wide PASS follows from focused tests.
-  Source-frame installation checks do not make entire scientific runs portable.
+**Reused evidence:** W293's 19-atom derivative qualification and W294's explicit
+frame policy were not rerun as new numerical research. W295's unchanged shared
+source reader still owns phased source-array handling; its FT equivalence check
+created no parent or fit. W288 remains the matched six-atom comparator. Historical
+validation counts and exact receipts stay in the roadmap and periodic evidence,
+not duplicated here as a second chronology. The earlier C374 joined-package receipt
+is not a current merge or qualification of later branches.
 
 ## Local science checkout
 
-Latest scope view: NASolve anchor
-`branch-artifacts/willow/w292-coupled-sugar-scope/index.html`, linking the
-Python-openable ChimeraX scope and connectivity schematic. No new model.
-
-Latest density inspection: ScienceCheckouts anchor
-`Linden/2026-11-26_endpoint-density/index.html`, linking two offline inspectors,
-a fixed-plane phosphate/boundary figure, exact model/map pairs and the existing
-W288 Python-openable ChimeraX comparison. Evidence uses NASolve anchor
-`branch-artifacts/willow/w290-endpoint-density/verification.json`.
-Only the short index/manifest live in the checkout; models, maps and viewer payloads
-are linked and checksummed. Previous checkouts and failed attempts are preserved.
-The historical roadmap input remains bound to Git `f98e64cb1d04100ec3eff2d52b0dfa506d72048b`.
+Latest checkout, at the ScienceCheckouts anchor:
+`Linden/2026-11-26_coupled-sugars/index.html`. It links the offline 43-atom density
+comparison, a Python-openable three-model ChimeraX comparison, native PDB, figure
+and exact evidence under NASolve anchor
+`branch-artifacts/willow/w296-coupled-admission/`. The small checkout links large
+artifacts instead of copying models/maps. All references are checksummed; previous
+checkouts and failed attempts remain intact. `verification.json` owns the cold
+checks. The browser view is filled output, not an unfilled developer template.
 
 ## Scientific limits and demonstration gates
 
