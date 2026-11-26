@@ -1,6 +1,6 @@
 # Post-merge metal-coordination roadmap
 
-Updated **26 November 2026** after explicit ordinary-parent binding. Working
+Updated **26 November 2026** after maintained-owner input-role review. Working
 branch **Alder**; the earlier forward-queue audit is retained at `60a1f084`. The feature milestones
 **A01–A09** below remain explicitly post-merge work; A09 follows the main build.
 Merge qualification, scientific acceptance and feature completion are separate.
@@ -82,6 +82,15 @@ and installed dry-dispatch checks pass; it adds no ordinary numbered executor or
 new FT endpoint. [Exact interface and evidence](metal-ordinary-receiving.md#explicit-ordinary-parent-binding--26-november).
 Do not repeat the completed binding controls as a substitute for the next owner
 integration and genuinely matched scientific parent.
+
+A genuine PDU parent has now been reread by the pinned installed ordinary owner
+and its input roles reviewed by the receiving interface: seven inherited restraints
+plus a separately generated symmetry bond, with starting and returned models kept
+distinct. This completes the transfer-inventory prerequisite, not native admission.
+It has no approved HL; it cannot substitute for phased FT or qualify A02.
+[Exact evidence and remaining holds](metal-ordinary-receiving.md#read-only-transfer-from-the-maintained-ordinary-owner).
+Do not repeat this inventory; the next owner step is a versioned mixed child using
+these source roles and the existing writer/process proofs.
 
 Only two next decisions govern the near-term work:
 

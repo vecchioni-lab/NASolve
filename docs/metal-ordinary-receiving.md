@@ -4,6 +4,57 @@ Updated 26 November 2026. A01 mechanical integration; A01 science remains partia
 and A02 quantitation is gated. This is a prospective implementation contract,
 not a claim of ordinary numbered-round qualification.
 
+## Read-only transfer from the maintained ordinary owner
+
+`refinement_parent_transfer.inspect_parent_transfer` reviews a serializable input
+capture obtained through a separately pinned installed ordinary owner. The caller
+supplies the capture's independently recorded SHA-256 and exact owner revision.
+The schema-1 result, `ordinary-parent-transfer-review-v1`, always says
+`INPUT_ROLES_REVIEWED_NOT_ADMITTED`; `native_ready`, `checkpoint_adoption` and
+`source_owner_replayed` are false. It cannot serve as mixed-runtime admission.
+
+The receiver checks current report/registry and selected endpoint identities,
+original observation/approved-phase lineage, ordered inherited restraints, source
+execution outcome/request references, complete declared command selectors and the
+runtime-generated crystal-bond role through anchored checksums. It rechecks source
+bytes after classification. It executes no captured command, changes no files and
+does not widen Alder's checkpoint reader to accept V12. Runtime/force replay and
+numerical diffraction admission still belong to the existing owners.
+
+The genuine PDU `refine-002` control was first reread with installed Cedar
+`3453a9f89248381503bda0107b7d28fe35a24feb`, using `read_registry`,
+`resolve_checkpoint`, `inherited_paths`, `validate_checkpoint_execution` and
+`read_execution_request`. Its V12 request has **11 ordered inputs: original
+observations, source starting model, seven inherited restraints, one generated
+crystal-bond file, and policy**. Its returned endpoint is a different model from
+that source starting model. The bond and its registration/discovery/continuation
+intent stay under the source owner: a new child must regenerate them deliberately,
+not flatten the previous runtime file into generic inherited restraints.
+
+This real parent declares `IMEAN,SIGIMEAN`, `FreeR_flag`, test value 0 and **no
+approved AutoSol HL**. The review does not convert intensities, classify numerical
+arrays or imply that this PDU model supplies FT chemistry. It returns explicit
+holds for source-owner replay, numerical admission, a new mixed-child policy and
+missing approved phases. The genuine phased FT parent remains unavailable.
+
+Validation: **18 new synthetic metadata cases pass**, including changed input/
+record refusals and relocation after the original dataset location is gone.
+Together with existing source-intake and command tests: **38 pass, 14 native-only
+skips** on host Python 3.12.14. The same 18 cases and genuine parent review pass
+from an installed wheel after its temporary source copy is removed; all 178 loaded
+NASolve modules come from that wheel. The source-owner read uses Phenix
+2.2.1-6174 / Python 3.11.15 / Gemmi 0.7.5, with child launch denied. **Neither
+stage runs a refinement.** Relocation coverage qualifies the synthetic transfer,
+not every historical run's portability. No full suite was run.
+
+Evidence: `branch-artifacts/Alder/a01-ordinary-transfer-20261126-01/`, methods
+A852–A854. Preserve the missing-module fail-before, initial phase-fixture metadata
+mistake, corrected ReflectionPlan field names and installed-probe newline failure.
+The failures concern harness/API development, not native diffraction results.
+Checkout: `ScienceCheckouts/Hazel/2026-11-26_metal-intake/ordinary-transfer.html`.
+No scientific inputs, captures, wheel or generated crystallographic output are
+committed. Existing policies/defaults and historical records need no migration.
+
 ## Explicit ordinary-parent binding — 26 November
 
 `refinement_mixed_parent.bind_mixed_parent(run, request_reference=...)` now joins
@@ -194,7 +245,8 @@ handoff must compare declared original source identity and actual selected
 Free-R/HL values independently. Do not loosen the native checks to accept these
 cases, or treat generic registry readability as their scientific validation.
 
-**One next A01 subgoal: source-bound ordinary parent admission.** Consume the
+**Historical 25 November admission checklist, superseded by the explicit binding
+and maintained-owner transfer review above.** The planned interface consumes the
 existing preparation/registry reader's verified run, report, registry and exact
 parent, plus the checked execution request where present. The interface must:
 
@@ -212,9 +264,10 @@ parent, plus the checked execution request where present. The interface must:
   numbered-run owner. It must not create a second executor or bypass source
   REVIEW, chemistry, topology, frozen-runtime or output/stopping checks.
 
-Integration dependency: Cedar's `PreparedBackbone`, `PhosphateRequest` and the
-associated prepared PostMR publication path are not yet present on this Alder
-base. Receive those existing interfaces deliberately; do not create a synthetic
+At that review, Cedar's `PreparedBackbone`, `PhosphateRequest` and associated
+prepared PostMR publication path were not present on the Alder base. The current
+read-only installed-owner transfer above now establishes their input roles on a
+genuine PDU parent; it does not integrate the execution policy. Receive those existing interfaces deliberately; do not create a synthetic
 ordinary FT parent. A genuine ordinary PDU example may test general provenance,
 but cannot establish FT chemistry. The native zero-cycle control is already
 qualified; no repeat is needed to prove this filesystem/lineage boundary.

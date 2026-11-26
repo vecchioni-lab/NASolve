@@ -71,6 +71,14 @@ are verified. The exact model remains scientifically unaccepted. No ordinary
 dispatch/endpoint adoption follows; see the receiving
 contract for precise receipts, failures and next qualification.
 
+`refinement_parent_transfer.inspect_parent_transfer` is a read-only input-role
+review for a capture obtained from an independently pinned installed ordinary
+owner. It preserves the distinction between inherited files and runtime-generated
+symmetry forces, and between the previous starting model and returned endpoint.
+It rechecks declared references and original-source lineage but grants no runtime
+admission; historical policy readers remain unchanged. Source-owner replay,
+numerical diffraction admission and new mixed-child execution remain separate.
+
 `refinement_mixed_parent.bind_mixed_parent` now supplies explicit ordinary input
 admission to that guard. Its checksummed request binds exact checkpoint/report/
 registry, model, ordered restraints, original observations, approved AutoSol HL,

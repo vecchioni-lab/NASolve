@@ -27,6 +27,17 @@ and cache-retirement evidence: `branch-artifacts/Alder/docs-audit-20261126-01/`.
 
 ## A01 ordinary-parent receiving — evening 26 November
 
+The [maintained-owner transfer review](metal-ordinary-receiving.md#read-only-transfer-from-the-maintained-ordinary-owner)
+now has a genuine PDU control: 11 ordered execution inputs, seven inherited
+restraints and a separate runtime-generated image bond. Returned endpoint and
+source starting model stay distinct. Eighteen new focused and 18 installed cases
+pass; the broader host check passes 38 with 14 native skips. Source-owner replay
+used pinned installed Cedar 3453, with no refinement. It has no approved AutoSol
+HL, so the receiving result explicitly remains NOT_ADMITTED. The exact owner
+interfaces are not cherry-picked or bypassed. No new FT parent or fit was created.
+Evidence/commands/failures: `branch-artifacts/Alder/a01-ordinary-transfer-20261126-01/`.
+Checkout: `ScienceCheckouts/Hazel/2026-11-26_metal-intake/ordinary-transfer.html`.
+
 The follow-on [post-exit observation](metal-ordinary-receiving.md#post-exit-returned-state-observation)
 now requires the exact finished/restored guard, exact driver/final atomic digest,
 unchanged source ancestry and the existing original/witnessed diffraction state.

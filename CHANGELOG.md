@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Review ordinary-parent input roles across the owner boundary
+
+- Add a read-only, checksummed transfer review that distinguishes inherited
+  restraints from runtime-generated crystal bonds and starting from returned
+  models, retaining original observation/phase ownership and source selectors.
+- Qualify a genuine parent read through a pinned installed source owner and
+  focused synthetic/relocated receiver cases. No V12 runtime admission, executor,
+  new fit, default change, historical migration or scientific approval is added.
+
 ### Observe the exact mixed return after guard restoration
 
 - Add an explicit post-exit receiving method that requires the same completed

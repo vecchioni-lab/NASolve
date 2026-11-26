@@ -7,6 +7,13 @@ observation and storage owners; it introduces no new scientific policy.
 
 ## Current metal-science edge
 
+A read-only maintained-owner transfer now records the genuine PDU parent's input
+roles without widening Alder's historical checkpoint reader: seven inherited
+restraints, a separately generated symmetry bond, and distinct starting/returned
+models. Eighteen new and 18 installed checks pass. This parent has no approved HL;
+no native admission or FT science improvement is claimed.
+[Transfer contract and limits](metal-ordinary-receiving.md#read-only-transfer-from-the-maintained-ordinary-owner).
+
 The explicit ordinary-parent mixed binding now connects verified ancestry and
 original amplitude/Free-R/AutoSol HL to the existing guard and declared child
 policy/scope. **49 native-library / 35 installed cases pass**; no new native fit,
