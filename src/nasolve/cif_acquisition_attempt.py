@@ -124,7 +124,7 @@ def _qualification_child(attempt,intent,config):
         _need(header.get('attempt_owner')==_attempt_identity(intent)
               and all(header['coordinator'].get(k)==intent['coordinator'].get(k) for k in ('pid','pgid','host','boot_id','start_marker')), 'Qualification belongs to another acquisition owner')
         protocol,paths,_,_=_inputs(work);r=config['dictionary_request'];limits=config['limits']
-        _need(protocol['component']==r['component'] and protocol['consumer']==config['consumer']
+        _need('literal_rna' not in protocol and protocol['component']==r['component'] and protocol['consumer']==config['consumer']
               and protocol['bond_representation_policy']==r['recipe'].get('bond_representation_policy')
               and protocol['native_timeout_seconds']==limits['native_timeout_seconds']
               and protocol['total_timeout_seconds']<=limits['total_timeout_seconds']

@@ -136,3 +136,23 @@ def test_cli_pucker_replay_keeps_qualification_unchanged(tmp_path, monkeypatch, 
     assert main(["cif-doctor","explain-pucker",str(tmp_path)])==0
     assert "Matched rows for bonds (2), angles (3) and torsions (1)" in capsys.readouterr().out
     assert list(tmp_path.iterdir())==[]
+
+
+@pytest.mark.parametrize("replay", [False, True])
+def test_verify_pucker_cli_runs_or_reopens_the_requested_jobs(tmp_path, monkeypatch, capsys, replay):
+    from nasolve import cli, cif_rna_pucker
+    from nasolve.cli import main
+
+    standard, literal = tmp_path / "default", tmp_path / "literal"
+    install = object()
+    calls = []
+    def selected(first, second, installation):
+        calls.append((first, second, installation))
+        return {"component": "ZZ8"}
+    monkeypatch.setattr(cli, "discover_phenix", lambda *a, **k: install)
+    name = "read_literal_pucker" if replay else "verify_literal_pucker"
+    monkeypatch.setattr(cif_rna_pucker, name, selected)
+    args = ["cif-doctor", "verify-pucker", str(standard), str(literal)]
+    assert main(args + (["--replay"] if replay else [])) == 0
+    assert calls == [(standard, literal, install)]
+    assert "ZZ8: both coordinate seeds" in capsys.readouterr().out

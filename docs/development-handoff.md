@@ -58,8 +58,14 @@ dictionary clears that check. C603 also catches three sugar bonds called aromati
 in that return. The Phenix pucker adjustment replaced all three bond targets but
 kept the competing plane. C604 replays the installed `rna2p` table against every
 component row and active restraint in the original two native reads. All six reads
-for 2MG, 5MC and 6MZ were explained. Next bind this result to separate literal
-qualification, then test the returned three-site model. The sulfur linkage
+for 2MG, 5MC and 6MZ were explained. C605 separately verified both coordinate
+seeds for each of the three against the unmodified component definitions.
+A one-cycle whole-model Phenix run with those three source-derived dictionaries
+and Cedar’s checked parallelity kept all twelve sugar hands and six neighboring
+links. Two pair contacts still need review: 2MG O6 to cytosine N4 was 2.135 Å,
+and 6MZ N6 to thymine O4 was 3.906 Å. Both requests were 2.8 Å. Next trace
+where the pair distances departed from their targets and carry the separate
+component proofs through ordinary acquisition. The sulfur linkage
 remains a separate chemical state. The [Q12 workbook sweep](cif-doctor-completion-queue.md#q12--resolve-catalogue-mappings-and-maintain-support-coverage)
 follows the eight-site challenge.
 [Release and tested installation](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.4).
@@ -109,7 +115,11 @@ reporting passed 61 plus 52 subtests. Each set passed from source and from a rel
 installation. Four PDU logs and a separate FT–Hg log support the target reader. C588's
 relocated full five-cycle replay reproduced the written coordinates, final geometry and all
 140 recorded gradient evaluations for the combined case. These are distinct software and
-native checks.
+native checks. C605 passed 323 focused tests covering qualification execution,
+RNA pucker replay, acquisition, dictionary storage, binding and native usability.
+The 6MZ pair of jobs also reopened identically after both directories moved and
+their previous paths became inaccessible. Phenix 2.2.1-6174 executed the native
+checks. This pass used focused tests.
 
 The last recorded standalone full Cedar pass is C406 at `58965920`, with 12,043 tests passed, 293
 subtests passed and two native opt-in skips. The later combined C407 experiment had one

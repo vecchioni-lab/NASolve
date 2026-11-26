@@ -444,6 +444,11 @@ def build_parser() -> argparse.ArgumentParser:
     pucker = cif_sub.add_parser("explain-pucker", help="compare an isolated Phenix sugar adjustment with the installed targets")
     pucker.add_argument("qualification", type=Path, help="completed two-seed native job directory")
     pucker.add_argument("--json", action="store_true", help="show the component, native inputs and exact checks")
+    verify_pucker = cif_sub.add_parser("verify-pucker", help="verify both native and literal isolated RNA targets")
+    verify_pucker.add_argument("qualification", type=Path, help="original two-seed qualification with the recorded adjustment")
+    verify_pucker.add_argument("literal", type=Path, help="fresh directory for the two literal native reads, or existing directory with --replay")
+    verify_pucker.add_argument("--replay", action="store_true", help="check both saved jobs without executing refinement or new native reads")
+    verify_pucker.add_argument("--json", action="store_true", help="show the source, candidate and receipt bindings")
     cif_compare = cif_sub.add_parser("compare", help="compare exact same-code source/candidate chemistry")
     cif_compare.add_argument("source", type=Path)
     cif_compare.add_argument("candidate", type=Path)
@@ -2255,6 +2260,20 @@ def _cif_doctor(args: argparse.Namespace) -> int:
         return _cif_publish_preparation(args)
     if args.cif_action in {"prepare-run", "continue-preparation", "prepared-result", "preparation-status"}:
         return _cif_checked_preparation(args)
+    if args.cif_action == "verify-pucker":
+        from .cif_rna_pucker import read_literal_pucker, verify_literal_pucker
+        try:
+            operation = read_literal_pucker if args.replay else verify_literal_pucker
+            result = operation(args.qualification, args.literal, discover_phenix(load_config(), explicit=args.phenix_root))
+        except (OSError, ValueError, RuntimeError) as exc:
+            print(str(exc), file=sys.stderr)
+            return 1
+        if args.json:
+            print(json.dumps(result, indent=2, allow_nan=False))
+        else:
+            print(f"{result['component']}: both coordinate seeds match the literal dictionary "
+                  "and the native pucker targets.")
+        return 0
     if args.cif_action == "explain-pucker":
         from .cif_rna_pucker import review_pucker_adjustment
         try:

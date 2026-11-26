@@ -31,7 +31,10 @@ entries are reconstructed from repository history.
   affected coordinate seeds, failed checks and any recorded Phenix modifications.
   `nasolve cif-doctor explain-pucker QUALIFICATION` can reread both jobs and
   compare the actual bond, angle and torsion targets with the selected Phenix
-  `rna2p` table. Its result keeps the original qualification decision.
+  `rna2p` table. `nasolve cif-doctor verify-pucker` can then run two separate
+  isolated Phenix reads with the pucker adjustment disabled and recheck all four
+  reads with `--replay`. Whole-model refinement keeps its usual pucker handling.
+  Historical qualification and cache entries retain their original scope.
 
 - An extra bond reported by eLBOW can now qualify for a fresh atom-order
   recovery after a verified whole-ring aromatic conversion. The recovery binds

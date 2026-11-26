@@ -88,6 +88,7 @@ def review_pucker_adjustment(directory, installation):
     """Re-evaluate two stopped coordinate seeds against the currently selected native table."""
     root=Path(directory).expanduser().resolve(strict=True)
     protocol,paths,models,phil=_inputs(root)
+    _need("literal_rna" not in protocol,"Require the original default native qualification")
     state=inspect_candidate_qualification_processes(root)
     _need(state["state"]=="STOPPED" and set(state["phases"])=={"native-000","native-001"},
           "Require a stopped, complete pair of original native jobs")
@@ -130,3 +131,55 @@ def review_pucker_adjustment(directory, installation):
             "matched_rows":counts,"seeds":seeds,"same_covalent_proxies":same,
             "status":"ADJUSTED_TARGETS_EXPLAINED" if accounted else "REVIEW",
             "scope":"ISOLATED_COMPONENT_ONLY","qualification_unchanged":True,"automatic_adoption":False}
+
+
+def _default_basis(directory, installation):
+    from .cif_dictionary_store import _digest
+    review=review_pucker_adjustment(directory,installation)
+    _need(review["status"]=="ADJUSTED_TARGETS_EXPLAINED","Original Phenix pucker change is unexplained")
+    return review,_digest(review)
+
+
+def _separate_roots(default_job, literal_job):
+    root=Path(default_job).expanduser().resolve(strict=True)
+    literal=Path(literal_job).expanduser().absolute()
+    _need(not literal.is_symlink() and not literal.resolve().is_relative_to(root)
+          and not root.is_relative_to(literal.resolve()),"Require separate original and literal qualification roots")
+    return root,literal
+
+
+def verify_literal_pucker(default_job, literal_job, installation):
+    """Check the same isolated component with only the native pucker adjustment disabled."""
+    from .cif_candidate_qualification_execution import execute_candidate_qualification
+    root,literal=_separate_roots(default_job,literal_job)
+    _need(not literal.exists(),"Require a fresh literal qualification directory")
+    _,basis=_default_basis(root,installation)
+    p,paths,_,_=_inputs(root)
+    execute_candidate_qualification(*paths,p["component"],p["consumer"],installation,literal,
+        native_timeout_seconds=p["native_timeout_seconds"],total_timeout_seconds=p["total_timeout_seconds"],
+        bond_representation_policy=p["bond_representation_policy"],_literal_rna_basis=basis)
+    return read_literal_pucker(root,literal,installation)
+
+
+def read_literal_pucker(default_job, literal_job, installation):
+    """Recheck both independent directories and the selected native numerical table."""
+    from .cif_candidate_qualification_execution import LITERAL_USABILITY, REPORT, read_candidate_qualification
+    root,literal=_separate_roots(default_job,literal_job)
+    review,basis=_default_basis(root,installation)
+    p,paths,_,_=_inputs(root)
+    lp,lpaths,lmodels,_=_inputs(literal)
+    strict=read_candidate_qualification(literal)
+    _need(lp.get("literal_rna")=={"default_review_sha256":basis}
+          and all(lp[k]==p[k] for k in ("component","consumer","bond_representation_policy","seeds",
+                                       "native_timeout_seconds","total_timeout_seconds"))
+          and all(a.read_bytes()==b.read_bytes() for a,b in zip(paths,lpaths)),
+          "Literal read belongs to another source, candidate, consumer or original pucker review")
+    _need(strict["same_covalent_proxies"] and len(strict["seed_qualifications"])==2 and
+          all(q["policy_id"]==LITERAL_USABILITY and q["native_usable"] and
+              q["checks"]["no_native_pucker_overlay"] for q in strict["seed_qualifications"]),
+          "Both literal coordinate seeds must independently satisfy the original chemistry")
+    return {"schema_version":1,"policy_id":"paired-isolated-rna-pucker-v1",
+            "status":"LITERAL_AND_NATIVE_TARGETS_VERIFIED","component":p["component"],
+            "default_review":review,"default_review_sha256":basis,"literal_report":_ref(literal/REPORT,literal),
+            "literal_seeds":[s.stem for s in lmodels],"source_and_candidate_identical_across_jobs":True,
+            "scope":"ISOLATED_COMPONENT_ONLY","linked_context":"NOT_RUN","automatic_adoption":False}

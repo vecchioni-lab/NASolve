@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 26 November 2026, after C604. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 26 November 2026, after C605. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -1033,7 +1033,27 @@ installation's `rna2p` table, and checks every effective definition and active
 restraint again. Across both coordinate seeds, 2MG and 5MC each matched 11 bond,
 18 angle and two torsion rows. 6MZ matched 11, 18 and six. This replay leaves the
 existing stored verdict intact. The table fingerprint identifies the installation
-used for the explanation. Separate literal and linked qualification are still needed.
+used for the explanation.
+
+C605 adds `nasolve cif-doctor verify-pucker DEFAULT_JOB NEW_LITERAL_JOB` and
+`--replay`. Once the selected installed table explains the ordinary native
+adjustment, both original coordinate seeds are run separately with just that
+adjustment disabled. Replay verifies the same source, generated dictionary,
+consumer, native targets and four records. 2MG, 5MC and 6MZ each passed.
+The original qualification and ordinary dictionary-cache rules retain their
+prior meaning. The paired proof is currently available for isolated components.
+
+On the 859-atom three-site scaffold the three source-derived dictionaries were
+then compared in one-cycle coordinate refinements against the original data
+and Free-R flags. Each used the original 19-pair, 38-stack recipe. The existing
+Cedar parallelity route also ran its genuine zero-cycle preflight before its
+one-cycle fit. Its final table printed 50 distance, 86 angle and 57 parallelity
+requests. All twelve sugar hands survived, with six O3′–P lengths of 1.580–1.610 Å.
+The 2MG O6 to cytosine N4 contact reached 2.135 Å and the 6MZ N6 to thymine O4
+contact 3.906 Å against respective 2.8 Å targets. The stock comparison gave
+2.121 and 3.933 Å on the same chemistry. Check the actual returned pair contacts
+and carry paired proofs into ordinary acquisition before promoting this route.
+The three substitutions are hypothetical on the experimental scaffold.
 
 C601 found the source-preserving generator had introduced a 5.779 Å bond between
 O4′ and ring C2. All 42 source edges were present. The ten bonds of the purine

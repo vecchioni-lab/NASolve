@@ -41,6 +41,67 @@ def case(tmp_path, monkeypatch):
     return m,args,calls,native
 
 
+def test_literal_rna_pair_has_a_distinct_immutable_policy_and_native_phil(case):
+    m,args,calls,native=case
+    native["monomer_mappings"]["rows"][0]["chem_mod_ids"]={"status":"RECORDED","ids":[]}
+    basis="c"*64
+    report=m.execute_candidate_qualification(*args,native_timeout_seconds=5,total_timeout_seconds=20,
+                                              _literal_rna_basis=basis)
+    protocol,_,_,phil=m._inputs(args[-1])
+    assert protocol["literal_rna"]["default_review_sha256"]==basis
+    assert report["policy_id"]==m.LITERAL_EXECUTION
+    assert all(q["policy_id"]==m.LITERAL_USABILITY for q in report["seed_qualifications"])
+    assert report["qualification"]["native_usable"]
+    assert len(calls)==2 and b"rna_sugar_pucker_analysis.enable = False" in phil.read_bytes()
+    assert m.read_candidate_qualification(args[-1])==report
+    phil.write_bytes(m._PHIL)
+    with pytest.raises(ValueError):
+        m.read_candidate_qualification(args[-1])
+
+
+def test_literal_rna_check_cannot_start_with_an_unbound_basis(case):
+    m,args,calls,native=case
+    with pytest.raises(ValueError):
+        m.execute_candidate_qualification(*args,_literal_rna_basis="not-a-record-digest")
+    assert not calls and not args[-1].exists()
+
+
+@pytest.mark.parametrize("defect", ["none","different-basis","overlay-present","unexplained-before-start"])
+def test_paired_literal_read_requires_the_exact_original_explanation(case,monkeypatch,defect):
+    from nasolve import cif_rna_pucker as r
+    m,args,calls,native=case
+    native["monomer_mappings"]["rows"][0]["chem_mod_ids"]={"status":"RECORDED","ids":[]}
+    m.execute_candidate_qualification(*args,native_timeout_seconds=5,total_timeout_seconds=20)
+    default=args[-1]; literal=default.with_name("literal")
+    comparison={"status":"ADJUSTED_TARGETS_EXPLAINED","component":"Q17","table":{"sha256":"c"*64}}
+    monkeypatch.setattr(r,"review_pucker_adjustment",lambda root, installation:dict(comparison))
+    if defect=="unexplained-before-start":
+        comparison["status"]="REVIEW"
+        with pytest.raises(ValueError,match="unexplained"):
+            r.verify_literal_pucker(default,literal,args[-2])
+        assert not literal.exists() and len(calls)==2
+        return
+    if defect=="overlay-present":
+        native["monomer_mappings"]["rows"][0]["chem_mod_ids"]["ids"]=["rna2p"]
+        with pytest.raises(ValueError,match="no_native_pucker_overlay"):
+            r.verify_literal_pucker(default,literal,args[-2])
+        assert not (literal/m.REPORT).exists() and len(calls)==4
+        return
+    result=r.verify_literal_pucker(default,literal,args[-2])
+    assert result["status"]=="LITERAL_AND_NATIVE_TARGETS_VERIFIED" and len(calls)==4
+    assert result["literal_seeds"]==["source","candidate"] and not result["automatic_adoption"]
+    if defect=="different-basis":
+        comparison["table"]={"sha256":"d"*64}
+        with pytest.raises(ValueError,match="another"):
+            r.read_literal_pucker(default,literal,args[-2])
+    else:
+        assert r.read_literal_pucker(default,literal,args[-2])==result
+        assert len(calls)==4
+    for conflicting in (default,default/"child",default.parent):
+        with pytest.raises(ValueError,match="separate"):
+            r.verify_literal_pucker(default,conflicting,args[-2])
+
+
 def test_both_seeds_qualified_and_non_mutating_readback(case):
     m,args,calls,native=case;report=m.execute_candidate_qualification(*args,native_timeout_seconds=5,total_timeout_seconds=20)
     assert len(calls)==2 and report['qualification']['native_usable'] and report['same_covalent_proxies']

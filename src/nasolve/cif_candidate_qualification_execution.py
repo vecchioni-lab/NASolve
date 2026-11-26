@@ -24,6 +24,9 @@ from .cif_postmr_cache import verify_current_consumer
 from .cif_triple_bond_audit import component_control_model_bytes, write_component_control_model
 
 POLICY_ID = 'cif-two-seed-qualification-execution-v1'
+LITERAL_EXECUTION = 'cif-two-seed-source-literal-rna-v1'
+LITERAL_USABILITY = 'cif-isolated-source-literal-rna-usability-v1'
+_LITERAL_PHIL = b'pdb_interpretation {\n secondary_structure.enabled = False\n rna_sugar_pucker_analysis.enable = False\n}\n'
 ANCHOR = 'qualification_directory'
 REPORT = 'qualification_execution.json'
 _PHIL = b'pdb_interpretation {\n secondary_structure.enabled = False\n}\n'
@@ -34,15 +37,20 @@ class CandidateQualificationBudgetExceeded(TimeoutError):
     """No allowance remains; partial evidence grants no usable qualification."""
 
 
-def _protocol(code, consumer, native_limit, total_limit, policy):
+def _protocol(code, consumer, native_limit, total_limit, policy, *, literal_rna_basis=None):
     _need(isinstance(code,str) and re.fullmatch(r'[A-Z0-9]{1,3}',code), 'Unsupported isolated component code')
     _consumer(consumer)
     _need(type(native_limit) is int and 1 <= native_limit <= 600
           and type(total_limit) is int and 1 <= total_limit <= 3600, 'Require bounded integer qualification deadlines')
     _need(policy is None or isinstance(policy,str), 'Invalid explicit representation policy')
-    return dict(policy_id=POLICY_ID, component=code, consumer=_json(_bytes(consumer)),
+    protocol = dict(policy_id=POLICY_ID, component=code, consumer=_json(_bytes(consumer)),
         native_timeout_seconds=native_limit, total_timeout_seconds=total_limit,
         bond_representation_policy=policy, seeds=list(_SEEDS))
+    if literal_rna_basis is not None:
+        _need(isinstance(literal_rna_basis,str) and re.fullmatch(r'[a-f0-9]{64}',literal_rna_basis),
+              'Require an identified original RNA pucker review')
+        protocol.update(policy_id=LITERAL_EXECUTION,literal_rna={'default_review_sha256':literal_rna_basis})
+    return protocol
 
 
 def _ref(path, root):
@@ -63,12 +71,15 @@ def _inventory(root):
 
 def _inputs(root):
     base=root/'inputs';p=_json(_read(base/'protocol.json'))
-    expected=_protocol(p['component'],p['consumer'],p['native_timeout_seconds'],p['total_timeout_seconds'],p['bond_representation_policy'])
+    basis=p.get('literal_rna',{})
+    _need(isinstance(basis,dict),'Invalid literal RNA basis')
+    expected=_protocol(p['component'],p['consumer'],p['native_timeout_seconds'],p['total_timeout_seconds'],
+                       p['bond_representation_policy'],literal_rna_basis=basis.get('default_review_sha256'))
     _need(p==expected, 'Qualification protocol differs')
     paths=[base/'source/source.cif',base/'candidate/candidate.cif']
     models=[base/'models'/(seed+'.pdb') for seed in _SEEDS]
     _need(set(_tree(base))=={'protocol.json','isolated.phil','source/source.cif','candidate/candidate.cif','models/source.pdb','models/candidate.pdb'}, 'Qualification input scope differs')
-    _need(_read(base/'isolated.phil')==_PHIL, 'Isolated qualification PHIL differs')
+    _need(_read(base/'isolated.phil')==(_LITERAL_PHIL if 'literal_rna' in p else _PHIL), 'Isolated qualification PHIL differs')
     for cif,model in zip(paths,models):
         _need(component_control_model_bytes(cif,p['component'])[0]==_read(model), 'Qualification coordinate seed differs from its dictionary')
     return p,paths,models,base/'isolated.phil'
@@ -100,6 +111,13 @@ def _derive(root, refs, state):
     for i,(ref,model) in enumerate(zip(refs,models)):
         native = _owned_native_capture(root, ref, i, p, model, paths[1], phil, state)
         q=qualify_candidate_native(*paths,model,p['component'],native,bond_representation_policy=p['bond_representation_policy'])
+        if 'literal_rna' in p:
+            q.update(policy_id=LITERAL_USABILITY,literal_rna=dict(p['literal_rna']))
+            mappings=native.get('monomer_mappings',{}).get('rows',[])
+            q['checks']['no_native_pucker_overlay']=(len(mappings)==1 and
+                mappings[0].get('chem_mod_ids')=={'status':'RECORDED','ids':[]})
+            q['native_usable']=all(q['checks'].values())
+            q['status']='ISOLATED_NATIVE_USABILITY_PASS' if q['native_usable'] else 'REVIEW'
         if q['native_usable'] is not True:
             failed = ', '.join(name for name, passed in q['checks'].items() if not passed)
             rows = native.get('monomer_mappings', {}).get('rows', [])
@@ -123,7 +141,7 @@ def read_candidate_qualification(directory):
             'seed_qualifications','same_covalent_proxies','record_sha256'}
     _need(set(report)==fields, 'Unexpected qualification report fields')
     _need(report.get('schema_version')==1 and type(report['schema_version']) is int
-          and report.get('policy_id')==POLICY_ID and report.get('status')=='ISOLATED_NATIVE_USABILITY_PASS'
+          and report.get('policy_id')==p['policy_id'] and report.get('status')=='ISOLATED_NATIVE_USABILITY_PASS'
           and report.get('automatic_adoption') is False and report.get('scope')=='ISOLATED_COMPONENT_ONLY'
           and report.get('outputs')==inventory, 'Qualification report scope/inventory differs')
     elapsed=report.get('elapsed_seconds')
@@ -141,7 +159,8 @@ def read_candidate_qualification(directory):
 
 
 def execute_candidate_qualification(source,candidate,code,consumer,phenix,output,*,
-        native_timeout_seconds=90,total_timeout_seconds=180,bond_representation_policy=None,_attempt_identity=None,_remaining_seconds=None):
+        native_timeout_seconds=90,total_timeout_seconds=180,bond_representation_policy=None,_attempt_identity=None,_remaining_seconds=None,
+        _literal_rna_basis=None):
     """Run both isolated seeds once within a cooperative monotonic allowance.
 
     Time begins before preflight. Each job receives at most whole seconds left;
@@ -152,7 +171,8 @@ def execute_candidate_qualification(source,candidate,code,consumer,phenix,output
     """
     started=monotonic()
     outer=OuterAllowance(_remaining_seconds,monotonic,CandidateQualificationBudgetExceeded)
-    p=_protocol(code,consumer,native_timeout_seconds,total_timeout_seconds,bond_representation_policy)
+    p=_protocol(code,consumer,native_timeout_seconds,total_timeout_seconds,bond_representation_policy,
+                literal_rna_basis=_literal_rna_basis)
     _need(_attempt_identity is None or _valid_attempt_identity(_attempt_identity), 'Invalid parent attempt identity')
     def remaining(minimum=0):
         cap=outer.remaining()
@@ -170,7 +190,7 @@ def execute_candidate_qualification(source,candidate,code,consumer,phenix,output
     base=root/'inputs';base.mkdir()
     for seed,data in zip(_SEEDS,before):
         folder=base/seed;folder.mkdir();(folder/(seed+'.cif')).write_bytes(data)
-    (base/'protocol.json').write_bytes(_bytes(p));(base/'isolated.phil').write_bytes(_PHIL)
+    (base/'protocol.json').write_bytes(_bytes(p));(base/'isolated.phil').write_bytes(_LITERAL_PHIL if 'literal_rna' in p else _PHIL)
     for seed in _SEEDS:write_component_control_model(base/seed/(seed+'.cif'),code,base/'models'/(seed+'.pdb'))
     p,paths,models,phil=_inputs(root)
     owner=CandidateQualificationProcesses(root,attempt_identity=_attempt_identity);sealed=False
@@ -190,7 +210,7 @@ def execute_candidate_qualification(source,candidate,code,consumer,phenix,output
         remaining();_need(owner.finish('RETURNED'), 'Native cleanup remains unverified');sealed=True
         state=inspect_candidate_qualification_processes(root);inventory=_inventory(root)
         remaining();elapsed=monotonic()-started
-        report=dict(schema_version=1,policy_id=POLICY_ID,status='ISOLATED_NATIVE_USABILITY_PASS',scope='ISOLATED_COMPONENT_ONLY',automatic_adoption=False,
+        report=dict(schema_version=1,policy_id=p['policy_id'],status='ISOLATED_NATIVE_USABILITY_PASS',scope='ISOLATED_COMPONENT_ONLY',automatic_adoption=False,
             protocol=_ref(base/'protocol.json',root),native_receipts=refs,elapsed_seconds=elapsed,outputs=inventory,
             process_header_sha256=state['header']['record_sha256'],process_finish_sha256=state['finished']['record_sha256'],**derived)
         remaining()  # final cooperative boundary, before atomic publication
