@@ -23,7 +23,9 @@ entries are reconstructed from repository history.
 - Before refinement, the ordinary ReadySet check compares a generated plane with
   the source atom connections and stereochemistry. It requests a fresh dictionary
   when a plane pulls a handed carbon and three bonded neighbors together as tightly
-  as their bond restraints. `nasolve cif-doctor compare` also reports looser cases.
+  as their bond restraints. The same check flags an explicit aromatic bond at
+  such a carbon even in a plane-free dictionary. `nasolve cif-doctor compare`
+  also reports looser planes.
 
 - When an isolated component fails native checking, the diagnostic lists the
   affected coordinate seeds, failed checks and any recorded Phenix modifications.

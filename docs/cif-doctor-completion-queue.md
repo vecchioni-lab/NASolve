@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 26 November 2026, after C602. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 26 November 2026, after C603. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -1018,7 +1018,13 @@ the generated component when all four plane widths are as tight as the three
 bond widths. Wider planes stay visible for review. Replaying ReadySet's three-site
 return identified C1′, C2′, C3′ and C4′ of 6MZ, each under a 0.020 Å plane.
 The existing source-derived replacement passed this check. This is a check on
-restraint targets. Returned coordinates are measured separately.
+restraint targets. Returned coordinates are measured separately. C603 also finds each
+aromatic bond incident on the same source-declared tetrahedral carbon. It found
+three such sugar bonds, distinct from the legitimate aromatic base. For C2′–C3′,
+ReadySet wrote 1.292 Å, but Phenix applied a 1.525 Å target in both one-cycle
+runs. The incorrect sugar plane did survive. The independent 6MZ two-seed controls
+matched the actual installed pucker table at 11 bonds, 18 angles and six torsions.
+All four chiral signs held. Keep the two kinds of disagreement distinct.
 
 C601 found the source-preserving generator had introduced a 5.779 Å bond between
 O4′ and ring C2. All 42 source edges were present. The ten bonds of the purine

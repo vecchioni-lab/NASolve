@@ -21,7 +21,7 @@ from .curated_ligands import (
     ligand_dictionary,
     validate_ligand_dictionary,
 )
-from .cif_doctor import assess_dictionaries, source_stereo_plane_conflicts
+from .cif_doctor import assess_dictionaries, source_stereocentre_conflicts
 from .component_normalization import (
     POLICY as COMPONENT_POLICY, PREFERRED_COMPONENTS,
     normalize_model as normalize_component_model, preparation_targets,
@@ -1758,15 +1758,17 @@ def _require_generic_parameterization(
     assessment = assess_dictionaries([generated_cif], stage="postmr-generated") if generated_cif else None
     findings = assessment["findings"] if assessment else []
     components = {component["component_id"] for component in assessment["components"]} if assessment else set()
-    conflicts = source_stereo_plane_conflicts(source_components, assessment["components"]) if assessment else []
-    tight_planes = {code: [r for r in conflicts if r["component_id"] == code
-                           and r["measurements"]["plane_as_tight_as_local_bonds"]] for code in required}
+    conflicts = source_stereocentre_conflicts(source_components, assessment["components"],
+                                               planes=True, bonds=True) if assessment else []
+    stereo_failures = {code: [r for r in conflicts if r["component_id"] == code and
+                              (r["code"] == "aromatic-bond-at-source-stereocentre" or
+                               r["measurements"].get("plane_as_tight_as_local_bonds"))] for code in required}
     affected = []
     for code in required:
         selected = [finding for finding in findings if finding.get("component_id") == code
                     and finding["rule_id"] == "NUM-01"]
         failures = [finding for finding in selected if finding["status"] in {"FAIL", "ERROR"}]
-        if code in generated and not failures and not tight_planes[code]:
+        if code in generated and not failures and not stereo_failures[code]:
             continue
         reasons = failures
         if code not in generated:
@@ -1781,13 +1783,18 @@ def _require_generic_parameterization(
                         "measurements": {"component_id": code, "parse_error_type": parse_error}},
                        *reasons]
         affected.append({"component_id": code, "legacy_parameterization_passed": code in generated,
-                         "reasons": reasons + tight_planes[code]})
+                         "reasons": reasons + stereo_failures[code]})
     if not affected:
         return
     if failure_report is not None:
+        policy = "generic-generated-numerics-v2"
+        if any(stereo_failures.values()):
+            policy = "generic-generated-source-planes-v3"
+        if any(r["code"] == "aromatic-bond-at-source-stereocentre"
+               for rows in stereo_failures.values() for r in rows):
+            policy = "generic-generated-source-stereochemistry-v4"
         payload = {"schema_version": 1, "audit_kind": "readyset_generic_generation_failure",
-                   "status": "QUARANTINED", "policy": ("generic-generated-source-planes-v3"
-                       if any(tight_planes.values()) else "generic-generated-numerics-v2"),
+                   "status": "QUARANTINED", "policy": policy,
                    "affected_components": affected, "assessment": assessment,
                    "action": "regenerate-whole-component-from-frozen-chemical-source",
                    "input_handling": "Original source and generated CIFs are preserved; no target numbers were patched."}
@@ -1813,7 +1820,7 @@ def _require_generic_parameterization(
                 description = "generated dictionary omits the component"
             elif key == "coincident-bonded-heavy-atoms":
                 description = f"coincident bonded heavy atoms {atoms} in {details['coordinate_set']}"
-            elif key == "plane-through-source-stereocentre":
+            elif key in {"plane-through-source-stereocentre", "aromatic-bond-at-source-stereocentre"}:
                 description = finding["message"]
             elif key in {"numeric-domain-violation", "invalid-numeric-value"}:
                 raw = details.get("value")

@@ -197,6 +197,12 @@ def _source_plane_case(tmp_path, *, code="XYZ", hand="R", variant=None):
     central_esd = {"missing-esd": "?", "weak-plane": "1.0"}.get(variant, "0.02")
     candidate[plane + "dist_esd"] = [central_esd,
                                     "0.02", "0.02", "0.02"]
+    if variant in {"aromatic-bond", "uncertain-order", "conflicting-aromatic-flags", "non-aromatic-bond"}:
+        candidate = {k: v for k, v in candidate.items() if not k.startswith(plane)}
+        candidate[bond + "value_order"][0] = {"aromatic-bond":"AROM", "uncertain-order":"COVAL",
+            "conflicting-aromatic-flags":"AROM", "non-aromatic-bond":"SING"}[variant]
+        if variant == "conflicting-aromatic-flags":
+            candidate[bond + "pdbx_aromatic_flag"] = ["N"] * 4
     return write(tmp_path / "source.cif", source), write(tmp_path / "candidate.cif", candidate)
 
 
@@ -230,6 +236,31 @@ def test_source_plane_check_requires_matching_local_evidence(tmp_path, hand, var
     source, effective = _source_plane_case(tmp_path, hand=hand, variant=variant)
     report = compare_dictionaries([source], [effective], compare_stereo_planes=True)
     assert all(f["code"] != "plane-through-source-stereocentre" for f in report["findings"])
+
+
+
+@pytest.mark.parametrize("hand,code", [("R","XYZ"),("S","RAR")])
+def test_specific_aromatic_declaration_at_handed_carbon_needs_no_plane(tmp_path, hand, code):
+    from nasolve.cif_doctor import assess_dictionaries, compare_dictionaries
+    source, effective = _source_plane_case(tmp_path, variant="aromatic-bond", hand=hand, code=code)
+    review = compare_dictionaries([source], [effective], compare_stereo_bonds=True)
+    hits = [f for f in review["findings"] if f["code"] == "aromatic-bond-at-source-stereocentre"]
+    assert len(hits) == 1
+    assert hits[0]["measurements"]["atoms"] == ["CTR","O"]
+    assert hits[0]["measurements"]["source_stereocentres"] == {"CTR":hand}
+    with pytest.raises(PostMRPreparationError, match="aromatic bond"):
+        _require_generic_parameterization({code: {"parameterized": False}}, effective,
+            tmp_path/"ready_set.log", source_components=assess_dictionaries([source])["components"])
+    assert not any(f["rule_id"]=="PLANE-02" for f in review["findings"])
+
+
+@pytest.mark.parametrize("variant,hand", [("aromatic-bond","N"),("uncertain-order","R"),
+    ("conflicting-aromatic-flags","S"), ("non-aromatic-bond","R")])
+def test_aromatic_sugar_check_needs_local_handedness_and_an_unambiguous_aromatic_assignment(tmp_path, variant, hand):
+    from nasolve.cif_doctor import compare_dictionaries
+    source, effective = _source_plane_case(tmp_path, variant=variant, hand=hand)
+    result = compare_dictionaries([source], [effective], compare_stereo_bonds=True)
+    assert not any(f["code"] == "aromatic-bond-at-source-stereocentre" for f in result["findings"])
 
 
 def test_loose_plane_is_reported_without_quarantining_the_generated_dictionary(tmp_path):
