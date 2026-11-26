@@ -7,14 +7,17 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **W292:** [coupled two-sugar scope](topostitch-periodic.md#w292--map-a-coupled-sugar-scope-before-wider-native-motion)
+  maps 19 moving/843 held atoms. Six plane groups remain C1′-dependent even with
+  bases fixed. The wider receiver is still a gate; no new coordinates or fit.
 - **Latest maintained code, W291:** [review a window before motion](topostitch-preview.md#review-a-window-before-generating-coordinates-w291)
   exposes moving residues, fixed anchors/context and links through the normal
   preview command. 161 source / 161 relocated-installed checks; genuine PDU
   inspection reports missing declared pairs without inventing a window.
 - **W290:** [endpoint-map inspection](topostitch-periodic.md#w290--inspect-the-closed-phosphate-and-its-fixed-sugar-boundary)
   confirms similar density around both recovered phosphates and weak support at
-  several fixed sugar atoms. The next task is an explicit coupled window, with
-  chemistry/packing and paired-base context qualified before native movement.
+  several fixed sugar atoms. W292 now maps the proposed coupled scope; complete
+  chemistry/packing remains required before wider native movement.
 - **W288 remains the latest refinement:** the original 2.824 Å gap recovers to
   1.616 Å near the seeded result at matched coordinate weights. Residual torsions
   and poor diffraction still prevent acceptance. Do not rerun the weight panel.

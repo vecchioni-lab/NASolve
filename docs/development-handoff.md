@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**W291 window inspection, 2026-11-26.** Latest refinement: **W288**. Latest
+**W292 coupled-sugar scope, 2026-11-26.** Latest refinement: **W288**. Latest
 maintained code: **W291**, `4d10f97e66e03d604f955e7e237af5423952f0ac`.
 The [audited roadmap](topostitch-roadmap.md) owns status and the next decision;
 [periodic evidence](topostitch-periodic.md) and [API contracts](topostitch-preview.md)
@@ -22,6 +22,7 @@ must work without an AI service. A representation change does not repair a gap.
 | Whole-original-asym diagnostic CIF export | W272–278 preserve qualified source categories, images, tensors and backbone coverage; save/replay/inspect available | Mixed-fragment entity policy, native TLS restart, genuine source/parent join and persistent operation/refine loop |
 | W286/W287 connection review | Source/row/evidence-bound unapplied proposals and independent saved-report replay | Explicit metadata authority, application and separate chemistry/export/native admission |
 | W290 endpoint-map comparison | Same 1,909 indices/124 Free-R; P near 2.52σ in both maps, weak fixed sugar support | Explicit coupled-window chemistry/packing before broader native motion; no map-based acceptance |
+| W292 coupled-sugar proposal | Exact 19-atom mask, 23 local bonds and six source sugar signs; C1-dependent planes identified | Complete native plane/chemistry/packing and wider receiver; no new coordinates or fit |
 | W291 pre-motion scope review | Existing terminal/interior windows expose moving residues, fixed anchors/context and adjacent links without rendering | Genuine PDU has no declared duplex partners; wider chemistry/native motion remains gated |
 | Offline model/density and cut inspection | Installed renderers, map/model roles, saved preference and trusted export views | General stage/campaign integration and supported human edit/re-enter/refine lifecycle |
 
@@ -42,11 +43,12 @@ maintained fixed-weight product mode or recommended production weight.
 
 ## Next decisions
 
-1. **Stitching:** W290 completes the own-map/fixed-sugar inspection; W291 exposes
-   existing paired windows for review before rendering. With Cedar, choose the
-   smallest source-qualified coupled sugar/backbone scope;
-   preserve base/glycosidic geometry, pair register/planes/stacking, anchors and
-   native packing. Weak density does not identify a unique displacement. Coordinate
+1. **Stitching:** W292 maps a 19-atom two-sugar scope on the original W288 source.
+   Both bases and outer phosphates stay held, but six native plane groups still
+   depend on C1′. Qualify the complete Cedar plane/chemistry/packing owner and a
+   wider receiver before a matched trial. Preserve sugar hands/pucker, glycosidic
+   geometry and exact held context. Weak density does not identify a unique
+   displacement. Coordinate
    wider native admission with Cedar; do not extend the six-atom scope implicitly.
    Both endpoint maps use 1,909 reflections; the historical 1,902-reflection map
    stays unmatched context. No repeated weight panel or Free-R-driven search.
@@ -56,9 +58,10 @@ maintained fixed-weight product mode or recommended production weight.
    designed-oligo source. Native soft pair restraints do not supply that authority.
    W291 confirms the concrete boundary: four routes, no declared duplex partners;
    the normal window inspector reports that absence without selecting a window.
-   Whole paired-residue motion needs reviewed partner/image context. Assess a
-   narrower fixed-base sugar/backbone mask through existing native owners before
-   adding metadata or broader motion. The 3LNA export remains the strong
+   Whole paired-residue motion needs reviewed partner/image context. The W292
+   narrower fixed-base proposal is a different source/model and does not fill
+   that metadata gap or inherit this checkpoint’s admission. The 3LNA export remains
+   the strong
    metadata/scattering control without a qualified ordinary parent/TLS restart.
    Whole-asym diagnostic export is not deposition readiness.
 
@@ -86,6 +89,11 @@ references and thermal/TLS semantics. File readback alone cannot prove those.
 
 <a id="validation-and-scientific-interpretation"></a>
 ## Validation and compatibility
+
+**W292: read-only scope audit**, 75 cold source/mapping/support checks and a
+ChimeraX 1.12 headless scope-view check. The initial all-planes-fixed assumption
+failed because C1′ belongs to six groups; those dependencies are retained.
+No product code or native evaluation/refinement changed.
 
 **W291: 161 focused source / 161 relocated installed checks pass**, with eight
 fail-before cases, exact genuine-parent replay and 94 matching module hashes.
@@ -117,7 +125,11 @@ W289 documentation/link/entry-point audit remains the prior maintenance receipt.
 
 ## Local science checkout
 
-Latest inspection: ScienceCheckouts anchor
+Latest scope view: NASolve anchor
+`branch-artifacts/willow/w292-coupled-sugar-scope/index.html`, linking the
+Python-openable ChimeraX scope and connectivity schematic. No new model.
+
+Latest density inspection: ScienceCheckouts anchor
 `Linden/2026-11-26_endpoint-density/index.html`, linking two offline inspectors,
 a fixed-plane phosphate/boundary figure, exact model/map pairs and the existing
 W288 Python-openable ChimeraX comparison. Evidence uses NASolve anchor

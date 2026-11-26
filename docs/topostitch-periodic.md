@@ -14867,3 +14867,75 @@ sugar stereochemistry, pair planes/stacking, anchors, packing and protected atom
 Weak density is not a unique movement instruction. Cedar must qualify the wider
 native scope; six-atom controls do not authorize it. Do not repeat W241/W288/W290,
 tune by Free-R, or substitute deferred fragmentation/nonzero-f″ stress tests.
+
+
+## W292 — Map a coupled sugar scope before wider native motion
+
+The next explicit hypothesis lets the two adjoining sugars move with the existing
+B7 → image(B1) phosphate continuation. The source remains W288's original
+`run_002/refine-005` model, SHA256
+`00ee2b2f9ebc57e1bab1a51abc64a903c204cdddabccf6a8399ef1546c547313`.
+It is **not** the `refine-003` metadata parent examined in W291; source labels do
+not transfer scope or lineage between them.
+
+The proposed mask contains **19 atoms**: B1 P/OP1/OP2 and all eight sugar/backbone
+atoms at each of B1 and B7. All **843 other atoms** stay fixed, including the 18
+nucleobase atoms, B7 incoming phosphate and B2 outgoing phosphate. A proposed
+2 Å per-atom cap remains a review input, not a qualified motion allowance.
+Existing `CoordinateMask`, complete endpoint audit, native/source correspondence
+and Cedar named-proxy/scalar observers map the scope without generating a candidate.
+The original seam remains **2.824291 Å**, using B7 image `-x+y,-x,z` in the B1 frame.
+
+All 23 intended local bonds are present in the authenticated native reference:
+ten ring bonds, six exocyclic sugar bonds, three B1 phosphate bonds and four
+boundary bonds (two glycosidic and two outer phosphate links). Six source sugar
+centres agree with their captured ordered-volume target signs. These observations
+do not establish absolute stereochemistry, sugar pucker or future geometry.
+
+| Existing ordinary terms touching the proposal | Count |
+| --- | ---: |
+| Bonds / angles | 23 / 40 |
+| Chirality (six sugar, two phosphate terms) | 8 |
+| Dihedral / constant-dihedral records | 23 / 4 |
+| Monomer planarity / parallelity groups | 2 / 4 |
+
+**The important dependency:** holding the nucleobases fixed does not make the
+native plane target constant. Both moving C1′ atoms belong to their monomer plane,
+one paired-base parallelity group and one local-stack parallelity group. The
+initial assumption that every plane was fixed failed; the six actual dependent
+groups are retained in the report. A future fit must use Cedar's complete
+plane/parallelity owner. No generic stacking target is added across the ~82°
+crossover. Holding both C1′ atoms instead would be a separate 17-atom hypothesis,
+not a silent change to this proposal. Rowan concurs with the 19-atom review scope.
+
+The eight already-declared image-link definitions bind entirely to selected
+atoms. Captured ordinary proxy support and these inherited definitions do **not**
+establish a live complete image-aware manager, packing or successful recovery.
+The maintained `native-phosphate` receiver still selects exactly six atoms and
+cannot execute this proposal. This is the concrete next integration gate; no
+new optimizer, relaxed admission or native fit was introduced.
+
+**Validation and checkout:** 75 cold source/mapping/support checks pass, including
+input hashes and refusal of motion at a held base attachment or either outer P.
+No product tests, installation or full suite were repeated for this read-only
+scientific audit. W291 remains the latest maintained code and installed check.
+The ChimeraX **1.12** scope script completes headlessly after its initial sandbox
+cache-lock refusal; it retains original file bytes and changes only display
+representatives. The connectivity schematic was visually inspected. Interactive
+rendering remains untested. No Phenix native evaluation, refinement, new PDB/CIF,
+reflection change or model selection occurred.
+
+NASolve anchor `branch-artifacts/willow/w292-coupled-sugar-scope/` contains the
+compact `index.html`, Python-openable `open_scope.py`, vector/raster schematic,
+`review.json` and `verification.json`. It links the existing W290 density view;
+no models, maps or run trees were copied. `review.py` uses Phenix **2.2.1-6174**
+Python for read-only receipt/math operations, with explicit Willow/Cedar sources
+and pure-Python host spreadsheet dependencies; no foreign compiled extension is
+loaded. Exact commands, reader hashes, both initial refusals and output hashes
+remain local in those receipts. Scientific payloads are excluded from Git.
+
+**Next:** qualify this source-bound mask with the complete native chemistry,
+C1-dependent planes, both sugar hands/pucker, fixed context and packing before
+one predeclared matched recovery. Preserve original observations/Free-R and
+separate the exploratory trial from ordinary receiver admission and scientific
+acceptance. No further six-atom weight sweep or deferred stress test is needed.

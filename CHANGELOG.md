@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W292 — Map the proposed two-sugar movement scope
+
+- Record a source-bound 19-atom proposal, its local bonds, sugar signs and complete
+  captured proxy dependencies. Identify six C1′-dependent plane/parallelity groups
+  despite fixed nucleobase rings; retain the existing Cedar force ownership.
+- Provide a local schematic and checked ChimeraX scope view. Read-only audit and
+  documentation only; the ordinary six-atom receiver and all native policy remain
+  unchanged. No new coordinates, refinement or model selection.
+
 ### W291 — Inspect an explicit bend window before generating coordinates
 
 - Add `nasolve-topostitch-preview --inspect-window` and the matching read-only API

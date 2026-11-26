@@ -295,7 +295,8 @@
         "W241 completes the paired original-vs-W235 seed receiving question under the same requested native recipe: local seed geometry survives five cycles with all fixed context/data preserved. Effective native weights differ strongly; this is not an isolated basin test or scientific acceptance.",
         "W288: two complete five-cycle Phenix2.2.1-6174 local experiments at identical observed(1,1,1) coordinate coefficients. Original seam2.824291\u21921.615904A;seed1.614199A. Max endpoint difference0.061131A/six-atom RMS0.033591A. Original local bond/angle maxima0.509/1.830sigma;residual torsions2.97sigma. Rwork/free~0.312/0.369;not accepted.",
         "W290 closes the W288 endpoint-map inspection decision: both own maps agree locally, while several fixed sugar sites remain weak. Native mask still six atoms; no broad duplex motion or density-driven choice.",
-        "W291 exposes the existing explicit terminal/interior window through normal read-only CLI review before rendering.161 source/161 relocated-installed checks. Genuine PDU ordinary parent truthfully has no declared paired context; no window or wider motion invented."
+        "W291 exposes the existing explicit terminal/interior window through normal read-only CLI review before rendering.161 source/161 relocated-installed checks. Genuine PDU ordinary parent truthfully has no declared paired context; no window or wider motion invented.",
+        "W292 maps the 19-atom two-sugar scope without moving coordinates. Both bases/outer phosphates held; six source sugar signs agree. Two monomer planes and four parallelity groups remain C1-dependent, requiring the complete existing Cedar owner. Ordinary receiver remains six-atom only."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
@@ -303,7 +304,7 @@
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient.",
         "Internal helix recovery explicitly compares neighbouring base-plane orientation, spacing, lateral offset/overlap and twist before deformation, after placement and after restrained recovery, including fixed-flank transitions. Within-pair coplanarity and between-pair stacking remain distinct; allow supported curvature/nonuniform twist rather than enforcing universal parallelism. Connectivity, sugar-sign retention and R factors alone do not close this gate. Investigator emphasis2026-11-22; planning only, reuse existing frame/geometry owners."
       ],
-      "next_action": "Choose the smallest source-qualified coupled sugar/backbone scope with Cedar. Whole paired-residue motion requires explicit reviewed partners/images; W291 exposes their absence in the genuine PDU parent rather than inferring them from soft contacts. Assess whether a narrower fixed-base sugar/backbone mask can use existing native owners without new physical-oligo claims. Preserve glycosidic/base geometry, pair register/planes/stacking, anchors, packing and protected chemistry. No broader native motion until that scope is qualified; six-atom admission does not transfer. W288/W290 questions are closed; no repeated weight or Free-R-driven panel.",
+      "next_action": "Qualify the explicit W292 two-sugar 19-atom mask through existing native owners before one predeclared matched recovery. Both bases and flanking phosphates stay held; two monomer planes/four pair-stack groups still depend on C1. Preserve the original refine-005 source/data, sugar hands/pucker, geometry, packing and exact fixed context. Current six-atom receiver does not admit it. Whole paired-residue alternatives still require reviewed partners/images; no physical-oligo inference from soft contacts. W288/W290 comparisons are closed; no repeated weight or Free-R-driven panel.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -402,14 +403,15 @@
         "E_SEEDED_RECEIVING_WEIGHT_AUDIT",
         "E_MATCHED_COORDINATE_WEIGHT_RECOVERY",
         "E_ENDPOINT_DENSITY_BOUNDARY",
-        "E_WINDOW_SCOPE_INSPECTION"
+        "E_WINDOW_SCOPE_INSPECTION",
+        "E_COUPLED_SUGAR_SCOPE"
       ],
       "last_audit": {
         "date": "2026-11-26",
-        "human_update": 291,
+        "human_update": 292,
         "code_commit": "4d10f97e66e03d604f955e7e237af5423952f0ac",
-        "reviewer": "Linden; scope and genuine-parent route coordinated with Rowan",
-        "scope": "Read-only window inspection qualified; genuine missing-pair boundary established. No wider geometry/native admission or acceptance."
+        "reviewer": "Linden; explicit scope and C1 dependency reviewed with Rowan",
+        "scope": "Source-bound 19-atom scope and native dependencies mapped. No wider receiver, native motion, packing or scientific acceptance."
       }
     },
     {
@@ -502,14 +504,15 @@
         "W255 records the completed coordinated2A cap comparison and separately bounded projected search/basis audit. Geometry improves but projected residual5.1565 and infeasible PDB rounding prevent a candidate. Alder pure helpers are independently reviewed at7c2e1c41; no Willow default/integration change or duplicate native run.",
         "Coordinated Alder follow-up reported at W258: a separately source-qualified constructed seed retains P-O3 1.615A and C3-O3 1.448A after the exact W252 receiver; no scientific parent/fdp because density remains weak. Broader DNA XYZ/groupB has native zero-cycle initialization only; no Willow native repeat.",
         "W288: two complete five-cycle Phenix2.2.1-6174 local experiments at identical observed(1,1,1) coordinate coefficients. Original seam2.824291\u21921.615904A;seed1.614199A. Max endpoint difference0.061131A/six-atom RMS0.033591A. Original local bond/angle maxima0.509/1.830sigma;residual torsions2.97sigma. Rwork/free~0.312/0.369;not accepted.",
-        "W290 own-map inspection retains W288 residual image/local torsions near3/2.3 restraint widths and weak fixed sugar boundaries. A closed phosphate is distinct from recovered sugar/duplex geometry."
+        "W290 own-map inspection retains W288 residual image/local torsions near3/2.3 restraint widths and weak fixed sugar boundaries. A closed phosphate is distinct from recovered sugar/duplex geometry.",
+        "W292 maps the 19-atom two-sugar scope without moving coordinates. Both bases/outer phosphates held; six source sugar signs agree. Two monomer planes and four parallelity groups remain C1-dependent, requiring the complete existing Cedar owner. Ordinary receiver remains six-atom only."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Qualify the explicitly chosen coupled sugar/backbone window with Cedar geometry/packing and actual serialized endpoints before native receiving. Keep OP1/OP2 orientation relative to a declared duplex, sugar stereochemistry, paired bases, true nicks and protected metals explicit; do not infer them from proximity or soft restraints. Reuse W239\u2013W244 recut/chemistry controls and the completed W288 comparison. W238 no-candidate and separate constructed-seed authority retain their scopes. Alder owns its broader DNA XYZ/group-B experiment; no repetition or implied adoption here.",
+      "next_action": "Before any W292 19-atom receiving, qualify complete Cedar live image/local chemistry, C1-dependent monomer/parallelity forces, exclusions/packing and actual serialized endpoint preservation. Six sugar-centre signs, both glycosidic attachments and outer phosphate boundaries stay explicit. The current product receiver remains six-atom only; scope review is not native admission. Reuse prior native controls rather than another weight sweep. Keep genuine refine-003 metadata and original refine-005 science ancestry distinct; Alder owns its separate protected DNA/group-B and future nonzero-fdp work.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -656,14 +659,15 @@
         "E_FEASIBLE_CAP_DIAGNOSTICS",
         "E_ALDER_SEED_RECEIVING_COORDINATED",
         "E_MATCHED_COORDINATE_WEIGHT_RECOVERY",
-        "E_ENDPOINT_DENSITY_BOUNDARY"
+        "E_ENDPOINT_DENSITY_BOUNDARY",
+        "E_COUPLED_SUGAR_SCOPE"
       ],
       "last_audit": {
         "date": "2026-11-26",
-        "human_update": 290,
-        "code_commit": "f68a6a930d1730553ea63f67cacbdd31cc890600",
-        "reviewer": "Linden; endpoint-map inspection coordinated with Rowan",
-        "scope": "Own-map and fixed sugar review complete; no wider native window, scientific selection or acceptance."
+        "human_update": 292,
+        "code_commit": "4d10f97e66e03d604f955e7e237af5423952f0ac",
+        "reviewer": "Linden; explicit scope and C1 dependency reviewed with Rowan",
+        "scope": "Source-bound 19-atom scope and native dependencies mapped. No wider receiver, native motion, packing or scientific acceptance."
       }
     },
     {
@@ -9944,6 +9948,55 @@
       ],
       "maintained_code_changed": true,
       "new_native_refinements": 0
+    },
+    "E_COUPLED_SUGAR_SCOPE": {
+      "kind": "Read-only coupled sugar/native support proposal",
+      "date": "2026-11-26",
+      "human_update": 292,
+      "code_commit": "4d10f97e66e03d604f955e7e237af5423952f0ac",
+      "reference": "docs/topostitch-periodic.md#w292--map-a-coupled-sugar-scope-before-wider-native-motion",
+      "result": "19 proposed moving / 843 held atoms on the exact original W288 refine-005 source;18 base atoms and both outer phosphate groups held. 75 cold source/mapping/support checks; 23 intended local bonds, 6 source sugar signs and 8 inherited image-link definitions bind. Touching ordinary support: 23 bonds, 40 angles, 8 chirality, 27 torsions, 2 monomer planes, 4 parallelity groups. ChimeraX 1.12 headless scope view passes; schematic visually inspected.",
+      "limitation": "Fixed nucleobases do not hold C1-containing planes constant. No displacement, native evaluation, packing/geometry feasibility or scientific acceptance. Current ordinary native-phosphate receiver still admits exactly 6 atoms; new 19-atom scope needs complete Cedar plane/parallelity and chemistry/native admission. Original refine-005 science source is distinct from W291 refine-003 metadata parent; no scope/lineage transfer. Interactive rendering untested.",
+      "local_receipts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w292-coupled-sugar-scope/review.json",
+          "sha256": "1a1fc262717fd9b9d5811b11141b2dc16951919ea3a2c1ba0f9ad90ce716ccf4",
+          "size": 85356
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w292-coupled-sugar-scope/verification.json",
+          "sha256": "2e7a65ac439eecc4d92f4682aebe5945c356779f8b5b47ccd7d37c5df5c339e1",
+          "size": 3685
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w292-coupled-sugar-scope/review.py",
+          "sha256": "a6f81ad833b27de25f5cd301e200767aeb2e79df377fbc27804f740b267c14e2",
+          "size": 13318
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w292-coupled-sugar-scope/open_scope.py",
+          "sha256": "f3769da3ad0c167612629af231b240912ae0ee39fc564562864af9c62192d246",
+          "size": 5077
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w292-coupled-sugar-scope/figure.py",
+          "sha256": "2aa1db6e49c854e714155f786b21c38b8b077f8ce327177c7f676982ea068845",
+          "size": 3681
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w292-coupled-sugar-scope/index.html",
+          "sha256": "b1dae3a21376cbff3f27e045291319255c813df5bdbc7ce35735b4795620a97f",
+          "size": 4499
+        }
+      ],
+      "maintained_code_changed": false,
+      "new_native_refinements": 0
     }
   },
   "benchmarks": [
@@ -10125,8 +10178,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 291,
-    "next": 292,
+    "current": 292,
+    "next": 293,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -11680,6 +11733,12 @@
       {
         "number": 291,
         "title": "Inspect an explicit bend window before generating coordinates",
+        "state": "RECORDED",
+        "code_commit": "4d10f97e66e03d604f955e7e237af5423952f0ac"
+      },
+      {
+        "number": 292,
+        "title": "Map a coupled two-sugar scope and its C1-dependent native planes",
         "state": "RECORDED",
         "code_commit": "4d10f97e66e03d604f955e7e237af5423952f0ac"
       }
