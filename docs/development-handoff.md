@@ -76,9 +76,12 @@ and the archived pairing recipe. The linked Phenix reader saw the intended sugar
 normal pucker at all three sites. C608 passed those three site-specific reactions to
 five full coordinate-refinement cycles. The returned PDB bytes matched C606 exactly.
 New isolated literal reads freeze the small native pucker table. The 2MG comparison
-reopened with the original runs and entire Phenix installation inaccessible. Carry
-both independent isolated reads into ordinary
-acquisition before promoting this chemistry. The sulfur linkage
+reopened with the original runs and entire Phenix installation inaccessible. C609 now performs both isolated comparisons during ordinary acquisition. A fresh
+2MG result reopened after relocation with the original inputs, cache and installation
+inaccessible. 5MC also qualified. For 6MZ, a fresh atom-order recovery preserved all
+42 source bonds after eLBOW introduced a 5.779 Å edge. The combined request reused
+all three numerical dictionaries. Its linked check still required reconciliation of
+the native pucker targets and a plane that had only three atoms in the scaffold. The sulfur linkage
 remains a separate chemical state. The [Q12 workbook sweep](cif-doctor-completion-queue.md#q12--resolve-catalogue-mappings-and-maintain-support-coverage)
 follows the eight-site challenge.
 [Release and tested installation](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.4).

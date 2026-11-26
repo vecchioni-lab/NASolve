@@ -384,3 +384,42 @@ def test_connected_recovery_binds_original_chemistry_and_reopens_without_prior(s
     source.unlink()
     monkeypatch.setattr(recovery, 'read_connected_order_failure', lambda *args: pytest.fail('historical path reopened'))
     assert module.read_acquisition_result(moved, 1)['manifest']['request'] == recovered
+
+
+@pytest.mark.parametrize("case_name",["strict-pass","unexplained","foreign-table"])
+def test_optional_rna_permission_keeps_the_strict_read_and_its_ownership(setup,monkeypatch,case_name):
+    from nasolve import cif_rna_pucker as p
+    from nasolve.cif_candidate_qualification_execution import CandidateNativeTargetMismatch
+    from nasolve.cif_purine_representation import EXACT_POLICY_ID
+    module,args,options,calls,generated=setup
+    sdk=options["phenix"]
+    relative="lib/python3/site-packages/chem_data/geostd/rna_dna/mod_rna2p.cif"
+    path=sdk.root/relative
+    path.parent.mkdir(parents=True);path.write_bytes(b"example table")
+    pin=dict(anchor="phenix_installation",path=relative,size=path.stat().st_size,sha256=sha256(path.read_bytes()).hexdigest())
+    options["generation"].update(bond_representation_policy=EXACT_POLICY_ID,rna_pucker_table=pin)
+    seen_pin=dict(pin,sha256="f"*64) if case_name=="foreign-table" else pin
+    monkeypatch.setattr(p,"installed_pucker_table",lambda root:(path,seen_pin))
+    if case_name=="foreign-table":
+        with pytest.raises(ValueError,match="pucker table differs"):
+            module.acquire_dictionary_attempt(*args,**options)
+        assert not args[-1].exists() and not generated and not calls
+        return
+    if case_name=="unexplained":
+        strict=module.execute_candidate_qualification
+        def mismatch(*a,**k):
+            strict(*a,**k)
+            raise CandidateNativeTargetMismatch("synthetic unsupported change")
+        monkeypatch.setattr(module,"execute_candidate_qualification",mismatch)
+        monkeypatch.setattr(p,"verify_current_consumer",lambda *a:True)
+        with pytest.raises(ValueError):
+            module.acquire_dictionary_attempt(*args,**options)
+        state=module.inspect_acquisition_request(args[-1])["attempts"][0]
+        assert state["state"]=="STOPPED" and state["finished"]["outcome"]=="RAISED"
+    else:
+        module.acquire_dictionary_attempt(*args,**options)
+        saved=module.read_acquisition_result(args[-1],1)
+        assert saved["qualification"]["policy_id"]=="cif-isolated-candidate-native-usability-v3"
+        state=module.inspect_acquisition_request(args[-1])["attempts"][0]
+    assert state["children"]["literal_qualification"]["state"]=="NOT_CREATED"
+    assert len(generated)==1 and len(calls)==2

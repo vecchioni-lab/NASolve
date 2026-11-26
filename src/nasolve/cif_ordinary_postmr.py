@@ -218,7 +218,7 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
         source_chemistry = {}
         if select_representation:
             from restraints import residue_library
-            source_chemistry = dict(select_anionic_phosphate=True,
+            source_chemistry = dict(select_anionic_phosphate=True, select_native_rna_pucker=True,
                                     source_ribose_workbook=Path(residue_library.__file__).parent/'data/Ligands.xlsx')
         record = initialize_postmr_dictionary_request(inputs.model_path,inputs.run_report,components,None,request,
             consumer=configured.consumer,ready_set_executable=None,supplementary_phils=list(inputs.supplementary_phils),
@@ -511,6 +511,11 @@ def continue_checked_postmr(run_directory, phenix, *, after_attempt, store_root=
         if key not in configured:
             configured[key] = configure_dictionary_engine(phenix, **options)
         generation[code] = dict(configured[key].generation)
+        if 'rna_pucker_table' in recipe:
+            from .cif_rna_pucker import installed_pucker_table
+            pin = installed_pucker_table(phenix.root)[1]
+            _need(pin == recipe['rna_pucker_table'], 'Selected Phenix pucker table differs from the saved preparation')
+            generation[code]['rna_pucker_table'] = pin
     result = execute_dictionary_request_attempt(root, phenix,
         default_dictionary_store() if store_root is None else store_root,
         generation=generation, after_attempt=after_attempt)

@@ -46,12 +46,19 @@ def bind_preparation_qualification(source: Path, candidate: Path, code: str,
     if not isinstance(q, dict):
         raise ValueError('Require isolated native qualification evidence')
     checks = q.get('checks')
+    from .cif_rna_pucker import PAIRED_USABILITY, validate_paired_qualification
+    paired = q.get('policy_id') == PAIRED_USABILITY
+    expected_checks = REQUIRED_NATIVE_CHECKS
+    if paired:
+        validate_paired_qualification(q,source_sha256=sha256(payloads[0]).hexdigest(),
+                                     candidate_sha256=sha256(payloads[1]).hexdigest(),code=code)
+        expected_checks = REQUIRED_NATIVE_CHECKS | {'no_native_pucker_overlay'}
     if (type(q.get('schema_version')) is not int or q['schema_version'] != 1
-            or q.get('policy_id') != 'cif-isolated-candidate-native-usability-v3'
+            or (not paired and q.get('policy_id') != 'cif-isolated-candidate-native-usability-v3')
             or q.get('status') != 'ISOLATED_NATIVE_USABILITY_PASS'
             or q.get('native_usable') is not True or q.get('component') != code
             or q.get('scope') != 'ISOLATED_COMPONENT_ONLY'
-            or not isinstance(checks, dict) or set(checks) != REQUIRED_NATIVE_CHECKS
+            or not isinstance(checks, dict) or set(checks) != expected_checks
             or any(value is not True for value in checks.values())
             or q.get('candidate_sha256') != sha256(payloads[1]).hexdigest()):
         raise ValueError('Require complete bound isolated native qualification')

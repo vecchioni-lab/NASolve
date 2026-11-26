@@ -16,14 +16,14 @@ from .campaign_process import CampaignProcessError, coordinator_alive, current_p
 from .campaign_records import _sync_directory, now, path_in, read_record, write_record
 from . import cif_acquisition_recovery as connected_recovery
 from .cif_component_runtime import _tree
-from .cif_dictionary_store import _bytes, _json, make_dictionary_request, resolve_dictionary_snapshot, recipe_representation_policy
+from .cif_dictionary_store import _bytes, _json, make_dictionary_request, resolve_dictionary_snapshot, same_qualification_permissions
 from .cif_dictionary_sites import _consumer, _read, _safe
 from .cif_generation_acquisition import generation_dictionary_options, resolve_generated_dictionary
 from .cif_generation_attempt import _attempt_identity, generate_source_candidate_attempt, inspect_source_generation_request
 from .cif_generation_process import _valid_identity, _valid_attempt_identity
 from .cif_outer_context import OuterAllowance, parent_identity
 from .cif_candidate_qualification import inspect_candidate_qualification_processes
-from .cif_candidate_qualification_execution import execute_candidate_qualification, read_candidate_qualification, _inputs
+from .cif_candidate_qualification_execution import CandidateNativeTargetMismatch, execute_candidate_qualification, read_candidate_qualification, _inputs
 from .cif_repair_attempt import _root, _members, _inventory
 from .cif_repair_process import _uuid
 
@@ -77,7 +77,7 @@ def _request(root):
     if 'retained/resolution.json' in inputs:
         saved=resolve_dictionary_snapshot(root/'inputs/retained');prior=saved['manifest']['request']
         _need(make_dictionary_request(root/'inputs/source.cif',req['component'],source_authority=req['source_authority'],**{k:prior[k] for k in ('recipe','generator')})==prior
-              and recipe_representation_policy(prior['recipe'])==recipe_representation_policy(req['recipe']), 'Retained source/authority/permission differs')
+              and same_qualification_permissions(prior['recipe'],req['recipe']), 'Retained source/authority/permission differs')
     return request
 
 
@@ -116,15 +116,21 @@ def _generation_child(root, attempt, intent, config, *, closed_no_child=False):
     return child,proof
 
 
-def _qualification_child(attempt,intent,config):
-    work=path_in(attempt,'qualification/native')
+def _qualification_child(attempt,intent,config,*,literal=False):
+    work=path_in(attempt,'qualification/literal' if literal else 'qualification/native')
     if not work.exists():return dict(state='NOT_CREATED',activity=False),None
     state=inspect_candidate_qualification_processes(work);header=state.get('header')
     if header is not None:
         _need(header.get('attempt_owner')==_attempt_identity(intent)
               and all(header['coordinator'].get(k)==intent['coordinator'].get(k) for k in ('pid','pgid','host','boot_id','start_marker')), 'Qualification belongs to another acquisition owner')
         protocol,paths,_,_=_inputs(work);r=config['dictionary_request'];limits=config['limits']
-        _need('literal_rna' not in protocol and protocol['component']==r['component'] and protocol['consumer']==config['consumer']
+        mode = protocol.get('literal_rna')
+        if literal:
+            _need(isinstance(mode,dict) and mode.get('table')==r['recipe']['rna_pucker_table'],
+                  'Literal qualification uses another Phenix pucker table')
+        else:
+            _need(mode is None,'Default qualification cannot disable the native pucker')
+        _need(protocol['component']==r['component'] and protocol['consumer']==config['consumer']
               and protocol['bond_representation_policy']==r['recipe'].get('bond_representation_policy')
               and protocol['native_timeout_seconds']==limits['native_timeout_seconds']
               and protocol['total_timeout_seconds']<=limits['total_timeout_seconds']
@@ -134,7 +140,12 @@ def _qualification_child(attempt,intent,config):
 
 def _children(root,attempt,intent,config, *, closed_no_child=False):
     g,gb=_generation_child(root,attempt,intent,config,closed_no_child=closed_no_child);q,qb=_qualification_child(attempt,intent,config)
-    return {'generation':g,'qualification':q},{'generation':gb,'qualification':qb}
+    states,proofs={'generation':g,'qualification':q},{'generation':gb,'qualification':qb}
+    if 'rna_pucker_table' in config['dictionary_request']['recipe']:
+        states['literal_qualification'],proofs['literal_qualification']=_qualification_child(attempt,intent,config,literal=True)
+    elif (attempt/'qualification/literal').exists():
+        raise ValueError('Unexpected literal RNA qualification in a strict acquisition')
+    return states,proofs
 
 
 def _attempt_files(attempt):
@@ -152,8 +163,13 @@ def _result(root,attempt,config):
     _need(saved['report']==report['acquisition'] and req in allowed and saved['manifest']['consumer']==config['consumer']
           and _read(saved['source'])==_read(root/'inputs/source.cif'), 'Acquisition snapshot identity differs')
     if (attempt/'qualification/native').exists():
-        qualification=read_candidate_qualification(attempt/'qualification/native')
-        _need(saved['qualification']==qualification['qualification'], 'Acquisition differs from its scientific qualification')
+        default=attempt/'qualification/native'; literal=attempt/'qualification/literal'
+        if literal.exists():
+            from .cif_rna_pucker import paired_acquisition_qualification
+            q=paired_acquisition_qualification(default,literal,req['recipe']['rna_pucker_table'])
+        else:
+            q=read_candidate_qualification(default)['qualification']
+        _need(saved['qualification']==q, 'Acquisition differs from its scientific qualification')
     if (attempt/'generation.json').exists():
         link=read_record(attempt/'generation.json');child=root/'generation/attempts'/f"attempt-{link['number']:04d}"
         _need(_read(saved['dictionary'])==_read(child/'generation/candidate.cif')
@@ -274,6 +290,10 @@ def acquire_dictionary_attempt(source,code,store_root,request_directory,*,source
         resolve_dictionary_snapshot(retained);retained_before=_tree(retained);_need(set(retained_before)==_SNAPSHOT_FILES,'Unexpected retained snapshot members')
         inputs.update({'retained/'+n:b for n,b in retained_before.items()})
     options=generation_dictionary_options(generation);limits=dict(native_timeout_seconds=native_timeout_seconds,total_timeout_seconds=total_timeout_seconds)
+    pin=options['recipe'].get('rna_pucker_table')
+    if pin is not None and phenix is not None:
+        from .cif_rna_pucker import installed_pucker_table
+        _need(installed_pucker_table(phenix.root)[1]==pin,'Selected Phenix pucker table differs from the frozen request')
     config=_configuration(source,code,source_authority,options,consumer,_generation_binding(generation),inputs,limits,max_attempts)
     if connected_order_failure is not None:
         connected_recovery.validate_connected_order_failure(proof, source, config['dictionary_request'], consumer)
@@ -281,7 +301,7 @@ def acquire_dictionary_attempt(source,code,store_root,request_directory,*,source
     if retained is not None:
         prior=resolve_dictionary_snapshot(retained)['manifest']['request']
         _need(make_dictionary_request(source,code,source_authority=source_authority,**{k:prior[k] for k in ('recipe','generator')})==prior
-              and recipe_representation_policy(prior['recipe'])==recipe_representation_policy(options['recipe']), 'Retained source/authority/permission differs')
+              and same_qualification_permissions(prior['recipe'],options['recipe']), 'Retained source/authority/permission differs')
     remaining();coordinator=current_process_identity();root.mkdir(parents=True,exist_ok=True)
     with exclusive_lock(root/'request.lock'):
         if not (root/'request.json').exists():
@@ -306,9 +326,22 @@ def acquire_dictionary_attempt(source,code,store_root,request_directory,*,source
             return generate_source_candidate_attempt(**kwargs,_parent_attempt_identity=_attempt_identity(intent),_remaining_seconds=remaining)
         def qualify(a,b,current,out):
             allowance=int(remaining(1))
-            return execute_candidate_qualification(a,b,code,current,phenix,out,native_timeout_seconds=native_timeout_seconds,
-                total_timeout_seconds=allowance,bond_representation_policy=options['recipe'].get('bond_representation_policy'),
-                _attempt_identity=_attempt_identity(intent),_remaining_seconds=remaining)['qualification']
+            owner=_attempt_identity(intent)
+            try:
+                return execute_candidate_qualification(a,b,code,current,phenix,out,native_timeout_seconds=native_timeout_seconds,
+                    total_timeout_seconds=allowance,bond_representation_policy=options['recipe'].get('bond_representation_policy'),
+                    _attempt_identity=owner,_remaining_seconds=remaining)['qualification']
+            except CandidateNativeTargetMismatch:
+                if 'rna_pucker_table' not in options['recipe']:
+                    raise
+            remaining(1)
+            from .cif_rna_pucker import installed_pucker_table, paired_acquisition_qualification, verify_literal_pucker
+            pin=options['recipe']['rna_pucker_table']
+            _need(installed_pucker_table(phenix.root)[1]==pin,'Selected Phenix pucker table differs from the frozen request')
+            literal=out.with_name('literal')
+            verify_literal_pucker(out,literal,phenix,_attempt_identity=owner,_remaining_seconds=remaining)
+            remaining()
+            return paired_acquisition_qualification(out,literal,pin)
         try:
             result=resolve_generated_dictionary(root/'inputs/source.cif',code,store,attempt/'snapshot',root/'generation',attempt/'qualification',
                 source_authority=source_authority,consumer=consumer,generation=generation,qualify=qualify,

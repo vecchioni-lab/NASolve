@@ -25,7 +25,7 @@ from .cif_acquisition_sources import read_acquisition_sources
 from .cif_component_runtime import _tree
 from .cif_dictionary_bundle import _context
 from .cif_dictionary_sites import _consumer, _links, _model_inventory, _need, _read, _safe
-from .cif_dictionary_store import _bytes, _json, make_dictionary_request, recipe_representation_policy, resolve_dictionary_snapshot
+from .cif_dictionary_store import _bytes, _json, make_dictionary_request, recipe_representation_policy, resolve_dictionary_snapshot, same_qualification_permissions
 from .cif_generation_acquisition import generation_dictionary_options
 from .cif_generation_attempt import _attempt_identity, generate_source_candidate_attempt, inspect_source_generation_request
 from .cif_plane_coverage import audit_snapshot_trigonal_planes
@@ -79,7 +79,7 @@ def _component_config(source, code, authority, consumer, declaration, retained, 
         prior = saved['manifest']['request']
         _need(make_dictionary_request(source, code, source_authority=authority,
             **{k:prior[k] for k in ('recipe','generator')}) == prior
-            and recipe_representation_policy(prior['recipe']) == recipe_representation_policy(declaration['options']['recipe']),
+            and same_qualification_permissions(prior['recipe'],declaration['options']['recipe']),
             'Retained source/authority/representation permission differs')
         inputs.update({'retained/'+n:data for n,data in tree.items()})
     return acquisition._configuration(source, code, authority, declaration['options'], consumer,

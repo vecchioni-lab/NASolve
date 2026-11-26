@@ -21,7 +21,7 @@ from .cif_restraint_context import derive_restraint_context
 
 
 def initialize_postmr_dictionary_request(model, report, components, source_output, output, *,
-        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, frozen_sources=None, construction_inputs=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, select_anionic_phosphate=False, reader_control_policy=None, source_ribose_workbook=None, **execution_limits):
+        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, frozen_sources=None, construction_inputs=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, select_anionic_phosphate=False, reader_control_policy=None, source_ribose_workbook=None, select_native_rna_pucker=False, **execution_limits):
     """Freeze ordinary sources and derived contexts for one existing request.
 
     Components specify code/generation and optional retained_snapshot,
@@ -77,6 +77,8 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     _need(type(automatic_plane_support) is bool, 'automatic_plane_support must be a boolean')
     _need(isinstance(components, (list, tuple)) and components,
           'Require explicit PostMR component generation settings')
+    _need(type(select_native_rna_pucker) is bool and (not select_native_rna_pucker or source_ribose_workbook is not None),
+          'Native RNA pucker selection requires source-backed ribose preparation')
     components = deepcopy(components)
     for item in components:
         _need(isinstance(item, dict) and {'code', 'generation'} <= item.keys()
@@ -177,6 +179,19 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
                                                        source_ribose_workbook, model_bytes, item['contexts'])
             if reaction is not None:
                 item['furanose_reaction'] = reaction
+                if select_native_rna_pucker:
+                    retained = item.get('retained_snapshot')
+                    if retained is not None:
+                        from .cif_dictionary_store import resolve_dictionary_snapshot
+                        prior = resolve_dictionary_snapshot(retained)['manifest']['request']['recipe']
+                        if 'rna_pucker_table' not in prior:
+                            continue
+                    from .cif_rna_pucker import available_pucker_pin
+                    pin = available_pucker_pin(item['generation']['installation_root'])
+                    _need(retained is None or pin == prior['rna_pucker_table'],
+                          'Retained RNA dictionary requires the same Phenix pucker table')
+                    if pin is not None:
+                        item['generation']['rna_pucker_table'] = pin
     _need(all(_read(p) == data for p,data in literal_originals),
           'Literal original PHIL changed during source freezing')
     # Each independently verified repair in a mixture has its own working proof.

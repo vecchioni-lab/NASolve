@@ -22,6 +22,12 @@ entries are reconstructed from repository history.
   the workbook. Reopening the complete request uses that copy for the pairing
   recipe when its fingerprint matches the original compiler record.
 
+- For source-backed internal RNA, ordinary dictionary acquisition can now verify
+  the source and candidate coordinates twice, with Phenix's normal RNA pucker
+  adjustment and with the literal dictionary. Each returned restraint must match
+  its selected numerical target. The recorded Phenix table and consumer identify
+  the cache entry. Earlier requests retain their original qualification rules.
+
 - Newly recorded `cif-doctor verify-pucker` comparisons keep the small native RNA
   target table with the literal read. `--replay` can reconstruct both coordinate
   seeds after relocation with the Phenix installation offline. An explicitly

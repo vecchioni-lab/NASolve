@@ -18,6 +18,7 @@ from .cif_terminal_qualification import _rows
 from .ligand_profiles import _blocks
 
 POLICY_ID = "observed-phenix-rna2p-targets-v1"
+PAIRED_USABILITY = "cif-isolated-native-and-literal-rna-usability-v1"
 _RESOURCE = "chem_data/geostd/rna_dna/mod_rna2p.cif"
 _TERMS = (
     ("bonds", "bond", 2, ("type", "value_dist", "value_dist_esd")),
@@ -96,6 +97,12 @@ def installed_pucker_table(installation_root):
     root=Path(installation_root).resolve(strict=True)
     table=_library(root)/_RESOURCE
     return table, _pin(table,root,source=True)
+
+
+def available_pucker_pin(installation_root):
+    root=Path(installation_root).resolve(strict=True)
+    path=_library(root)/_RESOURCE
+    return _pin(path,root,source=True) if path.is_file() else None
 
 
 def validate_table_pin(pin):
@@ -204,6 +211,10 @@ def verify_literal_pucker(default_job, literal_job, installation, *, _attempt_id
 
 def read_literal_pucker(default_job, literal_job, installation=None):
     """Reopen the four native reads. Older pairs require their selected Phenix installation."""
+    return _read_pair(default_job,literal_job,installation)[0]
+
+
+def _read_pair(default_job,literal_job,installation=None):
     root,literal=_separate_roots(default_job,literal_job)
     lp,_,_,_=_inputs(literal)
     pin=lp.get("literal_rna",{}).get("table")
@@ -216,7 +227,7 @@ def read_literal_pucker(default_job, literal_job, installation=None):
             verify_current_consumer(installation,installation.executables["phenix.ready_set"],lp["consumer"])
             _need(installed_pucker_table(installation.root)[1]==pin,"Current native pucker table differs")
         review=_review_default(root,literal/"inputs/rna2p.cif",pin)
-    return _paired_reads(root,literal,review)[0]
+    return _paired_reads(root,literal,review)
 
 
 def _paired_reads(root,literal,review):
@@ -241,3 +252,70 @@ def _paired_reads(root,literal,review):
             "literal_seeds":[s.stem for s in lmodels],"source_and_candidate_identical_across_jobs":True,
             "scope":"ISOLATED_COMPONENT_ONLY","linked_context":"NOT_RUN","automatic_adoption":False}
     return summary,strict
+
+
+def paired_acquisition_qualification(default,literal,pin):
+    """Build the isolated component result from all four underlying native jobs."""
+    review,strict=_read_pair(default,literal)
+    p,paths,_,_=_inputs(Path(literal))
+    from .cif_stereochemistry_audit import _graph
+    from .postmr_restoration import ribose_hydroxyl
+    source=_values(paths[0],p["component"])
+    _need([" ".join(t.upper().split()) for t in source.get("_chem_comp.type",())]==["RNA LINKING"],
+          "Paired RNA qualification requires source-declared linking RNA")
+    ribose_hydroxyl(_graph(source))
+    _need(p.get("literal_rna",{}).get("table")==pin and review["default_review"]["table"]==pin,
+          "Paired native readings used another RNA table")
+    q=dict(strict["qualification"],policy_id=PAIRED_USABILITY,paired_rna={
+        "default":review["default_review"],"literal_report":review["literal_report"],
+        "literal_seeds":[{"seed":s,"native_receipt":r} for s,r in zip(review["literal_seeds"],strict["native_receipts"])],
+        "consumer_sha256":_digest(p["consumer"])})
+    return q
+
+
+def validate_paired_qualification(q,*,source_sha256,candidate_sha256,code,consumer=None,table=None):
+    """Bind the compact snapshot to both seeds, both conditions and the numerical table."""
+    pair=q.get("paired_rna")
+    _need(isinstance(pair,dict) and set(pair)=={"default","literal_report","literal_seeds","consumer_sha256"},
+          "Require both independent RNA readouts")
+    review=pair["default"]
+    _need(isinstance(review,dict) and review.get("policy_id")==POLICY_ID
+          and review.get("status")=="ADJUSTED_TARGETS_EXPLAINED" and review.get("modifier")=="rna2p"
+          and review.get("component")==code and review.get("scope")=="ISOLATED_COMPONENT_ONLY"
+          and review.get("same_covalent_proxies") is True and review.get("automatic_adoption") is False
+          and q.get("literal_rna")=={"default_review_sha256":_digest(review),"table":review.get("table")}
+          and _hash(pair["consumer_sha256"]), "Incomplete native RNA evidence or original basis")
+    pin=review["table"]
+    validate_table_pin(pin)
+    _need(table is None or table==pin,"Stored native RNA table differs from the requested one")
+    _need(consumer is None or (_digest(consumer)==pair["consumer_sha256"] and consumer["version"]==review.get("phenix_version")),
+          "Stored RNA evidence belongs to another native consumer")
+    def reference(ref,path):
+        return (isinstance(ref,dict) and set(ref)=={"anchor","path","sha256","size"} and
+                ref["anchor"]=="qualification_directory" and ref["path"]==path and _hash(ref["sha256"])
+                and type(ref["size"]) is int and ref["size"]>0)
+    for label,digest in (("source",source_sha256),("candidate",candidate_sha256)):
+        ref=review.get(label)
+        _need(reference(ref,"inputs/"+label+"/"+label+".cif") and ref["sha256"]==digest,
+              "Native RNA review used another component dictionary")
+    counts=review.get("matched_rows")
+    _need(isinstance(counts,dict) and set(counts)=={"bonds","angles","torsions"}
+          and all(type(n) is int and n>0 for n in counts.values()),"Missing native RNA numerical changes")
+    default,literal=review.get("seeds"),pair["literal_seeds"]
+    _need(reference(pair["literal_report"],"qualification_execution.json"),"Require the sealed literal RNA readout")
+    hashes=[]
+    for records in (default,literal):
+        _need(isinstance(records,list) and len(records)==2 and all(isinstance(r,dict) for r in records)
+              and [r.get("seed") for r in records]==["source","candidate"],"Require both RNA coordinate seeds")
+        for i,row in enumerate(records):
+            ref=row.get("native_receipt")
+            name=ref.get("path") if isinstance(ref,dict) else None
+            _need(_safe(name) and len(name.split("/"))==4 and name.startswith(f"native/{i:03d}/")
+                  and name.endswith("/native_receipt.json") and reference(ref,name),
+                  "Incomplete native RNA coordinate-seed receipt")
+            hashes.append(ref["sha256"])
+    _need(len(set(hashes))==4 and all(isinstance(r.get("literal_checks_failed"),list) and r["literal_checks_failed"]
+          and set(r["literal_checks_failed"])<={"exact_effective_definitions","effective_declared_bond_orders",
+              "exact_active_bonds","exact_active_angles","exact_active_torsions"}
+          and r.get("adjusted_checks_failed")==[] for r in default),
+          "Unexplained native RNA difference or duplicate seed evidence")

@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 26 November 2026, after C608. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 26 November 2026, after C609. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -1084,6 +1084,16 @@ matched C606 byte for byte. This tests compatibility with the normal linked chem
 on this scaffold. The three substitutions have no separate measured diffraction.
 A new isolated comparison archives the installed pucker table with its hash. The
 original two-directory comparisons can still be checked with their selected Phenix.
+
+C609 moved the two native and two literal coordinate reads under the ordinary
+acquisition owner. Both 2MG and 5MC acquired usable isolated dictionaries. For 6MZ,
+the supported fresh atom-order recovery preserved the 42 source bonds. A single
+whole-model request then consumed all three without starting another isolated job.
+The 2MG acquisition reopened from 115 distinct local files with its original tree,
+store and Phenix installation unavailable. A same-size change to the frozen table
+was rejected. The linked comparison still needs to account for the normal pucker
+and to distinguish a real heavy-atom plane from a definition left with only three
+coordinate atoms.
 
 C601 found the source-preserving generator had introduced a 5.779 Å bond between
 O4′ and ring C2. All 42 source edges were present. The ten bonds of the purine

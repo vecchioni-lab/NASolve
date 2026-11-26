@@ -192,3 +192,43 @@ def test_only_legacy_pairs_fall_back_to_the_selected_installation(tmp_path,monke
     monkeypatch.setattr(p,"read_literal_pucker",corrupt)
     monkeypatch.setattr(cli,"discover_phenix",lambda *a:pytest.fail("must preserve the archived failure"))
     assert cli.main(args)==1
+
+
+@pytest.mark.parametrize("defect",["none","foreign-table","other-consumer","missing-seed","same-native","other-source","different-default","wrong-site-control"])
+def test_stored_rna_proof_requires_two_independent_reads_in_each_condition(defect):
+    from hashlib import sha256
+    from nasolve.cif_dictionary_store import _digest
+    from nasolve.cif_rna_pucker import POLICY_ID,validate_paired_qualification
+    h=lambda s:sha256(s.encode()).hexdigest()
+    def ref(path,label):
+        return dict(anchor="qualification_directory",path=path,sha256=h(label),size=50)
+    def seeds(condition):
+        return [dict(seed=s,native_receipt=ref("native/%03d/reading/native_receipt.json"%i,condition+s))
+                for i,s in enumerate(("source","candidate"))]
+    ds,ls=seeds("default"),seeds("literal")
+    for row in ds:
+        row.update(literal_checks_failed=["exact_active_angles"],adjusted_checks_failed=[])
+    consumer=dict(version="TEST",name="Phenix/CCTBX")
+    pin=dict(anchor="phenix_installation",size=90,sha256=h("pucker"),
+             path="lib/python3/site-packages/chem_data/geostd/rna_dna/mod_rna2p.cif")
+    review=dict(policy_id=POLICY_ID,status="ADJUSTED_TARGETS_EXPLAINED",modifier="rna2p",component="XYZ",
+                scope="ISOLATED_COMPONENT_ONLY",phenix_version="TEST",same_covalent_proxies=True,automatic_adoption=False,
+                table=pin,seeds=ds,matched_rows=dict(bonds=2,angles=3,torsions=1),
+                source=ref("inputs/source/source.cif","source"),candidate=ref("inputs/candidate/candidate.cif","candidate"))
+    q=dict(literal_rna=dict(default_review_sha256=_digest(review),table=pin),
+           paired_rna=dict(default=review,literal_seeds=ls,literal_report=ref("qualification_execution.json","literal report"),
+                           consumer_sha256=_digest(consumer)))
+    args=dict(code="XYZ",source_sha256=h("source"),candidate_sha256=h("candidate"),consumer=consumer,table=pin)
+    if defect=="foreign-table":args["table"]=dict(pin,sha256=h("next build"))
+    if defect=="other-consumer":args["consumer"]=dict(consumer,version="other")
+    if defect=="missing-seed":ls.pop()
+    if defect=="same-native":ls[0]["native_receipt"]["sha256"]=ds[0]["native_receipt"]["sha256"]
+    if defect=="other-source":args["source_sha256"]=h("changed")
+    if defect=="different-default":q["literal_rna"]["default_review_sha256"]=h("different basis")
+    if defect=="wrong-site-control":
+        ds[0]["literal_checks_failed"]=["exact_active_planes"]
+        q["literal_rna"]["default_review_sha256"]=_digest(review)
+    if defect=="none":
+        validate_paired_qualification(q,**args)
+    else:
+        with pytest.raises(ValueError):validate_paired_qualification(q,**args)

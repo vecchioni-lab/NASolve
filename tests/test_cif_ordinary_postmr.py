@@ -132,7 +132,7 @@ def test_source_selection_reads_frozen_component_before_binding_generation(tmp_p
 
     def freeze(model, report, components, source_output, output, **kwargs):
         assert kwargs["select_anionic_phosphate"] is True
-        assert kwargs["source_ribose_workbook"].is_file()
+        assert kwargs["source_ribose_workbook"].is_file() and kwargs['select_native_rna_pucker'] is True
         assert components == [dict(code="DE", generation=selected["DE"])]
         return {"synthetic": True}
 

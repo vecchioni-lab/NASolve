@@ -33,6 +33,10 @@ _PHIL = b'pdb_interpretation {\n secondary_structure.enabled = False\n}\n'
 _SEEDS = ('source', 'candidate')
 
 
+class CandidateNativeTargetMismatch(ValueError):
+    """Both seed jobs returned, and their native chemistry did not pass every check."""
+
+
 class CandidateQualificationBudgetExceeded(TimeoutError):
     """No allowance remains; partial evidence grants no usable qualification."""
 
@@ -137,7 +141,8 @@ def _derive(root, refs, state):
             failures.append(f'{_SEEDS[i]}: {failed}')
         else:
             qualifications.append(q);signatures.append(covalent_proxy_signature(native))
-    _need(not failures, 'Independent coordinate seed is not natively usable: ' + '; '.join(failures))
+    if failures:
+        raise CandidateNativeTargetMismatch('Independent coordinate seed is not natively usable: ' + '; '.join(failures))
     _need(signatures[0]==signatures[1], 'Covalent proxy signatures differ between coordinate seeds')
     return dict(qualification=qualifications[0],seed_qualifications=qualifications,same_covalent_proxies=True)
 
