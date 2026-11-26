@@ -29,12 +29,12 @@ ten designed hydrogen-bond selections on the separate CCD monomers.
 Pseudouridine showed how pairing can be correct while the declared sugar
 attachment is wrong. The optional role cross-check identifies the ring C5
 attachment without admitting the sugar for construction. The full panel stopped
-during planning. C593 followed the fault to NARestraints. Its proposed workbook
+during planning. C593 followed the fault to NARestraints. Its published v1.1.4 workbook
 and loader give C1′–C5 for four pseudouridines. Phenix read the same ten intended
 pair bonds. Coot left C:12 as DG when asked for an RNA G parent. An isolated D:4
 phosphorothioate carried an extra OP3 and failed ordinary phosphate preparation.
 Follow the separate RNA-parent and sulfur-linkage work in the Q07 queue.
-[NARestraints correction](https://github.com/vecchioni-lab/NARestraints/pull/6).
+[Release and tested installation](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.4).
 
 
 ## What already works

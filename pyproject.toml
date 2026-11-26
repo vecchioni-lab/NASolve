@@ -9,7 +9,8 @@ description = "Guarded automated structure solution for nucleic-acid crystallogr
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-  "NARestraints @ git+https://github.com/vecchioni-lab/NARestraints.git@v1.1.3",
+  "NARestraints @ https://github.com/vecchioni-lab/NARestraints/releases/latest/download/narestraints.tar.gz",
+  "packaging>=21",
   "tomli>=2; python_version < '3.11'",
 ]
 

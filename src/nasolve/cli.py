@@ -123,7 +123,8 @@ def build_parser() -> argparse.ArgumentParser:
     campaign_retry.add_argument("root", nargs="?", type=Path, default=Path("."), help="campaign parent directory")
     campaign_retry.add_argument("--dataset", required=True, action="append", help="one exact planned dataset name")
     campaign_retry.add_argument("--json", action="store_true", help="print structured status")
-    subparsers.add_parser("check", help="validate NASolve's runtime without solving a structure")
+    check = subparsers.add_parser("check", help="validate NASolve's runtime without solving a structure")
+    check.add_argument("--offline", action="store_true", help="check the installed tools without contacting GitHub")
     automr = subparsers.add_parser(
         "automr", help="validate and freeze molecular-replacement inputs"
     )
@@ -905,10 +906,13 @@ def _configure_coot(path: str | None) -> int:
     return 0
 
 
-def _check(explicit: str | None) -> int:
+def _check(explicit: str | None, *, offline: bool = False) -> int:
     print(f"Python {sys.version.split()[0]}: OK")
     na_version = _narestraints_version()
     print(f"NARestraints {na_version}: " + ("OK" if na_version != "not installed" else "MISSING"))
+    if not offline:
+        from .narestraints_release import release_status
+        print(release_status(na_version))
     try:
         config = load_config()
         installation = discover_phenix(config, explicit=explicit)
@@ -2593,7 +2597,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "campaign":
         return _campaign(args)
     if args.command == "check":
-        return _check(args.phenix_root)
+        return _check(args.phenix_root, offline=args.offline)
     if args.command == "automr":
         return _automr(args)
     if args.command == "postmr":

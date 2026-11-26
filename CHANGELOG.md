@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- Diagnostic runners assembled from a wheel installation verify the captured
+  NARestraints package against its installed file record. A virtual environment
+  inside another repository can no longer give the runner the wrong Git revision.
+
+- New installations use the latest stable NARestraints GitHub release. `nasolve check`
+  compares the installed and published versions and offers an upgrade command.
+  `nasolve check --offline` checks the local tools without a network request.
+
 - When Coot exits without producing a PostMR model, NASolve reports the
   requested and observed residue at the failed site when the native transcript
   supplies them. The retained Coot log remains available for inspection.

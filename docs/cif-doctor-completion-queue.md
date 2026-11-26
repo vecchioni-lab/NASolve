@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 26 November 2026, after C593. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 26 November 2026, after C595. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -43,7 +43,7 @@ The next transfer check examines the locked-sugar contacts on a separate mixed s
    including a second partner at the same atom. Check the existing mixed-scaffold
    evidence described below. The eight-residue design and its sulfur side are now fixed.
    Next qualify a real RNA parent on the DNA scaffold and a source-backed internal
-   sulfur linkage. The four pseudouridine attachment corrections are upstream for review. Record what was constructed, what Phenix kept after
+   sulfur linkage. The four pseudouridine attachment corrections ship in NARestraints 1.1.4. Record what was constructed, what Phenix kept after
    refinement, and which sites require review. The known 13-change scaffold and the
    unfamiliar panel answer different questions. [Mixed-scaffold criteria](#q07--one-mixed-scaffold-ordinary-acceptance-run).
 3. **Join the branches on a returned molecule.** Willow/Pine owns strand identity, residue
@@ -963,6 +963,20 @@ the missing OP2 and produced no prepared model. Retain that check. A valid
 return needs the sulfur on the specified side, the linked charge and leaving
 group, and acceptable flank geometry. The neutral isolated AS dictionary alone
 does not establish those facts. Neither control reached diffraction refinement.
+
+C594 now reports the requested and returned residue when Coot's own script
+sees an identity mismatch. An independent C:12-only control gave RNA G
+requested and DG returned. The raw sulfur control and ordinary preparation
+refusal remain separate. In the C105 archive, 31 of 596 checked component
+sources contain a P–S bond. Of those, 22 contain one terminal sulfur, six
+two terminal sulfurs and three a sulfur bridge. Another 44 contain sulfur
+without a P–S bond. Qualify each source and the intended side of the bond.
+Typical phosphodiester OP2 rules cannot select a phosphorothioate configuration.
+
+C595 uses the published NARestraints workbook and loader together. A fresh
+Cedar installation follows the latest stable package. The environment check
+can compare versions or run offline. Numbered release archives and workbook
+fingerprints remain available for historical replay. [NARestraints v1.1.4](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.4).
 
 After the qualified Q06 consumer is available, add a separate builder generalization
 control before the proposed Cedar integration with main. Mutate **eight residues** into
