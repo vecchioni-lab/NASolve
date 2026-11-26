@@ -20,6 +20,11 @@ entries are reconstructed from repository history.
   output when `restraint_scope = all`. The saved request binds the original model,
   compiled restraints and sources through the existing compiler receipt.
 
+- Before refinement, the ordinary ReadySet check compares a generated plane with
+  the source atom connections and stereochemistry. It requests a fresh dictionary
+  when a plane pulls a handed carbon and three bonded neighbors together as tightly
+  as their bond restraints. `nasolve cif-doctor compare` also reports looser cases.
+
 - When an isolated component fails native checking, the diagnostic lists the
   affected coordinate seeds, failed checks and any recorded Phenix modifications.
 

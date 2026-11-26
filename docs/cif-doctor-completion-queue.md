@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 26 November 2026, after C601. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 26 November 2026, after C602. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -1010,6 +1010,15 @@ nine atoms, including four sugar stereocentres, under a common plane. That plane
 was active in the final Phenix geometry file. The starting 6MZ methyl already
 pointed away from its Watson–Crick partner. These are hypothetical substitutions
 in an existing dataset.
+
+C602 compared each effective plane with the same component's frozen source.
+A four-single-bond carbon with a declared R or S hand needs three independently
+mapped heavy neighbors in that plane for this warning. Ordinary PostMR quarantines
+the generated component when all four plane widths are as tight as the three
+bond widths. Wider planes stay visible for review. Replaying ReadySet's three-site
+return identified C1′, C2′, C3′ and C4′ of 6MZ, each under a 0.020 Å plane.
+The existing source-derived replacement passed this check. This is a check on
+restraint targets. Returned coordinates are measured separately.
 
 C601 found the source-preserving generator had introduced a 5.779 Å bond between
 O4′ and ring C2. All 42 source edges were present. The ten bonds of the purine

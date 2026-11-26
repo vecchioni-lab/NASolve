@@ -162,3 +162,98 @@ def test_usable_generated_generic_component_never_writes_failure_receipt(tmp_pat
     _require_generic_parameterization({"VWX": {"parameterized": False}}, generated,
                                       tmp_path / "ready_set.log", failure_report=failure)
     assert not failure.exists()
+
+
+def _source_plane_case(tmp_path, *, code="XYZ", hand="R", variant=None):
+    from tests.test_cif_stereochemistry_audit import tetrahedron, write
+    source, candidate = tetrahedron(code)
+    atom, bond, plane = "_chem_comp_atom.", "_chem_comp_bond.", "_chem_comp_plane_atom."
+    source[atom + "pdbx_stereo_config"][0] = hand
+    candidate[atom + "type_energy"] = list(candidate[atom + "type_symbol"])
+    candidate[bond + "value_dist"] = ["1.5"] * 4
+    candidate[bond + "value_dist_esd"] = ["0.02"] * 4
+    members = ["CTR", "C", "N", "O"]
+    if variant == "two-heavy-neighbors":
+        members[3] = "H"
+    elif variant == "missing-centre":
+        members[0] = "H"
+    elif variant == "changed-element":
+        candidate[atom + "type_symbol"][1] = "S"
+    elif variant == "disconnected-neighbor":
+        candidate[bond + "atom_id_1"][0] = "H"
+    elif variant == "non-carbon":
+        source[atom + "type_symbol"][0] = candidate[atom + "type_symbol"][0] = "P"
+    elif variant == "unsaturated-source":
+        source[bond + "value_order"][0] = "DOUB"
+    elif variant == "source-aromatic-flag":
+        source[bond + "pdbx_aromatic_flag"] = ["Y", "N", "N", "N"]
+    elif variant == "missing-effective-H":
+        for key in tuple(candidate):
+            if key.startswith((atom, bond)):
+                candidate[key] = candidate[key][:-1]
+    candidate[plane + "comp_id"] = [code] * 4
+    candidate[plane + "plane_id"] = ["p"] * 4
+    candidate[plane + "atom_id"] = members
+    central_esd = {"missing-esd": "?", "weak-plane": "1.0"}.get(variant, "0.02")
+    candidate[plane + "dist_esd"] = [central_esd,
+                                    "0.02", "0.02", "0.02"]
+    return write(tmp_path / "source.cif", source), write(tmp_path / "candidate.cif", candidate)
+
+
+@pytest.mark.parametrize("code,hand,variant", [("XYZ","R",None),("Z89","S","missing-effective-H")])
+def test_generated_plane_conflicting_with_source_hand_is_caught_before_refinement(tmp_path, code, hand, variant):
+    from nasolve.cif_doctor import assess_dictionaries, compare_dictionaries
+    source, effective = _source_plane_case(tmp_path, code=code, hand=hand, variant=variant)
+    receipt = tmp_path / "failure.json"
+    inputs = [p.read_bytes() for p in (source, effective)]
+    source_components = assess_dictionaries([source])["components"]
+    with pytest.raises(PostMRPreparationError, match="tetrahedral CTR"):
+        _require_generic_parameterization({code: {"parameterized": False}}, effective,
+            tmp_path / "ready_set.log", failure_report=receipt, source_components=source_components)
+    conflict = _receipt(receipt)["affected_components"][0]["reasons"][0]
+    assert conflict["code"] == "plane-through-source-stereocentre"
+    assert conflict["measurements"]["bonded_heavy_neighbors"] == ["C", "N", "O"]
+    assert conflict["measurements"]["source_hand"] == hand
+    assert conflict["measurements"]["source_definition_sha256"] == source_components[0]["definition_sha256"]
+    assert conflict["measurements"]["effective_definition_sha256"] != conflict["measurements"]["source_definition_sha256"]
+    new = compare_dictionaries([source], [effective], compare_stereo_planes=True)
+    assert conflict in new["findings"]
+    assert all(f["code"] != conflict["code"] for f in compare_dictionaries([source],[effective])["findings"])
+    assert [p.read_bytes() for p in (source, effective)] == inputs
+
+
+@pytest.mark.parametrize("hand,variant", [("R","two-heavy-neighbors"),("R","missing-centre"),
+    ("R","missing-esd"),("N",None),("R","non-carbon"),("S","changed-element"),
+    ("R","disconnected-neighbor"),("S","unsaturated-source"),("R","source-aromatic-flag")])
+def test_source_plane_check_requires_matching_local_evidence(tmp_path, hand, variant):
+    from nasolve.cif_doctor import compare_dictionaries
+    source, effective = _source_plane_case(tmp_path, hand=hand, variant=variant)
+    report = compare_dictionaries([source], [effective], compare_stereo_planes=True)
+    assert all(f["code"] != "plane-through-source-stereocentre" for f in report["findings"])
+
+
+def test_loose_plane_is_reported_without_quarantining_the_generated_dictionary(tmp_path):
+    from nasolve.cif_doctor import assess_dictionaries, compare_dictionaries
+    source, effective = _source_plane_case(tmp_path, variant="weak-plane")
+    report = compare_dictionaries([source], [effective], compare_stereo_planes=True)
+    conflicts = [f for f in report["findings"] if f["code"] == "plane-through-source-stereocentre"]
+    assert len(conflicts) == 1
+    assert conflicts[0]["measurements"]["plane_as_tight_as_local_bonds"] is False
+    _require_generic_parameterization({"XYZ": {"parameterized": False}}, effective,
+        tmp_path / "ready_set.log", source_components=assess_dictionaries([source])["components"])
+
+
+def test_compare_cli_shows_plane_finding_for_both_dictionary_inputs(tmp_path, capsys):
+    from nasolve.cli import main
+    source, effective = _source_plane_case(tmp_path)
+    assert main(["cif-doctor", "compare", str(source), str(effective)]) == 2
+    assert "Plane p restrains source tetrahedral CTR" in capsys.readouterr().out
+
+
+def test_conflicting_sources_are_not_used_to_call_a_tetrahedral_plane(tmp_path):
+    from nasolve.cif_doctor import compare_dictionaries
+    source, effective = _source_plane_case(tmp_path / "first", hand="R")
+    other, _ = _source_plane_case(tmp_path / "second", hand="S")
+    report = compare_dictionaries([source, other], [effective], compare_stereo_planes=True)
+    assert "ambiguous-comparison-definition" in {f["code"] for f in report["findings"]}
+    assert all(f["code"] != "plane-through-source-stereocentre" for f in report["findings"])

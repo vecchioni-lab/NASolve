@@ -2296,7 +2296,7 @@ def _cif_doctor(args: argparse.Namespace) -> int:
 
             source = args.source.expanduser().resolve()
             candidate = args.candidate.expanduser().resolve()
-            payload = compare_dictionaries([source], [candidate])
+            payload = compare_dictionaries([source], [candidate], compare_stereo_planes=True)
             root = Path(os.path.commonpath([str(source.parent), str(candidate.parent)]))
             for key, path in (("source_assessment", source), ("effective_assessment", candidate)):
                 payload[key]["inputs"][0].update({
