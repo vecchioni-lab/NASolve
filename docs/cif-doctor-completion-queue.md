@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 26 November 2026, after C599. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 26 November 2026, after C600. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -995,7 +995,30 @@ bound the 50 pair bonds, 86 angles and 57 parallelity restraints. The two isolat
 2MG models both received Phenix’s native `rna2p` sugar adjustment. Native
 interpretation finished, but the isolated exact-target check stopped. Inspect the
 installed sugar targets and their active restraints before advancing. The other
-five sites and diffraction refinement still need their own evidence.
+five sites still need their own evidence.
+
+C600 compared the same three sites through conventional native Phenix. ReadySet
+used its installed 2MG and 5MC entries and wrote a dictionary for 6MZ. The
+ordinary generic preparation correctly recorded the two absent output CIFs. A
+separate one-cycle coordinate refinement using those named installed entries,
+the 6MZ output and the full compiled restraints returned all 859 atoms and the
+original hand of all twelve sugar centres. The six links ended at 1.561–1.607 Å.
+The B:5 6MZ base rotated 38.6° and one Watson–Crick distance opened to 4.128 Å.
+The closest C:12 2MG pair contact shortened to 2.215 Å. Neither result is a
+qualified pair. ReadySet called the 6MZ C4′–C3′ sugar bond aromatic and put
+nine atoms, including four sugar stereocentres, under a common plane. That plane
+was active in the final Phenix geometry file. The starting 6MZ methyl already
+pointed away from its Watson–Crick partner. Compare the frozen source-preserving
+6MZ dictionary on the same coordinates and reflections before adjusting the
+pose. These are hypothetical substitutions in an existing dataset.
+
+In both isolated 2MG coordinate seeds, all exact candidate checks passed when
+only the coordinate-dependent pucker adjustment was disabled. With the usual
+Phenix 2.2.1-6174 settings, the 11 bond, 18 angle and two torsion changes matched
+its installed `rna2p` table. The four chirality signs and base plane were retained.
+Phenix describes those 11 bonds as generic covalent. Preserve the literal source
+bond orders, check the separately observed native adjustment, and keep the
+ordinary linked-model and refinement checks in place.
 
 After the qualified Q06 consumer is available, add a separate builder generalization
 control before the proposed Cedar integration with main. Mutate **eight residues** into

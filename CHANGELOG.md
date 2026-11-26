@@ -20,6 +20,9 @@ entries are reconstructed from repository history.
   output when `restraint_scope = all`. The saved request binds the original model,
   compiled restraints and sources through the existing compiler receipt.
 
+- When an isolated component fails native checking, the diagnostic lists the
+  affected coordinate seeds, failed checks and any recorded Phenix modifications.
+
 - Diagnostic runners assembled from a wheel installation verify the captured
   NARestraints package against its installed file record. A virtual environment
   inside another repository can no longer give the runner the wrong Git revision.

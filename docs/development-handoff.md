@@ -42,8 +42,15 @@ whole-model pairing/stacking file was already compiled. C599 bound the genuine
 compiler receipt to the normal request on a second fresh solution. Its 50 pair
 bonds, 86 angles and 57 parallelity restraints reached checked preparation.
 Both isolated 2MG seeds then triggered Phenix’s RNA sugar-pucker adjustment.
-Their exact dictionary checks stopped before diffraction refinement. Check the
-installed sugar targets against those two native readings. The sulfur linkage
+Both isolated models matched the unmodified dictionary with the native pucker
+adjustment switched off for that comparison. C600 accounted for the adjusted
+targets from the installed Phenix table. A separate conventional one-cycle
+refinement preserved all twelve sugar hands. The B:5 6MZ pair opened to 4.128 Å
+at one contact, while one C:12 2MG contact closed to 2.215 Å. The checked route
+still requires distinct evidence for the literal chemistry and native adjustment.
+The conventional 6MZ output put its sugar under a nine-atom plane and declared
+an aromatic sugar bond. Test the existing source-preserving constructor on this
+case before inventing a new repair. The sulfur linkage
 remains a separate chemical state. The [Q12 workbook sweep](cif-doctor-completion-queue.md#q12--resolve-catalogue-mappings-and-maintain-support-coverage)
 follows the eight-site challenge.
 [Release and tested installation](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.4).

@@ -77,7 +77,7 @@ def _inputs(root):
 def _derive(root, refs, state):
     p,paths,models,phil=_inputs(root)
     _need(isinstance(refs,list) and len(refs)==2, 'Require both independent native captures')
-    qualifications=[];signatures=[]
+    qualifications=[];signatures=[];failures=[]
     for i,(ref,model) in enumerate(zip(refs,models)):
         receipt=_resolve(root,ref);phase=f'native-{i:03d}'
         _need(receipt.name=='native_receipt.json' and receipt.parent.parent==root/'native'/f'{i:03d}', 'Native capture belongs to another phase')
@@ -94,8 +94,16 @@ def _derive(root, refs, state):
         _need(capture['execution']['timeout_seconds']==job['timeout_seconds'], 'Native deadline differs from its owned intent')
         _need(set(_tree(receipt.parent))=={'native_receipt.json'}|{r['path'] for r in capture['outputs']}, 'Native capture inventory differs')
         q=qualify_candidate_native(*paths,model,p['component'],native,bond_representation_policy=p['bond_representation_policy'])
-        _need(q['native_usable'] is True, 'Independent coordinate seed is not natively usable')
-        qualifications.append(q);signatures.append(covalent_proxy_signature(native))
+        if q['native_usable'] is not True:
+            failed = ', '.join(name for name, passed in q['checks'].items() if not passed)
+            rows = native.get('monomer_mappings', {}).get('rows', [])
+            mods = rows[0].get('chem_mod_ids') if len(rows) == 1 else None
+            if isinstance(mods, dict) and mods.get('status') == 'RECORDED' and mods.get('ids'):
+                failed += ' (Phenix modifications: ' + ', '.join(map(str, mods['ids'])) + ')'
+            failures.append(f'{_SEEDS[i]}: {failed}')
+        else:
+            qualifications.append(q);signatures.append(covalent_proxy_signature(native))
+    _need(not failures, 'Independent coordinate seed is not natively usable: ' + '; '.join(failures))
     _need(signatures[0]==signatures[1], 'Covalent proxy signatures differ between coordinate seeds')
     return dict(qualification=qualifications[0],seed_qualifications=qualifications,same_covalent_proxies=True)
 

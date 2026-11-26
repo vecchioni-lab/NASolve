@@ -106,6 +106,22 @@ def test_each_seed_must_be_independently_usable(case,monkeypatch,seed):
     assert not (args[-1]/m.REPORT).exists()
 
 
+def test_unusable_seeds_identify_failed_measurements_and_native_modifications(case):
+    m, args, calls, native = case
+    native["geometry"]["proxy_details"]["bond_simple"][0]["distance_ideal"] = 9.0
+    native["monomer_mappings"]["rows"][0]["chem_mod_ids"] = {
+        "status": "RECORDED", "ids": ["rna2p"],
+    }
+    with pytest.raises(ValueError) as error:
+        m.execute_candidate_qualification(*args)
+
+    message = str(error.value)
+    for seed in ("source", "candidate"):
+        assert f"{seed}: exact_active_bonds (Phenix modifications: rna2p)" in message
+    assert len(calls) == 2
+    assert not (args[-1] / m.REPORT).exists()
+
+
 def test_two_usable_seeds_with_different_proxy_identity_are_refused(case,monkeypatch):
     m,args,calls,native=case;capture=m.inspect_native_bundle
     def run(*a,**k):
