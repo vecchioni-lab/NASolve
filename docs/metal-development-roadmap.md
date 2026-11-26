@@ -97,7 +97,10 @@ Only two next decisions govern the near-term work:
 2. **Admit the endpoint through the existing owners before quantitative fan-out.**
    Receive the prepared-parent and numbered-runtime interfaces deliberately,
    connect the now-qualified explicit parent binding to numbered mixed execution,
-   and close the output lineage. Do not invent ordinary ancestry for the private
+   and close the output lineage. The explicit post-exit receiver now checks the
+   exact returned native state and unchanged parent sources; synchronized written
+   model and process closure must still come from the existing owners. Do not
+   invent ordinary ancestry for the private
    FT control or treat the genuine PDU example without HL as phased FT admission.
    Once the geometry is scientifically qualified, derive metal B from refined
    base-only/donor atoms (exclude sugar/backbone; retain between-base mismatch),

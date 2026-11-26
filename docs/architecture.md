@@ -82,6 +82,12 @@ and does not change ordinary defaults. The maintained execution owner still owns
 exact policy dispatch, chemistry/image forces, written output and process closure.
 See the [explicit receiving API](metal-ordinary-receiving.md#explicit-ordinary-parent-binding--26-november).
 
+The bound parent's `observe_return` method additionally observes the exact driver
+and full-precision state after guard restoration, with unchanged original inputs
+and diffraction/witness checks. Its separate compact return receipt does not
+adopt a checkpoint or replace the native written-model/process owners. Permitted
+optimization freedom never becomes permission for post-completion state changes.
+
 Historical counted V5–V8 code preparation now obtains `topostitch_native_recipe.py`
 from `data/refinement-runtime-native-recipe-sources.json`, retaining its already
 qualified SHA-256. Modern direct callers retain the newer explicit native-crystal

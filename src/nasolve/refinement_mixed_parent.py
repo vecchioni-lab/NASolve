@@ -186,6 +186,15 @@ class BoundMixedParent:
         self._recheck()
         return _ParentGuard(self)
 
+    def observe_return(self, driver, *, guard):
+        """Observe the exact returned state after guard exit, without adoption.
+
+        Written model and process closure remain with the existing numbered
+        owner; this does not turn a dry initialization into a refined endpoint.
+        """
+        from .refinement_mixed_return import observe_return
+        return observe_return(self, driver, guard=guard)
+
 
 class _ParentGuard(MixedRuntimeGuard):
     """Reuse the runtime lifecycle; add admitted source identity/crystal checks."""

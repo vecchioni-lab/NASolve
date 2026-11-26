@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Observe the exact mixed return after guard restoration
+
+- Add an explicit post-exit receiving method that requires the same completed
+  parent-bound guard/driver, exact final state and unchanged original sources.
+  Reuse the source/target/normalization checks without changing returned values.
+- Keep serialized-model, stopped-process and checkpoint adoption with existing
+  owners. Qualify controlled native-array transfers; no new refinement, default,
+  historical receipt migration or scientific acceptance.
+
 ### Bind an explicit ordinary parent to the mixed-refinement guard
 
 - Add an opt-in checksummed Python receiving request that binds ordinary ancestry,

@@ -27,6 +27,15 @@ and cache-retirement evidence: `branch-artifacts/Alder/docs-audit-20261126-01/`.
 
 ## A01 ordinary-parent receiving — evening 26 November
 
+The follow-on [post-exit observation](metal-ordinary-receiving.md#post-exit-returned-state-observation)
+now requires the exact finished/restored guard, exact driver/final atomic digest,
+unchanged source ancestry and the existing original/witnessed diffraction state.
+Nine focused native cases pass; no files/model/guard receipt are changed. The
+controlled ordinary transfer still is not a real FT parent or written-output/
+process proof. Use the existing writer and numbered process owners next.
+Evidence: `branch-artifacts/Alder/a01-mixed-return-20261126-01/`;
+checkout: `ScienceCheckouts/Hazel/2026-11-26_metal-intake/returned-state.html`.
+
 The explicit [ordinary-parent binding](metal-ordinary-receiving.md#explicit-ordinary-parent-binding--26-november)
 now connects a checksummed ordinary checkpoint and separately declared child
 policy/scope to the existing mixed guard. It independently reads original

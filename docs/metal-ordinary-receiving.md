@@ -76,6 +76,44 @@ and bookmark fixture, and the host build-backend failure. Native checks use the
 established supplemental pure-Python site directory with native Gemmi loaded first;
 wheel build uses existing native setuptools 84.0.0. No dependency was installed.
 
+### Post-exit returned-state observation
+
+`bound.observe_return(driver, guard=guard)` now checks the call-local return
+**after** the exact parent-bound guard has completed and restored its callbacks.
+The driver must be the same object observed by that guard, in the same process.
+Current source files/ordinary ancestry, native callback/source integrity, execution
+mode and compiled parameter permissions are checked again. The complete returned
+atomic state must equal the guard's final digest exactly; permission to move XYZ/B
+during optimization does not authorize movement after completion. Existing source,
+Free-R/HL, target-crystal and optional normalization-witness checks remain active.
+No observer counters, model values, files or historical guard receipt are changed.
+
+The compact schema-1 `ordinary-mixed-return-observation-v1` receipt says
+`OBSERVED_NOT_ADOPTED`. It links the parent request/sources, child policy digest,
+guard digest, exact native state and diffraction observation. It explicitly leaves
+**written output and process closure to their existing owners**. Reuse Cedar's
+`WrittenModelObservation` / `validate_written_model` and the numbered execution
+owner for those proofs; do not discover a candidate PDB by filename or interpret
+this in-memory observation as serialized output or a selected checkpoint.
+Willow's coordinate-only, held-B/Q return checker is not relaxed for mixed B work.
+
+Nine new focused native-library cases pass, including a controlled explicit
+normalization callback, rejection of post-exit XYZ/B/HL/flag changes, different
+parent/driver, unfinished/failed guards, changed callbacks and altered source
+files. Eight initial cases fail before the new API exists. The first integration
+run also passes the 20 parent cases (28 total); the added normalization case then
+passes in the nine-case return module. The same nine cases pass from a relocated installed wheel after removal of its
+temporary source copy; 38 host checks pass with nine native-only skips. Disposable
+build/install files are removed after verification. These are synthetic ordinary metadata, tiny real
+MTZ arrays and a controlled dispatcher, **not an external native fit** or genuine
+FT child. The original FT source equivalence remains a separate earlier result.
+
+Evidence/commands: `branch-artifacts/Alder/a01-mixed-return-20261126-01/`, method
+A851. Checkout: `ScienceCheckouts/Hazel/2026-11-26_metal-intake/returned-state.html`.
+A01 remains partial; the next integration must freeze the exact command/inputs,
+invoke the maintained native owner, and bind its synchronized written return and
+stopped process to an ordinary child. No genuine phased FT parent was invented.
+
 ### AutoSol phase-source convention
 
 Experimental phase evidence comes from the recorded AutoSol result, normally
