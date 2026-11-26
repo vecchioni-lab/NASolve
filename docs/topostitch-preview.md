@@ -3481,6 +3481,19 @@ This fixes branch composition; it does not establish arbitrary Cedar-version
 compatibility or qualify a combined release. Exact validation and the separate
 19-atom diagnostic are recorded in the [W293 evidence](topostitch-periodic.md#w293--qualify-coupled-forces-and-isolate-native-worker-imports).
 
+**W294 explicit frame policy:** schema-1 requests may add
+`"native_frame_policy": "native-roundoff"` to use the existing qualified native
+arithmetic policy for either ML or MLHL. The alternative is `"exact"`. Omission
+preserves the historical defaults: exact ML frames, qualified MLHL roundoff.
+There is no numeric tolerance knob. The existing 1e-10 bound applies to cell
+lengths/matrix components in Å and angles in degrees; space group stays exact.
+Each anisotropic tensor is compared in its own Cartesian frame at the existing
+1e-12 Å² bound, with unchanged ADP modes, occupancies and fixed coordinates.
+The same explicit choice applies at initialization and returned-model checking.
+The chosen field is frozen in the job plan. Earlier builds reject this new field;
+no migration is needed for old requests. A preflight PASS is still not a fit or
+scientific acceptance. See [W294 validation](topostitch-periodic.md#w294--complete-ordinary-preflight-with-explicit-frame-roundoff).
+
 The API is `topostitch_phosphate.run_registered_phosphate_refinement(request_path,
 output_directory, *, phenix, cedar_source=None, timeout_seconds=1200, preflight_only=False)`.
 The historical request uses these mandatory schema-1 fields; W250 adds the

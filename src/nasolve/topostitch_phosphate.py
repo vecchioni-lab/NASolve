@@ -31,7 +31,7 @@ def _request(path):
     raw = path.read_bytes(); value = _json(raw)
     _keys(value, {'schema_version', 'kind', 'inputs', 'restraints', 'continuation_id',
                   'cycles', 'iterations', 'max_displacement_angstrom', 'wxc_scale',
-                  'data_labels', 'free_label', 'test_flag_value'}, {'diffraction'})
+                  'data_labels', 'free_label', 'test_flag_value'}, {'diffraction', 'native_frame_policy'})
     if type(value['schema_version']) is not int or value['schema_version'] != 1 or value['kind'] != 'topostitch-phosphate-refinement':
         raise ValueError('Require a schema-1 phosphate refinement request')
     for key, lo, hi in [('continuation_id', 1, 1000000), ('cycles', 1, 5), ('iterations', 1, 200)]:
@@ -45,6 +45,7 @@ def _request(path):
     for key in ('data_labels', 'free_label'):
         if not isinstance(value[key], str) or not re.fullmatch(r'[A-Za-z0-9_,()+/\-]+', value[key]):
             raise ValueError('Require explicit native column labels')
+    _allow_frame_roundoff(value)
     phased = 'diffraction' in value
     if phased:
         from .topostitch_phased import validate_spec
@@ -66,6 +67,15 @@ def _request(path):
         from .topostitch_phased import validate_scattering
         validate_scattering(_json(snapshots[files['scattering']]), snapshots[files['model']])
     return value, files, snapshots
+
+
+def _allow_frame_roundoff(controls):
+    """Preserve historical ML/MLHL defaults unless explicitly requested."""
+    policy = controls.get('native_frame_policy',
+                          'native-roundoff' if 'diffraction' in controls else 'exact')
+    if not isinstance(policy, str) or policy not in ('exact', 'native-roundoff'):
+        raise ValueError('native_frame_policy must be exact or native-roundoff')
+    return policy == 'native-roundoff'
 
 
 def _masked_result(source, points, movable, bound):
@@ -356,6 +366,7 @@ def _worker_owned(phase, *, run_compatible_refinement, phosphate_runtime):
     selection = ' or '.join(sorted(selections))
     data = '../'+plan['inputs']['data']
     phased = controls.get('diffraction')
+    allow_frame_roundoff = _allow_frame_roundoff(controls)
     guard = None
     if phased is not None:
         from .topostitch_phased import NativePhasedGuard, policy_text
@@ -460,7 +471,7 @@ refinement {{
                 frame=_scattering_frame(refined.model.get_xray_structure())))
             _verify_return(initial['atoms'], current, set(), initial['observations'], observations(fm),
                 initial_frame=initial['frame'], final_frame=_scattering_frame(refined.model.get_xray_structure()),
-                allow_native_frame_roundoff=True)
+                allow_native_frame_roundoff=allow_frame_roundoff)
             diffraction_params['params'] = refined.params
             snapshot, audit = guard.observe(refined.model, fm, refined.params)
             diffraction_initial.update(state=snapshot, audit=audit)
@@ -513,7 +524,7 @@ refinement {{
             final_frame = _scattering_frame(model.get_xray_structure())
             _save('returned-state.json', dict(atoms=final, observations=returned_observations, frame=final_frame))
             observation_audit=_verify_return(initial['atoms'], final, chosen, initial['observations'], returned_observations,
-                initial_frame=initial['frame'], final_frame=final_frame, allow_native_frame_roundoff=guard is not None)
+                initial_frame=initial['frame'], final_frame=final_frame, allow_native_frame_roundoff=allow_frame_roundoff)
             if phase=='fit' and (not owner.calls.get((7,True),0) or result.macro_cycle!=controls['cycles']):
                 raise ValueError('Complete phosphate forces or requested cycles missing')
             points=[final[k]['xyz'] for k in source]

@@ -524,3 +524,35 @@ def test_native_worker_keeps_cedar_companion_imports_isolated(tmp_path,monkeypat
     assert observed==[phase] and list(nasolve.__path__)==original_path
     assert sys.modules['nasolve.ligand_profiles'] is legacy
     assert not any(n.startswith('_topostitch_cedar_') for n in set(sys.modules)-before)
+
+
+@pytest.mark.parametrize("phased,policy,allowed", [
+    (False,None,False),(False,"exact",False),(False,"native-roundoff",True),
+    (True,None,True),(True,"exact",False),(True,"native-roundoff",True)])
+def test_request_frame_policy_preserves_defaults_and_requires_explicit_ml_opt_in(tmp_path,phased,policy,allowed):
+    import math
+    path,spec=phased_request(tmp_path)[:2] if phased else request(tmp_path)
+    if policy is not None:spec['native_frame_policy']=policy
+    path.write_text(json.dumps(spec))
+    parsed,_,_=job._request(path)
+    assert parsed==spec and job._allow_frame_roundoff(parsed) is allowed
+    frame=hex_frame();returned=deepcopy(frame)
+    returned['cell'][0]=math.nextafter(returned['cell'][0],math.inf)
+    kwargs=dict(initial_frame=frame,final_frame=returned,
+                allow_native_frame_roundoff=job._allow_frame_roundoff(parsed))
+    if allowed:
+        audit=job._verify_return(states(),states(),{'moving'},observations(),observations(),**kwargs)
+        assert audit['adp_audit']['native_frame_roundoff']['length_and_matrix_tolerance_angstrom']==1e-10
+    else:
+        with pytest.raises(ValueError,match='Native cell'):
+            job._verify_return(states(),states(),{'moving'},observations(),observations(),**kwargs)
+
+
+@pytest.mark.parametrize("policy", [None,True,1,1e-8,{},"relaxed"])
+def test_invalid_frame_policy_refuses_before_loading_native_owners(tmp_path,monkeypatch,policy):
+    path,spec=request(tmp_path);spec['native_frame_policy']=policy;path.write_text(json.dumps(spec))
+    import nasolve.topostitch_captured_job as owners
+    monkeypatch.setattr(owners,'_cedar',lambda *a,**k:pytest.fail('Native owner loaded'))
+    with pytest.raises(ValueError,match='native_frame_policy'):
+        job.run_registered_phosphate_refinement(path,tmp_path/'out',phenix='missing')
+    assert not (tmp_path/'out').exists()

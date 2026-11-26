@@ -15040,3 +15040,67 @@ do not repeat its 460 evaluations without a force change or new concern. One
 predeclared recovery comparison remains downstream; W288 is still the latest
 actual refinement. Fragmentation/LNA and nonzero-f″ metal stress tests remain
 in their existing deferred pipeline.
+
+
+## W294 — Complete ordinary preflight with explicit frame roundoff
+
+The existing registered-phosphate request now accepts an optional
+`native_frame_policy`, either `exact` or `native-roundoff`. This exposes the
+already-qualified arithmetic policy to ordinary ML requests. Omitted values
+preserve both historical defaults: exact for ML, roundoff for MLHL. An explicit
+`exact` policy stays strict in either route. There is no new numerical tolerance,
+force, fitting weight, selection scope or automatic checkpoint adoption.
+
+The new option is frozen in the existing plan and used by initialization/return
+checks. Cell lengths and matrix components use the existing **1e-10 Å** bound,
+angles the existing **1e-10°** bound, and the space group remains exact. Each
+anisotropic tensor uses its own Cartesian frame with the existing **1e-12 Å²**
+comparison; fixed coordinates, ADP modes and occupancy remain protected. Older
+builds reject the new field; old requests require no migration.
+
+**Installed ordinary result:** a relocated clean installation executes
+`nasolve-topostitch-fit native-phosphate ... --preflight-only` with the explicit
+option and returns **PREFLIGHT_COMPLETE_REQUIRES_REVIEW**. Phenix **2.2.1-6174**
+completes a **zero-cycle dry-run**, not refinement. All **862 atoms**, **1,909
+reflections / 124 Free-R flags** and source/frozen inputs remain unchanged. The
+written candidate is byte-identical to the original source. Full-precision
+coordinate roundoff is at most 7.33e-15 Å. The eight seam-term digest and all **57
+parallelity group memberships/parameters** match W293 exactly. Native hooks are
+restored and the worker stopped. The preceding strict-frame refusal stays intact;
+this is a fresh explicitly requested job, not a relabeled old success.
+
+The six valid default/explicit combinations fail before the new request/worker
+policy exists; invalid-type/value cases also retain early refusal. **186 focused
+host tests pass with one explicit iotbx skip; 187 relocated installed tests pass**.
+The settled-source complete regression required by the current agent contract
+passes **3,025 tests + 234 subtests, no skips** (246.21 s). Existing seven negative
+frame/chemistry cases still cover actual crystal/tensor/species drift. Installed
+Python files match source bytes, Python 3.10 syntax passes, the old build and
+installation paths are absent during installed tests, and **8,084,311 bytes** of
+disposable staging are removed. This remains Willow-only qualification, not a
+combined release or evidence of successful movement.
+
+A read-only preparation check also reuses Cedar's existing
+`inspect_residue_geometry(..., sugar_pucker=True)` on the saved W293 native GEO
+and original PDB. Both endpoints have observed bond/angle coverage. Altona–
+Sundaralingam ring phases/amplitudes are **B1 DC 126.410° / 35.259°** and **B7 DA
+145.697° / 42.746°**. These are source observations for future comparison, not
+preferred targets or independent chemical acceptance. No new pucker formula or
+restraint was added.
+
+**Evidence:** NASolve anchor `branch-artifacts/willow/w294-explicit-native-frame/`
+contains `ordinary-request.json`, `qualify.py`, `installation.json`,
+`native-summary.json`, source/fail-before/installed logs, the actual ordinary
+preflight, and `source-sugar-observation.json`. Exact argv, dependency versions,
+source/installed/input digests and cleanup are recorded in the receipts. Tests
+use `PYTHONDONTWRITEBYTECODE=1`, source `PYTHONPATH=src` (resolved explicitly by
+the native launcher), and `pytest -q -rs -p no:cacheprovider`; installed checks
+use the relocated package after deleting its build source. Generated scientific
+data remain local; no whole-run portability claim is made.
+
+**Next:** the ordinary runtime import and arithmetic gates are now clear for
+this source. Explicit coupled-sugar admission still needs the reviewed 19-atom
+mask, source-relative hand/attachment/outer-phosphate checks and retained native
+chemistry before a recovery trial. Reuse existing native coordinate/geometry
+observers and the W293 derivative result. W288 remains the last actual fit; no
+six-atom weight panel or deferred stress test was repeated.

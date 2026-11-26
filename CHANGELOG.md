@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W294 — Select the existing native-frame arithmetic policy explicitly
+
+- Add optional `native_frame_policy: exact | native-roundoff` to the registered
+  phosphate request. Reuse the existing 1e-10 cell/matrix arithmetic bound and
+  physical Cartesian tensor checks; do not add a tolerance or refinement budget.
+- Omitted fields preserve historical behavior: ML uses exact frames; MLHL uses
+  its qualified roundoff policy. An explicit `exact` request remains strict in
+  both routes. Keep masks, forces, observations and checkpoint selection unchanged.
+
+
 ### W293 — Qualify coupled-sugar forces and isolate native worker owners
 
 - Bind the native phosphate worker to the chosen Cedar package and its own
