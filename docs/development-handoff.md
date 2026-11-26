@@ -33,10 +33,13 @@ during planning. C593 followed the fault to NARestraints. Its published v1.1.4 w
 and loader give C1′–C5 for four pseudouridines. Phenix read the same ten intended
 pair bonds. Coot left C:12 as DG when asked for an RNA G parent. An isolated D:4
 phosphorothioate carried an extra OP3 and failed ordinary phosphate preparation.
-C596 built true G, C and A parents with all six neighboring links preserved.
-Coot displaced the backbone when it installed the three modified bases. The next
-Q07 check follows those bases through ribose restoration and phosphate preparation.
-The sulfur linkage remains a separate chemical state.
+C596 built true G, C and A parents. C597 carried their ribose sugars through native
+Coot placement of 2MG, 5MC and 6MZ. All six neighboring links, the sugar hand and
+the original scaffold displacement values survived. Three unwanted internal OP3
+oxygens were removed through the existing phosphate check. Next test normal
+PostMR preparation and a returned refinement. The sulfur linkage remains a
+separate chemical state. The [Q12 workbook sweep](cif-doctor-completion-queue.md#q12--resolve-catalogue-mappings-and-maintain-support-coverage)
+follows the eight-site challenge.
 [Release and tested installation](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.4).
 
 

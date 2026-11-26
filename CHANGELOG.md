@@ -11,7 +11,10 @@ entries are reconstructed from repository history.
 - Explicit PostMR construction can prepare a canonical RNA parent from the
   corresponding deoxy residue. The two source dictionaries must agree on the
   retained chemistry. NASolve adds the 2′ oxygen with the reference ribose hand
-  and records the local geometry for replay.
+  and records the local geometry for replay. With a matching N-linked ribose
+  dictionary, Coot places the modified base at the parent orientation. NASolve
+  preserves the sugar, backbone and their displacement values and checks any
+  internal OP3 removal against both neighboring links.
 
 - Diagnostic runners assembled from a wheel installation verify the captured
   NARestraints package against its installed file record. A virtual environment

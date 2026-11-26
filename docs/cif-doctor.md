@@ -14858,6 +14858,17 @@ Coot 1.3.3 replacements with 2MG, 5MC and 6MZ, an extra OP3 and altered links
 prevented ordinary phosphate preparation. Measure each returned modified residue
 before using a constructed parent in refinement. [Eight-site transfer control](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
 
+C597 follows those same modified bases through placement. The modified dictionary
+and canonical reference must agree on the entire unbridged N-linked ribose,
+including its 2′ hydroxyl, four signed sugar centres and attachment. The saved
+native parent must match the supplied seed in coordinates, element, occupancy
+and displacement. Coot matches the base orientation. The existing rigid base
+transport, parent scaffold restoration and phosphate checks then preserve both
+ports. In the same three-site control, the final base torsions agreed with the
+parent within 0.082°, all six flanking bonds regained their original lengths,
+and all 791 unselected atoms retained their coordinates, elements, occupancies
+and displacement values. This is construction evidence. [Mixed-scaffold tests](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
+
 ### Explicit canonical input in ordinary construction (C349)
 
 `construct_postmr_model(..., canonical_seed_dictionaries={site: (source, template)})`

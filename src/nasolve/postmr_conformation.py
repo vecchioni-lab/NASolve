@@ -9,30 +9,30 @@ from pathlib import Path
 
 from .cif_linked_preparation import component_values
 from .cif_stereochemistry_audit import _graph
-from .postmr_restoration import source_graph_fragment
+from .postmr_restoration import MATCH_TOLERANCE_DEGREES, RNA_ROLES, source_graph_fragment
 
 POLICY_ID = "postmr-source-graph-parent-chi-v1"
-MATCH_TOLERANCE_DEGREES = 0.1
-_PARENT_ROLES = {
-    "DA": ("N9", "C4", "C8"), "DG": ("N9", "C4", "C8"),
-    "DC": ("N1", "C2", "C6"), "DT": ("N1", "C2", "C6"),
-}
+_PARENT_ROLES = {dna: RNA_ROLES[rna] for dna, rna in (("DA", "A"), ("DG", "G"), ("DC", "C"), ("DT", "U"))}
 
 
 def parent_conformation_plan(
     dictionary: Path, component: str, parent_code: str, *, recover_named_chi: bool = False,
+    ribose_template: Path | None = None,
 ) -> dict:
     """Select a shared canonical chi frame without guessing modified backbones."""
     result = {"policy_id": POLICY_ID, "status": "UNASSESSED", "component": component}
     before = None
     try:
-        if parent_code not in _PARENT_ROLES:
-            raise ValueError("Parent is outside the supported canonical DNA frame")
+        roles = RNA_ROLES if ribose_template is not None else _PARENT_ROLES
+        if parent_code not in roles:
+            family = "RNA" if ribose_template is not None else "DNA"
+            raise ValueError(f"Parent is outside the supported canonical {family} frame")
         before = Path(dictionary).read_bytes()
-        graph = source_graph_fragment(dictionary, component)
+        graph = source_graph_fragment(dictionary, component,
+            ribose_parent=(ribose_template, parent_code) if ribose_template is not None else None)
         values = component_values(dictionary, component)
         elements, bonds, _, neighbors = _graph(values)
-        anchor, first, second = _PARENT_ROLES[parent_code]
+        anchor, first, second = roles[parent_code]
         if (graph["attachment_atom"] != anchor or elements.get(anchor) != "N"
                 or any(elements.get(n) != "C" for n in (first, second))
                 or neighbors[anchor] != {"C1'", first, second}):

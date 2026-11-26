@@ -3,7 +3,7 @@ from hashlib import sha256
 from math import isfinite
 from pathlib import Path
 
-from .postmr_restoration import canonical_name
+from .postmr_restoration import RNA_ROLES, canonical_name
 
 _POLICY = "postmr-identical-host-scaffold-isotropic-b-v1"
 _ATOMS = {"ATOM", "HETATM"}
@@ -43,7 +43,8 @@ def _validated_b_field(donor, restored):
 class HostDisplacement:
     """Bind original and raw model state once for the selected restoration sites."""
 
-    def __init__(self, original, raw_lines):
+    def __init__(self, original, raw_lines, *, canonical_ribose=False):
+        self.canonical_ribose = canonical_ribose
         payload = Path(original).read_bytes()
         self.source_sha256 = sha256(payload).hexdigest()
         self.original = _indexed(payload.decode("utf-8", errors="replace").splitlines())
@@ -51,8 +52,11 @@ class HostDisplacement:
 
     def apply(self, action, restored, geometry):
         record = {"policy_id": _POLICY, "source_sha256": self.source_sha256}
+        if self.canonical_ribose:
+            record["source"] = "VERIFIED_CANONICAL_RIBOSE_INPUT"
         try:
-            if action.before not in {"DA", "DC", "DG", "DT"}:
+            supported = RNA_ROLES if self.canonical_ribose else {"DA", "DC", "DG", "DT"}
+            if action.before not in supported:
                 raise ValueError("Incoming residue needs its own sugar and phosphate mapping")
             if self.original is None or self.raw is None:
                 raise ValueError("Multiple-model records require a model selector")

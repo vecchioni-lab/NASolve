@@ -667,6 +667,7 @@ def _run_coot(
     *,
     timeout_seconds: float | None = None,
     site_dictionary_paths: Mapping[str, Path] | None = None,
+    ribose_templates: Mapping[str, Path] | None = None,
 ) -> tuple[Path, Path]:
     if timeout_seconds is not None and (isinstance(timeout_seconds, bool) or not isfinite(timeout_seconds) or timeout_seconds <= 0):
         raise PostMRPreparationError("Coot timeout must be finite and positive")
@@ -674,7 +675,9 @@ def _run_coot(
     log = coot_directory / "coot.log"
     from .postmr_conformation import parent_conformation_plan
     plans = {action.site: parent_conformation_plan((site_dictionary_paths or {}).get(action.site, dictionary_paths[action.after]),
-        action.after, action.parent_code, recover_named_chi=True) for action in actions
+        action.after, action.parent_code, recover_named_chi=True,
+        **({"ribose_template": ribose_templates[action.site]} if action.site in (ribose_templates or {}) else {}))
+        for action in actions
         if action.method == "coot-parent-overlap"}
     backups = coot_directory / "backups"
     backups.mkdir()
@@ -845,6 +848,7 @@ def _restore_shared_parent_coordinates(
     parent_models: Mapping[str, Path],
     dictionary_paths: Mapping[str, Path] | None = None,
     *, displacement_reference: Path | None = None, site_dictionary_paths: Mapping[str, Path] | None = None,
+    ribose_templates: Mapping[str, Path] | None = None, ribose_displacement_reference: Path | None = None,
 ) -> dict[str, object]:
     """Restore supported DNA scaffolds without copying partial same-name bases.
 
@@ -864,6 +868,8 @@ def _restore_shared_parent_coordinates(
     records = _coordinate_records(raw_model)
     from .postmr_scaffold_displacement import HostDisplacement
     host = HostDisplacement(displacement_reference, records) if displacement_reference is not None else None
+    ribose_host = (HostDisplacement(ribose_displacement_reference, records, canonical_ribose=True)
+                   if ribose_displacement_reference is not None else None)
     report: dict[str, object] = {}
     special = tuple(a for a in modified if (ligand := CURATED_LIGANDS.get(a.after)) is not None
                     and (ligand.atom_substitutions or ligand.ring_substituents))
@@ -893,14 +899,16 @@ def _restore_shared_parent_coordinates(
                 if (identity := _record_identity(line)) is not None and identity[:2] == (chain,resid)]
             replacements, item = restore_graph_site([records[i] for i in indices], parent_records,
                 (site_dictionary_paths or {}).get(action.site, dictionary_paths[action.after]),
-                action.after, action.parent_code)
+                action.after, action.parent_code, ribose_template=(ribose_templates or {}).get(action.site))
         except (OSError, ValueError, KeyError, PostMRPreparationError) as exc:
             item = {"policy_id": POLICY_ID, "component": action.after,
                 "status": "RAW_SITE_RETAINED", "count": 0, "atoms": [],
                 "substitutions": [], "reason": str(exc), "requires_cif_review": False,
                 "notes": ["The complete raw Coot site was retained because this DNA transport rule does not support its graph or coordinate context."]}
         else:
-            if host is not None:
+            if action.site in (ribose_templates or {}) and ribose_host is not None:
+                replacements = ribose_host.apply(replace(action, before=action.parent_code), replacements, item)
+            elif host is not None:
                 replacements = host.apply(action, replacements, item)
             for index,line in zip(indices,replacements):
                 records[index] = line
@@ -2014,16 +2022,24 @@ def construct_postmr_model(
     coot_dictionaries = {a.after: Path(dictionary_paths[a.after]) for a in overlap_actions}
     coot_directory.mkdir(parents=True, exist_ok=True)
     native_input, native_actions, seeded = input_model, coot_actions, None
+    ribose_options = {}
     if seed_plan is not None:
         from .postmr_canonical_input import prepare_canonical_parent_input
         seeded = prepare_canonical_parent_input(input_model, seed_plan, coot_directory / "canonical_seeds")
         native_input = seeded["model"]
+        from .postmr_canonical_input import frozen_ribose_templates
+        ribose_templates = frozen_ribose_templates(seeded)
+        if ribose_templates:
+            ribose_options["ribose_templates"] = ribose_templates
         selected = {a.site for a, _, _ in seed_plan}
         native_actions = tuple(replace(a, before=a.parent_code) if a.site in selected else a
                                for a in coot_actions)
     _, coot_log = _run_coot(native_input, raw_model, native_actions, coot_executable,
         coot_directory, environment, coot_dictionaries, parent_models,
-        **({"timeout_seconds": timeout_seconds} if timeout_seconds is not None else {}), **site_options)
+        **({"timeout_seconds": timeout_seconds} if timeout_seconds is not None else {}), **site_options, **ribose_options)
+    if ribose_options:
+        from .postmr_canonical_input import verify_native_ribose_parents
+        verify_native_ribose_parents(seeded, parent_models)
     if site_dictionary_paths is not None:
         _check_constructed_site_dictionaries(raw_model, coot_actions, dictionary_paths,
             site_dictionary_paths, site_snapshots)
@@ -2033,11 +2049,13 @@ def construct_postmr_model(
         dictionary_paths, parent_models, output_model.with_name(output_model.stem + "_context.pdb"),
         allow_op3_sites=allow_op3_sites, passthrough_sites=passthrough_sites,
         serial_identity_policy=COMPONENT_PADDING_POLICY_ID,
-        canonical_serial_policy=CANONICAL_SERIAL_POLICY_ID, **site_options)
+        canonical_serial_policy=CANONICAL_SERIAL_POLICY_ID, **site_options, **ribose_options)
     restoration_input = context["model"]
-    restoration_options = dict(site_options)
+    restoration_options = {**site_options, **ribose_options}
     if inherit_scaffold_b:
         restoration_options["displacement_reference"] = reference_model
+        if ribose_options:
+            restoration_options["ribose_displacement_reference"] = native_input
     restoration_actions = tuple(a for a in overlap_actions if a.site not in passthrough_sites)
     if restoration_actions:
         restoration = _restore_shared_parent_coordinates(restoration_input, geometry_model,

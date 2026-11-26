@@ -3,9 +3,9 @@ from hashlib import sha256
 from math import copysign, dist, isfinite, sqrt
 
 from .cif_stereochemistry_audit import _coordinates, _graph, _stereo, _values, _volume
-from .postmr_restoration import _dot, _frame, _model_records, _sub, source_graph_fragment
+from .postmr_restoration import _dot, _frame, _model_records, _sub, ribose_hydroxyl, RNA_ROLES, source_graph_fragment
 
-RNA_PARENTS = frozenset({"A", "C", "G", "U"})
+RNA_PARENTS = frozenset(RNA_ROLES)
 POLICY_ID = "postmr-source-deoxy-to-ribose-parent-v1"
 _C2_FRAME = ("C2'", "C1'", "C3'")
 _C2_NEIGHBORS = ("C1'", "C3'", "O2'")
@@ -38,24 +38,11 @@ def _reference(source, before, template, parent):
     if (len(hydrogens) != 2 or source_graph[3]["C2'"] - hydrogens != {"C1'", "C3'"}
             or dna_stereo["C2'"] != "N"):
         raise ValueError("Source must have an explicit deoxy methylene at C2′")
-    elements, bonds, charges, neighbors = target_graph
-    if elements.get("O2'") != "O" or "C2'" not in neighbors:
-        raise ValueError("Canonical RNA target lacks its 2′ oxygen or C2′")
-    retained_h = _bonded_hydrogens(target_graph, "C2'")
-    hydroxyl_h = _bonded_hydrogens(target_graph, "O2'")
-    if (len(retained_h) != 1 or len(hydroxyl_h) != 1 or charges["O2'"] != 0
-            or neighbors["C2'"] - retained_h != set(_C2_NEIGHBORS)
-            or neighbors["O2'"] - hydroxyl_h != {"C2'"}):
-        raise ValueError("Canonical parent requires an unbridged neutral 2′ hydroxyl")
-    for atom, attached in (("C2'", neighbors["C2'"]), ("O2'", hydroxyl_h)):
-        if any(bonds[tuple(sorted((atom, n)))] != "SINGLE" for n in attached):
-            raise ValueError("Ribose 2′ hydroxyl requires single bonds")
-    for graph, hydrogens_by_atom in ((source_graph, {"C2'": hydrogens}),
-                                     (target_graph, {"C2'": retained_h, "O2'": hydroxyl_h})):
-        for donor, attached in hydrogens_by_atom.items():
-            if any(graph[3][h] != {donor} or graph[2][h] != 0
-                   or graph[1][tuple(sorted((donor, h)))] != "SINGLE" for h in attached):
-                raise ValueError("Each replaced hydrogen must be neutral and singly bonded to its donor")
+    elements = target_graph[0]
+    retained_h, hydroxyl_h = ribose_hydroxyl(target_graph)
+    if any(source_graph[3][h] != {"C2'"} or source_graph[2][h] != 0
+           or source_graph[1][tuple(sorted(("C2'", h)))] != "SINGLE" for h in hydrogens):
+        raise ValueError("Each replaced hydrogen must be neutral and singly bonded to its donor")
     # In the four canonical RNA parents C2′ is R. An arabinose epimer needs its own source.
     if rna_stereo["C2'"] != "R":
         raise ValueError("Canonical RNA parent requires the declared ribose C2′ stereochemistry")

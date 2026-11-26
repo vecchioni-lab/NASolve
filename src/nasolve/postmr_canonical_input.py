@@ -52,6 +52,36 @@ def _resolve(root, reference):
     return path
 
 
+def frozen_ribose_templates(saved):
+    """Select only template bytes whose canonical 2′ hydroxyl was proved at this site."""
+    from .postmr_ribose import POLICY_ID as RIBOSE_SEED
+    return {s['action']['site']: _resolve(saved['directory'], s['template'])
+            for s in saved['receipt']['steps'] if s['proof']['policy_id'] == RIBOSE_SEED}
+
+
+def verify_native_ribose_parents(saved, parent_models):
+    """The native parent snapshot must still contain the exact chemistry and coordinates Coot received."""
+    from .postmr import _coordinate_records, _record_identity, _site_parts
+    from .postmr_restoration import _atom_records
+    from .postmr_ribose import POLICY_ID as RIBOSE_SEED
+    initial = _coordinate_records(saved['model'])
+    for step in saved['receipt']['steps']:
+        if step['proof']['policy_id'] != RIBOSE_SEED:
+            continue
+        action = step['action']
+        site, parent = action['site'], action['parent_code']
+        identity = _site_parts(site)
+
+        def atoms(lines):
+            selected = [line for line in lines
+                        if (key := _record_identity(line)) is not None and key[:2] == identity]
+            return {n: (row['element'], row['xyz'], row['line'][54:66])
+                    for n, row in _atom_records(selected, parent).items()}
+
+        if atoms(initial) != atoms(_coordinate_records(parent_models[site])):
+            raise ValueError(f'Coot parent {site} differs from its frozen canonical ribose input')
+
+
 def prepare_canonical_parent_input(model, plan, output):
     """Freeze explicit inputs and return a validated seed inside fresh Coot work."""
     output = _snapshot_destination(output)

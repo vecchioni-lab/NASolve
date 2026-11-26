@@ -5,7 +5,7 @@ The caller supplies both chemical authorities and persists any returned output.
 No native process, mutation alias, phosphate inference or fallback runs here.
 """
 from hashlib import sha256
-from math import atan2, degrees, dist, sqrt
+from math import dist
 from pathlib import Path
 import re
 
@@ -15,24 +15,10 @@ from .postmr_conformation import (
     _PARENT_ROLES, MATCH_TOLERANCE_DEGREES, parent_conformation_plan,
 )
 from .postmr_restoration import (
-    _model_records, _frame, _dot, _sub, _cross, source_graph_fragment,
+    _model_records, _chi, _frame, _dot, _sub, _cross, source_graph_fragment,
 )
 
 POLICY_ID = 'postmr-explicit-canonical-base-seed-v1'
-
-
-def _chi(xyz, names):
-    a, b, c, d = [xyz[n] for n in names]
-    axis = _sub(c, b)
-    length = sqrt(_dot(axis, axis))
-    if length < .5:
-        raise ValueError('Degenerate glycosidic axis')
-    axis = [v / length for v in axis]
-    vectors = [_sub(a, b), _sub(d, c)]
-    v, w = [[x - _dot(p, axis) * y for x, y in zip(p, axis)] for p in vectors]
-    if min(_dot(v, v), _dot(w, w)) < .01:
-        raise ValueError('Degenerate glycosidic torsion frame')
-    return degrees(atan2(_dot(_cross(axis, v), w), _dot(v, w)))
 
 
 def _template_coordinates(dictionary, component, graph):

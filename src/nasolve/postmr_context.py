@@ -221,7 +221,7 @@ def canonical_serial_scope(actions, raw_inventory, reference_inventory, passthro
 def prepare_construction_context(raw_model, reference_model, actions, dictionary_paths,
                                  parent_models, output_model, *, allow_op3_sites=(),
                                  passthrough_sites=(), serial_identity_policy=None,
-                                 canonical_serial_policy=None, site_dictionary_paths=None):
+                                 canonical_serial_policy=None, site_dictionary_paths=None, ribose_templates=None):
     """Prepare a separate context input or retain the entire immutable raw model.
 
     Source-graph and proper-transport preflight must succeed before any proposed
@@ -246,7 +246,7 @@ def prepare_construction_context(raw_model, reference_model, actions, dictionary
     for p in (output_model,shadow,sanitized):
         if p.exists() or p.is_symlink(): raise FileExistsError(p)
     inputs = {raw_model,reference_model,*map(Path,dictionary_paths.values()),*map(Path,parent_models.values()),
-              *map(Path,(site_dictionary_paths or {}).values())}
+              *map(Path,(site_dictionary_paths or {}).values()), *map(Path,(ribose_templates or {}).values())}
     if any(p.resolve() in {x.resolve() for x in inputs} for p in (output_model,shadow,sanitized)):
         raise ValueError('Context outputs must be separate from every immutable input')
     snapshots = {p:p.read_bytes() for p in inputs if p.is_file()}
@@ -272,7 +272,9 @@ def prepare_construction_context(raw_model, reference_model, actions, dictionary
             continue
         try:
             dictionary = (site_dictionary_paths or {}).get(action.site, dictionary_paths[action.after])
-            graph = source_graph_fragment(dictionary,action.after)
+            template = (ribose_templates or {}).get(action.site)
+            graph = source_graph_fragment(dictionary, action.after,
+                ribose_parent=(template, action.parent_code) if template is not None else None)
             selected = [l for l in raw_lines if l[:6] in _COORDINATE and _site(l)==action.site]
             parent_lines = [l for l in _rows(parent_models[action.site]) if l[:6] in _COORDINATE and _site(l)==action.site]
             raw_names = {canonical_name(l[12:16].strip()) for l in selected}
@@ -282,7 +284,8 @@ def prepare_construction_context(raw_model, reference_model, actions, dictionary
             if missing and missing != {'OP3'}:
                 raise ValueError('Unmatched backbone atoms need a separate context rule')
             pruned = [l for l in selected if not(missing and canonical_name(l[12:16].strip())=='OP3')]
-            restore_graph_site(pruned,parent_lines,dictionary,action.after,action.parent_code)
+            restore_graph_site(pruned, parent_lines, dictionary, action.after, action.parent_code,
+                               ribose_template=template)
             graphs[action.site] = graph; parent_lines_by_site[action.site] = parent_lines
             if missing:
                 candidates[action.site] = next(l for l in selected if canonical_name(l[12:16].strip())=='OP3')

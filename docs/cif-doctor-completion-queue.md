@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 26 November 2026, after C596. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 26 November 2026, after C597. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -42,8 +42,8 @@ The next transfer check examines the locked-sugar contacts on a separate mixed s
    contacts. C591 can retain every printed pair above an explicit overlap cutoff,
    including a second partner at the same atom. Check the existing mixed-scaffold
    evidence described below. The eight-residue design and its sulfur side are now fixed.
-   Next qualify a real RNA parent on the DNA scaffold and a source-backed internal
-   sulfur linkage. The four pseudouridine attachment corrections ship in NARestraints 1.1.4. Record what was constructed, what Phenix kept after
+   Three canonical ribose parents now survive placement of their modified bases.
+   Qualify the ordinary preparation, returned geometry and source-backed internal sulfur linkage. The four pseudouridine attachment corrections ship in NARestraints 1.1.4. Record what was constructed, what Phenix kept after
    refinement, and which sites require review. The known 13-change scaffold and the
    unfamiliar panel answer different questions. [Mixed-scaffold criteria](#q07--one-mixed-scaffold-ordinary-acceptance-run).
 3. **Join the branches on a returned molecule.** Willow/Pine owns strand identity, residue
@@ -982,8 +982,10 @@ C596 supplied real G, C and A parents for C:12, A:7 and B:5 on the same
 42-site frame. The canonical parents added three correctly oriented 2′ oxygens
 and preserved all six neighboring O3′–P distances. Coot subsequently built
 2MG, 5MC and 6MZ with an extra OP3 at each site and displaced the flanks.
-The ordinary phosphate check refused the result. Next verify base orientation,
-restore the checked ribose scaffold, and reuse the internal OP3 proof.
+The ordinary phosphate check refused the result. C597 then matched the native base
+orientation to the parent and restored the verified ribose. All six flanking bonds
+and all 791 unselected atoms were preserved. The internal OP3 proof passed at all
+three sites. The remaining five sites and actual refinement have separate outcomes.
 
 After the qualified Q06 consumer is available, add a separate builder generalization
 control before the proposed Cedar integration with main. Mutate **eight residues** into
@@ -1257,6 +1259,28 @@ Attempt all families with actionable evidence and reviewed exceptions where
 necessary; do not close the programme by labeling entire difficult families
 unsupported. Name the workbook hash/version rather than assuming the installed
 NAR package version identifies that workbook.
+
+**Queued after the Q07 mixed-scaffold check — one construction trial for every workbook residue.**
+Start from the C105 census, reconcile it to the exact NARestraints workbook shipped at test time,
+and reuse earlier native results when the inputs, tool versions and checks match. Give each row a
+record and run equivalent aliases once. Conflicting entries keep their separate row identities.
+
+- Start every trial from a fresh copy of a fixed scaffold. Match the listed parent base to its
+  site (for example, a C-like residue replaces C), and keep the partner and neighboring links.
+  Use the verified L-DNA scaffold when the intended construction requires the opposite hand.
+  Check the local sugar stereocentres against the source. Locked, arabino, mixed-handed and
+  non-sugar backbones need their own evidence; a letter in a residue name cannot choose the frame.
+  Record an ambiguous parent, unavailable frame or conflicting source as its own outcome.
+- Ask Coot and Cedar to build the residue through the ordinary route. Read back the actual
+  component, atoms, base attachment, sugar hand, base orientation and both backbone connections.
+  Preserve explicit terminal-phosphate intent. Record where construction failed, whether a
+  supported recovery worked, and which chemical pattern merits a shared repair.
+- Select a small set *in advance* across base and sugar families, including a recovered case
+  and matching scaffold controls. Run one Phenix cycle with the same observations and original
+  Free-R flags. Record which atoms, restraints, links and stereocentres survived. This tests
+  refinement behavior on a control scaffold; its diffraction data cannot establish that the
+  experimental crystal contained the substitution. Retain compact per-row evidence and
+  representative exceptions using the existing receipt and replay machinery.
 
 ### Q13 — Close chemical-state and attachment-policy gaps
 
