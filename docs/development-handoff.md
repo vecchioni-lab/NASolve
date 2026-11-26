@@ -63,9 +63,13 @@ seeds for each of the three against the unmodified component definitions.
 A one-cycle whole-model Phenix run with those three source-derived dictionaries
 and Cedar’s checked parallelity kept all twelve sugar hands and six neighboring
 links. Two pair contacts still need review: 2MG O6 to cytosine N4 was 2.135 Å,
-and 6MZ N6 to thymine O4 was 3.906 Å. Both requests were 2.8 Å. Next trace
-where the pair distances departed from their targets and carry the separate
-component proofs through ordinary acquisition. The sulfur linkage
+and 6MZ N6 to thymine O4 was 3.906 Å. Both requests were 2.8 Å. C606 followed
+the same starting model through five native cycles. These two distances reached
+2.463 and 3.372 Å. Across 50 declared base-pair contacts, eight exceeded three
+restraint widths at one cycle and one at five. The remaining one was an ordinary
+G:C pair. All twelve sugar hands survived. The existing refined-links reader now
+shows the shortest and longest departures in restraint widths. Next carry the
+separate component proofs through ordinary site preparation. The sulfur linkage
 remains a separate chemical state. The [Q12 workbook sweep](cif-doctor-completion-queue.md#q12--resolve-catalogue-mappings-and-maintain-support-coverage)
 follows the eight-site challenge.
 [Release and tested installation](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.4).
@@ -119,7 +123,8 @@ native checks. C605 passed 323 focused tests covering qualification execution,
 RNA pucker replay, acquisition, dictionary storage, binding and native usability.
 The 6MZ pair of jobs also reopened identically after both directories moved and
 their previous paths became inaccessible. Phenix 2.2.1-6174 executed the native
-checks. This pass used focused tests.
+checks. C606 passed 149 focused tests plus seven subtests and ran a fresh
+five-cycle linked Phenix comparison with the same input and Free-R assignments.
 
 The last recorded standalone full Cedar pass is C406 at `58965920`, with 12,043 tests passed, 293
 subtests passed and two native opt-in skips. The later combined C407 experiment had one

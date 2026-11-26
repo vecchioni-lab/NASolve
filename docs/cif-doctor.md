@@ -14364,7 +14364,12 @@ the reported origin, achieved distance, target and sigma. With a checked
 preparation, Cedar compares each backbone connection and every explicitly
 supplied inter-residue distance. An edit must retain its endpoints, origin,
 target and strength at the printed precision. Rows outside that declaration
-and missing terms produce `REVIEW`. The second atom’s printed crystal image
+and missing terms produce `REVIEW`. For each available stage, `supplied_distance_fit`
+counts uniquely matched direct distance edits and shows the furthest short and long
+contacts. Signed widths are (printed distance − target) / restraint sigma. They
+describe agreement with the chosen restraint. A contact with duplicate same-image
+terms is counted separately. A missing checked preparation leaves the comparison
+unavailable. The second atom’s printed crystal image
 is retained for review. Metal coordination or an intentional chemical crosslink
 may need authority beyond the checked nucleic-acid preparation.
 

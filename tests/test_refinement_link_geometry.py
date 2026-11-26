@@ -65,6 +65,29 @@ def geometry(root, extra=False):
     return model, path, labels, dict(preparation_model=model, backbone_links=[("A:1", "A:2")], restraint_phils=[phil])
 
 
+def test_geometry_declaration_can_match_while_achieved_distances_depart_both_ways(tmp_path):
+    model, path, labels, intent = geometry(tmp_path)
+    frame, = intent["restraint_phils"]
+    first = frame.read_text().replace("distance_ideal = 2.8", "distance_ideal = 2.4")
+    second = tmp_path / "second.phil"
+    second.write_text(first.replace("name N3", "name N4").replace("name N2T", "name C5T")
+                      .replace("distance_ideal = 2.4", "distance_ideal = 1.836").replace("sigma = 0.4", "sigma = 0.2"))
+    frame.write_text(first)
+    intent["restraint_phils"].append(second)
+    backbone = bond(labels, 0, 1, "1.607", "1.610", "1.20e-02", "6.94e+03")
+    extended = bond(labels, 5, 3, "2.400", "2.800", "4.00e-01", "6.25e+00")
+    compressed = bond(labels, 2, 4, "1.836", "1.436", "2.00e-01", "2.50e+01")
+    path.write_text(section("covalent geometry", backbone) + section("User supplied", extended, compressed))
+    result = read_refined_links(model, path, **intent)
+    fit = result["supplied_distance_fit"]
+    assert result["status"] == "MATCH" and fit["count"] == 2 and fit["ambiguous"] == 0
+    assert fit["most_compressed"]["signed_widths"] == pytest.approx(-2)
+    assert fit["most_extended"]["signed_widths"] == pytest.approx(1)
+    assert fit["most_compressed"]["endpoints"] == [["A:2", "DC", "N4"], ["B:4", "Z99", "C5T"]]
+    assert fit["most_extended"]["model_A"] == 2.8
+    assert read_refined_links(model, path)["supplied_distance_fit"] is None
+
+
 def test_unexpected_link_named_even_next_to_declared_bonds(tmp_path):
     model, path, _, intent = geometry(tmp_path, extra=True)
     report = read_refined_links(model, path, **intent)
@@ -82,6 +105,7 @@ def test_checked_bonds_match_and_without_authority_only_observed(tmp_path):
     report = read_refined_links(model, path, **intent)
     assert report["status"] == "MATCH" and len(report["links"]) == 2
     informal = read_refined_links(model, path)
+    assert report["supplied_distance_fit"] == dict(count=1, ambiguous=0, most_compressed=None, most_extended=None)
     assert informal["status"] == "OBSERVED" and informal["matched_supplied"] is None
     assert {r["classification"] for r in informal["links"]} == {"OBSERVED"}
 
@@ -106,6 +130,7 @@ def test_duplicate_edge_and_missing_backbone_remain_visible(tmp_path):
     assert report["status"] == "REVIEW" and report["matched_supplied"] == 1
     assert len(report["missing_backbone"]) == 1
     assert [r["classification"] for r in report["links"]].count("OUTSIDE_DECLARATION") == 1
+    assert report["supplied_distance_fit"] == dict(count=0, ambiguous=1, most_compressed=None, most_extended=None)
     assert json.loads(json.dumps(report)) == report
 
 
@@ -371,6 +396,8 @@ def test_checked_autorefine_retains_a_model_and_accounts_for_both_native_tables(
     cold = cif_doctor_run.assess_run(run, checkpoint=child["id"], refined_links=True)
     assert cold["preflight_links"]["status"] == report["preflight"]["status"]
     assert cold["refined_links"]["status"] == report["refined"]["status"]
+    assert (cold["refined_links"]["supplied_distance_fit"] is None) is (final == "unknown")
+    assert (cold["preflight_links"]["supplied_distance_fit"] is None) is (initial == "unknown")
     if initial == "unknown":
         assert cold["preflight_links"]["reason"] == report["preflight"]["reason"]
     if outcome == "SUCCESS":

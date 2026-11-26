@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 26 November 2026, after C605. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 26 November 2026, after C606. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -1054,6 +1054,19 @@ contact 3.906 Å against respective 2.8 Å targets. The stock comparison gave
 2.121 and 3.933 Å on the same chemistry. Check the actual returned pair contacts
 and carry paired proofs into ordinary acquisition before promoting this route.
 The three substitutions are hypothetical on the experimental scaffold.
+
+C606 reopened all 50 supplied distances and 38 ordinary backbone links at entry
+and exit. The reported target and width matched in every case. A matched native
+five-cycle run from the same start moved 2MG O6···N4 from the one-cycle 2.135 Å
+to 2.463 Å, and 6MZ N6···O4 from 3.906 Å to 3.372 Å. Contacts farther than three
+restraint widths from target numbered 9 at entry, 8 after one cycle and 1 after
+five. This descriptive comparison uses the printed 0.20 Å restraint widths. The
+remaining long contact was unmodified DG A:14 N2···DC B:2 O2 at 3.415 Å. Across
+the three substitutions all twelve sugar hands remained intact, all six flanks
+measured 1.603–1.609 Å at five cycles and the three inter-base plane angles were
+6.58–8.36°. The 6MZ glycosidic torsion moved 15.4° from construction. Its
+pair remains open for review. Distances can now be inspected in the ordinary
+`--refined-links` reader without a separate analysis script or a new ranking rule.
 
 C601 found the source-preserving generator had introduced a 5.779 Å bond between
 O4′ and ring C2. All 42 source edges were present. The ten bonds of the purine

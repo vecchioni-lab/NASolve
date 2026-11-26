@@ -90,6 +90,24 @@ def test_refinement_measurements_need_a_run(tmp_path, capsys, mode, option):
     assert option + " requires --run" in capsys.readouterr().err
 
 
+def test_link_assessment_reports_distance_even_when_its_restraint_matched(tmp_path, capsys):
+    from nasolve.refinement_link_geometry import read_refined_links
+    from .test_refinement_link_geometry import geometry
+
+    model, geo, _, intent = geometry(tmp_path)
+    phil, = intent["restraint_phils"]
+    phil.write_text(phil.read_text().replace("distance_ideal = 2.8", "distance_ideal = 2.4"))
+    geo.write_text(geo.read_text().replace("2.800 2.800", "2.400 2.800"))
+    audit = {"status": "PASS", "run_context": {"checkpoint": {"id": "refine-002"}},
+             "refined_links": read_refined_links(model, geo, **intent)}
+    with patch("nasolve.cif_doctor_run.assess_run", return_value=audit):
+        assert main(["cif-doctor", "assess", "--run", str(tmp_path), "--refined-links"]) == 0
+    output = capsys.readouterr().out
+    assert "reported as MATCH" in output
+    assert "Most extended: A:2 DC N3 to B:4 Z99 N2T, 2.800 Å for a 2.400 Å target (+1.00 restraint widths)" in output
+    assert "Most compressed" not in output
+
+
 def test_nonbonded_contacts_need_a_run(tmp_path, capsys):
     source = _graph(tmp_path / "source.cif")
     assert main(["cif-doctor", "assess", str(source), "--contacts-at", "B:4"]) == 1

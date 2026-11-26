@@ -427,7 +427,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     cif_assess.add_argument(
         "--refined-links", action="store_true",
-        help="compare inter-residue bonds at Phenix preflight and after refinement with the checked preparation (requires --run)",
+        help="compare inter-residue bonds with the checked preparation and show the most compressed and extended supplied distances before and after refinement (requires --run)",
     )
     cif_assess.add_argument(
         "--contacts-at", action="append", metavar="CHAIN:NUMBER",
@@ -2553,6 +2553,16 @@ def _cif_doctor(args: argparse.Namespace) -> int:
                     if links["matched_backbone"] is not None:
                         print(f"  Matched {links['matched_backbone']} backbone bonds and "
                               f"{links['matched_supplied']} explicitly supplied distances.")
+                    fit = links.get("supplied_distance_fit")
+                    if fit is not None:
+                        for key, description in (("most_compressed", "Most compressed"), ("most_extended", "Most extended")):
+                            row = fit[key]
+                            if row is not None:
+                                pair = " to ".join(" ".join(atom) for atom in row["endpoints"])
+                                print(f"  {description}: {pair}, {row['model_A']:.3f} Å for a {row['target_A']:.3f} Å target "
+                                      f"({row['signed_widths']:+.2f} restraint widths).")
+                        if fit["ambiguous"]:
+                            print(f"  {fit['ambiguous']} matched distances have multiple same-image terms and cannot be ranked.")
                     for row in links["links"]:
                         if row["classification"] in {"OUTSIDE_DECLARATION", "SYMMETRY_REVIEW"}:
                             pair = " to ".join(" ".join(atom) for atom in row["endpoints"])

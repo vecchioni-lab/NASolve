@@ -27,6 +27,11 @@ entries are reconstructed from repository history.
   such a carbon even in a plane-free dictionary. `nasolve cif-doctor compare`
   also reports looser planes.
 
+- `cif-doctor assess --run RUN --refined-links` also names the most compressed
+  and most extended supplied inter-residue distances, in units of the actual
+  restraint width. It measures bonds whose targets match the checked preparation
+  and identifies ambiguous duplicate terms separately.
+
 - When an isolated component fails native checking, the diagnostic lists the
   affected coordinate seeds, failed checks and any recorded Phenix modifications.
   `nasolve cif-doctor explain-pucker QUALIFICATION` can reread both jobs and
