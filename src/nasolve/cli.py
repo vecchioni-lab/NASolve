@@ -2291,14 +2291,21 @@ def _cif_doctor(args: argparse.Namespace) -> int:
         if args.json:
             print(json.dumps(result, indent=2, allow_nan=False))
         else:
-            rows = result["matched_rows"]
-            print(f"{result['component']} {result['modifier']}: {result['status']}. "
-                  f"Matched rows for bonds ({rows['bonds']}), angles ({rows['angles']}) "
-                  f"and torsions ({rows['torsions']}).")
+            if "tables" in result:
+                print(f"{result['component']} {result['status']}")
+                for seed in result["seeds"]:
+                    counts = seed["matched_rows"]
+                    print(f"  {seed['seed']} selected {seed['modifier']} with {counts['bonds']} bonds, "
+                          f"{counts['angles']} angles and {counts['torsions']} torsions.")
+            else:
+                rows = result["matched_rows"]
+                print(f"{result['component']} {result['modifier']}: {result['status']}. "
+                      f"Matched rows for bonds ({rows['bonds']}), angles ({rows['angles']}) "
+                      f"and torsions ({rows['torsions']}).")
             for seed in result["seeds"]:
                 if seed["adjusted_checks_failed"]:
                     print(f"  {seed['seed']}: " + ", ".join(seed["adjusted_checks_failed"]))
-        return 0 if result["status"] == "ADJUSTED_TARGETS_EXPLAINED" else 2
+        return 0 if result["status"] in {"ADJUSTED_TARGETS_EXPLAINED", "SEED_TARGETS_EXPLAINED"} else 2
     if args.cif_action == "link-native":
         return _cif_link_native(args)
     if args.cif_action == "link-plan":

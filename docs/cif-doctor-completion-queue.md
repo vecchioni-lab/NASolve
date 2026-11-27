@@ -1221,6 +1221,23 @@ through B:5 N1 to A:11 DT N3. This establishes three substitutions on the
 measured host frame. The other five design sites and the OP2 state still need
 work. Phosphate protonation remains with Q13.
 
+C620 tested the two 2′-O-methyl sugars in the fixed design against the
+installed Phenix 2.2.1-6174 component sources. SJO attaches the base at N9
+and UY1 at C5. Both sources matched the earlier design by checksum. The native
+builder added C1′–P at 5.979 Å to SJO and C1′–N1 at 3.728 Å to UY1. The same
+source-order recovery used for 6MZ identified each extra bond, preserved all
+46 or 38 source bonds respectively, and produced both candidate dictionaries.
+Two native coordinate starts for each compound then exposed a second issue.
+For SJO both starts chose `rna2p` and matched 11 bonds, 15 angles and six
+torsions. For UY1 the source coordinates selected `rna3p` (10/12/6) while the
+generated coordinates selected `rna2p` (10/16/6). The installed numerical
+tables accounted for every changed target. Check the literal dictionaries
+independently, then address placement and both neighbouring links. SJO flags
+O1P on a phosphate whose double-bonded oxygen is called O1. The ordinary
+constructor protects O1P. For UY1, the true C5 ring attachment has neighbours
+C4 and C6, while the host thymine N1 has neighbours C2 and C6. Preserve both
+chemical assignments when evaluating a placement.
+
 C601 found the source-preserving generator had introduced a 5.779 Å bond between
 O4′ and ring C2. All 42 source edges were present. The ten bonds of the purine
 ring used its already approved aromatic representation. The recovery now checks

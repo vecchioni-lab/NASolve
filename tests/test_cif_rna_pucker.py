@@ -59,6 +59,24 @@ def test_unknown_or_nonphysical_adjustment_is_unexplained(column,value):
         project_pucker_targets(values,table)
 
 
+def test_explicit_three_prime_table_requires_its_own_modifier_in_every_row():
+    from nasolve.cif_rna_pucker import project_pucker_targets
+    values, table = _example()
+    table["data_"] = "mod_rna3p"
+    for key, column in table.items():
+        if key.endswith(".mod_id"):
+            column[0] = "rna3p"
+    table["_chem_mod_bond.new_value_dist"] = ["1.529"]
+    projected, counts = project_pucker_targets(values, table, modifier="rna3p")
+    assert projected["_chem_comp_bond.value_dist"] == ["1.529"]
+    assert counts == {"bonds":1, "angles":1, "torsions":1}
+    with pytest.raises(ValueError):
+        project_pucker_targets(values, table)
+    table["_chem_mod_angle.mod_id"] = ["rna2p"]
+    with pytest.raises(ValueError):
+        project_pucker_targets(values, table, modifier="rna3p")
+
+
 def test_coval_is_never_a_global_alias_for_single():
     from nasolve.cif_rna_pucker import project_pucker_targets
     values,table=_example()
@@ -126,6 +144,86 @@ def test_adjusted_read_keeps_the_other_native_requirements(tmp_path, fault):
     assert adjusted["native_usable"] is (fault=="none")
 
 
+@pytest.mark.parametrize(("states","fault","expected"), [
+    (("rna3p","rna2p"), None, "SEED_TARGETS_EXPLAINED"),
+    (("rna3p","rna3p"), None, "SEED_TARGETS_EXPLAINED"),
+    (("rna3p","rna2p"), "plane", "REVIEW"),
+    (("rna3p","rna3p"), "different_proxies", "REVIEW"),
+    (("rna2p","rna2p"), None, "ADJUSTED_TARGETS_EXPLAINED"),
+    (("rna3p","unknown"), None, None),
+])
+def test_each_seed_must_explain_its_own_numerical_targets(tmp_path, monkeypatch, states, fault, expected):
+    from nasolve import cif_rna_pucker as p
+
+    source, candidate = (tmp_path / name for name in ("source.cif", "candidate.cif"))
+    source.write_text("source")
+    candidate.write_text("candidate")
+    models = [tmp_path / (name + ".pdb") for name in ("source", "candidate")]
+    native = []
+    phases = {}
+    for i, state in enumerate(states):
+        site = tmp_path / str(i)
+        site.mkdir()
+        (site / "native_receipt.json").write_text(state)
+        phases[f"native-{i:03d}"] = {"job": {"cwd": {"path": str(i)}}}
+        native.append({"mod":state, "i":i, "monomer_mappings":{"rows":[
+            {"chem_mod_ids":{"status":"RECORDED","ids":[state]}}]}})
+    protocol = {"component":"QT", "consumer":{"version":"example"}, "bond_representation_policy":None}
+    monkeypatch.setattr(p, "_inputs", lambda root: (protocol,(source,candidate),models,None))
+    monkeypatch.setattr(p, "_values", lambda *args: _example()[0])
+    monkeypatch.setattr(p, "inspect_candidate_qualification_processes",
+                        lambda root: {"state":"STOPPED","phases":phases})
+    monkeypatch.setattr(p, "_owned_native_capture", lambda root, ref, i, *args: native[i])
+    monkeypatch.setattr(p, "qualify_candidate_native", lambda *a, **k: {"checks":{"targets":False}})
+    def checked(source, dictionary, model, code, receipt, *, projected, **options):
+        target = "1.529" if receipt["mod"] == "rna3p" else "1.526"
+        return {"checks":{"targets":projected["_chem_comp_bond.value_dist"] == [target],
+                          "planes":fault != "plane" or receipt["i"] == 0}}
+    monkeypatch.setattr(p, "_check_native_targets", checked)
+    monkeypatch.setattr(p, "covalent_proxy_signature",
+                        lambda n: (n["mod"], n["i"] if fault=="different_proxies" else 0))
+    def block(path, pin, *, modifier):
+        assert modifier == pin["modifier"]
+        table = _example()[1]
+        table["data_"] = "mod_" + modifier
+        for name in table:
+            if name.endswith(".mod_id"):
+                table[name] = [modifier]
+        table["_chem_mod_bond.new_value_dist"] = ["1.529" if modifier=="rna3p" else "1.526"]
+        return table
+    monkeypatch.setattr(p, "_pucker_block", block)
+    monkeypatch.setattr(p, "table_bytes", lambda path, pin, *, modifier: None)
+    def installed(modifier):
+        return tmp_path / (modifier+".cif"), {"modifier":modifier}
+    if expected is None:
+        with pytest.raises(ValueError, match="recorded native"):
+            p._review_observed(tmp_path, installed)
+        return
+    report = p._review_observed(tmp_path, installed)
+    assert report["status"] == expected and report["qualification_unchanged"] is True
+    if states == ("rna2p","rna2p"):
+        assert report["policy_id"] == p.POLICY_ID and report["modifier"] == "rna2p"
+        assert "tables" not in report and all("modifier" not in seed for seed in report["seeds"])
+    else:
+        assert list(s["modifier"] for s in report["seeds"]) == list(states)
+        assert set(report["tables"]) == set(states)
+        with pytest.raises(ValueError):
+            p._review_default(tmp_path, *installed("rna2p"))
+
+
+def test_cli_prints_observed_pucker_at_each_seed(tmp_path, monkeypatch, capsys):
+    from nasolve import cli, cif_rna_pucker as p
+    rows = {"bonds":10,"angles":12,"torsions":6}
+    result = {"status":"SEED_TARGETS_EXPLAINED","component":"Q17","tables":{"rna2p":{},"rna3p":{}},
+              "seeds":[{"seed":s,"modifier":m,"matched_rows":rows,"adjusted_checks_failed":[]}
+                       for s,m in (("source","rna3p"),("candidate","rna2p"))]}
+    monkeypatch.setattr(cli,"discover_phenix",lambda *a,**k:object())
+    monkeypatch.setattr(p,"review_pucker_adjustment",lambda *a:result)
+    assert cli.main(["cif-doctor","explain-pucker",str(tmp_path)]) == 0
+    message = capsys.readouterr().out
+    assert "source selected rna3p" in message and "candidate selected rna2p" in message
+
+
 def test_cli_pucker_replay_keeps_qualification_unchanged(tmp_path, monkeypatch, capsys):
     from nasolve.cli import main
     from nasolve import cli, cif_rna_pucker
@@ -172,6 +270,22 @@ def test_archived_table_requires_exact_bounded_bytes(tmp_path):
         table_bytes(path,pin)
     with pytest.raises(ValueError,match="pinned"):
         table_bytes(path,dict(pin,path="../mod_rna2p.cif"))
+
+
+def test_three_prime_pin_cannot_stand_in_for_two_prime_table(tmp_path):
+    from hashlib import sha256
+    from nasolve.cif_rna_pucker import table_bytes
+    path = tmp_path / "rna3p.cif"
+    data = b"explicit three-prime table"
+    path.write_bytes(data)
+    pin = dict(anchor="phenix_installation",path="lib/python3/site-packages/chem_data/geostd/rna_dna/mod_rna3p.cif",
+               size=len(data),sha256=sha256(data).hexdigest())
+    assert table_bytes(path,pin,modifier="rna3p") == data
+    with pytest.raises(ValueError,match="pinned"):
+        table_bytes(path,pin)
+    path.write_bytes(b"x"*len(data))
+    with pytest.raises(ValueError,match="checksum"):
+        table_bytes(path,pin,modifier="rna3p")
 
 
 def test_only_legacy_pairs_fall_back_to_the_selected_installation(tmp_path,monkeypatch):

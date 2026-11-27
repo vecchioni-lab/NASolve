@@ -19,7 +19,6 @@ from .ligand_profiles import _blocks
 
 POLICY_ID = "observed-phenix-rna2p-targets-v1"
 PAIRED_USABILITY = "cif-isolated-native-and-literal-rna-usability-v1"
-_RESOURCE = "chem_data/geostd/rna_dna/mod_rna2p.cif"
 _TERMS = (
     ("bonds", "bond", 2, ("type", "value_dist", "value_dist_esd")),
     ("angles", "angle", 3, ("value_angle", "value_angle_esd")),
@@ -47,9 +46,10 @@ def _valid_target(field, raw, category):
     return v>0
 
 
-def project_pucker_targets(values, table):
+def project_pucker_targets(values, table, *, modifier="rna2p"):
     """Apply only the selected literal change rules in memory, preserving source rows."""
-    _need(table.get("data_")=="mod_rna2p", "Unsupported pucker modification block")
+    _need(modifier in ("rna2p", "rna3p") and table.get("data_") == "mod_" + modifier,
+          "Unsupported pucker modification block")
     result=deepcopy(values)
     counts={}
     allowed={"data_"}
@@ -63,7 +63,7 @@ def project_pucker_targets(values, table):
         allowed.update(section+"."+f for f in columns)
         rules={}
         for row in _rows(table,section):
-            _need(set(row)==columns and row["mod_id"]=="rna2p" and row["function"]=="change",
+            _need(set(row)==columns and row["mod_id"]==modifier and row["function"]=="change",
                   "Unsupported pucker modification fields or operation")
             key=_term_key(row,names,category)
             _need(key not in rules,"Duplicate pucker modification endpoints")
@@ -92,29 +92,34 @@ class ArchivedPuckerTableUnavailable(ValueError):
     """The older two-directory comparison needs its original numerical table."""
 
 
-def installed_pucker_table(installation_root):
+def _table_resource(modifier):
+    _need(modifier in ("rna2p", "rna3p"), "Unsupported Phenix sugar pucker")
+    return f"chem_data/geostd/rna_dna/mod_{modifier}.cif"
+
+
+def installed_pucker_table(installation_root, *, modifier="rna2p"):
     """Identify the table within the same Phenix installation selected for refinement."""
     root=Path(installation_root).resolve(strict=True)
-    table=_library(root)/_RESOURCE
+    table=_library(root)/_table_resource(modifier)
     return table, _pin(table,root,source=True)
 
 
 def available_pucker_pin(installation_root):
     root=Path(installation_root).resolve(strict=True)
-    path=_library(root)/_RESOURCE
+    path=_library(root)/_table_resource("rna2p")
     return _pin(path,root,source=True) if path.is_file() else None
 
 
-def validate_table_pin(pin):
+def validate_table_pin(pin, *, modifier="rna2p"):
     _need(isinstance(pin,dict) and set(pin)=={"anchor","path","size","sha256"}
           and pin["anchor"]=="phenix_installation" and _safe(pin["path"])
-          and pin["path"].endswith("/site-packages/"+_RESOURCE)
+          and pin["path"].endswith("/site-packages/"+_table_resource(modifier))
           and type(pin["size"]) is int and 0<pin["size"]<=MAX_SOURCE_BYTES and _hash(pin["sha256"]),
           "Require a pinned Phenix RNA pucker table")
 
 
-def table_bytes(path,pin):
-    validate_table_pin(pin)
+def table_bytes(path,pin, *, modifier="rna2p"):
+    validate_table_pin(pin, modifier=modifier)
     _need(Path(path).stat().st_size==pin["size"],"RNA pucker table size differs")
     data=_read(path)
     _need(len(data)==pin["size"] and sha256(data).hexdigest()==pin["sha256"],"RNA pucker table checksum differs")
@@ -136,11 +141,11 @@ def bound_pucker_file(reference, root=None, *, site_copy=False):
     return path,table_bytes(path,pin),pin
 
 
-def _pucker_block(path,pin):
-    data=table_bytes(path,pin)
+def _pucker_block(path,pin, *, modifier="rna2p"):
+    data=table_bytes(path,pin,modifier=modifier)
     _need(not _duplicate_tags(data.decode("utf-8")),"Duplicate pucker template tags")
     blocks=_blocks(path)
-    _need(len(blocks)==1 and table_bytes(path,pin)==data,"Ambiguous or changed pucker template")
+    _need(len(blocks)==1 and table_bytes(path,pin,modifier=modifier)==data,"Ambiguous or changed pucker template")
     return blocks[0].values
 
 
@@ -164,66 +169,90 @@ def linked_pucker_expectations(prepared,native):
     return output
 
 
-def _review_default(root,template,pin):
-    """Re-evaluate both recorded native seeds against the identified table bytes."""
-    root=Path(root).expanduser().resolve(strict=True)
-    protocol,paths,models,phil=_inputs(root)
-    _need("literal_rna" not in protocol,"Require the original default native qualification")
-    state=inspect_candidate_qualification_processes(root)
-    _need(state["state"]=="STOPPED" and set(state["phases"])=={"native-000","native-001"},
+def _review_observed(root, table_for):
+    """Compare each stopped native job with the numerical table that job actually selected."""
+    root = Path(root).expanduser().resolve(strict=True)
+    protocol, paths, models, phil = _inputs(root)
+    _need("literal_rna" not in protocol, "Require the original default native qualification")
+    state = inspect_candidate_qualification_processes(root)
+    _need(state["state"] == "STOPPED" and set(state["phases"]) == {"native-000", "native-001"},
           "Require a stopped, complete pair of original native jobs")
-    original_inventory=_inventory(root)
-    consumer=protocol["consumer"]
-    block=_pucker_block(template,pin)
-    code=protocol["component"]
-    projected,counts=project_pucker_targets(_values(paths[1],code),block)
-    options={"bond_representation_policy":protocol["bond_representation_policy"]}
-    seeds=[]
-    signatures=[]
-    for index,model in enumerate(models):
-        job=state["phases"][f"native-{index:03d}"]["job"]
-        receipt=path_in(root,job["cwd"]["path"]+"/native_receipt.json")
-        ref=_ref(receipt,root)
-        native=_owned_native_capture(root,ref,index,protocol,model,paths[1],phil,state)
-        mappings=native.get("monomer_mappings",{}).get("rows",[])
-        mods=mappings[0].get("chem_mod_ids") if len(mappings)==1 else None
-        _need(mods=={"ids":["rna2p"],"status":"RECORDED"}, "Require exactly one recorded native rna2p adjustment")
-        raw=qualify_candidate_native(*paths,model,code,native,**options)
-        explained=_check_native_targets(*paths,model,code,native,projected=projected,**options)
+    original_inventory = _inventory(root)
+    code = protocol["component"]
+    values = _values(paths[1], code)
+    options = {"bond_representation_policy": protocol["bond_representation_policy"]}
+    tables, targets, counts = {}, {}, {}
+    seeds, modifiers, signatures = [], [], []
+    for index, model in enumerate(models):
+        job = state["phases"][f"native-{index:03d}"]["job"]
+        receipt = path_in(root, job["cwd"]["path"] + "/native_receipt.json")
+        ref = _ref(receipt, root)
+        native = _owned_native_capture(root, ref, index, protocol, model, paths[1], phil, state)
+        mappings = native.get("monomer_mappings", {}).get("rows", [])
+        observed = mappings[0].get("chem_mod_ids") if len(mappings) == 1 else None
+        modifier = next((m for m in ("rna2p", "rna3p")
+                         if observed == {"ids": [m], "status": "RECORDED"}), None)
+        _need(modifier is not None, "Require one recorded native rna2p or rna3p adjustment per seed")
+        if modifier not in tables:
+            path, pin = tables[modifier] = table_for(modifier)
+            block = _pucker_block(path, pin, modifier=modifier)
+            targets[modifier], counts[modifier] = project_pucker_targets(values, block, modifier=modifier)
+        raw = qualify_candidate_native(*paths, model, code, native, **options)
+        explained = _check_native_targets(*paths, model, code, native, projected=targets[modifier], **options)
         signatures.append(covalent_proxy_signature(native))
-        seeds.append({"seed":model.stem,"native_receipt":ref,"literal_checks_failed":
-                      [k for k,v in raw["checks"].items() if not v],
-                      "adjusted_checks_failed":[k for k,v in explained["checks"].items() if not v]})
-    same=signatures[0]==signatures[1]
-    accounted=(all(counts.values()) and same and
-               all(s["literal_checks_failed"] and not s["adjusted_checks_failed"] for s in seeds))
-    table_bytes(template,pin)
-    _need(_inventory(root)==original_inventory,
-          "Qualification inputs or selected Phenix pucker table changed during review")
-    return {"policy_id":POLICY_ID,"component":code,"phenix_version":consumer["version"],"modifier":"rna2p",
-            "table":pin,"source":_ref(paths[0],root),"candidate":_ref(paths[1],root),
-            "matched_rows":counts,"seeds":seeds,"same_covalent_proxies":same,
-            "status":"ADJUSTED_TARGETS_EXPLAINED" if accounted else "REVIEW",
-            "scope":"ISOLATED_COMPONENT_ONLY","qualification_unchanged":True,"automatic_adoption":False}
+        modifiers.append(modifier)
+        seeds.append({"seed": model.stem, "native_receipt": ref,
+                      "literal_checks_failed": [k for k, v in raw["checks"].items() if not v],
+                      "adjusted_checks_failed": [k for k, v in explained["checks"].items() if not v]})
+    for modifier, (path, pin) in tables.items():
+        table_bytes(path, pin, modifier=modifier)
+    _need(_inventory(root) == original_inventory, "Qualification inputs changed during pucker review")
+    same = signatures[0] == signatures[1]
+    explained = (all(all(c.values()) for c in counts.values())
+                 and all(s["literal_checks_failed"] and not s["adjusted_checks_failed"] for s in seeds))
+    summary = dict(component=code, phenix_version=protocol["consumer"]["version"], source=_ref(paths[0], root),
+                   candidate=_ref(paths[1], root), seeds=seeds, same_covalent_proxies=same,
+                   scope="ISOLATED_COMPONENT_ONLY", qualification_unchanged=True, automatic_adoption=False)
+    if set(tables) == {"rna2p"}:
+        # This exact result is part of older stored qualification fingerprints.
+        return dict(summary, policy_id=POLICY_ID, modifier="rna2p", table=tables["rna2p"][1],
+                    matched_rows=counts["rna2p"], status="ADJUSTED_TARGETS_EXPLAINED" if same and explained else "REVIEW")
+    for seed, modifier in zip(seeds, modifiers):
+        seed.update(modifier=modifier, matched_rows=counts[modifier])
+    explained = explained and (len(tables) > 1 or same)
+    return dict(summary, policy_id="observed-phenix-rna-pucker-by-seed-v1",
+                tables={m: p for m, (_, p) in tables.items()}, status="SEED_TARGETS_EXPLAINED" if explained else "REVIEW")
 
 
-def review_pucker_adjustment(directory, installation):
-    """Check the stopped default reads against the currently selected installation."""
-    root=Path(directory).expanduser().resolve(strict=True)
-    protocol,_,_,_=_inputs(root)
-    ready=installation.executables["phenix.ready_set"]
-    verify_current_consumer(installation,ready,protocol["consumer"])
-    table,pin=installed_pucker_table(installation.root)
-    result=_review_default(root,table,pin)
-    _need(installed_pucker_table(installation.root)[1]==pin,"Installed pucker table changed")
-    verify_current_consumer(installation,ready,protocol["consumer"])
+def _review_default(root, template, pin):
+    """Reproduce the original two-seed rna2p qualification from its one frozen table."""
+    def frozen(modifier):
+        _need(modifier == "rna2p", "Frozen RNA qualification requires exactly rna2p in both seeds")
+        return template, pin
+    return _review_observed(root, frozen)
+
+
+def review_pucker_adjustment(directory, installation, *, exact_rna2p=False):
+    """Read the observed sugar state in each seed against the identified Phenix installation."""
+    root = Path(directory).expanduser().resolve(strict=True)
+    protocol, _, _, _ = _inputs(root)
+    ready = installation.executables["phenix.ready_set"]
+    verify_current_consumer(installation, ready, protocol["consumer"])
+    def installed(modifier):
+        if modifier == "rna2p":
+            return installed_pucker_table(installation.root)
+        return installed_pucker_table(installation.root, modifier=modifier)
+    result = _review_default(root, *installed("rna2p")) if exact_rna2p else _review_observed(root, installed)
+    pins = result["tables"] if "tables" in result else {"rna2p": result["table"]}
+    _need(all(installed(m)[1] == pin for m, pin in pins.items()), "Installed pucker table changed")
+    verify_current_consumer(installation, ready, protocol["consumer"])
     return result
 
 
 def _default_basis(directory, installation):
-    review=review_pucker_adjustment(directory,installation)
-    _need(review["status"]=="ADJUSTED_TARGETS_EXPLAINED","Original Phenix pucker change is unexplained")
-    return review,_digest(review)
+    review = review_pucker_adjustment(directory, installation, exact_rna2p=True)
+    _need(review["status"] == "ADJUSTED_TARGETS_EXPLAINED", "Original Phenix pucker change is unexplained")
+    return review, _digest(review)
 
 
 def _separate_roots(default_job, literal_job):

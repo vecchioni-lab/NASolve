@@ -8,6 +8,12 @@ claims.
 
 ## Where to resume
 
+C620 is examining the next two sites, SJO and UY1. The same source-order repair
+caught two different false native bonds. Phenix then chose the same sugar pucker
+from both SJO starting geometries, but different puckers from the two UY1 starts.
+The installed tables explain both UY1 choices. These are isolated dictionaries.
+Next check the literal controls and the two actual phosphate links in the design.
+
 C618–C619 took 2MG, 5MC and 6MZ through ordinary checked PostMR. Starting
 with no 6MZ dictionary, Phenix added an O4′–C2 bond absent from the source.
 Cedar recorded the failed attempt and recovered in one fresh attempt using the
@@ -144,6 +150,9 @@ refinement and its returned model. Reuse the shared map sampling, checkpoint and
 readers. The transferable handoff still needs an installed combined-source check. [Integration checks](cif-doctor-completion-queue.md#q16--final-integration-portability-and-retained-artifact-closure).
 
 ## Validation and release
+
+C620 passed 209 focused tests covering the two native pucker tables, both
+coordinate starts, source chemistry and the existing acquisition rules.
 
 C619 passed 172 focused outer-request, cache and ordinary-PostMR checks, followed
 by 124 acquisition, retention and source-order checks. The two pytest selections
