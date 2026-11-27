@@ -167,3 +167,92 @@ def test_refined_cut_view_refuses_stale_binding_and_drift_before_emission(recut_
     with pytest.raises(ValueError,match='changed'):
         refreshed_view(recut_child,preview,output)
     assert not output.exists()
+
+
+def refreshed_choice(case,tmp_path):
+    from nasolve.topostitch_recut_bundle import build_relabel_preview
+    from nasolve.topostitch_view import representative_comparison
+    preview=tmp_path/'refreshed';refresh_recut(case,preview)
+    proposal=json.loads((preview/'proposal.json').read_bytes())
+    proposal['kind']='topostitch-representative-proposal'
+    proposal.pop('selected_edge_ids');proposal.pop('anchor_node_ids');proposal['node_images']=[]
+    request=tmp_path/'alternative.json';request.write_text(json.dumps(proposal))
+    other=tmp_path/'alternative'
+    build_relabel_preview(preview/'source.pdb',preview/'discovery.json',
+        registration_path=preview/'registration.json',proposal_path=request,output_directory=other)
+    comparison=representative_comparison([preview,other],backbone_intent=True)
+    note=dict(schema_version=1,kind='topostitch-cut-preference',
+        **{key:comparison[key] for key in ('comparison_sha256','source_model_sha256','registered_graph_sha256')},
+        decision='prefer_cut',preferred_preview_receipt_sha256=comparison['alternatives'][1]['scene']['preview_receipt_sha256'],
+        comment='Inspect the alternative </script> before any decision.')
+    preference=tmp_path/'preference.json';preference.write_text(json.dumps(note))
+    return preview,other,preference,comparison
+
+
+def test_verified_child_comparison_reopens_preference_without_approval(recut_child,tmp_path):
+    preview,other,preference,plain=refreshed_choice(recut_child,tmp_path)
+    before={p:p.read_bytes() for root in (recut_child[0].parent.parent,recut_child[1],preview,other) for p in root.rglob('*') if p.is_file()}
+    output=tmp_path/'comparison.html'
+    scene=refreshed_view(recut_child,preview,output,comparison_directories=[other],preference_path=preference)
+    assert scene['comparison_sha256']==plain['comparison_sha256']
+    assert not scene['selection_applied'] and not scene['graphical_review_recorded']
+    for i,row in enumerate(scene['alternatives']):
+        assert row['scene']['atoms']==plain['alternatives'][i]['scene']['atoms']
+        observed=row['scene']['verified_checkpoint_refresh']
+        assert observed['child_checkpoint_id']=='refine-001'
+        assert observed['cut_relation']==('retained_parent_cut' if i==0 else 'alternative_same_child')
+        assert observed['refreshed_preview_sha256']==plain['alternatives'][0]['scene']['preview_receipt_sha256']
+        assert observed['review_state']=='UNREVIEWED' and not observed['scientific_acceptance']
+    html=output.read_text();note=json.loads(re.search(r'<script id="preference" type="application/json">(.*?)</script>',html,re.S).group(1))
+    assert note['decision']=='prefer_cut' and not note['reviewer_authenticated']
+    assert not note['checkpoint_selection_applied'] and not note['runtime_authority']
+    assert note['preferred_preview_receipt_sha256']==plain['alternatives'][1]['scene']['preview_receipt_sha256']
+    assert 'alternative_same_child' in html and '</script> before' not in html
+    assert str(tmp_path) not in html
+    assert all(p.read_bytes()==raw for p,raw in before.items())
+
+
+@pytest.mark.parametrize('bad',['wrong_source','duplicate','inside_alternative','preference_without_comparison','wrong_preference'])
+def test_verified_child_choice_refuses_invalid_context(recut_child,tmp_path,bad):
+    preview,other,preference,_=refreshed_choice(recut_child,tmp_path)
+    output=tmp_path/'refused.html';kwargs=dict(comparison_directories=[other],preference_path=preference)
+    if bad=='wrong_source':kwargs['comparison_directories']=[recut_child[1]]
+    if bad=='duplicate':kwargs['comparison_directories']=[preview]
+    if bad=='inside_alternative':output=other/'refused.html'
+    if bad=='preference_without_comparison':kwargs['comparison_directories']=[]
+    if bad=='wrong_preference':
+        note=json.loads(preference.read_text());note['comparison_sha256']='0'*64;preference.write_text(json.dumps(note))
+    with pytest.raises(ValueError):refreshed_view(recut_child,preview,output,**kwargs)
+    assert not output.exists()
+
+
+@pytest.mark.parametrize('drift',['alternative','preference','selection'])
+def test_verified_child_choice_rechecks_after_render(recut_child,tmp_path,monkeypatch,drift):
+    from nasolve import topostitch_view as owner,checkpoints
+    preview,other,preference,_=refreshed_choice(recut_child,tmp_path);render=owner._html
+    def changed(*args,**kwargs):
+        result=render(*args,**kwargs)
+        if drift=='selection':checkpoints.select_checkpoint(recut_child[0],'refine-001')
+        else:
+            p=preference if drift=='preference' else other/'proposal.json'
+            p.write_bytes(p.read_bytes()+b'\n')
+        return result
+    monkeypatch.setattr(owner,'_html',changed)
+    output=tmp_path/'refused.html'
+    with pytest.raises(ValueError,match='changed|context'):
+        refreshed_view(recut_child,preview,output,comparison_directories=[other],preference_path=preference)
+    assert not output.exists()
+
+
+def test_verified_child_choice_relocates_without_original_paths(recut_child,tmp_path):
+    preview,other,preference,_=refreshed_choice(recut_child,tmp_path)
+    before=refreshed_view(recut_child,preview,tmp_path/'before.html',comparison_directories=[other],preference_path=preference)
+    old=recut_child[0].parent.parent;moved=tmp_path/'moved-dataset';shutil.move(old,moved)
+    parent=tmp_path/'moved-parent';shutil.move(recut_child[1],parent)
+    fresh=tmp_path/'moved-refresh';shutil.move(preview,fresh)
+    alt=tmp_path/'moved-alternative';shutil.move(other,alt)
+    note=tmp_path/'moved-note.json';shutil.move(preference,note)
+    run=moved/'AutoMR'/recut_child[0].name;case=(run,parent,run/'child.pdb',recut_child[3])
+    after=refreshed_view(case,fresh,tmp_path/'after.html',comparison_directories=[alt],preference_path=note)
+    assert before==after and (tmp_path/'before.html').read_bytes()==(tmp_path/'after.html').read_bytes()
+    assert not any(p.exists() for p in (old,recut_child[1],preview,other,preference))

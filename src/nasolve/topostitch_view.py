@@ -405,43 +405,64 @@ def write_export_view(directory, output_path, *, expected_receipt_sha256, cedar_
 
 def write_checkpoint_recut_view(run_directory, parent_preview_directory, directory, output_path, *,
         expected_refresh_sha256, registry_reader, closest_image_reader,
-        image_separation_angstrom):
-    """Render a freshly verified refinement-child cut with explicit review state.
+        image_separation_angstrom, comparison_directories=(), preference_path=None):
+    """Inspect a verified child cut, optionally with same-child alternatives.
 
-    Reuse saved-refresh readback and the ordinary representative scene. The
-    checkpoint relationship is additional provenance, never a cut comparison,
-    approval, chemistry admission or change to current model selection.
+    The existing comparison/preference owners retain their exact source/graph
+    binding. Checkpoint provenance is a display annotation outside the canonical
+    comparison fingerprint. Only the refreshed packet retains the parent's cut;
+    other alternatives share the verified child, not that cut's ancestry.
+    Saved preference is review input, never approval or checkpoint selection.
     """
     from .topostitch_checkpoint import load_checkpoint_recut_preview, inspect_checkpoint_inputs
     from .topostitch_recut_bundle import _FILES
+    if not isinstance(comparison_directories,(list,tuple)) or len(comparison_directories)>7:
+        raise ValueError('At most seven additional explicit comparison paths are supported')
+    if preference_path is not None and not comparison_directories:
+        raise ValueError('A cut preference requires an explicit comparison')
     root=Path(directory).resolve();parent=Path(parent_preview_directory).resolve()
+    roots=[root]+[Path(path).resolve() for path in comparison_directories]
     out=Path(output_path).absolute()
     if out.exists() or out.is_symlink():raise FileExistsError(out)
-    if any(out.resolve().is_relative_to(p) for p in (root,parent)):
-        raise ValueError('Write the view outside the frozen parent and child previews')
-    frozen={p/name:(p/name).read_bytes() for p in (root,parent) for name in (*_FILES.values(),'preview.json')}
+    if any(out.resolve().is_relative_to(p) for p in (parent,*roots)):
+        raise ValueError('Write the view outside every frozen parent and child preview')
+    frozen={p/name:(p/name).read_bytes() for p in (parent,*roots) for name in (*_FILES.values(),'preview.json')}
     frozen[root/'checkpoint-refresh.json']=(root/'checkpoint-refresh.json').read_bytes()
+    if preference_path is not None:
+        preference_path=Path(preference_path).resolve()
+        if preference_path.stat().st_size>16_384:
+            raise ValueError('Cut preference exceeds the 16384-byte size limit')
+        frozen[preference_path]=preference_path.read_bytes()
     record=load_checkpoint_recut_preview(run_directory,parent,root,
         expected_refresh_sha256=expected_refresh_sha256,registry_reader=registry_reader,
         closest_image_reader=closest_image_reader,image_separation_angstrom=image_separation_angstrom)
-    scene=representative_scene(root,backbone_intent=True)
-    if scene['preview_receipt_sha256']!=record['child_preview_sha256']:
+    scene=(representative_comparison(roots,backbone_intent=True) if comparison_directories
+           else representative_scene(root,backbone_intent=True))
+    displayed=([row['scene'] for row in scene['alternatives']] if comparison_directories else [scene])
+    if displayed[0]['preview_receipt_sha256']!=record['child_preview_sha256']:
         raise ValueError('Refreshed preview changed during view construction')
-    scene['verified_checkpoint_refresh']=dict(refresh_sha256=expected_refresh_sha256,
-        parent_checkpoint_id=record['parent_checkpoint_id'],child_checkpoint_id=record['child_checkpoint_id'],
-        parent_preview_sha256=record['parent_preview_sha256'],
-        parent_context_sha256=record['parent_context_sha256'],child_context_sha256=record['child_context_sha256'],
-        max_atom_shift_angstrom=record['graph_descent']['max_atom_shift_angstrom'],
-        review_state='UNREVIEWED',review_inherited=False,selection_applied=False,
-        native_restart_qualified=False,scientific_acceptance=False)
-    html=_html(scene)
+    # Reuse the canonical comparison before adding contextual display metadata;
+    # existing preference files remain compatible with the ordinary inspector.
+    preference=None if preference_path is None else _read_cut_preference(scene,preference_path)
+    for item in displayed:
+        item['verified_checkpoint_refresh']=dict(refresh_sha256=expected_refresh_sha256,
+            refreshed_preview_sha256=record['child_preview_sha256'],
+            cut_relation=('retained_parent_cut' if item['preview_receipt_sha256']==record['child_preview_sha256']
+                          else 'alternative_same_child'),
+            parent_checkpoint_id=record['parent_checkpoint_id'],child_checkpoint_id=record['child_checkpoint_id'],
+            parent_preview_sha256=record['parent_preview_sha256'],
+            parent_context_sha256=record['parent_context_sha256'],child_context_sha256=record['child_context_sha256'],
+            max_atom_shift_angstrom=record['graph_descent']['max_atom_shift_angstrom'],
+            review_state='UNREVIEWED',review_inherited=False,selection_applied=False,
+            native_restart_qualified=False,scientific_acceptance=False)
+    html=_html(scene,preference)
     for role in ('parent','child'):
         identifier=record[role+'_checkpoint_id']
         inspect_checkpoint_inputs(run_directory,checkpoint=identifier,expected_checkpoint_id=identifier,
             expected_model_sha256=record[role+'_context']['source_model_sha256'],registry_reader=registry_reader,
             expected_context_sha256=record[role+'_context_sha256'])
     if any(p.read_bytes()!=raw for p,raw in frozen.items()):
-        raise ValueError('Checkpoint refresh packets changed during view construction')
+        raise ValueError('Checkpoint refresh, comparison or preference changed during view construction')
     with out.open('x',encoding='utf-8') as stream:stream.write(html)
     return scene
 

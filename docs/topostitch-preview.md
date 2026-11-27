@@ -5533,3 +5533,56 @@ not interchangeable alternatives. A second cut of the *same child* may be compar
 through the established comparison/preference owner, with its own exact binding.
 No review decision, new fit, force owner, changed coordinates or history is created
 by readback or rendering.
+
+
+## Compare cuts on a verified refinement child (W305)
+
+The existing `write_checkpoint_recut_view` accepts two optional arguments:
+`comparison_directories=()` and `preference_path=None`. This joins W302's verified
+checkpoint display to the existing same-source cut comparison and saved-preference
+owners; it adds no new registry, review decision, native route or GUI shell.
+
+```python
+scene = write_checkpoint_recut_view(
+    run, parent_preview, refreshed_child_preview, new_html,
+    expected_refresh_sha256=trusted_refresh_file_digest,
+    registry_reader=trusted_checkpoint_reader,
+    closest_image_reader=trusted_image_reader,
+    image_separation_angstrom=trusted_image_separation,
+    comparison_directories=[alternative_on_same_child],
+    preference_path=saved_preference,  # omit until a person supplies one
+)
+```
+
+Supply up to seven additional explicit packet paths. All must bind the same
+exact source-model and registered-graph hashes as the verified child packet.
+Only the first packet must be the exact saved refresh of the supplied parent
+cut. Alternatives can use other declared images on that same child; they do not
+inherit the first cut's ancestry or review. The UI distinguishes **Cut retained**
+from **Alternative cut**, while both show the verified parent→child relationship
+and physical movement separately from image shifts.
+
+Comparison fingerprints are those of the unchanged canonical
+`representative_comparison`, before checkpoint display annotations are added.
+Thus ordinary comparison preference files remain compatible when packet order
+and content are identical. Reordering alternatives or changing a packet requires
+a new comparison/preference. The optional per-scene metadata adds
+`refreshed_preview_sha256` and `cut_relation` (`retained_parent_cut` or
+`alternative_same_child`) alongside W302's provenance. No ordinary packet,
+checkpoint or preference schema changes.
+
+The producer snapshots every parent/child/alternative packet and, when supplied,
+the preference bytes. After rendering it rechecks both genuine checkpoint input
+contexts and all frozen bytes before creating the new HTML. Wrong source/graph,
+duplicate cuts, a preference without a comparison, stale or mismatched preference,
+late packet/preference/selection drift and output paths inside any frozen packet
+refuse. Explicit paths and hash checks survive relocation; hashes are not file
+locators. These are bounded snapshot checks, not a concurrent-writer lock.
+
+The returned comparison/HTML is an inspection artifact, not a new scientific
+input. A saved preference remains unauthenticated review input with
+`scientific_acceptance=False`, `checkpoint_selection_applied=False` and
+`runtime_authority=False`. A fresh child always needs fresh review. No real
+preference is synthesized for scientific examples; only synthetic regression
+fixtures exercise reopening. Offline HTML is verified at creation, not a live
+monitor of subsequent filesystem changes.

@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W305 — Keep refined-child context while comparing cuts
+
+- Extend the existing verified-child inspector with same-child alternatives and
+  saved preference intake, reusing the existing comparison and preference rules.
+- Distinguish a retained parent cut from an alternative on the same child.
+  Preserve comparison fingerprints and old preference files; verify all packets,
+  preference bytes and parent/child contexts before writing the new view.
+- Refuse stale, mismatched, duplicate or drifting inputs. Reopening a preference
+  never authenticates a reviewer, approves chemistry or changes current selection.
+
 ### W304 — Compare ordinary recovery at two native image joins
 
 - Record a complete three-cycle sibling against the saved one-cycle PDU/5W6W
