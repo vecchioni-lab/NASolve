@@ -4,7 +4,7 @@
   "updated": "2026-11-27",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "ac2d608688e4864810b84aabef4138c0b4db4571",
+  "audited_code_commit": "fe2d158192a7cd53705025fc2fc65078678975ff",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -1282,14 +1282,15 @@
         "W244 audits four Cedar-coordinated real-data fits on initially healthy cuts: all eight seam terms within 1.82 sigma, complete anisotropic return and reopened source-byte-preserving export, 84 frozen-input hashes. This closes the W243 fresh local return gate; general damaged-seam repair and whole-ASU scattering remain open.",
         "W299 binds a complete freshly Cedar-inspected phosphate group to an exactly replayed preview, preserving logical/coordinate sites, strand IDs and separate native/display operators. Genuine two-link parent correspondence, 111 source/111 relocated checks and full Willow regression pass; no new force, fit or checkpoint authority.",
         "W300 completes ordinary refine-003 to refine-004 with both inherited phosphate groups, exact child descent and freshly bound unreviewed recut. All862 atom identities and original parent survive, child unselected. Local geometry remains mixed; bounded restart evidence only.",
-        "W301 maintains exact parent/direct refinement-child cut refresh through existing owners, preserving all declared connections and explicit/forest choices with fresh UNREVIEWED state. Genuine W300 replay reproduces862 atoms and both links; 177 source/installed checks and full Willow regression pass. No new fit or chemical acceptance."
+        "W301 maintains exact parent/direct refinement-child cut refresh through existing owners, preserving all declared connections and explicit/forest choices with fresh UNREVIEWED state. Genuine W300 replay reproduces862 atoms and both links; 177 source/installed checks and full Willow regression pass. No new fit or chemical acceptance.",
+        "W302 rederives saved refreshes and every packet byte through the existing producer before graphical consumption. Real child inspector preserves862 atoms/edges, physical/image movement distinction and fresh-review status. Forged claims, substituted valid cuts and stale contexts refuse; no fit or selection."
       ],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
         "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.",
         "Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified."
       ],
-      "next_action": "W302: add maintained saved-refresh readback against exact parent/child contexts and replayed packets before graphical consumption; reject stale/forged records and preserve new-child UNREVIEWED state. Reuse W300 fit and W301 producer. Existing same-source cut comparison remains unchanged. Persistent review/edit/import/adoption, whole-ASU scattering and complete seam acceptance are separate gates; no second force/refinement owner.",
+      "next_action": "W303: reuse existing same-child cut comparison/preference owners for the original-ASU versus retained-cut choice on W300 refine-004. Keep preference distinct from approval/selection, bind exact child context and preserve unchanged chemistry. Audit remaining persistent operation/edit/refine gaps without duplicating producer/readback/view owners. Any further geometry recovery experiment must ask a new question and reuse the saved baseline.",
       "evidence": [
         "E_PINE_TEST_BANK",
         "E_NATIVE_REPRESENTATION_SEAMS",
@@ -1313,14 +1314,15 @@
         "E_LIVE_ANISOTROPIC_RETURN",
         "E_JOINT_RECUT_BINDING",
         "E_ORDINARY_CHILD_RECUT",
-        "E_CHECKPOINT_RECUT_REFRESH"
+        "E_CHECKPOINT_RECUT_REFRESH",
+        "E_SAVED_RECUT_READBACK"
       ],
       "last_audit": {
         "date": "2026-11-27",
-        "code_commit": "ac2d608688e4864810b84aabef4138c0b4db4571",
+        "code_commit": "fe2d158192a7cd53705025fc2fc65078678975ff",
         "reviewer": "Linden",
-        "human_update": 301,
-        "scope": "Maintained child-preview producer qualified; saved-refresh consumption, persistent human review and full seam acceptance remain open"
+        "human_update": 302,
+        "scope": "Saved readback and existing inspector qualified; persistent human workflow and full seam acceptance remain open"
       }
     },
     {
@@ -1334,25 +1336,27 @@
       "goal": "Keep cut, preview, child creation, refinement and review in one usable workbench.",
       "delivered": [
         "W300 completes ordinary refine-003 to refine-004 with both inherited phosphate groups, exact child descent and freshly bound unreviewed recut. All862 atom identities and original parent survive, child unselected. Local geometry remains mixed; bounded restart evidence only.",
-        "W301 maintains exact parent/direct refinement-child cut refresh through existing owners, preserving all declared connections and explicit/forest choices with fresh UNREVIEWED state. Genuine W300 replay reproduces862 atoms and both links; 177 source/installed checks and full Willow regression pass. No new fit or chemical acceptance."
+        "W301 maintains exact parent/direct refinement-child cut refresh through existing owners, preserving all declared connections and explicit/forest choices with fresh UNREVIEWED state. Genuine W300 replay reproduces862 atoms and both links; 177 source/installed checks and full Willow regression pass. No new fit or chemical acceptance.",
+        "W302 rederives saved refreshes and every packet byte through the existing producer before graphical consumption. Real child inspector preserves862 atoms/edges, physical/image movement distinction and fresh-review status. Forged claims, substituted valid cuts and stale contexts refuse; no fit or selection."
       ],
       "acceptance": [
         "Use the shared model tree and exact selection/Coot APIs; keep inspect, select and approve distinct, preserve current choice and return refinement diagnostics to the same session.",
         "Graphical actions bind source hashes and show actual nicks/seams/mates. Test stale views, competing choices, interrupted actions, manual imports and relocation without duplicating campaign/checkpoint machinery.",
         "Expose editable Pine periodic connectivity beyond the ASU, preserving prior user choices and exact logical/image mappings across reslicing or explicitly marking unresolved mappings. Keep intent, proximity and enforcement support separate."
       ],
-      "next_action": "W302: add maintained saved-refresh readback against exact parent/child contexts and replayed packets before graphical consumption; reject stale/forged records and preserve new-child UNREVIEWED state. Reuse W300 fit and W301 producer. Existing same-source cut comparison remains unchanged. Persistent review/edit/import/adoption, whole-ASU scattering and complete seam acceptance are separate gates; no second force/refinement owner.",
+      "next_action": "W303: reuse existing same-child cut comparison/preference owners for the original-ASU versus retained-cut choice on W300 refine-004. Keep preference distinct from approval/selection, bind exact child context and preserve unchanged chemistry. Audit remaining persistent operation/edit/refine gaps without duplicating producer/readback/view owners. Any further geometry recovery experiment must ask a new question and reuse the saved baseline.",
       "evidence": [
         "E_WILLOW_PINE_DOC_AUDIT",
         "E_ORDINARY_CHILD_RECUT",
-        "E_CHECKPOINT_RECUT_REFRESH"
+        "E_CHECKPOINT_RECUT_REFRESH",
+        "E_SAVED_RECUT_READBACK"
       ],
       "last_audit": {
         "date": "2026-11-27",
-        "code_commit": "ac2d608688e4864810b84aabef4138c0b4db4571",
+        "code_commit": "fe2d158192a7cd53705025fc2fc65078678975ff",
         "reviewer": "Linden",
-        "human_update": 301,
-        "scope": "Maintained child-preview producer qualified; saved-refresh consumption, persistent human review and full seam acceptance remain open"
+        "human_update": 302,
+        "scope": "Saved readback and existing inspector qualified; persistent human workflow and full seam acceptance remain open"
       }
     },
     {
@@ -10495,6 +10499,59 @@
           "size": 52757
         }
       ]
+    },
+    "E_SAVED_RECUT_READBACK": {
+      "kind": "Saved checkpoint refresh rederivation and verified offline inspector",
+      "date": "2026-11-27",
+      "human_update": 302,
+      "code_commit": "fe2d158192a7cd53705025fc2fc65078678975ff",
+      "reference": "docs/topostitch-periodic.md#w302--verify-saved-refreshes-before-inspection",
+      "result": "209 source/209 relocated-installed checks; full3125 tests+238 subtests, no skips. Real W301 saved refresh reopens through exact W300 history; all862 displayed atoms/edges unchanged. Inspector separates0.313700 A physical motion from representation shifts. JavaScript syntax passes; no new fit or selection.",
+      "limitation": "Offline checked snapshot, not live disk monitoring or human approval. Changed registry context requires new explicit refresh. Complete geometry, persistent edits/adoption and whole-run portability remain open; browser execution not newly tested.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w302-refresh-readback/audit.json",
+          "sha256": "9a6a5a9474e9afda29c96b2a2fe8019915b4808f4a84b7f297617e938c84b9dc",
+          "size": 1323
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w302-refresh-readback/audit-command.json",
+          "sha256": "d2e7532dd19e0c9518da5cd3b6dd45c2d3742e6df8cb97d2f18fd78e088822f2",
+          "size": 754
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w302-refresh-readback/qualification.json",
+          "sha256": "719da7a7833ce0d4e0b533c5a03002c0e942966c86ee24066dccd524f8a79f2b",
+          "size": 31999
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w302-refresh-readback/source-focused.log",
+          "sha256": "e7bf0be6455dc0b5540051de12fa09fb853fae370ce7cf8d1dbd1732b46b9fa5",
+          "size": 261
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w302-refresh-readback/source-complete.log",
+          "sha256": "33fea107d9451a9c2e9d2f3e040d34ea3be7f4279b39e9beecc4bfa0dce0b7db",
+          "size": 3552
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w302-refresh-readback/installed-focused.log",
+          "sha256": "bf98e9a98f77f146b9586ff7854548ce4c1f6cbd05b7a2682754885ddc2b3520",
+          "size": 261
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w302-refresh-readback/javascript-check.json",
+          "sha256": "c80ebff4286f44a99bfe0c8641083a09ef13cdb0f5b4ebbf3c070852fc4e000e",
+          "size": 211
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -10676,8 +10733,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 301,
-    "next": 302,
+    "current": 302,
+    "next": 303,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -12293,6 +12350,12 @@
         "title": "Maintain exact-checkpoint child cut refresh with fresh review",
         "state": "RECORDED",
         "code_commit": "ac2d608688e4864810b84aabef4138c0b4db4571"
+      },
+      {
+        "number": 302,
+        "title": "Verify saved child-cut relationships before inspection",
+        "state": "RECORDED",
+        "code_commit": "fe2d158192a7cd53705025fc2fc65078678975ff"
       }
     ]
   },

@@ -7,7 +7,13 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Latest code, W301:** [checkpoint-bound child recut](topostitch-preview.md#refresh-a-cut-onto-its-exact-refinement-child-w301)
+- **Latest code, W302:** [verified child-cut inspection](topostitch-preview.md#reopen-a-verified-refined-child-cut-w302)
+  rederives saved refreshes before displaying their lineage and fresh-review
+  status. Same 862 atoms/edges as W301; no new fit. 209 source/209 relocated
+  checks and full suite (3,125 tests + 238 subtests) pass. Ordinary comparisons
+  still require cuts of the same source and graph.
+
+- **Refresh producer, W301:** [checkpoint-bound child recut](topostitch-preview.md#refresh-a-cut-onto-its-exact-refinement-child-w301)
   carries the exact parent's chosen cut onto its direct refinement child, always
   unreviewed. Both W300 links and all 862 atoms reproduce without a new fit.
   177 source/177 relocated checks and the full suite (3,117 tests + 238 subtests)

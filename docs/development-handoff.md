@@ -1,7 +1,7 @@
 # NASolve development handoff — Willow
 
-**W301 maintained child recut, 2026-11-27.** Latest maintained code:
-`ac2d608688e4864810b84aabef4138c0b4db4571`. Latest native preflight/refinement:
+**W302 verified child-cut inspector, 2026-11-27.** Latest maintained code:
+`fe2d158192a7cd53705025fc2fc65078678975ff`. Latest native preflight/refinement:
 **W300** (separate genuine ordinary parent); latest density audit: **W298**.
 The [audited roadmap](topostitch-roadmap.md) owns status and the next decision;
 [periodic evidence](topostitch-periodic.md) and [API contracts](topostitch-preview.md)
@@ -21,7 +21,7 @@ must work without an AI service. A representation change does not repair a gap.
 | Local native phosphate receiving | Default six-atom route plus explicit unphased sugars or canonical endpoint bases; installed preflight and fit complete with original context/data | Wider paired/base motion, packing acceptance and ordinary campaign adoption |
 | W297 endpoint-base experiment | 37 moving/825 held; join 1.60863 Å, pair angles 17.9→11.3° and 4.0→1.5°; all atoms, B/Q and six sugar hands preserved | Residual torsion 2.683σ, one stack angle worsens and both bases remain weak in maps; Rwork/Rfree 0.313/0.361, unselected |
 | Whole-original-asym diagnostic CIF export | W272–278 preserve qualified source categories, images, tensors and backbone coverage; save/replay/inspect available | Mixed-fragment entity policy, native TLS restart, genuine source/parent join and persistent operation/refine loop |
-| W299–W301 joint recut and restart | Maintained exact-parent/direct-child preview refresh preserves both links and all 862 atom identities; W300 ordinary restart verified | Saved-refresh readback, persistent human review and full seam acceptance; child unselected |
+| W299–W302 joint recut and restart | Exact-parent/direct-child refresh, saved readback and existing-inspector integration preserve both links and 862 atom identities; W300 ordinary restart verified | Persistent human review/edit/adoption and full seam acceptance; child unselected |
 | W286/W287 connection review | Source/row/evidence-bound unapplied proposals and independent saved-report replay | Explicit metadata authority, application and separate chemistry/export/native admission |
 | W290 endpoint-map comparison | Same 1,909 indices/124 Free-R; P near 2.52σ in both maps, weak fixed sugar support | Explicit coupled-window chemistry/packing before broader native motion; no map-based acceptance |
 | W292–W296 coupled-sugar scope | Source geometry, native derivatives, actual live definitions, sugar hands/pucker and C1 plane tradeoff checked; no plane removed | Full returned packing-review intake, physical partner authority and whole-duplex motion remain open |
@@ -75,10 +75,13 @@ maintained fixed-weight product mode or recommended production weight.
    local geometry is mixed. **W301** maintains the successful composition through
    existing checkpoint/descent/registration/preview owners. Exact lineage, input
    hashes and image/atom correspondence are required; changed child always gets
-   a fresh unreviewed proposal. **Next:** replay the saved refresh against the
-   genuine run and parent/child packets before graphical consumption. The new
-   sidecar alone is producer evidence, not an authenticated downstream input.
-   Preserve the existing same-source cut-comparison restriction. Do not build
+   a fresh unreviewed proposal. **W302** now rederives saved refreshes against the
+   genuine run and parent/child packets before graphical consumption; a sidecar
+   alone remains insufficient. The inspector separates physical movement from
+   image shifts and requires fresh review. **Next:** use the existing same-child
+   cut comparison/preference owner for a scientist-facing choice, keeping
+   preference distinct from approval and selection. Existing same-source
+   comparison restrictions remain unchanged. Do not build
    another refinement route. Use the genuine PDU ordinary parent with its proven data/thermal route.
    Use source-frame native refinement and
    derived views; keep physical strand/entity assignments unresolved without a
@@ -116,6 +119,13 @@ references and thermal/TLS semantics. File readback alone cannot prove those.
 
 <a id="validation-and-scientific-interpretation"></a>
 ## Validation and compatibility
+
+**W302:** 209 focused source/209 relocated-installed checks, installed CLI help,
+changed HTML asset equality and full Willow suite **3,125 tests + 238 subtests**,
+no skips, pass at `fe2d158192a7cd53705025fc2fc65078678975ff`. Exact W301 readback
+and inspector preserve 862 atoms and all graph edges without a fit. Inline
+JavaScript compiles with `node:vm.Script`; browser execution was not newly tested.
+[Commands and limits](topostitch-periodic.md#w302--verify-saved-refreshes-before-inspection).
 
 **W301:** 177 focused source/177 relocated-installed checks, installed CLI help
 and full Willow suite **3,117 tests + 238 subtests**, no skips, pass at
@@ -172,10 +182,11 @@ is not a current merge or qualification of later branches.
 
 ## Local science checkout
 
-Latest backend demonstration at NASolve anchor:
-`branch-artifacts/willow/w301-checkpoint-recut/index.html`, linking the maintained
-child inspector and original W300 science comparison. This is the same refined
-molecule, freshly bound through the maintained producer; no extra motion claimed.
+Latest verified child inspector at NASolve anchor:
+`branch-artifacts/willow/w302-refresh-readback/child-inspector.html`. It verifies
+the W301 saved refresh before showing exact child lineage and fresh-review
+status. Original/Proposed compare representations of the same child, not parent
+versus child; W300 retains the separate physical-movement comparison.
 
 Latest ordinary restart checkout, at the ScienceCheckouts anchor:
 `Linden/2026-11-27_two-connection-restart/index.html`. Its Python-openable

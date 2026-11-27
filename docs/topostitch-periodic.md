@@ -15716,3 +15716,64 @@ CLI or force policy, and no whole-run portability claim. P04/P05 remain PARTIAL.
 or run context before any GUI can describe the relationship as verified. Preserve
 the same-source restriction of ordinary cut comparisons; parent/child motion is
 a different comparison. Persistent scientist review and geometry acceptance remain open.
+
+
+## W302 — Verify saved refreshes before inspection
+
+**2026-11-27; code `fe2d158192a7cd53705025fc2fc65078678975ff`.** Existing checkpoint
+and view owners now provide `load_checkpoint_recut_preview` and
+`write_checkpoint_recut_view`. [API and trust boundary](topostitch-preview.md#reopen-a-verified-refined-child-cut-w302).
+Previously W301's completion sidecar was producer evidence only. Now readback
+regenerates the complete refresh using genuine run history and compares every
+observation and packet byte. A forged approval, altered distance, substituted
+otherwise-valid cut, wrong pin, absent completion or stale registry refuses.
+No second lineage/geometry engine, new checkpoint or review decision is added.
+
+The existing offline renderer receives optional verified parent/child metadata.
+It shows fresh-review status and **0.313700 Å** maximum physical movement for the
+real W300 child, distinct from representation shifts. Original/Proposed remain
+two representations of that same child. The existing comparison owner still
+refuses different sources/graphs. Offline HTML is a checked snapshot at creation,
+not a live monitor of later disk changes. No new CLI or old-schema migration.
+
+**Real read-only control:** pinned Cedar
+`d3d71cde66ca3fe953c182773672fd5d5dbd3a8a` under Phenix **2.2.1-6174** reopens W301's
+saved refresh. All **862 atoms and every displayed graph edge** exactly match
+W301; genuine W300 run and both packets stay byte-identical and `postmr` remains
+selected. No fit, capture, Coot or ChimeraX run. No geometry improvement is claimed.
+
+**Validation:** six readback and two viewer missing-API regressions fail before
+implementation. Final **209 focused source/209 relocated-installed checks** pass;
+full Willow suite **3,125 tests + 238 subtests**, no skips, passes in **240.61 s**.
+CLI help, Python 3.10 syntax, exact installed source/HTML asset and unchanged tested
+source pass after original build/install paths are removed. Run/parent/child
+relocation reproduces the exact saved observation without original paths. An
+initial standalone focused bootstrap lacked NARestraints for two existing view
+cases; these pass with declared dependencies in final qualification. That failed
+bootstrap remains recorded. Inline JavaScript syntax passes through `node:vm.Script`;
+interactive browser execution was not newly tested.
+
+Local NASolve anchor: `branch-artifacts/willow/w302-refresh-readback/`.
+`qualification.json` owns exact commands, environments, dependency versions,
+source/asset hashes and logs; `audit-command.json`, `audit.json` and
+`javascript-check.json` own native readback and syntax evidence. Outer commands:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/w302-refresh-readback/qualify.py
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/w302-refresh-readback/audit_launcher.py
+```
+
+Tests use `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src` plus explicit Phenix import
+bootstrapping. The full call is `pytest.main(["-q", "-rs", "-p",
+"no:cacheprovider", "tests"])`. Focused files cover checkpoint, graph, recut-bundle,
+continuations, ordinary/recut/export views. The new local `child-inspector.html`
+embeds the verified relationship; no science is uploaded. Committed changes are
+existing owners, existing HTML asset/tests, changelog and guides/roadmap. Raw runs,
+views, qualification artifacts and failed attempts remain local. Snapshot checks
+are not locks; exact replay requires compatible owner/runtime behavior.
+
+P04/P05 remain PARTIAL. **Next:** use existing same-child cut alternatives and
+saved preference semantics for a concrete scientist-facing comparison, with
+preference distinct from approval or current model selection. Then audit the
+remaining persistent operation/edit/refine lifecycle; do not duplicate the
+already qualified producer, reader or comparison owner.
