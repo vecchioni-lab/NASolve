@@ -11,7 +11,10 @@ entries are reconstructed from repository history.
 - CIF Doctor’s `explain-pucker` can read which sugar pucker Phenix selected for
   each of two starting geometries and check the corresponding bond, angle and
   torsion targets. It can report when the two choices differ. Existing stored
-  qualifications retain their original numerical checks.
+  qualifications retain their original numerical checks. The separate
+  `verify-pucker` control can freeze both observed tables and compare both
+  starts again with only the pucker adjustment disabled. Those controls can
+  be reopened without the original Phenix installation.
 
 - On the source-preserving path, checked PostMR can recover when Phenix adds
   a bond absent from the chemical source. It first checks for an exact qualified

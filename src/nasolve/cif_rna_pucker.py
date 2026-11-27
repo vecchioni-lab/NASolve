@@ -18,6 +18,7 @@ from .cif_terminal_qualification import _rows
 from .ligand_profiles import _blocks
 
 POLICY_ID = "observed-phenix-rna2p-targets-v1"
+OBSERVED_POLICY_ID = "observed-phenix-rna-pucker-by-seed-v1"
 PAIRED_USABILITY = "cif-isolated-native-and-literal-rna-usability-v1"
 _TERMS = (
     ("bonds", "bond", 2, ("type", "value_dist", "value_dist_esd")),
@@ -220,7 +221,7 @@ def _review_observed(root, table_for):
     for seed, modifier in zip(seeds, modifiers):
         seed.update(modifier=modifier, matched_rows=counts[modifier])
     explained = explained and (len(tables) > 1 or same)
-    return dict(summary, policy_id="observed-phenix-rna-pucker-by-seed-v1",
+    return dict(summary, policy_id=OBSERVED_POLICY_ID,
                 tables={m: p for m, (_, p) in tables.items()}, status="SEED_TARGETS_EXPLAINED" if explained else "REVIEW")
 
 
@@ -263,19 +264,32 @@ def _separate_roots(default_job, literal_job):
     return root,literal
 
 
-def verify_literal_pucker(default_job, literal_job, installation, *, _attempt_identity=None, _remaining_seconds=None):
+def verify_literal_pucker(default_job, literal_job, installation, *, include_observed_states=False, _attempt_identity=None, _remaining_seconds=None):
     """Check the same isolated component with only the native pucker adjustment disabled."""
     from .cif_candidate_qualification_execution import execute_candidate_qualification
     root,literal=_separate_roots(default_job,literal_job)
     _need(not literal.exists(),"Require a fresh literal qualification directory")
-    review,basis=_default_basis(root,installation)
-    table,pin=installed_pucker_table(installation.root)
-    _need(pin==review["table"],"Selected RNA table differs from the original pucker review")
+    if include_observed_states:
+        review = review_pucker_adjustment(root, installation)
+        _need(review["status"] in {"ADJUSTED_TARGETS_EXPLAINED","SEED_TARGETS_EXPLAINED"},
+              "Original Phenix pucker change is unexplained")
+        basis = _digest(review)
+    else:
+        review, basis = _default_basis(root, installation)
+    if "tables" in review:
+        tables = {m:installed_pucker_table(installation.root, modifier=m) for m in review["tables"]}
+        _need({m:pin for m, (_,pin) in tables.items()} == review["tables"],
+              "Selected Phenix tables differ from the observed sugar states")
+        options = {"_literal_rna_tables":tables}
+    else:
+        table, pin = installed_pucker_table(installation.root)
+        _need(pin == review["table"], "Selected RNA table differs from the original pucker review")
+        options = {"_literal_rna_table":(table,pin)}
     p,paths,_,_=_inputs(root)
     execute_candidate_qualification(*paths,p["component"],p["consumer"],installation,literal,
         native_timeout_seconds=p["native_timeout_seconds"],total_timeout_seconds=p["total_timeout_seconds"],
         bond_representation_policy=p["bond_representation_policy"],_literal_rna_basis=basis,
-        _literal_rna_table=(table,pin),_attempt_identity=_attempt_identity,_remaining_seconds=_remaining_seconds)
+        _attempt_identity=_attempt_identity,_remaining_seconds=_remaining_seconds,**options)
     return read_literal_pucker(root,literal,installation)
 
 
@@ -287,8 +301,20 @@ def read_literal_pucker(default_job, literal_job, installation=None):
 def _read_pair(default_job,literal_job,installation=None):
     root,literal=_separate_roots(default_job,literal_job)
     lp,_,_,_=_inputs(literal)
-    pin=lp.get("literal_rna",{}).get("table")
-    if pin is None:
+    basis = lp.get("literal_rna", {})
+    pin = basis.get("table")
+    if "tables" in basis:
+        pins = basis["tables"]
+        if installation is not None:
+            verify_current_consumer(installation,installation.executables["phenix.ready_set"],lp["consumer"])
+            _need(all(installed_pucker_table(installation.root,modifier=m)[1] == v for m,v in pins.items()),
+                  "Current Phenix sugar tables differ from the recorded ones")
+        def selected(modifier):
+            _need(modifier in pins, "Observed sugar state has no frozen table")
+            return literal/"inputs"/(modifier+".cif"), pins[modifier]
+        review = _review_observed(root, selected)
+        _need(review.get("tables") == pins, "Frozen tables differ from the states recorded in the two native jobs")
+    elif pin is None:
         if installation is None:
             raise ArchivedPuckerTableUnavailable("This earlier qualification requires the recorded Phenix installation")
         review,_=_default_basis(root,installation)
@@ -302,7 +328,9 @@ def _read_pair(default_job,literal_job,installation=None):
 
 def _paired_reads(root,literal,review):
     from .cif_candidate_qualification_execution import LITERAL_USABILITY, REPORT, read_candidate_qualification
-    _need(review["status"]=="ADJUSTED_TARGETS_EXPLAINED","Original Phenix pucker change is unexplained")
+    by_seed = review.get("policy_id") == OBSERVED_POLICY_ID
+    required = "SEED_TARGETS_EXPLAINED" if by_seed else "ADJUSTED_TARGETS_EXPLAINED"
+    _need(review["status"] == required, "Original Phenix pucker change is unexplained")
     basis=_digest(review)
     p,paths,_,_=_inputs(root)
     lp,lpaths,lmodels,_=_inputs(literal)
@@ -316,8 +344,9 @@ def _paired_reads(root,literal,review):
           all(q["policy_id"]==LITERAL_USABILITY and q["native_usable"] and
               q["checks"]["no_native_pucker_overlay"] for q in strict["seed_qualifications"]),
           "Both literal coordinate seeds must independently satisfy the original chemistry")
-    summary={"schema_version":1,"policy_id":"paired-isolated-rna-pucker-v1",
-            "status":"LITERAL_AND_NATIVE_TARGETS_VERIFIED","component":p["component"],
+    summary={"schema_version":1,
+            "policy_id":"paired-isolated-rna-pucker-by-seed-v1" if by_seed else "paired-isolated-rna-pucker-v1",
+            "status":"LITERAL_AND_SEED_TARGETS_VERIFIED" if by_seed else "LITERAL_AND_NATIVE_TARGETS_VERIFIED","component":p["component"],
             "default_review":review,"default_review_sha256":basis,"literal_report":_ref(literal/REPORT,literal),
             "literal_seeds":[s.stem for s in lmodels],"source_and_candidate_identical_across_jobs":True,
             "scope":"ISOLATED_COMPONENT_ONLY","linked_context":"NOT_RUN","automatic_adoption":False}
@@ -328,6 +357,8 @@ def paired_acquisition_qualification(default,literal,pin):
     """Build the isolated component result from all four underlying native jobs."""
     review,strict=_read_pair(default,literal)
     p,paths,_,_=_inputs(Path(literal))
+    _need(review["policy_id"] == "paired-isolated-rna-pucker-v1" and pin is not None,
+          "This acquisition requires the same authorized rna2p table in both coordinate seeds")
     from .cif_stereochemistry_audit import _graph
     from .postmr_restoration import ribose_hydroxyl
     source=_values(paths[0],p["component"])

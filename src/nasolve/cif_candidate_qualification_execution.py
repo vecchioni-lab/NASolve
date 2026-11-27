@@ -41,7 +41,7 @@ class CandidateQualificationBudgetExceeded(TimeoutError):
     """No allowance remains; partial evidence grants no usable qualification."""
 
 
-def _protocol(code, consumer, native_limit, total_limit, policy, *, literal_rna_basis=None, table_pin=None):
+def _protocol(code, consumer, native_limit, total_limit, policy, *, literal_rna_basis=None, table_pin=None, observed_table_pins=None):
     _need(isinstance(code,str) and re.fullmatch(r'[A-Z0-9]{1,3}',code), 'Unsupported isolated component code')
     _consumer(consumer)
     _need(type(native_limit) is int and 1 <= native_limit <= 600
@@ -59,6 +59,15 @@ def _protocol(code, consumer, native_limit, total_limit, policy, *, literal_rna_
         _need(literal_rna_basis is not None, 'Only a literal RNA comparison can freeze the pucker table')
         validate_table_pin(table_pin)
         protocol['literal_rna']['table'] = table_pin
+    if observed_table_pins is not None:
+        from .cif_rna_pucker import validate_table_pin
+        _need(literal_rna_basis is not None and table_pin is None and isinstance(observed_table_pins,dict)
+              and set(observed_table_pins) in ({"rna3p"}, {"rna2p","rna3p"}),
+              "Require the exact observed pucker tables, including rna3p, for a separate literal control")
+        for modifier, pin in observed_table_pins.items():
+            validate_table_pin(pin, modifier=modifier)
+        protocol["policy_id"] = "cif-two-seed-source-literal-observed-rna-v1"
+        protocol["literal_rna"]["tables"] = dict(observed_table_pins)
     return protocol
 
 
@@ -83,15 +92,18 @@ def _inputs(root):
     basis=p.get('literal_rna',{})
     _need(isinstance(basis,dict),'Invalid literal RNA basis')
     expected=_protocol(p['component'],p['consumer'],p['native_timeout_seconds'],p['total_timeout_seconds'],
-                       p['bond_representation_policy'],literal_rna_basis=basis.get('default_review_sha256'),table_pin=basis.get('table'))
+                       p['bond_representation_policy'],literal_rna_basis=basis.get('default_review_sha256'),table_pin=basis.get('table'),
+                       observed_table_pins=basis.get('tables'))
     _need(p==expected, 'Qualification protocol differs')
     paths=[base/'source/source.cif',base/'candidate/candidate.cif']
     models=[base/'models'/(seed+'.pdb') for seed in _SEEDS]
     expected_files={'protocol.json','isolated.phil','source/source.cif','candidate/candidate.cif','models/source.pdb','models/candidate.pdb'}
-    if 'table' in basis:
+    tables = {"rna2p":basis["table"]} if "table" in basis else basis.get("tables", {})
+    for modifier, pin in tables.items():
         from .cif_rna_pucker import table_bytes
-        table_bytes(base/'rna2p.cif',basis['table'])
-        expected_files.add('rna2p.cif')
+        name = modifier + ".cif"
+        table_bytes(base/name, pin, modifier=modifier)
+        expected_files.add(name)
     _need(set(_tree(base))==expected_files, 'Qualification input scope differs')
     _need(_read(base/'isolated.phil')==(_LITERAL_PHIL if 'literal_rna' in p else _PHIL), 'Isolated qualification PHIL differs')
     for cif,model in zip(paths,models):
@@ -175,7 +187,7 @@ def read_candidate_qualification(directory):
 
 def execute_candidate_qualification(source,candidate,code,consumer,phenix,output,*,
         native_timeout_seconds=90,total_timeout_seconds=180,bond_representation_policy=None,_attempt_identity=None,_remaining_seconds=None,
-        _literal_rna_basis=None,_literal_rna_table=None):
+        _literal_rna_basis=None,_literal_rna_table=None,_literal_rna_tables=None):
     """Run both isolated seeds once within a cooperative monotonic allowance.
 
     Time begins before preflight. Each job receives at most whole seconds left;
@@ -186,8 +198,15 @@ def execute_candidate_qualification(source,candidate,code,consumer,phenix,output
     """
     started=monotonic()
     outer=OuterAllowance(_remaining_seconds,monotonic,CandidateQualificationBudgetExceeded)
+    observed_pins = None
+    if _literal_rna_tables is not None:
+        _need(isinstance(_literal_rna_tables,dict)
+              and all(isinstance(v,(tuple,list)) and len(v)==2 for v in _literal_rna_tables.values()),
+              "Require the declared table path and fingerprint for each observed sugar state")
+        observed_pins = {m:pin for m, (_,pin) in _literal_rna_tables.items()}
     p=_protocol(code,consumer,native_timeout_seconds,total_timeout_seconds,bond_representation_policy,
-                literal_rna_basis=_literal_rna_basis,table_pin=_literal_rna_table[1] if _literal_rna_table else None)
+                literal_rna_basis=_literal_rna_basis,table_pin=_literal_rna_table[1] if _literal_rna_table else None,
+                observed_table_pins=observed_pins)
     _need(_attempt_identity is None or _valid_attempt_identity(_attempt_identity), 'Invalid parent attempt identity')
     def remaining(minimum=0):
         cap=outer.remaining()
@@ -205,9 +224,10 @@ def execute_candidate_qualification(source,candidate,code,consumer,phenix,output
     base=root/'inputs';base.mkdir()
     for seed,data in zip(_SEEDS,before):
         folder=base/seed;folder.mkdir();(folder/(seed+'.cif')).write_bytes(data)
-    if _literal_rna_table is not None:
+    tables = {"rna2p":_literal_rna_table} if _literal_rna_table is not None else (_literal_rna_tables or {})
+    for modifier, (table, pin) in tables.items():
         from .cif_rna_pucker import table_bytes
-        (base/'rna2p.cif').write_bytes(table_bytes(*_literal_rna_table))
+        (base/(modifier+".cif")).write_bytes(table_bytes(table, pin, modifier=modifier))
     (base/'protocol.json').write_bytes(_bytes(p));(base/'isolated.phil').write_bytes(_LITERAL_PHIL if 'literal_rna' in p else _PHIL)
     for seed in _SEEDS:write_component_control_model(base/seed/(seed+'.cif'),code,base/'models'/(seed+'.pdb'))
     p,paths,models,phil=_inputs(root)

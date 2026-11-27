@@ -111,6 +111,52 @@ def test_paired_literal_read_requires_the_exact_original_explanation(case,monkey
             r.verify_literal_pucker(default,conflicting,args[-2])
 
 
+def test_literal_control_can_bind_two_distinct_observed_pucker_tables(case):
+    from nasolve.cif_rna_pucker import table_bytes
+    m, args, calls, native = case
+    native["monomer_mappings"]["rows"][0]["chem_mod_ids"] = {"status":"RECORDED","ids":[]}
+    sdk = args[-2].root
+    tables = {}
+    for name in ("rna2p","rna3p"):
+        relative = f"lib/python3/site-packages/chem_data/geostd/rna_dna/mod_{name}.cif"
+        path = sdk / relative
+        path.parent.mkdir(parents=True,exist_ok=True)
+        data = ("example "+name).encode()
+        path.write_bytes(data)
+        tables[name] = path, dict(anchor="phenix_installation",path=relative,size=len(data),
+                                  sha256=sha256(data).hexdigest())
+    result = m.execute_candidate_qualification(*args,_literal_rna_basis="b"*64,_literal_rna_tables=tables)
+    saved = result["qualification"]["literal_rna"]
+    assert set(saved["tables"]) == {"rna2p","rna3p"} and "table" not in saved
+    for name,(path,pin) in tables.items():
+        assert table_bytes(args[-1]/"inputs"/(name+".cif"),saved["tables"][name],modifier=name) == path.read_bytes()
+        path.unlink()
+    assert m.read_candidate_qualification(args[-1]) == result
+    (args[-1]/"inputs/rna3p.cif").write_bytes(b"wrong bytes")
+    with pytest.raises(ValueError):
+        m.read_candidate_qualification(args[-1])
+    assert len(calls) == 2
+
+
+@pytest.mark.parametrize("defect", ("empty","only_two","foreign","swapped","mixed_modes","no_basis"))
+def test_observed_table_permission_is_specific_before_start(case, defect):
+    m, args, calls, _ = case
+    def entry(modifier):
+        relative = f"lib/python3/site-packages/chem_data/geostd/rna_dna/mod_{modifier}.cif"
+        return args[-2].root/relative, dict(anchor="phenix_installation",path=relative,size=10,sha256="e"*64)
+    tables = {m:entry(m) for m in ("rna2p","rna3p")}
+    extra = {"_literal_rna_basis":"b"*64}
+    if defect=="empty": tables.clear()
+    if defect=="only_two": del tables["rna3p"]
+    if defect=="foreign": tables["rna4p"]=entry("rna4p")
+    if defect=="swapped": tables["rna2p"],tables["rna3p"]=tables["rna3p"],tables["rna2p"]
+    if defect=="mixed_modes": extra["_literal_rna_table"]=tables["rna2p"]
+    if defect=="no_basis": extra.clear()
+    with pytest.raises(ValueError):
+        m.execute_candidate_qualification(*args,_literal_rna_tables=tables,**extra)
+    assert not calls and not args[-1].exists()
+
+
 def test_both_seeds_qualified_and_non_mutating_readback(case):
     m,args,calls,native=case;report=m.execute_candidate_qualification(*args,native_timeout_seconds=5,total_timeout_seconds=20)
     assert len(calls)==2 and report['qualification']['native_usable'] and report['same_covalent_proxies']

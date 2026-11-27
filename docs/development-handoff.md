@@ -11,8 +11,10 @@ claims.
 C620 is examining the next two sites, SJO and UY1. The same source-order repair
 caught two different false native bonds. Phenix then chose the same sugar pucker
 from both SJO starting geometries, but different puckers from the two UY1 starts.
-The installed tables explain both UY1 choices. These are isolated dictionaries.
-Next check the literal controls and the two actual phosphate links in the design.
+C621 verified both native choices and both literal coordinate starts. UY1’s
+ring pseudorotation was 58.7° in the source and 63.2° in the generated seed.
+These are isolated dictionaries. The linked model still needs the correct
+attachment at the base and both real phosphate connections.
 
 C618–C619 took 2MG, 5MC and 6MZ through ordinary checked PostMR. Starting
 with no 6MZ dictionary, Phenix added an O4′–C2 bond absent from the source.
@@ -151,8 +153,9 @@ readers. The transferable handoff still needs an installed combined-source check
 
 ## Validation and release
 
-C620 passed 209 focused tests covering the two native pucker tables, both
-coordinate starts, source chemistry and the existing acquisition rules.
+C620 passed 209 focused tests covering the native sugar checks and acquisition.
+C621 passed 264 focused checks, ran four literal Phenix controls and replayed
+both pairs after moving the evidence and blocking access to the original SDK.
 
 C619 passed 172 focused outer-request, cache and ordinary-PostMR checks, followed
 by 124 acquisition, retention and source-order checks. The two pytest selections

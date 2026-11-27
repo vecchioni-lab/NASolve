@@ -244,7 +244,8 @@ def test_verify_pucker_cli_runs_or_reopens_the_requested_jobs(tmp_path, monkeypa
     standard, literal = tmp_path / "default", tmp_path / "literal"
     install = object()
     calls = []
-    def selected(first, second, installation=None):
+    def selected(first, second, installation=None, **options):
+        assert options == ({} if replay else {"include_observed_states":True})
         calls.append((first, second, installation))
         return {"component": "ZZ8"}
     monkeypatch.setattr(cli, "discover_phenix", lambda *a, **k: install)

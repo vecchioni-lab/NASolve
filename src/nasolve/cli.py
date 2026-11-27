@@ -2269,8 +2269,11 @@ def _cif_doctor(args: argparse.Namespace) -> int:
                 except ArchivedPuckerTableUnavailable:
                     result = read_literal_pucker(args.qualification, args.literal, discover_phenix(load_config()))
             else:
-                operation = read_literal_pucker if args.replay else verify_literal_pucker
-                result = operation(args.qualification, args.literal, discover_phenix(load_config(), explicit=args.phenix_root))
+                installation = discover_phenix(load_config(), explicit=args.phenix_root)
+                if args.replay:
+                    result = read_literal_pucker(args.qualification, args.literal, installation)
+                else:
+                    result = verify_literal_pucker(args.qualification, args.literal, installation, include_observed_states=True)
         except (OSError, ValueError, RuntimeError) as exc:
             print(str(exc), file=sys.stderr)
             return 1

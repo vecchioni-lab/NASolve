@@ -1238,6 +1238,16 @@ constructor protects O1P. For UY1, the true C5 ring attachment has neighbours
 C4 and C6, while the host thymine N1 has neighbours C2 and C6. Preserve both
 chemical assignments when evaluating a placement.
 
+C621 disabled only Phenix’s sugar-pucker adjustment in four new isolated
+native reads. Both starting coordinates of SJO and UY1 then satisfied their
+literal dictionaries, including bonds, angles, torsions, planes and chirality.
+The four-job comparisons for both compounds replayed with the original
+folders and Phenix installation unavailable. Changing one byte in the frozen
+`rna3p` table was rejected. The measured UY1 pseudorotation phases were 58.7°
+and 63.2°, with amplitudes of 40.2° and 39.3°. Phenix chose different numerical
+tables across that modest change. Their choice in an actual polymer remains
+an independent measurement.
+
 C601 found the source-preserving generator had introduced a 5.779 Å bond between
 O4′ and ring C2. All 42 source edges were present. The ten bonds of the purine
 ring used its already approved aromatic representation. The recovery now checks
