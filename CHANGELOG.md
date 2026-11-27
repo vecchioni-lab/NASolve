@@ -8,6 +8,8 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- A local sugar fit can return its coordinates to the original PDB after checks on the crystal frame, fixed atoms, occupancies, B values and stereochemistry. Base-pair distance restraints that Phenix writes as `LINK` records stay out of the returned model.
+
 - A trusted diagnostic can read the live Phenix geometry and gradient counters for a registered set of crystal phosphates during a zero-cycle preflight. NASolve checks that the observation preserves the model, phosphate forces and bonded exclusions. Existing refinement workers retain their original fingerprints.
 
 - The whole-sugar builder can select the adenine-pairing face from the source and host uracil rings when their sugar attachment changes between carbon and nitrogen. It checks the NARestraints pairing atoms and sugar hand and records the resolved placement for replay.

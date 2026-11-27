@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 27 November 2026, after C633. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 27 November 2026, after C635. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -1283,6 +1283,10 @@ C632 put the separately constructed, locally fitted four-site model through Read
 At those same coordinates, the only differences from the earlier protected C629 geometry terms were six angle restraints at the D:1 terminal phosphate. Preparation used the same six targets with 3° widths. The protected input used 1° widths. All eight families of geometry terms were compared. For the ordinary four-site run, first select and fit the whole sugar from the fresh mutation card, then verify that AutoRefine actually installs those six 1° restraints. The four-site diffraction evidence is still the direct C625/C627 trial. C632 completed preparation only.
 
 C633 removed the manual choice of pairing frame from the model-bound whole-sugar builder. Two source-proven uracil rings with different C/N attachment elements select the pairing-edge fit. The builder still checks the compiled N–H/oxygen contacts and the host sugar hand. Other starting frames and frozen placements retain their earlier paths. On a new four-substitution card, Phaser returned TFZ 17.10. Placing UY1 directly on that MR frame preserved all 833 bystander atoms and four sugar stereocentres, kept the host median B of 228.24 Å², and gave O3′–P distances of 1.605 and 1.622 Å. This was a single-site construction on the original MR coordinates. The mixed Coot construction, local fit and handoff to refinement remain separate milestones.
+
+C635 used the ordinary Coot construction and phosphate policy for the first three sites on the fresh four-site card, then placed the fourth sugar using its qualified dictionary. NARestraints 1.1.5 inferred all 19 pairs and 38 stacks from these new coordinates, including UY1 A:19 with adenine D:4. With the already checked four-component library, three site-only Phenix geometry cycles installed all 50 base-pair distance, 86 angle and 57 parallelity requests. Only the 21 UY1 atoms moved. All 839 bystanders stayed fixed, all four sugar hands survived, and the five contacts below 2.2 Å cleared. The final coordinates agreed atom for atom with the earlier local fit. The 0.42 and 0.44 Å overlaps with A:20 remain.
+
+Phenix also wrote the 50 restrained base-pair distances twice each as PDB LINK records. The new return reader carries only the selected sugar’s coordinates into the parent PDB. It verifies the crystal frame, atom identities, occupancies, B values, fixed positions and source stereochemistry, leaving the parent’s own connectivity intact. This was a geometry-only comparison with an explicitly routed fourth site. The ordinary card still needs to acquire and route the fourth site, bind the local fit to its checked preparation and verify the D:1 widths in AutoRefine.
 
 C601 found the source-preserving generator had introduced a 5.779 Å bond between
 O4′ and ring C2. All 42 source edges were present. The ten bonds of the purine

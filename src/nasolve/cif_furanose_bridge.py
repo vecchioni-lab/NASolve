@@ -227,3 +227,87 @@ def read_furanose_bridge_seed(directory):
             or model.encode()!=(root/'model.pdb').read_bytes() or any(p.read_bytes()!=b for p,b in before.items())):
         raise ValueError('Stored seed differs from fresh derivation')
     return report
+
+
+def _fit_crystal_frame(data):
+    """Compare the explicit PDB crystal and optional Cartesian transforms at file precision."""
+    headers = [line for line in data.splitlines() if line[:6] == b'CRYST1']
+    if len(headers) != 1 or not headers[0][55:66].strip():
+        raise ValueError('A fitted sugar requires one explicit CRYST1 cell and space-group setting')
+    row = headers[0]
+    cell = tuple(float(row[i:j]) for i,j in ((6,15),(15,24),(24,33),(33,40),(40,47),(47,54)))
+    transforms = {}
+    for line in data.splitlines():
+        if line[:5] in (b'SCALE', b'ORIGX'):
+            tag = line[:6]
+            if tag in transforms or tag[5:] not in (b'1', b'2', b'3'):
+                raise ValueError('Ambiguous PDB coordinate transform')
+            transforms[tag] = tuple(float(line[i:j]) for i,j in ((10,20),(20,30),(30,40),(45,55)))
+    for group in (b'SCALE', b'ORIGX'):
+        if sum(tag[:5] == group for tag in transforms) not in (0,3):
+            raise ValueError('Incomplete PDB coordinate transform')
+    if not all(math.isfinite(v) for values in (cell, *transforms.values()) for v in values):
+        raise ValueError('Nonfinite PDB crystal frame')
+    return cell, b''.join(row[55:66].upper().split()), transforms
+
+
+def _fit_atom_key(line):
+    return ((line[21:22].decode().strip() or '_') + ':' + str(int(line[22:26])), line[12:16].decode().strip())
+
+
+def read_fitted_furanose_model(seed_directory, returned_model):
+    """Read a site-only geometry return, carrying only its selected XYZ into the original model.
+
+    Full atom identity, crystal frame, B values, occupancies and every bystander
+    position must agree. Native LINK/TER records never become chemical declarations.
+    The result establishes coordinate provenance and sugar hands. Clash relief,
+    restraint membership and agreement with diffraction require separate evidence.
+    """
+    from hashlib import sha256
+
+    root = _path(seed_directory, directory=True)
+    returned_model = _path(returned_model)
+    receipt = (root/'receipt.json').read_bytes()
+    seed = read_furanose_bridge_seed(root)
+    model = root/'model.pdb'
+    parent, native = model.read_bytes(), returned_model.read_bytes()
+    if sha256(parent).hexdigest() != _load(root/'receipt.json')['files']['model.pdb']['sha256']:
+        raise ValueError('Furanose starting coordinates changed after seed validation')
+    if _model(parent) != _model(native):
+        raise ValueError('Native return changed the residue, atom or element inventory')
+    if _fit_crystal_frame(parent) != _fit_crystal_frame(native):
+        raise ValueError('Native return changed the PDB crystal frame')
+    kinds = (b'ATOM  ', b'HETATM')
+    target = {_fit_atom_key(l):l for l in native.splitlines() if l.startswith(kinds)}
+    lines = parent.splitlines(keepends=True)
+    selected = {}
+    shifts = []
+    for i, line in enumerate(lines):
+        if not line.startswith(kinds):
+            continue
+        key = _fit_atom_key(line)
+        other = target[key]
+        old, new = [tuple(float(l[a:b]) for a,b in ((30,38),(38,46),(46,54),(54,60),(60,66)))
+                    for l in (line, other)]
+        if old[3:] != new[3:] or not all(math.isfinite(v) for v in old[3:]):
+            raise ValueError('Native return changed atom occupancy or displacement')
+        if (line[72:76].strip(), line[78:80].strip()) != (other[72:76].strip(), other[78:80].strip()):
+            raise ValueError('Native return changed segment or formal charge')
+        if key[0] == seed['site']:
+            selected[key[1]] = new[:3]
+            shifts.append(math.dist(old[:3], new[:3]))
+            lines[i] = line[:30] + other[30:54] + line[54:]
+        elif old[:3] != new[:3]:
+            raise ValueError('Native return moved an atom outside the selected residue')
+    for hand in seed['source_hands']:
+        observed = _volume(selected, hand['center'], hand['ordered_neighbors'])
+        if not _hand(hand['source_volume'], observed):
+            raise ValueError('Native return changed or flattened a source stereocentre')
+    candidate = b''.join(lines)
+    if model.read_bytes() != parent or returned_model.read_bytes() != native or (root/'receipt.json').read_bytes() != receipt:
+        raise ValueError('A model or its seed receipt changed during the coordinate readback')
+    return candidate, dict(site=seed['site'], component=seed['component'], selected_atoms=len(selected),
+        fixed_atoms=len(target)-len(selected), source_stereocentres=len(seed['source_hands']),
+        max_selected_displacement_A=max(shifts), returned_link_records=sum(l[:6]==b'LINK  ' for l in native.splitlines()),
+        source_sha256=sha256(parent).hexdigest(), return_sha256=sha256(native).hexdigest(),
+        candidate_sha256=sha256(candidate).hexdigest())
