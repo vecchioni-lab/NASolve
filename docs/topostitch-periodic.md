@@ -15484,3 +15484,71 @@ inputs/outputs. The figure was visually checked and local report links resolve.
 No new product tests, installation, native refinement, interactive browser
 qualification or whole-run relocation claim. Scientific payloads remain local;
 only the evidence summary and current roadmap/handoff are committed.
+
+
+## W299 — Bind both phosphate links to the recut preview
+
+**2026-11-27; read-only integration, no refinement.** Code
+`42f9f7ea3d8e2921aab635e3e3af9fdccb8a1ede` adds the existing recut owner's
+`bind_recut_phosphates` adapter and focused cases in the existing continuation
+tests. [API and trust boundary](topostitch.md#joint-recut-receiving-contract-w299).
+Previously the preview and Cedar's joint group had separate observations; now
+an exact preview can carry the complete inspected group with separate native
+and display operators. This is an additive schema-1 report, with no migration,
+new force engine, command flag or checkpoint admission.
+
+Fresh Cedar inherited inspections and `RegisteredPhosphateRuntime.check_group`
+pass against the genuine PDU `refine-003` source and W282 whole-C preview.
+Cedar's registry reader separately verifies the W280 parent context. Current
+selection remains `postmr`; original registration, model, restraints and run
+bytes remain unchanged. Pinned Cedar source:
+`f72ed894a37c243ceed2fd1e45a660aa2f0df1f6`.
+
+| Link | Native target operator | Display target operator | O3′–P distance, unchanged |
+| --- | --- | --- | --- |
+| B7 → B1 | `-y,x-y,z` | `-y,x-y,z` | 1.670036 Å |
+| D7 → C8 | `-x+y,-x,z` | `x,y,z` | 1.634683 Å |
+
+Both continuation IDs, donor/acceptor logical and coordinate sites, copy and
+strand IDs survive. The report retains the native and descendant-preview
+registration hashes separately. Agreement here does not authenticate an
+arbitrary external inspection, prove complete graph descent or approve the
+chemical geometry. Reuse Cedar's existing ordinary plural-continuation path for
+source-frame refinement. Neither a display-local edge nor the report enables
+forces. This parent is distinct from the W296/W297 experimental receiver.
+
+**Validation:** fail-before import regression is retained. **111 focused source
+and 111 relocated-installed checks pass**; the complete Willow suite passes
+**3,105 tests and 238 subtests**, with no skips, in 214.76 seconds. The original
+installation/build directory was removed before installed checks. CLI help,
+source/installed hashes, unchanged tested source and Python 3.10 syntax pass.
+The scratch tree was removed. Actual Phenix **2.2.1-6174** Python/Gemmi readers
+were used for the read-only composition; no preflight, capture, Coot or refinement
+was executed. Existing real-nick/unknown-partner refusals were reused in the
+focused suite instead of duplicating that panel.
+
+Exact commands, dependency and source pins, and log hashes are in the local
+NASolve-anchor `branch-artifacts/willow/w299-joint-recut-binding/qualification-02.json`.
+The outer qualification command, run from the main NASolve checkout, was:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/w299-joint-recut-binding/qualify.py
+```
+
+Both source and installed pytest commands used `PYTHONDONTWRITEBYTECODE=1` and
+`PYTHONPATH=src`; Phenix's launcher additionally required explicit source/package
+bootstrap paths. The complete-suite call was `pytest.main(["-q", "-rs", "-p",
+"no:cacheprovider", "tests"])`, under the recorded bootstrap. Initial harness
+failures (missing bootstrap, fixture key, strict-reader/argument signatures and
+macOS `/var` normalization) are retained; none is hidden as a native-fit failure.
+
+**Evidence and remaining work:** local `audit.json` contains the two fresh Cedar
+observations, exact preview binding and unchanged checkpoint context;
+`index.html` links the existing W282 3D preview. Raw coordinates, maps, scientific
+runs and local qualification files are deliberately excluded from Git. Committed
+changes are the adapter, synthetic regressions, changelog and existing guides/
+roadmap. Relocated installation and preview replay do not prove whole-run
+portability. P04 remains **PARTIAL**: next compose an ordinary refinement child
+with a freshly bound descendant preview and both connections, through existing
+checkpoint/descent/native owners. Persistent human review and full seam acceptance
+remain open. W298's density/B sensitivity gate is unchanged.

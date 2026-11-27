@@ -4,7 +4,7 @@
   "updated": "2026-11-27",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "3b6920954a4736b4cf27dffb08cb93c5a0b92403",
+  "audited_code_commit": "42f9f7ea3d8e2921aab635e3e3af9fdccb8a1ede",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -18,7 +18,8 @@
     "S05",
     "S06",
     "P01",
-    "P03"
+    "P03",
+    "P04"
   ],
   "work_order": {
     "stitch": [
@@ -1277,14 +1278,15 @@
         "W239 composes the existing registered preview, continuation-phosphate observer and saved ReferenceFrame in a synthetic one-pair stagger across both strands, with P43/R3:H coordinate/tensor round trips. Explicit intent only; no automatic duplex choice or native writer.",
         "W240 provides an installed opt-in native-phosphate route through existing Cedar image chemistry. Complete preflight/one-cycle fit preserves fixed source-frame context and data;261 source/261 installed checks. Chemical recovery remains unaccepted.",
         "W243 removes reciprocal U* round-off false failures with a six-component Cartesian comparison, unchanged native frame/modes/Uiso and exact source ANISOU/BQ export.293 source/293 installed; both real anisotropic failures and12 real-change refusals replay cold. No whole-ASU or new live-fit qualification.",
-        "W244 audits four Cedar-coordinated real-data fits on initially healthy cuts: all eight seam terms within 1.82 sigma, complete anisotropic return and reopened source-byte-preserving export, 84 frozen-input hashes. This closes the W243 fresh local return gate; general damaged-seam repair and whole-ASU scattering remain open."
+        "W244 audits four Cedar-coordinated real-data fits on initially healthy cuts: all eight seam terms within 1.82 sigma, complete anisotropic return and reopened source-byte-preserving export, 84 frozen-input hashes. This closes the W243 fresh local return gate; general damaged-seam repair and whole-ASU scattering remain open.",
+        "W299 binds a complete freshly Cedar-inspected phosphate group to an exactly replayed preview, preserving logical/coordinate sites, strand IDs and separate native/display operators. Genuine two-link parent correspondence, 111 source/111 relocated checks and full Willow regression pass; no new force, fit or checkpoint authority."
       ],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
         "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.",
         "Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified."
       ],
-      "next_action": "Scheduled phosphate follow-up stage 4, after P01/P02/P03: qualify both declared cuts together using Cedar's single force owner, combined atom selection and complete interacting geometry/exclusions. Include nick/undecidable-partner refusals; preserve chemistry and protected context/data. Schedule and ownership: docs/topostitch.md#coordinated-phosphate-recut-follow-up. Planning only; no immediate native rerun. With Cedar, authenticate complete live source policy including nonbonded and exclusion tables. For pure recuts, first keep the entire native process in one computational frame and derive bound views at workflow boundaries. This does not repair physical gaps or missing links. Require checked inverse mapping for re-entered edits and fresh qualification for changed identity/intent. If an in-engine facade is actually needed, retain full copy, pair-table, outlier/report, weighting and native source/representative controls. Preserve P02/P03; never activate a symmetry bond alone. Bind an explicitly reviewed stagger to both directed routes and paired rungs; reject wrong-duplex selections only with qualified correspondence. Audit native model-input deepcopy precision and independent source-frame scattering after aliasing. Keep the private live repair separate from maintained Pine replay. W240 qualifies local image forces/source-frame return only, not whole-ASU construction. Where declared phosphate geometry cannot recover, preserve an explicitly reviewed unrestrained-edge fallback; never infer a chemical nick from an averaged repeat boundary.",
+      "next_action": "Compose the ordinary source-frame refinement child with a freshly bound descendant preview and both declared connections through existing checkpoint/descent/Cedar owners. W299 supplies correspondence, not runtime or chemistry admission. Reuse saved Cedar joint-fit evidence before requesting another run; retain complete interacting geometry/exclusions and changed-reflection limits. Preserve true nicks, unknown partners, P/OP1/OP2 and protected context. Whole-ASU scattering, persistent review, inverse mapping of edits and full seam acceptance remain separate gates; do not build another force/refinement owner.",
       "evidence": [
         "E_PINE_TEST_BANK",
         "E_NATIVE_REPRESENTATION_SEAMS",
@@ -1305,14 +1307,15 @@
         "E_STAGGERED_DUPLEX_RECUT",
         "E_REGISTERED_PHOSPHATE_ENTRY",
         "E_CARTESIAN_ADP_RETURN",
-        "E_LIVE_ANISOTROPIC_RETURN"
+        "E_LIVE_ANISOTROPIC_RETURN",
+        "E_JOINT_RECUT_BINDING"
       ],
       "last_audit": {
-        "date": "2026-11-23",
-        "code_commit": "5f5c129b439452256e71d3e03dc6bcbeb10404b8",
+        "date": "2026-11-27",
+        "code_commit": "42f9f7ea3d8e2921aab635e3e3af9fdccb8a1ede",
         "reviewer": "Linden",
-        "human_update": 244,
-        "scope": "Four independently source-bound coordinated native results; healthy local cut controls only, milestone remains partial"
+        "human_update": 299,
+        "scope": "Two-link receiving correspondence only; P04 remains partial, no new native fit or scientific acceptance"
       }
     },
     {
@@ -10316,6 +10319,53 @@
       "reference": "docs/topostitch-periodic.md#w298--audit-whole-model-density-before-wider-motion",
       "result": "Same 862 atoms/42 nucleotides and fixed BQ; exact common 1909 F/SIGF/flag tuples including124 Free. On the W297 map371/403 base atoms and41/42 base-group means lie below the cell mean. Saved FCALC is positive at all403 base sites; FMODEL is below mean at341. Saved scale/mask decomposition reproduces FMODEL with relative coefficient residual3.24e-7 and atom-sample error1.33e-6 sigma. Ten FFTs in completed reports; no refinement or product changes.",
       "limitation": "Model-assisted maps include Free-R; point samples are not RSCC or acceptance thresholds. Mean-centered solvent cancellation does not identify the correct thermal, geometry or processing model. Fixed-XYZ grouped-B sensitivity is parked: Refine Doctor requires an ordinary registered checkpoint parent, which these experimental outputs lack. No fabricated ancestry or wider movement grant."
+    },
+    "E_JOINT_RECUT_BINDING": {
+      "kind": "Trusted Cedar group to exact recut correspondence",
+      "date": "2026-11-27",
+      "human_update": 299,
+      "code_commit": "42f9f7ea3d8e2921aab635e3e3af9fdccb8a1ede",
+      "reference": "docs/topostitch-periodic.md#w299--bind-both-phosphate-links-to-the-recut-preview",
+      "result": "111 source/111 relocated-installed checks; full Willow suite3105 tests+238 subtests, no skips. Genuine refine-003 parent/W282 preview retain IDs1/2, B7->B1 and D7->C8 at1.670036/1.634683 A. Second display image becomes identity while native remains -x+y,-x,z. Originals and postmr selection unchanged.",
+      "limitation": "Read-only trusted-input composition, not external-report authentication, native capture, force installation, geometry approval or checkpoint admission. Source and descendant-preview registrations remain distinct. Ordinary child/preview refresh and human lifecycle remain open; no new fit.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w299-joint-recut-binding/audit.json",
+          "sha256": "472f5effe487b17a30a4853ec595efb54d067eaf00aceb98fc9f08136bd64332",
+          "size": 9383
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w299-joint-recut-binding/qualification-02.json",
+          "sha256": "d0f9eb0d965a4ee456a684952120a4a3d37b47c9fa5b4194df54e28e1beec944",
+          "size": 70916
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w299-joint-recut-binding/source-complete-02.log",
+          "sha256": "7bb636e384d1589fef1ac051e50b2e9f6afcaf860437a345b49e400aba6a1b72",
+          "size": 3552
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w299-joint-recut-binding/focused-02.log",
+          "sha256": "b85205eacfb68a89ef4bfca186eb8fa5a654319adcce676c6716023f782a009e",
+          "size": 181
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w299-joint-recut-binding/installed-focused-02.log",
+          "sha256": "f46a78aedb0bbd80e63a24a52c0057cb27cc70037bf8293d1fbb382e1c6b66a5",
+          "size": 181
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w299-joint-recut-binding/fail-before-03.log",
+          "sha256": "5fbe76940197efd8f6db6fd56506d3af0c4721861df55534d4ca12d98f0a9fa1",
+          "size": 2101
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -10497,8 +10547,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 298,
-    "next": 299,
+    "current": 299,
+    "next": 300,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -12096,6 +12146,12 @@
         "title": "Separate endpoint weakness from whole-model density and solvent context",
         "state": "RECORDED",
         "code_commit": "3b6920954a4736b4cf27dffb08cb93c5a0b92403"
+      },
+      {
+        "number": 299,
+        "title": "Bind both phosphate links to a recut with separate native and display operators",
+        "state": "RECORDED",
+        "code_commit": "42f9f7ea3d8e2921aab635e3e3af9fdccb8a1ede"
       }
     ]
   },

@@ -7,13 +7,19 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Latest code, W299:** [joint recut correspondence](topostitch-periodic.md#w299--bind-both-phosphate-links-to-the-recut-preview)
+  binds both Cedar-inspected phosphate links to an exact preview while retaining
+  separate native/display operators. Genuine parent check, 111 source/111 relocated
+  checks and the complete Willow suite (3,105 tests + 238 subtests) pass. No fit or
+  checkpoint adoption; ordinary child/preview refresh remains open.
+
 - **Latest scientific audit, W298:** [whole-model density context](topostitch-periodic.md#w298--audit-whole-model-density-before-wider-motion)
   places weak endpoint bases in a model-wide pattern and reproduces saved
   atomic/solvent-mask cancellation. No new fit or wider motion. The proposed
   B-only sensitivity is parked pending a genuine ordinary parent; the current
   Refine Doctor cannot admit these standalone experimental outputs.
 
-- **Latest code and refinement, W297:** [endpoint bases](topostitch-periodic.md#w297--release-endpoint-bases-while-holding-their-partners)
+- **Latest refinement, W297:** [endpoint bases](topostitch-periodic.md#w297--release-endpoint-bases-while-holding-their-partners)
   adds opt-in canonical base release with opposite partners held: 37 moving/825
   held in the diagnostic. Join 1.609 Å; pair angles improve, but both bases remain
   weak in own maps and one stack angle worsens. Rwork/Rfree 0.313/0.361, unselected.

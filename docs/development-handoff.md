@@ -1,7 +1,8 @@
 # NASolve development handoff — Willow
 
-**W298 whole-model density audit, 2026-11-27.** Latest native preflight,
-refinement and maintained code: **W297**, `3b6920954a4736b4cf27dffb08cb93c5a0b92403`.
+**W299 joint recut correspondence, 2026-11-27.** Latest maintained code:
+`42f9f7ea3d8e2921aab635e3e3af9fdccb8a1ede`. Latest native preflight/refinement:
+**W297**; latest density audit: **W298**.
 The [audited roadmap](topostitch-roadmap.md) owns status and the next decision;
 [periodic evidence](topostitch-periodic.md) and [API contracts](topostitch-preview.md)
 own exact methods, commands, hashes and limitations. This handoff is not a run diary.
@@ -20,6 +21,7 @@ must work without an AI service. A representation change does not repair a gap.
 | Local native phosphate receiving | Default six-atom route plus explicit unphased sugars or canonical endpoint bases; installed preflight and fit complete with original context/data | Wider paired/base motion, packing acceptance and ordinary campaign adoption |
 | W297 endpoint-base experiment | 37 moving/825 held; join 1.60863 Å, pair angles 17.9→11.3° and 4.0→1.5°; all atoms, B/Q and six sugar hands preserved | Residual torsion 2.683σ, one stack angle worsens and both bases remain weak in maps; Rwork/Rfree 0.313/0.361, unselected |
 | Whole-original-asym diagnostic CIF export | W272–278 preserve qualified source categories, images, tensors and backbone coverage; save/replay/inspect available | Mixed-fragment entity policy, native TLS restart, genuine source/parent join and persistent operation/refine loop |
+| W299 joint recut correspondence | Both fresh Cedar-inspected links bind to the genuine parent/preview, preserving source/display operators and exact site/strand IDs | Ordinary child-to-refreshed-preview workflow and persistent review; no new fit or force authority |
 | W286/W287 connection review | Source/row/evidence-bound unapplied proposals and independent saved-report replay | Explicit metadata authority, application and separate chemistry/export/native admission |
 | W290 endpoint-map comparison | Same 1,909 indices/124 Free-R; P near 2.52σ in both maps, weak fixed sugar support | Explicit coupled-window chemistry/packing before broader native motion; no map-based acceptance |
 | W292–W296 coupled-sugar scope | Source geometry, native derivatives, actual live definitions, sugar hands/pucker and C1 plane tradeoff checked; no plane removed | Full returned packing-review intake, physical partner authority and whole-duplex motion remain open |
@@ -67,7 +69,12 @@ maintained fixed-weight product mode or recommended production weight.
    window owners, which do not traverse changed images or representation seams.
    Source is the 5W6W-derived central-strand/PDU model, not FT or 8D93.
 
-2. **Pine integration:** Rowan/Linden agree to use the genuine PDU ordinary parent
+2. **Pine integration:** W299 now binds both freshly inspected connections to
+   W282's exact preview using Cedar's joint group check. D7→C8 becomes display-local
+   while retaining its source-frame native operator. Next compose the ordinary
+   child-to-refreshed-preview lifecycle through existing checkpoint/descent owners;
+   do not introduce another refinement route or conflate the binding with native
+   force/chemistry admission. Rowan/Linden agree to use the genuine PDU ordinary parent
    with its proven data/thermal route. Use source-frame native refinement and
    derived views; keep physical strand/entity assignments unresolved without a
    designed-oligo source. Native soft pair restraints do not supply that authority.
@@ -105,6 +112,15 @@ references and thermal/TLS semantics. File readback alone cannot prove those.
 <a id="validation-and-scientific-interpretation"></a>
 ## Validation and compatibility
 
+**W299:** 111 focused source/111 relocated-installed checks, installed CLI help
+and the complete Willow suite (**3,105 tests + 238 subtests**, no skips) pass for
+code `42f9f7ea3d8e2921aab635e3e3af9fdccb8a1ede`. Fresh read-only Cedar inspection
+and group checks use pinned `f72ed894a37c243ceed2fd1e45a660aa2f0df1f6` under
+Phenix 2.2.1-6174; no native fit/capture. Original install/build paths are removed
+before installed checks; tested source hashes remain exact. [Exact commands,
+schema, files and limits](topostitch-periodic.md#w299--bind-both-phosphate-links-to-the-recut-preview).
+The new correspondence report is additive and grants no runtime authority.
+
 **W297:** 234 host focused tests + one native-only skip; **235 native-source and
 235 relocated-installed focused checks**, CLI help, installed preflight and one
 five-cycle/100-iteration-cap Phenix **2.2.1-6174** fit pass. Frozen Cedar
@@ -135,6 +151,10 @@ not duplicated here as a second chronology. The earlier C374 joined-package rece
 is not a current merge or qualification of later branches.
 
 ## Local science checkout
+
+W299's small correspondence report is at NASolve anchor
+`branch-artifacts/willow/w299-joint-recut-binding/index.html`; it links the existing
+3D recut preview and exact validation. No new coordinates were generated.
 
 Latest read-only context is at NASolve anchor
 `branch-artifacts/willow/w298-density-context/index.html`: whole-model density/B
