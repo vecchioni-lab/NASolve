@@ -22,7 +22,9 @@ entries are reconstructed from repository history.
 - Verify the existing parent/child, cut comparison and saved-review owners together
   after relocation, keeping the current checkpoint unchanged.
 - Record the missing production caller and separate Willow/Cedar map-profile
-  fields. No runtime, schema or migration change; synthetic review only.
+  fields. Stop at the tested interface until authenticated history/image owners
+  are available together; no weaker-reader or local-checkout shortcut.
+  No runtime, schema or migration change; synthetic review only.
 
 ### W315 — Record the coupled-sugar trial and its stopping decision
 

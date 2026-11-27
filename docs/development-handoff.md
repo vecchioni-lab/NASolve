@@ -56,6 +56,11 @@ run/parent/refresh-digest inputs and saved review. It must cold-reopen the same
 result, show viewed versus current checkpoint, and refuse stale context. Trusted
 installed reader composition is a prerequisite: Willow `map_origin` and Cedar
 `preparation_attempt` are distinct additions, not interchangeable metadata.
+**Owner gate confirmed:** Willow's installed registry reader only checks saved
+registry shape; Cedar's authenticated preparation/refinement-history validation
+and `cif_phosphate_image` policy are absent. Per Rowan, stop at the W316 tested
+callback interface until those installed owners are composed. Do not import his
+local checkout, copy policy constants, substitute the weaker reader or merge early.
 No full GUI shell, new registry or implicit checkpoint selection is needed.
 [Exact audit](topostitch-periodic.md#w316--reopen-a-reviewed-cut-without-selecting-a-scientific-result).
 

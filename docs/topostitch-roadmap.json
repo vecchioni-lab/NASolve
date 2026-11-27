@@ -1386,7 +1386,7 @@
         "Graphical actions bind source hashes and show actual nicks/seams/mates. Test stale views, competing choices, interrupted actions, manual imports and relocation without duplicating campaign/checkpoint machinery.",
         "Expose editable Pine periodic connectivity beyond the ASU, preserving prior user choices and exact logical/image mappings across reslicing or explicitly marking unresolved mappings. Keep intent, proximity and enforcement support separate."
       ],
-      "next_action": "Propose the smallest verified-child inspection caller for a scientist reviewing a refined recut: explicit run, parent preview, refreshed-child receipt digest, same-child alternatives and optional saved preference. Exit when one installed command cold-reopens the exact child/cuts/review, distinguishes viewed refine-004 from current postmr, and refuses stale context before output. Reuse existing APIs; first resolve trusted installed reader ownership and preserve both Willow map_origin and Cedar preparation_attempt. No auto-selection, new registry, native fit or full GUI shell.",
+      "next_action": "Stop at the W316 tested owner interface until installed Cedar authenticated checkpoint/history readers and cif_phosphate_image policy are available together with Willow. Its current reader only validates saved registry shape, so substituting it would weaken the contract. Then add one thin existing-view caller for a scientist reviewing a refined child: explicit identity/context/digest/cuts, viewed versus current labels, cold relocation success and stale-context refusal. No local Cedar checkout import, early branch merge, implicit selection or new registry. Preserve separate map_origin/preparation_attempt meanings in later profile composition.",
       "evidence": [
         "E_WILLOW_PINE_DOC_AUDIT",
         "E_ORDINARY_CHILD_RECUT",
@@ -11103,7 +11103,7 @@
         "cedar": "e1df7ad2ea888a8d3ee826efd4a0f3ededd62834"
       },
       "result": "20 preparation / 25 cold-reopen checks; identical HTML, contexts, review and Coot model/map/dictionary hashes after relocation. Genuine refresh matches W301. Original science and current selection unchanged. Installed Python owners and inspector HTML match pinned source.",
-      "limitation": "Synthetic test preference, not human approval. No browser/Coot launch, refinement, mixed-branch release qualification or schema migration. Generic CLI lacks verified parent/child binding; map_origin and preparation_attempt have distinct branch owners.",
+      "limitation": "Synthetic test preference, not human approval. No browser/Coot launch, refinement, mixed-branch release qualification or schema migration. Generic CLI lacks verified parent/child binding; map_origin and preparation_attempt have distinct branch owners. Follow-up owner audit stops CLI exposure: Willow lacks authenticated Cedar history validation and the qualified image-policy module. No local-checkout import or early merge.",
       "artifacts": [
         {
           "anchor": "NASolve",
@@ -11134,6 +11134,12 @@
           "path": "branch-artifacts/willow/w316-installed-review-reopen/verification.json",
           "sha256": "2aacd1ab405b2a021cb05b48ba6808644c71077bbd0827d06f7d5d6d78dae618",
           "size": 4365
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w316-installed-review-reopen/reader-dependency.json",
+          "sha256": "308dc33652d1e6362bf7b6ae376cd91c24398c02a5f44b886ca9425a5a5d4166",
+          "size": 3051
         }
       ]
     }

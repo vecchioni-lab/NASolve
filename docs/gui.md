@@ -28,7 +28,11 @@ context and receipt bindings, show **viewed checkpoint** separately from **curre
 checkpoint**, and reopen the exact saved review without selecting a model. Exit:
 one installed command reproduces that view after relocation and refuses stale
 context before writing. Keep actual adoption a separate existing checkpoint
-operation. No new registry or shell is required for this bounded step.
+operation. No new registry or shell is required for this bounded step. The production
+caller is currently gated: Willow lacks Cedar's authenticated history reader and
+qualified image-policy owner. W316 qualifies their explicit installed interface;
+it does not authorize a weaker local reader, a user-local checkout dependency or
+an early branch merge.
 
 Shared-owner integration must preserve Willow's `ViewProfile.map_origin` and
 Cedar's `ViewProfile.preparation_attempt` as distinct concepts. The W316 smoke

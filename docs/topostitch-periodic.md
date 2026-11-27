@@ -16613,3 +16613,18 @@ and refuses stale context before output. Resolve trusted installed-reader owners
 and both map-profile additions first. Preference cannot dispatch refinement,
 select a checkpoint or confer scientific acceptance. P05 remains partial;
 persistent editing/refinement and complete seam chemistry remain separate gates.
+
+
+**W316 owner follow-up, before writing the CLI:** Rowan approved a thin caller
+only if it needs neither a local Cedar checkout import nor an early merge.
+The pinned Willow `checkpoints.read_registry` checks saved registry shape and
+returns it. Cedar's `_read_registry_with_preparations` additionally calls
+`validate_published_preparation`, `validate_checkpoint_refinement_inputs` and
+`validate_checkpoint_execution`. Willow lacks those owner modules and
+`cif_phosphate_image.PDB_IMAGE_SEPARATION_A`. The existing API explicitly delegates
+history authentication to Cedar; replacing that reader would weaken the contract.
+Therefore stop at the already tested W316 owner interface. `reader-dependency.json`
+records exact commits, file hash, AST call sites and module presence. The immediate
+integration dependency is installed authenticated history and image-policy owners
+with their complete dependencies. Map-origin/preparation-attempt composition
+remains separately explicit. No new code, suite rerun or branch merge.
