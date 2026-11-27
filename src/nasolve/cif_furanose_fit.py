@@ -67,6 +67,11 @@ def read_furanose_fit_inputs(run_directory, *, attempt_number):
     still has the original position, occupancy and displacement.
     """
     checked, exact = _read_ordinary_postmr_result(run_directory, attempt_number=attempt_number)
+    return fit_inputs_from_checked(checked, exact)[0]
+
+
+def fit_inputs_from_checked(checked, exact):
+    """Read the inputs and parent geometry from one authenticated preparation."""
     sugar = (exact.get('construction_inputs') or {}).get('furanose_substitution') or {}
     folders = {'readyset_checked_model':'endpoint', 'readyset_ordered_checked_model':'endpoint',
                'verified_parent_runtime':'baseline'}
@@ -100,6 +105,7 @@ def read_furanose_fit_inputs(run_directory, *, attempt_number):
                 'write_geo_file = True\nfix_rotamer_outliers = False\n'
                 'minimization.macro_cycles = 3\nminimization.max_iterations = 250\n'
                 'output_file_name_prefix = relaxed\n').encode()
-    return FuranoseFitInputs(seed, site, code, clean, dictionaries, interpreted, controls,
+    plan = FuranoseFitInputs(seed, site, code, clean, dictionaries, interpreted, controls,
         exact['result']['record_sha256'], digest, count, tuple(sorted(restraints.items())),
         sugar['snapshot']['manifest']['consumer'])
+    return plan, native

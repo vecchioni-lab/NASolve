@@ -313,6 +313,8 @@ def build_parser() -> argparse.ArgumentParser:
     publish = cif_sub.add_parser("publish-preparation", help="save one exact checked preparation as the run's review checkpoint; no refinement is run")
     publish.add_argument("run", type=Path)
     publish.add_argument("--attempt", required=True, type=int, help="exact completed preparation attempt; also resumes an interrupted save of that same choice")
+    publish.add_argument("--sugar-fit", type=int, metavar="M", help="publish this preparation’s numbered, locally fitted sugar")
+    publish.add_argument("--native-receipt", type=Path, help="native_receipt.json for the fitted model and exact preparation restraints on its first publication")
     publish.add_argument("--as-alternative", action="store_true", help="save a later attempt as a separate REVIEW checkpoint from the same frozen construction; preserve the current selection")
     preparation_status = cif_sub.add_parser("preparation-status", help="read saved preparation attempts and whether work is still running")
     preparation_status.add_argument("run", type=Path)
@@ -2196,7 +2198,9 @@ def _cif_publish_preparation(args: argparse.Namespace) -> int:
     from .campaigns import CampaignError
     alternative = getattr(args, "as_alternative", False)
     try:
-        result, notes = (publish_preparation_alternative if alternative else publish_checked_preparation_with_notes)(args.run, attempt_number=args.attempt)
+        fit_options = {k: v for k, v in (("sugar_fit", args.sugar_fit), ("native_receipt", args.native_receipt)) if v is not None}
+        publish = publish_preparation_alternative if alternative else publish_checked_preparation_with_notes
+        result, notes = publish(args.run, attempt_number=args.attempt, **fit_options)
     except (OSError, ValueError, CampaignError, CheckpointError, PostMRPreparationError) as exc:
         print(f"Preparation handoff could not complete: {exc}", file=sys.stderr)
         print("Preserve saved work; retry the same attempt to finish an interrupted publication.", file=sys.stderr)

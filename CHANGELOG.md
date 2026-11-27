@@ -8,6 +8,8 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `nasolve cif-doctor publish-preparation RUN --attempt N --sugar-fit M` can give AutoRefine a locally fitted sugar. The first publication checks a named Phenix reading against the original residue assignments and restraints. The saved checkpoint reopens offline after moving the run.
+
 - `nasolve cif-doctor fit-sugar RUN --attempt N` fits the selected sugar against the restraints Phenix actually read. The fitted coordinates and geometry measurements belong to a numbered attempt. A saved fit reopens offline after moving the run. The original model remains available for comparison.
 
 - `nasolve cif-doctor prepare-run --dictionary-input-policy source-preserving-v2` can recognize one unsupported Coot mutation as a C-linked, 2′-O-methyl uracil analogue from its source, host and restraint workbook. It acquires the required dictionary from the frozen card. A proven extra eLBOW bond can trigger one fresh source-order attempt within the original time allowance.

@@ -390,13 +390,17 @@ def _read_ordinary_postmr_results(run_directory, attempt_numbers):
             for number,exact in read_dictionary_request_results(request, attempt_numbers).items()}
 
 
+def local_sugar_seed_note(site, code):
+    return f'{site} {code} is a construction seed. Its local sugar fit is still required before checkpoint publication.'
+
+
 def _ordinary_result_from_exact(request, attempt_number, exact):
     from .cif_dictionary_sites import _need
     _need(exact.get('construction_inputs') is not None, 'Require recorded ordinary construction evidence')
     sugar = exact['construction_inputs'].get('furanose_substitution', {})
     seed_notes = ()
     if sugar.get('unfitted_pairing_edge_seed'):
-        seed_notes = (f"{sugar['context']['site']} {sugar['code']} is a construction seed. Its local sugar fit is still required before checkpoint publication.",)
+        seed_notes = (local_sugar_seed_note(sugar['context']['site'], sugar['code']),)
     runtime = exact['runtime']
     continued = exact.get('continuation')
     selected = None if runtime is None else runtime['manifest']['decision']['selected']
