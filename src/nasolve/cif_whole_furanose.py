@@ -174,7 +174,22 @@ def _ordinary_ports(frame, site, leaving_atom, report):
     row, = (r for r in topology['contexts'][code] if r['site'] == site)
     context = declared_internal_ports(row, sites, leaving_atom)
     binding = dict(model_sha256=topology['model_sha256'], intent=topology['intent'])
-    return context, binding
+    return context, binding, code
+
+
+def _uracil_attachment(source, code, workbook, profile=None):
+    """Identify the ring attachment element only for a source-proven uracil pairing edge."""
+    from .cif_pyrimidine_edge import source_uracil_edge
+
+    if profile is None:
+        profile = inspect_attachment_profile(source, code, workbook=workbook)
+    if profile['topology_status'] != 'MATCH' or profile['matched_profile'] not in _PROFILES:
+        return None
+    graph = _graph(_values(source, code))
+    attachment = profile['bindings']['base']
+    if source_uracil_edge(graph, attachment) is not None:
+        return graph[0][attachment]
+    return None
 
 
 def _derive(root, *, base_anchored=False, model_ports=False, canonical_at_edge=False):
@@ -206,7 +221,7 @@ def _derive(root, *, base_anchored=False, model_ports=False, canonical_at_edge=F
         _object(binding, ('intent', 'model_sha256'))
         phosphate = context['ports']['phosphate']
         _object(phosphate, ('state', 'partner', 'symmetry_operation', 'leaving_atom'))
-        expected, actual = _ordinary_ports(root/'frame.pdb', selected, phosphate['leaving_atom'], binding['intent'])
+        expected, actual, _ = _ordinary_ports(root/'frame.pdb', selected, phosphate['leaving_atom'], binding['intent'])
         if actual != binding or context != expected:
             raise ValueError('Placement ports or source binding differ from the ordinary backbone audit')
     payload = (root/'frame.pdb').read_bytes(); sites = _model(payload)
@@ -403,30 +418,37 @@ def prepare_base_anchored_furanose_control(source, numerical, host_source, workb
 
 def prepare_base_anchored_furanose_from_model(source, numerical, host_source, workbook, frame, output,
                                               *, code, site, postmr_report, base_frame_roles=None, leaving_atom=None,
-                                              canonical_at_edge=False):
+                                              canonical_at_edge=None):
     """Place an internal replacement using the host's audited asymmetric-unit links.
 
     Without an explicit leaving atom the source must flag exactly one terminal,
     neutral phosphate hydroxyl. Without explicit base roles, both source graphs
     and workbook rows must agree on the two ring neighbours of the glycosidic
-    atom. An explicit canonical adenine-pairing frame instead compares the two
-    chemical edges and transfers the host glycosidic torsion. The frozen choices
-    are rechecked on every replay.
+    atom. A change between C- and N-linked uracil rings uses their verified
+    adenine-pairing edges and transfers the host glycosidic torsion. An explicit
+    True or False selects the corresponding frame directly. Replay checks the
+    concrete frame saved in each placement.
     """
-    if type(canonical_at_edge) is not bool or (canonical_at_edge and base_frame_roles is not None):
+    if (canonical_at_edge is not None and type(canonical_at_edge) is not bool) or (canonical_at_edge and base_frame_roles is not None):
         raise ValueError('The canonical pairing frame and an explicit base frame are separate choices')
     if base_frame_roles is not None and not isinstance(base_frame_roles, list):
         raise ValueError('Require three explicit distinct NARestraints base frame roles')
     selection = dict(code=code, base_frame_roles=_MAPPED_RING_FRAME if base_frame_roles is None else base_frame_roles)
-    if canonical_at_edge:
-        selection['base_frame_roles'] = _EDGE_FRAME
+    profile = None
     if leaving_atom is None:
         profile = inspect_attachment_profile(source, code, workbook=workbook)
         if profile['topology_status'] != 'MATCH' or profile['matched_profile'] not in _PROFILES:
             raise ValueError('Source leaving flags require a supported furanose phosphate')
         leaving_atom = _source_phosphate_leaving_atom(_values(source, code), profile['bindings'])
         selection['leaving_atom_source'] = _LEAVING_FLAG
-    context, binding = _ordinary_ports(frame, site, leaving_atom, postmr_report)
+    context, binding, host_code = _ordinary_ports(frame, site, leaving_atom, postmr_report)
+    if canonical_at_edge is None and base_frame_roles is None:
+        target = _uracil_attachment(source, code, workbook, profile)
+        if target in {'C', 'N'}:
+            host = _uracil_attachment(host_source, host_code, workbook)
+            canonical_at_edge = {target, host} == {'C', 'N'}
+    if canonical_at_edge:
+        selection['base_frame_roles'] = _EDGE_FRAME
     selection['ordinary_backbone'] = binding
     return _prepare_control(source, numerical, host_source, workbook, frame, output,
         context=context, selection=selection, derive=_derive_model_edge if canonical_at_edge else _derive_model_base,

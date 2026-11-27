@@ -8,6 +8,8 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- The whole-sugar builder can select the adenine-pairing face from the source and host uracil rings when their sugar attachment changes between carbon and nitrogen. It checks the NARestraints pairing atoms and sugar hand and records the resolved placement for replay.
+
 - When a whole-sugar substitution changes the uracil attachment between C and N, its new atoms can start with the median isotropic B of the fully occupied host residue. The constructor checks the connected heavy-atom inventory and records the starting value. Older frozen seeds reproduce their original B values.
 
 - Source-preserving PostMR requests can now recognize a neutral 2′-O-methyl ribose at an already constructed internal RNA site and select the appropriate Phenix sugar tables. The source graph, workbook attachment, methyl group in the model and both backbone connections must agree. Historical retained dictionaries keep their original permissions.

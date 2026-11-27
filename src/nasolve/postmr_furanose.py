@@ -156,7 +156,7 @@ def build_substitution(choice, frame, prepared, run, report):
         workbook.write_bytes(choice.workbook_bytes)
         prepare_base_anchored_furanose_from_model(
             saved['source'], saved['dictionary'], host, workbook, frame, temp/'placement',
-            code=choice.code, site=choice.site, postmr_report=report)
+            code=choice.code, site=choice.site, postmr_report=report, canonical_at_edge=False)
         prepare_furanose_bridge_seed(temp/'placement', root/'seed', **_FIT, inherit_equivalent_base_b=True)
     choice.verify()
     with prepared.open('xb') as handle:
