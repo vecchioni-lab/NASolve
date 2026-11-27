@@ -454,6 +454,32 @@ def test_linked_pucker_requires_site_modifier_and_paired_table(tmp_path,modifier
         with pytest.raises(ValueError,match="checksum"):linked_pucker_expectations(prepared,native)
 
 
+def test_ordinary_site_respects_original_ether_and_hydroxyl_permissions(tmp_path):
+    from nasolve.cif_rna_pucker import (available_methyl_ether_tables, pucker_reference_permission,
+                                        select_reaction_pucker)
+    from tests.test_cif_phenix_configuration import sdk_at
+
+    sdk, library = sdk_at(tmp_path/"selected")
+    for modifier in ("rna2p", "rna3p"):
+        table = library/"chem_data/geostd/rna_dna"/("mod_"+modifier+".cif")
+        table.parent.mkdir(parents=True, exist_ok=True)
+        table.write_text("data_mod_"+modifier+"\n")
+    tables = available_methyl_ether_tables(sdk.root)
+    ether = {"rna_pucker_table": tables}
+    hydroxyl = {"contexts": []}
+    pin = tables["tables"]["rna2p"]["pin"]
+    for old in ({}, {"rna_pucker_table": pin}):
+        assert select_reaction_pucker(ether, sdk.root, retained_recipe=old) is None
+    assert select_reaction_pucker(hydroxyl, sdk.root, retained_recipe={}) == hydroxyl
+    assert select_reaction_pucker(hydroxyl, sdk.root, retained_recipe={"rna_pucker_table": pin})["rna_pucker_table"]["pin"] == pin
+    recipe = {"rna_pucker_table": pucker_reference_permission(tables)}
+    assert select_reaction_pucker(ether, sdk.root, retained_recipe=recipe) == ether
+    other = deepcopy(recipe)
+    other["rna_pucker_table"]["tables"]["rna3p"]["sha256"] = "f"*64
+    with pytest.raises(ValueError, match="Retained RNA"):
+        select_reaction_pucker(ether, sdk.root, retained_recipe=other)
+
+
 @pytest.mark.parametrize("observed, qualified", [("rna2p", ("rna2p","rna3p")),
     ("rna3p", ("rna2p","rna3p")), ("rna3p", ("rna2p",))])
 def test_linked_methyl_ether_uses_only_its_observed_and_verified_table(tmp_path, observed, qualified):

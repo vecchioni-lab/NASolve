@@ -113,6 +113,17 @@ def available_pucker_pin(installation_root):
     return _pin(path,root,source=True) if path.is_file() else None
 
 
+def available_methyl_ether_tables(installation_root):
+    """Select the two observed-state tables from one installed Phenix library."""
+    root = Path(installation_root).resolve(strict=True)
+    library = _library(root)
+    paths = {m: library/_table_resource(m) for m in ("rna2p", "rna3p")}
+    if any(not p.is_file() for p in paths.values()):
+        return None
+    return {"policy_id": ETHER_PUCKER_PERMISSION,
+            "tables": {m: {"path": p, "pin": _pin(p, root, source=True)} for m, p in paths.items()}}
+
+
 def validate_table_pin(pin, *, modifier="rna2p"):
     _need(isinstance(pin,dict) and set(pin)=={"anchor","path","size","sha256"}
           and pin["anchor"]=="phenix_installation" and _safe(pin["path"])
@@ -188,6 +199,25 @@ def pucker_references(reference):
 
 def pucker_reference_permission(reference):
     return group_pucker_tables(reference, {m: r["pin"] for m, r in pucker_references(reference).items()})
+
+
+def select_reaction_pucker(reaction, installation, *, retained_recipe=None):
+    """Select the installed site references within the original acquisition's permission."""
+    reference = reaction.get("rna_pucker_table")
+    if retained_recipe is not None:
+        previous = retained_recipe.get("rna_pucker_table")
+        if reference is not None and not observed_ether_permission(previous):
+            return None  # This older ether had no source-selected site reaction.
+        if previous is None:
+            return reaction  # Historical hydroxyls can carry the reaction without a pucker table.
+    if reference is None:
+        pin = available_pucker_pin(installation)
+        if pin is not None:
+            reference = {"pin": pin, "path": Path(installation)/pin["path"]}
+    permission = pucker_reference_permission(reference) if reference is not None else None
+    _need(retained_recipe is None or permission == previous,
+          "Retained RNA dictionary requires the same Phenix pucker table")
+    return reaction if reference is None else {**reaction, "rna_pucker_table": reference}
 
 
 def bound_pucker_files(reference, root=None, *, site_copy=False):

@@ -130,10 +130,10 @@ def derive_furanose_reaction(source_path, numerical_path, workbook, model_path, 
     return report, artifacts
 
 
-def select_internal_ribose_reaction(source, code, workbook, model_bytes, contexts):
+def select_internal_ribose_reaction(source, code, workbook, model_bytes, contexts, *, methyl_ether_installation=None):
     """Select the existing graph reaction for an internal, source-declared RNA ribose."""
     from .cif_whole_furanose import _source_phosphate_leaving_atom, declared_internal_ports
-    from .postmr_restoration import ribose_hydroxyl
+    from .postmr_restoration import ribose_hydroxyl, ribose_methyl_ether
 
     if not contexts or any(c["five_prime_state"] != "linked" or c["three_prime_state"] != "linked"
                            or c.get("symmetry_operation") not in (None, "x,y,z")
@@ -150,28 +150,48 @@ def select_internal_ribose_reaction(source, code, workbook, model_bytes, context
         return None
     try:
         graph = _graph(values)
-        ribose_hydroxyl(graph)
     except ValueError:
         return None
+    methyl = None
+    try:
+        ribose_hydroxyl(graph)
+    except ValueError:
+        if methyl_ether_installation is None:
+            return None
+        try:
+            methyl = ribose_methyl_ether(graph)
+        except ValueError:
+            return None
     profile = inspect_attachment_profile(source, code, workbook=workbook)
     if profile["matched_profile"] != "unbridged-furanose-phosphate-v1" or profile["topology_status"] != "MATCH":
         return None
     roles = profile["bindings"]
-    if (graph[0][roles["base"]] != "N" or
-            (roles["phosphate"], roles["five_o"], roles["three_o"]) != ("P", "O5'", "O3'")):
+    if ((methyl is None and graph[0][roles["base"]] != "N")
+            or (methyl is not None and (roles["anomeric"], roles["ring_c2"]) != ("C1'", "C2'"))
+            or (roles["phosphate"], roles["five_o"], roles["three_o"]) != ("P", "O5'", "O3'")):
         return None
     try:
         leaving = _source_phosphate_leaving_atom(values, roles)
     except ValueError:
         return None
+    if methyl is not None and leaving != "OP3":
+        return None
     sites = _model(model_bytes)
     for context in contexts:
         site = sites[context["site"]]
         atoms = site["atoms"]
-        if site["component"] != code or atoms.get("O2'") != "O" or leaving in atoms:
+        if (site["component"] != code or atoms.get("O2'") != "O" or leaving in atoms
+                or (methyl is not None and atoms.get(methyl) != "C")):
             return None
     ports = [declared_internal_ports(c, sites, leaving) for c in contexts]
-    return dict(contexts=ports, workbook=workbook, workbook_sha256=profile["workbook"]["sha256"])
+    reaction = dict(contexts=ports, workbook=workbook, workbook_sha256=profile["workbook"]["sha256"])
+    if methyl is not None:
+        from .cif_rna_pucker import available_methyl_ether_tables
+        table = available_methyl_ether_tables(methyl_ether_installation)
+        if table is None:
+            return None
+        reaction["rna_pucker_table"] = table
+    return reaction
 
 
 def internal_furanose_contexts(contexts, reaction_contexts):

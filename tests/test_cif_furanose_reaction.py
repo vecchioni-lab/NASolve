@@ -81,6 +81,51 @@ def test_ordinary_rna_uses_source_and_workbook_to_join_only_two_audited_links(tm
         _freeze_furanose(item, {}, {})
 
 
+@pytest.mark.parametrize("defect", [None, "missing_table", "missing_methyl", "protected_leaving", "symmetry", "unrequested"])
+def test_methyl_ether_selection_requires_both_tables_and_exact_internal_chemistry(tmp_path, defect):
+    from nasolve.cif_furanose_reaction import select_internal_ribose_reaction
+    from nasolve.cif_rna_pucker import ETHER_PUCKER_PERMISSION, pucker_reference_permission
+    from nasolve.cif_stereochemistry_audit import _values
+    from nasolve.cif_whole_furanose import prepare_base_anchored_furanose_from_model
+    from tests.test_cif_model_context import report
+    from tests.test_cif_phenix_configuration import sdk_at
+    from tests.test_cif_pyrimidine_placement import inputs
+
+    source, numerical, host, book, frame = inputs(tmp_path)
+    built = tmp_path/"placed"
+    prepare_base_anchored_furanose_from_model(source, numerical, host, book, frame, built,
+        code="UY1", site="A:2", postmr_report=report(), canonical_at_edge=True)
+    sdk, library = sdk_at(tmp_path/"installation")
+    for name in ("rna2p", "rna3p"):
+        if defect == "missing_table" and name == "rna3p":
+            continue
+        table = library/"chem_data/geostd/rna_dna"/("mod_"+name+".cif")
+        table.parent.mkdir(parents=True, exist_ok=True)
+        table.write_text("data_mod_"+name+"\n")
+    model = (built/"model.pdb").read_bytes()
+    if defect == "missing_methyl":
+        model = b"".join(line for line in model.splitlines(keepends=True) if line[12:16].strip() != b"CM2")
+    if defect == "protected_leaving":
+        values = _values(source, "UY1")
+        flags = values["_chem_comp_atom.pdbx_leaving_atom_flag"]
+        ids = values["_chem_comp_atom.atom_id"]
+        flags[ids.index("OP1")], flags[ids.index("OP3")] = "Y", "N"
+        write(source, values)
+    context = dict(site="A:2", five_prime_state="linked", three_prime_state="linked",
+                   incoming_site="A:1", outgoing_site="A:3")
+    if defect == "symmetry":
+        context["symmetry_operation"] = "-x+y,-x,z"
+    options = {} if defect == "unrequested" else {"methyl_ether_installation": sdk.root}
+    chosen = select_internal_ribose_reaction(source, "UY1", book, model, [context], **options)
+    if defect is not None:
+        assert chosen is None
+        return
+    permission = pucker_reference_permission(chosen["rna_pucker_table"])
+    assert permission["policy_id"] == ETHER_PUCKER_PERMISSION
+    assert set(permission["tables"]) == {"rna2p", "rna3p"}
+    assert chosen["contexts"][0]["ports"]["phosphate"]["leaving_atom"] == "OP3"
+
+
 def run(paths,contexts):
     from nasolve.cif_furanose_reaction import prepare_furanose_reaction_control
     return prepare_furanose_reaction_control(*paths,code='Z99',contexts=contexts)

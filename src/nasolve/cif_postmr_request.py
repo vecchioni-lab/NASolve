@@ -182,24 +182,23 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
                     or not item['generation'].get('bond_representation_policy')):
                 continue
             code = item['code']
+            installation = item['generation']['installation_root']
             reaction = select_internal_ribose_reaction(selected['sources'][code]['source'], code,
-                                                       source_ribose_workbook, model_bytes, item['contexts'])
-            if reaction is not None:
-                item['furanose_reaction'] = reaction
-                if select_native_rna_pucker:
-                    retained = item.get('retained_snapshot')
-                    if retained is not None:
-                        from .cif_dictionary_store import resolve_dictionary_snapshot
-                        prior = resolve_dictionary_snapshot(retained)['manifest']['request']['recipe']
-                        if 'rna_pucker_table' not in prior:
-                            continue
-                    from .cif_rna_pucker import available_pucker_pin
-                    pin = available_pucker_pin(item['generation']['installation_root'])
-                    _need(retained is None or pin == prior['rna_pucker_table'],
-                          'Retained RNA dictionary requires the same Phenix pucker table')
-                    if pin is not None:
-                        item['generation']['rna_pucker_table'] = pin
-                        reaction['rna_pucker_table'] = dict(pin=pin,path=Path(item['generation']['installation_root'])/pin['path'])
+                source_ribose_workbook, model_bytes, item['contexts'],
+                methyl_ether_installation=installation if select_native_rna_pucker else None)
+            if reaction is None:
+                continue
+            if select_native_rna_pucker:
+                from .cif_dictionary_store import resolve_dictionary_snapshot
+                from .cif_rna_pucker import pucker_reference_permission, select_reaction_pucker
+                retained = item.get('retained_snapshot')
+                prior = None if retained is None else resolve_dictionary_snapshot(retained)['manifest']['request']['recipe']
+                reaction = select_reaction_pucker(reaction, installation, retained_recipe=prior)
+                if reaction is None:
+                    continue
+                if 'rna_pucker_table' in reaction:
+                    item['generation']['rna_pucker_table'] = pucker_reference_permission(reaction['rna_pucker_table'])
+            item['furanose_reaction'] = reaction
     _need(all(_read(p) == data for p,data in literal_originals),
           'Literal original PHIL changed during source freezing')
     # Each independently verified repair in a mixture has its own working proof.
