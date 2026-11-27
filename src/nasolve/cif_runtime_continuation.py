@@ -27,6 +27,8 @@ from .cif_runtime_readyset import (_parent, _selected_view, audit_runtime_readys
                                   runtime_readyset_endpoint_inputs, inspect_runtime_readyset)
 from .cif_runtime_continuation_process import RuntimeContinuationProcesses, inspect_runtime_continuation_processes
 
+from .cif_terminal_qualification import custom_request_policy_fields
+
 POLICY_ID = 'cif-selected-runtime-continuation-execution-v1'
 ANCHOR = 'continuation_directory'
 ARTIFACT_POLICY = 'cif-continuation-partitioned-artifacts-v1'
@@ -47,7 +49,7 @@ def _native_fields(policy):
     return {} if policy is None else dict(nonbonded_policy=policy)
 
 
-def _configuration(limits, restore_serialization, *, artifact_policy=None, nonbonded_policy=None, compact_evidence=False):
+def _configuration(limits, restore_serialization, *, artifact_policy=None, nonbonded_policy=None, compact_evidence=False, explicit_request_policy=None):
     _need(type(compact_evidence) is bool, 'Require a boolean compact-evidence choice')
     _need(isinstance(limits, dict) and set(limits) == {'native', 'readyset', 'total'}
           and all(type(limits[k]) in (int, float) and math.isfinite(limits[k])
@@ -56,7 +58,7 @@ def _configuration(limits, restore_serialization, *, artifact_policy=None, nonbo
           and type(restore_serialization) is bool, 'Invalid bounded continuation settings')
     return dict(schema_version=1, policy_id=POLICY_ID, limits=dict(limits),
                 restore_serialization=restore_serialization, **(dict(compact_evidence=True) if compact_evidence else {}), **_artifact_fields(artifact_policy),
-                **_native_fields(nonbonded_policy))
+                **_native_fields(nonbonded_policy), **custom_request_policy_fields(explicit_request_policy))
 
 
 def _selected_consumer(parent):
@@ -140,6 +142,7 @@ def _replay(root, config, state):
         _need(p['job']['timeout_seconds'] <= config['limits']['readyset' if name == 'readyset' else 'native'],
               'Continuation worker exceeds its frozen limit')
     native_policy=config.get('nonbonded_policy')
+    policy_fields=custom_request_policy_fields(config.get('explicit_request_policy'))
     baseline, usable = _native(root,phases['native-baseline'],parent,consumer,nonbonded_policy=native_policy)
     readyset = endpoint = order = None; serialization = dict(status='NOT_NEEDED'); raw = None
     if usable:
@@ -148,7 +151,7 @@ def _replay(root, config, state):
         if inputs is not None:
             expected.add('native-endpoint'); _need('native-endpoint' in phases, 'Qualified ReadySet observation lacks final native capture')
             endpoint, _ = _native(root,phases['native-endpoint'],inputs,consumer,nonbonded_policy=native_policy)
-            raw = inspect_runtime_readyset(parent['manifest_path'],baseline,readyset,endpoint)
+            raw = inspect_runtime_readyset(parent['manifest_path'],baseline,readyset,endpoint,**policy_fields)
             serialization = _serialization(parent,inputs,raw,config['restore_serialization'])
             if serialization['status'] == 'APPLIED':
                 expected.add('native-ordered'); _need('native-ordered' in phases, 'Lossless serialization lacks fresh native capture')
@@ -156,7 +159,7 @@ def _replay(root, config, state):
                 ordered = runtime_readyset_endpoint_inputs(parent['manifest_path'],readyset,atom_order_directory=order)
                 endpoint, _ = _native(root,phases['native-ordered'],ordered,consumer,nonbonded_policy=native_policy)
     _need(set(phases) == expected and (root/'atom-order').exists() == (order is not None), 'Unexpected continuation phase or serialization')
-    review = inspect_runtime_readyset(parent['manifest_path'],baseline,readyset,endpoint,atom_order_directory=order)
+    review = inspect_runtime_readyset(parent['manifest_path'],baseline,readyset,endpoint,atom_order_directory=order,**policy_fields)
     roots = dict(runtime=root/'inputs/runtime', baseline=baseline.parent,
                  readyset=readyset, endpoint=None if endpoint is None else endpoint.parent,
                  **({'atom-order':order} if order is not None else {}))
@@ -188,7 +191,8 @@ def read_runtime_continuation(directory):
     config = _json(_read(root/'inputs/configuration.json'))
     _need(config == _configuration(config.get('limits'),config.get('restore_serialization'),
           artifact_policy=config.get('artifact_policy'),nonbonded_policy=config.get('nonbonded_policy'),
-          compact_evidence=config.get('compact_evidence',False)),
+          compact_evidence=config.get('compact_evidence',False),
+          **custom_request_policy_fields(config.get('explicit_request_policy'))),
           'Continuation configuration differs')
     before = _continuation_files(root,config)
     state = inspect_runtime_continuation_processes(root)
@@ -203,6 +207,8 @@ def read_runtime_continuation(directory):
         for name,p in roots.items():
             if p is not None: _need(_tree(evidence/name) == _tree(p), 'Public continuation copied different evidence')
             elif name == 'readyset': _need(_tree(evidence/name) == {}, 'Unexpected ReadySet evidence')
+    _need(runtime['manifest']['source_selection'].get('explicit_request_policy') == config.get('explicit_request_policy'),
+          'Published request comparison differs from frozen continuation choice')
     _need(runtime['manifest']['decision']['selected'] == review['decision']['selected'], 'Final continuation selection differs')
     report = read_record(root/'continuation_execution.json'); elapsed = report.get('elapsed_seconds')
     _need(type(elapsed) in (int,float) and math.isfinite(elapsed) and 0 <= elapsed < config['limits']['total'], 'Continuation exceeded its recorded allowance')
@@ -229,7 +235,7 @@ def _report(root, config, state, runtime, serialization, elapsed):
 
 def execute_runtime_continuation(manifest, phenix, output, *, native_timeout_seconds=120,
         readyset_timeout_seconds=120, total_timeout_seconds=900, restore_serialization=True,
-        artifact_policy=ARTIFACT_POLICY, nonbonded_policy=NATIVE_NONBONDED_POLICY, compact_evidence=False,
+        artifact_policy=ARTIFACT_POLICY, nonbonded_policy=NATIVE_NONBONDED_POLICY, compact_evidence=False, explicit_request_policy=None,
         _attempt_identity=None, _remaining_seconds=None):
     """Run one fresh selected baseline/ReadySet/native/publication chain.
 
@@ -245,8 +251,9 @@ def execute_runtime_continuation(manifest, phenix, output, *, native_timeout_sec
     no checkpoint is replaced. New executions freeze the maintained ASU pair
     policy; nonbonded_policy=None retains the historical C127 native request.
     """
+    policy_fields=custom_request_policy_fields(explicit_request_policy)
     started = monotonic(); identity = parent_identity(_attempt_identity)
-    config = _configuration(dict(native=native_timeout_seconds,readyset=readyset_timeout_seconds,total=total_timeout_seconds),restore_serialization,artifact_policy=artifact_policy,nonbonded_policy=nonbonded_policy,compact_evidence=compact_evidence)
+    config = _configuration(dict(native=native_timeout_seconds,readyset=readyset_timeout_seconds,total=total_timeout_seconds),restore_serialization,artifact_policy=artifact_policy,nonbonded_policy=nonbonded_policy,compact_evidence=compact_evidence,**policy_fields)
     outer = OuterAllowance(_remaining_seconds,monotonic,RuntimeContinuationBudgetExceeded)
     def remaining():
         left = total_timeout_seconds-(monotonic()-started); cap = outer.remaining()
@@ -289,7 +296,7 @@ def execute_runtime_continuation(manifest, phenix, output, *, native_timeout_sec
             inputs=_readyset(output,state['phases']['readyset'],frozen)
             if inputs is not None:
                 endpoint,_=capture('endpoint',inputs)
-                raw=inspect_runtime_readyset(frozen['manifest_path'],baseline,readyset,endpoint)
+                raw=inspect_runtime_readyset(frozen['manifest_path'],baseline,readyset,endpoint,**policy_fields)
                 serialization=_serialization(frozen,inputs,raw,restore_serialization)
                 if serialization['status']=='APPLIED':
                     order=output/'atom-order';prepare_readyset_atom_order(frozen['model'],inputs['model'],order)
@@ -298,7 +305,7 @@ def execute_runtime_continuation(manifest, phenix, output, *, native_timeout_sec
         unchanged();state=inspect_runtime_continuation_processes(output)
         _,review,serialization,_=_replay(output,config,state)
         prepare_runtime_readyset_bundle(frozen['manifest_path'],baseline,readyset,output/'runtime',
-                                       endpoint_receipt=endpoint,atom_order_directory=order,
+                                       endpoint_receipt=endpoint,atom_order_directory=order,**policy_fields,
                                        **(dict(compact_evidence=True) if compact_evidence else {}))
         runtime=resolve_runtime_bundle(output/'runtime')
         _need(runtime['manifest']['decision']['selected']==review['decision']['selected'], 'Published continuation differs')

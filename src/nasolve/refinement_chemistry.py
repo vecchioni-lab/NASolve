@@ -86,6 +86,28 @@ def _observed_readback(model_bytes, projections, observation):
     return result
 
 
+def _source_checked_atoms(projections, observation):
+    """Bind each observed heavy atom and retain the same validated source graphs by site."""
+    from .cif_stereochemistry_audit import _values, _graph
+    from .cif_linked_qualification import _site
+    sources = {}; by_site = {}; atoms = {}; identities = set()
+    for site, (path, code) in projections.items():
+        key = (Path(path), code)
+        if key not in sources:
+            values = _values(path, code)
+            sources[key] = values, _graph(values)
+        by_site[site] = sources[key]
+    for atom in observation['atoms']:
+        site = _site(atom); name = atom['atom_id']; index = atom['i_seq']
+        _need(site in projections and type(index) is int and index >= 0 and index not in atoms
+              and (site, name) not in identities, 'Ambiguous observed atom identity')
+        elements = by_site[site][1][0]
+        _need(atom['identity']['resname'].strip() == projections[site][1] and name in elements
+              and atom['element'] == elements[name], 'Observed atom differs from source')
+        atoms[index] = atom; identities.add((site, name))
+    return atoms, by_site
+
+
 def _observed_scalar_geometry(projections, observation):
     """Apply C15 measurements to an already authenticated selected observation.
 
@@ -94,8 +116,6 @@ def _observed_scalar_geometry(projections, observation):
     missing restraints, because explicit site modifications may remove them.
     """
     from .cif_captured_geometry import _geometry_measurements, _point
-    from .cif_stereochemistry_audit import _values, _graph
-    from .cif_linked_qualification import _site
     expected = [dict(site=site, component=code) for site, (_, code) in sorted(projections.items())]
     _need(observation['sites'] == expected, 'Observed scalar site/component scope differs')
     snapshots = {Path(path): _read(Path(path)) for path, _ in projections.values()}
@@ -122,17 +142,7 @@ def _observed_scalar_geometry(projections, observation):
         if observation['status'] == 'UNASSESSED':
             return result
         _need(observation['status'] == 'OBSERVED', 'Require an observed native state')
-        sources = {}; atoms = {}; identities = set()
-        for atom in observation['atoms']:
-            site = _site(atom); name = atom['atom_id']; index = atom['i_seq']
-            _need(site in projections and type(index) is int and index >= 0 and index not in atoms
-                  and (site, name) not in identities, 'Ambiguous observed scalar atom identity')
-            path, code = projections[site]; key = (Path(path), code)
-            if key not in sources:
-                sources[key] = _graph(_values(path, code))[0]
-            _need(atom['identity']['resname'].strip() == code and name in sources[key]
-                  and atom['element'] == sources[key][name], 'Observed scalar atom differs from source')
-            atoms[index] = atom; identities.add((site, name))
+        atoms, _ = _source_checked_atoms(projections, observation)
         coords = {index: _point(atom['xyz']) for index, atom in atoms.items()}
         details = observation['geometry']['proxy_details']
         counts = {kind: len(rows) for kind, rows in details.items()}
@@ -267,11 +277,11 @@ def read_refinement_chemistry(run_directory, *, checkpoint, native_receipt=None)
     if result is None:
         result = _readback(inherited['model'], prepared['projections'], dictionaries, phils, native_receipt)
     else:
-        from .refinement_parallelity import read_execution_request, validate_execution, V9_POLICY_ID
+        from .refinement_parallelity import read_execution_request, validate_execution, DECLARED_SITE_POLICIES
         record = validate_execution(run,execution,checkpoint=item['id'],parent=item['parent'],usable=True)
         request = read_execution_request(run,record['request'],checkpoint=item['id'])
         expected = prepare_chemistry_scope(run,registry,verified,item,
-            **({'include_nontriple':True} if request['policy_id']==V9_POLICY_ID else {}))
+            **({'include_nontriple':True} if request['policy_id'] in DECLARED_SITE_POLICIES else {}))
         _need(result['declared_sites'] == {row['site']:dict(component=row['component'],projection_sha256=row['projection']['sha256'])
               for row in expected}, 'Observed scope differs from checked preparation')
     _need(result['model_sha256'] == item['model']['sha256'].lower(), 'Final checkpoint model changed during read')

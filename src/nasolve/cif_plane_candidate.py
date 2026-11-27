@@ -46,7 +46,8 @@ def _source_plane_evidence(xyz, shared, original, added, sigma):
             "interpretation": "CONSERVATIVE_TEMPLATE_COMPATIBILITY_GATE; NOT_CHEMICAL_APPROVAL"}
 
 
-def prepare_trigonal_plane_candidate(source, dictionary, corroborating_dictionary, code, output):
+def prepare_trigonal_plane_candidate(source, dictionary, corroborating_dictionary, code, output, *,
+                                     bond_representation_policy=None):
     """Append supported rows to a fresh candidate; preserve all original terms.
 
     One unambiguous existing partial plane and agreeing supplied ESDs are needed.
@@ -62,8 +63,9 @@ def prepare_trigonal_plane_candidate(source, dictionary, corroborating_dictionar
         raise ValueError("Require a fresh separate plane candidate without symlink parents")
     frozen = [p.read_bytes() for p in paths]
     try:
-        before = audit_trigonal_plane_coverage(source,dictionary,code)
-        support = audit_trigonal_plane_coverage(source,corroborating_dictionary,code)
+        options = dict(bond_representation_policy=bond_representation_policy)
+        before = audit_trigonal_plane_coverage(source,dictionary,code, **options)
+        support = audit_trigonal_plane_coverage(source,corroborating_dictionary,code, **options)
         sv,dv,pv = [_values(p,code) for p in paths]
         elements = _graph(sv)[0]
         original_planes = _planes(dv,elements)
@@ -139,11 +141,13 @@ def prepare_trigonal_plane_candidate(source, dictionary, corroborating_dictionar
         with output.open('x',encoding='utf-8') as stream:stream.write(''.join(rendered))
         if [b.values for b in _blocks(output)] != expected:
             raise ValueError('Candidate differs from exact parsed addition allowlist')
-        after = audit_trigonal_plane_coverage(source,output,code)
+        after = audit_trigonal_plane_coverage(source,output,code, **options)
         remaining = set(after['missing_explicit_planes'])
         if any(r['centre'] in remaining for r in planned):
             raise ValueError('Candidate did not complete selected local coverage')
         return dict(schema_version=1,policy_id=POLICY_ID,status='CANDIDATE_REVIEW',component=code,
+            **({'bond_representation_policy': bond_representation_policy}
+               if 'qualified_representation' in before or 'qualified_representation' in support else {}),
             source_sha256=sha256(frozen[0]).hexdigest(),dictionary_sha256=sha256(frozen[1]).hexdigest(),
             corroborating_dictionary_sha256=sha256(frozen[2]).hexdigest(),candidate_sha256=sha256(output.read_bytes()).hexdigest(),
             additions=[dict(plane=p,atom=a,dist_esd=s) for (p,a),s in sorted(additions.items())],

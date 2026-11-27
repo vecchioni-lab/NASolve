@@ -7,15 +7,19 @@ retries ReadySet or writes an edited coordinate model.
 from __future__ import annotations
 
 from datetime import datetime, timezone
+from functools import lru_cache
 from hashlib import sha256
 import json
+import math
 from math import isfinite
 import os
 from pathlib import Path
 import signal
 import subprocess
 from tempfile import mkdtemp
+from textwrap import dedent, indent
 import time
+from types import SimpleNamespace
 from typing import Mapping, Sequence
 
 NATIVE_POLICY_ID = "cif-native-bundle-inventory-v1"
@@ -364,6 +368,86 @@ sys.exit(0 if report["status"] == "REVIEW" else 2)
 
 def _sha(payload: bytes) -> str:
     return sha256(payload).hexdigest()
+
+
+_LIVE_WORKER_SHA256 = "9be6157312896609f51165adc6e5579365fa261709ac7633420bbea798373e78"
+
+
+@lru_cache(maxsize=1)
+def _live_readers():
+    """Bind the installed worker's readers without entering its standalone interpreter.
+
+    Historical receipts also require the standalone Python literal verbatim.
+    Only these definitions from the pinned, package-owned literal are compiled.
+    """
+    source = _NATIVE_WORKER
+    if _sha(source.encode()) != _LIVE_WORKER_SHA256:
+        raise RuntimeError("Live geometry reader requires review of the changed standalone worker")
+    atom = source[source.index("def atom_record("):source.index("def monomer_metadata(")]
+    policy = source[source.index('        report["restraint_policy"] = {'):source.index("        for module in (linking_class")]
+    geometry = source[source.index("    sites = acp.sites_cart_exact()"):source.index('    report["status"] = "REVIEW"')]
+    code = (atom + "def read_geometry(acp, geo, params, registry, report, spec):\n"
+            + indent(dedent(policy), "    ") + geometry)
+    namespace = {"math": math, "UnsupportedNativeAPI": ValueError}
+    exec(compile(code, "<NASolve installed native readers>", "exec"), namespace)
+    return namespace["atom_record"], namespace["read_geometry"]
+
+
+def _live_atom_view(atoms):
+    atom_record, _ = _live_readers()
+    rows = [atom_record(atom, i) for i, atom in enumerate(atoms)]
+    if not rows or len({row["label"] for row in rows}) != len(rows):
+        raise ValueError("Live model needs nonempty, uniquely labelled native atom indices")
+    return {"atom_count": len(rows), "atoms": rows}
+
+
+def collect_live_atoms(model) -> dict:
+    """Read the current Phenix hierarchy, including before restraints exist."""
+    return _live_atom_view(model.get_hierarchy().atoms())
+
+
+def collect_live_geometry(model, *, processed) -> dict:
+    """Describe the current manager using the selections from its original interpretation.
+
+    The caller retains that interpretation when Phenix constructs the manager.
+    Candidate coordinates may have moved since then. No model is reinterpreted.
+    """
+    from cctbx.geometry_restraints import linking_class
+
+    active = getattr(model, "_processed_pdb_file", None)
+    if active is not None and active is not processed:
+        raise ValueError("Live model belongs to a different interpretation")
+    geometry = getattr(getattr(model, "restraints_manager", None), "geometry", None)
+    params = getattr(model, "_pdb_interpretation_params", None)
+    chain = getattr(processed, "all_chain_proxies", None)
+    if geometry is None or params is None or chain is None:
+        raise ValueError("Live model requires an existing geometry manager, effective parameters and interpretation")
+    hierarchy = model.get_hierarchy()
+    # Phenix drops the processing handle after construction, while retaining
+    # the exact hierarchy from that interpretation on the model.
+    if active is None and getattr(chain, "pdb_hierarchy", None) is not hierarchy:
+        raise ValueError("Live hierarchy does not belong to the supplied interpretation")
+    atoms = hierarchy.atoms()
+    view = _live_atom_view(atoms)
+    atom_record, read_geometry = _live_readers()
+    if len(chain.pdb_atoms) != view["atom_count"]:
+        raise ValueError("Interpreted selection indices differ in size from the current model")
+    for index, (original, current) in enumerate(zip(chain.pdb_atoms, view["atoms"])):
+        recorded = atom_record(original, index)
+        if any(recorded[key] != current[key] for key in ("label", "identity", "atom_name_field", "element")):
+            raise ValueError(f"Interpreted selection indices differ from the current model at atom {index}")
+    view["unsupported_fields"] = []
+    acp = SimpleNamespace(selection=chain.selection, sites_cart_exact=atoms.extract_xyz)
+    read_geometry(acp, geometry, params, linking_class.linking_class(), view, {"inventory_detail": "linked"})
+    if any(type(i) is not int for i in view["restraint_policy"]["origin_ids"].values()):
+        raise ValueError("Native restraint origin IDs are unavailable")
+    if view["unsupported_fields"]:
+        raise ValueError("Incomplete live geometry: " + ", ".join(view["unsupported_fields"]))
+    if (model.restraints_manager.geometry is not geometry or
+            view["geometry"]["sites_cart_exact"] != [row["xyz"] for row in view["atoms"]]):
+        raise ValueError("Live geometry or atom positions changed during observation")
+    return {"policy_id": "cif-live-geometry-inventory-v1", "collector_sha256": _LIVE_WORKER_SHA256,
+            "native_view": view, "complete_capture": False, "scientific_acceptance": False}
 
 
 def _artifact(path: Path, work: Path) -> dict:

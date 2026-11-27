@@ -60,6 +60,46 @@ def test_complete_carbonyl_plane_has_only_scoped_coverage_pass(tmp_path):
     assert r["native_membership"]=="NOT_RUN" and r["scientific_approval"]=="NOT_RUN"
 
 
+@pytest.mark.parametrize("include_substituent", [True, False])
+def test_acquired_ring_uses_source_orders_and_actual_plane_members(tmp_path, monkeypatch, include_substituent):
+    from nasolve import cif_complete_request as request
+    from nasolve.cif_dictionary_store import resolve_qualified_dictionary
+    from nasolve.cif_plane_coverage import audit_trigonal_plane_coverage
+    from tests.test_cif_preparation_qualification import qualification
+    from tests.test_cif_purine_representation import pair, POLICY
+
+    code = "Z09"
+    source, candidate = pair(code)
+    members = ["C4", "C5", "C6", "N1", "N3", "N7", "N9"]
+    plane(candidate, members + (["N6"] if include_substituent else []))
+    src = write(tmp_path, source, "source.cif")
+    cif = write(tmp_path, candidate, "numerics.cif")
+    native = qualification(src, cif, code, POLICY)
+    consumer = dict(name="TEST", version="TEST", sha256="1" * 64)
+    snapshot = tmp_path / "preparation/bundle/components" / code / "snapshot"
+    snapshot.parent.mkdir(parents=True)
+    resolve_qualified_dictionary(src, code, tmp_path / "store", snapshot, source_authority="EXPLICIT",
+        recipe=dict(policy_id="TEST", bond_representation_policy=POLICY), generator=consumer,
+        consumer=consumer, acquire=lambda: dict(candidate=cif, qualification=native,
+            provenance=dict(stopping="TEST", converged=None, notes=[])))
+    monkeypatch.setattr(request, "read_acquired_dictionary_bundle",
+                        lambda _: {"report": {"selected_attempts": {code: 1}}})
+
+    with pytest.raises(ValueError, match="identical source/dictionary"):
+        audit_trigonal_plane_coverage(src, cif, code)
+    row = request._plane_plan(tmp_path)[code]
+    assert row["missing_centres"] == ([] if include_substituent else ["C6"])
+    assert row["coverage_status"] == ("SCOPED_EXPLICIT_COVERAGE_PASS" if include_substituent else "REVIEW")
+    assert row["qualified_representation"]["policy_id"] == POLICY
+    assert len(row["qualified_representation"]["changed_bonds"]) == 10
+
+    # The isolated qualification belongs to exact bytes, even when the plane looks the same.
+    recorded = snapshot / "entry/dictionary.cif"
+    recorded.write_bytes(recorded.read_bytes() + b"\n# edited\n")
+    with pytest.raises(ValueError):
+        request._plane_plan(tmp_path)
+
+
 def test_atom_renaming_preserves_connectivity_selected_finding(tmp_path):
     s=values();rename={"C":"Z1","O":"Z2","N":"Z3","R":"Z4"}
     for key,col in s.items():
@@ -209,7 +249,7 @@ def test_selected_dictionary_change_during_unassessed_screen_is_not_hidden(tmp_p
     import nasolve.cif_plane_coverage as m
     s = write(tmp_path, values(), 'source.cif'); d = write(tmp_path, values(), 'selected.cif')
     source, dictionary = bound(s), bound(d)
-    def changed(*args):
+    def changed(*args, **kwargs):
         d.write_text('changed during screen')
         raise ValueError('unsupported graph')
     monkeypatch.setattr(m, 'audit_trigonal_plane_coverage', changed)
@@ -223,6 +263,6 @@ def test_selected_dictionary_assessment_cannot_describe_different_bytes(tmp_path
     s = write(tmp_path, values(), 'source.cif'); d = write(tmp_path, values(), 'selected.cif')
     assessment = m.audit_trigonal_plane_coverage(s, d, 'XYZ')
     assessment['dictionary_sha256'] = '0'*64
-    monkeypatch.setattr(m, 'audit_trigonal_plane_coverage', lambda *args: assessment)
+    monkeypatch.setattr(m, 'audit_trigonal_plane_coverage', lambda *args, **kwargs: assessment)
     with pytest.raises(ValueError, match='assessment differs'):
         m.audit_selected_trigonal_planes({'XYZ': bound(s)}, [bound(d)])

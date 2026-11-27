@@ -96,7 +96,8 @@ def test_bundle_resolves_and_assesses_after_original_inputs_are_gone(tmp_path):
     r = resolve_runtime_bundle(moved)
     assert r['model'].is_file() and r['manifest_path'].parent == moved
     before = {p.relative_to(moved).as_posix(): p.read_bytes() for p in moved.rglob('*') if p.is_file()}
-    assessment = assess_runtime_bundle(moved)
+    assessment = assess_runtime_bundle(moved, template_bonds=True)
+    assert assessment["template_bonds"]["policy_id"] == "dictionary-template-bonds-v1"
     assert assessment['audit_kind'] == 'cif_restraint_assessment'
     assert assessment['bundle_context']['read_only'] and not assessment['bundle_context']['requires_cif_review']
     assert assessment['requires_cif_review'] is False
@@ -192,11 +193,12 @@ def test_public_bundle_cli_uses_ordinary_assessor_without_native_discovery(tmp_p
     from nasolve import cif_runtime_bundle
     audit = {'audit_kind': 'cif_restraint_assessment', 'status': 'REVIEW', 'inputs': []}
     calls = []
-    monkeypatch.setattr(cif_runtime_bundle, 'assess_runtime_bundle', lambda path: calls.append(path) or audit)
+    monkeypatch.setattr(cif_runtime_bundle, 'assess_runtime_bundle',
+                        lambda path, *, template_bonds: calls.append((path, template_bonds)) or audit)
     monkeypatch.setattr('nasolve.cli.discover_phenix', lambda *a, **k: pytest.fail('offline bundle assessment must not discover Phenix'))
     with redirect_stdout(io.StringIO()) as stream:
         assert main(['cif-doctor', 'assess', '--bundle', str(tmp_path), '--json']) == 2
-    assert calls == [tmp_path] and json.loads(stream.getvalue()) == audit
+    assert calls == [(tmp_path, False)] and json.loads(stream.getvalue()) == audit
 
 
 @pytest.mark.parametrize('fallback', [False, True])

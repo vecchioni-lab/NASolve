@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Receive maintained ordinary preparation and phosphate owners
+
+- Combine the pinned prepared-backbone and registered-phosphate dependency chain
+  with the metal receiving interfaces; keep historical runtime helper bytes exact,
+  including V10–V12 after the live native-recipe helper evolves.
+- Preserve existing checkpoint semantics, selection and scientific qualification.
+  This isolated receiving candidate does not add a mixed-refinement executor or
+  turn an unphased parent into a phased one.
+
 ### Make saved-map display levels explicit and source-visible
 
 - Add optional per-map positive σ levels for saved-map previews and Coot inspection
@@ -1102,6 +1111,481 @@ entries are reconstructed from repository history.
   regeneration, pruning permission or scientific acceptance. Existing run
   schemas, CLI behavior, source data and native workers remain unchanged.
 
+- Numbered refinements now reopen across Python versions when the same
+  coordinates reproduce their four crystal-phosphate angles to seven
+  significant figures. Saved measurements and restraint targets retain
+  their original precision.
+
+- `cif-doctor deposition-links --ordinary-steps` exposes the two atom labels,
+  distance and three phosphate angles at each sequence step. This lets a crystal
+  recut check each backbone connection against its recorded partners.
+
+- `cif-doctor residue-geometry` compares two written models against the Phenix
+  restraints that both fits used. It identifies newly distorted or improved
+  bonds and angles and reports where the chemical targets or coverage differ.
+
+- `cif-doctor phosphate-image --flanking-geometry` checks the bonds and angles
+  inside both residues at a fitted crystal junction and at its intact reference
+  links. It reads the named checkpoint’s final Phenix geometry listing.
+
+- `cif-doctor phosphate-image --torsion-response` shows how strongly each
+  fitted backbone torsion can turn the atoms at their written positions.
+  The report also measures the same torsion on the intact reference links.
+
+- `cif-doctor residue-geometry` measures within-residue bonds and angles
+  against the targets in the final Phenix GEO. Inspect specific residues or
+  screen the whole PDB. An explicit checkpoint supplies its own files, and
+  the report identifies missing measurements and tables from a different model.
+
+- `cif-doctor prepare --recipe alkynyl-methyl-template-v1` writes a separate
+  trial dictionary for one neutral alkynyl methyl. It moves the terminal
+  carbon and its three explicit hydrogens to the dictionary's own bond target.
+  The receipt records what moved and the original and achieved distances.
+
+- When Coot and ReadySet built a model in the same run, AutoRefine can now
+  fit its registered crystal bonds directly from `--from postmr`. The round
+  records the original Coot construction separately from the ReadySet starting
+  coordinates. Subsequent rounds can verify both after the run moves.
+
+- `cif-doctor assess --template-bonds` compares the heavy-atom distances
+  in each dictionary coordinate set with its own refinement targets. It accepts
+  standalone CIFs, the frozen dictionary of a numbered checkpoint or an
+  activated bundle. The comparison leaves chemical decisions with the caller.
+
+- `autorefine --prepared-backbone-source RUN` can fit a reviewed ReadySet
+  candidate in a numbered checkpoint. It checks the Coot construction,
+  every declared crystal junction, the actual parent restraints and the
+  original diffraction observations and Free-R flags. The child retains
+  the missing captured restraints and remains available for inspection.
+
+- `cif-doctor prepared-backbone RUN` reads Coot's recorded construction and
+  accounts for local O3′–P bonds, protected terminal phosphates and open incoming
+  ends. With the construct registration, strand-end discovery and directed
+  continuation files it measures every declared crystal partner in its exact
+  image. A preparation that stops at an open phosphate points to this review.
+  With `--candidate-model` and `--native-receipt` it also checks the candidate's
+  local backbone and both ends of each crystal bond against the original
+  construction. The report identifies the actual Phenix inputs and the intact
+  local bonds that supply each target.
+
+- The [OneDep preparation guide](docs/pdb-deposition.md) records how to pair
+  Phenix model and reflection CIFs, retain a crystal's processing data and
+  free flags, and check what wwPDB preserved after processing.
+  Coordinate tools can reuse the same file-specific crystal-image decoder
+  through `nasolve.cif_deposition_links.resolve_deposition_image`.
+
+- The Phenix phosphate-restraint engine can evaluate independently registered
+  O3′–P linkages in their respective crystal images during the same refinement.
+  Numbered AutoRefine accepts an explicit set with `--registered-continuations`
+  and carries that complete set into subsequent rounds. Inspect a single member
+  of the fit with `cif-doctor phosphate-image --saved-continuation-id ID`.
+  Before allocating a round, AutoRefine checks whether the input chemistry
+  already gives either O3′ or P another partner. The diagnostic names the
+  conflicting atoms and distinguishes different crystal copies of the same pair.
+  An existing crystal bond whose image is unavailable requires review.
+  Inspector JSON retains the evidence from the intact
+  reference links. Older one-link workers retain their original source bytes.
+  Add `--restraint-deviations` to measure the written bond, four angles and
+  three torsions against the fitted targets. JSON includes the actual values
+  on each chemically matched ordinary link in that same checkpoint.
+
+- When several inspected phosphates each lack both OP3 and a verified local
+  incoming O3′–P link, the preparation diagnostic names those sites together.
+  Before reporting those gaps it checks the three P–O bonds still visible
+  in each phosphate, the angles between them and its outgoing backbone link.
+  A distorted oxygen or ambiguous partner now gets its own diagnostic.
+  The 5W6W-derived PDU:PDU example now has an explicit two-connection
+  declaration for its central strand and D:7–C:8 crossover.
+  Repeating the singular `--registered-continuation` option with different
+  IDs reports an error. Earlier versions kept only the last.
+
+- `cif-doctor assess --bond-targets` points to the file and line of a
+  literal site edit that matches a target printed by Phenix. The JSON keeps
+  conflicting declarations and identifies files it could only partly read.
+
+- `cif-doctor assess --refined-planes` measures a carbon alkyne side arm
+  from the six atoms of its ring in the written PDB. It can read older
+  checkpoints and standalone Phenix outputs alongside their supplied CIFs.
+
+- `cif-doctor phosphate-image --duplex-partners` measures the direction of
+  the two nonbridging oxygens relative to two assigned base pairs. It works
+  on an explicit PDB or a named checkpoint, including declared crystal copies.
+
+- AutoRefine can carry a registered crystal phosphodiester into a numbered
+  child. Phenix checks the bond, four angles and three torsions in the declared
+  crystal copy during preflight and refinement. The fitted child awaits review.
+  `cif-doctor phosphate-image RUN --checkpoint ID --saved-continuation`
+  reads that child's written geometry, the linkage forces Phenix used and the
+  working and held-out reflection counts directly from the saved run.
+
+- Registered-phosphate refinement accepts the same element when Phenix
+  capitalizes its PDB spelling, for example `Hg` to `HG`. The recorded
+  charge, atom identity, coordinates, occupancy and displacement checks still
+  apply. Earlier numbered refinements retain their exact execution fingerprints.
+
+- Registered crystal phosphates can use PDB models with anisotropic atoms.
+  Before refinement, Cedar checks each displacement tensor against Phenix's
+  coordinate and diffraction models and allows for the printed precision of B.
+
+- `cif-doctor deposition-links` checks the backbone that a deposition
+  reader sees from the polymer sequence, measures explicit crystal
+  phosphates, and compares an optional returned coordinate mmCIF.
+
+- A registered phosphate connection can carry four angles and three torsions
+  into a fresh Phenix geometry manager across the declared crystal image.
+  Two matched five-cycle refinements tested this opt-in runtime.
+
+- `cif-doctor phosphate-image --registered-continuation ID` reads a named
+  O3′–P connection from a construct registration and reports what the exact
+  model or refinement checkpoint contains. A missing coordinate endpoint
+  leaves the declared connection available for review.
+  With `--registration-checkpoint`, the same command can follow that bond
+  into a named descendant after checking the crystal copies at both residues.
+
+- `cif-doctor assess --refined-planes` now shows which modeled atoms Phenix
+  included with positive weight in a residue's own plane. It can read an
+  explicit model, CIF and GEO, or both saved stages of a numbered refinement.
+  The existing selected-site measurements remain available.
+
+- `cif-doctor phosphate-image --nearest-image` reports the two closest
+  crystal copies of a named O3′ to a named phosphorus in a model or
+  checkpoint. Ambiguity at PDB coordinate precision stays visible. The
+  qualified periodic module used by frozen refinement workers keeps its
+  original bytes.
+
+- `cif-doctor assess --bond-targets` compares the bond lengths and sigmas
+  Phenix used with the explicitly supplied residue dictionaries. It works on
+  saved checkpoints or a model and GEO, and preserves the separate dictionary
+  verdict when a native target differs.
+
+- The backbone guide records the standard 5W6W B:7 O3′–B:1 P symmetry
+  connection and its operator, with the separate D:1 terminal phosphate.
+  A reusable directed declaration has been checked on the shipped C_G frame.
+
+- A geometry-parent capture can explicitly record use of the installed Phenix
+  dictionaries and four verified reader settings with zero added restraint
+  files. This gives a canonical model with no declared pairing a reproducible
+  source. Existing explicit pair and stacking inputs keep their original format.
+  The optional live comparison verifies the original residue definitions and
+  all recorded geometry terms, including any native secondary-structure terms.
+
+- CIF Doctor can measure a named crystal-image O3′ against a phosphate and show
+  whether Phenix printed that pair as a bond or a nonbonded contact. The
+  read-only `cif-doctor phosphate-image` command uses the optional topology
+  installation and accepts existing PDB and GEO files. An optional preserved
+  native capture also shows the bonds, angles and torsions at intact links with
+  matching residue chemistry. A run directory and `--checkpoint` open the
+  selected model and its recorded final GEO by verified file references.
+  Doctor excludes reference pairs with an extra
+  bond edit and recognizes hydrogen bonds labelled by Phenix. It compares the
+  four printed backbone angles with both the named crystal mate and the
+  asymmetric unit, including any operators printed for the angle atoms.
+
+### Preparing restraints for a bent model
+
+- A worker can give Phenix the authenticated geometry parent for one
+  interpretation while retaining the identity of the incoming candidate.
+  The service checks the compiled restraints and four reader settings before
+  returning the live interpretation. This Python interface requires the
+  qualified Phenix 2.2.1-6174 build.
+- Supplying the original native chemistry record also compares the effective
+  dictionary at every residue and the restraints built from it. A difference
+  identifies the affected sites and gives an example of a changed target.
+- Whole-model chemistry and a requested residue can now be inspected on the
+  same Phenix interpretation. Create the service before installing either
+  worker hook.
+- An explicitly configured bend worker can now receive the pending Phenix
+  model after the candidate diffraction calculation and return its prepared
+  restraints after the coordinate and chemistry checks both complete.
+
+### Checking crowding around a modified residue
+
+- On a saved refinement, `cif-doctor assess --contacts-at CHAIN:NUMBER`
+  reports the local nonbonded contacts Phenix printed before and after the
+  round. Repeat the option for more residues. The JSON includes each atom's
+  largest overlap, including a separate reading for crystal images.
+- `cif-doctor assess --b-factors-at CHAIN:NUMBER` reads the occupancies and
+  B factors recorded in a saved model. On a refinement it also compares
+  matching atoms with the recorded parent. Repeat the option for more sites.
+
+### Following the same molecule while Phenix prepares it
+
+- Cedar and Willow can use `collect_live_atoms(model)` and
+  `collect_live_geometry(model, processed=interpretation)` to read the actual
+  model, its restraints and the crystal images involved. The geometry reader
+  checks that the selections belong to this hierarchy and use its atom order.
+
+### Following a modified base through refinement
+
+- `cif-doctor assess --run RUN --checkpoint ID --refined-planes` now shows
+  the height of a source-defined carbon alkyne above its six ring atoms and
+  the length of its terminal bond at native preflight and after refinement.
+  The JSON includes both phases' actual bond targets and weights. Unavailable
+  measurements, missing local targets and contacts across symmetry stay explicit.
+- For the same arm, each bond now has a signed rise and elevation relative
+  to the ring. This shows where the terminal carbon's departure accumulates.
+
+### Reading terminal-phosphate restraints from Phenix
+
+- AutoRefine reads each printed bond or angle through its own value row,
+  including the last angle before a dihedral table. It verifies the identity
+  of all eleven expected local restraints and names any missing or repeated
+  term. The six protective angles must cover six distinct oxygen pairs.
+
+### Checking bonds between residues before and after refinement
+
+- `nasolve cif-doctor assess --run RUN --checkpoint ID --refined-links`
+  reads the final bond table that Phenix wrote for the selected checkpoint.
+  For rounds with an isolated native preflight it also reads the initial
+  table against the exact model that entered refinement.
+  It identifies distances outside the checked preparation, missing backbone or
+  supplied distances, and contacts with a symmetry image that need review.
+  Older checkpoints with a frozen final table can list the observed bonds.
+- AutoRefine now checks both tables when a round uses `--observe-declared-sites`
+  with a checked preparation. A missing or additional bond, a crystal-image
+  bond or an unreadable table leaves the completed model available for review.
+  Automatic selection and numerical ranking require both tables to match.
+  The read-only assessment can reproduce the decision from the frozen files.
+
+### Building an internal locked sugar during checked preparation
+
+- When a proposed sugar fit moves its base too far, the diagnostic identifies
+  the residue, site, atom, measured distance and configured limit in ångströms.
+- For an internal locked sugar on the mutation card, checked PostMR accepts
+  `--locked-sugar-site CHAIN:RESIDUE`. It finds the target, the host sugar and
+  the installed NARestraints workbook. The local dictionary store can reuse a
+  qualified entry or acquire one before model building. Checkpoint publication
+  rechecks the current card with the source-bound construction that produced
+  the model. Explicit source and temporary-parent choices work after relocation.
+- The ordinary PostMR dictionary engine can now use one explicitly selected
+  locked sugar alongside Coot substitutions. It reads the base anchors from
+  the two chemical graphs and the NARestraints workbook, and reads the two
+  backbone partners from the model. The prepared model, original dictionary,
+  departing oxygen and retained sugar centres can be checked after relocation.
+
+### Recovering a bond absent from the source dictionary
+
+- An explicit dictionary acquisition can now recover from a stopped eLBOW
+  attempt that printed all source bonds and one extra heavy-atom bond. Cedar
+  changes the atom order seen by the reader, preserves the original source and
+  its authority, and applies the usual native checks. The fresh request carries
+  a compact reference to the failed attempt and can be reopened after relocation.
+
+### Placing a locked sugar between its observed neighbours
+
+- The base-anchored placement API can now read both covalent partners from the
+  host model and its PostMR phosphate intent. It records the exact model and
+  checks those links again when the placement is reopened.
+- The same route can identify the departing phosphate oxygen from the source
+  dictionary. It requires one flagged, singly bonded neutral hydroxyl on the
+  phosphate. OP1, OP2 and their O1P/O2P aliases stay on the model. Disputed
+  sources remain available for review. Existing placement records still open.
+
+### Inspecting a refined base and the coordinate weights Phenix chose
+
+- `nasolve cif-doctor assess --run RUN --checkpoint ID --refined-planes`
+  measures each captured plane member against the fit to the other atoms. A
+  long substituent can tilt a plane fitted through itself. The JSON receipt
+  gives both distances and identifies fits with too few independent atoms.
+- The same option measures a pendant carbon alkyne against the six C/N ring
+  atoms named by its source graph. Ordinary and experimental refinements use
+  the same reference even when Phenix gave the tip a different plane.
+- AutoRefine uses Phenix's final printed Start/Final summary for the starting
+  and final Rwork/Rfree. The history retains the earlier unscaled observation
+  and shows the footer only as a final endpoint. Older or incomplete logs
+  continue to use the first and last observed values.
+- AutoRefine records the coordinate weight printed for each recognized
+  reciprocal-space XYZ step in the round report. Incomplete or unfamiliar
+  tables leave the weight unknown. The measurements do not affect selection.
+
+### Carry captured Phenix reader settings through preparation
+
+- Explicit typed-input requests can now retain reviewed sorting, CDL and
+  full-monomer settings separately from geometric restraints through acquisition,
+  stored preparation and the existing native workflow. Captured NCS settings
+  replace the redundant generated definition; conflicting declarations refuse.
+  Default requests and historical artifacts retain their original behavior.
+  This adds a Python API opt-in, not automatic CLI/campaign activation.
+
+### Recognizing atom-name spacing after ReadySet
+
+- A new dictionary request can opt into comparing the exact atoms behind
+  each restraint. ReadySet may move ordinary spaces within the four-column PDB
+  atom-name field. The captured identities retain their usual fixed-width
+  space padding rules. Cedar verifies that spacing against the native atom table and still
+  requires every atom index, selection, symmetry operator, restraint target,
+  plane and request order to agree. The saved choice travels with the result.
+  Earlier requests continue to use their recorded comparison.
+
+### Installed ligand source records
+
+- The Python package now ships the source records for its 5CM, DP and DZ
+  dictionaries. Each record identifies the original Git object and the
+  checksum of the supplied CIF.
+
+### Captured reader controls in literal restraint evidence
+
+- A separate typed native-input artifact freezes explicit ordered PHIL roles and
+  reviewed sorting/CDL/full-monomer reader controls with the complete capture.
+  Inspection replays the unchanged restraint compiler. Ordinary execution
+  refuses until its owner binds the controls; existing native and source literal
+  artifact bytes and behavior remain unchanged.
+
+### Reopening large checked preparations
+
+- When verifying a compact ReadySet result, NASolve now releases the enclosing
+  temporary files before reading a parent's individual repair proofs. The same
+  archive checks and shared disk limit apply. Existing bundles retain their format.
+
+### Starting B factors for a matched base
+
+- An optional whole-sugar construction seed can borrow individual isotropic B
+  factors from the host base. The NARestraints atom roles, complete separated
+  base graph, isotopes, charges, hydrogen attachments and occupancies must agree.
+  A missing or conflicting donor keeps the previous starting values and records
+  the reason. Sugar and phosphate atoms retain their own seed values.
+
+### Internal sugars in stored dictionary bundles
+
+- A component can supply its catalogue workbook and the two reacting sugar
+  ports when preparing a model with stored dictionaries. Cedar checks each
+  partner against the declared backbone, preserves the source stereocentres and
+  compares both the numerical group and the source polymer class with Phenix.
+  The complete PostMR dictionary request freezes one copy of each distinct
+  workbook and carries the site reaction through acquisition and recovery.
+  The model must already contain the selected residue.
+
+### Reopen large mixtures after ReadySet
+
+- Cedar verifies the repaired parent and the ReadySet result in turn. It checks
+  the complete parent again when comparing model and restraints. Mixtures whose
+  two evidence sets exceed the temporary limit together can now reopen with the
+  existing archive format and the same disk limit.
+
+### Reopen large mixed-residue preparations within the working limit
+
+- A completed multi-component preparation can now archive repeated native
+  captures and intermediate repairs once per distinct file. The public model
+  and restraints retain their usual paths. Each original intermediate can be
+  read individually and checked against the sealed attempt after relocation.
+  Earlier archives remain readable.
+
+### Record both completed and interrupted mixed preparations
+
+- New multi-component preparations that request automatic plane and bond repair
+  record the original files of each repair stage separately. A stopped job can
+  be verified even if it never published a dictionary. A fresh attempt keeps
+  its own identity. The individual file, proof and total working limits still
+  apply. Existing requests keep the policy written when they started.
+
+### Keep complete repair evidence for mixtures of modified residues
+
+- When a compact preparation exceeds the combined evidence allowance, Cedar
+  stores each repair separately. The usual selector reopens each proof in order,
+  verifies its chemical source, and checks the starting and repaired dictionaries
+  against their own Phenix derivative results. It can publish a portable
+  diagnostic bundle within the original storage limits. Existing expanded
+  bundles and smaller preparations retain their format.
+
+### Recognize verified aromatic rings when checking base planes
+
+- The ordinary PostMR plane check now uses the bond orders in the supplied
+  chemical definition when the isolated native check has independently verified
+  an equivalent aromatic ring. It checks the identity of every affected bond,
+  every atom, its charge and its neighbors. The selected restraints are checked
+  again after ReadySet. A missing substituent is reported even when a separate
+  base-pair plane includes it.
+- An optional plane-generation job that finishes with chemically incorrect bond
+  orders can now report the verified reason and retain the original evidence.
+  A return code of zero alone cannot qualify its output. Earlier exact-order
+  reports retain their original format and meaning.
+- When combining repairs, checking the original or repaired dictionaries, and
+  publishing the selected bundle, Cedar checks the shared file and byte
+  allowance before reading the next payload. An over-budget request identifies
+  the stage and both counts. Accepted records retain their storage format.
+- `cif-doctor preparation-status` explains when all recorded workers stopped
+  before the completion record was written. It reports a verified repair error,
+  a pending ReadySet continuation and an exhausted attempt allowance when the
+  corresponding records establish them. Reading status preserves the attempt.
+
+### Preserve the two nonbridging oxygens when linking a phosphate dianion
+
+- Fresh PostMR requests using `source-preserving-v2` can link a source
+  phosphate whose disposable OP3 is singly bonded, negatively charged and
+  carries no hydrogen. The reaction preserves the supplied OP1 and OP2 bond
+  orders and charges. It requires an explicitly linked site in the same
+  asymmetric unit and retains the original free-end and symmetry decisions.
+  Previously recorded requests keep their original chemistry.
+
+### Select dictionary input representation for each frozen source
+
+- Checked PostMR and schema-2 campaigns accept `source-preserving-v2`.
+  The recipe matches supported aromatic rings by the declared source graph.
+  An exact-order choice binds the same strict native and site checks when the
+  ring rules do not apply. A separate neutral thioxopurine rule preserves C=S
+  while allowing the declared aromatic five-membered ring. Existing requests
+  retain their recorded recipes.
+
+### Preserve host B factors on restored DNA sugars and phosphates
+
+- Fresh PostMR mutations carry the original isotropic B factors of corresponding
+  sugar and phosphate atoms when coordinate restoration, element identity and
+  occupancy agree. The mutation report names the transferred atoms. Ambiguous
+  sites retain the existing values and record the reason. New base atoms and
+  historical coordinate-only constructions retain their original handling.
+
+### Preserve the base orientation when Coot matches the wrong ring atoms
+
+- Ordinary DNA mutation can recover a mismatched glycosidic angle. It rotates
+  the complete connected base about the single sugar attachment, checks each
+  atom and measures the named angle again before and after Coot overlaps it.
+  An unsupported or unsuccessful recovery still stops before replacement.
+  This resolves the observed DP and IMC construction failures on the mixed
+  scaffold. Existing checkpoints and chemical dictionaries require no migration.
+- Explicit whole-sugar placement now preserves the three crystal-axis SCALE
+  records written by Coot, allowing a freshly built scaffold to enter the
+  existing locked-sugar placement and backbone checks.
+
+### Identify the exact Refine Doctor source (C420)
+
+- Refine Doctor now names the source checkpoint that meets its numerical gate,
+  including when another checkpoint remains selected. Its incomplete-input
+  diagnostic also identifies the requested source.
+
+### Keep declared modified-site observations in Refine Doctor trials (C415)
+
+- An explicit Python Refine Doctor call can now ask each ordinary checked trial
+  to observe the modified sites declared by its preparation. Each trial retains
+  its own parent model, source definitions and final native observation.
+- The Doctor report records the request even if the Free-R audit stops the trial.
+  Executed evidence remains on the individual checkpoint. Existing calls and
+  reports retain their defaults, including rejection of unsupported counted ancestry.
+
+### Measure the shape of a refined base and its linear substituents (C413)
+
+- The explicit Python reader reports each captured local plane on the exact
+  checkpoint model. It measures additional atoms implied by active 180° targets
+  against that same plane. This makes whole-arm movement visible even when the
+  alkyne angle screen passes.
+- Positive-weight members define the fit. Missing planes, ambiguous fits and
+  unavailable symmetry information remain explicit. This read-only report uses
+  existing checkpoint records and adds no refinement force or selection rule.
+  Existing installations and checkpoints require no migration.
+
+### Declare an imide proton-loss source without changing its parent (C409)
+
+- Add an explicit Python source operation for neutral N(H/D) between two
+  C(=O/S) groups. Match chemical connectivity, not residue or atom names; require
+  declared intent and a distinct output identity. Return new source bytes and
+  provenance without editing a model, writing files or adopting the derivative.
+- Remove only the chosen H/D, declare the localized N formal charge change,
+  preserve remote chemistry and parent coordinate seeds, and omit stale neutral
+  descriptors. Reject ambiguous charges, unsupported reactive state and numerical
+  dictionary inputs. Reuse existing source validation, pruning and serialization.
+- The existing generator and two-seed isolated qualifier accept the recorded
+  DF/DT derivatives. This does not qualify Hg links, native formal-charge readback,
+  optimizer convergence or refinement survival. Ordinary defaults, existing
+  records, curated definitions and native workers are unchanged; no migration.
 
 ### Read final modified-site bond, angle and handedness deviations (C407)
 

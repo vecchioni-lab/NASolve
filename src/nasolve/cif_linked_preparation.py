@@ -230,19 +230,24 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
     original_group=values.get('_chem_comp.group')
     values['_chem_comp.group']=['DNA']
     atoms=atom_rows(values)
+    from .cif_anionic_phosphate import POLICY_ID as anionic_policy, verify_anionic_projection
+    anionic = phosphate_atom_policy == anionic_policy
+    if anionic and binding is None:
+        raise ValueError("The anionic phosphate operation requires explicit source-bound native qualification")
     aliases = {'OP1':'OP1', 'OP2':'OP2', 'OP3':'OP3'}
     if phosphate_atom_policy is not None:
         from .cif_phosphate_names import POLICY_ID, phosphate_names
-        if phosphate_atom_policy != POLICY_ID or not qualified:
+        if phosphate_atom_policy not in (POLICY_ID, anionic_policy) or not qualified:
             raise ValueError('Source-named phosphate preparation requires explicit policy and isolated qualification')
         aliases = phosphate_names(values)
         if phosphate_names(source_values) != aliases:
             raise ValueError('Source and numerical phosphate names differ')
         if not contexts or any(not c.get('incoming_site') for c in contexts):
             raise ValueError('Source-named phosphate adapter currently requires internal linked sites')
-        from .cif_preparation_qualification import qualify_native_backbone_ports
-        for context in contexts:
-            qualify_native_backbone_ports(values, context, phosphate_names=aliases)
+        if binding is None:
+            from .cif_preparation_qualification import qualify_native_backbone_ports
+            for context in contexts:
+                qualify_native_backbone_ports(values, context, phosphate_names=aliases)
     p1,p2,p3 = (aliases[n] for n in ('OP1','OP2','OP3'))
     required={'P',p1,p2,"O5'","C5'","C3'","O3'"}
     if not required<=atoms.keys() or (phosphate_atom_policy is None and 'O3P' in atoms):
@@ -288,7 +293,11 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
         port_qualification=None
         if binding is not None:
             from .cif_preparation_qualification import qualify_native_backbone_ports
-            port_qualification=qualify_native_backbone_ports(values,context,phosphate_names=aliases if phosphate_atom_policy is not None else None)
+            port_qualification=qualify_native_backbone_ports(values,context,phosphate_names=aliases if phosphate_atom_policy is not None else None, anionic_leaving=anionic)
+            if anionic:
+                source_port = qualify_native_backbone_ports(source_values, context, phosphate_names=aliases, anionic_leaving=True)
+                if source_port != port_qualification:
+                    raise ValueError("Source and numerical phosphate reaction states differ")
         removed=set()
         if incoming:
             if p3 in atoms:
@@ -322,6 +331,8 @@ def prepare_linked_component(source: Path, numerical: Path, model: Path,
               'expected_hydrogen_attachments':{name:sorted(next(iter(pair-{name})) for pair in bonds
                   if name in pair and not pair & removed) for name,row in actual.items()
                   if row['type_symbol'].upper() in {'H','D'}}}
+        if anionic:
+            plan["formal_charge_projection"] = verify_anionic_projection(values, derivative, context, port_qualification)
         if configuration_projection is not None:
             plan['source_configuration_projection']=configuration_projection
             plan['source_port_qualification']=port_qualification

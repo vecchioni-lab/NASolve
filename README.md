@@ -398,6 +398,10 @@ NASolve does not edit the original dataset or search model.
 
 ## Backbone and terminal-phosphate chemistry
 
+The standard 5W6W scaffold has an incoming crystal-symmetry bond from B:7 O3′ to B:1 P.
+B:1 keeps P/OP1/OP2 without OP3. D:1 is the separately declared terminal phosphate.
+See the [5W6W central-strand convention](docs/backbone-chemistry.md#the-central-strand-in-the-5w6w-scaffold) for the operator and how to carry it into a resliced or renumbered model.
+
 NASolve treats ordinary DNA/RNA-like backbones as standard phosphodiesters. A requested 5'-terminal phosphate is a complete P/OP1/OP2/OP3 group; PostMR preserves a complete group, completes a missing OP3 when P/OP1/OP2 are present, or seeds the whole group from O5'-C5' when the phosphate is absent. New input files may use `five_prime_phosphate_sites`; the historical `allow_op3_sites` name remains readable for old frozen runs.
 
 Unsupported backbone chemistry is never guessed. Mark a site explicitly in `nasolve.txt` and opt into the experimental passthrough only when you intend to inspect the result yourself:
@@ -1284,6 +1288,10 @@ to the current node or import a manual Coot model as a review child;
 `checkpoints use` selects a reusable branch deliberately. The model advances
 between rounds, but map-coefficient/refinement MTZ outputs can never replace
 the authoritative STARANISO observations or regenerate the Free-R set.
+
+For deposition, take both CIFs from the reviewed round. The [OneDep preparation guide](docs/pdb-deposition.md)
+covers the Phenix outputs, original Free-R assignments, STARANISO supplements
+and comparison with the coordinates returned by wwPDB.
 
 ## Run directories and outputs
 

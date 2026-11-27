@@ -135,3 +135,25 @@ def test_absent_readyset_error_remains_portable_after_publication(tmp_path,monke
     assert manifest['source_review']['endpoint_error']=='Missing runtime_bundle/evidence/readyset/missing.json'
     moved=out.rename(tmp_path/'relocated')
     assert resolve_runtime_bundle(moved)['manifest']==manifest
+
+
+@pytest.mark.parametrize('budget', ['MAX_FILES', 'MAX_BYTES'])
+def test_publication_checks_combined_budget_before_reading_later_sources(tmp_path, monkeypatch, budget):
+    runtime, args, _ = fixture(tmp_path, monkeypatch)
+    bundle = args['bundle']
+    first = [p for p in bundle.rglob('*') if p.is_file()]
+    limit = len(first) if budget == 'MAX_FILES' else sum(p.stat().st_size for p in first)
+    monkeypatch.setattr(runtime, budget, limit)
+    opened = []
+    read = runtime._read
+
+    def observe(path):
+        opened.append(Path(path))
+        return read(path)
+
+    monkeypatch.setattr(runtime, '_read', observe)
+    output = tmp_path/'runtime'
+    with pytest.raises(ValueError, match='Combined source exceeds supported bounds'):
+        runtime.prepare_component_runtime_bundle(output=output, **args)
+    assert opened and all(p.is_relative_to(bundle) for p in opened)
+    assert not output.exists()

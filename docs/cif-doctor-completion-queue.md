@@ -1,22 +1,419 @@
 # CIF Doctor completion queue
 
-**Current work order, 2026-11-19.** This is the one unfinished-work queue. The
+**Current work order, 2026-11-25.** This is the one unfinished-work queue. The
 [capability table](cif-doctor.md#current-capability-boundary) records demonstrated
 support; the [handoff](development-handoff.md) says where work stopped. Old notes
 record what was known then. They do not create a second set of instructions.
 
-**At a glance:** Q04/Q05 preparation, recovery and handoff are complete for the
-recorded explicit route. C402–C404 close the later cleanup gap, demonstrate a
-fresh ordinary PDU refinement child, and add source-selected final trigonal
-measurements. C405 separates accumulated substituent bending from local shape;
-C406 extends explicit observation to graph-bound non-triple modified sites and
-passes source, installed, matched native and full checks at `58965920`: 12,043
-tests and 293 subtests, with two existing native opt-in skips. Q06 remains
-open because delivery and measurement do not establish satisfactory PDU/DF shape
-under refinement. Next use the existing whole-substituent evidence to define the
-remaining scientific decision; do not repeat delivery, derivative or weight sweeps.
-The original mixed scaffold/ATL and unfamiliar-ligand challenge remain Q07, followed
-by retained chemistry boundaries Q08–Q14 and reporting/integration Q15/Q16.
+**Current position.** Q04/Q05 are complete on the recorded route. Under Q06,
+Cedar now builds a second propyne-bearing base, 5PC, corrects its terminal bond
+from the source chemistry and delivers that correction through five ordinary
+Phenix cycles. The existing PDU controls explain why a corrected bond and straight
+alkyne angles alone cannot approve the entire appendage. C423 separately follows neutral DF paired with adenine through five ordinary
+cycles. Its thione reaches 1.637 Å against 1.638 Å and its sugar attachment
+reaches 1.514 Å against 1.499 Å. All 202 frame terms and six separate phosphate
+angles survive. Q06 has this nonmetal control; the broader PDU whole-arm and
+DF scope decision remains open. The matched mercury experiment is complete
+and its routine integration is deferred. C466 places the PDU, 5PC and DF controls
+on the same ordinarily constructed twelve-change scaffold through five Phenix
+cycles. All three monitored bond lengths finish within 0.007 Å of their targets.
+PDU’s terminal distance from its six-atom ring plane increases to 0.171 Å.
+5PC’s distance decreases to 0.382 Å. All 211 supplied terms were retained.
+C470 tests one extra soft plane per arm at 0.10 Å. After five cycles the PDU
+and 5PC tips sat 0.123 and 0.285 Å from their rings. Their terminal bonds were
+1.478 and 1.461 Å. C474 transferred the same plane to B:4 in the single G:5PC
+construction. The tip-to-ring distance changed from 0.087 to 0.079 Å. The terminal
+bond still measured 1.548 Å against 1.470(27) Å. The full frame, protected
+phosphate angles and original Free-R assignments were verified for both comparisons.
+C475 transferred the plane to the separate A:PDU B:4 construction. Its tip
+distances were 0.175 Å with ordinary restraints and 0.231 Å with the added
+plane. Its terminal bond measured 1.475 Å. Rfree increased from 0.2265 to
+0.2414. C476/C477 read the same six final models and logs. In A:PDU the
+added plane itself missed the tip by only 0.036 Å because the tip tilted
+the fitted plane. The last coordinate weights were 10.000 and 1.517.
+C482 now uses the six source ring atoms alone as the common reference in
+ordinary and trial models, including when the tip has no recorded plane.
+C484 held the coordinate weight at 1 through all five cycles in the independent
+A:PDU comparison. The ordinary and added-plane tip heights were 0.466
+and 0.304 Å. Rfree was 0.2501 and 0.2500. The adaptive run favored the
+ordinary arm by this measurement. Keep the soft plane experimental. For the distinct
+PDU:PDU phosphate, the [central link is confirmed](backbone-chemistry.md#the-central-strand-in-the-5w6w-scaffold).
+Two ordinary five-cycle rounds retained both registered crystal bonds. C562
+then carried the corrected PDU dictionary through ReadySet and five standalone
+cycles on the original Coot build. C565 binds both crystal partners to the
+recorded ordinary construction and its 38 local bonds. C566 follows both
+partners into the unselected returned model and verifies its native restraint
+inputs. C567 carries that model and those same seven restraints through an
+ordinary five-cycle child and a five-cycle restart after relocation. Both
+retain 124 held-out observations. The crossover torsion and local density
+remain unresolved.
+See the [two-crossover measurements](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold).
+For the explicitly phosphorylated D:1 on the host control, C504 accounts for
+all eleven local Phenix restraints, including the last angle before the next
+table. The DY starting geometry warrants review and its two refined controls
+pass the existing phosphate criterion.
+
+C505 continued the thirteen-change registered child for another five ordinary
+cycles. Its PDU and 5PC tip heights fell from 0.189/0.434 to 0.105/0.254 Å.
+Both local terminal bonds remained within 0.003 Å of 1.470 Å. ATL's two pair
+contacts approached 2.8 Å, with two substantial overlaps still present.
+C506 then added one soft plane per arm to a sibling with identical starting
+coordinates. The tips finished 0.076 and 0.189 Å from their rings. This
+corresponds to an additional 0.029 Å for PDU and 0.066 Å for 5PC beyond
+ordinary second-round recovery. At the independent B:4 5PC site both models
+retained a terminal bond near 1.55 Å. The public readback now reports both
+tip height and terminal bond through refinement. Reuse this comparison and
+keep the added plane experimental.
+
+C508 reopened the same four checkpoints. The independent 5PC methyl tip
+had over 1.23 Å of clearance from the closest approach relative to its
+printed van der Waals contact distance in both endpoints. The base rotated
+less than 2.4° from preflight. C511 completed the four-way starting B
+comparison at this site. Moving only the base to its host B gave a 1.443 Å
+terminal bond and 0.343 Å tip height. Moving only the scaffold gave
+1.549/0.087 Å. Each of the four per-residue refinements preserved the
+starting B differences within the site. Compare both shape measurements
+and the incoming displacement fields before choosing a general arm correction.
+The matched A:PDU transfer in C513 also raised the tip, from 0.175 to
+0.582 Å, even as the terminal bond approached 1.470 Å. The inner alkyne
+angle triggered chemical review. Preserve the base-only change as a
+diagnostic for this scaffold. Transfer to a new chemical base on a
+nonuniform host remains an open decision.
+C514 exposes these inherited B values and occupancies for named residues in
+any saved PDB checkpoint. Use this reading alongside the ring and terminal
+bond measurements when comparing future controls.
+C515 exposes C405's signed rises along the three bonds. All six existing
+PDU/5PC controls now have that reading. In PDU the last bond accounts for
+0.354 Å of the adverse endpoint's 0.582 Å tip height. The driving force and
+the separate symmetry-linked PDU:PDU case remain open.
+C517 shows the written B values reduce the calculated diffraction response
+to the same arm motion by about 40% relative to using that site's sugar B,
+in both base-only controls. This establishes sensitivity on the measured
+work indices. It does not select an orientation or change a restraint.
+
+C507–C509 give Willow a shared reading of the geometry before and after
+atoms move. With all four W203 reader settings applied, Phenix recovered the
+compiled parent geometry, including 38 backbone links and 51 supplied
+distances, on the incoming model. C510 verified the original chemical
+definitions at all 42 canonical sites and accounted for each change in the
+restraint list. Increasing a single test dictionary bond target by 0.040 Å
+changed nine glycosidic bonds and nine sugar chiral volumes. The reader
+identified all nine thymines. C512 also verified this comparison while the
+ordinary worker recorded one chosen residue on the same Phenix model.
+C516 and Willow W208 route the actual pending model through both owners
+and return the prepared restraints after the checked transfer. A deliberate
+failure stopped before any transfer. The next integration step is to carry
+the geometry parent and the admitted candidate as distinct verified inputs
+in a versioned ordinary request. Modified and
+metal-containing parents still need separate evidence. The independent
+PDU and DF chemical scope stays open.
+
+Willow W214 found a genuine canonical PostMR checkpoint with no extra restraint
+files. C526 can preserve a fresh dictionary-only observation for that case.
+The ordinary literal-input route still requires an explicitly supplied restraint.
+W215 and C527 checked all 128 site definitions and 10,429 geometry entries on
+the same 2,603 atoms in an actual Phenix parent interpretation. Enabling an
+additional secondary-structure setting was caught before geometry construction.
+A prospective motion needs its own registered intent before the ordinary worker
+can accept its coordinates.
+
+C528 tested five diffraction cycles on the historical PDU:PDU model with a
+provisional B:7 crystal partner for B:1. Both arms closed the distance. Only
+the image-aware angular forces brought the two phosphate oxygen angles close
+to their 108° reference, at 107.5° and 110.5°. The historical PDU side arms
+still stand well off their base rings. Check written coordinates against any
+printed image angles and carry the declared central connection and eligible
+source terms through a registered continuation.
+The diagnostic alone authorizes no new default. C529 now checks the four
+printed angles against both coordinate frames at a named model or checkpoint.
+All four angles in the C528 image-aware GEO match the asymmetric unit alone.
+C530 obtained a separate native GEO for all seven crossing terms by passing
+the cell to the final model's angular printer. The written PDB independently
+agrees with all four angles and three torsions. Simon subsequently confirmed
+B:7 O3′ and B:1 P as the usual covalent pair across the 5W6W central strand
+and approved the closest image. Its [scaffold convention](backbone-chemistry.md#the-central-strand-in-the-5w6w-scaffold)
+also applies to derivatives retaining that junction. All four models choose `-x+y,-x,z`. The archived model
+places the first two images 2.824 and 22.867 Å away. Pine has the editable
+construct decision. Registered, restartable use of its restraints remains open.
+C534 makes the image comparison available on an explicit model or saved
+checkpoint. It reproduces all four C528 nearest and next-nearest distances
+when supplied with the two confirmed sites. Ambiguous positions leave the
+choice open. Pine retains the declaration.
+C536 exercised that division on the shipped `MR_frames/5W6W/C_G.pdb`.
+Pine registered the seven central sites and read the directed B:7→B:1
+edge; Cedar independently found the reciprocal operation with P fixed.
+Both measured 2.795 Å. The other 716 atoms were outside the declared
+strand, with every coordinate preserved. The [reusable declaration](recipes/5w6w-central-continuation.json)
+supplies no refinement forces. Its use at an ordinary restart remains open.
+
+C539 carries the named continuation into the existing read-only inspection
+of an ordinary checkpoint. On the historical PDU:PDU `refine-005`, it
+recovered the registered sites, the nonbonded contact at 2.825 Å and both
+agreeing intact reference links. The matched image-aware model contained
+one printed bond at 1.628 Å. The next runtime step is to carry the verified
+terms through an ordinary refinement restart and prove they are applied once.
+
+C540 verified the starting point for that restart. The exact numbered parent
+with the ordinary AutoRefine settings, seven inherited files in their actual
+order and D:1 terminal protection recovered the same native reference forces
+as the exported handoff. No coordinates moved in this check. Further work
+can start at application of the verified forces.
+
+C541 verified a five-cycle experimental application with the ordinary adaptive
+settings. The two O3′–P–OP angles improved from 72.0°/139.1° to 103.2°/115.7°.
+C542 isolated the remaining failure. A written child reopened with the seven
+inherited inputs retained the coordinates but rebuilt a 3.4 Å nonbonded target
+at the junction. Explicitly restoring the distance still left all four angles
+and three torsions absent. Its fresh registration and native capture recovered
+both intact source links. Implement a checked, child-bound restoration of the
+complete neighbourhood and prove single application on a numbered restart.
+Reuse these paired controls.
+
+C543 carries the registered endpoints and their full crystal operation from
+the numbered ancestor to the written child. All 40 atoms at the two residues
+kept their crystal copies. The child measured 1.620 Å and its own native
+capture supplied both intact reference links. C544 rechecked the actual forces
+from both links in a fresh Phenix process, restored exactly one distance and
+verified that all four adjacent pairs left the nonbonded list. C545 carried the four angles and three torsions through a complete five-cycle
+restart, including native atom selections. The two oxygen angles reached
+107.30° and 113.88°. Willow owns the next operator-facing fit and independent
+geometry readback. Keep the scaffold-specific declaration explicit. A cut
+through a crystallographic repeat does not identify a sample nick. C546 reads the direct steps and named
+crystal connections from a deposition mmCIF. A checked representation can
+still lose a declared symmetry bond during external processing. Follow up
+with the returned file before assigning that warning to the chemistry.
+C547 and Willow W243 tested both cuts of two models in separate three-cycle
+fits with anisotropic atoms. Each phosphate retained its local geometry.
+The distance-only and complete-restraint treatments also separated under
+one fixed native coordinate weight. The ordinary restart and the later
+[crystal-boundary stress tests](#crystal-phosphates-after-an-asymmetric-unit-recut)
+have separate acceptance checks.
+
+In C531, two historical PHIL edits completely masked the source-supported
+PDU target change from 1.607 to 1.470 Å. Updating both site-specific targets
+at the existing strength produced 1.472/1.468 Å in the written model, with
+the tips still 1.57/1.74 Å out of plane. Check the active native targets
+and original ring-plane coverage before changing either restraint strength.
+C532 now compares printed native bond targets to all supplied component CIFs
+at an ordinary checkpoint or on an explicit model/GEO pair. The old edits
+are visible without knowing the PDU atom names in advance.
+
+C533 restored one graph-supported member to the existing PDU ring plane.
+The methyl itself remained free of that plane. After five actual cycles
+its height improved at both sites under both terminal bond strengths.
+At the CIF strength, A:12 improved from 1.587 to 0.461 Å and B:4 from
+2.238 to 1.017 Å. Six sugar chirality signs persisted. Both archived bases
+entered these trials rotated relative to their canonical host. The C290
+construction already preserves the host orientation. Distinguish a model
+that starts rotated from a prepared model that loses its orientation in
+refinement. Ordinary continuation must retain the selected restraint inputs
+and crystal mate; overall refinement acceptance remains open.
+C535 tested that distinction on the original pair. With the two C290
+starting orientations and the CIF terminal-bond strength, adding C5A to
+the ring plane reduced terminal heights from 0.927/1.718 to 0.250/0.034 Å
+and preserved the six sugar signs after five cycles. A:12's glycosidic
+angle moved by 32.5° and B:4's by 0.1° or less. The alternative archived
+orientation still had the lower global R-free. A single global score
+cannot select the local orientation on these results alone.
+
+C552 also measures the actual arm in an older written model when the
+selected-site capture is absent. In the two numbered PDU:PDU phosphate
+restarts, the A:12/B:4 tip heights were 2.154/1.497 Å and 2.384/1.506 Å.
+Both sites still had the older 1.607 Å terminal-bond edit. Separately,
+the mixed 5PC/PDU checkpoint agreed with its own native capture to 0.0014 Å
+in tip height after refinement.
+
+C553 combined the previously qualified PDU dictionary with the registered
+crystal phosphate on the exact parent of the C545 control. Replacing the
+terminal bond target, freeing it from two old site overrides and including
+the first propynyl carbon in the ring plane reduced the tip heights from
+2.325/1.559 to 0.786/0.570 Å. The B7–B1 junction still measures 1.631 Å.
+Both fits use the same 1,778 working and 124 free observations. The
+remaining bend and archived glycosidic pose still require review. Retain
+the ordinary C290 construction controls when judging the experimental
+orientation. C554 located both earlier site edits in the frozen refinement
+inputs and their absence after the targeted repair. The same check uses
+literal selected atoms and native target values for other components.
+Any automatic change must still establish ownership of the edit.
+
+C555 repeated the combined C553 treatment after changing just the two
+starting base orientations to the angles from the C290 host construction.
+After five Phenix cycles the arm tips were 0.282/0.464 Å from their rings
+and the crystal phosphate bond was 1.645 Å. The rest of the starting
+model, including every displacement parameter, the registered forces
+and the original observed data were common to the comparison. At 4.19 Å
+the local omit-map contrast depended on the solvent model. Keep the
+orientation open. The next ordinary child needs the corrected dictionary
+and removal of the two superseded historical site edits through a freshly
+qualified preparation. Reuse the completed five-cycle and omit-map controls.
+In the original C290 construction, 38 local links and the D:1 terminus
+pass individually. C556 reports both phosphates that require crystal
+information. Simon confirmed D:7–C:8 alongside B:7–B:1 for the PDU:PDU
+construct. The [two-edge declaration](recipes/5w6w-pdu-backbone-continuations.json)
+replays on the complete 42-site registrations for both starting models and
+all three earlier fitted controls. Each printed D:7–C:8 as a nonbonded
+contact. The two existing PDU starting-model captures already
+provide four intact T→G reference links for D:7–C:8 and two A→C reference
+links for B:7–B:1. Each gives a 1.607 Å bond, four angles and three torsions.
+AutoRefine can fit both registered continuations together and preserve them
+on restart. Repeating the singular option with conflicting IDs is rejected.
+The [two-junction test](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold)
+now carries both distinct images through a five-cycle standalone refinement.
+The PDU tip heights were 0.283 and 0.476 Å, close to the corresponding
+single-link control. C560 carried the complete set through two numbered
+five-cycle rounds, including a restart after relocating the dataset. Both
+links, D:1 terminal geometry and the original free set survived. The
+historical PDU tips still departed from their ring planes, and the D:7
+torsion and local density require review. C561 measures all eight terms in
+the written model, including the ordinary links that supplied the targets.
+C562 checked that corrected chemistry on the original Coot build after an
+actual ReadySet run and five standalone cycles. Both bonds closed and the
+PDU tips finished within 0.30 Å of the rings. Weak local density and the D:7
+torsion keep this candidate under review. Next make the ordinary preparation
+carry both registered partners into an unselected repair child. Preserve
+their source frame, model and restraint identities, the thirty-eight local
+bonds, the D:1 terminal chemistry and the original Free-R assignments. A
+declaration on its own cannot establish that a physically open bond is fitted.
+C563 now rules out damaged local P–O geometry and ambiguous outgoing bonds
+before an ordinary preparation reports the remaining open incoming sites.
+C564 blocks a proposed bond if the native input already uses its O3′ or P
+for another O3′–P distance. A known Phenix hydrogen-bond restraint keeps
+its own meaning. C565 accounts for the two registered partners, the local
+backbone and D:1 in one read of the original construction. C566 also binds
+the returned model and its seven actual restraint inputs. Its matched native
+reference steps are among those 38 local bonds. C567 preserves that bundle
+and its observations in a fresh, unselected ordinary child. C568 distinguishes
+the same two atoms across different crystal images and refuses the observed
+25.189 Å alternative before fitting. C569 traced the corrected dictionary
+from its first use by Coot and found a 1.607 Å coordinate template against a
+1.470 Å bond target. Correcting the starting coordinates fixed construction
+at both sites. Five-cycle refinement improved the tip height at one site and
+worsened it at the other. Keep that comparison unselected. C570 now fits the ReadySet root directly from its recorded Coot
+construction. Its first five cycles reproduced the named-checkpoint coordinate
+file exactly, and the moved run retained both crystal bonds on restart. C571 repeated the terminal-group comparison
+on G:5PC. The starting C–C distance rose from 1.364 to 1.470 Å and the two
+five-cycle trials ended at 1.481/1.479 Å. The separate preparation recipe
+reproduced the exact trial dictionaries for both PDU and 5PC. Next compare
+a chemically plausible second local starting geometry at the D:7 crossover.
+At +40.7°, the existing onefold donor torsion supplies only 1.26% of its
+maximum turning force. C572 tested four intact T→G shapes at both written
+checkpoints. Moving just O3′ into the desired torsion distorted two phosphate
+angles to 64° and 145°. A rigid linkage also stretched a bond in the adjacent
+sugar. C574 let both sugars and the intervening phosphate adjust with the
+flanking bases anchored. Two distinct shapes survived five full cycles at
+identical weights. The common working-only omit maps did not resolve which
+shape occurs at 4.19 Å. C575 identified B:7 sugar strain on the independent
+FT–Hg scaffold. C576 has now tested both adjoining sugars there against the
+archived five-cycle fixed-Hg controls. A transferred start repaired the B:1
+phosphate angle, while both new fits opened the sugar-to-base angle at B:7.
+The C578 deposition reader now supplies all ordinary backbone partners and
+phosphate angles after reslicing. Its 3LNA cross-check with Willow accounted
+for all 60 expected edges before and after the recut. C579 also verified
+that two relocated ordinary PDU lineages reopen in Python 3.11 and 3.12
+with the same six model and native geometry checksums. This clears the
+coordinate-angle discrepancy that Alder found during handoff. The two
+common working-only FT–Hg maps gave opposite small mean differences. Keep
+both models available. C577 traced the largest opening to the second
+coordinate-fit cycle. The native glycosidic angle resisted opening and other
+sugar bonds and the adenine plane supplied counterpressure. Giving both
+bases room during construction brought B:7 to 115.1° but it reopened to
+122.5° in the fixed-Hg native fit. Keep the two saved shapes unselected.
+For this crossover, use the existing matched evidence first. A future
+fixed-weight comparison should measure both sugars, intact pairing and both
+registered bonds. Keep the quantitative DF chemical-state scope on the Q06
+queue alongside the PDU whole-arm decision. See the
+[native comparison](backbone-chemistry.md#crossovers-in-the-ft-hg-scaffold).
+
+C537 checks which modeled atoms actually reached a native covalent plane.
+The historical GEO omitted C5A at both PDU sites. The corrected GEO included
+it at both. In the registered thirteen-change scaffold, sixteen dictionary
+planes matched their modeled atoms before and after refinement. Four amino
+planes had two modeled heavy atoms each and two absent hydrogens. Use the
+[printed plane reading](cif-doctor.md#checking-which-atoms-phenix-put-in-a-residue-plane)
+alongside the existing ring-height measurement when assessing survival.
+
+C538 compared the two PDU starting orientations against one common model
+with both bases omitted, using only the original working amplitudes at 4.19 Å.
+Changing the bulk-solvent treatment reversed the A:12 arm preference in the
+difference map. The audit therefore leaves both conformer decisions open.
+Carry the chemistry and refinement-survival checks forward independently of
+choosing a conformer for this experimental structure.
+
+Q07 now has a fresh nine-pair model. Twelve ordinary mutations succeeded
+after correcting the orientation of DP and IMC from their source graphs.
+A separate placement retained all four ATL sugar centres. Phenix applied
+all 211 current W-frame terms and both backbone links around ATL. The outgoing
+link starts long. C430 carried the current PDU, 5PC and DF definitions into
+this model and matched their local covalent restraints to the individual runs.
+C441 replaces the historical inputs for a native reading of all thirteen current
+definitions. All 38 link targets, 152 neighboring angles and 211 frame terms
+are present. The four source-declared phosphate dianions now lose just OP3 at
+the incoming link. The conserved OP1 and OP2 keep their supplied bond orders.
+C462 now runs the same locked-sugar reaction within the stored dictionary
+bundle on the separately placed scaffold. Both native managers completed;
+the candidate retained all 38 links, 152 neighboring angles and 211 frame
+terms. The declared substitutions preserve RNA classification and all four
+sugar centres. C463–C464 carry this preparation through the complete request to
+both native readings. C467 publishes the verified parent separately after the first
+attempt stopped on the temporary allowance. Eight explicit requests differ in
+display padding. The new C468 request sealed normally with the historical parent.
+C471 verifies the exact atom-name fields, both planes and every ordered restraint
+in a separately published ReadySet endpoint. Both selections reopen from the
+installed program. In C472 both junctions approached their target as the two
+paired-base contacts lengthened. C478–C480 let the two neighbouring residues
+move and gave the receiving phosphate one source-declared rotation. Its
+O3′–P–OP2 angle recovered from 82.8° to 106.2° against 108°. A new Phenix
+reading of the rounded PDB preserved all eight restraint categories and the
+211 frame terms. C481–C483 carried that separate construction through
+ReadySet and five diffraction cycles. Both links finished within 0.004 Å
+of target and two close contacts remain on that historical host. C486 recovers
+both partners from the Coot model. C488 preserves the B values of the selected
+ordinary parent at all ten previously reset sites. After five cycles the two
+links are 1.611 and 1.604 Å and three close contacts remain. C493 left the
+neighbours in their original positions before Phenix. Its final junctions
+measured 1.612 and 1.603 Å, two overlaps exceeded 0.55 Å, and Rfree was
+0.2514. Both trials kept the four sugar centres and the original flags. C494
+then built all thirteen in ordinary PostMR, matching every C493 atom and all
+four recorded fields. C495 finds the target and host from the run and acquires
+the same parsed ATL chemistry from an empty local store. A second acquisition
+reused the exact qualified entry. C496 carries the recorded construction through
+the check against the current mutation card when saving a checkpoint. C497
+now follows all thirteen through five ordinary Phenix cycles. ATL's two bonds
+finished at 1.610 and 1.619 Å and its pair at 2.971 and 2.873 Å. Two close
+contacts remain. The unfamiliar eight-residue challenge is still open. Ordinary 1AP:T and
+S6G:C now pass through ReadySet and five Phenix cycles. In 1AP the local plane
+covers both amino groups. In S6G only the shared pair plane includes sulfur.
+On the thirteen-component model the corrected PDU, 5PC and DF restraints now
+coexist with all ten other current definitions. The ordinary twelve-component
+control independently produces the same local targets and weights. Its seven
+repairs were individually verified before repeated records exceeded the combined
+allowance. C455 selected those repairs together using the normal selector. The
+final mixture passed a fresh Phenix restraint-gradient check. The portable
+diagnostic reopened after relocation with access to the originals disabled.
+The outer attempt remains unfinished. Even omitting its seven expanded stage
+trees leaves 143.1 MiB of distinct evidence. C457 read all 3,599 original
+files independently of the later publication, and tested completion, verified
+interruption and a fresh retry. In both saved Phenix models all 38 backbone
+bonds and 53 declared inter-residue soft bonds accounted for every cross-site
+bond. C459 reopened all 3,599 original working files from a 10.5 MB archive
+after relocation, using 39.9 MB of temporary working files. The earlier repair
+failure and unfinished attempt remain explicit. The fresh C458 twelve-component
+run completed ReadySet and preserved all 867 atom positions, occupancies and B
+values. Its native checks retained the 38 backbone links, 53 supplied distances
+and 211 frame terms. While publishing, the attempt sealed a storage error.
+C460 independently reopened the selected ReadySet endpoint under the original
+128 MiB limit after relocation. C461 then registered its twelve-change parent on
+a fresh lineage. Two failed optional generation probes preserved the working
+evidence under the established retirement policy. C466 completed the ordinary
+five-cycle child. The later thirteen-change locked-sugar result is recorded above.
+C437 also shows why Q06 retains a separate displacement check. Five cycles with
+the measured host scaffold B factors and new 5PC base atoms at B=20 brought
+the terminal carbon close to the ring plane (0.087 Å) while stretching its
+terminal bond to 1.549 Å against a 1.470(27) Å target.
+The [Q07 experiment order](#q07--one-mixed-scaffold-ordinary-acceptance-run)
+preserves the earlier linked-sugar work. The unfamiliar-residue challenge follows
+the known mixture. Q08–Q14 cover remaining chemistry, then Q15/Q16 reporting
+and integration.
 
 The records below retain the scope and limitations behind that work order; a
 historical “next” is not a new active task when a later completion is recorded.
@@ -288,15 +685,21 @@ heavy bond/angle targets and the plane correctly delivered in both saved control
 No missing local term or new target repair is established. First use source-bound
 actual neighborhoods to distinguish achieved geometry from delivery; keep H,
 cross-site, symmetry and wider chemical-state questions explicit. Ordinary V9
-observation is separate from Refine Doctor/counting forwarding and automatic repair.
+observation is now forwarded by the explicit ordinary Doctor route (C415).
+Counted forwarding and automatic chemical repair remain separate.
 
 **C407 active:** reuse C15 scalar measurements on C406's sealed actual-final
 site observations. Keep source identities, global indices, selected/whole counts
 and unassessed conventions explicit. Source/legacy/cold and relocated installed
 checks pass (168 source tests;
 261 installed tests; 112 actual scalar rows; 349 native files unchanged).
-Hazel accepts the final source/installed review; the frozen combined-source full
-gate remains. This connects an existing
+Hazel accepts the final source/installed review. The combined full run finishes
+12,845 passed/one location-dependent fixture failure/two skipped/298 subtests.
+The fixture-only correction passes 35 counted tests in each scratch layout and
+43 counted/path tests on Cedar. Runtime was unchanged. Alder subsequently
+delivered the combined work at `f989111e` under the recorded full-run and
+focused fixture amendment. The corrected combination has no fresh green full
+suite at that checkpoint. This connects an existing
 calculation to the ordinary evidence owner; it is not another optimizer or a new
 scientific diagnosis. Preserve the separate whole-substituent gate.
 
@@ -312,6 +715,80 @@ solvent/overall scale while refinement retains its normal treatment. Hazel verif
 70 independent cold checks; all 96 native files remain unchanged. No product source
 change, repeated weight/derivative sweep or Q06 closure. Reuse this completed
 positive control when separating consumer capability from donor-data stress.
+
+**C411–C413 completed PDU checks.** The same perturbed starting molecule recovers
+both nearly straight angles with matching simulated amplitudes. Omitting the
+scattering from its outer two carbons alone leaves both atoms present in the
+refinement model, with the same 180° targets, measured reflection set, flags and
+fixed uncertainties. The achieved angles then bend to about 150° and 110°. This
+is a controlled data-sensitivity test. It cannot diagnose the collaborator’s run.
+The earlier matched target correction on both PDU and held-out 5PC remains the
+before/after test of that numerical patch.
+
+Two real, ordinary one-cycle continuations of C403 preserved C401’s checked root,
+the counted pair recipe, protection and Free-R set. All six requested contacts
+were already present. These narrow angle checks pass even as the terminal carbon
+moves farther from the captured base plane. The on-demand C413 plane report now
+measures plane members and linearly related atoms separately. An angle improvement
+alone does not establish chemical survival. No new scientific acceptance cutoff.
+
+**C415 ordinary Doctor handoff complete.** Two fixture trials preserve the
+same named source while a different checkpoint stays selected. A real one-cycle
+ML-group trial from C403 then preserved the declared PDU site, phosphate
+protection and all original measured intensities/sigmas and flags. The narrow
+angles improved and the whole-arm plane departure increased slightly. Doctor
+recommended inspection. No counted request, automatic selection or new chemical
+acceptance threshold was introduced.
+
+**C417 checked what Phenix actually kept in each plane.** Its final geometry
+tables at four distinct ordinary endpoints independently confirm all ten PDU
+covalent plane members, their deviations and the aggregate plane statistics at
+printed precision. All three requested shared planes and all 58 two-plane
+restraints retain the specified atoms and widths, including multiplicities.
+At B:4 the pair with A:12 and stacks with B:3 and B:5 include the first alkyne
+carbon. The outer two carbons belong to none of these planes. The existing
+base selections suffice to measure the relative orientation of these bases.
+The separate Cedar readout shows how far the outer arm departs from the local
+base plane. This case gives no reason to expand the NARestraints stacking
+selections. Symmetry operations remain unassessed. No new refinement was run.
+
+**C418 tests a related modified base in ordinary Doctor.** A new 5PC child
+retained the matched historical parent’s explicit terminal-bond correction,
+original Free-R data, phosphate protection and all 58 two-plane restraints.
+The terminal bond moved closer to target while the terminal carbon moved
+farther from the six-atom ring plane. Three sugar stereocentres kept their
+handedness. The earlier four- and ten-processor siblings wrote identical
+coordinates. The ten-processor matched parent is `refine-003` and the
+selection remained `refine-001`. C420 fixes the recommendation that incorrectly
+called the explicitly requested source the selected checkpoint.
+
+**C419 closes fresh target delivery on G:5PC.** Starting with the original
+five fixture files, the ordinary route built the pair, discovered the terminal
+single bond using its source connectivity and library atom types, and handed
+ReadySet’s checked model and matched dictionary to a PostMR review checkpoint.
+The target changed from 1.364 to 1.470 Å and the original 0.027 Å uncertainty
+was retained. This fresh run received no manual chemistry override. Its initial
+publication tested construction. C421 then refined the fresh preparation for five
+ordinary Phenix cycles with one processor and explicit site observation. Against
+the old preparation, the model and reflections were byte-identical and one of
+1,489 parsed CIF values changed. Phenix printed C8–C9 as a covalent restraint
+at 1.470 Å with width 0.027 Å. The achieved distance was 1.460 Å. The terminal
+carbon moved from 0.712 to 0.130 Å from the six-atom ring plane. All three
+observed sugar hands, 58 two-plane restraints, D:1 protection and 127 measured
+Free reflections survived. PostMR remains selected. This closes the **5PC
+source-to-refinement example** on substituted-scaffold data. C418's continuation
+from a different starting point still illustrates outward arm motion. The two
+protocols do not isolate a cause for their different endpoints.
+
+**Shared Doctor observation-count follow-up.** A flag may exist for an HKL
+without a measured intensity. The legacy individual-ADP eligibility ratio uses
+the independent flag-group count as its observation count. For this dataset the
+two ratios fall on opposite sides of the existing three-per-atom rule. Resolution
+separately excludes that recipe here. Preserve the original Free-R assignment
+and inconsistency checks. Qualify a separate count from the chosen observation
+array for merged and anomalous data, including missing measurements, before
+using it for recipe eligibility. This shared issue does not affect the explicit
+ML-group test or Hazel’s matched metal trials.
 
 **Scientific stopping boundary:** C403 uses substituted-scaffold observations, not
 a PDU crystal. Keep its existing REVIEW screen and whole-substituent measurements,
@@ -447,9 +924,9 @@ historical result is not their qualification. Final combined integration still
 needs its own full regression.
 
 Q06 still owns effective native membership, known parallelity-gradient behavior,
-scientific targets and achieved geometry. Simon's reported PDU distortion after
-collaborator refinement is explicitly queued there; a flat built substituent or
-successful ReadySet result is insufficient. Keep ordinary bond edits distinct
+scientific targets and achieved geometry. Simon’s report of distorted PDU prompted the matched controls above.
+The original collaborator files are parked by agreement. The evidence for Q06
+comes from refining the prepared molecule and measuring its final geometry. Keep ordinary bond edits distinct
 from additive contact energy over an unchanged native manager: Linden's reported
 Willow evidence shows changed exclusions from symmetry distance edits. Willow
 W38/W39 are context, not a combined Cedar validation or a phosphodiester-link grant.
@@ -480,7 +957,7 @@ or ordinary default. Do not rebuild this path to add a residue-specific fix.
 reach refinement, preserving the C329 finding that a correct target can coexist
 with PDU's residual bend. Reuse its exact model/restraint/force evidence before a
 new experiment; distinguish wrong targets, effective restraints and competing
-forces. Close whole-substituent and related held-out survival with scientifically
+forces. C421 completes the held-out 5PC example. Judge the wider whole-substituent claim using scientifically
 justified criteria, not stronger restraints chosen to force a pass. Prior-work check found that `cif_construction_native._triple_readback` already
 scopes a declared heavy-atom projection to one native site (introduced at
 `94ababa1`, with PDU/5PC/Q17 and duplicate-site controls). C334 replays C329 using the frozen linked B:4 projection instead of the full
@@ -515,20 +992,56 @@ by Q15 reporting and Q16 integration/AutoPhase/release. No automatic merge.
 
 ## Pipeline position
 
+C518 read the original PDU:PDU packet's B:1 P and B:7 O3′ under
+`-x+y,-x,z`. The saved Phenix refinement printed a 2.825 Å nonbonded contact
+and zero bonds for those atoms at that image. Its adjacent internal control
+printed the 1.607 Å phosphodiester target. This closes identification of the
+archived restraint treatment. Pine retains partner and image intent. Q06 still
+requires evidence for the complete restraint neighbourhood and its behavior in
+ordinary refinement.
+
+C519 tested an explicit image bond on that same archived model. With the
+adjacent backbone's 1.607 Å target and 0.012 Å sigma, Phenix added exactly
+one bond. Its direct and four 1–3 neighbours became excluded from nonbonded
+repulsion. Zero cross-link angles were added. Both native setups retained the
+same coordinates and diffraction observations. Pursue the complete source
+chemistry and its lifecycle. The single-bond experiment stays diagnostic.
+
+C520 found two matching intact DA→DC links from the same native capture. Their
+one bond, four angles and three torsions have identical targets, weights and
+torsion periodicities. C521 used both sets of original Phenix terms on separate
+coordinates at the proposed image. The bond, angle and torsion derivatives
+all matched finite differences on 24 coordinate axes. C522 delivered the seven
+missing terms exactly once alongside the native bond and exclusions in an
+explicit geometry-manager calculation. The native symmetry torsion gave a
+wrong force direction at correct energy for this threefold image. An ordinary
+torsion evaluated at the mate with its force rotated back passed the same
+check. C524 reconstructed the terms on real Phenix selections, including the
+40-atom two-end fragment, and reproduced them in a fresh process. Next test
+ordinary worker adoption and checkpoint restoration on a genuinely registered
+parent. Partner identity remains an explicit Pine decision.
+
+C525 makes a single frozen checkpoint available for on-demand phosphate
+inspection. Opening the large thirteen-substitution archive from a fresh
+installed process took about 5 min 39 s for `refine-002` during overlapping
+reads on the development Mac. For Q16, measure that cost on a representative
+campaign and test whether one validated read can serve several requested
+sites while rechecking the frozen files before return.
+
 | Job | In laboratory terms | What still closes it |
 | --- | --- | --- |
 | **Q04 — prepare safely and recover interrupted work** | Coot builds the requested residues; NARestraints supplies their relationships; Doctor checks the dictionaries and ReadySet result. | Complete for the explicit supported route through C284, including repeated native failure, archived-first continuation and serial coordinator controls. Preserve unknown/failed work; broader default activation, migration and deployment capacity remain Q16. |
 | **Q05 — give every program the same chosen result** | Coot inspection and Phenix refinement must receive the same chosen model and chemical/restraint meaning. | Complete for recorded alternatives, selected-model phasing, Coot, cold inspection and the ordinary five-cycle refinement handoff. Actual chemical survival/effective restraint behavior is Q06; no default activation or historical migration. |
-| **Q06 — show that real refinement preserves the intended chemistry** | Run Phenix with the complete NARestraints input, protected phosphates and original Free-R flags, then inspect what it actually did. | The explicit plane-force correction, source-aware target delivery and final chemistry report are qualified within their recorded scope. C381–C391 add bounded pair-force continuity, exact native-written-model proof, an explicit ordinary-owner control, chemical observation and actual final pair measurements. C392/C395 record real PDU weight fallback and actual source membership; C396 changes screening privately but does not repair the model; C393/W134 qualify combined observation and ordinary canonical continuation without claiming chemical repair. C400 qualifies an explicit longer control and matched native/zero/full pair mechanics; all arms stop early and chemical acceptance remains open. C403–C407 qualify fresh ordinary PDU delivery and source-selected actual local geometry, broader explicit observation and shared scalar readout; these do not repair the residual strain. Wider protocols and achieved PDU/DF geometry plus held-out survival remain open. Mechanics or a readable dictionary alone is insufficient. |
-| **Q07 — prove the pieces work together** | Test K:X, D:T, Z:P, B:S, PDU:A, 5PC:G, 5CM:Q and DF:A with ATL alongside; include broken PDU and DF/A1AAZ. | Complete that combined run and the separate eight-modified-residue challenge using unfamiliar catalogue ligands, including compatible LNA:RNA/PNA combinations and a chemically specified phosphorothioate where supported. |
+| **Q06 — show what survives real refinement** | Inspect the whole substituent, sugar, backbone and pair in the final Phenix model. | Open. PDU and 5PC retain the corrected terminal target. The PDU:PDU scaffold retained two crystal phosphates on restart. C574 compared distinct D:7 starts, neighboring sugars and common density. C575–C577 have now applied the comparison to the independently declared FT–Hg junction. Letting both bases move repaired the starting sugar angle, which reopened after refinement. Keep the independent DF donor-state scope and PDU whole-arm decision open. |
+| **Q07 — prove the pieces work together** | Refine the eight named pairs with ATL alongside, including PDU and DF/A1AAZ. | The known thirteen-change scaffold completed two ordinary five-cycle rounds (C497/C505). Both retained all 38 backbone links, 211 frame restraints, protected phosphate angles and original Free-R flags. Two close ATL contacts remain. The separate closure test uses eight unfamiliar catalogue substitutions, including compatible modified backbones and a chemically specified phosphorothioate where supported. |
 | **Q08 — explain stubborn distortions** | Find out why a pair or substituent remains strained. | Separate wrong targets, missing restraints, model geometry and packing; do not just optimize longer. Retain the CGY–DX and PDU questions. |
 | **Q09 — preserve the correct sugar hand and fluorine geometry** | Carry the L-DNA, FANA, L-FANA and L-FDNA learning into ordinary model building/refinement. | Use atom connectivity and stereochemistry, not lists of residue names; complete linked and held-out controls. |
 | **Q10 — handle PNA as PNA** | Respect its backbone and attachments instead of pretending it has a DNA phosphate. | Validate connected construction, native restraints and numerical behavior. |
-| **Q11 — transfer the locked-sugar fixes** | Check another alpha-L-LNA example beyond ATL. | Complete linked 10C/held-out validation while rejecting an incompatible scaffold. |
+| **Q11 — transfer the locked-sugar fixes** | Check another alpha-L-LNA example beyond ATL. | Phenix reads both native junctions for 9V9 and TLN in four-residue tests. Find a source-preserving pose that also holds the pair in the complete duplex, then test it against diffraction. 10C still needs a chemically supported leaving group. |
 | **Q12 — know the catalogue's actual coverage** | Account for every NARestraints ligand entry. | Turn the 599-code/618-row census into supported, repairable or specifically unresolved cases. A family example does not prove every member. |
 | **Q13 — preserve chemical identity** | Keep hydrogens, charge, phosphates and attachment changes chemically justified. | Resolve ambiguous source states explicitly; a prettier geometry cannot authorize different chemistry. |
 | **Q14 — make sure Doctor catches real errors** | Test broken examples and sound examples that should be left alone. | Retain reproducible challenge inputs and false-alarm controls, with unavailable historical inputs stated honestly. |
-| **Q15 — tell the scientist what happened** | Explain what was repaired or retained, what remains uncertain and exactly what to inspect. | Refresh the ordinary result report and user PDF after the behavior is integrated. |
+| **Q15 — tell the scientist what happened** | Explain what was repaired or retained, what remains uncertain and exactly what to inspect. | Refresh the ordinary result report and user PDF. Deliver the shared [regional helix analysis](#regional-helix-analysis-for-publication) before NASolve completion. |
 | **Q16 — finish the branch cleanly** | Finish with the AutoPhase naming/compatibility change, then check Cedar as part of NASolve and review integration into pine/main. | Preserve Phenix AutoSol calls and old runs; follow the [machine-readable rename audit](autophase-rename-plan.json), then full regression, representative native/relocation/platform checks, honest release scope and reviewed artifact cleanup. No automatic merge is authorized. |
 
 **Historical PDU survival baseline (C304; later C329/C338 evidence below):** explicit fresh attempt 2 now completes under the
@@ -1066,6 +1579,101 @@ report-only findings into unreviewed universal gates.
 
 ### Q06 — Qualify the actual refinement consumer
 
+#### Crystal phosphates after an asymmetric-unit recut
+
+**The first ordinary numbered restart is complete (C548).** On a separate copy
+of the PDU:PDU run, ordinary AutoRefine fitted the named manual child for five
+cycles. The B7 O3′–B1 P bond finished at 1.638 Å in its registered image.
+The seven inherited restraints, eight native linkage terms and original
+work/free assignments were verified. The fitted child is available for review.
+The previous selection and earlier checkpoints were preserved.
+
+**The relocated second fit is complete (C549).** The saved construct
+declaration and fresh native capture of refine-006 produced refine-007.
+After five cycles the bond measures 1.642 Å, with O3′–P–OP1/OP2 at
+104.90°/114.12°. All 124 original free flags survived. The saved-continuation
+inspection reads each child's own applied forces and final coordinates.
+A missing declaration or a different starting model's receipt stopped before
+creating the next round.
+
+**Stress-test the shared method in stages.** Pine records the designed
+continuation and its exact crystal operation through a recut. Before any
+refinement, check that the new asymmetric unit gives equivalent scattering,
+strand chemistry and pair assignments. Willow then fits two registered cuts
+together using Cedar's single set of forces per junction and checks them in
+a fresh restart. Exercise the existing rotated or screw-related examples,
+a cell translation and a displaced starting junction. A true nick stays
+open. An ambiguous partner requires review. Check both nonbridging oxygens,
+nearby clashes, handedness and the original free set after motion.
+Willow's [coordinated roadmap](https://github.com/vecchioni-lab/NASolve/blob/willow/docs/topostitch.md#coordinated-phosphate-recut-follow-up)
+owns placement and recutting. Space group alone cannot establish bond intent.
+
+**Check phosphate direction before and after stitching.** The 5LNA
+source already had an inward-facing A111→A112 phosphate before the
+sequence-contiguous recut. Both newly chosen crystal boundaries pointed
+outward. Cedar owns the chemistry reading and a bounded comparison of
+alternative backbone poses. Pine/Willow owns the same-image comparison
+across a change of representative. Check both ester bonds, local sugar
+geometry, nonbridging oxygen directions, clashes and handedness after a
+real refinement. Include a true nick, a crossover, a labelled-oxygen
+swap and a stereospecific substitution among the controls. A physical
+repair and a change of labels require different evidence. [Scientific
+scope](backbone-chemistry.md#checking-the-direction-of-a-repaired-phosphate).
+Use deposited 5W6W and the six standard W templates as the inward/outward
+A12 controls. The archived DF–Hg–DT and PDU:PDU inputs inherited different
+poses. Two matched five-cycle metal refinements retained the two opposite
+A12 directions. Correcting the local sugar angle also compressed the
+neighbouring pair and increased final free R. Keep the outward child as
+a comparison. `phosphate-image --duplex-partners` can now measure each
+model and named checkpoint. The future automatic intake needs an assigned
+continuous duplex arm and a separate chemical and diffraction comparison
+before adopting any repaired metal model.
+
+**Read the processed deposition separately.** A returned model preserved all
+ordinary steps while omitting the two declared crystal links. Its validation
+report assigned those two covalent distances to symmetry contacts. Compare
+the uploaded and processed coordinates using the existing deposition reader.
+Carry the missing records to biocuration and check the next returned model.
+Routine adoption awaits that external outcome and the scientific stress tests.
+
+C573 now reads the written final PDB and the actual Phenix bond and angle
+targets for any named residue or the whole model. The PDU test covered
+924 bonds and 1,323 angles across 42 residues. An independent FT–Hg fit
+exposed a starting-versus-final GEO mix-up and verified the final table
+across its 42 nucleotide residues. Empirical wwPDB targets and reslice
+correspondence remain separate work. [Native geometry screen](cif-doctor.md#checking-bonds-and-angles-in-the-refined-model)
+
+**Queued for Cedar and Willow · check ordinary DNA geometry before upload.**
+Cedar should screen every standard nucleotide in the final coordinate mmCIF,
+including atoms held fixed during refinement. Use the applicable wwPDB reference
+for bond lengths and angles. Report the residue, atoms, observed value, target,
+standard deviation and Z score. Willow should run the same check before and
+after reslicing, matching the same physical atoms across crystal copies so an
+inherited outlier can be distinguished from one introduced by the move.
+
+The first control is the saved 5LNA OneDep return. Recover its three long sugar
+bonds and three angles (two thymine N3–C4–O4 angles and one O5′–C5′–C4′ angle)
+across four ordinary residues. The corrected A112 sugar angle should clear.
+Use the existing [deposition checks](pdb-deposition.md) for the two genuine
+symmetry phosphodiesters. This item is a read-only audit before submission.
+
+Use the passed 3LNA and 5LNA entries as paired controls for this Cedar/Willow
+milestone. The [deposition guide](pdb-deposition.md#what-the-locked-dna-depositions-established)
+records the observed outcome and the distinction between local candidates and
+an identified submission. Extend the same read-only check to modified sites
+using their actual component, stereocentres, base attachment, ring closure and
+both polymer neighbours. Report standard-library and component-specific
+targets separately. Preserve the source and parameters of each target.
+
+The downstream constructor should first try the supplied definition on the
+existing scaffold. Where local refinement leaves a cage distorted, compare
+a reference-supported connected pose with the unchanged parent. Verify the
+two sugar–phosphate joins, chirality, nearby pairs, stacking, displacement
+and the same free reflections after releasing any temporary coordinate holds.
+Record which improvements survive release. Leave selection with the operator
+where the maps allow multiple poses. Willow owns the identity and images
+across a recut. Cedar owns the chemistry checks on the written model.
+
 **Alder final-stage reporting holdover (2026-11-17, `ccb5e769`):** a passive exact-
 endpoint replay localizes one DF child's final R/B shift inside native
 `update_all_scales`. XYZ, occupancy, fp/fdp, phase probabilities and F_mask remain
@@ -1126,9 +1734,12 @@ old construction flip. It stops before dictionary repair at the previously known
 raw-W B:1 incomplete-phosphate ambiguity. C295 records Simon's correction:
 B:1 is intended to continue covalently through symmetry, retaining P/OP1/OP2
 without OP3; his earlier free-OH answer is superseded. The nearest observed
-candidate is B:7 O3′ under `-x+y,-x,z`, 3.34019 Å in original/prepared models.
-Neither chemical partner identity nor a formed bond follows from proximity alone.
-No atom edits, native link enforcement or PDU refinement-survival claim.
+candidate in that experiment was B:7 O3′ under `-x+y,-x,z`, 3.34019 Å
+in the original/prepared models. Simon subsequently confirmed B:7 and B:1
+as the covalent endpoints on the retained central strand. The
+[scaffold convention](backbone-chemistry.md#the-central-strand-in-the-5w6w-scaffold)
+records that decision and the independent image check. C290 itself made
+no atom edit or native link.
 
 **Pine/Cedar convergence (Simon and Linden, 2026-11-14):** Pine owns editable
 declared topology beyond the asymmetric unit: atom identities, exact operators
@@ -1189,9 +1800,9 @@ native-consumer defects and ordinary data-driven movement. Use source connectivi
 and geometry rules, with PDU and a held-out related substituent as controls—not a
 PDU-name repair switch. Chemical survival across the advertised supported
 chemistry remains unproven until these checks pass; completed explicit consumer mechanics alone do not
-establish that result. Retrieve the
-collaborator's exact pair of files when needed; do not reconstruct its provenance
-from memory or search unrelated datasets.
+establish that result. On 19 November Simon chose to test the patch with the
+retained matched controls. The original collaborator refinement remains undiagnosed
+and is not a closure prerequisite.
 
 ### Q07 — One mixed-scaffold ordinary acceptance run
 
@@ -1202,6 +1813,115 @@ Use explicit recorded identities (DF is the laboratory alias for A1AAZ), broken
 PDU and source-changing DF inputs, and the same generalized recovery rules.
 C146–C150 establish connected ATL, exact 201 custom restraints, repaired PDU/5PC
 numerics and endpoint mechanics; they do not close ordinary adoption/refinement.
+C416 reconfirmed all nine site pairs on one 42-site model and all 201 native
+custom restraints by atom identities, targets, weights, origin and multiplicity.
+No diffraction data entered that geometry-only calculation, which reached its
+iteration budget. Its older PDU attachment target and plane membership differ
+from the current ordinary dictionary. Both numerical dictionaries already
+contained their respective sugar–base targets before Phenix applied them.
+Their heavy-atom connectivity agrees, while the bond orders for P–OP1, P–OP2
+and P–OP3 differ between the isolated definitions. The newer dictionary also
+has two additional phosphate hydrogens. Read the linked model and declared
+end intent before assigning a phosphate state. Retain the mixed recipe and this prior
+evidence when qualifying Q07 with current sources. The nonmetal DF:A endpoint
+also provides a separate geometry control. Several conditions differ from the
+DF–Hg–DT refinement, so the two endpoints cannot isolate the role of mercury.
+
+**First ordinary experiments.** C422 compared all 42 site identifiers with the
+current host. The actual catalogue and ordinary input reader resolve all 13
+changes. Without ATL, the other 12 plan normally. Neither planning check builds a
+model or establishes pair restraints.
+
+1. Reuse the existing W-frame restraints. On the archived model, current
+   NARestraints and the ordinary W-frame preparation regenerate all 201 earlier
+   requests with the same atoms, targets, weights and multiplicity. They also
+   request one shared plane for each of the nine named pairs and the canonical
+   A:13/B:3 flank. Appending the old restraints would duplicate the originals.
+   C427 subsequently confirmed every request against the native restraints on
+   a fresh mixed model, including each plane member and weight. Preserve the ends on that model.
+   The archived mixed D:1 has O5′ alone among the phosphate-end atoms. The
+   proposed G:5PC fixture explicitly allows OP3 at its phosphorylated D:1.
+   Both fixtures have O5′ without P at B:1. The separate symmetry-linked PDU:PDU
+   B:1 requires P/OP1/OP2 with no OP3. Preserve each experiment’s own intent.
+2. Connect the existing source-bound locked-sugar placement and bridge to the
+   ordinary A:11 mutation. Reuse C143’s opposite C3′/C4′ hands as a refusal
+   control and C145/C146’s base anchors and two native junctions as positive
+   controls. Check all four source hands, both O3′–P lengths, all eight junction
+   angles, both ATL:A contacts and unaffected sites. Recompile pair/stack atom
+   selections against the constructed model. C149 already measured the two
+   junctions at 1.606 and 1.610 Å after geometry-only optimization. It exhausted
+   its iteration budget and kept the input selected.
+   C425 recovers the measured DP and IMC orientation errors in ordinary Coot.
+   C426/C427 built all nine pairs through explicit locked-sugar placement.
+   The fresh native manager received both backbone bonds (1.607 Å targets) and
+   all eight chemical angles. The outgoing bond and angle begin at 1.839 Å and
+   141.55° (119.7° target). The seed assigns B=20 Å² on a 166–320 Å² host
+   site. Establish how to carry host displacement through mutation and handle
+   the initial strain before ordinary mixed refinement. Keep the seed itself
+   as an immutable construction control. C428 found 110 B resets among 132
+   coordinate-identical scaffold atoms. C429 tested a host-based alternative
+   on a 5PC site whose original base had a single recorded B. Eight of the
+   ten generic host bases had nonuniform B values. C433 now transfers measured host B values for
+   unchanged sugar and phosphate atoms. A defensible initial B for new base
+   atoms on a nonuniform host is still open when the base differs. C465 can
+   transfer all nine measured B values across an exactly graph- and role-matched
+   base even with a different sugar. The two original ATL junction lengths remain
+   1.595 and 1.839 Å. Historical coordinate-only
+   restorations keep their recorded interpretation. C318/C319 already handle the separate issue
+   of writing consistent B values at the end of native refinement.
+3. C430 transferred three ordinary component dictionaries onto the nine-pair
+   scaffold with freshly derived site modifications. Phenix applied 1.470 Å
+   terminal targets at both PDU and 5PC, and the ordinary DF thione target at
+   1.638 Å. All three sites reproduced their ordinary covalent and local plane
+   restraints. The ten remaining components in that native comparison still
+   use the older definitions. C431 then froze and reopened one pending request
+   with all thirteen current sources, every selected site, all 38 backbone
+   links and all 211 frame terms. C432 executed it once and stopped at 5CM’s aromatic annotations. C434/C435
+   qualified three original exact bond representations and one source-declared
+   five-ring beside C=S. C436 then acquired all thirteen in isolation with eight
+   matching snapshots reused. Linked preparation stopped at singly bonded
+   anionic OP3 in 1AP. C438–C439 qualified this same-ASU leaving group.
+   C444–C448 resolved the source-ring plane screen and followed two contrasting
+   single-site controls through diffraction refinement. C449 combined all
+   thirteen current definitions with the proven numerical repairs. C450 then
+   obtained those same three sites' local terms ordinarily on the twelve-component
+   DNA route. Seven stages recorded three supported plane changes, two bond-target
+   changes and two explicit findings of no supported plane completion.
+   Packaging the combined evidence stopped before the ordinary endpoint.
+
+   C455 verified each of those seven transitions, selected the combined
+   dictionaries after an independent native derivative check, and reopened the
+   compact publication after moving it. C457 qualified the new outer owner
+   against the original partial files, known-stopped recovery and fresh completion.
+   C458 completed the actual twelve-component ReadySet round trip. C460
+   separately reproduced the selected endpoint on relocation; its original
+   attempt has a verified failed publication. C461 registered a fresh twelve-change
+   parent. C466 completed its five-cycle diffraction child. C463 binds the
+   two-ended ATL reaction to the complete request for separately placed atoms.
+   C464 and C467 retain the old stopped attempt and its independently relocated
+   fallback. C468 completed the fresh request and C471 reopened the new
+   named-atom alternative on the exact checked endpoint. C472 tested isolated
+   rigid motion and phosphate torsions against both junctions and the two pair
+   distances. The outgoing link shortened as the pair contacts worsened.
+   C478–C480 tested that neighbouring flexibility with a fresh crystal-image
+   contact search. A single extra receiving-phosphate rotation kept the two
+   central links at 1.610 and 1.603 Å, retained the source hands and brought
+   the paired contacts to 2.873 and 3.171 Å against 2.8 Å. A fresh Phenix
+   reading preserved the eight covalent and plane categories, all 211 frame
+   requests and the nine measured base B values. The two neighbours were
+   allowed to move, so check both outer junctions and all three pairs as well.
+   C481 independently recompiled all 211 frame requests on the moved model
+   and preserved all 869 named atoms through ReadySet. C483 tested that
+   placement against diffraction before changing ordinary construction. All
+   four sugar centres survived, both pair contacts shortened and the outgoing
+   O3′–P–OP2 angle ended at 112.5° against 108°. Two overlaps exceed 0.4 Å,
+   one with the preceding sugar and one within ATL. C494–C497 then built
+   all thirteen substitutions through the ordinary owner, checked cache reuse
+   and changed-source rejection, and registered a five-cycle child against
+   the host observations. The compact ledger records the native pair/stack
+   membership, unchanged intensities and flags, four source sugar centres and
+   final geometry at PDU, 5PC, DF and ATL. The local contacts and unfamiliar
+   eight-residue challenge remain open.
 
 Done when an ordinary invocation acquires or repairs the necessary dictionaries,
 qualifies the selected state and produces inspectable refinement artifacts with
@@ -1247,12 +1967,30 @@ ordinary PostMR before Coot, then into the complete request. No duplicate owner.
 
 | Established boundary | Evidence |
 | --- | --- |
-| Source identity, independently rotatable rings and held-out bridge | C339–C342/C350–C351; exact source/representation and native derivative controls. |
-| Free-OH/internal construction, ReadySet and covalent-only survival | C343–C346; 87 native checks/two unavailable charge readbacks for mixed ends. No DY pair claim. |
+| Source identity and response to rotation about the single C4–N1T bond | C339–C342/C350–C351 established the original dictionary’s behavior. C456 tests the chemical preference for near coplanarity. |
+| Free-OH/internal construction and ReadySet | C343–C346 established delivery. C456 identified an unintended A:12–B:4 covalent bond in the historical C346 refinement and repeated it with this link excluded. |
 | Modified → canonical → modified and retained seed evidence | C347–C349/C353; PDU↔DY via DT with preserved scaffold/chi. |
 | Packaged lookup, source composition and acquisition | C354–C356/C364; exact original inputs and existing native evidence retained. |
 | Explicit planning, per-site selection and derivation lineage | C358–C359/C362–C365; source and numerical CIF roles independently checked. |
 | Ordinary pre-Coot integration | C366; 190 focused and installed checks; exact mixed-end Coot model, cold complete request, preserved prior controls. |
+
+**Ring geometry and chemical links before wider DY use (C456).** Check the
+source-declared triazolyl–pyrimidinone and determine whether Phenix actually
+restrains twist between its rings. Test the soft eleven-atom plane at a second
+site or against experimental DY evidence before selecting its weight by default.
+Measure the ring angle and the signed torsion independently so a half-turn
+cannot silently exchange the presented nitrogen edge. C502 adds the final
+checkpoint bond comparison. It finds the recorded adenine–DY link and accounts
+for the 38 backbone and 53 supplied distances in the registered mixed scaffold.
+C503 reads both ends of the same round. In the DY control, excluding the
+observed N6–C5T pair revealed a second automatic bond to N4T. Excluding
+both exact pairs restored all 38 declared links through five cycles.
+C505 carries the two-stage check into ordinary checked refinement and numerical
+recommendation. A usable result with an unexplained bond remains available
+for inspection. General recovery needs explicit noncovalent intent and independently resolved atom
+selections, including their effect on symmetry mates. The
+[matched experiments](cif-doctor.md#dy-ring-orientation-and-unrequested-interbase-bond-c456)
+include negative chemical controls and a ReadySet readback.
 
 Remaining: deliberate automatic public selection/CLI integration, modified-input
 canonical-seed forwarding through the ordinary route, and chemically specified
@@ -1329,6 +2067,29 @@ compatibility, initial placement and achieved geometry under a fixed objective.
 Preserve valid source and negative controls; separate dictionary, construction
 and optimizer causes. Do not infer a target error from high residual alone.
 
+**Check trigonal centres after dictionary generation.** Start with the existing
+three-neighbour carbon rule from C206/C208 and the C404/C406 native geometry
+readback. Identify the centre from elements, bond orders and stereochemistry.
+Compare the three bond lengths, the three individual angles and planarity in
+the generated CIF, the prepared model, the restraints Phenix actually used
+(targets and widths), and the refined coordinates. A flat group can still
+have its substituent pointing the wrong way. Allow chemically justified
+asymmetry. Ring substitution, formal charge, protonation and metal binding
+matter when choosing an independent reference.
+
+Use the [DF sulfur case under Q13](#df-sulfur-geometry) as the first example.
+Flag a suspect target separately from a missing restraint or a model that
+moved away from a delivered target. Where a saved fit permits it, compare
+the local pulls from geometry and working diffraction in the same physical
+direction. Automatic repair needs independent support for the intended
+chemical state, target and width. Preserve the original definition and
+record the candidate and its source. Qualify a repair through actual
+refinement and restart, checking neighbouring links and stereochemistry.
+Include a held-out, renamed example with a distorted but flat substituent,
+a legitimate asymmetric trigonal centre and a tetrahedral control. If the
+evidence is insufficient, retain the usable fallback and flag the site for
+review. This is queued work. Q06 phosphate restart remains the next gate.
+
 Done when the residual has a documented causal boundary and either a generalized,
 source-authorized correction or an explicit scientifically usable/unusable
 selection outcome. No restraint deletion, arbitrary softening, hand inversion or
@@ -1375,8 +2136,47 @@ that isolated C/A/G controls qualify a PNA polymer.
 10C has a source/native isolated and two-copy numerical control; the separated
 copies are not a connected polymer or physical stacking proof. Construct a linked
 10C control through graph-derived ports, source-preserving placement, both native
-junctions, exact NAR membership and fresh derivative/geometry checks. Consider
-9V9 only after checking its actual source, not from a guessed name/family label.
+junctions, exact NAR membership and fresh derivative/geometry checks.
+9V9 was checked against its actual source in C486/C489. Its flagged OP3 is
+a terminal neutral hydroxyl. Standard eLBOW introduced an unlisted sugar
+O4′–base C4 bond; the existing C116 row ordering produced an independently
+qualified isolated dictionary and retained all four source sugar centres
+during base placement. The proposed bridge exceeded the 2 Å base-movement
+limit. C490 now binds the successful isolated dictionary to the original
+source and the specific failed native attempt. C491–C492 tested both reference
+frames. All three host sugar hands match 9V9, yet sugar alignment leaves the
+junctions 3.33 and 4.23 Å apart. Transferring the host glycosidic angle before
+fitting also exceeded the base-motion limit at all five weights. The next
+held-out check is a bounded linked pose that keeps the NARestraints pair and
+both backbone bonds. These controls already cover a simple change of frame,
+arm weight or host glycosidic angle.
+
+C498 used a fresh TLN mutation card alongside ATL and the held-out 9V9.
+All 21 isolated TLN checks passed. Of the existing 27 phosphate-arm fits,
+13 preserved the 2 Å base limit for ATL and none did for TLN or 9V9.
+Rotating the source-declared sugar–base bond by 30° increments gave a 9V9
+pose within the limit, but its two adenine contacts were 4.38/4.42 Å.
+NARestraints actually requests 2.8 Å for both contacts in all three cases.
+Its sigmas are 0.2 Å for ATL/TLN and 0.4 Å for 9V9. The original host
+contacts themselves measure 3.81/3.63 Å. Copying that host shape or
+optimizing the two junctions alone leaves poor pairing. Use the existing
+three-residue method when testing a candidate and measure both outer
+junctions and neighbouring pairs. Keep the 2 Å ordinary limit.
+
+C499 checked the alternate starting models directly in Phenix 2.2.1-6174.
+Each four-residue model contained DG–locked sugar–DZ and the opposing
+adenine. Phenix recognized the two native phosphate bonds, all eight
+flanking angles, and the two supplied NARestraints bond targets with their
+actual sigmas. All ten covalent targets and sigmas agreed with the registered
+ATL control. All expected heavy atoms were present. TLN and 9V9 needed a
+separate 5 Å diagnostic allowance to expose their junctions for this test.
+They still exceed the ordinary 2 Å limit. Whole-duplex clashes, stacking,
+outer junctions and diffraction remain to be tested for those two residues.
+
+The source flag for 10C names a doubly bonded O3P with no hydrogen. LCA and
+LCC flag OP2 while a distinct protonated OP3 remains unflagged. Automatic
+construction requests review on all three. ATL, 9V9, LCG and TLN passed this
+source flag check. Five other catalogue rows need a different topology.
 
 Done when the held-out code uses the same maintained rules as ATL, including
 negative stereochemical and incompatible-host controls, with no code-specific
@@ -1406,33 +2206,49 @@ NAR package version identifies that workbook.
 
 ### Q13 — Close chemical-state and attachment-policy gaps
 
-**DF/Hg donor-state holdover (19 November):** Hazel and Rowan confirmed that the
-retained A109 DF dictionary describes neutral NH1 N3 with an explicit N3–H3
-single bond (1.018 ± 0.029 Å). The bound metal recipe coordinates N3, while the
-coordinate model contains no H3. Missing hydrogen coordinates do not establish
-experimental protonation or charge. The recorded modifications change terminal
-link atoms, not N3/H3. Simon explicitly confirmed on 19 November: **Hg replaces
-both N3 hydrogens** in the intended DF–Hg–DT bridge. Preserve the neutral source
-as provenance and qualify a separate declared metal-bound state, including the
-DT donor, exact hydrogen/charge bookkeeping and effective native readback. Reuse Alder's existing
-state-aware coordination design; no DF-only repair, automatic deprotonation or
-causal attribution for sugar–base strain follows. This is a prerequisite for the
-affected Q06 experimental case, not a new native sweep or a reopened ownership task.
-Exact DF dictionary SHA-256: `c632ad07eed7feed22132021bed28a047d9441b5f762451e09d5f960a6e763cc`;
-the existing A109 input contract binds its local provenance.
-The reusable-path audit is `declared_metal_donor_state_2026_11_19` in the existing
-evidence ledger. The installed site-modification API exposes partial charge, not
-formal charge; the current standard Td source likewise lacks explicit formal
-charges. Do not substitute either for complete source-state authority. Reuse the
-existing explicit generator charge-control and isolated/linked qualification
-owners once the declared derivative is fully specified. The existing acquisition
-owner now freezes complete neutral parents from curated DF and installed CCD DT
-(36 atoms with explicit formal charges each; three files, 19,415 bytes). This
-chemical source is distinct from numerical Td. All 36 DF formal charges match
-the retained A109 dictionary; no state was changed or native refinement started.
-Ordinary explicit-source selection deliberately cannot override curated DF. Keep
-that guard: a declared chemical-state derivative needs its own scoped authority,
-not a weakened global source preference or a hidden numerical repair.
+<a id="df-hg-dt-comparison"></a>
+
+**DF–Hg–DT donor-state evidence (C409).** The intended Hg bridge replaces the
+N3 hydrogen on DF at A:12 and DT at B:4. The earlier refinement used two explicit
+Hg–N3 restraints and had no H3 coordinate at either site. Both separately named
+deprotonated sources passed isolated Phenix dictionary checks. Generation preserved
+the declared N3 formal charge of −1 and the three source-relative sugar
+configurations. Ordinary source selection retains the neutral parents. The
+native monomer reader exposes partial charge only. The existing
+ledger entry `declared_metal_donor_state_2026_11_19` binds the neutral parents,
+native checks, independent review and site map.
+
+**C410 matched refinement complete.** Hazel ran both five-cycle Phenix refinements
+from identical heavy-atom coordinates and reflections. Rowan prepared matched
+neutral controls using the generator settings of the deprotonated derivatives.
+Both states kept the two Hg contacts, the same weighted base-plane memberships and
+the original backbone links. DF's sugar–base distance and ring flatness improved,
+while its thiocarbonyl bond moved farther from its own target. Heavy-atom targets
+and their uncertainties both changed. The outcome cannot be attributed solely
+to removing H or to changing formal charge. The cases remain unselected research
+controls. Explicit metal donor-state integration remains a post-build decision.
+
+<a id="df-sulfur-geometry"></a>
+
+**DF sulfur geometry, 22 November.** The matched neutral QF1 targets came
+from the Phenix 2.2.1-6174 eLBOW builder. Its N1–C2–S value was 126.83°,
+and the metal-pair fit reached 135.32°. The independent, unrestrained crystal
+structure of free 2-thiothymine gives 122.57(9)° for N1–C2–S and 122.80(9)°
+for N3–C2–S. It has neither the sugar nor the Hg–N3 bond. Use it to flag the
+distortion and require evidence for the appropriate donor state before changing
+any targets or widths. [Primary structure, Table 1](https://doi.org/10.1107/S010827010201315X)
+and [Alder’s source audit](https://github.com/vecchioni-lab/NASolve/blob/Alder/docs/metal-df-c2-angle-audit.md).
+
+The numbered input measured 126.82° and 115.90° at the two sulfur angles.
+After five cycles they were 135.32° and 108.70°. At that endpoint, moving
+S1 back within the ring plane improved both angle restraints and the total
+geometry score locally. Working diffraction favoured the other direction.
+Holding the rest of the 5.06 Å DF–Hg–DT fit fixed and restoring the first
+angle to 126.83° changed R-work from 0.306622 to 0.306667. The two-angle
+penalty fell from 27.04 to 0.23. This isolates one improvement and its cost.
+The correct metal-bound targets and their survival during a fresh refinement
+remain open. Simon would favour supported local chemistry at this small
+R-work cost. This observation is specific to this dataset.
 
 **C374 DF source-state confirmation:** exact original, numerical, plane-added and
 refinement dictionaries retain OP2 charge0/HOP2 and a single P–OP2 bond. Its
@@ -1538,7 +2354,42 @@ internal deliberation to the private notes repository. Do not copy live-run data
 or chat transcripts into the public project. This is the documentation cleanup
 already noted after C133, not permission to delete historical evidence.
 
+#### Regional helix analysis for publication
+
+**Open under Q15. Required before NASolve completion.** One offline analysis
+should let a scientist measure a declared region in a model and compare the
+same region across checkpoints. Willow needs it around a bend or an opening.
+Alder needs it around a rotated cluster. Cedar supplies the chemical identity
+and ring mapping at modified sites. The [machine-readable milestones](helical-geometry-plan.json)
+hold the acceptance checks, publication benchmarks and current discrepancies.
+
+1. **Identify the pairs.** Carry the two strands, residue and crystal-image
+   identities, atom choices and region through each comparison.
+2. **Measure twist and width.** Report signed **simple** twist per base-pair step.
+   Preserve the P–P diameter across each pair and both phosphate-to-axis radii
+   at each step in separate columns. A half-diameter is a derived half-span.
+   Give the specific reason for an unavailable measurement.
+3. **Export the evidence.** Show the steps flanking a modification, the weighted
+   regional mean and bp/turn. Export individual rows, checkpoint differences,
+   units, weights, coverage and model/method provenance. Qualify the same reader
+   on deposited structures and on a genuine before/after bend. A report can
+   accompany a solve without running another refinement or selecting a model.
+
+The mmDNA benchmark uses Table S15 for simple twist and Table S17 for P–P
+diameter. On 7SDF the first calculation gave 34.57° across the two flanking
+steps (published 34.58°) and a P–P diameter of 18.19 Å (published 18.2 Å).
+On 7SDG the local twist differed by 1.72°. Keep this comparison open.
+On the curved 1TC3 duplex, both local phosphate radii reproduced the 3DNA
+manual’s printed values across all 18 steps. The PNAS model’s 1 nm cylinder
+radius is an input to its topology calculation. It supplies no experimental
+radius target. [mmDNA](https://doi.org/10.1002/adma.202210938) ·
+[Tertiary chirality](https://doi.org/10.1073/pnas.2321992121) ·
+[Web 3DNA](https://doi.org/10.1093/nar/gkz394) ·
+[3DNA radius benchmark](https://web.x3dna.org/public/3dna_old/doc/x3dna_v1.5.pdf)
+
 ### Q16 — Final integration, portability and retained-artifact closure
+
+For NASolve completion, verify the [Q15 helix analysis](#regional-helix-analysis-for-publication) and publication export on the integrated build.
 
 The specific C171 diagnostic-masking follow-up is resolved in
 [C185](cif-doctor.md#preserve-primary-failures-during-diagnostic-reporting-c185):
@@ -1614,6 +2465,10 @@ separately from naming. An on-disk/schema rename is optional later work.
   planes/parallelity gradients and large helix motion need their own design and
   native validation. Never turn complementary overhangs into an undeclared
   covalent pseudolink. Not a CIF Doctor release blocker.
+- **Routine metal donor-state handling after NASolve is built.** Revisit whether
+  to integrate site-specific donor definitions into normal metal preparation and
+  refinement. Use the [DF–Hg–DT comparison](#df-hg-dt-comparison) to judge the
+  benefit. The current build and Cedar merge can proceed independently of this feature.
 - **Metal-pair GUI and unusual coordination:** coordinate through the existing
   metal-builder/NAR contracts and preserve the other branch's work. Do not infer
   metal valence or repurpose ordinary organic repair rules without authority.

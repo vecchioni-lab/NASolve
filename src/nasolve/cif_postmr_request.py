@@ -8,7 +8,7 @@ from copy import deepcopy
 from pathlib import Path
 
 from .cif_acquisition_sources import _codes, freeze_acquisition_sources, read_acquisition_sources
-from .cif_complete_request import CAPTURE_ARTIFACT_POLICY, _LIMITS, _compiler_input, _compiler_references, _continuation_fields, _construction_input, initialize_dictionary_request
+from .cif_complete_request import CAPTURE_ARTIFACT_POLICY, STAGED_ARTIFACT_POLICY, _LIMITS, _compiler_input, _compiler_references, _continuation_fields, _construction_input, initialize_dictionary_request
 from .cif_dictionary_sites import _consumer, _need, _read
 from .cif_generation_acquisition import generation_dictionary_options
 from .cif_acquisition_attempt import _generation_binding
@@ -21,17 +21,22 @@ from .cif_restraint_context import derive_restraint_context
 
 
 def initialize_postmr_dictionary_request(model, report, components, source_output, output, *,
-        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, frozen_sources=None, construction_inputs=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, **execution_limits):
+        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, frozen_sources=None, construction_inputs=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, select_anionic_phosphate=False, reader_control_policy=None, **execution_limits):
     """Freeze ordinary sources and derived contexts for one existing request.
 
     Components specify code/generation and optional retained_snapshot,
-    terminal_resource or phosphate_atom_policy. Site/link declarations are
+    terminal_resource, phosphate_atom_policy or an explicit furanose_reaction.
+    The latter's port declarations must agree with the derived site links.
+    Site/link declarations are
     derived, never supplied as overrides. supplementary_phils is an explicit
     ordered sequence; an empty sequence declares absent custom restraints.
     Required but unsupported inputs must be converted faithfully, never omitted.
     With literal_na_inputs, supplementary_phils names the original ordered inputs;
     the frozen compiler artifact must match them and the exact model before its
     compiled PHIL is selected. Original evidence accompanies the owned request.
+    An explicit reader_control_policy="cif-captured-reader-control-handoff-v1"
+    admits the typed artifact; supplementary_phils still names every original
+    captured input in order. Reader controls then travel in their own frozen role.
     The literal artifact may use native-capture or source-bound PDB identities;
     the latter also binds overlapping source bytes at complete intake. Neither
     mode replaces final native qualification or invents native capture indices.
@@ -64,6 +69,7 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     Alternatively automatic_bond_targets freezes source/library-discovery intent,
     also using v4. Intake performs no lookup; continuation uses only saved intent.
     """
+    _need(type(select_anionic_phosphate) is bool, "Require an explicit phosphate selection choice")
     bond_discovery_fields(automatic_bond_targets,bond_targets)
     bond_targets = _bond_target_declarations(bond_targets)
     _need(type(automatic_plane_support) is bool, 'automatic_plane_support must be a boolean')
@@ -73,10 +79,13 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     for item in components:
         _need(isinstance(item, dict) and {'code', 'generation'} <= item.keys()
               and item.keys() <= {'code', 'generation', 'retained_snapshot',
-                                  'terminal_resource', 'phosphate_atom_policy'},
+                                  'terminal_resource', 'phosphate_atom_policy', 'furanose_reaction'},
               'Unsupported PostMR component settings or manual context override')
         generation_dictionary_options(item['generation'])
         _generation_binding(item['generation'])
+        if select_anionic_phosphate:
+            _need(item.get("phosphate_atom_policy") is None and item["generation"].get("bond_representation_policy"),
+                  "Source-selected phosphate requires strict generation and no manual phosphate policy")
     codes = _codes([item['code'] for item in components])
     _need(bond_targets is None or bond_targets.keys() <= set(codes),
           'Bond targets must belong to the prepared components')
@@ -88,10 +97,12 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     _continuation_fields(continuation_options,_LIMITS)
     _need(isinstance(supplementary_phils, (list, tuple)), 'Require an explicit ordered PHIL sequence')
     _compiler_references(literal_na_inputs,explicit_na_policy)
+    _need(reader_control_policy is None or (literal_na_inputs is not None and explicit_na_policy is None),
+          'Reader-control handoff requires typed literal provenance')
     phils = list(supplementary_phils); literal_originals = []
     if literal_na_inputs is not None:
         literal_root = _root(literal_na_inputs)
-        literal = _compiler_input('literal_na_inputs',literal_root)
+        literal = _compiler_input('literal_na_inputs',literal_root, reader_control_policy=reader_control_policy)
         literal_originals = [(Path(p),_read(p)) for p in phils]
         _need(_read(model) == _read(literal['model'])
               and [data for _,data in literal_originals] == [_read(literal_root/r['path']) for r in literal['report']['original_phils']],
@@ -139,12 +150,25 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     if frozen_sources is None:
         freeze_acquisition_sources(codes, sources, data_root=data_root,
                                    ready_set_executable=ready_set_executable)
-    else:
+    if frozen_sources is not None or select_anionic_phosphate:
         selected = read_acquisition_sources(sources)
         _need(selected['report']['components'] == codes,
               'Frozen source components differ from the complete prepared-model request')
+    if select_anionic_phosphate:
+        from .cif_anionic_phosphate import select_anionic_phosphate as select_state
+        for item in components:
+            code = item["code"]
+            policy = select_state(selected["sources"][code]["source"], code, item["contexts"])
+            if policy is not None:
+                item["phosphate_atom_policy"] = policy
     _need(all(_read(p) == data for p,data in literal_originals),
           'Literal original PHIL changed during source freezing')
+    # Each independently verified repair in a mixture has its own working proof.
+    artifact_options = {}
+    if bond_targets is not None or automatic_bond_targets:
+        policy = (STAGED_ARTIFACT_POLICY if len(codes) > 1 and automatic_plane_support
+                  and automatic_bond_targets else CAPTURE_ARTIFACT_POLICY)
+        artifact_options['artifact_policy'] = policy
     return initialize_dictionary_request(sources, components, model, request,
         consumer=consumer, expected_links=model_context['expected_links'], native_context=native_context,
         supplementary_phils=phils, model_context=model_context, restraint_context=restraint_context,
@@ -152,7 +176,8 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
         **({'automatic_plane_support':True} if automatic_plane_support else {}),
         **({'bond_targets':bond_targets} if bond_targets is not None else {}),
         **({'automatic_bond_targets':True} if automatic_bond_targets else {}),
-        **({'artifact_policy':CAPTURE_ARTIFACT_POLICY} if bond_targets is not None or automatic_bond_targets else {}),
+        **({'reader_control_policy':reader_control_policy} if reader_control_policy is not None else {}),
+        **artifact_options,
         **execution_limits)
 
 def prepare_postmr_literal_inputs(model, supplementary_phils, frozen_sources, output, *,

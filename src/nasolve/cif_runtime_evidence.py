@@ -26,6 +26,7 @@ MAX_ACTIVE_BYTES = MAX_BYTES
 _ACTIVE_BYTES = ContextVar('runtime_evidence_expanded_bytes', default=0)
 _ACTIVE_OBJECTS = ContextVar('runtime_evidence_objects', default=None)
 _ACTIVE_DEPTH = ContextVar('runtime_evidence_depth', default=0)
+_REPAIR_STAGE_ACTIVE = ContextVar('repair_evidence_stage_active', default=False)
 _WORKING_VIEW_ACTIVE = ContextVar('working_evidence_view_active', default=False)
 MAX_DEPTH = 2
 _SHA = re.compile(r'[0-9a-f]{64}\Z')
@@ -42,12 +43,12 @@ def _index(value):
     return files,directories,total
 
 
-def _file_index(files, directories, *, max_files):
+def _file_index(files, directories, *, max_files, extra_directories=0):
     """Shared path/object validation; callers retain their own logical budgets."""
     _need(isinstance(files,dict) and 0<len(files)<=max_files
           and all(_strict(name) for name in files), 'Unsafe or excessive logical evidence files')
     _unique(files)
-    _need(isinstance(directories,list) and len(directories)<=4*max_files
+    _need(isinstance(directories,list) and len(directories)<=4*max_files+extra_directories
           and all(_strict(name) for name in directories)
           and directories==sorted(set(directories))
           and len({_alias(n) for n in directories})==len(directories), 'Unsafe evidence directories')
@@ -80,7 +81,7 @@ def _decode(data,digest, *, index_reader=_index):
         raise ValueError('Incomplete or damaged compact evidence') from exc
 
 
-def pack_runtime_evidence(directory, output):
+def pack_runtime_evidence(directory, output, *, expected_inventory=None):
     """Write a fresh deterministic archive, retaining exact paths and bytes."""
     root=Path(directory).absolute();output=Path(output).absolute()
     _need(not output.exists() and not any(p.is_symlink() for p in (output,*output.parents))
@@ -88,6 +89,8 @@ def pack_runtime_evidence(directory, output):
     before=_tree(root)
     directories=sorted(p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_dir())
     refs={name:dict(sha256=sha256(data).hexdigest(),size=len(data)) for name,data in before.items()}
+    if expected_inventory is not None:
+        _need((refs, directories) == expected_inventory, 'Packed repair evidence changed during freezing')
     index=dict(schema_version=1,policy_id=POLICY_ID,files=refs,directories=directories)
     _index(index)
     objects={refs[name]['sha256']:data for name,data in before.items()}
@@ -117,16 +120,30 @@ def _archive_bytes(index, objects):
 
 
 @contextmanager
-def expanded_runtime_evidence(archive, digest):
+def expanded_runtime_evidence(archive, digest, *, subtree=None):
     """Yield one bounded temporary evidence root; no original paths are consulted.
 
     Each view retains its logical expansion bound. Nested views additionally share
     one physical-byte allowance and reuse identical temporary objects. A platform
-    without hard links must charge each real copy to that same allowance.
+    without hard links must charge each real copy to that same allowance. An
+    optional top-level directory limits materialization after every object and
+    the complete original index have been authenticated.
     """
-    _need(_ACTIVE_DEPTH.get()<MAX_DEPTH, 'Nested evidence exceeds supported view depth')
-    with _expanded_evidence(archive, digest, runtime_layer=True) as view:
+    _need(not _REPAIR_STAGE_ACTIVE.get() and _ACTIVE_DEPTH.get()<MAX_DEPTH, 'Nested evidence exceeds supported view depth')
+    with _expanded_evidence(archive, digest, runtime_layer=True, subtree=subtree) as view:
         yield view
+
+
+@contextmanager
+def expanded_repair_stage(archive, digest):
+    """Open a single leaf proof inside the current physical-byte allowance."""
+    _need(not _REPAIR_STAGE_ACTIVE.get(), 'A repair stage cannot open another evidence view')
+    token = _REPAIR_STAGE_ACTIVE.set(True)
+    try:
+        with _expanded_evidence(archive, digest, runtime_layer=False) as view:
+            yield view
+    finally:
+        _REPAIR_STAGE_ACTIVE.reset(token)
 
 
 @contextmanager
@@ -145,7 +162,7 @@ def expanded_working_evidence(archive, digest):
 @contextmanager
 def _working_evidence(archive, digest, *, decoder):
     """Reserve the sole outer view, using an explicitly selected bounded index."""
-    _need(not _WORKING_VIEW_ACTIVE.get() and _ACTIVE_DEPTH.get() == 0
+    _need(not _REPAIR_STAGE_ACTIVE.get() and not _WORKING_VIEW_ACTIVE.get() and _ACTIVE_DEPTH.get() == 0
           and _ACTIVE_BYTES.get() == 0 and _ACTIVE_OBJECTS.get() is None,
           'Working evidence requires an outer root scope')
     token = _WORKING_VIEW_ACTIVE.set(True)
@@ -157,12 +174,29 @@ def _working_evidence(archive, digest, *, decoder):
 
 
 @contextmanager
-def _expanded_evidence(archive, digest, *, runtime_layer, decoder=_decode):
+def _expanded_evidence(archive, digest, *, runtime_layer, decoder=_decode, subtree=None):
     """One decoder/expander and accounting path for both explicitly owned scopes."""
-    archive=Path(archive).absolute()
-    _need(archive.is_file() and not any(p.is_symlink() for p in (archive,*archive.parents))
-          and archive.stat().st_size<=MAX_ARCHIVE_BYTES, 'Unsafe or oversized evidence archive')
-    data=_read(archive);index,objects,total=decoder(data,digest)
+    # A compact parent can be taken directly from its authenticated enclosing
+    # archive. Its compressed carrier need not occupy temporary disk throughout
+    # the scientific replay. The same decoder and limits apply to every member.
+    if isinstance(archive,bytes):
+        _need(runtime_layer and decoder is _decode and len(archive)<=MAX_ARCHIVE_BYTES,
+              'Unsafe or oversized in-memory runtime archive')
+        data=archive
+    else:
+        archive=Path(archive).absolute()
+        _need(archive.is_file() and not any(p.is_symlink() for p in (archive,*archive.parents))
+              and archive.stat().st_size<=MAX_ARCHIVE_BYTES, 'Unsafe or oversized evidence archive')
+        data=_read(archive)
+    index,objects,total=decoder(data,digest)
+    if subtree is not None:
+        _need(isinstance(subtree, str) and _strict(subtree) and '/' not in subtree
+              and subtree in index['directories'], 'Missing or unsafe runtime evidence subtree')
+        prefix = subtree + '/'
+        files = {name:ref for name,ref in index['files'].items() if name.startswith(prefix)}
+        directories = [name for name in index['directories'] if name == subtree or name.startswith(prefix)]
+        index = dict(index, files=files, directories=directories)
+        objects = {ref['sha256']:objects[ref['sha256']] for ref in files.values()}
     used=_ACTIVE_BYTES.get();written=dict(_ACTIVE_OBJECTS.get() or {})
     _need(used+sum(len(data) for h,data in objects.items() if h not in written)<=MAX_ACTIVE_BYTES,
           'Nested evidence exceeds temporary expansion allowance')

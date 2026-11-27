@@ -20,6 +20,7 @@ from .checkpoints import (
     list_checkpoints,
     select_checkpoint,
 )
+from .cif_doctor_repair import RECIPE_IDS
 from .config import AppConfig, ConfigError, default_config_path, load_config, save_config
 from .coot_runtime import (
     CootDiscoveryError,
@@ -42,8 +43,27 @@ from .postmr import PostMRPreparationError, prepare_postmr
 from .refine_doctor import RefineDoctorError, execute_refine_doctor
 
 
+class _SingleContinuation(argparse.Action):
+    """A command carrying one crystal edge must retain the user's complete choice."""
+
+    def __call__(self, parser, namespace, values, option_string=None):
+        previous = getattr(namespace, self.dest, None)
+        if previous is not None and previous != values:
+            raise argparse.ArgumentError(self, f"cannot combine continuation IDs {previous} and {values} in one request")
+        setattr(namespace, self.dest, values)
+
+
+def _phosphate_topology_arguments(parser, *, checkpoint=True):
+    parser.add_argument("--registration", type=Path, help="construct registration for the written source coordinates")
+    if checkpoint:
+        parser.add_argument("--registration-checkpoint", metavar="ID",
+                            help="follow a registered ancestor’s phosphate into the named descendant checkpoint")
+    parser.add_argument("--discovery-input", type=Path, help="registered strand-end discovery input")
+    parser.add_argument("--backbone-continuations", type=Path, help="explicit directed backbone connections and crystal images")
+
+
 def build_parser() -> argparse.ArgumentParser:
-    from .cif_generation_input import ORDINARY_INPUT_POLICY
+    from .cif_generation_input import ORDINARY_INPUT_POLICY, SOURCE_SELECTED_INPUT_POLICY
     parser = argparse.ArgumentParser(prog="nasolve", description="Guarded nucleic-acid structure solution")
     parser.add_argument("--phenix-root", help="one-run Phenix root, phenix_env.sh, or executable override")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -161,8 +181,10 @@ def build_parser() -> argparse.ArgumentParser:
     postmr.add_argument("--coot", help="one-run Coot executable override")
     postmr.add_argument("--checked-preparation", action="store_true",
                         help="check/repair dictionaries and save the exact model/restraints as a review checkpoint; retain independently checked fallbacks")
-    postmr.add_argument("--dictionary-input-policy", choices=(ORDINARY_INPUT_POLICY,),
-                        help="prepare source-preserving input for Phenix dictionary generation; original chemistry remains authoritative")
+    sugar_help = "build one internal locked sugar from the mutation card, source chemistry and NARestraints workbook"
+    postmr.add_argument("--locked-sugar-site", metavar="CHAIN:RESIDUE", help=sugar_help+" (requires --checked-preparation)")
+    postmr.add_argument("--dictionary-input-policy", choices=(ORDINARY_INPUT_POLICY, SOURCE_SELECTED_INPUT_POLICY),
+                        help="choose the Phenix input recipe (v1 uses one fixed representation, v2 selects a representation for each source)")
     postmr.add_argument("--automatic-plane-support", action="store_true",
                         help="request bounded source-checked support for missing planes; requires --checked-preparation")
     postmr.add_argument("--restraint-scope", choices=("all",),
@@ -224,6 +246,16 @@ def build_parser() -> argparse.ArgumentParser:
         "--checked-plane-forces", action="store_true",
         help="explicit native plane-force correction for this round (qualified Phenix build required)",
     )
+    phosphate_choice = autorefine.add_mutually_exclusive_group()
+    phosphate_choice.add_argument("--registered-continuation", type=int, action=_SingleContinuation, metavar="ID",
+        help="carry one declared crystal phosphate through ordinary refinement using checked plane forces and one worker")
+    phosphate_choice.add_argument("--registered-continuations", type=int, nargs="+", action="extend", metavar="ID",
+        help="fit these distinct crystal phosphates together from the same registration and carry the complete set into restarts")
+    _phosphate_topology_arguments(autorefine)
+    autorefine.add_argument("--prepared-backbone-source", type=Path, metavar="RUN",
+        help="fit a reviewed Coot/ReadySet candidate with the original Free-R flags. With --from postmr in the same run, use its recorded Coot construction. For an imported candidate give --registration-checkpoint")
+    autorefine.add_argument("--native-receipt", type=Path,
+        help="exact native chemistry receipt for this parent and its restraints; alone continues all inherited crystal phosphates")
     doctor = subparsers.add_parser(
         "refine-doctor",
         aliases=["refine_doctor"],
@@ -256,13 +288,14 @@ def build_parser() -> argparse.ArgumentParser:
     checked = cif_sub.add_parser("prepare-run", help="build and check modified-residue preparation; does not start refinement")
     checked.add_argument("run", type=Path, help="accepted AutoMR run; requires a fresh PostMR directory")
     checked.add_argument("--store", type=Path, help="optional dictionary-cache location; otherwise use the normal local cache")
+    checked.add_argument("--locked-sugar-site", metavar="CHAIN:RESIDUE", help=sugar_help)
     checked.add_argument("--coot", help="one-run Coot executable override")
     checked.add_argument("--allow-mr-review", action="store_true", help="explicitly allow a recorded MR_REVIEW result")
     checked.add_argument("--modified-pairs-only", action="store_true", help="restrain only pairs containing a modified nucleotide")
     checked.add_argument("--restraint-scope", choices=("all",), help="restrain all model-derived pairs and chain-order stacks")
     checked.add_argument("--allow-unreviewed-backbone", action="store_true", help="allow the declared experimental backbone passthrough")
-    checked.add_argument("--dictionary-input-policy", choices=(ORDINARY_INPUT_POLICY,),
-                        help="prepare source-preserving input for Phenix dictionary generation; original chemistry remains authoritative")
+    checked.add_argument("--dictionary-input-policy", choices=(ORDINARY_INPUT_POLICY, SOURCE_SELECTED_INPUT_POLICY),
+                        help="choose the Phenix input recipe (v1 uses one fixed representation, v2 selects a representation for each source)")
     checked.add_argument("--automatic-plane-support", action="store_true",
         help="obtain missing source-supported plane evidence through owned generation; repair/ReadySet qualification still applies")
     continued = cif_sub.add_parser("continue-preparation", help="start one fresh attempt from saved preparation after earlier work has stopped")
@@ -278,11 +311,63 @@ def build_parser() -> argparse.ArgumentParser:
     publish.add_argument("--as-alternative", action="store_true", help="save a later attempt as a separate REVIEW checkpoint from the same frozen construction; preserve the current selection")
     preparation_status = cif_sub.add_parser("preparation-status", help="read saved preparation attempts and whether work is still running")
     preparation_status.add_argument("run", type=Path)
+    backbone_review = cif_sub.add_parser("prepared-backbone", help="review local bonds, terminal phosphates and crystal partners on the recorded Coot construction")
+    backbone_review.add_argument("run", type=Path, help="ordinary AutoMR run with a recorded PostMR construction")
+    _phosphate_topology_arguments(backbone_review, checkpoint=False)
+    backbone_review.add_argument("--candidate-model", type=Path, help="compare this unselected model with the Coot construction, using the complete crystal registration and its native receipt")
+    backbone_review.add_argument("--native-receipt", type=Path, help="preserved Phenix interpretation of the candidate model and its ordered dictionaries and restraint files")
+    backbone_review.add_argument("--json", action="store_true", help="include model and dictionary identities, local bonds and measured image geometry")
     cif_catalogue = cif_sub.add_parser("catalogue", help="read-only NARestraints catalogue/source coverage census")
     cif_catalogue.add_argument("--workbook", required=True, type=Path, help="explicit NARestraints Ligands.xlsx")
     cif_catalogue.add_argument("--ccd-root", required=True, type=Path,
                                help="explicit CCD directory containing a/data_CODE.cif etc.; no discovery")
     cif_catalogue.add_argument("--json", action="store_true", help="print the complete coverage census")
+    deposition_links = cif_sub.add_parser("deposition-links", help="check ordinary nucleic-acid steps and declared O3'–P crystal links in a coordinate mmCIF")
+    deposition_links.add_argument("model", type=Path, help="exact coordinate mmCIF (requires NASolve[topology])")
+    deposition_links.add_argument("--processed", type=Path, help="optional returned coordinate mmCIF to check for missing covalent declarations")
+    deposition_links.add_argument("--max-step", type=float, default=2.2, metavar="ANGSTROMS", help="flag O3'–P distances above this length (default 2.2 Å)")
+    deposition_links.add_argument("--ordinary-steps", action="store_true", help="include each sequence step, its atom labels and three phosphate angles in the JSON reading")
+    deposition_links.add_argument("--json", action="store_true", help="print distances, image angles and both file hashes")
+    residue_geometry = cif_sub.add_parser("residue-geometry", help="inspect the bonds and angles Phenix used inside named residues")
+    residue_geometry.add_argument("model", type=Path, metavar="PDB_OR_RUN", help="exact PDB or a numbered run with --checkpoint")
+    residue_sites = residue_geometry.add_mutually_exclusive_group(required=True)
+    residue_sites.add_argument("--site", action="append", metavar="CHAIN:NUMBER", help="residue to inspect (repeatable)")
+    residue_sites.add_argument("--all-sites", action="store_true", help="screen every modeled residue and summarize the largest discrepancies")
+    residue_geometry.add_argument("--geometry", type=Path, metavar="FINAL_GEO", help="matching final Phenix geometry for an explicit PDB")
+    residue_geometry.add_argument("--checkpoint", help="explicit checkpoint ID or bookmark and its recorded final geometry")
+    reference = residue_geometry.add_mutually_exclusive_group()
+    reference.add_argument("--reference-pdb", type=Path, metavar="PDB", help="compare with this earlier PDB and its --reference-geometry")
+    reference.add_argument("--reference-checkpoint", metavar="ID", help="compare two explicit checkpoints in this run")
+    residue_geometry.add_argument("--reference-geometry", type=Path, metavar="GEO", help="matching Phenix geometry for --reference-pdb")
+    residue_geometry.add_argument("--json", action="store_true", help="print all observed rows, their origins and file hashes")
+    phosphate_image = cif_sub.add_parser("phosphate-image", help="inspect a named O3' crystal image at a phosphate (requires NASolve[topology])")
+    phosphate_image.add_argument("model", type=Path, metavar="PDB_OR_RUN", help="exact written PDB with CRYST1, or a numbered run with --checkpoint")
+    phosphate_image.add_argument("--checkpoint", help="read this checkpoint ID or bookmark and its recorded final geometry")
+    phosphate_image.add_argument("--phosphate", metavar="CHAIN:NUMBER", help="coordinate site containing P for an explicit or nearest-image inspection")
+    phosphate_image.add_argument("--o3", metavar="CHAIN:NUMBER", help="coordinate site containing O3' for an explicit or nearest-image inspection")
+    image_choice = phosphate_image.add_mutually_exclusive_group(required=True)
+    image_choice.add_argument("--o3-image", metavar="XYZ", help="full fractional operation applied to O3', including any cell translation")
+    image_choice.add_argument("--nearest-image", action="store_true", help="compare the closest two crystal copies of the named O3' to the named P")
+    image_choice.add_argument("--registered-continuation", type=int, action=_SingleContinuation, metavar="ID",
+                              help="read this declared O3'-to-P connection in its registered source frame")
+    image_choice.add_argument("--saved-continuation", action="store_true",
+                              help="read the crystal bond and native forces saved by this numbered phosphate refinement")
+    image_choice.add_argument("--saved-continuation-id", type=int, action=_SingleContinuation, metavar="ID",
+                              help="inspect this member of the phosphate set fitted in the named checkpoint")
+    phosphate_image.add_argument("--restraint-deviations", action="store_true",
+                                help="measure the saved fit's bond, four angles and three torsions against the native targets and intact links")
+    phosphate_image.add_argument("--flanking-geometry", action="store_true",
+                                help="read the fitted bond and both residues' internal bonds and angles alongside the matching intact links")
+    phosphate_image.add_argument("--torsion-response", action="store_true",
+                                help="also report each periodic torsion's barrier height fraction and relative turning force")
+    _phosphate_topology_arguments(phosphate_image)
+    phosphate_image.add_argument("--duplex-partners", nargs=2, metavar=("O3_PARTNER", "P_PARTNER"),
+                                 help="measure oxygen direction across two assigned stacked pairs; give each opposite CHAIN:NUMBER")
+    phosphate_image.add_argument("--partner-images", nargs=2, metavar=("O3_MATE", "P_MATE"),
+                                 help="crystal image of each partner relative to its paired residue (default x,y,z for both)")
+    phosphate_image.add_argument("--geometry", type=Path, help="optional matching Phenix GEO with printed bonds and nonbonded contacts")
+    phosphate_image.add_argument("--native-receipt", type=Path, help="optional preserved linked native capture for intact backbone references in the same model")
+    phosphate_image.add_argument("--json", action="store_true", help="include exact inputs, atom inventory and printed terms")
     cif_link_native = cif_sub.add_parser("link-native", help="read-only comparison of source links with a preserved native capture")
     cif_link_native.add_argument("manifest", type=Path, help="explicit source-link manifest")
     cif_link_native.add_argument("--native-receipt", required=True, type=Path, help="exact preserved native_receipt.json; no native execution")
@@ -318,6 +403,24 @@ def build_parser() -> argparse.ArgumentParser:
     cif_assess.add_argument("--run", type=Path, help="assess a completed run's frozen checkpoint bundle")
     cif_assess.add_argument("--bundle", type=Path, help="assess an activated portable runtime bundle")
     cif_assess.add_argument("--checkpoint", help="checkpoint ID/bookmark (requires --run)")
+    cif_assess.add_argument("--template-bonds", action="store_true",
+                            help="measure heavy-atom bonds in each dictionary coordinate set against its own distance targets")
+    cif_assess.add_argument("--bond-targets", nargs="?", const=True, type=Path, metavar="GEO",
+                            help="compare the bond lengths and sigmas Phenix requested with the supplied CIFs; give a GEO with --model, or use the recorded geometry with --run")
+    cif_assess.add_argument("--b-factors-at", action="append", metavar="CHAIN:NUMBER",
+                            help="read a residue's saved B factors and occupancies and compare them with the refinement parent (requires --run)")
+    cif_assess.add_argument(
+        "--refined-planes", nargs="?", const=True, type=Path, metavar="GEO",
+        help="inspect component planes and measure ring-to-tip distances with a model and its GEO, or at a named run checkpoint",
+    )
+    cif_assess.add_argument(
+        "--refined-links", action="store_true",
+        help="compare inter-residue bonds at Phenix preflight and after refinement with the checked preparation (requires --run)",
+    )
+    cif_assess.add_argument(
+        "--contacts-at", action="append", metavar="CHAIN:NUMBER",
+        help="read Phenix nonbonded contacts for this residue before and after refinement; may be repeated (requires --run)",
+    )
     cif_assess.add_argument("--model", type=Path, help="optional PDB atom inventory (standalone only)")
     cif_assess.add_argument("--stage", choices=("source", "effective", "standalone"), default="standalone")
     cif_assess.add_argument("--output", type=Path, help="new JSON receipt; existing files are refused")
@@ -330,7 +433,7 @@ def build_parser() -> argparse.ArgumentParser:
     cif_prepare = cif_sub.add_parser("prepare", help="write an explicit source-preserving derivative")
     cif_prepare.add_argument("dictionary", type=Path)
     cif_prepare.add_argument("--recipe", required=True,
-                             choices=("torsion-alternates-v1", "5cm-reviewed-torsion-v1"))
+                             choices=RECIPE_IDS)
     cif_prepare.add_argument("--output", required=True, type=Path, help="new candidate CIF path")
     cif_prepare.add_argument("--report", type=Path, help="new JSON preparation receipt")
     cif_prepare.add_argument("--json", action="store_true", help="print the full JSON receipt")
@@ -885,6 +988,8 @@ def _automr(args: argparse.Namespace) -> int:
 
 def _postmr(args: argparse.Namespace) -> int:
     try:
+        if getattr(args,"locked_sugar_site",None) is not None and not getattr(args,"checked_preparation",False):
+            raise PostMRPreparationError("--locked-sugar-site requires --checked-preparation")
         if getattr(args, "automatic_plane_support", False) and not getattr(args, "checked_preparation", False):
             raise PostMRPreparationError("--automatic-plane-support requires --checked-preparation")
         if getattr(args, "dictionary_input_policy", None) is not None and not getattr(args, "checked_preparation", False):
@@ -914,6 +1019,7 @@ def _postmr(args: argparse.Namespace) -> int:
             restraint_scope=args.restraint_scope,
             allow_unreviewed_backbone=args.allow_unreviewed_backbone,
             checked_preparation=getattr(args, "checked_preparation", False),
+            **({"locked_sugar_site": args.locked_sugar_site} if getattr(args,"locked_sugar_site",None) is not None else {}),
             **({"automatic_plane_support": True} if getattr(args, "automatic_plane_support", False) else {}),
             **({"dictionary_input_policy": args.dictionary_input_policy}
                if getattr(args, "dictionary_input_policy", None) is not None else {}),
@@ -1080,6 +1186,11 @@ def _format_metric(value: object, digits: int = 3) -> str:
 
 def _autorefine(args: argparse.Namespace) -> int:
     try:
+        from .refinement_phosphate import request_from_args
+        try:
+            phosphate = request_from_args(args)
+        except ValueError as exc:
+            raise AutoRefineError(str(exc)) from exc
         config = load_config()
         run = _workspace_run(args.run, config)
         phenix = discover_phenix(config, explicit=args.phenix_root)
@@ -1094,12 +1205,14 @@ def _autorefine(args: argparse.Namespace) -> int:
             print(f"AutoRefine {checkpoint_id} started; full output: {log_path}")
 
         runtime_options = {}
-        if args.checked_plane_forces:
+        if args.checked_plane_forces or phosphate is not None:
             python_executable = phenix.executables.get("phenix.python")
             if python_executable is None:
                 raise AutoRefineError("Checked plane forces require the configured phenix.python")
             runtime_options = dict(correct_native_parallelity=True,
                                    phenix_python_executable=python_executable)
+            if phosphate is not None:
+                runtime_options["phosphate_request"] = phosphate
         result = execute_autorefine(
             run,
             phenix.executables["phenix.refine"],
@@ -1671,6 +1784,159 @@ def _cif_site_plan(args: argparse.Namespace) -> int:
         return 1
 
 
+def _cif_phosphate_image(args: argparse.Namespace) -> int:
+    from .cif_phosphate_image import inspect_phosphate_image
+
+    try:
+        registered = None
+        source_paths = (args.registration, args.discovery_input, args.backbone_continuations)
+        if args.registered_continuation is not None:
+            from .cif_phosphate_continuation import RegisteredContinuation
+            if None in source_paths:
+                raise ValueError("A registered continuation needs --registration, --discovery-input and --backbone-continuations")
+            registered = RegisteredContinuation(args.registered_continuation, *source_paths)
+        elif any(path is not None for path in source_paths):
+            raise ValueError("Topology input files require --registered-continuation ID")
+        options = dict(phosphate=args.phosphate, o3=args.o3, o3_image=args.o3_image,
+                       nearest_image=args.nearest_image, native_receipt=args.native_receipt, registered=registered,
+                       duplex_partners=args.duplex_partners, partner_images=args.partner_images)
+        if args.registration_checkpoint is not None:
+            if args.checkpoint is None or registered is None:
+                raise ValueError("--registration-checkpoint needs a numbered run, --checkpoint and --registered-continuation")
+            options["registration_checkpoint"] = args.registration_checkpoint
+        if args.restraint_deviations or args.torsion_response or args.flanking_geometry:
+            if args.checkpoint is None:
+                raise ValueError("Restraint deviations require a saved continuation in a numbered checkpoint")
+            options["restraint_deviations"] = True
+            if args.torsion_response:
+                options["torsion_response"] = True
+            if args.flanking_geometry:
+                options["flanking_geometry"] = True
+        if args.checkpoint is None:
+            if args.saved_continuation or args.saved_continuation_id is not None:
+                raise ValueError("--saved-continuation needs a numbered run and --checkpoint")
+            result = inspect_phosphate_image(args.model, geometry=args.geometry, **options)
+        else:
+            from .cif_doctor_run import read_checkpoint_phosphate_image
+            if args.geometry is not None:
+                raise ValueError("Checkpoint inspection uses its recorded geometry. To supply a GEO, give a PDB path without --checkpoint.")
+            if args.saved_continuation_id is not None:
+                options["saved_continuation_id"] = args.saved_continuation_id
+            result = read_checkpoint_phosphate_image(args.model, checkpoint=args.checkpoint,
+                                                     saved_continuation=args.saved_continuation, **options)
+    except (OSError, ValueError, RuntimeError) as exc:
+        print(f"CIF Doctor: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print(json.dumps(result, indent=2, sort_keys=True, allow_nan=False))
+    else:
+        if "checkpoint" in result:
+            print(f"Checkpoint {result['checkpoint']['id']}.")
+            fit = result.get("numbered_refinement")
+            if fit is not None:
+                terms, counts = fit["native_forces"], fit["reflections"]
+                if "registered_continuation_ids" in fit:
+                    ids = ", ".join(map(str, fit["registered_continuation_ids"]))
+                    print(f"Phenix fitted parent {fit['parent']} with continuation IDs {ids} together.")
+                    subject = f"Continuation {result['registered_continuation']['continuation_id']} contributed"
+                else:
+                    subject = f"Phenix fitted parent {fit['parent']} with"
+                print(f"{subject} {terms['bond_simple']} crystal bond, {terms['angle']} angles and {terms['dihedral']} torsions.")
+                print(f"Working reflections {counts['start']['work']} → {counts['finish']['work']}. "
+                      f"Free reflections {counts['start']['free']} → {counts['finish']['free']}.")
+                if "written_restraint_geometry" in fit:
+                    for term in fit["written_restraint_geometry"]["terms"]:
+                        names = "–".join(atom for _, atom in term["atoms"])
+                        measurement = term["written"]
+                        if measurement["value"] is None:
+                            print(f"{names} unmeasured. {measurement['reason']}.")
+                        else:
+                            unit = "Å" if term["kind"] == "bond_simple" else "°"
+                            print(f"{names} {measurement['value']:.3f}{unit}, target {term['target']:.3f}{unit}, "
+                                  f"{measurement['delta_in_widths']:+.2f} restraint widths.")
+                            response = measurement.get("periodic_response")
+                            if response and response["status"] == "MEASURED":
+                                print(f"  This torsion is at {response['fraction_of_barrier']:.1%} of its barrier "
+                                      f"with {response['fraction_of_peak_slope']:.1%} of its peak turning force.")
+                            elif response:
+                                print(f"  Turning force unassessed. {response['reason']}.")
+            if fit and "flanking_residue_geometry" in fit:
+                from .refinement_residue_geometry import print_residue_geometry
+
+                flanks = fit["flanking_residue_geometry"]
+                print("Residues beside the crystal bond  " + " → ".join(flanks["junction"]))
+                print("Matching intact links  " + ", ".join(" → ".join(pair) for pair in flanks["ordinary_links"]))
+                print_residue_geometry(flanks, rows_per_site=1)
+            transfer = result.get("registered_continuation", {}).get("frame_transfer")
+            if transfer is not None:
+                print(f"Registration from {transfer['source_checkpoint']}. "
+                      f"Same crystal copies for {transfer['atom_count']} occupied atoms at the two residues.")
+            if result["printed_geometry"] is None:
+                print("This checkpoint has no recorded final geometry. Measurements use its saved coordinates.")
+        declared = result.get("registered_continuation")
+        if declared is not None:
+            donor, acceptor = declared["source"], declared["target"]
+            print(f"Registered continuation {declared['continuation_id']} from {donor['logical_site']} O3' "
+                  f"to {acceptor['logical_site']} P in image {declared['target_operator_xyz']}.")
+            if declared["measurement_status"] == "UNRESOLVED":
+                print(f"Coordinate measurement unavailable. {declared['reason']}.")
+                return 0
+        ranking = result.get("image_ranking")
+        if ranking is not None:
+            for label, row in zip(("Nearest", "Next nearest"), ranking["closest_two"]):
+                print(f"{label} copy of {args.o3} O3'  {row['image']['operator_xyz']}  {row['distance_A']:.3f} Å")
+            if result["o3_image"] is None:
+                print("The saved coordinate precision leaves the image ambiguous. Supply --o3-image to inspect a chosen copy.")
+                return 0
+        print(f"{result['phosphate'][0]} P to {result['o3'][0]} O3' in image {result['o3_image']} measures {result['distance_A']:.3f} Å.")
+        present = [name for name, atom in result["phosphate_atoms"].items() if atom is not None]
+        print("Phosphate site contains " + ", ".join(present) + ".")
+        direction = result.get("duplex_direction")
+        if direction is not None:
+            if direction["status"] == "MEASURED":
+                print(f"OP1/OP2 midpoint relative to the declared duplex step (positive points outward): "
+                      f"{direction['ring_centres']['midpoint_A']:+.3f} Å from base rings, "
+                      f"{direction['c1_midpoints']['midpoint_A']:+.3f} Å from sugar positions.")
+            else:
+                print(f"Duplex direction unavailable. {direction['reason']}.")
+        print("Angles from the written coordinates")
+        for name, angle in result["coordinate_angles_degrees"].items():
+            print(f"  {name}  {angle:.2f}°" if angle is not None else f"  {name}  unavailable")
+        if result["printed_geometry"] is not None:
+            for kind in ("bonds", "nonbonded"):
+                table = result["printed_geometry"][kind]
+                if table["matches"] is None:
+                    print(f"Printed {kind}  {table.get('reason') or table['status']}")
+                else:
+                    print(f"Printed {kind} at this image  {len(table['matches'])}")
+                    for row in table["matches"]:
+                        reference = (f"target {row['ideal_A']:.3f}" if kind == "bonds"
+                                     else f"van der Waals {row['vdw_A']:.3f}")
+                        print(f"  {row['origin']}  {row['model_A']:.3f} Å, {reference} Å"
+                              f" (printed minus coordinate {row['printed_minus_coordinate_A']:+.3f} Å)")
+            angles = result["printed_geometry"]["angles"]
+            if angles["matches"] is None:
+                print(f"Printed bond angles  {angles.get('reason') or angles['status']}")
+            else:
+                print(f"Printed angles involving these atoms  {len(angles['matches'])}")
+                descriptions = {"ASYMMETRIC_UNIT": "matches the asymmetric unit alone",
+                                "CRYSTAL_MATE": "matches the named crystal mate alone", "BOTH": "fits both coordinate readings",
+                                "NEITHER": "differs from both coordinate readings", "UNAVAILABLE": "coordinate comparison unavailable"}
+                for row in angles["matches"]:
+                    image_note = " (different image printed)" if row["image_relation"] == "OTHER_IMAGE" else ""
+                    print(f"  {row['angle']}  GEO {row['model_degrees']:.2f}° {descriptions[row['coordinate_agreement']]}{image_note}")
+        reference = result.get("native_reference_links")
+        if reference is not None:
+            print("Intact links with matching residue definitions  " + reference.get("reference_status", reference["status"]))
+            if reference.get("reason"):
+                print("  " + reference["reason"])
+            for group in reference["groups"]:
+                pairs = ", ".join(source + " to " + target for source, target in group["links"])
+                print(f"  {pairs} share {len(group['terms'])} recorded covalent terms")
+    flanks = result.get("numbered_refinement", {}).get("flanking_residue_geometry")
+    return 2 if flanks and flanks["status"] != "OBSERVED" else 0
+
+
 def _cif_link_native(args: argparse.Namespace) -> int:
     from .cif_attachment_native import inspect_native_attachment_links
 
@@ -1719,9 +1985,41 @@ def _cif_link_plan(args: argparse.Namespace) -> int:
         return 1
 
 
+def _cif_prepared_backbone(run, *, registration=None, discovery=None, continuations=None,
+                           candidate_model=None, native_receipt=None, as_json=False):
+    from .cif_prepared_backbone import review_prepared_backbone
+    try:
+        report = review_prepared_backbone(run, registration=registration, discovery=discovery, continuations=continuations,
+                                          candidate_model=candidate_model, native_receipt=native_receipt)
+    except (OSError, ValueError, ImportError, RuntimeError) as exc:
+        print(f"Could not review the prepared backbone: {exc}", file=sys.stderr)
+        return 2
+    if as_json:
+        print(json.dumps(report, indent=2, sort_keys=True, allow_nan=False))
+        return 0
+    print("Recorded Coot construction: " + report["prepared_model"]["path"])
+    print("Local O3′–P bonds: " + str(len(report["local_links"])))
+    print("Protected terminal phosphates: " + (", ".join(report["protected_terminal_phosphates"]) or "none"))
+    open_sites = [row["site"] for row in report["without_local_incoming"]]
+    print("Phosphates without a local incoming O3′: " + (", ".join(open_sites) or "none"))
+    for row in report["registered_continuations"]:
+        print(f"  {row['o3_site']} O3′ ({row['o3_image']}) to {row['phosphate_site']} P: {row['distance_A']:.3f} Å")
+    if open_sites and registration is None:
+        print("To check the assigned crystal partners, supply --registration, --discovery-input and --backbone-continuations to cif-doctor prepared-backbone.")
+    print("These measurements describe the construction before refinement.")
+    if "native_candidate" in report:
+        candidate = report["native_candidate"]
+        print(f"Unselected candidate read by Phenix {candidate['phenix_version']}: {candidate['candidate_model_sha256']}")
+        for row in candidate["registered_continuations"]:
+            print(f"  {row['o3_site']} O3′ to {row['phosphate_site']} P measures {row['distance_A']:.3f} Å "
+                  f"({len(row['matched_local_links'])} intact reference links, target {row['native_bond_target_A']:.3f} Å)")
+    return 0
+
+
 def _cif_checked_preparation(args: argparse.Namespace) -> int:
     """Explain the existing owner's result without promoting it to refinement."""
     from .campaign_process import CampaignProcessError
+    from .phosphate import UnverifiedIncomingPhosphate
     from .cif_ordinary_postmr import (
         _ordinary_request_directory, continue_checked_postmr, prepare_checked_postmr,
         read_ordinary_postmr_result,
@@ -1730,12 +2028,27 @@ def _cif_checked_preparation(args: argparse.Namespace) -> int:
     try:
         if args.cif_action == "preparation-status":
             from .cif_complete_request import inspect_dictionary_request
+            from .postmr_lineage import RECORD_PATH
             state = inspect_dictionary_request(_ordinary_request_directory(run))
             print(f"Preparation: {state['state']}")
             print(f"Further attempt: {state['availability']}")
+            if state["state"] == "NOT_RECORDED" and (run / RECORD_PATH).is_file():
+                print("Coot returned a construction. There is no published dictionary request.")
+                print("Inspect its backbone: " + shlex.join(["nasolve", "cif-doctor", "prepared-backbone", str(run)]))
+                return 0
             for row in state['attempts']:
                 print(f"Attempt {row['number']}: {row['state']}")
-            print("A new attempt requires every earlier process to be known stopped.")
+                if row['state'] == 'STOPPED_UNFINISHED':
+                    print("  The recorded processes have stopped. The completion record is missing.")
+                    repair = row['children'].get('repair', {})
+                    if repair.get('state') == 'STOPPED' and repair['finished']['outcome'] == 'RAISED':
+                        print("  Dictionary repair ended with an error.")
+                    if row['children'].get('continuation', {}).get('state') == 'NOT_CREATED':
+                        print("  The run stopped before its ReadySet continuation.")
+            if state['availability'] == 'EXHAUSTED':
+                print("This request has used all its allowed attempts.")
+            else:
+                print("A new attempt requires every earlier process to be known stopped.")
             return 0
         if args.cif_action == "prepared-result":
             result = read_ordinary_postmr_result(run, attempt_number=args.attempt)
@@ -1755,6 +2068,7 @@ def _cif_checked_preparation(args: argparse.Namespace) -> int:
                 from .cif_generation_input import ordinary_generation_options
                 generation_options = ordinary_generation_options(args.dictionary_input_policy)
                 result = prepare_checked_postmr(run, phenix, store_root=args.store,
+                    **({"locked_sugar_site":args.locked_sugar_site} if args.locked_sugar_site is not None else {}),
                     coot_executable=coot.executable if coot else None,
                     allow_mr_review=args.allow_mr_review, restraint_scope=args.restraint_scope,
                     modified_pairs_only=args.modified_pairs_only,
@@ -1764,8 +2078,12 @@ def _cif_checked_preparation(args: argparse.Namespace) -> int:
     except (OSError, ValueError, ConfigError, CootDiscoveryError, PhenixDiscoveryError,
             PostMRPreparationError, CampaignProcessError, TimeoutError) as exc:
         print(f"Preparation could not complete: {exc}", file=sys.stderr)
-        print("Read saved attempts: " + shlex.join([
-            "nasolve", "cif-doctor", "preparation-status", str(run)]), file=sys.stderr)
+        if isinstance(exc, UnverifiedIncomingPhosphate):
+            print("Inspect the recorded construction: " + shlex.join([
+                "nasolve", "cif-doctor", "prepared-backbone", str(run)]), file=sys.stderr)
+        else:
+            print("Read saved attempts: " + shlex.join([
+                "nasolve", "cif-doctor", "preparation-status", str(run)]), file=sys.stderr)
         return 2
     print(result.message)
     print(f"ReadySet: {result.readyset_status}")
@@ -1811,8 +2129,70 @@ def _cif_publish_preparation(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cif_deposition_links(args: argparse.Namespace) -> int:
+    from .cif_deposition_links import inspect_deposition_links
+
+    try:
+        result = inspect_deposition_links(args.model, processed=args.processed, maximum=args.max_step,
+                                          include_ordinary_steps=args.ordinary_steps)
+    except (OSError, ValueError, RuntimeError) as exc:
+        print(f"CIF Doctor: {exc}", file=sys.stderr)
+        return 1
+    if args.json:
+        print(json.dumps(result, indent=2, allow_nan=False))
+    else:
+        for name in ("model", "processed"):
+            if name in result:
+                data = result[name]
+                steps = data["ordinary"]
+                print(f"{name.capitalize()}: {steps['measured']} ordinary steps measured, "
+                      f"{len(steps['long_steps'])} long, {len(steps['unmeasured'])} unmeasured, "
+                      f"{len(steps['sequence_gaps'])} sequence gaps. "
+                      f"{len(data['declared'])} declared O3'-P links.")
+                if "steps" in steps:
+                    complete = sum(row["status"] == "MEASURED" for row in steps["steps"])
+                    print(f"  {complete} of {len(steps['steps'])} ordinary steps have complete phosphate geometry within the distance limit.")
+                for step in steps["long_steps"][:5]:
+                    names = []
+                    for side in ("from", "to"):
+                        author = step.get(side + "_author")
+                        names.append("".join(author) if author else f"{step['label_asym_id']}/{step[side + '_label_seq_id']}")
+                    print(f"  {names[0]} to {names[1]}: {step['distance_A']:.3f} Å")
+        if "comparison" in result:
+            missing = result["comparison"]["missing"]
+            print("Processed comparison requires review." if missing is None else
+                  f"{len(missing)} source covalent declarations missing from the returned coordinates.")
+        print(f"{result['status']}. Use --json for individual sites and crystal images.")
+    return 0 if result["status"] == "CHECKED" else 2
+
+
 def _cif_doctor(args: argparse.Namespace) -> int:
     """Offline assessment/preparation and explicitly requested native candidates."""
+    if args.cif_action == "deposition-links":
+        return _cif_deposition_links(args)
+    if args.cif_action == "residue-geometry":
+        from .refinement_residue_geometry import inspect_residue_geometry, print_residue_geometry
+        try:
+            result = inspect_residue_geometry(args.model, args.site, geometry=args.geometry, checkpoint=args.checkpoint,
+                                             reference_pdb=args.reference_pdb, reference_geometry=args.reference_geometry,
+                                             reference_checkpoint=args.reference_checkpoint)
+        except (OSError, ValueError, CheckpointError) as exc:
+            print(str(exc), file=sys.stderr)
+            return 1
+        if args.json:
+            print(json.dumps(result, indent=2, sort_keys=True, allow_nan=False))
+        elif "reference" in result:
+            from .refinement_geometry_change import print_geometry_change
+            print_geometry_change(result)
+        else:
+            print_residue_geometry(result)
+        return 0 if result["status"] == "OBSERVED" else 2
+    if args.cif_action == "phosphate-image":
+        return _cif_phosphate_image(args)
+    if args.cif_action == "prepared-backbone":
+        return _cif_prepared_backbone(args.run.expanduser(), registration=args.registration,
+            discovery=args.discovery_input, continuations=args.backbone_continuations, as_json=args.json,
+            candidate_model=args.candidate_model, native_receipt=args.native_receipt)
     if args.cif_action == "publish-preparation":
         return _cif_publish_preparation(args)
     if args.cif_action in {"prepare-run", "continue-preparation", "prepared-result", "preparation-status"}:
@@ -1873,21 +2253,69 @@ def _cif_doctor(args: argparse.Namespace) -> int:
             }
             receipt = args.output.expanduser() if args.output is not None else None
         else:
+            if args.refined_planes is True and args.run is None:
+                raise ValueError("--refined-planes requires --run or an explicit GEO path with --model PDB")
+            if args.contacts_at and args.run is None:
+                raise ValueError("--contacts-at requires --run")
+            if args.b_factors_at and args.run is None:
+                raise ValueError("--b-factors-at requires --run")
+            if args.refined_links and args.run is None:
+                raise ValueError("--refined-links requires --run")
             if args.bundle is not None:
+                if args.refined_planes is not None:
+                    raise ValueError("Printed planes need a numbered run or an explicit model and GEO")
+                if args.bond_targets is not None:
+                    raise ValueError("Bond target inspection needs a numbered run or an explicit model and GEO")
                 if args.run is not None or args.dictionaries or args.model is not None or args.checkpoint is not None or args.stage != "standalone":
                     raise ValueError("--bundle selects its frozen model/resources; omit --run, dictionaries, --model, --checkpoint and --stage")
                 from .cif_runtime_bundle import assess_runtime_bundle
-                payload = assess_runtime_bundle(args.bundle)
+                payload = assess_runtime_bundle(args.bundle, template_bonds=args.template_bonds)
             elif args.run is not None:
+                if args.refined_planes is not None and args.refined_planes is not True:
+                    raise ValueError("--run uses its recorded geometry. Give --refined-planes without a GEO path.")
+                if args.bond_targets is not None and args.bond_targets is not True:
+                    raise ValueError("--run uses its recorded geometry. Give --bond-targets without a GEO path.")
                 if args.dictionaries or args.model is not None or args.stage != "standalone":
                     raise ValueError("--run selects its frozen model/bundle; omit dictionaries, --model and --stage")
-                payload = assess_run(args.run, checkpoint=args.checkpoint)
+                payload = assess_run(args.run, checkpoint=args.checkpoint, refined_planes=bool(args.refined_planes),
+                                     refined_links=args.refined_links, contact_sites=args.contacts_at,
+                                     b_factor_sites=args.b_factors_at, bond_targets=args.bond_targets is True,
+                                     template_bonds=args.template_bonds)
             else:
                 if not args.dictionaries or args.checkpoint is not None:
                     raise ValueError("Provide dictionary paths, or --run with an optional --checkpoint")
                 paths = [path.expanduser().resolve() for path in args.dictionaries]
                 model = args.model.expanduser().resolve() if args.model is not None else None
+                if args.bond_targets is not None and (model is None or args.bond_targets is True):
+                    raise ValueError("Standalone --bond-targets requires a GEO path and --model PDB")
+                if args.refined_planes is not None and model is None:
+                    raise ValueError("Standalone --refined-planes requires a GEO path and --model PDB")
                 payload = assess_dictionaries(paths, stage=args.stage, model=model)
+                if args.template_bonds:
+                    from .cif_template_bonds import read_template_bonds
+                    payload["template_bonds"] = read_template_bonds(paths, payload)
+                if args.bond_targets is not None or args.refined_planes is not None:
+                    from .model_assessment import file_sha256
+                    from .refinement_component_bonds import apply_bond_target_review, read_component_bond_targets
+                    from .refinement_component_planes import read_component_planes
+                    readings = (
+                        ("refined_bond_targets", args.bond_targets, read_component_bond_targets),
+                        ("refined_printed_planes", args.refined_planes, read_component_planes),
+                    )
+                    for key, requested, reader in readings:
+                        if requested is None:
+                            continue
+                        geometry = requested.expanduser()
+                        options = {"restraint_inputs": zip(paths, payload["inputs"], strict=True)} if key == "refined_bond_targets" else {}
+                        observed = reader(model, geometry, payload["components"], **options)
+                        if observed["model_sha256"] != payload["model"].get("sha256"):
+                            raise ValueError("Model changed during printed geometry inspection")
+                        observed["geometry"] = {"anchor": "geometry-input", "relative_path": geometry.name, "sha256": observed["geometry_sha256"]}
+                        payload[key] = observed
+                    if any(file_sha256(path) != item["sha256"] for path, item in zip(paths, payload["inputs"], strict=True)):
+                        raise ValueError("Dictionary changed during printed geometry inspection")
+                    if args.bond_targets is not None:
+                        apply_bond_target_review(payload)
                 root = Path(os.path.commonpath([str(path.parent) for path in paths]))
                 for item, path in zip(payload["inputs"], paths):
                     item.update({"anchor": "inputs", "relative_path": path.relative_to(root).as_posix()})
@@ -1910,6 +2338,152 @@ def _cif_doctor(args: argparse.Namespace) -> int:
             print(text, end="")
         else:
             print(f"CIF Doctor: {payload.get('status', 'PREPARED')}")
+            for item in payload.get("template_bonds", {}).get("components", []):
+                label = f"Dictionary {item['input_index'] + 1}, {item['component']}"
+                if "reason" in item:
+                    print(f"{label} template bonds unavailable ({item['reason']}).")
+                for coords in item["coordinate_sets"]:
+                    measured = [r for r in coords["bonds"] if "distance_A" in r]
+                    print(f"{label}, {coords['family']} measured {len(measured)}/{len(coords['bonds'])} heavy-atom bonds.")
+                    if measured:
+                        row = max(measured, key=lambda r: abs(r["minus_target_A"]))
+                        print(f"  {'–'.join(row['atoms'])} has the largest difference. "
+                              f"Coordinates {row['distance_A']:.3f} Å, target {row['target_A']:.3f} Å.")
+            for field, stage in (("preflight_printed_planes", "Preflight"), ("refined_printed_planes", "Final")):
+                if field not in payload:
+                    continue
+                reading = payload[field]
+                for arm in ((reading or {}).get("written_ring_arms") or [])[:8]:
+                    if arm["status"] == "MEASURED":
+                        tip = arm["arm_atoms"][-1]
+                        height = arm["arm_distances_angstrom"][tip]
+                        print(f"{stage} {arm['site']} {arm['component']} {tip} is {height:.3f} Å from its six-atom ring.")
+                    else:
+                        print(f"{stage} {arm['site']} {arm['component']} arm geometry unavailable. {arm['reason']}.")
+                if not reading or reading["sites"] is None:
+                    reason = (reading["reason"] or reading["status"]) if reading else "no recorded GEO"
+                    print(f"{stage} printed component planes unavailable ({reason}).")
+                    continue
+                sites = reading["sites"]
+                sources = [(site, plane) for site in sites for plane in site["dictionary_planes"] or []]
+                mismatches = [(site, plane) for site, plane in sources if plane["status"] != "EXACT_MODELED_MEMBERS"]
+                print(f"{stage} covalent planes  {len(sources) - len(mismatches)} of {len(sources)} CIF planes "
+                      f"have exactly the modeled atoms as positive-weight members.")
+                if any(s["dictionary_planes"] is None for s in sites):
+                    print("Conflicting CIF definitions leave additional sites unassessed.")
+                for site, plane in mismatches[:8]:
+                    missing = plane["modeled_atoms_without_positive_covalent_plane"]
+                    detail = "  No positive covalent plane contains " + ", ".join(missing) + "." if missing else ""
+                    print(f"  {site['site']} {site['component']} {plane['plane_id']}  {plane['status']}.{detail}")
+            for field, stage in (("preflight_bond_targets", "Preflight"), ("refined_bond_targets", "Final")):
+                if field not in payload:
+                    continue
+                bonds = payload[field]
+                if bonds is None or bonds["counts"] is None:
+                    detail = (bonds.get("reason") or bonds["status"]) if bonds else "no recorded geometry"
+                    print(f"{stage} bond target comparison unavailable ({detail}).")
+                    continue
+                counts = bonds["counts"]
+                changes = sum(n for kind, n in counts.items() if kind in {"TARGET_DIFFERS", "TARGET_AND_SIGMA_DIFFER"})
+                changed_sigma = counts.get("SIGMA_DIFFERS", 0) + counts.get("TARGET_AND_SIGMA_DIFFER", 0)
+                print(f"{stage} bond targets in supplied components  {sum(counts.values())} printed bonds, "
+                      f"{changes} different lengths, {changed_sigma} different sigmas.")
+                for row in [r for r in bonds["observations"] if r["comparison"] in {"TARGET_DIFFERS", "TARGET_AND_SIGMA_DIFFER"}][:8]:
+                    print(f"  {row['site']} {row['component']} {'–'.join(row['atoms'])}  CIF {row['dictionary_ideal_A']:.3f} Å, "
+                          f"Phenix {row['printed_ideal_A']:.3f} Å ({row['origin']}), model {row['model_A']:.3f} Å.")
+                files = {entry["input_index"]: entry["name"] for entry in bonds.get("edit_inputs", [])}
+                matches = [(row, edit) for row in bonds["observations"] for edit in row.get("explicit_bond_edits", [])
+                           if edit["matches_printed_parameters"]]
+                for row, edit in matches[:8]:
+                    print(f"  {row['site']} {row['component']} {'–'.join(row['atoms'])}  Printed target and sigma match "
+                          f"{files[edit['input_index']]} (line {edit['line']}).")
+            if "b_factors" in payload:
+                for site, group in payload["b_factors"]["sites"].items():
+                    if group.get("b_change_range_A2") is not None:
+                        low, high = group["b_change_range_A2"]
+                        print(f"{site} {group['component']} B changes span {low:+.2f} to {high:+.2f} Å² "
+                              f"across {group['matched_atoms']} of {len(group['atoms'])} atoms. "
+                              f"Occupancies changed for {group['changed_occupancies']}.")
+                    elif group["status"] == "PARTIAL":
+                        print(f"{site} {group['component']} has no matching atom identities across the two models.")
+                    elif group["status"] == "SELECTED_ONLY":
+                        print(f"{site} {group['component']} has {len(group['atoms'])} saved B readings "
+                              "with no verified refinement parent for comparison.")
+                    else:
+                        print(f"{site} B factors are unavailable. {group['reason']}")
+            for field, stage in (("preflight_contacts", "Preflight"), ("refined_contacts", "Refined")):
+                if field not in payload:
+                    continue
+                contacts = payload[field]
+                if contacts is None:
+                    print(f"{stage} nonbonded geometry is unavailable.")
+                elif contacts["status"] != "OBSERVED":
+                    print(f"{stage} nonbonded contacts were {contacts['status']}. {contacts['reason'] or ''}".rstrip())
+                else:
+                    for site, group in contacts["sites"].items():
+                        atoms = group["atoms"]
+                        shorter = sum(values["shorter_than_vdw"] > 0 for values in atoms.values())
+                        print(f"{stage} {site} {group['component']}: {shorter} of {len(atoms)} atoms have a "
+                              "reported distance below the Phenix van der Waals distance.")
+            for field, stage in (("preflight_links", "Preflight"), ("refined_links", "Refined")):
+                if field not in payload:
+                    continue
+                links = payload[field]
+                checkpoint = payload["run_context"]["checkpoint"]["id"]
+                if links is None:
+                    name = "isolated preflight" if field == "preflight_links" else "final"
+                    print(f"{checkpoint} has no frozen {name} geometry.")
+                else:
+                    print(f"{stage} bonds at {checkpoint} were reported as {links['status']}.")
+                    if links.get("reason"):
+                        print(f"  {links['reason']}")
+                    if links["status"] == "OBSERVED":
+                        print("  Comparison requires a checked preparation. The JSON lists the observed bonds.")
+                    if links["matched_backbone"] is not None:
+                        print(f"  Matched {links['matched_backbone']} backbone bonds and "
+                              f"{links['matched_supplied']} explicitly supplied distances.")
+                    for row in links["links"]:
+                        if row["classification"] in {"OUTSIDE_DECLARATION", "SYMMETRY_REVIEW"}:
+                            pair = " to ".join(" ".join(atom) for atom in row["endpoints"])
+                            image = f" (second atom at {row['image_of_second_atom']})" if row["image_of_second_atom"] else ""
+                            print(f"  {pair}{image}, {row['origin']}, {row['model_A']:.3f} Å.")
+                    for key in ("missing_backbone", "missing_supplied"):
+                        for ends in links[key] or []:
+                            print("  Missing " + " to ".join(" ".join(atom) for atom in ends) + ".")
+            if "refined_planes" in payload:
+                checkpoint = payload["run_context"]["checkpoint"]["id"]
+                planes = payload["refined_planes"]
+                if planes is None:
+                    print(f"{checkpoint} has no selected-site plane capture.")
+                else:
+                    print(f"Refined planes at {checkpoint}: {planes['status']}.")
+                    if planes["reason"]:
+                        print(planes["reason"])
+                    for plane in planes["planes"]:
+                        members = [m for m in plane["members"] if m["other_members"]["distance_angstrom"] is not None]
+                        if members:
+                            furthest = max(members, key=lambda m: m["other_members"]["distance_angstrom"])
+                            print(f"  {plane['site']} {plane['component']} plane {plane['proxy_index']}: "
+                                  f"{furthest['atom']} lies furthest from the other members "
+                                  f"({furthest['other_members']['distance_angstrom']:.3f} Å).")
+                    comparison = planes.get("source_ring_arm_changes", {})
+                    for phase, reason in comparison.get("unavailable", {}).items():
+                        print(f"  The {phase} arm measurement is unavailable. {reason}")
+                    changes = {(r["site"], tuple(r["arm_atoms"])): r for r in comparison.get("arms", [])}
+                    for arm in planes["source_ring_arms"] or []:
+                        tip = arm["arm_atoms"][-1]
+                        site = f"{arm['site']} {arm['component']} {tip}"
+                        change = changes.get((arm["site"], tuple(arm["arm_atoms"])))
+                        if change is not None and change["tip_height_change_A"] is not None:
+                            before, after = change["preflight"], change["refined"]
+                            print(f"  {site} moved from {before['tip_height_A']:.3f} to {after['tip_height_A']:.3f} Å "
+                                  f"from its six ring atoms. Its terminal bond went from {before['terminal_bond_A']:.3f} "
+                                  f"to {after['terminal_bond_A']:.3f} Å.")
+                        elif arm["status"] == "MEASURED":
+                            height = arm["arm_distances_angstrom"][tip]
+                            print(f"  {site} lies {height:.3f} Å from the six ring atoms fitted alone.")
+                        else:
+                            print(f"  {site} could not be measured against its ring. {arm['reason']}.")
             if payload.get("solution_report", {}).get("text"):
                 print(payload["solution_report"]["text"])
             assessments = [("", payload)]

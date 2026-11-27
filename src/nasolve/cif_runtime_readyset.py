@@ -16,26 +16,38 @@ from .cif_dictionary_bundle_readyset import _readyset_endpoint_inputs
 from .cif_component_runtime import _tree, ORIGINAL_POLICY_ID, REPAIRED_POLICY_ID, COMPOSED_REPAIRED_POLICY_ID, component_runtime_evidence
 from .cif_runtime_bundle import MANIFEST_FILE, _load_json, resolve_runtime_bundle
 from .ligand_profiles import combine_dictionary_inputs
+from .cif_terminal_qualification import custom_request_policy_fields
 
 POLICY_ID = 'cif-selected-runtime-readyset-roundtrip-v1'
+NAMED_REQUEST_POLICY_ID = 'cif-selected-runtime-readyset-roundtrip-v2'
 
 
-def _parent(manifest):
+def _parent_manifest(manifest):
     path = Path(manifest).absolute()
     if path.is_dir(): path = path/MANIFEST_FILE
     _need(not any(p.is_symlink() for p in (path, *path.parents)), 'Unsafe parent runtime')
     # Check before recursive resolution. This continuation accepts one qualified
     # request result, not an arbitrarily nested chain of ReadySet publications.
-    _need(_load_json(path).get('policy_id') in (ORIGINAL_POLICY_ID, REPAIRED_POLICY_ID, COMPOSED_REPAIRED_POLICY_ID),
+    value = _load_json(path)
+    _need(value.get('policy_id') in (ORIGINAL_POLICY_ID, REPAIRED_POLICY_ID, COMPOSED_REPAIRED_POLICY_ID),
           'Require a qualified original or repaired parent runtime')
+    return path, value
+
+
+def _parent(manifest):
+    path, _ = _parent_manifest(manifest)
     return resolve_runtime_bundle(path)
 
 
-@contextmanager
 def _selected_view(manifest):
-    parent = _parent(manifest); root = parent['manifest_path'].parent
+    return _selected_parent_view(_parent(manifest))
+
+
+@contextmanager
+def _selected_parent_view(parent):
+    root = parent['manifest_path'].parent
     frozen = _tree(root)
-    with component_runtime_evidence(root,parent['manifest']) as evidence:
+    with component_runtime_evidence(root, parent['manifest'], subtree='bundle') as evidence:
         prepared = read_dictionary_bundle(evidence/'evidence/bundle')
         original = prepared['after_dictionaries']; selected = parent['dictionaries']
         _need(len(original) == len(selected)
@@ -84,7 +96,7 @@ def runtime_readyset_endpoint_inputs(manifest, readyset_directory, *, atom_order
 
 
 def inspect_runtime_readyset(manifest, baseline_receipt, readyset_directory,
-                            endpoint_receipt=None, *, atom_order_directory=None):
+                            endpoint_receipt=None, *, atom_order_directory=None, explicit_request_policy=None):
     """Compare a fresh selected-runtime baseline and final effective native inputs.
 
     Parent integrity/qualification is mandatory. Missing or failed optional evidence
@@ -92,15 +104,17 @@ def inspect_runtime_readyset(manifest, baseline_receipt, readyset_directory,
     """
     with _selected_view(manifest) as (parent, view):
         return _inspect_selected_readyset(parent, view, baseline_receipt,
-            readyset_directory, endpoint_receipt, atom_order_directory=atom_order_directory)
+            readyset_directory, endpoint_receipt, atom_order_directory=atom_order_directory,
+            **custom_request_policy_fields(explicit_request_policy))
 
 
 def _inspect_selected_readyset(parent, view, baseline_receipt, readyset_directory,
-                              endpoint_receipt=None, *, atom_order_directory=None):
+                              endpoint_receipt=None, *, atom_order_directory=None, explicit_request_policy=None):
     """Compare within an already qualified, mutation-checked selected-parent scope."""
     from .cif_attachment_native import _capture
     from .cif_postmr_cached_model import qualify_cached_model_roundtrip
     from .cif_native_monomers import POLICY_ID as monomer_policy, review_full_monomers
+    policy_fields = custom_request_policy_fields(explicit_request_policy)
     endpoint = None; error = None; accepted = False; pins = {}
     try:
         inputs = _readyset_endpoint_inputs(view, readyset_directory, atom_order_directory=atom_order_directory)
@@ -113,7 +127,7 @@ def _inspect_selected_readyset(parent, view, baseline_receipt, readyset_director
         for r,native in ((before_record,before),(record,after)):
             _need(r.get('full_monomer_inventory_policy') == monomer_policy, 'Full native identities are required')
             review_full_monomers(native)
-        endpoint = qualify_cached_model_roundtrip(before, after, parent['model'], inputs['model'])
+        endpoint = qualify_cached_model_roundtrip(before, after, parent['model'], inputs['model'], **policy_fields)
         accepted = endpoint['mechanics_checks_pass'] is True
         # The comparator can be expensive. Recheck the observer and exact
         # final inputs afterward, including any serialization-only adapter.
@@ -130,7 +144,7 @@ def _inspect_selected_readyset(parent, view, baseline_receipt, readyset_director
             pins['atom_order_receipt_sha256'] = sha256(_read(Path(atom_order_directory)/'atom_order.json')).hexdigest()
     except (ValueError, OSError, KeyError, TypeError, IndexError) as exc:
         error = type(exc).__name__+': '+str(exc); accepted = False
-    return dict(schema_version=1, policy_id=POLICY_ID,
+    return dict(schema_version=1, policy_id=NAMED_REQUEST_POLICY_ID if policy_fields else POLICY_ID, **policy_fields,
         parent_manifest_sha256=sha256(_read(parent['manifest_path'])).hexdigest(),
         parent_selected=parent['manifest']['decision']['selected'], endpoint=endpoint, endpoint_error=error, **pins,
         decision=dict(status='CONTINUE_WITH_NOTES',
@@ -144,8 +158,58 @@ def _inspect_selected_readyset(parent, view, baseline_receipt, readyset_director
 
 def selected_runtime_readyset_publication(root, controls):
     """Recompute one public selection using fixed source-evidence anchors."""
-    _need(isinstance(controls,dict) and set(controls) ==
-          {'runtime','baseline_receipt','readyset_directory','endpoint_receipt','atom_order_directory'},
+    return _readyset_publication(root, controls, _selected_view)
+
+
+def _replay_packed_parent(root, value):
+    """Release the outer archive's disk view before opening any inner repair stages."""
+    from .cif_component_runtime import _check_runtime_selection, _selection, verify_component_runtime_resources
+    from .cif_runtime_evidence import ARCHIVE, expanded_runtime_evidence
+    with component_runtime_evidence(root, value, subtree='runtime') as view:
+        path, manifest = _parent_manifest(view/'evidence/runtime')
+        if 'evidence_storage' not in manifest:
+            return _parent(path)['manifest']
+        verify_component_runtime_resources(path,manifest)
+        packed = _read(path.parent/ARCHIVE)
+        digest = manifest['evidence_storage']['archive']['sha256']
+
+    with expanded_runtime_evidence(packed,digest) as evidence:
+        review,decision,inputs,unavailable = _selection(evidence,manifest['source_selection'],
+                                                       policy_id=manifest['policy_id'])
+        # Only the selected public model, dictionaries and parameters are needed
+        # to bind this scientific decision after the nested paths expire.
+        selected = dict(model=_read(inputs['model']),
+                        dictionaries=[_read(p) for p in inputs['dictionaries']],
+                        phils=[_read(p) for p in inputs['phils']])
+
+    with component_runtime_evidence(root,value,subtree='runtime') as view:
+        runtime = view/'evidence/runtime'
+        verify_component_runtime_resources(runtime/MANIFEST_FILE,manifest)
+        _check_runtime_selection(runtime,manifest,(review,decision,selected,unavailable))
+    return manifest
+
+
+@contextmanager
+def _compact_readyset_selection(root, value):
+    """Qualify the parent first, then compare the exact same parent to ReadySet."""
+    from .cif_component_runtime import _checked_resource_paths
+    parent_manifest = _replay_packed_parent(root,value)
+
+    def same_parent(runtime):
+        # Verify the entire parent manifest and every public resource against
+        # the preceding full scientific replay, including its evidence archive.
+        parent = _checked_resource_paths(runtime/MANIFEST_FILE, parent_manifest)
+        return _selected_parent_view(parent)
+
+    with component_runtime_evidence(root, value) as view:
+        yield _readyset_publication(view, value['source_selection'], same_parent)
+
+
+def _readyset_publication(root, controls, parent_view):
+    _need(isinstance(controls,dict), 'Invalid selected-runtime controls')
+    policy_fields = custom_request_policy_fields(controls.get('explicit_request_policy'))
+    _need(set(controls) ==
+          {'runtime','baseline_receipt','readyset_directory','endpoint_receipt','atom_order_directory'} | policy_fields.keys(),
           'Incomplete selected-runtime ReadySet controls')
     _need(controls['runtime'] == 'evidence/runtime' and controls['readyset_directory'] == 'evidence/readyset',
           'Selected-runtime evidence roots differ')
@@ -159,12 +223,12 @@ def selected_runtime_readyset_publication(root, controls):
     evidence = root/'evidence'
     _need({p.name for p in evidence.iterdir()} == names and all(p.is_dir() and not p.is_symlink() for p in evidence.iterdir()),
           'Unexpected selected-runtime evidence roots')
-    args = {k:root/v if v is not None else None for k,v in controls.items()}
+    args = {k:root/v if v is not None else None for k,v in controls.items() if k not in policy_fields}
     runtime = args.pop('runtime')
     # Qualify once for this read; the enclosing view rechecks every parent byte
     # after comparison and final input extraction. Nothing is cached across reads.
-    with _selected_view(runtime) as (parent, view):
-        review = _inspect_selected_readyset(parent, view, **args)
+    with parent_view(runtime) as (parent, view):
+        review = _inspect_selected_readyset(parent, view, **args, **policy_fields)
         if isinstance(review['endpoint_error'], str):
             review['endpoint_error'] = review['endpoint_error'].replace(str(root.absolute())+'/', 'runtime_bundle/')
         decision = deepcopy(review['decision'])

@@ -278,7 +278,7 @@ def test_plane_display_notes_do_not_rewrite_published_messages(tmp_path,monkeypa
     exact['result']['plane_generation']=dict(components={'PDU':dict(status='KNOWN_GENERATION_FAILURE',
         missing_centres=['C5'],proof=dict(failure_kind='TIMED_OUT'))})
     current=ordinary._plane_support_limitations
-    monkeypatch.setattr(ordinary,'_plane_support_limitations',lambda report:('Historical display wording',))
+    monkeypatch.setattr(ordinary,'_plane_support_limitations',lambda report, execution=None:('Historical display wording',))
     old=publication.publish_checked_preparation(run,attempt_number=1);before=snapshot(run)
     monkeypatch.setattr(ordinary,'_plane_support_limitations',current)
     with patch('subprocess.Popen',side_effect=AssertionError('No new execution')):

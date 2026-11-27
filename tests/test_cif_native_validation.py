@@ -6,9 +6,11 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import runpy
 import shutil
 import sys
 import time
+from types import SimpleNamespace
 
 import pytest
 
@@ -539,3 +541,74 @@ def test_optional_policy_inventory_records_installed_origins_without_constant_id
     assert report['restraint_policy']['origin_ids']['hydrogen bonds']==37
     assert len(report['installed_api_sources'])==8
     assert json.loads((Path(receipt['native_directory'])/'native_spec.json').read_text())['policy_inventory'] is True
+
+
+@pytest.fixture
+def live_model(tmp_path, monkeypatch):
+    native_runtime(tmp_path)
+    native = runpy.run_path(str(tmp_path / "fake_native/fake_native.py"))
+    ns = SimpleNamespace
+    processed = native["Processed"]()
+    chain = processed.all_chain_proxies
+    chain.selection = lambda expression: ns(iselection=lambda: [int(expression)])
+
+    class Atoms(list):
+        def extract_xyz(self):
+            return [atom.xyz for atom in self]
+
+    atoms = Atoms(native["Atom"](i, atom.name) for i, atom in enumerate(chain.pdb_atoms))
+    atoms[0].xyz = (8.0, 3.0, 1.0)
+    geo = native["Geometry"]()
+    geo.angle_proxies = [ns(i_seqs=(0, 1, 2), angle_ideal=113., weight=1., origin_id=4)]
+    geo.dihedral_proxies = geo.chirality_proxies = geo.planarity_proxies = []
+    edits = ns(bond=[ns(atom_selection_1="0", atom_selection_2="1", sigma=.02, distance_ideal=1.5)])
+    params = ns(pdb_interpretation=ns(secondary_structure=ns(enabled=False)), geometry_restraints=ns(edits=edits))
+    registry = {"hydrogen bonds": 2, "edits": 4, "basepair stacking": 6, "basepair parallelity": 7, "basepair planarity": 9}
+    monkeypatch.setitem(sys.modules, "cctbx.geometry_restraints", ns(
+        linking_class=ns(linking_class=lambda: ns(get_origin_id=registry.get))))
+    hierarchy = ns(atoms=lambda: atoms)
+    chain.pdb_hierarchy = hierarchy
+    model = ns(get_hierarchy=lambda: hierarchy, restraints_manager=ns(geometry=geo),
+               _pdb_interpretation_params=params)
+    return model, processed, registry
+
+
+def test_live_collector_reads_the_actual_candidate_with_native_parent_indices(live_model):
+    from nasolve.cif_native_validation import collect_live_atoms, collect_live_geometry
+
+    model, processed, _ = live_model
+    atoms = collect_live_atoms(SimpleNamespace(get_hierarchy=model.get_hierarchy))
+    result = collect_live_geometry(model, processed=processed)
+    view = result["native_view"]
+    assert atoms == {"atom_count": 3, "atoms": view["atoms"]}
+    assert view["geometry"]["sites_cart_exact"][0] == list(model.get_hierarchy().atoms()[0].xyz)
+    assert view["geometry"]["sites_cart_exact"][0] != list(processed.all_chain_proxies.pdb_atoms[0].xyz)
+    assert view["geometry"]["custom_proxy_requests"][0]["atoms"] == [atom["label"] for atom in atoms["atoms"][:2]]
+    assert view["geometry"]["proxy_details"]["angle"][0]["angle_ideal"] == 113.
+    assert view["geometry"]["asu_bonds"][0]["symmetry_operation"]["operator"] == "x+1,y,z"
+    assert view["restraint_policy"]["origin_ids"]["edits"] == 4
+    assert result["collector_sha256"] == "9be6157312896609f51165adc6e5579365fa261709ac7633420bbea798373e78"
+    assert result["policy_id"] == "cif-live-geometry-inventory-v1"
+    assert result["complete_capture"] is result["scientific_acceptance"] is False
+
+
+@pytest.mark.parametrize("change", ["interpretation-order", "missing-origin", "missing-angles",
+                                    "different-processed", "same-labels-foreign-hierarchy"])
+def test_live_collector_refuses_incompatible_native_evidence(live_model, change):
+    from nasolve.cif_native_validation import collect_live_geometry
+
+    model, processed, registry = live_model
+    if change == "interpretation-order":
+        # Same size and same set of labels, with valid sequential native indices.
+        a, b = processed.all_chain_proxies.pdb_atoms[:2]
+        a.name, b.name = b.name, a.name
+    elif change == "missing-origin":
+        del registry["edits"]
+    elif change == "missing-angles":
+        del model.restraints_manager.geometry.angle_proxies
+    elif change == "different-processed":
+        model._processed_pdb_file = object()
+    else:
+        processed.all_chain_proxies.pdb_hierarchy = SimpleNamespace(atoms=model.get_hierarchy().atoms)
+    with pytest.raises(ValueError, match="indices|origin|angle|interpretation"):
+        collect_live_geometry(model, processed=processed)

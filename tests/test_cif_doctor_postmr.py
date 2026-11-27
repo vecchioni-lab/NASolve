@@ -68,7 +68,9 @@ def _run_fixture(tmp_path, monkeypatch, *, mutate=False):
 
         monkeypatch.setattr("nasolve.postmr._run_coot", coot)
 
-        def restore(source, output, *args):
+        def restore(source, output, actions, parent_models, dictionaries, *, displacement_reference):
+            assert displacement_reference == run / "PostMR/Model/mr_solution.pdb"
+            assert displacement_reference.read_bytes() == original.read_bytes()
             shutil.copyfile(source, output)
             return {}
 

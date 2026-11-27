@@ -88,8 +88,9 @@ def test_changed_chain_controls_are_not_trusted(tmp_path,monkeypatch,field,value
     with pytest.raises(ValueError):chain.read_repair_chain(out)
 
 
+@pytest.mark.parametrize('staged', [False, True])
 @pytest.mark.parametrize('mode',['repaired','fallback','none','bad_source','wrong_owner','changed_before_identity','wrong_derivative'])
-def test_chain_uses_existing_source_identity_derivative_and_whole_bundle_gates(tmp_path,monkeypatch,mode):
+def test_chain_uses_existing_source_identity_derivative_and_whole_bundle_gates(tmp_path,monkeypatch,mode,staged):
     chain,selector,root,args,state,plane=fixture(tmp_path,monkeypatch)
     if mode in ('fallback','none'):
         p=plane/'captured_plane_attribution.json';r=json.loads(p.read_text());r['status']='REVIEW';p.write_text(json.dumps(r))
@@ -98,7 +99,9 @@ def test_chain_uses_existing_source_identity_derivative_and_whole_bundle_gates(t
         p=plane/'captured_plane_attribution.json';r=json.loads(p.read_text());r['controls']['component']='BBB';p.write_text(json.dumps(r))
     if mode=='changed_before_identity':
         p=plane/'inputs/before/native_receipt.json';r=json.loads(p.read_text());r['native_validation']['atoms'][0]['identity']['chain_id']='X';p.write_text(json.dumps(r))
-    out=compose(chain,root,plane);args.update(attribution_directory=out,repair_chain=True)
+    out=root/'chain'
+    chain.prepare_repair_chain([plane],out,linear_attribution=root/'attribution', storage='staged' if staged else 'expanded')
+    args.update(attribution_directory=out,repair_chain=True)
     if mode=='none':args['original_gradient_directory']=None
     if mode=='wrong_derivative':shutil.copyfile(root/'attribution/captures/001/native_receipt.json',root/'repaired/capture/native_receipt.json')
     if mode in ('bad_source','wrong_owner','changed_before_identity','wrong_derivative'):
@@ -110,16 +113,19 @@ def test_chain_uses_existing_source_identity_derivative_and_whole_bundle_gates(t
     assert result['attribution']['path']=='repair_chain.json'
 
 
+@pytest.mark.parametrize('staged', [False, True])
 @pytest.mark.parametrize('fallback',[False,True])
-def test_composed_runtime_uses_existing_public_api_and_readyset_parent_contract(tmp_path,monkeypatch,fallback):
+def test_composed_runtime_uses_existing_public_api_and_readyset_parent_contract(tmp_path,monkeypatch,fallback,staged):
     chain,selector,root,args,state,plane=fixture(tmp_path,monkeypatch)
     if fallback:
         p=root/'repaired/captured_mixed_gradients.json';p.write_text(json.dumps(dict(status='REVIEW')))
-    out=compose(chain,root,plane);args.update(attribution_directory=out,repair_chain=True)
+    out=root/'chain'
+    chain.prepare_repair_chain([plane],out,linear_attribution=root/'attribution', storage='staged' if staged else 'expanded')
+    args.update(attribution_directory=out,repair_chain=True)
     from nasolve import cif_component_runtime as runtime
     from nasolve.cif_runtime_bundle import resolve_runtime_bundle
     from nasolve.cif_runtime_readyset import _parent
-    target=tmp_path/'runtime';report=runtime.prepare_repaired_component_runtime_bundle(output=target,**args)
+    target=tmp_path/'runtime';report=runtime.prepare_repaired_component_runtime_bundle(output=target,compact_evidence=staged,**args)
     assert report['policy_id']==runtime.COMPOSED_REPAIRED_POLICY_ID
     expected=(root/'prepared/0.cif' if fallback else plane/'inputs/after/0.cif').read_bytes()
     shutil.rmtree(root);target=target.rename(tmp_path/'relocated')
@@ -141,8 +147,19 @@ def test_plane_only_chain_needs_no_fictitious_linear_attempt(tmp_path,monkeypatc
 @pytest.mark.parametrize('bound',['MAX_FILES','MAX_BYTES'])
 def test_combined_chain_cannot_borrow_larger_evidence_allowance(tmp_path,monkeypatch,bound):
     chain,selector,root,args,state,plane=fixture(tmp_path,monkeypatch)
-    monkeypatch.setattr(chain,bound,1)
-    with pytest.raises(ValueError):compose(chain,root,plane)
+    from nasolve import cif_component_runtime as storage
+
+    opened = []
+    read = storage._read
+    def observe(path):
+        opened.append(Path(path))
+        return read(path)
+    monkeypatch.setattr(storage, '_read', observe)
+    monkeypatch.setattr(chain, bound, 1)
+    with pytest.raises(ValueError, match=r'Combined repair evidence exceeds.*planes/000'):
+        compose(chain, root, plane)
+    assert all(path.is_relative_to(plane) for path in opened)
+    assert len(opened) <= 1
     assert not (root/'chain').exists()
 
 
@@ -178,3 +195,88 @@ def test_chain_replays_its_contents_instead_of_trusting_the_summary(tmp_path,mon
         source=out/'planes/000/inputs/source.cif';source.unlink();source.symlink_to(plane/'inputs/source.cif')
     p.write_text(json.dumps(r))
     with pytest.raises(ValueError):chain.read_repair_chain(out)
+
+
+def test_auto_storage_uses_separate_proofs_only_above_shared_limit(tmp_path, monkeypatch):
+    chain, selector, root, args, state, plane = fixture(tmp_path, monkeypatch)
+    from nasolve import cif_staged_repair_chain as staged
+    sources = [plane, root/'attribution']
+    ordinary = chain.prepare_repair_chain([plane], root/'ordinary', linear_attribution=sources[1], storage='auto')
+    assert ordinary['policy_id'] == chain.POLICY_ID
+    cap = max(len(chain._tree(source)) for source in sources)
+    monkeypatch.setattr(chain, 'MAX_FILES', cap)
+    monkeypatch.setattr(staged, 'MAX_FILES', cap)
+    target = root/'compact'
+    with patch('subprocess.Popen', side_effect=AssertionError('Read executed a process')):
+        result = chain.prepare_repair_chain([plane], target, linear_attribution=sources[1], storage='auto')
+        assert result['policy_id'] == chain.STAGED_POLICY_ID
+        assert result['status'] == ordinary['status'] == 'ATTRIBUTED_REPAIR_CHAIN'
+        seen = []
+        def visit(step):
+            if seen:
+                assert not seen[-1].exists()
+            seen.append(step.after_receipt)
+            assert step.before_receipt.is_file() and step.after_receipt.is_file()
+        endpoints = chain.visit_repair_chain(target, visit)
+    assert len(seen) == 2 and not any(p.exists() for p in seen)
+    assert endpoints['model'].is_file() and all(p.is_file() for p in endpoints['after_dictionaries'])
+    assert len(chain._tree(target)) <= cap
+    (plane/'inputs/before/0.cif').write_text('wrong preceding dictionary')
+    with pytest.raises(ValueError, match='consecutive'):
+        chain.prepare_repair_chain([plane], root/'bad-chain', linear_attribution=sources[1], storage='auto')
+    assert not (root/'bad-chain').exists()
+
+
+@pytest.mark.parametrize('change', ['final_dictionary', 'archive', 'unlisted_directory', 'summary', 'symlink'])
+def test_staged_chain_rejects_changed_or_unlisted_members(tmp_path, monkeypatch, change):
+    chain, _, root, _, _, plane = fixture(tmp_path, monkeypatch)
+    target = root/'chain'
+    chain.prepare_repair_chain([plane], target, storage='staged')
+    if change == 'final_dictionary':
+        (target/'endpoints/after-000.cif').write_bytes(b'changed')
+    elif change == 'archive':
+        (target/'proofs/planes/000.zip').write_bytes(b'damaged archive')
+    elif change == 'unlisted_directory':
+        (target/'unused').mkdir()
+    elif change == 'symlink':
+        path = target/'endpoints/after-000.cif'
+        path.unlink()
+        path.symlink_to(plane/'inputs/after/0.cif')
+    else:
+        receipt = target/chain.REPORT
+        report = json.loads(receipt.read_bytes())
+        report['steps'][0]['component'] = 'UNRELATED'
+        receipt.write_text(json.dumps(report))
+    with pytest.raises(ValueError):
+        chain.read_repair_chain(target)
+
+
+def test_staged_publication_limits_compact_bytes_before_reserving_output(tmp_path, monkeypatch):
+    chain, _, root, _, _, plane = fixture(tmp_path, monkeypatch)
+    from nasolve import cif_staged_repair_chain as staged
+    pack = staged.pack_runtime_evidence
+    def exhaust_archive_allowance(source, archive, **kwargs):
+        result = pack(source, archive, **kwargs)
+        monkeypatch.setattr(staged, 'MAX_BYTES', result['archive_bytes'] - 1)
+        return result
+    monkeypatch.setattr(staged, 'pack_runtime_evidence', exhaust_archive_allowance)
+    with pytest.raises(ValueError, match='Staged repair publication'):
+        chain.prepare_repair_chain([plane], root/'overflow', storage='staged')
+    assert not (root/'overflow').exists()
+    assert not list(root.glob('.staged-repairs-*'))
+
+
+def test_changed_transfer_cannot_seal_partial_staged_output(tmp_path, monkeypatch):
+    chain, _, root, _, _, plane = fixture(tmp_path, monkeypatch)
+    output = root/'chain'
+    rename = Path.rename
+    def change_transferred_endpoint(path, destination):
+        result = rename(path, destination)
+        if destination == output/'endpoints':
+            (destination/'after-000.cif').write_bytes(b'interrupted or altered')
+        return result
+    monkeypatch.setattr(Path, 'rename', change_transferred_endpoint)
+    with pytest.raises(ValueError, match='during transfer'):
+        chain.prepare_repair_chain([plane], output, storage='staged')
+    assert (output/'endpoints/after-000.cif').exists()
+    assert not (output/chain.REPORT).exists()

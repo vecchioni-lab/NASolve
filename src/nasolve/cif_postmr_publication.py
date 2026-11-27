@@ -327,10 +327,26 @@ def _publish_checked_preparation(run_directory, *, attempt_number):
 
 
 def _check_new_mutation_intent(run, report, request, exact):
+    from .curated_ligands import CURATED_LIGANDS
     from .postmr import build_mutation_plan
-    construction = exact['construction_inputs']['report']
+    verified = exact['construction_inputs']
+    construction = verified['report']
     original = request/'inputs/construction'/construction['inputs']['reference_model']['path']
-    actions = [asdict(a) for a in build_mutation_plan(report,original,run_directory=run)]
+    choices = {}
+    if 'furanose_substitution' in verified:
+        sugar = verified['furanose_substitution']
+        choices['furanose_target'] = (sugar['context']['site'], sugar['code'])
+    sources = {}
+    for code, projection in verified.get('projection_sources', {}).items():
+        rows = [r for r in construction['controls']['actions'] if r['after'] == code]
+        if code in CURATED_LIGANDS or any(r['deposition_code'] is not None for r in rows):
+            continue
+        parents = {r['parent_code'] for r in rows}
+        _need(len(parents) == 1 and None not in parents, 'Projected component needs one recorded construction parent')
+        sources[code] = (projection['source'], parents.pop())
+    if sources:
+        choices['construction_sources'] = sources
+    actions = [asdict(a) for a in build_mutation_plan(report,original,run_directory=run,**choices)]
     _need(actions == construction['controls']['actions'], 'Run mutation intent differs from recorded construction')
 
 

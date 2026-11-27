@@ -10,10 +10,14 @@ from inspect import getsource
 import json
 from pathlib import Path
 
-from .cif_purine_representation import validate_policy, CYCLE_LOCAL_POLICY_ID
+from .cif_purine_representation import validate_policy, CYCLE_LOCAL_POLICY_ID, EXACT_POLICY_ID
 
 POLICY_ID = "cif-source-native-complete-candidate-v2"
 CONTRACT_POLICY = "cif-source-native-representation-contract-v1"
+
+
+class UnsupportedAromaticConversion(ValueError):
+    """A valid source graph falls outside this representation policy."""
 
 
 def generation_representation_contract(source, code, policy):
@@ -48,7 +52,7 @@ def generation_representation_contract(source, code, policy):
         flags = set(row["aromatic_declarations"].values())
         if policy == CYCLE_LOCAL_POLICY_ID and "Y" in flags and flags != {"Y"}:
             raise ValueError("Conflicting source aromatic declarations")
-        if flags == {"Y"}:
+        if flags == {"Y"} and policy != EXACT_POLICY_ID:
             if policy == CYCLE_LOCAL_POLICY_ID and frozenset(row['atoms']) in bridges:
                 if _orders(row) != {'SINGLE'} or not set(row['stereo_declarations'].values()) <= {'N'}:
                     raise ValueError("Flagged inter-ring bridge must remain an unstereogenic single bond")
@@ -59,7 +63,7 @@ def generation_representation_contract(source, code, policy):
     representation = assess_bond_representation(source_component, projected,
         _bond_representation(source_component, projected), policy)
     if representation["status"] not in {"EXACT", "SOURCE_DECLARED_EQUIVALENT"}:
-        raise ValueError("Source aromatic conversion is outside the explicit representation policy")
+        raise UnsupportedAromaticConversion("Source aromatic conversion is outside the explicit representation policy")
     systems = representation["equivalent_rings"] + representation["equivalent_fused_systems"]
     if policy == CYCLE_LOCAL_POLICY_ID:
         rings = [set(row['atoms']) for row in systems]
@@ -236,17 +240,37 @@ def read_rejected_multiple_plane_candidate(directory):
     return _read_completed_multiple_plane_candidate(directory, "REJECTED")
 
 
+def _finished_bond_order_veto(report):
+    """Recognize only the maintained worker's fully replayed final-order refusal."""
+    result = report['result']
+    builder = result.get('builder', {})
+    finished = result.get('representation_finished', {})
+    validation = report.get('representation_validation', {})
+    return (report['status'] == 'REJECTED' and report.get('candidate_retained') is True
+            and builder.get('status') == 'EXCEPTION' and builder.get('exception_type') == 'ValueError'
+            and builder.get('message') == 'Finished native inventory changed source chemistry'
+            and builder.get('before') == result.get('representation_conversion_inventory')
+            and builder.get('before_format') == result.get('reader', {}).get('format')
+            and validation.get('finished_inventory') == 'RECORDED' and validation.get('status') == 'BLOCKED'
+            and {k for k,v in validation.get('checks', {}).items() if v is not True} == {'finished_authorized'}
+            and finished.get('status') == 'BLOCKED' and
+            {k for k,v in finished.get('checks', {}).items() if v is not True} == {'authorized_complete_representation'})
+
+
 def _read_completed_multiple_plane_candidate(directory, status):
     try:
         report = _read_representation_candidate(Path(directory), multiple_planes=True)
         result = report.get("result", {})
         reader = result.get("reader", {})
         spec = json.loads((Path(directory)/"candidate_spec.json").read_text())
+        finished = result.get("builder", {}).get("status") == "COMPLETED"
+        if status == "REJECTED" and not finished:
+            finished = _finished_bond_order_veto(report)
         if (report["status"] != status
                 or report["execution"]["status"] != "COMPLETED"
                 or type(report["execution"].get("returncode")) is not int
                 or report["execution"]["returncode"] != 0
-                or result.get("builder", {}).get("status") != "COMPLETED"
+                or not finished
                 or reader.get("execution") != "COMPLETED"
                 or reader.get("dispatch_is_chemical_components") is not
                     (spec["declared_charge_control"]["dialect"] == "CHEMICAL_COMPONENTS_CIF")

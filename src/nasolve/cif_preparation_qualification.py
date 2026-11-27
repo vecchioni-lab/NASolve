@@ -115,12 +115,12 @@ def project_source_configurations(binding: dict, before: dict, after: dict) -> l
 
 
 
-def qualify_native_backbone_ports(values: dict, context: dict, *, phosphate_names=None) -> dict:
+def qualify_native_backbone_ports(values: dict, context: dict, *, phosphate_names=None, anionic_leaving=False) -> dict:
     """Check the conventional native adapter's elements and source port state.
 
     This is intentionally narrower than generic graph recognition. Other element
-    substitutions, charged reacting ports or bridged oxygen states need their own
-    operation authority; conventional atom names cannot grant that permission.
+    substitutions, charged reacting ports or bridged oxygens need separate
+    authority. The explicit anionic option binds the declared dianion and site.
     Retained nonreacting phosphate oxygen protonation is not normalized.
     """
     from .cif_attachment_sites import _neutral_hydroxyl_hydrogens
@@ -151,11 +151,15 @@ def qualify_native_backbone_ports(values: dict, context: dict, *, phosphate_name
     if outgoing is None:
         raise ValueError('Source O3-prime hydroxyl requires separate chemical-state authority')
     leaving = None
-    if context.get('incoming_site'):
+    state = {}
+    if anionic_leaving:
+        from .cif_anionic_phosphate import anionic_leaving_state
+        state = anionic_leaving_state(values, context, names, (elements, bonds, charges, neighbors))
+    elif context.get('incoming_site'):
         leaving = _neutral_hydroxyl_hydrogens(p3, elements, bonds, charges, neighbors)
         if not single('P', p3) or leaving is None:
             raise ValueError('Source phosphate leaving port requires separate chemical-state authority')
     return {'scope': 'CONVENTIONAL_NATIVE_DNA_PORTS', 'elements': expected,
         'source_o3_hydrogens': sorted(outgoing),
         'incoming_leaving_hydrogens': sorted(leaving) if leaving is not None else [],
-        'op2_protonation': 'PRESERVED', 'protonation_inferred': False}
+        'op2_protonation': 'PRESERVED', 'protonation_inferred': False, **state}

@@ -247,7 +247,7 @@ def resolve_runtime_bundle(manifest):
         raise ValueError('Incomplete, unsafe or changed runtime bundle') from exc
 
 
-def assess_runtime_bundle(manifest):
+def assess_runtime_bundle(manifest, *, template_bonds=False):
     """Use the ordinary read-only assessor on the exact activated resources."""
     from .cif_doctor import assess_dictionaries
     resolved = resolve_runtime_bundle(manifest); value = resolved['manifest']
@@ -258,6 +258,9 @@ def assess_runtime_bundle(manifest):
             or any(a.get('sha256') != r['sha256'] for a, r in zip(assessment['inputs'], references))
             or assessment.get('model', {}).get('sha256') != value['resources']['model']['sha256']):
         raise ValueError('Ordinary assessor did not consume the exact activated runtime bundle')
+    if template_bonds:
+        from .cif_template_bonds import read_template_bonds
+        assessment['template_bonds'] = read_template_bonds(paths, assessment)
     for descriptor, reference in zip(assessment['inputs'], references): descriptor['frozen_reference'] = deepcopy(reference)
     assessment['model']['frozen_reference'] = deepcopy(value['resources']['model'])
     from .cif_mixed_runtime_bundle import POLICY_ID as MIXED_POLICY, verify_mixed_runtime_resources

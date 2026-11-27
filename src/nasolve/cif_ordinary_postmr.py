@@ -7,7 +7,7 @@ preparation does not establish successful diffraction refinement.
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from .cif_acquisition_sources import freeze_acquisition_sources
+from .cif_acquisition_sources import freeze_acquisition_sources, read_acquisition_sources
 from .cif_phenix_configuration import configure_dictionary_engine
 from .cif_postmr_request import initialize_postmr_dictionary_request, prepare_postmr_literal_inputs
 from .cif_prepared_repair_execution import _bond_target_declarations
@@ -93,13 +93,15 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
         modified_pairs_only=False, restraint_scope=None, allow_unreviewed_backbone=False,
         narestraints_builder=None, modified_pair_builder=None, generation_options=None,
         continuation_options=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False,
-        frozen_sources=None, construction_choices=None, **execution_limits) -> PreparedPostMRRequest:
+        frozen_sources=None, construction_choices=None, furanose_substitution=None,
+        locked_sugar_site=None, store_root=None,
+        **execution_limits) -> PreparedPostMRRequest:
     """Prepare ordinary inputs once and publish a fresh complete request.
 
     Configuration/chemical permissions remain explicit. Existing constructors,
     source authority, literal compiler and request context gates own their rules.
-    The default CLI remains unchanged. No legacy modifiers, cache adapter, ReadySet
-    or request execution runs on this route. Failure retains all partial outputs;
+    The site-only construction can acquire its isolated dictionary before Coot.
+    The whole-model request is frozen here and executed by its caller. Failure retains all partial outputs;
     an existing PostMR directory cannot be prepared again in place. The explicit
     automatic_plane_support choice is frozen by the complete owner; continuation
     reads that saved choice rather than accepting a new override. Optional explicit
@@ -110,7 +112,12 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
     model/actions and phosphate intent must agree; no catalogue/pairing role is
     fabricated. Original source composition and each numerical choice are retained
     in the existing run/request owners. This route still does not execute the
-    complete request or enable automatic mutation/selection.
+    complete request or enable automatic mutation/selection. An explicit
+    furanose_substitution binds one internal site to its qualified component,
+    host dictionary and NARestraints workbook before the restraint builder runs.
+    Alternatively, locked_sugar_site reads that site's target from the frozen
+    run. After PostMR has reserved its directory, its usual isolated acquisition
+    owner reuses or qualifies the original component before Coot runs.
     """
     from .postmr import _prepare_postmr
     bond_discovery_fields(automatic_bond_targets,bond_targets)
@@ -120,12 +127,37 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
     if generation_options is not None and not isinstance(generation_options,dict):
         raise ValueError('Require explicit generation options')
     options = dict(generation_options or {})
+    if locked_sugar_site is not None and (furanose_substitution is not None or frozen_sources is not None
+                                         or construction_choices is not None):
+        raise ValueError('Select either an ordinary locked-sugar site or explicit construction sources')
+    select_representation = options.pop("select_source_representation", False)
+    if type(select_representation) is not bool or (select_representation and "bond_representation_policy" in options):
+        raise ValueError("Require one unambiguous source representation selection")
     allowed = {'single_block_steps','timeout_seconds','max_attempts','bond_representation_policy','source_input_policy','multiple_planes'}
     if set(options)-allowed:
         raise ValueError('Unsupported ordinary generation option')
     configured = configure_dictionary_engine(phenix,expected_dialect=expected_dialect,**options)
     construction = (None if frozen_sources is None and construction_choices is None else
                     _read_construction_inputs(frozen_sources, construction_choices, configured.consumer))
+    furanose = None
+    if locked_sugar_site is not None:
+        from .cif_dictionary_store import default_dictionary_store
+        from .postmr_furanose import plan_catalogue_substitution
+        store = default_dictionary_store() if store_root is None else store_root
+        furanose = plan_catalogue_substitution(run_directory,locked_sugar_site,configured,phenix,store,data_root,
+                                               execution_limits)
+    if furanose_substitution is not None:
+        from .postmr_furanose import capture_substitution
+        furanose = capture_substitution(furanose_substitution, configured.consumer)
+        if construction is None:
+            from .curated_ligands import ligand_source
+            current = ligand_source(furanose.code, data_root, ready_set_executable=configured.ready_set_executable)
+            furanose.verify_source(current.path, current.authority)
+        else:
+            chosen = construction['selection']['sources'].get(furanose.code)
+            if chosen is None:
+                raise ValueError('Furanose target is absent from the frozen acquisition sources')
+            furanose.verify_source(chosen['source'], chosen['source_authority'])
     def initialize(inputs):
         root = inputs.run_directory/'PostMR'/'DictionaryEngine'
         sources, literal, request = [root/name for name in ('sources','literal','request')]
@@ -134,12 +166,13 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
             freeze_acquisition_sources(list(inputs.components),sources,data_root=data_root,
                 ready_set_executable=configured.ready_set_executable)
         else:
-            from .cif_acquisition_sources import read_acquisition_sources
             from .cif_dictionary_sites import _need
-            from .cif_dictionary_store import _bytes
             _need(not root.is_symlink() and {p.name for p in root.iterdir()} == {'sources'},
                   'Unexpected preconstruction source owner members')
+        if construction is not None or select_representation or furanose is not None:
             selected = read_acquisition_sources(sources)
+        if construction is not None:
+            from .cif_dictionary_store import _bytes
             _need(selected['report']['components'] == sorted(inputs.components)
                   and _bytes(selected['report']) == _bytes(construction['selection']['report']),
                   'Prepared components differ from the captured source selection')
@@ -148,7 +181,19 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
             prepare_postmr_literal_inputs(inputs.model_path,list(inputs.supplementary_phils),sources,literal,
                 data_root=data_root,ready_set_executable=configured.ready_set_executable)
             literal_inputs = literal
-        components = [dict(code=code,generation=configured.generation) for code in inputs.components]
+        generation = {code:dict(configured.generation) for code in inputs.components}
+        if select_representation:
+            from .cif_generation_input import source_selected_generation
+            frozen = selected["sources"]
+            generation = {code:source_selected_generation(frozen[code]["source"], code, settings)
+                          for code, settings in generation.items()}
+        if locked_sugar_site is not None:
+            generation[furanose.code] = dict(furanose.generation)
+        elif furanose is not None and 'bond_representation_policy' not in generation[furanose.code]:
+            from .cif_generation_input import source_selected_generation
+            generation[furanose.code] = source_selected_generation(
+                selected['sources'][furanose.code]['source'], furanose.code, generation[furanose.code])
+        components = [dict(code=code,generation=generation[code]) for code in inputs.components]
         if construction is not None:
             from .cif_dictionary_sites import read_dictionary_sites
             for item in components:
@@ -159,20 +204,32 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
                     item['retained_snapshot'] = projected/'snapshot'
                     if saved['report']['terminal_resource'] is not None:
                         item['terminal_resource'] = projected/saved['report']['terminal_resource']
+        if furanose is not None:
+            from .postmr_furanose import DIRECTORY, read_substitution
+            stage = inputs.run_directory/DIRECTORY
+            built = read_substitution(stage)
+            source = selected['sources'][furanose.code]
+            furanose.verify_source(source['source'], source['source_authority'])
+            if built['snapshot']['entry_id'] != inputs.furanose_entry_id:
+                raise ValueError('Furanose construction retained a different dictionary entry')
+            item, = [c for c in components if c['code'] == furanose.code]
+            item.update(retained_snapshot=stage/'snapshot',
+                        furanose_reaction=dict(workbook=built['workbook'], contexts=[built['context']]))
         record = initialize_postmr_dictionary_request(inputs.model_path,inputs.run_report,components,None,request,
             consumer=configured.consumer,ready_set_executable=None,supplementary_phils=list(inputs.supplementary_phils),
             literal_na_inputs=literal_inputs,frozen_sources=sources,construction_inputs=inputs.run_directory,
+            **({"select_anionic_phosphate":True} if select_representation else {}),
             continuation_options=continuation_options,
             **({'automatic_plane_support':True} if automatic_plane_support else {}),
             **({'bond_targets':bond_targets} if bond_targets is not None else {}),
             **({'automatic_bond_targets':True} if automatic_bond_targets else {}),**execution_limits)
-        return PreparedPostMRRequest(inputs.run_directory,request,record,
-            {code:dict(configured.generation) for code in inputs.components})
+        return PreparedPostMRRequest(inputs.run_directory,request,record,generation)
     result = _prepare_postmr(run_directory,configured.ready_set_executable,phenix_installation=phenix,
         coot_executable=coot_executable,environment=phenix.environment,data_root=data_root,
         allow_mr_review=allow_mr_review,modified_pairs_only=modified_pairs_only,restraint_scope=restraint_scope,
         allow_unreviewed_backbone=allow_unreviewed_backbone,narestraints_builder=narestraints_builder,
         modified_pair_builder=modified_pair_builder,_dictionary_handler=initialize,
+        **({'_furanose_input':furanose} if furanose is not None else {}),
         **({"_construction_inputs":construction} if construction is not None else {}))
     if not isinstance(result,PreparedPostMRRequest):raise ValueError('Ordinary request boundary was not reached')
     return result
@@ -205,19 +262,24 @@ def _ordinary_request_directory(run_directory):
     return _root(run_directory)/'PostMR'/'DictionaryEngine'/'request'
 
 
-def _plane_support_limitations(report):
+def _plane_support_limitations(report, execution=None):
     """Describe already replayed generation outcomes, never infer final adoption."""
     if 'plane_generation' not in report:
         return ('This preparation has no recorded automatic plane-generation outcome; these notes do not establish complete plane coverage.',)
     notes = ['Plane-support generation does not establish final plane adoption in the selected restraints; repair and ReadySet qualification still govern selection.']
+    unfilled = {row['component'] for row in (execution or {}).get('plane_results', [])
+                if row['status'] == 'NO_SUPPORTED_PLANE_COMPLETION'}
     for code,row in sorted(report['plane_generation']['components'].items()):
         status = row['status']; centres = ', '.join(row['missing_centres'])
         if status == 'NO_GENERATION_NEEDED':
             notes.append(f'{code}: no missing planes were found within the supported source-graph screen; other chemistry is not assessed by that screen.')
+        elif status == 'OWNED_SUPPORT_READY' and code in unfilled:
+            notes.append(f'{code}: existing plane membership was retained at {centres}; the available evidence did not support a plane addition.')
         elif status == 'OWNED_SUPPORT_READY':
-            notes.append(f'{code}: generated source-checked support for screened centres {centres}.')
+            notes.append(f'{code}: generated source-checked support for review of screened centres {centres}.')
         elif status == 'KNOWN_GENERATION_FAILURE':
-            reason = {'TIMED_OUT':'timed out','REJECTED_CANDIDATE':'was chemically rejected'}.get(row['proof']['failure_kind'],'failed')
+            reason = {'TIMED_OUT':'timed out','REJECTED_CANDIDATE':'was chemically rejected',
+                      'FINAL_BOND_ORDERS_REJECTED':'ended with bond orders outside the declared chemistry'}.get(row['proof']['failure_kind'],'failed')
             notes.append(f'{code}: optional plane generation {reason}; generated output was not used. Initially missing screened centres: {centres}.')
         else:
             raise ValueError('Unsupported checked plane-generation outcome')
@@ -245,7 +307,18 @@ def _selected_plane_limitations(exact):
     sources = {code:dict(path=Path(prepared['bundle_directory'])/'components'/code/'snapshot/entry/source.cif',
                         sha256=row['source_sha256']) for code,row in plan.items()}
     dictionaries = [dict(path=path,sha256=ref['sha256']) for path,ref in zip(runtime['dictionaries'],refs)]
-    report = audit_selected_trigonal_planes(sources, dictionaries)
+    policies = {}
+    for site in prepared.get('bundle', {}).get('preparations', []):
+        binding = site.get('preparation_qualification')
+        if binding is None:
+            continue
+        code = site['component']
+        _need(code in plan and code not in policies and binding['component'] == code
+              and binding['source_sha256'] == plan[code]['source_sha256']
+              and binding['candidate_sha256'] == plan[code]['dictionary_sha256'],
+              'Selected plane policy differs from the acquired source or numerical dictionary')
+        policies[code] = binding['bond_representation_policy']
+    report = audit_selected_trigonal_planes(sources, dictionaries, representation_policies=policies)
     notes = ['Selected dictionary coverage is scoped to explicit source-graph planes; native modifications, alternative restraints, achieved geometry and diffraction refinement are not assessed by this screen.']
     for code, row in report['components'].items():
         if row['status'] == 'UNASSESSED':
@@ -307,7 +380,7 @@ def _ordinary_result_from_exact(request, attempt_number, exact):
         report_path=request/'attempts'/f'attempt-{attempt_number:04d}'/'result.json',
         limitations=(
             'These preparation checks do not establish diffraction-refinement success.',
-            *_plane_support_limitations(exact['result']),
+            *_plane_support_limitations(exact['result'], exact.get('execution')),
             *_selected_plane_limitations(exact),
         ),
     )
@@ -332,6 +405,8 @@ def _execute_ordinary_postmr(run_directory, phenix, *, store_root=None, **prepar
     options = dict(preparation_options)
     options.setdefault('expected_dialect', 'CHEMICAL_COMPONENTS_CIF')
     options.setdefault('continuation_options', dict(readyset_timeout_seconds=120, restore_serialization=True))
+    if options.get('locked_sugar_site') is not None:
+        options['store_root'] = store_root
     prepared = initialize_ordinary_postmr_request(run_directory, phenix, **options)
     result = execute_dictionary_request_attempt(prepared.request_directory, phenix,
         default_dictionary_store() if store_root is None else store_root,
@@ -357,10 +432,10 @@ def _retire_new_preparation(request_directory, attempt_number):
     from .campaign_records import read_record
     from .campaigns import CampaignError
     from .cif_attempt_retention import ARTIFACT_POLICY, retire_attempt_working_files
-    from .cif_complete_request import CAPTURE_ARTIFACT_POLICY, read_dictionary_request_result
+    from .cif_complete_request import CAPTURE_ARTIFACT_POLICY, STAGED_ARTIFACT_POLICY, read_dictionary_request_result
     try:
         request = read_record(request_directory/'request.json')
-        if request['configuration'].get('artifact_policy') not in {ARTIFACT_POLICY, CAPTURE_ARTIFACT_POLICY}:
+        if request['configuration'].get('artifact_policy') not in {ARTIFACT_POLICY, CAPTURE_ARTIFACT_POLICY, STAGED_ARTIFACT_POLICY}:
             return None  # Other layouts retain their original storage contract.
         retire_attempt_working_files(request_directory, attempt_number)
     except (OSError, ValueError, CampaignError) as exc:

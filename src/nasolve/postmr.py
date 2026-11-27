@@ -66,6 +66,9 @@ class MutationAction:
     deposition_code: str | None = None
 
 
+FURANOSE_METHOD = "base-anchored-furanose"
+
+
 @dataclass(frozen=True)
 class PostMRResult:
     """A usable preparation; checked results expose their receipt and actual status.
@@ -395,6 +398,7 @@ def _explicit_construction_sources(choices, targets, *, mirrored=False):
 def build_mutation_plan(
     report: Mapping[str, object], model: Path, *, run_directory: Path | None = None,
     construction_sources: Mapping[str, tuple[Path, str]] | None = None,
+    furanose_target: tuple[str, str] | None = None,
 ) -> tuple[MutationAction, ...]:
     """Plan ordinary mutations, optionally using exact explicit source/parent choices.
 
@@ -403,6 +407,8 @@ def build_mutation_plan(
     explicit D-deoxy stereochemistry is required. This is construction planning,
     not native dictionary qualification, target registration or base-pair intent.
     Frozen source-selection paths may be supplied without their original source.
+    A selected internal furanose becomes its own construction action on the
+    phosphate-prepared frame. The ordinary caller binds its qualified dictionary.
     """
     actions: list[MutationAction] = []
     raw_targets = _target_sites(report, model, run_directory=run_directory)
@@ -414,6 +420,14 @@ def build_mutation_plan(
     # for a NEW PostMR derivative. Existing completed reports are not re-read
     # through this policy during checkpoint inspection or refinement.
     inputs = report.get("inputs")
+    if furanose_target is not None:
+        if (not isinstance(furanose_target, tuple) or len(furanose_target) != 2
+                or not all(isinstance(v, str) for v in furanose_target)
+                or targets.get(furanose_target[0]) != furanose_target[1]
+                or list(targets.values()).count(furanose_target[1]) != 1
+                or (isinstance(inputs, Mapping) and inputs.get("mirror") is True)
+                or (construction_sources is not None and furanose_target[1] in construction_sources)):
+            raise PostMRPreparationError("Require one exact unmirrored furanose target distinct from Coot choices")
     if (isinstance(inputs, Mapping) and inputs.get("mirror") is True
             and (component_target_changes(raw_targets) or any(
                 residue_name(model, site) in PREFERRED_COMPONENTS for site in targets))):
@@ -431,7 +445,11 @@ def build_mutation_plan(
         current = residue_name(model, site)
         parent_code: str | None = None
         deposition_code: str | None = None
-        if current == target:
+        if (site, target) == furanose_target:
+            if current == target:
+                raise PostMRPreparationError("Requested furanose substitution is already present")
+            method = FURANOSE_METHOD
+        elif current == target:
             method = "none"
         elif PREFERRED_COMPONENTS.get(current) == target:
             # Reviewed identity heavy-atom map; no canonical scaffold hop is
@@ -500,6 +518,9 @@ def _coot_script(
     ]
     if conformation_plans and any(p["status"] == "MATCH_PARENT_CHI" for p in conformation_plans.values()):
         lines.extend(native_helpers())
+        if any("named_rotation" in p for p in conformation_plans.values()):
+            from .postmr_named_rotation import native_rotation_helpers
+            lines.extend(native_rotation_helpers())
     for code, dictionary in dictionary_paths.items():
         lines.extend([
             f"dictionary_status = coot.read_cif_dictionary({json.dumps(str(dictionary))})",
@@ -630,7 +651,7 @@ def _run_coot(
     log = coot_directory / "coot.log"
     from .postmr_conformation import parent_conformation_plan
     plans = {action.site: parent_conformation_plan((site_dictionary_paths or {}).get(action.site, dictionary_paths[action.after]),
-        action.after, action.parent_code) for action in actions
+        action.after, action.parent_code, recover_named_chi=True) for action in actions
         if action.method == "coot-parent-overlap"}
     backups = coot_directory / "backups"
     backups.mkdir()
@@ -795,7 +816,7 @@ def _restore_shared_parent_coordinates(
     actions: tuple[MutationAction, ...],
     parent_models: Mapping[str, Path],
     dictionary_paths: Mapping[str, Path] | None = None,
-    *, site_dictionary_paths: Mapping[str, Path] | None = None,
+    *, displacement_reference: Path | None = None, site_dictionary_paths: Mapping[str, Path] | None = None,
 ) -> dict[str, object]:
     """Restore supported DNA scaffolds without copying partial same-name bases.
 
@@ -813,6 +834,8 @@ def _restore_shared_parent_coordinates(
     if len({a.site for a in modified}) != len(modified):
         raise PostMRPreparationError("Duplicate selected restoration sites")
     records = _coordinate_records(raw_model)
+    from .postmr_scaffold_displacement import HostDisplacement
+    host = HostDisplacement(displacement_reference, records) if displacement_reference is not None else None
     report: dict[str, object] = {}
     special = tuple(a for a in modified if (ligand := CURATED_LIGANDS.get(a.after)) is not None
                     and (ligand.atom_substitutions or ligand.ring_substituents))
@@ -849,6 +872,8 @@ def _restore_shared_parent_coordinates(
                 "substitutions": [], "reason": str(exc), "requires_cif_review": False,
                 "notes": ["The complete raw Coot site was retained because this DNA transport rule does not support its graph or coordinate context."]}
         else:
+            if host is not None:
+                replacements = host.apply(action, replacements, item)
             for index,line in zip(indices,replacements):
                 records[index] = line
         report[action.site] = item
@@ -1882,6 +1907,7 @@ def construct_postmr_model(
     coot_executable: Path | None = None,
     environment: Mapping[str, str] | None = None,
     coot_directory: Path | None = None,
+    inherit_scaffold_b: bool = False,
     reference_model: Path | None = None,
     timeout_seconds: float | None = None,
     allow_op3_sites: tuple[str, ...] = (),
@@ -1903,7 +1929,11 @@ def construct_postmr_model(
     Coot reloads them before each monomer and actual heavy-atom inventories must
     agree. The same choices feed context/restoration and are returned for lineage.
     Their upstream source/end-state/numerical qualification remains separate.
+    Fresh ordinary PostMR sets inherit_scaffold_b to carry isotropic B factors
+    from the original model for coordinate-identical restored DNA scaffold atoms.
     """
+    if any(action.method == FURANOSE_METHOD for action in actions):
+        raise PostMRPreparationError("Whole-furanose construction requires the ordinary phosphate-prepared frame")
     input_model, output_model = Path(input_model), Path(output_model)
     reference_model = Path(reference_model) if reference_model is not None else input_model
     if output_model.exists() or output_model.is_symlink():
@@ -1977,10 +2007,13 @@ def construct_postmr_model(
         serial_identity_policy=COMPONENT_PADDING_POLICY_ID,
         canonical_serial_policy=CANONICAL_SERIAL_POLICY_ID, **site_options)
     restoration_input = context["model"]
+    restoration_options = dict(site_options)
+    if inherit_scaffold_b:
+        restoration_options["displacement_reference"] = reference_model
     restoration_actions = tuple(a for a in overlap_actions if a.site not in passthrough_sites)
     if restoration_actions:
         restoration = _restore_shared_parent_coordinates(restoration_input, geometry_model,
-            restoration_actions, parent_models, dictionary_paths, **site_options)
+            restoration_actions, parent_models, dictionary_paths, **restoration_options)
     else:
         shutil.copyfile(restoration_input, geometry_model)
         restoration = {}
@@ -2013,7 +2046,7 @@ def construct_postmr_model(
             rollback_geometry = output_model.with_name(output_model.stem + "_context_rollback_geometry.pdb")
             if restoration_actions:
                 restoration = _restore_shared_parent_coordinates(raw_model, rollback_geometry,
-                    restoration_actions, parent_models, dictionary_paths, **site_options)
+                    restoration_actions, parent_models, dictionary_paths, **restoration_options)
             else:
                 shutil.copyfile(raw_model, rollback_geometry)
                 restoration = {}
@@ -2067,6 +2100,7 @@ class _PreparedDictionaryInputs:
     model_path: Path
     components: tuple[str, ...]
     supplementary_phils: tuple[Path, ...]
+    furanose_entry_id: str | None = None
 
 
 _PostMRReturn = TypeVar("_PostMRReturn")
@@ -2098,6 +2132,7 @@ def prepare_postmr(
     bond_targets: dict | None = None,
     automatic_bond_targets: bool = False,
     dictionary_input_policy: str | None = None,
+    locked_sugar_site: str | None = None,
     coot_executable: Path | None = None,
     environment: Mapping[str, str] | None = None,
     allow_mr_review: bool = False,
@@ -2140,6 +2175,8 @@ def prepare_postmr(
             bond_targets = _bond_target_declarations(bond_targets)
         except ValueError as exc:
             raise PostMRPreparationError(str(exc)) from exc
+    if locked_sugar_site is not None and not checked_preparation:
+        raise PostMRPreparationError('locked_sugar_site requires checked_preparation')
     from .cif_generation_input import ordinary_generation_options
     try:
         generation_options = ordinary_generation_options(dictionary_input_policy)
@@ -2160,6 +2197,7 @@ def prepare_postmr(
         from .checkpoints import CheckpointError
         try:
             return prepare_published_postmr(run_directory, phenix_installation,
+                **({"locked_sugar_site": locked_sugar_site} if locked_sugar_site is not None else {}),
                 **({"automatic_plane_support": True} if automatic_plane_support else {}),
                 **({"bond_targets": bond_targets} if bond_targets is not None else {}),
                 **({"automatic_bond_targets": True} if automatic_bond_targets else {}),
@@ -2186,6 +2224,7 @@ def _prepare_postmr(
     modified_pair_builder: Callable[[Path, Path, Path, Path], object] | None = None,
     _dictionary_handler: Callable[[_PreparedDictionaryInputs], _PostMRReturn] | None = None,
     _construction_inputs: dict | None = None,
+    _furanose_input=None,
 ) -> PostMRResult | _PostMRReturn:
     """Prepare a completed Phaser solution without modifying the MR outputs.
 
@@ -2195,7 +2234,7 @@ def _prepare_postmr(
     existing cache adapter consumes that same installation without rediscovery.
     This does not enable the separate owned repair/adoption engine.
     """
-    if _construction_inputs is not None and _dictionary_handler is None:
+    if (_construction_inputs is not None or _furanose_input is not None) and _dictionary_handler is None:
         raise PostMRPreparationError("Explicit projected construction requires the owned dictionary request")
     environment = _selected_postmr_environment(ready_set_executable, phenix_installation, environment)
     run, report = _read_report(run_directory)
@@ -2244,13 +2283,17 @@ def _prepare_postmr(
         raise PostMRPreparationError(str(exc)) from exc
     # Validate opt-in frozen targets and mutation routes before creating PostMR.
     explicit_planning = {}
+    if _furanose_input is not None:
+        if _furanose_input.site in set(allowed_op3) | set(passthrough_sites):
+            raise PostMRPreparationError("Furanose substitution requires two ordinary internal backbone links")
+        explicit_planning['furanose_target'] = (_furanose_input.site, _furanose_input.code)
     if _construction_inputs is not None:
         explicit_planning['construction_sources'] = {
             code: (_construction_inputs['selection']['sources'][code]['source'], row['parent'])
             for code, row in _construction_inputs['choices'].items()}
     family_actions = (
         build_mutation_plan(report, source_model, run_directory=run, **explicit_planning)
-        if family is not None or _construction_inputs is not None else None
+        if family is not None or explicit_planning else None
     )
     postmr = run / "PostMR"
     try:
@@ -2268,13 +2311,20 @@ def _prepare_postmr(
 
     original = model_dir / "mr_solution.pdb"
     shutil.copyfile(source_model, original)
+    if _furanose_input is not None:
+        from .postmr_furanose import CatalogueSubstitution
+        if isinstance(_furanose_input, CatalogueSubstitution):
+            try:
+                _furanose_input = _furanose_input.acquire(coot_dir/'furanose_acquisition')
+            except (OSError, ValueError, RuntimeError) as exc:
+                raise PostMRPreparationError(f'Isolated dictionary preparation failed at {_furanose_input.site}: {exc}') from exc
     actions = (
         family_actions if family_actions is not None
         else build_mutation_plan(report, original)
     )
     target_ligand_codes = sorted({
         action.after for action in actions
-        if action.method in {"coot-parent-overlap", "component-normalization"}
+        if action.method in {"coot-parent-overlap", "component-normalization", FURANOSE_METHOD}
     })
     staged = None
     if _construction_inputs is not None:
@@ -2290,12 +2340,17 @@ def _prepare_postmr(
         from .cif_ordinary_postmr import _stage_construction_inputs
         staged = _stage_construction_inputs(_construction_inputs, run)
     explicit_codes = set(_construction_inputs['choices']) if _construction_inputs is not None else set()
+    if _furanose_input is not None:
+        explicit_codes.add(_furanose_input.code)
     ligand_specs = {code: ligand_definition(code) for code in target_ligand_codes if code not in explicit_codes}
     ligand_sources: dict[str, Path] = {}
     initial_dictionary_hashes: dict[str, str] = {}
     for code in target_ligand_codes:
         try:
-            if staged is not None:
+            if _furanose_input is not None and code == _furanose_input.code:
+                dictionary = _furanose_input.snapshot/'entry/source.cif'
+                _furanose_input.verify()
+            elif staged is not None:
                 if code not in staged['sources']:
                     raise ValueError("Construction target lacks its frozen source: " + code)
                 dictionary = staged['dictionaries'].get(code, staged['sources'][code]['source'])
@@ -2378,10 +2433,15 @@ def _prepare_postmr(
     except (OSError, ValueError, CampaignError) as exc:
         raise PostMRPreparationError(f"Construction dictionary/model lineage failed: {exc}") from exc
     after_coot = model_dir / "after_coot.pdb"
+    coot_plan = actions
+    coot_sources = construction_sources
+    if _furanose_input is not None:
+        coot_plan = tuple(action for action in actions if action.method != FURANOSE_METHOD)
+        coot_sources = {c:p for c,p in construction_sources.items() if c != _furanose_input.code}
     construction = construct_postmr_model(
-        coot_input, actions, construction_sources, after_coot,
+        coot_input, coot_plan, coot_sources, after_coot,
         coot_executable=coot_executable, environment=environment,
-        coot_directory=coot_dir, reference_model=original,
+        coot_directory=coot_dir, reference_model=original, inherit_scaffold_b=True,
         allow_op3_sites=allowed_op3, passthrough_sites=passthrough_sites,
         **({'site_dictionary_paths':staged['site_dictionary_paths']} if staged is not None else {}),
     )
@@ -2399,13 +2459,20 @@ def _prepare_postmr(
     except BackboneError as exc:
         raise PostMRPreparationError(f"5'-terminal phosphate construction failed: {exc}") from exc
     prepared = model_dir / "prepared_model.pdb"
+    scaffold = prepared if _furanose_input is None else model_dir/'before_furanose.pdb'
     try:
         phosphate_before = sanitize_phosphates(
-            terminal_ready, prepared, reference_model=original,
+            terminal_ready, scaffold, reference_model=original,
             allow_op3_sites=allowed_op3, passthrough_sites=passthrough_sites,
         )
     except PhosphateError as exc:
         raise PostMRPreparationError(f"PostMR phosphate validation failed: {exc}") from exc
+    if _furanose_input is not None:
+        from .postmr_furanose import build_substitution
+        try:
+            build_substitution(_furanose_input, scaffold, prepared, run, report)
+        except (OSError, ValueError) as exc:
+            raise PostMRPreparationError(f"Internal sugar substitution failed at {_furanose_input.site}: {exc}") from exc
     for action in actions:
         if residue_name(prepared, action.site) != action.after:
             raise PostMRPreparationError(
@@ -2624,7 +2691,8 @@ def _prepare_postmr(
     )
     if _dictionary_handler is not None:
         return _dictionary_handler(_PreparedDictionaryInputs(
-            run, report, prepared, tuple(ligand_codes), tuple(restraint_paths)))
+            run, report, prepared, tuple(ligand_codes), tuple(restraint_paths),
+            _furanose_input.entry_id if _furanose_input is not None else None))
 
     copied_cifs: list[Path] = []
     dictionary_input_audit: list[dict] = []

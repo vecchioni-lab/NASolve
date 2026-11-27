@@ -4,6 +4,7 @@ A proper rigid transform preserves the complete numerical sugar/base geometry.
 Only declared neutral port deletions are allowed. Link geometry, partner chemistry,
 native restraint preparation and adoption remain separate qualifications.
 """
+from hashlib import sha256
 from itertools import combinations
 import math
 from pathlib import Path
@@ -15,12 +16,17 @@ from .cif_attachment_sites import (_model, _object, _site, _projection_values,
     _neutral_hydroxyl_hydrogens, inspect_attachment_site)
 from .cif_candidate_usability import reassess_complete_candidate
 from .cif_construction_provenance import _pdb_inventory
+from .cif_dictionary_sites import _read as _read_site_artifact
 from .cif_fana_component import _digest, _load, _save
 from .cif_fragment_restoration import _frame, _dot, _sub, _cross
 from .cif_stereochemistry_audit import _values, _graph, _coordinates, _volume, VOLUME_EPSILON
 
 POLICY_ID = 'cif-rigid-whole-furanose-linked-control-v1'
 BASE_POLICY_ID = 'cif-base-anchored-whole-furanose-control-v1'
+MODEL_BASE_POLICY_ID = 'cif-model-linked-base-anchored-furanose-v1'
+_MAPPED_RING_FRAME = 'source-ring-and-workbook-roles-v1'
+_LEAVING_FLAG = '_chem_comp_atom.pdbx_leaving_atom_flag'
+_RETAINED_PHOSPHATE_OXYGENS = {'OP1', 'OP2', 'O1P', 'O2P'}
 _PROFILES = {'unbridged-furanose-phosphate-v1', 'two-o-four-c-methylene-furanose-phosphate-v1'}
 _INPUTS = {'source.cif', 'numerical.cif', 'host.cif', 'Ligands.xlsx', 'frame.pdb', 'context.json', 'selection.json'}
 _OUTPUTS = {'model.pdb', 'placement.json'}
@@ -31,15 +37,9 @@ def _hand(a, b):
             and min(abs(a), abs(b)) > VOLUME_EPSILON and (a > 0) == (b > 0))
 
 
-def _base_frame_bindings(profile, values, frame_roles):
-    """Bind explicit NAR roles to the base side of the source glycosidic edge."""
-    mapping = profile['operational_signature']['atom_roles']
-    elements, bonds, _, neighbors = _graph(values)
-    roles = profile['bindings']; base, sugar = roles['base'], roles['anomeric']
-    names = [mapping.get(role) for role in frame_roles]
-    if (len(set(names)) != 3 or names[0] != base
-            or any(elements.get(n) in {None, 'H', 'D'} for n in names)):
-        raise ValueError('Require distinct heavy NAR base anchors, glycosidic atom first')
+def base_fragment_atoms(roles, neighbors):
+    """Find the complete base-side fragment after cutting its one glycosidic edge."""
+    base, sugar = roles['base'], roles['anomeric']
     fragment = set(); pending = [base]
     while pending:
         atom = pending.pop()
@@ -47,7 +47,21 @@ def _base_frame_bindings(profile, values, frame_roles):
         fragment.add(atom)
         pending.extend(n for n in neighbors[atom]
             if {atom, n} != {base, sugar} and n not in fragment)
-    if sugar in fragment or not set(names) <= fragment:
+    if sugar in fragment:
+        raise ValueError('Base must separate from the source sugar at its declared edge')
+    return fragment
+
+
+def _base_frame_bindings(profile, values, frame_roles):
+    """Bind explicit NAR roles to the base side of the source glycosidic edge."""
+    mapping = profile['operational_signature']['atom_roles']
+    elements, bonds, _, neighbors = _graph(values)
+    roles = profile['bindings']; base = roles['base']
+    names = [mapping.get(role) for role in frame_roles]
+    if (len(set(names)) != 3 or names[0] != base
+            or any(elements.get(n) in {None, 'H', 'D'} for n in names)):
+        raise ValueError('Require distinct heavy NAR base anchors, glycosidic atom first')
+    if not set(names) <= base_fragment_atoms(roles,neighbors):
         raise ValueError('Frame anchors must lie on the separated source base fragment')
     edges = [bonds.get(tuple(sorted((base, n)))) for n in names[1:]]
     if any(edge is None for edge in edges):
@@ -55,14 +69,99 @@ def _base_frame_bindings(profile, values, frame_roles):
     return names, [elements[n] for n in names], edges
 
 
+def _mapped_ring_frame(profile, values):
+    """Identify the three alignment roles from the ring and this component's workbook row."""
+    from .cif_doctor import _bridges
+
+    elements, _, _, neighbors = _graph(values)
+    roles = profile['bindings']
+    base = roles['base']
+    fragment = base_fragment_atoms(roles, neighbors)
+    adjacent = {n for n in neighbors[base] & fragment if elements[n] not in {'H','D','T'}}
+    bridges = _bridges(neighbors)
+    if len(adjacent) != 2 or any(frozenset((base, n)) in bridges for n in adjacent):
+        raise ValueError('Base alignment requires two ring neighbours of the glycosidic atom')
+    mapped = {}
+    for atom in {base, *adjacent}:
+        labels = [role for role, n in profile['operational_signature']['atom_roles'].items() if n == atom]
+        if len(labels) != 1:
+            raise ValueError('Base ring alignment requires one distinct workbook role for each anchor')
+        mapped[atom] = labels[0]
+    return [mapped[base], *sorted(mapped[n] for n in adjacent)]
+
+
 def _derive_base(root):
     return _derive(root, base_anchored=True)
 
 
-def _derive(root, *, base_anchored=False):
+def _derive_model_base(root):
+    return _derive(root, base_anchored=True, model_ports=True)
+
+
+def _source_phosphate_leaving_atom(values, roles):
+    """Require one source-marked terminal P–OH on the bound phosphate."""
+    elements, bonds, charges, neighbors = _graph(values)
+    names = values['_chem_comp_atom.atom_id']
+    flags = values.get(_LEAVING_FLAG, ())
+    if len(flags) != len(names):
+        raise ValueError('Missing or incomplete source phosphate leaving flags')
+    by_atom = {name: flag.upper() for name, flag in zip(names, flags)}
+    phosphorus = roles['phosphate']
+    adjacent = neighbors[phosphorus]
+    if (elements[phosphorus] != 'P' or len(adjacent) != 4
+            or any(elements[n] != 'O' or by_atom[n] not in {'Y', 'N'} for n in adjacent)):
+        raise ValueError('The phosphate needs four oxygen neighbours with explicit leaving flags')
+    selected = [n for n in adjacent if by_atom[n] == 'Y']
+    if len(selected) != 1:
+        raise ValueError('The source must flag exactly one phosphate oxygen as leaving')
+    atom = selected[0]
+    if atom == roles['five_o'] or atom.upper() in _RETAINED_PHOSPHATE_OXYGENS:
+        raise ValueError('Source leaving flag identifies a retained phosphate oxygen')
+    heavy = {n for n in neighbors[atom] if elements[n] not in {'H', 'D'}}
+    if (heavy != {phosphorus} or bonds[tuple(sorted((atom, phosphorus)))] != 'SINGLE'
+            or _neutral_hydroxyl_hydrogens(atom, elements, bonds, charges, neighbors) is None):
+        raise ValueError('Source leaving flag requires a singly bonded terminal neutral P–OH')
+    return atom
+
+
+def _ordinary_ports(frame, site, leaving_atom, report):
+    """Resolve the two partners from the ordinary phosphate audit on these coordinates."""
+    from .cif_model_context import derive_prepared_model_context
+
+    site = _site(site)
+    frame = Path(frame).expanduser()
+    payload = _read_site_artifact(frame)
+    sites = _model(payload)
+    if site not in sites:
+        raise ValueError('Selected host site is absent')
+    if not isinstance(leaving_atom, str) or not leaving_atom.strip():
+        raise ValueError('Require the explicit source phosphate leaving atom')
+    if leaving_atom.upper() in _RETAINED_PHOSPHATE_OXYGENS:
+        raise ValueError('Ordinary placement cannot remove a retained phosphate oxygen')
+    code = sites[site]['component']
+    topology = derive_prepared_model_context(frame, report, [code])
+    if topology['model_sha256'] != sha256(payload).hexdigest():
+        raise ValueError('Host model changed during ordinary link determination')
+    row, = (r for r in topology['contexts'][code] if r['site'] == site)
+    if row['five_prime_state'] != 'linked' or row['three_prime_state'] != 'linked':
+        raise ValueError('Placement requires an internal site with two audited backbone links')
+    ports = {}
+    for port, partner, atom in (('phosphate', row['incoming_site'], "O3'"),
+                                ('alcohol', row['outgoing_site'], 'P')):
+        ports[port] = dict(state='linked', symmetry_operation='x,y,z',
+                           partner=dict(site=partner, component=sites[partner]['component'], atom_id=atom))
+    ports['phosphate']['leaving_atom'] = leaving_atom
+    binding = dict(model_sha256=topology['model_sha256'], intent=topology['intent'])
+    return dict(schema_version=1, site=site, ports=ports), binding
+
+
+def _derive(root, *, base_anchored=False, model_ports=False):
     selection = _load(root/'selection.json')
-    _object(selection, ('code', 'base_frame_roles') if base_anchored else ('code',))
-    if base_anchored:
+    fields = ('code', 'base_frame_roles') if base_anchored else ('code',)
+    _object(selection, fields + (('ordinary_backbone',) if model_ports else ()),
+            ('leaving_atom_source',) if model_ports else ())
+    automatic_frame = model_ports and selection.get('base_frame_roles') == _MAPPED_RING_FRAME
+    if base_anchored and not automatic_frame:
         frame_roles = selection['base_frame_roles']
         if (not isinstance(frame_roles, list) or len(frame_roles) != 3
                 or any(not isinstance(r, str) or not r for r in frame_roles)
@@ -76,6 +175,14 @@ def _derive(root, *, base_anchored=False):
     if type(context['schema_version']) is not int or context['schema_version'] != 1:
         raise ValueError('Unsupported context schema')
     selected = _site(context['site']); _object(context['ports'], ('phosphate', 'alcohol'))
+    if model_ports:
+        binding = selection['ordinary_backbone']
+        _object(binding, ('intent', 'model_sha256'))
+        phosphate = context['ports']['phosphate']
+        _object(phosphate, ('state', 'partner', 'symmetry_operation', 'leaving_atom'))
+        expected, actual = _ordinary_ports(root/'frame.pdb', selected, phosphate['leaving_atom'], binding['intent'])
+        if actual != binding or context != expected:
+            raise ValueError('Placement ports or source binding differ from the ordinary backbone audit')
     payload = (root/'frame.pdb').read_bytes(); sites = _model(payload)
     if selected not in sites:
         raise ValueError('Selected host site is absent')
@@ -91,6 +198,10 @@ def _derive(root, *, base_anchored=False):
         raise ValueError('Require a complete source-preserving numerical candidate')
     values = _values(root/'source.cif', code)
     elements, bonds, charges, neighbors = _graph(values)
+    if 'leaving_atom_source' in selection:
+        if (selection['leaving_atom_source'] != _LEAVING_FLAG or
+                _source_phosphate_leaving_atom(values, roles) != context['ports']['phosphate']['leaving_atom']):
+            raise ValueError('Recorded phosphate leaving atom differs from its source flag')
     terms = assessment['finished_stereo']['terms']
     # This audit includes both atom R/S labels and fixed source chirality loops.
     centers = {r['center'] for r in terms}
@@ -131,7 +242,9 @@ def _derive(root, *, base_anchored=False):
     if partners[0][0] == partners[1][0] or removed & centers:
         raise ValueError('Require distinct flanks and retained stereocentres')
     lines = payload.decode('utf-8').splitlines(keepends=True)
-    if any(l[:6].strip() not in {'ATOM', 'HETATM', 'REMARK', 'CRYST1', 'TER', 'END', ''} for l in lines):
+    # Replacement stays in the host Cartesian frame. Crystal axes pass through verbatim.
+    allowed = {'ATOM', 'HETATM', 'REMARK', 'CRYST1', 'SCALE1', 'SCALE2', 'SCALE3', 'TER', 'END', ''}
+    if any(line[:6].strip() not in allowed for line in lines):
         raise ValueError('Unsupported frame records require reconciliation')
     inventory = _pdb_inventory(root/'frame.pdb'); chain, resid = selected.split(':')
     center = {k[-1]: a['xyz'] for k, a in inventory.items() if k[:2] == (chain, resid)}
@@ -146,6 +259,10 @@ def _derive(root, *, base_anchored=False):
         checks.append({'role': role, 'target_volume': a, 'host_volume': b})
         if base_anchored:checks[-1]['compatible'] = _hand(a, b)
     if base_anchored:
+        if automatic_frame:
+            frame_roles = _mapped_ring_frame(profiles[0], values)
+            if _mapped_ring_frame(profiles[1], host_values) != frame_roles:
+                raise ValueError('Host and target have different workbook roles at the glycosidic ring')
         target_frame, target_elements, target_edges = _base_frame_bindings(profiles[0], values, frame_roles)
         host_frame, frame_elements, host_edges = _base_frame_bindings(profiles[1], host_values, frame_roles)
         if (target_elements != frame_elements or target_edges != host_edges
@@ -217,6 +334,12 @@ def _derive(root, *, base_anchored=False):
         report.update(alignment='NAR_BASE_FRAME', target_frame_atoms=target_frame,
             host_frame_atoms=host_frame, base_anchor_residuals_angstrom=[math.dist(moved[n], p) for n, p in zip(target_frame, b)],
             host_sugar_compatibility_required=False, base_chemical_equivalence='NOT_ASSERTED')
+    if model_ports:
+        report.update(policy_id=MODEL_BASE_POLICY_ID, ordinary_backbone=selection['ordinary_backbone'])
+    if automatic_frame:
+        report['base_frame_source'] = _MAPPED_RING_FRAME
+    if 'leaving_atom_source' in selection:
+        report['phosphate_leaving_atom'] = dict(atom=context['ports']['phosphate']['leaving_atom'], source=_LEAVING_FLAG)
     return report, model
 
 
@@ -238,6 +361,30 @@ def prepare_base_anchored_furanose_control(source, numerical, host_source, workb
         derive=_derive_base, policy=BASE_POLICY_ID)
 
 
+def prepare_base_anchored_furanose_from_model(source, numerical, host_source, workbook, frame, output,
+                                              *, code, site, postmr_report, base_frame_roles=None, leaving_atom=None):
+    """Place an internal replacement using the host's audited asymmetric-unit links.
+
+    Without an explicit leaving atom the source must flag exactly one terminal,
+    neutral phosphate hydroxyl. Without explicit base roles, both source graphs
+    and workbook rows must agree on the two ring neighbours of the glycosidic
+    atom. The frozen choices are rechecked on every replay.
+    """
+    if base_frame_roles is not None and not isinstance(base_frame_roles, list):
+        raise ValueError('Require three explicit distinct NARestraints base frame roles')
+    selection = dict(code=code, base_frame_roles=_MAPPED_RING_FRAME if base_frame_roles is None else base_frame_roles)
+    if leaving_atom is None:
+        profile = inspect_attachment_profile(source, code, workbook=workbook)
+        if profile['topology_status'] != 'MATCH' or profile['matched_profile'] not in _PROFILES:
+            raise ValueError('Source leaving flags require a supported furanose phosphate')
+        leaving_atom = _source_phosphate_leaving_atom(_values(source, code), profile['bindings'])
+        selection['leaving_atom_source'] = _LEAVING_FLAG
+    context, binding = _ordinary_ports(frame, site, leaving_atom, postmr_report)
+    selection['ordinary_backbone'] = binding
+    return _prepare_control(source, numerical, host_source, workbook, frame, output,
+        context=context, selection=selection, derive=_derive_model_base, policy=MODEL_BASE_POLICY_ID)
+
+
 def _prepare_control(source, numerical, host_source, workbook, frame, output, *, context, selection, derive, policy):
     paths = dict(zip(('source.cif', 'numerical.cif', 'host.cif', 'Ligands.xlsx', 'frame.pdb'),
                     [Path(p).expanduser().resolve(strict=True) for p in (source, numerical, host_source, workbook, frame)]))
@@ -248,7 +395,7 @@ def _prepare_control(source, numerical, host_source, workbook, frame, output, *,
     before = {name: p.read_bytes() for name, p in paths.items()}
     # Validate before making the durable attempt, then rederive from frozen inputs.
     with tempfile.TemporaryDirectory(prefix='nasolve-whole-preflight-') as temporary:
-        stage = Path(temporary)
+        stage = Path(temporary).resolve(strict=True)
         for name, data in before.items():(stage/name).write_bytes(data)
         _save(stage/'context.json', context); _save(stage/'selection.json', selection)
         expected, model = derive(stage)
@@ -261,30 +408,31 @@ def _prepare_control(source, numerical, host_source, workbook, frame, output, *,
     with (out/'model.pdb').open('x') as stream:stream.write(model)
     _save(out/'placement.json', actual)
     _save(out/'receipt.json', {'schema_version': 1, 'policy_id': policy, 'files': {n: _digest(out/n) for n in sorted(_INPUTS | _OUTPUTS)}})
-    return _read_control(out, derive=derive, policy=policy)
+    return _read_control(out, derivations={policy: derive})
 
 
 def read_whole_furanose_control(control):
     """Verify the exact frozen capsule and recompute chemistry/geometry offline."""
-    return _read_control(control, derive=_derive, policy=POLICY_ID)
+    return _read_control(control, derivations={POLICY_ID: _derive})
 
 
 def read_base_anchored_furanose_control(control):
     """Recompute a frozen base-anchored placement without external programs."""
-    return _read_control(control, derive=_derive_base, policy=BASE_POLICY_ID)
+    return _read_control(control, derivations={BASE_POLICY_ID: _derive_base, MODEL_BASE_POLICY_ID: _derive_model_base})
 
 
-def _read_control(control, *, derive, policy):
+def _read_control(control, *, derivations):
     root = Path(control).expanduser().resolve(strict=True); paths = list(root.rglob('*'))
     names = _INPUTS | _OUTPUTS | {'receipt.json'}
     if any(p.is_symlink() or not p.is_file() for p in paths) or {p.name for p in paths} != names:
         raise ValueError('Require an exact nonsymlinked placement capsule')
     before = {p: p.read_bytes() for p in paths}; receipt = _load(root/'receipt.json')
     if (set(receipt) != {'schema_version', 'policy_id', 'files'} or type(receipt['schema_version']) is not int
-            or receipt['schema_version'] != 1 or receipt['policy_id'] != policy
+            or receipt['schema_version'] != 1 or not isinstance(receipt['policy_id'], str)
+            or receipt['policy_id'] not in derivations
             or receipt['files'] != {n: _digest(root/n) for n in sorted(_INPUTS | _OUTPUTS)}):
         raise ValueError('Invalid completion receipt or checksums')
-    report, model = derive(root)
+    report, model = derivations[receipt['policy_id']](root)
     if report != _load(root/'placement.json') or model.encode() != (root/'model.pdb').read_bytes() or any(p.read_bytes() != data for p, data in before.items()):
         raise ValueError('Saved placement differs from fresh derivation')
     return report

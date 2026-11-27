@@ -7,7 +7,7 @@ from tests.test_cif_base_anchored_furanose import inputs,run
 from tests.test_cif_catalogue import snapshot
 
 
-def control(tmp_path, *, bridged=False, rename=False, hand='D'):
+def control(tmp_path, *, bridged=False, rename=False, hand='D', edit_frame=None):
     from nasolve.cif_stereochemistry_audit import _values,_coordinates
     paths,c=inputs(tmp_path,bridged=bridged,rename=rename,hand=hand)
     _,xyz=_coordinates(_values(paths[1],'Z99'),source=False)
@@ -20,6 +20,7 @@ def control(tmp_path, *, bridged=False, rename=False, hand='D'):
             point=[-virtual[1]+55,virtual[0]+10,virtual[2]+2]
             line=line[:30]+''.join(f'{x:8.3f}' for x in point)+line[54:]
         lines[i]=line
+    if edit_frame is not None:edit_frame(lines)
     paths[4].write_text(''.join(lines));run(paths,c)
     return paths[-1]
 
@@ -27,6 +28,28 @@ def control(tmp_path, *, bridged=False, rename=False, hand='D'):
 def seed(placement,out,**kw):
     from nasolve.cif_furanose_bridge import prepare_furanose_bridge_seed
     return prepare_furanose_bridge_seed(placement,out,endpoint_weight=1000.,max_base_displacement=2.,**kw)
+
+
+def test_source_phosphate_arm_roles_survive_renaming_but_refuse_a_ring_or_double_bond(tmp_path):
+    from nasolve.cif_attachment_profiles import inspect_attachment_profile
+    from nasolve.cif_furanose_bridge import phosphate_arm_rotors
+    from nasolve.cif_stereochemistry_audit import _values, _graph
+
+    paths, context = inputs(tmp_path, bridged=True, rename=True)
+    roles = inspect_attachment_profile(paths[0], "Z99", workbook=paths[3])["bindings"]
+    _, bonds, _, graph = _graph(_values(paths[0], "Z99"))
+    leaving = context["ports"]["phosphate"]["leaving_atom"]
+    groups = phosphate_arm_rotors(roles, graph, bonds, leaving_atom=leaving)
+    ester, phosphorus = groups[-1]["axis_atoms"]
+    assert (ester, phosphorus) == (roles["five_o"], roles["phosphate"])
+    assert leaving in groups[-1]["moving_source_atoms"]
+    assert roles["ring_c4"] not in set().union(*(set(r["moving_source_atoms"]) for r in groups))
+    with pytest.raises(ValueError, match="single bond"):
+        phosphate_arm_rotors(roles, graph, {**bonds, tuple(sorted([ester, phosphorus])): "DOUBLE"}, leaving_atom=leaving)
+    graph[roles["ring_c4"]].add(leaving)
+    graph[leaving].add(roles["ring_c4"])
+    with pytest.raises(ValueError, match="ring bond"):
+        phosphate_arm_rotors(roles, graph, bonds, leaving_atom=leaving)
 
 
 @pytest.mark.parametrize('bridged,rename,hand',[(False,False,'D'),(False,True,'L'),(True,False,'D'),(True,True,'D')])
@@ -60,15 +83,29 @@ def test_invalid_bound_refuses_without_output(tmp_path,key,value):
     assert not out.exists()
 
 
-def test_excessive_motion_never_becomes_a_seed(tmp_path):
+@pytest.mark.parametrize("rename", [False, True])
+def test_excessive_motion_names_the_atom_and_never_becomes_a_seed(tmp_path, rename):
     import nasolve.cif_furanose_bridge as module
-    placement=control(tmp_path)
-    original=module._search
-    def shifted(*args):
-        points,report=original(*args);return points+10,report
-    with patch.object(module,'_search',shifted),pytest.raises(ValueError,match='base displacement'):
-        seed(placement,tmp_path/'seed')
-    assert not (tmp_path/'seed').exists()
+    from nasolve.cif_construction_provenance import _pdb_inventory
+
+    placement = control(tmp_path, bridged=True, rename=rename)
+    data = json.loads((placement / "placement.json").read_bytes())
+    atom = data["target_frame_atoms"][1]
+    prior = _pdb_inventory(placement / "model.pdb")[("A", "11", "", "", atom)]["xyz"]
+    search = module._search
+
+    def shifted(xyz, axes, indices, target, weights):
+        points, report = search(xyz, axes, indices, target, weights)
+        points[indices[1]] = [prior[0] + 3.456, prior[1], prior[2]]
+        return points, report
+
+    with patch.object(module, "_search", shifted), pytest.raises(ValueError) as error:
+        seed(placement, tmp_path / "seed")
+    assert str(error.value) == (
+        f"Z99 at A:11 exceeds the explicit base displacement limit "
+        f"({atom} moved 3.456 Å, limit 2.000 Å)"
+    )
+    assert not (tmp_path / "seed").exists()
 
 
 @pytest.mark.parametrize('defect',['model','report','config','extra','empty_directory','receipt','incomplete'])
@@ -119,3 +156,78 @@ def test_corrupt_search_result_cannot_bypass_chemistry(tmp_path,defect):
     with patch.object(module,'_search',invalid),pytest.raises(ValueError):
         module.prepare_furanose_bridge_seed(placement,tmp_path/'seed',endpoint_weight=1000.,max_base_displacement=5.)
     assert not (tmp_path/'seed').exists()
+
+
+@pytest.mark.parametrize('occupancy,transfers',[(1.0,True),(0.5,False)])
+def test_source_equivalent_base_can_inherit_nonuniform_starting_b(tmp_path,occupancy,transfers):
+    from nasolve.cif_furanose_bridge import prepare_furanose_bridge_seed, read_furanose_bridge_seed
+
+    def add_b_values(lines):
+        for i,line in enumerate(lines):
+            if line.startswith('ATOM  ') and line[21:26]=='A  11':
+                name=line[12:16].strip()
+                if name in ('BN','BC','BX'):
+                    donor={'BN':65.31,'BC':89.14,'BX':124.29}[name]
+                    q=occupancy if name=='BC' else 1.
+                    lines[i]=line[:54]+f'{q:6.2f}{donor:6.2f}'+line[66:]
+
+    placement=control(tmp_path,edit_frame=add_b_values)
+    original=tmp_path/'old'; seed(placement,original)
+    out=tmp_path/'new'
+    result=prepare_furanose_bridge_seed(placement,out,endpoint_weight=1000.,max_base_displacement=2.,
+                                        inherit_equivalent_base_b=True)
+    moved=out.rename(tmp_path/'relocated')
+    assert read_furanose_bridge_seed(moved)==result
+    before=(original/'model.pdb').read_text().splitlines()
+    after=(moved/'model.pdb').read_text().splitlines()
+    assert len(before)==len(after)
+    changed=[]
+    for a,b in zip(before,after):
+        assert a[:60]+a[66:]==b[:60]+b[66:]
+        if a!=b:
+            assert a[21:26]=='A  11'
+            changed.append((a[12:16].strip(),float(b[60:66])))
+    assert dict(changed)==({'BN':65.31,'BC':89.14,'BX':124.29} if transfers else {})
+    assert result['base_displacement']['status']==('MATCHED_HOST_BASE' if transfers else 'RETAINED_SEED')
+    assert result['source_hands']==read_furanose_bridge_seed(original)['source_hands']
+    assert not result['automatic_adoption']
+
+
+@pytest.mark.parametrize('defect',[None,'missing_role','element','bond_order','charge','hydrogen','isotope','chirality','anisotropic'])
+def test_matched_base_uses_catalogue_names_and_the_complete_source_graph(defect):
+    from copy import deepcopy
+    from nasolve.cif_base_displacement import inherit_base_displacement
+    from tests.test_cif_fana import molecule
+
+    host,_=molecule(); target=deepcopy(host)
+    # A new dictionary may spell an equivalent atom differently.
+    for key in target:
+        if 'atom_id' in key:
+            target[key]=['QB' if n=='BC' else n for n in target[key]]
+    roles={'base':'BN','anomeric':'C1'}
+    donor=dict(bindings=roles,operational_signature={'atom_roles':{'N1':'BN','C2':'BC','C6':'BX'}})
+    acceptor=dict(bindings=roles,operational_signature={'atom_roles':{'N1':'BN','C2':'QB','C6':'BX'}})
+    def pdb(names,bs):
+        return ''.join(f'ATOM  {i:5d} {n:>4} Z99 A  11    '+3*f'{0.:8.3f}'+f'{1.:6.2f}{b:6.2f}           {el}\n'
+                       for i,(n,b,el) in enumerate(zip(names,bs,['N','C','C']),1))
+    original=pdb(['BN','BC','BX'],[80.,90.,100.]); seed_model=pdb(['BN','QB','BX'],[20.]*3)
+    ai=target['_chem_comp_atom.atom_id'].index('QB')
+    if defect=='missing_role':del acceptor['operational_signature']['atom_roles']['C6']
+    if defect=='element':target['_chem_comp_atom.type_symbol'][ai]='N'
+    if defect=='bond_order':target['_chem_comp_bond.value_order'][1]='SING'
+    if defect=='charge':target['_chem_comp_atom.charge'][ai]='1'
+    if defect=='isotope':
+        table=target['_chem_comp_atom.pdbx_mass_number']=['.']*len(target['_chem_comp_atom.atom_id'])
+        table[ai]='13'
+    if defect=='hydrogen':
+        idx=target['_chem_comp_bond.atom_id_2'].index('BCH0')
+        target['_chem_comp_bond.atom_id_1'][idx]='BX'
+    if defect=='chirality':target['_chem_comp_atom.pdbx_stereo_config'][ai]='?'
+    if defect=='anisotropic':original+='ANISOU'+original.splitlines()[0][6:]+'\n'
+    final, evidence=inherit_base_displacement(donor,acceptor,host,target,original,seed_model,'A:11')
+    if defect:
+        assert final==seed_model and evidence['status']=='RETAINED_SEED' and not evidence['atoms']
+    else:
+        assert evidence['status']=='MATCHED_HOST_BASE'
+        assert {r['target_atom']:r['initial_b'] for r in evidence['atoms']}=={'BN':80.,'QB':90.,'BX':100.}
+        assert next(r for r in evidence['atoms'] if r['target_atom']=='QB')['host_atom']=='BC'

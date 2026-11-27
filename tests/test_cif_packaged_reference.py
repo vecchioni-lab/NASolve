@@ -11,6 +11,15 @@ ROOT = files('nasolve').joinpath('data/chemical_references')
 TEMPLATE = Path(__file__).parent/'fixtures/chemical_reference_DT.cif'
 
 
+@pytest.mark.parametrize("component", ["5CM", "DP", "DZ"])
+def test_installed_ligand_keeps_its_source_history(component):
+    ligands = files("nasolve").joinpath("data", "ligands")
+    history = json.loads(ligands.joinpath(component + ".provenance.json").read_bytes())
+    dictionary = ligands.joinpath(component + ".cif").read_bytes()
+    assert history.get("packaged_sha256", history.get("sha256")) == sha256(dictionary).hexdigest()
+    assert len(history["source_git_blob"]) == 40
+
+
 def test_packaged_reference_keeps_exact_source_and_honest_scope():
     from nasolve.cif_packaged_reference import read_packaged_reference
     result=read_packaged_reference('DY')

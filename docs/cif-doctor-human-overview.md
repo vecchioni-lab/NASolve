@@ -1,6 +1,6 @@
 # CIF Doctor: human and manuscript overview
 
-**Current explanation, 2026-11-19.** CIF Doctor checks whether the model and
+**Current explanation, 2026-11-20.** CIF Doctor checks whether the model and
 chemical dictionaries preserve the intended molecule, whether Phenix receives
 the intended restraints, and whether a proposed repair changes only what it
 should. It works around ReadySet and NARestraints; it does not replace them.
@@ -18,6 +18,22 @@ complete chemical acceptance. The same scalar calculation now serves captured
 non-triple modified sites without a DF/PDU-name rule. A source changed during a
 read refuses; historical reports keep their original meaning.
 
+Two closely related purines show why the final restraint table matters.
+Five Phenix cycles kept both amino nitrogens of 1AP in the residue's own
+12-atom plane. For thioguanosine (S6G), the ordinary dictionary omitted the
+sulfur from that local plane. The shared base-pair plane included it. Sulfur
+ended 0.101 Å from the nine ring atoms. Doctor now reports the local omission
+even though the prepared model is usable. The reflections in these controls
+belong to the host scaffold.
+
+A mixture of twelve modified residue types exercised seven repairs to 5PC,
+DF and PDU. Doctor can now check the repairs one at a time, verify that each
+changes only its assigned dictionary, and give Phenix the complete ordered
+set. The energy derivatives on the fixed starting coordinates passed. The
+two propynyl targets remained 1.470 Å in the selected dictionaries. Testing
+whether the mixed model keeps those geometries during diffraction refinement
+requires its own run.
+
 The ordinary PDU control receives the corrected targets and plane but still bends
 under substituted-scaffold diffraction. The recorded weight, normalization and
 restart experiments do not establish a general repair; they should not be repeated
@@ -34,6 +50,15 @@ model. The reference also relaxes and R factors rise. This demonstrates bounded
 recovery under matching atomic amplitudes, not experimental accuracy, exact recovery
 of the generating coordinates or complete Q06 support. The simulation assumptions
 and independent checks are retained in the existing evidence ledger.
+
+For the explicitly confirmed DF–Hg–DT chemistry, Doctor can now derive a
+separate imide anion source by removing the declared N–H proton and recording its
+formal charge change. It recognizes the oxygen/sulfur-containing local chemistry,
+not the DF name. Both recorded derivatives pass isolated Phenix dictionary checks
+without changing the neutral parents or phosphate state. A later
+[matched refinement](cif-doctor-completion-queue.md#df-hg-dt-comparison) will
+test whether this choice affects the bound bases or the mercury contacts.
+Routine metal-workflow integration is deferred until after NASolve is built.
 
 These are explicit, source-qualified controls, not new normal settings or universal
 modified-residue support. New restraint files retain their identity through the

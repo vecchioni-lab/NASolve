@@ -309,3 +309,78 @@ def test_generation_child_cannot_add_or_drop_multiple_plane_choice(setup,monkeyp
     with pytest.raises(ValueError,match='Shared generation request identity differs'):
         m.inspect_acquisition_request(args[-1])
     assert inventory(args[-1])==before
+
+
+def test_connected_recovery_requires_a_sealed_failed_attempt_and_fresh_directory(setup):
+    from nasolve.cif_generation_input import POLICY_ID
+
+    module, args, options, calls, generated = setup
+    module.acquire_dictionary_attempt(*args, **options)
+    prior = args[-1]
+    before = inventory(prior)
+    options['generation']['source_input_policy'] = POLICY_ID
+    fresh = prior.with_name('recovery')
+    for selected in ((prior, 1), (prior, 2), (prior, True), (fresh, 1)):
+        with pytest.raises(ValueError):
+            module.acquire_dictionary_attempt(*args[:-1], fresh, connected_order_failure=selected, **options)
+        assert not fresh.exists()
+    with pytest.raises(ValueError, match='overlap'):
+        module.acquire_dictionary_attempt(*args, connected_order_failure=(prior, 1), **options)
+    assert len(calls) == 2 and len(generated) == 1 and inventory(prior) == before
+
+
+def test_connected_recovery_binds_original_chemistry_and_reopens_without_prior(setup, tmp_path, monkeypatch):
+    from nasolve import cif_acquisition_recovery as recovery
+    from nasolve.cif_candidate_usability import qualify_candidate_native
+    from nasolve.cif_dictionary_store import publish_dictionary
+    from nasolve.cif_generation_input import CONNECTED_INPUT_POLICY, POLICY_ID
+    from nasolve.cif_purine_representation import EXACT_POLICY_ID
+    from tests.test_cif_candidate_usability import native_case
+
+    module, args, options, calls, generated = setup
+    source, code, store, fresh = args
+    prior = tmp_path / 'old-request'
+    generation = options['generation']
+    generation.update(source_input_policy=POLICY_ID, bond_representation_policy=EXACT_POLICY_ID)
+    request = module.make_dictionary_request(source, code, source_authority=options['source_authority'],
+                                             **module.generation_dictionary_options(generation))
+    proof = dict(policy_id=recovery.POLICY_ID, component=code, attempt=1,
+                 previous_dictionary_request=recovery._fingerprint(request),
+                 consumer=recovery._fingerprint(options['consumer']),
+                 bond=dict(atoms=['C', 'O'], native_length_angstrom=5.061, source_bonds_matched=4),
+                 records={k:'1'*64 for k in ('acquisition_request', 'acquisition_attempt', 'acquisition_completion',
+                                              'generation_attempt', 'generation_completion', 'generation_receipt')})
+    monkeypatch.setattr(recovery, 'read_connected_order_failure', lambda directory, number: deepcopy(proof))
+    reference = tmp_path / 'reference'
+    reference.mkdir()
+    original, candidate, model, native = native_case(reference)
+    assert source.read_bytes() == original.read_bytes()
+    qualification = qualify_candidate_native(source, candidate, model, code, native, bond_representation_policy=EXACT_POLICY_ID)
+    recovered = dict(request, recipe=dict(request['recipe'], source_input_policy=CONNECTED_INPUT_POLICY))
+    publish_dictionary(store, recovered, source, candidate, qualification, consumer=options['consumer'],
+                       provenance={'notes':['synthetic fixture'], 'converged':False, 'stopping':'TEST'})
+
+    # A substituted source, authority or consumer cannot borrow a successful cache entry.
+    for changed in (dict(source_authority='NATIVE'), dict(consumer=dict(options['consumer'],version='OTHER'))):
+        with pytest.raises(ValueError,match='original source'):
+            module.acquire_dictionary_attempt(*args, **dict(options, **changed), connected_order_failure=(prior, 1))
+        assert not fresh.exists()
+    changed_source = tmp_path/'different-source.cif'
+    changed_source.write_bytes(source.read_bytes() + b'\n# distinct source bytes\n')
+    with pytest.raises(ValueError, match='original source'):
+        module.acquire_dictionary_attempt(changed_source, *args[1:], **options, connected_order_failure=(prior, 1))
+    assert not fresh.exists()
+    for edge in (['CTR','O'], ['C','H'], ['C','UNKNOWN']):
+        proof['bond']['atoms'] = edge
+        with pytest.raises(ValueError,match='extra bond'):
+            module.acquire_dictionary_attempt(*args, **options, connected_order_failure=(prior, 1))
+        assert not fresh.exists()
+    proof['bond']['atoms'] = ['C','O']
+    result = module.acquire_dictionary_attempt(*args, **options, connected_order_failure=(prior, 1))
+    assert result['acquisition']['status'] == 'REUSED' and not calls and not generated
+    assert generation['source_input_policy'] == POLICY_ID
+    assert json.loads((fresh/'inputs'/recovery.EVIDENCE).read_bytes()) == proof
+    moved = fresh.rename(tmp_path/'relocated')
+    source.unlink()
+    monkeypatch.setattr(recovery, 'read_connected_order_failure', lambda *args: pytest.fail('historical path reopened'))
+    assert module.read_acquisition_result(moved, 1)['manifest']['request'] == recovered

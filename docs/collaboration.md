@@ -23,6 +23,14 @@ and calculations; display rounding must never change tests, selection criteria o
 stored scientific values. Use similarly restrained precision for companion fit
 statistics when appropriate.
 
+Raise a disagreement when a measurement, chemical assumption or proposed task
+points elsewhere. Branch owners can challenge the coordinator, and the coordinator
+can bring the same question to Simon. Name the observation that would settle it.
+
+For new ChimeraX scripts, use a grey background, silhouettes, soft lighting,
+an orthographic camera and thin nucleic-acid ring fills. Set the camera with
+`run(session, "camera ortho")` before framing or saving the figure.
+
 ## Documentation roles
 
 The root `README.md` is the human-facing operating guide. `architecture.md` and

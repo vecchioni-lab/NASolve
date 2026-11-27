@@ -14,6 +14,42 @@ def prepare(source, output, code="Q17"):
     return prepare_connected_atom_order(source, code, output)
 
 
+@pytest.mark.parametrize("defect", ["none", "source bond", "missing bond", "extra bond",
+                                    "duplicate", "wrong order", "ambiguous", "unknown atom",
+                                    "rejected candidate", "wrong exception", "bad width"])
+def test_reordering_requires_one_extra_heavy_bond_identified_by_the_native_failure(defect):
+    from nasolve.cif_connected_atom_order import unlisted_builder_bond
+    from nasolve.cif_stereochemistry_audit import _graph
+    values, _ = tetrahedron()
+    elements, bonds, _, _ = _graph(values)
+    terminal = sorted(n for n in elements if elements[n] not in {"H", "D"}
+                      and sum(n in edge for edge in bonds) == 1)
+    extra = tuple(terminal[:2])
+    rows = [["Q17", *edge, order.lower(), "1.430", "0.020"] for edge, order in bonds.items()]
+    rows.append(["Q17", *extra, "single", "5.061", "0.040"])
+    diagnostic = {"blocking_stage": "NATIVE_BUILDER", "candidate_state": "ABSENT", "builder_started": True,
+                  "native_exception": {"exception_type": "Sorry", "message": "Bond length too long : 5.06"}}
+    if defect == "source bond":
+        rows.pop()
+        rows[0][-2] = "5.061"
+    elif defect == "missing bond": rows.pop(0)
+    elif defect == "extra bond": rows.append(["Q17", terminal[0], terminal[2], "single", "1.500", "0.030"])
+    elif defect == "duplicate": rows.append(rows[0])
+    elif defect == "wrong order": rows[0][3] = "triple"
+    elif defect == "ambiguous": rows[0][-2] = "5.062"
+    elif defect == "unknown atom": rows[-1][1] = "QQ"
+    elif defect == "rejected candidate": diagnostic["candidate_state"] = "RETAINED_REJECTED"
+    elif defect == "wrong exception": diagnostic["native_exception"]["message"] = "coordinates unavailable"
+    elif defect == "bad width": rows[-1][-1] = "nan"
+    log = "\n".join(" ".join(row) for row in rows)
+    value = unlisted_builder_bond(values, "Q17", diagnostic, log)
+    if defect == "none":
+        assert value == {"atoms": list(extra), "native_length_angstrom": 5.061,
+                         "source_bonds_matched": len(bonds)}
+    else:
+        assert value is None
+
+
 def permute(values, indices):
     return {k: [v[i] for i in indices] if k.lower().startswith("_chem_comp_atom.") else deepcopy(v)
             for k, v in values.items()}

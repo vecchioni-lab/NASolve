@@ -15,6 +15,63 @@ The automatic default is **standard phosphodiester**. A non-standard backbone
 is never inferred from atom names, distances, residue codes, or a monomer
 library entry. A user must explicitly mark the affected site.
 
+For a registered crystal-boundary bond the native runtime puts the relevant
+atoms in one local Cartesian frame, evaluates the ordinary Phenix angle and
+torsion terms there, and rotates their derivatives back to the stored atom
+positions. The existing bond and nonbonded exclusions still apply. Each
+selection inherits the complete terms it contains. A five-cycle restart from
+a registered 5W6W-derived child measured 107.30° and 113.88° at the two
+phosphate oxygens with these forces. The matched distance-only run gave
+75.17° and 127.56°. Chemical intent, image selection and final readback
+remain separate decisions. A periodic central strand can average a real
+nick over several equivalent copies. Its crystal representative can be cut
+at a different base without identifying the nick.
+
+## Checking the direction of a repaired phosphate
+
+A short O3′–P bond and plausible tetrahedral angles can survive even when
+the whole phosphate points into a duplex. Inspect both nonbridging oxygen
+positions after molecular replacement, gap filling and crystal recutting.
+Register the paired bases on both sides of the step, put them in their
+declared crystal images, and compare the OP1/OP2 midpoint and the two
+individual directions with the neighbouring backbone. A label exchange
+leaves the midpoint in the same place. One oxygen can legitimately point
+toward a groove. At a crossover, true nick or unresolved base pair, record
+which local comparison is possible.
+
+A repair trial must preserve both ester bonds, the sugar stereocentres
+and the intended phosphate chemistry. Compare the starting pose with a
+locally rotated or reference-based alternative under the same refinement
+restraints and diffraction observations. Measure the written model and
+retain the original free flags. A change of crystal representative alone
+must preserve the local orientation. The general automatic repair remains
+in the [crystal-boundary queue](cif-doctor-completion-queue.md#crystal-phosphates-after-an-asymmetric-unit-recut).
+
+The central A11 O3′–A12 P linkage is a known pair of controls. In deposited
+5W6W the OP1/OP2 midpoint projects 0.65 Å toward the local duplex axis.
+Both individual oxygens point inward. The six standard templates introduced
+at `eda1df7b` carry the outward pose, with the midpoint 0.57–0.58 Å away
+from the axis. The packaged `5W6W_noPO4.pdb` retains the inward pose for
+explicit historical tests. AutoMR uses a named pair template or its standard
+`C_G.pdb` fallback. The original and current files therefore serve different
+purposes. [Deposited 5W6W](https://www.rcsb.org/structure/5W6W).
+
+For a metal refinement, check its actual parent model. One older DF–Hg–DT
+lineage inherited the inward A12 phosphate in molecular replacement and
+kept it through Coot, scaffold restoration and ReadySet. A PDU:PDU lineage
+started outward and remained outward through two checked five-cycle fits.
+PostMR deliberately restores the incoming sugar and phosphate when changing
+a base. A pre-existing backbone error needs a separate, source-traced trial.
+
+In matched five-cycle Phenix refinements of the DF–Hg–DT model, the A12
+oxygen midpoint stayed 0.58 Å inward from the original start and 0.41 Å
+outward from a locally corrected start. Only six backbone coordinates
+changed in the trial seed. The adjacent sugar angle improved from 124.1°
+to 110.8°. The neighbouring T–A contacts shortened further and final free R
+rose from 0.2974 to 0.3329. Keep this as a local comparison. A new metal
+run can inspect its own parent or numbered child using the
+[paired-step measurement](cif-doctor.md#inspecting-a-phosphate-at-a-crystal-boundary).
+
 ## Standard phosphodiester contract
 
 For ordinary DNA/RNA-like backbones, including sugar variants that retain the
@@ -70,15 +127,398 @@ checks the chemistry and whether native restraints actually enforce it. Reslicin
 or an edit must preserve previous choices and explicitly remap endpoints/images
 or mark them unresolved. Missing local neighbors must not silently change intent.
 
-For the W/PDU control, Simon clarified B:1 as an intended symmetry-linked internal
-phosphate (P/OP1/OP2, no OP3), superseding an earlier free-OH reply. Its nearest
-observed O3′ image remains outside the current bond-distance guard. This does not
-authorize atom deletion, OP3 completion, or automatic link assignment. D:1's
-separately declared complete terminal phosphate is a different chemical state.
-Do not activate a lone symmetry bond while its surrounding phosphate angles and
-nonbonded exclusions remain unqualified; angle-policy research is deferred.
-Current generic symmetry-link interpretation/enforcement is not qualified; see
-[Q06](cif-doctor-completion-queue.md#q06--qualify-the-actual-refinement-consumer).
+### The central strand in the 5W6W scaffold
+
+**In the standard 5W6W scaffold, B:7 O3′ bonds to B:1 P across crystal
+symmetry.** This is the lab's standing interpretation for 5W6W and derivatives
+that retain its central strand. Simon confirmed the covalent endpoints and
+the use of the closest crystal copy on 22 November 2026. In the deposited
+setting, hold B:1 P fixed and apply `-x+y,-x,z` to B:7 O3′. This operation
+needs zero additional unit-cell translation. **B:1 is an internal phosphate
+with P, OP1 and OP2. It has no OP3.** D:1 is the separately declared terminal
+5′ phosphate in the standard W recipe.
+
+The nearest and next-nearest copies of B:7 O3′ are 2.795 and 21.895 Å from
+B:1 P in the 5W6W starting frame. In the archived PDU:PDU refinement they
+are 2.824 and 22.867 Å. A stretched starting gap is a geometry issue. It
+does not change the declared chemistry. When a model is renumbered, reindexed
+or resliced, follow the corresponding atoms and transform the operation into
+the new frame. A construct-specific nick or changed central strand takes
+precedence. Apply the investigator's junction convention at this position;
+other nicks, crossovers and their occupancies have separate evidence.
+[Deposited 5W6W](https://www.rcsb.org/structure/5W6W).
+
+To check the image in a saved model, run
+`nasolve cif-doctor phosphate-image MODEL.pdb --phosphate B:1 --o3 B:7 --nearest-image`.
+Use the remapped site labels when the construct's numbering has changed.
+
+Pine records a directed backbone edge from the 3′ oxygen to the receiving
+phosphorus. Its [5W6W continuation declaration](recipes/5w6w-central-continuation.json)
+therefore uses the inverse operation, `-y,x-y,z`, on **B:1 P** while B:7 O3′
+stays fixed. Both descriptions give 2.795 Å in the project's
+[`C_G.pdb` starting frame](../MR_frames/5W6W/C_G.pdb). This declaration
+requires the two registered B-strand ends to be representation boundaries.
+It describes the seven-site central strand. Other strands and their nicks
+can be declared separately.
+
+Doctor can [read that registration on an exact checkpoint](cif-doctor.md#inspecting-a-phosphate-at-a-crystal-boundary).
+The archived PDU:PDU `refine-005` retained B:1 P and reported B:7 O3′ only
+as a nonbonded neighbour. If a different test model lacks B:1 P, the reader
+keeps the supplied declaration and reports that the distance is unavailable.
+
+In the controlled PDU:PDU fit, a distance alone closed the gap but left the
+two O3′–P–OP angles at 84.5° and 129.3°. With angle and torsion forces evaluated
+in the named mate they reached 107.5° and 110.5° after five Phenix cycles.
+The ordinary adaptive refinement settings also improved the angles in a
+separate five-cycle comparison, from 72.0°/139.1° to 103.2°/115.7°.
+When Phenix reopened that written model with only its seven inherited inputs,
+it treated the 1.620 Å junction as a nonbonded contact. Supplying the distance
+alone still left the crossing angles and torsions absent. Pine owns editable
+connection intent. Routine continuation must carry both the written child
+and the complete local restraints. [Cedar completion queue](cif-doctor-completion-queue.md#pipeline-position).
+
+### Two crossovers in the PDU:PDU test scaffold
+
+Simon confirmed on 23 November 2026 that D:7 O3′ continues into C:8 P in
+the 5W6W-derived PDU:PDU scaffold with A:1–A:21. Its central B:7–B:1
+connection also applies. The [two-connection declaration](recipes/5w6w-pdu-backbone-continuations.json)
+keeps the original central edge and adds the crossover. Holding each O3′
+fixed, apply `-y,x-y,z` to B:1 P and `-x+y,-x,z` to C:8 P. Both use zero
+additional lattice shift. D:1 retains its separate terminal phosphate.
+Register the declaration against the actual coordinates before using it.
+
+In the saved MR and Coot models, the two distances are 3.340 and 3.017 Å.
+In all three subsequent five-cycle PDU comparison models, Phenix restrained
+B:7–B:1 and treated D:7–C:8 as a nonbonded contact with a 3.4 Å target.
+The latter gap measured 2.934, 3.043 and 2.993 Å. Four intact T→G
+links in the same model agree on the bond, four angles and three torsions
+for the D:7 crossover. The native bond target is 1.607 Å. Two intact
+A→C links supply the reference for the central B strand. This declaration
+does not establish ligation or occupancy in individual crystal copies.
+
+C558 applied both declared bonds, all eight crossing angles and all six
+torsions together in five standalone Phenix 2.2.1-6174 cycles. B:7–B:1
+finished at 1.645 Å and D:7–C:8 at 1.627 Å. The crossover's O3′–P–OP1
+and O3′–P–OP2 angles finished at 112.5° and 107.2°. Its C4′–C3′–O3′–P
+torsion remained 4.9 reference standard deviations from its target, so
+the repaired bond alone cannot establish the backbone conformation.
+D:1 retained all eleven terminal restraints. The same 1,778 working and
+124 free reflections were retained in the one-link and two-link fits.
+
+The ordinary numbered test used the archived starting model and its seven
+original restraint files. Starting from manual-001, two five-cycle rounds
+gave B:7–B:1 and D:7–C:8 distances of 1.649/1.630 Å and then 1.643/1.647 Å.
+Both had eight crossing angles, six torsions, all eleven D:1 terminal terms,
+and the same 1,778 working and 124 free indices. R-work/free were
+0.2354/0.2964 and 0.2171/0.2826. Refine-005 stayed selected.
+
+The second fit still placed D:7 O3′ and C:8 P at −1.87 and −1.05 whole-map
+rms units in its unfilled 2mFo−DFc map at 4.19 Å. The donor C4′–C3′–O3′–P
+torsion was 54.5°, against a native target of −140° and a width of 35°.
+In the first fit, two of four chemically matched ordinary T→G links also
+had positive values (92.5° and 81.5°). All donor sugar stereocentres tested
+kept their handedness. These measurements leave the crossover conformation
+open. In the restarted fit the four ordinary values were −122.3°, +87.0°,
++78.4° and −176.0°. To read these eight geometric terms for any fitted
+continuation, use `cif-doctor phosphate-image RUN --checkpoint ID
+--saved-continuation-id NUMBER --restraint-deviations --json`. The target
+and its weight come from the starting native chemistry. The junction and
+ordinary-link coordinates come from the named written checkpoint.
+
+With the historical PDU restraints, the final two propynyl tips lay
+2.338/1.243 Å from their ring planes.
+
+C562 started again from the original 862-atom C290 Coot model. ReadySet
+2.2.1-6174 rebuilt PDU from chemical components when given the historical
+dictionary. Its generated C5–C5A and C5B–C5M targets were both 1.527 Å,
+and its base plane stopped at the ring. With the qualified dictionary,
+ReadySet used the supplied restraints. The two targets were 1.431 and 1.470 Å,
+with the first arm carbon C5A in the base plane. Both ReadySet runs preserved
+every coordinate, occupancy and displacement parameter. Both crystal gaps
+were still open. The ordinary phosphate audit identified 38 local incoming
+bonds, the declared D:1 terminal phosphate and two unresolved incoming sites.
+
+To inspect that stage on another run, use `nasolve cif-doctor prepared-backbone RUN`.
+It reads the model, source dictionaries and terminal consent recorded when Coot
+returned. To account for the crystal connections, provide the three matching
+files from the same source frame.
+
+```sh
+nasolve cif-doctor prepared-backbone RUN --registration registration.json \
+  --discovery-input discovery.json --backbone-continuations continuations.json --json
+```
+
+The O3′ image in each result acts on the donor oxygen. The inverse operator
+in the declaration acts on P. On the starting PDU scaffold the donor images
+are `-x+y,-x,z` for B:7 and `-y,x-y,z` for D:7. Omitting either declaration
+leaves a named phosphate unaccounted for. A protected terminus or an O3′
+that already has a local partner cannot be used for a new connection.
+This inspection is available even when Coot returned before a dictionary
+request could be published. A distance across a declared gap is a measurement
+on the starting model. The five-cycle comparison below measures the fitted bonds.
+
+Add `--candidate-model RETURNED.pdb --native-receipt native_receipt.json`
+to the same command to review an unselected set of refinement inputs. Supply
+the exact candidate PDB used for the preserved Phenix interpretation. The
+reader checks the modeled heavy-atom identities, local bonds, terminal intent
+and the crystal copy of each registered residue. Each native target needs
+matching intact bonds in the same model's audited backbone. The bond, angles
+and torsions must be measurable at the proposed junction and at every intact
+reference. The JSON includes the input dictionary and restraint-file digests
+in their recorded order.
+
+On the corrected ReadySet return the two crystal gaps were still 3.340 and
+3.017 Å. Two intact A→C links and four intact T→G links supplied the same
+1.607 Å distance target. The native files contained the corrected PDU
+dictionary and six restraint files. A control with the extra D:7 O3′–B:1 P
+bond was refused.
+
+If Coot and ReadySet both ran in this run and its `postmr` checkpoint contains
+the reviewed ReadySet model, register on the original Coot coordinates and fit
+the ReadySet coordinates in one step.
+
+```sh
+nasolve autorefine RUN --from postmr --registered-continuations 1 2 \
+  --registration registration.json --discovery-input discovery.json \
+  --backbone-continuations continuations.json --native-receipt native_receipt.json \
+  --prepared-backbone-source RUN
+```
+
+For an imported preparation, name the checkpoint containing the candidate and
+the ancestor containing the registered Coot model. Both runs must agree on the
+frozen backbone intent and measured reflection data.
+
+```sh
+nasolve autorefine RECEIVING_RUN --from manual-002 --registration-checkpoint manual-001 \
+  --registered-continuations 1 2 --registration registration.json \
+  --discovery-input discovery.json --backbone-continuations continuations.json \
+  --native-receipt native_receipt.json --prepared-backbone-source SOURCE_RUN
+```
+
+The model, dictionaries and inherited restraints must already agree with the
+native interpretation. The numbered round copies any missing, self-contained
+PHIL restraints in order. For a declared terminal phosphate it identifies the
+matching protection by regenerating the angles with the candidate model and
+dictionaries. The run keeps one copy of those restraints. The checked
+source is recorded in `outputs.prepared_backbone`. On restart the usual
+`--from refine-002 --native-receipt NEW_RECEIPT` uses the fitted model.
+
+In C567 the two PDU crystal bonds went from 3.340/3.017 Å to 1.610/1.633 Å
+after five ordinary cycles and to 1.643/1.627 Å in the relocated restart.
+All 38 ordinary bonds, eleven D:1 terminal terms and 124 original free
+observations survived both fits. The two PDU tips ended 0.182/0.245 Å from
+their rings. The D:7 donor torsion stayed at +36.0° against a native target
+of −140° with a 35° width. D:7 O3′ and C:8 P were at −1.80 and −1.18
+whole-map rms in the unfilled 2mFo−DFc map. Both fits stayed unselected.
+
+Check the actual partner image even when the atom names agree. In a native
+input containing the B:7 O3′–B:1 P restraint, the O3′ image relative to P
+was `-x+y,-x,z`. Those atoms were 3.340 Å apart before fitting. Substituting
+`-y,x-y,z` gave 25.189 Å. The ordinary command now reports both images
+before starting the wrong fit. Integral cell translations matter as well.
+An existing crystal bond with an unreadable image requires review.
+
+C569 repeated ordinary construction from the same MR solution with the
+corrected PDU dictionary present at the first Coot mutation. Its Cartesian
+template put C5B–C5M at 1.6074 Å while its target was 1.470(20) Å. In a
+private comparison, moving the terminal methyl and its three dictionary
+hydrogens along that bond gave a template distance of 1.4700 Å. All
+restraint rows, other template bond lengths and the other 860 model atom
+coordinates were preserved. ReadySet retained both as built. The same
+seven restraint inputs by chemical content, original amplitudes, 124 free
+reflections and both crossover declarations went into each five-cycle fit.
+
+| A:12 / B:4 | Original dictionary positions | Adjusted terminal positions |
+| --- | --- | --- |
+| Coot / ReadySet terminal C–C distance (Å) | 1.607 / 1.608 | 1.470 / 1.470 |
+| Phenix terminal C–C distance (Å) | 1.443 / 1.456 | 1.455 / 1.501 |
+| Phenix tip height above six-atom ring (Å) | 0.242 / 0.187 | 0.445 / 0.081 |
+| B:7–B:1 / D:7–C:8 phosphate distance (Å) | 1.632 / 1.641 | 1.644 / 1.616 |
+| R-work / R-free | 0.2213 / 0.2856 | 0.2207 / 0.2833 |
+
+The correction improved the starting bond at both sites. After refinement
+the tip lay closer to its ring at B:4 and farther away at A:12. The D:7
+donor torsion was +37.6° and +30.9° respectively. Both endpoints remain
+unselected. Use the new template comparison to find candidate construction
+problems across components. A general repair needs an independent component
+and a separate check of its geometry after native refinement.
+
+C570 repeated the adjusted PDU construction, then fitted its ordinary
+`postmr` checkpoint directly. The first five cycles produced exactly the same
+coordinate file as the two named checkpoints in C569. After moving the run,
+five more cycles gave crystal bonds of 1.641 and 1.632 Å. The 124 original free
+reflections and eleven D:1 terms survived. The two PDU tips ended 0.180 and
+0.284 Å from their rings, and the D:7 torsion remained at +40.7°. A different
+run with equivalent starting coordinates was refused before creating a round.
+
+At that second D:7 endpoint the onefold native donor torsion was only 0.72°
+from the angle directly opposite its −140° target. Using the actual crystal
+image and the native Phenix torsion, the residual was 15.673 against a maximum
+of 15.673. Its turning force was **1.26%** of this term's maximum. The B:7
+control retained **85.8%**. A small virtual rotation gave the same derivative
+as the native atom gradients. These are single-term measurements on the
+written coordinates. The total refinement force includes neighboring geometry
+and diffraction.
+
+Four intact T→G steps supplied alternative local shapes for D:7–C:8. Across
+both written checkpoints, fitting four donor sugar atoms and the acceptor P
+could reproduce a plausible torsion or a plausible O3′–P distance separately.
+For example, in the second checkpoint the A:9–A:10 shape gave −149.5° and
+a 1.188 Å bond. D:2–D:3 gave 1.614 Å and +60.1°. Moving a six-atom linkage
+as a rigid group between two fixed sugars stretched the recipient O5′–C5′
+bond to 1.76–2.45 Å there, from 1.436 Å.
+
+With the two fitted O3′ bond lengths fixed, moving only O3′ around their
+intersection circle could reach −140°. At that position the O3′–P–OP2 angle
+collapsed to 63.9° and O3′–P–O5′ opened to 145.2°. The native targets were
+108° and 104°. This numerical trial moved O3′ by 1.50 Å. The existing
+4.19 Å unfilled map was weak at the written O3′ and P (−1.86 and −1.18
+whole-map rms units). A jointly adjustable sugar–phosphate fragment with
+anchored flanking bases is the next starting model to test against the data.
+Both existing refinements and their selections are preserved.
+
+**C574, fitting the two sugars together.** In the 5W6W-derived PDU:PDU
+scaffold, 19 atoms could move during construction, spanning the two sugars and
+C:8 P, OP1 and OP2. The other 843 atoms, including the bases, anchored the
+fragment. Four intact T→G steps supplied independent starting shapes. The
+D:2–D:3 start reached −136.3° against the native −140° donor torsion, with
+all six local stereocentre signs preserved. It was chosen before inspecting
+diffraction. Five cycles of Phenix 2.2.1-6174 then fitted the complete models
+with both registered crystal bonds and the same 1,778 working and 124 free
+reflections.
+
+| Starting shape and refinement weights | D:7 donor turn | D:7 O3′–C:8 P | Largest sugar-angle deviation at D:7 or C:8, in native restraint widths | R-work / R-free |
+| --- | ---: | ---: | ---: | ---: |
+| Written shape, ordinary weights | +43.0° | 1.635 Å | 2.73 | 0.2022 / 0.2741 |
+| D:2–D:3 start, ordinary weights | −122.5° | 1.627 Å | 5.17 | 0.2017 / 0.2801 |
+| C:11–C:12 start, ordinary weights | −58.4° | 1.626 Å | 3.30 | 0.2079 / 0.2662 |
+| Written shape, fixed weights | +21.9° | 1.616 Å | 1.68 | 0.2492 / 0.3134 |
+| D:2–D:3 start, same fixed weights | −135.6° | 1.606 Å | 2.65 | 0.2451 / 0.3086 |
+
+The ordinary D:2–D:3 fit compressed D:7 C2′–C3′–O3′ to 96.5° against
+109.4°. Fixing the weights improved local geometry and worsened the overall
+diffraction agreement. Both PDU methyl tips in the fixed alternative lay
+within 0.14 Å of their base planes. Two common maps omitted all 19 atoms,
+used only working amplitudes and differed in bulk-solvent treatment. Across
+those 19 atoms, the ordinary alternative minus the ordinary written-shape
+control averaged −0.047 and −0.003 whole-map rms units in the difference
+maps. Nearby samples share density. At 4.19 Å there is insufficient evidence
+to choose a local conformation. Keep the alternatives available and carry
+the two-sugar check forward to an independently declared junction.
+
+One standalone five-cycle Phenix refinement used the corrected returned model,
+the two registered crystal partners, the original reflection flags and the seven
+effective restraint files. The R values were read at the start and end of the
+4.19 Å refinement.
+
+| Measurement | After ReadySet | After refinement |
+| --- | ---: | ---: |
+| B:7 O3′–B:1 P across its registered image | 3.340 Å | 1.624 Å |
+| D:7 O3′–C:8 P across its registered image | 3.017 Å | 1.617 Å |
+| A:12 / B:4 propynyl tip height above the six-atom ring plane | 0.094 / 0.093 Å | 0.290 / 0.246 Å |
+| R-work / R-free | 0.3389 / 0.4317 | 0.2348 / 0.3023 |
+
+The refined terminal PDU arm bonds were 1.454/1.493 Å. The native base
+planes contained C5A at both sites and left the methyl tips free. Each
+crossing had one printed bond and four crossing angles. The terminal D:1
+retained all eleven restraints. All 124 free flags survived. Phenix excluded
+seven working reflections, leaving 1,778 working and 124 free indices, exactly
+the final set in the archived comparison. The D:7 C4′–C3′–O3′–P torsion
+was +37.3° against −140° with a width of 35°. Its O3′ and C:8 P sampled
+−1.83 and −1.26 whole-map rms units in the unfilled 2mFo−DFc map. The bond
+and arm measurements demonstrate restraint survival. The local crossover
+conformation remains open. This experiment created no numbered checkpoint.
+
+<a id="crossovers-in-the-ft-hg-scaffold"></a>
+
+### Crossovers in the FT–Hg scaffold
+
+In the separate FT_Hg construct, the investigator declared the central B
+continuation and confirmed the C/D crossover. A runs from 1 to 21 in each of
+three saved models. On the selected source model, the directed correspondences
+are B:7 O3′ to B:1 P under `-x+y,-x,z` and D:7 O3′ to C:8 P under `-y,x-y,z`,
+both with zero lattice shift. B:1 and C:8 contain P/OP1/OP2. D:1 is a declared
+5′ terminal phosphate and also contains OP3.
+
+If both connections occur in all three equivalent positions, tracing the 38
+ordinary O3′–P links in each copy plus six image connections gives one closed
+21-nucleotide B path, three 14-nucleotide D:1–C:14 paths and three separate
+21-nucleotide A strands. The two image gaps in the measured model are 3.100 and
+3.027 Å, compared with 1.593–1.639 Å in its ordinary backbone. At the second
+gap the O3′–P–OP2 angle measures 55.79°. Keep this conditional strand map with
+the construct. Ligation, nick state, occupancy and native enforcement remain
+open for that source model. Reslicing must preserve the declared images and
+report the current gaps.
+
+**C575, after fitting the two FT–Hg junctions.** Four later five-cycle native
+controls used those exact declared partners, experimental phases and 59 free
+reflections. Two starting models differed at six atoms of B:7 and B:1. Each
+was fitted with Hg either fixed or free to move in XYZ. The original and
+altered starts had B:7 C4′–C3′–O3′ angles of 111.2° and 114.5°, against
+109.7°. After refinement all four angles were 126.3–129.3°. The two intact
+A→C references, A:16–A:17 and B:5–B:6, ended at 110.4–114.4°. B:1 OP2–P–O5′
+also closed to 91.2–93.5° against 108°, even as the crystal O3′–P bond
+shortened to 1.649–1.658 Å. Each of these angles had one ordinary covalent
+target in each initial and final Phenix geometry table.
+
+**C576, allowing both sugars to move during construction.** Each trial changed
+19 coordinates at B:7 and B:1. All six checked sugar stereocentres kept
+their handedness. The B:5–B:6 template squeezed B:7 OP2–P–O5′ to 41.2°
+in construction, against 108°. The relaxed written start and the A:16–A:17
+template went through five cycles of the same fixed-Hg Phenix 2.2.1-6174
+protocol. Each had its own native chemistry inspection and two registered
+crystal links. The supplied phase coefficients and original 59 Free-R flags
+matched at initialization and on return.
+
+| After refinement | Archived original | Relaxed written start | A:16–A:17 start | Native target |
+| --- | ---: | ---: | ---: | ---: |
+| B:7 O3′–B:1 P (Å) | 1.650 | 1.653 | 1.638 | 1.607 |
+| B:7 C4′–C3′–O3′ (°) | 129.3 | 116.4 | 101.1 | 109.7 |
+| B:1 OP2–P–O5′ (°) | 91.2 | 97.3 | 108.7 | 108.0 |
+| R-free | 0.3341 | 0.3363 | 0.3367 | |
+
+Both new fits opened B:7 C2′–C1′–N9 to 122.3–122.8°, against 114.3° with a
+1.4° restraint width. All four fixed-Hg endpoints passed the same local
+2.2 Å crystal-contact screen. The two new Hg–N3 distances were 1.99–2.03 Å,
+and the N3–Hg–N3 angle was 172.0–172.7°. The two sugar paths finish 1.08 Å
+apart RMS over 19 atoms. At 5.06 Å, their average sampled densities differ by
+0.13 map standard deviations in a working-only supplied-phase map and 0.10
+in the opposite direction in a common 19-atom omit difference map. Neither
+model has been selected. Read each endpoint with its own final GEO using
+`phosphate-image --flanking-geometry`. The option includes the internal
+bonds and angles of the named reference residues as well as the junction.
+
+**C577, why the B:7 sugar opens.** An instrumented replay of the A:16–A:17
+trial produced the same final coordinate file, final GEO and unrounded
+returned model byte for byte. The B:7 C2′–C1′–N9 angle moved from 119.12° to
+122.85°. The biggest opening, 3.44°, occurred during the second cycle's
+coordinate fit against diffraction. Its own ordinary angle restraint opposed
+that opening. At the written endpoint, projecting the native forces along
+the angle showed counterpressure from the C3′–C2′ bond and the adenine plane
+that includes C1′. Two finite-difference step sizes reproduced the chemical
+gradient. This measures one direction in a coupled sugar and base.
+
+A separate construction let the complete B:7 adenine and B:1 cytosine move
+with the sugars. The original five pairing distances, two pair planes and
+both crystal links stayed active. All six sugar stereocentres retained their
+hand. Of 859 atoms, 822 stayed fixed in construction. The B:7 sugar-to-base
+angle reached 115.1° against 114.3°. After five native cycles it returned to
+122.5°, compared with 122.8° when the bases had stayed fixed in construction.
+B:1 OP2–P–O5′ finished at 107.8° against 108°. A different B:1 sugar angle
+finished 6.24 restraint widths from its target. The two crystal bonds were
+1.625 and 1.624 Å. The fixed mercury retained both N3 contacts at 1.995 and
+2.021 Å. Neither fit introduced a non-neighbour contact within 2.2 Å around
+these 37 atoms. The original 1,092 working and 59 free observations and
+experimental phase coefficients matched exactly.
+
+In the two endpoints R-free was 0.3367 and 0.3314. Native weight
+optimization used free-set scores. The common supplied-phase and 37-atom
+omit maps gave small opposite differences (−0.09 and +0.05 map standard
+deviations respectively, released minus anchored). The data extend to
+5.06 Å. Keep both shapes for review. Preserve the native sugar and base
+targets. A fair future comparison can hold the relative coordinate weight
+fixed across both starts and include an independent junction. The existing
+PDU fixed-weight comparison is documented above.
 
 ## Building a requested 5'-terminal phosphate
 

@@ -184,3 +184,56 @@ def test_ordinary_notes_distinguish_generation_from_selected_dictionary_coverage
     assert 'XYZ' in notes and 'screened centres C' in notes
     assert 'alternative restraints' in notes and 'native' in notes
     assert len(calls) == 1 and result.refinement_ready is False
+
+
+@pytest.mark.parametrize("variant", ["covered", "missing", "changed_bond", "no_policy", "selected_only", "wrong_source"])
+def test_selected_ring_uses_only_the_qualified_source_policy(tmp_path, variant):
+    from nasolve.cif_ordinary_postmr import _selected_plane_limitations
+    from tests.test_cif_plane_coverage import bound, plane, write
+    from tests.test_cif_purine_representation import POLICY, pair
+
+    source, dictionary = pair("Z09")
+    atoms = ["C4", "C5", "C6", "N1", "N3", "N7", "N9"]
+    plane(dictionary, atoms if variant == "missing" else atoms + ["N6"])
+    if variant == "changed_bond":
+        dictionary["_chem_comp_bond.type"][10] = "double"
+    exact = selected_result(tmp_path)
+    bundle = tmp_path / "bundle"
+    folder = bundle / "components/Z09/snapshot/entry"
+    folder.mkdir(parents=True)
+    original = write(folder, source, "source.cif")
+    selected = write(tmp_path, dictionary, "selected.cif")
+    row = {"source_sha256": bound(original)["sha256"], "dictionary_sha256": "d"*64}
+    if variant not in {"no_policy", "selected_only", "wrong_source"}:
+        row["qualified_representation"] = {"policy_id": POLICY}
+    exact["result"]["plane_generation"] = {"components": {"Z09": row}}
+    exact["preparation"] = {"bundle_directory": bundle, "report": {"selected_attempts": {"Z09": 1}}}
+    if variant != "no_policy":
+        prior = dict(component="Z09", source_sha256=row["source_sha256"], candidate_sha256=row["dictionary_sha256"],
+                     bond_representation_policy=POLICY)
+        if variant == "wrong_source":
+            prior["source_sha256"] = "0"*64
+        exact["preparation"]["bundle"] = {"preparations":[dict(component="Z09", preparation_qualification=prior)]}
+    exact["runtime"]["dictionaries"] = [selected]
+    exact["runtime"]["manifest"]["resources"] = {"dictionaries": [{"sha256": bound(selected)["sha256"]}]}
+    if variant == "wrong_source":
+        with pytest.raises(ValueError, match="acquired source"):
+            _selected_plane_limitations(exact)
+        return
+    notes = " ".join(_selected_plane_limitations(exact))
+    if variant in {"covered", "selected_only"}:
+        assert "has explicit planes for screened centres C4, C5, C6" in notes
+    elif variant == "missing":
+        assert "lacks explicit planes at screened centres C6" in notes
+    else:
+        assert "selected dictionary plane coverage is unassessed" in notes
+
+def test_optional_plane_that_cannot_be_completed_reports_retained_restraints():
+    from nasolve.cif_ordinary_postmr import _plane_support_limitations
+
+    generation = {"plane_generation": {"components": {"Q17": {
+        "status": "OWNED_SUPPORT_READY", "missing_centres": ["C6"]}}}}
+    execution = {"plane_results": [{"component": "Q17", "status": "NO_SUPPORTED_PLANE_COMPLETION"}]}
+    notes = " ".join(_plane_support_limitations(generation, execution))
+    assert "Q17: existing plane membership was retained at C6" in notes
+    assert "generated source-checked support" not in notes

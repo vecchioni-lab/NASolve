@@ -114,13 +114,21 @@ def _read_owned_plane_generation(source, code, request_directory, attempt_number
     _need(after['request'] == request and after['attempts'][attempt_number-1] == selected
           and _regular(Path(source)) == original, "Selected generation evidence changed during replay")
     if failure:
-        return dict(schema_version=1,policy_id=('cif-owned-plane-generation-rejection-v1' if rejected else 'cif-owned-plane-generation-failure-v1'),
+        kind = report['execution']['status']
+        policy = 'cif-owned-plane-generation-failure-v1'
+        if rejected:
+            kind = 'REJECTED_CANDIDATE'
+            policy = 'cif-owned-plane-generation-rejection-v1'
+            if report['result']['builder']['status'] == 'EXCEPTION':
+                kind = 'FINAL_BOND_ORDERS_REJECTED'
+                policy = 'cif-owned-plane-generation-order-rejection-v1'
+        return dict(schema_version=1,policy_id=policy,
             status='KNOWN_STOPPED_GENERATION_FAILURE',component=code,source_sha256=config['source']['sha256'],
             attempt_number=attempt_number,request_sha256=request['record_sha256'],
             attempt_sha256=selected['intent']['record_sha256'],finished_sha256=selected['finished']['record_sha256'],
             receipt={**selected['finished']['candidate_receipt'],'anchor':'request_directory',
                      'path':name+'/source_candidate_receipt.json'},
-            failure_kind='REJECTED_CANDIDATE' if rejected else report['execution']['status'],returncode=report['execution']['returncode'],
+            failure_kind=kind,returncode=report['execution']['returncode'],
             recipe=recipe,generator=generator,stopped_verified=True,exact_inputs=True,
             partial_outputs='PRESERVED; NOT_QUALIFIED',candidate_qualification='SOURCE_REJECTED' if rejected else 'NOT_ASSESSED',
             **(dict(rejection_diagnostic=report['diagnostic']) if rejected else {}),
@@ -142,10 +150,13 @@ def prepare_owned_trigonal_plane_candidate(source, dictionary, code, request_dir
     """Transfer only supported missing rows; retain failed/partial fresh outputs."""
     root = _root(request_directory)
     support = read_owned_plane_support(source, code, root, attempt_number)
-    candidate = prepare_trigonal_plane_candidate(source, dictionary,
-        path_in(root, support['support']['path']), code, output)
-    _need(read_owned_plane_support(source, code, root, attempt_number) == support,
-          "Selected plane support changed during candidate preparation")
+    policy = support['recipe'].get('bond_representation_policy')
+    try:
+        candidate = prepare_trigonal_plane_candidate(source, dictionary,
+            path_in(root, support['support']['path']), code, output, bond_representation_policy=policy)
+    finally:
+        _need(read_owned_plane_support(source, code, root, attempt_number) == support,
+              "Selected plane support changed during candidate preparation")
     _need(candidate['corroborating_dictionary_sha256'] == support['support']['sha256']
           and candidate['source_sha256'] == support['source_sha256'], "Plane candidate support binding differs")
     return dict(schema_version=1, policy_id=POLICY_ID, status='CANDIDATE_REVIEW', component=code,

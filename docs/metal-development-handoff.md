@@ -12,6 +12,14 @@ has two decisions: scientifically qualify the now-inspectable FT_Hg XYZ/group-B
 model, then admit its source/policy/output through the existing owners before
 quantitative fan-out. The completed private return closes execution coverage;
 its geometry remains unaccepted.
+The 27 November isolated receiving rehearsal now joins the pinned Cedar
+prepared-backbone/phosphate owners to Alder without changing historical worker
+hashes. The combined owner rereads the genuine unselected PDU parent; it does not
+invent a phased FT parent or add the missing numbered mixed child. Focused source
+checks pass 354 cases and installed checks pass 31 after build-source removal;
+all 215 parent files remain exact. See the [integration handoff](development-handoff.md#isolated-ordinary-owner-receiving-rehearsal--27-november)
+and `branch-artifacts/Alder/owner-integration-20261127-01/` for commands, retained
+failures and limits. A01 remains partial, A02 gated; active-branch delivery is separate.
 The roadmap now separates usable entry points, planned metal-screen behavior and
 Cedar/Willow/Alder authority; earlier experiment sections below retain their own
 scope and source pins. The docs-only audit ran no tests or fits. Local inventory

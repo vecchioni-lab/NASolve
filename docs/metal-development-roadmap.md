@@ -95,8 +95,13 @@ plus a separately generated symmetry bond, with starting and returned models kep
 distinct. This completes the transfer-inventory prerequisite, not native admission.
 It has no approved HL; it cannot substitute for phased FT or qualify A02.
 [Exact evidence and remaining holds](metal-ordinary-receiving.md#read-only-transfer-from-the-maintained-ordinary-owner).
-Do not repeat this inventory; the next owner step is a versioned mixed child using
-these source roles and the existing writer/process proofs.
+The 27 November isolated receiving rehearsal now includes the intact pinned
+prepared-backbone/phosphate chain and rereads this genuine parent with the
+combined ordinary owner. Historical worker bytes stay exact, including V10–V12;
+focused and relocated installed checks pass. Delivery to the active branch remains
+separate. Do not repeat the inventory: the next owner step is a versioned mixed
+child using these source roles and the existing writer/process proofs, plus a
+genuine phased FT parent. An unphased PDU control cannot satisfy that requirement.
 
 Five older FT anomalous/f″ trials now have a fresh offline replay inventory.
 They share the original observations but use earlier model/B states, and their

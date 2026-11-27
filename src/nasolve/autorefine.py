@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+from collections import Counter
 from contextlib import nullcontext
+from itertools import combinations
 import json
 import math
 import os
@@ -31,6 +33,9 @@ from .checkpoints import (
 )
 from .model_assessment import file_sha256
 from .run_context import artifact_reference, resolve_artifact_path
+
+if TYPE_CHECKING:
+    from .refinement_phosphate import PhosphateRequest
 
 
 class AutoRefineError(RuntimeError):
@@ -111,6 +116,11 @@ FREE_R_LABELS = ("FreeR_flag", "R-free-flags", "FREE", "FreeR")
 DATA_MANAGER_FILE_SCOPED = "data-manager-file-scoped"
 LEGACY_EXPLICIT = "legacy-explicit"
 _TERMINAL_GEOMETRY_REVIEW_SIGMA = 5.0
+_PHOSPHATE_OXYGENS = ("O5'", "OP1", "OP2", "OP3")
+_TERMINAL_P_ANGLES = {(left, "P", right) for left, right in combinations(_PHOSPHATE_OXYGENS, 2)}
+_TERMINAL_GEOMETRY_TERMS = (
+    _TERMINAL_P_ANGLES | {(oxygen, "P") for oxygen in _PHOSPHATE_OXYGENS} | {("C5'", "O5'", "P")}
+)
 _GEO_ATOM = re.compile(r'pdb="\s*([^"]+?)\s*"')
 _PHENIX_VERSION = re.compile(
     r"(?:Phenix\s+)?(\d+)\.(\d+)(?:\.(\d+))?"
@@ -598,6 +608,12 @@ _R_PAIR = re.compile(
     r"r[_ -]?free\s*[=:]\s*([0-9]*\.?[0-9]+)",
     re.I,
 )
+_RECAP_R_PAIR = r"R-work[ \t]*=[ \t]*([0-9]+(?:\.[0-9]+)?),[ \t]*R-free[ \t]*=[ \t]*([0-9]+(?:\.[0-9]+)?)"
+_NATIVE_R_RECAP = re.compile(
+    rf"^[ \t]*Start[ \t]+{_RECAP_R_PAIR}[ \t]*\r?\n"
+    rf"[ \t]*Final[ \t]+{_RECAP_R_PAIR}[ \t]*\r?$",
+    re.I | re.M,
+)
 _BONDS_ANGLES = re.compile(
     r"bonds?\s*[=:]\s*([0-9]*\.?[0-9]+).*?"
     r"angles?\s*[=:]\s*([0-9]*\.?[0-9]+)",
@@ -854,7 +870,7 @@ def audit_terminal_phosphate_geometry(
                 {
                     "site": site,
                     "restraint_count": 0,
-                    "expected_restraint_count": 11,
+                    "expected_restraint_count": len(_TERMINAL_GEOMETRY_TERMS),
                     "max_sigma_deviation": None,
                     "severe_restraints": [],
                     "restraints": [],
@@ -864,93 +880,50 @@ def audit_terminal_phosphate_geometry(
         }
 
     lines = geometry_file.read_text(encoding="utf-8", errors="replace").splitlines()
-    starts = [
-        index
-        for index, line in enumerate(lines)
-        if line.startswith(("bond ", "angle "))
-    ]
-
     aliases = {"O1P": "OP1", "O2P": "OP2", "O3P": "OP3"}
-    terminal_oxygens = {"O5'", "OP1", "OP2", "OP3"}
-    rows_by_site: dict[str, list[dict[str, object]]] = {
-        site: [] for site in requested
-    }
-
-    for number, start in enumerate(starts):
-        end = starts[number + 1] if number + 1 < len(starts) else len(lines)
-        block = lines[start:end]
-        text = "\n".join(block)
-        kind = block[0].split(None, 1)[0]
-
-        atoms: list[tuple[str, str, str]] = []
-        for match in _GEO_ATOM.finditer(text):
-            fields = match.group(1).split()
-            if len(fields) < 4:
-                continue
-            name = aliases.get(fields[0], fields[0])
-            atoms.append((name, fields[-2], fields[-1]))
-
-        if kind == "bond" and len(atoms) != 2:
+    rows_by_site: dict[str, list[dict[str, object]]] = {site: [] for site in requested}
+    for start, line in enumerate(lines):
+        if not line.startswith(("bond ", "angle ")):
             continue
-        if kind == "angle" and len(atoms) != 3:
+        kind = line.split(None, 1)[0]
+        atom_count = 2 if kind == "bond" else 3
+        value_line = start + atom_count + 1
+        if value_line >= len(lines):
             continue
-
-        atom_names = tuple(atom[0] for atom in atoms)
-
-        if kind == "bond":
-            wanted = (
-                "P" in atom_names
-                and len(set(atom_names) & terminal_oxygens) == 1
-            )
-        else:
-            wanted = (
-                (
-                    atom_names[1] == "P"
-                    and atom_names[0] in terminal_oxygens
-                    and atom_names[2] in terminal_oxygens
-                    and atom_names[0] != atom_names[2]
-                )
-                or (
-                    atom_names[1] == "O5'"
-                    and {atom_names[0], atom_names[2]} == {"P", "C5'"}
-                )
-            )
-        if not wanted:
+        # Each Phenix row has one label per atom followed by its own header
+        # and numbers. The next section may begin with a dihedral or a plane.
+        labels = [_GEO_ATOM.search(label) for label in lines[start:start + atom_count]]
+        if not all(labels):
+            continue
+        fields = [label[1].split() for label in labels]
+        if any(len(atom) < 4 for atom in fields):
+            continue
+        site = ":".join(fields[0][-2:])
+        if site not in rows_by_site or any(atom[-2:] != fields[0][-2:] for atom in fields[1:]):
+            continue
+        names = tuple(aliases.get(atom[0], atom[0]) for atom in fields)
+        if min(names, names[::-1]) not in _TERMINAL_GEOMETRY_TERMS:
             continue
 
-        values = None
-        for index, line in enumerate(block[:-1]):
-            if all(label in line for label in ("ideal", "model", "delta", "sigma")):
-                fields = block[index + 1].split()
-                if len(fields) >= 4:
-                    try:
-                        values = tuple(float(value) for value in fields[:4])
-                    except ValueError:
-                        values = None
-                break
-        if values is None:
+        columns = lines[value_line - 1].split()
+        values = lines[value_line].split()
+        if len(columns) != len(values) or len(set(columns)) != len(columns):
             continue
-
-        ideal, model, delta, sigma = values
-        sigma_deviation = (
-            abs(delta) / sigma
-            if sigma > 0 and math.isfinite(sigma)
-            else math.inf
-        )
-
-        for site in requested:
-            chain, resid = site.split(":", 1)
-            if all(atom[1] == chain and atom[2] == resid for atom in atoms):
-                rows_by_site[site].append({
-                    "kind": kind,
-                    "atoms": list(atom_names),
-                    "ideal": ideal,
-                    "model": model,
-                    "delta": delta,
-                    "sigma": sigma,
-                    "sigma_deviation": sigma_deviation,
-                    "severe": sigma_deviation >= sigma_threshold,
-                })
+        printed = dict(zip(columns, values))
+        if printed.get("sym.op.", "x,y,z") != "x,y,z":
+            continue
+        try:
+            ideal, model, delta, sigma = (float(printed[key]) for key in ("ideal", "model", "delta", "sigma"))
+        except (KeyError, ValueError):
+            continue
+        if sigma <= 0 or not all(math.isfinite(v) for v in (ideal, model, delta, sigma)):
+            continue
+        sigma_deviation = abs(delta) / sigma
+        rows_by_site[site].append({
+            "kind": kind, "atoms": list(names), "ideal": ideal, "model": model,
+            "delta": delta, "sigma": sigma, "sigma_deviation": sigma_deviation,
+            "severe": sigma_deviation >= sigma_threshold,
+        })
 
     site_reports: list[dict[str, object]] = []
     requires_review = False
@@ -958,7 +931,10 @@ def audit_terminal_phosphate_geometry(
     for site in requested:
         restraints = rows_by_site[site]
         severe = [row for row in restraints if row["severe"] is True]
-        complete = len(restraints) == 11
+        identities = Counter(min(tuple(row["atoms"]), tuple(reversed(row["atoms"]))) for row in restraints)
+        missing = sorted(_TERMINAL_GEOMETRY_TERMS - identities.keys())
+        duplicated = sorted(names for names, count in identities.items() if count > 1)
+        complete = not missing and not duplicated
         maximum = max(
             (float(row["sigma_deviation"]) for row in restraints),
             default=None,
@@ -968,10 +944,12 @@ def audit_terminal_phosphate_geometry(
         site_reports.append({
             "site": site,
             "restraint_count": len(restraints),
-            "expected_restraint_count": 11,
+            "expected_restraint_count": len(_TERMINAL_GEOMETRY_TERMS),
             "max_sigma_deviation": maximum,
             "severe_restraints": severe,
             "restraints": restraints,
+            **({"missing_restraints": [list(names) for names in missing]} if missing else {}),
+            **({"duplicate_restraints": [list(names) for names in duplicated]} if duplicated else {}),
             "requires_review": site_review,
         })
 
@@ -1082,8 +1060,8 @@ def write_terminal_phosphate_protection(
 
             angles.append((atom_tuple, float(ideal)))
 
-        unique = {atoms for atoms, unused in angles}
-        if len(angles) != 6 or len(unique) != 6:
+        unique = {min(atoms, atoms[::-1]) for atoms, unused in angles}
+        if len(angles) != len(_TERMINAL_P_ANGLES) or unique != _TERMINAL_P_ANGLES:
             raise AutoRefineError(
                 f"Terminal phosphate {site}: expected six native P-centered "
                 f"angles, found {len(angles)}"
@@ -1241,8 +1219,72 @@ def _reported_geometry(log_text: str) -> tuple[float | None, float | None]:
     return max(observations, key=lambda item: item[0])[1] if observations else (None, None)
 
 
+def _weight_table(lines: list[str], start: int) -> list[list[str]]:
+    if lines[start+1:start+2] != ["work free delta bonds angl"]:
+        return []
+    rows = []
+    for line in lines[start+2:]:
+        if not line:
+            break
+        fields = line.split()
+        if len(fields) != 10:
+            return []
+        try:
+            for index, token in enumerate(fields):
+                if 3 <= index <= 8 and token in {"-", "none"}:
+                    continue
+                if not math.isfinite(float(token)):
+                    return []
+            if float(fields[-1]) < 0:
+                return []
+        except ValueError:
+            return []
+        rows.append(fields)
+    return rows
+
+
+def _reported_coordinate_weights(log_text: str) -> list[dict[str, object]]:
+    """Read the chosen XYZ weight at printed precision, without recreating Phenix's selector."""
+    heading = "XYZ individual (reciprocal space)"
+    if heading not in log_text:
+        return []
+    sections = re.split(r"(?m)^[ \t]*={3,}[ \t]+([^=\r\n]+?)[ \t]+={3,}[ \t]*\r?$", log_text)
+    steps = []
+    for title, body in zip(sections[1::2], sections[2::2]):
+        if title != heading:
+            continue
+        lines = [" ".join(line.split()) for line in body.splitlines()]
+        starts = [i for i, line in enumerate(lines) if line == "R-FACTORS RMSD CLASH RAMA ROTA CBET WEIGHT"]
+        choices = [i for i, line in enumerate(lines) if line == "Best weight:"]
+        step = {"step": len(steps)+1, "source": "unreported", "trial_count": None, "weight": None}
+        steps.append(step)
+        if not starts:
+            continue
+        trials = _weight_table(lines, starts[0])
+        if len(starts) == 2 and len(choices) == 1 and starts[0] < choices[0] < starts[1]:
+            chosen = _weight_table(lines, starts[1])
+            if len(chosen) == 1 and chosen[0] in trials:
+                step.update(source="best_weight", trial_count=len(trials), weight=float(chosen[0][-1]))
+        elif len(starts) == 1 and len(trials) == 1 and not choices:
+            # An interrupted multi-trial table can end immediately after its first row.
+            if any(line.startswith("Number of minimizer iterations:") for line in lines[starts[0]+2:]):
+                step.update(source="single_trial", trial_count=1, weight=float(trials[0][-1]))
+    return steps
+
+
 def parse_refinement_statistics(log_text: str, model_text: str = "") -> dict[str, object]:
-    pairs = [(float(a), float(b)) for a, b in _R_PAIR.findall(log_text)]
+    recaps = list(_NATIVE_R_RECAP.finditer(log_text))
+    recap = recaps[0] if len(recaps) == 1 and not _R_PAIR.search(log_text, recaps[0].end()) else None
+    history = log_text[:recap.start()] if recap else log_text
+    pairs = [(float(a), float(b)) for a, b in _R_PAIR.findall(history)]
+    if recap:
+        # Phenix reports its scaled start again after the last cycle.
+        initial_work, initial_free, final_work, final_free = map(float, recap.groups())
+        if not pairs:
+            pairs.append((initial_work, initial_free))
+        pairs.append((final_work, final_free))
+    else:
+        initial_work, initial_free = pairs[0] if pairs else (None, None)
     # Logs repeat some summaries; preserve changes while collapsing immediate duplicates.
     series: list[dict[str, float | int]] = []
     for work, free in pairs:
@@ -1251,7 +1293,6 @@ def parse_refinement_statistics(log_text: str, model_text: str = "") -> dict[str
         series.append({"index": len(series), "r_work": work, "r_free": free})
     clash_values = [float(value) for value in _CLASHSCORE.findall(log_text + "\n" + model_text)]
     final = series[-1] if series else None
-    initial = series[0] if series else None
     final_geometry = _reported_geometry(log_text)
     diagnostics: list[str] = []
     for line in log_text.splitlines():
@@ -1259,9 +1300,9 @@ def parse_refinement_statistics(log_text: str, model_text: str = "") -> dict[str
         if re.match(r"^(?:WARNING\b|ERROR\b|Sorry\b|FATAL\b)", stripped, re.I):
             if stripped not in diagnostics:
                 diagnostics.append(stripped)
-    return {
-        "initial_r_work": initial["r_work"] if initial else None,
-        "initial_r_free": initial["r_free"] if initial else None,
+    statistics = {
+        "initial_r_work": initial_work,
+        "initial_r_free": initial_free,
         "r_work": final["r_work"] if final else None,
         "r_free": final["r_free"] if final else None,
         "r_free_minus_r_work": (
@@ -1274,6 +1315,10 @@ def parse_refinement_statistics(log_text: str, model_text: str = "") -> dict[str
         "cycle_series": series,
         "diagnostics": diagnostics,
     }
+    coordinate_weights = _reported_coordinate_weights(log_text)
+    if coordinate_weights:
+        statistics["coordinate_weight_steps"] = coordinate_weights
+    return statistics
 
 
 def _write_metrics_tsv(path: Path, statistics: Mapping[str, object]) -> None:
@@ -1666,6 +1711,7 @@ def execute_autorefine(
     counted_frame: str | None = None,
     counted_pair_geometry: bool = False,
     observe_declared_sites: bool = False,
+    phosphate_request: PhosphateRequest | None = None,
     progress: Callable[[str, Path], None] | None = None,
 ) -> AutoRefineResult:
     """Run one quiet refinement round and append an immutable checkpoint.
@@ -1674,28 +1720,45 @@ def execute_autorefine(
     that path never initializes a missing registry. Ordinary callers retain the
     existing initialization behavior. Later saves still use the registry guard.
     """
-    from .refinement_parallelity import validate_runtime_choice, require_runtime_continuation, V6_POLICY_ID, V7_POLICY_ID, V8_POLICY_ID, V9_POLICY_ID
+    from .refinement_parallelity import (
+        V6_POLICY_ID, V7_POLICY_ID, V8_POLICY_ID, V9_POLICY_ID, V11_POLICY_ID, V12_POLICY_ID, require_runtime_continuation,
+        validate_declared_site_choice, validate_runtime_choice,
+    )
     from .refinement_counted import LONG_CONTROL_PROTOCOL, control_iteration_cap
     if type(counted_pair_geometry) is not bool or (counted_pair_geometry and counted_protocol is None):
         raise AutoRefineError('Final pair geometry requires an explicit counted control')
-    if type(observe_declared_sites) is not bool or (observe_declared_sites and
-            (not correct_native_parallelity or counted_protocol is not None)):
-        raise AutoRefineError('Declared-site observation requires the explicit ordinary checked runtime')
     counted_policy = V7_POLICY_ID if counted_pair_geometry else V6_POLICY_ID
     if counted_protocol == LONG_CONTROL_PROTOCOL:
         if not counted_pair_geometry:
             raise AutoRefineError('Longer counted control requires final pair geometry capture')
         counted_policy = V8_POLICY_ID
+    phosphate_intent = None
+    backbone_trial = None
+    backbone_reference = None
+    if phosphate_request is not None:
+        from .refinement_phosphate import PhosphateRequest
+        if (not isinstance(phosphate_request, PhosphateRequest) or not correct_native_parallelity
+                or counted_protocol is not None or processor_count not in (None, 1)):
+            raise AutoRefineError("Registered phosphate requires ordinary checked refinement with one native worker")
+        processor_count = 1
+        if phosphate_request.prepared_backbone_source is not None and (
+                not from_checkpoint or (not phosphate_request.registration_checkpoint and from_checkpoint != "postmr")
+                or phosphate_request.registered is None
+                or extra_restraints or terminal_geometry_protection is not None):
+            raise AutoRefineError("A prepared backbone trial needs the recorded postmr construction or named starting and registration checkpoints with the captured restraints")
+    runtime_policy = counted_policy if counted_protocol is not None else V9_POLICY_ID if observe_declared_sites else None
+    runtime_options = {"runtime_policy": runtime_policy} if runtime_policy is not None else {}
     from .refinement_counted import validate_autorefine_control
     try:
+        validate_declared_site_choice(observe_declared_sites, checked=correct_native_parallelity,
+                                      counted_protocol=counted_protocol)
         validate_autorefine_control(counted_protocol, counted_pair_request,
             enabled=correct_native_parallelity, macro_cycles=macro_cycles,
             processor_count=processor_count, real_space_sites=real_space_sites,
             adp_mode=adp_mode, refine_occupancies=refine_occupancies,
             anomalous_mode=anomalous_mode, refine_coordinates=refine_coordinates)
-        validate_runtime_choice(correct_native_parallelity, phenix_python_executable,
-            **({'runtime_policy': counted_policy} if counted_protocol is not None else
-               {'runtime_policy': V9_POLICY_ID} if observe_declared_sites else {}))
+        if phosphate_request is None:
+            validate_runtime_choice(correct_native_parallelity, phenix_python_executable, **runtime_options)
     except ValueError as exc:
         raise AutoRefineError(str(exc)) from exc
     if counted_frame is not None and (counted_protocol is None or counted_frame != 'recipe'):
@@ -1733,6 +1796,7 @@ def execute_autorefine(
         try:
             require_runtime_continuation(registry, parent, correct_native_parallelity, run=run,
                 **({'allow_counted': True} if counted_protocol is not None else {}),
+                **({'registered_phosphate': True} if phosphate_request is not None else {}),
                 **({'observe_declared_sites':True} if observe_declared_sites else {}))
         except ValueError as exc:
             raise AutoRefineError(str(exc)) from exc
@@ -1748,7 +1812,7 @@ def execute_autorefine(
         from .refinement_chemistry import prepare_chemistry_scope
         try:
             chemistry_projections = prepare_chemistry_scope(run,registry,verified_preparations,parent,
-                **({'include_nontriple':True} if observe_declared_sites else {}))
+                **({'include_nontriple':True} if observe_declared_sites or phosphate_request is not None else {}))
         except (OSError,ValueError,RuntimeError) as exc:
             raise AutoRefineError(f'Checked chemistry scope is inconsistent: {exc}') from exc
     report = _run_report(run)
@@ -1814,6 +1878,19 @@ def execute_autorefine(
         resolved_extra_restraints.append(path)
 
     restraints = [*restraints, *resolved_extra_restraints]
+    if phosphate_request is not None:
+        from .refinement_phosphate import prepare_intent
+        try:
+            phosphate_intent = prepare_intent(run, registry, parent, phosphate_request, phenix_version=phenix_version,
+                                             python_executable=phenix_python_executable)
+            runtime_options = {"runtime_policy": V12_POLICY_ID if "inspections" in phosphate_intent else V11_POLICY_ID}
+            validate_runtime_choice(correct_native_parallelity, phenix_python_executable, **runtime_options)
+            if phosphate_request.prepared_backbone_source is not None:
+                from .refinement_prepared_backbone import prepare_trial
+                backbone_trial = prepare_trial(phosphate_request.prepared_backbone_source, report, parent,
+                                               inherited, phosphate_request, phosphate_intent)
+        except (OSError, ValueError, RuntimeError, TypeError, KeyError) as exc:
+            raise AutoRefineError(f"Registered phosphate could not be verified: {exc}") from exc
 
     requested_terminal_protection_path: Path | None = None
     if requested_terminal_protection is not None:
@@ -1872,6 +1949,7 @@ def execute_autorefine(
     selections = anomalous_selections(report) if plan.anomalous else ()
 
     automatic_terminal_seed: dict[str, object] | None = None
+    captured_terminal_index = None
     if (
         terminal_phosphate_sites
         and inherited_terminal_protection is None
@@ -1879,12 +1957,29 @@ def execute_autorefine(
     ):
         automatic_terminal_seed = _prepare_terminal_phosphate_protection(
             model,
-            restraints,
+            [p for p in restraints if p.suffix.casefold() == ".cif"] if backbone_trial is not None else restraints,
             refine_executable,
             environment,
             terminal_phosphate_sites,
         )
 
+    if phosphate_intent is not None:
+        from .refinement_phosphate import bind_planned_inputs
+        try:
+            source_paths = [observations, model, *restraints, *([phase_file] if phase_file is not None else [])]
+            if any(artifact_reference(path, run).get("anchor") not in ("run", "dataset", "repository")
+                   for path in source_paths):
+                raise ValueError("Registered phosphate needs refinement inputs inside a declared run, dataset or repository")
+            protection = automatic_terminal_seed["protection_text"] if automatic_terminal_seed else None
+            if backbone_trial is not None:
+                if protection is not None:
+                    from .refinement_prepared_backbone import terminal_input_index
+                    captured_terminal_index = terminal_input_index(backbone_trial.supplements, protection)
+                bind_planned_inputs(phosphate_intent, model, restraints, supplemental_phils=backbone_trial.supplements)
+            else:
+                bind_planned_inputs(phosphate_intent, model, restraints, terminal_protection=protection)
+        except (OSError, ValueError, RuntimeError) as exc:
+            raise AutoRefineError(f"Registered phosphate starting inputs differ: {exc}") from exc
     checkpoint_id = next_checkpoint_id(registry, "refine")
     round_number = int(checkpoint_id.rsplit("-", 1)[1])
     round_directory = run / "AutoRefine" / f"round_{round_number:03d}"
@@ -1897,6 +1992,11 @@ def execute_autorefine(
 
     pre_refinement_geometry: Path | None = None
     pre_refinement_geometry_log: Path | None = None
+    if backbone_trial is not None:
+        from .refinement_prepared_backbone import write_trial
+        captured_paths, backbone_reference = write_trial(run, checkpoint_id, parent["id"], backbone_trial)
+        resolved_extra_restraints.extend(captured_paths)
+        restraints.extend(captured_paths)
     if automatic_terminal_seed is not None:
         geometry_text = automatic_terminal_seed.get("geometry_text")
         geometry_log_text = automatic_terminal_seed.get("log_text")
@@ -1919,9 +2019,8 @@ def execute_autorefine(
         pre_refinement_geometry_log = (
             round_directory / "terminal_geometry_pre_refine.log"
         )
-        protection_path = (
-            round_directory / "terminal_phosphate_protection.phil"
-        )
+        protection_path = (captured_paths[captured_terminal_index] if captured_terminal_index is not None
+                           else round_directory / "terminal_phosphate_protection.phil")
         pre_refinement_geometry.write_text(
             geometry_text,
             encoding="utf-8",
@@ -1930,10 +2029,10 @@ def execute_autorefine(
             geometry_log_text,
             encoding="utf-8",
         )
-        protection_path.write_text(
-            protection_text,
-            encoding="utf-8",
-        )
+        if captured_terminal_index is None:
+            protection_path.write_text(protection_text, encoding="utf-8")
+            resolved_extra_restraints.append(protection_path)
+            restraints.append(protection_path)
 
         requested_terminal_protection = (
             _validate_terminal_geometry_protection(
@@ -1949,8 +2048,6 @@ def execute_autorefine(
                 "Automatic terminal protection unexpectedly produced no record"
             )
         requested_terminal_protection_path = protection_path
-        resolved_extra_restraints.append(protection_path)
-        restraints.append(protection_path)
 
     parameters = round_directory / "autorefine.params"
     nproc = max(1, processor_count if processor_count is not None else (os.cpu_count() or 1))
@@ -1979,6 +2076,9 @@ def execute_autorefine(
     try:
         execution_restraints, refinement_input_reference = prepare_refinement_inputs(
             run, execution_restraint_records, checkpoint=checkpoint_id)
+        if phosphate_intent is not None:
+            from .refinement_phosphate import bind_execution_inputs
+            bind_execution_inputs(phosphate_intent, model, execution_restraints)
     except (OSError, ValueError, RuntimeError) as exc:
         raise AutoRefineError(f"Refinement input preparation failed: {exc}") from exc
 
@@ -2023,9 +2123,9 @@ def execute_autorefine(
                         *([phase_file] if phase_file is not None else []), parameters],
                 command=command, python_executable=phenix_python_executable, macro_cycles=macro_cycles,
                 chemistry_projections=chemistry_projections,
-                **({'runtime_policy': counted_policy, 'counted_pair_request': counted_pair_request}
-                   if counted_protocol is not None else
-                   {'runtime_policy': V9_POLICY_ID} if observe_declared_sites else {}))
+                **runtime_options,
+                **({'counted_pair_request': counted_pair_request} if counted_protocol is not None else {}),
+                **({'phosphate': phosphate_intent} if phosphate_intent is not None else {}))
         except (OSError, ValueError, RuntimeError) as exc:
             raise AutoRefineError(f'Parallelity execution preparation failed: {exc}') from exc
     if counted_protocol is not None:
@@ -2165,6 +2265,18 @@ def execute_autorefine(
     statistics = parse_refinement_statistics(log_text, model_text)
     statistics["terminal_geometry_audit"] = terminal_geometry_audit
     chemistry_review = False
+    link_review = None
+    if observe_declared_sites and parallelity_execution_reference is not None:
+        from .refinement_link_geometry import review_round_links
+        try:
+            link_review = review_round_links(
+                run, registry, verified_preparations, parent, checkpoint_id, parallelity_execution_reference,
+                output_model if completed_returncode == 0 else None, final_geometry,
+            )
+        except (OSError, ValueError, RuntimeError) as exc:
+            raise AutoRefineError(f"Refinement bond evidence is inconsistent: {exc}") from exc
+        if link_review is not None:
+            statistics["inter_residue_bonds"] = link_review
     if parallelity_execution_reference is not None and completed_returncode == 0 and output_model is not None:
         from .refinement_parallelity import read_execution_chemistry
         try:
@@ -2234,6 +2346,7 @@ def execute_autorefine(
         terminal_protection_record = None
 
     output_references = {
+        **({"prepared_backbone": backbone_reference} if backbone_reference is not None else {}),
         **({"parallelity_execution": parallelity_execution_reference} if parallelity_execution_reference is not None else {}),
         **({"refinement_inputs": refinement_input_reference} if refinement_input_reference is not None else {}),
         "model_cif": file_reference(model_cif) if model_cif else None,
@@ -2318,8 +2431,8 @@ def execute_autorefine(
     elif terminal_geometry_audit["requires_review"] is True:
         status = "AUTOREFINE_REVIEW"
         message = (
-            "Refinement completed, but declared terminal-phosphate geometry exceeds "
-            "the Phenix geometry-restraint review threshold"
+            "Refinement completed. Inspect the declared terminal-phosphate geometry "
+            "for missing, repeated or outlying Phenix restraints."
         )
         checkpoint_status = "REVIEW"
         usable = True
@@ -2327,6 +2440,19 @@ def execute_autorefine(
     elif chemistry_review:
         status = "AUTOREFINE_REVIEW"
         message = "Refinement completed, but declared triple-bond chemistry requires inspection"
+        checkpoint_status = "REVIEW"
+        usable = True
+        exit_code = 0
+    elif link_review is not None and link_review["requires_review"]:
+        status = "AUTOREFINE_REVIEW"
+        message = "Refinement completed. Inspect the inter-residue bonds in the preflight and final geometry."
+        checkpoint_status = "REVIEW"
+        usable = True
+        exit_code = 0
+    elif phosphate_intent is not None:
+        status = "AUTOREFINE_REVIEW"
+        subject = "each registered crystal phosphate" if "inspections" in phosphate_intent else "the registered crystal phosphate"
+        message = f"Refinement completed. Inspect {subject} before selecting this checkpoint."
         checkpoint_status = "REVIEW"
         usable = True
         exit_code = 0
@@ -2388,7 +2514,7 @@ def execute_autorefine(
         "metrics": {
             key: value
             for key, value in statistics.items()
-            if key not in {"cycle_series", "diagnostics"}
+            if key not in {"cycle_series", "coordinate_weight_steps", "diagnostics"}
         },
         "compatibility": {
             **compatibility,
@@ -2398,7 +2524,7 @@ def execute_autorefine(
     }
     selected = auto_select_success and status == "AUTOREFINE_READY"
     try:
-        if counted_protocol is not None:
+        if counted_protocol is not None or phosphate_intent is not None:
             from .refinement_parallelity import validate_checkpoint_execution
             validate_checkpoint_execution(run, checkpoint_payload,
                 dict(registry, checkpoints=[*registry['checkpoints'], checkpoint_payload]))
@@ -2470,6 +2596,7 @@ def execute_autorefine(
             "numerical_success": numerical_success,
             "terminal_geometry_review": terminal_geometry_audit["requires_review"],
             "chemical_geometry_review": chemistry_review,
+            **({"inter_residue_bond_review": link_review["requires_review"]} if link_review is not None else {}),
             "visual_inspection_required": True,
         },
         "outputs": {

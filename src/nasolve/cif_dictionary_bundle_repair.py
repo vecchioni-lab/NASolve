@@ -10,7 +10,7 @@ from pathlib import Path
 from .cif_dictionary_bundle import read_dictionary_bundle, inspect_dictionary_bundle_native
 from .cif_dictionary_sites import _bind_capture, _need, _read
 from .cif_dictionary_store import resolve_dictionary_snapshot, _bytes
-from .cif_component_runtime import _tree, MAX_FILES, MAX_BYTES
+from .cif_component_runtime import _snapshot_roots, _tree, MAX_FILES, MAX_BYTES
 from .cif_linear_torsion_bundle import read_linear_torsion_bundle
 from .cif_captured_linear_attribution import read_captured_linear_attribution
 from .cif_captured_mixed_gradients import read_captured_mixed_gradients, _inputs
@@ -32,8 +32,10 @@ def _gradient(directory, receipt, anchor):
         report=_ref(root/'captured_mixed_gradients.json',root,anchor))
 
 
-def _prepared_capture(prepared, receipt, expected_dictionaries):
-    capture,model,dictionaries,phils,native,_=_inputs(Path(receipt).parent)
+def _prepared_capture(prepared, receipt, expected_dictionaries, *, capture_inputs=None):
+    if capture_inputs is None:
+        capture_inputs = _inputs(Path(receipt).parent)
+    capture, model, dictionaries, phils, native, _ = capture_inputs
     _need(capture.get('full_monomer_inventory_policy')==MONOMER_POLICY,'Require full native identities throughout qualification')
     proof=review_full_monomers(native)
     _need(_read(model)==_read(prepared['model'])
@@ -90,28 +92,47 @@ def _inspect(bundle, baseline_receipt, attribution_directory, repaired_gradient_
         'repair_attribution_directory':attribution}
     for name,p in [('repaired_gradient_directory',repaired_gradient_directory),('original_gradient_directory',original_gradient_directory)]:
         if p is not None:roots[name]=Path(p).absolute()
-    snapshots={name:_tree(p) for name,p in roots.items()}
-    _need(sum(len(v) for v in snapshots.values())<=MAX_FILES
-        and sum(len(b) for v in snapshots.values() for b in v.values())<=MAX_BYTES,'Combined repair evidence exceeds supported bounds')
+    snapshots = _snapshot_roots(roots, max_files=MAX_FILES, max_bytes=MAX_BYTES,
+        message='Combined repair evidence exceeds supported bounds')
     prepared=read_dictionary_bundle(root)
+    identity = initial = starting = repaired = None
+
+    def check_capture(receipt, dictionaries, capture_inputs=None):
+        nonlocal identity
+        proof = _prepared_capture(prepared, receipt, dictionaries, capture_inputs=capture_inputs)
+        if identity is None:
+            identity = proof
+        else:
+            _need(_bytes(proof) == _bytes(identity), 'Repair changed full native identities')
+
     if repair_chain:
-        from .cif_repair_chain import repair_chain_inputs, REPORT
-        chain=repair_chain_inputs(attribution);steps=chain['report']['steps']
-        original=prepared['after_dictionaries'];final=chain['after_dictionaries']
-        _need([_read(p) for p in original]==[_read(p) for p in chain['before_dictionaries']],
-              'Repair does not start from the exact ordered source-qualified dictionaries')
-        stages=[]
-        for step,stage in zip(steps,chain['stages']):
-            code=step['component'];index=step['dictionary_index']
+        from .cif_repair_chain import visit_repair_chain, REPORT
+        original = prepared['after_dictionaries']
+
+        def visit(step):
+            nonlocal initial, starting, repaired
+            code = step.component
+            index = step.dictionary_index
             _need(code in prepared['report']['components'] and type(index) is int and 0<=index<len(original)
                   and original[index]==prepared['component_dictionaries'][code],
                   'Repair component lacks its exact source-qualified owner')
-            if stage['source'] is not None:
-                source=resolve_dictionary_snapshot(root/'components'/code/'snapshot')['source']
-                _need(_read(source)==_read(stage['source']), 'Repair borrows a different chemical source')
-            stages.extend([(stage['before_receipt'],stage['before_dictionaries']),
-                           (stage['after_receipt'],stage['after_dictionaries'])])
-        attributed=chain['report']['all_steps_attributed'];attribution_file=REPORT
+            if step.source is not None:
+                authority = resolve_dictionary_snapshot(root/'components'/code/'snapshot')['source']
+                _need(_read(authority) == _read(step.source), 'Repair borrows a different chemical source')
+            check_capture(step.before_receipt, step.before[2], step.before)
+            check_capture(step.after_receipt, step.after[2], step.after)
+            if step.first:
+                _need([_read(p) for p in original] == [_read(p) for p in step.before[2]],
+                      'Repair does not start from the exact ordered source-qualified dictionaries')
+                initial = inspect_dictionary_bundle_native(root, baseline, step.before_receipt)
+                starting = _gradient(original_gradient_directory, step.before_receipt, 'original_gradient_directory')
+            if step.last:
+                repaired = _gradient(repaired_gradient_directory, step.after_receipt, 'repaired_gradient_directory')
+
+        chain = visit_repair_chain(attribution, visit)
+        final = chain['after_dictionaries']
+        attributed = chain['report']['all_steps_attributed']
+        attribution_file = REPORT
     else:
         job=read_captured_linear_attribution(attribution);plan=read_linear_torsion_bundle(attribution/'bundle')
         steps=plan['steps'];_need(bool(steps),'No declared repair candidate')
@@ -123,16 +144,12 @@ def _inspect(bundle, baseline_receipt, attribution_directory, repaired_gradient_
         attributed=(job['status']=='CAPTURED_LINEAR_ATTRIBUTION_PASS'
             and job['kernel_execution_authentication']=='MAINTAINED_FRESH_NATIVE_JOB')
         attribution_file='captured_linear_attribution.json'
-    receipts=[];identity=None
-    for receipt,dictionaries in stages:
-        proof=_prepared_capture(prepared,receipt,dictionaries)
-        if identity is None:identity=proof
-        else:_need(_bytes(proof)==_bytes(identity),'Repair changed full native identities')
-        receipts.append(receipt)
-    initial=inspect_dictionary_bundle_native(root,baseline,receipts[0])
+        for receipt,dictionaries in stages:
+            check_capture(receipt,dictionaries)
+        initial = inspect_dictionary_bundle_native(root,baseline,stages[0][0])
+        starting = _gradient(original_gradient_directory,stages[0][0],'original_gradient_directory')
+        repaired = _gradient(repaired_gradient_directory,stages[-1][0],'repaired_gradient_directory')
     source_usable=initial['diagnostic_continuation']['allowed'] is True
-    repaired=_gradient(repaired_gradient_directory,receipts[-1],'repaired_gradient_directory')
-    starting=_gradient(original_gradient_directory,receipts[0],'original_gradient_directory')
     eligible={'repaired_prepared_bundle':source_usable and attributed and repaired['qualified'],
         'verified_prepared_bundle':source_usable and starting['qualified']}
     decisions,sources,selected=_choose(prepared,root,
@@ -193,9 +210,8 @@ def _inspect_original(bundle, baseline_receipt, candidate_receipt, original_grad
     roots={'prepared_bundle_directory':root,'preparation_baseline_directory':baseline.parent,
         'prepared_capture_directory':candidate.parent}
     if original_gradient_directory is not None:roots['original_gradient_directory']=Path(original_gradient_directory).absolute()
-    snapshots={name:_tree(p) for name,p in roots.items()}
-    _need(sum(len(v) for v in snapshots.values())<=MAX_FILES
-        and sum(len(b) for v in snapshots.values() for b in v.values())<=MAX_BYTES,'Combined original evidence exceeds supported bounds')
+    snapshots = _snapshot_roots(roots, max_files=MAX_FILES, max_bytes=MAX_BYTES,
+        message='Combined original evidence exceeds supported bounds')
     prepared=read_dictionary_bundle(root)
     identity=_prepared_capture(prepared,candidate,prepared['after_dictionaries'])
     initial=inspect_dictionary_bundle_native(root,baseline,candidate)

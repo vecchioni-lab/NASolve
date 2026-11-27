@@ -10,15 +10,16 @@ from .cif_doctor import _bridges, _comparison_inventory, _number, _ORDERS
 
 POLICY_ID = "cif-source-declared-neutral-purine-aromatic-v1"
 
+EXACT_POLICY_ID = "cif-source-exact-bond-orders-v1"
 OXO_POLICY_ID = "cif-source-declared-neutral-6-oxo-purine-aromatic-v1"
-
+THIOXO_POLICY_ID = "cif-source-declared-neutral-6-thioxo-purine-aromatic-v1"
 
 FIVE_RING_POLICY_ID = "cif-source-declared-neutral-five-membered-cn-aromatic-v1"
 CYCLE_LOCAL_POLICY_ID = "cif-source-declared-cycle-local-neutral-cn-aromatic-v1"
 
 
 def validate_policy(policy):
-    if policy not in (None, POLICY_ID, OXO_POLICY_ID, FIVE_RING_POLICY_ID, CYCLE_LOCAL_POLICY_ID):
+    if policy not in (None, EXACT_POLICY_ID, POLICY_ID, OXO_POLICY_ID, THIOXO_POLICY_ID, FIVE_RING_POLICY_ID, CYCLE_LOCAL_POLICY_ID):
         raise ValueError("Unsupported bond representation policy: " + repr(policy))
 
 
@@ -163,14 +164,22 @@ def purine_bond_representation(source, generated, legacy):
 def assess_bond_representation(source, generated, legacy, policy):
     """Dispatch explicit policies without widening any historical policy."""
     validate_policy(policy)
+    if policy == EXACT_POLICY_ID:
+        # Restore differences the six-ring policy might have treated as equivalent.
+        unresolved = {tuple(edge) for edge in legacy["unresolved_bonds"]}
+        for ring in legacy["equivalent_rings"]:
+            unresolved.update(tuple(bond["atoms"]) for bond in ring["bonds"])
+        return dict(legacy, policy_id=policy, equivalent_rings=[], equivalent_fused_systems=[],
+                    unresolved_bonds=[list(edge) for edge in sorted(unresolved)],
+                    status="EXACT" if legacy["status"] == "EXACT" else "UNSUPPORTED_DIFFERENCE")
     if policy in (FIVE_RING_POLICY_ID, CYCLE_LOCAL_POLICY_ID):
         from .cif_five_ring_representation import five_ring_bond_representation
         result = five_ring_bond_representation(source, generated, legacy)
         result['policy_id'] = policy
         return result
-    if policy == OXO_POLICY_ID:
+    if policy in (OXO_POLICY_ID, THIOXO_POLICY_ID):
         from .cif_oxo_purine_representation import oxo_purine_bond_representation
-        return oxo_purine_bond_representation(source, generated, legacy)
+        return oxo_purine_bond_representation(source, generated, legacy, policy)
     if policy == POLICY_ID:
         return purine_bond_representation(source, generated, legacy)
     return legacy

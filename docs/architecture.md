@@ -327,6 +327,18 @@ remain authoritative; no CLI/default activation or new executor. See the
 [discovery contract](cif-doctor.md#source-aware-bond-target-discovery-c332) and
 [request binding](cif-doctor.md#automatic-bond-discovery-in-fresh-preparation-c333).
 
+## Captured reader settings at prepared intake
+
+The explicit [W186 control handoff](cif-doctor.md#explicit-captured-control-handoff-w186)
+keeps captured Phenix settings out of the geometry-only restraint context. A
+new complete request authenticates the typed literal artifact and freezes a
+separate `interpretation_controls` role. Acquisition and stored preparation
+preserve its ordered bytes into the existing native/repair/runtime owners.
+Captured NCS=False suppresses only the redundant bundle-generated declaration;
+other duplicates refuse. Default requests and old artifact semantics are unchanged.
+Native fixed-coordinate readback qualifies parameter delivery and term membership,
+not ordinary parent ancestry, coordinate recovery or scientific model acceptance.
+
 ## Runtime precedence
 
 Phenix is resolved in this order:
@@ -736,6 +748,16 @@ the prepared model are also collected even when unchanged, so their CIFs and
 `component_identity` entries survive a no-op mutation plan. This does not imply
 automatic resolution of every pre-existing noncurated residue. Generic
 definitions add no inferred sulfur substitutions or ring-substituent rules.
+
+Fresh ordinary PostMR carries isotropic B factors from the original model
+for graph-restored sugar and phosphate atoms of canonical DNA hosts. The
+atoms must match in site, name, element, occupancy and restored coordinates.
+Transfer succeeds for a whole selected scaffold or its existing B values
+are retained with a reason. New base atoms keep their construction values.
+A selected site with an alternate conformation or associated displacement
+records retains its existing values. Historical coordinate-only replay
+remains available. See the [Cedar completion queue](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run)
+for the separate problem of selecting displacement values for new atoms.
 
 The registry also declares exact parent/target atom substitutions. `DE`, `DF`,
 and `S6G` place sulfur along the canonical `C-O` vector, use the transformed
@@ -5657,3 +5679,35 @@ evaluation/count history, then compare pair, backbone, packing and diffraction
 evidence. Code/regression qualification is not native or structural acceptance.
 The candidate has not yet completed that matched native experiment; larger bends,
 automatic stitching and density-based selection remain separate roadmap gates.
+
+## Explicit imide proton-loss sources (C409)
+
+`cif_declared_proton_loss.derive_imide_anion_source(source, code, *, component,
+donor, hydrogen, operation)` requires the explicit
+`cif-declared-imide-proton-loss-v1` operation. It returns new CIF bytes and a
+schema-1 report, without writing, registering or selecting them. The caller owns
+scientific intent, preservation of the parent and eventual site/metal binding.
+The output identity must differ from the parent. This source-only interface is
+not ordinary PostMR activation or permission to override curated sources.
+
+Existing graph, single-component and formal-charge checks bind one neutral
+N(H/D) joined by single bonds to two neutral C(=O/S) groups. Their local valence,
+nonaromatic representation and lack of stereogenic declarations must be explicit.
+The selected proton/deuteron leaves with formal charge +1; the localized donor
+representation changes from 0 to −1. All other atom and bond rows are retained,
+including phosphate state and coordinates. Coordinates remain parent seeds,
+and retained stereochemical labels are not a new absolute CIP assignment.
+No partial charge, native atom type, numerical target, metal bond or pH is inferred.
+Stale formula weights, neutral descriptors and release metadata are omitted;
+formula/count/total charge are rebuilt from the declared atom inventory.
+
+This represents an explicit chemical choice. It does not predict which sites
+should deprotonate. The conventional thymine N3–Hg–N3 interpretation is supported
+by [primary NMR evidence](https://pubmed.ncbi.nlm.nih.gov/17150810/); a thio-imide
+source operation does not by itself validate its metal-complex geometry.
+Existing generation-input, charge-transfer and isolated qualification owners
+consume the derived source unchanged. The recorded DF/DT controls preserve all
+35 formal charges and source-relative sugar configurations and pass both isolated
+coordinate seeds. Phenix's monomer API still omits formal charge, so that native
+field remains unassessed even though the source and generated CIF declare it.
+Linked site aliases, actual Hg coordination and refinement require separate gates.

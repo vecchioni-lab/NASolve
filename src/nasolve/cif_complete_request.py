@@ -17,7 +17,10 @@ from . import cif_acquisition_attempt as acquisition
 from . import cif_component_runtime as frozen_tree
 from . import cif_repair_attempt as repair
 from .cif_prepared_repair_execution import _source_plane_support_snapshot, _source_bond_target_choices, BOND_TARGET_POLICY
-from .cif_acquisition_preparation import _capture, _freeze, _terminal, prepare_acquired_dictionary_bundle, read_acquired_dictionary_bundle
+from .cif_acquisition_preparation import (
+    _capture, _freeze, _freeze_furanose, _furanose_inputs, _terminal,
+    prepare_acquired_dictionary_bundle, read_acquired_dictionary_bundle,
+)
 from .cif_acquisition_sources import read_acquisition_sources
 from .cif_component_runtime import _tree
 from .cif_dictionary_bundle import _context
@@ -25,7 +28,7 @@ from .cif_dictionary_sites import _consumer, _links, _model_inventory, _need, _r
 from .cif_dictionary_store import _bytes, _json, make_dictionary_request, recipe_representation_policy, resolve_dictionary_snapshot
 from .cif_generation_acquisition import generation_dictionary_options
 from .cif_generation_attempt import _attempt_identity, generate_source_candidate_attempt, inspect_source_generation_request
-from .cif_plane_coverage import audit_trigonal_plane_coverage
+from .cif_plane_coverage import audit_snapshot_trigonal_planes
 from .cif_plane_generation import read_owned_plane_support, inspect_owned_plane_generation_failure
 from .cif_generation_process import _valid_identity
 from .cif_postmr_cache import verify_current_consumer
@@ -41,6 +44,8 @@ from . import cif_runtime_continuation as continuation
 from .cif_runtime_continuation_process import inspect_runtime_continuation_processes, POLICY_ID as CONTINUATION_PROCESS_POLICY
 
 from .cif_prepared_bond_discovery import bond_discovery_fields
+from . import cif_complete_stages as staged_artifacts
+from .cif_interpretation_controls import control_fields, control_inputs, control_kwargs, reject_shadow_controls
 
 POLICY_ID = 'cif-complete-dictionary-request-v1'
 ANCHOR = 'dictionary_request_directory'
@@ -49,6 +54,7 @@ LEGACY_ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v1'
 NESTED_ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v2'
 ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v3'
 CAPTURE_ARTIFACT_POLICY = 'cif-complete-request-partitioned-artifacts-v4'
+STAGED_ARTIFACT_POLICY = staged_artifacts.POLICY_ID
 _REPAIR_PREFIX = 'repair/attempts/attempt-0001/'
 _RUNTIME_PREFIX = 'repair/attempts/attempt-0001/execution/runtime/'
 _CAPTURE_PREFIX = 'repair/attempts/attempt-0001/execution/native/'
@@ -86,17 +92,22 @@ def _continuation_fields(options, limits):
     fields = {'readyset_timeout_seconds','restore_serialization'}
     policies = dict(execution_policy=continuation.POLICY_ID, process_policy=CONTINUATION_PROCESS_POLICY,
                     artifact_policy='cif-complete-continuation-artifacts-v1')
-    optional={'child_artifact_policy','native_nonbonded_policy'}
-    _need(isinstance(options,dict) and (set(options)==fields or
+    from .cif_terminal_qualification import custom_request_policy_fields
+    optional={'child_artifact_policy','native_nonbonded_policy','explicit_request_policy'}
+    _need(isinstance(options,dict) and (set(options)-{'explicit_request_policy'}==fields or
           fields | policies.keys() <= set(options) <= fields | policies.keys() | optional),
           'Invalid complete-request continuation settings')
-    child_policy=(continuation.ARTIFACT_POLICY if set(options)==fields
+    policy_fields=custom_request_policy_fields(options.get('explicit_request_policy'))
+    _need('explicit_request_policy' not in options or bool(policy_fields), 'Missing explicit request comparison policy')
+    minimal=set(options)-policy_fields.keys()==fields
+    policies.update(policy_fields)
+    child_policy=(continuation.ARTIFACT_POLICY if minimal
                   else options.get('child_artifact_policy'))
     _need('child_artifact_policy' not in options or child_policy == continuation.ARTIFACT_POLICY,
           'Unsupported continuation child artifact policy')
     continuation._artifact_fields(child_policy)
     if child_policy is not None: policies['child_artifact_policy']=child_policy
-    native_policy=(continuation.NATIVE_NONBONDED_POLICY if set(options)==fields
+    native_policy=(continuation.NATIVE_NONBONDED_POLICY if minimal
                    else options.get('native_nonbonded_policy'))
     _need('native_nonbonded_policy' not in options or native_policy==continuation.NATIVE_NONBONDED_POLICY,
           'Unsupported continuation nonbonded policy')
@@ -105,22 +116,32 @@ def _continuation_fields(options, limits):
     _need(all(options.get(k,v) == v for k,v in policies.items()), 'Unsupported continuation policy')
     continuation._configuration(dict(native=limits['native_timeout_seconds'],
         readyset=options['readyset_timeout_seconds'],total=limits['total_timeout_seconds']),options['restore_serialization'],
-        artifact_policy=child_policy,nonbonded_policy=native_policy)
+        artifact_policy=child_policy,nonbonded_policy=native_policy,**policy_fields)
     return dict(continuation=dict(**policies,**{k:options[k] for k in sorted(fields)}))
 
 
 def _continuation_parameters(config):
+    from .cif_terminal_qualification import custom_request_policy_fields
     settings = config['continuation']; limits = config['limits']
     return dict(native_timeout_seconds=limits['native_timeout_seconds'],
         readyset_timeout_seconds=settings['readyset_timeout_seconds'],
         total_timeout_seconds=limits['total_timeout_seconds'],restore_serialization=settings['restore_serialization'],
         artifact_policy=settings.get('child_artifact_policy'),
         nonbonded_policy=settings.get('native_nonbonded_policy'),
+        **custom_request_policy_fields(settings.get('explicit_request_policy')),
         **repair.compact_evidence_fields(config.get('compact_evidence',False)))
 
 
-def _compiler_input(kind, directory, selected_sources=None):
+def _compiler_input(kind, directory, selected_sources=None, *, reader_control_policy=None):
     """Resolve an existing compiler artifact; never compile or guess new intent."""
+    if reader_control_policy is not None:
+        from .cif_interpretation_controls import POLICY_ID as control_policy
+        _need(reader_control_policy == control_policy and kind in ('literal_na_inputs', 'native_dictionary_parent'),
+              'Reader-control handoff requires typed literal inputs and its explicit policy')
+        from .cif_literal_na_controls import DICTIONARY_PARENT_POLICY_ID, POLICY_ID, inspect_typed_literal_na_inputs
+        source_policy = DICTIONARY_PARENT_POLICY_ID if kind == 'native_dictionary_parent' else POLICY_ID
+        result = inspect_typed_literal_na_inputs(directory, source_policy=source_policy)
+        return dict(result, phils=result['compiled_restraint_phils'])
     if kind == 'literal_na_inputs':
         result=resolve_literal_na_inputs(directory)
         if selected_sources is not None:
@@ -184,7 +205,7 @@ def _construction_input(directory, model, sources, model_context):
 
 
 def _artifact_fields(policy):
-    _need(policy is None or (type(policy) is str and policy in {LEGACY_ARTIFACT_POLICY, NESTED_ARTIFACT_POLICY, ARTIFACT_POLICY, CAPTURE_ARTIFACT_POLICY}),
+    _need(policy is None or (type(policy) is str and policy in {LEGACY_ARTIFACT_POLICY, NESTED_ARTIFACT_POLICY, ARTIFACT_POLICY, CAPTURE_ARTIFACT_POLICY, STAGED_ARTIFACT_POLICY}),
           'Unsupported complete-request artifact policy')
     return {} if policy is None else dict(artifact_policy=policy)
 
@@ -197,6 +218,7 @@ def _artifact_partitions(policy, with_continuation):
     retain their exact historical partition meanings. Explicit V4 additionally
     bounds raw native captures separately from derived repair evidence. Each
     logical partition and the shared physical archive keep their prior caps.
+    V5 uses these same parent scopes plus separately recorded repair stages.
     V3 remains the default; no failed historical request is reinterpreted.
     """
     _artifact_fields(policy)
@@ -204,13 +226,13 @@ def _artifact_partitions(policy, with_continuation):
     if policy is None:
         return ()
     prefixes = (_RUNTIME_PREFIX,)
-    if policy in {ARTIFACT_POLICY, CAPTURE_ARTIFACT_POLICY}:
+    if policy in {ARTIFACT_POLICY, CAPTURE_ARTIFACT_POLICY, STAGED_ARTIFACT_POLICY}:
         prefixes += (_REPAIR_PREFIX,)
-    if policy == CAPTURE_ARTIFACT_POLICY:
+    if policy in {CAPTURE_ARTIFACT_POLICY, STAGED_ARTIFACT_POLICY}:
         prefixes += (_CAPTURE_PREFIX,)
     if with_continuation:
         prefixes += ('continuation/',)
-        if policy in {NESTED_ARTIFACT_POLICY, ARTIFACT_POLICY, CAPTURE_ARTIFACT_POLICY}:
+        if policy in {NESTED_ARTIFACT_POLICY, ARTIFACT_POLICY, CAPTURE_ARTIFACT_POLICY, STAGED_ARTIFACT_POLICY}:
             prefixes += ('continuation/runtime/',)
     return tuple(sorted(prefixes, key=len, reverse=True))
 
@@ -222,15 +244,15 @@ def _artifact_options(config):
 
 def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False, optional_failure_policy=None, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=None, compact_evidence=False, plane_support=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False):
     bond_discovery_fields(automatic_bond_targets,bond_targets)
-    _need(not automatic_bond_targets or artifact_policy==CAPTURE_ARTIFACT_POLICY,
-          'Automatic bond discovery requires the v4 native-capture artifact policy')
+    _need(not automatic_bond_targets or artifact_policy in (CAPTURE_ARTIFACT_POLICY, STAGED_ARTIFACT_POLICY),
+          'Automatic bond discovery requires the v4 native-capture or v5 staged artifact policy')
     _need(type(automatic_plane_support) is bool and not (automatic_plane_support and plane_support is not None),
           'Require a boolean automatic plane choice separate from supplied support')
     _need(type(qualify_no_repair) is bool, "Require a boolean no-repair qualification mode")
     _need(set(limits) == set(_LIMITS) and all(type(v) is int and 1 <= v <= _LIMITS[k] for k,v in limits.items()),
           'Require bounded integer complete-request limits')
     _need(type(maximum) is int and 1 <= maximum <= 5, 'Require one to five outer attempts')
-    _need(isinstance(controls,dict) and set(controls) == {'sites','consumer','expected_links','native_context','supplementary_phils'},
+    _need(isinstance(controls,dict) and set(controls)-{'interpretation_controls'} == {'sites','consumer','expected_links','native_context','supplementary_phils'},
           'Unexpected complete-request controls')
     _consumer(controls['consumer']); _context(controls['native_context'])
     selected = read_acquisition_sources(inputs/'sources'); codes = selected['report']['components']
@@ -246,7 +268,11 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
     _need(_same(expected_bonds,bond_targets),'Frozen complete bond targets changed')
     names = controls['supplementary_phils']
     _need(isinstance(names,list) and names == [f'phils/{i:03}.phil' for i in range(len(names))], 'Invalid shared PHIL order')
-    allowed = {'model.pdb', *names, *('sources/'+n for n in _tree(inputs/'sources'))}
+    reader_phils, _ = control_inputs(inputs, controls, prefix='')
+    reader_policy = controls.get('interpretation_controls', {}).get('policy_id')
+    if reader_phils: reject_shadow_controls([inputs/n for n in names])
+    allowed = {'model.pdb', *names, *[p.relative_to(inputs).as_posix() for p in reader_phils],
+               *('sources/'+n for n in _tree(inputs/'sources'))}
     expected_support, support_files = _source_plane_support_snapshot(
         {code:row['source'] for code,row in selected['sources'].items()},
         repair._support_declarations(inputs/'plane-support',plane_support))
@@ -255,7 +281,8 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
     model_sites = _model_inventory(inputs/'model.pdb'); all_contexts = []; components = {}
     for code in codes:
         site = controls['sites'][code]
-        _need(isinstance(site,dict) and set(site) == {'contexts','generation','retained','terminal_resource','phosphate_atom_policy'},
+        _need(isinstance(site,dict) and set(site)-{'furanose_reaction'} ==
+              {'contexts','generation','retained','terminal_resource','phosphate_atom_policy'},
               'Unexpected complete component declaration')
         contexts = site['contexts']
         _need(isinstance(contexts,list) and contexts and all(isinstance(c,dict) and isinstance(c.get('site'),str) for c in contexts)
@@ -263,11 +290,15 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
               and {c['site'] for c in contexts} == {s for s,r in model_sites.items() if r['code'] == code},
               'Require each selected model site exactly once')
         all_contexts.extend(contexts)
+        _furanose_inputs(inputs,site,allowed)
         _need(site['retained'] in (None, f'retained/{code}'), 'Invalid retained reference')
         retained = inputs/site['retained'] if site['retained'] is not None else None
         if retained is not None: allowed.update(f'retained/{code}/'+n for n in _tree(retained))
         generation = site['generation']
         _need(isinstance(generation,dict) and set(generation) == {'options','binding'}, 'Invalid generation declaration')
+        if 'furanose_reaction' in site:
+            _need(recipe_representation_policy(generation['options']['recipe']) is not None,
+                  'Stored furanose chemistry requires an explicit isolated qualification policy')
         choice = selected['sources'][code]
         components[code] = _component_config(choice['source'],code,choice['source_authority'],controls['consumer'],generation,retained,limits,maximum)
         resource = site['terminal_resource']
@@ -299,9 +330,13 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
               'Explicit restraint ownership requires model context and required custom restraints')
         validate_restraint_context(inputs/'model.pdb', [inputs/n for n in names], restraint_context)
     compiler_refs = _compiler_references(literal_na_inputs,explicit_na_policy)
+    _need(not reader_phils or set(compiler_refs) == {'literal_na_inputs'},
+          'Reader controls require authenticated typed literal provenance')
     for kind,reference in compiler_refs.items():
         folder = _COMPILER_INPUTS[kind]
-        compiled = _compiler_input(kind,inputs/folder,selected['sources'])
+        compiled = _compiler_input(kind,inputs/folder,selected['sources'], reader_control_policy=reader_policy)
+        _need([_read(p) for p in compiled.get('interpretation_control_phils', [])]
+              == [_read(p) for p in reader_phils], 'Captured interpretation control bytes or order differ')
         _need(reference == dict(anchor=ANCHOR,path='inputs/'+folder,policy_id=compiled['report']['policy_id'])
               and model_context is not None and restraint_context is not None,
               'Compiler provenance requires both owned contexts and its exact reference')
@@ -315,6 +350,19 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
     construction_ref = {}
     if construction_inputs is not None:
         bound = _construction_input(inputs/'construction',inputs/'model.pdb',selected['sources'],model_context)
+        if 'furanose_substitution' in bound:
+            substitution = bound['furanose_substitution']
+            code = substitution['code']
+            site = controls['sites'].get(code, {})
+            reaction = _furanose_inputs(inputs, site).get('furanose_reaction')
+            retained_path = site.get('retained')
+            _need(retained_path == 'retained/'+code and reaction is not None
+                  and reaction['contexts'] == [substitution['context']]
+                  and _read(reaction['workbook']) == _read(substitution['workbook'])
+                  and substitution['snapshot']['manifest']['consumer'] == controls['consumer']
+                  and substitution['snapshot']['manifest']['request']['source_authority'] == selected['sources'][code]['source_authority']
+                  and resolve_dictionary_snapshot(inputs/retained_path)['manifest'] == substitution['snapshot']['manifest'],
+                  'Prepared furanose chemistry differs from its constructed component, ports or qualified dictionary')
         reference = dict(anchor=ANCHOR,path='inputs/construction',policy_id=bound['report']['policy_id'])
         _need(construction_inputs == reference, 'Invalid construction lineage reference')
         allowed.update('construction/'+name for name in bound['files'])
@@ -353,11 +401,13 @@ def _request(root):
 def initialize_dictionary_request(source_selection, components, model, output, *, consumer,
         expected_links, native_context, supplementary_phils=(), native_timeout_seconds=90,
         component_timeout_seconds=600, attribution_timeout_seconds=90,
-        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=ARTIFACT_POLICY, compact_evidence=True, plane_support=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False):
+        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=ARTIFACT_POLICY, compact_evidence=True, plane_support=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, reader_control_policy=None):
     """Freeze all declared inputs before children exist. Require a fresh destination.
 
     One to sixteen component types declare code, contexts and generation settings, with optional
-    retained_snapshot, terminal_resource and phosphate_atom_policy. Runtime SDK
+    retained_snapshot, terminal_resource, phosphate_atom_policy or a graph-bound
+    furanose_reaction. Its workbook and exact site ports follow the same attempt
+    through acquired and stored dictionary preparation. Runtime SDK
     roots/environment are not saved as operational paths; execution supplies and
     revalidates them against the frozen recipe/pins/relative dispatchers. New
     requests independently qualify a no-repair original by default; historical
@@ -369,6 +419,11 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     preserve their frozen meaning but ambiguous records cannot start new attempts.
     Optional literal_na_inputs freezes original native/PHIL/compiler provenance
     and must reproduce the exact supplied model and ordered compiled PHIL.
+    reader_control_policy="cif-captured-reader-control-handoff-v1" additionally
+    admits the typed captured-input artifact and freezes its separately ordered
+    reader controls. These never enter supplementary_phils/restraint_context;
+    downstream preparation carries them into the existing native dispatch.
+    Omission preserves the historical refusal and request bytes.
     Alternatively explicit_na_policy retains an existing source-bound C80 artifact;
     overlapping source components must match the chosen acquisition bytes.
     The two provenance modes are mutually exclusive and never reselect relationships.
@@ -398,12 +453,12 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     the existing prepared repair owner, continuation and retention. It does not
     authorize chemical identity changes or numerical acceptance. Alternatively,
     automatic_bond_targets=True freezes source/library-discovery intent; it requires
-    CAPTURE_ARTIFACT_POLICY and excludes explicit bond_targets. Exact proposals are
+    CAPTURE_ARTIFACT_POLICY or STAGED_ARTIFACT_POLICY and excludes explicit bond_targets. Exact proposals are
     frozen inside each fresh owned repair, never substituted into old attempts.
     """
     bond_discovery_fields(automatic_bond_targets,bond_targets)
-    _need(not automatic_bond_targets or artifact_policy==CAPTURE_ARTIFACT_POLICY,
-          'Automatic bond discovery requires the v4 native-capture artifact policy')
+    _need(not automatic_bond_targets or artifact_policy in (CAPTURE_ARTIFACT_POLICY, STAGED_ARTIFACT_POLICY),
+          'Automatic bond discovery requires the v4 native-capture or v5 staged artifact policy')
     _need(type(automatic_plane_support) is bool and not (automatic_plane_support and plane_support is not None),
           'Require a boolean automatic plane choice separate from supplied support')
     repair.compact_evidence_fields(compact_evidence)
@@ -420,15 +475,21 @@ def initialize_dictionary_request(source_selection, components, model, output, *
         {code:row['source'] for code,row in selected['sources'].items()},bond_targets)
     if support_config is not None:
         trees.update({'plane-support/'+code:_root(row['request_directory']) for code,row in plane_support.items()})
-    compiler_refs = {}
+    compiler_refs = {}; reader_phils = []
+    _need(reader_control_policy is None or (literal_na_inputs is not None and explicit_na_policy is None),
+          'Reader-control handoff requires typed literal provenance')
     for kind,value in _compiler_references(literal_na_inputs,explicit_na_policy).items():
         folder = _COMPILER_INPUTS[kind]
         trees[folder] = _root(value)
-        compiled = _compiler_input(kind,trees[folder],selected['sources'])
+        compiled = _compiler_input(kind,trees[folder],selected['sources'], reader_control_policy=reader_control_policy)
+        reader_phils = compiled.get('interpretation_control_phils', [])
         compiler_refs[kind] = dict(anchor=ANCHOR,path='inputs/'+folder,policy_id=compiled['report']['policy_id'])
+    role = control_fields(reader_phils, reader_control_policy, prefix='')
+    if role: reject_shadow_controls(supplementary_phils)
     for item in components:
         _need(isinstance(item,dict) and {'code','contexts','generation'} <= item.keys()
-            and item.keys() <= {'code','contexts','generation','retained_snapshot','terminal_resource','phosphate_atom_policy'},
+            and item.keys() <= {'code','contexts','generation','retained_snapshot','terminal_resource',
+                                'phosphate_atom_policy','furanose_reaction'},
             'Unexpected component declaration')
         code = item['code']; _need(code in codes and code not in sites, 'Duplicate or unselected component')
         generation = item['generation']; retained = item.get('retained_snapshot'); resource = item.get('terminal_resource')
@@ -440,9 +501,13 @@ def initialize_dictionary_request(source_selection, components, model, output, *
             originals.update({resource.parent/n:b for n,b in data.items()})
         sites[code] = dict(contexts=item['contexts'],generation=dict(options=generation_dictionary_options(generation),
             binding=acquisition._generation_binding(generation)),retained=None if retained is None else f'retained/{code}',
-            terminal_resource=relative,phosphate_atom_policy=item.get('phosphate_atom_policy'))
+            terminal_resource=relative,phosphate_atom_policy=item.get('phosphate_atom_policy'),
+            **_freeze_furanose(item,files,originals))
     controls = _json(_bytes(dict(sites=sites,consumer=consumer,expected_links=expected_links,native_context=native_context,
         supplementary_phils=[f'phils/{i:03}.phil' for i in range(len(supplementary_phils))])))
+    controls.update(role)
+    for i,p in enumerate(reader_phils):
+        originals[Path(p)] = _read(p); files[f'reader_controls/{i:03}.phil'] = originals[Path(p)]
     limits = dict(native_timeout_seconds=native_timeout_seconds,component_timeout_seconds=component_timeout_seconds,
         attribution_timeout_seconds=attribution_timeout_seconds,derivative_timeout_seconds=derivative_timeout_seconds,
         total_timeout_seconds=total_timeout_seconds)
@@ -514,7 +579,8 @@ def _continuation_child(attempt, intent, config, repaired):
     expected = continuation._configuration(dict(native=params['native_timeout_seconds'],
         readyset=params['readyset_timeout_seconds'],total=params['total_timeout_seconds']),params['restore_serialization'],
         artifact_policy=params['artifact_policy'],nonbonded_policy=params['nonbonded_policy'],
-        compact_evidence=params.get('compact_evidence',False))
+        compact_evidence=params.get('compact_evidence',False),
+        **continuation.custom_request_policy_fields(params.get('explicit_request_policy')))
     _need(_same(_json(_read(work/'inputs/configuration.json')),expected), 'Continuation limits differ from frozen outer intent')
     for phase,evidence in state['phases'].items():
         if 'job' in evidence:
@@ -533,10 +599,11 @@ def _plane_plan(attempt):
     prepared = read_acquired_dictionary_bundle(attempt/'preparation')
     plan = {}
     for code in prepared['report']['selected_attempts']:
-        saved = resolve_dictionary_snapshot(attempt/'preparation/bundle/components'/code/'snapshot')
-        audit = audit_trigonal_plane_coverage(saved['source'],saved['dictionary'],code)
+        audit = audit_snapshot_trigonal_planes(attempt/'preparation/bundle/components'/code/'snapshot', code)
         plan[code] = dict(source_sha256=audit['source_sha256'],dictionary_sha256=audit['dictionary_sha256'],
             coverage_policy=audit['policy_id'],coverage_status=audit['status'],missing_centres=audit['missing_explicit_planes'])
+        if 'qualified_representation' in audit:
+            plan[code]['qualified_representation'] = audit['qualified_representation']
     return plan
 
 
@@ -644,6 +711,14 @@ def _repair_limits(config):
 
 def _attempt_files(attempt, *, with_continuation=False, artifact_policy=None):
     _artifact_fields(artifact_policy)
+    if artifact_policy == STAGED_ARTIFACT_POLICY:
+        from .cif_complete_staged_archive import view_inventory
+        prefixes = _artifact_partitions(artifact_policy, with_continuation)
+        inventory = view_inventory(attempt, prefixes)
+        if inventory is None:
+            inventory = staged_artifacts.working_inventory(attempt, prefixes)
+        inventory['files'].pop('finished.json', None)
+        return inventory
     if artifact_policy is not None:
         prefixes = _artifact_partitions(artifact_policy, with_continuation)
         files=frozen_tree._bounded_inventory(attempt,max_files=frozen_tree.MAX_FILES,
@@ -681,9 +756,14 @@ def _result(root, attempt, intent, config, children, bindings):
     selection = {code:bindings[code]['number'] for code in config['components']}
     pc = read_record(attempt/'preparation/preparation_intent.json')['controls']
     sites = {code:dict(attempt_number=selection[code],contexts=site['contexts'],phosphate_atom_policy=site['phosphate_atom_policy'],
-        terminal_resource=None if site['terminal_resource'] is None else 'inputs/'+site['terminal_resource']) for code,site in controls['sites'].items()}
+        terminal_resource=None if site['terminal_resource'] is None else 'inputs/'+site['terminal_resource'],
+        **({'furanose_reaction':site['furanose_reaction']} if 'furanose_reaction' in site else {}))
+        for code,site in controls['sites'].items()}
     expected = dict(components=sorted(selection),sites=sites,consumer=controls['consumer'],expected_links=controls['expected_links'],
         native_context=controls['native_context'],supplementary_phils=['inputs/'+n for n in controls['supplementary_phils']])
+    if 'interpretation_controls' in controls:
+        role = controls['interpretation_controls']
+        expected['interpretation_controls'] = dict(policy_id=role['policy_id'], phils=['inputs/'+n for n in role['phils']])
     _need(_same(pc,expected), 'Prepared controls differ from complete frozen intent')
     outer_only = ('retained/',) + (('plane-support/',) if 'plane_support' in config else ()) + (('construction/',) if 'construction_inputs' in config else ()) + tuple(folder+'/' for name,folder in _COMPILER_INPUTS.items() if name in config)
     for name,data in _tree(root/'inputs').items():
@@ -717,7 +797,7 @@ def _result(root, attempt, intent, config, children, bindings):
         **(dict(plane_generation=_plane_outcomes(root,attempt,config)[2]) if 'plane_generation_policy' in config else {}))
     _need(_same({k:v for k,v in report.items() if k != 'record_sha256'},expected), 'Complete request result claims differ')
     return dict(result=report,preparation=prepared,execution=execution,runtime=runtime,
-        **{name:_compiler_input(name,root/'inputs'/folder) for name,folder in _COMPILER_INPUTS.items() if name in config},
+        **{name:_compiler_input(name,root/'inputs'/folder, reader_control_policy=controls.get('interpretation_controls', {}).get('policy_id')) for name,folder in _COMPILER_INPUTS.items() if name in config},
         **({'construction_inputs':read_postmr_construction(root/'inputs/construction')} if 'construction_inputs' in config else {}),
         **({'continuation':continued} if 'continuation' in config else {}))
 
@@ -819,6 +899,11 @@ def _seal(root, attempt, intent, request, outcome, error=None, remaining=None):
           and completion_size <= frozen_tree.MAX_FILE_BYTES
           and sum(r['size'] for r in partition.values())+completion_size <= frozen_tree.MAX_BYTES,
           'Outer completion exceeds frozen artifact bounds')
+    if policy == STAGED_ARTIFACT_POLICY:
+        bounds = staged_artifacts.AttemptBounds(prefixes)
+        for name, ref in artifacts['files'].items():
+            bounds.charge(name, ref['size'])
+        bounds.charge('finished.json', completion_size)
     if remaining is not None: remaining()
     write_record(attempt/'finished.json',completion)
 
@@ -920,11 +1005,13 @@ def execute_dictionary_request_attempt(directory, phenix, store_root, *, generat
                     max_attempts=config['max_attempts'],_parent_attempt_identity=parent,_remaining_seconds=remaining)
                 components.append(dict(code=code,request_directory=root/'acquisitions'/code,attempt_number=child['attempt_number'],
                     contexts=site['contexts'],phosphate_atom_policy=site['phosphate_atom_policy'],
+                    **_furanose_inputs(root/'inputs',site),
                     **({'terminal_resource':root/'inputs'/site['terminal_resource']} if site['terminal_resource'] is not None else {})))
             remaining()
             prepare_acquired_dictionary_bundle(root/'inputs/sources',components,root/'inputs/model.pdb',attempt/'preparation',
                 consumer=controls['consumer'],expected_links=controls['expected_links'],native_context=controls['native_context'],
-                supplementary_phils=[root/'inputs'/n for n in controls['supplementary_phils']])
+                supplementary_phils=[root/'inputs'/n for n in controls['supplementary_phils']],
+                **control_kwargs(root/'inputs', controls, prefix=''))
             remaining()
             plane_fields = {}; support_declarations = repair._support_declarations(root/'inputs/plane-support',config.get('plane_support'))
             if 'plane_generation_policy' in config:

@@ -598,9 +598,9 @@ checkpoint from the solution or approved snapshot.
 
 ## Deposition
 
-Deposition is deliberately downstream of a mature campaign manager and cannot
-be tested safely until the solution, approval, validation, and reporting paths
-are stable.
+Operators can prepare a reviewed X-ray entry today using the
+[Phenix and OneDep guide](pdb-deposition.md). Automated campaign deposition
+remains downstream of solution approval, validation and reporting.
 
 Deposition should have two explicit layers:
 

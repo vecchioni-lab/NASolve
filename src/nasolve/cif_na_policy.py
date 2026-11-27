@@ -279,35 +279,46 @@ def compile_na_policy(model: Path, phils: list[Path], captured: dict, output: Pa
 
 def qualify_na_policy(before: dict, after: dict, policy: dict) -> dict:
     """Check exact custom membership and every unaffected proxy, retaining REVIEW."""
-    checks=[]
+    complete=(after.get('status')=='REVIEW' and after.get('fatal_problems') is None
+              and not after.get('unused_definitions') and not after.get('unsupported_fields'))
+    return _qualify_observed_fields(before, after, policy,
+        [{'check':'native-interpreter','status':'PASS' if complete else 'REVIEW'}])
+
+
+def _qualify_observed_fields(before, after, policy, checks, *, preserve_native=False):
+    """Compare the same observed atoms, component definitions and native restraints."""
+    if preserve_native and policy is not None:
+        raise ValueError('A native dictionary comparison cannot consume a compiled policy')
     def check(name,value,**extra):checks.append({'check':name,'status':'PASS' if value else 'REVIEW',**extra})
-    check('native-interpreter',after.get('status')=='REVIEW' and after.get('fatal_problems') is None
-          and not after.get('unused_definitions') and not after.get('unsupported_fields'))
     check('atom-identities',[{k:v for k,v in a.items() if k!='xyz'} for a in before['atoms']]==
           [{k:v for k,v in a.items() if k!='xyz'} for a in after['atoms']])
     check('component-definitions',before['monomer_mappings']==after['monomer_mappings'])
     detail=after.get('restraint_policy',{});ids=detail.get('origin_ids',{})
     labels=['hydrogen bonds','edits','basepair stacking','basepair parallelity','basepair planarity']
     valid=set(ids)==set(labels) and all(type(v) is int for v in ids.values()) and len(set(ids.values()))==len(ids)
-    check('native-policy-readback',valid and detail.get('secondary_structure_enabled') is False)
+    expected_ss = before['restraint_policy'].get('secondary_structure_enabled') if preserve_native else False
+    check('native-policy-readback',valid and type(expected_ss) is bool and detail.get('secondary_structure_enabled') is expected_ss)
     if not valid:return {'schema_version':1,'status':'REVIEW','mechanics_checks_pass':False,'checks':checks}
-    ssids={ids[k] for k in labels if k!='edits'}
-    expected=before['geometry']['custom_proxy_requests']+policy['compiled_requests']
+    ssids=set() if preserve_native else {ids[k] for k in labels if k!='edits'}
+    compiled=[] if preserve_native else policy['compiled_requests']
+    expected=before['geometry']['custom_proxy_requests']+compiled
     # Preserve full request dictionaries, including selections/actions and plane order.
     dump=lambda row:json.dumps(row,sort_keys=True,allow_nan=False)
     check('exact-custom-requests',Counter(map(dump,expected))==Counter(map(dump,after['geometry']['custom_proxy_requests'])))
-    check('no-competing-native-ss-proxies',not any(r.get('origin_id') in ssids for rows in after['geometry']['proxy_details'].values() for r in rows))
+    if not preserve_native:
+        check('no-competing-native-ss-proxies',not any(r.get('origin_id') in ssids for rows in after['geometry']['proxy_details'].values() for r in rows))
     for kind,old_rows in before['geometry']['proxy_details'].items():
         remaining=deepcopy(after['geometry']['proxy_details'][kind]);failures=[]
-        requested=[r for r in policy['compiled_requests'] if ('bond_simple' if r['kind']=='bond' else r['kind'])==kind]
+        requested=[r for r in compiled if ('bond_simple' if r['kind']=='bond' else r['kind'])==kind]
         for request in requested:
             matches=[i for i,row in enumerate(remaining) if row.get('origin_id')==ids['edits'] and _signature(kind,row)==_signature(request['kind'],request)]
             if len(matches)!=1:failures.append({'request':request,'matches':len(matches)})
             else:remaining.pop(matches[0])
         retained=[r for r in old_rows if r.get('origin_id') not in ssids]
-        check('exact-proxies:'+kind,not failures and Counter(map(dump,retained))==Counter(map(dump,remaining)),
+        source_counts, live_counts = Counter(map(dump,retained)), Counter(map(dump,remaining))
+        check('exact-proxies:'+kind,not failures and source_counts==live_counts,
               generated_requests=len(requested),unmatched_requests=failures,
-              missing=sum((Counter(map(dump,retained))-Counter(map(dump,remaining))).values()),
-              extra=sum((Counter(map(dump,remaining))-Counter(map(dump,retained))).values()))
+              missing=sum((source_counts-live_counts).values()), extra=sum((live_counts-source_counts).values()))
     return {'schema_version':1,'status':'REVIEW','mechanics_checks_pass':all(c['status']=='PASS' for c in checks),
-        'checks':checks,'policy_id':POLICY_ID,'scientific_approval':'NOT_RUN','automatic_adoption':False}
+        'checks':checks,'policy_id':'original-native-restraint-inventory-v1' if preserve_native else POLICY_ID,
+        'scientific_approval':'NOT_RUN','automatic_adoption':False}

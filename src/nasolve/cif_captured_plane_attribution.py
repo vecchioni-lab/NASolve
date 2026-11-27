@@ -136,14 +136,16 @@ def _derive(root, controls):
         spec[label] = {**expected, 'planes': [p[ordinal] for p in pairs]}
     prepared['job/spec.json'] = _bytes(spec)
     arguments = (before[4], after[4], source, before[2][index],
-                 request/support['support']['path'], controls['component'], after[2][index])
+                 request/support['support']['path'], controls['component'], after[2][index],
+                 support['recipe'].get('bond_representation_policy'))
     return prepared, before[0], proof, arguments
 
 
 def _qualification(root, prepared, arguments):
     from .cif_captured_attribution import kernel_references
     references=kernel_references(root,prepared,*arguments[:2],MODULES)
-    return qualify_linked_plane_energy(*arguments,references)
+    *inputs, policy = arguments
+    return qualify_linked_plane_energy(*inputs,references,bond_representation_policy=policy)
 
 
 def _contract():

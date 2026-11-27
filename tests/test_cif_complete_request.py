@@ -80,6 +80,7 @@ def test_bad_limits_never_publish_intent_or_start_children(case,field,value):
     m,args,root,sdk,store,generations,calls=case;args=dict(args);args[field]=value
     with pytest.raises(ValueError):m.initialize_dictionary_request(output=root,**args)
     assert not (root/'request.json').exists() and not (root/'acquisitions').exists() and not calls
+
     if root.exists():assert m.inspect_dictionary_request(root)['availability']=='BLOCKED'
 
 
@@ -991,3 +992,86 @@ def test_exact_request_read_owns_and_discards_its_numerical_reuse_scope(case,mon
     assert len(replays)==1
     assert m.read_dictionary_request_result(root,1)==first and len(replays)==2
     assert inventory(root)==before
+
+
+@pytest.fixture
+def furanose_request(case, tmp_path):
+    from nasolve.cif_acquisition_sources import freeze_acquisition_sources
+    from nasolve.cif_dictionary_store import resolve_dictionary_snapshot
+    from tests.test_cif_stored_furanose import recipe
+
+    m, old, root, sdk, store, generations, calls = case
+    origin = tmp_path/'sugar-input'; origin.mkdir()
+    graph = recipe(origin)
+    site, = graph['components']
+    saved = resolve_dictionary_snapshot(site['snapshot'])
+    local = origin/'local'; (local/'ligands').mkdir(parents=True)
+    (local/'ligands/Z99.cif').write_bytes(saved['source'].read_bytes())
+    selection = origin/'selection'
+    freeze_acquisition_sources(['Z99'],selection,data_root=local)
+    generation = next(iter(generations.values())).copy()
+    generation['bond_representation_policy'] = saved['manifest']['request']['recipe']['bond_representation_policy']
+    item = dict(code='Z99',generation=generation,contexts=site['contexts'],retained_snapshot=site['snapshot'],
+                furanose_reaction=site['furanose_reaction'])
+    args = {**old,**graph,'source_selection':selection,'components':[item]}
+    return m,args,root,sdk,store,{'Z99':generation},calls,origin
+
+
+def test_complete_request_keeps_graph_sugar_authority_after_original_is_gone(furanose_request):
+    from hashlib import sha256
+    m,args,root,sdk,store,generations,calls,origin = furanose_request
+    item, = args['components']; reaction = item['furanose_reaction']
+    workbook = reaction['workbook'].read_bytes()
+    relative = 'furanose/'+sha256(workbook).hexdigest()+'.xlsx'
+    record = m.initialize_dictionary_request(output=root,**args)
+    frozen = record['configuration']['controls']['sites']['Z99']['furanose_reaction']
+    assert frozen==dict(workbook=relative,contexts=reaction['contexts'])
+    shutil.rmtree(origin)
+    result = m.execute_dictionary_request_attempt(root,sdk,store,generation=generations)
+    moved = root.rename(root.with_name('relocated'))
+    assert m.read_dictionary_request_result(moved,1)['result']==result['result']
+    prep = moved/'attempts/attempt-0001/preparation'
+    assert (moved/'inputs'/relative).read_bytes()==(prep/'inputs'/relative).read_bytes()==workbook
+    from nasolve.cif_acquisition_preparation import read_acquired_dictionary_bundle
+    child=read_acquired_dictionary_bundle(prep)['bundle']
+    plan=child['preparations'][0]['sites'][0]
+    assert plan['expected_native_group']=='non-polymer' and plan['expected_native_classification']=='RNA'
+    assert 'OXT' in plan['deleted_atoms'] and len(calls)==1
+    assert result['result']['automatic_adoption'] is False
+
+
+@pytest.mark.parametrize('fault',['neighbor','two_reactions','unknown_declaration'])
+def test_complete_request_refuses_conflicting_sugar_intent_before_acquisition(furanose_request,fault):
+    m,args,root,_,_,_,calls,_ = furanose_request
+    site, = args['components']; reaction=site['furanose_reaction']
+    if fault=='neighbor': reaction['contexts'][0]['ports']['phosphate']['partner']['site']='A:20'
+    if fault=='two_reactions':site['phosphate_atom_policy']='cif-source-phosphate-aliases-v1'
+    if fault=='unknown_declaration':reaction['chemical_adoption']=True
+    with pytest.raises(ValueError):m.initialize_dictionary_request(output=root,**args)
+    assert not (root/'request.json').exists() and not (root/'acquisitions').exists() and not calls
+
+def test_shared_sugar_workbook_is_bound_once_and_refuses_stale_bytes(furanose_request, tmp_path):
+    from nasolve.cif_acquisition_preparation import _freeze_furanose, _furanose_inputs
+
+    _,args,_,_,_,_,_,_ = furanose_request
+    item, = args['components']
+    files = {}; originals = {}
+    frozen = _freeze_furanose(item,files,originals)
+    another = deepcopy(item)
+    source = item['furanose_reaction']['workbook']
+    second = tmp_path/'second.xlsx'; second.write_bytes(source.read_bytes())
+    another['furanose_reaction']['workbook'] = second
+    assert _freeze_furanose(another,files,originals)==frozen
+    assert len(files)==1 and len(originals)==2
+    source.write_bytes(source.read_bytes()+b'changed')
+    with pytest.raises(ValueError,match='changed during freezing'):_freeze_furanose(item,files,originals)
+
+    local = tmp_path/'inputs'; name,data = next(iter(files.items()))
+    dest = local/name; dest.parent.mkdir(parents=True); dest.write_bytes(data)
+    controls = dict(contexts=item['contexts'],**frozen)
+    original = _furanose_inputs(local,controls)
+    assert original['furanose_reaction']['workbook']==dest
+    dest.write_bytes(data+b'changed')
+    with pytest.raises(ValueError,match='workbook differs'):_furanose_inputs(local,controls)
+    frozen['furanose_reaction']['workbook']='../second.xlsx'
+    with pytest.raises(ValueError,match='workbook reference'):_furanose_inputs(local,controls)

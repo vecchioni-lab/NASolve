@@ -14,6 +14,7 @@ import uuid
 from .failure_reporting import add_failure_note
 from .campaign_process import CampaignProcessError, coordinator_alive, current_process_identity, exclusive_lock
 from .campaign_records import _sync_directory, now, path_in, read_record, write_record
+from . import cif_acquisition_recovery as connected_recovery
 from .cif_component_runtime import _tree
 from .cif_dictionary_store import _bytes, _json, make_dictionary_request, resolve_dictionary_snapshot, recipe_representation_policy
 from .cif_dictionary_sites import _consumer, _read, _safe
@@ -64,10 +65,15 @@ def _request(root):
     request=read_record(path_in(root,'request.json'));config=request.get('configuration')
     _need(type(request.get('schema_version')) is int and request['schema_version']==1 and request.get('policy_id')==POLICY_ID
           and _uuid(request.get('request_id')) and request.get('inputs')==dict(anchor=ANCHOR,path='inputs') and isinstance(config,dict))
-    inputs=_tree(root/'inputs');_need(set(inputs)=={'source.cif'} or set(inputs)=={'source.cif'}|{'retained/'+n for n in _SNAPSHOT_FILES}, 'Unexpected acquisition inputs')
+    inputs=_tree(root/'inputs')
+    _need(set(inputs) in ({'source.cif'}, {'source.cif', connected_recovery.EVIDENCE},
+                          {'source.cif'} | {'retained/'+n for n in _SNAPSHOT_FILES}), 'Unexpected acquisition inputs')
     req=config['dictionary_request'];options={k:req[k] for k in ('recipe','generator')}
     expected=_configuration(root/'inputs/source.cif',req['component'],req['source_authority'],options,config['consumer'],config['generation_binding'],inputs,config['limits'],config['max_attempts'])
     _need(config==expected, 'Frozen acquisition source or configuration changed')
+    if connected_recovery.EVIDENCE in inputs:
+        connected_recovery.validate_connected_order_failure(_json(inputs[connected_recovery.EVIDENCE]),
+                                                             root/'inputs/source.cif', req, config['consumer'])
     if 'retained/resolution.json' in inputs:
         saved=resolve_dictionary_snapshot(root/'inputs/retained');prior=saved['manifest']['request']
         _need(make_dictionary_request(root/'inputs/source.cif',req['component'],source_authority=req['source_authority'],**{k:prior[k] for k in ('recipe','generator')})==prior
@@ -224,7 +230,7 @@ def read_acquisition_result(directory,attempt_number):
 
 
 def acquire_dictionary_attempt(source,code,store_root,request_directory,*,source_authority,consumer,generation,phenix=None,
-        retained_snapshot=None,native_timeout_seconds=90,total_timeout_seconds=600,max_attempts=2,
+        retained_snapshot=None,connected_order_failure=None,native_timeout_seconds=90,total_timeout_seconds=600,max_attempts=2,
         _parent_attempt_identity=None,_remaining_seconds=None):
     """Perform one explicit cache-first attempt; preserve every prior output.
 
@@ -236,6 +242,8 @@ def acquire_dictionary_attempt(source,code,store_root,request_directory,*,source
     local work, final sealing and cleanup remain cooperative. Optional enclosing
     identity is recorded per attempt, not in the persistent request configuration.
     A remaining-allowance callback can shorten, never reset, nested work limits.
+    An exact (prior request directory, attempt number) can select a sealed
+    unlisted native bond failure. Its compact proof travels in the fresh request.
     """
     started=monotonic();parent=parent_identity(_parent_attempt_identity)
     outer=OuterAllowance(_remaining_seconds,monotonic,AcquisitionBudgetExceeded)
@@ -256,12 +264,19 @@ def acquire_dictionary_attempt(source,code,store_root,request_directory,*,source
         _members(root,{'request.json','request.lock'},{'inputs','attempts','generation'})
         if not (root/'request.json').exists() and any(p.name!='request.lock' for p in root.iterdir()):raise CampaignProcessError('Acquisition initial publication is unresolved')
     inputs={'source.cif':original};retained=None;retained_before=None
+    if connected_order_failure is not None:
+        _need(retained_snapshot is None, 'Select a stopped failure or a retained snapshot')
+        selected, number, proof = connected_recovery.select_failure(connected_order_failure, generation, root, store)
+        inputs[connected_recovery.EVIDENCE] = _bytes(proof)
+        generation['source_input_policy'] = connected_recovery.CONNECTED_INPUT_POLICY
     if retained_snapshot is not None:
         retained=_root(retained_snapshot);_need(not retained.is_relative_to(root) and not root.is_relative_to(retained),'Retained snapshot overlaps acquisition request')
         resolve_dictionary_snapshot(retained);retained_before=_tree(retained);_need(set(retained_before)==_SNAPSHOT_FILES,'Unexpected retained snapshot members')
         inputs.update({'retained/'+n:b for n,b in retained_before.items()})
     options=generation_dictionary_options(generation);limits=dict(native_timeout_seconds=native_timeout_seconds,total_timeout_seconds=total_timeout_seconds)
     config=_configuration(source,code,source_authority,options,consumer,_generation_binding(generation),inputs,limits,max_attempts)
+    if connected_order_failure is not None:
+        connected_recovery.validate_connected_order_failure(proof, source, config['dictionary_request'], consumer)
     # Validate retained authority before creating a request, using the same source recipe rules.
     if retained is not None:
         prior=resolve_dictionary_snapshot(retained)['manifest']['request']
@@ -299,6 +314,9 @@ def acquire_dictionary_attempt(source,code,store_root,request_directory,*,source
                 source_authority=source_authority,consumer=consumer,generation=generation,qualify=qualify,
                 retained_snapshot=root/'inputs/retained' if retained is not None else None,_generate=generate)
             _need(_read(source)==original and _tree(root/'inputs')==inputs and (retained is None or _tree(retained)==retained_before),'Acquisition inputs changed during execution')
+            if connected_order_failure is not None:
+                _need(connected_recovery.read_connected_order_failure(selected, number) == proof,
+                      'Selected acquisition failure changed during recovery')
             remaining();elapsed=monotonic()-started
             write_record(attempt/'result.json',dict(schema_version=1,policy_id=POLICY_ID,snapshot=dict(anchor='attempt_directory',path='snapshot'),acquisition=result,elapsed_seconds=elapsed))
             _result(root,attempt,config);remaining();_seal(root,attempt,intent,request,'RETURNED')

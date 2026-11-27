@@ -215,3 +215,133 @@ def test_two_layer_storage_does_not_allow_unbounded_nested_views(tmp_path):
             with pytest.raises(ValueError,match='depth'):
                 with m.expanded_runtime_evidence(out,digest):pytest.fail('Unbounded nested archive')
     assert m._ACTIVE_DEPTH.get()==0
+
+
+@pytest.mark.parametrize('accepted', [True, False])
+def test_compact_readyset_compares_large_parent_and_endpoint_in_turn(tmp_path, monkeypatch, accepted):
+    from nasolve import cif_component_runtime as runtime, cif_runtime_evidence as storage
+    from nasolve.cif_runtime_bundle import resolve_runtime_bundle
+    from tests.test_cif_runtime_readyset import observed, native_wiring
+
+    publish = runtime.prepare_repaired_component_runtime_bundle
+
+    def compact_parent(*args, **options):
+        (args[1].parent / 'parent-capture.log').write_bytes(b'parent observation\n' * 18000)
+        return publish(*args, **options, compact_evidence=True)
+
+    monkeypatch.setattr(runtime, 'prepare_repaired_component_runtime_bundle', compact_parent)
+    parent, _, readyset, _, inputs = observed(tmp_path, monkeypatch, single=True)
+    baseline, endpoint = native_wiring(tmp_path, monkeypatch, parent, inputs, accepted=accepted)
+    (endpoint.parent / 'endpoint-capture.log').write_bytes(b'endpoint observation\n' * 18000)
+    parent_archive = parent / storage.ARCHIVE
+    _, inner, _ = storage._decode(parent_archive.read_bytes(), sha256(parent_archive.read_bytes()).hexdigest())
+    all_objects = {key:len(payload) for key, payload in inner.items()}
+    for directory in (parent, readyset, baseline.parent, endpoint.parent):
+        for path in directory.rglob('*'):
+            if path.is_file():
+                data = path.read_bytes()
+                all_objects[sha256(data).hexdigest()] = len(data)
+    # Both complete scientific selections fit separately. Expanding every outer
+    # and parent file at the same time would exceed the shared limit by one byte.
+    monkeypatch.setattr(storage, 'MAX_ACTIVE_BYTES', sum(all_objects.values()) - 1)
+    result = tmp_path / 'public'
+    manifest = runtime.prepare_runtime_readyset_bundle(parent, baseline, readyset, result,
+                                                       endpoint_receipt=endpoint, compact_evidence=True)
+    expected = 'readyset_checked_model' if accepted else 'verified_parent_runtime'
+    assert manifest['decision']['selected'] == expected
+    for source in (parent, readyset, baseline.parent, endpoint.parent):
+        shutil.rmtree(source)
+    moved = result.rename(tmp_path / 'relocated')
+    with patch('subprocess.Popen', side_effect=AssertionError('Cold replay started a process')):
+        current = resolve_runtime_bundle(moved)
+    assert current['manifest'] == manifest and current['model'].is_relative_to(moved)
+    assert storage._ACTIVE_BYTES.get() == 0 and storage._ACTIVE_DEPTH.get() == 0
+
+    if accepted:
+        from contextlib import contextmanager
+        from nasolve import cif_runtime_readyset as readyset_reader
+
+        open_evidence = readyset_reader.component_runtime_evidence
+
+        @contextmanager
+        def changed_between_reads(root, value, *, subtree=None):
+            with open_evidence(root, value, subtree=subtree) as view:
+                if value['policy_id'] == runtime.CONTINUATION_POLICY_ID and subtree is None:
+                    path = view / 'evidence/runtime/runtime_bundle.json'
+                    changed = json.loads(path.read_bytes())
+                    changed['decision']['selected'] = 'different selection'
+                    path.chmod(0o600)
+                    path.write_text(json.dumps(changed))
+                yield view
+
+        monkeypatch.setattr(readyset_reader, 'component_runtime_evidence', changed_between_reads)
+        with pytest.raises(ValueError, match='manifest changed'):
+            resolve_runtime_bundle(moved)
+        assert storage._ACTIVE_BYTES.get() == 0 and storage._ACTIVE_DEPTH.get() == 0
+
+
+def test_subtree_reader_authenticates_files_outside_the_selected_directory(tmp_path):
+    from nasolve import cif_runtime_evidence as storage
+
+    archive = tmp_path / 'evidence.zip'
+    saved = storage.pack_runtime_evidence(source(tmp_path), archive)
+    with storage.expanded_runtime_evidence(archive, saved['archive_sha256'], subtree='a') as view:
+        assert (view / 'evidence/a/report.json').is_file()
+        assert not (view / 'evidence/b').exists()
+    for invalid in ('unrecorded', '../a', 'b/worker.py'):
+        with pytest.raises(ValueError, match='subtree'):
+            with storage.expanded_runtime_evidence(archive, saved['archive_sha256'], subtree=invalid):
+                pytest.fail('Invalid projection materialized')
+
+    def change_unseen_file(index, members):
+        digest = index['files']['b/worker.py']['sha256']
+        members['objects/' + digest] = b'changed unselected bytes'
+
+    rewrite(archive, change_unseen_file)
+    with pytest.raises(ValueError):
+        with storage.expanded_runtime_evidence(archive, sha256(archive.read_bytes()).hexdigest(), subtree='a'):
+            pytest.fail('Changed unselected object was accepted')
+
+
+def test_compact_parent_repair_leaf_fits_after_compressed_carrier_closes(tmp_path, monkeypatch):
+    from random import Random
+    from nasolve import cif_component_runtime as runtime, cif_runtime_evidence as storage
+    from nasolve.cif_runtime_bundle import resolve_runtime_bundle
+    from tests.test_cif_runtime_readyset import observed, native_wiring
+
+    publish = runtime.prepare_repaired_component_runtime_bundle
+
+    def compact_parent(*args, **options):
+        # Incompressible captured output gives the embedded parent a measurable cost.
+        (args[1].parent / 'capture.log').write_bytes(Random(18).randbytes(140000))
+        return publish(*args, **options, compact_evidence=True)
+
+    monkeypatch.setattr(runtime,'prepare_repaired_component_runtime_bundle',compact_parent)
+    parent, _, readyset, _, inputs = observed(tmp_path,monkeypatch,single=True)
+    baseline, endpoint = native_wiring(tmp_path,monkeypatch,parent,inputs,accepted=True)
+    output = tmp_path / 'complete'
+    published = runtime.prepare_runtime_readyset_bundle(parent,baseline,readyset,output,
+        endpoint_receipt=endpoint,compact_evidence=True)
+    packed = (parent / storage.ARCHIVE).read_bytes()
+    _, inner, _ = storage._decode(packed,sha256(packed).hexdigest())
+    stage = tmp_path / 'repair-stage'
+    stage.mkdir()
+    (stage / 'native.json').write_bytes(b'leaf measurement\n' * 20000)
+    archive = tmp_path / 'stage.zip'
+    leaf = storage.pack_runtime_evidence(stage,archive)
+    limit = sum(len(v) for v in inner.values()) + leaf['unique_bytes'] + 1000
+    monkeypatch.setattr(storage,'MAX_ACTIVE_BYTES',limit)
+    original = runtime._selection
+    measured = []
+
+    def with_repair_leaf(root, controls, *, policy_id):
+        if policy_id == runtime.REPAIRED_POLICY_ID:
+            with storage.expanded_repair_stage(archive,leaf['archive_sha256']) as view:
+                assert (view / 'evidence/native.json').read_bytes() == (stage / 'native.json').read_bytes()
+                measured.append(storage._ACTIVE_BYTES.get())
+        return original(root,controls,policy_id=policy_id)
+
+    monkeypatch.setattr(runtime,'_selection',with_repair_leaf)
+    assert resolve_runtime_bundle(output)['manifest'] == published
+    assert len(measured) == 1 and max(measured) <= limit
+    assert storage._ACTIVE_BYTES.get() == 0 and storage._ACTIVE_DEPTH.get() == 0

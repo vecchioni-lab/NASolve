@@ -81,3 +81,31 @@ def test_invalid_automatic_plane_choice_refuses_before_tool_configuration(tmp_pa
         with pytest.raises(ValueError,match='boolean'):
             call(tmp_path/'run',object(),None,automatic_plane_support=value)
     assert not (tmp_path/'run').exists()
+
+
+def test_source_selection_reads_frozen_component_before_binding_generation(tmp_path, monkeypatch):
+    from nasolve import cif_ordinary_postmr as entry
+    from nasolve.cif_acquisition_sources import read_acquisition_sources
+    from nasolve.cif_generation_input import ordinary_generation_options
+
+    run, ready, _, data = setup(tmp_path)
+    sdk, _ = sdk_at(tmp_path / "sdk")
+    sdk.executables["phenix.ready_set"].write_bytes(ready.read_bytes())
+    selected = {}
+
+    def select(source, code, settings):
+        sources = run / "PostMR/DictionaryEngine/sources"
+        assert source == read_acquisition_sources(sources)["sources"][code]["source"]
+        assert "select_source_representation" not in settings
+        selected[code] = dict(settings, bond_representation_policy="fixture")
+        return selected[code]
+
+    def freeze(model, report, components, source_output, output, **kwargs):
+        assert kwargs["select_anionic_phosphate"] is True
+        assert components == [dict(code="DE", generation=selected["DE"])]
+        return {"synthetic": True}
+
+    monkeypatch.setattr("nasolve.cif_generation_input.source_selected_generation", select)
+    monkeypatch.setattr(entry, "initialize_postmr_dictionary_request", freeze)
+    result = call(run, sdk, data, generation_options=ordinary_generation_options("source-preserving-v2"))
+    assert result.generation == selected and set(selected) == {"DE"}

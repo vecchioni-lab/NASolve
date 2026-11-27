@@ -386,6 +386,49 @@ class AutoRefineTests(unittest.TestCase):
             self.assertFalse(audit["requires_review"])
             self.assertEqual(audit["sites"][0]["restraint_count"], 11)
 
+            # The last phosphate angle can end immediately before a dihedral
+            # section in the Phenix final GEO, with no later bond or angle.
+            next_section = (
+                'Dihedral angle | covalent geometry | restraints: 1\n'
+                'dihedral pdb=" C4\'  DG A  15 "\n'
+                '         pdb=" C3\'  DG A  15 "\n'
+                '         pdb=" O3\'  DG A  15 "\n'
+                '         pdb=" P    DA A  16 "\n'
+            )
+            geo.write_text(clean + next_section)
+            self.assertEqual(audit_terminal_phosphate_geometry(geo, ("D:1",))["status"], "PASS")
+
+            # One oxygen-pair angle cannot stand in for another, even if
+            # the duplicate has its endpoints reversed and the count is eleven.
+            geo.write_text(clean.replace(angle("O5'", "P", "OP3", 109.47),
+                                         angle("OP1", "P", "O5'", 109.00)))
+            duplicate = audit_terminal_phosphate_geometry(geo, ("D:1",))
+            self.assertEqual(duplicate["sites"][0]["restraint_count"], 11)
+            self.assertTrue(duplicate["requires_review"])
+            self.assertEqual(duplicate["sites"][0]["missing_restraints"], [["O5'", "P", "OP3"]])
+            self.assertEqual(duplicate["sites"][0]["duplicate_restraints"], [["O5'", "P", "OP1"]])
+            with self.assertRaisesRegex(AutoRefineError, "six.*angle"):
+                write_terminal_phosphate_protection(duplicate, Path(directory) / "refused.phil")
+
+            # A crystal-image oxygen does not establish a bond to the atom
+            # in the local terminal phosphate, even when its PDB labels match.
+            target = bond("P", "OP3")
+            image = target.splitlines()
+            image[-2] += " sym.op."
+            image[-1] += " -x+y,-x,z"
+            geo.write_text(clean.replace(target, "\n".join(image) + "\n"))
+            scoped = audit_terminal_phosphate_geometry(geo, ("D:1",))
+            self.assertEqual(scoped["sites"][0]["missing_restraints"], [["OP3", "P"]])
+            self.assertTrue(scoped["requires_review"])
+
+            # Phenix may print a slack column between model and delta.
+            target = bond("P", "OP1", 1.480, 1.380, sigma=0.010)
+            with_slack = target.replace("model  delta", "model  slack  delta").replace("1.380 ", "1.380  0.000 ")
+            geo.write_text(clean.replace(bond("P", "OP1"), with_slack))
+            slack_audit = audit_terminal_phosphate_geometry(geo, ("D:1",))
+            self.assertEqual(slack_audit["sites"][0]["restraint_count"], 11)
+            self.assertAlmostEqual(slack_audit["sites"][0]["max_sigma_deviation"], 10.0)
+
             geo.write_text(
                 clean.replace(
                     angle("OP1", "P", "OP3", 109.47),
@@ -1405,6 +1448,66 @@ class AutoRefineTests(unittest.TestCase):
         self.assertEqual(stats["r_free_minus_r_work"], 0.03)
         self.assertEqual(stats["bond_rmsd"], 0.009)
         self.assertEqual(stats["diagnostics"], ["WARNING geometry needs inspection"])
+
+    def test_native_recap_reports_scaled_start_without_replaying_it_as_a_cycle(self):
+        recap = "Start R-work = 0.3439, R-free = 0.3059\nFinal R-work = 0.2492, R-free = 0.2345\n"
+        log = (
+            "| r_work= 0.5307 r_free= 0.7513 coordinate error: 2.18 A |\n"
+            "r_work=0.3439 r_free=0.3059\n"
+            "r_work=0.2600 r_free=0.2400\n"
+            "r_work=0.2492 r_free=0.2345\n"
+        )
+        for ending in (recap, recap.replace("\n", "\r\n")):
+            with self.subTest(ending=ending):
+                stats = parse_refinement_statistics(log + ending + "Job complete\n")
+                self.assertEqual((stats["initial_r_work"], stats["initial_r_free"]), (0.3439, 0.3059))
+                self.assertEqual((stats["r_work"], stats["r_free"]), (0.2492, 0.2345))
+                self.assertEqual([r["r_work"] for r in stats["cycle_series"]], [0.5307, 0.3439, 0.2600, 0.2492])
+        summary_only = parse_refinement_statistics(recap)
+        self.assertEqual([r["r_free"] for r in summary_only["cycle_series"]], [0.3059, 0.2345])
+
+    def test_statistics_uses_chronological_fallback_without_one_terminal_native_recap(self):
+        raw = "r_work=0.53 r_free=0.75\n"
+        start = "Start R-work = 0.34, R-free = 0.31\n"
+        final = "Final R-work = 0.25, R-free = 0.23\n"
+        later = "r_work=0.27 r_free=0.26\n"
+        for suffix, expected in (
+            (start, 0.34), (final, 0.25), (start + "another stage\n" + final, 0.25),
+            (start + final + later, 0.27), (start + final + start + final, 0.25),
+        ):
+            with self.subTest(suffix=suffix):
+                stats = parse_refinement_statistics(raw + suffix)
+                self.assertEqual((stats["initial_r_work"], stats["initial_r_free"]), (0.53, 0.75))
+                self.assertEqual(stats["r_work"], expected)
+
+    def test_statistics_reports_printed_coordinate_choices_from_each_xyz_step(self):
+        xyz = "====== XYZ individual (reciprocal space) ======\n"
+        adp = "====== ADP refinement (reciprocal space) ======\n"
+        header = " R-FACTORS  RMSD  CLASH RAMA ROTA CBET WEIGHT\n work free delta bonds angl\n"
+        first = " .20 .25 .05 .011 1.7 none 0.0 0.0 0 0.125\n"
+        second = " .21 .24 .03 .013 1.8 3.0 0.0 0.0 0 0.500\n"
+        done = "\nNumber of minimizer iterations: 25 (28 function evaluations)\n"
+        chosen = "\n Best weight:\n\n" + header + first
+        text = (xyz + header + second + done + adp + header + first + done
+                + xyz + header + first + second + chosen + done)
+        steps = parse_refinement_statistics(text)["coordinate_weight_steps"]
+        self.assertEqual(steps, [
+            {"step": 1, "source": "single_trial", "weight": .5, "trial_count": 1},
+            {"step": 2, "source": "best_weight", "weight": .125, "trial_count": 2},
+        ])
+        # The smaller R-free belongs to the other row. Phenix prints its actual choice.
+        self.assertNotIn("coordinate_weight_steps", parse_refinement_statistics(adp + header + first))
+        incomplete = [
+            header + first, header + first + second + done,
+            header + first + second + chosen.replace("0.125", "9.00") + done,
+            header + first.replace("0.125", "NaN") + done,
+            header + first.replace("0.125", "-1") + done,
+            header + first.replace(" .011 ", " broken ") + done,
+        ]
+        for fragment in incomplete:
+            with self.subTest(fragment=fragment):
+                result = parse_refinement_statistics(xyz + fragment)["coordinate_weight_steps"]
+                self.assertEqual(result, [{"step": 1, "source": "unreported", "weight": None, "trial_count": None}])
 
     def test_statistics_parser_reads_completed_native_step_table(self):
         # Phenix 2.2.1 prints candidate criteria and initial geometry too; neither

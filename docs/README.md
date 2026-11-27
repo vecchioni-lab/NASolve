@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-11-18**. Use the subsystem contract for actual behavior, the
+Updated **2026-11-23**. Use the subsystem contract for actual behavior, the
 [development handoff](development-handoff.md) for the current implementation and
 validation edge, and linked evidence for exact scientific claims. Historical
 milestone statements preserve their original scope; they are not a second queue.
@@ -29,6 +29,10 @@ milestone statements preserve their original scope; they are not a second queue.
   [short handoff](development-handoff.md) for the active task,
   [human overview](cif-doctor-human-overview.md) for the explanation, and
   [capability table](cif-doctor.md#current-capability-boundary) for exact support.
+- **Captured reader settings:** the explicit [typed-control handoff](cif-doctor.md#explicit-captured-control-handoff-w186)
+  carries four reviewed False settings separately from geometric restraints into
+  the existing preparation/native workflow. Default intake still refuses typed
+  controls. Real ordinary-parent and refinement qualification remain separate.
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry
@@ -58,6 +62,8 @@ is an explanation, not an independent status ledger.
 
 - [User guide](../README.md): installed commands, run/view workflows,
   outputs and safeguards.
+- [Preparing an X-ray deposition for OneDep](pdb-deposition.md) covers the
+  paired Phenix CIFs, Free-R checks, modified components and returned coordinates.
 - [Architecture](architecture.md): stable MR, PostMR, refinement, checkpoint
   and provenance contracts.
 - [Collaboration](collaboration.md) and [agent contract](../AGENTS.md):

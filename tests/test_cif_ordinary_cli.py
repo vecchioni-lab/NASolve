@@ -72,13 +72,14 @@ def test_inspection_hint_quotes_run_path_without_replaying_science(tmp_path, cap
     assert shlex.split(line.split(': ', 1)[1]) == ['nasolve', 'show', str(result.run_directory), '--preparation-attempt', '2']
 
 
-def test_prepare_run_forwards_explicit_automatic_plane_choice_and_prints_notes(tmp_path,capsys):
+def test_prepare_run_forwards_explicit_plane_and_locked_sugar_choices_and_prints_notes(tmp_path,capsys):
     result=outcome(tmp_path);result.limitations=('PDU: optional plane generation timed out; generated output was not used.',)
     with patch('nasolve.cli.load_config',return_value=object()),patch('nasolve.cli.discover_phenix',return_value='selected'), \
          patch('nasolve.cli.discover_coot',return_value=SimpleNamespace(executable=Path('/selected/coot'))), \
          patch('nasolve.cif_ordinary_postmr.prepare_checked_postmr',return_value=result) as prepare:
-        assert main(['cif-doctor','prepare-run',str(tmp_path),'--automatic-plane-support'])==0
+        assert main(['cif-doctor','prepare-run',str(tmp_path),'--automatic-plane-support','--locked-sugar-site','A:11'])==0
     assert prepare.call_args.kwargs['automatic_plane_support'] is True
+    assert prepare.call_args.kwargs['locked_sugar_site']=='A:11'
     assert 'generated output was not used' in capsys.readouterr().out
 
 
@@ -86,3 +87,22 @@ def test_resume_cannot_override_saved_plane_choice(tmp_path):
     with pytest.raises(SystemExit) as exc:
         main(['cif-doctor','continue-preparation',str(tmp_path),'--after-attempt','1','--automatic-plane-support'])
     assert exc.value.code==2
+
+
+@pytest.mark.parametrize('worker', ['STOPPED', 'STOPPED_UNFINISHED'])
+def test_unfinished_preparation_explains_exhausted_request_from_recorded_children(tmp_path, capsys, worker):
+    repair = {'state': worker}
+    if worker == 'STOPPED':
+        repair['finished'] = {'outcome': 'RAISED'}
+    row = {'number': 1, 'state': 'STOPPED_UNFINISHED', 'children': {
+        'repair': repair, 'continuation': {'state': 'NOT_CREATED'}}}
+    state = {'state': 'RECORDED', 'availability': 'EXHAUSTED', 'attempts': [row]}
+    with patch('nasolve.cif_complete_request.inspect_dictionary_request', return_value=state), \
+         patch('nasolve.cli.load_config', side_effect=AssertionError('Status requires no SDK')):
+        assert main(['cif-doctor', 'preparation-status', str(tmp_path)]) == 0
+    text = capsys.readouterr().out
+    assert 'recorded processes have stopped' in text and 'completion record is missing' in text
+    assert 'The run stopped before its ReadySet continuation.' in text
+    assert 'This request has used all its allowed attempts.' in text
+    assert ('Dictionary repair ended with an error.' in text) == (worker == 'STOPPED')
+    assert 'A new attempt requires' not in text

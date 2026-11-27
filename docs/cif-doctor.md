@@ -1,5 +1,448 @@
 # CIF Doctor
 
+## Checking which bond target reached Phenix
+
+A model can contain a corrected residue dictionary and a site instruction that
+still asks Phenix for the older bond length. To compare the input CIFs with
+the native printed targets, inspect a checkpoint or supply the exact files.
+
+```sh
+nasolve cif-doctor assess --run dataset/AutoMR/run_001 --checkpoint refine-002 --bond-targets
+nasolve cif-doctor assess PDU.cif site_edits.phil --model refined_001.pdb --bond-targets refined_001_final.geo
+```
+
+Doctor compares the ideal length and sigma of each printed within-residue bond
+in the supplied components, at the precision of the GEO. It shows the printed
+origin and achieved model distance. A checkpoint can also provide its recorded
+preflight for comparison. In the original PDU pair the corrected CIF said
+1.470 Å, while two user-supplied restraints still said 1.607 Å. The model
+finished at 1.610 and 1.594 Å. A difference requests review of the effective
+inputs. An intentional site edit or a polymer-link modification can explain it.
+Use `--json` for sigma differences, explicit edits, and ambiguous or missing
+source rows. Chemical acceptance and any choice to edit restraints stay with
+the operator.
+
+For a bond that Phenix calls user-supplied, Doctor looks for literal
+single-atom selections in the supplied restraint files. It compares the
+two atoms in either order, the ideal distance, sigma and slack. A matching
+file and line let you open the original instruction. Several declarations
+can request the same values. The JSON retains them all, along with
+declarations at the same bond that requested different values. It also
+identifies unsupported selections and files it could only partly read.
+A numbered checkpoint supplies its own ordered inputs. For a standalone
+reading, include the actual PHIL files beside the CIF on the command line.
+
+## Checking bonds and angles in the refined model
+
+To see which chemical dimensions moved during a fit, open the final coordinates
+and their **final** Phenix geometry table. A checkpoint supplies both files.
+Use `--all-sites` for a survey or repeat `--site` to inspect a neighborhood.
+
+```sh
+nasolve cif-doctor residue-geometry dataset/AutoMR/run_001 --checkpoint refine-002 --site D:7 --site C:8
+nasolve cif-doctor residue-geometry refined_001.pdb --geometry refined_001_final.geo --all-sites
+```
+
+Each reading gives the atoms, measured length in Å or angle in degrees,
+printed target, origin and signed deviation in units of the printed sigma.
+The short view shows the four largest absolute discrepancies in each group.
+With `--all-sites` it ranks them across the whole model. Add `--json` for
+every row, printed sigma, weight, bond slack, site coverage and file hashes.
+The ranking uses the unadjusted difference from the target. A zero weight or
+positive slack can reduce the force a discrepancy actually produces.
+
+To see which dimensions moved toward or away from their targets, supply the
+starting PDB and its own matching GEO, or two explicit checkpoints from one run.
+
+```sh
+nasolve cif-doctor residue-geometry fitted.pdb --geometry fitted_final.geo --all-sites \
+  --reference-pdb start.pdb --reference-geometry start.geo
+nasolve cif-doctor residue-geometry dataset/AutoMR/run_001 --checkpoint refine-002 \
+  --reference-checkpoint refine-001 --site B:7
+```
+
+The comparison pairs each term by residue, component, atom identities and
+origin. Its endpoints may appear in either order in the GEO. Only unique terms
+with identical printed ideals, sigmas, weights and bond slack contribute a
+change in restraint widths. The JSON records changed definitions, absent
+terms or sites, ambiguous duplicates and incomplete readings. A partial
+reading returns status 2. Positive changes mean farther from the printed
+target. This measures the two shapes. Establishing what moved the atoms
+requires evidence from the refinement itself.
+
+Doctor checks the printed model values against the coordinates at their
+written precision. Phenix commonly writes both `refined_001.geo` at the start
+and `refined_001_final.geo` at the end. A stale or incomplete section is
+reported as unassessed. A site with too few modeled atoms for the requested
+measurement is counted separately. Each site needs a single fixed-column PDB
+identity. Internal rows spanning different crystal images are counted
+separately. Use the [crystal phosphate reading](#inspecting-a-phosphate-at-a-crystal-boundary)
+for a declared cross-residue junction. The exit code is 0 when eligible
+measurements were observed, 2 for missing or incomplete coverage and 1 for an
+invalid input. A complete reading can still contain severe distortions.
+
+These are Phenix's effective targets for the actual model and restraint inputs.
+An independent wwPDB check can assign a different target or uncertainty, and
+an absent chemical restraint has no printed value to score.
+
+## Checking which atoms Phenix put in a residue plane
+
+To see whether a base substituent actually reached a ring-plane restraint,
+give Doctor the residue dictionary, the written model and its matching GEO.
+For a numbered refinement, Doctor reads the recorded preflight and final
+geometry independently.
+
+```sh
+nasolve cif-doctor assess PDU.cif --model refined_001.pdb --refined-planes refined_001_final.geo
+nasolve cif-doctor assess --run dataset/AutoMR/run_001 --checkpoint refine-002 --refined-planes --json
+```
+
+An exact match means that one within-residue covalent plane has precisely
+the modeled dictionary members at positive weight. The JSON also lists atoms
+absent from the model and the sigma, weight and displacement printed by Phenix.
+An amino group with two heavy atoms and two unmodeled hydrogens, for instance,
+has too few modeled members to establish a plane. Inter-residue pairing planes
+have a separate purpose.
+
+For a neutral ring–C≡C–C arm declared in the supplied CIF, Doctor also
+fits a plane through the six occupied ring atoms in the written PDB. It
+reports each arm atom's distance from that plane, the lengths of its bonds
+and their directions. The tip takes no part in fitting the plane. A short
+distance tells you where the tip ended up. The printed Phenix table tells
+you which atoms felt a plane restraint. These two readings can differ.
+
+The JSON lists these measurements under `written_ring_arms`, including
+when the GEO lacks a plane table. Missing atoms, conflicting component
+definitions and ambiguous rings carry a reason. The selected-site native
+capture, when present, provides a separate reading before coordinate rounding.
+Pairing and density support still need independent assessment.
+
+## Checking backbone continuity before deposition
+
+With `NASolve[topology]` installed, supply the coordinate mmCIF you intend to
+deposit. If a validation service returns coordinates, supply that file too.
+The [OneDep preparation guide](pdb-deposition.md) covers the matching Phenix
+reflection file, preserved deposition metadata and interpretation of the return.
+
+```sh
+nasolve cif-doctor deposition-links model.cif --processed returned.cif --json
+```
+
+Add `--ordinary-steps --json` to obtain each ordinary step, including sequence
+gaps and unresolved endpoints. In Python, use
+`inspect_deposition_links(path, include_ordinary_steps=True)` and read
+`report["model"]["ordinary"]["steps"]`. A processed comparison has its own
+step table. Each resolved endpoint gives label asym ID, label sequence ID,
+component and occupied alternate ID. The model number accompanies the pair.
+Direct neighbors use `x,y,z` on P. Distances are in Å and the three
+O3′–P–OP1/OP2/O5′ angles are in degrees. Identity geometry also works
+without a cell. Different alternate labels, ambiguous atoms, absent oxygen
+angles, gaps and long steps request review. Existing compact readings use
+the same distance calculation. Joining these rows to a declared strand graph
+can distinguish an ordinary connection, a named image bond and a genuine
+design nick.
+
+Doctor walks consecutive nucleotide positions within each model and label
+chain, measures the direct O3′–P distance, and checks any supplied sequence
+tables against the coordinate labels. This reading gives the same distances
+if a service removes the entire connection table. The default 2.2 Å screen
+calls attention to extended steps. `--max-step` changes that review distance.
+A gap in observed sequence positions or an ambiguous occupied endpoint is
+reported. The construct design establishes whether a real nick is present.
+
+Doctor measures each explicitly declared covalent O3′–P link separately,
+using its deposited crystal operations and unit-cell translations. It reports
+the distances and the available O3′–P–OP1, O3′–P–OP2 and O3′–P–O5′ angles.
+The optional comparison names missing declarations when the occupied
+backbone labels, positions and cell still match. Changed coordinates or
+ambiguous declarations leave that comparison open. The reader writes no
+files. Exit codes are 0 for a completed clear reading, 2 for review and 1
+for an invalid input. Chemical acceptance and portal validation are separate
+steps. [PDBx sequence identifiers](https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_atom_site.label_seq_id.html)
+and [crystal partners](https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_struct_conn.ptnr2_symmetry.html).
+
+## Checking the coordinates Coot starts from
+
+A dictionary may declare a good restraint and supply coordinates that put its
+two atoms at a different distance. Run the existing assessment on the exact
+dictionary, or on the checkpoint whose dictionary Phenix actually received.
+
+```sh
+nasolve cif-doctor assess ligand.cif --template-bonds
+nasolve cif-doctor assess --run RUN --checkpoint ID --template-bonds --json
+```
+
+The report compares every explicit heavy-atom bond with the declared
+`value_dist`. It identifies Cartesian restraint coordinates, CCD ideal
+coordinates and CCD model coordinates separately. The distance, target, signed
+difference and available restraint width appear in JSON. A width measures a
+restraint's tolerance. It gives no experimental uncertainty for a built model.
+A missing coordinate or target remains visible. Measured Coot, ReadySet and
+refined coordinates are separate evidence.
+
+In the [PDU comparison](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold),
+the dictionary placed two bonded carbons 1.607 Å apart while the restraint
+specified 1.470 Å. Coot followed the supplied coordinates at both model sites.
+The independent 5PC definition gave the opposite error, 1.364 Å against the
+same 1.470 Å target. Once the target itself has been checked against the
+chemistry, prepare a separate candidate for a dictionary with one such group.
+The recipe reads its explicit bond orders, charges and three attached hydrogens.
+
+```sh
+nasolve cif-doctor prepare original.cif --recipe alkynyl-methyl-template-v1 \
+  --output adjusted.cif --report adjustment.json
+```
+
+The recipe translates the methyl along the existing bond in the restraint
+Cartesian coordinates. It preserves the remaining CIF text and checks every
+other template bond. A declared link, residue modification or leaving atom
+involving the methyl group requires review, as do ambiguous groups, declared
+chirality, isotope labels and incomplete positions. ReadySet retained
+both 5PC starts. Five Phenix cycles gave terminal bonds of 1.481 and 1.479 Å.
+A template change alone gives no basis for choosing a refined conformation.
+
+## Inspecting a phosphate at a crystal boundary
+
+When a strand may continue into the next crystal copy, identify the phosphorus,
+the possible O3′ partner and its exact symmetry operation, including the unit-cell
+translation. With the optional `NASolve[topology]` installation, this example reads
+the model and Phenix's saved geometry without moving any atoms.
+
+```sh
+nasolve cif-doctor phosphate-image final.pdb --phosphate B:1 --o3 B:7 \
+  --o3-image=-x+y,-x,z --geometry final.geo
+```
+
+If the donor and phosphate lie in two consecutive stacked pairs on the same
+duplex arm, supply their opposite residues to measure where OP1 and OP2 point.
+For the **internal A11→A12 step** of the 5W6W scaffold, A11 pairs with B5 and
+A12 with B4.
+
+```sh
+nasolve cif-doctor phosphate-image final.pdb --o3 A:11 --phosphate A:12 \
+  --o3-image=x,y,z --duplex-partners B:5 B:4
+```
+
+A positive value means the oxygen midpoint projects away from the local
+duplex centre. The JSON also gives each oxygen separately. Doctor fits the
+occupied, conventionally named base-ring atoms and takes an equal-weight
+centre for each pair. A second reading uses the paired C1′ midpoints with
+the same mean plane normal. Compare the signs, pair-centre separation and
+tilt before calling a rotamer. For paired residues in other crystal copies,
+`--partner-images` takes two full operators relative to the O3′ and P
+residues respectively. Cell translations are retained. The same options
+work on a named checkpoint. This reading describes model geometry. A
+crossover, a real nick, or an uncertain pairing needs its own structural
+interpretation. Missing ring atoms, an occupied third phosphate oxygen or
+an unsupported substitution leave the direction unassessed.
+
+When you know which two atoms join but still need the symmetry operation,
+use `--nearest-image` in place of `--o3-image`. Doctor holds the phosphorus
+fixed, ranks crystal copies of the named O3′, and reports the two closest
+operations and distances. It includes unit-cell translations. A separation
+within the rounding allowance of the saved PDB leaves the choice open. Use
+the explicit operation to inspect either copy. Distance ranks the copies
+of these atoms; the construct supplies their chemical connection.
+For the [central strand of 5W6W](backbone-chemistry.md#the-central-strand-in-the-5w6w-scaffold),
+the two closest copies in the starting frame are 2.795 and 21.895 Å away.
+
+When Pine has registered the source model, Doctor can read the named connection
+directly. Supply the construct registration and end-discovery files for the
+exact saved model, together with its directed backbone declarations.
+
+```sh
+nasolve cif-doctor phosphate-image RUN --checkpoint refine-005 \
+  --registered-continuation 1 --registration registration.json \
+  --discovery-input discovery.json --backbone-continuations docs/recipes/5w6w-central-continuation.json
+```
+
+The source and target in the declaration are logical sequence sites. Pine's
+mapping locates their actual PDB residues. The declared operation moves P with
+O3′ fixed. Doctor inverts it to inspect O3′ with P fixed. A nearer copy cannot
+replace a declared one. If a mapped atom is missing, the JSON retains the
+connection and explains why its length is unavailable. By default the
+registration must belong to the exact coordinate file.
+
+To follow the same bond after refinement, name the checkpoint where the
+strand was registered with `--registration-checkpoint refine-005`, and
+give the later model's ID to `--checkpoint`. Doctor checks their ancestry,
+the cell and space-group setting, and the identities and elements of the
+atoms at both residues. Each occupied atom in the later model must still
+be closest to its earlier position in the same crystal copy, with a
+separation larger than PDB rounding uncertainty. This checks the coordinate
+representatives without choosing a new bond partner. If an end was recut,
+or its chemistry changed, supply a registration for the new frame.
+The distances, optional native dictionary capture and optional final GEO
+all belong to the requested later model. The command reads coordinates and
+restraints without applying forces.
+
+The operation acts on O3′ and its C3′. The report gives the P–O3′ distance, the
+available backbone angles from the coordinates and the named phosphate atoms
+present. With a GEO file it shows each printed bond and nonbonded contact for that
+exact image. It accounts for Phenix printing the two atoms in reverse order. A
+missing or unreadable table is identified separately from a complete table with
+zero matches. Use `--json` for file fingerprints, occupancies and numerical
+differences between the two files. The scientist's choice of partner remains
+part of the construct description.
+
+The report also compares the four backbone angles with Phenix's printed
+bond-angle rows. For example, the final GEO may report 58.85° for O3′–P–OP1
+while the named crystal mate measures 107.49° in the written model. Doctor
+identifies the first value as the angle measured inside the asymmetric unit.
+It reports numerical agreement with either frame, both, or neither, allowing
+for PDB coordinate and table rounding with the supplied cell. JSON preserves
+the printed operators separately, including a different crystal image with
+the same atom labels. Coordinates or printed tables alone cannot establish
+which forces acted during refinement.
+
+For a numbered NASolve run, give the run directory and an explicit checkpoint
+ID or bookmark. Doctor opens the model and final GEO recorded for that
+checkpoint and checks their hashes. At a checkpoint without a final GEO it
+still measures the written coordinates. This example inspects the ordinary
+link between the first two residues of chain B.
+
+```sh
+nasolve cif-doctor phosphate-image dataset/AutoMR/run_002 --checkpoint refine-002 \
+  --phosphate B:2 --o3 B:1 --o3-image=x,y,z
+```
+
+If an original, complete CIF Doctor native capture exists for this model, add
+`--native-receipt PATH/TO/native_receipt.json`. Doctor finds intact O3′–P bonds
+elsewhere in that model whose two effective monomer dictionaries and chemical
+modifications match the proposed ends. It groups the examples by their exact
+recorded covalent terms, including torsions and their periodicity. An additional
+bond, including a user edit or a distance of unknown origin, makes a reference
+ambiguous. Doctor recognizes ordinary hydrogen bonds by the origin recorded by
+that Phenix installation. Conflicting targets in otherwise matched examples
+remain visible. The comparison concerns
+terms confined to those two residues. Older captures omit per-atom images for
+angles and torsions, so applying those terms across a crystal boundary needs its
+own check.
+
+The opt-in phosphate refinement holds the phosphorus in its stored crystal
+copy, brings the named donor
+atoms into that frame, and evaluates the local angles and torsions with
+Phenix's geometry terms from matching intact links. For an image position
+`x′ = R x + t` in Cartesian coordinates, the force on an image atom is
+rotated back to its stored atom as `Rᵀ F′`. The native bond retains its
+symmetry operation and covalent exclusions. These operations apply to a
+declared chain continuation. Even in P1, a strand can cross into an adjacent
+unit cell by a translation. The recorded native refinements test one junction
+at a time.
+
+The opt-in refinement can use models with anisotropic atoms. Phenix may
+recalculate the equivalent B factor from the six displacement
+components in a PDB ANISOU record. Cedar checks those components in
+Cartesian coordinates against both the coordinate model and the diffraction
+model. It allows the independent rounding of the printed B and ANISOU
+fields. A changed tensor, even one with the same equivalent B factor,
+requires review.
+
+<a id="carrying-one-registered-phosphate-through-a-numbered-refinement"></a>
+
+### Carrying crystal phosphates through a numbered refinement
+
+Give AutoRefine the checkpoint to fit, the checkpoint where the construct was
+registered, and the exact native chemistry receipt for the model being fitted.
+For example, these are the inputs for a child of the original registration.
+
+```bash
+nasolve autorefine RUN --from manual-001 --registration-checkpoint refine-005 \
+  --registered-continuation 1 --registration registration.json \
+  --discovery-input discovery.json --backbone-continuations continuations.json \
+  --native-receipt current-parent/native_receipt.json
+```
+
+For a construct with several covalent crossovers, replace
+`--registered-continuation 1` in that command with
+`--registered-continuations 1 2`, using the IDs from its own registration.
+Each O3′ donor and phosphorus acceptor can participate in one bond at that
+end. One nucleotide can contribute its two different ends to adjacent links.
+The native chemistry receipt is checked for existing O3′–P bonds at both
+atoms, including distance edits supplied by the user. If either atom already
+has a different partner, AutoRefine reports both pairs before it creates
+a round. `phosphate-image --native-receipt` retains the reference targets
+and lists the conflicting partners. Phenix's recognized hydrogen-bond
+restraints are distinguished by their recorded origin.
+
+The original restraint files keep their order. The round supplies each
+declared bond to Phenix in its own crystal image. For each connection, two
+or more chemically matching intact links must agree on the bond and all
+seven orientation terms. One native worker applies all requested forces
+together. Preflight and refinement independently verify the applied terms,
+the four bonded-neighbour exclusions per link, and the work/free identities.
+Read the new checkpoint's coordinates and maps before selecting it.
+
+For a later child on the same branch, `--native-receipt` by itself carries
+the complete stored set forward. To change which bonds are present, start
+from a checkpoint before that set was introduced. The new receipt must describe the newly
+selected model and its exact dictionaries and PHIL files. The original
+registration files can move after the first round. Each request keeps small
+copies in its own `parallelity_runtime/phosphate` directory. The full native
+chemistry inventory is checked when supplied and its fingerprint is retained.
+This route uses PDB coordinates in the original crystal frame on the
+qualified Phenix build. A physical nick remains open.
+
+To see what survived refinement, name the fitted checkpoint. Its saved
+declaration supplies the atoms and crystal copy.
+
+```bash
+nasolve cif-doctor phosphate-image RUN --checkpoint refine-007 --saved-continuation
+```
+
+For a fit with several bonds, use `--saved-continuation-id 2` to inspect
+the chosen member. The result identifies all the continuations Phenix fitted
+together. Asking for an unspecified member lists the available IDs.
+
+Add `--restraint-deviations` to measure the O3′–P bond, its four angles and
+three backbone torsions from the checkpoint coordinates. Combine it with
+`--json` to see the same measurements at each ordinary link that supplied the
+native targets. A signed torsion difference accounts for periodicity. A
+restraint width comes from the weight used in refinement. Assess local density
+separately. Missing or unoccupied atoms and undefined torsions have an explicit
+reason.
+
+For a saved crystal bond, add `--torsion-response` to include these
+measurements and show why a badly twisted bond can persist. The report gives
+the fraction of the periodic energy barrier and the fraction of the largest
+turning force available from that one restraint. At the top of its barrier a
+torsion has high energy and very little turning force. Other geometry terms
+and the diffraction still act on those atoms. Near-collinear paths give an
+explicit reason the angle cannot be interpreted reliably.
+
+```bash
+nasolve cif-doctor phosphate-image RUN --checkpoint refine-003 --saved-continuation-id 2 --torsion-response
+```
+
+An O3′–P distance can close while the adjoining sugar or phosphate distorts.
+Add `--flanking-geometry` to check both residues against the covalent targets
+in the same fit. The report identifies the intact, chemically matched links
+that supplied the crossing restraints and checks their residues too. The
+plain-text view shows the largest discrepancy for each residue’s bonds and
+angles. `--json` includes each measured term, its target, width and source.
+A missing listing or a printed value that disagrees with the written model
+leaves the affected readings unassessed. An incomplete reading returns exit
+status 2. The size of a discrepancy alone does not set that status.
+
+```bash
+nasolve cif-doctor phosphate-image RUN --checkpoint refine-003 --saved-continuation-id 2 --flanking-geometry
+```
+
+The report measures the written model, reads its final geometry listing and
+shows how many bond, angle and torsion restraints Phenix applied during this
+fit. It also reports the starting and final work/free counts. Inspection can
+run after moving the dataset and leaves the selected checkpoint in place.
+
+When reopening a saved crystal-phosphate link, NASolve compares its four
+angles calculated from coordinates to half a unit in their seventh
+significant figure (0.00005° at 109°). This accommodates small arithmetic
+differences between Python installations. The coordinate files, atom
+identities, crystal image and native chemical restraints retain their
+exact checks. The reader preserves the original numbers in the record.
+A manual edit or an ordinary fit has no such native result of its own. An
+optional `--native-receipt` here must belong to the model being **inspected**;
+the fit already records the fingerprint of its **starting** model's receipt.
+
 <a id="current-capability-boundary-c96"></a>
 <a id="current-capability-boundary-c97"></a>
 
@@ -153,7 +596,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 
 | Chemistry or workflow | Demonstrated capability | Remaining boundary |
 | --- | --- | --- |
-| Ordinary supported DNA/modified bases | Connected-base construction, source audits and qualified cached dictionaries feed ordinary PostMR. The full-model L-DNA recipe has an ordinary native-membership control. | A recipe/membership pass is not complete refinement or scientific validation. Explicit v3 policies now survive isolated storage, source requalification and opt-in current-site preparation/native binding. Checked preparation and cache-miss recovery have an explicit PostMR/campaign route (C219–C225); C251 adds explicit later alternatives. C270–C272 qualify chosen-model phasing and inspection; default enablement and real refinement qualification remain separate. |
+| Ordinary supported DNA/modified bases | Connected-base construction, source audits and qualified cached dictionaries feed ordinary PostMR. If Coot turns a source-defined base away from its parent, ordinary construction can now rotate that base as a rigid body and recheck the named angle. DP and IMC both exercise this recovery in the mixed model. The full-model L-DNA recipe has an ordinary native-membership control. | A recipe/membership pass is not complete refinement or scientific validation. Explicit v3 policies now survive isolated storage, source requalification and opt-in current-site preparation/native binding. Checked preparation and cache-miss recovery have an explicit PostMR/campaign route (C219–C225); C251 adds explicit later alternatives. C270–C272 qualify chosen-model phasing and inspection; default enablement and real refinement qualification remain separate. |
 | Catalogue and source chemistry | All 618 rows / 599 codes of the pinned NAR workbook are inventoried; graph-defined ports and exact atom/H/charge/stereo comparisons are reusable. | Catalogue coverage is not native support. Source intent, missing mappings and unqualified families remain explicit. |
 | FANA | Source-defined arabino/ribo distinction; isolated A/C/T/U candidates and explicit-policy GFL controls pass native checks. | This does not automatically insert any FANA into an arbitrary model. Whole-sugar construction is a separate operation. |
 | L-FANA | One explicitly derived L-FANA-C identity has native component, NAR-binding, three-site placement, exact topology, sampled derivative and bounded geometry evidence. C133 qualifies source-projected L-DNA flank definitions around it. | The geometry trial remains at its iteration limit. Phosphate state, formal-charge readback and ordinary whole-model mutation remain open; L-FANA A/G/T/U are not all established by the C control. |
@@ -161,7 +604,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Linked/end-state DNA and L-DNA | Explicit v3 qualification reaches linked/terminal preparation. C133 retains both native links, removes missing-heavy OP3 expectations and preserves all source sugar centres. C136 connects frozen storage to exact preparation/native binding. C137 qualifies explicit terminal-phosphate and custom-restraint context; C138 adds full-model interpretation with complete native residue identities, including copied-chain controls. | Formal-charge readback remains unsupported. Source phosphate H is retained, not chosen by pH. Explicit DNA/L-DNA metadata remain required; C139 adds a source-bound internal phosphate-name adapter, while aliased terminal operations remain unqualified; incomplete native identities still block qualification; the opt-in full-model route requires a fresh capture and complete identity proof. |
 | PNA | Selected C/A/G components have isolated native evidence; neutral amide operations and ten connected source networks are reproducible. | Four reactive charged-amine cases remain unresolved. Connected graphs have no qualified PNA native construction, linked numerics or ordinary refinement route. |
 | LNA/other bridged sugars | Selected source topology/port and projection controls transfer across declared graph families. C147 adds source/native qualification and a two-copy numerical control for 10C, without connected-polymer qualification. | Each native dictionary, linkage and construction consumer still needs qualification; there is no blanket family-support claim. |
-| ATL | Public source graph, four-centre, NAR compiler and attachment controls exist. C142 source-preserving generation passes isolated native usability at source and generated coordinates, with the same covalent proxies. | C143 adds a graph-bound compatible-host whole-residue adapter. Actual ATL-to-DNA placement refuses shared-role C3′/C4′ hand disagreement. C144 source-graph site modifiers now remove the declared reacting atoms and match all effective ATL numerical rows in two directional controls and a three-ATL control. Source classification and nonreacting phosphate H remain unchanged; canonical flank chemistry and unavailable formal-charge readback remain separate. C145 explicitly places ATL through its base alongside the original eight pairs, preserving their atoms. C146 adds a source-preserving bounded arm/body seed: both native links and eight junction angles now exist, while all 201 custom requests/proxies and numerical definitions match. C147 passes complete-policy sampled derivatives for this fixed connected seed. C148 adds a bounded whole-model geometry adapter; the trial improves the outgoing bond but fails endpoint dihedral checks and line search. Source hands survive; pair geometry and adoption remain unqualified. C149 scans the complete explicit bundle and qualifies graph-selected 5PC/PDU omissions, fresh complete derivatives and bounded geometry mechanics. Source hands survive and ATL links/pair contacts improve; the 1000-iteration endpoint remains unconverged and unadopted. |
+| ATL | On the nine-pair scaffold, checked PostMR builds twelve substitutions with Coot and places ATL at A:11 using the mutation card and source dictionary. Fresh and reused dictionaries give the same model. In the registered five-cycle refinement, its two backbone bonds reached 1.610/1.619 Å and its two contacts to adenine reached 2.971/2.873 Å. All four sugar stereocentres survived. | Two close contacts and high B values remain. The test used host diffraction. Other locked sugars need independent checks. |
 | Source-supported trigonal plane completion | C207/C210 correct supported ordinary mutation orientation/context. C208–C215 select missing coverage from source connectivity, prepare narrow owned-support candidates, bind native captures and attribute complete-plane mechanics with separate derivatives. C216 measures all supported modeled centers; PDU and 5PC bounded native controls improve local shape while preserving fixed context. C226 adds maintained owned-capture/whole-plane numerical execution and cold replay. C227 selects and publishes an ordered source-bound linear/plane result with full ordinary NAR context and derivatives. | C234–C237 integrate explicit owned support through the same repair request, including real selection and stopped-native fallback. C242 carries that exact supplied support through a complete request and actual ReadySet. C244 adds explicitly enabled graph-selected support acquisition; C245 exposes it through prepare-run and result notes. C246 forwards the choice through checked PostMR and schema-2 campaigns; C247 exposes publication/status notes; C249 separately reports explicit selected-CIF coverage. Q04/Q05 recovery, storage and chosen-input handoff are accepted for the recorded explicit route (C285). Effective native plane forces and chemical survival remain Q06. No universal flattening rule. Unsupported chemistry, symmetry images, DP mapping, numerical targets and complete-restraint refinement remain open. |
 | DF/PDU mixed diagnostic | Source-recovered DF has isolated/linked and sampled derivative evidence. C142 establishes exact PDU omission/energy attribution. C149 composes graph-selected 5PC/PDU repairs across the mixed ATL scaffold, authenticates each native stage and passes complete derivatives plus full/rounded/native endpoint mechanics. | C150 adds a maintained bounded native reference job and offline attribution replay; its exact six-proxy result matches C149. The C149 coordinate trial remains iteration-limited and unadopted with residual pair strain. Its NASolve-local corrected evaluator does not qualify ordinary Phenix refinement; source-qualified selection and scientific acceptance remain separate. |
 | Full native capture bridge | C151 carries the existing complete 42-residue/865-atom identity proof through maintained repair attribution, sampled derivatives, geometry preparation and fresh endpoint readback. Legacy and relocated capsules replay; missing/copied/downgraded identities refuse. | This is native identity and numerical compatibility, not independent source-chemical qualification. C153 closes diagnostic source/repair composition in a separate matching control; the older mixed scaffold’s phosphate-state authority and ordinary integration remain Q13/Q07. |
@@ -173,7 +616,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Current installation configuration | C182 derives consumer and generation arguments from the explicitly selected packaged Phenix installation using maintained source lists and existing validators. Fresh generation/repair, current cache reuse and cold request/runtime replay pass. | Read-only configuration, not observed import or scientific qualification. Explicit dialect/representation intent remains required; C183 owns the continuation child. C184 integrates the continuation with the existing request. Explicit ordinary/campaign entry and initial checkpoint adoption now exist (C223–C225); C251 adds explicit later alternatives. Default activation and broader native/refinement coverage stay open; C270–C272 qualify the chosen-model phasing/inspection control. |
 | Checked preparation and interrupted work | C220 commands run the ordinary construction/NAR-derived request, report the checked ReadySet result or verified retained starting model, read one exact attempt and continue saved preparation in a fresh attempt. C219 native evidence rereads through this interface after relocation, with no SDK or new execution. C222 opens a named checked preparation or verified fallback in Coot against the original MR map. C223 explicitly saves that exact choice as an initial REVIEW checkpoint for ordinary inspection and trial refinement, with interrupted-save recovery and later proof checks. C224 composes execution and publication through `postmr --checked-preparation`; C225 freezes that opt-in in schema-2 campaigns. | Explicit choices only. C251 saves later alternatives without changing the root/current selection; Coot and refinement use their exact inputs. Q04/Q05 supported-route acceptance includes chosen-model phasing/inspection and ordinary five-cycle campaign refinement (C285). Default activation and broader chemical survival remain separate Q06/release gates. C249 reports scoped explicit selected-CIF coverage. C247 exposes verified generation notes through publication/status. C246 exposes explicit support acquisition through checked PostMR and schema-2 campaigns. C245 exposes the choice through prepare-run and reports generation outcomes. Unqualified preparation offers no model; uncertain process state blocks continuation. |
 | Archived working evidence | C258 explicitly retires only successful, qualified working duplicates after durable archive/intent publication. Ordinary exact reads, interrupted removal/resume and stable public paths pass on copied native evidence: 33.7 MB instead of 181.6 MB. | Failed/active work stays unpacked. C260 connects new ordinary/campaign preparation; C402 admits explicit v3/v4 layouts through that same owner, including automatic bond preparation. Older/unknown layouts and read-only or historical publication do not initiate cleanup. C280–C284 accept the recorded serial/recovery envelope, including 100 synthetic datasets; 100 native-dataset capacity remains unqualified. Historical unarchived campaigns are not migrated and old readers refuse new storage receipts. |
-| Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization before the unchanged strict endpoint check. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Existing owned acquisition handles ordinary checked-route misses; interrupted work needs an explicit fresh attempt after known-stopped evidence. Initial checked adoption exists. Explicit automatic plane support and later alternatives are implemented. Default activation, solution-PDF reporting and per-family release coverage remain integration milestones; chosen-model phasing has the bounded C270–C272 acceptance. |
+| Generalizer workflow | Immutable attempts, source-bound reuse and exact native inventories now compose into an opt-in multi-component ReadySet/native route with a verified diagnostic fallback. C140 can restore lossless heavy-PDB serialization. C471 provides an explicit ordered comparison that recognizes ordinary PDB atom-name spaces when the native atom identity, restraint selections, numerical targets and both planes agree. C141 exports the exact selected inputs through public bundle assessment with frozen source replay and honest diagnostic scope. | Existing owned acquisition handles ordinary checked-route misses; interrupted work needs an explicit fresh attempt after known-stopped evidence. Initial checked adoption exists. Explicit automatic plane support and later alternatives are implemented. Default activation, solution-PDF reporting and per-family release coverage remain integration milestones; chosen-model phasing has the bounded C270–C272 acceptance. |
 
 
 ### Installed historical construction replay (C325)
@@ -816,6 +1259,54 @@ durable ownership across the whole continuation, default PostMR orchestration,
 checkpoint adoption and actual refinement remain Q04/Q05/Q06. The C140 adapter is
 explicit here; choosing and scheduling it automatically is not implemented.
 
+#### Opt-in comparison of explicit named requests
+
+The Python selected-runtime continuation and complete-request APIs can explicitly
+freeze `explicit_request_policy = "cif-native-ordered-named-custom-requests-v1"`.
+For a complete request, supply it inside `continuation_options` alongside
+`readyset_timeout_seconds` and `restore_serialization`. For
+`execute_runtime_continuation`, `inspect_runtime_readyset`, or
+`prepare_runtime_readyset_bundle`, supply the keyword directly. Absence retains
+the historical comparison exactly; this does not enable a new CLI default.
+
+`ordered_custom_requests_match` reuses the terminal qualifier's structured atom
+identity and exact same-capture label/index binding, plus the existing native
+custom-restraint shape/target validator. Each display label must first equal
+its own captured atom label. Structured identities, including elements, remain
+part of the comparison. Only a recognized 21-character native `pdb="…"` label
+with a four-character `atom_name_field` equal to `label[5:9]` and whose trimmed
+name exactly matches `atom_id` after trimming ordinary ASCII spaces can ignore
+padding in that field. Every other display character remains exact.
+The structured identity and element retain the existing fixed-width space
+normalization. Tabs and other non-PDB whitespace are significant. Other display formats or missing optional
+name-field evidence require identical raw labels. Contradictory supplied fields
+refuse. Both parallelity planes are validated; missing/duplicate identities,
+malformed memberships or unsupported requests refuse. No whole-label whitespace
+stripping, relabeling or atom alias is used. The atom index is built once per
+capture; already-bound rows reuse the unchanged shape/parameter validator, while
+legacy signature callers retain their original binding path.
+
+Unlike the older unordered native-proxy multiset comparison, explicit requests
+retain their exact request order, endpoint order, native indices, selection
+strings, action, numerical targets/weights, symmetry fields, all other fields
+and multiplicity. Renumbering or changing any of these cannot be excused as a
+label change. Coordinates, definitions, policy, native sources, energy checks
+and every other existing ReadySet gate remain independently required.
+
+The opt-in roundtrip records `cif-postmr-cached-model-readback-v3`; its selected
+review records `cif-selected-runtime-readyset-roundtrip-v2`. The explicit policy
+is frozen in the existing continuation configuration and public source selection;
+reopening reconstructs it and verifies that publication used the same choice.
+The complete-request owner forwards and binds the same option to its child.
+Older readers reject the new control, rather than treating it as a v2 selection.
+Historical v2 records and their parent-fallback decisions are never rewritten or
+reclassified. Standalone earlier bundle/cached-model APIs keep their old default.
+
+This addresses display-only differences in a captured restraint inventory. It
+neither changes native forces/normalization (see C293/C294), runs an optimizer,
+proves chemical suitability, nor authorizes checkpoint adoption. A new execution
+still needs its own complete native evidence and independent parent proof.
+
 ### Native metadata in filtered supplements (C180)
 
 When `effective_restraints` excludes overridden components from generated output,
@@ -1274,12 +1765,33 @@ Exact checks: `campaign_first_refinement_2026_11_14` in the evidence ledger.
 
 The successful C270 control passed C263/C264 source-input options directly to the
 Python preparation API. C276 makes that exact combination available to the normal
-callers through the explicit versioned choice `source-preserving-v1`:
+callers through the explicit versioned choice `source-preserving-v1`.
+The newer `source-preserving-v2` selects a recorded representation for each
+frozen source by its graph, declared orders and formal charges. It accepts a
+verified five-ring beside a neutral terminal C=S and can also require exact
+orders throughout. The protected sulfur double bond and the orders in the
+neighboring six-ring must survive both native reading and generation. A
+component that passes in isolation still needs a separate linked-site check.
+The following examples select the original fixed recipe.
 
 ```sh
 nasolve postmr RUN --checked-preparation --automatic-plane-support --dictionary-input-policy source-preserving-v1
 nasolve cif-doctor prepare-run RUN --dictionary-input-policy source-preserving-v1
 ```
+
+For a card that already specifies an internal locked sugar, supply the site
+on a fresh accepted MR run. For example, a card with `A:11 = ATL` can use
+`nasolve postmr RUN --checked-preparation --locked-sugar-site A:11`.
+`nasolve cif-doctor prepare-run RUN --locked-sugar-site A:11` prepares the
+same chemistry for review before checkpoint publication. Cedar checks the
+2′-O,4′-C bridge from the source, finds both same-asymmetric-unit backbone
+partners and preserves the sugar centres. The stored dictionary must pass
+the current Phenix checks. If the fitted base moves too far, the diagnostic
+names its most displaced atom and gives the measured distance and limit.
+For example, in the TLN control it reported O4 moving 4.739 Å at A:11
+against a 2.000 Å limit. End residues, ambiguous leaving atoms and a
+bridged sugar that cannot fit its neighbours still need review. Campaign
+cards do not yet expose this site option.
 
 A schema-2 campaign can freeze it without adding commands or paths:
 
@@ -3522,6 +4034,92 @@ stacks on this public frame, versus the 20 frozen declarations retained above.
 It must not silently replace declared intent. No native execution was needed for
 that separate readiness audit. Evidence: `literal_input_provenance_2026_11_10`.
 
+#### Typed native reader controls
+
+`cif_literal_na_controls.prepare_typed_literal_na_inputs` accepts an exact native
+receipt SHA-256 and an ordered `phil_roles` list. Each row has precisely
+`input_index` (the capture's global input index), `sha256`, and `role`
+(`literal_restraints` or `interpretation_controls`). Every captured PHIL must
+have one role; at least one of each role is required. No partition is inferred.
+
+The separate schema-1 policy `cif-typed-native-literal-inputs-v1` retains the
+complete native capture, original PHIL order, role declarations, control values
+and native definition readback. Only False-valued `pdb_interpretation.sort_atoms`,
+`pdb_interpretation.restraints_library.cdl`,
+`pdb_interpretation.restraints_library.cdl_nucleotides.enable`, and
+`pdb_interpretation.use_ncs_to_build_restraints` are accepted as controls.
+Scoped and dotted spellings use the existing bounded PHIL parser. Unknown or
+repeated controls, embedded edits, altered roles/digests, and inconsistent native
+readback refuse before publication. The unchanged C21 compiler receives only
+the declared literal restraint inputs; native index identities remain native.
+
+`read_literal_na_inputs` reconstructs this artifact after relocation without
+following historical source paths. `inspect_typed_literal_na_inputs` exposes
+separate `compiled_restraint_phils` and `interpretation_control_phils`; it does
+not expose an executable `phils` list. `resolve_literal_na_inputs` and default
+complete-request intake still refuse typed artifacts. The explicit owner below
+binds the separate role without rewriting the captured artifact's historical
+`execution_context.ordinary_handoff_allowed=False` evidence.
+
+#### Explicit captured-control handoff (W186)
+
+**Purpose.** Preserve the sorting, CDL and full-monomer settings that accompanied
+reviewed restraints when preparing a new model for the existing native workflow.
+Reader settings remain separate from forces between atoms. This is an explicit
+Python API option; ordinary CLI/campaign defaults do not change.
+
+`initialize_postmr_dictionary_request` and `initialize_dictionary_request` accept
+`reader_control_policy="cif-captured-reader-control-handoff-v1"` only with a
+replayed `cif-typed-native-literal-inputs-v1` artifact in `literal_na_inputs`.
+PostMR intake still verifies the exact original model and **all** original PHILs
+in capture order. Complete intake receives the compiled geometry PHILs and
+owned model/restraint contexts. It takes reader controls only from the typed
+artifact; users cannot substitute another control list at that entry point.
+
+The complete request persists a separate optional field:
+
+```json
+"interpretation_controls": {
+  "policy_id": "cif-captured-reader-control-handoff-v1",
+  "phils": ["reader_controls/000.phil"]
+}
+```
+
+This field lives in `configuration.controls`; its paths are relative to the
+request's `inputs` directory. Acquisition preparation keeps it in its intent's
+`controls`, and the stored bundle keeps it in its report, using
+`inputs/reader_controls/000.phil` relative to each artifact root. The exact raw
+bytes and order are copied and rechecked at every boundary. Lower-level
+preparers take explicit `interpretation_control_phils` plus the same policy;
+those APIs transport a role, while the complete owner verifies captured provenance.
+`supplementary_phils` and `restraint_context`
+continue to describe geometry only. Missing/changed controls, unknown policies,
+reordered files and duplicate definitions refuse before native execution.
+
+The existing native input order is geometry PHILs, captured controls, active
+site modifiers, then the generated full-model policy if still needed. When
+captured controls explicitly supply `use_ncs_to_build_restraints=False`, the
+bundle omits its redundant generated policy. A second declaration in other
+supplied PHILs refuses even when it also says `False`; an added generated
+policy cannot be made valid by rehashing the artifact. If NCS is not captured,
+the existing generated `False` remains. No setting is stripped from the captured
+files. Existing repair, selection, ReadySet, publication and process ownership
+carry the resulting ordered files; there is no alternate launcher.
+
+**Evidence and limits.** W186's fixed-coordinate Phenix 2.2.1-6174 read retained
+859 atoms, 42 complete monomers and all 213 explicit terms: 51 bonds, 84 angles,
+58 parallelities and 20 planes. Native definition readback contains each control
+once; the saved effective PHIL gives all four as `False` under the native master
+schema. Software tests cover the complete owner, repeated immutable attempts,
+cold relocation, frozen dispatch and runtime/ReadySet retention. This is not an
+end-to-end real ordinary-parent or refinement qualification. That parent lineage,
+retained-manager motion and scientific recovery remain separate milestone gates.
+
+Historical requests with no control role retain their serialization and behavior.
+The optional role uses the existing outer schema versions with its own explicit
+policy; older readers refuse the new role rather than silently discarding it.
+No historical artifact is migrated or promoted automatically.
+
 ### Exact planarity intake (C186)
 
 The existing `derive_restraint_context` also accepts explicit `planarity` edits
@@ -4067,6 +4665,16 @@ dispatcher 2.2.1 as recorded in C167; no version command or native job was run i
 C168. No full suite, chemical-support expansion or ordinary runtime change.
 
 ### Explicit component acquisition requests (C167)
+
+An acquisition may take `connected_order_failure=(previous_request, attempt_number)`.
+It checks the stopped native worker, the original component and the complete
+printed bond table. A unique extra heavy-atom bond must explain the reported
+length. The caller supplies the original generation settings and a separate
+request directory. The recovery orders whole atom rows for the reader and
+qualifies the numerical dictionary against the unchanged source. A qualified
+entry can enter a later ordinary acquisition through its existing retained
+snapshot input. Recovery is an explicit choice at the component boundary.
+Linked model placement and diffraction are separate checks.
 
 `cif_acquisition_attempt.acquire_dictionary_attempt(source, code, store_root,
 request_directory, ..., generation, consumer, phenix=None, retained_snapshot=None)`
@@ -5240,6 +5848,22 @@ report and model offline and refuses incomplete, extra, forged or mismatched-pol
 capsules. Existing compatible-host capsules remain readable with their original
 policy. No public CLI, production default, checkpoint migration or adoption changes.
 
+For an internal substitution, `prepare_base_anchored_furanose_from_model`
+takes the same five inputs, the site and the PostMR report. The ordinary
+phosphate audit supplies the upstream O3′ and the downstream P, including
+their residue identities, across two observed links in the asymmetric unit.
+The placement binds that model and its terminal-phosphate intent. Reopening
+it repeats the audit. A chain end or a partner in another crystal image needs
+its own declared chemistry. The earlier explicit-context API remains available.
+
+Omitting `leaving_atom` asks the source which oxygen departs. All four
+phosphate oxygens must carry known flags. Exactly one must be flagged, with
+a single bond to P, neutral charge and one attached neutral H or D. The ester
+oxygen and the two retained nonbridging oxygens are protected. The twelve
+NARestraints rows labelled LNA supplied four consistent assignments, three
+source conflicts and five graphs outside the current profile. The ordinary
+PostMR mutation command still needs a route to this Python placement API.
+
 **Mixed-scaffold evidence.** ATL replaces background DT at A:11, paired with DA
 B:5; the original eight requested pairs remain in the same 42-site scaffold. All
 bystander atoms are unchanged. ATL retains its bridge, four source sugar centres
@@ -5437,8 +6061,10 @@ No component-name whitelist selects the omission: the source triple bond, linear
 angle targets and complete native definition/proxy membership must justify it.
 
 The mixed eight-pair scaffold already includes K:X, D:T, Z:P, B:S, PDU:A and DF:A
-(DF is the reviewed A1AAZ alias), plus 5PC:G and 5CM:Q. **ATL alongside those pairs
-has not yet been validated on that scaffold.** Its declared bridged sugar is
+(DF is the reviewed A1AAZ alias), plus 5PC:G and 5CM:Q. At this stage ATL was still a separate control. C146–C150 subsequently placed
+ATL:A alongside all eight pairs and tested their combined geometry. C416 checked
+all 201 applied restraints against that saved scaffold. Ordinary diffraction
+refinement of the combined scaffold remains in Q07. ATL’s declared bridged sugar is
 RNA-linking, so the older DNA fragment constructor is not a valid adapter.
 Preserve the bridge and use an independently qualified whole-residue/link route;
 do not relabel ATL or discard its extra sugar atoms to pass a DNA-only gate.
@@ -13352,12 +13978,12 @@ C4′–O4′–C1′–C2 torsion, then applies that existing normalizer. Other
 including another file named `5CM.cif`, are refused. This is not a general
 prime-name correction rule.
 
-Both recipes preserve the original bytes, refuse existing destinations and
-return hashes, field-level changes and before/after assessment. `PREPARED`
-means a candidate file was created; it does not mean native qualification or
-automatic adoption. Preparation's exit code follows the candidate assessment;
-invalid candidates visibly remain blocked from adoption. The recipes do not edit coordinates, invent protonation or bond
-orders, install the diagnostic DF/DP candidates or rewrite a frozen run.
+The [alkynyl methyl recipe](#checking-the-coordinates-coot-starts-from)
+prepares a separate starting-coordinate trial. All three recipes preserve the
+original file, refuse existing destinations and report hashes, changes and
+before/after assessments. `PREPARED` records the creation of the candidate.
+The exit code follows its assessment. Native checking and any choice of model
+are separate steps.
 
 ## Offline runner for the public control ZIP
 
@@ -13549,8 +14175,8 @@ reuses the byte-identical frozen v3 native helper. Historical requests and the
 ordinary triple-only default are unchanged. The existing process, preflight,
 phase, written-model and checkpoint owners remain responsible for execution.
 Ancestors, including manual imports, retain the observation requirement: dropping
-it refuses before a new round. Counted combinations and Refine Doctor forwarding
-are not qualified; Refine Doctor currently refuses such descendants explicitly.
+it refuses before a new round. C415 extends explicit forwarding to ordinary
+Python Refine Doctor trials. Counted combinations remain separately qualified.
 
 `refinement_parallelity.read_execution_chemistry_sites(run, reference,
 checkpoint=..., parent=..., model=...)` reads the sealed selected-site observation
@@ -13569,6 +14195,163 @@ does not itself provide a non-triple chemical acceptance screen.
 Qualification is recorded under `declared_site_native_observation_2026_11_18`
 in the existing evidence ledger; source/installed tests are distinct from actual
 native execution and the full regression gate.
+
+### Keep seeing the modified base in Refine Doctor trials (C415)
+
+Pass `observe_declared_sites=True` and `correct_native_parallelity=True` to
+`execute_refine_doctor` with the configured Phenix Python executable. The
+existing registered AutoRefine owner resolves each trial’s named parent and
+its prepared definitions. The ordinary Free-R audit still runs before any
+trial. The optional Doctor field `observe_declared_sites_requested` records
+intent. An actual observation belongs to that child’s sealed execution.
+
+In a one-cycle Phenix 2.2.1-6174 ML-group trial, the original checked PDU model
+supplied all eight inherited restraint/protection inputs. All measured intensities,
+sigmas and original Free-R assignments survived. The child reached the narrow
+alkyne screen and remained available for inspection. Its whole substituent
+moved slightly farther from the captured plane. This verifies the Python
+handoff. Scientific suitability still requires inspection. Counted protocols,
+CLI flags and campaign defaults retain their existing behavior.
+
+### Measure the achieved plane of a refined base (C413)
+
+A ring and its substituent can move differently. Use
+`refinement_parallelity.read_execution_plane_geometry(run, reference,
+checkpoint=..., parent=..., model=...)` on the sealed execution for the
+checkpoint of interest. This optional report reads the exact final model and
+the existing full-precision, intra-residue heavy-atom observations. It checks
+the declared source and atom identities through the same owners as the scalar
+reader. An older execution without a declared capture returns no report.
+
+The fit minimizes squared Cartesian distances using each positive native member
+weight. Each listed member gets an absolute perpendicular distance in Å. The
+summary is the ordinary RMS of the positive-weight members' distances. Zero-weight
+members receive individual distances without affecting the fit or its summary.
+Fewer than three effective positions or an ambiguous plane normal leave distances
+unassessed. A declared site with no captured plane is listed. Mixed coverage
+or a mix of measurable and ambiguous planes yields a partial result.
+
+To see whether an atom tilted its own plane, run
+`nasolve cif-doctor assess --run RUN --checkpoint ID --refined-planes --json`.
+Each member in `refined_planes` gives its distance to the full weighted fit
+and its distance to the fit through the other members. Both use the coordinates
+Phenix recorded for that checkpoint. In the independent A:PDU control the
+terminal carbon was 0.036 Å from the seven-atom plane and 0.231 Å from the
+six ring atoms. If the remaining atoms cannot define a plane, the second
+measurement gives the reason. A checkpoint without this capture returns
+`null`. Python callers request the same measurements with
+`omit_each_member=True`. The default reader keeps its original format.
+
+The same option reports `refined_planes.source_ring_arms`. It follows a
+source-declared C–C≡C–C arm attached to a neutral trigonal carbon in a
+chordless six-membered C/N ring. Six equally weighted ring atoms determine
+the reference. The report gives their own RMS departure, the three pendant
+atom distances and the positive-weight arm members in each captured plane
+covering the ring. The two single bonds must lead outside ring cycles.
+Multiple possible rings, missing coordinates and a poorly determined normal
+each have their own explanation. An empty list means the observed sites had
+no eligible arm. An unavailable native observation yields `null`. This is a
+measurement of the written chemistry with no new force or acceptance threshold.
+
+The `bond_directions` reading follows the three consecutive bonds from the
+ring to the tip. Each has its length, signed rise perpendicular to the
+six-atom plane (Å), and signed elevation above it (degrees). The signed
+position of the attachment plus the three rises gives the tip's signed
+position. The positive side is set by the cross product of the two bonds from
+the attachment to its listed ring neighbours, in their reported order. Use
+the same ordered labels when comparing signs between models. A coincident
+pair of atoms or an ambiguous local orientation leaves the directions
+unassessed. The ordinary unsigned distance can still be measured.
+
+`refined_planes.source_ring_arm_changes` compares that same source graph in
+the zero-cycle Phenix interpretation and the final model. Atom identity joins
+the two measurements even if Phenix assigns different indices. Both distances
+use the full-precision native coordinates. A decrease in tip height can
+accompany a stretched terminal bond. The report therefore gives both changes,
+the recorded terminal targets and their weights, and any separate crystal-image
+targets. No eligible arm, missing atoms and an unavailable capture have distinct
+outcomes. Python callers request this readback with `compare_preflight=True`.
+
+To check bonds between residues, run
+`nasolve cif-doctor assess --run RUN --checkpoint ID --refined-links --json`.
+The final Phenix GEO table and written coordinates identify both atoms,
+the reported origin, achieved distance, target and sigma. With a checked
+preparation, Cedar compares each backbone connection and every explicitly
+supplied inter-residue distance. An edit must retain its endpoints, origin,
+target and strength at the printed precision. Rows outside that declaration
+and missing terms produce `REVIEW`. The second atom’s printed crystal image
+is retained for review. Metal coordination or an intentional chemical crosslink
+may need authority beyond the checked nucleic-acid preparation.
+
+Without a checked preparation, `OBSERVED` gives the named rows. An absent
+bond section gives `NOT_RECORDED`. A checkpoint without a frozen final table
+returns `null`. With this option the JSON preserves the independent
+`dictionary_status`. A local bond match alone cannot approve a refinement.
+
+For a new checked round with `--observe-declared-sites`, AutoRefine compares
+the incoming and final bond tables automatically. The round report records
+the preparation, both model and geometry fingerprints, counts and the first
+bond that needs attention under `statistics.inter_residue_bonds`.
+An unreadable table records the reason. A completed model remains available
+for inspection. Selection and numerical ranking require two complete matches.
+The same `--refined-links` command shows all findings and independently
+checks this compact record. Historical rounds can still be read.
+
+To examine crowding, run
+`nasolve cif-doctor assess --run RUN --checkpoint ID --contacts-at B:4 --json`.
+Repeat `--contacts-at` to include another residue. For each atom, the report
+counts the entries in Phenix's nonbonded table and subtracts each model
+separation from the printed van der Waals distance. A positive value is an
+overlap by this measure. A negative maximum means every listed contact has a
+gap. The report retains all ties for the largest overlap and the largest
+crystal-image overlap, with the printed operator acting on the second atom.
+Reciprocal rows are counted as printed. Zero contacts in a complete table and
+an unavailable or incomplete table are reported separately.
+
+The printed contacts describe packing at that checkpoint. Hydrogen-bond
+intent, a covalent connection across symmetry, diffraction support and the
+cause of a strained bond each require their own evidence.
+
+To see which starting B values a refinement inherited, run
+`nasolve cif-doctor assess --run RUN --checkpoint ID --b-factors-at B:4 --json`.
+Repeat the site option to compare a base with its neighbours. The report
+reads the registered PDB files and matches each atom by name and element.
+It records both written occupancies and B values, their B difference in Å²,
+and whether the atom has an ANISOU record. A single B field at an
+anisotropic atom is its reported equivalent value. The six tensor components
+are outside this comparison. The root and manual checkpoints describe only
+the selected model. Changed atom identities or missing atoms give a partial
+comparison. Alternate conformations and multiple models remain unresolved.
+The values describe the saved models. Density support and chemical acceptance
+require independent evidence.
+
+When the log ends with one complete Phenix Start/Final recap, the reported
+starting Rwork/Rfree is the native scaled start. The trajectory retains the
+actual observations, including initial scaling. A recap with no earlier
+observations supplies its own two endpoints. Older or incomplete logs retain
+the original chronological interpretation.
+
+The AutoRefine round report can also contain `statistics.coordinate_weight_steps`.
+Each entry identifies the XYZ step, the number of printed trials and the chosen
+weight at log precision. A single completed trial and the explicit Phenix
+“Best weight” table are distinguished. A recognized step with incomplete or
+unrecognized evidence reports an unknown weight. In the five-cycle A:PDU
+comparison the last chosen weights were 10.000 and 1.517. The coordinates from
+that comparison alone cannot isolate how much of the change came from the plane.
+
+When a captured positive-weight angle has an exact 180° target and any two of
+its atoms have distinct known positions in the fitted group or its linear
+continuation, the report measures the third against the original plane. The
+witness preserves the original ordered angle, supporting atom indices, target,
+weight and achieved angle. Each extra atom is listed once using the first
+grounded witness. It has no effect on the fit. A freely rotatable appendage
+cannot acquire a plane constraint merely by being bonded to the ring.
+
+All distances use the literal Cartesian coordinates in the capture. The native
+plane and angle symmetry operators were not recorded. Interpreting the result as a
+restraint departure therefore requires a common crystal image. Native residuals,
+cross-symmetry planes, chemical approval and automatic adoption remain unassessed.
+This diagnostic creates no file and does not alter a force, checkpoint or threshold.
 
 ### Explicit actual-final scalar geometry (C407)
 
@@ -13867,6 +14650,60 @@ checking and generalized modified-parent-modified coverage. No source/schema/
 default edits or migration; only compact evidence is committed. See
 `dy_actual_refinement_survival_2026_11_16`.
 
+
+### DY ring orientation and unrequested interbase bond (C456)
+
+The same triazolyl–pyrimidinone base on a protected ribose has a crystallographic
+interplane angle of **3.1(2)°**. Its measurement supports a near-planar preference
+for DY. The standard uncertainty describes that crystal measurement. A different
+N-linked triazole, 4-(triazol-1-yl)aniline, has a reported angle of 34.57(7)°.
+Chemical identity matters when transferring this restraint.
+[Smykalla et al.](https://doi.org/10.1007/BF01195698)
+[Triazolylaniline structure](https://doi.org/10.1107/S1600536810052025)
+
+The C346 dictionary gave all four torsions across C4–N1T zero native weight.
+The packaged preview had a 0.49° ring angle. C346 went from 6.90° to 9.39° in
+five cycles. Its full geometry file also contains an unrequested 1.430 Å bond
+from A:12 adenine N6 to B:4 DY C5T. The same automatic linking attached N6 to
+N4T or N2T in other starting orientations. The existing declared-topology
+audit recovered the extra bond directly from the saved C346 capture.
+
+On the 4.02 Å substituted host, one pair-specific Phenix exclusion suppressed
+automatic linking between A:12 and B:4. All 38 declared O3′–P links and the
+targets of all 958 ordinary covalent bonds were verified. One trial dictionary
+adds a plane through the six pyrimidine and five triazole heavy atoms with a
+0.10 Å standard deviation per atom. ReadySet retained its exact bytes. Each
+entry below is the unsigned angle between the two separately fitted ring
+planes from the final native coordinates after five Phenix cycles.
+
+| Starting orientation | Before refinement | Existing dictionary | Trial shared plane |
+| --- | ---: | ---: | ---: |
+| As built | 6.9° | 10.6° | 3.9° |
+| +60° about C4–N1T | 60.8° | 55.4° | 5.0° |
+| −60° about C4–N1T | 59.6° | 54.8° | 11.8° |
+| Half-turn | 7.8° | 13.5° | 8.3° |
+
+The half-turn left N3–C4–N1T–N2T at +3.1° in the plane trial. The original
+orientation finished at +176.6°. Those two flat arrangements expose different
+nitrogen edges. A relaxed isolated MMFF94s scan favored the orientation near
+180°. Pairing and metal-binding intent require separate evidence. The source
+graph pilot recognized fully renamed DY and excluded the nonmatching PIM,
+triazolylaniline, 5-methyl and uridine controls. Automatic restraint selection
+and the transferable plane weight remain open. The evidence record
+`dy_ring_junction_planarity_2026_11_20` includes all comparison arms and the
+replay recipe. These were tests with substituted host reflections.
+
+C503 followed the individual atom pairs in the as-built orientation. Phenix
+had already made the N6–C5T bond at zero cycles. Excluding just those atoms
+made Phenix attach N6 to N4T at a target of 1.350 Å. With both exact pairs
+excluded, the native manager retained all 958 ordinary covalent bonds and
+their targets, including all 38 phosphodiester links. The remaining restraint
+families were identical at the starting coordinates. After five cycles the two
+interbase distances were 2.913 and 3.104 Å. The rings finished 10.64° apart
+with the signed torsion at +178.70°, reproducing the older site-wide control.
+Each atom selection resolved independently to exactly one heavy atom. This
+recovery is qualified for this noncovalent test pair. The selected lattice
+images and the chemical intent still need to be established in a new case.
 
 ### Verify actual canonical identity after Coot mutation (C347)
 

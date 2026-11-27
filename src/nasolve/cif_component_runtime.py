@@ -49,7 +49,30 @@ def _bounded_inventory(root, *, max_files, max_bytes, partition_prefixes=()):
             max_bytes=max_bytes, partition_prefixes=partition_prefixes)}
 
 
-def _bounded_members(root, *, max_files, max_bytes, manifest=False, partition_prefixes=()):
+class CombinedEvidenceLimit(ValueError):
+    """Individually bounded sources exceeded one combined storage allowance."""
+
+
+def _snapshot_roots(roots, *, max_files, max_bytes, message):
+    """Freeze multiple inputs under one allowance before reading each payload."""
+    count = size = 0
+    snapshots = {}
+
+    def reserve(member_size):
+        nonlocal count, size
+        count += 1
+        size += member_size
+        if count > max_files or size > max_bytes:
+            raise CombinedEvidenceLimit(f'{message} while adding {name} '
+                             f'({count}/{max_files} files, {size}/{max_bytes} bytes)')
+
+    for name, root in roots.items():
+        snapshots[name] = {} if root is None else dict(_bounded_members(
+            root, max_files=MAX_FILES, max_bytes=MAX_BYTES, reserve=reserve))
+    return snapshots
+
+
+def _bounded_members(root, *, max_files, max_bytes, manifest=False, partition_prefixes=(), reserve=None):
     # The complete continuation owner can inventory two separately bounded
     # children. Public/child artifacts continue through _tree's original caps.
     _need(type(max_files) is int and 0 < max_files <= 2*MAX_FILES
@@ -76,6 +99,8 @@ def _bounded_members(root, *, max_files, max_bytes, manifest=False, partition_pr
         size=p.stat().st_size
         _need(size<=MAX_FILE_BYTES and sizes[bucket]+size<=max_bytes and counts[bucket]<max_files,
               'Frozen tree exceeds supported bounds')
+        if reserve is not None:
+            reserve(size)
         data=_read(p)
         _need(len(data)==size, 'Frozen tree member changed while reading')
         counts[bucket]+=1; sizes[bucket]+=size
@@ -200,7 +225,7 @@ def _resources(root, inputs, *, write=False):
         _need(bool(paths), 'Missing selected resources')
         for i,source in enumerate(paths):
             target=root/folder/('model.pdb' if key=='model' else f'{i:03d}{suffix}')
-            data=_read(source)
+            data=source if isinstance(source,bytes) else _read(source)
             if write:target.parent.mkdir(exist_ok=True);target.write_bytes(data)
             _need(_read(target)==data, 'Runtime resource differs from verified selection')
             ref=_reference(target,root)
@@ -216,7 +241,7 @@ def _storage(root):
 
 
 @contextmanager
-def component_runtime_evidence(root, value):
+def component_runtime_evidence(root, value, *, subtree=None):
     """Keep temporary scientific paths inside this read scope; public paths stay put."""
     root=Path(root)
     if 'evidence_storage' not in value:
@@ -227,7 +252,7 @@ def component_runtime_evidence(root, value):
     _need(type(value.get('schema_version')) is int and value['schema_version']==2
           and _json_bytes(value['evidence_storage'])==_json_bytes(_storage(root)),
           'Unsupported or changed compact runtime storage')
-    with expanded_runtime_evidence(root/ARCHIVE,value['evidence_storage']['archive']['sha256']) as temporary:
+    with expanded_runtime_evidence(root/ARCHIVE, value['evidence_storage']['archive']['sha256'], subtree=subtree) as temporary:
         yield temporary
 
 
@@ -301,16 +326,18 @@ def prepare_original_component_runtime_bundle(bundle, baseline_receipt, candidat
 
 
 def prepare_runtime_readyset_bundle(manifest, baseline_receipt, readyset_directory, output,
-        *, endpoint_receipt=None, atom_order_directory=None, compact_evidence=False):
+        *, endpoint_receipt=None, atom_order_directory=None, compact_evidence=False, explicit_request_policy=None):
     """Freeze selected-parent proof and an optional exact ReadySet continuation.
 
     Reuse the public source freezer; no recovery owner or checkpoint is created.
     A failed optional improvement preserves the complete qualified parent runtime.
     """
     from .cif_runtime_readyset import _parent
+    from .cif_terminal_qualification import custom_request_policy_fields
+    policy_fields = custom_request_policy_fields(explicit_request_policy)
     parent = _parent(manifest); output = Path(output).absolute()
     controls = dict(runtime='evidence/runtime', readyset_directory='evidence/readyset',
-        baseline_receipt=None, endpoint_receipt=None, atom_order_directory=None)
+        baseline_receipt=None, endpoint_receipt=None, atom_order_directory=None, **policy_fields)
     roots = {'runtime':parent['manifest_path'].parent,
              'readyset':Path(readyset_directory) if readyset_directory is not None else None}
     for field,folder,supplied in [('baseline_receipt','baseline',baseline_receipt),
@@ -328,14 +355,11 @@ def _publish(output, roots, controls, policy_id, *, compact_evidence=False):
     _need(type(compact_evidence) is bool, 'Require an explicit boolean compact-evidence choice')
     if output.exists() or output.is_symlink(): raise FileExistsError(output)
     _need(not any(p.is_symlink() for p in output.parents), 'Unsafe runtime destination')
-    snapshots={}
-    for name,source in roots.items():
+    for source in roots.values():
         if source is not None:
-            source=source.absolute();_need(not output.resolve().is_relative_to(source.resolve()), 'Cannot publish inside source evidence')
-            snapshots[name]=_tree(source)
-        else:snapshots[name]={}
-    _need(sum(len(s) for s in snapshots.values())<=MAX_FILES
-        and sum(len(b) for s in snapshots.values() for b in s.values())<=MAX_BYTES, 'Combined source exceeds supported bounds')
+            _need(not output.resolve().is_relative_to(source.resolve()), 'Cannot publish inside source evidence')
+    snapshots = _snapshot_roots(roots, max_files=MAX_FILES, max_bytes=MAX_BYTES,
+        message='Combined source exceeds supported bounds')
     output.parent.mkdir(parents=True,exist_ok=True)
     with TemporaryDirectory(prefix='.component-runtime-',dir=output.parent) as temporary:
         root=Path(temporary)/'bundle';root.mkdir()
@@ -377,21 +401,40 @@ def verify_component_runtime_resources(path, value):
     return [_resolve_reference(root,r) for r in rows]
 
 
+def _checked_resource_paths(path, value):
+    paths = verify_component_runtime_resources(path, value)
+    first_phil = 1 + len(value['resources']['dictionaries'])
+    return dict(model=paths[0], dictionaries=paths[1:first_phil], phils=paths[first_phil:],
+                manifest=value, manifest_path=path)
+
+
+@contextmanager
+def _runtime_selection(root, value):
+    if value['policy_id'] == CONTINUATION_POLICY_ID and 'evidence_storage' in value:
+        from .cif_runtime_readyset import _compact_readyset_selection
+        with _compact_readyset_selection(root, value) as selection:
+            yield selection
+    else:
+        with component_runtime_evidence(root, value) as evidence:
+            yield _selection(evidence, value['source_selection'], policy_id=value['policy_id'])
+
+
+def _check_runtime_selection(root, value, selection):
+    review, decision, inputs, unavailable = selection
+    resources = _resources(root,inputs)
+    expected = _manifest(root,value['source_selection'],review,decision,resources,unavailable,
+                         policy_id=value['policy_id'],compact_evidence='evidence_storage' in value)
+    _need(_json_bytes(value)==_json_bytes(expected), 'Runtime selection or evidence does not replay')
+
+
 def resolve_component_runtime_bundle(path, value=None):
     """Replay selected source/native evidence before exposing any runtime paths."""
     path=Path(path);value=_load_json(path) if value is None else value;root=path.parent
     try:
         verify_component_runtime_resources(path,value)
-        with component_runtime_evidence(root,value) as evidence:
-            review,decision,inputs,unavailable=_selection(evidence,value['source_selection'],policy_id=value['policy_id'])
-            resources=_resources(root,inputs)
-        expected=_manifest(root,value['source_selection'],review,decision,resources,unavailable,policy_id=value['policy_id'],
-                           compact_evidence='evidence_storage' in value)
-        _need(_json_bytes(value)==_json_bytes(expected), 'Runtime selection or evidence does not replay')
-        verify_component_runtime_resources(path,value)
-        return dict(model=_resolve_reference(root,resources['model']),
-            dictionaries=[_resolve_reference(root,r) for r in resources['dictionaries']],
-            phils=[_resolve_reference(root,r) for r in resources['phils']],manifest=value,manifest_path=path)
+        with _runtime_selection(root, value) as selection:
+            _check_runtime_selection(root,value,selection)
+        return _checked_resource_paths(path, value)
     except (KeyError,TypeError,IndexError,OSError) as exc:
         raise ValueError('Incomplete or changed component runtime bundle') from exc
 

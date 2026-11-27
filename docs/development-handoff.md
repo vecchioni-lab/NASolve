@@ -5,6 +5,30 @@ Pine and the separate Cedar/Willow branches are not changed by this integration.
 combines the existing metal feature with the qualified shared chemistry, native
 observation and storage owners; it introduces no new scientific policy.
 
+## Isolated ordinary-owner receiving rehearsal — 27 November
+
+A detached rehearsal combines Alder `1efcd034` with the already-qualified Cedar
+owner pin `3453a9f8`. It receives the complete prepared-backbone, registered
+phosphate and V12 dependency chain. This working candidate is not a delivered
+merge or a newly accepted scientific model. Existing ordinary readers, the
+unselected source parent and every historical native policy retain their meaning.
+
+The receiving boundary freezes the old native-recipe helper for V10–V12 as
+well as V5–V8: the newer live helper is not the recorded worker. Six new cases
+fail before that fix. The focused source panels pass 354 cases; 31 installed
+cases pass after removal of the temporary build source. The combined owner reads
+the genuine unselected PDU parent with seven inherited restraints and 11 source
+input roles, preserving all 215 saved files. It still has no approved AutoSol HL.
+These are receiving/software checks, not a new mixed executor or scientific fit.
+
+Cedar's newer chemistry queue/evidence own their original scientific claims;
+Alder's existing integration qualification below stays distinct. Exact commands,
+the initial host-environment failure (35 cases lacked Gemmi), subsequent native
+qualification and compatibility limits are retained under
+`branch-artifacts/Alder/owner-integration-20261127-01/`. Phenix 2.2.1-6174 supplies
+libraries only; no new scientific refinement, Coot launch or full suite. The
+installed 183-module read uses its own copied package and retires the build files.
+
 ## Current metal-science edge
 
 Five older FT anomalous/f″ trials replay successfully; their original observations

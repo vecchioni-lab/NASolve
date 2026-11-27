@@ -56,14 +56,16 @@ def native_plane_evaluator(gr, flex):
     return evaluate
 
 
-def qualify_linked_plane_energy(before, after, source, dictionary, support, component, candidate, references):
+def qualify_linked_plane_energy(before, after, source, dictionary, support, component, candidate, references, *,
+                                bond_representation_policy=None):
     """Attribute the full native delta to old/new whole-plane evaluations.
 
     Each reference pairs before/after proxy, exact local sites, observed symmetry
     operations and two single/container evaluations. Added atoms alone are not an
     energy model: fitting the completed plane changes forces on old members too.
     """
-    inventory = qualify_linked_plane_candidate(before,after,source,dictionary,support,component,candidate)
+    inventory = qualify_linked_plane_candidate(before,after,source,dictionary,support,component,candidate,
+        bond_representation_policy=bond_representation_policy)
     _need(inventory['inventory_checks_pass'], 'Require exact plane inventory qualification first')
     try:
         left,right = _snapshots(before),_snapshots(after)

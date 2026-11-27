@@ -57,6 +57,42 @@ def test_projection_records_declared_coordinates_and_original_monomer_dialect():
     assert not any('/Users/' in json.dumps(value) for value in (binding,report))
 
 
+@pytest.mark.parametrize("kind", ["ccd", "monomer"])
+def test_connected_reader_order_matches_the_existing_permutation_and_keeps_original(tmp_path, kind):
+    from importlib.resources import files
+    from nasolve.cif_connected_atom_order import prepare_connected_atom_order
+    from nasolve.cif_generation_input import CONNECTED_INPUT_POLICY, source_input_files
+    from tests.test_cif_stereochemistry_audit import tetrahedron, write
+
+    source = tmp_path / "source.cif"
+    if kind == "ccd":
+        code = "Q17"
+        write(source, tetrahedron()[0])
+    else:
+        code = "1AP"
+        source.write_bytes(files("nasolve").joinpath("data/ligands/1AP.cif").read_bytes())
+    original = source.read_bytes()
+    ordered = tmp_path / "ordered.cif"
+    permutation = prepare_connected_atom_order(source, code, ordered)
+    assert permutation["changed"]
+    expected, ordinary_files = source_input_files(ordered.read_bytes(), code)
+    binding, projected = source_input_files(original, code, policy=CONNECTED_INPUT_POLICY)
+    assert set(projected) == set(ordinary_files)
+    for name in ("graph.cif", "reader.cif", "consumer.cif"):
+        assert projected["prepared/" + name] == ordinary_files["prepared/" + name]
+    record = json.loads(projected["prepared/preparation.json"])
+    assert record["source"]["sha256"] == sha256(original).hexdigest()
+    assert record["connected_atom_order"] == {
+        "policy_id": permutation["policy_id"], "source_sha256": permutation["source_sha256"],
+        "consumer_sha256": permutation["consumer_sha256"], "changed": True,
+        "atom_count": len(permutation["output_atom_order"])
+    }
+    assert binding["consumer"] == expected["consumer"]
+    assert binding["input_files"] != expected["input_files"]
+    assert source.read_bytes() == original
+    assert source_input_files(original, code, policy=CONNECTED_INPUT_POLICY) == (binding, projected)
+
+
 def test_input_policy_changes_cache_recipe_but_not_source_authority(case):
     module,args,kwargs,*_=case
     old=module.generation_dictionary_options(kwargs['generation'])
