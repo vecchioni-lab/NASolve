@@ -181,3 +181,34 @@ def test_placement_retains_crystal_scale_in_the_original_coordinate_frame(tmp_pa
     result = run(paths, context)
     assert result["bystander_records_preserved"]
     assert (paths[-1] / "model.pdb").read_bytes().startswith(header)
+
+
+@pytest.mark.parametrize(("name", "element", "field"), [("P", "P", " P  "), ("OP2", "O", " OP2"),
+    ("C5'", "C", " C5'"), ("CL1", "CL", "CL1 "), ("1H", "H", "1H  "), ("C123", "C", "C123")])
+def test_pdb_fields_keep_the_element_alignment_and_the_full_atom_name(name, element, field):
+    from nasolve.cif_whole_furanose import _pdb_atom_field
+
+    assert _pdb_atom_field(name, element) == field
+
+
+def test_old_furanose_model_fields_replay_after_relocation(tmp_path):
+    from nasolve.cif_fana_component import _digest, _load
+    from nasolve.cif_whole_furanose import read_whole_furanose_control
+
+    original = tmp_path / "original"
+    original.mkdir()
+    paths, context, _ = setup(original)
+    # Only the original atom writer and its unmarked selection differ in the old artifact.
+    with patch("nasolve.cif_whole_furanose._pdb_atom_field", side_effect=lambda name, _: name.rjust(4)):
+        initial = run(paths, context)
+    control = paths[-1]
+    selection_path = control / "selection.json"
+    selection = _load(selection_path)
+    assert selection.pop("pdb_atom_name_policy") == "element-aligned-pdb-name-v1"
+    selection_path.write_text(json.dumps(selection))
+    receipt = _load(control / "receipt.json")
+    receipt["files"]["selection.json"] = _digest(selection_path)
+    (control / "receipt.json").write_text(json.dumps(receipt))
+    moved = original.rename(tmp_path / "relocated") / control.name
+    before = snapshot(moved)
+    assert read_whole_furanose_control(moved) == initial and snapshot(moved) == before

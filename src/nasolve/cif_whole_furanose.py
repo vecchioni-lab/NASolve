@@ -27,12 +27,20 @@ BASE_POLICY_ID = 'cif-base-anchored-whole-furanose-control-v1'
 MODEL_BASE_POLICY_ID = 'cif-model-linked-base-anchored-furanose-v1'
 _MAPPED_RING_FRAME = 'source-ring-and-workbook-roles-v1'
 _EDGE_FRAME = 'canonical-uracil-pairing-edge-v1'
+_PDB_ATOM_FIELDS = 'element-aligned-pdb-name-v1'
 MODEL_EDGE_POLICY_ID = 'cif-model-linked-canonical-uracil-edge-v1'
 _LEAVING_FLAG = '_chem_comp_atom.pdbx_leaving_atom_flag'
 _RETAINED_PHOSPHATE_OXYGENS = {'OP1', 'OP2', 'O1P', 'O2P'}
 _PROFILES = {'unbridged-furanose-phosphate-v1', 'two-o-four-c-methylene-furanose-phosphate-v1'}
 _INPUTS = {'source.cif', 'numerical.cif', 'host.cif', 'Ligands.xlsx', 'frame.pdb', 'context.json', 'selection.json'}
 _OUTPUTS = {'model.pdb', 'placement.json'}
+
+
+def _pdb_atom_field(name, element):
+    """Position a source atom ID in the four-column PDB atom-name field."""
+    if len(name) < 4 and len(element) == 1 and name[0].isalpha():
+        return ' ' + name.ljust(3)
+    return name.ljust(4)
 
 
 def _hand(a, b):
@@ -173,7 +181,9 @@ def _derive(root, *, base_anchored=False, model_ports=False, canonical_at_edge=F
     selection = _load(root/'selection.json')
     fields = ('code', 'base_frame_roles') if base_anchored else ('code',)
     _object(selection, fields + (('ordinary_backbone',) if model_ports else ()),
-            ('leaving_atom_source',) if model_ports else ())
+            ('pdb_atom_name_policy',) + (('leaving_atom_source',) if model_ports else ()))
+    if 'pdb_atom_name_policy' in selection and selection['pdb_atom_name_policy'] != _PDB_ATOM_FIELDS:
+        raise ValueError('Unknown PDB atom-name field policy')
     automatic_frame = model_ports and selection.get('base_frame_roles') == _MAPPED_RING_FRAME
     if canonical_at_edge and selection['base_frame_roles'] != _EDGE_FRAME:
         raise ValueError('Require the declared canonical uracil pairing frame')
@@ -324,7 +334,9 @@ def _derive(root, *, base_anchored=False, model_ports=False, canonical_at_edge=F
         serial += 1; fields = [f'{x:8.3f}' for x in moved[n]]
         if len(n) > 4 or serial > 99999 or any(len(f) != 8 for f in fields):
             raise ValueError('Placed atom exceeds supported PDB fields')
-        replacement.append(f'HETATM{serial:5d} {n:>4} {code:>3} {" " if chain == "_" else chain}{int(resid):4d}    {"".join(fields)}  1.00 20.00          {elements[n]:>2}\n')
+        # Older capsules replay their exact original four-column fields.
+        atom_field = _pdb_atom_field(n, elements[n]) if 'pdb_atom_name_policy' in selection else n.rjust(4)
+        replacement.append(f'HETATM{serial:5d} {atom_field} {code:>3} {" " if chain == "_" else chain}{int(resid):4d}    {"".join(fields)}  1.00 20.00          {elements[n]:>2}\n')
     result = []; inserted = False
     for line in lines:
         if line[:6] in {'ATOM  ', 'HETATM'} and (line[21].strip() or '_', str(int(line[22:26]))) == (chain, resid):
@@ -429,6 +441,7 @@ def _prepare_control(source, numerical, host_source, workbook, frame, output, *,
     if any(p.is_symlink() for p in out.parents) or any(p.is_relative_to(out.resolve()) for p in paths.values()):
         raise ValueError('Output must be separate and cannot traverse symlinks')
     before = {name: p.read_bytes() for name, p in paths.items()}
+    selection = {**selection, 'pdb_atom_name_policy': _PDB_ATOM_FIELDS}
     # Validate before making the durable attempt, then rederive from frozen inputs.
     with tempfile.TemporaryDirectory(prefix='nasolve-whole-preflight-') as temporary:
         stage = Path(temporary).resolve(strict=True)

@@ -71,6 +71,9 @@ def test_canonical_edge_places_a_c_glycoside_and_replays_its_actual_glycosidic_r
     assert not (original / "older").exists()
     before = snapshot(original)
     result = prepare_base_anchored_furanose_from_model(*paths, original / "edge", canonical_at_edge=True, **args)
+    fields = {l[12:16].strip(): l[12:16] for l in (original / "edge" / "model.pdb").read_text().splitlines()
+              if l.startswith("HETATM") and l[21:26] == "A   2"}
+    assert [fields[n] for n in ("P", "C5", "O2", "O2'", "CM2")] == [" P  ", " C5 ", " O2 ", " O2'", " CM2"]
     assert result["alignment"] == "CANONICAL_URACIL_EDGE"
     assert result["target_frame_atoms"] == ["C5", "N3", "O2"]
     assert result["host_frame_atoms"] == ["N1", "N3", "O4"]
