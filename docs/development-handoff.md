@@ -5,6 +5,17 @@ Pine and the separate Cedar/Willow branches are not changed by this integration.
 combines the existing metal feature with the qualified shared chemistry, native
 observation and storage owners; it introduces no new scientific policy.
 
+## A01 registered complete-request intake — 27 November
+
+The next input-consumer step freezes the declared registered-backbone files in the
+existing complete-request owner and rederives local component contexts after
+relocation. Canonical image endpoints remain separate. Inspection is explicitly
+blocked and execution creates no children until native/result consumers support
+the role. The real FT role reproduces its two image links and retained D:1; this
+is not a complete FT request, new parent or fit. Focused checks pass 269 cases;
+six installed cases pass with build source removed. Active Alder remains unchanged.
+[Interface, evidence and next consumer boundary](metal-ordinary-receiving.md#frozen-registered-input-at-complete-request-intake--27-november).
+
 ## Explicit registered preparation context — 27 November
 
 The missing FT preparation is now localized to the pre-preparation treatment of

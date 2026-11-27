@@ -21,7 +21,7 @@ from .cif_restraint_context import derive_restraint_context
 
 
 def initialize_postmr_dictionary_request(model, report, components, source_output, output, *,
-        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, frozen_sources=None, construction_inputs=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, select_anionic_phosphate=False, reader_control_policy=None, **execution_limits):
+        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, frozen_sources=None, construction_inputs=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, select_anionic_phosphate=False, reader_control_policy=None, registered_preparation=None, **execution_limits):
     """Freeze ordinary sources and derived contexts for one existing request.
 
     Components specify code/generation and optional retained_snapshot,
@@ -43,6 +43,11 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     Alternatively explicit_na_policy binds an existing C80 artifact to the exact
     supplied compiled PHIL and model, without re-guessing or compiling relationships.
     Its selected component source bytes must agree with ordinary acquisition.
+
+    Optional registered_preparation names registration_model, registration,
+    discovery and continuations. This intake-only role uses this report intent,
+    preserves image bonds separately and blocks execution pending a qualified
+    native/result consumer. Omission keeps the existing local-only contract.
 
     Optional frozen_sources consumes a previously frozen ordinary source selection
     without rediscovery. Its complete component set must match. In this mode,
@@ -138,7 +143,15 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
               for d in destinations for p in protected)
           and all(not p.absolute().is_relative_to(d) for d in destinations for p in inputs),
           'PostMR request destinations overlap an input or installation')
-    model_context = derive_prepared_model_context(model, report, codes)
+    registered_input = None
+    if registered_preparation is None:
+        model_context = derive_prepared_model_context(model, report, codes)
+    else:
+        from .cif_registered_preparation_input import capture_registered_backbone
+        _need(isinstance(registered_preparation,dict) and 'report' not in registered_preparation,
+              'Registered preparation uses the explicit ordinary report intent')
+        registered_input = dict(registered_preparation,report=report)
+        model_context = capture_registered_backbone(model,codes,registered_input)['view']
     restraint_context = derive_restraint_context(model, phils) if phils else None
     if construction_inputs is not None:
         # Read only the declared construction closure. Ordinary runs may contain
@@ -171,7 +184,8 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
         artifact_options['artifact_policy'] = policy
     return initialize_dictionary_request(sources, components, model, request,
         consumer=consumer, expected_links=model_context['expected_links'], native_context=native_context,
-        supplementary_phils=phils, model_context=model_context, restraint_context=restraint_context,
+        supplementary_phils=phils, model_context=model_context if registered_input is None else None,
+        registered_preparation=registered_input, restraint_context=restraint_context,
         continuation_options=continuation_options, literal_na_inputs=literal_na_inputs, explicit_na_policy=explicit_na_policy, construction_inputs=construction_inputs,
         **({'automatic_plane_support':True} if automatic_plane_support else {}),
         **({'bond_targets':bond_targets} if bond_targets is not None else {}),

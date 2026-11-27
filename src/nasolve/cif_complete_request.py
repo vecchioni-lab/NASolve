@@ -242,7 +242,7 @@ def _artifact_options(config):
                 **_artifact_fields(config.get('artifact_policy')))
 
 
-def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False, optional_failure_policy=None, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=None, compact_evidence=False, plane_support=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False):
+def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False, optional_failure_policy=None, model_context=None, registered_backbone=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=None, compact_evidence=False, plane_support=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False):
     bond_discovery_fields(automatic_bond_targets,bond_targets)
     _need(not automatic_bond_targets or artifact_policy in (CAPTURE_ARTIFACT_POLICY, STAGED_ARTIFACT_POLICY),
           'Automatic bond discovery requires the v4 native-capture or v5 staged artifact policy')
@@ -308,11 +308,18 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
             allowed.update(f'resources/{code}/'+n for n in _terminal(inputs/resource,controls['consumer']))
     _need(_same(_links(inputs/'model.pdb',all_contexts,controls['expected_links']), controls['expected_links']), 'Model links differ')
     from .cif_native_context import RETAINED_TERMINAL_POLICY_ID, MAPPED_TERMINAL_POLICY_ID, prepared_native_context
+    _need(model_context is None or registered_backbone is None, 'Select one preparation context owner')
+    effective_context = model_context
+    if registered_backbone is not None:
+        from .cif_registered_preparation_input import read_registered_backbone, FILES, ROLE
+        effective_context, _ = read_registered_backbone(inputs/'model.pdb', codes, inputs, registered_backbone)
+        allowed.update(ROLE+'/'+name for name in (*FILES.values(),'intent.json'))
     retained = controls['native_context']['policy_id'] in (RETAINED_TERMINAL_POLICY_ID,MAPPED_TERMINAL_POLICY_ID)
-    _need(not retained or model_context is not None,
+    _need(not retained or effective_context is not None,
           'Retained terminal phosphates require frozen prepared-model intent')
-    if model_context is not None:
-        derived = validate_prepared_model_context(inputs/'model.pdb', model_context)
+    if effective_context is not None:
+        derived = (validate_prepared_model_context(inputs/'model.pdb', model_context)
+                   if registered_backbone is None else effective_context)
         if retained:
             _need(_same(controls['native_context'], prepared_native_context(inputs/'model.pdb',derived,
                 custom_restraints=controls['native_context']['custom_restraints'],
@@ -326,7 +333,7 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
               and _same(derived['expected_links'], controls['expected_links']),
               'Complete request differs from derived model context')
     if restraint_context is not None:
-        _need(model_context is not None and controls['native_context']['custom_restraints'] == 'required',
+        _need(effective_context is not None and controls['native_context']['custom_restraints'] == 'required',
               'Explicit restraint ownership requires model context and required custom restraints')
         validate_restraint_context(inputs/'model.pdb', [inputs/n for n in names], restraint_context)
     compiler_refs = _compiler_references(literal_na_inputs,explicit_na_policy)
@@ -338,7 +345,7 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
         _need([_read(p) for p in compiled.get('interpretation_control_phils', [])]
               == [_read(p) for p in reader_phils], 'Captured interpretation control bytes or order differ')
         _need(reference == dict(anchor=ANCHOR,path='inputs/'+folder,policy_id=compiled['report']['policy_id'])
-              and model_context is not None and restraint_context is not None,
+              and effective_context is not None and restraint_context is not None,
               'Compiler provenance requires both owned contexts and its exact reference')
         _need(_read(compiled['model']) == _read(inputs/'model.pdb')
               and [_read(p) for p in compiled['phils']] == [_read(inputs/n) for n in names],
@@ -349,7 +356,7 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
         allowed.update(folder+'/'+n for n in _tree(inputs/folder))
     construction_ref = {}
     if construction_inputs is not None:
-        bound = _construction_input(inputs/'construction',inputs/'model.pdb',selected['sources'],model_context)
+        bound = _construction_input(inputs/'construction',inputs/'model.pdb',selected['sources'],effective_context)
         if 'furanose_substitution' in bound:
             substitution = bound['furanose_substitution']
             code = substitution['code']
@@ -376,6 +383,7 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
     return _json(_bytes(dict(controls=controls,limits=limits,max_attempts=maximum,components=components,
         input_files=_inventory(files),input_directories=directories,
         **({'model_context':model_context} if model_context is not None else {}),
+        **({'registered_backbone':registered_backbone} if registered_backbone is not None else {}),
         **({'restraint_context':restraint_context} if restraint_context is not None else {}),
         **compiler_refs, **construction_ref, **_artifact_fields(artifact_policy),
         **repair.compact_evidence_fields(compact_evidence),
@@ -393,7 +401,7 @@ def _request(root):
           and type(r['schema_version']) is int and r['schema_version'] == 1 and r['policy_id'] == POLICY_ID
           and _uuid(r['request_id']) and r['inputs'] == dict(anchor=ANCHOR,path='inputs'), 'Invalid complete request')
     c = r['configuration']
-    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'],qualify_no_repair=c.get('qualify_no_repair',False),optional_failure_policy=c.get('optional_failure_policy'),model_context=c.get('model_context'),restraint_context=c.get('restraint_context'),continuation_options=c.get('continuation'),literal_na_inputs=c.get('literal_na_inputs'),explicit_na_policy=c.get('explicit_na_policy'),construction_inputs=c.get('construction_inputs'),artifact_policy=c.get('artifact_policy'),compact_evidence=c.get('compact_evidence',False),plane_support=c.get('plane_support'),automatic_plane_support='plane_generation_policy' in c,bond_targets=c.get('bond_targets'),automatic_bond_targets='bond_discovery_policy' in c)
+    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'],qualify_no_repair=c.get('qualify_no_repair',False),optional_failure_policy=c.get('optional_failure_policy'),model_context=c.get('model_context'),registered_backbone=c.get('registered_backbone'),restraint_context=c.get('restraint_context'),continuation_options=c.get('continuation'),literal_na_inputs=c.get('literal_na_inputs'),explicit_na_policy=c.get('explicit_na_policy'),construction_inputs=c.get('construction_inputs'),artifact_policy=c.get('artifact_policy'),compact_evidence=c.get('compact_evidence',False),plane_support=c.get('plane_support'),automatic_plane_support='plane_generation_policy' in c,bond_targets=c.get('bond_targets'),automatic_bond_targets='bond_discovery_policy' in c)
     _need(_same(c,expected), 'Frozen complete request changed')
     return r
 
@@ -401,7 +409,7 @@ def _request(root):
 def initialize_dictionary_request(source_selection, components, model, output, *, consumer,
         expected_links, native_context, supplementary_phils=(), native_timeout_seconds=90,
         component_timeout_seconds=600, attribution_timeout_seconds=90,
-        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=ARTIFACT_POLICY, compact_evidence=True, plane_support=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, reader_control_policy=None):
+        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, registered_preparation=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=ARTIFACT_POLICY, compact_evidence=True, plane_support=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, reader_control_policy=None):
     """Freeze all declared inputs before children exist. Require a fresh destination.
 
     One to sixteen component types declare code, contexts and generation settings, with optional
@@ -412,6 +420,10 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     revalidates them against the frozen recipe/pins/relative dispatchers. New
     requests independently qualify a no-repair original by default; historical
     requests without that frozen mode retain their original no-op behavior.
+    Explicit registered_preparation instead freezes source model, registration,
+    discovery, continuations and report intent as a distinct registered role.
+    Only local selected components with canonical image endpoints are supported.
+    Inspection remains BLOCKED; no native/result consumer or execution is enabled.
     An optional prepared-model context is rederived from frozen model/intent;
     supplementary PHIL additionally requires a frozen explicit restraint context.
     Its bounded grammar keeps the composer as the only site-modifier owner.
@@ -469,6 +481,16 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     _need(isinstance(components,(list,tuple)) and len(components) == len(codes), 'Incomplete component declarations')
     trees = {'sources':_root(source_selection)}; originals = {Path(model):_read(model)}
     files = {'model.pdb':originals[Path(model)]}; sites = {}; directories = set()
+    _need(model_context is None or registered_preparation is None, 'Select one preparation context owner')
+    registered_ref = None
+    effective_context = model_context
+    if registered_preparation is not None:
+        from .cif_registered_preparation_input import capture_registered_backbone, ROLE
+        capture = capture_registered_backbone(model,codes,registered_preparation)
+        _need(all(path not in originals or originals[path] == raw
+                  for path,raw in capture['originals'].items()), 'Registered preparation model changed')
+        files.update(capture['files']); originals.update(capture['originals']); directories.add(ROLE)
+        registered_ref, effective_context = capture['reference'], capture['view']
     support_config = _source_plane_support_snapshot(
         {code:row['source'] for code,row in selected['sources'].items()},plane_support)[0]
     bond_config=_source_bond_target_choices(
@@ -515,7 +537,7 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     construction_ref = None
     if construction_inputs is not None:
         source_root = _root(construction_inputs)
-        bound = _construction_input(source_root,model,selected['sources'],model_context)
+        bound = _construction_input(source_root,model,selected['sources'],effective_context)
         files.update({'construction/'+n:b for n,b in bound['files'].items()})
         originals.update({source_root/n:b for n,b in bound['files'].items()})
         directories.update(str(p) for n in bound['files'] for p in (Path('construction')/n).parents if str(p) != '.')
@@ -536,7 +558,7 @@ def initialize_dictionary_request(source_selection, components, model, output, *
         validate_restraint_context(model, supplementary_phils, restraint_context, require_scoped_names=True)
     unchanged(); root.mkdir(parents=True,exist_ok=False); _sync_directory(root.parent)
     _freeze(root/'inputs',files,sorted(directories))
-    config = _configuration(root/'inputs',controls,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,model_context=model_context,restraint_context=restraint_context,continuation_options=continuation_options,construction_inputs=construction_ref,artifact_policy=artifact_policy,compact_evidence=compact_evidence,plane_support=support_config,automatic_plane_support=automatic_plane_support,bond_targets=bond_config,automatic_bond_targets=automatic_bond_targets,**compiler_refs); unchanged()
+    config = _configuration(root/'inputs',controls,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,model_context=model_context,registered_backbone=registered_ref,restraint_context=restraint_context,continuation_options=continuation_options,construction_inputs=construction_ref,artifact_policy=artifact_policy,compact_evidence=compact_evidence,plane_support=support_config,automatic_plane_support=automatic_plane_support,bond_targets=bond_config,automatic_bond_targets=automatic_bond_targets,**compiler_refs); unchanged()
     r = write_record(root/'request.json',dict(schema_version=1,policy_id=POLICY_ID,request_id=str(uuid.uuid4()),
         created_utc=now(),inputs=dict(anchor=ANCHOR,path='inputs'),configuration=config))
     _request(root)
@@ -866,6 +888,11 @@ def _inspect_dictionary_request(directory, *, selected_attempt=None, result_sink
                 key = _bytes(child['intent'].get('parent_attempt'))
                 _need(key in owners, 'Component child has no recorded enclosing owner'); _owned(child,owners[key])
         elif state['state'] != 'NOT_RECORDED': unknown = True
+    if 'registered_backbone' in config:
+        _need(not rows and not any((root/'acquisitions').glob('*')),
+              'Registered preparation intake cannot own execution children yet')
+        return dict(result, state='RECORDED', request=request,
+                    blocked_reason='Registered preparation native/result consumer is not qualified')
     safe = not unknown and all(r['state'] in {'STOPPED','STOPPED_UNFINISHED'} for r in rows)
     return dict(result,state='RECORDED',request=request,attempts=rows,
         availability='BLOCKED' if not safe else 'EXHAUSTED' if len(rows) == config['max_attempts'] else 'AVAILABLE')
@@ -965,6 +992,8 @@ def execute_dictionary_request_attempt(directory, phenix, store_root, *, generat
     _need(not store.is_relative_to(root) and not root.is_relative_to(store)
           and not root.is_relative_to(sdk) and not sdk.is_relative_to(root), 'Complete request overlaps cache or SDK')
     request = _request(root); config = request['configuration']; controls = config['controls']; limits = config['limits']
+    _need('registered_backbone' not in config,
+          'Registered preparation execution requires its explicit native/result consumer; intake only')
     if 'restraint_context' in config:
         validate_restraint_context(root/'inputs/model.pdb',
             [root/'inputs'/name for name in controls['supplementary_phils']],

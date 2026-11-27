@@ -123,9 +123,11 @@ The missing prepared FT parent is now localized one level earlier: the ordinary
 local-only context cannot admit incoming B:1/C:8 image bonds. The new explicit
 registered-context adapter accounts for all 38 local and two image links without
 changing chemistry or model coordinates. Its real-source read, focused tests and
-relocated installed checks pass. **Next carry that distinct context through the
-complete preparation consumers and native linked-chemistry checks**; the adapter
-alone provides no ordinary parent, phase admission or scientific acceptance.
+relocated installed checks pass. The complete-request owner now freezes the
+explicit registered role and rederives local component contexts; execution remains
+blocked. **Next qualify native preparation/result consumers**, then publication
+and numbered image-force execution. Input intake alone provides no ordinary
+parent, phase admission or scientific acceptance.
 [Implementation boundary](metal-ordinary-receiving.md#registered-phosphate-context-before-preparation--27-november).
 
 Only two next decisions govern the near-term work:

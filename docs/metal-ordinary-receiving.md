@@ -1,8 +1,69 @@
 # Ordinary receiving for mixed XYZ/group-B refinement
 
-Updated 26 November 2026. A01 mechanical integration; A01 science remains partial
+Updated 27 November 2026. A01 mechanical integration; A01 science remains partial
 and A02 quantitation is gated. This is a prospective implementation contract,
 not a claim of ordinary numbered-round qualification.
+
+## Frozen registered input at complete-request intake — 27 November
+
+**Purpose and placement:** preserve the declared crystal-backbone context while
+preparing local modified components, before native chemistry or refinement. The
+explicit `registered_preparation` argument on the prepared PostMR initializer
+names `registration_model`, `registration`, `discovery` and `continuations`; the
+ordinary report supplies terminal/backbone intent. No default caller enables it.
+The complete initializer additionally requires that report in the declaration.
+
+**Behavior:** the existing complete-request owner freezes those four files and
+minimal `intent.json` in `inputs/registered_backbone`. Its optional
+`registered_backbone` configuration reference uses the request-directory anchor,
+fixed relative path, `registered-local-component-intake-v1` policy and derived
+context checksum. Reads reconstruct the graph, named-atom frame transfer and
+local contexts from the frozen files. Local links remain distinct from registered
+image links. Missing/changed/extra inputs refuse; no basename search is introduced.
+The old `model_context` and new role are mutually exclusive.
+
+This first consumer supports selected components whose neighbors are local and
+requires canonical DNA residues at every image endpoint. Modified image endpoints
+remain review-held. FT QF1 A:12 and QT1 B:4 meet that local-neighbor condition;
+B:1/C:8 stay registered backbone sites, not free termini. Existing constructor
+binding is preserved when supplied, but this intake supplies no missing producer.
+Existing local-only request meaning and execution remain unchanged.
+
+**Execution is deliberately unavailable:** inspection returns `BLOCKED` with an
+explicit native/result-consumer reason; execution refuses before allocating any
+child. The complete request cannot be used as ordinary publication authority.
+Native linked chemistry, actual image forces and output/publication consumers
+must support the role before this restriction can be removed.
+
+The real FT check freezes and rereads the separate role, reproducing the earlier
+38 local and two image links, both selected local contexts, and D:1's retained
+terminal declaration. It retires 170,363 bytes of scratch; the additional role is
+89,391 bytes. This is **not a complete FT request**, constructor qualification,
+native interpretation or new refinement. Experimental sources remain exact.
+Synthetic complete requests independently exercise intake and relocation with
+original inputs removed. The focused request, native-context and constructor-
+provenance panel passes **269 cases in 343.55 seconds**. Installed-wheel checks pass six cases after build-source
+removal (185 application modules from the wheel; 15,263,541 bytes retired).
+
+Methods A874–A875, exact commands, source pins and retained failed setup attempts
+live under `branch-artifacts/Alder/a01-preparation-admission-20261127-01/` in
+`request-*` / `ft-request-role*` receipts. The meaningful before-control fails at
+the old prepared entry's unsupported-input check. Earlier failures were fixture
+construction errors, not evidence of a product regression. The first real-role
+probe refused the macOS temporary-path symlink; resolving the scratch root fixed
+the probe without changing the reader. Phenix 2.2.1-6174 supplies libraries only;
+no Coot, optimization, f″ scan or full suite. Generated science remains excluded
+from Git; old requests require no migration and old readers reject this new role.
+
+**Next bounded step:** qualify the native preparation/result consumer with these
+explicit canonical image endpoints and local modified components, retaining
+actual constructor evidence. The later numbered refinement must prove image
+forces were applied; intake alone cannot do so. The existing repair dispatch and
+result reader currently bind local `expected_links`/`native_context`; they do not
+consume this separate image role. `cif_postmr_publication` still reads the old
+`model_context` directly. Those explicit boundaries must be qualified rather than
+merely removing the intake execution hold. External AutoSol-phase admission,
+versioned mixed execution and scientific acceptance remain separate gates.
 
 ## Registered phosphate context before preparation — 27 November
 
@@ -67,8 +128,9 @@ models/graphs and private evidence remain local; no migration or historical work
 change. Rowan confirmed the existing registration/partner owners and the absence
 of a pre-preparation admission switch; Willow's PDU restart provides no FT authority.
 
-**Next bounded implementation:** explicitly carry this new context into the
-complete preparation request and every chemistry/native/publication consumer,
+**Consumer progress:** the explicit complete-request intake is now frozen and
+readable as described above, with execution held. Next support every
+chemistry/native/publication consumer,
 keeping local and image bonds distinct. Account for linked chemical state at image
 endpoints and verify native terms before any publication. Preserve the actual
 constructor or explicitly declared external-model origin. Do not make the old

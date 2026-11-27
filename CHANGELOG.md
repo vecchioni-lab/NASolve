@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Freeze registered backbone inputs for local component preparation
+
+- Add opt-in registered preparation intake to the existing complete-request owner,
+  preserving source model, graph, image transforms and report intent in an anchored
+  immutable role. Reconstruct selected local contexts on every read.
+- Keep canonical image endpoints separate from local component bonds; hold modified
+  image endpoints for review. Inspection reports blocked and execution refuses
+  before children until native/result consumers are qualified. Existing local-only
+  defaults and historical request meanings are unchanged.
+
 ### Describe registered image links before preparation
 
 - Add an explicit read-only registered preparation context, reusing the existing
