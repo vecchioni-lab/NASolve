@@ -226,6 +226,13 @@ def _code(policy=None):
         _need(isinstance(legacy,dict) and set(legacy)=={'cif_counted_phase.py','cif_counted_refinement.py'}
               and all(isinstance(value,str) for value in legacy.values()), 'Invalid frozen v7 helper source set')
         frozen.update(legacy)
+    if policy in (V10_POLICY_ID, V11_POLICY_ID, V12_POLICY_ID):
+        # These workers predate workbook selection in ordinary preparation.
+        name = "cif_explicit_na_policy.py"
+        original = json.loads((package / "data/refinement-runtime-phosphate-na-reader.json").read_text())
+        _need(isinstance(original, dict) and set(original) == {name} and isinstance(original[name], str),
+              "Invalid frozen phosphate worker base-restraint reader")
+        frozen.update(original)
     if policy in (V10_POLICY_ID, V11_POLICY_ID):
         single = json.loads((package / 'data/refinement-runtime-single-phosphate-sources.json').read_text())
         _need(isinstance(single, dict) and set(single) == {'cif_phosphate_runtime.py', 'cif_phosphate_phase.py'}

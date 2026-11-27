@@ -8,6 +8,11 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- Registered symmetry-phosphate refinement can again start from checkpoints
+  written with worker versions 10–12. Those jobs now include their qualified
+  base-restraint reader. Ordinary preparation continues to read the selected
+  NARestraints workbook.
+
 - CIF Doctor’s `explain-pucker` can read which sugar pucker Phenix selected for
   each of two starting geometries and check the corresponding bond, angle and
   torsion targets. It can report when the two choices differ. Existing stored

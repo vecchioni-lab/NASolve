@@ -149,7 +149,11 @@ metal site, its donors and protected atoms and the occupancy, displacement and
 anomalous-scattering policy. When a site crosses those boundaries, carry the same chosen
 parent, atom identities, image, dictionaries and Free-R assignments through ordinary
 refinement and its returned model. Reuse the shared map sampling, checkpoint and Phenix
-readers. The transferable handoff still needs an installed combined-source check. [Integration checks](cif-doctor-completion-queue.md#q16--final-integration-portability-and-retained-artifact-closure).
+readers. Linden found that a newer base-restraint reader had stopped the older
+phosphate workers from starting. C622 restored their exact bytes. A relocated
+Cedar wheel emitted all ten worker bundles identically to the original source,
+and 142 focused checks passed. Willow owns the resulting two-link trial. The
+transferable handoff still needs an installed combined-source check. [Integration checks](cif-doctor-completion-queue.md#q16--final-integration-portability-and-retained-artifact-closure).
 
 ## Validation and release
 

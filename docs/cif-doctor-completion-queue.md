@@ -1798,6 +1798,15 @@ return, both sources gave bond RMSD 0.037 Å and angle RMSD 4.408°.
 Exercise W35's missing-log case, the preference for a valid final log,
 and C589's target-switch case together on the merged reader.
 
+C622 reproduced a Willow restart failure before any new round was reserved.
+C607 had extended the live NARestraints reader to accept a frozen workbook.
+The older phosphate workers still required the earlier reader bytes. The
+installed Cedar package now supplies that exact reader to V10–V12. After
+relocation all ten supported worker bundles matched every corresponding byte
+from `d3d71cde`. Each phosphate bundle has 20 members, including its entry
+and package initializer. Existing checkpoints and live workbook selection keep
+their respective rules. Willow owns the actual descendant refinement.
+
 Verify two other shared entry points on the installed integration candidate.
 Willow registers five TopoStitch commands in addition to `nasolve`. Exercise those
 commands and the existing chemistry entry point from that installation.

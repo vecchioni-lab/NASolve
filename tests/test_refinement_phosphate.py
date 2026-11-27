@@ -4,6 +4,18 @@ from pathlib import Path
 import pytest
 
 
+@pytest.mark.parametrize("version", (10, 11, 12))
+def test_registered_phosphate_worker_keeps_its_original_base_restraint_reader(version):
+    from hashlib import sha256
+    from nasolve import refinement_parallelity as runtime
+
+    policy = getattr(runtime, f"V{version}_POLICY_ID")
+    worker = runtime._code(policy)
+    name = "code/_nasolve_refinement/cif_explicit_na_policy.py"
+    assert sha256(worker[name]).hexdigest() == "b01612596352d24886eb4d3bd257b7246004623f3d794253ed029129b736f6c5"
+    assert {n:sha256(data).hexdigest() for n,data in worker.items()} == runtime._expected_code(policy)
+
+
 def test_registered_phosphate_replay_uses_physical_precision_only_for_coordinate_angles():
     from copy import deepcopy
     from math import inf, nan
