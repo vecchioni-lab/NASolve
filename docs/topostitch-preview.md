@@ -4902,6 +4902,15 @@ paths and frozen export receipt formats are unchanged. The Python equivalent is
 
 ## Native restart readiness after export (W279 audit)
 
+**Raw local-fit PDB intake note (Rowan, 2026-11-27):** Cedar observed Phenix
+geometry minimization serialize all 50 soft base-pair distance restraints twice
+as PDB `LINK` records in an 860-atom control. A raw fit's `LINK` inventory is not
+therefore authoritative topology. Cedar's corrected receiver imports selected
+XYZ into the authenticated parent and preserves its declared links. Willow must
+retain that distinction if it later ingests raw local-fit output; do not promote
+soft pair restraints to chemical bonds or delete declared parent links. This is
+an integration note, not evidence of a newly tested Willow intake path.
+
 **Read-only audit, 2026-11-25; no new native initialization, fit or checkpoint.**
 W278 completes diagnostic export inspection, not admission to refinement. The
 same pinned 3LNA original and whole-A export each contain **1,271 atom rows,

@@ -1,7 +1,7 @@
 # NASolve development handoff — Willow
 
-**W311 registered derivative observation, 2026-11-27.** Latest maintained code:
-`29fded465e95878677670be15d3c8f4999224854`. Latest native diagnostic preflight: **W311**; latest refinement:
+**W312 matched local geometry comparison, 2026-11-27.** Latest maintained code:
+`29fded465e95878677670be15d3c8f4999224854`. Latest native geometry diagnostic: **W312**; latest refinement:
 **W304** (same genuine ordinary PDU parent as W300); latest density audit: **W304**.
 W298 remains the separate endpoint-base/whole-model density audit; do not conflate sources.
 The [audited roadmap](topostitch-roadmap.md) owns status and the next decision;
@@ -106,12 +106,17 @@ maintained fixed-weight product mode or recommended production weight.
    audit; the first strict-cell failure is preserved. **W311** independently checks all variables in both masks at two steps:
    worst shared C8 C5′ y errors 4.912e-5 / 4.529e-7 against the existing 1e-3
    bound. All 142 full-native calls visit both groups; state, packing and hooks
-   are preserved. **Next W312, coordinated with Rowan:** matched geometry-only
-   held/free O3′ trials, same source and limits, using native geometry and ASU
-   observation owners. Compare both joins, six sugar hands, fixed atoms and
-   pre-existing/new contacts; keep capped or conflicting results inconclusive.
-   [Evidence and limits](topostitch-periodic.md#w311--verify-the-five-and-six-atom-native-derivatives).
-   No diffraction or adoption; no general NativeMaskedObjective admission. W216's O5′/C5′-only shoulder proposal
+   are preserved. **W312** now compares those masks under matched limits. Both shorten
+   D7→C8 to about1.610 Å, preserve six sugar hands and the other junction, but
+   stop at50 iterations without convergence. ε remains near its period-one
+   maximum; the same existing OP2–image-C2′ contact tightens. A native term-only
+   read shows other retained forces oppose ε improvement at both returned points.
+   **Next W313, approved by Rowan:** read-only D7/C8 coupled-sugar scope audit
+   through existing owners; bind the actual source, fixed attachments and
+   C1-dependent planes before proposing wider movement. Prior B1/B7 admission
+   does not transfer. No repeated mask, cap increase, diffraction or adoption.
+   [Evidence](topostitch-periodic.md#w312--shorten-the-image-bond-without-resolving-the-torsion).
+   W216's O5′/C5′-only shoulder proposal
    cannot change C4′–C3′–O3′–P when those four atoms are fixed. Separately, P05's
    remaining work is the shared GUI operation lifecycle, not another preview,
    preference or checkpoint registry. Existing same-source
@@ -153,6 +158,14 @@ references and thermal/TLS semantics. File readback alone cannot prove those.
 
 <a id="validation-and-scientific-interpretation"></a>
 ## Validation and compatibility
+
+**W311/W312:** complete native derivative and matched geometry diagnostics;
+31/34 cold checks. W312 initial/full/rounded derivatives pass, but both trials
+are iteration-limited, not accepted. Three inspection models/eight controls pass
+ChimeraX1.12 headlessly; the figure was visually reviewed. Latest local checkout:
+`GitHub/ScienceCheckouts/Linden/2026-11-27_local-closure-and-recovery/index.html`.
+Raw models/maps remain uncommitted. No product changes or repeated full suite.
+
 
 **W310:** 345 focused source/345 relocated-installed tests; full **3,148 tests
 +238 subtests**, no skips. Exact target repeat and both mask projections pass

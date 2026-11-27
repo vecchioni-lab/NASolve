@@ -16294,3 +16294,90 @@ raw contact comparisons. Preserve both junctions, six sugar signs, fixed atoms
 and old/new contact distinctions. No full packing approval, diffraction fit or
 candidate adoption. A capped or conflicting result is inconclusive; S05/P04
 remain PARTIAL.
+
+
+## W312 — Shorten the image bond without resolving the torsion
+
+Same W304 child and MTZ-native frame as W310/W311, both registered phosphate
+force groups, fixed source/ADP/occupancy/context and corrected complete native
+objective. One mask releases C8 P/OP1/OP2/O5′/C5′; the other also releases D7 O3′.
+No pair recipe, new force, tether, seeded start or diffraction objective is added.
+The existing `CoordinateMask` and `run_native_masked_trial` are composed through
+an explicitly native-only diagnostic adapter, following W235; this does not
+relax or claim general `NativeMaskedObjective` admission.
+
+| Measured quantity | Source | O3′ held | O3′ released |
+| --- | ---: | ---: | ---: |
+| D7→C8 O3′–P, Å | 1.641364 | 1.610054 | 1.609766 |
+| ε C4′–C3′–O3′–P, degrees | 46.262482 | 45.941026 | 41.010688 |
+| Total native geometry target | 6243.857292 | 6214.281052 | 6208.684249 |
+| Maximum atom displacement, Å | — | 0.160645 | 0.153897 |
+| OP2–image-C2′ native overlap, Å | 0.311140 | 0.419007 | 0.409551 |
+
+**Both are inconclusive, not converged endpoints.** Each stops at50 iterations,
+with56/58 optimizer calls and false native convergence criterion. Initial,
+full-precision and rounded endpoint derivatives pass. Limits were identical:
+72 optimizer calls,294 objective calls,300 total full-native calls,3 Å per atom,
+300 seconds/one CPU. Actual full-native calls248/286, identical for both groups;
+observer times50.932/43.370 seconds. Preflight/raw/packing overhead is disclosed
+as six extra calls. Phenix **2.2.1-6174**, full source pins and actual command
+arguments are retained in each `launch.json`. No budget extension/restart.
+
+All862 source identities, six sugar signs and fixed hierarchy/scattering/B/Q
+persist. All fixed evaluator coordinates are exactly unchanged; source PDB
+initialization roundoff is separately bound below1e-10 Å. B7→B1's complete join
+measurements are unchanged. Native ASU capture observes the same8069 directed
+rows before/after. Existing C8 OP2 to D7 C2′ under `-y,x-y,z` crosses the
+**descriptive**, non-acceptance0.4 Å overlap bin in both arms. No row is added or
+removed; reciprocal multiplicity is preserved. Exact relative operators, rather
+than native image indices alone, identify comparisons. This remains raw observed
+native packing with kernel replay, not a full authenticated capture, independent
+neighbor search, MolProbity clashscore or packing acceptance.
+
+**Why a lower total target does not fix ε:** the actual recorded term has target
+−140°,period1,width35°, with a maximum at+40°. Four individual installed native
+kernel reads at the three saved arrays (initial quartet projected to each mask)
+confirm the barrier formula with scale15.6734693878 and no full-manager calls.
+Fraction of maximum angular slope: source0.10908, held0.10350, free0.01764.
+At returned held/free points, ε masked-gradient norms are0.58477/0.21868;
+the remaining complete native gradient projects−0.80135/−0.62991 along those
+unit directions, leaving total projections−0.21658/−0.41123. Other retained
+terms locally oppose this torsion's improvement. This neither proves a global
+minimum nor identifies an individual opposing term. No missing or reversed ε
+force is inferred. The four kernel calls are separate from the248/286 full calls.
+
+**Validation and inspection:** 34 cold checks independently recompute saved
+finite differences, counts, hashes, masks, signs, contact identities and source
+preservation. The two inspection PDBs are exact masked serialization through
+the existing endpoint auditor, preserve ANISOU/other metadata and are explicitly
+unaccepted. Their retained refinement headers are source metadata, not new fit
+statistics. The comparison uses exact donor symmetry images without alignment
+or exaggerated motion. ChimeraX **1.12** headless execution passes all three
+models/eight controls after a preserved sandbox cache-lock failure; fresh
+interactive rendering is not claimed. The native-frame versus PDB serialization
+precision remains explicit. The two-panel figure was visually checked; local
+HTML links and model hashes validate.
+
+NASolve anchor: `branch-artifacts/willow/w312-held-free-movement/`. Exact commands:
+
+```text
+PYTHONDONTWRITEBYTECODE=1 NASolve/.venv/bin/python -B NASolve/branch-artifacts/willow/w312-held-free-movement/O3-held/launch.py
+PYTHONDONTWRITEBYTECODE=1 NASolve/.venv/bin/python -B NASolve/branch-artifacts/willow/w312-held-free-movement/O3-free/launch.py
+PYTHONDONTWRITEBYTECODE=1 NASolve/.venv/bin/python -B NASolve/branch-artifacts/willow/w312-held-free-movement/cold_check.py
+phenix.python -B NASolve/branch-artifacts/willow/w312-held-free-movement/torsion_force.py
+ChimeraX --nogui --exit NASolve/branch-artifacts/willow/w312-held-free-movement/check_chimerax.py
+```
+
+Executable paths/versions are recorded in the local receipts. Shared human
+checkout: `GitHub/ScienceCheckouts/Linden/2026-11-27_local-closure-and-recovery/`.
+Science payloads stay local/uncommitted. Documentation-only repository change;
+W310 code/install/full-suite evidence remains applicable, no suite repetition,
+CLI/schema migration or claimed new combined release.
+
+**Next W313, agreed with Rowan:** read-only scope audit for this D7/C8 source,
+reusing `prepare_coupled_sugars` and the authenticated W310 native reference.
+W292–W296's19-atom machinery was tested on different B1/B7 source bytes and
+cannot confer admission here. Map six sugar centers, ring/exocyclic/boundary
+bonds, held bases/outer phosphates, and C1′-dependent planes. The two current
+junctions and native contact inventory remain controls. No additional fit or
+larger cap until that audit informs a distinct proposal. S05/P04 remain PARTIAL.

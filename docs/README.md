@@ -7,9 +7,9 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Latest W311:** [registered five/six-atom derivative audit](topostitch-periodic.md#w311--verify-the-five-and-six-atom-native-derivatives)
-  passes both complete finite-difference checks with both image forces active.
-  Next: matched held/free O3′ geometry trials; no diffraction or adoption yet.
+- **Latest W312:** [matched held/free O3′ geometry comparison](topostitch-periodic.md#w312--shorten-the-image-bond-without-resolving-the-torsion)
+  shortens the bond but leaves the torsion unresolved; both trials are capped.
+  Next: source-bound coupled-sugar scope audit before any wider movement.
 
 - **Latest code, W310:** [registered zero-step observer](topostitch-preview.md)
   exposes full-native baseline and explicit mask projections inside the caller's

@@ -523,14 +523,15 @@
         "W306 quantifies fixed-anchor radial reach from saved native targets before another fit. D7 exact epsilon is reachable radially; B7 exact target is not, though one-width alternatives exist. No candidate or refinement; full orientation/chemistry separate.",
         "W307/W308 distinguish radial reach from severe fixed-sugar orientation strain; W309 identifies the absent registered two-group masked-force boundary before any fit. Both native links remain required; no experimental outcome or scientific closure is inferred.",
         "W310 qualifies a read-only full-native baseline inside both registered image-force groups; raw versus order-corrected differences on fixed bases do not affect the proposed five/six backbone masks. Explicit PDB/MTZ frame distinction, unchanged native packing/state and hook restoration verified; no motion or optimizer admission.",
-        "W311 checks every variable in both five/six masks at 1e-4 and 1e-5 Angstrom. Both pass; worst shared C8 C5-prime y errors 4.912e-5/4.529e-7. All142 full native calls visit both groups; state/packing and hooks preserved. No movement yet."
+        "W311 checks every variable in both five/six masks at 1e-4 and 1e-5 Angstrom. Both pass; worst shared C8 C5-prime y errors 4.912e-5/4.529e-7. All142 full native calls visit both groups; state/packing and hooks preserved. No movement yet.",
+        "W312 matched five/six-atom geometry trials shorten D7/C8 O3-P to1.6101/1.6098 Angstrom but both reach50 iterations without convergence and leave epsilon near its periodic maximum. Six sugar hands/fixed atoms/other junction survive; one existing OP2-image-C2-prime contact worsens. Native term read confirms retained-force opposition, not missing epsilon force."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "W312: matched geometry-only held/free O3 trials from the same W304 child, using the full corrected native evaluator inside both registered force lifetimes. Existing native geometry/ASU owners; compare both joins, six sugar hands, fixed atoms and existing versus new contacts. Same 72 optimizer calls,50 iterations,3 Angstrom bound,300 total native calls/300 seconds per arm. Preserve capped/conflicting outcomes; no diffraction or adoption.",
+      "next_action": "W313 approved read-only D7/C8 coupled-sugar scope audit using existing owner and exact source capture. Map19 atoms, six hands, boundary attachments and C1-dependent planes; distinguish what can move from fixed bases/other junction. No wider fit, inherited B1/B7 admission, repeated mask or increased cap.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -686,14 +687,15 @@
         "E_FIXED_ANCHOR_PHOSPHATE_REACH",
         "E_FIXED_SUGAR_AND_MASKED_BOUNDARY",
         "E_REGISTERED_ZERO_OBSERVATION",
-        "E_REGISTERED_DERIVATIVES"
+        "E_REGISTERED_DERIVATIVES",
+        "E_HELD_FREE_NATIVE_MOVEMENT"
       ],
       "last_audit": {
         "date": "2026-11-27",
         "code_commit": "29fded465e95878677670be15d3c8f4999224854",
         "reviewer": "Linden",
         "human_update": 310,
-        "scope": "W311 derivative diagnostic only; no milestone closure or physical acceptance"
+        "scope": "W312 bounded geometry comparison; both unconverged, no scientific closure"
       }
     },
     {
@@ -1298,14 +1300,15 @@
         "W306 quantifies fixed-anchor radial reach from saved native targets before another fit. D7 exact epsilon is reachable radially; B7 exact target is not, though one-width alternatives exist. No candidate or refinement; full orientation/chemistry separate.",
         "W307/W308 distinguish radial reach from severe fixed-sugar orientation strain; W309 identifies the absent registered two-group masked-force boundary before any fit. Both native links remain required; no experimental outcome or scientific closure is inferred.",
         "W310 qualifies a read-only full-native baseline inside both registered image-force groups; raw versus order-corrected differences on fixed bases do not affect the proposed five/six backbone masks. Explicit PDB/MTZ frame distinction, unchanged native packing/state and hook restoration verified; no motion or optimizer admission.",
-        "W311 checks every variable in both five/six masks at 1e-4 and 1e-5 Angstrom. Both pass; worst shared C8 C5-prime y errors 4.912e-5/4.529e-7. All142 full native calls visit both groups; state/packing and hooks preserved. No movement yet."
+        "W311 checks every variable in both five/six masks at 1e-4 and 1e-5 Angstrom. Both pass; worst shared C8 C5-prime y errors 4.912e-5/4.529e-7. All142 full native calls visit both groups; state/packing and hooks preserved. No movement yet.",
+        "W312 matched five/six-atom geometry trials shorten D7/C8 O3-P to1.6101/1.6098 Angstrom but both reach50 iterations without convergence and leave epsilon near its periodic maximum. Six sugar hands/fixed atoms/other junction survive; one existing OP2-image-C2-prime contact worsens. Native term read confirms retained-force opposition, not missing epsilon force."
       ],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
         "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.",
         "Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified."
       ],
-      "next_action": "W312: matched geometry-only held/free O3 trials from the same W304 child, using the full corrected native evaluator inside both registered force lifetimes. Existing native geometry/ASU owners; compare both joins, six sugar hands, fixed atoms and existing versus new contacts. Same 72 optimizer calls,50 iterations,3 Angstrom bound,300 total native calls/300 seconds per arm. Preserve capped/conflicting outcomes; no diffraction or adoption.",
+      "next_action": "W313 approved read-only D7/C8 coupled-sugar scope audit using existing owner and exact source capture. Map19 atoms, six hands, boundary attachments and C1-dependent planes; distinguish what can move from fixed bases/other junction. No wider fit, inherited B1/B7 admission, repeated mask or increased cap.",
       "evidence": [
         "E_PINE_TEST_BANK",
         "E_NATIVE_REPRESENTATION_SEAMS",
@@ -1337,14 +1340,15 @@
         "E_FIXED_ANCHOR_PHOSPHATE_REACH",
         "E_FIXED_SUGAR_AND_MASKED_BOUNDARY",
         "E_REGISTERED_ZERO_OBSERVATION",
-        "E_REGISTERED_DERIVATIVES"
+        "E_REGISTERED_DERIVATIVES",
+        "E_HELD_FREE_NATIVE_MOVEMENT"
       ],
       "last_audit": {
         "date": "2026-11-27",
         "code_commit": "29fded465e95878677670be15d3c8f4999224854",
         "reviewer": "Linden",
         "human_update": 310,
-        "scope": "W311 derivative diagnostic only; no milestone closure or physical acceptance"
+        "scope": "W312 bounded geometry comparison; both unconverged, no scientific closure"
       }
     },
     {
@@ -10897,6 +10901,53 @@
           "size": 451
         }
       ]
+    },
+    "E_HELD_FREE_NATIVE_MOVEMENT": {
+      "kind": "Matched registered held/free O3 geometry trials",
+      "date": "2026-11-27",
+      "human_update": 312,
+      "code_commit": "29fded465e95878677670be15d3c8f4999224854",
+      "reference": "docs/topostitch-periodic.md#w312--shorten-the-image-bond-without-resolving-the-torsion",
+      "result": "Both endpoint/rounded derivative audits pass;248/286 full native calls on both groups, all862 atoms,6 sugar hands and fixed state preserved. Both iteration-limited.34 cold checks;3-model/8-control ChimeraX1.12 check. Four separate single-term kernel reads explain local opposition.",
+      "limitation": "No convergence, full packing acceptance, diffraction fit, map calculation or adoption. Existing OP2-to-image-C2-prime contact worsens; residual torsion unresolved. Inspection PDBs preserve old metadata and are not refined deposition models.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w312-held-free-movement/verification.json",
+          "sha256": "bb746bcae9cc5daed89ce2a0c50315ff35d7e331be756e99894450f257b85675",
+          "size": 8694
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w312-held-free-movement/checkout-check.json",
+          "sha256": "b86a9edba54507a8bcd78146051b114046dd2f68ed5c471ddd572592295eb3f3",
+          "size": 2037
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w312-held-free-movement/torsion-force.json",
+          "sha256": "6ddefec0598db51b120f7cd274743fbd6e6c61f0f3e0de0d5b2b81948d9d52a9",
+          "size": 8268
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w312-held-free-movement/chimerax-check.json",
+          "sha256": "fe0b6998985cf1468338d278462dc24038c758ea6b984cb7787346b099d00e99",
+          "size": 383
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w312-held-free-movement/O3-held/launch.json",
+          "sha256": "2a00e0b41151a0e34124ae41016355de0b4dab860ae6af807da5b64d26def608",
+          "size": 2685
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w312-held-free-movement/O3-free/launch.json",
+          "sha256": "1f91c2a251cec2ae08578645667cdf68cd96e369964ed66838cc92a9320d4c2f",
+          "size": 2686
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -11078,8 +11129,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 311,
-    "next": 312,
+    "current": 312,
+    "next": 313,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -12753,6 +12804,12 @@
       {
         "number": 311,
         "title": "Verify the five and six atom native derivatives",
+        "state": "RECORDED",
+        "code_commit": "29fded465e95878677670be15d3c8f4999224854"
+      },
+      {
+        "number": 312,
+        "title": "Shorten the image bond without resolving the torsion",
         "state": "RECORDED",
         "code_commit": "29fded465e95878677670be15d3c8f4999224854"
       }

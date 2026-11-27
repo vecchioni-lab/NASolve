@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W312 — Compare local motion with O3′ held or released
+
+- Record matched geometry-only trials with both registered image-force groups.
+  Both shorten the bond but stop at the iteration cap with unresolved torsion
+  and one worsened existing contact; preserve this inconclusive result.
+- Provide audited inspection-only comparisons and record the native torsion's
+  weak/opposed local drive. No product, schema, diffraction or adoption change.
+
 ### W311 — Verify both registered local coordinate masks
 
 - Record complete five/six-atom native derivative checks before movement;
