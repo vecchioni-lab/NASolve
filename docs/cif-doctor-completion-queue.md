@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 27 November 2026, after C638. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 27 November 2026, after C639. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -11,7 +11,7 @@ selected after ReadySet, and what Phenix actually refines. The ordinary checked 
 delivers the chosen model and restraints. The main scientific gap is deciding when a
 corrected chemical definition gives acceptable geometry in the returned structure. In the
 PDU controls, switching the diffraction score reversed the local pull on the methyl tip.
-The next transfer check examines the locked-sugar contacts on a separate mixed scaffold. [Original blueprint](https://github.com/vecchioni-lab/NASolve/blob/ef83f1b3741f8de2ad074114183ec243ab9b3d2a/docs/cif-restraint-audit-methods.md).
+The mixed-scaffold test now has four substitutions from one mutation card. Its next test is an ordinary diffraction refinement of the fitted fourth sugar. [Original blueprint](https://github.com/vecchioni-lab/NASolve/blob/ef83f1b3741f8de2ad074114183ec243ab9b3d2a/docs/cif-restraint-audit-methods.md).
 
 | Job | In laboratory terms | What still closes it |
 | --- | --- | --- |
@@ -48,7 +48,7 @@ The next transfer check examines the locked-sugar contacts on a separate mixed s
    verified starting values during ordinary construction. Two sites passed a fresh
    five-cycle run with three of 50 pair distances still outside three widths.
    Resolve the linked OP2 chemistry separately before promoting the panel.
-   C618–C619 completed ordinary three-site construction with and without a saved 6MZ dictionary and checked the five-cycle return. C624 placed the fourth substitution with a different sugar attachment. Five cycles retained its pairing edge, both phosphate links and appropriate ring geometry. Carry the demonstrated choices into ordinary construction and test from a cold start. The source-backed internal sulfur linkage remains a later panel site. The four pseudouridine attachment corrections ship in NARestraints 1.1.4. Record what was constructed, what Phenix kept after
+   C618–C619 completed ordinary three-site construction with and without a saved 6MZ dictionary and checked the five-cycle return. C624 placed the fourth substitution with a different sugar attachment. Five cycles retained its pairing edge, both phosphate links and appropriate ring geometry. C637–C639 repeated ordinary construction from a cold start, fitted the fourth sugar and checked the effective restraints at its returned coordinates. Bind the verified fit to the normal checkpoint and examine the four-site diffraction return. The source-backed internal sulfur linkage remains a later panel site. The four pseudouridine attachment corrections ship in NARestraints 1.1.4. Record what was constructed, what Phenix kept after
    refinement, and which sites require review. The known 13-change scaffold and the
    unfamiliar panel answer different questions. [Mixed-scaffold criteria](#q07--one-mixed-scaffold-ordinary-acceptance-run).
 3. **Join the branches on a returned molecule.** Willow/Pine owns strand identity, residue
@@ -1293,6 +1293,8 @@ C636 ran the same four-site card through the ordinary PostMR owner with one expl
 C637 ran `cif-doctor prepare-run` on a fresh four-substitution card with no selected site, no supplied UY1 dictionary and no UY1 entry in the cache. When Coot could not choose a canonical parent, the source graph, host and NARestraints workbook identified a C-linked methyl ether. The first eLBOW attempt introduced a 3.728 Å C1′–N1 bond absent from the source. Only after that attempt had stopped did the existing recovery reorder the same source atoms. The numerical dictionary differed from C636 only in its writing-time comment. Coot and the whole-sugar constructor reproduced the same 860-atom seed. Both native reads found 50 distance, 86 angle and 57 parallelity restraints. A second dictionary lookup reused the same entry without running eLBOW or Phenix. This automatic entry is available for diagnostic preparation. The raw sugar still needs the local fit before checkpoint publication.
 
 C638 bound the site-only Phenix fit to its numbered four-site preparation. It read the 5 dictionaries and all 1,061 interpreted parameter assignments, including the 193 requested base-pair and angle/plane restraints. Only the 21 UY1 atoms could move. Both the native model and the full geometry report matched the independently run local fit byte for byte. The returned model preserved the original connectivity and all 839 bystanders. The nearest contact improved from 0.634 Å to 2.618 Å. The two phosphate bonds were 1.604 and 1.611 Å. Phenix still reported two overlaps above 0.4 Å with A:20. The numbered candidate reopened after moving the run with the original paths and Phenix inaccessible. The next step is to verify how Phenix interprets the cleaned candidate with the same dictionaries and restraints, then check the six protected D:1 angle widths when preparing an ordinary four-site diffraction refinement.
+
+C639 checked the cleaned fit with its five selected dictionaries and six restraint files. The PDB had different headers and chain-end records from the earlier fitted control, which warranted a new native read. Phenix recovered all 860 named positions, all 42 residue assignments and the complete eight geometry tables. Every term in those tables matched by atom names, target, weight and crystal image. AutoRefine’s terminal-protection step then generated the six D:1 phosphate angle replacements. A second fixed-coordinate read found the same six targets with widths of 1° in place of 3°. All 193 original pair and stack requests and all 7,874 native repulsive contacts retained their targets. The six angles started 5.30° RMS from their targets. Their ninefold increase in weight accounted for the entire increase in the fixed-coordinate geometry residual, with identical repulsive forces. This established the protection step on the selected files. The ordinary four-site diffraction round and its checkpoint are still due. The five-cycle result recorded at C625 used the separately assembled model and the unmodified host reflections.
 
 C601 found the source-preserving generator had introduced a 5.779 Å bond between
 O4′ and ring C2. All 42 source edges were present. The ten bonds of the purine
