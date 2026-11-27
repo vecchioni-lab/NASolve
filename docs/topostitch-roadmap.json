@@ -308,7 +308,7 @@
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient.",
         "Internal helix recovery explicitly compares neighbouring base-plane orientation, spacing, lateral offset/overlap and twist before deformation, after placement and after restrained recovery, including fixed-flank transitions. Within-pair coplanarity and between-pair stacking remain distinct; allow supported curvature/nonuniform twist rather than enforcing universal parallelism. Connectivity, sugar-sign retention and R factors alone do not close this gate. Investigator emphasis2026-11-22; planning only, reuse existing frame/geometry owners."
       ],
-      "next_action": "W297 qualifies endpoint bases with partners held. Before broader coupled/junction movement, establish source-wide density/thermal context and reviewed partner/image/mobility declarations. Preserve weak-map and stacking tradeoffs; do not rerun the closed fit or infer physical partners from native restraint rows.",
+      "next_action": "W298 shows endpoint weakness is part of wider saved-map/thermal context. Do not widen the mask to chase negative scalar samples. Broader coupled/junction movement still needs reviewed partner/image/mobility declarations; preserve the W297 geometry/stacking tradeoff and do not repeat the fit.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -782,7 +782,8 @@
         "W294 exposes exact/native-roundoff as an optional frozen request policy; omitted ML/MLHL defaults unchanged. Installed ordinary ML preflight now completes0cycles with862 atoms,1909 reflections/124Free, byte-identical candidate and57 exact parallelity groups; hooks restored and worker stopped. 3025 tests+234subtests(no skips),187 relocated-installed checks. Native19-atom scope and refinement remain separate; no new tolerance or force.",
         "W295 receives the exact Alder shared source reader from2a25f57c72ba5038688ec42812066551e2a968a0 and removes the maintained phased guard inline duplicate. Source policies, native pins and actual-target/scattering checks unchanged. Installed guard exactly reproduces pinned W252 source reading on1151FTobservations/59Free/allHL/crystal. 3041 tests+238subtests(no skips),203 installed focused+4subtests; no child execution/refinement in the data comparison.",
         "W296 adds explicit unphased 19-atom coupled-sugar admission while retaining the six-atom default. One installed five-cycle/100-iteration-cap Phenix 2.2.1-6174 fit closes the 5W6W-derived canonical endpoint gap from 2.82429 to 1.61293 \u00c5; common-subset local angle maximum improves 1.82973 to 0.57094\u03c3. All 862 atoms, six sugar hands, original proxies, 843 held coordinates/BQ and 1909 observations/124 Free-R survive. Rwork/Rfree 0.312951/0.366145, unselected. C1-to-held-base plane distances improve; four own-map FFTs/62 meshes retain weak sugar density. 3073 tests +238 subtests, no skips; 220 relocated-installed checks; installed preflight/fit, three-model ChimeraX1.12 headless and35 cold checks pass.",
-        "W297: explicit canonical endpoint-base release through the existing installed receiver;37/825 local scope, preserved BQ/proxies/sugar hands, raw post-exit packing and matched own-map/plane review. Geometry gain does not close density or packing gates."
+        "W297: explicit canonical endpoint-base release through the existing installed receiver;37/825 local scope, preserved BQ/proxies/sugar hands, raw post-exit packing and matched own-map/plane review. Geometry gain does not close density or packing gates.",
+        "W298 audits all42 nucleotides on unchanged saved maps and reconstructs FMODEL from saved atomic/mask/scale components. Base weakness is model-wide and already present in the forward model. Ten completed-report FFTs, anchored hashes, exact common1909/124 data/Free tuples and figure readback pass; no fit or scientific acceptance."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -793,7 +794,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "W297 pair angles improve but both bases remain poorly supported in matched own maps. Audit whether weak support is local or part of the starting model/data/thermal context before another fit. Keep source/data/Free-R and BQ fixed in the current comparison; no automatic selection or Free-R-driven search.",
+      "next_action": "Retain W297 as an unselected geometry comparison. W298 identifies whole-model solvent/thermal context before more motion. A matched fixed-XYZ grouped-B sensitivity remains parked until a genuine registered parent and equivalent group/restraint/scaling protocol exist; current Refine Doctor has no independent receiver-output entry point. Advance an independent documented Willow/Pine gate meanwhile; no B reset, fabricated ancestry or Free-R-driven search.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -935,14 +936,15 @@
         "E_EXPLICIT_NATIVE_FRAME",
         "E_SHARED_DIFFRACTION_SOURCE",
         "E_COUPLED_SUGAR_INSTALLED_RECOVERY",
-        "E_ENDPOINT_BASE_INSTALLED_RECOVERY"
+        "E_ENDPOINT_BASE_INSTALLED_RECOVERY",
+        "E_WHOLE_MODEL_DENSITY_CONTEXT"
       ],
       "last_audit": {
         "date": "2026-11-27",
-        "human_update": 297,
+        "human_update": 298,
         "code_commit": "3b6920954a4736b4cf27dffb08cb93c5a0b92403",
-        "reviewer": "Linden; scope and raw packing coordinated with Rowan, separate FT limits shared with Hazel",
-        "scope": "One37-atom installed comparison; no whole-duplex movement, packing acceptance or model selection."
+        "reviewer": "Linden; next-experiment admission reviewed with Rowan",
+        "scope": "Read-only saved-map decomposition and source-wide context; no new native fit, product change or scientific closure."
       }
     },
     {
@@ -10305,6 +10307,15 @@
       "reference": "docs/topostitch-periodic.md#w297--release-endpoint-bases-while-holding-their-partners",
       "result": "Explicit coupled-endpoints scope:37 moving/825 held atoms on the same W296 source. One installed5-cycle/100-iteration-cap fit retains862 atoms,all BQ,original proxies,six sugar hands and1909/124 Free-R. Join1.608625A; A15/B1 tilt17.9052\u219211.33deg,A9/B7 3.9955\u21921.5263deg; one stack angle worsens. Rwork/Rfree.312873/.360929,unselected.235native-source/235relocated-installed focused,installed preflight/fit,40cold checks and3-model/5-control headless ChimeraX pass. Four own-map FFTs/62meshes show weak bases despite geometry gains.",
       "limitation": "No physical-pair inference,junction/opposite-strand release,modified endpoints,phased admission or model adoption. Raw post-exit packing adds2evals per phase after temporary image terms are released; not refinement target/full-capture authentication/packing acceptance. Base samples remain negative; full native suite deferred with interrupted sandbox failures preserved. Generated science local; no combined release or whole-run portability claim."
+    },
+    "E_WHOLE_MODEL_DENSITY_CONTEXT": {
+      "kind": "Read-only whole-model saved-map and linear forward-model audit",
+      "date": "2026-11-27",
+      "human_update": 298,
+      "code_commit": "3b6920954a4736b4cf27dffb08cb93c5a0b92403",
+      "reference": "docs/topostitch-periodic.md#w298--audit-whole-model-density-before-wider-motion",
+      "result": "Same 862 atoms/42 nucleotides and fixed BQ; exact common 1909 F/SIGF/flag tuples including124 Free. On the W297 map371/403 base atoms and41/42 base-group means lie below the cell mean. Saved FCALC is positive at all403 base sites; FMODEL is below mean at341. Saved scale/mask decomposition reproduces FMODEL with relative coefficient residual3.24e-7 and atom-sample error1.33e-6 sigma. Ten FFTs in completed reports; no refinement or product changes.",
+      "limitation": "Model-assisted maps include Free-R; point samples are not RSCC or acceptance thresholds. Mean-centered solvent cancellation does not identify the correct thermal, geometry or processing model. Fixed-XYZ grouped-B sensitivity is parked: Refine Doctor requires an ordinary registered checkpoint parent, which these experimental outputs lack. No fabricated ancestry or wider movement grant."
     }
   },
   "benchmarks": [
@@ -10486,8 +10497,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 297,
-    "next": 298,
+    "current": 298,
+    "next": 299,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -12077,6 +12088,12 @@
       {
         "number": 297,
         "title": "Release canonical endpoint bases with held partners and raw post-exit packing",
+        "state": "RECORDED",
+        "code_commit": "3b6920954a4736b4cf27dffb08cb93c5a0b92403"
+      },
+      {
+        "number": 298,
+        "title": "Separate endpoint weakness from whole-model density and solvent context",
         "state": "RECORDED",
         "code_commit": "3b6920954a4736b4cf27dffb08cb93c5a0b92403"
       }

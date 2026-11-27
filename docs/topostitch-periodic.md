@@ -15396,3 +15396,91 @@ three-model Python/ChimeraX script and native PDB. It keeps large files in their
 original run folders. S04/S05/S06 remain PARTIAL. Next establish the starting
 model's wider density/thermal context before releasing more residues; preserve
 this unselected comparison rather than repeating the fit or tuning to Free-R.
+
+
+## W298 — Audit whole-model density before wider motion
+
+W297 improved local geometry but did not recover convincing base density. The
+next read-only audit sampled all **862 atoms / 42 nucleotides** of the same
+5W6W-derived PDU model on the two saved map sets. Source, W296 and W297 identities,
+occupancy and B factors remain exact; no model was moved or selected. The W296
+and W297 output MTZs contain exactly the same **1,909 F/SIGF/flag tuples**, including
+**124 Free-R** with test flag **0** read from both effective parameter files.
+
+On the fixed W297 2mFo−DFc map, sampled at W297 coordinates:
+
+| Group | Atoms | Median map sample | Below whole-cell mean | Median inherited B |
+| --- | ---: | ---: | ---: | ---: |
+| P/OP1/OP2 | 123 | +0.88449σ | 23 | 375.73 Å² |
+| Eight sugar atoms | 336 | +0.50440σ | 88 | 358.615 Å² |
+| Remaining base atoms | 403 | −1.22921σ | 371 | 343.58 Å² |
+
+**41/42 base-group means are negative**; weak samples are not confined to B1/B7.
+A1 has no phosphate atoms, represented as n=0/null metrics rather than zero
+density. This exact all-heavy DNA/PDU partition is a local reporting choice,
+not a new generic atom classifier. Map zero is the whole-cell mean, not zero
+electrons. These model-assisted maps include Free-R; point samples are not RSCC,
+independent evidence, an absence test or a placement objective.
+
+Three further FFTs inspect explicitly named saved coefficients. All 403 base
+positions are positive in FCALC (median **+3.06505σ**), whereas 341/403 lie below
+the mean in FMODEL (median **−1.11078σ**). The filled 2mFo−DFc map has 2,848
+coefficients and still 371/403 negative base samples. Missing-reflection filling
+alone does not remove the pattern; its added model-filled indices are not new
+observations. FCALC and FMODEL have the same 1,909 unique indices as the unfilled
+map but a different row order, explicitly checked by index identity.
+
+A linear decomposition reuses the saved `FCALC`, `FMASK`, `K_MASK`,
+`K_ISOTROPIC` and `K_ANISOTROPIC` arrays. The local Phenix 2.2.1-6174
+`mmtbx/f_model/f_model.py` export and the native log identify the forward model
+as scaled atomic plus mask contributions; the export also applies overall k1.
+A single positive factor **0.9961900763** relates the reconstructed coefficients
+to exported FMODEL, with relative residual **3.23615e-7**. This factor is derived
+from calculated coefficients only, not fitted against observations.
+
+Three component/sum FFTs use **one shared normalization**. Base-atom mean
+contributions are **+10.48150σ atomic −11.55044σ mask = −1.06894σ total**.
+The sum reproduces saved FMODEL samples within **1.33284e-6σ**; component
+additivity is checked separately. Independently normalized FCALC and
+experimental maps must not be added to these contributions. This establishes
+where cancellation occurs in the saved forward model; it does **not** establish
+that the solvent mask, thermal parameters, geometry or processing are wrong.
+No coefficient MTZ is generated; derived linear arrays exist only in memory.
+
+**Decision and next boundary.** Keep W297 as an unselected geometry result and
+do not expand the movement mask to chase this signal. A matched fixed-XYZ
+grouped-B-only sensitivity was proposed with equal budgets, exact group
+membership and unchanged occupancy, data/Free, restraints and scaling protocol.
+Rowan confirmed that the existing Refine Doctor calls `execute_autorefine` with
+a registered parent; W296/W297 are standalone receiver outputs, not registered
+ordinary checkpoints. No separate supported entry point was found. That
+experiment is **parked**, without manufactured ancestry or a manual B reset.
+Even if later admitted, it would be a sensitivity test at 4.19 Å, not an ADP
+solution or broader bending qualification. S04/S05/S06 remain PARTIAL.
+
+**Reproduction.** NASolve anchor:
+`branch-artifacts/willow/w298-density-context/`. Local runners `review.py`,
+`calculated_context.py`, `decompose.py`, `figure.py` and `verify.py` retain exact
+methods; `manifest.json` binds scripts, reports and figure hashes. Native Python
+3.11.15 / Phenix **2.2.1-6174** executes each with `-B` and
+`PYTHONDONTWRITEBYTECODE=1`; FFT runners additionally set `OMP_NUM_THREADS=1`
+and `OPENBLAS_NUM_THREADS=1`. For example, from the NASolve anchor:
+
+```sh
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 \
+  phenix.python -B branch-artifacts/willow/w298-density-context/review.py
+```
+
+Existing output reports refuse overwrite. There are **ten FFTs in completed
+reports**: four source/endpoint map comparisons, three calculated/filled maps,
+and three linear components/sum. The first audit stopped on the missing A1
+phosphate after partial work; the initial calculated-map check correctly
+refused unequal index ordering before an FFT. Cold-check development also
+retains the initial wrong Free flag convention and untyped PHIL extraction
+failures, then verifies flag 0 from actual effective inputs. No source data was
+changed to make a check pass. Final cold checks pass anchored hashes, group
+arithmetic, exact common observation/flag tuples, decomposition and figure
+inputs/outputs. The figure was visually checked and local report links resolve.
+No new product tests, installation, native refinement, interactive browser
+qualification or whole-run relocation claim. Scientific payloads remain local;
+only the evidence summary and current roadmap/handoff are committed.

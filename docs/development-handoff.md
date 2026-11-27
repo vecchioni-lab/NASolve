@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**W297 endpoint-base recovery, 2026-11-27.** Latest native preflight,
+**W298 whole-model density audit, 2026-11-27.** Latest native preflight,
 refinement and maintained code: **W297**, `3b6920954a4736b4cf27dffb08cb93c5a0b92403`.
 The [audited roadmap](topostitch-roadmap.md) owns status and the next decision;
 [periodic evidence](topostitch-periodic.md) and [API contracts](topostitch-preview.md)
@@ -45,9 +45,15 @@ maintained fixed-weight product mode or recommended production weight.
 
 1. **Stitching:** W297 is the new unselected endpoint-base comparison against
    W296's sugar-only control. It improves pair tilt but does not recover clear
-   base density. First audit source-wide density/thermal context before releasing
-   more residues. All parent B/Q remained fixed; PDU has high inherited B values,
-   not newly introduced Coot B=20. Do not repeat the fit or tune to Free-R.
+   base density. [W298](topostitch-periodic.md#w298--audit-whole-model-density-before-wider-motion)
+   finds weak base samples throughout the model and reproduces the cancellation
+   already present in saved atomic/mask/scale components. This does not identify
+   the correct B, solvent, placement or processing model. All parent B/Q stayed
+   fixed. Do not widen motion, reset B values or tune to Free-R from this result.
+   A matched fixed-XYZ grouped-B sensitivity is parked: Refine Doctor calls
+   ordinary `execute_autorefine`, and these experimental outputs lack a registered
+   checkpoint parent. Rowan confirmed that no independent owner was identified;
+   do not manufacture ancestry. Continue an independent documented Willow/Pine gate.
    Native packing is now observed after hook restoration, with two extra calls
    per phase and fixed-policy/model/data checks. It remains raw evidence, not
    full-capture authentication or acceptance; post-release total energy is not
@@ -129,6 +135,12 @@ not duplicated here as a second chronology. The earlier C374 joined-package rece
 is not a current merge or qualification of later branches.
 
 ## Local science checkout
+
+Latest read-only context is at NASolve anchor
+`branch-artifacts/willow/w298-density-context/index.html`: whole-model density/B
+figure, saved calculated-map decomposition, exact sources and cold verification.
+Ten FFTs in completed reports; no new refinement, product tests or installation.
+The figure was visually checked; interactive browser use was not newly tested.
 
 Latest checkout, at the ScienceCheckouts anchor:
 `Linden/2026-11-27_endpoint-bases/index.html`. It links the offline 85-atom density

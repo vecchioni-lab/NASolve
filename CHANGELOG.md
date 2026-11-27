@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W298 — Audit the saved density in whole-model context
+
+- Record source-wide atom/residue samples and a saved atomic/mask/scale
+  decomposition before extending endpoint motion. Preserve map, thermal and
+  model-selection limits; park the B-only comparison at its actual parent gate.
+- Scientific inspection and documentation only: no product behavior, schema,
+  refinement, installation or checkpoint change. Raw evidence stays local.
+
 ### W297 — Release canonical endpoint bases explicitly
 
 - Add opt-in `movement_scope: coupled-endpoints` to the unphased native
