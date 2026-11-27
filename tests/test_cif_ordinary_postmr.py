@@ -133,6 +133,7 @@ def test_source_selection_reads_frozen_component_before_binding_generation(tmp_p
 
     def freeze(model, report, components, source_output, output, **kwargs):
         assert kwargs["select_anionic_phosphate"] is True
+        assert kwargs["saved_connected_order_store"] == tmp_path / "explicit-store"
         assert kwargs["source_ribose_workbook"].is_file() and kwargs['select_native_rna_pucker'] is True
         assert components == [dict(code="DE", generation=selected["DE"])]
         frozen={} if table is None else {'rna_pucker_table':table}
@@ -140,6 +141,7 @@ def test_source_selection_reads_frozen_component_before_binding_generation(tmp_p
 
     monkeypatch.setattr("nasolve.cif_generation_input.source_selected_generation", select)
     monkeypatch.setattr(entry, "initialize_postmr_dictionary_request", freeze)
-    result = call(run, sdk, data, generation_options=ordinary_generation_options("source-preserving-v2"))
+    result = call(run, sdk, data, store_root=tmp_path / "explicit-store",
+                  generation_options=ordinary_generation_options("source-preserving-v2"))
     expected=selected['DE'] if table is None else dict(selected['DE'],rna_pucker_table=table)
     assert result.generation=={'DE':expected} and 'rna_pucker_table' not in selected['DE']

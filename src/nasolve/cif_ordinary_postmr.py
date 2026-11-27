@@ -218,7 +218,9 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
         source_chemistry = {}
         if select_representation:
             from restraints import residue_library
+            from .cif_dictionary_store import default_dictionary_store
             source_chemistry = dict(select_anionic_phosphate=True, select_native_rna_pucker=True,
+                                    saved_connected_order_store=default_dictionary_store() if store_root is None else store_root,
                                     source_ribose_workbook=Path(residue_library.__file__).parent/'data/Ligands.xlsx')
         record = initialize_postmr_dictionary_request(inputs.model_path,inputs.run_report,components,None,request,
             consumer=configured.consumer,ready_set_executable=None,supplementary_phils=list(inputs.supplementary_phils),
@@ -417,7 +419,7 @@ def _execute_ordinary_postmr(run_directory, phenix, *, store_root=None, **prepar
     options = dict(preparation_options)
     options.setdefault('expected_dialect', 'CHEMICAL_COMPONENTS_CIF')
     options.setdefault('continuation_options', dict(readyset_timeout_seconds=120, restore_serialization=True))
-    if options.get('locked_sugar_site') is not None:
+    if options.get('locked_sugar_site') is not None or (options.get('generation_options') or {}).get('select_source_representation'):
         options['store_root'] = store_root
     prepared = initialize_ordinary_postmr_request(run_directory, phenix, **options)
     result = execute_dictionary_request_attempt(prepared.request_directory, phenix,

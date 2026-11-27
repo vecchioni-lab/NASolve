@@ -656,7 +656,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Chemistry or workflow | Demonstrated capability | Remaining boundary |
 | --- | --- | --- |
 | Ordinary supported DNA/modified bases | Connected-base construction, source audits and qualified cached dictionaries feed ordinary PostMR. If Coot turns a source-defined base away from its parent, ordinary construction can now rotate that base as a rigid body and recheck the named angle. DP and IMC both exercise this recovery in the mixed model. The full-model L-DNA recipe has an ordinary native-membership control. | A recipe/membership pass is not complete refinement or scientific validation. Explicit v3 policies now survive isolated storage, source requalification and opt-in current-site preparation/native binding. Checked preparation and cache-miss recovery have an explicit PostMR/campaign route (C219–C225); C251 adds explicit later alternatives. C270–C272 qualify chosen-model phasing and inspection; default enablement and real refinement qualification remain separate. |
-| Internal RNA with a free 2′ hydroxyl | On 2MG, 5MC and recovered 6MZ, Coot retained the ribose hand. Cedar checked the literal dictionary and the pucker Phenix selected. All three sugars kept their hand over five native cycles. Fresh ordinary preparation and refinement also completed for 2MG and 5MC. | A ring bond in each modified base lengthened during the three-site refinement. The source OP2 proton remains in each linked chemical definition. The complete three-site run used a separately recovered 6MZ dictionary. C-linked bases, locked sugars and a specified phosphorothioate have separate checks. Phenix did not expose formal charges in this comparison. [Three-site native measurements](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run). |
+| Internal RNA with a free 2′ hydroxyl | On 2MG, 5MC and recovered 6MZ, Coot retained the ribose hand. Cedar checked the literal dictionary and the pucker Phenix selected. All three sugars kept their hand over five native cycles. Fresh ordinary preparation and refinement also completed for 2MG and 5MC. | Starting a uniformly seeded methylated base from its host B factors kept all 26 ring bonds within two restraint widths in a five-cycle coordinate fit. Three of 50 pair distances still exceeded three widths. The source OP2 proton remains in each linked chemical definition. Fresh checked PostMR now finds a separately qualified 6MZ dictionary through its exact reordered source. The full cold-start recovery is a separate gate. C-linked bases, locked sugars and a specified phosphorothioate have separate checks. Phenix did not expose formal charges in this comparison. [Three-site native measurements](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run). |
 | Catalogue and source chemistry | All 618 rows / 599 codes of the pinned NAR workbook are inventoried; graph-defined ports and exact atom/H/charge/stereo comparisons are reusable. | Catalogue coverage is not native support. Source intent, missing mappings and unqualified families remain explicit. |
 | FANA | Source-defined arabino/ribo distinction; isolated A/C/T/U candidates and explicit-policy GFL controls pass native checks. | This does not automatically insert any FANA into an arbitrary model. Whole-sugar construction is a separate operation. |
 | L-FANA | One explicitly derived L-FANA-C identity has native component, NAR-binding, three-site placement, exact topology, sampled derivative and bounded geometry evidence. C133 qualifies source-projected L-DNA flank definitions around it. | The geometry trial remains at its iteration limit. Phosphate state, formal-charge readback and ordinary whole-model mutation remain open; L-FANA A/G/T/U are not all established by the C control. |
@@ -6459,13 +6459,15 @@ its permitted actions retain their original meaning. Ambiguous, incomplete and
 unmatched searches report their own status.
 
 For 2′-O-methylpseudouridine (UY1), the source bonds C1′ to ring C5. The
-workbook names N1 for attachment and assigns its C7 role to sugar C1′.
+workbook used in C106 named N1 for attachment and assigned its C7 role to sugar C1′.
 NARestraints still selects the correct Watson–Crick contacts. Its paired-base
 plane includes C1′, which is nearly coplanar with the ring in the source ideal
 coordinates. These are distinct decisions about attachment, pairing and plane
 membership. The same source-bond discrepancy is visible in PSU, P2U and B8H.
 The [earlier workbook audit](#broader-evidence-and-remaining-work) documented
-the PSU example. The current diagnostic explains it on additional source graphs.
+the PSU example. The diagnostic explains it on additional source graphs.
+NARestraints 1.1.4 corrects the four attachment records and removes sugar
+C1′ from the UY1 paired-base plane. [Corrected workbook and native checks](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
 
 ```bash
 nasolve cif-doctor profile /path/to/source.cif --code ATL \

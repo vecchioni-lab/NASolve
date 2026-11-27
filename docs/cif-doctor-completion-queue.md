@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 27 November 2026, after C617. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 27 November 2026, after C618. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -48,7 +48,9 @@ The next transfer check examines the locked-sugar contacts on a separate mixed s
    verified starting values during ordinary construction. Two sites passed a fresh
    five-cycle run with three of 50 pair distances still outside three widths.
    Resolve the linked OP2 chemistry separately before promoting the panel.
-   Carry the proven 6MZ recovery into a fresh ordinary run, then test a different
+   C618 carried the saved, independently qualified 6MZ dictionary into a fresh
+   ordinary three-site run automatically. Check the five-cycle return and the
+   behavior when that saved dictionary is unavailable, then test a different
    attachment and the source-backed internal sulfur linkage. The four pseudouridine attachment corrections ship in NARestraints 1.1.4. Record what was constructed, what Phenix kept after
    refinement, and which sites require review. The known 13-change scaffold and the
    unfamiliar panel answer different questions. [Mixed-scaffold criteria](#q07--one-mixed-scaffold-ordinary-acceptance-run).

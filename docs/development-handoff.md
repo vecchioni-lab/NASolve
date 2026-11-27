@@ -8,6 +8,14 @@ claims.
 
 ## Where to resume
 
+C618 took all three RNA substitutions through a fresh ordinary checked PostMR.
+The local store already held the independently qualified 6MZ dictionary. On a
+miss for the usual order, NASolve reproduced the reordered input from source,
+checked the original generator and current reader, and froze the same dictionary
+in the run. Coot and ReadySet completed without a hand-supplied snapshot. The
+scientific questions are what five ordinary cycles keep, and what happens on a
+fresh machine if the store contains neither 6MZ entry.
+
 C617 moved the starting-B correction into ordinary Coot construction. It checks the
 two base graphs for one methyl in place of a hydrogen, on carbon or nitrogen.
 For 5MC, 2MG and 6MZ the returned atoms reproduced all 32 independently predicted

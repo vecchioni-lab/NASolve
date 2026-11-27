@@ -18,6 +18,47 @@ def _fingerprint(record):
     return sha256(_bytes(record)).hexdigest()
 
 
+def freeze_connected_order_snapshot(source, code, authority, generation, consumer, store, output):
+    """Reuse a qualified reordered source only on a miss for the ordinary recipe.
+
+    No generator or native executable is invoked. Compare the actual reader input
+    with a fresh permutation of the authoritative source before freezing the entry.
+    """
+    from .cif_dictionary_store import lookup_dictionary, make_dictionary_request, resolve_qualified_dictionary
+    from .cif_generation_acquisition import POLICY_ID as ACQUISITION_POLICY, generation_dictionary_options
+    from .cif_generation_input import source_input_files
+
+    if (generation.get('source_input_policy') != SOURCE_INPUT_POLICY
+            or not generation.get('bond_representation_policy') or generation.get('multiple_planes')):
+        return None
+    options = generation_dictionary_options(generation)
+    request = make_dictionary_request(source, code, source_authority=authority, **options)
+    if lookup_dictionary(store, request, consumer)['status'] != 'MISS':
+        return None
+    recipe = dict(request['recipe'], source_input_policy=CONNECTED_INPUT_POLICY)
+    alternate = dict(request, recipe=recipe)
+    hit = lookup_dictionary(store, alternate, consumer)
+    if hit['status'] != 'HIT' or hit['manifest']['request'] != alternate:
+        return None
+    origin = hit['provenance'].get('generation_acquisition')
+    if (not isinstance(origin, dict) or origin.get('policy_id') != ACQUISITION_POLICY
+            or origin.get('consumer') != consumer or origin.get('request') != alternate
+            or origin.get('generation_status') != 'CANDIDATE_REVIEW'
+            or not isinstance(origin.get('execution'), dict) or origin['execution'].get('status') != 'COMPLETED'):
+        return None
+    try:
+        projection, _ = source_input_files(_regular(source), code, policy=CONNECTED_INPUT_POLICY)
+    except ValueError:
+        return None
+    if origin.get('source_preparation') != projection:
+        return None
+    saved = resolve_qualified_dictionary(source, code, store, output, source_authority=authority,
+                                         recipe=recipe, generator=options['generator'], consumer=consumer)
+    if saved['status'] == 'REUSED' and saved['entry_id'] == hit['entry_id']:
+        return output
+    return None
+
+
 def select_failure(selection, generation, root, store):
     from .cif_repair_attempt import _root
 
