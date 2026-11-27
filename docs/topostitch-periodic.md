@@ -16429,3 +16429,50 @@ image groups.230 derivative calls plus six disclosed calls=236, within300 calls
 and300 seconds/one CPU. Name atom/direction/step on any published-bound failure;
 inspect both C1′ projections. A pass precedes, but does not authorize or establish,
 a useful coupled fit. No B1/B7 derivative/admission result transfers by label.
+
+
+## W314 — Check the coupled gradient including both C1 atoms
+
+W313's source-bound19-atom mask now receives a complete derivative-only audit
+inside the same corrected native two-group preflight as W311. All57 variables
+are checked at1e-4/1e-5 Å with the unchanged1e-3 absolute bound. Source W304,
+MTZ-derived frame, weights, all planes, both registered junctions and six sugar
+hands remain fixed. No coordinate optimization or source hierarchy movement.
+
+Worst errors are **7.7997031e-5** at1e-4 Å,C8 DG C4′ y, and
+**7.4466634e-7** at1e-5 Å,D7 DT C4′ x. Both C1′ atoms pass all axes/steps.
+C8 C1′ raw/corrected gradients agree. D7 C1′ raw gradient
+(70.64868,−82.02742,23.88058) becomes(51.51710,−98.95937,1.78062) after the
+existing plane correction: maximum selected-component difference **22.09996**.
+Its corrected finite-difference errors remain at most7.09394e-5/6.53661e-7.
+The broader scope therefore makes the complete correction materially relevant;
+the old five/six-atom projection agreement cannot be generalized to C1′ motion.
+
+**Execution/validation:**230 derivative calls,236 total full-native calls
+including the six disclosed preflight/raw/packing calls, equally counted by
+both groups. Source/model/scattering/B/Q/static signature/policy and8069 directed
+packing rows repeat exactly; hooks restore, no production phosphate receipt.
+Phenix **2.2.1-6174**, one CPU,300-second bound; observer36.614 seconds.20 cold
+checks recompute every saved difference and verify C1 projections, source,
+counts, scope/command/output hashes and restoration. No new evaluations in the
+cold check. No product/schema/migration change, repeated suite/install, fit or
+scientific acceptance. W310 remains the qualified code pin.
+
+Local NASolve anchor `branch-artifacts/willow/w314-coupled-derivatives/` retains
+exact commands/source hashes in `launch.json`, full samples in `derivatives.json`,
+restoration/completion and `verification.json`. Invocation:
+`PYTHONDONTWRITEBYTECODE=1 NASolve/.venv/bin/python -B NASolve/branch-artifacts/willow/w314-coupled-derivatives/launch.py`.
+Raw science remains uncommitted. No claim of displacement-scale derivative
+coverage or wider candidate admission follows from this initial-point check.
+
+**Proposed next milestone, sent to Rowan:** one geometry-only19-atom trial from
+the same W304 source,50 optimizer iterations/72 optimizer calls/3 Å bound,
+with no seeding or target changes. Three complete derivative audits cost690
+calls; with72 optimizer calls and six existing overhead calls, the proposed
+budget is768 full-native calls/300 seconds/one CPU. This raises diagnostic
+coverage for57 variables, not minimizer iterations. Before launching, bind the
+existing endpoint ring/pucker, six hands, glycosidic/outer-boundary, six-plane,
+both-junction and native-contact observations. A useful result must demonstrate
+ε recovery rather than only shorter O3–P, preserve fixed bases/anchors, and
+report convergence or cap honestly. Density and ordinary-refinement confirmation
+remain subsequent gates; geometry cannot independently select the model.

@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W314 — Qualify the corrected coupled-sugar gradient
+
+- Record the actual19-atom D7/C8 derivative check with both registered groups,
+  including C1-dependent plane forces. All57 variables pass at both steps.
+- Preserve the substantial D7 C1 raw/corrected difference and the separate
+  initial-state-only limitation. No runtime, model or optimization change.
+
 ### W313 — Bind the wider sugar scope to its actual source
 
 - Reuse existing scope and captured-geometry owners for D7/C8, retaining fixed

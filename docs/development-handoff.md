@@ -1,7 +1,7 @@
 # NASolve development handoff — Willow
 
-**W313 source-bound coupled-sugar scope, 2026-11-27.** Latest maintained code:
-`29fded465e95878677670be15d3c8f4999224854`. Latest native geometry diagnostic: **W312**; latest refinement:
+**W314 coupled-sugar derivative qualification, 2026-11-27.** Latest maintained code:
+`29fded465e95878677670be15d3c8f4999224854`. Latest native derivative diagnostic: **W314**; latest movement comparison: **W312**; latest refinement:
 **W304** (same genuine ordinary PDU parent as W300); latest density audit: **W304**.
 W298 remains the separate endpoint-base/whole-model density audit; do not conflate sources.
 The [audited roadmap](topostitch-roadmap.md) owns status and the next decision;
@@ -114,10 +114,15 @@ maintained fixed-weight product mode or recommended production weight.
    **W313** maps the existing19-atom scope onto this exact D7/C8 source:
    20 base atoms and six outer-phosphate atoms stay fixed; both C1′ atoms make
    two monomer/four pair-stack planes variable.36 scope/10 cold checks pass,
-   with no movement or inherited B1/B7 admission. **Next W314, approved by Rowan:**
-   derivative-only57-variable audit inside the same two-group native lifetime,
-   explicitly checking C1′. No wider fit before the actual result.
-   [Scope and limits](topostitch-periodic.md#w313--bind-coupled-sugars-to-the-actual-d7c8-source).
+   with no movement or inherited B1/B7 admission. **W314** passes all57 derivatives, including both C1′ atoms, with both
+   registered groups. The selected raw/corrected difference22.09996 at D7 C1′
+   demonstrates why the plane correction must remain active.20 cold checks;
+   no movement. **Proposed W315:** one19-atom geometry-only comparison, same
+   50 optimizer iterations/72 calls/3 Å; three derivative audits require690
+   calls, so768 total with overhead. Bind existing pucker/plane/boundary
+   observers before launching; require actual ε recovery and preserved context,
+   not just bond shortening. No diffraction or adoption is authorized by this pass.
+   [Derivative evidence](topostitch-periodic.md#w314--check-the-coupled-gradient-including-both-c1-atoms).
    W216's O5′/C5′-only shoulder proposal
    cannot change C4′–C3′–O3′–P when those four atoms are fixed. Separately, P05's
    remaining work is the shared GUI operation lifecycle, not another preview,

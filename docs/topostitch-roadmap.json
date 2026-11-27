@@ -525,14 +525,15 @@
         "W310 qualifies a read-only full-native baseline inside both registered image-force groups; raw versus order-corrected differences on fixed bases do not affect the proposed five/six backbone masks. Explicit PDB/MTZ frame distinction, unchanged native packing/state and hook restoration verified; no motion or optimizer admission.",
         "W311 checks every variable in both five/six masks at 1e-4 and 1e-5 Angstrom. Both pass; worst shared C8 C5-prime y errors 4.912e-5/4.529e-7. All142 full native calls visit both groups; state/packing and hooks preserved. No movement yet.",
         "W312 matched five/six-atom geometry trials shorten D7/C8 O3-P to1.6101/1.6098 Angstrom but both reach50 iterations without convergence and leave epsilon near its periodic maximum. Six sugar hands/fixed atoms/other junction survive; one existing OP2-image-C2-prime contact worsens. Native term read confirms retained-force opposition, not missing epsilon force.",
-        "W313 binds existing19-atom coupled-sugar scope to actual W304 D7/C8 source:23 bonds,4 fixed boundaries,6 sugar hands,20 held base atoms,6 held outer-phosphate atoms and6 C1-dependent planes.36 scope/10 cold checks; no movement/admission. Prior B1/B7 scope not inherited."
+        "W313 binds existing19-atom coupled-sugar scope to actual W304 D7/C8 source:23 bonds,4 fixed boundaries,6 sugar hands,20 held base atoms,6 held outer-phosphate atoms and6 C1-dependent planes.36 scope/10 cold checks; no movement/admission. Prior B1/B7 scope not inherited.",
+        "W314 qualifies all57 derivatives of the actual19-atom D7/C8 mask with both registered groups. Worst errors7.800e-5/7.447e-7 pass; selected raw/corrected gradient difference22.09996 at D7 C1-prime shows plane correction is necessary.236 full calls, source/packing restored;20 cold checks. No motion."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "W314 approved derivative-only19-atom check in the same corrected two-group native preflight;57 variables,230 derivative/236 total calls within300 calls/300 seconds. Inspect both C1-prime projections and stop at published bound failures. Propose any coupled fit only after actual derivative result.",
+      "next_action": "Proposed W315: one19-atom geometry-only trial at unchanged W304,50 optimizer iterations/72 calls/3 Angstrom, full planes/both junctions retained. Three derivative audits cost690 calls;768 total including optimizer/overhead is a coverage budget, not extra minimizer iterations. Before launch bind existing pucker/plane/boundary endpoint observers; judge convergence, epsilon recovery, all6 hands, fixed20 bases/outer phosphates and old/new contacts. No diffraction/adoption or inherited B1/B7 admission.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -690,14 +691,15 @@
         "E_REGISTERED_ZERO_OBSERVATION",
         "E_REGISTERED_DERIVATIVES",
         "E_HELD_FREE_NATIVE_MOVEMENT",
-        "E_D7_C8_COUPLED_SCOPE"
+        "E_D7_C8_COUPLED_SCOPE",
+        "E_D7_C8_COUPLED_DERIVATIVES"
       ],
       "last_audit": {
         "date": "2026-11-27",
         "code_commit": "29fded465e95878677670be15d3c8f4999224854",
         "reviewer": "Linden",
         "human_update": 310,
-        "scope": "W313 source-bound scope only; no scientific closure or movement"
+        "scope": "W314 derivative-only19-atom qualification; no motion or scientific closure"
       }
     },
     {
@@ -1304,14 +1306,15 @@
         "W310 qualifies a read-only full-native baseline inside both registered image-force groups; raw versus order-corrected differences on fixed bases do not affect the proposed five/six backbone masks. Explicit PDB/MTZ frame distinction, unchanged native packing/state and hook restoration verified; no motion or optimizer admission.",
         "W311 checks every variable in both five/six masks at 1e-4 and 1e-5 Angstrom. Both pass; worst shared C8 C5-prime y errors 4.912e-5/4.529e-7. All142 full native calls visit both groups; state/packing and hooks preserved. No movement yet.",
         "W312 matched five/six-atom geometry trials shorten D7/C8 O3-P to1.6101/1.6098 Angstrom but both reach50 iterations without convergence and leave epsilon near its periodic maximum. Six sugar hands/fixed atoms/other junction survive; one existing OP2-image-C2-prime contact worsens. Native term read confirms retained-force opposition, not missing epsilon force.",
-        "W313 binds existing19-atom coupled-sugar scope to actual W304 D7/C8 source:23 bonds,4 fixed boundaries,6 sugar hands,20 held base atoms,6 held outer-phosphate atoms and6 C1-dependent planes.36 scope/10 cold checks; no movement/admission. Prior B1/B7 scope not inherited."
+        "W313 binds existing19-atom coupled-sugar scope to actual W304 D7/C8 source:23 bonds,4 fixed boundaries,6 sugar hands,20 held base atoms,6 held outer-phosphate atoms and6 C1-dependent planes.36 scope/10 cold checks; no movement/admission. Prior B1/B7 scope not inherited.",
+        "W314 qualifies all57 derivatives of the actual19-atom D7/C8 mask with both registered groups. Worst errors7.800e-5/7.447e-7 pass; selected raw/corrected gradient difference22.09996 at D7 C1-prime shows plane correction is necessary.236 full calls, source/packing restored;20 cold checks. No motion."
       ],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
         "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.",
         "Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified."
       ],
-      "next_action": "W314 approved derivative-only19-atom check in the same corrected two-group native preflight;57 variables,230 derivative/236 total calls within300 calls/300 seconds. Inspect both C1-prime projections and stop at published bound failures. Propose any coupled fit only after actual derivative result.",
+      "next_action": "Proposed W315: one19-atom geometry-only trial at unchanged W304,50 optimizer iterations/72 calls/3 Angstrom, full planes/both junctions retained. Three derivative audits cost690 calls;768 total including optimizer/overhead is a coverage budget, not extra minimizer iterations. Before launch bind existing pucker/plane/boundary endpoint observers; judge convergence, epsilon recovery, all6 hands, fixed20 bases/outer phosphates and old/new contacts. No diffraction/adoption or inherited B1/B7 admission.",
       "evidence": [
         "E_PINE_TEST_BANK",
         "E_NATIVE_REPRESENTATION_SEAMS",
@@ -1345,14 +1348,15 @@
         "E_REGISTERED_ZERO_OBSERVATION",
         "E_REGISTERED_DERIVATIVES",
         "E_HELD_FREE_NATIVE_MOVEMENT",
-        "E_D7_C8_COUPLED_SCOPE"
+        "E_D7_C8_COUPLED_SCOPE",
+        "E_D7_C8_COUPLED_DERIVATIVES"
       ],
       "last_audit": {
         "date": "2026-11-27",
         "code_commit": "29fded465e95878677670be15d3c8f4999224854",
         "reviewer": "Linden",
         "human_update": 310,
-        "scope": "W313 source-bound scope only; no scientific closure or movement"
+        "scope": "W314 derivative-only19-atom qualification; no motion or scientific closure"
       }
     },
     {
@@ -10987,6 +10991,47 @@
           "size": 1494
         }
       ]
+    },
+    "E_D7_C8_COUPLED_DERIVATIVES": {
+      "kind": "D7/C8 full corrected coupled-sugar derivatives",
+      "date": "2026-11-27",
+      "human_update": 314,
+      "code_commit": "29fded465e95878677670be15d3c8f4999224854",
+      "reference": "docs/topostitch-periodic.md#w314--check-the-coupled-gradient-including-both-c1-atoms",
+      "result": "All57 variables at both steps pass,230 derivative/236 total full-native calls equally on both groups. Both C1 atoms checked; D7 C1 correction max22.09996 with independent finite differences passing.20 cold checks; state/packing and restoration intact.",
+      "limitation": "Initial-coordinate derivatives only, no larger displacement, optimizer, packing acceptance, diffraction or candidate admission.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w314-coupled-derivatives/verification.json",
+          "sha256": "828555a56dff193cc3bd3fb1f05ab5eae1f1c0b69d00aa8f53b7d37e699afef8",
+          "size": 2637
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w314-coupled-derivatives/derivatives.json",
+          "sha256": "6e87c4be01308902d0475c932a4f2502594f5968034196599ef98c9b8b78aaf8",
+          "size": 9726295
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w314-coupled-derivatives/restoration.json",
+          "sha256": "b88938abf7f35603c7ab921d9c4cfa93ae5356958e7e34181a998e8dba8707e0",
+          "size": 1642
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w314-coupled-derivatives/completion.json",
+          "sha256": "45006bb98d5c5d12cdd596049f554208b4ff875010fc37a7accd09742952217c",
+          "size": 451
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w314-coupled-derivatives/launch.json",
+          "sha256": "91e398b94e47240e9d21efb275a6288c0ac06278e6a47b5e18c2279f7a096f6e",
+          "size": 2684
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -11168,8 +11213,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 313,
-    "next": 314,
+    "current": 314,
+    "next": 315,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -12855,6 +12900,12 @@
       {
         "number": 313,
         "title": "Bind coupled sugars to the actual D7/C8 source",
+        "state": "RECORDED",
+        "code_commit": "29fded465e95878677670be15d3c8f4999224854"
+      },
+      {
+        "number": 314,
+        "title": "Check coupled derivatives including both C1 atoms",
         "state": "RECORDED",
         "code_commit": "29fded465e95878677670be15d3c8f4999224854"
       }
