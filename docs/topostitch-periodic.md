@@ -16245,3 +16245,52 @@ with the existing 1e-4/1e-5 Å steps and 1e-3 absolute bound (62+74 evaluator ca
 plus disclosed packing/preflight, total≤150; 300 s). Preserve both groups and
 source/native frames. Report the worst disagreement with atom, direction and
 step before proposing any actual movement or diffraction trial.
+
+
+## W311 — Verify the five and six atom native derivatives
+
+**Question:** do the forces proven present in W310 predict the energy change
+when the proposed local atoms move? Same W304 source, MTZ-derived native frame,
+weights and both registered junctions. No geometry or diffraction optimization.
+The held mask is C8 P/OP1/OP2/O5′/C5′; the free mask additionally includes D7 O3′.
+The five shared atoms are identical, and their baseline projections match exactly.
+
+The existing `check_masked_derivatives` checks every variable at 1e-4 and 1e-5 Å
+and repeats the baseline exactly. Both masks pass the existing 1e-3 absolute
+bound. Worst in both: **C8 DG C5′, y**, analytic 48.102815573725856; numeric
+48.10286468909908 at 1e-4 Å (error 4.911537322271897e-5) and
+48.10281602658505 at 1e-5 Å (error 4.528591972530194e-7).
+The held/free audits use 62/74 evaluations. With preflight, raw baseline and two
+repeated ASU observations, all **142** full-gradient calls visit **both** groups.
+All 862 identities, hierarchy/scattering/B/Q, fixed definitions, source and
+nonbonded policy remain unchanged; packing repeats exactly. Hooks restore;
+no production phosphate receipt, checkpoint or candidate is created.
+
+**Execution:** complete diagnostic preflight under Phenix **2.2.1-6174**, one CPU,
+300-second cap, native observer **22.9033 s**. Existing frozen v12 runtime from
+Cedar `d3d71cde66ca3fe953c182773672fd5d5dbd3a8a` plus Rowan's separately pinned
+C634 observation phase; exact executable commands/source/log hashes in
+`branch-artifacts/willow/w311-registered-derivatives/launch.json` under the
+`NASolve` anchor. Run command:
+
+```text
+NASolve/.venv/bin/python -B NASolve/branch-artifacts/willow/w311-registered-derivatives/launch.py
+python3 -B NASolve/branch-artifacts/willow/w311-registered-derivatives/cold_check.py
+```
+
+The cold reader recomputes all saved differences and verifies counts, source,
+restoration and receipts: **31 checks**, zero new native evaluations. This slice
+changes only documentation; W310's 345 focused/installed and 3148 + 238 subtest
+qualification remains the applicable unchanged-code evidence. No suite rerun.
+All raw scientific files stay local/uncommitted; the ledger carries anchored
+references/checksums. No migration, CLI or schema impact.
+
+**Next, agreed with Rowan:** W312 matched held/free O3′ movement through the
+existing native-only adapter pattern and bounded masked trial, within both
+force lifetimes. Same start,72 optimizer calls,50 iterations,3 Å bound,300 total
+native calls and300 seconds/one CPU per arm. Existing native proxy kernels own
+local/boundary/sugar measurements; ASU capture and relative-image arithmetic own
+raw contact comparisons. Preserve both junctions, six sugar signs, fixed atoms
+and old/new contact distinctions. No full packing approval, diffraction fit or
+candidate adoption. A capped or conflicting result is inconclusive; S05/P04
+remain PARTIAL.

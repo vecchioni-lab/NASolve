@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W311 — Verify both registered local coordinate masks
+
+- Record complete five/six-atom native derivative checks before movement;
+  both pass while preserving both image-force groups, source state and packing.
+- Audit saved arithmetic independently and retain exact limits and next matched
+  experiment. Documentation/evidence only; no runtime, schema or model change.
+
 ### W310 — Observe a registered full-native gradient before local movement
 
 - Add a read-only zero-step observer using the existing native evaluator and

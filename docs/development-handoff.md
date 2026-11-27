@@ -1,7 +1,7 @@
 # NASolve development handoff — Willow
 
-**W310 registered zero-step observation, 2026-11-27.** Latest maintained code:
-`29fded465e95878677670be15d3c8f4999224854`. Latest native diagnostic preflight: **W310**; latest refinement:
+**W311 registered derivative observation, 2026-11-27.** Latest maintained code:
+`29fded465e95878677670be15d3c8f4999224854`. Latest native diagnostic preflight: **W311**; latest refinement:
 **W304** (same genuine ordinary PDU parent as W300); latest density audit: **W304**.
 W298 remains the separate endpoint-base/whole-model density audit; do not conflate sources.
 The [audited roadmap](topostitch-roadmap.md) owns status and the next decision;
@@ -103,10 +103,15 @@ maintained fixed-weight product mode or recommended production weight.
    on fixed bases but agree exactly on the five/six proposed backbone atoms;
    both groups, 8,069 directed contacts and source state persist. PDB coordinates
    and the MTZ-derived native cell are bound separately after an explicit frame
-   audit; the first strict-cell failure is preserved. **Next W311:** existing
-   finite-difference checks on both masks, approved by Rowan, before any movement.
-   [Evidence and limits](topostitch-periodic.md#w310--observe-both-registered-junctions-before-movement).
-   NativeMaskedObjective/optimizer admission and diffraction remain held. W216's O5′/C5′-only shoulder proposal
+   audit; the first strict-cell failure is preserved. **W311** independently checks all variables in both masks at two steps:
+   worst shared C8 C5′ y errors 4.912e-5 / 4.529e-7 against the existing 1e-3
+   bound. All 142 full-native calls visit both groups; state, packing and hooks
+   are preserved. **Next W312, coordinated with Rowan:** matched geometry-only
+   held/free O3′ trials, same source and limits, using native geometry and ASU
+   observation owners. Compare both joins, six sugar hands, fixed atoms and
+   pre-existing/new contacts; keep capped or conflicting results inconclusive.
+   [Evidence and limits](topostitch-periodic.md#w311--verify-the-five-and-six-atom-native-derivatives).
+   No diffraction or adoption; no general NativeMaskedObjective admission. W216's O5′/C5′-only shoulder proposal
    cannot change C4′–C3′–O3′–P when those four atoms are fixed. Separately, P05's
    remaining work is the shared GUI operation lifecycle, not another preview,
    preference or checkpoint registry. Existing same-source

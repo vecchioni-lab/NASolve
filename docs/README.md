@@ -7,17 +7,14 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Latest W310:** [registered zero-step force observation](topostitch-periodic.md#w310--observe-both-registered-junctions-before-movement)
-  retains both image junctions and native contacts. The selected backbone force
-  projections agree; fixed base-plane derivatives differ. Next: derivative checks.
+- **Latest W311:** [registered five/six-atom derivative audit](topostitch-periodic.md#w311--verify-the-five-and-six-atom-native-derivatives)
+  passes both complete finite-difference checks with both image forces active.
+  Next: matched held/free O3′ geometry trials; no diffraction or adoption yet.
 
-- **Latest audit, W307–W309:** [fixed-sugar strain and native force boundary](topostitch-periodic.md#w307w309--separate-fixed-sugar-strain-from-native-integration)
-  distinguish radial reach from acceptable sugar geometry. Held/free-O3 trials
-  stop before a missing two-group integration boundary; next is a zero-step check.
-
-- **Latest code, W305:** [verified child cut choices](topostitch-preview.md#compare-cuts-on-a-verified-refinement-child-w305)
-  now compose comparison/preference reopening with exact checkpoint context.
-  Retained and alternative cuts stay distinct; no inherited approval or selection.
+- **Latest code, W310:** [registered zero-step observer](topostitch-preview.md)
+  exposes full-native baseline and explicit mask projections inside the caller's
+  authenticated force lifetime. Existing verified child-cut comparison remains
+  available; no new checkpoint or preference registry.
 
 - **Latest science, W304:** [one versus three ordinary cycles](topostitch-periodic.md#w304--three-cycle-ordinary-recovery-with-map-review)
   improves both image bond distances and worst angles; torsions/maps remain

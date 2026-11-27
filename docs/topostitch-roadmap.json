@@ -522,14 +522,15 @@
         "W297: explicit canonical endpoint-base release through the existing installed receiver;37/825 local scope, preserved BQ/proxies/sugar hands, raw post-exit packing and matched own-map/plane review. Geometry gain does not close density or packing gates.",
         "W306 quantifies fixed-anchor radial reach from saved native targets before another fit. D7 exact epsilon is reachable radially; B7 exact target is not, though one-width alternatives exist. No candidate or refinement; full orientation/chemistry separate.",
         "W307/W308 distinguish radial reach from severe fixed-sugar orientation strain; W309 identifies the absent registered two-group masked-force boundary before any fit. Both native links remain required; no experimental outcome or scientific closure is inferred.",
-        "W310 qualifies a read-only full-native baseline inside both registered image-force groups; raw versus order-corrected differences on fixed bases do not affect the proposed five/six backbone masks. Explicit PDB/MTZ frame distinction, unchanged native packing/state and hook restoration verified; no motion or optimizer admission."
+        "W310 qualifies a read-only full-native baseline inside both registered image-force groups; raw versus order-corrected differences on fixed bases do not affect the proposed five/six backbone masks. Explicit PDB/MTZ frame distinction, unchanged native packing/state and hook restoration verified; no motion or optimizer admission.",
+        "W311 checks every variable in both five/six masks at 1e-4 and 1e-5 Angstrom. Both pass; worst shared C8 C5-prime y errors 4.912e-5/4.529e-7. All142 full native calls visit both groups; state/packing and hooks preserved. No movement yet."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "W311: derivative-only five/six-mask checks through the same corrected native evaluator, same source/MTZ frame and both groups. Existing1e-4/1e-5 steps and1e-3 bound; report atom/axis/step and preserve failure. No movement or diffraction fit before the next decision.",
+      "next_action": "W312: matched geometry-only held/free O3 trials from the same W304 child, using the full corrected native evaluator inside both registered force lifetimes. Existing native geometry/ASU owners; compare both joins, six sugar hands, fixed atoms and existing versus new contacts. Same 72 optimizer calls,50 iterations,3 Angstrom bound,300 total native calls/300 seconds per arm. Preserve capped/conflicting outcomes; no diffraction or adoption.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -684,14 +685,15 @@
         "E_ENDPOINT_BASE_INSTALLED_RECOVERY",
         "E_FIXED_ANCHOR_PHOSPHATE_REACH",
         "E_FIXED_SUGAR_AND_MASKED_BOUNDARY",
-        "E_REGISTERED_ZERO_OBSERVATION"
+        "E_REGISTERED_ZERO_OBSERVATION",
+        "E_REGISTERED_DERIVATIVES"
       ],
       "last_audit": {
         "date": "2026-11-27",
         "code_commit": "29fded465e95878677670be15d3c8f4999224854",
         "reviewer": "Linden",
         "human_update": 310,
-        "scope": "Zero-step source/frame/group/projection and packing observations qualified; derivatives, movement and scientific closure remain open"
+        "scope": "W311 derivative diagnostic only; no milestone closure or physical acceptance"
       }
     },
     {
@@ -1295,14 +1297,15 @@
         "W305 composes verified-child context, existing same-child alternatives and saved preference intake. Retained cut versus alternative explicit; context/packet/preference drift refuses. Current Cedar read-only compatibility checked; no selection or native admission.",
         "W306 quantifies fixed-anchor radial reach from saved native targets before another fit. D7 exact epsilon is reachable radially; B7 exact target is not, though one-width alternatives exist. No candidate or refinement; full orientation/chemistry separate.",
         "W307/W308 distinguish radial reach from severe fixed-sugar orientation strain; W309 identifies the absent registered two-group masked-force boundary before any fit. Both native links remain required; no experimental outcome or scientific closure is inferred.",
-        "W310 qualifies a read-only full-native baseline inside both registered image-force groups; raw versus order-corrected differences on fixed bases do not affect the proposed five/six backbone masks. Explicit PDB/MTZ frame distinction, unchanged native packing/state and hook restoration verified; no motion or optimizer admission."
+        "W310 qualifies a read-only full-native baseline inside both registered image-force groups; raw versus order-corrected differences on fixed bases do not affect the proposed five/six backbone masks. Explicit PDB/MTZ frame distinction, unchanged native packing/state and hook restoration verified; no motion or optimizer admission.",
+        "W311 checks every variable in both five/six masks at 1e-4 and 1e-5 Angstrom. Both pass; worst shared C8 C5-prime y errors 4.912e-5/4.529e-7. All142 full native calls visit both groups; state/packing and hooks preserved. No movement yet."
       ],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
         "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.",
         "Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified."
       ],
-      "next_action": "W311: derivative-only five/six-mask checks through the same corrected native evaluator, same source/MTZ frame and both groups. Existing1e-4/1e-5 steps and1e-3 bound; report atom/axis/step and preserve failure. No movement or diffraction fit before the next decision.",
+      "next_action": "W312: matched geometry-only held/free O3 trials from the same W304 child, using the full corrected native evaluator inside both registered force lifetimes. Existing native geometry/ASU owners; compare both joins, six sugar hands, fixed atoms and existing versus new contacts. Same 72 optimizer calls,50 iterations,3 Angstrom bound,300 total native calls/300 seconds per arm. Preserve capped/conflicting outcomes; no diffraction or adoption.",
       "evidence": [
         "E_PINE_TEST_BANK",
         "E_NATIVE_REPRESENTATION_SEAMS",
@@ -1333,14 +1336,15 @@
         "E_CHECKPOINT_CUT_CHOICE",
         "E_FIXED_ANCHOR_PHOSPHATE_REACH",
         "E_FIXED_SUGAR_AND_MASKED_BOUNDARY",
-        "E_REGISTERED_ZERO_OBSERVATION"
+        "E_REGISTERED_ZERO_OBSERVATION",
+        "E_REGISTERED_DERIVATIVES"
       ],
       "last_audit": {
         "date": "2026-11-27",
         "code_commit": "29fded465e95878677670be15d3c8f4999224854",
         "reviewer": "Linden",
         "human_update": 310,
-        "scope": "Zero-step source/frame/group/projection and packing observations qualified; derivatives, movement and scientific closure remain open"
+        "scope": "W311 derivative diagnostic only; no milestone closure or physical acceptance"
       }
     },
     {
@@ -10852,6 +10856,47 @@
           "size": 9935683
         }
       ]
+    },
+    "E_REGISTERED_DERIVATIVES": {
+      "kind": "Registered five/six-mask derivative audit",
+      "date": "2026-11-27",
+      "human_update": 311,
+      "code_commit": "29fded465e95878677670be15d3c8f4999224854",
+      "reference": "docs/topostitch-periodic.md#w311--verify-the-five-and-six-atom-native-derivatives",
+      "result": "Both complete derivative checks pass;62/74 calls,142 total full-native calls with both groups. Worst C8 C5-prime y at both steps.31 cold checks; exact state/packing preserved and restoration confirmed.",
+      "limitation": "Geometry derivative evidence only. No optimizer, new candidate, independent packing acceptance, diffraction fit or production receipt.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w311-registered-derivatives/verification.json",
+          "sha256": "9e50cf39e9761211992444ea5465e642274ccbac0c6e906075f3056bc72d6dcb",
+          "size": 2132
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w311-registered-derivatives/launch.json",
+          "sha256": "d6f22302990b0275a9d4a891ebd7264fc9947dcfde9d3a196139563560eb7738",
+          "size": 2690
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w311-registered-derivatives/derivatives.json",
+          "sha256": "db55a590bbd171accd9fa97b755c7abdebbcf4dce420ff5da64d09b799d7bf8c",
+          "size": 9709135
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w311-registered-derivatives/restoration.json",
+          "sha256": "daffb665649374c665ca9771f2947f344e97879d31e52153d2a220b61916b734",
+          "size": 1642
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w311-registered-derivatives/completion.json",
+          "sha256": "2fbebadb5c30f934ad98d2c81b4d5227195f69a9668a32d3f0f78d3415e651e1",
+          "size": 451
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -11033,8 +11078,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 310,
-    "next": 311,
+    "current": 311,
+    "next": 312,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -12702,6 +12747,12 @@
       {
         "number": 310,
         "title": "Observe both registered junctions before movement",
+        "state": "RECORDED",
+        "code_commit": "29fded465e95878677670be15d3c8f4999224854"
+      },
+      {
+        "number": 311,
+        "title": "Verify the five and six atom native derivatives",
         "state": "RECORDED",
         "code_commit": "29fded465e95878677670be15d3c8f4999224854"
       }
