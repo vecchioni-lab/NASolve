@@ -524,14 +524,15 @@
         "W307/W308 distinguish radial reach from severe fixed-sugar orientation strain; W309 identifies the absent registered two-group masked-force boundary before any fit. Both native links remain required; no experimental outcome or scientific closure is inferred.",
         "W310 qualifies a read-only full-native baseline inside both registered image-force groups; raw versus order-corrected differences on fixed bases do not affect the proposed five/six backbone masks. Explicit PDB/MTZ frame distinction, unchanged native packing/state and hook restoration verified; no motion or optimizer admission.",
         "W311 checks every variable in both five/six masks at 1e-4 and 1e-5 Angstrom. Both pass; worst shared C8 C5-prime y errors 4.912e-5/4.529e-7. All142 full native calls visit both groups; state/packing and hooks preserved. No movement yet.",
-        "W312 matched five/six-atom geometry trials shorten D7/C8 O3-P to1.6101/1.6098 Angstrom but both reach50 iterations without convergence and leave epsilon near its periodic maximum. Six sugar hands/fixed atoms/other junction survive; one existing OP2-image-C2-prime contact worsens. Native term read confirms retained-force opposition, not missing epsilon force."
+        "W312 matched five/six-atom geometry trials shorten D7/C8 O3-P to1.6101/1.6098 Angstrom but both reach50 iterations without convergence and leave epsilon near its periodic maximum. Six sugar hands/fixed atoms/other junction survive; one existing OP2-image-C2-prime contact worsens. Native term read confirms retained-force opposition, not missing epsilon force.",
+        "W313 binds existing19-atom coupled-sugar scope to actual W304 D7/C8 source:23 bonds,4 fixed boundaries,6 sugar hands,20 held base atoms,6 held outer-phosphate atoms and6 C1-dependent planes.36 scope/10 cold checks; no movement/admission. Prior B1/B7 scope not inherited."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "W313 approved read-only D7/C8 coupled-sugar scope audit using existing owner and exact source capture. Map19 atoms, six hands, boundary attachments and C1-dependent planes; distinguish what can move from fixed bases/other junction. No wider fit, inherited B1/B7 admission, repeated mask or increased cap.",
+      "next_action": "W314 approved derivative-only19-atom check in the same corrected two-group native preflight;57 variables,230 derivative/236 total calls within300 calls/300 seconds. Inspect both C1-prime projections and stop at published bound failures. Propose any coupled fit only after actual derivative result.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -688,14 +689,15 @@
         "E_FIXED_SUGAR_AND_MASKED_BOUNDARY",
         "E_REGISTERED_ZERO_OBSERVATION",
         "E_REGISTERED_DERIVATIVES",
-        "E_HELD_FREE_NATIVE_MOVEMENT"
+        "E_HELD_FREE_NATIVE_MOVEMENT",
+        "E_D7_C8_COUPLED_SCOPE"
       ],
       "last_audit": {
         "date": "2026-11-27",
         "code_commit": "29fded465e95878677670be15d3c8f4999224854",
         "reviewer": "Linden",
         "human_update": 310,
-        "scope": "W312 bounded geometry comparison; both unconverged, no scientific closure"
+        "scope": "W313 source-bound scope only; no scientific closure or movement"
       }
     },
     {
@@ -1301,14 +1303,15 @@
         "W307/W308 distinguish radial reach from severe fixed-sugar orientation strain; W309 identifies the absent registered two-group masked-force boundary before any fit. Both native links remain required; no experimental outcome or scientific closure is inferred.",
         "W310 qualifies a read-only full-native baseline inside both registered image-force groups; raw versus order-corrected differences on fixed bases do not affect the proposed five/six backbone masks. Explicit PDB/MTZ frame distinction, unchanged native packing/state and hook restoration verified; no motion or optimizer admission.",
         "W311 checks every variable in both five/six masks at 1e-4 and 1e-5 Angstrom. Both pass; worst shared C8 C5-prime y errors 4.912e-5/4.529e-7. All142 full native calls visit both groups; state/packing and hooks preserved. No movement yet.",
-        "W312 matched five/six-atom geometry trials shorten D7/C8 O3-P to1.6101/1.6098 Angstrom but both reach50 iterations without convergence and leave epsilon near its periodic maximum. Six sugar hands/fixed atoms/other junction survive; one existing OP2-image-C2-prime contact worsens. Native term read confirms retained-force opposition, not missing epsilon force."
+        "W312 matched five/six-atom geometry trials shorten D7/C8 O3-P to1.6101/1.6098 Angstrom but both reach50 iterations without convergence and leave epsilon near its periodic maximum. Six sugar hands/fixed atoms/other junction survive; one existing OP2-image-C2-prime contact worsens. Native term read confirms retained-force opposition, not missing epsilon force.",
+        "W313 binds existing19-atom coupled-sugar scope to actual W304 D7/C8 source:23 bonds,4 fixed boundaries,6 sugar hands,20 held base atoms,6 held outer-phosphate atoms and6 C1-dependent planes.36 scope/10 cold checks; no movement/admission. Prior B1/B7 scope not inherited."
       ],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
         "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.",
         "Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified."
       ],
-      "next_action": "W313 approved read-only D7/C8 coupled-sugar scope audit using existing owner and exact source capture. Map19 atoms, six hands, boundary attachments and C1-dependent planes; distinguish what can move from fixed bases/other junction. No wider fit, inherited B1/B7 admission, repeated mask or increased cap.",
+      "next_action": "W314 approved derivative-only19-atom check in the same corrected two-group native preflight;57 variables,230 derivative/236 total calls within300 calls/300 seconds. Inspect both C1-prime projections and stop at published bound failures. Propose any coupled fit only after actual derivative result.",
       "evidence": [
         "E_PINE_TEST_BANK",
         "E_NATIVE_REPRESENTATION_SEAMS",
@@ -1341,14 +1344,15 @@
         "E_FIXED_SUGAR_AND_MASKED_BOUNDARY",
         "E_REGISTERED_ZERO_OBSERVATION",
         "E_REGISTERED_DERIVATIVES",
-        "E_HELD_FREE_NATIVE_MOVEMENT"
+        "E_HELD_FREE_NATIVE_MOVEMENT",
+        "E_D7_C8_COUPLED_SCOPE"
       ],
       "last_audit": {
         "date": "2026-11-27",
         "code_commit": "29fded465e95878677670be15d3c8f4999224854",
         "reviewer": "Linden",
         "human_update": 310,
-        "scope": "W312 bounded geometry comparison; both unconverged, no scientific closure"
+        "scope": "W313 source-bound scope only; no scientific closure or movement"
       }
     },
     {
@@ -10948,6 +10952,41 @@
           "size": 2686
         }
       ]
+    },
+    "E_D7_C8_COUPLED_SCOPE": {
+      "kind": "D7/C8 coupled-sugar scope readback",
+      "date": "2026-11-27",
+      "human_update": 313,
+      "code_commit": "29fded465e95878677670be15d3c8f4999224854",
+      "reference": "docs/topostitch-periodic.md#w313--bind-coupled-sugars-to-the-actual-d7c8-source",
+      "result": "36 source/scope checks and10 cold checks;19 movable/843 fixed,20 held bases,6 outer-P atoms,23 local bonds,6 hands and6 plane dependencies. Saved scalar strain identifies D7 C4-C3-O3 increase under free-O3 trial.",
+      "limitation": "No new native model or kernel evaluation, derivative admission, motion, partner inference or fit. Aggregate opposing forces are not attributed to individual scalar terms.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w313-coupled-scope-audit/scope.json",
+          "sha256": "bd602df79e03bd57a37451f0152d8793bffc4f8d288014007bba54a948a218a6",
+          "size": 137145
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w313-coupled-scope-audit/verification.json",
+          "sha256": "34363856b59fdd0c6a28263f385a758d3fd0587c47e94708681ab1f8fcb6ec66",
+          "size": 2125
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w313-coupled-scope-audit/launch.json",
+          "sha256": "ac60fdf5b4400c790fd612f3cf6bef73f05aaa9bf50c10c669861ddf0b4a2bd2",
+          "size": 1453
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w313-coupled-scope-audit/launch-v2.json",
+          "sha256": "6ec4f1568415aeb826464e53e6946c663a13d6f00d904aac52051396f0272d3f",
+          "size": 1494
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -11129,8 +11168,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 312,
-    "next": 313,
+    "current": 313,
+    "next": 314,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -12810,6 +12849,12 @@
       {
         "number": 312,
         "title": "Shorten the image bond without resolving the torsion",
+        "state": "RECORDED",
+        "code_commit": "29fded465e95878677670be15d3c8f4999224854"
+      },
+      {
+        "number": 313,
+        "title": "Bind coupled sugars to the actual D7/C8 source",
         "state": "RECORDED",
         "code_commit": "29fded465e95878677670be15d3c8f4999224854"
       }

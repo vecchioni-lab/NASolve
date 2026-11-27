@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W313 — Bind the wider sugar scope to its actual source
+
+- Reuse existing scope and captured-geometry owners for D7/C8, retaining fixed
+  bases, outer phosphates, six sugar hands and C1-dependent planes.
+- Record saved strain tradeoffs and the next derivative-only gate. No runtime,
+  model, native evaluator or admission change.
+
 ### W312 — Compare local motion with O3′ held or released
 
 - Record matched geometry-only trials with both registered image-force groups.

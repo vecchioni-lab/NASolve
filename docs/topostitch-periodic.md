@@ -16381,3 +16381,51 @@ cannot confer admission here. Map six sugar centers, ring/exocyclic/boundary
 bonds, held bases/outer phosphates, and C1′-dependent planes. The two current
 junctions and native contact inventory remain controls. No additional fit or
 larger cap until that audit informs a distinct proposal. S05/P04 remain PARTIAL.
+
+
+## W313 — Bind coupled sugars to the actual D7/C8 source
+
+The existing `prepare_coupled_sugars` owner binds W304's actual D7 DT/C8 DG
+source to its authenticated W310 capture, through Cedar's existing receipt,
+identity and fixed-coordinate readers.19 atoms would be movable,843 fixed:
+C8 P/OP1/OP2 plus both eight-atom sugars. This extends the tested six by13,
+including donor C4′/C3′ so that the ε quartet gains real additional freedom.
+All20 endpoint base atoms remain fixed (this is not the18-base-atom B1/B7 case).
+Moving any base atom would require a distinct scope; releasing both complete
+bases here would total39 atoms rather than the prior37.
+
+All23 local bonds are present. Four held boundaries are C8 O3′–C9 P,
+C8 C1′–N9,D7 P–O5′,D7 C1′–N1. D7 and C9 P/OP1/OP2 remain fixed. Six signed
+sugar centers retain source/target agreement. Ordinary touching support counts:
+23 bonds,40 angles,8 chiralities,19 dihedrals,2 constant dihedrals,2 monomer
+planes and4 parallelity groups. Existing image-link terms remain separate.
+Moving C1′ makes both monomer planes and the A16/D7,A8/C8 pairs and D6/D7,
+C8/C9 stacks variable even though all bases stay fixed. All six plane groups
+must remain active; their native existence does not establish intended oligos.
+
+Saved W312 scalar reads show the free-O3 trial increases D7 C4′–C3′–O3′
+from1.291 to1.916 native widths while reducing O3′–C3′–C2′ from2.524 to1.183.
+Phosphate OP2–P–O5′ and P–OP bond deviations improve substantially. These are
+measured scalar strains, not per-term force attribution or proof that one angle
+causes the aggregate opposition found in W312. The held/free endpoints and
+8069-contact comparison are reused without regeneration; B1/B7 remain held.
+
+**Validation:**36 scope/source checks,10 cold checks; zero new native model or
+individual-kernel evaluations, no coordinates/weights/data changed. Existing
+mask refuses motion at every held endpoint-base, outer-phosphate and control
+junction atom. The first reader attempt stopped before scope work because it
+looked for a direct ledger capture reference. The successful retry follows the
+existing ledger→W310 verification→capture hash chain; failure is retained.
+Both execute under Phenix2.2.1-6174 Python with Cedar d3d71cde66ca3fe953c182773672fd5d5dbd3a8a
+readers; successful read2.554 seconds. Exact commands, source hashes and process
+receipts are local at NASolve anchor
+`branch-artifacts/willow/w313-coupled-scope-audit/launch-v2.json`; invocation:
+`PYTHONDONTWRITEBYTECODE=1 NASolve/.venv/bin/python -B NASolve/branch-artifacts/willow/w313-coupled-scope-audit/launch_v2.py`.
+No product/schema/migration change or repeated test suite; raw science excluded.
+
+**Next W314, approved by Rowan:**57-variable derivative-only audit of this
+actual19-atom mask under the same corrected full-native evaluator and both
+image groups.230 derivative calls plus six disclosed calls=236, within300 calls
+and300 seconds/one CPU. Name atom/direction/step on any published-bound failure;
+inspect both C1′ projections. A pass precedes, but does not authorize or establish,
+a useful coupled fit. No B1/B7 derivative/admission result transfers by label.

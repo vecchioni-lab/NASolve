@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**W312 matched local geometry comparison, 2026-11-27.** Latest maintained code:
+**W313 source-bound coupled-sugar scope, 2026-11-27.** Latest maintained code:
 `29fded465e95878677670be15d3c8f4999224854`. Latest native geometry diagnostic: **W312**; latest refinement:
 **W304** (same genuine ordinary PDU parent as W300); latest density audit: **W304**.
 W298 remains the separate endpoint-base/whole-model density audit; do not conflate sources.
@@ -111,11 +111,13 @@ maintained fixed-weight product mode or recommended production weight.
    stop at50 iterations without convergence. ε remains near its period-one
    maximum; the same existing OP2–image-C2′ contact tightens. A native term-only
    read shows other retained forces oppose ε improvement at both returned points.
-   **Next W313, approved by Rowan:** read-only D7/C8 coupled-sugar scope audit
-   through existing owners; bind the actual source, fixed attachments and
-   C1-dependent planes before proposing wider movement. Prior B1/B7 admission
-   does not transfer. No repeated mask, cap increase, diffraction or adoption.
-   [Evidence](topostitch-periodic.md#w312--shorten-the-image-bond-without-resolving-the-torsion).
+   **W313** maps the existing19-atom scope onto this exact D7/C8 source:
+   20 base atoms and six outer-phosphate atoms stay fixed; both C1′ atoms make
+   two monomer/four pair-stack planes variable.36 scope/10 cold checks pass,
+   with no movement or inherited B1/B7 admission. **Next W314, approved by Rowan:**
+   derivative-only57-variable audit inside the same two-group native lifetime,
+   explicitly checking C1′. No wider fit before the actual result.
+   [Scope and limits](topostitch-periodic.md#w313--bind-coupled-sugars-to-the-actual-d7c8-source).
    W216's O5′/C5′-only shoulder proposal
    cannot change C4′–C3′–O3′–P when those four atoms are fixed. Separately, P05's
    remaining work is the shared GUI operation lifecycle, not another preview,
