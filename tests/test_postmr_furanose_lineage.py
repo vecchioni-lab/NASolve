@@ -308,3 +308,51 @@ def test_explicit_sugar_seed_requires_both_puckers_and_the_compiled_pairing_edge
         request['recipe'] = dict(rna_pucker_table=insufficient) if insufficient is not None else {}
         with pytest.raises(ValueError,match='pucker|sugar'):
             _placement_policy(selected,workbook)
+
+
+def test_checked_card_selects_only_the_verified_host_and_target_sugar_chemistry(tmp_path, monkeypatch):
+    from pathlib import Path
+    from types import SimpleNamespace
+    from restraints import residue_library
+    from nasolve import curated_ligands, postmr
+    from nasolve.cif_rna_pucker import ETHER_PUCKER_PERMISSION
+    from nasolve.cif_whole_furanose import MODEL_EDGE_POLICY_ID
+    from nasolve.postmr_furanose import plan_sugar_sources
+    from tests.test_cif_phenix_configuration import configure, sdk_at
+    from tests.test_cif_pyrimidine_placement import inputs as edge_inputs
+
+    target, _, host, book, model = edge_inputs(tmp_path)
+    package = tmp_path/'restraints'
+    (package/'data').mkdir(parents=True)
+    (package/'data/Ligands.xlsx').write_bytes(book.read_bytes())
+    (package/'residue_library.py').write_bytes(Path(residue_library.__file__).read_bytes())
+    monkeypatch.setattr(residue_library, '__file__', str(package/'residue_library.py'))
+    sources = dict(PDU=host, UY1=target)
+    monkeypatch.setattr(curated_ligands, 'ligand_source',
+        lambda code, *args, **kw: SimpleNamespace(path=sources[code], authority='NATIVE'))
+    monkeypatch.setattr(postmr,'_target_sites', lambda *a,**kw: {'A:2':'UY1'})
+    monkeypatch.setattr(postmr,'ligand_definition', lambda code: SimpleNamespace(parent_code=None))
+    with pytest.raises(postmr.MissingMutationParent) as failure:
+        postmr.build_mutation_plan({},model)
+    missing = failure.value
+    assert (missing.site, missing.current, missing.target) == ('A:2','PDU','UY1')
+    sdk, _ = sdk_at(tmp_path/'installation')
+    cfg = configure(sdk)
+    library = sdk.root/'lib/python3.11/site-packages/chem_data/geostd/rna_dna'
+    library.mkdir(parents=True,exist_ok=True)
+    def select(host_code):
+        return plan_sugar_sources(missing.site, missing.target, host_code, cfg, sdk,
+                                  tmp_path/'store', None, {}, placement_policy=MODEL_EDGE_POLICY_ID)
+    with pytest.raises(ValueError,match='pucker'):
+        select('PDU')
+    for mod in ('rna2p','rna3p'):
+        (library/f'mod_{mod}.cif').write_text(f'data_mod_{mod}\n')
+    with patch('subprocess.Popen',side_effect=AssertionError('Planning invoked a native program')):
+        plan = select('PDU')
+        assert (plan.code,plan.site,plan.source_bytes,plan.host_bytes)==('UY1','A:2',target.read_bytes(),host.read_bytes())
+        assert plan.generation['rna_pucker_table']['policy_id']==ETHER_PUCKER_PERMISSION
+        assert set(plan.generation['rna_pucker_table']['tables'])=={'rna2p','rna3p'}
+        with pytest.raises(ValueError, match='N-linked'):
+            select('UY1')
+        assert postmr.build_mutation_plan({},model,furanose_target=(plan.site, plan.code))[0].method==postmr.FURANOSE_METHOD
+    assert not (tmp_path/'store').exists()

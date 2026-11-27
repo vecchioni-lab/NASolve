@@ -41,34 +41,41 @@ class CatalogueSubstitution:
 
     def verify_source(self, path, authority):
         _need(authority == self.source_authority and _read(path) == self.source_bytes,
-              'Locked-sugar source or its authority changed after planning')
+              'Sugar source or its authority changed after planning')
 
     def acquire(self, directory):
         """Use the ordinary isolated-dictionary owner after PostMR reserves its directory."""
         from .cif_acquisition_attempt import acquire_dictionary_attempt, read_acquisition_result
+        from .cif_rna_pucker import observed_ether_permission
 
         self.verify_source(self.source, self.source_authority)
         _need(_read(self.host) == self.host_bytes and _read(self.workbook) == self.workbook_bytes,
-              'Locked-sugar host dictionary or workbook changed before acquisition')
-        result = acquire_dictionary_attempt(self.source, self.code, self.store, directory,
-            source_authority=self.source_authority, consumer=self.consumer, generation=self.generation,
-            phenix=self.phenix, native_timeout_seconds=self.native_seconds,
-            total_timeout_seconds=self.acquisition_seconds, max_attempts=1)
+              'Sugar host dictionary or workbook changed before acquisition')
+        options = dict(source_authority=self.source_authority, consumer=self.consumer, generation=self.generation,
+                       phenix=self.phenix, native_timeout_seconds=self.native_seconds,
+                       total_timeout_seconds=self.acquisition_seconds, max_attempts=1)
+        if observed_ether_permission(self.generation.get('rna_pucker_table')):
+            from .cif_acquisition_recovery import freeze_connected_order_snapshot
+            from .cif_complete_order_recovery import acquire as acquire_with_recovery
+            with TemporaryDirectory(prefix='sugar-source-order-', dir=directory.parent) as temp:
+                retained = freeze_connected_order_snapshot(self.source, self.code, self.source_authority,
+                    self.generation, self.consumer, self.store, Path(temp).resolve()/'snapshot')
+                directory, result, _ = acquire_with_recovery(self.source, self.code, self.store, directory, 1,
+                    dict(options, retained_snapshot=retained))
+        else:
+            result = acquire_dictionary_attempt(self.source, self.code, self.store, directory, **options)
         saved = read_acquisition_result(directory, result['attempt_number'])
         self.verify_source(saved['source'], saved['manifest']['request']['source_authority'])
         choice = capture_substitution(dict(site=self.site, snapshot=saved['directory'].parent,
                                            host_dictionary=self.host, workbook=self.workbook), self.consumer)
         _need(choice.entry_id == saved['entry_id'] and choice.host_bytes == self.host_bytes
-              and choice.workbook_bytes == self.workbook_bytes, 'Locked-sugar inputs changed during acquisition')
+              and choice.workbook_bytes == self.workbook_bytes, 'Sugar inputs changed during acquisition')
         return choice
 
 
 def plan_catalogue_substitution(run_directory, site, configured, phenix, store, data_root, limits):
     """Read the frozen mutation, ordinary chemical sources and the installed restraint workbook."""
-    from restraints import residue_library
-    from .cif_generation_input import POLICY_ID as SOURCE_READER, source_selected_generation
     from .component_normalization import preparation_targets
-    from .curated_ligands import ligand_source, validate_ligand_dictionary
     from .postmr import _read_report, _solution_model, _target_sites, residue_name
 
     site = _site(site)
@@ -77,7 +84,17 @@ def plan_catalogue_substitution(run_directory, site, configured, phenix, store, 
     targets = preparation_targets(_target_sites(report, model, run_directory=run), model)
     code = targets.get(site)
     _need(code is not None, 'Locked-sugar site must occur in the frozen mutation or sequence')
-    host_code = residue_name(model, site)
+    return plan_sugar_sources(site, code, residue_name(model, site), configured, phenix, store, data_root, limits,
+                             placement_policy=MODEL_BASE_POLICY_ID)
+
+
+def plan_sugar_sources(site, code, host_code, configured, phenix, store, data_root, limits, *, placement_policy):
+    """Bind the two original chemical sources, workbook and permitted native sugar tables."""
+    from restraints import residue_library
+    from .cif_generation_input import POLICY_ID as SOURCE_READER, source_selected_generation
+    from .cif_rna_pucker import available_methyl_ether_tables, pucker_reference_permission
+    from .curated_ligands import ligand_source, validate_ligand_dictionary
+
     sources = [ligand_source(c, data_root, ready_set_executable=configured.ready_set_executable)
                for c in (code, host_code)]
     for component, source in zip((code, host_code), sources, strict=True):
@@ -85,10 +102,19 @@ def plan_catalogue_substitution(run_directory, site, configured, phenix, store, 
     target, host = sources
     workbook = Path(residue_library.__file__).parent/'data/Ligands.xlsx'
     original, host_bytes, workbook_bytes = (_read(p) for p in (target.path,host.path,workbook))
-    profile = inspect_attachment_profile(target.path, code, workbook=workbook)
-    _need(profile['topology_status'] == 'MATCH' and profile['matched_profile'] == _LOCKED,
-          'Selected mutation lacks a source-declared 2′-O,4′-C bridged furanose')
     generation = dict(configured.generation)
+    if placement_policy == MODEL_EDGE_POLICY_ID:
+        tables = available_methyl_ether_tables(phenix.root)
+        _need(tables is not None, 'C-linked sugar construction requires both installed pucker tables')
+        generation['rna_pucker_table'] = pucker_reference_permission(tables)
+        _need(_source_placement_policy(target.path, code, workbook, generation['rna_pucker_table']) == placement_policy
+              and _uracil_attachment(host.path, host_code, workbook) == 'N',
+              'Pairing-edge construction requires a source-proven N-linked uracil-like host and C-linked target')
+    else:
+        profile = inspect_attachment_profile(target.path, code, workbook=workbook)
+        _need(placement_policy == MODEL_BASE_POLICY_ID and profile['topology_status'] == 'MATCH'
+              and profile['matched_profile'] == _LOCKED,
+              'Selected mutation lacks a source-declared 2′-O,4′-C bridged furanose')
     generation.setdefault('source_input_policy', SOURCE_READER)
     if 'bond_representation_policy' not in generation:
         generation = source_selected_generation(target.path, code, generation)
@@ -122,13 +148,15 @@ class FuranoseInput:
 
 
 def _placement_policy(snapshot, workbook):
-    """Identify a construction route from the qualified source, native tables and workbook."""
+    request = snapshot['manifest']['request']
+    return _source_placement_policy(snapshot['source'], request['component'], workbook, request['recipe'].get('rna_pucker_table'))
+
+
+def _source_placement_policy(source, code, workbook, tables):
+    """Identify a construction route from the source graph, native tables and workbook."""
     from .cif_rna_pucker import observed_ether_permission, permitted_pucker_tables, require_pucker_source
     from .cif_stereochemistry_audit import _values
 
-    request = snapshot['manifest']['request']
-    source, code = snapshot['source'], request['component']
-    tables = request['recipe'].get('rna_pucker_table')
     observed = observed_ether_permission(tables)
     profile = inspect_attachment_profile(source, code, workbook=workbook, check_at_pair=observed)
     _need(profile['topology_status'] == 'MATCH', 'Require an unambiguous sugar attachment graph')

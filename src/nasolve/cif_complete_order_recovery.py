@@ -32,11 +32,13 @@ def acquire(source, code, store, primary, number, options):
     from .cif_acquisition_attempt import AcquisitionBudgetExceeded
 
     start = monotonic()
-    outer = options["_remaining_seconds"]
+    outer = options.get("_remaining_seconds")
     limit = options["total_timeout_seconds"]
 
     def remaining():
-        seconds = min(outer(), limit - (monotonic() - start))
+        seconds = limit - (monotonic() - start)
+        if outer is not None:
+            seconds = min(outer(), seconds)
         if seconds <= 0:
             raise AcquisitionBudgetExceeded("No time remains in the original component allowance")
         return seconds
@@ -46,13 +48,15 @@ def acquire(source, code, store, primary, number, options):
         result = acquisition.acquire_dictionary_attempt(source, code, store, primary, **options)
         return primary, result, None
     except ValueError:
+        if options.get("retained_snapshot") is not None:
+            raise
         remaining()
         state = acquisition.inspect_acquisition_request(primary)
         if state["state"] != "RECORDED" or state["availability"] == "BLOCKED" or not state["attempts"]:
             raise
         last = state["attempts"][-1]
         if (last["state"] != "STOPPED" or last["finished"]["outcome"] != "RAISED"
-                or last["intent"].get("parent_attempt") != options["_parent_attempt_identity"]):
+                or last["intent"].get("parent_attempt") != options.get("_parent_attempt_identity")):
             raise
         earlier = last["number"]
         if recovery.read_connected_order_failure(primary, earlier) is None:

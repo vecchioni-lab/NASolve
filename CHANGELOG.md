@@ -8,6 +8,8 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `nasolve cif-doctor prepare-run --dictionary-input-policy source-preserving-v2` can recognize one unsupported Coot mutation as a C-linked, 2′-O-methyl uracil analogue from its source, host and restraint workbook. It acquires the required dictionary from the frozen card. A proven extra eLBOW bond can trigger one fresh source-order attempt within the original time allowance.
+
 - Checked PostMR preparation can use a retained dictionary to build a C-linked uracil analogue on a 2′-O-methyl ribose alongside ordinary Coot mutations. It requires both qualified sugar-pucker tables and the NARestraints pairing edge. The raw seed stays available for a local fit and cannot become a refinement checkpoint.
 
 - A local sugar fit can return its coordinates to the original PDB after checks on the crystal frame, fixed atoms, occupancies, B values and stereochemistry. Base-pair distance restraints that Phenix writes as `LINK` records stay out of the returned model.

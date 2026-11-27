@@ -94,7 +94,7 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
         narestraints_builder=None, modified_pair_builder=None, generation_options=None,
         continuation_options=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False,
         frozen_sources=None, construction_choices=None, furanose_substitution=None,
-        locked_sugar_site=None, store_root=None,
+        locked_sugar_site=None, store_root=None, _select_unresolved_sugar=False,
         **execution_limits) -> PreparedPostMRRequest:
     """Prepare ordinary inputs once and publish a fresh complete request.
 
@@ -142,6 +142,19 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
     construction = (None if frozen_sources is None and construction_choices is None else
                     _read_construction_inputs(frozen_sources, construction_choices, configured.consumer))
     furanose = None
+    def select_missing_parent(missing):
+        nonlocal furanose
+        from .cif_dictionary_store import default_dictionary_store
+        from .cif_whole_furanose import MODEL_EDGE_POLICY_ID
+        from .postmr_furanose import plan_sugar_sources
+        store = default_dictionary_store() if store_root is None else store_root
+        furanose = plan_sugar_sources(missing.site, missing.target, missing.current, configured, phenix,
+            store, data_root, execution_limits, placement_policy=MODEL_EDGE_POLICY_ID)
+        return furanose
+
+    if _select_unresolved_sugar and (not select_representation or construction is not None
+                                    or furanose_substitution is not None or locked_sugar_site is not None):
+        raise ValueError('Automatic sugar selection requires a source-selected card without explicit construction choices')
     if locked_sugar_site is not None:
         from .cif_dictionary_store import default_dictionary_store
         from .postmr_furanose import plan_catalogue_substitution
@@ -252,6 +265,7 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
         allow_unreviewed_backbone=allow_unreviewed_backbone,narestraints_builder=narestraints_builder,
         modified_pair_builder=modified_pair_builder,_dictionary_handler=initialize,
         **({'_furanose_input':furanose} if furanose is not None else {}),
+        **({'_missing_parent_selector':select_missing_parent} if _select_unresolved_sugar else {}),
         **({"_construction_inputs":construction} if construction is not None else {}))
     if not isinstance(result,PreparedPostMRRequest):raise ValueError('Ordinary request boundary was not reached')
     return result
@@ -445,6 +459,10 @@ def _execute_ordinary_postmr(run_directory, phenix, *, store_root=None, **prepar
 
 def prepare_checked_postmr(run_directory, phenix, *, store_root=None, **preparation_options) -> CheckedPostMRResult:
     """Construct/execute once and read the diagnostic result without adoption."""
+    explicit = ('locked_sugar_site', 'furanose_substitution', 'frozen_sources', 'construction_choices')
+    if ((preparation_options.get('generation_options') or {}).get('select_source_representation')
+            and all(preparation_options.get(k) is None for k in explicit)):
+        preparation_options['_select_unresolved_sugar'] = True
     run, attempt = _execute_ordinary_postmr(run_directory, phenix,
         store_root=store_root, **preparation_options)
     return read_ordinary_postmr_result(run, attempt_number=attempt)

@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 27 November 2026, after C636. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 27 November 2026, after C637. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -1289,6 +1289,8 @@ C635 used the ordinary Coot construction and phosphate policy for the first thre
 Phenix also wrote the 50 restrained base-pair distances twice each as PDB LINK records. The new return reader carries only the selected sugar’s coordinates into the parent PDB. It verifies the crystal frame, atom identities, occupancies, B values, fixed positions and source stereochemistry, leaving the parent’s own connectivity intact. This was a geometry-only comparison with an explicitly routed fourth site. The ordinary card still needs to acquire and route the fourth site, bind the local fit to its checked preparation and verify the D:1 widths in AutoRefine.
 
 C636 ran the same four-site card through the ordinary PostMR owner with one explicitly retained UY1 dictionary. Coot 1.3.3 built the other three substitutions. With the NARestraints 1.1.5 candidate, both Phenix 2.2.1-6174 reads around ReadySet found 42 residues, 860 atoms and all 193 requested restraints. ReadySet preserved every named coordinate, occupancy and B value. The seed, five selected CIFs and six restraint files exactly matched the C635 local fit inputs. A fresh-process reread verified the result and the refusal to publish this unfitted seed. It did not repeat the minimization or diffraction refinement. The next steps are automatic fourth-site acquisition from the card, an auditable fitted child, and a normal four-site refinement that checks the six protected D:1 phosphate widths.
+
+C637 ran `cif-doctor prepare-run` on a fresh four-substitution card with no selected site, no supplied UY1 dictionary and no UY1 entry in the cache. When Coot could not choose a canonical parent, the source graph, host and NARestraints workbook identified a C-linked methyl ether. The first eLBOW attempt introduced a 3.728 Å C1′–N1 bond absent from the source. Only after that attempt had stopped did the existing recovery reorder the same source atoms. The numerical dictionary differed from C636 only in its writing-time comment. Coot and the whole-sugar constructor reproduced the same 860-atom seed. Both native reads found 50 distance, 86 angle and 57 parallelity restraints. A second dictionary lookup reused the same entry without running eLBOW or Phenix. This automatic entry is available for diagnostic preparation. The raw sugar still needs the local fit before checkpoint publication.
 
 C601 found the source-preserving generator had introduced a 5.779 Å bond between
 O4′ and ring C2. All 42 source edges were present. The ten bonds of the purine

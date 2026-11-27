@@ -56,6 +56,14 @@ class PostMRPreparationError(RuntimeError):
     """Raised when a Phaser solution cannot be prepared safely."""
 
 
+class MissingMutationParent(PostMRPreparationError):
+    """The ordinary base-change route could not choose a parent for this site."""
+
+    def __init__(self, site, current, target, message):
+        super().__init__(message)
+        self.site, self.current, self.target = site, current, target
+
+
 @dataclass(frozen=True)
 class MutationAction:
     site: str
@@ -470,11 +478,11 @@ def build_mutation_plan(
             try:
                 ligand = ligand_definition(target)
             except (KeyError, ValueError) as exc:
-                raise PostMRPreparationError(
+                raise MissingMutationParent(site, current, target,
                     f"Mutation {site} {current}->{target} has no usable canonical parent: {exc}"
                 ) from exc
             if ligand.parent_code is None:
-                raise PostMRPreparationError(
+                raise MissingMutationParent(site, current, target,
                     f"Mutation {site} {current}->{target} has no canonical parent"
                 )
             method = "coot-parent-overlap"
@@ -2303,6 +2311,7 @@ def _prepare_postmr(
     _dictionary_handler: Callable[[_PreparedDictionaryInputs], _PostMRReturn] | None = None,
     _construction_inputs: dict | None = None,
     _furanose_input=None,
+    _missing_parent_selector=None,
 ) -> PostMRResult | _PostMRReturn:
     """Prepare a completed Phaser solution without modifying the MR outputs.
 
@@ -2312,7 +2321,7 @@ def _prepare_postmr(
     existing cache adapter consumes that same installation without rediscovery.
     This does not enable the separate owned repair/adoption engine.
     """
-    if (_construction_inputs is not None or _furanose_input is not None) and _dictionary_handler is None:
+    if any(v is not None for v in (_construction_inputs, _furanose_input, _missing_parent_selector)) and _dictionary_handler is None:
         raise PostMRPreparationError("Explicit projected construction requires the owned dictionary request")
     environment = _selected_postmr_environment(ready_set_executable, phenix_installation, environment)
     run, report = _read_report(run_directory)
@@ -2369,10 +2378,23 @@ def _prepare_postmr(
         explicit_planning['construction_sources'] = {
             code: (_construction_inputs['selection']['sources'][code]['source'], row['parent'])
             for code, row in _construction_inputs['choices'].items()}
-    family_actions = (
-        build_mutation_plan(report, source_model, run_directory=run, **explicit_planning)
-        if family is not None or explicit_planning else None
-    )
+    family_actions = None
+    if family is not None or explicit_planning or _missing_parent_selector is not None:
+        try:
+            family_actions = build_mutation_plan(report, source_model, run_directory=run, **explicit_planning)
+        except MissingMutationParent as missing:
+            if _missing_parent_selector is None:
+                raise
+            if missing.site in set(allowed_op3) | set(passthrough_sites):
+                raise PostMRPreparationError("Furanose substitution requires two ordinary internal backbone links") from missing
+            # The constructor currently supports one internal site. Check the rest of
+            # the frozen card before opening a dictionary or reserving an attempt.
+            family_actions = build_mutation_plan(report, source_model, run_directory=run,
+                furanose_target=(missing.site, missing.target))
+            try:
+                _furanose_input = _missing_parent_selector(missing)
+            except (OSError, KeyError, ValueError) as exc:
+                raise PostMRPreparationError(f"{missing}. The source-checked sugar route also stopped: {exc}") from exc
     postmr = run / "PostMR"
     try:
         postmr.mkdir()
