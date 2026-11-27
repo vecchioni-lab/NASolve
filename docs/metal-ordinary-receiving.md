@@ -4,6 +4,52 @@ Updated 27 November 2026. A01 mechanical integration; A01 science remains partia
 and A02 quantitation is gated. This is a prospective implementation contract,
 not a claim of ordinary numbered-round qualification.
 
+## Compact fresh-runtime review — 27 November afternoon
+
+The fresh ordinary DF:T frame now has an independently qualified **original
+prepared runtime**, using the existing acquired-bundle and bounded native-repair
+owners. It retains all 858 coordinates unchanged, its source chemistry, 38 local
+links, declared D:1 terminal phosphate and compiled full-model restraints. Native
+source/site checks and fixed-coordinate derivative checks pass. Effective native
+formal-charge observation remains unsupported; the declared source state is
+preserved and the decision remains `CONTINUE_WITH_NOTES`, diagnostic only.
+The complete registered request remains untouched with zero attempts.
+
+The selected native capture also passes the registered input reader: both named
+crystal junctions retain eight reference terms per matched local link. This still
+does not assert that image forces were applied or that the open junction geometry
+is acceptable. DF targets are C1′–N1 1.499 Å, C2=S1 1.638 Å and sulfur angles
+126.83°/115.92°; the new acquisition did not produce symmetric sulfur targets.
+
+`review_registered_original_runtime` now reuses `resolve_runtime_bundle` and its
+bounded evidence-view owner to reach the **declared embedded candidate capture**.
+It requires the original independently qualified selection and exact frozen model
+bytes, then calls the registered native-input reader with the selected ordered
+CIF/PHIL list. No basename search or old unpacked-capture dependency is introduced.
+The result uses `runtime_directory` and `runtime_evidence` anchors, retains
+unavailable native checks, and contains no expired extraction paths. Changed-model,
+ReadySet and repaired selections deliberately need separate qualification.
+Constructor ancestry and ordinary admission remain unassessed by this API.
+
+Nine regressions fail before implementation; the focused native/original-runtime
+panel passes **41 cases in 6.36 s**. Nine installed cases pass in 4.50 s after the
+build source is removed. A real relocated FT check then passes in 8.31 s with
+155 NASolve modules loaded only from that wheel. Its 2,587,996-byte transport holds
+only the registered input closure and compact runtime. The temporary original
+data path is gone; an audit hook refuses reads from the original scientific or
+working-source trees, and subprocess launch is forbidden. The review exactly
+reproduces the earlier direct native result. Original runtime files remain exact;
+17,903,449 package/test/transport scratch bytes are retired after success.
+
+Native execution used Phenix 2.2.1-6174: the existing diagnostic owner completed
+in 80.78 s (82.17 s including the outer process wrapper), with stopped children.
+The subsequent runtime review is a **cold read**, not another native run or fit.
+Methods A894–A901, including the retained bootstrap/caller failures before corrected
+checks, live beside the fresh-construction evidence. No generated science is
+committed. A01 remains partial, A02 gated. The next join must bind this result to
+the complete request's genuine construction and source/recipe/restraint roles;
+ordinary execution/publication and a new phased refinement remain separate.
+
 ## Genuine ordinary FT construction — 27 November afternoon
 
 The declared FT reflections and 5W6W frame produced a new MR solution (TFZ 10.8),

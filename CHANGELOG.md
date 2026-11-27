@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Review compact original runtimes against registered inputs
+
+- Add a read-only join from a frozen registered model to an independently qualified
+  original runtime, using its declared embedded native capture and exact CIF/PHIL
+  resources. Reuse bounded archive views and release temporary evidence on return.
+- Require unchanged coordinates and the original prepared selection. Retain native
+  evidence limitations; ReadySet/changed-model selections, ancestry, execution and
+  publication remain outside this review.
+
 ### Preserve registered inputs and compiled full-model restraints at ordinary entry
 
 - Validate explicit registered topology sources before ordinary construction and

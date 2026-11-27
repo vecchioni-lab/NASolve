@@ -33,6 +33,18 @@ and cache-retirement evidence: `branch-artifacts/Alder/docs-audit-20261126-01/`.
 
 <a id="a01-parameter-scope-2026-11-25"></a>
 
+## A01 fresh linked runtime and compact review — 27 November
+
+The fresh DF:T constructor now has a qualified original diagnostic runtime with
+unchanged coordinates. Both registered image-input checks pass; formal-charge
+observation remains unavailable and no image-force or fit acceptance is implied.
+A read-only consumer reopens its embedded capture from the compact runtime;
+41 focused and nine installed cases pass. The real 2.59 MB transported input/runtime
+closure reproduces the direct review with old science/source reads and process
+launch denied. A01 remains partial; source/request-result binding and ordinary
+publication are next, before phased mixed refinement.
+[Methods, timings and limitations](metal-ordinary-receiving.md#compact-fresh-runtime-review--27-november-afternoon).
+
 ## A01 genuine FT constructor and restrained input — 27 November
 
 Fresh ordinary MR/Coot construction now has genuine C196 provenance and full-model
