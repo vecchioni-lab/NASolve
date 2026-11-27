@@ -1,6 +1,6 @@
 # Metal development handoff — current state
 
-Updated **27 November 2026** (retained metal-sensitive evidence and explicit map levels). Active feature branch: **Alder**. The
+Updated **27 November 2026** (fresh FT construction, owned preparation and archive readback). Active feature branch: **Alder**. The
 [root integration handoff](development-handoff.md) owns the current combined
 source, full validation and delivery. The [A01–A09 roadmap](metal-development-roadmap.md)
 owns feature completion. The earlier chronological diary is preserved as
@@ -33,66 +33,41 @@ and cache-retirement evidence: `branch-artifacts/Alder/docs-audit-20261126-01/`.
 
 <a id="a01-parameter-scope-2026-11-25"></a>
 
-## A01 request/runtime agreement and ReadySet — 27 November
+<a id="a01-requestruntime-agreement-and-readyset--27-november"></a>
+<a id="a01-fresh-linked-runtime-and-compact-review--27-november"></a>
+<a id="a01-genuine-ft-constructor-and-restrained-input--27-november"></a>
+<a id="a01-registered-input-and-native-review--27-november"></a>
+<a id="a01-registered-preparation-context--27-november-afternoon"></a>
 
-The genuine fresh FT request now binds to the independently qualified original
-runtime without borrowing execution ancestry. Exact source/recipe, consumer,
-model, compiled restraints and registered contexts agree; 41 focused and 30
-installed tests pass. The real 3.83 MB closure passes with original paths absent
-or denied. ReadySet separately preserves all 858 named XYZ/B/Q states; it changes
-serialization only. The ordinary request remains BLOCKED with zero attempts.
-A01 remains partial, A02 gated. Next: versioned registered execution/result and
-publication topology, then fresh AutoSol/phased mixed refinement. No repeated
-unchanged fit, new R values or f″ claim.
-[Evidence, validation and precise next gates](metal-ordinary-receiving.md#frozen-request-and-original-runtime-agree--27-november-afternoon).
+## Current A01: fresh FT construction and owned preparation
 
-## A01 fresh linked runtime and compact review — 27 November
+Fresh experimental-data MR/Coot construction produces DF A:12 / DT B:4 without
+borrowing the solved metal endpoint. Its genuine C196 record, C80 full-model
+restraints and registered context now reach one completed, stopped preparation
+request under an explicit original-only policy. The exact DF source was reused
+from cache; the 858-atom original model remains unchanged. Both declared crystal
+links survive native input review, but applied image forces and acceptable
+geometry are not implied. The separate ReadySet diagnostic also preserves all
+named XYZ/B/Q values. The older intake-only request remains BLOCKED/zero attempts.
 
-The fresh DF:T constructor now has a qualified original diagnostic runtime with
-unchanged coordinates. Both registered image-input checks pass; formal-charge
-observation remains unavailable and no image-force or fit acceptance is implied.
-A read-only consumer reopens its embedded capture from the compact runtime;
-41 focused and nine installed cases pass. The real 2.59 MB transported input/runtime
-closure reproduces the direct review with old science/source reads and process
-launch denied. A01 remains partial; source/request-result binding and ordinary
-publication are next, before phased mixed refinement.
-[Methods, timings and limitations](metal-ordinary-receiving.md#compact-fresh-runtime-review--27-november-afternoon).
+The latest panel passes **223 focused and 37 installed tests**. Actual enclosing
+preparation completed in **128.26 s outer time**, Phenix 2.2.1-6174. Existing durable
+archive/retirement reduced the request **47.79→10.50 MB**, preserving its result,
+public files and recoverable evidence. Installed relocated readback passes with
+old paths denied. No full suite, new diffraction fit or f″ estimate. All source
+changes remain on the isolated receiving candidate; active Alder delivery is separate.
 
-## A01 genuine FT constructor and restrained input — 27 November
+**Next:** original-only registered publication/topology, then deliberate fresh
+AutoSol metal/phase binding and a versioned numbered XYZ/DNA group-B child. The
+standard I/Br/Se gate does not yet supply integrated free-metal screening. A01
+remains partial and A02 gated; starting B values cannot feed quantitation.
+Do not repeat the completed native input, cache or archive checks without a
+changed input, relevant code or unresolved question.
 
-Fresh ordinary MR/Coot construction now has genuine C196 provenance and full-model
-C80 restraints: DF A:12, DT B:4, 42 nucleotides, 18 pairs and 38 stacks, no Hg.
-Both explicit crystal connections survive frozen request intake. Reused Cedar
-025561e1 for the already compiled restraint handoff; no duplicate compiler and no
-rerun of the preserved partial construction. Final entry/runtime checks pass 54;
-relocated installed checks pass 25. The earlier combined panel passed 71.
-Registered execution remains held, A01 partial and A02 gated. The new frame is
-unrefined; its starting B values must not feed f″ quantitation. An exact-source DF
-acquisition has isolated native usability; linked-frame qualification is next.
-[Evidence, compatibility, methods and limits](metal-ordinary-receiving.md#genuine-ordinary-ft-construction--27-november-afternoon).
-
-## A01 registered input and native review — 27 November
-
-The complete-request intake freezes the distinct image-link role; the new native
-reader now joins that frozen input to the exact retained FT interpretation. All
-nine input files match, with eight reference terms per local link at both crystal
-junctions. This is native input review, not applied image forces, a repair result,
-constructor ancestry or a new fit. Execution remains held. The native-reader
-panel passes 68 focused and 11 installed cases; prior intake evidence remains
-recorded separately. Next use declared sources through the genuine ordinary Coot
-construction owner before ReadySet; do not attach retrospective ancestry to the
-private neutral model. Active Alder remains unchanged.
-[Methods, evidence and next boundary](metal-ordinary-receiving.md#native-review-of-the-frozen-registered-input--27-november).
-
-## A01 registered preparation context — 27 November afternoon
-
-The unchanged preparation context refuses B:1/C:8 because their incoming bonds
-cross symmetry. The new explicit read-only adapter carries both registered image
-links alongside the 38 local links, matching the retained FT inspections exactly.
-No coordinates, phase data or chemistry changed. The old report contributes only
-its declared terminal/backbone intent; it is not promoted into new ancestry.
-Focused 88-case and installed eight-case panels pass. [Exact methods, limits and
-next complete-preparation consumer step](metal-ordinary-receiving.md#registered-phosphate-context-before-preparation--27-november).
+Checkout: `ScienceCheckouts/Hazel/2026-11-27_ft-ordinary-construction/index.html`
+under the shared GitHub workspace; six small files, editable constellation figure,
+source references and compact B/Q/R/f″ table. [Evidence, exact commands, compatibility
+and limits](metal-ordinary-receiving.md#current-a01-owned-registered-preparation--27-november-checkout).
 
 ## A01 compact native worker — 27 November afternoon
 

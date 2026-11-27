@@ -4,6 +4,83 @@ Updated 27 November 2026. A01 mechanical integration; A01 science remains partia
 and A02 quantitation is gated. This is a prospective implementation contract,
 not a claim of ordinary numbered-round qualification.
 
+## Current A01: owned registered preparation — 27 November checkout
+
+The fresh DF:T frame now completes one **enclosing preparation request**, using
+`registered_execution_policy="registered-original-preparation-execution-v1"` at
+the existing complete/prepared Python entry. The policy is opt-in for a new
+request; old registered requests remain intake-only and BLOCKED. It requires
+independent original qualification and excludes ReadySet continuation. Existing
+acquisition, repair, process, timeout, attempt and retention owners remain in
+charge. No new executor, CLI/campaign default or checkpoint publication is added.
+
+The complete result still checks every acquired source/attempt and exact model,
+dictionary and ordered restraint input. Its separately frozen registered role
+stays with the outer request; a usable runtime must additionally pass the existing
+original-selection and registered native-input reader. The result exposes that
+review, including unavailable native observations and unassessed image forces.
+No-usable results remain no-usable. Changed-model, repaired or ReadySet selections
+refuse under this policy. Existing explicit acquisition/retained-source semantics
+remain with the complete owner; the narrower separate-diagnostic source-matching
+reader below does not replace that enclosing acquisition proof.
+
+### Actual FT result
+
+- New request: `registered-owned/request/`, attempt 1, **RETURNED**, stopped verified.
+  Exact DF cache hit; no repeated dictionary generation. Total method **126.98 s**,
+  outer process **128.26 s**, Phenix **2.2.1-6174**.
+- Selected `verified_prepared_bundle`: the same 858-atom constructor, genuine C196
+  lineage and C80 full-model restraints, 38 local links, two declared crystal
+  links and D:1 terminal phosphate. Formal-charge observation stays unsupported.
+  These are checked preparation inputs, not applied symmetry forces or good geometry.
+- All 310 prior files stay exact. The earlier ordinary intake request remains
+  BLOCKED with zero attempts; no historical run was upgraded in place.
+- Existing archive/retirement APIs reduced this new request from **47,792,193** to
+  **10,495,763 bytes**, recovering **37,296,430 bytes**. All 31 public artifact
+  files and 26 request/input files remained exact. Native working evidence is
+  recoverable from its durable archive; only exact stopped duplicates were removed.
+- The archived request rereads with the same registered review. Installed relocated
+  replay also passes with its original locations denied, no process launch and
+  187 NASolve modules from the wheel (**21.77 s**, 10,508,085-byte transport).
+  Package/test/transport scratch retirement recovered another 25,843,165 bytes.
+
+Twelve regressions fail before the execution policy; **223 focused cases pass in
+348.18 s** across registered execution/intake and complete/prepared request owners.
+The installed execution/ordinary-entry panel passes **37 in 17.96 s**, with 191
+modules loaded only from the wheel after build-source removal. No full suite.
+Exact commands, environment, hashes and outcomes are retained in
+`registered-execution-validation.json` and `owned-request-package.json`; the latter
+includes the installed/relocated commands. Methods **A906–A911** and all logs live
+under `branch-artifacts/Alder/a01-ordinary-construction-20261127-01/` (runners in the
+shared `branch-artifacts/Alder/runners/`). Native runs were complete; package and
+relocation checks were cold reads. No scientific data, captures or figures enter Git.
+
+Changed source: `cif_complete_request.py`, `cif_postmr_request.py` and
+`cif_registered_execution.py`; new regressions in
+`test_registered_preparation_execution.py`. The new optional configuration/result
+policy field is explicit. Old defaults and saved requests keep their behavior;
+older software must refuse this unfamiliar request rather than silently execute it.
+The change remains on the isolated receiving candidate; active Alder delivery is
+separate. Ordinary publication, mixed numbered refinement and science acceptance
+remain open. A01 is partial; A02 stays gated.
+
+The six-file, 371 KB science checkout is
+`ScienceCheckouts/Hazel/2026-11-27_ft-ordinary-construction/index.html` under the
+shared GitHub workspace. It shows the fresh neutral pair beside the retained Hg
+control, reports B/Q/R/f″ with fixed/unmeasured values labelled, and records the
+storage effect. All 19 source references and five local links validate. The SVG
+and PNG retain the constellation style and common projection. They compare
+preparation stages, not a matched refinement experiment.
+
+**Next:** qualify an original-only registered publication/topology consumer, then
+explicit fresh phasing/metal placement and the versioned mixed child. The ordinary
+I/Br/Se AutoSol gate is not an integrated free-metal screen; that distinct request
+and phase/site binding must be supplied deliberately. No earlier private HL file
+is automatically evidence for the new MR origin. ReadySet/changed-model publication
+requires its own selected-model rule and must not hold up the already qualified
+original-only path unnecessarily. Preserve the old scientific endpoint and do not
+repeat unchanged fits merely to obtain another figure.
+
 ## Frozen request and original runtime agree — 27 November afternoon
 
 `review_registered_request_runtime(directory, runtime=...)` now binds the genuine
@@ -59,13 +136,12 @@ This is a serialization difference, not geometry improvement. The original runti
 and held request are unchanged. Methods A902/A903 and `readyset-result.json` retain
 that result; the original-only request reader does not silently admit ReadySet.
 
-### Next execution and publication gates
+### Remaining publication and selection boundaries
 
-1. Add an explicit **new** complete-request execution policy for registered inputs;
-   preserve the current intake-only request meaning. `_result` must retain the
-   registered outer-only role and bind the selected native result. Do not hide the
-   role by dropping it from input comparison or label a separate diagnostic as an
-   owned attempt. Reuse completed source acquisition where its exact key permits.
+1. The new original-only execution policy above closes the enclosing-owner gate.
+   Keep that policy separate from the old intake-only request and the separate
+   diagnostic proof. Its real cache-hit execution and archive replay need not be
+   repeated without a changed input or relevant code.
 2. Define the selected-model rule, including ReadySet serialization-only changes
    or repaired coordinates, with fresh registered frame transfer and exact input
    closure. Reuse the existing native/ReadySet owners; do not invent bond partners.
@@ -124,9 +200,8 @@ in 80.78 s (82.17 s including the outer process wrapper), with stopped children.
 The subsequent runtime review is a **cold read**, not another native run or fit.
 Methods A894–A901, including the retained bootstrap/caller failures before corrected
 checks, live beside the fresh-construction evidence. No generated science is
-committed. A01 remains partial, A02 gated. The next join must bind this result to
-the complete request's genuine construction and source/recipe/restraint roles;
-ordinary execution/publication and a new phased refinement remain separate.
+committed. A01 remains partial, A02 gated. The later request binding and owned execution above complete those mechanical
+joins. Ordinary publication and a new phased refinement remain separate.
 
 ## Genuine ordinary FT construction — 27 November afternoon
 

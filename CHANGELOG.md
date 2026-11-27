@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Execute explicitly registered original preparation requests
+
+- Add an opt-in policy for new complete/prepared requests using the existing
+  acquisition, native qualification, process and retention owners. Require exact
+  registered native review before exposing a usable unchanged original runtime.
+- Preserve old registered intake-only holds and no-usable outcomes. Repaired and
+  ReadySet selections, checkpoint publication and image-force/refinement claims
+  remain outside this policy; no CLI/campaign default changes.
+
 ### Bind a registered request to its original diagnostic runtime
 
 - Add an explicit read-only agreement check for genuine construction, compiled

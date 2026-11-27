@@ -1,6 +1,6 @@
 # Post-merge metal-coordination roadmap
 
-Updated **27 November 2026** after retained anomalous-evidence replay and explicit map levels. Working
+Updated **27 November 2026** after fresh FT construction, owned preparation and archive readback. Working
 branch **Alder**; the earlier forward-queue audit is retained at `60a1f084`. The feature milestones
 **A01–A09** below remain explicitly post-merge work; A09 follows the main build.
 Merge qualification, scientific acceptance and feature completion are separate.
@@ -136,9 +136,12 @@ capture passes registered review after relocation without old source access.
 **The original runtime now binds to the genuine frozen complete request and construction**
 with exact chemistry, compiled restraints and registered context; installed relocated
 readback passes. ReadySet separately preserves all 858 named XYZ/B/Q states.
-**Next qualify a new registered execution/result policy and publication topology**,
-then fresh AutoSol/phased numbered image-force execution. The held request keeps
-zero attempts; a separate diagnostic is not its enclosing execution history. Reuse Cedar 025561e1
+**New original-only registered execution now returns through the complete owner**,
+with a cache hit, native registered review, stopped process evidence and archived
+relocated readback (47.79→10.50 MB). The old held request retains zero attempts.
+**Next qualify original-only registered publication/topology**, then deliberate
+fresh AutoSol metal/phase binding and phased numbered image-force execution. The
+standard I/Br/Se AutoSol gate is not integrated free-metal screening. Reuse Cedar 025561e1
 for the full-model compiler handoff; do not reimplement or recompile it.
 [Fresh construction evidence](metal-ordinary-receiving.md#genuine-ordinary-ft-construction--27-november-afternoon).
 Input/native review alone provides no ordinary parent, phase admission or

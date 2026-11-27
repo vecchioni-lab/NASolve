@@ -43,6 +43,7 @@ from .cif_explicit_na_policy import read_explicit_na_policy
 from . import cif_runtime_continuation as continuation
 from .cif_runtime_continuation_process import inspect_runtime_continuation_processes, POLICY_ID as CONTINUATION_PROCESS_POLICY
 
+from .cif_registered_execution import execution_fields as registered_execution_fields, review_execution_runtime
 from .cif_prepared_bond_discovery import bond_discovery_fields
 from . import cif_complete_stages as staged_artifacts
 from .cif_interpretation_controls import control_fields, control_inputs, control_kwargs, reject_shadow_controls
@@ -242,7 +243,8 @@ def _artifact_options(config):
                 **_artifact_fields(config.get('artifact_policy')))
 
 
-def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False, optional_failure_policy=None, model_context=None, registered_backbone=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=None, compact_evidence=False, plane_support=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False):
+def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False, optional_failure_policy=None, model_context=None, registered_backbone=None, registered_execution_policy=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=None, compact_evidence=False, plane_support=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False):
+    registered_fields = registered_execution_fields(registered_execution_policy, registered_backbone, qualify_no_repair, continuation_options)
     bond_discovery_fields(automatic_bond_targets,bond_targets)
     _need(not automatic_bond_targets or artifact_policy in (CAPTURE_ARTIFACT_POLICY, STAGED_ARTIFACT_POLICY),
           'Automatic bond discovery requires the v4 native-capture or v5 staged artifact policy')
@@ -383,7 +385,7 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
     return _json(_bytes(dict(controls=controls,limits=limits,max_attempts=maximum,components=components,
         input_files=_inventory(files),input_directories=directories,
         **({'model_context':model_context} if model_context is not None else {}),
-        **({'registered_backbone':registered_backbone} if registered_backbone is not None else {}),
+        **({'registered_backbone':registered_backbone} if registered_backbone is not None else {}), **registered_fields,
         **({'restraint_context':restraint_context} if restraint_context is not None else {}),
         **compiler_refs, **construction_ref, **_artifact_fields(artifact_policy),
         **repair.compact_evidence_fields(compact_evidence),
@@ -401,7 +403,7 @@ def _request(root):
           and type(r['schema_version']) is int and r['schema_version'] == 1 and r['policy_id'] == POLICY_ID
           and _uuid(r['request_id']) and r['inputs'] == dict(anchor=ANCHOR,path='inputs'), 'Invalid complete request')
     c = r['configuration']
-    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'],qualify_no_repair=c.get('qualify_no_repair',False),optional_failure_policy=c.get('optional_failure_policy'),model_context=c.get('model_context'),registered_backbone=c.get('registered_backbone'),restraint_context=c.get('restraint_context'),continuation_options=c.get('continuation'),literal_na_inputs=c.get('literal_na_inputs'),explicit_na_policy=c.get('explicit_na_policy'),construction_inputs=c.get('construction_inputs'),artifact_policy=c.get('artifact_policy'),compact_evidence=c.get('compact_evidence',False),plane_support=c.get('plane_support'),automatic_plane_support='plane_generation_policy' in c,bond_targets=c.get('bond_targets'),automatic_bond_targets='bond_discovery_policy' in c)
+    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'],qualify_no_repair=c.get('qualify_no_repair',False),optional_failure_policy=c.get('optional_failure_policy'),model_context=c.get('model_context'),registered_backbone=c.get('registered_backbone'),registered_execution_policy=c.get('registered_execution_policy'),restraint_context=c.get('restraint_context'),continuation_options=c.get('continuation'),literal_na_inputs=c.get('literal_na_inputs'),explicit_na_policy=c.get('explicit_na_policy'),construction_inputs=c.get('construction_inputs'),artifact_policy=c.get('artifact_policy'),compact_evidence=c.get('compact_evidence',False),plane_support=c.get('plane_support'),automatic_plane_support='plane_generation_policy' in c,bond_targets=c.get('bond_targets'),automatic_bond_targets='bond_discovery_policy' in c)
     _need(_same(c,expected), 'Frozen complete request changed')
     return r
 
@@ -409,7 +411,7 @@ def _request(root):
 def initialize_dictionary_request(source_selection, components, model, output, *, consumer,
         expected_links, native_context, supplementary_phils=(), native_timeout_seconds=90,
         component_timeout_seconds=600, attribution_timeout_seconds=90,
-        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, registered_preparation=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=ARTIFACT_POLICY, compact_evidence=True, plane_support=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, reader_control_policy=None):
+        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, registered_preparation=None, registered_execution_policy=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=ARTIFACT_POLICY, compact_evidence=True, plane_support=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, reader_control_policy=None):
     """Freeze all declared inputs before children exist. Require a fresh destination.
 
     One to sixteen component types declare code, contexts and generation settings, with optional
@@ -423,7 +425,8 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     Explicit registered_preparation instead freezes source model, registration,
     discovery, continuations and report intent as a distinct registered role.
     Only local selected components with canonical image endpoints are supported.
-    Inspection remains BLOCKED; no native/result consumer or execution is enabled.
+    Without the explicit execution policy below, inspection remains BLOCKED and
+    no native/result consumer or execution is enabled.
     An optional prepared-model context is rederived from frozen model/intent;
     supplementary PHIL additionally requires a frozen explicit restraint context.
     Its bounded grammar keeps the composer as the only site-modifier owner.
@@ -441,6 +444,13 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     The two provenance modes are mutually exclusive and never reselect relationships.
     Optional continuation_options freezes ReadySet timeout and lossless-serialization
     intent; the same outer attempt owns that child and its remaining allowance.
+    registered_execution_policy="registered-original-preparation-execution-v1"
+    explicitly enables the existing owner for a NEW registered request. Independent
+    original qualification is required, ReadySet continuation is excluded, and
+    every selected runtime must pass exact registered native-input review. No
+    checkpoint/publication or applied image-force claim follows. Without this
+    option registered requests retain their historical intake-only hold.
+
     Optional construction_inputs names an ordinary run carrying a C196 construction
     record. Freeze only its explicitly declared artifacts, never the whole run.
     Exact model, overlapping source bytes and site policy must match the request;
@@ -558,7 +568,7 @@ def initialize_dictionary_request(source_selection, components, model, output, *
         validate_restraint_context(model, supplementary_phils, restraint_context, require_scoped_names=True)
     unchanged(); root.mkdir(parents=True,exist_ok=False); _sync_directory(root.parent)
     _freeze(root/'inputs',files,sorted(directories))
-    config = _configuration(root/'inputs',controls,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,model_context=model_context,registered_backbone=registered_ref,restraint_context=restraint_context,continuation_options=continuation_options,construction_inputs=construction_ref,artifact_policy=artifact_policy,compact_evidence=compact_evidence,plane_support=support_config,automatic_plane_support=automatic_plane_support,bond_targets=bond_config,automatic_bond_targets=automatic_bond_targets,**compiler_refs); unchanged()
+    config = _configuration(root/'inputs',controls,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,model_context=model_context,registered_backbone=registered_ref,registered_execution_policy=registered_execution_policy,restraint_context=restraint_context,continuation_options=continuation_options,construction_inputs=construction_ref,artifact_policy=artifact_policy,compact_evidence=compact_evidence,plane_support=support_config,automatic_plane_support=automatic_plane_support,bond_targets=bond_config,automatic_bond_targets=automatic_bond_targets,**compiler_refs); unchanged()
     r = write_record(root/'request.json',dict(schema_version=1,policy_id=POLICY_ID,request_id=str(uuid.uuid4()),
         created_utc=now(),inputs=dict(anchor=ANCHOR,path='inputs'),configuration=config))
     _request(root)
@@ -765,7 +775,7 @@ def _attempt_files(attempt, *, with_continuation=False, artifact_policy=None):
 def _outer_provenance_fields(config):
     # Compiler and construction evidence belong to the outer request. Child
     # preparation consumes the exact model/PHIL already joined by _configuration.
-    return {name:config[name] for name in (*_COMPILER_INPUTS,'construction_inputs') if name in config}
+    return {name:config[name] for name in (*_COMPILER_INPUTS,'construction_inputs','registered_execution_policy') if name in config}
 
 
 def _result(root, attempt, intent, config, children, bindings):
@@ -787,7 +797,7 @@ def _result(root, attempt, intent, config, children, bindings):
         role = controls['interpretation_controls']
         expected['interpretation_controls'] = dict(policy_id=role['policy_id'], phils=['inputs/'+n for n in role['phils']])
     _need(_same(pc,expected), 'Prepared controls differ from complete frozen intent')
-    outer_only = ('retained/',) + (('plane-support/',) if 'plane_support' in config else ()) + (('construction/',) if 'construction_inputs' in config else ()) + tuple(folder+'/' for name,folder in _COMPILER_INPUTS.items() if name in config)
+    outer_only = ('retained/',) + (('registered_backbone/',) if 'registered_execution_policy' in config else ()) + (('plane-support/',) if 'plane_support' in config else ()) + (('construction/',) if 'construction_inputs' in config else ()) + tuple(folder+'/' for name,folder in _COMPILER_INPUTS.items() if name in config)
     for name,data in _tree(root/'inputs').items():
         if not name.startswith(outer_only):
             _need(_read(attempt/'preparation/inputs'/name) == data, 'Prepared input differs from frozen outer intent')
@@ -802,6 +812,8 @@ def _result(root, attempt, intent, config, children, bindings):
         runtime = resolve_runtime_bundle(attempt/'repair/attempts/attempt-0001/execution/runtime')
         _need(('evidence_storage' in runtime['manifest']) == config.get('compact_evidence',False),
               'Selected repair storage differs from frozen outer intent')
+    registered_review = (review_execution_runtime(root,config,runtime)
+                         if 'registered_execution_policy' in config else None)
     continued = None; continuation_fields = {}
     if 'continuation' in config:
         child = children['continuation']
@@ -819,6 +831,7 @@ def _result(root, attempt, intent, config, children, bindings):
         **(dict(plane_generation=_plane_outcomes(root,attempt,config)[2]) if 'plane_generation_policy' in config else {}))
     _need(_same({k:v for k,v in report.items() if k != 'record_sha256'},expected), 'Complete request result claims differ')
     return dict(result=report,preparation=prepared,execution=execution,runtime=runtime,
+        **({'registered_runtime_review':registered_review} if 'registered_execution_policy' in config else {}),
         **{name:_compiler_input(name,root/'inputs'/folder, reader_control_policy=controls.get('interpretation_controls', {}).get('policy_id')) for name,folder in _COMPILER_INPUTS.items() if name in config},
         **({'construction_inputs':read_postmr_construction(root/'inputs/construction')} if 'construction_inputs' in config else {}),
         **({'continuation':continued} if 'continuation' in config else {}))
@@ -888,7 +901,7 @@ def _inspect_dictionary_request(directory, *, selected_attempt=None, result_sink
                 key = _bytes(child['intent'].get('parent_attempt'))
                 _need(key in owners, 'Component child has no recorded enclosing owner'); _owned(child,owners[key])
         elif state['state'] != 'NOT_RECORDED': unknown = True
-    if 'registered_backbone' in config:
+    if 'registered_backbone' in config and 'registered_execution_policy' not in config:
         _need(not rows and not any((root/'acquisitions').glob('*')),
               'Registered preparation intake cannot own execution children yet')
         return dict(result, state='RECORDED', request=request,
@@ -992,7 +1005,7 @@ def execute_dictionary_request_attempt(directory, phenix, store_root, *, generat
     _need(not store.is_relative_to(root) and not root.is_relative_to(store)
           and not root.is_relative_to(sdk) and not sdk.is_relative_to(root), 'Complete request overlaps cache or SDK')
     request = _request(root); config = request['configuration']; controls = config['controls']; limits = config['limits']
-    _need('registered_backbone' not in config,
+    _need('registered_backbone' not in config or 'registered_execution_policy' in config,
           'Registered preparation execution requires its explicit native/result consumer; intake only')
     if 'restraint_context' in config:
         validate_restraint_context(root/'inputs/model.pdb',
