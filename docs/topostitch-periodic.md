@@ -16065,3 +16065,86 @@ orientations satisfying native O3′–P–O5′. Measure acceptor C4′ handedn
 flanking-angle deviations before discussing complete OP1/OP2 placement or native
 receiving. This is a bounded geometry calculation, not an epsilon/grid/Free-R
 optimization or permission to adopt a candidate.
+
+
+## W307–W309 — Separate fixed-sugar strain from native integration
+
+**2026-11-27; saved analytical diagnostics and read-only source audit.** Product
+code remains W305. W307 closes D7's hypothetical P–O5′–C5′–C4′ chain at the
+saved native bond/angle targets and ε=−140°, including O3′–P–O5′=104°.
+Two mirror branches, each with two axial orientations, give four partial-chain
+solutions. Two retain the source C4′ hand, but neither has acceptable flanking
+C4′ angles (their worst deviations are approximately 26.89 and 33.40 native
+widths). OP1/OP2 are not placed. Radial reach in W306 was necessary, not sufficient.
+
+W308 then samples ε offsets −35…+35° at 1° spacing, keeping the other prescribed
+lengths/angles exact and donor O3′/sugar frames held. Of **284 closed probes**, **123**
+retain C4′ handedness and **zero** pass the predeclared three-width C4′ angle
+screen. The smallest observed worst C4′ angle deviation among correct-handed
+probes is **24.111 native widths**. The zero-offset slice reproduces W307.
+This finite grid is not a continuous impossibility proof. Exact targets and a
+held O3′ impose stronger conditions than a soft-restraint six-atom minimization;
+these results do not prove that the existing local movement scope cannot work.
+No full phosphate candidate, PDB/model output, packing, density fit or selection.
+
+W307 verifies native geometric constraints and proper rigid-frame solution-set
+invariance. Its extracted local analytical helper reproduces all four saved
+positions exactly. W308 verifies its constraints and the W307 overlap; W309's
+cold readback rechecks all declared input hashes and recomputes the saved count
+and minimum summaries without rerunning geometry. Phenix **2.2.1-6174** supplies
+cctbx for the completed W307/W308 read-only calculations, not refinement:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 "$PHENIX_PYTHON" -B branch-artifacts/willow/w307-anchor-orientation/diagnostic.py
+PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 "$PHENIX_PYTHON" -B branch-artifacts/willow/w308-epsilon-window/diagnostic.py
+```
+
+These immutable output directories already exist; commands document execution,
+not an instruction to overwrite/repeat them. Existing local NASolve anchors:
+`branch-artifacts/willow/w307-anchor-orientation/` (`orientations.json`,
+`verification.json`), `w308-epsilon-window/` (`plan.json`, `epsilon-window.json`),
+and `w309-masked-route-audit/` (`audit.json`, `saved-result-check.json`). Exact
+references/checksums are in the roadmap. Raw science and diagnostic scripts
+remain local; no product/schema change, migration or new suite/install run.
+
+**W309 stopped before either approved held/free-O3 trial.** Inspection at Willow
+`a4a5a492` and Cedar `531ffe7e58984b59a3c06f9161dcc14b081af1ea` finds a missing
+integration boundary, not a failed physical experiment:
+
+- `run_captured_objective` does not install registered phosphate forces and
+  rejects preexisting native edits in optimization. Do not bypass that guard.
+- The specialized receiver binds one continuation and its six/wider movement
+  scope to diffraction refinement; it does not supply this two-link,
+  five-versus-six-atom geometry-only comparison.
+- Cedar's ordinary `cif_phosphate_phase.run_phase` retains both complete groups.
+  During dry preparation it attaches them to the returned full model, checks
+  both bonds/exclusions and evaluates joint gradients inside `active()`.
+  That live model is not currently exposed to a trusted observation callback.
+- `NativeMaskedObjective` already delegates to the existing corrected native
+  `energies_sites` call. A class-level image wrapper could supply both groups
+  without a second evaluator, but that composition has not been qualified.
+  Empty explicit `extension_objects` do not prove the live wrapper is absent.
+
+**Next W310 proposed to Rowan:** expose a narrowly owned read-only zero-step
+preflight observation at that existing force-bearing lifetime. Cedar owns native
+construction, image forces and restoration; Willow compares zero-displacement
+native energy and five/six-mask projections of the same full gradient. Verify
+exact source/atom/frame, all native weights, both complete force groups and actual
+ASU packing/exclusions. Distinguish preserved severe contacts from new ones.
+The ordinary parallelity/writer hooks restore when `run_compatible_refinement`
+returns; the outer phosphate hooks remain active until `run_phase` exits. The
+observation must occur before their removal and fail safely on any exception.
+Unsupported auxiliary geometry, source drift or nonbonded-policy ambiguity stops
+qualification; do not weaken guards to make the comparison run. A dry native
+preparation can read the frozen MTZ, but no diffraction optimization is proposed.
+No evaluator/owner changes or native invocation have been made for this proposal.
+
+Only after this boundary is agreed and validated should the W309 held/free
+comparison resume. Both arms start from the identical saved W304 endpoint,
+retain both image groups and all fixed atoms/B/Q, and use the same native weights.
+Each has a 3 Å displacement, 300-second and **300 total objective-call** cap.
+The existing three derivative audits require 186 calls for five atoms and 222
+for six; remaining optimizer allowance is at most 114/78 calls before other
+observations. No restarts, exact ε constraint, weight sweep or analytical seeding.
+Stalling is inconclusive. Diffraction comparison, wider motion and acceptance
+remain separate decisions. S05/P04 remain PARTIAL; original W304 stays unchanged.

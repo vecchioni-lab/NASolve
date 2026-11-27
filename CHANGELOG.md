@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W307–W309 — Audit local closure strain and the native force boundary
+
+- Preserve fixed-sugar analytical results: no tested one-width ε placement passes
+  the provisional C4′ angle screen; this does not rule out soft-restraint repair.
+- Stop held/free-O3′ trials before execution because the generic masked route
+  lacks the registered two-link force lifetime. Propose a zero-step comparison
+  through Cedar's existing preflight owner before any new optimization.
+- Documentation and saved-result audit only; no runtime, schema or model changes.
+
 ### W306 — Test fixed-anchor phosphate reach before another fit
 
 - Record a read-only geometric feasibility check using W304's saved native

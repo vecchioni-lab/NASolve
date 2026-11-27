@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**W306 fixed-anchor reach audit, 2026-11-27.** Latest maintained code:
+**W309 masked-route boundary audit, 2026-11-27.** Latest maintained code:
 `5b68471fe4615c543952484c73e0f5a93acc063f`. Latest native preflight/refinement:
 **W304** (same genuine ordinary PDU parent as W300); latest density audit: **W304**.
 W298 remains the separate endpoint-base/whole-model density audit; do not conflate sources.
@@ -93,9 +93,16 @@ maintained fixed-weight product mode or recommended production weight.
    parent's retained cut from alternatives. **W306** finds D7's exact torsion
    target passes radial reach with held sugar anchors, but requires a 2.788 Å P
    move. B7's exact target fails that stricter subproblem by 0.324 Å; part of its
-   one-width range remains reachable. **Next W307:** enumerate D7 closed-chain
-   orientations satisfying O3′–P–O5′, then inspect C4′ handedness/flanking angles.
-   No full placement or fit is yet justified. W216's O5′/C5′-only shoulder proposal
+   one-width range remains reachable. **W307/W308** find strong C4′ angle strain:
+   four exact-target orientations, then 284 probes across a one-width ε grid,
+   none passing the provisional C4′ screen. Fixed O3′ and exact bond/angle targets
+   make this stricter than the existing six-atom soft-restraint route.
+   **W309 stopped before fitting:** the masked capture does not retain the two
+   registered phosphate force groups. **Next W310 proposed to Rowan:** a zero-step
+   comparison on the actual ordinary preflight manager, inside its existing
+   two-group force lifetime. No second evaluator, image-force owner or bypass of
+   native guards. [Evidence and boundary](topostitch-periodic.md#w307w309--separate-fixed-sugar-strain-from-native-integration).
+   Native execution awaits the integration decision; diffraction remains held. W216's O5′/C5′-only shoulder proposal
    cannot change C4′–C3′–O3′–P when those four atoms are fixed. Separately, P05's
    remaining work is the shared GUI operation lifecycle, not another preview,
    preference or checkpoint registry. Existing same-source
