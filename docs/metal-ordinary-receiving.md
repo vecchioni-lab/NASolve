@@ -176,6 +176,27 @@ with exact source lineage, column mapping, checksums and method recorded. Such a
 copy does not itself create an ordinary approved parent or authorize changing HL.
 No new phase file was needed for the checks above.
 
+The 27 November comparison follows explicit saved references to the FT AutoSol
+output and the current private phased-control input. Their byte hashes differ
+(`b072dc27…` and `ffb8f116…`), but all 1,151 indexed HL quartets and the complete
+crystal operators agree exactly. Replacing only the 22 recorded column-source
+creation timestamps in memory makes the entire MTZ byte stream identical. No
+file was rewritten. Original observation/Free-R ownership remains separate.
+This closes the phase-value ambiguity without generating another test MTZ.
+It does not create an ordinary approved AutoSol publication: the maintained
+publication owner requires its own sealed result, and has no external-phase
+import route. Evidence: `branch-artifacts/Alder/owner-integration-20261127-01/phase-equivalence.json`
+(method A863; Phenix 2.2.1-6174 libraries, no refinement). The initial comparison
+incorrectly compared string representations of native group objects; the retained
+corrected check compares every crystallographic operator explicitly.
+
+The next bounded implementation must keep two cases distinct. Synthetic accepted
+ordinary parents can qualify the new numbered mixed child and its failure paths.
+The real FT source can be tested as explicitly recorded external AutoSol evidence;
+it must not acquire a fabricated historical approval. Any ordinary admission of
+that external source needs an explicit new owner contract or a fresh owned AutoSol
+result. Copying a phase file into a dataset is not that contract.
+
 ## What is qualified
 
 The explicit scope, passive native observer, source-bound writer and literal
