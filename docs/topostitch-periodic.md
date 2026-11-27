@@ -15934,3 +15934,80 @@ PARTIAL. **Next W305:** compose verified child context with existing same-child
 cut comparison and saved preference intake. Preserve fresh review, distinguish
 retained parent cut from an alternative, and refuse stale/drifting inputs; no
 new GUI shell, scientific registry, refinement route or approval authority.
+
+
+## W305 — Keep checkpoint context with cut choices
+
+**2026-11-27; code `5b68471fe4615c543952484c73e0f5a93acc063f`.** W302's verified-child
+inspector and W303's comparison/preference owner previously had to be used
+separately. `write_checkpoint_recut_view` now accepts explicit same-child
+alternatives and an optional saved preference, reusing those owners. [API and
+exact limits](topostitch-preview.md#compare-cuts-on-a-verified-refinement-child-w305).
+The shared renderer distinguishes **Cut retained** from **Alternative cut**;
+only the exact refreshed packet inherits the parent's cut, while all displayed
+alternatives share the verified child source and graph. Every child needs fresh
+review. A preference neither authenticates its author nor grants scientific
+approval, execution or checkpoint selection.
+
+Existing comparison fingerprints/order and preference files remain compatible;
+checkpoint context is additional display metadata outside that canonical
+fingerprint. Existing packets, registry and preference schemas are unchanged.
+Every alternative and supplied preference is frozen/rechecked alongside parent
+and child contexts before writing. Different source/graph, duplicate packets,
+wrong preference, preference without comparison, late input/selection drift and
+output paths inside any packet refuse without producing a view. Reopening after
+all original run/packet/preference locations are gone yields byte-identical HTML.
+No new command, registry, model tree or GUI shell is introduced.
+
+**Validation:** ten new regressions fail before implementation with missing
+comparison arguments. **219 focused source/219 relocated-installed tests** pass;
+CLI help, Python3.10 syntax, exact installed Python/HTML assets and unchanged
+source pass after original build/install locations are removed. Full Willow
+suite ran **3,135 tests +238 subtests**: **3,130 tests +238 subtests passed**, while
+five existing campaign process-management tests were blocked by sandbox `ps`
+and process-group signalling permissions. Those exact five pass in a targeted
+unrestricted retry (**2.47 s**) with unchanged source; no suite repetition or
+product workaround. The original failures and the retry are retained separately,
+not presented as one uninterrupted green invocation. Qualification staging is
+removed. Phenix Python **2.2.1-6174** supplies the optional native dependencies;
+this qualification launches no crystallographic refinement.
+
+**Real read-only callback compatibility:** archive Rowan's current full Cedar
+`e21471442e1eac4db612fcc3bd3ef17dd42cee0a`. `checkpoints.py`,
+`topostitch_images.py` and `cif_phosphate_image.py` are byte-identical to the
+historical W300 d3d71cde source. The existing W301 refreshed packet and W303
+original-ASU alternative reopen on W300's genuine child. Both **862-atom** cuts
+and all edges match the ordinary comparison exactly, now with verified child
+context. `postmr`, run and all prior packets remain unchanged. No actual human
+preference is synthesized; synthetic tests exercise that intake. Inline script
+compiles and payloads verify; browser interaction is not newly executed.
+Current-reader compatibility does not qualify changed Cedar native workers or
+Alder complete-request execution. No new forces, Coot or refinement run.
+
+Local NASolve anchor: `branch-artifacts/willow/w305-checkpoint-cut-choice/`.
+`qualification.json` and `completion.json` pin source, dependencies, exact
+commands and all test/install logs. `before.json` preserves the fail-before run.
+`audit-command.json`, `audit.json` and `javascript-check.json` bind the real view.
+Outer commands:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/w305-checkpoint-cut-choice/qualify.py
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/w305-checkpoint-cut-choice/complete_qualification.py
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/w305-checkpoint-cut-choice/audit_launcher.py
+```
+
+Tests run with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src` and explicit native
+Python dependency bootstrapping. The complete command invokes
+`pytest.main(["-q","-rs","-p","no:cacheprovider","tests"])`; the targeted retry
+names the five failing `CampaignProcessTests` node IDs. No scientific payloads
+are committed: existing view owner, HTML template, existing tests, API/changelog
+and roadmap docs only. Offline snapshots are not live monitors or concurrency
+locks. P04/P05 remain PARTIAL; this closes the verified comparison/preference
+composition substep, not the persistent shared workbench.
+
+**Next W306 science:** a read-only anchor-reachability diagnostic using W304's
+saved native lengths/angles/torsion targets. Existing W216 shoulder rotations
+move only O5′/C5′ and cannot change the stubborn C4′–C3′–O3′–P torsion. Check the
+necessary geometric reach of a more general local phosphate placement before
+widening sugar/base motion or another fit. Keep necessary reachability distinct
+from full chirality, stacking, packing, density support or chemical admission.

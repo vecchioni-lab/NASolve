@@ -7,6 +7,10 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Latest code, W305:** [verified child cut choices](topostitch-preview.md#compare-cuts-on-a-verified-refinement-child-w305)
+  now compose comparison/preference reopening with exact checkpoint context.
+  Retained and alternative cuts stay distinct; no inherited approval or selection.
+
 - **Latest science, W304:** [one versus three ordinary cycles](topostitch-periodic.md#w304--three-cycle-ordinary-recovery-with-map-review)
   improves both image bond distances and worst angles; torsions/maps remain
   mixed. All 862 atoms and 124 Free retained. Both children stay unselected.
@@ -15,7 +19,7 @@ current instructions; other branches retain their own status and validation pins
   preserve all atoms and image bonds. The existing inspector offers the choice;
   neither preference nor approval is fabricated. No new fit or product code.
 
-- **Latest code, W302:** [verified child-cut inspection](topostitch-preview.md#reopen-a-verified-refined-child-cut-w302)
+- **Saved-refresh reader, W302:** [verified child-cut inspection](topostitch-preview.md#reopen-a-verified-refined-child-cut-w302)
   rederives saved refreshes before displaying their lineage and fresh-review
   status. Same 862 atoms/edges as W301; no new fit. 209 source/209 relocated
   checks and full suite (3,125 tests + 238 subtests) pass. Ordinary comparisons

@@ -4,7 +4,7 @@
   "updated": "2026-11-27",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "fe2d158192a7cd53705025fc2fc65078678975ff",
+  "audited_code_commit": "5b68471fe4615c543952484c73e0f5a93acc063f",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -1285,14 +1285,15 @@
         "W301 maintains exact parent/direct refinement-child cut refresh through existing owners, preserving all declared connections and explicit/forest choices with fresh UNREVIEWED state. Genuine W300 replay reproduces862 atoms and both links; 177 source/installed checks and full Willow regression pass. No new fit or chemical acceptance.",
         "W302 rederives saved refreshes and every packet byte through the existing producer before graphical consumption. Real child inspector preserves862 atoms/edges, physical/image movement distinction and fresh-review status. Forged claims, substituted valid cuts and stale contexts refuse; no fit or selection.",
         "W303 compares two cuts of the same genuine refined child with the existing preference owner;862 atoms/two connections retained, no physical movement or invented review. Image-cycle limitation made explicit.",
-        "W304 extends genuine ordinary recovery to3 cycles with both complete image force groups;862 identities/Q and124 Free retained. Both bonds/worst angles improve; mixed torsion/map evidence remains explicit. Fresh cut and density/ChimeraX comparisons remain unselected."
+        "W304 extends genuine ordinary recovery to3 cycles with both complete image force groups;862 identities/Q and124 Free retained. Both bonds/worst angles improve; mixed torsion/map evidence remains explicit. Fresh cut and density/ChimeraX comparisons remain unselected.",
+        "W305 composes verified-child context, existing same-child alternatives and saved preference intake. Retained cut versus alternative explicit; context/packet/preference drift refuses. Current Cedar read-only compatibility checked; no selection or native admission."
       ],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
         "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.",
         "Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified."
       ],
-      "next_action": "W305: extend the existing verified-child inspector to reuse same-child cut comparison and saved preference intake. Bind all packet/run contexts, distinguish retained cut from alternatives, refuse drift and preserve fresh review/current selection. No new scientific registry or native route. Later geometry alternatives need declared partner/mobility authority and must reuse W209\u2013W210 context.",
+      "next_action": "W306: read-only anchor reachability for W304 torsion using saved native targets. W216 O5/C5-only shoulder cannot change fixed C4\u2013C3\u2013O3\u2013P. Establish necessary geometric feasibility before a bounded placement or wider-motion proposal; no automatic adoption.",
       "evidence": [
         "E_PINE_TEST_BANK",
         "E_NATIVE_REPRESENTATION_SEAMS",
@@ -1319,14 +1320,15 @@
         "E_CHECKPOINT_RECUT_REFRESH",
         "E_SAVED_RECUT_READBACK",
         "E_SAME_CHILD_CUT_CHOICE",
-        "E_THREE_CYCLE_ORDINARY_RECOVERY"
+        "E_THREE_CYCLE_ORDINARY_RECOVERY",
+        "E_CHECKPOINT_CUT_CHOICE"
       ],
       "last_audit": {
         "date": "2026-11-27",
-        "code_commit": "fe2d158192a7cd53705025fc2fc65078678975ff",
+        "code_commit": "5b68471fe4615c543952484c73e0f5a93acc063f",
         "reviewer": "Linden",
-        "human_update": 304,
-        "scope": "Ordinary recovery and maps audited; full seam acceptance and persistent review/refine remain open"
+        "human_update": 305,
+        "scope": "Verified comparison/preference backend substep closed; persistent workbench and seam acceptance remain open"
       }
     },
     {
@@ -1343,28 +1345,30 @@
         "W301 maintains exact parent/direct refinement-child cut refresh through existing owners, preserving all declared connections and explicit/forest choices with fresh UNREVIEWED state. Genuine W300 replay reproduces862 atoms and both links; 177 source/installed checks and full Willow regression pass. No new fit or chemical acceptance.",
         "W302 rederives saved refreshes and every packet byte through the existing producer before graphical consumption. Real child inspector preserves862 atoms/edges, physical/image movement distinction and fresh-review status. Forged claims, substituted valid cuts and stale contexts refuse; no fit or selection.",
         "W303 compares two cuts of the same genuine refined child with the existing preference owner;862 atoms/two connections retained, no physical movement or invented review. Image-cycle limitation made explicit.",
-        "W304 extends genuine ordinary recovery to3 cycles with both complete image force groups;862 identities/Q and124 Free retained. Both bonds/worst angles improve; mixed torsion/map evidence remains explicit. Fresh cut and density/ChimeraX comparisons remain unselected."
+        "W304 extends genuine ordinary recovery to3 cycles with both complete image force groups;862 identities/Q and124 Free retained. Both bonds/worst angles improve; mixed torsion/map evidence remains explicit. Fresh cut and density/ChimeraX comparisons remain unselected.",
+        "W305 composes verified-child context, existing same-child alternatives and saved preference intake. Retained cut versus alternative explicit; context/packet/preference drift refuses. Current Cedar read-only compatibility checked; no selection or native admission."
       ],
       "acceptance": [
         "Use the shared model tree and exact selection/Coot APIs; keep inspect, select and approve distinct, preserve current choice and return refinement diagnostics to the same session.",
         "Graphical actions bind source hashes and show actual nicks/seams/mates. Test stale views, competing choices, interrupted actions, manual imports and relocation without duplicating campaign/checkpoint machinery.",
         "Expose editable Pine periodic connectivity beyond the ASU, preserving prior user choices and exact logical/image mappings across reslicing or explicitly marking unresolved mappings. Keep intent, proximity and enforcement support separate."
       ],
-      "next_action": "W305: extend the existing verified-child inspector to reuse same-child cut comparison and saved preference intake. Bind all packet/run contexts, distinguish retained cut from alternatives, refuse drift and preserve fresh review/current selection. No new scientific registry or native route. Later geometry alternatives need declared partner/mobility authority and must reuse W209\u2013W210 context.",
+      "next_action": "Audit the first shared workbench caller against docs/gui.md: use existing model-tree/checkpoint, comparison/preference and Coot APIs for explicit view/edit/refine actions. Backend comparison composition is complete; do not add another registry or infer approval from preference. Physical oligo/entity authority and complete native admission remain separate gates.",
       "evidence": [
         "E_WILLOW_PINE_DOC_AUDIT",
         "E_ORDINARY_CHILD_RECUT",
         "E_CHECKPOINT_RECUT_REFRESH",
         "E_SAVED_RECUT_READBACK",
         "E_SAME_CHILD_CUT_CHOICE",
-        "E_THREE_CYCLE_ORDINARY_RECOVERY"
+        "E_THREE_CYCLE_ORDINARY_RECOVERY",
+        "E_CHECKPOINT_CUT_CHOICE"
       ],
       "last_audit": {
         "date": "2026-11-27",
-        "code_commit": "fe2d158192a7cd53705025fc2fc65078678975ff",
+        "code_commit": "5b68471fe4615c543952484c73e0f5a93acc063f",
         "reviewer": "Linden",
-        "human_update": 304,
-        "scope": "Ordinary recovery and maps audited; full seam acceptance and persistent review/refine remain open"
+        "human_update": 305,
+        "scope": "Verified comparison/preference backend substep closed; persistent workbench and seam acceptance remain open"
       }
     },
     {
@@ -10642,6 +10646,65 @@
           "size": 3056
         }
       ]
+    },
+    "E_CHECKPOINT_CUT_CHOICE": {
+      "kind": "Verified-child cut comparison and saved preference composition",
+      "date": "2026-11-27",
+      "human_update": 305,
+      "code_commit": "5b68471fe4615c543952484c73e0f5a93acc063f",
+      "reference": "docs/topostitch-periodic.md#w305--keep-checkpoint-context-with-cut-choices",
+      "result": "219 source/219 relocated-installed pass. Full3135 tests+238subtests covered:3130+238 passed under sandbox, five process-permission failures pass in targeted unrestricted retry unchanged. Real two-cut/862-atom comparison verified with current Cedar readers; no fit or human preference fabricated.",
+      "limitation": "Snapshot display and unauthenticated preference only. No GUI operation lifecycle, approval, model selection or native-worker admission. Browser execution not newly tested; scientific payloads local.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w305-checkpoint-cut-choice/qualification.json",
+          "sha256": "6387b7e4ca504a89f385c7ac8d172fb7da6d4ba505285e520cd237a374369f6a",
+          "size": 27211
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w305-checkpoint-cut-choice/completion.json",
+          "sha256": "eaada95fcc6c0c7171547b95fe93015a00e4aba82b31165d5a36df09bc0845bb",
+          "size": 31539
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w305-checkpoint-cut-choice/source-complete.log",
+          "sha256": "3f0d42ebcec3f180664e6249ad043103b9bc68cd199449e9f1507c2a3b9d3017",
+          "size": 34839
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w305-checkpoint-cut-choice/source-process-retry.log",
+          "sha256": "ce69b26d1a695e48c5b6a52f721577e8c667f6a94552793fa276bb478541442a",
+          "size": 98
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w305-checkpoint-cut-choice/installed-focused.log",
+          "sha256": "856224ca87de29ab90690cdf02436452ac08f7b918169f0974b245f8b39ab069",
+          "size": 341
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w305-checkpoint-cut-choice/audit-command.json",
+          "sha256": "519de03b6000121eefae7a8a74a589edaa77476aa7a6d9642067186402c34847",
+          "size": 13528
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w305-checkpoint-cut-choice/audit.json",
+          "sha256": "ac782fc55e978f47028a79b4c6a1a78c91dc0a806e6243102a604d778f55908e",
+          "size": 680
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w305-checkpoint-cut-choice/javascript-check.json",
+          "sha256": "dbc7d4fe117b5f1e5048e5473e94086c9e5dab8bb2365416495c087376be199e",
+          "size": 162
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -10823,8 +10886,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 304,
-    "next": 305,
+    "current": 305,
+    "next": 306,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -12458,6 +12521,12 @@
         "title": "Compare three-cycle ordinary recovery and saved maps",
         "state": "RECORDED",
         "code_commit": "fe2d158192a7cd53705025fc2fc65078678975ff"
+      },
+      {
+        "number": 305,
+        "title": "Keep verified child context in cut comparison and preference reopening",
+        "state": "RECORDED",
+        "code_commit": "5b68471fe4615c543952484c73e0f5a93acc063f"
       }
     ]
   },

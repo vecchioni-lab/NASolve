@@ -1,7 +1,7 @@
 # NASolve development handoff — Willow
 
-**W304 ordinary recovery and maps, 2026-11-27.** Latest maintained code:
-`fe2d158192a7cd53705025fc2fc65078678975ff`. Latest native preflight/refinement:
+**W305 verified child cut choices, 2026-11-27.** Latest maintained code:
+`5b68471fe4615c543952484c73e0f5a93acc063f`. Latest native preflight/refinement:
 **W304** (same genuine ordinary PDU parent as W300); latest density audit: **W304**.
 W298 remains the separate endpoint-base/whole-model density audit; do not conflate sources.
 The [audited roadmap](topostitch-roadmap.md) owns status and the next decision;
@@ -88,9 +88,14 @@ maintained fixed-weight product mode or recommended production weight.
    image distances and worst angles, mixed periodic torsions. D7→C8's period-one
    torsion remains at 99.7% barrier height; B1 P/OP1 density is weaker than C8.
    These results do not justify unbounded cycles or wider motion without partner
-   authority. **Next W305:** join verified child inspection to the existing
-   same-child comparison and saved-preference intake, preserving exact context,
-   retained-versus-alternative cut meaning and fresh review. Existing same-source
+   authority. **W305** joins verified child inspection to same-child comparison
+   and saved-preference intake, retaining exact context and distinguishing the
+   parent's retained cut from alternatives. **Next:** quantify whether the
+   stubborn D7 torsion is geometrically reachable with fixed sugar anchors,
+   before proposing another native fit. W216's O5′/C5′-only shoulder proposal
+   cannot change C4′–C3′–O3′–P when those four atoms are fixed. Separately, P05's
+   remaining work is the shared GUI operation lifecycle, not another preview,
+   preference or checkpoint registry. Existing same-source
    comparison restrictions remain unchanged. Do not build
    another refinement route. Use the genuine PDU ordinary parent with its proven data/thermal route.
    Use source-frame native refinement and
@@ -129,6 +134,15 @@ references and thermal/TLS semantics. File readback alone cannot prove those.
 
 <a id="validation-and-scientific-interpretation"></a>
 ## Validation and compatibility
+
+**W305:** 219 focused source/219 relocated-installed checks and installed CLI help
+pass. Complete suite covers **3,135 tests +238 subtests**: 3,130 passed in the
+sandbox, five existing process-management tests were blocked by `ps`/`killpg`
+permissions and all five pass in an unrestricted targeted retry with unchanged
+source. No repeated full suite. Real two-cut inspection passes against Rowan's
+Cedar `e2147144`; its checkpoint/image readers are unchanged from the W300 pin.
+This is read-only callback compatibility, not combined native-force admission.
+[Exact commands and limits](topostitch-periodic.md#w305--keep-checkpoint-context-with-cut-choices).
 
 **W304 scientific execution:** one complete three-cycle ordinary refinement with
 Phenix 2.2.1-6174 and full pinned Cedar d3d71cde; 36 independent cold checks,
