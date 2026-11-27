@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "kind": "topostitch-development-roadmap",
-  "updated": "2026-11-26",
+  "updated": "2026-11-27",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "d81ce8ecbe0ae4b1f1cc6a7d1123a39fb0147e60",
+  "audited_code_commit": "3b6920954a4736b4cf27dffb08cb93c5a0b92403",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -299,7 +299,8 @@
         "W292 maps the 19-atom two-sugar scope without moving coordinates. Both bases/outer phosphates held; six source sugar signs agree. Two monomer planes and four parallelity groups remain C1-dependent, requiring the complete existing Cedar owner. Ordinary receiver remains six-atom only.",
         "W293: 19-atom/57-variable complete-native finite differences pass at two points and two steps (460 evaluations); all six C1-dependent groups and original proxies retained, 843 atoms held, 1785 work/124 Free unchanged. Raw 7991-row packing capture repeats; full-capture reviewer correctly refuses the partial live envelope. Isolated runtime imports fix current Cedar/Willow composition. Final-source 3013 tests +234 subtests and175 relocated-installed focused checks pass; installed native dry-run reaches unchanged strict-frame refusal (~1e-14 arithmetic), not a completed product preflight. No fit.",
         "W294 exposes exact/native-roundoff as an optional frozen request policy; omitted ML/MLHL defaults unchanged. Installed ordinary ML preflight now completes0cycles with862 atoms,1909 reflections/124Free, byte-identical candidate and57 exact parallelity groups; hooks restored and worker stopped. 3025 tests+234subtests(no skips),187 relocated-installed checks. Native19-atom scope and refinement remain separate; no new tolerance or force.",
-        "W296 adds explicit unphased 19-atom coupled-sugar admission while retaining the six-atom default. One installed five-cycle/100-iteration-cap Phenix 2.2.1-6174 fit closes the 5W6W-derived canonical endpoint gap from 2.82429 to 1.61293 \u00c5; common-subset local angle maximum improves 1.82973 to 0.57094\u03c3. All 862 atoms, six sugar hands, original proxies, 843 held coordinates/BQ and 1909 observations/124 Free-R survive. Rwork/Rfree 0.312951/0.366145, unselected. C1-to-held-base plane distances improve; four own-map FFTs/62 meshes retain weak sugar density. 3073 tests +238 subtests, no skips; 220 relocated-installed checks; installed preflight/fit, three-model ChimeraX1.12 headless and35 cold checks pass."
+        "W296 adds explicit unphased 19-atom coupled-sugar admission while retaining the six-atom default. One installed five-cycle/100-iteration-cap Phenix 2.2.1-6174 fit closes the 5W6W-derived canonical endpoint gap from 2.82429 to 1.61293 \u00c5; common-subset local angle maximum improves 1.82973 to 0.57094\u03c3. All 862 atoms, six sugar hands, original proxies, 843 held coordinates/BQ and 1909 observations/124 Free-R survive. Rwork/Rfree 0.312951/0.366145, unselected. C1-to-held-base plane distances improve; four own-map FFTs/62 meshes retain weak sugar density. 3073 tests +238 subtests, no skips; 220 relocated-installed checks; installed preflight/fit, three-model ChimeraX1.12 headless and35 cold checks pass.",
+        "W297: explicit canonical endpoint-base release through the existing installed receiver;37/825 local scope, preserved BQ/proxies/sugar hands, raw post-exit packing and matched own-map/plane review. Geometry gain does not close density or packing gates."
       ],
       "acceptance": [
         "Known-answer straight-to-curved, bent-to-straight and changed-direction cases recover within predeclared scope; healthy controls do not receive unjustified changes.",
@@ -307,7 +308,7 @@
         "Qualify coupled bending/elongation, step twist/rise and strand-specific sugar-phosphate relaxation, including fixed-window boundaries; rigid-base preview motion alone is insufficient.",
         "Internal helix recovery explicitly compares neighbouring base-plane orientation, spacing, lateral offset/overlap and twist before deformation, after placement and after restrained recovery, including fixed-flank transitions. Within-pair coplanarity and between-pair stacking remain distinct; allow supported curvature/nonuniform twist rather than enforcing universal parallelism. Connectivity, sugar-sign retention and R factors alone do not close this gate. Investigator emphasis2026-11-22; planning only, reuse existing frame/geometry owners."
       ],
-      "next_action": "Use W296 as the unselected 19-atom baseline. Define a source-authorized base/partner-inclusive window with held anchors and explicit molecular/image correspondence before moving bases. The retained ~17.9\u00b0 held-base pair tilt is a concrete hypothesis, not authority to infer partners from restraint rows. Do not rerun the six-atom or weight panel.",
+      "next_action": "W297 qualifies endpoint bases with partners held. Before broader coupled/junction movement, establish source-wide density/thermal context and reviewed partner/image/mobility declarations. Preserve weak-map and stacking tradeoffs; do not rerun the closed fit or infer physical partners from native restraint rows.",
       "evidence": [
         "E_SOFTWARE",
         "E_NATIVE_8D93",
@@ -410,14 +411,15 @@
         "E_COUPLED_SUGAR_SCOPE",
         "E_COUPLED_NATIVE_RUNTIME",
         "E_EXPLICIT_NATIVE_FRAME",
-        "E_COUPLED_SUGAR_INSTALLED_RECOVERY"
+        "E_COUPLED_SUGAR_INSTALLED_RECOVERY",
+        "E_ENDPOINT_BASE_INSTALLED_RECOVERY"
       ],
       "last_audit": {
-        "date": "2026-11-26",
-        "human_update": 296,
-        "code_commit": "d81ce8ecbe0ae4b1f1cc6a7d1123a39fb0147e60",
-        "reviewer": "Linden; runtime and packing ownership coordinated with Rowan, source identity corrected with Hazel",
-        "scope": "Installed 19-atom canonical endpoint recovery and saved plane/map review only. Partial scientific gates and unselected model remain explicit."
+        "date": "2026-11-27",
+        "human_update": 297,
+        "code_commit": "3b6920954a4736b4cf27dffb08cb93c5a0b92403",
+        "reviewer": "Linden; scope and raw packing coordinated with Rowan, separate FT limits shared with Hazel",
+        "scope": "One37-atom installed comparison; no whole-duplex movement, packing acceptance or model selection."
       }
     },
     {
@@ -514,14 +516,15 @@
         "W292 maps the 19-atom two-sugar scope without moving coordinates. Both bases/outer phosphates held; six source sugar signs agree. Two monomer planes and four parallelity groups remain C1-dependent, requiring the complete existing Cedar owner. Ordinary receiver remains six-atom only.",
         "W293: 19-atom/57-variable complete-native finite differences pass at two points and two steps (460 evaluations); all six C1-dependent groups and original proxies retained, 843 atoms held, 1785 work/124 Free unchanged. Raw 7991-row packing capture repeats; full-capture reviewer correctly refuses the partial live envelope. Isolated runtime imports fix current Cedar/Willow composition. Final-source 3013 tests +234 subtests and175 relocated-installed focused checks pass; installed native dry-run reaches unchanged strict-frame refusal (~1e-14 arithmetic), not a completed product preflight. No fit.",
         "W294 exposes exact/native-roundoff as an optional frozen request policy; omitted ML/MLHL defaults unchanged. Installed ordinary ML preflight now completes0cycles with862 atoms,1909 reflections/124Free, byte-identical candidate and57 exact parallelity groups; hooks restored and worker stopped. 3025 tests+234subtests(no skips),187 relocated-installed checks. Native19-atom scope and refinement remain separate; no new tolerance or force.",
-        "W296 adds explicit unphased 19-atom coupled-sugar admission while retaining the six-atom default. One installed five-cycle/100-iteration-cap Phenix 2.2.1-6174 fit closes the 5W6W-derived canonical endpoint gap from 2.82429 to 1.61293 \u00c5; common-subset local angle maximum improves 1.82973 to 0.57094\u03c3. All 862 atoms, six sugar hands, original proxies, 843 held coordinates/BQ and 1909 observations/124 Free-R survive. Rwork/Rfree 0.312951/0.366145, unselected. C1-to-held-base plane distances improve; four own-map FFTs/62 meshes retain weak sugar density. 3073 tests +238 subtests, no skips; 220 relocated-installed checks; installed preflight/fit, three-model ChimeraX1.12 headless and35 cold checks pass."
+        "W296 adds explicit unphased 19-atom coupled-sugar admission while retaining the six-atom default. One installed five-cycle/100-iteration-cap Phenix 2.2.1-6174 fit closes the 5W6W-derived canonical endpoint gap from 2.82429 to 1.61293 \u00c5; common-subset local angle maximum improves 1.82973 to 0.57094\u03c3. All 862 atoms, six sugar hands, original proxies, 843 held coordinates/BQ and 1909 observations/124 Free-R survive. Rwork/Rfree 0.312951/0.366145, unselected. C1-to-held-base plane distances improve; four own-map FFTs/62 meshes retain weak sugar density. 3073 tests +238 subtests, no skips; 220 relocated-installed checks; installed preflight/fit, three-model ChimeraX1.12 headless and35 cold checks pass.",
+        "W297: explicit canonical endpoint-base release through the existing installed receiver;37/825 local scope, preserved BQ/proxies/sugar hands, raw post-exit packing and matched own-map/plane review. Geometry gain does not close density or packing gates."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Qualify returned packing observation with Cedar: reuse passive fixed-exclusion/shell-table ownership; the ASU pair helper performs extra evaluations and belongs in an isolated worker, not an active guard callback. Preserve the 2.814\u03c3 image torsion and weak sugar density. W296 proves hands, measurable pucker, fixed attachments and retained planes in its narrow scope; not complete geometry acceptance.",
+      "next_action": "W297 records raw post-exit packing with unchanged fixed policy and model/data, but Cedar full-capture authentication remains open. Do not retrofit a complete envelope or interpret its post-release total energy as the refinement target. Preserve six sugar hands, observed planes and residual2.683sigma image torsion; investigate broader scope only against new evidence.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -672,14 +675,15 @@
         "E_COUPLED_SUGAR_SCOPE",
         "E_COUPLED_NATIVE_RUNTIME",
         "E_EXPLICIT_NATIVE_FRAME",
-        "E_COUPLED_SUGAR_INSTALLED_RECOVERY"
+        "E_COUPLED_SUGAR_INSTALLED_RECOVERY",
+        "E_ENDPOINT_BASE_INSTALLED_RECOVERY"
       ],
       "last_audit": {
-        "date": "2026-11-26",
-        "human_update": 296,
-        "code_commit": "d81ce8ecbe0ae4b1f1cc6a7d1123a39fb0147e60",
-        "reviewer": "Linden; runtime and packing ownership coordinated with Rowan, source identity corrected with Hazel",
-        "scope": "Installed 19-atom canonical endpoint recovery and saved plane/map review only. Partial scientific gates and unselected model remain explicit."
+        "date": "2026-11-27",
+        "human_update": 297,
+        "code_commit": "3b6920954a4736b4cf27dffb08cb93c5a0b92403",
+        "reviewer": "Linden; scope and raw packing coordinated with Rowan, separate FT limits shared with Hazel",
+        "scope": "One37-atom installed comparison; no whole-duplex movement, packing acceptance or model selection."
       }
     },
     {
@@ -777,7 +781,8 @@
         "W293: 19-atom/57-variable complete-native finite differences pass at two points and two steps (460 evaluations); all six C1-dependent groups and original proxies retained, 843 atoms held, 1785 work/124 Free unchanged. Raw 7991-row packing capture repeats; full-capture reviewer correctly refuses the partial live envelope. Isolated runtime imports fix current Cedar/Willow composition. Final-source 3013 tests +234 subtests and175 relocated-installed focused checks pass; installed native dry-run reaches unchanged strict-frame refusal (~1e-14 arithmetic), not a completed product preflight. No fit.",
         "W294 exposes exact/native-roundoff as an optional frozen request policy; omitted ML/MLHL defaults unchanged. Installed ordinary ML preflight now completes0cycles with862 atoms,1909 reflections/124Free, byte-identical candidate and57 exact parallelity groups; hooks restored and worker stopped. 3025 tests+234subtests(no skips),187 relocated-installed checks. Native19-atom scope and refinement remain separate; no new tolerance or force.",
         "W295 receives the exact Alder shared source reader from2a25f57c72ba5038688ec42812066551e2a968a0 and removes the maintained phased guard inline duplicate. Source policies, native pins and actual-target/scattering checks unchanged. Installed guard exactly reproduces pinned W252 source reading on1151FTobservations/59Free/allHL/crystal. 3041 tests+238subtests(no skips),203 installed focused+4subtests; no child execution/refinement in the data comparison.",
-        "W296 adds explicit unphased 19-atom coupled-sugar admission while retaining the six-atom default. One installed five-cycle/100-iteration-cap Phenix 2.2.1-6174 fit closes the 5W6W-derived canonical endpoint gap from 2.82429 to 1.61293 \u00c5; common-subset local angle maximum improves 1.82973 to 0.57094\u03c3. All 862 atoms, six sugar hands, original proxies, 843 held coordinates/BQ and 1909 observations/124 Free-R survive. Rwork/Rfree 0.312951/0.366145, unselected. C1-to-held-base plane distances improve; four own-map FFTs/62 meshes retain weak sugar density. 3073 tests +238 subtests, no skips; 220 relocated-installed checks; installed preflight/fit, three-model ChimeraX1.12 headless and35 cold checks pass."
+        "W296 adds explicit unphased 19-atom coupled-sugar admission while retaining the six-atom default. One installed five-cycle/100-iteration-cap Phenix 2.2.1-6174 fit closes the 5W6W-derived canonical endpoint gap from 2.82429 to 1.61293 \u00c5; common-subset local angle maximum improves 1.82973 to 0.57094\u03c3. All 862 atoms, six sugar hands, original proxies, 843 held coordinates/BQ and 1909 observations/124 Free-R survive. Rwork/Rfree 0.312951/0.366145, unselected. C1-to-held-base plane distances improve; four own-map FFTs/62 meshes retain weak sugar density. 3073 tests +238 subtests, no skips; 220 relocated-installed checks; installed preflight/fit, three-model ChimeraX1.12 headless and35 cold checks pass.",
+        "W297: explicit canonical endpoint-base release through the existing installed receiver;37/825 local scope, preserved BQ/proxies/sugar hands, raw post-exit packing and matched own-map/plane review. Geometry gain does not close density or packing gates."
       ],
       "acceptance": [
         "Use identical observations, Free-R flags, phase policy, refinement budget and unrelated restraints for candidate and no-repair siblings; report contacts, geometry, maps, Rwork/Rfree and tradeoffs.",
@@ -788,7 +793,7 @@
         "Final B09 geotest gate: intended altered-arm symmetry contacts survive matched refinement with defensible geometry/density and reported Rwork/Rfree; preserve junctions and healthy 21-bp arms. No visual-only closure or repeated Rfree-driven tuning.",
         "Before advertising the sticky-end option, pass matched enabled/disabled controls, off-path compatibility, fresh-parent/manual/Doctor intent retention and honest refusal/review outcomes for each supported mode. Plane-only and unsupported cases remain visibly distinct; restraint satisfaction alone does not prove partner assignment."
       ],
-      "next_action": "Keep the completed W296 trial and matched six-atom comparator unselected. Own maps show modest point-sample gains but weak/negative sugar sites remain; Rwork/Rfree changes are small and mixed. Predeclare any wider paired hypothesis only after partner/image and packing gates, retaining source/data/Free-R and protocol. No Free-R-driven search or deferred metal/fragmentation substitute.",
+      "next_action": "W297 pair angles improve but both bases remain poorly supported in matched own maps. Audit whether weak support is local or part of the starting model/data/thermal context before another fit. Keep source/data/Free-R and BQ fixed in the current comparison; no automatic selection or Free-R-driven search.",
       "evidence": [
         "E_MR_LOCAL",
         "E_PUBLIC_REFERENCE",
@@ -929,14 +934,15 @@
         "E_COUPLED_NATIVE_RUNTIME",
         "E_EXPLICIT_NATIVE_FRAME",
         "E_SHARED_DIFFRACTION_SOURCE",
-        "E_COUPLED_SUGAR_INSTALLED_RECOVERY"
+        "E_COUPLED_SUGAR_INSTALLED_RECOVERY",
+        "E_ENDPOINT_BASE_INSTALLED_RECOVERY"
       ],
       "last_audit": {
-        "date": "2026-11-26",
-        "human_update": 296,
-        "code_commit": "d81ce8ecbe0ae4b1f1cc6a7d1123a39fb0147e60",
-        "reviewer": "Linden; runtime and packing ownership coordinated with Rowan, source identity corrected with Hazel",
-        "scope": "Installed 19-atom canonical endpoint recovery and saved plane/map review only. Partial scientific gates and unselected model remain explicit."
+        "date": "2026-11-27",
+        "human_update": 297,
+        "code_commit": "3b6920954a4736b4cf27dffb08cb93c5a0b92403",
+        "reviewer": "Linden; scope and raw packing coordinated with Rowan, separate FT limits shared with Hazel",
+        "scope": "One37-atom installed comparison; no whole-duplex movement, packing acceptance or model selection."
       }
     },
     {
@@ -10290,6 +10296,15 @@
       "scientific_acceptance": false,
       "source_model_sha256": "00ee2b2f9ebc57e1bab1a51abc64a903c204cdddabccf6a8399ef1546c547313",
       "cedar_commit": "2d6de758e40059c4346d9cb80354741bf5456313"
+    },
+    "E_ENDPOINT_BASE_INSTALLED_RECOVERY": {
+      "kind": "Installed canonical endpoint-base refinement and raw post-exit packing observation",
+      "date": "2026-11-27",
+      "human_update": 297,
+      "code_commit": "3b6920954a4736b4cf27dffb08cb93c5a0b92403",
+      "reference": "docs/topostitch-periodic.md#w297--release-endpoint-bases-while-holding-their-partners",
+      "result": "Explicit coupled-endpoints scope:37 moving/825 held atoms on the same W296 source. One installed5-cycle/100-iteration-cap fit retains862 atoms,all BQ,original proxies,six sugar hands and1909/124 Free-R. Join1.608625A; A15/B1 tilt17.9052\u219211.33deg,A9/B7 3.9955\u21921.5263deg; one stack angle worsens. Rwork/Rfree.312873/.360929,unselected.235native-source/235relocated-installed focused,installed preflight/fit,40cold checks and3-model/5-control headless ChimeraX pass. Four own-map FFTs/62meshes show weak bases despite geometry gains.",
+      "limitation": "No physical-pair inference,junction/opposite-strand release,modified endpoints,phased admission or model adoption. Raw post-exit packing adds2evals per phase after temporary image terms are released; not refinement target/full-capture authentication/packing acceptance. Base samples remain negative; full native suite deferred with interrupted sandbox failures preserved. Generated science local; no combined release or whole-run portability claim."
     }
   },
   "benchmarks": [
@@ -10471,8 +10486,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 296,
-    "next": 297,
+    "current": 297,
+    "next": 298,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -12058,6 +12073,12 @@
         "title": "Admit and refine coupled sugars with preserved native geometry and map review",
         "state": "RECORDED",
         "code_commit": "d81ce8ecbe0ae4b1f1cc6a7d1123a39fb0147e60"
+      },
+      {
+        "number": 297,
+        "title": "Release canonical endpoint bases with held partners and raw post-exit packing",
+        "state": "RECORDED",
+        "code_commit": "3b6920954a4736b4cf27dffb08cb93c5a0b92403"
       }
     ]
   },

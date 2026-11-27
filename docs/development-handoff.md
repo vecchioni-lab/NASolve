@@ -1,8 +1,7 @@
 # NASolve development handoff — Willow
 
-**W296 coupled-sugar admission and refinement, 2026-11-26.** Latest native
-preflight, refinement and maintained code: **W296**,
-`d81ce8ecbe0ae4b1f1cc6a7d1123a39fb0147e60`.
+**W297 endpoint-base recovery, 2026-11-27.** Latest native preflight,
+refinement and maintained code: **W297**, `3b6920954a4736b4cf27dffb08cb93c5a0b92403`.
 The [audited roadmap](topostitch-roadmap.md) owns status and the next decision;
 [periodic evidence](topostitch-periodic.md) and [API contracts](topostitch-preview.md)
 own exact methods, commands, hashes and limitations. This handoff is not a run diary.
@@ -18,8 +17,8 @@ must work without an AI service. A representation change does not repair a gap.
 | Available on the Willow branch | Proven scope | Remaining gate |
 | --- | --- | --- |
 | Explicit end/image inspection and placement | Registered canonical ends, bounded paired-window proposals and saved previews | Arbitrary-model inference, physical partner capacity, general density-supported deformation |
-| Local native phosphate receiving | Default six-atom route plus explicit unphased 19-atom coupled-sugar admission; installed preflight and fit complete with original context/data | Wider paired/base motion, packing acceptance and ordinary campaign adoption |
-| W296 coupled-sugar experiment | Original 2.824 Å gap recovers to 1.61293 Å; common-subset local angle maximum improves 1.830→0.571σ; six sugar hands and 843 held atoms preserved | Residual image torsion 2.814σ, held-base tilt near 17.9°, weak sugar density; Rwork/Rfree 0.313/0.366, unselected |
+| Local native phosphate receiving | Default six-atom route plus explicit unphased sugars or canonical endpoint bases; installed preflight and fit complete with original context/data | Wider paired/base motion, packing acceptance and ordinary campaign adoption |
+| W297 endpoint-base experiment | 37 moving/825 held; join 1.60863 Å, pair angles 17.9→11.3° and 4.0→1.5°; all atoms, B/Q and six sugar hands preserved | Residual torsion 2.683σ, one stack angle worsens and both bases remain weak in maps; Rwork/Rfree 0.313/0.361, unselected |
 | Whole-original-asym diagnostic CIF export | W272–278 preserve qualified source categories, images, tensors and backbone coverage; save/replay/inspect available | Mixed-fragment entity policy, native TLS restart, genuine source/parent join and persistent operation/refine loop |
 | W286/W287 connection review | Source/row/evidence-bound unapplied proposals and independent saved-report replay | Explicit metadata authority, application and separate chemistry/export/native admission |
 | W290 endpoint-map comparison | Same 1,909 indices/124 Free-R; P near 2.52σ in both maps, weak fixed sugar support | Explicit coupled-window chemistry/packing before broader native motion; no map-based acceptance |
@@ -44,30 +43,23 @@ maintained fixed-weight product mode or recommended production weight.
 
 ## Next decisions
 
-1. **Stitching:** use W296 as the new unselected local baseline. The 19-atom
-   receiver now works; do not repeat its derivative checks, weight panel or fit
-   without a new question. Source is the registered 5W6W-derived central-strand/PDU
-   model, canonical DC B1 / DA B7 endpoints, held PDU B4—not FT or 8D93. The sugars
-   improve local angles and C1-to-base plane distances, but cannot realign held
-   bases. Next define a source-authorized base/partner-inclusive window and qualify
-   returned packing observation with Cedar. Its fixed exclusion/shell-table reader
-   is passive; its ASU pair helper performs extra evaluations in an isolated worker.
-   Do not insert it into the active guard or relabel partial live capture as complete.
-   Both endpoint maps use 1,909 reflections/124 Free-R; weak/negative sugar density
-   remains. No Free-R-driven trial search or automatic selection.
+1. **Stitching:** W297 is the new unselected endpoint-base comparison against
+   W296's sugar-only control. It improves pair tilt but does not recover clear
+   base density. First audit source-wide density/thermal context before releasing
+   more residues. All parent B/Q remained fixed; PDU has high inherited B values,
+   not newly introduced Coot B=20. Do not repeat the fit or tune to Free-R.
+   Native packing is now observed after hook restoration, with two extra calls
+   per phase and fixed-policy/model/data checks. It remains raw evidence, not
+   full-capture authentication or acceptance; post-release total energy is not
+   the refinement objective.
 
-   **Next-window readiness audit:** W296's frozen discovery contains only B1–B7,
-   no declared duplex pairs, incomplete pairing coverage and two representation
-   boundaries. Its registration maps those seven sites only; the A-chain partners
-   are unmapped. This is distinct from W291's four-route parent. Native A15/B1
-   and A9/B7 plane restraints are useful observations, not physical pairing or
-   oligo authority. First extend source-bound registration and review partner,
-   junction and continuation declarations; an empty protected-site list does not
-   prove there are no junctions. Reuse `plan_editable_windows` and
-   `inspect_bend_window` for the source-frame scope and fixed neighbours. The latter
-   does not traverse representation continuations or changed images, so periodic
-   realization remains a separate qualification before wider native motion.
-   No new fit or repeated missing-partner test was needed for this audit.
+   **Scope boundary:** only B1/B7 were released. Frozen registration still maps
+   B1–B7 only, with no declared duplex pairs and two representation boundaries.
+   A-chain partners and neighbouring junctions stayed held. Their observed native
+   contacts/NARestraints guesses do not establish experimental oligos. Broader
+   movement needs reviewed partner/image/mobility declarations; reuse existing
+   window owners, which do not traverse changed images or representation seams.
+   Source is the 5W6W-derived central-strand/PDU model, not FT or 8D93.
 
 2. **Pine integration:** Rowan/Linden agree to use the genuine PDU ordinary parent
    with its proven data/thermal route. Use source-frame native refinement and
@@ -107,25 +99,26 @@ references and thermal/TLS semantics. File readback alone cannot prove those.
 <a id="validation-and-scientific-interpretation"></a>
 ## Validation and compatibility
 
-**W296:** 219 ordinary-Python focused tests pass with one native-only skip;
-**3,073 tests + 238 subtests, no skips** pass in the native full suite. After
-removing original build/install paths, **220 installed focused checks**, CLI help,
-zero-cycle preflight and one complete five-cycle/100-iteration-cap Phenix
-**2.2.1-6174** fit pass. Clean Cedar
-`2d6de758e40059c4346d9cb80354741bf5456313` was pinned and independently reproduced
-from Git. All source/input bytes remain unchanged; hooks restore and workers stop.
-ChimeraX **1.12** loads three models and executes five controls headlessly; 35 cold
-artifact/reference/payload/link checks pass. Interactive use is not newly certified.
+**W297:** 234 host focused tests + one native-only skip; **235 native-source and
+235 relocated-installed focused checks**, CLI help, installed preflight and one
+five-cycle/100-iteration-cap Phenix **2.2.1-6174** fit pass. Frozen Cedar
+`2d6de758e40059c4346d9cb80354741bf5456313` preserves the W296 chemistry baseline.
+All 225 source/test hashes remain exact; staging is removed. Forty cold output
+checks pass. ChimeraX1.12 loads three models/five controls headlessly; the figure
+was visually inspected. Interactive browser/GUI use was not newly tested.
 
-`movement_scope` is an additive schema-1 request field; omission keeps the six-atom
-route. Coupled scope is currently unphased and requires complete canonical endpoint
-chemistry. The exact native definitions, existing masked-coordinate guard and
-Cedar pucker/plane readers remain the owners. No optimizer, tolerance, force kernel,
-checkpoint adoption or combined release change. Read
-[W296 evidence](topostitch-periodic.md#w296--admit-coupled-sugars-through-the-installed-native-route)
-for exact commands, schemas, source identity, failed/interrupted evidence and all
-remaining scientific limits. Generated models, maps and reflections remain local.
-Installation relocation is not a whole-scientific-run portability claim.
+A repository-wide run was interrupted at Rowan's focused-only coordination
+request: 1,407 passed, five sandbox process-control failures, 238 subtests passed.
+It is not a full-suite PASS. Preserved logs and final focused qualification are
+linked in [W297 evidence](topostitch-periodic.md#w297--release-endpoint-bases-while-holding-their-partners).
+W296's earlier full-suite result applies to its own source only.
+
+The additive schema-1 `coupled-endpoints` option preserves six-atom and sugar-only
+behavior. Complete canonical bases, retained native planes/proxies and original
+masks/data/BQ remain required. Its raw post-exit packing report makes no full
+capture/chemistry/acceptance claim. No new optimizer, force kernel, checkpoint
+adoption or combined release; raw science stays local. Installation relocation
+is not whole-scientific-run portability.
 
 **Reused evidence:** W293's 19-atom derivative qualification and W294's explicit
 frame policy were not rerun as new numerical research. W295's unchanged shared
@@ -138,10 +131,10 @@ is not a current merge or qualification of later branches.
 ## Local science checkout
 
 Latest checkout, at the ScienceCheckouts anchor:
-`Linden/2026-11-26_coupled-sugars/index.html`. It links the offline 43-atom density
+`Linden/2026-11-27_endpoint-bases/index.html`. It links the offline 85-atom density
 comparison, a Python-openable three-model ChimeraX comparison, native PDB, figure
 and exact evidence under NASolve anchor
-`branch-artifacts/willow/w296-coupled-admission/`. The small checkout links large
+`branch-artifacts/willow/w297-endpoint-base-scope/`. The small checkout links large
 artifacts instead of copying models/maps. All references are checksummed; previous
 checkouts and failed attempts remain intact. `verification.json` owns the cold
 checks. The browser view is filled output, not an unfilled developer template.

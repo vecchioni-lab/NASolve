@@ -1,18 +1,19 @@
 # NASolve documentation map
 
-Updated **2026-11-26** for **`willow`**. Start with the
+Updated **2026-11-27** for **`willow`**. Start with the
 [current development handoff](development-handoff.md) for the proven edge,
 remaining gates and next bounded task. Historical handoffs are evidence, not
 current instructions; other branches retain their own status and validation pins.
 
 ## What's current?
 
-- **Latest code and refinement, W296:** [coupled sugars](topostitch-periodic.md#w296--admit-coupled-sugars-through-the-installed-native-route)
-  complete an installed 19-atom trial: join 1.613 Å, improved local angles, six sugar
-  hands and 843 held atoms retained. C1′ plane distances improve; weak sugar density,
-  residual torsion and held-base tilt remain. Rwork/Rfree 0.313/0.366, unselected.
-  3,073 tests + 238 subtests/no skips, 220 installed checks and actual installed
-  preflight/fit pass. Source is the 5W6W-derived PDU model, not FT or 8D93.
+- **Latest code and refinement, W297:** [endpoint bases](topostitch-periodic.md#w297--release-endpoint-bases-while-holding-their-partners)
+  adds opt-in canonical base release with opposite partners held: 37 moving/825
+  held in the diagnostic. Join 1.609 Å; pair angles improve, but both bases remain
+  weak in own maps and one stack angle worsens. Rwork/Rfree 0.313/0.361, unselected.
+  235 native-source/235 relocated-installed focused checks and actual installed
+  preflight/fit pass. Raw post-exit packing is observed, not accepted. The broader
+  suite was interrupted and is not a pass. Source remains the 5W6W-derived PDU case.
 - **Shared/previous controls:** [W295 source reading](topostitch-periodic.md#w295--share-source-diffraction-reading-with-alder)
   removes Willow/Alder parser duplication; [W294 frame policy](topostitch-periodic.md#w294--complete-ordinary-preflight-with-explicit-frame-roundoff)
   retains old defaults; [W293 derivatives](topostitch-periodic.md#w293--qualify-coupled-forces-and-isolate-native-worker-imports)

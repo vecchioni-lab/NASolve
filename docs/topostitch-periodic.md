@@ -15300,3 +15300,99 @@ window and a qualified returned packing observation, not a repeated six-atom or
 weight panel. The residual torsion, held-base tilt and weak sugar density remain
 explicit. No automatic parent/checkpoint adoption, combined-branch release,
 scientific acceptance or broad bending qualification is claimed.
+
+
+## W297 — Release endpoint bases while holding their partners
+
+The existing native phosphate receiver now accepts the explicit unphased
+`coupled-endpoints` scope. It reuses canonical NARestraints atom roles and the
+coupled-sugar/native observers; no new force kernel, optimizer or pair-selection
+engine was introduced. Complete canonical endpoint inventories and positive
+native monomer planes are required. The six-atom default and 19-atom sugar scope
+retain their behavior. See the [API contract](topostitch-preview.md#release-the-two-endpoint-bases-w297).
+
+The same W296/W288 source (SHA256
+`00ee2b2f9ebc57e1bab1a51abc64a903c204cdddabccf6a8399ef1546c547313`)
+allows a narrower next question than a whole paired window: release the 18 base
+atoms of DC B1 and DA B7 with the 19 sugar/phosphate atoms, while all opposite
+partners, outer phosphates, adjacent junctions and PDU remain fixed. The resulting
+37/825 mask does not establish experimental oligos or broaden registration.
+NARestraints 1.1.3 independently guesses the six canonical central contacts;
+A12/B4 has no configured recipe. Those observations remain hypotheses, not
+physical-pair authority. No generic stacking target is added across the crossover.
+
+One installed Phenix **2.2.1-6174** five-cycle trial, with a 100-iteration cap per
+cycle, uses the exact original data, 124 Free-R assignments in 1,909 observations,
+coordinate weights and frozen Cedar `2d6de758e40059c4346d9cb80354741bf5456313`.
+All 862 atoms, original native definitions, six sugar hands and all B/Q survive.
+Maximum individual movement is **1.661956 Å**, below the declared 2 Å bound.
+The original 2.82429 Å gap closes to **1.608625 Å**. No checkpoint is adopted.
+
+| Quantity | W296 sugars | W297 endpoint bases |
+| --- | ---: | ---: |
+| A15/B1 native pair-plane angle | 17.9052° | 11.3300° |
+| A9/B7 native pair-plane angle | 3.9955° | 1.5263° |
+| B1/B2 native stack angle | 9.3398° | 9.9560° |
+| B6/B7 native stack angle | 11.1786° | 9.2342° |
+| Common-subset maximum local angle deviation | 0.570944σ | 0.890164σ |
+| Common-subset maximum image torsion deviation | 2.813836σ | 2.682608σ |
+| Rwork / Rfree | 0.312951 / 0.366145 | 0.312873 / 0.360929 |
+
+The exact prior 29-term measurements reproduce. Full-residue observed bond
+maxima are 0.7161σ/0.8735σ and angle maxima 1.9354σ/1.6584σ for B1/B7.
+C1′ distances from the base-only planes rise from 0.02365/0.00806 Å to
+0.04030/0.03414 Å. The pair improvement therefore includes a small stacking
+and attachment-plane tradeoff; it is not complete geometry acceptance.
+
+After each native phase restores its hooks, Cedar's existing ASU helper performs
+**two additional evaluations**. Fixed nonbonded policy and model/data/frame remain
+unchanged; cache observations are retained separately. Raw source-to-return
+packing has 7,991→7,989 directed rows and native repulsion 723.276→722.710.
+This is not a W296 packing comparison, clashscore, full-capture authentication or
+acceptance. Temporary image angle/torsion terms have been released, so the raw
+total target is not the refinement objective. Rowan confirmed there is no narrower
+qualified arithmetic reviewer for the partial live envelope; none was invented.
+
+Four saved-map FFTs generate two maps/62 contour meshes for **85 display atoms**,
+including held opposite partners, and 97 recorded bonds/contacts. B7 and held A9
+use the declared image, without fitted alignment. In a fixed W297 map, changing
+coordinates from W296 shifts the 37 samples by −0.14785..+0.19447σ (mean +0.00282σ).
+Both bases remain weak: B1 −1.499..−0.638σ, B7 −1.454..−0.214σ. The geometry
+improvement does not demonstrate density recovery. Maps remain model-assisted,
+include Free-R and use separate whole-cell sigma normalization. The 0.6 Å display
+mesh keeps the expanded view below the existing 100,000-point bound; scalar map
+sampling is unchanged. Maximum mesh interpolation error is 7.11e-15.
+
+**Validation:** 234 host focused tests + one native-only skip, then **235 native
+source and 235 relocated-installed focused tests**, CLI help, installed preflight
+and the single complete fit pass. All 225 source/test hashes remain exact; original
+install/build paths and owned staging are removed. Nine scope cases and six raw
+post-exit cases failed before implementation. ChimeraX **1.12** loads three models
+and executes five controls headlessly. **40 cold artifact/reference/payload checks**
+pass. The figure was visually inspected; interactive browser/GUI use was not tested.
+No new native derivative sweep or combined-branch release was claimed.
+
+The repository-wide attempt was interrupted at Rowan's focused-only coordination
+request: **1,407 passed, five failed, 238 subtests passed**, 107.96 s. Failures were
+sandbox-denied process-group signalling/listing in campaign-process tests. This
+is not a full-suite PASS; no old test workers remained. Original failed logs and
+removed-staging receipt remain in `qualification-01/`. Final focused evidence is
+in `qualification-02/`. The initial local plane script stopped on a renamed key;
+the initial expanded density mesh exceeded its explicit bound before any FFT.
+Both failures are retained, followed by corrected read-only reports.
+
+NASolve anchor: `branch-artifacts/willow/w297-endpoint-base-scope/`.
+`qualify_focused.py` and `qualification-02/installation.json` record exact native
+commands, Python paths/dependency hashes and source pins. Commands set
+`PYTHONDONTWRITEBYTECODE=1`, explicit `PYTHONPATH`, and single-thread native limits;
+Phenix's launcher receives an explicit in-process source/dependency bootstrap.
+`audit.py`, `plane_review.py`, `density_worker.py` and `verify_outputs.py` record the
+scientific/visual review. Generated models, maps, reflections and scripts stay local.
+Software relocation is not whole-run portability.
+
+The small shared report is at ScienceCheckouts anchor
+`Linden/2026-11-27_endpoint-bases/index.html`, linking the inspector, figure,
+three-model Python/ChimeraX script and native PDB. It keeps large files in their
+original run folders. S04/S05/S06 remain PARTIAL. Next establish the starting
+model's wider density/thermal context before releasing more residues; preserve
+this unselected comparison rather than repeating the fit or tuning to Free-R.
