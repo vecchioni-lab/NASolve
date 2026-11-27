@@ -16628,3 +16628,27 @@ records exact commits, file hash, AST call sites and module presence. The immedi
 integration dependency is installed authenticated history and image-policy owners
 with their complete dependencies. Map-origin/preparation-attempt composition
 remains separately explicit. No new code, suite rerun or branch merge.
+
+
+## W317 — Browser review stops before page load
+
+The next independent P02 task was approved by Rowan: use the existing W316
+local two-cut page, rotate/switch cuts, save a clearly synthetic preference,
+reopen it through the existing installed viewer, and verify unchanged selection
+and wrong-comparison refusal. Stop after that loop or a specific browser limit.
+
+The in-app browser inventory was accessible. Creating a tab for the exact local
+`qualified-reopen-comparison.html` was rejected: only HTTP/HTTPS protocols are
+permitted, and the policy explicitly prohibits workarounds or alternate surfaces.
+No localhost server, alternate browser, raw browser channel or upload was tried.
+The page never loaded; rendering, rotation, cut switching, download and browser
+reopening are **not tested**. No browser preference was generated. This fulfills
+the bounded limitation-reporting stop condition, not P02's scientific/UI gate.
+
+NASolve anchor `branch-artifacts/willow/w316-installed-review-reopen/browser-interaction-attempt.json`
+binds the target file hash, rejection and precise untested actions. W316's
+installed/backend evidence remains valid and separate; its synthetic preference
+must not become browser-interaction or human-approval evidence. P02 stays partial.
+A later user-driven local check or independently authorized supported environment
+may exercise this loop. No product code, new viewer, native run, model change,
+suite repetition or schema change. Roadmap/whitespace checks pass.

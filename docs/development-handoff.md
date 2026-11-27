@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**W316 installed child/review lifecycle audit, 2026-11-27.** Latest maintained code:
+**W317 browser boundary / W316 installed lifecycle audit, 2026-11-27.** Latest maintained code:
 `29fded465e95878677670be15d3c8f4999224854`. Latest native movement/endpoint derivative diagnostic: **W315**; latest refinement:
 **W304** (same genuine ordinary PDU parent as W300); latest density audit: **W304**.
 W298 remains the separate endpoint-base/whole-model density audit; do not conflate sources.
@@ -46,7 +46,15 @@ maintained fixed-weight product mode or recommended production weight.
 
 ## Next decisions
 
-**Immediate P05 step:** W316 passes the installed verified-child/cut/review
+**P02 independent follow-up, W317:** actual-browser qualification of the existing
+W316 two-cut page stopped before loading: the in-app browser rejected its local
+file protocol and explicitly prohibited workarounds. No rotation, cut switching,
+download or browser reopen was exercised. Keep P02 partial; W316's synthetic
+preference remains installed-backend evidence only. No new viewer or repeat fit.
+A later user-driven local interaction or independently authorized supported
+environment can close this specific browser gap.
+
+**P05 joint audit and integration gate:** W316 passes the installed verified-child/cut/review
 reopening smoke on Willow `6a5e61fd` and Cedar `e1df7ad2`. Synthetic preference,
 contexts, HTML and model/map hashes survive staged relocation; current `postmr`
 stays unchanged while `refine-004` is inspected. No new fit or human approval.
@@ -61,6 +69,9 @@ registry shape; Cedar's authenticated preparation/refinement-history validation
 and `cif_phosphate_image` policy are absent. Per Rowan, stop at the W316 tested
 callback interface until those installed owners are composed. Do not import his
 local checkout, copy policy constants, substitute the weaker reader or merge early.
+Integration owners: Cedar/shared release owns authenticated history/image readers;
+Willow and Cedar jointly preserve the distinct map-profile fields. W316 remains
+the settled joint test; unrelated Cedar patches do not trigger another smoke.
 No full GUI shell, new registry or implicit checkpoint selection is needed.
 [Exact audit](topostitch-periodic.md#w316--reopen-a-reviewed-cut-without-selecting-a-scientific-result).
 

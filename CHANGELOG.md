@@ -17,6 +17,12 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W317 — Preserve the actual-browser qualification boundary
+
+- Record the local-file browser policy refusal before page load; do not count
+  generated HTML or a synthetic preference as exercised browser interaction.
+- Keep P02 partial and retain W316 as the installed joint test. No runtime change.
+
 ### W316 — Audit installed child review and reopening
 
 - Verify the existing parent/child, cut comparison and saved-review owners together

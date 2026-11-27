@@ -15,7 +15,9 @@ current instructions; other branches retain their own status and validation pins
 - **Latest integration, W316:** [installed child/review reopening](topostitch-periodic.md#w316--reopen-a-reviewed-cut-without-selecting-a-scientific-result)
   preserves the same model, cuts, synthetic review and current selection after
   relocation. The verified-child composition still needs a thin production caller;
-  no persistent GUI or combined-release qualification is claimed.
+  no persistent GUI or combined-release qualification is claimed. W317's actual
+  browser check stopped before page load on a local-file protocol refusal;
+  rotation/download remain unqualified.
 
 - **Latest code, W310:** [registered zero-step observer](topostitch-preview.md)
   exposes full-native baseline and explicit mask projections inside the caller's
