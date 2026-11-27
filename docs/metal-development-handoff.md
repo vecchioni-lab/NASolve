@@ -33,6 +33,16 @@ and cache-retirement evidence: `branch-artifacts/Alder/docs-audit-20261126-01/`.
 
 <a id="a01-parameter-scope-2026-11-25"></a>
 
+## A01 registered preparation context — 27 November afternoon
+
+The unchanged preparation context refuses B:1/C:8 because their incoming bonds
+cross symmetry. The new explicit read-only adapter carries both registered image
+links alongside the 38 local links, matching the retained FT inspections exactly.
+No coordinates, phase data or chemistry changed. The old report contributes only
+its declared terminal/backbone intent; it is not promoted into new ancestry.
+Focused 88-case and installed eight-case panels pass. [Exact methods, limits and
+next complete-preparation consumer step](metal-ordinary-receiving.md#registered-phosphate-context-before-preparation--27-november).
+
 ## A01 compact native worker — 27 November afternoon
 
 The receiving candidate now initializes the real FT model/data/phases through a

@@ -5,6 +5,15 @@ Pine and the separate Cedar/Willow branches are not changed by this integration.
 combines the existing metal feature with the qualified shared chemistry, native
 observation and storage owners; it introduces no new scientific policy.
 
+## Explicit registered preparation context — 27 November
+
+The missing FT preparation is now localized to the pre-preparation treatment of
+B:1/C:8 incoming crystal links. A new read-only adapter reuses the existing graph,
+frame-transfer and partner owners, preserving 38 local links and two image links
+on the real declared FT inputs. Old local-only contexts still refuse; no parent
+or native chemistry is adopted. Focused checks pass 88 cases and eight relocated
+installed cases. [Evidence, compatibility and next consumer boundary](metal-ordinary-receiving.md#registered-phosphate-context-before-preparation--27-november).
+
 ## Compact mixed worker qualification — 27 November
 
 The detached receiving candidate now shares unchanged diffraction audit functions

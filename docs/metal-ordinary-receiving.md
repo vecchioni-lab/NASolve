@@ -4,6 +4,79 @@ Updated 26 November 2026. A01 mechanical integration; A01 science remains partia
 and A02 quantitation is gated. This is a prospective implementation contract,
 not a claim of ordinary numbered-round qualification.
 
+## Registered phosphate context before preparation — 27 November
+
+The next concrete FT preparation gap is now localized. The unchanged ordinary
+`derive_prepared_model_context` refuses the exact current input at **B:1 and C:8**:
+both lack OP3 and their incoming covalent partners lie across crystal symmetry.
+They are not free termini. The explicit D:1 terminal declaration remains separate.
+The previous general missing-parent finding was therefore incomplete: copying a
+report or phase file cannot supply this missing preparation context.
+
+`cif_registered_preparation_context.derive_registered_preparation_context` now
+provides a **read-only, opt-in** description from an explicitly supplied model,
+registered source model, report intent, selected components and the existing three
+registration files. It calls the existing local phosphate audit in review mode,
+registered graph reader, source-to-descendant named-atom frame transfer and
+`_registered_partners`. Every ASU-open phosphorus needs one registered incoming
+partner; reused oxygens, terminal conflicts, changed sources and changed/ambiguous
+crystal frames refuse. No new partner search, coordinates or numerical restraint
+terms are introduced.
+
+The schema-1 policy `registered-preparation-context-v1` separates `local_links`
+from `image_links`; `site_contexts` gives each incoming/outgoing relation and its
+explicit image direction. Image-linked sites are not labelled free hydroxyls or
+unconnected terminal phosphates. The old `contexts`/`expected_links` shape is
+intentionally absent, and the old validator refuses the new policy. Input hashes,
+original graph identity, measured geometry and any frame transfer are retained.
+The caller supplies explicit files again for reconstruction; this module does not
+persist references, discover files or establish ordinary ancestry. New consumers
+must freeze their complete anchored input closure through the existing owner.
+
+**Real-source check:** the exact FT input `7aade3c…` and registered source
+`d69966b…` produce **38 local links and two image links**. Directions, distances,
+angles and frame transfers equal the earlier saved inspections exactly:
+
+| Source O3′ → target P | O3′ image in phosphorus frame | Phosphorus image in O3′ frame | Input distance (Å) |
+| --- | --- | --- | --- |
+| B:7 → B:1 | `-y,x-y,z` | `-x+y,-x,z` | 3.0285332032 |
+| D:7 → C:8 | `-x+y,-x,z` | `-y,x-y,z` | 3.1105338558 |
+
+These are the **input's open junctions**, not newly refined or accepted bonds.
+The model, source report and graph inputs remain unchanged. The old report supplies
+only its frozen backbone/terminal intent; it is not retroactively made the producer
+of this private model. Current QF1/QT1 dictionaries remain the documented neutral
+matched control; this adapter does not declare or apply metal-bound proton loss.
+
+**Validation:** seven initial cases fail for the missing adapter. An initial
+terminal-conflict fixture reached the existing missing-OP3 refusal earlier than
+intended; it was corrected to retain the declared terminal OP3, then qualified the
+registered-partner conflict itself. Final native-library focused tests pass **88**
+cases across the new adapter and existing local context, continuation and prepared-
+backbone boundaries. A copied wheel passes all **eight** new cases after its
+build source is removed, including relocation of the complete declared inputs;
+all 135 loaded NASolve modules come from that installation. Its 15,247,057 bytes of
+scratch package/test files are retired. This qualifies the tested record, not all
+historical runs. Phenix 2.2.1-6174 supplies Python 3.11.15 / Gemmi 0.7.5 libraries;
+there is no refinement, native interpretation, Coot launch or full suite.
+
+Methods A869–A871, exact commands, retained failures, hashes and the real FT
+comparison are under `branch-artifacts/Alder/a01-preparation-admission-20261127-01/`.
+Only the new module, regression tests and documentation are committed. Generated
+models/graphs and private evidence remain local; no migration or historical worker
+change. Rowan confirmed the existing registration/partner owners and the absence
+of a pre-preparation admission switch; Willow's PDU restart provides no FT authority.
+
+**Next bounded implementation:** explicitly carry this new context into the
+complete preparation request and every chemistry/native/publication consumer,
+keeping local and image bonds distinct. Account for linked chemical state at image
+endpoints and verify native terms before any publication. Preserve the actual
+constructor or explicitly declared external-model origin. Do not make the old
+local-only validator accept a new policy, turn image links into local pairs, or
+claim this read-only derivation has published the missing FT parent. External
+AutoSol-phase admission and versioned mixed execution remain subsequent boundaries.
+
+
 ## Compact source-bound worker — 27 November
 
 The mixed guard previously pulled the metal orchestration/checkpoint imports into

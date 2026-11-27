@@ -119,6 +119,15 @@ a versioned numbered mixed policy remain. Reuse the existing parent, writer and
 process owners, including an immutable input declaration that survives legitimate
 registry updates. [Acceptance boundary and evidence](metal-ordinary-receiving.md#compact-source-bound-worker--27-november).
 
+The missing prepared FT parent is now localized one level earlier: the ordinary
+local-only context cannot admit incoming B:1/C:8 image bonds. The new explicit
+registered-context adapter accounts for all 38 local and two image links without
+changing chemistry or model coordinates. Its real-source read, focused tests and
+relocated installed checks pass. **Next carry that distinct context through the
+complete preparation consumers and native linked-chemistry checks**; the adapter
+alone provides no ordinary parent, phase admission or scientific acceptance.
+[Implementation boundary](metal-ordinary-receiving.md#registered-phosphate-context-before-preparation--27-november).
+
 Only two next decisions govern the near-term work:
 
 1. **Scientifically qualify the inspectable FT_Hg model.** The protected return,

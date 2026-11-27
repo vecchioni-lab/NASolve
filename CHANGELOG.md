@@ -8,6 +8,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Describe registered image links before preparation
+
+- Add an explicit read-only registered preparation context, reusing the existing
+  crystal graph, named-atom frame transfer and complete incoming-partner checks.
+  Preserve local bonds and image bonds separately, including both image directions.
+- Keep existing local-only preparation contracts and defaults unchanged. The new
+  record provides no construction, native-chemistry, checkpoint or refinement
+  authority until a consumer explicitly supports it.
+
 ### Stabilize mixed-parent crystal provenance
 
 - Record the source space-group name rather than a native object's memory-address
