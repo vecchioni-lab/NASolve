@@ -1,8 +1,9 @@
 # NASolve development handoff — Willow
 
-**W303 same-child cut choice, 2026-11-27.** Latest maintained code:
+**W304 ordinary recovery and maps, 2026-11-27.** Latest maintained code:
 `fe2d158192a7cd53705025fc2fc65078678975ff`. Latest native preflight/refinement:
-**W300** (separate genuine ordinary parent); latest density audit: **W298**.
+**W304** (same genuine ordinary PDU parent as W300); latest density audit: **W304**.
+W298 remains the separate endpoint-base/whole-model density audit; do not conflate sources.
 The [audited roadmap](topostitch-roadmap.md) owns status and the next decision;
 [periodic evidence](topostitch-periodic.md) and [API contracts](topostitch-preview.md)
 own exact methods, commands, hashes and limitations. This handoff is not a run diary.
@@ -82,9 +83,14 @@ maintained fixed-weight product mode or recommended production weight.
    ASU and retained whole-C cut of that exact child through the existing
    comparison/preference owner. A 32.15 Å display gap becomes a local 1.658 Å
    bond without physical motion; the B7→B1 cycle still needs an image edge.
-   Neither preference nor approval is fabricated. **Next:** audit ordinary
-   recovery beyond one cycle using the same genuine parent, then specify the
-   remaining persistent human edit/re-enter/refine gate. Existing same-source
+   Neither preference nor approval is fabricated. **W304** adds the ordinary
+   three-cycle sibling: Rwork/Rfree 0.1891/0.2660 versus 0.1989/0.2673, improved
+   image distances and worst angles, mixed periodic torsions. D7→C8's period-one
+   torsion remains at 99.7% barrier height; B1 P/OP1 density is weaker than C8.
+   These results do not justify unbounded cycles or wider motion without partner
+   authority. **Next W305:** join verified child inspection to the existing
+   same-child comparison and saved-preference intake, preserving exact context,
+   retained-versus-alternative cut meaning and fresh review. Existing same-source
    comparison restrictions remain unchanged. Do not build
    another refinement route. Use the genuine PDU ordinary parent with its proven data/thermal route.
    Use source-frame native refinement and
@@ -123,6 +129,12 @@ references and thermal/TLS semantics. File readback alone cannot prove those.
 
 <a id="validation-and-scientific-interpretation"></a>
 ## Validation and compatibility
+
+**W304 scientific execution:** one complete three-cycle ordinary refinement with
+Phenix 2.2.1-6174 and full pinned Cedar d3d71cde; 36 independent cold checks,
+unchanged parent/source/Free membership, fresh recut/binding, saved-map checks and
+ChimeraX 1.12 headless six-control comparison pass. No product change or repeated
+suite/install. Browser interaction not newly executed. [Exact scope and commands](topostitch-periodic.md#w304--three-cycle-ordinary-recovery-with-map-review).
 
 **W302:** 209 focused source/209 relocated-installed checks, installed CLI help,
 changed HTML asset equality and full Willow suite **3,125 tests + 238 subtests**,

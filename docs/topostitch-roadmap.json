@@ -1284,14 +1284,15 @@
         "W300 completes ordinary refine-003 to refine-004 with both inherited phosphate groups, exact child descent and freshly bound unreviewed recut. All862 atom identities and original parent survive, child unselected. Local geometry remains mixed; bounded restart evidence only.",
         "W301 maintains exact parent/direct refinement-child cut refresh through existing owners, preserving all declared connections and explicit/forest choices with fresh UNREVIEWED state. Genuine W300 replay reproduces862 atoms and both links; 177 source/installed checks and full Willow regression pass. No new fit or chemical acceptance.",
         "W302 rederives saved refreshes and every packet byte through the existing producer before graphical consumption. Real child inspector preserves862 atoms/edges, physical/image movement distinction and fresh-review status. Forged claims, substituted valid cuts and stale contexts refuse; no fit or selection.",
-        "W303 compares two cuts of the same genuine refined child with the existing preference owner;862 atoms/two connections retained, no physical movement or invented review. Image-cycle limitation made explicit."
+        "W303 compares two cuts of the same genuine refined child with the existing preference owner;862 atoms/two connections retained, no physical movement or invented review. Image-cycle limitation made explicit.",
+        "W304 extends genuine ordinary recovery to3 cycles with both complete image force groups;862 identities/Q and124 Free retained. Both bonds/worst angles improve; mixed torsion/map evidence remains explicit. Fresh cut and density/ChimeraX comparisons remain unselected."
       ],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
         "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.",
         "Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified."
       ],
-      "next_action": "W304: compare a three-cycle ordinary sibling with saved W300 one-cycle control from the same genuine PDU parent; audit inputs, Free membership, local geometry and saved maps. Then specify persistent human operation/edit/refine gap without rebuilding existing preview or comparison owners.",
+      "next_action": "W305: extend the existing verified-child inspector to reuse same-child cut comparison and saved preference intake. Bind all packet/run contexts, distinguish retained cut from alternatives, refuse drift and preserve fresh review/current selection. No new scientific registry or native route. Later geometry alternatives need declared partner/mobility authority and must reuse W209\u2013W210 context.",
       "evidence": [
         "E_PINE_TEST_BANK",
         "E_NATIVE_REPRESENTATION_SEAMS",
@@ -1317,14 +1318,15 @@
         "E_ORDINARY_CHILD_RECUT",
         "E_CHECKPOINT_RECUT_REFRESH",
         "E_SAVED_RECUT_READBACK",
-        "E_SAME_CHILD_CUT_CHOICE"
+        "E_SAME_CHILD_CUT_CHOICE",
+        "E_THREE_CYCLE_ORDINARY_RECOVERY"
       ],
       "last_audit": {
         "date": "2026-11-27",
         "code_commit": "fe2d158192a7cd53705025fc2fc65078678975ff",
         "reviewer": "Linden",
-        "human_update": 303,
-        "scope": "Concrete same-child cut choice; scientific acceptance and persistent operation remain open"
+        "human_update": 304,
+        "scope": "Ordinary recovery and maps audited; full seam acceptance and persistent review/refine remain open"
       }
     },
     {
@@ -1340,27 +1342,29 @@
         "W300 completes ordinary refine-003 to refine-004 with both inherited phosphate groups, exact child descent and freshly bound unreviewed recut. All862 atom identities and original parent survive, child unselected. Local geometry remains mixed; bounded restart evidence only.",
         "W301 maintains exact parent/direct refinement-child cut refresh through existing owners, preserving all declared connections and explicit/forest choices with fresh UNREVIEWED state. Genuine W300 replay reproduces862 atoms and both links; 177 source/installed checks and full Willow regression pass. No new fit or chemical acceptance.",
         "W302 rederives saved refreshes and every packet byte through the existing producer before graphical consumption. Real child inspector preserves862 atoms/edges, physical/image movement distinction and fresh-review status. Forged claims, substituted valid cuts and stale contexts refuse; no fit or selection.",
-        "W303 compares two cuts of the same genuine refined child with the existing preference owner;862 atoms/two connections retained, no physical movement or invented review. Image-cycle limitation made explicit."
+        "W303 compares two cuts of the same genuine refined child with the existing preference owner;862 atoms/two connections retained, no physical movement or invented review. Image-cycle limitation made explicit.",
+        "W304 extends genuine ordinary recovery to3 cycles with both complete image force groups;862 identities/Q and124 Free retained. Both bonds/worst angles improve; mixed torsion/map evidence remains explicit. Fresh cut and density/ChimeraX comparisons remain unselected."
       ],
       "acceptance": [
         "Use the shared model tree and exact selection/Coot APIs; keep inspect, select and approve distinct, preserve current choice and return refinement diagnostics to the same session.",
         "Graphical actions bind source hashes and show actual nicks/seams/mates. Test stale views, competing choices, interrupted actions, manual imports and relocation without duplicating campaign/checkpoint machinery.",
         "Expose editable Pine periodic connectivity beyond the ASU, preserving prior user choices and exact logical/image mappings across reslicing or explicitly marking unresolved mappings. Keep intent, proximity and enforcement support separate."
       ],
-      "next_action": "W304: compare a three-cycle ordinary sibling with saved W300 one-cycle control from the same genuine PDU parent; audit inputs, Free membership, local geometry and saved maps. Then specify persistent human operation/edit/refine gap without rebuilding existing preview or comparison owners.",
+      "next_action": "W305: extend the existing verified-child inspector to reuse same-child cut comparison and saved preference intake. Bind all packet/run contexts, distinguish retained cut from alternatives, refuse drift and preserve fresh review/current selection. No new scientific registry or native route. Later geometry alternatives need declared partner/mobility authority and must reuse W209\u2013W210 context.",
       "evidence": [
         "E_WILLOW_PINE_DOC_AUDIT",
         "E_ORDINARY_CHILD_RECUT",
         "E_CHECKPOINT_RECUT_REFRESH",
         "E_SAVED_RECUT_READBACK",
-        "E_SAME_CHILD_CUT_CHOICE"
+        "E_SAME_CHILD_CUT_CHOICE",
+        "E_THREE_CYCLE_ORDINARY_RECOVERY"
       ],
       "last_audit": {
         "date": "2026-11-27",
         "code_commit": "fe2d158192a7cd53705025fc2fc65078678975ff",
         "reviewer": "Linden",
-        "human_update": 303,
-        "scope": "Concrete same-child cut choice; scientific acceptance and persistent operation remain open"
+        "human_update": 304,
+        "scope": "Ordinary recovery and maps audited; full seam acceptance and persistent review/refine remain open"
       }
     },
     {
@@ -10585,6 +10589,59 @@
           "size": 1192
         }
       ]
+    },
+    "E_THREE_CYCLE_ORDINARY_RECOVERY": {
+      "kind": "Three-cycle ordinary sibling and saved-map review",
+      "date": "2026-11-27",
+      "human_update": 304,
+      "code_commit": "fe2d158192a7cd53705025fc2fc65078678975ff",
+      "reference": "docs/topostitch-periodic.md#w304--three-cycle-ordinary-recovery-with-map-review",
+      "result": "Complete native3-cycle sibling: Rwork/Rfree0.1891/0.2660, both image distances/worst angles improve, mixed torsions/maps.862 atom identities/Q and124 Free preserved;36 cold checks, fresh recut/binding, saved-map payloads and ChimeraX6 controls pass; unselected.",
+      "limitation": "Automatic native weights active; no seam acceptance. D7 period-one torsion remains near crest, B1 P/OP1 density weak. Map point changes include normalization/interpolation effects. Interactive browser not newly tested. Genuine PDU source does not supply missing partner authority or qualify FT/experimental endpoints.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w304-three-cycle-recovery/launch.json",
+          "sha256": "b966cff031791268fcd7890a94516b837c034ed7eedc42b90f212f3e0411f1f1",
+          "size": 53563
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w304-three-cycle-recovery/audit-command.json",
+          "sha256": "53187f876a44e7f1e49776f9ae65bb7cc4e9d8d2e762271b411ddcdd2edd8571",
+          "size": 53949
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w304-three-cycle-recovery/verification.json",
+          "sha256": "64583f7a6f77290002a751013e91a305e9b0e9a6e69baec9137440490574aa34",
+          "size": 1867
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w304-three-cycle-recovery/reflection-comparison.json",
+          "sha256": "0eb6f55294c7fb26b13b1e012cb9fc0d119466da18797f42484e8599befb2e96",
+          "size": 2054
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w304-three-cycle-recovery/density-review.json",
+          "sha256": "5c185ce5649a97d6d91c3ec7833405b5a3cf3faa8493411bcdc5972931ee06ac",
+          "size": 92711
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w304-three-cycle-recovery/chimerax-check.json",
+          "sha256": "134ae88b8fd6093e7f80609d90df2ae5fb84c47b986e179fdddaad553377f0d6",
+          "size": 301
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w304-three-cycle-recovery/checkout-verification.json",
+          "sha256": "bc82c3b270b0b1c6dc7c52a5327f674c2ccd1350e6a7d4831b0b84affa45f43e",
+          "size": 3056
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -10766,8 +10823,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 303,
-    "next": 304,
+    "current": 304,
+    "next": 305,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -12393,6 +12450,12 @@
       {
         "number": 303,
         "title": "Compare two cuts of the same refined molecule",
+        "state": "RECORDED",
+        "code_commit": "fe2d158192a7cd53705025fc2fc65078678975ff"
+      },
+      {
+        "number": 304,
+        "title": "Compare three-cycle ordinary recovery and saved maps",
         "state": "RECORDED",
         "code_commit": "fe2d158192a7cd53705025fc2fc65078678975ff"
       }

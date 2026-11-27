@@ -15830,3 +15830,107 @@ operations and scientific seam acceptance are not established by this display.
 parent, reusing W300's one-cycle baseline. Keep exact input/runtime/Free context,
 report mixed geometry and maps, and retain both unselected children. Default
 native weight optimization is not a fixed-objective comparison.
+
+
+## W304 — Three-cycle ordinary recovery with map review
+
+**2026-11-27; existing W302 code `fe2d158192a7cd53705025fc2fc65078678975ff`.**
+One new complete ordinary Phenix **2.2.1-6174** refinement compares three cycles
+with W300's saved one-cycle control. Both start from the exact same genuine
+PDU / 5W6W-derived `refine-003` parent in independent dataset copies; this is not
+Hazel's FT construction. Full Cedar source is pinned at
+`d3d71cde66ca3fe953c182773672fd5d5dbd3a8a`, and all frozen V12 worker hashes agree.
+The only intentionally changed request setting is macrocycles 1→3; ordinary
+weight optimization, bulk/scale and group-ADP recovery remain active. This is a
+matched ordinary-workflow comparison, not a frozen-weight objective experiment.
+
+| Quantity | One cycle | Three cycles |
+| --- | ---: | ---: |
+| Rwork / Rfree |0.1989 /0.2673|0.1891 /0.2660|
+| B7→B1 O3′–P |1.665991 Å|1.655613 Å|
+| D7→C8 O3′–P |1.658048 Å|1.641364 Å|
+| B7→B1 worst angle / native width |4.536|3.433|
+| D7→C8 worst angle / native width |2.295|1.734|
+| Global bond / angle RMS |0.061 Å /4.670°|0.063 Å /4.223°|
+| Clashscore |58.25|59.00|
+| Maximum atom shift from common parent |0.313700 Å|0.505256 Å|
+
+All **862 atom identities and occupancies** persist; all B values are refined.
+Three-cycle all-atom RMS movement from the parent is **0.128476 Å**. Between
+siblings, maximum/RMS movement is **0.722408 /0.124284 Å**. These are different
+comparisons and neither is whole-helix centroid displacement. Both full native
+phosphate groups retain one bond, four angles and three torsions; one native
+bond, four second-shell pairs and zero remaining cross-contact nonbonded rows.
+Preflight/refine have **1 /1,333 full-gradient calls**, with hooks restored.
+Original input inventory and parent record are unchanged; `postmr` remains
+selected, both children are usable REVIEW candidates, and derived cuts are
+UNREVIEWED. No selection or scientific acceptance follows from lower R values.
+
+**Periodic torsions remain mixed.** D7 C4′–C3′–O3′–C8 P is 46.2625° versus
+−140° target, periodicity one: wrapped delta −173.7375°, **99.7016% of barrier
+height, 10.9083% of peak slope**, 6.2625° from the crest. B7→B1's first periodic
+term also worsens in barrier fraction. Width maxima alone do not describe this
+periodic energy. Earlier W209–W210 finite local alternatives are relevant context,
+not proof of a transferable experimental repair or unavoidable barrier. A
+bounded alternative must preserve sugar/stack/anchor/connectivity obligations
+and receive native recovery/map review; more cycles are not the default answer.
+
+**Reflections:** identical starting observations and final work/Free membership:
+1,778 work /124 Free, seven work and zero Free removed. The two saved MTZ files
+have **2,848 unique rows**, with 2,845 finite flag values, 1,951 observed intensity
+rows and 1,902 filtered F/SIGF rows. I/SIGI and flags agree exactly, including
+missingness. F/SIGF differ only by common scale **1.067403856**, maximum relative
+least-squares residual **3.68e-8**; they are not byte-identical observations.
+A presentation-only cold-report count initially reused the atom-table length;
+the independently reread MTZ count corrects 862→2,848 with old/new report and
+script hashes retained. Column comparisons and native reflection checks were
+already correct; no scientific inputs were altered.
+
+**Maps:** four saved-map FFTs in the successful readback, 124 local contours.
+Both no-fill ordinary and difference maps contain the same 1,902 indices;
+Free reflections are included, isotropization enabled and sharpening disabled.
+Explicit labels are `2FOFCWT_no_fill/PH2FOFCWT_no_fill` and `FOFCWT/PHFOFCWT`.
+The first readback correctly refused the filled default labels; subsequent
+checks made MTZ float32 cell precision and finite-flags versus total rows explicit.
+Failed read-only attempts remain in local logs. Map sources and paired effective
+parameters are frozen by hash; no new coefficients or optimization are produced.
+
+At each model's own coordinates/map, C8 P ordinary/difference samples are
+**2.554/+0.143σ →2.427/−0.261σ**. B1 P is weaker:
+**1.889/−1.587σ →1.713/−2.069σ**; B1 OP1 ordinary support is **0.225→0.059σ**.
+These are descriptive whole-cell-normalized samples, not calibrated significance,
+a reason to delete atoms or independent validation. Hexagonal trilinear image
+sampling differs by up to **0.106σ**; do not interpret tiny donor-image changes.
+Both models overlay each fixed map; the 2D plane contains both P positions,
+with neighbours projected up to 0.84 Å. No fitted alignment or movement scaling.
+
+**Validation/delivery:** 36 cold checks pass, including exact refreshed-child
+readback and native binding. Both 17-atom density scenes have all 31 contours per
+map; embedded scripts compile and base64/gzip payloads decode. Two static figures
+were visually reviewed. ChimeraX **1.12 (2026-06-12)** runs both models and six
+controls headlessly with exact expected image distances; interactive GUI/browser
+execution was not newly tested. No product/schema change, so W302's complete
+3,125-test and relocated-install qualification is retained without repetition.
+
+Local NASolve anchor: `branch-artifacts/willow/w304-three-cycle-recovery/`.
+`launch.json`, `audit-command.json`, `verification.json`, `density-review.json`,
+`reflection-comparison.json`, `chimerax-check.json` and
+`checkout-verification.json` contain exact source/command/output bindings.
+Outer commands (scientific products are deliberately immutable; do not rerun
+in the same output directory):
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/w304-three-cycle-recovery/launch.py
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/w304-three-cycle-recovery/audit_launcher.py
+PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 "$PHENIX_PYTHON" -B branch-artifacts/willow/w304-three-cycle-recovery/density_worker.py
+"$CHIMERAX" --nogui --exit branch-artifacts/willow/w304-three-cycle-recovery/check_chimerax.py
+```
+
+Native executable paths/versions are recorded in receipts; `$PHENIX_PYTHON`
+and `$CHIMERAX` denote those installations, not inferred new versions. Full
+raw runs/maps/models, generated views and scratch failures remain local and
+excluded from Git; existing docs/roadmap only are committed. P04/P05 remain
+PARTIAL. **Next W305:** compose verified child context with existing same-child
+cut comparison and saved preference intake. Preserve fresh review, distinguish
+retained parent cut from an alternative, and refuse stale/drifting inputs; no
+new GUI shell, scientific registry, refinement route or approval authority.

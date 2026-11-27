@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W304 — Compare ordinary recovery at two native image joins
+
+- Record a complete three-cycle sibling against the saved one-cycle PDU/5W6W
+  control: both O3′–P distances and worst angles improve, with mixed torsions
+  and local density. Preserve all 862 atom identities, occupancies and Free flags.
+- Retain unselected children, exact native/source context, saved-map inspection
+  and a checked ChimeraX comparison. No product/schema change or new force owner.
+
 ### W303 — Compare two cuts of the same refined molecule
 
 - Reuse the existing comparison/preference inspector for the original ASU and

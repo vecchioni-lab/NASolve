@@ -7,6 +7,10 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Latest science, W304:** [one versus three ordinary cycles](topostitch-periodic.md#w304--three-cycle-ordinary-recovery-with-map-review)
+  improves both image bond distances and worst angles; torsions/maps remain
+  mixed. All 862 atoms and 124 Free retained. Both children stay unselected.
+
 - **Latest demonstration, W303:** [two cuts of one refined molecule](topostitch-periodic.md#w303--two-cuts-of-the-same-refined-molecule)
   preserve all atoms and image bonds. The existing inspector offers the choice;
   neither preference nor approval is fabricated. No new fit or product code.
