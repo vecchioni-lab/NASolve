@@ -133,8 +133,12 @@ It contains no Hg yet and does not qualify the earlier private neutral control.
 The exact-source DF acquisition now has linked-frame native/derivative
 qualification as an unchanged original diagnostic runtime. Its compact embedded
 capture passes registered review after relocation without old source access.
-**Next bind that runtime result to the frozen complete request and construction**,
-then qualify execution/publication consumers and numbered image-force execution. Reuse Cedar 025561e1
+**The original runtime now binds to the genuine frozen complete request and construction**
+with exact chemistry, compiled restraints and registered context; installed relocated
+readback passes. ReadySet separately preserves all 858 named XYZ/B/Q states.
+**Next qualify a new registered execution/result policy and publication topology**,
+then fresh AutoSol/phased numbered image-force execution. The held request keeps
+zero attempts; a separate diagnostic is not its enclosing execution history. Reuse Cedar 025561e1
 for the full-model compiler handoff; do not reimplement or recompile it.
 [Fresh construction evidence](metal-ordinary-receiving.md#genuine-ordinary-ft-construction--27-november-afternoon).
 Input/native review alone provides no ordinary parent, phase admission or

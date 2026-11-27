@@ -81,13 +81,17 @@ def review_registered_original_runtime(inputs, components, reference, *, runtime
     runtime_evidence anchors; temporary paths are never operational references.
     This read does not establish construction ancestry or ordinary admission.
     """
+    from .cif_runtime_bundle import resolve_runtime_bundle
+    return _review_original_selection(inputs, components, reference, resolve_runtime_bundle(runtime))
+
+
+def _review_original_selection(inputs, components, reference, selected):
+    """Compose with an already resolved runtime; the public owners resolve first."""
     from copy import deepcopy
     from .cif_dictionary_store import _json
-    from .cif_runtime_bundle import resolve_runtime_bundle
     from .cif_component_runtime import (
         ORIGINAL_POLICY_ID, component_runtime_evidence, verify_component_runtime_resources,
     )
-    selected = resolve_runtime_bundle(runtime)
     manifest = selected['manifest']; path = selected['manifest_path']
     original = _read(path)
     _need(manifest['policy_id'] == ORIGINAL_POLICY_ID

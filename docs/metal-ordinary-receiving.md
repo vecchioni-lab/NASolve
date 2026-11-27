@@ -4,6 +4,84 @@ Updated 27 November 2026. A01 mechanical integration; A01 science remains partia
 and A02 quantitation is gated. This is a prospective implementation contract,
 not a claim of ordinary numbered-round qualification.
 
+## Frozen request and original runtime agree — 27 November afternoon
+
+`review_registered_request_runtime(directory, runtime=...)` now binds the genuine
+construction and compiled-restraint request to the separate original diagnostic.
+It reuses the complete-request reader, the original-runtime reviewer and embedded
+bundle/site readers. The selected model, complete component coverage, source bytes,
+source authority, acquisition recipe/generator/consumer, site/phosphate contexts,
+native context, local links and ordered shared restraints must all agree. The
+request's C196 and C80/literal-compiler provenance are validated by their existing
+owners. This is **input agreement, not enclosing execution ancestry**: the returned
+record explicitly says `SEPARATE_DIAGNOSTIC`, and no attempt or checkpoint is made.
+
+The initial policy is original-selection only. Retained overrides, component-local
+terminal resources, furanose changes, extra interpretation controls and plane/bond
+additions require their own qualified binding and refuse. This restriction does
+not discard the fresh model's D:1 terminal phosphate: its existing full-model
+native context and source protections remain checked. Historical requests keep
+their BLOCKED/zero-attempt meaning. No public schema migration or default changes.
+
+Validation distinguishes source, recipe, consumer, model, PHIL order, site context,
+phosphate policy, component coverage and link mismatches. **21 cases fail before**;
+the three-module focused panel passes **41 in 5.50 s**. Installed request/original
+runtime cases pass **30 in 4.19 s**, all 183 NASolve modules from the wheel, after
+build-source removal. The **real fresh FT request/runtime** then passes in **10.77 s**,
+with 187 installed modules, process launches forbidden and original scientific/code
+paths denied. Its transported closure is **3,831,284 bytes**; the temporary original
+location is gone. The registered native review exactly matches the prior result.
+All original request/runtime files stay exact; 19,155,926 scratch bytes are retired.
+These are cold reads, not repeated native chemistry or refinement experiments.
+
+Evidence: `branch-artifacts/Alder/a01-ordinary-construction-20261127-01/`,
+`request-runtime-before.log`, `request-runtime-focused.log/xml`,
+`request-runtime-package.json` and its exact command/log records. Methods A904/A905
+own the installed/relocated check. Focused command, from the receiving checkout:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src PHENIX_PYTHON -c \
+'import gemmi,site,sys;site.addsitedir(TEST_DEPENDENCIES);sys.path.insert(0,SOURCE_DIRECTORY);import pytest;raise SystemExit(pytest.main(["-q","-p","no:cacheprovider","tests/test_registered_request_runtime.py","tests/test_registered_original_runtime.py","tests/test_registered_preparation_native.py","--junitxml=RESULT_XML"]))'
+```
+
+`PHENIX_PYTHON`, `TEST_DEPENDENCIES`, `SOURCE_DIRECTORY` and `RESULT_XML` above denote
+the explicit local values recorded in `request-runtime-validation.json`, rather
+than operational committed host paths. Phenix installation **2.2.1-6174**, Python
+3.11.15. No full suite. Changed code: `cif_registered_request_review.py`, the shared
+original-selection helper in `cif_registered_preparation_native.py`, and binding
+regressions. Generated models, captures, maps and figures are excluded from Git.
+
+The separate ReadySet owner also completed successfully in **159.48 s** (160.72 s
+outer time; stopped verified). It selected `readyset_checked_model`, with native
+formal-charge observation still unsupported. Its file digest differs from the
+constructor, but all **858 named atom identities, XYZ, B and Q values are identical**.
+This is a serialization difference, not geometry improvement. The original runtime
+and held request are unchanged. Methods A902/A903 and `readyset-result.json` retain
+that result; the original-only request reader does not silently admit ReadySet.
+
+### Next execution and publication gates
+
+1. Add an explicit **new** complete-request execution policy for registered inputs;
+   preserve the current intake-only request meaning. `_result` must retain the
+   registered outer-only role and bind the selected native result. Do not hide the
+   role by dropping it from input comparison or label a separate diagnostic as an
+   owned attempt. Reuse completed source acquisition where its exact key permits.
+2. Define the selected-model rule, including ReadySet serialization-only changes
+   or repaired coordinates, with fresh registered frame transfer and exact input
+   closure. Reuse the existing native/ReadySet owners; do not invent bond partners.
+3. Extend the existing publication topology contract deliberately. `_payload`
+   currently requires `model_context` and `prepared_model_topology` accepts the
+   local-only context. A registered result must retain both image links, source
+   frame and terminal decisions in an anchored/checksummed representation, with
+   relocation and old-schema compatibility checks. No fake local context.
+4. Only then run the fresh metal-screen AutoSol/phasing path and a numbered mixed
+   XYZ/group-B child. Previously retained HL data do not automatically establish
+   the new MR phase origin. Preserve original Free-R, fixed f′ and explicit Hg
+   state; compare geometry/maps before estimating metal B or starting f″ trials.
+
+These are the next A01 steps. A01 remains partial and A02 remains gated. The
+ordinary request has zero attempts; no new Rwork/Rfree or f″ estimate exists.
+
 ## Compact fresh-runtime review — 27 November afternoon
 
 The fresh ordinary DF:T frame now has an independently qualified **original

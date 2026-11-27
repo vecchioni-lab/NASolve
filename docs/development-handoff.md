@@ -5,6 +5,19 @@ Pine and the separate Cedar/Willow branches are not changed by this integration.
 combines the existing metal feature with the qualified shared chemistry, native
 observation and storage owners; it introduces no new scientific policy.
 
+## A01 request/runtime agreement and ReadySet — 27 November
+
+The genuine fresh FT request now binds to the independently qualified original
+runtime without borrowing execution ancestry. Exact source/recipe, consumer,
+model, compiled restraints and registered contexts agree; 41 focused and 30
+installed tests pass. The real 3.83 MB closure passes with original paths absent
+or denied. ReadySet separately preserves all 858 named XYZ/B/Q states; it changes
+serialization only. The ordinary request remains BLOCKED with zero attempts.
+A01 remains partial, A02 gated. Next: versioned registered execution/result and
+publication topology, then fresh AutoSol/phased mixed refinement. No repeated
+unchanged fit, new R values or f″ claim.
+[Evidence, validation and precise next gates](metal-ordinary-receiving.md#frozen-request-and-original-runtime-agree--27-november-afternoon).
+
 ## A01 fresh linked runtime and compact review — 27 November
 
 The fresh DF:T constructor now has a qualified original diagnostic runtime with

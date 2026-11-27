@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bind a registered request to its original diagnostic runtime
+
+- Add an explicit read-only agreement check for genuine construction, compiled
+  restraints, source/recipe/consumer and registered site context against a compact
+  qualified original runtime. Keep temporary evidence bounded and paths anchored.
+- Preserve separate diagnostic ancestry and held request semantics. No execution,
+  checkpoint publication, changed-model admission or default behavior is enabled.
+
 ### Review compact original runtimes against registered inputs
 
 - Add a read-only join from a frozen registered model to an independently qualified
