@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 27 November 2026, after C631. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 27 November 2026, after C632. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -1277,6 +1277,10 @@ C630 exercised normal source selection on the previously fitted four-substitutio
 C631 replaced the default B of 20 Å² for a verified C/N uracil attachment change with the median over the original fully occupied heavy-atom residue. The 20 host atoms at A:19 gave 228.24 Å² for the 21 new atoms, reproducing the hand-prepared start for C625. All 860 coordinates and 839 bystander records stayed fixed. Missing atoms, partial occupancy or unsuitable B values retain the seed and record the reason. Historical seeds still replay.
 
 Changing rigid-fit weights or starting from the source sugar conformer left four or five contacts shorter than 2.2 Å. When Phenix could see only UY1’s dictionary and site reaction it refused 23 untyped atoms at the distant B:5 6MZ. With every modified residue defined, three geometry-only cycles on UY1 alone cleared the five close contacts. All four sugar hands and 22 source bonds survived. The base-pair distances ended at 3.00 and 2.88 Å and the backbone links at 1.604 and 1.611 Å. Two contacts remained 0.42–0.44 Å inside Phenix’s van der Waals distances. Use the complete library and local pair/stack intent when qualifying the ordinary construction. No new diffraction cycles were needed for this comparison.
+
+C632 put the separately constructed, locally fitted four-site model through ReadySet with Phenix 2.2.1-6174 and the NARestraints 1.1.5 candidate. The native reads before and after agreed on all 42 residue assignments, all 38 backbone links and all 193 requested pair and stack restraints. ReadySet reordered records and preserved all 860 named positions, occupancies and B values. Phenix used the linked 2′-endo table at each substituted site. The UY1–adenine contacts in this prepared model measured 3.000 Å (N3–N1) and 2.878 Å (O2–N6).
+
+At those same coordinates, the only differences from the earlier protected C629 geometry terms were six angle restraints at the D:1 terminal phosphate. Preparation used the same six targets with 3° widths. The protected input used 1° widths. All eight families of geometry terms were compared. For the ordinary four-site run, first select and fit the whole sugar from the fresh mutation card, then verify that AutoRefine actually installs those six 1° restraints. The four-site diffraction evidence is still the direct C625/C627 trial. C632 completed preparation only.
 
 C601 found the source-preserving generator had introduced a 5.779 Å bond between
 O4′ and ring C2. All 42 source edges were present. The ten bonds of the purine
