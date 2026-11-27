@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Review exact native inputs with registered backbone context
+
+- Add an opt-in read-only join from the frozen registered input role to preserved
+  native interpretation evidence, reusing the existing backbone/frame/reference
+  owners. Require exact model, dictionary and ordered restraint bytes.
+- Preserve explicit limits: no new process, construction ancestry, applied image
+  forces, complete-request execution or publication follows from this review.
+
 ### Freeze registered backbone inputs for local component preparation
 
 - Add opt-in registered preparation intake to the existing complete-request owner,

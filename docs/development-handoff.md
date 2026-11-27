@@ -5,16 +5,18 @@ Pine and the separate Cedar/Willow branches are not changed by this integration.
 combines the existing metal feature with the qualified shared chemistry, native
 observation and storage owners; it introduces no new scientific policy.
 
-## A01 registered complete-request intake — 27 November
+## A01 registered input and native review — 27 November
 
-The next input-consumer step freezes the declared registered-backbone files in the
-existing complete-request owner and rederives local component contexts after
-relocation. Canonical image endpoints remain separate. Inspection is explicitly
-blocked and execution creates no children until native/result consumers support
-the role. The real FT role reproduces its two image links and retained D:1; this
-is not a complete FT request, new parent or fit. Focused checks pass 269 cases;
-six installed cases pass with build source removed. Active Alder remains unchanged.
-[Interface, evidence and next consumer boundary](metal-ordinary-receiving.md#frozen-registered-input-at-complete-request-intake--27-november).
+The complete-request intake freezes the distinct image-link role; the new native
+reader now joins that frozen input to the exact retained FT interpretation. All
+nine input files match, with eight reference terms per local link at both crystal
+junctions. This is native input review, not applied image forces, a repair result,
+constructor ancestry or a new fit. Execution remains held. The native-reader
+panel passes 68 focused and 11 installed cases; prior intake evidence remains
+recorded separately. Next use declared sources through the genuine ordinary Coot
+construction owner before ReadySet; do not attach retrospective ancestry to the
+private neutral model. Active Alder remains unchanged.
+[Methods, evidence and next boundary](metal-ordinary-receiving.md#native-review-of-the-frozen-registered-input--27-november).
 
 ## Explicit registered preparation context — 27 November
 

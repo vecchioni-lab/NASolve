@@ -4,6 +4,57 @@ Updated 27 November 2026. A01 mechanical integration; A01 science remains partia
 and A02 quantitation is gated. This is a prospective implementation contract,
 not a claim of ordinary numbered-round qualification.
 
+## Native review of the frozen registered input — 27 November
+
+The next read-only consumer, `review_registered_native_input` in
+`cif_registered_preparation_native`, joins the explicit frozen role to an existing
+native interpretation. It reconstructs registration and local context, uses the
+existing named-atom transfer and `_native_candidate` owner, and requires exact
+ordered model/dictionary/PHIL bytes. Input changes during the read refuse. There
+is no normalization, discovery, process launch or automatic adoption.
+
+The `registered-native-input-review-v1` result keeps the registered-source to
+prepared-model transfer separate from the native model identity. It reports the
+native receipt and its relative `native_directory` input references, both image
+links, local component contexts and declared terminal phosphates. Callers must
+retain the receipt's explicit anchored closure. The reviewed model is exactly the
+frozen input, not a newly returned ReadySet or refined model. This is **native
+input review**, not source-chemical qualification or a complete repair result.
+
+On the retained neutral FT control, the exact nine model/CIF/ordered PHIL inputs
+match capture `753d2d78…`. Both image junctions have eight measurable reference
+terms per local link, from independently matching native residue definitions:
+
+| Registered junction | Matched native local links | Native O3′–P target / sigma |
+| --- | --- | --- |
+| B:7 → B:1 | A:16→A:17; B:5→B:6 | 1.607 / 0.012 Å |
+| D:7 → C:8 | A:9→A:10; C:11→C:12; D:2→D:3; D:5→D:6 | 1.607 / 0.012 Å |
+
+These are recorded local reference terms, **not proof of applied crystal-image
+forces** or acceptance of the input's approximately 3.0–3.1 Å open junctions.
+No neutral dictionary was changed or replaced by the deprotonated hypothesis.
+The retained native receipt reports Phenix 2.2.1; the reader checks used Phenix
+2.2.1-6174 libraries (Python 3.11.15 / Gemmi 0.7.5). No new native interpretation,
+Coot, optimization, f″ scan or full suite was run.
+
+Eight initial regressions fail for the absent reader. The final focused panel
+passes **68 cases in 8.00 s**, including 11 new cases; 11 installed cases pass
+with build source removed and 182 NASolve modules loaded solely from the wheel.
+Real-data checks preserve the original files, refuse a repeated dictionary input
+and reordered PHIL list, and retire 170,363 scratch bytes. Package/test scratch
+of 15,276,126 bytes is retired. Methods A877–A879 and exact receipts live in
+`branch-artifacts/Alder/a01-registered-native-20261127-01/`. Scientific inputs and
+native captures remain local and excluded from Git. No schema migration or
+historical worker changes are required; this reader is a new opt-in API.
+
+**Next:** use declared source inputs through the ordinary `prepare_postmr` owner
+so it writes genuine `construction.json` before ReadySet. No current ordinary
+producer receipt exists for the exact private neutral QF1/QT1 model, so it must
+not gain one retrospectively. Identify any single missing capability needed to
+preserve that chemical choice. Complete-request execution stays held until the
+actual native/result and publication consumers support the separate image role.
+External AutoSol-phase admission and the numbered mixed child remain subsequent.
+
 ## Frozen registered input at complete-request intake — 27 November
 
 **Purpose and placement:** preserve the declared crystal-backbone context while

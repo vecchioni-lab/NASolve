@@ -125,9 +125,13 @@ registered-context adapter accounts for all 38 local and two image links without
 changing chemistry or model coordinates. Its real-source read, focused tests and
 relocated installed checks pass. The complete-request owner now freezes the
 explicit registered role and rederives local component contexts; execution remains
-blocked. **Next qualify native preparation/result consumers**, then publication
-and numbered image-force execution. Input intake alone provides no ordinary
-parent, phase admission or scientific acceptance.
+blocked. Native input review now binds the exact retained FT capture and all
+nine original inputs, with matched local reference terms at both image junctions.
+**Next build genuine ordinary construction from declared sources**, then qualify
+the complete native/result and publication consumers and numbered image-force
+execution. The private neutral control cannot acquire retrospective ancestry.
+Input/native review alone provides no ordinary parent, phase admission or
+scientific acceptance.
 [Implementation boundary](metal-ordinary-receiving.md#registered-phosphate-context-before-preparation--27-november).
 
 Only two next decisions govern the near-term work:
