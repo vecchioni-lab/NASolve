@@ -212,9 +212,10 @@ def create_server(viewer, *, port=0):
                 if name=='view':
                     value=viewer.navigate(msg)
                 else:
-                    _fields(msg, {'selection','center_key'}, 'inspection')
+                    _fields(msg, {'selection','center_key'} | ({'sigma_levels'} if 'sigma_levels' in msg else set()), 'inspection')
                     shown=viewer.present(msg['selection'])
-                    value=viewer.inspections.perform(name,shown['scene'],msg['center_key'])
+                    options={'sigma_levels':msg['sigma_levels']} if 'sigma_levels' in msg else {}
+                    value=viewer.inspections.perform(name,shown['scene'],msg['center_key'],**options)
             except (RecipeError, ValueError, TypeError, RecursionError, OSError, RuntimeError) as exc:
                 self.reject(400, 'Invalid navigation request' if name=='view' else str(exc)); return
             self.reply(200, canonical(value).encode())

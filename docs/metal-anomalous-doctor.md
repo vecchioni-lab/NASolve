@@ -2078,6 +2078,15 @@ atoms and coordination graph legible; opacity and contour levels are adjustable.
 installed native presets may instead use `PANOM`. Resolve actual labels and
 map provenance, rather than assuming a fixed pair. Enable a layer only when its
 matching coefficients exist; a missing anomalous map is unavailable, not empty.
+The saved workbench now exposes a compact **Map levels (σ)** section with Apply
+and Reset. Optional `sigma_levels` on the inspection API uses `2mFo-DFc`,
+`mFo-DFc` and/or `Anomalous` keys for maps actually present. Values are finite
+positive magnitudes; difference maps display both signs. Existing defaults remain
+1/3/3σ. Effective values distinguish cache entries and also reach new Coot copies.
+Coefficient labels, anchored source/checksum and whole-cell σ normalization are
+visible in details. Display settings carry across candidates, while loaded density
+clears on a full scientific-scope change. There is no new fit or catalog mutation.
+
 Curated contour presets should be scoped to map type/dataset, expose their sigma
 normalization and remain editable. Lock comparable contour settings across
 side-by-side candidates by default and retain deliberate overrides. Display

@@ -99,3 +99,6 @@ header{display:block}
 #view-help .legend{margin-top:5px}
 
 .inspection-controls{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-top:.6rem}.inspection-controls #map-toggles{display:flex;gap:.7rem;flex-wrap:wrap}.inspection-controls label{display:flex;gap:.3rem;align-items:center;font-size:.85rem}.inspection-controls input{width:auto}#map-note{font-size:.8rem;line-height:1.4}
+
+#map-level-controls{display:flex;gap:.8rem;flex-wrap:wrap;margin:.6rem 0}#map-level-controls label{font-size:.85rem;display:flex;align-items:center;gap:.4rem}#map-level-controls input{width:5rem}#map-levels .muted{font-size:.8rem}
+#map-sources{font-size:.75rem;overflow-wrap:anywhere}

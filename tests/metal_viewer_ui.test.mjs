@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {recipeRows, geometrySnapshots, autoCamera, groupSnapshots, labelLayout, ratio, keyOf, number, projector, rowValues, scopeKey, visibleAtoms} from '../src/nasolve/metal/web/core.mjs';
+import {mapInspectionKey, mapLevelRequest, recipeRows, geometrySnapshots, autoCamera, groupSnapshots, labelLayout, ratio, keyOf, number, projector, rowValues, scopeKey, visibleAtoms} from '../src/nasolve/metal/web/core.mjs';
 const key = (name, residue='1', altloc='') => ({chain_id:'A',residue_id:residue,component_id:'DF',model_id:'1',atom_name:name,altloc,insertion_code:'',segment_id:'',symmetry:'x,y,z'});
 const atoms = [
  {key:key('S1'),xyz:[0,0,0]}, {key:key('C1'),xyz:[1,0,0]},
@@ -90,4 +90,20 @@ test('one geometry table retains distinct trial groups and cross-dataset boundar
  const groups=geometrySnapshots([r('a','m1'),r('a','m2'),r('b','m1'),r('b','m2'),r('a','m1','two')]);
  assert.equal(groups.length,2);assert.equal(groups[0].trials.length,2);
  assert.equal(groups[0].trials[0].sites.length,2);assert.equal(groups[1].trials.length,1);
+});
+
+
+test('map levels preserve defaults and carry only available map types',()=>{
+ const maps=[{type:'2mFo-DFc',sigma:1},{type:'mFo-DFc',sigma:3}];
+ assert.deepEqual(mapLevelRequest(maps),{'2mFo-DFc':1,'mFo-DFc':3});
+ assert.deepEqual(mapLevelRequest(maps,{'mFo-DFc':1.5,Anomalous:4}),{'2mFo-DFc':1,'mFo-DFc':1.5});
+ for(const value of [0,-1,NaN,Infinity,'1.5',true])assert.throws(()=>mapLevelRequest(maps,{'mFo-DFc':value}));
+ assert.equal(maps[1].sigma,3);
+});
+test('map invalidation distinguishes equal trial IDs across dataset scopes',()=>{
+ const a={...scene,inspection:{id:'same'}};
+ assert.notEqual(mapInspectionKey(a),mapInspectionKey({...a,dataset_id:'other'}));
+ assert.notEqual(mapInspectionKey(a),mapInspectionKey({...a,inspection:{id:'new'}}));
+ assert.equal(mapInspectionKey(a),mapInspectionKey({...a}));
+ assert.equal(mapInspectionKey(null),'');
 });

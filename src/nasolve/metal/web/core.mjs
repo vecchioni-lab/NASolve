@@ -1,4 +1,17 @@
 // Pure presentation helpers. Scientific navigation remains in the Python controller.
+export const mapInspectionKey = scene => scene?.inspection ? JSON.stringify([
+  scene.dataset_id, scene.structure_id, scene.hypothesis_id, scene.geometry_id, scene.inspection.id
+]) : '';
+export function mapLevelRequest(maps, overrides = {}) {
+  const levels = {};
+  for (const map of maps || []) {
+    const value = Object.hasOwn(overrides, map.type) ? overrides[map.type] : map.sigma;
+    if (typeof value !== 'number' || !Number.isFinite(value) || value <= 0)
+      throw new Error('Map levels must be positive sigma values.');
+    levels[map.type] = value;
+  }
+  return levels;
+}
 export const keyOf = key => JSON.stringify(Object.keys(key).sort().map(k => [k, key[k]]));
 export const atomLabel = key => `${key.chain_id || '∅'}:${key.residue_id}${key.insertion_code} ${key.component_id} ${key.atom_name}${key.altloc ? ` (${key.altloc})` : ''}`;
 export const number = (value, digits = 3) => typeof value === 'number' && Number.isFinite(value) ? value.toFixed(digits) : '—';

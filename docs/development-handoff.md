@@ -1,11 +1,19 @@
 # NASolve development handoff — integrated development base
 
-Updated **26 November 2026**. Active integration target: **Alder**. The everyday
+Updated **27 November 2026**. Active integration target: **Alder**. The everyday
 Pine and the separate Cedar/Willow branches are not changed by this integration. This base
 combines the existing metal feature with the qualified shared chemistry, native
 observation and storage owners; it introduces no new scientific policy.
 
 ## Current metal-science edge
+
+Five older FT anomalous/f″ trials replay successfully; their original observations
+match, but earlier model/B states and model-assisted phases prevent current Q/count
+inference. That decision is parked. A bounded inspection change now supplies
+explicit per-map σ levels with old defaults, visible coefficient provenance and
+scope-safe caching; 25 focused Python and 14 JavaScript checks plus one real saved
+catalog's native previews pass. No new refinement or full suite.
+[Evidence, compatibility and remaining GUI review](metal-development-handoff.md#a01-evidence-inventory-and-bounded-inspection-improvement--27-november).
 
 The retained FT maps show a continuous negative difference signal across both
 N3 donors and Hg, rather than singling out the metal. This fixed-map analysis

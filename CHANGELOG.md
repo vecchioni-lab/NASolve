@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Make saved-map display levels explicit and source-visible
+
+- Add optional per-map positive σ levels for saved-map previews and Coot inspection
+  copies, preserving existing defaults. Keep coefficient labels, anchored source,
+  checksum and whole-cell normalization visible in compact map details.
+- Separate cached previews by applied levels and clear them across dataset/geometry
+  scope changes even when trial IDs match. Restore inspection buttons after
+  navigation finishes and reject invalid/unavailable map types.
+  Display changes do not alter models, coefficients, Free-R or refinement settings.
+- Verify five older FT anomalous/f″ records, retaining their earlier geometry/B
+  and model-phase limitations; current metal Q/count remains unresolved.
+
 ### Record the retained metal-pocket map interpretation
 
 - Document the shared FT donor/Hg difference-density deficit and its display-level

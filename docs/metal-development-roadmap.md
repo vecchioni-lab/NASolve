@@ -1,6 +1,6 @@
 # Post-merge metal-coordination roadmap
 
-Updated **26 November 2026** after retained FT map interpretation and owner transfer. Working
+Updated **27 November 2026** after retained anomalous-evidence replay and explicit map levels. Working
 branch **Alder**; the earlier forward-queue audit is retained at `60a1f084`. The feature milestones
 **A01–A09** below remain explicitly post-merge work; A09 follows the main build.
 Merge qualification, scientific acceptance and feature completion are separate.
@@ -97,6 +97,12 @@ It has no approved HL; it cannot substitute for phased FT or qualify A02.
 [Exact evidence and remaining holds](metal-ordinary-receiving.md#read-only-transfer-from-the-maintained-ordinary-owner).
 Do not repeat this inventory; the next owner step is a versioned mixed child using
 these source roles and the existing writer/process proofs.
+
+Five older FT anomalous/f″ trials now have a fresh offline replay inventory.
+They share the original observations but use earlier model/B states, and their
+model-phased maps do not independently settle current Q/count. That decision is
+parked; do not repeat unchanged trials or transplant their fitted values.
+[Current evidence and small inspection improvement](metal-development-handoff.md#a01-evidence-inventory-and-bounded-inspection-improvement--27-november).
 
 Only two next decisions govern the near-term work:
 
@@ -264,6 +270,11 @@ no chemistry, geometry or scientific acceptance requirement is waived. No furthe
 donor-state jobs or routine implementation are queued by this result.
 
 ## A05: a working GUI session, not only visual polish
+
+A bounded 27 November improvement adds editable saved-map σ levels, exact map
+source/labels in compact details and matching Coot levels. Defaults and science
+remain unchanged; focused and real-map checks pass. Browser layout/usability still
+needs user review, and this does not close A05.
 
 Schedule a dedicated collaborative session using actual saved single-metal,
 mixed-metal and cluster results. Earlier sketches are design evidence, not

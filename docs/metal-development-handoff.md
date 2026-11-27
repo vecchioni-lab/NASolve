@@ -1,6 +1,6 @@
 # Metal development handoff — current state
 
-Updated **26 November 2026** (complete protected return and paired-map review). Active feature branch: **Alder**. The
+Updated **27 November 2026** (retained metal-sensitive evidence and explicit map levels). Active feature branch: **Alder**. The
 [root integration handoff](development-handoff.md) owns the current combined
 source, full validation and delivery. The [A01–A09 roadmap](metal-development-roadmap.md)
 owns feature completion. The earlier chronological diary is preserved as
@@ -24,6 +24,70 @@ and cache-retirement evidence: `branch-artifacts/Alder/docs-audit-20261126-01/`.
 <a id="a01-coupled-metal-2026-11-24"></a>
 
 <a id="a01-parameter-scope-2026-11-25"></a>
+
+## A01 evidence inventory and bounded inspection improvement — 27 November
+
+Five explicitly documented older FT trials (`fdp_006`–`fdp_010` under
+`live-20261028-06/FT_Hg/AutoMR/run_001`) pass the existing complete offline replay
+with native process launch denied. They use the same original observation bytes
+as the current control but different earlier model/chemistry/B states. Frozen
+Hg f″/reference ranges **1.358–1.586**, with Hg B **79.86–83.85 Å²**, Q=1;
+model-phased anomalous centre values range **2.714–3.207σ**. The first two trials
+repeat the same endpoint and are not independent experiments. Convergence and
+scientific acceptance remain unassessed. This is genuine metal-sensitive evidence,
+not independent validation of current Q/count. Do not transplant these fitted
+values onto the current model or repeat the old fits. Current Q/count is parked
+pending a qualified geometry/B endpoint and appropriate response controls.
+
+Independent useful work closes a saved-inspection gap: a compact **Map levels (σ)**
+section now lets users set finite positive levels per available map type, apply or
+reset them, and send the same levels to an isolated Coot copy. Old defaults stay
++1σ ordinary, ±3σ difference, +3σ anomalous. Whole-cell normalization, applied
+signed levels, exact coefficient labels, source anchor/path and checksum remain
+visible. Levels carry across candidates for comparison; no scientific parameter
+or persisted catalog changes. A missing contour is not a clean-site verdict.
+
+Backend `Inspections.perform(..., sigma_levels={...})` and optional HTTP
+`maps`/`coot` request field are additive. Old requests remain supported. Unknown
+or unavailable map types, booleans, nonnumeric, nonfinite, nonpositive and
+unrepresentably large numbers refuse before native work. Effective levels join
+the bounded cache key; source checks still precede cache hits. Browser previews
+also clear across full dataset/structure/hypothesis/geometry/trial scope, avoiding
+stale density when distinct datasets share a trial ID. The numerical display
+worker and frozen-refinement policies are unchanged.
+
+**Validation:** ten initial regression cases fail before implementation; the
+final focused Python set passes **25 tests**, including the existing HTTP and
+relocation cases. The existing JavaScript suite plus two new cases passes
+**14 tests** using the available Node tool's isolated `node:test` runner. The host
+shell lacks `node`; an initial in-process tool runner timed out and reset before
+the isolated run succeeded. A module import parses the application and then
+stops at the expected absent `document`; no real-browser interaction/layout test is
+claimed. A focused mock-DOM test executes the actual app module and catches a
+pre-existing lifecycle bug: inspection buttons stayed disabled after navigation.
+They now re-enable when loading completes. The same test checks Apply, Reset,
+Coot level forwarding and invalid-input refusal; it fails before that fix. A string-compilation syntax check was unavailable in that tool context.
+
+One verified real saved catalog uses `fdp_007` / `xyz_006`, which includes ordinary
+and anomalous maps. Two complete display-only Phenix 2.2.1-6174 calls qualify
+existing defaults and difference ±1.5σ/anomalous +2.5σ overrides; a third identical
+request hits the cache exactly. Negative-difference segments change 1,312→10,288;
+anomalous segments 1,541→2,765. Ordinary segments remain 10,753. These are display
+mesh counts, **not atom counts or independent samples**. No clipping, new fit,
+coefficient generation or model changes; Coot was not launched. The initial
+`fdp_006` example correctly refused a difference-map override because its parent
+has no ordinary maps. Its failure log is retained.
+
+Evidence: `branch-artifacts/Alder/a01-metal-evidence-20261127-01/` (method A858),
+`map-levels-20261127-01/` (methods A859–A860 and recorded test invocations).
+No full suite. New in-memory presentation map entries include their labels;
+no persistent artifact schema or migration changes. Large transient meshes are
+not retained. Generated data remain local and excluded from Git.
+
+A01 remains partial and A02 gated. This is a small A05/A06 inspection improvement,
+not completion of the dedicated GUI co-design session or the integrated metal
+screen. The next scientific question requires a distinct qualified geometry/B
+hypothesis; yesterday's fixed-map localization is not being repeated.
 
 ## A01 retained FT pocket-density interpretation — late 26 November
 

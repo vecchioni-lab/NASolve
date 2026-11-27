@@ -1,5 +1,6 @@
 """Source-bound local inspection; only explicit user actions launch native tools."""
 import json
+import math
 import os
 from pathlib import Path
 import subprocess
@@ -15,6 +16,25 @@ MAPS = {
  'map-mfo-dfc.mtz': ('mFo-DFc', 'FOFC', 'PHIFOFC', 3., '#75b994', True),
  'map-anomalous.mtz': ('Anomalous', 'ANOM', 'PHANOM', 3., '#c2a1d8', False),
 }
+
+
+def _display_levels(maps, requested):
+    levels = {MAPS[m['filename']][0]: MAPS[m['filename']][3] for m in maps}
+    if requested is None:
+        return levels
+    if not isinstance(requested, dict) or not set(requested) <= set(levels):
+        raise RecipeError('Map levels require available map types only')
+    for kind, value in requested.items():
+        if type(value) not in (int, float):
+            raise RecipeError('Map levels must be finite positive sigma values')
+        try:
+            number = float(value)
+        except OverflowError as exc:
+            raise RecipeError('Map level exceeds finite display precision') from exc
+        if not math.isfinite(number) or number <= 0:
+            raise RecipeError('Map levels must be finite positive sigma values')
+        levels[kind] = number
+    return levels
 
 
 class Inspections:
@@ -55,14 +75,15 @@ class Inspections:
         key=trial or scene['geometry_id'];scope={k:scene[k] for k in ('dataset_id','structure_id','hypothesis_id')}
         profile=self.profiles.get(canonical([scope,key]))
         if not profile:return None
-        return dict(id=key,model=profile['model'],aggregate=profile.get('aggregate'),maps=[dict(type=MAPS[m['filename']][0],stage=m['stage'],source=m['source'],sigma=MAPS[m['filename']][3]) for m in profile['maps']],
+        return dict(id=key,model=profile['model'],aggregate=profile.get('aggregate'),maps=[dict(type=MAPS[m['filename']][0],stage=m['stage'],source=m['source'],sigma=MAPS[m['filename']][3],labels=list(MAPS[m['filename']][1:3])) for m in profile['maps']],
                     note='Ordinary maps: XYZ endpoint. Anomalous map: selected frozen f″ trial. Model-assisted phases; not independent validation.')
 
-    def perform(self, action, scene, center_key):
+    def perform(self, action, scene, center_key, *, sigma_levels=None):
         if not scene or not scene.get('inspection'):raise RecipeError('Select a saved candidate first')
         scope={k:scene[k] for k in ('dataset_id','structure_id','hypothesis_id')}
         profile=self.profiles[canonical([scope,scene['inspection']['id']])]
         if any(scene[k]!=v for k,v in profile['scope'].items()):raise RecipeError('Inspection scope changed')
+        levels=_display_levels(profile['maps'],sigma_levels)
         atoms=scene['atoms']
         if center_key is None:
             node=next((n for n in scene['nodes'] if n['kind']=='metal' and n.get('atom')),None)
@@ -71,12 +92,12 @@ class Inspections:
         if atom is None:raise RecipeError('Map centre must be an exact atom in this candidate')
         # Verify source bytes again at the action boundary, including cached previews.
         model=_source(profile['model'],profile['run'])
-        maps=[dict(m,raw=_source(m['source'],profile['run'])) for m in profile['maps']]
+        maps=[dict(m,raw=_source(m['source'],profile['run']),sigma=levels[MAPS[m['filename']][0]]) for m in profile['maps']]
         dictionaries=[_source(ref,profile['run']) for ref in profile['dictionaries']]
         with self.lock:
             if action=='maps':
                 if not maps:raise RecipeError('No captured maps for this saved candidate')
-                key=canonical([scope,scene['inspection'],atom['key']])
+                key=canonical([scope,scene['inspection'],atom['key'],levels])
                 if key not in self.cache:
                     if len(self.cache)>=8:self.cache.pop(next(iter(self.cache)))
                     try:self.cache[key]=self._maps(maps,atom['xyz'])
@@ -94,7 +115,7 @@ class Inspections:
             for m in maps:
                 (root/m['filename']).write_bytes(m['raw'])
                 typ,amp,phase,sigma,colour,difference=MAPS[m['filename']]
-                entries.append(dict(filename=m['filename'],type=typ,labels=[amp,phase],sigma=sigma,colour=colour,difference=difference,source=m['source'],stage=m['stage']))
+                entries.append(dict(filename=m['filename'],type=typ,labels=[amp,phase],sigma=m['sigma'],colour=colour,difference=difference,source=m['source'],stage=m['stage']))
             (root/'request.json').write_text(canonical(dict(centre=centre,maps=entries)))
             worker=Path(__file__).with_name('_map_preview_native.py')
             done=subprocess.run([str(native.executables['phenix.python']),str(worker),str(root)],cwd=root,env=dict(native.environment,PYTHONDONTWRITEBYTECODE='1'),capture_output=True,text=True,timeout=45)
@@ -112,7 +133,7 @@ class Inspections:
         for m in maps:
             (root/m['filename']).write_bytes(m['raw'])
             typ,amp,phase,sigma,colour,diff=MAPS[m['filename']]
-            entries.append(dict(filename=m['filename'],labels=[amp,phase],sigma=sigma,difference=diff,title=typ+' · '+m['stage']))
+            entries.append(dict(filename=m['filename'],labels=[amp,phase],sigma=m['sigma'],difference=diff,title=typ+' · '+m['stage']))
         title=' / '.join(profile['scope'].values())+' · inspection copy'
         script=coot_script(names,entries,centre,title)
         (root/'open.py').write_text(script)

@@ -1,4 +1,4 @@
-import {keyOf, atomLabel, number, scopeKey, visibleAtoms, projector, autoCamera, groupSnapshots, geometrySnapshots, recipeRows, labelLayout, ratio} from './core.mjs';
+import {mapInspectionKey, mapLevelRequest, keyOf, atomLabel, number, scopeKey, visibleAtoms, projector, autoCamera, groupSnapshots, geometrySnapshots, recipeRows, labelLayout, ratio} from './core.mjs';
 
 const $ = id => document.getElementById(id);
 const make = (tag, text, cls) => { const e = document.createElement(tag); if (text !== undefined) e.textContent = text; if (cls) e.className = cls; return e; };
@@ -7,6 +7,7 @@ const defaults = () => autoCamera(presentation?.scene ? visibleAtoms(presentatio
 const cameras = new Map();
 const chemistryDrafts=new Map();
 let density=null;
+let mapLevels={};
 const visibleMaps=new Set();
 let presentation, selectedAtom = null, selectedRestraint = null, busy = false;
 const camera = () => { const key = scopeKey(presentation?.scene); if (!cameras.has(key)) cameras.set(key, defaults()); return cameras.get(key); };
@@ -25,13 +26,13 @@ async function request(action) {
       selectedAtom = next.view.selected_row ? keyOf(atomData(next.view.selected_row).key) : null;
     }
     if(changed)selectedRestraint=null;
-    if(next.scene?.inspection?.id!==presentation?.scene?.inspection?.id){density=null;visibleMaps.clear();}
+    if(mapInspectionKey(next.scene)!==mapInspectionKey(presentation?.scene)){density=null;visibleMaps.clear();}
     presentation = next;
     render(); message('Verified saved evidence · Read-only');
   } catch (error) {
     message(error.message || 'Local viewer disconnected. Restart it to reconnect.', true);
     if (presentation) renderNavigation();
-  } finally { busy = false; lockNavigation(false); }
+  } finally { busy = false; lockNavigation(false); renderInspection(); }
 }
 function lockNavigation(value) {
   $('all').disabled = value;
@@ -254,17 +255,33 @@ function drawScene() {
 }
 async function inspect(kind) {
   if(busy||!presentation?.scene)return;
-  busy=true;renderInspection();message(kind==='coot'?'Opening an isolated Coot inspection copy…':'Building local density preview…');
+  let sigma_levels;
+  try{sigma_levels=mapLevelRequest(presentation.scene.inspection?.maps,mapLevels);}catch(error){message(error.message,true);return;}
+  busy=true;lockNavigation(true);renderInspection();message(kind==='coot'?'Opening an isolated Coot inspection copy…':'Building local density preview…');
   try {
     const center=presentation.scene.atoms.find(a=>keyOf(a.key)===selectedAtom)?.key||null;
-    const response=await fetch(kind,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({selection:presentation.view.selection,center_key:center})});
+    const response=await fetch(kind,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({selection:presentation.view.selection,center_key:center,sigma_levels})});
     const data=await response.json();if(!response.ok)throw new Error(data.error||'Inspection unavailable');
-    if(kind==='maps'){density=data;visibleMaps.clear();for(const layer of data.layers)visibleMaps.add(layer.type);drawScene();message('Local map contours loaded. Select an atom and reload to move the map box.');}
+    if(kind==='maps'){const initial=density===null;density=data;if(initial){visibleMaps.clear();for(const layer of data.layers)visibleMaps.add(layer.type);}drawScene();message('Local map contours loaded. Select an atom and reload to move the map box.');}
     else message(`Coot ${data.status==='READY'?'loaded':'launched'} · ${data.version} · editable inspection copy; saved trial unchanged.`);
-  }catch(error){message(error.message,true);}finally{busy=false;renderInspection();}
+  }catch(error){message(error.message,true);}finally{busy=false;lockNavigation(false);renderInspection();}
 }
 function renderInspection(){
   const info=presentation?.scene?.inspection;
+  const controls=$('map-level-controls');controls.replaceChildren();
+  $('map-levels').hidden=!info?.maps.length;
+  $('apply-map-levels').disabled=busy||!info?.maps.length;
+  $('reset-map-levels').disabled=busy||!info?.maps.length;
+  for(const map of new Map((info?.maps||[]).map(m=>[m.type,m])).values()){
+    const label=make('label',map.type+' σ'),input=make('input');input.type='number';input.step='any';input.min='0';input.disabled=busy;
+    input.value=mapLevels[map.type]??map.sigma;input.setAttribute('aria-label',map.type+' contour level in sigma');
+    input.addEventListener('input',()=>{mapLevels[map.type]=Number(input.value);});label.append(input);controls.append(label);
+  }
+  const sources=$('map-sources');sources.replaceChildren();
+  for(const map of info?.maps||[]){
+    const row=make('p',`${map.type} · ${map.stage} · ${(map.labels||[]).join(' / ')} · whole-cell σ`);
+    row.append(make('br'),make('code',`${map.source.anchor}:${map.source.relative_path} · SHA-256 ${map.source.sha256}`));sources.append(row);
+  }
   $('open-coot').disabled=busy||!info;$('load-maps').disabled=busy||!info?.maps.length;
   $('load-maps').textContent=density?'Recenter / reload maps':'Load local maps';
   const root=$('map-toggles');root.replaceChildren();
@@ -273,9 +290,12 @@ function renderInspection(){
     input.addEventListener('change',()=>{input.checked?visibleMaps.add(type):visibleMaps.delete(type);drawScene();});label.prepend(input);root.append(label);
   }
   $('map-note').textContent=density?`${density.note} Box ±${density.radius_A} Å; grid ${density.spacing_A} Å. `+density.layers.map(l=>`${l.type} ${l.level_sigma>0?'+':''}${l.level_sigma}σ${l.truncated?' (display limit reached)':''}`).join(' · '):info?.maps.length?info.note:'No captured maps for this saved candidate.';
+  if(density)$('map-note').textContent+=' Whole-cell sigma normalization. Empty contours mean none at this level, not a clean-site verdict.';
 }
 $('open-coot').addEventListener('click',()=>inspect('coot'));
 $('load-maps').addEventListener('click',()=>inspect('maps'));
+$('apply-map-levels').addEventListener('click',()=>inspect('maps'));
+$('reset-map-levels').addEventListener('click',()=>{mapLevels={};renderInspection();if(density)inspect('maps');});
 function render(){ renderInspection(); $('campaign').textContent=presentation.campaign_label;renderNavigation();renderRows();renderRecipe();syncCamera();drawScene();renderInspector(); }
 $('all').addEventListener('click',()=>request({action:'reset'}));
 $('toggle-inspector').addEventListener('click',()=>{const hidden=$('workbench').classList.toggle('no-inspector');$('toggle-inspector').textContent=hidden?'Show details':'Hide details';$('toggle-inspector').setAttribute('aria-expanded',String(!hidden));drawScene();});
