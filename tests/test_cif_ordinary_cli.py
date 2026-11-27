@@ -63,6 +63,7 @@ def test_preparation_status_reads_owner_without_sdk_or_selecting_latest(tmp_path
 def test_inspection_hint_quotes_run_path_without_replaying_science(tmp_path, capsys):
     import shlex
     result = outcome(tmp_path / "run with 'quote'")
+    result.local_fit_site = 'A:19'
     with patch('nasolve.cif_ordinary_postmr.read_ordinary_postmr_result', return_value=result) as read, \
          patch('nasolve.cli.resolve_view_profile', side_effect=AssertionError('No second full evidence replay')):
         assert main(['cif-doctor', 'prepared-result', str(result.run_directory), '--attempt', '2']) == 0
@@ -70,6 +71,8 @@ def test_inspection_hint_quotes_run_path_without_replaying_science(tmp_path, cap
     text = capsys.readouterr().out
     line = next(line for line in text.splitlines() if line.startswith('Inspect this preparation'))
     assert shlex.split(line.split(': ', 1)[1]) == ['nasolve', 'show', str(result.run_directory), '--preparation-attempt', '2']
+    fit_line = next(line for line in text.splitlines() if line.startswith('Fit this sugar for review'))
+    assert shlex.split(fit_line.split(': ', 1)[1]) == ['nasolve', 'cif-doctor', 'fit-sugar', str(result.run_directory), '--attempt', '2']
 
 
 def test_prepare_run_forwards_explicit_plane_and_locked_sugar_choices_and_prints_notes(tmp_path,capsys):

@@ -290,6 +290,7 @@ class CheckedPostMRResult:
     readyset_status: str
     report_path: Path
     limitations: tuple[str, ...]
+    local_fit_site: str | None = None
     refinement_ready: bool = field(default=False, init=False)
 
 
@@ -418,6 +419,7 @@ def _ordinary_result_from_exact(request, attempt_number, exact):
         restraint_paths=() if runtime is None else tuple(runtime['phils']),
         readyset_status=readyset_status,
         report_path=request/'attempts'/f'attempt-{attempt_number:04d}'/'result.json',
+        local_fit_site=sugar['context']['site'] if sugar.get('unfitted_pairing_edge_seed') else None,
         limitations=(
             'These preparation checks do not establish diffraction-refinement success.',
             *seed_notes,

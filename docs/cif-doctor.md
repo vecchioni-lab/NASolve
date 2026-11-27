@@ -1842,6 +1842,8 @@ nasolve cif-doctor prepare-run RUN --dictionary-input-policy source-preserving-v
 
 On a fresh internal mutation that Coot cannot route through a canonical parent, `nasolve cif-doctor prepare-run RUN --dictionary-input-policy source-preserving-v2` can check for a C-linked uracil-like base on a 2′-O-methyl ribose. It reads the mutation, the original host, the source bonds and the installed NARestraints workbook. One such site can be constructed alongside ordinary substitutions. The diagnostic checks both Phenix sugar tables and keeps the raw seed available for a local fit before refinement. [Four-site test and current scope](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
 
+After this preparation, use the printed `nasolve cif-doctor fit-sugar RUN --attempt N` command to minimize the selected sugar with the complete restraint set that Phenix read. It saves the candidate coordinates and the local contact measurements under the run. `--read-fit M` reopens an exact fit offline. If a fit failed and its process has stopped, `--after-fit M` preserves its outputs and starts a new numbered fit. The candidate is available for inspection. Diffraction refinement and promotion to a checkpoint are separate steps.
+
 For a card that already specifies an internal locked sugar, supply the site
 on a fresh accepted MR run. For example, a card with `A:11 = ATL` can use
 `nasolve postmr RUN --checked-preparation --locked-sugar-site A:11`.

@@ -304,6 +304,12 @@ def build_parser() -> argparse.ArgumentParser:
     prepared = cif_sub.add_parser("prepared-result", help="read one exact checked preparation without running Coot or Phenix")
     prepared.add_argument("run", type=Path)
     prepared.add_argument("--attempt", required=True, type=int, help="exact completed preparation attempt number")
+    sugar_fit = cif_sub.add_parser("fit-sugar", help="fit one checked sugar locally with Phenix and keep the result for review")
+    sugar_fit.add_argument("run", type=Path, help="AutoMR run with a completed checked preparation")
+    sugar_fit.add_argument("--attempt", type=int, required=True, help="exact checked preparation attempt")
+    fit_action = sugar_fit.add_mutually_exclusive_group()
+    fit_action.add_argument("--read-fit", type=int, metavar="N", help="read a saved local fit without running Phenix")
+    fit_action.add_argument("--after-fit", type=int, metavar="N", help="start a fresh fit after this stopped unsuccessful fit")
     publish = cif_sub.add_parser("publish-preparation", help="save one exact checked preparation as the run's review checkpoint; no refinement is run")
     publish.add_argument("run", type=Path)
     publish.add_argument("--attempt", required=True, type=int, help="exact completed preparation attempt; also resumes an interrupted save of that same choice")
@@ -2156,10 +2162,33 @@ def _cif_checked_preparation(args: argparse.Namespace) -> int:
             "--preparation-attempt", str(result.attempt_number)]))
     for limitation in result.limitations:
         print(limitation)
+    if result.model_path is not None and getattr(result, 'local_fit_site', None) is not None:
+        print("Fit this sugar for review: " + shlex.join([
+            "nasolve", "cif-doctor", "fit-sugar", str(result.run_directory), "--attempt", str(result.attempt_number)]))
     print("Read this result again: " + shlex.join([
         "nasolve", "cif-doctor", "prepared-result", str(result.run_directory),
         "--attempt", str(result.attempt_number)]))
     return 0 if result.model_path is not None else 2
+
+
+def _cif_fit_sugar(args: argparse.Namespace) -> int:
+    from subprocess import TimeoutExpired
+    from .campaigns import CampaignError
+    from .cif_furanose_fit_attempt import fit_checked_sugar, read_checked_sugar_fit
+
+    try:
+        if args.read_fit is not None:
+            fit = read_checked_sugar_fit(args.run, attempt_number=args.attempt, fit_number=args.read_fit)
+        else:
+            fit = fit_checked_sugar(args.run, lambda: discover_phenix(load_config(), explicit=args.phenix_root),
+                                    attempt_number=args.attempt, after_fit=args.after_fit)
+    except (OSError, ValueError, ConfigError, PhenixDiscoveryError, PostMRPreparationError, CampaignError, TimeoutExpired) as exc:
+        print(f"Local sugar fit could not complete: {exc}", file=sys.stderr)
+        return 2
+    print(f"Geometry-only fit {fit.number} for {fit.observations['site']} {fit.observations['component']}.")
+    print(f"Review model: {fit.model}")
+    print(f"Fit measurements: {fit.report}")
+    return 0
 
 
 def _cif_publish_preparation(args: argparse.Namespace) -> int:
@@ -2263,6 +2292,8 @@ def _cif_doctor(args: argparse.Namespace) -> int:
         return _cif_prepared_backbone(args.run.expanduser(), registration=args.registration,
             discovery=args.discovery_input, continuations=args.backbone_continuations, as_json=args.json,
             candidate_model=args.candidate_model, native_receipt=args.native_receipt)
+    if args.cif_action == "fit-sugar":
+        return _cif_fit_sugar(args)
     if args.cif_action == "publish-preparation":
         return _cif_publish_preparation(args)
     if args.cif_action in {"prepare-run", "continue-preparation", "prepared-result", "preparation-status"}:
