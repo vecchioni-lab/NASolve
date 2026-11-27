@@ -46,6 +46,15 @@ maintained fixed-weight product mode or recommended production weight.
 
 ## Next decisions
 
+**Checkout queue, 27 November:** no further independent implementation is ready
+without crossing an existing gate. Keep W316 as the settled installed joint test
+and park P02's browser exercise. Cedar/shared integration owns the authenticated
+history/image-reader dependency. Before another D7/C8 fit, obtain discriminating
+spatial-density or chemistry-context evidence; broader motion and physical
+oligo/entity assignment still need reviewed declarations. S02/S08 inference and
+campaign triggers follow those qualifications. Do not repeat a fit, add a viewer,
+or invent metadata authority to fill the waiting interval.
+
 **P02 independent follow-up, W317:** actual-browser qualification of the existing
 W316 two-cut page stopped before loading: the in-app browser rejected its local
 file protocol and explicitly prohibited workarounds. No rotation, cut switching,
