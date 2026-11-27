@@ -8,6 +8,8 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `nasolve cif-doctor catalogue --sulfur-phosphates` can read the sulfur, retained oxygen, leaving oxygen and carbon-linked oxygen directly from component bonds and leaving-atom declarations. The optional report preserves source orders, charges and atom names and distinguishes bridging and multiple sulfurs.
+
 - `nasolve postmr RUN --checked-preparation --dictionary-input-policy source-preserving-v2` can take one source-qualified C-linked sugar on a mutation card through local fitting and into the normal review checkpoint alongside ordinary substitutions. If the fit or its Phenix reading is interrupted, the diagnostic identifies the saved work and the command for inspecting or resuming it.
 
 - `nasolve cif-doctor publish-preparation RUN --attempt N --sugar-fit M` can give AutoRefine a locally fitted sugar. The first publication can obtain its own fixed-coordinate Phenix reading or reuse a named one. It verifies the original residue assignments and restraints. A retry preserves the previous reading and the completed fit. The saved checkpoint reopens offline after moving the run.

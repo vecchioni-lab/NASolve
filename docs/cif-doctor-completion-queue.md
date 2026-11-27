@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 27 November 2026, after C643. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 27 November 2026, after C644. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -982,6 +982,8 @@ Typical phosphodiester OP2 rules cannot select a phosphorothioate configuration.
 C643 tested this on six actual sulfur linkages in the 2.17 Å 1D97 crystal duplex. ReadySet preserved the 312 coordinates, occupancies and B values. Without its dictionary, Phenix treated all six P–S pairs as nonbonded. With the dictionary it installed the six P–S bonds, but at each phosphorus it supplied only three of the six angles and no signed phosphorus chirality restraint. All 18 missing angles involved the preceding O3′. The nonbridging P–O target was 1.653 Å, compared with 1.468–1.490 Å in the deposit. Changing only the component group from `non-polymer` to `DNA` left all 18,394 printed geometry lines identical. ReadySet 2.2.1-6174 completed using the coordinate-equivalent PDB. Its two mmCIF input forms failed in their readers. This trial used fixed coordinates throughout. [Cruse and colleagues, crystal structure](https://pubmed.ncbi.nlm.nih.gov/3108513/).
 
 A separate comparison identified the sulfur side from the component bonds, the documented preceding O3′ and the deposited coordinates. Both sites in the known Rp crystal 5JLW agreed with the design. Both sites in its Sp partner 5JLX gave the opposite hand. The seven sulfur sites in the minimized NMR model 8PSH agreed with the intended side, including the exact AS at A:6. Its P–S distance was 2.130 Å, while the two Rp crystal sites in 5JLW were 1.950 and 1.959 Å. Keep the source of a starting length explicit. These structures establish a geometric comparison and supply no universal force constant or atom charge. Dithio and bridging-sulfur sources were excluded by connectivity. [Matched crystal structures](https://pmc.ncbi.nlm.nih.gov/articles/PMC5096788/). [NMR duplex](https://www.nature.com/articles/nsb0498-271).
+
+C644 made the isolated-source distinction available through `cif-doctor catalogue --sulfur-phosphates`. The current workbook supplied 618 records and 599 distinct codes. Of 596 available sources, 31 have phosphorus bonded to sulfur. Twenty-one centres have one carbon-linked oxygen, one retained terminal oxygen, one declared leaving oxygen and one terminal sulfur. Six centres carry multiple sulfurs, three have a bridging sulfur and VSN has an oxygen bridge to another phosphorus. ATOM names vary: the explicit leaving oxygen is OP2 in PST and OP3 in AS. These roles matched the separate source and coordinate comparison for AS, SC, GS and PST. Source formal charges and P–S orders are recorded as written. Before changing the D:4 model, verify that the linked definition has the intended monoanion, a complete set of linkage angles and a restraint that preserves the chosen side.
 
 C595 uses the published NARestraints workbook and loader together. A fresh
 Cedar installation follows the latest stable package. The environment check

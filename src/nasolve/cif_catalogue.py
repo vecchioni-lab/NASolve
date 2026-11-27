@@ -70,7 +70,7 @@ def _workbook_records(path):
     return records, locations
 
 
-def _source(root, code):
+def _source(root, code, *, sulfur_phosphates=False):
     if not re.fullmatch(r"[A-Z0-9]{1,5}", code):
         return {"status": "INVALID_CODE", "graph_status": "NOT_ASSESSED"}, None
     relative = f"{code[0].lower()}/data_{code}.cif"
@@ -132,10 +132,15 @@ def _source(root, code):
         "stereo_markers": {name: atom["stereo_declarations"] for name, atom in sorted(atoms.items())
                            if atom["stereo_declarations"]},
     }
+    if sulfur_phosphates:
+        from .cif_sulfur_phosphate import source_sulfur_phosphates
+        centers = [p for p in sorted(atoms) if atoms[p]["element"] == "P"
+                   and any(atoms[n]["element"] == "S" for n in neighbors[p])]
+        result["declarations"]["sulfur_phosphates"] = source_sulfur_phosphates(values, centers)
     return result, (atoms, neighbors)
 
 
-def audit_catalogue(workbook, ccd_root):
+def audit_catalogue(workbook, ccd_root, *, sulfur_phosphates=False):
     """Census every loader record and exact code; write nothing and call no SDK.
 
     Both anchors must be supplied explicitly on every invocation. The output is
@@ -174,7 +179,7 @@ def audit_catalogue(workbook, ccd_root):
                 for field in sorted(set().union(*(sig[section] for sig in signatures)))
                 if len({json.dumps(sig[section].get(field), sort_keys=True) for sig in signatures}) > 1
             ]
-        source, graph = _source(root, code)
+        source, graph = _source(root, code, sulfur_phosphates=sulfur_phosphates)
         row["source"] = source
         row["mapped_roles"] = {"status": "NOT_ASSESSED"}
         if selected is not None and graph is not None:
@@ -236,6 +241,9 @@ def audit_catalogue(workbook, ccd_root):
         "authoritative_sheets": list(residue_library.AUTHORITATIVE_SHEETS),
         "summary": {
             "records": len(records), "distinct_codes": len(components),
+            **({"sulfur_phosphate_centers": count(center["status"] for item in components
+                for center in item["source"].get("declarations", {}).get("sulfur_phosphates", []))}
+               if sulfur_phosphates else {}),
             "records_by_sheet": count(loc["sheet"] for loc in locations),
             "sugar_labels": labels("Sugar Type"), "phosphate_labels": labels("Phosphate"),
             "record_resolution": count(c["record_resolution"] for c in components),

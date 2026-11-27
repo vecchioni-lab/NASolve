@@ -6389,6 +6389,8 @@ nasolve cif-doctor catalogue --workbook /path/to/Ligands.xlsx \
   --ccd-root /path/to/chemical_components --json
 ```
 
+Add `--sulfur-phosphates` to inspect phosphorus atoms bonded to sulfur. The JSON lists their immediate neighbours, source bond orders, charges, attached hydrogens and leaving-atom flags. For a single terminal sulfur it identifies each role when the source declares one carbon-linked oxygen, one retained terminal oxygen and one leaving oxygen. Multiple sulfurs, a bridging sulfur or ambiguous roles carry their own findings. Internal product charge and phosphorus hand still require a linked structure and a chemical definition.
+
 Both paths are explicit. The command reads only the chosen workbook and exact
 `{first_character_lower}/data_{exact_code}.cif` resources. It performs no discovery,
 network request, native execution, generation, mutation or output-file write.

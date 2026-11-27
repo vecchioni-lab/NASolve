@@ -330,6 +330,8 @@ def build_parser() -> argparse.ArgumentParser:
     cif_catalogue.add_argument("--workbook", required=True, type=Path, help="explicit NARestraints Ligands.xlsx")
     cif_catalogue.add_argument("--ccd-root", required=True, type=Path,
                                help="explicit CCD directory containing a/data_CODE.cif etc.; no discovery")
+    cif_catalogue.add_argument("--sulfur-phosphates", action="store_true",
+                               help="read the source bond orders, leaving atoms and roles at phosphorus bonded to sulfur")
     cif_catalogue.add_argument("--json", action="store_true", help="print the complete coverage census")
     deposition_geometry = cif_sub.add_parser("deposition-geometry", help="remeasure nucleic-acid bond and angle findings from a wwPDB validation CIF")
     deposition_geometry.add_argument("model", type=Path, help="exact coordinate mmCIF assessed by the report")
@@ -1745,7 +1747,7 @@ def _cif_catalogue(args: argparse.Namespace) -> int:
     from .cif_catalogue import audit_catalogue
 
     try:
-        report = audit_catalogue(args.workbook, args.ccd_root)
+        report = audit_catalogue(args.workbook, args.ccd_root, sulfur_phosphates=args.sulfur_phosphates)
         if args.json:
             print(json.dumps(report, indent=2, sort_keys=True, allow_nan=False))
         else:
@@ -1754,6 +1756,9 @@ def _cif_catalogue(args: argparse.Namespace) -> int:
             for label, key in (("Source availability", "source_status"), ("Graph checks", "graph_status"),
                                ("NAR records", "record_resolution"), ("Mapped atom names", "mapped_roles")):
                 print(label + ": " + ", ".join(f"{name}={count}" for name, count in summary[key].items()))
+            if args.sulfur_phosphates:
+                counts = summary["sulfur_phosphate_centers"]
+                print(f"Found {sum(counts.values())} source phosphorus centres bonded to sulfur.")
             print("Native qualification: not assessed; no linkage profile assigned or chemistry changed.")
             print("Use --json for exact worksheet rows, source hashes, findings and next actions.")
         return 2  # A completed census is review evidence, never a support certificate.
