@@ -21,13 +21,14 @@ def _points(raw):
             for line in raw.splitlines() if line[:6] in (b'ATOM  ', b'HETATM')]
 
 
-def prepare_coupled_sugars(source, inspection, native, *, native_owner, fixed_owner):
-    """Bind 19 canonical atoms, two fixed base attachments and outer phosphates.
+def prepare_coupled_sugars(source, inspection, native, *, native_owner, fixed_owner, include_bases=False):
+    """Bind two canonical sugars, optionally releasing their complete bases.
 
     The caller authenticates the complete native reference and source bytes.
     Ordered native chirality signs are source-relative, not absolute CIP labels.
     This describes a scope, never physical feasibility or scientific acceptance.
     """
+    _need(type(include_bases) is bool, "include_bases must be Boolean")
     rows=model_atom_rows(source);points=_points(source)
     order,_=_native_atom_order(native,source,native_owner)
     sites={row[0]:row[1] for row in (inspection['phosphate'],inspection['o3'])}
@@ -54,6 +55,21 @@ def prepare_coupled_sugars(source, inspection, native, *, native_owner, fixed_ow
     selected=sorted([atom(acceptor,n) for n in ('P','OP1','OP2',*_SUGAR)]
                     +[atom(donor,n) for n in _SUGAR])
     _need(len(set(selected))==19,'Require exactly 19 distinct coupled-sugar atoms')
+    base_indices=set();base_by_site={};base_map=None
+    if include_bases:
+        # Reuse the established canonical NARestraints role inventory; this
+        # supplies names only, never pairing, topology or new native forces.
+        from .topostitch_recipe import _library, recipe_digest
+        _,maps,_,_=_library()
+        base_map={code:maps[code] for code in sorted(set(sites.values()))}
+        for site,code in sites.items():
+            names=set(maps[code].values())
+            expected=names|set(_SUGAR)|{'P','OP1','OP2'}
+            _need({name for s,name in lookup if s==site}==expected,
+                  'Endpoint base release requires the complete canonical heavy-atom inventory')
+            base_by_site[site]={atom(site,name) for name in names}
+            base_indices.update(base_by_site[site])
+        selected=sorted(set(selected)|base_indices)
     scalar=fixed_owner.review_fixed_coordinates(native,[points[i] for i in order])
     centers={atom(s,n) for s in sites for n in _CENTERS}
     hands=[]
@@ -97,19 +113,27 @@ def prepare_coupled_sugars(source, inspection, native, *, native_owner, fixed_ow
         for ordinal,row in enumerate(native['geometry']['proxy_details'][family]):
             ids=[order[i] for i in row['i_seqs']+row.get('j_seqs',[])]
             if set(ids)&set(selected):
-                _need(set(ids)&set(selected)<=c1,'Unexpected moving atom in coupled base planes')
+                _need(set(ids)&set(selected)<=c1|base_indices,'Unexpected moving atom in coupled base planes')
                 if family=='planarity':
                     weights=row['weights']
                     _need(len(ids)>=4 and len(weights)==len(ids) and all(math.isfinite(w) and w>0 for w in weights),
                           'Unqualified C1-dependent monomer plane')
                     if len({(rows[i]["chain"],rows[i]["residue_number"]) for i in ids})==1:
                         monomers.extend(set(ids)&c1)
+                        if include_bases:
+                            plane_site=(rows[ids[0]]['chain'] or '_')+':'+str(rows[ids[0]]['residue_number'])
+                            _need(base_by_site.get(plane_site,set())<=set(ids),
+                                  'Endpoint base release requires its complete positive native monomer plane')
                 planes.append(dict(family=family,ordinal=ordinal,source_indices=ids))
     _need(sorted(monomers)==sorted(c1),'Require one native C1-dependent monomer plane per sugar')
-    return dict(schema_version=1,kind='topostitch-coupled-sugar-scope',source_sha256=sha256(source).hexdigest(),
+    result=dict(schema_version=1,kind='topostitch-coupled-sugar-scope',source_sha256=sha256(source).hexdigest(),
         movable_indices=selected,sites=[dict(site=s,component=c) for s,c in sorted(sites.items())],
         native_to_source=list(order),local_bonds=local,sugar_hands=hands,
         fixed_phosphate_indices=anchors,c1_dependent_planes=planes,scientific_acceptance=False)
+    if include_bases:
+        result.update(movement_scope='coupled-endpoints',base_indices=sorted(base_indices),
+                      canonical_base_roles=base_map,canonical_base_roles_sha256=recipe_digest(base_map))
+    return result
 
 
 def review_coupled_geometry(scope, reference, initial, returned, points, *, fixed_owner, proxy_owner):
@@ -190,3 +214,33 @@ def observe_coupled_native(collector, *, phase, root, save, read):
         _need(len(finished)==1,'Coupled native return was not observed')
     _need(Model.unset_processed_pdb_file is unset and Driver.write_before_run_outputs is before,
           'Coupled native observation hooks not restored')
+
+
+def observe_post_exit_packing(model, *, runtime, capture, policy_snapshot, state_snapshot):
+    """Raw Cedar ASU capture after restoration, not full-capture authentication.
+
+    This performs two additional energy evaluations and may update native caches.
+    The phosphate runtime has released its temporary angle/torsion terms; the
+    reported total target is therefore not the refinement objective. Fixed
+    nonbonded policy and returned scientific state must remain unchanged.
+    """
+    geo=model.restraints_manager.geometry
+    _need(runtime.restored is True and geo in runtime.owned,
+          'Packing observation requires the restored owner of this returned manager')
+    before=state_snapshot();policy_before=policy_snapshot(geo)
+    points=[[float(v) for v in p] for p in model.get_sites_cart()]
+    raw=capture(geo,points)
+    policy_after=policy_snapshot(geo)
+    _need(before==state_snapshot(),'Post-exit packing observation changed model or observations')
+    _need(policy_before['policy_sha256']==policy_after['policy_sha256'],
+          'Post-exit packing observation changed fixed nonbonded policy')
+    _need(raw.get('evaluation_calls')==2 and len(raw.get('snapshots',()))==2,
+          'Unexpected post-exit packing evaluation count')
+    return dict(schema_version=1,kind='topostitch-raw-post-exit-packing',
+        raw_native=raw,policy_before=policy_before,policy_after=policy_after,
+        extra_evaluation_calls=2,model_and_observations_unchanged=True,
+        packing_acceptance='UNASSESSED',scientific_acceptance=False,
+        limitations=[
+            'Separate evaluations after runtime exit; native caches may change.',
+            'Temporary phosphate angle/torsion terms have been released; total energy is not the refinement objective.',
+            'Raw directed-pair observation only; no full native capture authentication, packing acceptance or independent neighbor enumeration.'])

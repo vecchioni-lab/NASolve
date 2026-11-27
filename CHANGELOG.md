@@ -17,6 +17,23 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W297 — Release canonical endpoint bases explicitly
+
+- Add opt-in `movement_scope: coupled-endpoints` to the unphased native
+  phosphate receiver. Reuse coupled-sugar admission and NARestraints canonical
+  atom roles; require complete heavy-atom inventories and positive native
+  monomer planes. Only the two registered endpoint bases are additionally
+  released; opposite strands and outer phosphates remain held.
+- Retain all original native definitions, source-relative sugar hands, source
+  bytes outside the mask, ADPs, occupancy and diffraction observations. Existing
+  six-atom and coupled-sugar requests retain their behavior.
+- For this new scope, record raw directed packing after native hooks restore,
+  with two disclosed extra evaluations per phase and unchanged fixed nonbonded
+  policy/model/data. This is not full-capture authentication or packing approval;
+  temporary image angle/torsion terms have been released, so its total energy
+  is not the refinement objective.
+
+
 
 ### W296 — Admit an explicit two-sugar movement scope
 

@@ -6,10 +6,12 @@ from tests.helpers import pdb_record
 from nasolve.topostitch_recipe import model_atom_rows
 
 
-def fixture(reverse=False):
+def fixture(reverse=False, full=False):
     sugar=("O5'","C5'","C4'","O4'","C3'","O3'","C2'","C1'")
-    names=[(1,'DC',n) for n in ('P','OP1','OP2',*sugar,'N1','C2','C6')]
-    names += [(7,'DA',n) for n in ('P','OP1','OP2',*sugar,'N9','C8','C4')]
+    bases={'B:1':('N1','C2','O2','N3','C4','N4','C5','C6') if full else ('N1','C2','C6'),
+           'B:7':('N9','C8','N7','C5','C6','N6','N1','C2','N3','C4') if full else ('N9','C8','C4')}
+    names=[(1,'DC',n) for n in ('P','OP1','OP2',*sugar,*bases['B:1'])]
+    names += [(7,'DA',n) for n in ('P','OP1','OP2',*sugar,*bases['B:7'])]
     names += [(2,'DA',n) for n in ('P','OP1','OP2')]
     raw=''.join(pdb_record('ATOM',i+1,n,c,'B',r,x=i+.1,y=1,z=2,element=n[0]) for i,(r,c,n) in enumerate(names)).encode()
     source=model_atom_rows(raw);order=list(range(len(source)))
@@ -35,8 +37,8 @@ def fixture(reverse=False):
     for site,base in [('B:1','N1'),('B:7','N9')]:
         for center,neighbors in [("C1'",["C2'","O4'",base]),("C3'",["C2'","C4'","O3'"]),("C4'",["C3'","O4'","C5'"])]:
             ix=indices(site,[center,*neighbors]);hands.append(dict(i_seqs=ix,both_signs=False,target=1.,weight=1.,observed=1.,status='MEASURED',sign_agreement=True))
-        ix=indices(site,["C1'",base,'C2' if site=='B:1' else 'C8','C6' if site=='B:1' else 'C4'])
-        planes.append(dict(i_seqs=ix,atoms=[atoms[i]['label'] for i in ix],weights=[1.]*4))
+        ix=indices(site,["C1'",*bases[site]])
+        planes.append(dict(i_seqs=ix,atoms=[atoms[i]['label'] for i in ix],weights=[1.]*len(ix)))
     native=dict(atom_count=len(atoms),atoms=atoms,geometry=dict(proxy_details=dict(bond_simple=bonds,planarity=planes,parallelity=[])),measurements=dict(chirality=hands))
     attachment=SimpleNamespace(_native_atoms=lambda n,raw: ([(f"{a['identity']['chain_id']}:{a['identity']['resseq']}",a['identity']['resname'],a['atom_id']) for a in n['atoms']],None))
     fixed=SimpleNamespace(review_fixed_coordinates=lambda n,points:dict(measurements=deepcopy(n['measurements'])))
@@ -159,3 +161,62 @@ def test_native_observer_uses_actual_interpretation_and_restores_hooks(tmp_path,
     assert seen==[processed,processed]
     assert Model.unset_processed_pdb_file is original_unset
     assert Driver.write_before_run_outputs is original_write
+
+
+@pytest.mark.parametrize('reverse',[False,True])
+def test_endpoint_bases_release_only_complete_canonical_endpoints(reverse):
+    from nasolve.topostitch_phosphate_scope import prepare_coupled_sugars
+    raw,inspection,native,attachment,fixed,lookup=fixture(reverse,full=True)
+    old=prepare_coupled_sugars(raw,inspection,native,native_owner=attachment,fixed_owner=fixed)
+    new=prepare_coupled_sugars(raw,inspection,native,native_owner=attachment,fixed_owner=fixed,include_bases=True)
+    assert len(old['movable_indices'])==19 and len(new['movable_indices'])==37
+    assert set(old['movable_indices'])<set(new['movable_indices'])
+    assert len(new['base_indices'])==18 and new['movement_scope']=='coupled-endpoints'
+    assert new['fixed_phosphate_indices']==old['fixed_phosphate_indices']
+    assert not set(new['movable_indices'])&set(new['fixed_phosphate_indices'])
+    assert new['sugar_hands']==old['sugar_hands'] and new['scientific_acceptance'] is False
+
+
+@pytest.mark.parametrize('defect',['missing_base','incomplete_plane','zero_base_plane','extra_atom','partial_occupancy'])
+def test_endpoint_base_scope_refuses_incomplete_native_plane_or_canonical_inventory(defect):
+    from nasolve.topostitch_phosphate_scope import prepare_coupled_sugars
+    raw,inspection,native,attachment,fixed,lookup=fixture(full=True)
+    if defect=='missing_base':
+        raw,inspection,native,attachment,fixed,lookup=fixture()
+    elif defect=='incomplete_plane':
+        plane=native['geometry']['proxy_details']['planarity'][0]
+        plane['i_seqs'].pop();plane['atoms'].pop();plane['weights'].pop()
+    elif defect=='zero_base_plane':native['geometry']['proxy_details']['planarity'][0]['weights'][-1]=0.
+    elif defect=='extra_atom':
+        raw += pdb_record('ATOM',99,'C7','DC','B',1,x=1,y=2,z=3,element='C').encode()
+    else:
+        lines=raw.splitlines(keepends=True);i=lookup['B:1','N4'];lines[i]=lines[i][:54]+b'  0.50'+lines[i][60:];raw=b''.join(lines)
+    with pytest.raises(ValueError):
+        prepare_coupled_sugars(raw,inspection,native,native_owner=attachment,fixed_owner=fixed,include_bases=True)
+
+
+@pytest.mark.parametrize('defect',[None,'active','foreign','state','policy','calls'])
+def test_raw_packing_requires_restored_owner_and_preserves_scientific_state(defect):
+    from nasolve.topostitch_phosphate_scope import observe_post_exit_packing
+    geo=object();runtime=SimpleNamespace(restored=defect!='active',owned={} if defect=='foreign' else {geo:object()})
+    model=SimpleNamespace(restraints_manager=SimpleNamespace(geometry=geo),get_sites_cart=lambda:[[1.,2.,3.]])
+    state={'atoms':[[1.,2.,3.]],'observations':[[1,2,3,False]]};policy={'policy_sha256':'same','cache_observations':{'n':0}}
+    calls=[]
+    def capture(g,points):
+        assert g is geo and points==[[1.,2.,3.]];calls.append('capture')
+        policy['cache_observations']['n']+=2
+        if defect=='state':state['atoms'][0][0]=2.
+        if defect=='policy':policy['policy_sha256']='changed'
+        return dict(evaluation_calls=3 if defect=='calls' else 2,pairs=[],snapshots=[{},{}])
+    def execute():
+        return observe_post_exit_packing(model,runtime=runtime,capture=capture,
+            policy_snapshot=lambda g:deepcopy(policy),state_snapshot=lambda:deepcopy(state))
+    if defect:
+        with pytest.raises(ValueError):execute()
+        if defect in ('active','foreign'):assert not calls
+    else:
+        result=execute()
+        assert result['extra_evaluation_calls']==2 and result['scientific_acceptance'] is False
+        assert result['packing_acceptance']=='UNASSESSED'
+        assert result['policy_before']['cache_observations']!=result['policy_after']['cache_observations']
+        assert result['model_and_observations_unchanged'] is True

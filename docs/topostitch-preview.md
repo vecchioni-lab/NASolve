@@ -5,6 +5,58 @@ window and terminal motion. It preserves the source model and fixed anchors.
 This is a controlled trial generator: it does not find the best placement, close
 an atomistic backbone, refine a model or recommend campaign adoption.
 
+## Release the two endpoint bases (W297)
+
+The schema-1 native phosphate request accepts
+`movement_scope: "coupled-endpoints"` as an explicit unphased extension of
+`coupled-sugars`. It releases the complete canonical bases of the same two
+registered connection residues. The opposite strand, other residues and outer
+phosphates stay fixed. It does not infer partners, enlarge a duplex window,
+release junctions or add pairing/stacking restraints.
+
+Admission reuses NARestraints' canonical atom-role inventory and the authenticated
+native reference. Both endpoints require the exact canonical heavy-atom set,
+full occupancy without alternate conformers, complete positive native monomer
+planes, existing sugar/attachment bonds and the six source-relative sugar hands.
+The number of moving atoms depends on the two canonical bases: DC/DA gives
+**37 moving atoms**, compared with 19 for sugars alone. Modified endpoints remain
+unsupported. All original proxy definitions remain checked on return; the eight
+registered seam terms are the only additions. The old six-atom default and
+`coupled-sugars` output remain unchanged.
+
+The existing `coupled-scope.json` adds `movement_scope`, `base_indices`,
+`canonical_base_roles` and its digest for this new option. The existing candidate,
+GEO, full-precision/serialized hand and pucker checks remain required. A measurable
+pucker is not approval of its conformation. The existing explicit 2 Å diagnostic
+cap is an input choice, not a new default or a guaranteed feasible displacement.
+
+This option also records `post-exit-packing.json` in each phase, referenced by
+`science.json`. Cedar's existing `capture_asu_pairs` performs **two additional
+energy evaluations after the phosphate runtime has restored its hooks**.
+The same returned manager must still be owned by that completed runtime, and
+model coordinates, ADPs, occupancy, observations and crystal frame must remain
+unchanged. Cedar's passive fixed-policy snapshots must match; working cache
+observations may change and are retained. Temporary phosphate angle/torsion
+terms have been released at this point: the raw total target is **not** the
+refinement objective. Raw directed pairs and native repulsion values are saved,
+but the partial live envelope is not passed off as a complete native capture.
+`packing_acceptance` stays `UNASSESSED`; this observation does not qualify
+neighbor generation, chemical pairing or scientific selection.
+
+Focused validation: 235 native-source and 235 relocated-installed checks pass;
+CLI help, installed zero-cycle preflight and one five-cycle/100-iteration-cap
+Phenix **2.2.1-6174** fit complete using frozen Cedar
+`2d6de758e40059c4346d9cb80354741bf5456313`. The original install/build paths are
+removed before installed checks. No whole-run portability or combined release is
+claimed. Nine scope cases and six post-exit cases were observed failing before
+implementation. A repository-wide test attempt was interrupted at Rowan's
+focused-only coordination request: 1,407 tests and 238 subtests had passed,
+while five process-lifecycle tests failed on sandbox-denied process signalling
+or listing. That run is **not a full-suite pass** and is preserved separately.
+Exact commands, dependencies, source pins and results live under the NASolve
+anchor `branch-artifacts/willow/w297-endpoint-base-scope/qualification-02/`;
+`validation-scope.json` records the interrupted attempt. Raw science stays local.
+
 ## Review a window before generating coordinates (W291)
 
 The ordinary preview command can now inspect the selected scope without writing

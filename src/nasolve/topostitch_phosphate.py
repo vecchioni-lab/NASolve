@@ -18,7 +18,7 @@ from .topostitch_inspect import _keys
 from .topostitch_preview import _json
 from .topostitch_recipe import recipe_digest, model_atom_rows
 from .topostitch_endpoint import audit_masked_endpoint
-from .topostitch_phosphate_scope import prepare_coupled_sugars, review_coupled_geometry, observe_coupled_native
+from .topostitch_phosphate_scope import prepare_coupled_sugars, review_coupled_geometry, observe_coupled_native, observe_post_exit_packing
 
 
 def _save(path, value):
@@ -48,9 +48,9 @@ def _request(path):
             raise ValueError('Require explicit native column labels')
     _allow_frame_roundoff(value)
     scope=value.get('movement_scope','connecting-backbone')
-    if not isinstance(scope,str) or scope not in ('connecting-backbone','coupled-sugars'):
-        raise ValueError('movement_scope must be connecting-backbone or coupled-sugars')
-    if scope=='coupled-sugars' and 'diffraction' in value:
+    if not isinstance(scope,str) or scope not in ('connecting-backbone','coupled-sugars','coupled-endpoints'):
+        raise ValueError('movement_scope must be connecting-backbone, coupled-sugars or coupled-endpoints')
+    if scope in ('coupled-sugars','coupled-endpoints') and 'diffraction' in value:
         raise ValueError('Coupled-sugar admission currently supports unphased canonical DNA only')
     phased = 'diffraction' in value
     if phased:
@@ -223,7 +223,8 @@ def run_registered_phosphate_refinement(request_path, output_directory, *, pheni
     Input references are resolved relative to the request, with explicit absolute
     paths also supported. The complete native reference capture is authenticated
     by Cedar. Six connecting atoms move by default; coupled-sugars explicitly
-    admits the source-checked 19-atom sugar scope. All other source bytes,
+    admits the source-checked 19-atom sugar scope; coupled-endpoints additionally
+    releases their complete canonical bases, holding opposite strands. All other source bytes,
     Cartesian ADPs and occupancies are protected. Output remains under review.
     """
     from .topostitch_captured_job import _cedar, _unchanged
@@ -249,9 +250,12 @@ def run_registered_phosphate_refinement(request_path, output_directory, *, pheni
             importlib.import_module(namespace+'.'+name)
         if 'diffraction' in spec:
             importlib.import_module(__package__+'.topostitch_native_recipe')
-        coupled=spec.get('movement_scope')=='coupled-sugars'
+        coupled=spec.get('movement_scope') in ('coupled-sugars','coupled-endpoints')
         if coupled:
             for name in ('cif_terminal_qualification','refinement_residue_geometry','refinement_sugar_pucker'):
+                cedar[name]=importlib.import_module(namespace+'.'+name)
+        if spec.get('movement_scope')=='coupled-endpoints':
+            for name in ('cif_native_asu','cif_live_nonbonded_policy'):
                 cedar[name]=importlib.import_module(namespace+'.'+name)
         runtime_sources = {}
         for name, module in list(sys.modules.items()):
@@ -273,7 +277,8 @@ def run_registered_phosphate_refinement(request_path, output_directory, *, pheni
         scope=None
         if coupled:
             scope=prepare_coupled_sugars(source,inspection,reference_native,
-                native_owner=cedar['cif_attachment_native'],fixed_owner=cedar['cif_fixed_geometry'])
+                native_owner=cedar['cif_attachment_native'],fixed_owner=cedar['cif_fixed_geometry'],
+                include_bases=spec.get('movement_scope')=='coupled-endpoints')
             chosen=scope['movable_indices']
         elif len(chosen) != 6:
             raise ValueError('Require six unambiguous connecting-backbone atoms')
@@ -406,7 +411,7 @@ def _worker_owned(phase, *, run_compatible_refinement, phosphate_runtime):
     data = '../'+plan['inputs']['data']
     phased = controls.get('diffraction')
     allow_frame_roundoff = _allow_frame_roundoff(controls)
-    coupled=controls.get('movement_scope')=='coupled-sugars'
+    coupled=controls.get('movement_scope') in ('coupled-sugars','coupled-endpoints')
     if coupled and phased is not None:
         raise ValueError('Coupled phased refinement is not admitted')
     guard = None
@@ -589,6 +594,20 @@ refinement {{
                 complete_force_calls=owner.calls.get((7,True),0),bond=owner.bond)
         if not owner.restored: raise ValueError('Native phosphate hooks not restored')
         report['hooks_restored']=True
+        if controls.get('movement_scope')=='coupled-endpoints':
+            namespace=run_compatible_refinement.__module__.rsplit('.',1)[0]
+            asu=importlib.import_module(namespace+'.cif_native_asu')
+            policy_owner=importlib.import_module(namespace+'.cif_live_nonbonded_policy')
+            from cctbx.geometry_restraints import flags as geometry_flags
+            invocation=dict(flags=geometry_flags.flags(default=True),normalization=False,compute_gradients=True)
+            packing=observe_post_exit_packing(model,runtime=owner,capture=asu.capture_asu_pairs,
+                policy_snapshot=lambda geo:policy_owner.snapshot_live_nonbonded_policy(geo,**invocation),
+                state_snapshot=lambda:dict(atoms=state(model),observations=observations(fm),
+                    frame=_scattering_frame(model.get_xray_structure())))
+            _save('post-exit-packing.json',packing)
+            report['post_exit_packing']=dict(anchor='phase',path='post-exit-packing.json',
+                sha256=sha256(Path('post-exit-packing.json').read_bytes()).hexdigest(),
+                extra_evaluation_calls=2,packing_acceptance='UNASSESSED')
     except BaseException as exc:
         report.update(status='FAILED',error=type(exc).__name__+': '+str(exc));raise
     finally:
