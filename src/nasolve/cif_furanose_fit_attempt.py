@@ -108,12 +108,23 @@ def _measure(plan, root, number, binding, state):
     return clean, record
 
 
-def _reservation(root, number, preparation_sha256):
+def _reservation(root, number, fingerprint, field='preparation_result_sha256'):
     reservation = read_record(path_in(root,'reservation.json'))
     _need(type(reservation.get('number')) is int and reservation['number'] == number
-          and reservation.get('preparation_result_sha256') == preparation_sha256
-          and _valid_identity(reservation.get('coordinator')), 'Local-fit reservation differs from this preparation')
+          and reservation.get(field) == fingerprint and _valid_identity(reservation.get('coordinator')),
+          'Sugar job reservation differs from its source')
     return reservation
+
+
+def reserve_sugar_job(root, number, fingerprint, field):
+    """Record ownership before making a new numbered fit or fixed-coordinate read visible."""
+    parent = root.parent
+    with TemporaryDirectory(prefix='.reserve-sugar-job-', dir=parent.parent) as temporary:
+        stage = Path(temporary)
+        write_record(stage/'reservation.json', dict(number=number, coordinator=current_process_identity(),
+                                                   **{field:fingerprint}))
+        stage.rename(root)
+        _sync_directory(parent)
 
 
 def _read_finished(plan, root, number):
@@ -141,33 +152,40 @@ def read_checked_sugar_fit(run, *, attempt_number, fit_number):
     return _read_finished(plan, root, fit_number)
 
 
-def _next_fit(parent, after_fit, preparation_sha256):
-    paths = [p for p in parent.iterdir() if p.name != 'fit.lock']
+def next_sugar_job(parent, after, fingerprint, *, kind, scope, field):
+    """Reuse completed work. A fresh attempt requires a named predecessor and proof of stopped processes."""
     numbers = []
-    for path in paths:
-        match = re.fullmatch(r'fit-(\d{4,})',path.name)
-        _need(match and not path.is_symlink() and path.is_dir(), 'Unexpected local-fit directory member')
+    for path in parent.iterdir():
+        if path.name == kind+'.lock':
+            continue
+        match = re.fullmatch(re.escape(kind)+r'-(\d{4,})', path.name)
+        _need(match and not path.is_symlink() and path.is_dir(), f'Unexpected numbered sugar {kind} entry')
         numbers.append(int(match[1]))
     _need(sorted(numbers) == list(range(1,len(numbers)+1))
-          and all((parent/f'fit-{n:04d}').is_dir() for n in numbers), 'Numbered local fits are not contiguous')
-    last=len(numbers)
-    if after_fit is None and last:
+          and all((parent/f'{kind}-{n:04d}').is_dir() for n in numbers), f'Numbered sugar {kind} attempts are not contiguous')
+    last = len(numbers)
+    if after is None and last:
         return last, False
-    _need(after_fit is None or (type(after_fit) is int and 0 < after_fit == last),
-          'A fresh fit requires the exact preceding fit number')
+    _need(after is None or (type(after) is int and 0 < after == last),
+          f'A fresh {kind} requires the exact preceding {kind} number')
     if last:
-        previous=parent/f'fit-{last:04d}'
-        state=_inspect_owned_processes(previous, _SCOPE)
-        stopped=state['state'] in {'STOPPED','STOPPED_UNFINISHED'} and state['activity'] is False
-        if not stopped and not (previous/'ownership'/_SCOPE.header).exists():
-            # A power loss can precede the native owner's header. Reservation
-            # preceded publication of this numbered folder and any worker.
-            reservation=_reservation(previous,last,preparation_sha256)
-            stopped=(not path_in(previous,'ownership/phases').exists()
-                     and coordinator_alive(reservation['coordinator']) is False)
-        _need(stopped, 'Previous local fit has no proof its processes stopped')
-        _need(state.get('finished',{}).get('outcome') != 'RETURNED', 'A completed fit is already available for this preparation')
+        previous = parent/f'{kind}-{last:04d}'
+        reservation = _reservation(previous, last, fingerprint, field)
+        state = _inspect_owned_processes(previous, scope)
+        stopped = state['state'] in {'STOPPED','STOPPED_UNFINISHED'} and state['activity'] is False
+        if not stopped and not (previous/'ownership'/scope.header).exists():
+            # The atomic reservation predates the native owner's header and every worker.
+            stopped = (not path_in(previous,'ownership/phases').exists()
+                       and coordinator_alive(reservation['coordinator']) is False)
+        _need(stopped, f'Previous sugar {kind} has no proof its processes stopped')
+        _need(state.get('finished',{}).get('outcome') != 'RETURNED',
+              f'A completed {kind} is already available')
     return last+1, True
+
+
+def _next_fit(parent, after_fit, preparation_sha256):
+    return next_sugar_job(parent, after_fit, preparation_sha256, kind='fit',
+                          scope=_SCOPE, field='preparation_result_sha256')
 
 
 def fit_checked_sugar(run, discover_phenix, *, attempt_number, after_fit=None):
@@ -187,12 +205,7 @@ def fit_checked_sugar(run, discover_phenix, *, attempt_number, after_fit=None):
               and exe.name=='phenix.geometry_minimization', 'Require the selected Phenix geometry dispatcher')
         binding=_binding(plan,sha256(exe.read_bytes()).hexdigest())
         files=_inputs(plan)
-        with TemporaryDirectory(prefix='.reserve-sugar-fit-', dir=parent.parent) as temporary:
-            stage=Path(temporary)
-            write_record(stage/'reservation.json', dict(number=number, preparation_result_sha256=plan.result_sha256,
-                                                       coordinator=current_process_identity()))
-            stage.rename(root)
-            _sync_directory(parent)
+        reserve_sugar_job(root, number, plan.result_sha256, 'preparation_result_sha256')
         _freeze(root/'inputs',{**files,'binding.json':_bytes(binding)},[])
         native=root/'native'
         native.mkdir()

@@ -71,7 +71,14 @@ def _freeze_native(receipt, files, archive):
         _sync_directory(archive.parent)
 
 
-def bind_fitted_preparation(run, checked, exact, number, *, native_receipt=None, may_freeze=False):
+def _configured_phenix():
+    from .config import load_config
+    from .phenix_runtime import discover_phenix
+    return discover_phenix(load_config())
+
+
+def bind_fitted_preparation(run, checked, exact, number, *, native_receipt=None, may_freeze=False,
+                            discover_phenix=None, after_native_read=None):
     """Return the checked fitted coordinates and portable evidence binding. Existing proofs reopen offline."""
     from .cif_postmr_publication import _reference
 
@@ -81,14 +88,33 @@ def bind_fitted_preparation(run, checked, exact, number, *, native_receipt=None,
     _need(fit_root.is_dir(), 'The named sugar fit does not exist for this preparation')
     fit = _read_finished(plan, fit_root, number)
     archive = path_in(run, f'PostMR/FittedPreparationEvidence/preparation-{checked.attempt_number:04d}/fit-{number:04d}.zip')
+    managed = None
     if not archive.exists():
-        _need(may_freeze and native_receipt is not None,
-              'The first publication of this fit needs the preserved Phenix native receipt for its fitted model')
-        _, files = _qualify(native_receipt, fit, checked, plan, parent_native)
-        _freeze_native(native_receipt, files, archive)
+        _need(may_freeze, 'Frozen Phenix evidence for the fitted coordinates is missing')
+        if native_receipt is None:
+            from .cif_fitted_native_read import acquire_fit_read
+            def verify(receipt):
+                return _qualify(receipt, fit, checked, plan, parent_native)[1]
+            receipt, files = acquire_fit_read(run, checked, plan, fit, discover=discover_phenix or _configured_phenix,
+                                              after=after_native_read, verify=verify)
+            managed = receipt, files
+        else:
+            receipt = native_receipt
+            _, files = _qualify(receipt, fit, checked, plan, parent_native)
+        _freeze_native(receipt, files, archive)
+    else:
+        _need(after_native_read is None, 'A verified native reading is already available. Omit --after-native-read to use it.')
     archive_ref = _reference(archive, run)
     with expanded_runtime_evidence(archive, archive_ref['sha256']) as view:
-        assessment, _ = _qualify(view/'evidence/native_receipt.json', fit, checked, plan, parent_native)
+        source = (view/'evidence').resolve()
+        assessment, archived_files = _qualify(source/'native_receipt.json', fit, checked, plan, parent_native)
+        if managed:
+            from .cif_fitted_native_read import compact_verified_read
+            try:
+                compact_verified_read(*managed, archived_files, source, archive_ref)
+            except OSError as exc:
+                from warnings import warn
+                warn(f'Fitted native evidence is archived. Some duplicate working files may remain ({exc}).', RuntimeWarning)
     if native_receipt is not None:
         _need(sha256(_read(Path(native_receipt).expanduser().resolve(strict=True))).hexdigest()
               == assessment['native_receipt_sha256'], 'A different native receipt already belongs to this fit')

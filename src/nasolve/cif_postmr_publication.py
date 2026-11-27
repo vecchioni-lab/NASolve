@@ -264,23 +264,28 @@ def _publish_run_report(path, previous_sha256, report):
     os.replace(temporary, path); _sync_directory(path.parent)
 
 
-def publish_checked_preparation(run_directory, *, attempt_number, sugar_fit=None, native_receipt=None):
+def publish_checked_preparation(run_directory, *, attempt_number, sugar_fit=None, native_receipt=None,
+                                discover_phenix=None, after_native_read=None):
     """Publish/recover one initial review checkpoint; retain the receipt-only API."""
-    return _publish_checked_preparation(run_directory, attempt_number=attempt_number, sugar_fit=sugar_fit, native_receipt=native_receipt)[0]
+    return _publish_checked_preparation(run_directory, attempt_number=attempt_number, sugar_fit=sugar_fit,
+        native_receipt=native_receipt, discover_phenix=discover_phenix, after_native_read=after_native_read)[0]
 
 
-def publish_checked_preparation_with_notes(run_directory, *, attempt_number, sugar_fit=None, native_receipt=None) -> tuple[dict, tuple[str, ...]]:
+def publish_checked_preparation_with_notes(run_directory, *, attempt_number, sugar_fit=None, native_receipt=None,
+                                           discover_phenix=None, after_native_read=None) -> tuple[dict, tuple[str, ...]]:
     """Return the sealed receipt and current notes from the same verified result.
 
     Notes are descriptive, not selection authority, and are never inserted into
     the historical preparation receipt. Repeating publication revalidates once;
     callers must not replay the full proof again merely to format these notes.
     """
-    record, checked = _publish_checked_preparation(run_directory, attempt_number=attempt_number, sugar_fit=sugar_fit, native_receipt=native_receipt)
+    record, checked = _publish_checked_preparation(run_directory, attempt_number=attempt_number, sugar_fit=sugar_fit,
+        native_receipt=native_receipt, discover_phenix=discover_phenix, after_native_read=after_native_read)
     return record, checked.limitations
 
 
-def _check_requested_fit(meta, number, receipt):
+def _check_requested_fit(meta, number, receipt, after_native_read):
+    _need(after_native_read is None, 'A preparation is already reserved. Omit --after-native-read to reopen it.')
     stored = meta.get('fitted_sugar')
     _need((stored is None and number is None and receipt is None)
           or (isinstance(stored, dict) and type(number) is int and number == stored.get('fit_number')),
@@ -290,7 +295,9 @@ def _check_requested_fit(meta, number, receipt):
               'Requested native receipt differs from the published fit')
 
 
-def _new_publication_inputs(run, report, request, checked, exact, number, receipt):
+def _new_publication_inputs(run, report, request, checked, exact, number, receipt, discover_phenix, after_native_read):
+    _need(after_native_read is None or (type(after_native_read) is int and after_native_read > 0
+          and number is not None and receipt is None), 'A native retry requires a fitted sugar and its last native read number')
     if number is None:
         _need(receipt is None, 'A fitted-model native receipt requires an exact sugar fit')
         _check_new_mutation_intent(run, report, request, exact)
@@ -298,14 +305,20 @@ def _new_publication_inputs(run, report, request, checked, exact, number, receip
     from .cif_fitted_preparation import bind_fitted_preparation
     _need(checked.local_fit_site is not None, 'This preparation did not request a sugar fit')
     _check_new_mutation_intent(run, report, request, exact, fitted_site=checked.local_fit_site)
-    return bind_fitted_preparation(run, checked, exact, number, native_receipt=receipt, may_freeze=True)
+    acquisition = {}
+    if discover_phenix is not None:
+        acquisition['discover_phenix'] = discover_phenix
+    if after_native_read is not None:
+        acquisition['after_native_read'] = after_native_read
+    return bind_fitted_preparation(run, checked, exact, number, native_receipt=receipt, may_freeze=True, **acquisition)
 
 
-def _publish_checked_preparation(run_directory, *, attempt_number, sugar_fit=None, native_receipt=None):
+def _publish_checked_preparation(run_directory, *, attempt_number, sugar_fit=None, native_receipt=None,
+                                discover_phenix=None, after_native_read=None):
     """Publish one initial review checkpoint, or finish the same interrupted save.
 
-    A different preparation never overwrites an earlier choice. No construction,
-    native execution, checkpoint reselection or in-place scientific retry occurs.
+    A new fitted choice may need a fixed-coordinate Phenix reading. Reopening a
+    saved publication verifies its evidence without discovering or launching Phenix.
     """
     _need(type(attempt_number) is int and attempt_number >= 1, 'Require an exact positive preparation attempt')
     run = Path(run_directory).expanduser().resolve()
@@ -321,7 +334,7 @@ def _publish_checked_preparation(run_directory, *, attempt_number, sugar_fit=Non
             meta = record.get('checked_preparation')
             _need(isinstance(meta, dict) and meta.get('attempt_number') == attempt_number,
                   'A different preparation is already published or reserved; preserve its choice')
-            _check_requested_fit(meta, sugar_fit, native_receipt)
+            _check_requested_fit(meta, sugar_fit, native_receipt, after_native_read)
             checked = _checked_record(run, report, record)
             if report.get('postmr') == record:
                 _read(checkpoint_path)
@@ -337,7 +350,8 @@ def _publish_checked_preparation(run_directory, *, attempt_number, sugar_fit=Non
             # This is a NEW adoption. Verify the current requested mutations
             # against the recorded producer once; completed publications do not
             # reinterpret their old mutation plan through future planning policy.
-            checked, fit_evidence = _new_publication_inputs(run, report, request, checked, exact, sugar_fit, native_receipt)
+            checked, fit_evidence = _new_publication_inputs(run, report, request, checked, exact, sugar_fit,
+                                                         native_receipt, discover_phenix, after_native_read)
             payload = _payload(run, report, checked, exact, created=now(), previous_report_sha256=sha256(previous).hexdigest(),
                                fit_evidence=fit_evidence)
             # Existing root validation checks observations, model and phosphate
@@ -386,7 +400,8 @@ def _check_new_mutation_intent(run, report, request, exact, *, fitted_site=None)
     _need(actions == construction['controls']['actions'], 'Run mutation intent differs from recorded construction')
 
 
-def publish_preparation_alternative(run_directory, *, attempt_number, sugar_fit=None, native_receipt=None):
+def publish_preparation_alternative(run_directory, *, attempt_number, sugar_fit=None, native_receipt=None,
+                                discover_phenix=None, after_native_read=None):
     """Save/recover an unselected REVIEW alternative; preserve the initial root.
 
     The exact same construction/request may supply a later checked model/restraint
@@ -413,10 +428,11 @@ def publish_preparation_alternative(run_directory, *, attempt_number, sugar_fit=
         receipt = _alternative_path(run,attempt_number)
         if receipt.exists() or receipt.is_symlink():
             _read(receipt); record = read_record(receipt)
-            _check_requested_fit(record['preparation']['checked_preparation'], sugar_fit, native_receipt)
+            _check_requested_fit(record['preparation']['checked_preparation'], sugar_fit, native_receipt, after_native_read)
             checked = _check_alternative(run,report,record,attempt_number,verified[attempt_number])
         else:
-            checked, fit_evidence = _new_publication_inputs(run, report, request, checked, exact, sugar_fit, native_receipt)
+            checked, fit_evidence = _new_publication_inputs(run, report, request, checked, exact, sugar_fit,
+                                                         native_receipt, discover_phenix, after_native_read)
             preparation = _payload(run,report,checked,exact,created=now(),
                                    previous_report_sha256=sha256(previous).hexdigest(), fit_evidence=fit_evidence)
             _root_payload(dict({k:v for k,v in report.items() if k != 'autosol'},postmr=preparation),run)
