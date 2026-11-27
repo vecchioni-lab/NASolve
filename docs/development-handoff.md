@@ -8,13 +8,17 @@ claims.
 
 ## Where to resume
 
-C618 took all three RNA substitutions through a fresh ordinary checked PostMR.
-The local store already held the independently qualified 6MZ dictionary. On a
-miss for the usual order, NASolve reproduced the reordered input from source,
-checked the original generator and current reader, and froze the same dictionary
-in the run. Coot and ReadySet completed without a hand-supplied snapshot. The
-scientific questions are what five ordinary cycles keep, and what happens on a
-fresh machine if the store contains neither 6MZ entry.
+C618–C619 took 2MG, 5MC and 6MZ through ordinary checked PostMR. Starting
+with no 6MZ dictionary, Phenix added an O4′–C2 bond absent from the source.
+Cedar recorded the failed attempt and recovered in one fresh attempt using the
+same source atoms in a different order. The prepared coordinates, observations,
+five parameter files and four dictionaries matched the warm-cache run byte for
+byte. In that run, five ordinary Phenix cycles kept the 26 ring bonds within
+1.98 restraint widths, all twelve sugar hands and all 38 backbone links.
+Rwork/Rfree were 0.2292/0.2338. Three of 50 pairing distances exceeded three
+widths. The unmodified host supplied the diffraction data. Next examine the
+2′-O-methyl sugars on this same eight-site design. Leave the OP2-state question
+with Q13.
 
 C617 moved the starting-B correction into ordinary Coot construction. It checks the
 two base graphs for one methyl in place of a hydrogen, on carbon or nitrogen.
@@ -26,8 +30,7 @@ eight sugar hands survived. Three of 50 pair contacts still require review.
 Rwork/Rfree were 0.2287/0.2356 (earlier two-site run 0.2213/0.2360).
 Fresh checked construction now saves its base-B decisions and rechecks them
 from the raw Coot model, parent and dictionaries when the run is reopened.
-Next bring the separately qualified 6MZ dictionary into fresh three-site
-preparation without asking the scientist to supply a snapshot.
+The three-site run above extends that result to the third methylated base.
 
 C614–C616 traced the stretched RNA rings to a construction choice. Coot set all
 32 transported base atoms to B = 20 Å². The three original host bases had median
@@ -141,6 +144,11 @@ refinement and its returned model. Reuse the shared map sampling, checkpoint and
 readers. The transferable handoff still needs an installed combined-source check. [Integration checks](cif-doctor-completion-queue.md#q16--final-integration-portability-and-retained-artifact-closure).
 
 ## Validation and release
+
+C619 passed 172 focused outer-request, cache and ordinary-PostMR checks, followed
+by 124 acquisition, retention and source-order checks. The two pytest selections
+overlap. Native Phenix 2.2.1-6174 and Coot 1.3.3 completed cold preparation. Its
+compact record reopened after relocation with the original inputs inaccessible.
 
 C587's plane inspection passed 123 focused tests plus seven subtests. C589's AutoRefine
 reporting passed 61 plus 52 subtests. Each set passed from source and from a relocated

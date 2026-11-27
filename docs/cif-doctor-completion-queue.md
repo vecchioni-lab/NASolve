@@ -1205,7 +1205,21 @@ A schema-2 construction record carries and rechecks the per-site starting
 values after relocation. Earlier construction records retain their original
 interpretation.
 
-Phosphate protonation is a separate question. See the Q13 note below.
+C618–C619 carried all three substitutions through ordinary Coot and checked
+ReadySet in a new numbered run. A second run withheld the entire 6MZ cache
+entry. Its first native builder added O4′–C2. The source-certified recovery
+ran once, within the original allowance, and its independently qualified
+product matched the warm run. After relocation, the complete record reproduced both stopped child identities
+and the original false bond with the old inputs inaccessible. Replay read 309
+retained files and started no external program. The prepared model, observations,
+five parameter files and four dictionaries matched byte for byte. Five ordinary refinement
+cycles on those inputs gave Rwork/Rfree 0.2292/0.2338 and kept all 26 ring bonds
+within 1.98 widths. All 38 backbone links and twelve sugar hands survived.
+Three of 50 paired distances exceeded three widths. The longest was 3.585 Å
+between 2MG C:12 N2 and A:4 DC O2. The restored 6MZ itself paired at 3.472 Å
+through B:5 N1 to A:11 DT N3. This establishes three substitutions on the
+measured host frame. The other five design sites and the OP2 state still need
+work. Phosphate protonation remains with Q13.
 
 C601 found the source-preserving generator had introduced a 5.779 Å bond between
 O4′ and ring C2. All 42 source edges were present. The ten bonds of the purine

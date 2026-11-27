@@ -23,7 +23,7 @@ from .cif_restraint_context import derive_restraint_context
 
 
 def initialize_postmr_dictionary_request(model, report, components, source_output, output, *,
-        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, frozen_sources=None, construction_inputs=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, select_anionic_phosphate=False, reader_control_policy=None, source_ribose_workbook=None, select_native_rna_pucker=False, saved_connected_order_store=None, **execution_limits):
+        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, frozen_sources=None, construction_inputs=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, select_anionic_phosphate=False, reader_control_policy=None, source_ribose_workbook=None, select_native_rna_pucker=False, saved_connected_order_store=None, automatic_connected_order=False, **execution_limits):
     """Freeze ordinary sources and derived contexts for one existing request.
 
     Components specify code/generation and optional retained_snapshot,
@@ -78,6 +78,8 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     """
     _need(type(select_anionic_phosphate) is bool, "Require an explicit phosphate selection choice")
     bond_discovery_fields(automatic_bond_targets,bond_targets)
+    from .cif_complete_order_recovery import permission as order_permission
+    order_permission(automatic_connected_order)
     bond_targets = _bond_target_declarations(bond_targets)
     _need(type(automatic_plane_support) is bool, 'automatic_plane_support must be a boolean')
     _need(isinstance(components, (list, tuple)) and components,
@@ -229,6 +231,7 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
             **({'bond_targets':bond_targets} if bond_targets is not None else {}),
             **({'automatic_bond_targets':True} if automatic_bond_targets else {}),
             **({'reader_control_policy':reader_control_policy} if reader_control_policy is not None else {}),
+            **({'automatic_connected_order':True} if automatic_connected_order else {}),
             **artifact_options,
             **execution_limits)
 

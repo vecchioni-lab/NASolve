@@ -219,7 +219,7 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
         if select_representation:
             from restraints import residue_library
             from .cif_dictionary_store import default_dictionary_store
-            source_chemistry = dict(select_anionic_phosphate=True, select_native_rna_pucker=True,
+            source_chemistry = dict(select_anionic_phosphate=True, select_native_rna_pucker=True, automatic_connected_order=True,
                                     saved_connected_order_store=default_dictionary_store() if store_root is None else store_root,
                                     source_ribose_workbook=Path(residue_library.__file__).parent/'data/Ligands.xlsx')
         record = initialize_postmr_dictionary_request(inputs.model_path,inputs.run_report,components,None,request,
@@ -394,6 +394,8 @@ def _ordinary_result_from_exact(request, attempt_number, exact):
         report_path=request/'attempts'/f'attempt-{attempt_number:04d}'/'result.json',
         limitations=(
             'These preparation checks do not establish diffraction-refinement success.',
+            *(f'{code}: the builder introduced an unlisted bond. A fresh source-order attempt supplied the checked dictionary.'
+              for code in sorted(exact['result'].get('source_order_recoveries', {}))),
             *_plane_support_limitations(exact['result'], exact.get('execution')),
             *_selected_plane_limitations(exact),
         ),

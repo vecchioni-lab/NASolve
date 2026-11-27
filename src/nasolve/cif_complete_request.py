@@ -14,6 +14,7 @@ from .cif_numerical_replay import numerical_replay_scope
 from .campaign_process import CampaignProcessError, coordinator_alive, current_process_identity, exclusive_lock
 from .campaign_records import _sync_directory, now, path_in, read_record, write_record, serialized_record_size
 from . import cif_acquisition_attempt as acquisition
+from . import cif_complete_order_recovery as order_recovery
 from . import cif_component_runtime as frozen_tree
 from . import cif_repair_attempt as repair
 from .cif_prepared_repair_execution import _source_plane_support_snapshot, _source_bond_target_choices, BOND_TARGET_POLICY
@@ -255,7 +256,8 @@ def _artifact_options(config):
                 **_artifact_fields(config.get('artifact_policy')))
 
 
-def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False, optional_failure_policy=None, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=None, compact_evidence=False, plane_support=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False):
+def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False, optional_failure_policy=None, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=None, compact_evidence=False, plane_support=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, automatic_connected_order=False):
+    order_permission = order_recovery.permission(automatic_connected_order)
     bond_discovery_fields(automatic_bond_targets,bond_targets)
     _need(not automatic_bond_targets or artifact_policy in (CAPTURE_ARTIFACT_POLICY, STAGED_ARTIFACT_POLICY),
           'Automatic bond discovery requires the v4 native-capture or v5 staged artifact policy')
@@ -396,7 +398,7 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
         **repair.compact_evidence_fields(compact_evidence),
         **({'plane_support':plane_support} if plane_support is not None else {}),
         **({'bond_targets':bond_targets} if bond_targets is not None else {}),
-        **bond_discovery_fields(automatic_bond_targets,bond_targets),
+        **bond_discovery_fields(automatic_bond_targets,bond_targets), **order_permission,
         **({'plane_generation_policy':PLANE_GENERATION_POLICY} if automatic_plane_support else {}),
         **({'qualify_no_repair':True} if qualify_no_repair else {}),**repair.failure_policy_fields(optional_failure_policy),
         **_continuation_fields(continuation_options,limits))))
@@ -408,7 +410,7 @@ def _request(root):
           and type(r['schema_version']) is int and r['schema_version'] == 1 and r['policy_id'] == POLICY_ID
           and _uuid(r['request_id']) and r['inputs'] == dict(anchor=ANCHOR,path='inputs'), 'Invalid complete request')
     c = r['configuration']
-    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'],qualify_no_repair=c.get('qualify_no_repair',False),optional_failure_policy=c.get('optional_failure_policy'),model_context=c.get('model_context'),restraint_context=c.get('restraint_context'),continuation_options=c.get('continuation'),literal_na_inputs=c.get('literal_na_inputs'),explicit_na_policy=c.get('explicit_na_policy'),construction_inputs=c.get('construction_inputs'),artifact_policy=c.get('artifact_policy'),compact_evidence=c.get('compact_evidence',False),plane_support=c.get('plane_support'),automatic_plane_support='plane_generation_policy' in c,bond_targets=c.get('bond_targets'),automatic_bond_targets='bond_discovery_policy' in c)
+    expected = _configuration(root/'inputs',c['controls'],c['limits'],c['max_attempts'],qualify_no_repair=c.get('qualify_no_repair',False),optional_failure_policy=c.get('optional_failure_policy'),model_context=c.get('model_context'),restraint_context=c.get('restraint_context'),continuation_options=c.get('continuation'),literal_na_inputs=c.get('literal_na_inputs'),explicit_na_policy=c.get('explicit_na_policy'),construction_inputs=c.get('construction_inputs'),artifact_policy=c.get('artifact_policy'),compact_evidence=c.get('compact_evidence',False),plane_support=c.get('plane_support'),automatic_plane_support='plane_generation_policy' in c,bond_targets=c.get('bond_targets'),automatic_bond_targets='bond_discovery_policy' in c,automatic_connected_order='connected_order_policy' in c)
     _need(_same(c,expected), 'Frozen complete request changed')
     return r
 
@@ -416,7 +418,7 @@ def _request(root):
 def initialize_dictionary_request(source_selection, components, model, output, *, consumer,
         expected_links, native_context, supplementary_phils=(), native_timeout_seconds=90,
         component_timeout_seconds=600, attribution_timeout_seconds=90,
-        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=ARTIFACT_POLICY, compact_evidence=True, plane_support=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, reader_control_policy=None):
+        derivative_timeout_seconds=300, total_timeout_seconds=900, max_attempts=2, qualify_no_repair=True, optional_failure_policy=repair.FALLBACK_POLICY_ID, model_context=None, restraint_context=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, construction_inputs=None, artifact_policy=ARTIFACT_POLICY, compact_evidence=True, plane_support=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, reader_control_policy=None, automatic_connected_order=False):
     """Freeze all declared inputs before children exist. Require a fresh destination.
 
     One to sixteen component types declare code, contexts and generation settings, with optional
@@ -427,6 +429,8 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     revalidates them against the frozen recipe/pins/relative dispatchers. New
     requests independently qualify a no-repair original by default; historical
     requests without that frozen mode retain their original no-op behavior.
+    automatic_connected_order permits one separately owned, source-proven row
+    reordering after an eligible failed acquisition, within its original time allowance.
     An optional prepared-model context is rederived from frozen model/intent;
     supplementary PHIL additionally requires a frozen explicit restraint context.
     Its bounded grammar keeps the composer as the only site-modifier owner.
@@ -471,6 +475,7 @@ def initialize_dictionary_request(source_selection, components, model, output, *
     CAPTURE_ARTIFACT_POLICY or STAGED_ARTIFACT_POLICY and excludes explicit bond_targets. Exact proposals are
     frozen inside each fresh owned repair, never substituted into old attempts.
     """
+    order_recovery.permission(automatic_connected_order)
     bond_discovery_fields(automatic_bond_targets,bond_targets)
     _need(not automatic_bond_targets or artifact_policy in (CAPTURE_ARTIFACT_POLICY, STAGED_ARTIFACT_POLICY),
           'Automatic bond discovery requires the v4 native-capture or v5 staged artifact policy')
@@ -551,7 +556,7 @@ def initialize_dictionary_request(source_selection, components, model, output, *
         validate_restraint_context(model, supplementary_phils, restraint_context, require_scoped_names=True)
     unchanged(); root.mkdir(parents=True,exist_ok=False); _sync_directory(root.parent)
     _freeze(root/'inputs',files,sorted(directories))
-    config = _configuration(root/'inputs',controls,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,model_context=model_context,restraint_context=restraint_context,continuation_options=continuation_options,construction_inputs=construction_ref,artifact_policy=artifact_policy,compact_evidence=compact_evidence,plane_support=support_config,automatic_plane_support=automatic_plane_support,bond_targets=bond_config,automatic_bond_targets=automatic_bond_targets,**compiler_refs); unchanged()
+    config = _configuration(root/'inputs',controls,limits,max_attempts,qualify_no_repair=qualify_no_repair,optional_failure_policy=optional_failure_policy,model_context=model_context,restraint_context=restraint_context,continuation_options=continuation_options,construction_inputs=construction_ref,artifact_policy=artifact_policy,compact_evidence=compact_evidence,plane_support=support_config,automatic_plane_support=automatic_plane_support,bond_targets=bond_config,automatic_bond_targets=automatic_bond_targets,automatic_connected_order=automatic_connected_order,**compiler_refs); unchanged()
     r = write_record(root/'request.json',dict(schema_version=1,policy_id=POLICY_ID,request_id=str(uuid.uuid4()),
         created_utc=now(),inputs=dict(anchor=ANCHOR,path='inputs'),configuration=config))
     _request(root)
@@ -696,6 +701,16 @@ def _children(root, attempt, intent, config, closed=None):
             absent = not unknown or (closed is not None and closed.get(code) is None)
             states[code] = dict(state='NOT_CREATED' if absent else 'UNKNOWN',activity=False if absent else None)
             bindings[code] = None
+        if order_recovery.eligible(config, code):
+            secondary = order_recovery.inspect(root, code, intent['number'], expected, child)
+            if secondary is not None:
+                recovered_request, recovered = secondary
+                key = 'order/' + code
+                states[key] = recovered
+                bindings[key] = None
+                if 'intent' in recovered:
+                    _owned(recovered, intent)
+                    bindings[key] = _binding(recovered_request, recovered)
     if 'plane_generation_policy' in config:
         plane_states,plane_bindings = _plane_children(attempt,intent,config)
         states.update(plane_states); bindings.update(plane_bindings)
@@ -765,10 +780,9 @@ def _result(root, attempt, intent, config, children, bindings):
     report = read_record(attempt/'result.json'); elapsed = report.get('elapsed_seconds')
     _need(type(elapsed) in (int,float) and math.isfinite(elapsed) and 0 <= elapsed < config['limits']['total_timeout_seconds'],
           'Invalid complete request elapsed allowance')
-    _need(all(r['state'] == 'STOPPED' and r['finished']['outcome'] == 'RETURNED' for name,r in children.items() if name != 'continuation'),
-          'Complete request has an unsuccessful child')
+    chosen_bindings, recovered = order_recovery.selection(config['components'], children, bindings)
     prepared = read_acquired_dictionary_bundle(attempt/'preparation'); controls = config['controls']
-    selection = {code:bindings[code]['number'] for code in config['components']}
+    selection = {code:binding['number'] for code,binding in chosen_bindings.items()}
     pc = read_record(attempt/'preparation/preparation_intent.json')['controls']
     sites = {code:dict(attempt_number=selection[code],contexts=site['contexts'],phosphate_atom_policy=site['phosphate_atom_policy'],
         terminal_resource=None if site['terminal_resource'] is None else 'inputs/'+site['terminal_resource'],
@@ -785,7 +799,7 @@ def _result(root, attempt, intent, config, children, bindings):
         if not name.startswith(outer_only):
             _need(_read(attempt/'preparation/inputs'/name) == data, 'Prepared input differs from frozen outer intent')
     for code,chosen in prepared['report']['selected_attempts'].items():
-        bound = bindings[code]
+        bound = chosen_bindings[code]
         _need(all(chosen[k] == bound[k] for k in ('request_sha256','attempt_sha256','attempt_id'))
             and chosen['attempt_number'] == bound['number'], 'Preparation selected another component attempt')
     execution = _json(_read(attempt/'repair/attempts/attempt-0001/execution/repair_execution.json'))
@@ -809,6 +823,7 @@ def _result(root, attempt, intent, config, children, bindings):
     expected = dict(schema_version=1,policy_id=POLICY_ID,attempt_sha256=intent['record_sha256'],selected_attempts=selection,
         preparation=dict(anchor='attempt_directory',path='preparation'),repair=dict(anchor='attempt_directory',path='repair'),
         status=execution['status'],automatic_adoption=False,elapsed_seconds=elapsed,**continuation_fields,**_outer_provenance_fields(config),
+        **({'source_order_recoveries':recovered} if recovered else {}),
         **(dict(plane_generation=_plane_outcomes(root,attempt,config)[2]) if 'plane_generation_policy' in config else {}))
     _need(_same({k:v for k,v in report.items() if k != 'record_sha256'},expected), 'Complete request result claims differ')
     return dict(result=report,preparation=prepared,execution=execution,runtime=runtime,
@@ -867,7 +882,12 @@ def _inspect_dictionary_request(directory, *, selected_attempt=None, result_sink
                     sink.extend(public_result(v,view,p) if view!=p else v for v in values)
     _need(len(rows) <= config['max_attempts'], 'Outer attempt allowance exceeded')
     unknown = False
-    if (root/'acquisitions').exists(): _members(root/'acquisitions',set(),set(config['components']))
+    if (root/'acquisitions').exists():
+        allowed = set(config['components'])
+        for code in config['components']:
+            if order_recovery.eligible(config, code):
+                allowed.update(order_recovery.directory_name(code, r['number']) for r in rows if 'intent' in r)
+        _members(root/'acquisitions',set(),allowed)
     owners = {_bytes(_attempt_identity(r['intent'])):r['intent'] for r in rows if 'intent' in r}
     for code,expected in config['components'].items():
         state = acquisition.inspect_acquisition_request(root/'acquisitions'/code)
@@ -1010,15 +1030,22 @@ def execute_dictionary_request_attempt(directory, phenix, store_root, *, generat
             attempt_id=str(uuid.uuid4()),coordinator=current_process_identity(),created_utc=now()))
         parent = _attempt_identity(intent)
         try:
-            selected = read_acquisition_sources(root/'inputs/sources'); components = []
+            selected = read_acquisition_sources(root/'inputs/sources'); components = []; recoveries = {}
             for code in config['components']:
                 remaining(); site = controls['sites'][code]; choice = selected['sources'][code]
-                child = acquisition.acquire_dictionary_attempt(choice['source'],code,store,root/'acquisitions'/code,
-                    source_authority=choice['source_authority'],consumer=controls['consumer'],generation=generation[code],phenix=phenix,
+                directory = root/'acquisitions'/code
+                options = dict(source_authority=choice['source_authority'],consumer=controls['consumer'],
+                    generation=generation[code],phenix=phenix,
                     retained_snapshot=None if site['retained'] is None else root/'inputs'/site['retained'],
                     native_timeout_seconds=limits['native_timeout_seconds'],total_timeout_seconds=limits['component_timeout_seconds'],
                     max_attempts=config['max_attempts'],_parent_attempt_identity=parent,_remaining_seconds=remaining)
-                components.append(dict(code=code,request_directory=root/'acquisitions'/code,attempt_number=child['attempt_number'],
+                if order_recovery.eligible(config, code):
+                    directory, child, prior = order_recovery.acquire(choice['source'], code, store, directory, number, options)
+                    if prior is not None:
+                        recoveries[code] = prior
+                else:
+                    child = acquisition.acquire_dictionary_attempt(choice['source'], code, store, directory, **options)
+                components.append(dict(code=code,request_directory=directory,attempt_number=child['attempt_number'],
                     contexts=site['contexts'],phosphate_atom_policy=site['phosphate_atom_policy'],
                     **_furanose_inputs(root/'inputs',site),
                     **({'terminal_resource':root/'inputs'/site['terminal_resource']} if site['terminal_resource'] is not None else {})))
@@ -1064,7 +1091,8 @@ def execute_dictionary_request_attempt(directory, phenix, store_root, *, generat
             result = write_record(attempt/'result.json',dict(schema_version=1,policy_id=POLICY_ID,attempt_sha256=intent['record_sha256'],
                 selected_attempts={c['code']:c['attempt_number'] for c in components},preparation=dict(anchor='attempt_directory',path='preparation'),
                 repair=dict(anchor='attempt_directory',path='repair'),status=child['execution']['status'],automatic_adoption=False,elapsed_seconds=elapsed,
-                **continuation_fields,**_outer_provenance_fields(config),**plane_fields))
+                **continuation_fields,**_outer_provenance_fields(config),**plane_fields,
+                **({'source_order_recoveries':recoveries} if recoveries else {})))
             # Sealing owns the complete child/result validation and final deadline.
             # Repeating that same validation here consumes the frozen allowance.
             remaining(); _seal(root,attempt,intent,request,'RETURNED',remaining=remaining)

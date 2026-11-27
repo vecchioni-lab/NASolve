@@ -8,11 +8,12 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
-- Checked PostMR can find an already qualified dictionary made by reordering
-  the original atom rows when the usual numerical recipe has no cache entry.
-  It verifies the exact source, reconstructed Phenix input, generator and
-  current reader, then freezes the selected dictionary with the run. The
-  whole model still goes through its normal chemistry and ReadySet checks.
+- On the source-preserving path, checked PostMR can recover when Phenix adds
+  a bond absent from the chemical source. It first checks for an exact qualified
+  dictionary. With an empty cache, the stopped native attempt must prove the
+  extra bond before NASolve retries once with the same atoms in a different
+  order. Both attempts remain in the run and share the original time budget.
+  The selected dictionary and whole model go through their normal checks.
 
 - When Coot gives a new methylated RNA base a single starting B factor, fresh
   PostMR construction can recover the original site’s atom-by-atom values. The
