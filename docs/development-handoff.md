@@ -1,6 +1,6 @@
 # NASolve development handoff
 
-Updated 27 November 2026. Three Q07 substitutions have completed ordinary refinement. The fourth has reached a linked preparation control.
+Updated 27 November 2026. Three Q07 substitutions have completed ordinary refinement. The fourth has survived a direct five-cycle diffraction test.
 Q06 keeps the PDU B:4 site under review. The aim is for a scientist to use a supported modified nucleotide without hand-editing a CIF. Coot builds the
 residue, NARestraints supplies the intended pairs and stacks, and Cedar checks what
 ReadySet and Phenix actually use. The [completion queue](cif-doctor-completion-queue.md#pipeline-position) owns the work order. The [capability table](cif-doctor.md#current-capability-boundary) owns the support
@@ -8,7 +8,7 @@ claims.
 
 ## Where to resume
 
-C624 placed the fourth substitution, 2′-O-methylpseudouridine (UY1), at A:19 opposite adenine D:4. Cedar matched the two pairing atoms and the measured sugar–base twist. Phenix moved only the 21 atoms of UY1, clearing five contacts shorter than 2.2 Å while leaving 839 neighbors fixed. The two base-pair contacts ended at 3.00 and 2.88 Å. Both phosphate links remained 1.60–1.61 Å. Transferring the source sugar pose without matching the host twist left a 2.08 Å clash after the same minimization. This is a geometry-only control. The ordinary four-site preparation and diffraction test are separate milestones. [Fourth-site evidence and limits](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
+C624 placed the fourth substitution, 2′-O-methylpseudouridine (UY1), at A:19 opposite adenine D:4. Cedar matched the two pairing atoms and the measured sugar–base twist. Phenix moved only the 21 atoms of UY1, clearing five contacts shorter than 2.2 Å while leaving 839 neighbors fixed. The two base-pair contacts ended at 3.00 and 2.88 Å. Both phosphate links remained 1.60–1.61 Å. Transferring the source sugar pose without matching the host twist left a 2.08 Å clash after the same minimization. This was the geometry-only control. Five diffraction cycles then retained all 22 UY1 bonds and its four sugar hands. The N3–N1 and O2–N6 pair contacts finished at 2.93 and 2.83 Å, and both phosphate links stayed near 1.61 Å. All 125 test reflections kept their assignments. Phenix chose the 2′-endo numerical table with the next phosphate present. In this direct four-site experiment we supplied the repaired dictionary and the host residue’s median starting B. Ordinary four-site PostMR still needs to make those choices and clear the initial sugar clash. [Fourth-site evidence and limits](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
 
 C623 checked the pairing edge for the C-linked UY1 site. The older NARestraints
 recipe asked adenine to bind the oxygen on the sugar-facing side. On the same

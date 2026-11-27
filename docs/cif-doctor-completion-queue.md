@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 27 November 2026, after C624. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 27 November 2026, after C625. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -48,7 +48,7 @@ The next transfer check examines the locked-sugar contacts on a separate mixed s
    verified starting values during ordinary construction. Two sites passed a fresh
    five-cycle run with three of 50 pair distances still outside three widths.
    Resolve the linked OP2 chemistry separately before promoting the panel.
-   C618–C619 completed ordinary three-site construction with and without a saved 6MZ dictionary and checked the five-cycle return. C624 placed the fourth substitution with a different sugar attachment. Check its geometry after fitting the host diffraction data and carry the qualified chemical choices into ordinary construction. The source-backed internal sulfur linkage remains a later panel site. The four pseudouridine attachment corrections ship in NARestraints 1.1.4. Record what was constructed, what Phenix kept after
+   C618–C619 completed ordinary three-site construction with and without a saved 6MZ dictionary and checked the five-cycle return. C624 placed the fourth substitution with a different sugar attachment. Five cycles retained its pairing edge, both phosphate links and appropriate ring geometry. Carry the demonstrated choices into ordinary construction and test from a cold start. The source-backed internal sulfur linkage remains a later panel site. The four pseudouridine attachment corrections ship in NARestraints 1.1.4. Record what was constructed, what Phenix kept after
    refinement, and which sites require review. The known 13-change scaffold and the
    unfamiliar panel answer different questions. [Mixed-scaffold criteria](#q07--one-mixed-scaffold-ordinary-acceptance-run).
 3. **Join the branches on a returned molecule.** Willow/Pine owns strand identity, residue
@@ -1261,6 +1261,8 @@ neighbors and the O2 contact, and measure survival in native refinement.
 [NARestraints review and primary evidence](https://github.com/vecchioni-lab/NARestraints/pull/8).
 
 C624 placed UY1 at A:19 on the registered three-site parent. The ring anchor, N–H donor and distal carbonyl define a noncollinear frame. A single rotation about C1′–C5 transferred the host sugar–base torsion. The existing phosphate-arm search then restored the two internal links. The explicit construction reproduced all 860 coordinates of an independently built seed and reopened after relocation. Phenix 2.2.1-6174 minimized only the 21 new atoms. Five short contacts, including a 0.63 Å methyl overlap, cleared. The N3–N1 and O2–N6 contacts reached 3.00 and 2.88 Å, the two O3′–P links reached 1.604 and 1.611 Å, and all four sugar stereocenters retained their hand. The control using the original source torsion retained a 2.08 Å clash after the same minimization. These controls used geometry alone. The linked site’s nearest symmetry neighbor was 8.61 Å. The other 839 atoms stayed fixed. Parent diffraction, starting displacement, native pucker choice and ordinary acquisition are separate tests.
+
+C625 then took that four-substitution model through five Phenix diffraction cycles on the unmodified host at 4.017 Å. UY1 N3–adenine N1 ended at 2.929 Å and O2–N6 at 2.830 Å. The two phosphate links measured 1.605 and 1.613 Å. All 22 native UY1 bonds matched the retained source graph, and all 16 sugar hands across the four substitutions survived. The closest other contact to UY1 was 2.68 Å. Three of 50 pair distances elsewhere remained outside three restraint widths. Rwork/Rfree were 0.2334/0.2388. All 2,267 comparable reflection indices and all 125 test assignments matched the three-site run. The model-specific output amplitudes and uncertainties had a uniform 1.00529 scale difference. The native linked sugar used `rna2p` on the seed, locally minimized and refined coordinates, each time recognizing the actual C1′–C5 attachment and A:20 phosphate. The four-site trial directly supplied the source dictionary and initialized UY1 at the host residue’s median B of 228.24 Å². Ordinary four-site acquisition, automatic constructor selection and local clash repair remain open.
 
 C601 found the source-preserving generator had introduced a 5.779 Å bond between
 O4′ and ring C2. All 42 source edges were present. The ten bonds of the purine
