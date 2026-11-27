@@ -2221,6 +2221,32 @@ No P01/S03 milestone or later recut/coupled-fit gate is closed by this observati
 | 4 | P04/S05; Willow qualification, Cedar sole force owner | Activate both explicitly registered cuts together in one bounded diagnostic fit using the combined movable-atom selection. Qualify both complete bond/angle/torsion/exclusion neighborhoods and their interaction, preserving protected rings, chemistry, thermal state and observations/Free. Reject duplicate or inconsistent restraint installation. This is the open coupled-junction gate, not a repeat of four independent single-junction fits. |
 | 5 | P05/S07; Pine workflow, existing checkpoint controller and Cedar | Restart from the immutable reviewed child with freshly bound intent and native inputs. Reuse Cedar's single force owner and existing process/checkpoint lifetimes; prove both links survive restart without stale image mappings, duplicate forces or silent checkpoint selection. The persistent GUI/review loop remains a separate release requirement. |
 
+### Joint recut receiving contract (W299)
+
+`topostitch_recut_bundle.bind_recut_phosphates(directory, inspections,
+expected_receipt_sha256=..., group_checker=...)` joins an immutable preview
+with **fresh trusted Cedar registered/inherited observations**. Supply Cedar's
+`RegisteredPhosphateRuntime.check_group` as the checker. The adapter requires
+all explicitly declared continuation IDs, the same exact current source model,
+resolved logical/coordinate/atom identities and source-image arithmetic. It
+rejects a missing member, a changed endpoint or substituting a display operator
+for the native operator. Cedar retains common-registration/distinct-end policy.
+
+The schema-1 `topostitch-recut-phosphate-binding` report carries source and target
+strand/site identities and separate `native_target_operator_xyz`,
+`native_oxygen_operator_xyz`, and `display_target_operator_xyz`. Input observation
+and preview digests are recorded. An inherited Cedar registration can predate
+Willow's separately rebuilt descendant registration; the report preserves both
+hashes without claiming that endpoint agreement proves whole-graph ancestry.
+Use the existing checkpoint/descent owners for that proof.
+
+This API is a read-only integration boundary, not a reader for untrusted user
+assertions or a refinement request. It installs no forces, writes no model,
+selects no checkpoint and approves no chemical geometry. Native refinement
+continues in the source frame through Cedar's ordinary plural continuation route;
+the recut stays a derived view. The ordinary child-to-refreshed-preview loop and
+persistent human review remain open. No migration or new CLI flag is required.
+
 **Reuse and negatives:** W239 already exercises explicit staggered directed
 routes and coordinate/tensor round trips; W240 supplies the installed local
 native entry; W243/W244 prove bounded return/export behavior and individual

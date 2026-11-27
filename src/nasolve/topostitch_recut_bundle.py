@@ -393,6 +393,103 @@ def observe_relabel_backbone_intent(directory):
     return result
 
 
+def bind_recut_phosphates(directory, inspections, *, expected_receipt_sha256, group_checker):
+    """Bind a complete Cedar-inspected group to an unchanged recut preview.
+
+    ``inspections`` are freshly produced, trusted Cedar registered/inherited
+    observations, not user assertions. ``group_checker`` is Cedar's existing
+    RegisteredPhosphateRuntime.check_group. This adapter checks correspondence;
+    it does not authenticate native captures, checkpoint ancestry or chemistry.
+    Native operators remain in the source frame even when a displayed cut makes
+    an edge local. The returned report never enables forces or adopts a model.
+    """
+    import math
+    from .topostitch_graph import _inverse
+    from .topostitch_periodic import _crystal
+    from .topostitch_recut import _arithmetic_bound
+
+    if (not isinstance(expected_receipt_sha256, str)
+            or not re.fullmatch(r'[0-9a-f]{64}', expected_receipt_sha256)):
+        raise ValueError('Require the exact expected preview receipt SHA-256')
+    if not callable(group_checker) or not isinstance(inspections, (list, tuple)) or not inspections:
+        raise ValueError('Require trusted Cedar inspections and its group checker')
+    inspection_digest = _fingerprint(inspections)
+    observed = _json(json.dumps(inspections, allow_nan=False).encode())
+    root = Path(directory); manifest = root/'preview.json'
+    frozen = {p:p.read_bytes() for p in [manifest, *(root/name for name in _FILES.values())]}
+    if sha256(frozen[manifest]).hexdigest() != expected_receipt_sha256:
+        raise ValueError('Saved preview receipt differs from the requested phosphate binding')
+    packet = load_relabel_preview(root)
+    if _fingerprint(packet) != _fingerprint(_json(frozen[manifest])):
+        raise ValueError('Representative packet changed before phosphate binding')
+    intent = _backbone_intent_observation(packet, expected_receipt_sha256)
+    nodes = {r['node_id']:r for r in intent['sites']}
+    explicit = {r['incoming_partner']['continuation_id']:r for r in nodes.values()
+                if r['incoming_partner'] and 'continuation_id' in r['incoming_partner']}
+    ids = [r['registered_continuation']['continuation_id'] for r in observed]
+    if (any(type(i) is not int or i < 1 for i in ids) or len(set(ids)) != len(ids)
+            or set(ids) != set(explicit)):
+        raise ValueError('Require the complete distinct declared phosphate continuation group')
+    gemmi, _, _ = _crystal(intent['crystal']['cell_parameters'], intent['crystal']['space_group'])
+    connections = []
+    for observation in observed:
+        edge = observation['registered_continuation']; target = explicit[edge['continuation_id']]
+        partner = target['incoming_partner']; source = nodes[partner['node_id']]
+        if (observation['model_sha256'] != packet['source_model_sha256']
+                or edge['measurement_status'] != 'MEASURED'
+                or not partner['coordinate_endpoints_resolved']
+                or target['incoming_state'] != 'DECLARED_CONTINUATION'):
+            raise ValueError('Phosphate observation requires the exact resolved preview source')
+        endpoints = {}
+        for role, row, atom, coordinate_key in (
+                ('source', source, "O3'", 'o3'), ('target', target, 'P', 'phosphate')):
+            mapping = row['coordinate_mapping']
+            expected = dict(logical_site=row['logical_site'], coordinate_site=mapping['coordinate_site'],
+                            atom=atom, mapping_issues=[])
+            identity = [mapping['coordinate_site'], mapping['coordinate_residue_code'], atom]
+            if (edge[role] != expected or edge['copy_id'] != row['copy_id']
+                    or list(observation[coordinate_key]) != identity or row['do_not_connect']):
+                raise ValueError('Phosphate endpoint differs from the declared logical/coordinate site')
+            endpoints[role] = dict(expected, node_id=row['node_id'], strand_id=row['strand_id'])
+        native_target = partner['before_target_operator_xyz']
+        native_oxygen = _inverse(gemmi.Op(native_target), gemmi.Op('x,y,z')).triplet()
+        if (edge['target_operator_xyz'] != native_target or edge['oxygen_operator_xyz'] != native_oxygen
+                or observation['o3_image'] != native_oxygen):
+            raise ValueError('Phosphate native operator differs from the source-frame connection')
+        geometry = partner['geometry']; distance = observation['distance_A']
+        bound = 4*_arithmetic_bound(*geometry['before_points'], *geometry['after_image_points'])
+        if (type(distance) not in (int, float) or not math.isfinite(distance)
+                or abs(distance-geometry['before_distance_angstrom']) > bound):
+            raise ValueError('Phosphate distance differs from replayed source-image arithmetic')
+        connections.append(dict(continuation_id=edge['continuation_id'], copy_id=edge['copy_id'],
+            **endpoints, native_target_operator_xyz=native_target, native_oxygen_operator_xyz=native_oxygen,
+            display_target_operator_xyz=partner['after_target_operator_xyz'],
+            source_distance_angstrom=distance, display_distance_angstrom=geometry['after_image_distance_angstrom'],
+            inspection_sha256=_fingerprint(observation)))
+    # Source registration may predate this descendant's separate registration.
+    # Its common-source and distinct-end semantics belong to Cedar, not this view.
+    checked = tuple(group_checker(observed))
+    if checked != tuple(ids) or any(type(i) is not int for i in checked):
+        raise ValueError('Cedar group result differs from the complete supplied continuation IDs')
+    if (_fingerprint(observed) != inspection_digest or _fingerprint(inspections) != inspection_digest
+            or any(p.read_bytes() != data for p,data in frozen.items())):
+        raise ValueError('Phosphate inspections or representative packet changed during binding')
+    first = observed[0]['registered_continuation']
+    result = dict(schema_version=1, kind='topostitch-recut-phosphate-binding',
+        preview_receipt_sha256=expected_receipt_sha256, source_model_sha256=packet['source_model_sha256'],
+        preview_registered_graph_sha256=packet['registered_graph_sha256'],
+        native_registered_graph_sha256=first['registered_graph_sha256'],
+        native_source_hashes=first['sources'], inspections_sha256=inspection_digest,
+        native_continuation_ids=ids, connections=connections, group_checked=True,
+        runtime_authority=False, checkpoint_admission=False, chemical_geometry_validated=False,
+        selection_applied=False, coordinates_materialized=False,
+        limitations=['Correspondence of trusted Cedar observations to this exact replayed preview only',
+                     'Source and preview registrations remain separate; checkpoint ancestry requires its existing owner',
+                     'No force installation, geometry approval, transformed-model refinement or checkpoint selection'])
+    result['report_sha256'] = _fingerprint(result)
+    return result
+
+
 @contextmanager
 def _native_relabel_context(directory, native_receipt, cedar_source):
     """One immutable preview/capture binding shared by read-only native reports."""

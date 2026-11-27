@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W299 — Keep joint phosphate identity through a recut preview
+
+- Add a read-only binding from the complete Cedar-inspected continuation group
+  to an exactly replayed Willow preview. Check logical/coordinate endpoints,
+  atom identity, both directed source operators and numerical distance; retain
+  separate display operators, strand IDs and source/preview provenance.
+- Delegate common-source and distinct-end validation to Cedar's existing group
+  owner. This additive API grants no native force, chemistry, checkpoint or
+  selection authority; existing previews and refinement routes remain unchanged.
+
 ### W298 — Audit the saved density in whole-model context
 
 - Record source-wide atom/residue samples and a saved atomic/mask/scale
