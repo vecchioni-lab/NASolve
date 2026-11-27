@@ -16011,3 +16011,57 @@ move only O5′/C5′ and cannot change the stubborn C4′–C3′–O3′–P t
 necessary geometric reach of a more general local phosphate placement before
 widening sugar/base motion or another fit. Keep necessary reachability distinct
 from full chirality, stacking, packing, density support or chemical admission.
+
+
+## W306 — Test fixed-anchor phosphate reach
+
+**2026-11-27; scientific diagnostic only, product code remains W305.** Before
+another fit, hold donor C4′/C3′/O3′ and acceptor C4′ in W304's exact native image
+frame. Place hypothetical P on the cone defined by the saved **1.607 Å O3′–P**
+and **119.7° C3′–O3′–P** targets; vary ε=C4′–C3′–O3′–P about its **−140°**
+target. The acceptor P–O5′–C5′–C4′ chain uses saved native lengths
+**1.593 /1.418 /1.512 Å** and angles **120.9 /109.4°**. Its endpoint distance
+varies continuously over **2.738940–3.911446 Å** as its internal torsion changes.
+This provides a necessary radial condition, not a full orientation/chemistry test.
+
+| Exact ε target subproblem | B7→B1 | D7→C8 |
+| --- | ---: | ---: |
+| Required P-to-C4′ distance |2.414997 Å|3.732229 Å|
+| Outside ideal-chain distance range |0.323943 Å|0 Å|
+| Hypothetical P movement |1.464972 Å|2.787836 Å|
+| Passes necessary radial reach |No|Yes|
+
+B7's reachable ε departures are −94.1788…−40.2129° and
++28.7508…+82.7168°; the latter intersects its one-width ±35° interval. D7 passes
+this radial test across the entire torsion circle. Neither result establishes
+full closure, handedness, packing, stacking, density or automatic movement.
+Holding O3′ is stricter than the existing six-atom receiver, so B7's failure does
+not exclude that broader scope. Native widths are not hard physical limits.
+Existing W216 O5′/C5′ shoulder moves cannot alter a torsion involving only the
+held C4′/C3′/O3′/P atoms; reuse its audit/transfer boundaries, not its motion
+as a purported direct repair for this ε defect.
+
+**Checks:** each connection has 721 cone samples and 721 internal-chain samples
+with exact prescribed lengths/angles. cctbx native dihedrals agree with an
+independent cross-product/atan2 calculation; analytic endpoint-distance extrema
+and feasible intervals agree with direct coordinates. A proper rigid frame
+change preserves the calculation. Source sites and all input hashes recheck;
+1,442 additional interval-membership checks pass. No reflection or density
+amplitudes, fitted targets, candidate PDB, native refinement or checkpoint writes.
+Phenix **2.2.1-6174** supplies `cctbx.geometry_restraints` for read-only geometry
+calculations. Static figure visually reviewed. Local NASolve anchor:
+`branch-artifacts/willow/w306-anchor-feasibility/`; `reachability.json` and
+`verification.json` record assumptions, exact sources, formulas, commands and
+checks. The successful command is:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 OMP_NUM_THREADS=1 "$PHENIX_PYTHON" -B branch-artifacts/willow/w306-anchor-feasibility/diagnostic.py
+```
+
+Scientific outputs remain local; docs/ledger only are committed. No product
+change, new suite or install repetition. S05/P04 remain PARTIAL. **Next W307:**
+for the D7 exact target, enumerate closed P–O5′–C5′–C4′ branches and all axial
+orientations satisfying native O3′–P–O5′. Measure acceptor C4′ handedness and
+flanking-angle deviations before discussing complete OP1/OP2 placement or native
+receiving. This is a bounded geometry calculation, not an epsilon/grid/Free-R
+optimization or permission to adopt a candidate.

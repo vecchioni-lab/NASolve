@@ -17,6 +17,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W306 — Test fixed-anchor phosphate reach before another fit
+
+- Record a read-only geometric feasibility check using W304's saved native
+  targets. D7's target passes necessary radial reach but needs a 2.788 Å P move;
+  B7's exact target fails this stricter fixed-O3 subproblem.
+- Keep chain orientation, sugar handedness, complete phosphate chemistry and
+  density as separate gates. No model, product code or native request changes.
+
 ### W305 — Keep refined-child context while comparing cuts
 
 - Extend the existing verified-child inspector with same-child alternatives and

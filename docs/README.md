@@ -7,6 +7,10 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Latest geometry diagnostic, W306:** [fixed-anchor phosphate reach](topostitch-periodic.md#w306--test-fixed-anchor-phosphate-reach)
+  separates radial feasibility from complete chain closure. D7's exact target
+  passes this necessary test; no repair model or fit is produced.
+
 - **Latest code, W305:** [verified child cut choices](topostitch-preview.md#compare-cuts-on-a-verified-refinement-child-w305)
   now compose comparison/preference reopening with exact checkpoint context.
   Retained and alternative cuts stay distinct; no inherited approval or selection.

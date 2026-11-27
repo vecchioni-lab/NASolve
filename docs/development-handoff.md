@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**W305 verified child cut choices, 2026-11-27.** Latest maintained code:
+**W306 fixed-anchor reach audit, 2026-11-27.** Latest maintained code:
 `5b68471fe4615c543952484c73e0f5a93acc063f`. Latest native preflight/refinement:
 **W304** (same genuine ordinary PDU parent as W300); latest density audit: **W304**.
 W298 remains the separate endpoint-base/whole-model density audit; do not conflate sources.
@@ -90,9 +90,12 @@ maintained fixed-weight product mode or recommended production weight.
    These results do not justify unbounded cycles or wider motion without partner
    authority. **W305** joins verified child inspection to same-child comparison
    and saved-preference intake, retaining exact context and distinguishing the
-   parent's retained cut from alternatives. **Next:** quantify whether the
-   stubborn D7 torsion is geometrically reachable with fixed sugar anchors,
-   before proposing another native fit. W216's O5′/C5′-only shoulder proposal
+   parent's retained cut from alternatives. **W306** finds D7's exact torsion
+   target passes radial reach with held sugar anchors, but requires a 2.788 Å P
+   move. B7's exact target fails that stricter subproblem by 0.324 Å; part of its
+   one-width range remains reachable. **Next W307:** enumerate D7 closed-chain
+   orientations satisfying O3′–P–O5′, then inspect C4′ handedness/flanking angles.
+   No full placement or fit is yet justified. W216's O5′/C5′-only shoulder proposal
    cannot change C4′–C3′–O3′–P when those four atoms are fixed. Separately, P05's
    remaining work is the shared GUI operation lifecycle, not another preview,
    preference or checkpoint registry. Existing same-source
