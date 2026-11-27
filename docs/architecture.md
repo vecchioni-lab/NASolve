@@ -2,6 +2,8 @@
 
 NASolve orchestrates external crystallographic programs; it does not reimplement them.
 
+A grouped crystal-phosphate preflight can lend its live Phenix model to a trusted, synchronous Python observation. Use a fresh diagnostic round. Verify its original v12 request and input files and keep the frozen worker dependencies, including the original NA restraint reader. Stage the observed phase separately and record its fingerprint. After ordinary Phenix setup, the parallelity and writer hooks have returned and the registered phosphate forces are still active. The observer receives the model, detached bond and reflection evidence, and a callable that reports joint and per-connection full-gradient counts. Returning requires unchanged atom identities, coordinates, displacement, occupancies, scattering state, crystal frame, geometry manager, image proxies and phosphate bond exclusions. The diagnostic returns its evidence after hook restoration without issuing a refinement preflight receipt. Ordinary v12 execution retains its original frozen phase.
+
 Explicit ordinary `observe_declared_sites=True` uses graph-valid projections from
 checked preparation to record non-triple modified sites as well as triples. The
 v9 request retains exact frozen v3 native code and all established execution/source/

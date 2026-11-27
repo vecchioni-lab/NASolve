@@ -8,6 +8,8 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- A trusted diagnostic can read the live Phenix geometry and gradient counters for a registered set of crystal phosphates during a zero-cycle preflight. NASolve checks that the observation preserves the model, phosphate forces and bonded exclusions. Existing refinement workers retain their original fingerprints.
+
 - The whole-sugar builder can select the adenine-pairing face from the source and host uracil rings when their sugar attachment changes between carbon and nitrogen. It checks the NARestraints pairing atoms and sugar hand and records the resolved placement for replay.
 
 - When a whole-sugar substitution changes the uracil attachment between C and N, its new atoms can start with the median isotropic B of the fully occupied host residue. The constructor checks the connected heavy-atom inventory and records the starting value. Older frozen seeds reproduce their original B values.
