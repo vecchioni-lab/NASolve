@@ -65,6 +65,10 @@ def _seed(control, config):
     profile = inspect_attachment_profile(control/'source.cif', code, workbook=control/'Ligands.xlsx')
     roles = profile['bindings']; values = _values(control/'numerical.cif', code)
     elements, bonds, _, graph = _graph(values); _, coordinates = _coordinates(values, source=False)
+    if 'glycosidic_rotation' in placement:
+        from .cif_pyrimidine_edge import rotate_glycosidic_base
+        coordinates = rotate_glycosidic_base(coordinates, bonds, graph, roles,
+                                             placement['glycosidic_rotation']['rotation_degrees'])
     leaving = context['ports']['phosphate']['leaving_atom']
     retained = set(placement['model_heavy_atoms'])
     heavy = sorted(n for n, e in elements.items() if e not in {'H', 'D'})

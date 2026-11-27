@@ -1,6 +1,7 @@
 """Explicit whole-furanose diagnostic placement, independent of residue names.
 
-A proper rigid transform preserves the complete numerical sugar/base geometry.
+A proper rigid transform preserves the numerical geometry. The explicit uracil
+pairing-frame policy also transfers the measured sugar–base torsion before fitting.
 Only declared neutral port deletions are allowed. Link geometry, partner chemistry,
 native restraint preparation and adoption remain separate qualifications.
 """
@@ -25,6 +26,8 @@ POLICY_ID = 'cif-rigid-whole-furanose-linked-control-v1'
 BASE_POLICY_ID = 'cif-base-anchored-whole-furanose-control-v1'
 MODEL_BASE_POLICY_ID = 'cif-model-linked-base-anchored-furanose-v1'
 _MAPPED_RING_FRAME = 'source-ring-and-workbook-roles-v1'
+_EDGE_FRAME = 'canonical-uracil-pairing-edge-v1'
+MODEL_EDGE_POLICY_ID = 'cif-model-linked-canonical-uracil-edge-v1'
 _LEAVING_FLAG = '_chem_comp_atom.pdbx_leaving_atom_flag'
 _RETAINED_PHOSPHATE_OXYGENS = {'OP1', 'OP2', 'O1P', 'O2P'}
 _PROFILES = {'unbridged-furanose-phosphate-v1', 'two-o-four-c-methylene-furanose-phosphate-v1'}
@@ -98,6 +101,10 @@ def _derive_model_base(root):
     return _derive(root, base_anchored=True, model_ports=True)
 
 
+def _derive_model_edge(root):
+    return _derive(root, base_anchored=True, model_ports=True, canonical_at_edge=True)
+
+
 def _source_phosphate_leaving_atom(values, roles):
     """Require one source-marked terminal P–OH on the bound phosphate."""
     elements, bonds, charges, neighbors = _graph(values)
@@ -162,13 +169,15 @@ def _ordinary_ports(frame, site, leaving_atom, report):
     return context, binding
 
 
-def _derive(root, *, base_anchored=False, model_ports=False):
+def _derive(root, *, base_anchored=False, model_ports=False, canonical_at_edge=False):
     selection = _load(root/'selection.json')
     fields = ('code', 'base_frame_roles') if base_anchored else ('code',)
     _object(selection, fields + (('ordinary_backbone',) if model_ports else ()),
             ('leaving_atom_source',) if model_ports else ())
     automatic_frame = model_ports and selection.get('base_frame_roles') == _MAPPED_RING_FRAME
-    if base_anchored and not automatic_frame:
+    if canonical_at_edge and selection['base_frame_roles'] != _EDGE_FRAME:
+        raise ValueError('Require the declared canonical uracil pairing frame')
+    if base_anchored and not (automatic_frame or canonical_at_edge):
         frame_roles = selection['base_frame_roles']
         if (not isinstance(frame_roles, list) or len(frame_roles) != 3
                 or any(not isinstance(r, str) or not r for r in frame_roles)
@@ -194,7 +203,8 @@ def _derive(root, *, base_anchored=False, model_ports=False):
     if selected not in sites:
         raise ValueError('Selected host site is absent')
     host = sites[selected]
-    profiles = [inspect_attachment_profile(root/name, component, workbook=root/'Ligands.xlsx')
+    profiles = [inspect_attachment_profile(root/name, component, workbook=root/'Ligands.xlsx',
+                                           check_at_pair=canonical_at_edge)
                 for name, component in [('source.cif', code), ('host.cif', host['component'])]]
     if any(p['topology_status'] != 'MATCH' or p['matched_profile'] not in _PROFILES for p in profiles):
         raise ValueError('Require unique supported source and host furanose graphs')
@@ -218,7 +228,8 @@ def _derive(root, *, base_anchored=False, model_ports=False):
     if set(xyz) != set(elements):
         raise ValueError('Require complete finite candidate coordinates')
     host_values = _values(root/'host.cif', host['component'])
-    host_elements = _graph(host_values)[0]
+    host_graph = _graph(host_values)
+    host_elements = host_graph[0]
     if (any(e in {'H', 'D'} for row in sites.values() for e in row['atoms'].values())
             or any(host_elements.get(n) != e for n, e in host['atoms'].items())
             or any(n not in host['atoms'] for n in host_roles.values())):
@@ -261,11 +272,16 @@ def _derive(root, *, base_anchored=False, model_ports=False):
                             ('ring_c4', ('ring_o', 'ring_c3', 'five_c'))]:
         a = _volume(xyz, roles[role], [roles[r] for r in adjacent])
         b = _volume(center, host_roles[role], [host_roles[r] for r in adjacent])
-        if not base_anchored and not _hand(a, b):
+        if (not base_anchored or canonical_at_edge) and not _hand(a, b):
             raise ValueError('Host and target sugar hands differ or are degenerate: ' + role)
         checks.append({'role': role, 'target_volume': a, 'host_volume': b})
         if base_anchored:checks[-1]['compatible'] = _hand(a, b)
-    if base_anchored:
+    if canonical_at_edge:
+        from .cif_pyrimidine_edge import match_uracil_frame
+        target_frame, host_frame, xyz, rotation = match_uracil_frame(
+            profiles, [(elements, bonds, charges, neighbors), host_graph], xyz, center)
+        frame_roles = ('glycosidic_ring_atom', 'adenine_N1_donor', 'adenine_N6_acceptor')
+    elif base_anchored:
         if automatic_frame:
             frame_roles = _mapped_ring_frame(profiles[0], values)
             if _mapped_ring_frame(profiles[1], host_values) != frame_roles:
@@ -275,6 +291,7 @@ def _derive(root, *, base_anchored=False, model_ports=False):
         if (target_elements != frame_elements or target_edges != host_edges
                 or any(n not in center for n in host_frame)):
             raise ValueError('Host and target base frames require matching elements/edges and present atoms')
+    if base_anchored:
         a, b = [xyz[n] for n in target_frame], [center[n] for n in host_frame]
     else:
         frame_roles = ('anomeric', 'ring_o', 'ring_c2')
@@ -343,7 +360,11 @@ def _derive(root, *, base_anchored=False, model_ports=False):
             host_sugar_compatibility_required=False, base_chemical_equivalence='NOT_ASSERTED')
     if model_ports:
         report.update(policy_id=MODEL_BASE_POLICY_ID, ordinary_backbone=selection['ordinary_backbone'])
-    if automatic_frame:
+    if canonical_at_edge:
+        report.update(policy_id=MODEL_EDGE_POLICY_ID, alignment='CANONICAL_URACIL_EDGE',
+                      base_frame_source=_EDGE_FRAME, host_sugar_compatibility_required=True,
+                      glycosidic_rotation=rotation, internal_distance_reference='AFTER_GLYCOSIDIC_ROTATION')
+    elif automatic_frame:
         report['base_frame_source'] = _MAPPED_RING_FRAME
     if 'leaving_atom_source' in selection:
         report['phosphate_leaving_atom'] = dict(atom=context['ports']['phosphate']['leaving_atom'], source=_LEAVING_FLAG)
@@ -369,17 +390,24 @@ def prepare_base_anchored_furanose_control(source, numerical, host_source, workb
 
 
 def prepare_base_anchored_furanose_from_model(source, numerical, host_source, workbook, frame, output,
-                                              *, code, site, postmr_report, base_frame_roles=None, leaving_atom=None):
+                                              *, code, site, postmr_report, base_frame_roles=None, leaving_atom=None,
+                                              canonical_at_edge=False):
     """Place an internal replacement using the host's audited asymmetric-unit links.
 
     Without an explicit leaving atom the source must flag exactly one terminal,
     neutral phosphate hydroxyl. Without explicit base roles, both source graphs
     and workbook rows must agree on the two ring neighbours of the glycosidic
-    atom. The frozen choices are rechecked on every replay.
+    atom. An explicit canonical adenine-pairing frame instead compares the two
+    chemical edges and transfers the host glycosidic torsion. The frozen choices
+    are rechecked on every replay.
     """
+    if type(canonical_at_edge) is not bool or (canonical_at_edge and base_frame_roles is not None):
+        raise ValueError('The canonical pairing frame and an explicit base frame are separate choices')
     if base_frame_roles is not None and not isinstance(base_frame_roles, list):
         raise ValueError('Require three explicit distinct NARestraints base frame roles')
     selection = dict(code=code, base_frame_roles=_MAPPED_RING_FRAME if base_frame_roles is None else base_frame_roles)
+    if canonical_at_edge:
+        selection['base_frame_roles'] = _EDGE_FRAME
     if leaving_atom is None:
         profile = inspect_attachment_profile(source, code, workbook=workbook)
         if profile['topology_status'] != 'MATCH' or profile['matched_profile'] not in _PROFILES:
@@ -389,7 +417,8 @@ def prepare_base_anchored_furanose_from_model(source, numerical, host_source, wo
     context, binding = _ordinary_ports(frame, site, leaving_atom, postmr_report)
     selection['ordinary_backbone'] = binding
     return _prepare_control(source, numerical, host_source, workbook, frame, output,
-        context=context, selection=selection, derive=_derive_model_base, policy=MODEL_BASE_POLICY_ID)
+        context=context, selection=selection, derive=_derive_model_edge if canonical_at_edge else _derive_model_base,
+        policy=MODEL_EDGE_POLICY_ID if canonical_at_edge else MODEL_BASE_POLICY_ID)
 
 
 def _prepare_control(source, numerical, host_source, workbook, frame, output, *, context, selection, derive, policy):
@@ -425,7 +454,8 @@ def read_whole_furanose_control(control):
 
 def read_base_anchored_furanose_control(control):
     """Recompute a frozen base-anchored placement without external programs."""
-    return _read_control(control, derivations={BASE_POLICY_ID: _derive_base, MODEL_BASE_POLICY_ID: _derive_model_base})
+    return _read_control(control, derivations={BASE_POLICY_ID: _derive_base, MODEL_BASE_POLICY_ID: _derive_model_base,
+                                              MODEL_EDGE_POLICY_ID: _derive_model_edge})
 
 
 def _read_control(control, *, derivations):

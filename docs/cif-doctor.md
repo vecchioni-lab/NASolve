@@ -6460,6 +6460,8 @@ for that workbook. `CONFLICT` names the source and emitted atoms. Other
 chemistry can remain unassessed. The inspection selects no partner, edits
 no model and makes no claim about a different protonation or pairing mode.
 
+For a declared canonical pairing edge, `prepare_base_anchored_furanose_from_model(..., canonical_at_edge=True)` can transfer between C-linked and N-linked uracil-like rings. It checks both source graphs against their compiled adenine contacts, matches the three shared sugar stereocenters, and transfers the host glycosidic torsion before fitting the pairing face. The existing phosphate-arm search keeps this rotation when rebuilding both internal links. The placement freezes its inputs under `cif-model-linked-canonical-uracil-edge-v1`. Inspect the resulting sugar contacts and phosphate geometry. Normal PostMR admission remains specific to its qualified substrate classes.
+
 Use `--explain-base-roles` when the ordinary profile cannot match a source with
 an unambiguous workbook record. The extra read permits workbook base roles
 to overlap the sugar during a second, bounded search of the two existing

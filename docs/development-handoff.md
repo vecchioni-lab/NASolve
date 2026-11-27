@@ -1,6 +1,6 @@
 # NASolve development handoff
 
-Updated 27 November 2026. Cedar is testing the first three Q07 substitutions.
+Updated 27 November 2026. Three Q07 substitutions have completed ordinary refinement. The fourth has reached a linked preparation control.
 Q06 keeps the PDU B:4 site under review. The aim is for a scientist to use a supported modified nucleotide without hand-editing a CIF. Coot builds the
 residue, NARestraints supplies the intended pairs and stacks, and Cedar checks what
 ReadySet and Phenix actually use. The [completion queue](cif-doctor-completion-queue.md#pipeline-position) owns the work order. The [capability table](cif-doctor.md#current-capability-boundary) owns the support
@@ -8,14 +8,14 @@ claims.
 
 ## Where to resume
 
+C624 placed the fourth substitution, 2′-O-methylpseudouridine (UY1), at A:19 opposite adenine D:4. Cedar matched the two pairing atoms and the measured sugar–base twist. Phenix moved only the 21 atoms of UY1, clearing five contacts shorter than 2.2 Å while leaving 839 neighbors fixed. The two base-pair contacts ended at 3.00 and 2.88 Å. Both phosphate links remained 1.60–1.61 Å. Transferring the source sugar pose without matching the host twist left a 2.08 Å clash after the same minimization. This is a geometry-only control. The ordinary four-site preparation and diffraction test are separate milestones. [Fourth-site evidence and limits](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
+
 C623 checked the pairing edge for the C-linked UY1 site. The older NARestraints
 recipe asked adenine to bind the oxygen on the sugar-facing side. On the same
 84 deposited atoms from 6I1V, Phenix installed the old distance at 5.33 Å and
 the corrected one at 2.94 Å. Ordinary U:A stayed at 2.90 Å. An offline source
 graph check now detects that mistake even when every atom is renamed.
-The assignment for UY1 transfers from measured PSU and B8H duplexes. The
-next test is whether a linked UY1 can be placed with both junctions intact
-and the correct face toward its designed adenine. [Upstream correction](https://github.com/vecchioni-lab/NARestraints/pull/8).
+The assignment for UY1 transfers from measured PSU and B8H duplexes. [Upstream correction](https://github.com/vecchioni-lab/NARestraints/pull/8).
 
 C620 examined the next two sites, SJO and UY1. The same source-order repair
 caught two different false native bonds. Phenix then chose the same sugar pucker

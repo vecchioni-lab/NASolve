@@ -8,6 +8,11 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- The explicit furanose constructor can place a C-linked uracil-like residue
+  using its adenine-pairing face and the host sugar–base torsion. It checks the
+  source bonds, compiled pairing restraints and sugar hand. Frozen placement
+  and phosphate-arm construction can reproduce the result after relocation.
+
 - `nasolve cif-doctor profile --check-at-pair` checks which ring oxygen the
   source chemistry places toward adenine and which atoms NARestraints actually
   uses. It recognizes a neutral uracil-like ring through its bonds, including
