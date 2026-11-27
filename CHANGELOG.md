@@ -8,6 +8,8 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `nasolve postmr RUN --checked-preparation --dictionary-input-policy source-preserving-v2` can take one source-qualified C-linked sugar on a mutation card through local fitting and into the normal review checkpoint alongside ordinary substitutions. If the fit or its Phenix reading is interrupted, the diagnostic identifies the saved work and the command for inspecting or resuming it.
+
 - `nasolve cif-doctor publish-preparation RUN --attempt N --sugar-fit M` can give AutoRefine a locally fitted sugar. The first publication can obtain its own fixed-coordinate Phenix reading or reuse a named one. It verifies the original residue assignments and restraints. A retry preserves the previous reading and the completed fit. The saved checkpoint reopens offline after moving the run.
 
 - `nasolve cif-doctor fit-sugar RUN --attempt N` fits the selected sugar against the restraints Phenix actually read. The fitted coordinates and geometry measurements belong to a numbered attempt. A saved fit reopens offline after moving the run. The original model remains available for comparison.

@@ -86,6 +86,7 @@ class PreparedPostMRRequest:
     request_directory: Path
     request: dict
     generation: dict = field(repr=False)
+    local_fit_site: str | None = None
 
 
 def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation, *,
@@ -222,10 +223,13 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
                     item['retained_snapshot'] = projected/'snapshot'
                     if saved['report']['terminal_resource'] is not None:
                         item['terminal_resource'] = projected/saved['report']['terminal_resource']
+        local_fit_site = None
         if furanose is not None:
             from .postmr_furanose import DIRECTORY, read_substitution
             stage = inputs.run_directory/DIRECTORY
             built = read_substitution(stage)
+            if built.get('unfitted_pairing_edge_seed') is True:
+                local_fit_site = built['context']['site']
             source = selected['sources'][furanose.code]
             furanose.verify_source(source['source'], source['source_authority'])
             if built['snapshot']['entry_id'] != inputs.furanose_entry_id:
@@ -258,7 +262,7 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
                 pin=component['dictionary_request']['recipe'].get('rna_pucker_table')
                 if pin is not None:
                     generation[code]=dict(generation[code],rna_pucker_table=pin)
-        return PreparedPostMRRequest(inputs.run_directory,request,record,generation)
+        return PreparedPostMRRequest(inputs.run_directory, request, record, generation, local_fit_site)
     result = _prepare_postmr(run_directory,configured.ready_set_executable,phenix_installation=phenix,
         coot_executable=coot_executable,environment=phenix.environment,data_root=data_root,
         allow_mr_review=allow_mr_review,modified_pairs_only=modified_pairs_only,restraint_scope=restraint_scope,
@@ -443,7 +447,7 @@ def read_ordinary_postmr_result(run_directory, *, attempt_number) -> CheckedPost
 
 
 def _execute_ordinary_postmr(run_directory, phenix, *, store_root=None, **preparation_options):
-    """Construct once, execute one owned attempt, and return its run and attempt ID.
+    """Construct once and return the prepared request and its completed attempt number.
 
     This explicit route does not replace the default PostMR/campaign path yet.
     After interruption use continue_checked_postmr with the recorded attempt
@@ -452,6 +456,10 @@ def _execute_ordinary_postmr(run_directory, phenix, *, store_root=None, **prepar
     from .cif_complete_request import execute_dictionary_request_attempt
     from .cif_dictionary_store import default_dictionary_store
     options = dict(preparation_options)
+    explicit = ('locked_sugar_site', 'furanose_substitution', 'frozen_sources', 'construction_choices')
+    if ((options.get('generation_options') or {}).get('select_source_representation')
+            and all(options.get(k) is None for k in explicit)):
+        options.setdefault('_select_unresolved_sugar', True)
     options.setdefault('expected_dialect', 'CHEMICAL_COMPONENTS_CIF')
     options.setdefault('continuation_options', dict(readyset_timeout_seconds=120, restore_serialization=True))
     if options.get('locked_sugar_site') is not None or (options.get('generation_options') or {}).get('select_source_representation'):
@@ -460,18 +468,14 @@ def _execute_ordinary_postmr(run_directory, phenix, *, store_root=None, **prepar
     result = execute_dictionary_request_attempt(prepared.request_directory, phenix,
         default_dictionary_store() if store_root is None else store_root,
         generation=prepared.generation, after_attempt=0)
-    return prepared.run_directory, result['attempt_number']
+    return prepared, result['attempt_number']
 
 
 def prepare_checked_postmr(run_directory, phenix, *, store_root=None, **preparation_options) -> CheckedPostMRResult:
     """Construct/execute once and read the diagnostic result without adoption."""
-    explicit = ('locked_sugar_site', 'furanose_substitution', 'frozen_sources', 'construction_choices')
-    if ((preparation_options.get('generation_options') or {}).get('select_source_representation')
-            and all(preparation_options.get(k) is None for k in explicit)):
-        preparation_options['_select_unresolved_sugar'] = True
-    run, attempt = _execute_ordinary_postmr(run_directory, phenix,
+    prepared, attempt = _execute_ordinary_postmr(run_directory, phenix,
         store_root=store_root, **preparation_options)
-    return read_ordinary_postmr_result(run, attempt_number=attempt)
+    return read_ordinary_postmr_result(prepared.run_directory, attempt_number=attempt)
 
 
 def _retire_new_preparation(request_directory, attempt_number):
@@ -501,6 +505,34 @@ def _retire_new_preparation(request_directory, attempt_number):
             'and restraints remain in place.')
 
 
+def _publish_after_sugar_fit(prepared, attempt, phenix):
+    """Pass a source-declared seed through its existing fit and fixed-coordinate evidence owners."""
+    import shlex
+    from subprocess import TimeoutExpired
+    from .campaigns import CampaignError
+    from .checkpoints import CheckpointError
+    from .cif_furanose_fit_attempt import fit_checked_sugar
+    from .cif_postmr_publication import publish_checked_preparation_with_notes
+    from .postmr import PostMRPreparationError
+
+    run = prepared.run_directory
+    location = [str(run), '--attempt', str(attempt)]
+    try:
+        fit = fit_checked_sugar(run, lambda: phenix, attempt_number=attempt)
+    except (OSError, ValueError, TimeoutExpired, CampaignError) as exc:
+        command = shlex.join(['nasolve', 'cif-doctor', 'fit-sugar', *location])
+        raise PostMRPreparationError(f'Local fit at {prepared.local_fit_site} could not complete. '
+                                     f'Check its numbered fit with {command}. {exc}') from exc
+    if fit.observations['site'] != prepared.local_fit_site:
+        raise PostMRPreparationError('The numbered sugar fit and the constructed site differ')
+    try:
+        return publish_checked_preparation_with_notes(run, attempt_number=attempt, sugar_fit=fit.number,
+                                                       discover_phenix=lambda: phenix)
+    except (OSError, ValueError, CampaignError, CheckpointError) as exc:
+        command = shlex.join(['nasolve', 'cif-doctor', 'publish-preparation', *location, '--sugar-fit', str(fit.number)])
+        raise PostMRPreparationError(f'The local sugar fit is saved. Resume its checkpoint with {command}. {exc}') from exc
+
+
 def prepare_published_postmr(run_directory, phenix, **preparation_options):
     """Use the same owner, then publish its exact result as an ordinary review root.
 
@@ -514,8 +546,12 @@ def prepare_published_postmr(run_directory, phenix, **preparation_options):
     from .cif_postmr_publication import publish_checked_preparation_with_notes
     from .checkpoints import _required_file, _ref_path
     from .postmr import PostMRResult
-    run, attempt = _execute_ordinary_postmr(run_directory, phenix, **preparation_options)
-    record, notes = publish_checked_preparation_with_notes(run, attempt_number=attempt)
+    prepared, attempt = _execute_ordinary_postmr(run_directory, phenix, **preparation_options)
+    run = prepared.run_directory
+    if prepared.local_fit_site is None:
+        record, notes = publish_checked_preparation_with_notes(run, attempt_number=attempt)
+    else:
+        record, notes = _publish_after_sugar_fit(prepared, attempt, phenix)
     storage_note = _retire_new_preparation(_ordinary_request_directory(run), attempt)
     if storage_note is not None:
         notes = (*notes, storage_note)

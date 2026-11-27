@@ -106,6 +106,62 @@ def test_ordinary_checked_preparation_publishes_once_and_reports_actual_outcome(
     assert inherited_paths(registry['checkpoints'][0],run)['restraints']==list(result.restraint_paths)
 
 
+def test_checked_postmr_fits_a_declared_seed_with_the_selected_installation(tmp_path, monkeypatch):
+    from dataclasses import replace
+    from types import SimpleNamespace
+    from nasolve import cif_ordinary_postmr as ordinary, cif_postmr_publication as publication
+    import nasolve.cif_furanose_fit_attempt as sugar
+    run, ready, sdk, exact, calls, reads = checked_case(tmp_path, monkeypatch)
+    original_init = ordinary.initialize_ordinary_postmr_request
+    stages = []
+    def initialize(path, selected, **options):
+        assert options['_select_unresolved_sugar'] is True
+        prepared = original_init(path, selected, **options)
+        return replace(prepared, local_fit_site='A:1')
+    def fit(path, discover, *, attempt_number):
+        assert path == run and discover() is sdk and attempt_number == 1
+        stages.append('fit')
+        return SimpleNamespace(number=3, observations={'site':'A:1','component':'DA'})
+    publish = publication.publish_checked_preparation_with_notes
+    def review(path, *, attempt_number, sugar_fit, discover_phenix):
+        assert path == run and attempt_number == 1 and sugar_fit == 3 and discover_phenix() is sdk
+        stages.append('publish')
+        return publish(path, attempt_number=attempt_number)  # The routing fixture supplies ordinary verified coordinates.
+    monkeypatch.setattr(ordinary,'initialize_ordinary_postmr_request',initialize)
+    monkeypatch.setattr(sugar,'fit_checked_sugar',fit)
+    monkeypatch.setattr(publication,'publish_checked_preparation_with_notes',review)
+    result = prepare_postmr(run,ready,phenix_installation=sdk,checked_preparation=True,dictionary_input_policy='source-preserving-v2')
+    assert stages == ['fit','publish'] and result.model_path == exact['runtime']['model']
+    assert [name for name, _ in calls] == ['construct','execute'] and reads == [1]
+
+
+@pytest.mark.parametrize('failure', ['fit', 'wrong-site', 'native-reading'])
+def test_saved_sugar_work_has_an_exact_recovery_command(tmp_path, monkeypatch, failure):
+    from types import SimpleNamespace
+    from nasolve import cif_ordinary_postmr as ordinary, cif_postmr_publication, cif_furanose_fit_attempt
+    run = tmp_path/'run with spaces'
+    prepared = SimpleNamespace(run_directory=run, local_fit_site='A:19')
+    entered = []
+    def fit(*args, **kwargs):
+        if failure=='fit':
+            raise ValueError('Interrupted geometry fit')
+        return SimpleNamespace(number=2, observations={'site':'B:1' if failure=='wrong-site' else 'A:19'})
+    def publish(*args, **kwargs):
+        entered.append(kwargs['sugar_fit'])
+        raise ValueError('Native reading incomplete')
+    monkeypatch.setattr(cif_furanose_fit_attempt, 'fit_checked_sugar', fit)
+    monkeypatch.setattr(cif_postmr_publication, 'publish_checked_preparation_with_notes', publish)
+    with pytest.raises(PostMRPreparationError) as caught:
+        ordinary._publish_after_sugar_fit(prepared, 3, object())
+    error = str(caught.value)
+    if failure=='wrong-site':
+        assert 'constructed site differ' in error and not entered
+    elif failure=='fit':
+        assert f"fit-sugar '{run}' --attempt 3" in error and not entered
+    else:
+        assert f"publish-preparation '{run}' --attempt 3 --sugar-fit 2" in error and entered==[2]
+
+
 def test_unqualified_checked_preparation_preserves_work_without_legacy_retry(tmp_path,monkeypatch):
     run,ready,sdk,exact,calls,reads=checked_case(tmp_path,monkeypatch);exact['runtime']=None
     before=(run/'report.json').read_bytes()
