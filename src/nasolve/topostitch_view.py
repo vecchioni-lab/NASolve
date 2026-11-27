@@ -403,6 +403,49 @@ def write_export_view(directory, output_path, *, expected_receipt_sha256, cedar_
     return scene
 
 
+def write_checkpoint_recut_view(run_directory, parent_preview_directory, directory, output_path, *,
+        expected_refresh_sha256, registry_reader, closest_image_reader,
+        image_separation_angstrom):
+    """Render a freshly verified refinement-child cut with explicit review state.
+
+    Reuse saved-refresh readback and the ordinary representative scene. The
+    checkpoint relationship is additional provenance, never a cut comparison,
+    approval, chemistry admission or change to current model selection.
+    """
+    from .topostitch_checkpoint import load_checkpoint_recut_preview, inspect_checkpoint_inputs
+    from .topostitch_recut_bundle import _FILES
+    root=Path(directory).resolve();parent=Path(parent_preview_directory).resolve()
+    out=Path(output_path).absolute()
+    if out.exists() or out.is_symlink():raise FileExistsError(out)
+    if any(out.resolve().is_relative_to(p) for p in (root,parent)):
+        raise ValueError('Write the view outside the frozen parent and child previews')
+    frozen={p/name:(p/name).read_bytes() for p in (root,parent) for name in (*_FILES.values(),'preview.json')}
+    frozen[root/'checkpoint-refresh.json']=(root/'checkpoint-refresh.json').read_bytes()
+    record=load_checkpoint_recut_preview(run_directory,parent,root,
+        expected_refresh_sha256=expected_refresh_sha256,registry_reader=registry_reader,
+        closest_image_reader=closest_image_reader,image_separation_angstrom=image_separation_angstrom)
+    scene=representative_scene(root,backbone_intent=True)
+    if scene['preview_receipt_sha256']!=record['child_preview_sha256']:
+        raise ValueError('Refreshed preview changed during view construction')
+    scene['verified_checkpoint_refresh']=dict(refresh_sha256=expected_refresh_sha256,
+        parent_checkpoint_id=record['parent_checkpoint_id'],child_checkpoint_id=record['child_checkpoint_id'],
+        parent_preview_sha256=record['parent_preview_sha256'],
+        parent_context_sha256=record['parent_context_sha256'],child_context_sha256=record['child_context_sha256'],
+        max_atom_shift_angstrom=record['graph_descent']['max_atom_shift_angstrom'],
+        review_state='UNREVIEWED',review_inherited=False,selection_applied=False,
+        native_restart_qualified=False,scientific_acceptance=False)
+    html=_html(scene)
+    for role in ('parent','child'):
+        identifier=record[role+'_checkpoint_id']
+        inspect_checkpoint_inputs(run_directory,checkpoint=identifier,expected_checkpoint_id=identifier,
+            expected_model_sha256=record[role+'_context']['source_model_sha256'],registry_reader=registry_reader,
+            expected_context_sha256=record[role+'_context_sha256'])
+    if any(p.read_bytes()!=raw for p,raw in frozen.items()):
+        raise ValueError('Checkpoint refresh packets changed during view construction')
+    with out.open('x',encoding='utf-8') as stream:stream.write(html)
+    return scene
+
+
 def write_preview_view(directory,output_path,*,native_receipt=None,cedar_source=None,comparison_directories=(),preference_path=None,backbone_intent=False,original_cif=None,cif_binding=None,assembly_bounds=None,**options):
     _validate_tls_binding(original_cif, cif_binding)
     _validate_assembly_bounds(original_cif, assembly_bounds)

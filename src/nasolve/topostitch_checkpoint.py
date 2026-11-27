@@ -1,8 +1,8 @@
-"""Read-only checkpoint inputs, with optional binding to a registered bend preview.
+"""Checkpoint input bindings and immutable derived previews.
 
 This is input admission, not a run lock, native chemistry check or dispatcher.
 The executor must re-read at dispatch and consume frozen inputs under its own
-ownership protocol. No registry, model or current selection is written here.
+ownership protocol. Existing registries, source models and selection stay unchanged.
 """
 from hashlib import sha256
 from pathlib import Path
@@ -437,3 +437,55 @@ def build_checkpoint_recut_preview(run_directory, preview_directory, *,
         with (output/'checkpoint-refresh.json').open('x',encoding='utf-8') as stream:
             stream.write(json.dumps(result,sort_keys=True,separators=(',',':'),allow_nan=False)+'\n')
     return result
+
+
+
+def load_checkpoint_recut_preview(run_directory, parent_preview_directory, directory, *,
+        expected_refresh_sha256, registry_reader, closest_image_reader,
+        image_separation_angstrom):
+    """Rederive a saved refresh before consuming its parent/child correspondence.
+
+    The caller pins the completion observation and supplies trusted live history
+    and image readers, as for the producer. Replaying only the ordinary child
+    preview cannot establish this relationship. Recompute through that producer
+    in disposable storage; compare the entire observation and every packet byte.
+    An arbitrary self-rehashed sidecar is not authority. Current run context must
+    still match; a later registry change requires a new explicit refresh.
+
+    No existing files or selection are changed. This is a synchronous snapshot
+    check, not a lock, human approval or native execution admission.
+    """
+    from tempfile import TemporaryDirectory
+    from .topostitch_recut_bundle import _FILES, load_relabel_preview
+
+    _pin(expected_refresh_sha256)
+    root=Path(directory);raw=(root/'checkpoint-refresh.json').read_bytes()
+    if sha256(raw).hexdigest()!=expected_refresh_sha256:
+        raise ValueError('Saved refresh differs from the expected completion observation')
+    record=_json(raw)
+    required={'parent_checkpoint_id','child_checkpoint_id','parent_context_sha256',
+              'child_context_sha256','parent_preview_sha256','child_preview_sha256'}
+    if (not isinstance(record,dict) or type(record.get('schema_version')) is not int
+            or record['schema_version']!=1 or record.get('kind')!='topostitch-checkpoint-recut-refresh'
+            or not required.issubset(record)):
+        raise ValueError('Unsupported saved checkpoint refresh observation')
+    snapshots={name:(root/name).read_bytes() for name in (*_FILES.values(),'preview.json')}
+    if sha256(snapshots['preview.json']).hexdigest()!=record['child_preview_sha256']:
+        raise ValueError('Saved refresh belongs to a different child preview')
+    load_relabel_preview(root)
+    with TemporaryDirectory(prefix='nasolve-recut-readback-') as directory:
+        replay_root=Path(directory)/'preview'
+        replay=build_checkpoint_recut_preview(run_directory,parent_preview_directory,
+            parent_checkpoint_id=record['parent_checkpoint_id'],child_checkpoint_id=record['child_checkpoint_id'],
+            expected_parent_context_sha256=record['parent_context_sha256'],
+            expected_child_context_sha256=record['child_context_sha256'],
+            expected_preview_receipt_sha256=record['parent_preview_sha256'],
+            registry_reader=registry_reader,closest_image_reader=closest_image_reader,
+            image_separation_angstrom=image_separation_angstrom,output_directory=replay_root)
+        if (recipe_digest(replay)!=recipe_digest(record)
+                or any((replay_root/name).read_bytes()!=data for name,data in snapshots.items())):
+            raise ValueError('Saved refresh does not reproduce from the parent and child')
+    if ((root/'checkpoint-refresh.json').read_bytes()!=raw
+            or any((root/name).read_bytes()!=data for name,data in snapshots.items())):
+        raise ValueError('Saved refresh inputs changed during readback')
+    return record

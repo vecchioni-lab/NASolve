@@ -5469,8 +5469,8 @@ observation and an explicit direct-parent check. It does not carry a prior cut
 preference or approval. `load_relabel_preview` and the existing viewer still own
 ordinary packet replay. The new sidecar is producer evidence, **not an independently
 authenticated input**: downstream code must not infer lineage or admission from
-an arbitrary supplied JSON record. A maintained saved-refresh reader and persistent
-human review remain separate work.
+an arbitrary supplied JSON record. Use the W302 saved-refresh reader below to
+rederive that relationship; persistent human review remains separate work.
 
 Existing output directories refuse. Input drift is checked before and after the
 preview write; interruption can leave a standard preview without the final refresh
@@ -5485,3 +5485,51 @@ nor grants chemistry, native restart, preparation, selection or scientific
 admission. It introduces no CLI flag, replacement refinement path or change to
 old packet schemas. Manual children, changed representatives, altered inventories
 and unresolved logical target identities are outside this first supported scope.
+
+
+## Reopen a verified refined-child cut (W302)
+
+`load_checkpoint_recut_preview` in `nasolve.topostitch_checkpoint` consumes a saved
+refresh only after reconstructing it through the W301 producer in disposable
+storage. The application supplies the exact completion-file SHA-256, current run,
+original parent preview, child preview and the trusted Cedar history/image readers.
+It compares the entire regenerated observation and every ordinary packet byte;
+a self-rehashed claim of approval, changed distance or substituted valid cut fails.
+
+```python
+checked = load_checkpoint_recut_preview(
+    run_directory, parent_preview_directory, child_preview_directory,
+    expected_refresh_sha256=trusted_refresh_file_sha256,
+    registry_reader=trusted_cedar_checkpoints.read_registry,
+    closest_image_reader=trusted_cedar_images.closest_atom_images,
+    image_separation_angstrom=trusted_cedar_image_policy.PDB_IMAGE_SEPARATION_A,
+)
+```
+
+It returns the verified producer observation, without changing existing files,
+selection or review. The complete saved registry/report contexts must still match:
+even a later selection or unrelated registry update makes an old context stale.
+Obtain fresh explicit contexts and build a new refresh instead of editing the old
+record. Exact algorithm/runtime replay is required; no implicit migration. The
+completion-file pin is a caller input, not an authentication claim by the file.
+
+`write_checkpoint_recut_view` in `nasolve.topostitch_view` accepts those same
+arguments plus `output_path` as its fourth positional argument. It verifies the
+saved refresh, composes the existing representative scene with backbone intent,
+then rechecks checkpoint inputs and both packets before writing a new standalone
+HTML outside the frozen previews. Optional `verified_checkpoint_refresh` metadata
+is added to the existing scene schema; old view routes stay unchanged. No new CLI.
+
+The human display identifies the parent and refined child, distinguishes maximum
+physical atom movement from symmetry-representation shifts, and says **fresh
+review required**. Original/Proposed/Overlay still compare representations of this
+same child; they do not compare pre/post refinement coordinates. For that separate
+scientific comparison use the W300 ChimeraX checkout. This offline HTML records a
+verified snapshot at creation; it cannot notice later changes on disk. Inspection
+does not select a model, record human approval or qualify native chemistry.
+
+Existing same-source/graph cut comparison remains strict: parent and child are
+not interchangeable alternatives. A second cut of the *same child* may be compared
+through the established comparison/preference owner, with its own exact binding.
+No review decision, new fit, force owner, changed coordinates or history is created
+by readback or rendering.

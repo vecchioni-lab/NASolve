@@ -412,3 +412,72 @@ def test_child_cut_refresh_leaves_no_complete_binding_if_inputs_change_during_wr
         refresh_recut(recut_child,out)
     assert (out/'preview.json').exists() and not (out/'checkpoint-refresh.json').exists()
     with pytest.raises(FileExistsError):refresh_recut(recut_child,out)
+
+
+
+def read_saved_refresh(case,output,**overrides):
+    from nasolve.topostitch_checkpoint import load_checkpoint_recut_preview
+    options=case[3]
+    args=dict(expected_refresh_sha256=sha256((output/'checkpoint-refresh.json').read_bytes()).hexdigest(),
+        registry_reader=options['registry_reader'],closest_image_reader=options['closest_image_reader'],
+        image_separation_angstrom=options['image_separation_angstrom'])
+    return load_checkpoint_recut_preview(case[0],case[1],output,**dict(args,**overrides))
+
+
+def test_saved_refresh_rederives_exact_binding_without_touching_run_or_packets(recut_child,tmp_path):
+    out=tmp_path/'fresh';created=refresh_recut(recut_child,out)
+    roots=(recut_child[0].parent.parent,recut_child[1],out)
+    before={p:(p.read_bytes(),p.stat().st_mtime_ns) for root in roots for p in root.rglob('*') if p.is_file()}
+    assert read_saved_refresh(recut_child,out)==created
+    assert all((p.read_bytes(),p.stat().st_mtime_ns)==raw for p,raw in before.items())
+    old_run=recut_child[0];dataset=old_run.parent.parent;moved=tmp_path/'moved-dataset';shutil.move(dataset,moved)
+    parent=tmp_path/'moved-parent';shutil.move(recut_child[1],parent)
+    preview=tmp_path/'moved-child';shutil.move(out,preview)
+    assert not dataset.exists() and not out.exists() and not recut_child[1].exists()
+    relocated=(moved/'AutoMR'/old_run.name,parent,None,recut_child[3])
+    assert read_saved_refresh(relocated,preview)==created
+
+
+@pytest.mark.parametrize('change',['authority','typed_schema','distance'])
+def test_saved_refresh_rehashing_a_claim_does_not_authenticate_it(recut_child,tmp_path,change):
+    from nasolve.topostitch_recipe import recipe_digest
+    out=tmp_path/'fresh';record=refresh_recut(recut_child,out)
+    if change=='authority':record['runtime_authority']=True;record['review_state']='APPROVED'
+    elif change=='typed_schema':record['schema_version']=True
+    else:record['graph_descent']['max_atom_shift_angstrom']+=1
+    record.pop('report_sha256');record['report_sha256']=recipe_digest(record)
+    (out/'checkpoint-refresh.json').write_text(json.dumps(record))
+    with pytest.raises(ValueError,match='refresh'):
+        read_saved_refresh(recut_child,out)
+
+
+def test_saved_refresh_refuses_wrong_pin_missing_completion_and_changed_run(recut_child,tmp_path):
+    out=tmp_path/'fresh';refresh_recut(recut_child,out)
+    with pytest.raises(ValueError,match='refresh'):
+        read_saved_refresh(recut_child,out,expected_refresh_sha256='0'*64)
+    path=out/'checkpoint-refresh.json';raw=path.read_bytes();path.unlink()
+    from nasolve.topostitch_checkpoint import load_checkpoint_recut_preview
+    with pytest.raises(FileNotFoundError):
+        load_checkpoint_recut_preview(recut_child[0],recut_child[1],out,expected_refresh_sha256=sha256(raw).hexdigest(),
+            registry_reader=checkpoints.read_registry,closest_image_reader=recut_child[3]['closest_image_reader'],image_separation_angstrom=.004)
+    path.write_bytes(raw)
+    checkpoints.select_checkpoint(recut_child[0],'refine-001')
+    with pytest.raises(ValueError,match='context'):
+        read_saved_refresh(recut_child,out)
+
+
+def test_saved_refresh_rejects_another_valid_cut_even_with_rehashed_sidecar(recut_child,tmp_path):
+    from nasolve.topostitch_recut_bundle import build_relabel_preview,_FILES
+    from nasolve.topostitch_recipe import recipe_digest
+    out=tmp_path/'fresh';record=refresh_recut(recut_child,out)
+    proposal=json.loads((out/'proposal.json').read_bytes())
+    proposal['kind']='topostitch-representative-proposal';proposal.pop('selected_edge_ids');proposal.pop('anchor_node_ids');proposal['node_images']=[]
+    request=tmp_path/'different.json';request.write_text(json.dumps(proposal))
+    other=tmp_path/'other'
+    build_relabel_preview(out/'source.pdb',out/'discovery.json',registration_path=out/'registration.json',proposal_path=request,output_directory=other)
+    for name in [*_FILES.values(),'preview.json']:(out/name).write_bytes((other/name).read_bytes())
+    record['child_preview_sha256']=sha256((out/'preview.json').read_bytes()).hexdigest()
+    record.pop('report_sha256');record['report_sha256']=recipe_digest(record)
+    (out/'checkpoint-refresh.json').write_text(json.dumps(record))
+    with pytest.raises(ValueError,match='refresh'):
+        read_saved_refresh(recut_child,out)

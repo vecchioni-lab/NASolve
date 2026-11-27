@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W302 — Verify saved child-cut relationships before inspection
+
+- Recompute saved checkpoint refreshes through the maintained producer and
+  compare exact observations and packet bytes. Reject forged claims, substituted
+  valid cuts, stale run contexts and incomplete refreshes.
+- Reuse the offline inspector with verified parent/child context, fresh-review
+  status and physical atom movement distinct from symmetry-image shifts.
+  Existing views and same-source comparisons remain unchanged; no model adoption.
+
+
 ### W301 — Refresh an existing cut onto its exact refinement child
 
 - Add a checkpoint-bound child-preview builder through existing input, graph
