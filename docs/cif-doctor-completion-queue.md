@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 27 November 2026, after C642. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 27 November 2026, after C643. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -11,7 +11,7 @@ selected after ReadySet, and what Phenix actually refines. The ordinary checked 
 delivers the chosen model and restraints. The main scientific gap is deciding when a
 corrected chemical definition gives acceptable geometry in the returned structure. In the
 PDU controls, switching the diffraction score reversed the local pull on the methyl tip.
-Four substitutions from one mutation card have completed ordinary five-cycle refinement. Cedar now obtains the fitted candidate’s native geometry at first publication. The ordinary checked PostMR command now constructs and fits the same parent from its card. Next qualify how sulfur replaces one oxygen at an internal phosphate. [Original blueprint](https://github.com/vecchioni-lab/NASolve/blob/ef83f1b3741f8de2ad074114183ec243ab9b3d2a/docs/cif-restraint-audit-methods.md).
+Four substitutions from one mutation card have completed ordinary five-cycle refinement. Cedar now obtains the fitted candidate’s native geometry at first publication. The ordinary checked PostMR command now constructs and fits the same parent from its card. For the next substitution the sulfur side is supported by independent structures. The linked charge, phosphate geometry and construction still need qualification. [Original blueprint](https://github.com/vecchioni-lab/NASolve/blob/ef83f1b3741f8de2ad074114183ec243ab9b3d2a/docs/cif-restraint-audit-methods.md).
 
 | Job | In laboratory terms | What still closes it |
 | --- | --- | --- |
@@ -978,6 +978,10 @@ sources contain a P–S bond. Of those, 22 contain one terminal sulfur, six
 two terminal sulfurs and three a sulfur bridge. Another 44 contain sulfur
 without a P–S bond. Qualify each source and the intended side of the bond.
 Typical phosphodiester OP2 rules cannot select a phosphorothioate configuration.
+
+C643 tested this on six actual sulfur linkages in the 2.17 Å 1D97 crystal duplex. ReadySet preserved the 312 coordinates, occupancies and B values. Without its dictionary, Phenix treated all six P–S pairs as nonbonded. With the dictionary it installed the six P–S bonds, but at each phosphorus it supplied only three of the six angles and no signed phosphorus chirality restraint. All 18 missing angles involved the preceding O3′. The nonbridging P–O target was 1.653 Å, compared with 1.468–1.490 Å in the deposit. Changing only the component group from `non-polymer` to `DNA` left all 18,394 printed geometry lines identical. ReadySet 2.2.1-6174 completed using the coordinate-equivalent PDB. Its two mmCIF input forms failed in their readers. This trial used fixed coordinates throughout. [Cruse and colleagues, crystal structure](https://pubmed.ncbi.nlm.nih.gov/3108513/).
+
+A separate comparison identified the sulfur side from the component bonds, the documented preceding O3′ and the deposited coordinates. Both sites in the known Rp crystal 5JLW agreed with the design. Both sites in its Sp partner 5JLX gave the opposite hand. The seven sulfur sites in the minimized NMR model 8PSH agreed with the intended side, including the exact AS at A:6. Its P–S distance was 2.130 Å, while the two Rp crystal sites in 5JLW were 1.950 and 1.959 Å. Keep the source of a starting length explicit. These structures establish a geometric comparison and supply no universal force constant or atom charge. Dithio and bridging-sulfur sources were excluded by connectivity. [Matched crystal structures](https://pmc.ncbi.nlm.nih.gov/articles/PMC5096788/). [NMR duplex](https://www.nature.com/articles/nsb0498-271).
 
 C595 uses the published NARestraints workbook and loader together. A fresh
 Cedar installation follows the latest stable package. The environment check
