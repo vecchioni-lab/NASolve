@@ -8,6 +8,8 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- Explicit dictionary acquisition can qualify a source-declared RNA 2′-O-methyl ether when Phenix chooses different sugar puckers from two starting geometries. It checks each observed set of targets, repeats both readings with the native pucker changes switched off, and retains the exact tables with the acquisition. Previously saved single-table qualifications retain their original scope.
+
 - Fresh whole-sugar placements use standard PDB atom-name columns. Phenix can now recognize a constructed phosphate when it uses the following nucleotide to choose sugar restraints. Existing frozen constructions still reproduce their original files.
 
 - The explicit furanose constructor can place a C-linked uracil-like residue

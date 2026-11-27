@@ -52,6 +52,30 @@ def ribose_hydroxyl(graph):
     return tuple(hydrogens)
 
 
+def ribose_methyl_ether(graph):
+    """Identify a neutral 2′-O-methyl group on the ribose atoms recognized by Phenix."""
+    elements, bonds, charges, neighbors = graph
+    message = "Require a complete neutral ribose 2′ methyl ether"
+    if (elements.get("C2'") != "C" or elements.get("O2'") != "O"
+            or any(elements.get(a) != "C" for a in ("C1'", "C3'"))):
+        raise ValueError(message)
+    attached = neighbors["O2'"] - {"C2'"}
+    if len(attached) != 1:
+        raise ValueError(message)
+    methyl, = attached
+    if elements[methyl] != "C" or methyl in {"C1'", "C2'", "C3'"}:
+        raise ValueError(message)
+    for atom, heavy, h_count in (("C2'", {"C1'", "C3'", "O2'"}, 1),
+                                  ("O2'", {"C2'", methyl}, 0), (methyl, {"O2'"}, 3)):
+        adjacent = neighbors[atom]
+        hydrogens = {a for a in adjacent if elements[a] in {"H", "D"}}
+        if (adjacent - hydrogens != heavy or len(hydrogens) != h_count or charges[atom] != 0
+                or any(charges[h] != 0 or neighbors[h] != {atom} for h in hydrogens)
+                or any(bonds[tuple(sorted((atom, a)))] != "SINGLE" for a in adjacent)):
+            raise ValueError(message)
+    return methyl
+
+
 def _ribose_hands(xyz, anchor):
     arms = {"C1'": ("O4'", "C2'", anchor), "C2'": ("C1'", "C3'", "O2'"),
             "C3'": ("C2'", "C4'", "O3'"), "C4'": ("C3'", "O4'", "C5'")}

@@ -126,7 +126,8 @@ def _qualification_child(attempt,intent,config,*,literal=False):
         protocol,paths,_,_=_inputs(work);r=config['dictionary_request'];limits=config['limits']
         mode = protocol.get('literal_rna')
         if literal:
-            _need(isinstance(mode,dict) and mode.get('table')==r['recipe']['rna_pucker_table'],
+            from .cif_rna_pucker import literal_tables_match
+            _need(literal_tables_match(mode, r['recipe']['rna_pucker_table']),
                   'Literal qualification uses another Phenix pucker table')
         else:
             _need(mode is None,'Default qualification cannot disable the native pucker')
@@ -292,8 +293,8 @@ def acquire_dictionary_attempt(source,code,store_root,request_directory,*,source
     options=generation_dictionary_options(generation);limits=dict(native_timeout_seconds=native_timeout_seconds,total_timeout_seconds=total_timeout_seconds)
     pin=options['recipe'].get('rna_pucker_table')
     if pin is not None and phenix is not None:
-        from .cif_rna_pucker import installed_pucker_table
-        _need(installed_pucker_table(phenix.root)[1]==pin,'Selected Phenix pucker table differs from the frozen request')
+        from .cif_rna_pucker import verify_installed_pucker_permission
+        verify_installed_pucker_permission(phenix.root, pin)
     config=_configuration(source,code,source_authority,options,consumer,_generation_binding(generation),inputs,limits,max_attempts)
     if connected_order_failure is not None:
         connected_recovery.validate_connected_order_failure(proof, source, config['dictionary_request'], consumer)
@@ -335,11 +336,13 @@ def acquire_dictionary_attempt(source,code,store_root,request_directory,*,source
                 if 'rna_pucker_table' not in options['recipe']:
                     raise
             remaining(1)
-            from .cif_rna_pucker import installed_pucker_table, paired_acquisition_qualification, verify_literal_pucker
+            from .cif_rna_pucker import (observed_ether_permission, paired_acquisition_qualification,
+                                         verify_installed_pucker_permission, verify_literal_pucker)
             pin=options['recipe']['rna_pucker_table']
-            _need(installed_pucker_table(phenix.root)[1]==pin,'Selected Phenix pucker table differs from the frozen request')
+            verify_installed_pucker_permission(phenix.root, pin)
             literal=out.with_name('literal')
-            verify_literal_pucker(out,literal,phenix,_attempt_identity=owner,_remaining_seconds=remaining)
+            extra = {'include_observed_states': True} if observed_ether_permission(pin) else {}
+            verify_literal_pucker(out,literal,phenix,_attempt_identity=owner,_remaining_seconds=remaining,**extra)
             remaining()
             return paired_acquisition_qualification(out,literal,pin)
         try:

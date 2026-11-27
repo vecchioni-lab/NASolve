@@ -69,9 +69,9 @@ def generation_dictionary_options(generation):
     if policy is not None:
         recipe['bond_representation_policy'] = policy
     if 'rna_pucker_table' in generation:
-        from .cif_rna_pucker import validate_table_pin
+        from .cif_rna_pucker import permitted_pucker_tables
         _need(policy is not None, 'Paired RNA reading requires an explicit chemical representation')
-        validate_table_pin(generation['rna_pucker_table'])
+        permitted_pucker_tables(generation['rna_pucker_table'])
         recipe['rna_pucker_table'] = generation['rna_pucker_table']
     generator = {'name': 'phenix.elbow.source-preserving', 'version': generation['phenix_version'],
                  'api_sources': _pins(generation['api_sources']), 'prior_sources': _pins(generation['prior_sources'])}

@@ -81,9 +81,9 @@ def recipe_representation_policy(recipe):
     from .cif_purine_representation import validate_policy
     _need(isinstance(recipe, dict), 'Require repair recipe')
     if 'rna_pucker_table' in recipe:
-        from .cif_rna_pucker import validate_table_pin
+        from .cif_rna_pucker import permitted_pucker_tables
         _need('bond_representation_policy' in recipe, 'Paired RNA reading requires source-bound chemistry')
-        validate_table_pin(recipe['rna_pucker_table'])
+        permitted_pucker_tables(recipe['rna_pucker_table'])
     if 'bond_representation_policy' not in recipe:
         return None
     policy = recipe['bond_representation_policy']
@@ -102,8 +102,9 @@ def _current_qualification(recipe, policy):
     if policy == _qualification_policy(recipe):
         return True
     if 'rna_pucker_table' in recipe:
-        from .cif_rna_pucker import PAIRED_USABILITY
-        return policy == PAIRED_USABILITY
+        from .cif_rna_pucker import ETHER_PAIRED_USABILITY, PAIRED_USABILITY, observed_ether_permission
+        expected = ETHER_PAIRED_USABILITY if observed_ether_permission(recipe['rna_pucker_table']) else PAIRED_USABILITY
+        return policy == expected
     return False
 
 

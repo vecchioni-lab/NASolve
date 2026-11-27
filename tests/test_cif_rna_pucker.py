@@ -310,7 +310,8 @@ def test_only_legacy_pairs_fall_back_to_the_selected_installation(tmp_path,monke
 
 
 @pytest.mark.parametrize("defect",["none","foreign-table","other-consumer","missing-seed","same-native","other-source","different-default","wrong-site-control"])
-def test_stored_rna_proof_requires_two_independent_reads_in_each_condition(defect):
+@pytest.mark.parametrize("by_seed", [False, True])
+def test_stored_rna_proof_requires_two_independent_reads_in_each_condition(defect, by_seed):
     from hashlib import sha256
     from nasolve.cif_dictionary_store import _digest
     from nasolve.cif_rna_pucker import POLICY_ID,validate_paired_qualification
@@ -334,6 +335,19 @@ def test_stored_rna_proof_requires_two_independent_reads_in_each_condition(defec
            paired_rna=dict(default=review,literal_seeds=ls,literal_report=ref("qualification_execution.json","literal report"),
                            consumer_sha256=_digest(consumer)))
     args=dict(code="XYZ",source_sha256=h("source"),candidate_sha256=h("candidate"),consumer=consumer,table=pin)
+    if by_seed:
+        from nasolve.cif_rna_pucker import ETHER_PUCKER_PERMISSION, ETHER_PAIRED_USABILITY, OBSERVED_POLICY_ID
+        pins={"rna2p":pin, "rna3p":dict(pin,sha256=h("three"),path=pin["path"].replace("2p","3p"))}
+        args["table"]={"policy_id":ETHER_PUCKER_PERMISSION,"tables":pins}
+        counts=review.pop("matched_rows")
+        review.pop("modifier");review.pop("table")
+        review.update(policy_id=OBSERVED_POLICY_ID,status="SEED_TARGETS_EXPLAINED",tables=pins,
+                      same_covalent_proxies=False)
+        for row,modifier in zip(ds,("rna3p","rna2p")):
+            row.update(modifier=modifier,matched_rows=dict(counts))
+        q["policy_id"]=ETHER_PAIRED_USABILITY
+        q["paired_rna"]["pucker_permission"]=args["table"]
+        q["literal_rna"]=dict(default_review_sha256=_digest(review),tables=pins)
     if defect=="foreign-table":args["table"]=dict(pin,sha256=h("next build"))
     if defect=="other-consumer":args["consumer"]=dict(consumer,version="other")
     if defect=="missing-seed":ls.pop()
@@ -347,6 +361,67 @@ def test_stored_rna_proof_requires_two_independent_reads_in_each_condition(defec
         validate_paired_qualification(q,**args)
     else:
         with pytest.raises(ValueError):validate_paired_qualification(q,**args)
+
+def test_ether_table_selection_cannot_reuse_another_recipe_or_hide_an_unobserved_table():
+    from hashlib import sha256
+    from nasolve.cif_dictionary_store import same_qualification_permissions
+    from nasolve.cif_rna_pucker import ETHER_PUCKER_PERMISSION, literal_tables_match, permitted_pucker_tables
+    from nasolve.cif_purine_representation import POLICY_ID as representation
+
+    def pin(modifier):
+        return dict(anchor="phenix_installation",size=24,sha256=sha256(modifier.encode()).hexdigest(),
+                    path=f"lib/site-packages/chem_data/geostd/rna_dna/mod_{modifier}.cif")
+
+    pins = {m: pin(m) for m in ("rna2p", "rna3p")}
+    permission = dict(policy_id=ETHER_PUCKER_PERMISSION, tables=pins)
+    def recipe(value):
+        return {"bond_representation_policy": representation, "rna_pucker_table": value}
+    def mode(**fields):
+        return {"default_review_sha256": "0"*64, **fields}
+
+    assert same_qualification_permissions(recipe(permission), recipe(permission))
+    assert not same_qualification_permissions(recipe(permission), recipe(pins["rna2p"]))
+    assert literal_tables_match(mode(table=pins["rna2p"]), permission)
+    assert literal_tables_match(mode(tables={"rna3p": pins["rna3p"]}), permission)
+    assert not literal_tables_match(mode(tables={"rna3p": pins["rna2p"]}), permission)
+    assert not literal_tables_match(mode(tables={}), permission)
+    assert not literal_tables_match(mode(table=pins["rna2p"], tables=pins), permission)
+    assert not literal_tables_match(mode(tables=pins), pins["rna2p"])
+    with pytest.raises(ValueError, match="both identified"):
+        permitted_pucker_tables(dict(permission, tables={"rna2p": pins["rna2p"]}))
+
+
+@pytest.mark.parametrize("defect", [None, "rename-methyl", "charge", "carbonyl", "missing-H", "bridge", "ethyl"])
+def test_methylated_ribose_requires_the_complete_neutral_methoxy_group(defect):
+    from pathlib import Path
+    from nasolve.cif_stereochemistry_audit import _graph, _values
+    from nasolve.postmr_restoration import ribose_methyl_ether
+    values = _values(Path(__file__).parent / "fixtures/public_ccd/UY1.cif", "UY1")
+    elements, bonds, charges, neighbors = _graph(values)
+    methyl, = neighbors["O2'"] - {"C2'"}
+    hydrogens = sorted(neighbors[methyl] - {"O2'"})
+    if defect == "rename-methyl":
+        for key, column in values.items():
+            if isinstance(column, list):
+                values[key] = ["MEX" if a == methyl else a for a in column]
+        elements, bonds, charges, neighbors = _graph(values)
+    elif defect == "charge":
+        charges[hydrogens[0]] = -1
+    elif defect == "carbonyl":
+        bonds[tuple(sorted((methyl, "O2'")))] = "DOUBLE"
+    elif defect == "missing-H":
+        neighbors[methyl].remove(hydrogens[0])
+    elif defect in {"bridge", "ethyl"}:
+        elements[hydrogens[0]] = "C"
+        if defect == "bridge":
+            neighbors[hydrogens[0]].add("C4'")
+    graph = elements, bonds, charges, neighbors
+    if defect in {None, "rename-methyl"}:
+        assert ribose_methyl_ether(graph) == ("MEX" if defect else methyl)
+    else:
+        with pytest.raises(ValueError, match="methyl ether"):
+            ribose_methyl_ether(graph)
+
 
 @pytest.mark.parametrize("modifiers,authorized,projects", [
     (["targeted","rna2p"],True,True), (["targeted"],True,False),

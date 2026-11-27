@@ -13,13 +13,15 @@ from .cif_elbow_contract import MAX_SOURCE_BYTES
 from .cif_doctor import _duplicate_tags, _number
 from .cif_phenix_configuration import _library, _pin
 from .cif_postmr_cache import verify_current_consumer
-from .cif_stereochemistry_audit import _values
+from .cif_stereochemistry_audit import _graph, _values
 from .cif_terminal_qualification import _rows
 from .ligand_profiles import _blocks
 
 POLICY_ID = "observed-phenix-rna2p-targets-v1"
 OBSERVED_POLICY_ID = "observed-phenix-rna-pucker-by-seed-v1"
 PAIRED_USABILITY = "cif-isolated-native-and-literal-rna-usability-v1"
+ETHER_PUCKER_PERMISSION = "source-ribose-methyl-ether-observed-puckers-v1"
+ETHER_PAIRED_USABILITY = "cif-isolated-methyl-ether-native-and-literal-puckers-v1"
 _TERMS = (
     ("bonds", "bond", 2, ("type", "value_dist", "value_dist_esd")),
     ("angles", "angle", 3, ("value_angle", "value_angle_esd")),
@@ -117,6 +119,42 @@ def validate_table_pin(pin, *, modifier="rna2p"):
           and pin["path"].endswith("/site-packages/"+_table_resource(modifier))
           and type(pin["size"]) is int and 0<pin["size"]<=MAX_SOURCE_BYTES and _hash(pin["sha256"]),
           "Require a pinned Phenix RNA pucker table")
+
+
+def observed_ether_permission(permission):
+    return isinstance(permission, dict) and permission.get("policy_id") == ETHER_PUCKER_PERMISSION
+
+
+def permitted_pucker_tables(permission):
+    """Validate the original single table or the explicit two-table methyl-ether recipe."""
+    if not observed_ether_permission(permission):
+        validate_table_pin(permission)
+        return {"rna2p": permission}
+    pins = permission.get("tables")
+    _need(set(permission) == {"policy_id", "tables"} and isinstance(pins, dict)
+          and set(pins) == {"rna2p", "rna3p"}, "Require both identified Phenix pucker tables")
+    for modifier, pin in pins.items():
+        validate_table_pin(pin, modifier=modifier)
+    return pins
+
+
+def verify_installed_pucker_permission(root, permission):
+    for modifier, pin in permitted_pucker_tables(permission).items():
+        selected = installed_pucker_table(root) if modifier == "rna2p" else installed_pucker_table(root, modifier=modifier)
+        _need(selected[1] == pin, "Selected Phenix pucker table differs from the frozen request")
+
+
+def literal_tables_match(mode, permission):
+    """A control may freeze only tables actually observed and allowed by this request."""
+    if not isinstance(mode, dict):
+        return False
+    allowed = permitted_pucker_tables(permission)
+    if set(mode) == {"default_review_sha256", "table"}:
+        return mode["table"] == allowed["rna2p"]
+    observed = mode.get("tables")
+    return (observed_ether_permission(permission) and set(mode) == {"default_review_sha256", "tables"}
+            and isinstance(observed, dict) and bool(observed) and observed.keys() <= allowed.keys()
+            and all(pin == allowed[m] for m, pin in observed.items()))
 
 
 def table_bytes(path,pin, *, modifier="rna2p"):
@@ -353,42 +391,78 @@ def _paired_reads(root,literal,review):
     return summary,strict
 
 
+def require_pucker_source(values, permission):
+    """Require the declared RNA and sugar chemistry authorized by this recipe."""
+    from .postmr_restoration import ribose_hydroxyl, ribose_methyl_ether
+    _need([" ".join(t.upper().split()) for t in values.get("_chem_comp.type", ())] == ["RNA LINKING"],
+          "Paired RNA qualification requires source-declared linking RNA")
+    graph = _graph(values)
+    if observed_ether_permission(permission):
+        return ribose_methyl_ether(graph)
+    ribose_hydroxyl(graph)
+    return None
+
+
 def paired_acquisition_qualification(default,literal,pin):
     """Build the isolated component result from all four underlying native jobs."""
     review,strict=_read_pair(default,literal)
     p,paths,_,_=_inputs(Path(literal))
-    _need(review["policy_id"] == "paired-isolated-rna-pucker-v1" and pin is not None,
-          "This acquisition requires the same authorized rna2p table in both coordinate seeds")
-    from .cif_stereochemistry_audit import _graph
-    from .postmr_restoration import ribose_hydroxyl
-    source=_values(paths[0],p["component"])
-    _need([" ".join(t.upper().split()) for t in source.get("_chem_comp.type",())]==["RNA LINKING"],
-          "Paired RNA qualification requires source-declared linking RNA")
-    ribose_hydroxyl(_graph(source))
-    _need(p.get("literal_rna",{}).get("table")==pin and review["default_review"]["table"]==pin,
-          "Paired native readings used another RNA table")
-    q=dict(strict["qualification"],policy_id=PAIRED_USABILITY,paired_rna={
+    require_pucker_source(_values(paths[0],p["component"]), pin)
+    if observed_ether_permission(pin):
+        policy = ETHER_PAIRED_USABILITY
+    else:
+        _need(review["policy_id"] == "paired-isolated-rna-pucker-v1",
+              "This acquisition requires the same authorized rna2p table in both coordinate seeds")
+        policy = PAIRED_USABILITY
+    _need(literal_tables_match(p.get("literal_rna"), pin), "Paired native readings used another RNA table")
+    q=dict(strict["qualification"],policy_id=policy,paired_rna={
         "default":review["default_review"],"literal_report":review["literal_report"],
         "literal_seeds":[{"seed":s,"native_receipt":r} for s,r in zip(review["literal_seeds"],strict["native_receipts"])],
         "consumer_sha256":_digest(p["consumer"])})
+    if policy == ETHER_PAIRED_USABILITY:
+        q["paired_rna"]["pucker_permission"] = deepcopy(pin)
     return q
 
 
 def validate_paired_qualification(q,*,source_sha256,candidate_sha256,code,consumer=None,table=None):
     """Bind the compact snapshot to both seeds, both conditions and the numerical table."""
     pair=q.get("paired_rna")
-    _need(isinstance(pair,dict) and set(pair)=={"default","literal_report","literal_seeds","consumer_sha256"},
+    required = {"default", "literal_report", "literal_seeds", "consumer_sha256"}
+    ether = q.get("policy_id") == ETHER_PAIRED_USABILITY
+    _need(isinstance(pair, dict) and set(pair) == (required | {"pucker_permission"} if ether else required),
           "Require both independent RNA readouts")
+    if ether:
+        recorded_permission = pair["pucker_permission"]
+        _need(observed_ether_permission(recorded_permission) and (table is None or table == recorded_permission),
+              "Methyl-ether readout differs from the requested pucker permission")
+        table = recorded_permission
     review=pair["default"]
-    _need(isinstance(review,dict) and review.get("policy_id")==POLICY_ID
-          and review.get("status")=="ADJUSTED_TARGETS_EXPLAINED" and review.get("modifier")=="rna2p"
-          and review.get("component")==code and review.get("scope")=="ISOLATED_COMPONENT_ONLY"
-          and review.get("same_covalent_proxies") is True and review.get("automatic_adoption") is False
-          and q.get("literal_rna")=={"default_review_sha256":_digest(review),"table":review.get("table")}
-          and _hash(pair["consumer_sha256"]), "Incomplete native RNA evidence or original basis")
-    pin=review["table"]
-    validate_table_pin(pin)
-    _need(table is None or table==pin,"Stored native RNA table differs from the requested one")
+    _need(isinstance(review,dict) and review.get("component")==code and review.get("scope")=="ISOLATED_COMPONENT_ONLY"
+          and review.get("automatic_adoption") is False and _hash(pair["consumer_sha256"]),
+          "Incomplete native RNA evidence or original basis")
+    by_seed = review.get("policy_id") == OBSERVED_POLICY_ID
+    if by_seed:
+        recorded = review.get("tables")
+        _need(ether
+              and review.get("status") == "SEED_TARGETS_EXPLAINED" and isinstance(recorded, dict)
+              and isinstance(review.get("seeds"), list) and all(isinstance(s, dict) for s in review["seeds"]),
+              "Stored per-seed sugar result requires explicit methyl-ether permission")
+        modifiers = [s.get("modifier") for s in review["seeds"]]
+        _need(all(m in ("rna2p", "rna3p") for m in modifiers) and set(modifiers) == set(recorded)
+              and type(review.get("same_covalent_proxies")) is bool
+              and (len(recorded) == 2 or review["same_covalent_proxies"]),
+              "Observed sugar states disagree with the recorded seeds or native terms")
+        mode = {"default_review_sha256": _digest(review), "tables": recorded}
+        counts = [s.get("matched_rows") for s in review["seeds"]]
+    else:
+        _need(review.get("policy_id")==POLICY_ID and review.get("status")=="ADJUSTED_TARGETS_EXPLAINED"
+              and review.get("modifier")=="rna2p" and review.get("same_covalent_proxies") is True,
+              "Incomplete single-table native RNA evidence")
+        mode = {"default_review_sha256": _digest(review), "table": review.get("table")}
+        counts = [review.get("matched_rows")]
+    permission = review.get("table") if table is None else table
+    _need(q.get("literal_rna") == mode and literal_tables_match(mode, permission),
+          "Stored native RNA tables differ from the original readings or requested permission")
     _need(consumer is None or (_digest(consumer)==pair["consumer_sha256"] and consumer["version"]==review.get("phenix_version")),
           "Stored RNA evidence belongs to another native consumer")
     def reference(ref,path):
@@ -399,9 +473,9 @@ def validate_paired_qualification(q,*,source_sha256,candidate_sha256,code,consum
         ref=review.get(label)
         _need(reference(ref,"inputs/"+label+"/"+label+".cif") and ref["sha256"]==digest,
               "Native RNA review used another component dictionary")
-    counts=review.get("matched_rows")
-    _need(isinstance(counts,dict) and set(counts)=={"bonds","angles","torsions"}
-          and all(type(n) is int and n>0 for n in counts.values()),"Missing native RNA numerical changes")
+    _need(all(isinstance(c,dict) and set(c)=={"bonds","angles","torsions"}
+              and all(type(n) is int and n>0 for n in c.values()) for c in counts),
+          "Missing native RNA numerical changes")
     default,literal=review.get("seeds"),pair["literal_seeds"]
     _need(reference(pair["literal_report"],"qualification_execution.json"),"Require the sealed literal RNA readout")
     hashes=[]

@@ -46,12 +46,15 @@ def bind_preparation_qualification(source: Path, candidate: Path, code: str,
     if not isinstance(q, dict):
         raise ValueError('Require isolated native qualification evidence')
     checks = q.get('checks')
-    from .cif_rna_pucker import PAIRED_USABILITY, validate_paired_qualification
-    paired = q.get('policy_id') == PAIRED_USABILITY
+    from .cif_rna_pucker import ETHER_PAIRED_USABILITY, PAIRED_USABILITY, require_pucker_source, validate_paired_qualification
+    paired = q.get('policy_id') in (PAIRED_USABILITY, ETHER_PAIRED_USABILITY)
     expected_checks = REQUIRED_NATIVE_CHECKS
     if paired:
         validate_paired_qualification(q,source_sha256=sha256(payloads[0]).hexdigest(),
                                      candidate_sha256=sha256(payloads[1]).hexdigest(),code=code)
+        if q['policy_id'] == ETHER_PAIRED_USABILITY:
+            from .cif_stereochemistry_audit import _values
+            require_pucker_source(_values(paths[0], code), q['paired_rna']['pucker_permission'])
         expected_checks = REQUIRED_NATIVE_CHECKS | {'no_native_pucker_overlay'}
     if (type(q.get('schema_version')) is not int or q['schema_version'] != 1
             or (not paired and q.get('policy_id') != 'cif-isolated-candidate-native-usability-v3')
