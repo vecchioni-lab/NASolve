@@ -7,10 +7,10 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
-- **Latest W312:** [matched held/free O3′ geometry comparison](topostitch-periodic.md#w312--shorten-the-image-bond-without-resolving-the-torsion)
-  shortens the bond but leaves the torsion unresolved; both trials are capped.
-  W313 binds the19-atom sugar scope and W314 passes all57 derivatives,
-  including C1′-dependent planes. A wider fit is proposed, not yet run.
+- **Latest W315:** [coupled-sugar movement comparison](topostitch-periodic.md#w315--coupled-sugars-move-but-the-torsion-does-not-recover)
+  moves atoms by up to0.463 Å and reaches the bond target, but fails its
+  torsion-progress criterion and remains unconverged. Stop repeat fits;
+  P05 installed review/reopen is the next bounded audit.
 
 - **Latest code, W310:** [registered zero-step observer](topostitch-preview.md)
   exposes full-native baseline and explicit mask projections inside the caller's

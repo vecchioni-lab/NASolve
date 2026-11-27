@@ -526,14 +526,15 @@
         "W311 checks every variable in both five/six masks at 1e-4 and 1e-5 Angstrom. Both pass; worst shared C8 C5-prime y errors 4.912e-5/4.529e-7. All142 full native calls visit both groups; state/packing and hooks preserved. No movement yet.",
         "W312 matched five/six-atom geometry trials shorten D7/C8 O3-P to1.6101/1.6098 Angstrom but both reach50 iterations without convergence and leave epsilon near its periodic maximum. Six sugar hands/fixed atoms/other junction survive; one existing OP2-image-C2-prime contact worsens. Native term read confirms retained-force opposition, not missing epsilon force.",
         "W313 binds existing19-atom coupled-sugar scope to actual W304 D7/C8 source:23 bonds,4 fixed boundaries,6 sugar hands,20 held base atoms,6 held outer-phosphate atoms and6 C1-dependent planes.36 scope/10 cold checks; no movement/admission. Prior B1/B7 scope not inherited.",
-        "W314 qualifies all57 derivatives of the actual19-atom D7/C8 mask with both registered groups. Worst errors7.800e-5/7.447e-7 pass; selected raw/corrected gradient difference22.09996 at D7 C1-prime shows plane correction is necessary.236 full calls, source/packing restored;20 cold checks. No motion."
+        "W314 qualifies all57 derivatives of the actual19-atom D7/C8 mask with both registered groups. Worst errors7.800e-5/7.447e-7 pass; selected raw/corrected gradient difference22.09996 at D7 C1-prime shows plane correction is necessary.236 full calls, source/packing restored;20 cold checks. No motion.",
+        "W315 completes one19-atom coupled-sugar trial: bond1.60677 Angstrom, max motion0.46310 Angstrom, six hands/fixed bases/other seam preserved.50-iteration cap, no convergence; epsilon circular error improves0.03049 degrees, failing predeclared35-degree progress. Five directed contacts newly positive; no scientific acceptance.25 cold science checks plus manifest repair, three-model/eight-control ChimeraX check."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "Proposed W315: one19-atom geometry-only trial at unchanged W304,50 optimizer iterations/72 calls/3 Angstrom, full planes/both junctions retained. Three derivative audits cost690 calls;768 total including optimizer/overhead is a coverage budget, not extra minimizer iterations. Before launch bind existing pucker/plane/boundary endpoint observers; judge convergence, epsilon recovery, all6 hands, fixed20 bases/outer phosphates and old/new contacts. No diffraction/adoption or inherited B1/B7 admission.",
+      "next_action": "Pause D7/C8 fits. Distinguish starting conformer versus torsion-target suitability with spatial density and independently justified same-chemistry/pucker context; saved point samples do not select a direction. Next bounded implementation audit is P05 installed source/verified-child/cut-comparison/saved-review/cold-reopen using existing owners; preference cannot select a scientific result.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -692,14 +693,15 @@
         "E_REGISTERED_DERIVATIVES",
         "E_HELD_FREE_NATIVE_MOVEMENT",
         "E_D7_C8_COUPLED_SCOPE",
-        "E_D7_C8_COUPLED_DERIVATIVES"
+        "E_D7_C8_COUPLED_DERIVATIVES",
+        "E_D7_C8_COUPLED_MOVEMENT"
       ],
       "last_audit": {
         "date": "2026-11-27",
         "code_commit": "29fded465e95878677670be15d3c8f4999224854",
         "reviewer": "Linden",
         "human_update": 310,
-        "scope": "W314 derivative-only19-atom qualification; no motion or scientific closure"
+        "scope": "W315 coupled-sugar motion complete but progress criterion failed; no convergence or scientific closure"
       }
     },
     {
@@ -1307,14 +1309,15 @@
         "W311 checks every variable in both five/six masks at 1e-4 and 1e-5 Angstrom. Both pass; worst shared C8 C5-prime y errors 4.912e-5/4.529e-7. All142 full native calls visit both groups; state/packing and hooks preserved. No movement yet.",
         "W312 matched five/six-atom geometry trials shorten D7/C8 O3-P to1.6101/1.6098 Angstrom but both reach50 iterations without convergence and leave epsilon near its periodic maximum. Six sugar hands/fixed atoms/other junction survive; one existing OP2-image-C2-prime contact worsens. Native term read confirms retained-force opposition, not missing epsilon force.",
         "W313 binds existing19-atom coupled-sugar scope to actual W304 D7/C8 source:23 bonds,4 fixed boundaries,6 sugar hands,20 held base atoms,6 held outer-phosphate atoms and6 C1-dependent planes.36 scope/10 cold checks; no movement/admission. Prior B1/B7 scope not inherited.",
-        "W314 qualifies all57 derivatives of the actual19-atom D7/C8 mask with both registered groups. Worst errors7.800e-5/7.447e-7 pass; selected raw/corrected gradient difference22.09996 at D7 C1-prime shows plane correction is necessary.236 full calls, source/packing restored;20 cold checks. No motion."
+        "W314 qualifies all57 derivatives of the actual19-atom D7/C8 mask with both registered groups. Worst errors7.800e-5/7.447e-7 pass; selected raw/corrected gradient difference22.09996 at D7 C1-prime shows plane correction is necessary.236 full calls, source/packing restored;20 cold checks. No motion.",
+        "W315 completes one19-atom coupled-sugar trial: bond1.60677 Angstrom, max motion0.46310 Angstrom, six hands/fixed bases/other seam preserved.50-iteration cap, no convergence; epsilon circular error improves0.03049 degrees, failing predeclared35-degree progress. Five directed contacts newly positive; no scientific acceptance.25 cold science checks plus manifest repair, three-model/eight-control ChimeraX check."
       ],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
         "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.",
         "Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified."
       ],
-      "next_action": "Proposed W315: one19-atom geometry-only trial at unchanged W304,50 optimizer iterations/72 calls/3 Angstrom, full planes/both junctions retained. Three derivative audits cost690 calls;768 total including optimizer/overhead is a coverage budget, not extra minimizer iterations. Before launch bind existing pucker/plane/boundary endpoint observers; judge convergence, epsilon recovery, all6 hands, fixed20 bases/outer phosphates and old/new contacts. No diffraction/adoption or inherited B1/B7 admission.",
+      "next_action": "Pause D7/C8 fits. Distinguish starting conformer versus torsion-target suitability with spatial density and independently justified same-chemistry/pucker context; saved point samples do not select a direction. Next bounded implementation audit is P05 installed source/verified-child/cut-comparison/saved-review/cold-reopen using existing owners; preference cannot select a scientific result.",
       "evidence": [
         "E_PINE_TEST_BANK",
         "E_NATIVE_REPRESENTATION_SEAMS",
@@ -1349,14 +1352,15 @@
         "E_REGISTERED_DERIVATIVES",
         "E_HELD_FREE_NATIVE_MOVEMENT",
         "E_D7_C8_COUPLED_SCOPE",
-        "E_D7_C8_COUPLED_DERIVATIVES"
+        "E_D7_C8_COUPLED_DERIVATIVES",
+        "E_D7_C8_COUPLED_MOVEMENT"
       ],
       "last_audit": {
         "date": "2026-11-27",
         "code_commit": "29fded465e95878677670be15d3c8f4999224854",
         "reviewer": "Linden",
         "human_update": 310,
-        "scope": "W314 derivative-only19-atom qualification; no motion or scientific closure"
+        "scope": "W315 coupled-sugar motion complete but progress criterion failed; no convergence or scientific closure"
       }
     },
     {
@@ -11032,6 +11036,59 @@
           "size": 2684
         }
       ]
+    },
+    "E_D7_C8_COUPLED_MOVEMENT": {
+      "kind": "D7/C8 coupled-sugar geometry-only movement",
+      "date": "2026-11-27",
+      "human_update": 315,
+      "code_commit": "29fded465e95878677670be15d3c8f4999224854",
+      "reference": "docs/topostitch-periodic.md#w315--coupled-sugars-move-but-the-torsion-does-not-recover",
+      "result": "751 full-native calls, both groups, three derivative audits pass. Bond1.60677 Angstrom; max motion0.46310. Epsilon46.26248 to33.70703 degrees, circular error reduction0.03049 versus35 required.50-iteration limit, not converged.25 scientific cold checks plus manifest repair. Three-model/eight-control headless ChimeraX pass.",
+      "limitation": "Geometry-only inspection endpoint, not an accepted or refined candidate. New positive overlaps and residual torsion remain. No new maps/R statistics/adoption; persistent GUI operation loop still open.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w315-coupled-movement/verification-v2.json",
+          "sha256": "4343c44b019ab1e939a688c2cff72ef94edca31332eec937b863de7ae0e3600d",
+          "size": 26726
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w315-coupled-movement/criteria.json",
+          "sha256": "dfa3a50e13fe9abdeddae111727b7232a16f27a005d1d381aa97c7847fbad960",
+          "size": 4020
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w315-coupled-movement/epsilon-progress.json",
+          "sha256": "dcb325bd0de974fda60dc0f8dd387fa8d96effd8fc6ea32c49e3d78ad5e4cc6c",
+          "size": 12619
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w315-coupled-movement/restoration.json",
+          "sha256": "076db35f0eb1a94198416303350a1b150c27019dcb635fe034e92c35d18dd021",
+          "size": 1642
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w315-coupled-movement/completion.json",
+          "sha256": "b86019c8f9cd8f493e5d92d66c14c781b5bf77c133a60771279804dfb588df72",
+          "size": 448
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w315-coupled-movement/launch.json",
+          "sha256": "3bee7baf3eae0d489425a3978c7393466ddd460a0e3e72d15ad1747f2792715f",
+          "size": 2665
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w315-coupled-movement/checkout-check.json",
+          "sha256": "bab615efc7bf57479a5c5418b26a1ab084d7828ca0628b5dcfea5260354479a9",
+          "size": 1618
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -11213,8 +11270,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 314,
-    "next": 315,
+    "current": 315,
+    "next": 316,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -12906,6 +12963,12 @@
       {
         "number": 314,
         "title": "Check coupled derivatives including both C1 atoms",
+        "state": "RECORDED",
+        "code_commit": "29fded465e95878677670be15d3c8f4999224854"
+      },
+      {
+        "number": 315,
+        "title": "Coupled sugars move but torsion recovery fails its criterion",
         "state": "RECORDED",
         "code_commit": "29fded465e95878677670be15d3c8f4999224854"
       }

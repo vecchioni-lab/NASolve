@@ -1,7 +1,7 @@
 # NASolve development handoff — Willow
 
-**W314 coupled-sugar derivative qualification, 2026-11-27.** Latest maintained code:
-`29fded465e95878677670be15d3c8f4999224854`. Latest native derivative diagnostic: **W314**; latest movement comparison: **W312**; latest refinement:
+**W315 coupled-sugar motion diagnostic, 2026-11-27.** Latest maintained code:
+`29fded465e95878677670be15d3c8f4999224854`. Latest native movement/endpoint derivative diagnostic: **W315**; latest refinement:
 **W304** (same genuine ordinary PDU parent as W300); latest density audit: **W304**.
 W298 remains the separate endpoint-base/whole-model density audit; do not conflate sources.
 The [audited roadmap](topostitch-roadmap.md) owns status and the next decision;
@@ -117,12 +117,19 @@ maintained fixed-weight product mode or recommended production weight.
    with no movement or inherited B1/B7 admission. **W314** passes all57 derivatives, including both C1′ atoms, with both
    registered groups. The selected raw/corrected difference22.09996 at D7 C1′
    demonstrates why the plane correction must remain active.20 cold checks;
-   no movement. **Proposed W315:** one19-atom geometry-only comparison, same
-   50 optimizer iterations/72 calls/3 Å; three derivative audits require690
-   calls, so768 total with overhead. Bind existing pucker/plane/boundary
-   observers before launching; require actual ε recovery and preserved context,
-   not just bond shortening. No diffraction or adoption is authorized by this pass.
-   [Derivative evidence](topostitch-periodic.md#w314--check-the-coupled-gradient-including-both-c1-atoms).
+   no movement. **W315** completes that19-atom trial: bond1.60677 Å,
+   max atom motion0.46310 Å, six hands/fixed bases/other seam preserved.
+   It stops at50 iterations without convergence; ε circular error improves
+   only0.03049°, failing the predeclared35° criterion. Five directed contacts
+   become positive. Three endpoint derivative audits pass;751 full-native calls
+   visit both groups.25 science checks plus a corrected receipt manifest;
+   three-model/eight-control ChimeraX check. No diffraction or adoption.
+   **Next, agreed with Rowan:** P05 installed source → verified child → cut
+   comparison → saved review → cold reopen, using existing owners and explicit
+   checkpoint selection. Review preference alone must not select a result.
+   Pause D7/C8 fits until spatial density or independently qualified chemistry
+   distinguishes a starting-conformer problem from target suitability.
+   [Movement evidence](topostitch-periodic.md#w315--coupled-sugars-move-but-the-torsion-does-not-recover).
    W216's O5′/C5′-only shoulder proposal
    cannot change C4′–C3′–O3′–P when those four atoms are fixed. Separately, P05's
    remaining work is the shared GUI operation lifecycle, not another preview,

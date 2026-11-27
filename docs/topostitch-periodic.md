@@ -16476,3 +16476,83 @@ both-junction and native-contact observations. A useful result must demonstrate
 ε recovery rather than only shorter O3–P, preserve fixed bases/anchors, and
 report convergence or cap honestly. Density and ordinary-refinement confirmation
 remain subsequent gates; geometry cannot independently select the model.
+
+
+## W315 — Coupled sugars move but the torsion does not recover
+
+One predeclared geometry-only trial releases W313's19 atoms from the same W304
+source with both registered image groups and all retained native forces. Limits:
+50 optimizer iterations,72 optimizer calls,3 Å displacement,300 seconds,one CPU.
+The57-variable initial/full/rounded derivative audits consume690 calls; the
+coverage ceiling is768 total, not an enlarged optimization budget. Actual:
+55 optimizer,745 objective,**751 full-native calls** equally on both groups.
+All derivative checks pass; Phenix **2.2.1-6174**,94.5225 seconds in the observer.
+This is complete native geometry execution, not a dry-run or diffraction fit.
+
+| Quantity | Source | Returned inspection endpoint |
+| --- | --- | --- |
+| D7→C8 O3′–P |1.64136449 Å|1.60676835 Å|
+| ε, target −140° / period1 / width35° |+46.26248188°|+33.70703042°|
+| Circular distance to target |173.73751812°|173.70703042°|
+| Total native geometry target |6243.85729169|6161.38284959|
+
+The largest atom move is **0.46309987 Å**. The optimizer reaches its50-iteration
+limit; convergence is **false**, endpoint masked gradient norm336.99008.
+Accepted sampled angles cross the+40° maximum in the decreasing direction;
+this is not proof of a continuous winding path. Circular error improves only
+**0.03048770°**, failing the **35°** progress criterion written before launch.
+The criterion is one existing restraint width, not a chemical acceptance rule.
+The short bond and lower total target do not establish a repaired backbone.
+
+All862 identities,843 fixed coordinates, B/Q, six audited hands and the complete
+other B7→B1 seam remain unchanged. C8/D7 ring phases change11.79→5.83° and
+355.81→5.18° (circular+9.37°); amplitudes37.75→34.25° and37.08→35.97°.
+These are measured pucker changes, not preferred-conformer assignments. The
+20 held base atoms retain exact base-only planes. C1-dependent native-member
+plane fits change slightly; C8/C9 stacking angle5.735→5.892° worsens slightly.
+Scalar observations reuse existing pucker/plane owners and actual positive
+covalent ring proxies; no printed-GEO qualification or plane-energy attribution
+is invented. Four flanking/glycosidic distances stay within about0.54 widths.
+
+The8069 directed native neighbor rows are unchanged. Five directed rows become
+positive overlap and13 positive overlaps worsen. The largest newly positive
+contact, D7 C4′–image C8 OP1, changes−0.00034→0.28420 Å; reciprocal rows count
+separately. Existing C8 OP2–image D7 C2′ overlap0.31114→0.38119 Å. The descriptive
+>0.4 Å count drops105→104, which must not conceal new contacts or be interpreted
+as packing acceptance or MolProbity clashscore.
+
+**Validation/artifacts:** local NASolve anchor
+`branch-artifacts/willow/w315-coupled-movement/` retains `launch.json` with exact
+commands/source hashes, `criteria.json`, full movement/derivative samples,
+`epsilon-progress.json`, restoration/completion and inspection-only coordinates.
+Native launch: `PYTHONDONTWRITEBYTECODE=1 NASolve/.venv/bin/python -B NASolve/branch-artifacts/willow/w315-coupled-movement/launch.py`.
+Cold audit: `PYTHONDONTWRITEBYTECODE=1 NASolve/.venv/bin/python -B NASolve/branch-artifacts/willow/w315-coupled-movement/cold_check.py` (one-time artifact writer).
+25 scientific cold checks pass. Original `verification.json` accidentally hashed
+its own then-empty output; preserved unchanged. `verification-v2.json` checks
+all other original entries and computes its corrected manifest before writing,
+adding one explicit provenance check. It supersedes that manifest, not the
+scientific observations. The model and figures remain unchanged.
+
+`open_comparison.py` displays source / six-atom / nineteen-atom models in exact
+native image frames, no alignment or exaggeration. ChimeraX1.12 headless opens
+three models and exercises eight controls; fresh interactive use is not claimed.
+Grey background, soft lighting, silhouettes and thin nucleic rings apply.
+The PNG/SVG figure was visually checked. `checkout-check.json` binds report,
+figure and script hashes and checks all HTML links. Shared local report anchor
+GitHub:`ScienceCheckouts/Linden/2026-11-27_coupled-sugar-trial/index.html`.
+Source metadata in the inspection PDB is historical, not new R statistics.
+All generated science stays local/uncommitted. No product/schema/migration
+change, suite rerun, model selection or scientific acceptance. W310 remains the
+qualified maintained-code pin; docs audit and whitespace checks pass.
+
+**Stopping decision, agreed with Rowan:** do not extend this fit or soften the
+target on the basis of its result. Existing W304 map point samples at D7
+C3′/O3′/C4′ are2.86/2.90/2.58σ in2mFo–DFc and+0.34/+0.21/+0.48σ difference;
+C8 P is2.43σ/−0.26σ. These model-assisted samples do not choose a new direction.
+Four saved ordinary ε reference observations also vary substantially; observed
+outliers do not authorize changing the target. Before another fit, seek spatial
+difference-density support for a chemically allowed alternate conformation or
+independent same-chemistry/pucker evidence bearing on target suitability.
+The starting-conformer/target question remains open. Next is P05's installed
+source→verified-child→cut-comparison→saved-review→cold-reopen audit using existing
+owners. A review preference cannot select a scientific checkpoint.

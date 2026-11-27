@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W315 — Record the coupled-sugar trial and its stopping decision
+
+- Preserve the successful bond shortening and failed torsion-progress criterion,
+  endpoint contacts, derivative qualification and inspection-only comparison.
+- Keep D7/C8 conformer/target suitability open; move next to the existing P05
+  installed review/reopen lifecycle. No runtime, schema or migration change.
+
 ### W314 — Qualify the corrected coupled-sugar gradient
 
 - Record the actual19-atom D7/C8 derivative check with both registered groups,
