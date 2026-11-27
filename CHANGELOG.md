@@ -8,6 +8,12 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Stabilize mixed-parent crystal provenance
+
+- Record the source space-group name rather than a native object's memory-address
+  representation in new mixed-parent receipts. Numerical symmetry checks are
+  unchanged; old receipts remain provenance and are not rewritten.
+
 ### Keep mixed-refinement workers small and source-bound
 
 - Extract unchanged reflection/HL audits into a small shared module while retaining

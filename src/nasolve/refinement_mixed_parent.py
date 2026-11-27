@@ -166,7 +166,7 @@ def bind_mixed_parent(run, *, request_reference):
         diffraction_sha256=scope_digest(record), file_derivation=file_receipt, composition=composition,
         runtime=request['runtime'], observations=observation['count'], free_count=observation['free_count'],
         phases=phases['count'], source_cell=list(arrays.crystal.unit_cell().parameters()),
-        source_space_group=str(arrays.crystal.space_group()), scientific_approval='NOT_RUN',
+        source_space_group=str(arrays.crystal.space_group_info()), scientific_approval='NOT_RUN',
         limit='Input/guard binding only; existing owner must freeze policy, forces, output and process closure')
     return BoundMixedParent(policy, receipt, scope, diffraction, arrays.crystal, source, recheck, request['runtime'])
 

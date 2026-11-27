@@ -172,6 +172,12 @@ refinement {
         self.assertTrue(all(getattr(c,n) is originals[k] for k,(c,n) in hooks.items()))
         self.assertEqual(receipt['counts'].get('xyz',0),0)
 
+    def test_receipt_records_stable_crystal_name_not_native_object_repr(self):
+        first = self.bind().receipt()
+        second = self.bind().receipt()
+        self.assertEqual(first['source_space_group'], 'P 1')
+        self.assertEqual(first, second)
+
     def test_relocation_resolves_declared_inputs_after_original_is_gone(self):
         original=self.root/'original';moved=self.root/'relocated';original.rename(moved)
         self.run=moved/'dataset/AutoMR/run_001'

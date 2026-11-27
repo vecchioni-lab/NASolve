@@ -73,6 +73,54 @@ Linden identified a later live explicit-NA helper change conflicting with V12;
 Rowan owns that compatibility fix. This candidate uses the exact older Cedar pin
 and is unaffected; do not update historical helper hashes to match new code.
 
+### Stable crystal provenance
+
+A follow-up regression caught `str(cctbx.space_group())` storing an object address
+in `source_space_group`. New mixed-parent receipts use the stable native
+`space_group_info()` name. Their existing exact operator/cell checks are unchanged.
+Two independent bindings now return identical complete receipts. The new native
+case fails before correction; the final parent/return panel passes **31 tests /
+30 subtests** under Phenix 2.2.1-6174. No refinement was run. Before/after logs and
+XML are retained with the compact-worker evidence. This corrects a provenance
+string, keeps the schema and leaves old receipts untouched.
+
+### Proposed external-phase boundary and delivery order
+
+**Design only; not implemented.** Prefer an explicit child phase-source declaration
+in a new mixed-policy version over a global rewrite of the parent's AutoSol report.
+The ordinary parent keeps its original phase state; the new experiment separately
+names its exact external AutoSol MTZ, ordered HL labels, original observations and
+producer evidence using checksummed anchors. Reuse the indexed source-array reader
+for numerical admission. An externally declared origin must remain distinguishable
+from NASolve-owned site validation/publication. Do not infer provenance from a
+filename, matching cell, or matching reflection count.
+
+1. Obtain a genuinely prepared FT ordinary parent with the current ligand and
+   topology inputs through the existing preparation owner. The private control
+   remains evidence, not an ordinary predecessor manufactured by metadata editing.
+2. Extend only the new mixed request with an explicit external phase origin and
+   provenance. Keep v1's approved-parent-phase contract and all historical readers
+   intact. Test absent/mutated producer evidence, wrong observations/HL/index join,
+   conflicting parent phases and relocation before dispatch.
+3. Freeze the new child declaration in the existing numbered owner, including
+   exact model, complete inherited restraints, regenerated image forces, scope,
+   original Free-R and explicitly selected amplitude/HL arrays. Resolve report/
+   registry publication timing without requiring mutable files to remain unchanged
+   forever or accepting changed scientific inputs.
+4. Carry that origin into the returned checkpoint through checked execution
+   evidence; never hardcode external phases as `validated-autosol`. Cold readers
+   must follow the child's explicit source authority rather than silently checking
+   only the run's AutoSol field. Existing ordinary owned-source behavior stays exact.
+5. Exercise zero-cycle transfer first, then one bounded native cycle with the same
+   declared inputs and existing writer/process closure. Compare coordination,
+   environment B, both symmetry links, maps and R statistics before A02.
+
+The affected integration points are `refinement_mixed_parent`, the numbered
+`refinement_parallelity`/`autorefine` owner, checkpoint phase inheritance and the
+metal source consistency reader. Coordinate those shared changes with Cedar;
+no new registry or executor is needed. Genuine FT preparation and external origin
+are prerequisite inputs, not items a synthetic fixture can certify.
+
 ## Read-only transfer from the maintained ordinary owner
 
 `refinement_parent_transfer.inspect_parent_transfer` reviews a serializable input
