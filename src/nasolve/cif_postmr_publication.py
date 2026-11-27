@@ -335,6 +335,8 @@ def _check_new_mutation_intent(run, report, request, exact):
     choices = {}
     if 'furanose_substitution' in verified:
         sugar = verified['furanose_substitution']
+        _need(not sugar.get('unfitted_pairing_edge_seed'),
+              'The C-linked sugar is a construction seed. Its local fit must be bound before checkpoint publication.')
         choices['furanose_target'] = (sugar['context']['site'], sugar['code'])
     sources = {}
     for code, projection in verified.get('projection_sources', {}).items():

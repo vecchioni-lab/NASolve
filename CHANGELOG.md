@@ -8,6 +8,8 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- Checked PostMR preparation can use a retained dictionary to build a C-linked uracil analogue on a 2′-O-methyl ribose alongside ordinary Coot mutations. It requires both qualified sugar-pucker tables and the NARestraints pairing edge. The raw seed stays available for a local fit and cannot become a refinement checkpoint.
+
 - A local sugar fit can return its coordinates to the original PDB after checks on the crystal frame, fixed atoms, occupancies, B values and stereochemistry. Base-pair distance restraints that Phenix writes as `LINK` records stay out of the returned model.
 
 - A trusted diagnostic can read the live Phenix geometry and gradient counters for a registered set of crystal phosphates during a zero-cycle preflight. NASolve checks that the observation preserves the model, phosphate forces and bonded exclusions. Existing refinement workers retain their original fingerprints.

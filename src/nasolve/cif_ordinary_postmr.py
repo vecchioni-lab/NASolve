@@ -115,6 +115,8 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
     complete request or enable automatic mutation/selection. An explicit
     furanose_substitution binds one internal site to its qualified component,
     host dictionary and NARestraints workbook before the restraint builder runs.
+    A C-linked uracil on a methyl-ether ribose requires source-selected generation
+    and its two observed native pucker tables. Its unfitted seed is diagnostic.
     Alternatively, locked_sugar_site reads that site's target from the frozen
     run. After PostMR has reserved its directory, its usual isolated acquisition
     owner reuses or qualifies the original component before Coot runs.
@@ -149,6 +151,9 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
     if furanose_substitution is not None:
         from .postmr_furanose import capture_substitution
         furanose = capture_substitution(furanose_substitution, configured.consumer)
+        from .cif_whole_furanose import MODEL_EDGE_POLICY_ID
+        if furanose.placement_policy == MODEL_EDGE_POLICY_ID and not select_representation:
+            raise ValueError('A C-linked sugar seed requires source-selected chemistry and both native pucker tables')
         if construction is None:
             from .curated_ligands import ligand_source
             current = ligand_source(furanose.code, data_root, ready_set_executable=configured.ready_set_executable)
@@ -213,8 +218,11 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
             if built['snapshot']['entry_id'] != inputs.furanose_entry_id:
                 raise ValueError('Furanose construction retained a different dictionary entry')
             item, = [c for c in components if c['code'] == furanose.code]
-            item.update(retained_snapshot=stage/'snapshot',
-                        furanose_reaction=dict(workbook=built['workbook'], contexts=[built['context']]))
+            item['retained_snapshot'] = stage/'snapshot'
+            if not built.get('unfitted_pairing_edge_seed'):
+                item['furanose_reaction'] = dict(workbook=built['workbook'], contexts=[built['context']])
+            # For the C-linked ether the source selector below binds these same ports,
+            # the installed workbook and both observed Phenix pucker tables.
         source_chemistry = {}
         if select_representation:
             from restraints import residue_library
@@ -370,6 +378,10 @@ def _read_ordinary_postmr_results(run_directory, attempt_numbers):
 def _ordinary_result_from_exact(request, attempt_number, exact):
     from .cif_dictionary_sites import _need
     _need(exact.get('construction_inputs') is not None, 'Require recorded ordinary construction evidence')
+    sugar = exact['construction_inputs'].get('furanose_substitution', {})
+    seed_notes = ()
+    if sugar.get('unfitted_pairing_edge_seed'):
+        seed_notes = (f"{sugar['context']['site']} {sugar['code']} is a construction seed. Its local sugar fit is still required before checkpoint publication.",)
     runtime = exact['runtime']
     continued = exact.get('continuation')
     selected = None if runtime is None else runtime['manifest']['decision']['selected']
@@ -394,6 +406,7 @@ def _ordinary_result_from_exact(request, attempt_number, exact):
         report_path=request/'attempts'/f'attempt-{attempt_number:04d}'/'result.json',
         limitations=(
             'These preparation checks do not establish diffraction-refinement success.',
+            *seed_notes,
             *(f'{code}: the builder introduced an unlisted bond. A fresh source-order attempt supplied the checked dictionary.'
               for code in sorted(exact['result'].get('source_order_recoveries', {}))),
             *_plane_support_limitations(exact['result'], exact.get('execution')),

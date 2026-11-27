@@ -6,13 +6,14 @@ from tempfile import TemporaryDirectory
 from .cif_acquisition_preparation import _freeze
 from .cif_attachment_profiles import inspect_attachment_profile
 from .cif_attachment_sites import _site
-from .cif_base_displacement import POLICY_ID as BASE_B_POLICY
+from .cif_base_displacement import POLICY_ID as BASE_B_POLICY, SITE_MEDIAN_POLICY
 from .cif_dictionary_sites import _SNAPSHOT_FILES, _need, _read
 from .cif_dictionary_store import resolve_dictionary_snapshot
 from .cif_fana_component import _load
 from .cif_furanose_bridge import prepare_furanose_bridge_seed, read_furanose_bridge_seed
 from .cif_repair_attempt import _root
-from .cif_whole_furanose import prepare_base_anchored_furanose_from_model
+from .cif_whole_furanose import (MODEL_BASE_POLICY_ID, MODEL_EDGE_POLICY_ID, _uracil_attachment,
+                                 prepare_base_anchored_furanose_from_model)
 from .phenix_runtime import PhenixInstallation
 
 DIRECTORY = 'PostMR/Coot/furanose'
@@ -108,6 +109,7 @@ class FuranoseInput:
     host_bytes: bytes
     workbook: Path
     workbook_bytes: bytes
+    placement_policy: str
 
     def verify_source(self, path, authority):
         _need(authority == self.source_authority and _read(path) == self.files['entry/source.cif'],
@@ -117,6 +119,29 @@ class FuranoseInput:
         _need(all(_read(self.snapshot/name) == data for name, data in self.files.items())
               and _read(self.host) == self.host_bytes and _read(self.workbook) == self.workbook_bytes,
               'Selected furanose construction inputs changed')
+
+
+def _placement_policy(snapshot, workbook):
+    """Identify a construction route from the qualified source, native tables and workbook."""
+    from .cif_rna_pucker import observed_ether_permission, permitted_pucker_tables, require_pucker_source
+    from .cif_stereochemistry_audit import _values
+
+    request = snapshot['manifest']['request']
+    source, code = snapshot['source'], request['component']
+    tables = request['recipe'].get('rna_pucker_table')
+    observed = observed_ether_permission(tables)
+    profile = inspect_attachment_profile(source, code, workbook=workbook, check_at_pair=observed)
+    _need(profile['topology_status'] == 'MATCH', 'Require an unambiguous sugar attachment graph')
+    if profile['matched_profile'] == _LOCKED:
+        return MODEL_BASE_POLICY_ID
+    _need(observed and profile['matched_profile'] == 'unbridged-furanose-phosphate-v1',
+          'An unbridged sugar needs the paired native pucker qualification')
+    permitted_pucker_tables(tables)
+    require_pucker_source(_values(source, code), tables)
+    _need(_uracil_attachment(source, code, workbook, profile) == 'C'
+          and profile['at_pair_check']['status'] == 'AGREES',
+          'C-linked sugar construction requires a source-verified NARestraints pairing edge')
+    return MODEL_EDGE_POLICY_ID
 
 
 def capture_substitution(selection, consumer):
@@ -132,10 +157,7 @@ def capture_substitution(selection, consumer):
     host, workbook = (Path(selection[k]).absolute() for k in ('host_dictionary','workbook'))
     choice = FuranoseInput(site, code, saved['entry_id'], saved['manifest']['request']['source_authority'],
                           directory, {n:_read(directory/n) for n in _SNAPSHOT_FILES},
-                          host, _read(host), workbook, _read(workbook))
-    profile = inspect_attachment_profile(saved['source'], code, workbook=workbook)
-    _need(profile['topology_status'] == 'MATCH' and profile['matched_profile'] == _LOCKED,
-          'This construction requires the source-declared 2′-O,4′-C bridged furanose')
+                          host, _read(host), workbook, _read(workbook), _placement_policy(saved, workbook))
     _need(resolve_dictionary_snapshot(directory)['manifest'] == saved['manifest'],
           'Qualified furanose dictionary changed during selection')
     choice.verify()
@@ -154,10 +176,14 @@ def build_substitution(choice, frame, prepared, run, report):
         host, workbook = temp/'host.cif', temp/'Ligands.xlsx'
         host.write_bytes(choice.host_bytes)
         workbook.write_bytes(choice.workbook_bytes)
-        prepare_base_anchored_furanose_from_model(
+        equivalent_base = choice.placement_policy == MODEL_BASE_POLICY_ID
+        placement = prepare_base_anchored_furanose_from_model(
             saved['source'], saved['dictionary'], host, workbook, frame, temp/'placement',
-            code=choice.code, site=choice.site, postmr_report=report, canonical_at_edge=False)
-        prepare_furanose_bridge_seed(temp/'placement', root/'seed', **_FIT, inherit_equivalent_base_b=True)
+            code=choice.code, site=choice.site, postmr_report=report,
+            canonical_at_edge=False if equivalent_base else None)
+        _need(placement['policy_id'] == choice.placement_policy,
+              'The host and target do not support the selected sugar placement')
+        prepare_furanose_bridge_seed(temp/'placement', root/'seed', **_FIT, inherit_equivalent_base_b=equivalent_base)
     choice.verify()
     with prepared.open('xb') as handle:
         handle.write(_read(root/'seed/model.pdb'))
@@ -174,13 +200,17 @@ def read_substitution(root):
     placement = root/'seed/placement'
     placed = _load(placement/'placement.json')
     code = original['manifest']['request']['component']
-    _need(original['qualification_current'] and seed['component'] == placed['component'] == code
+    policy = _placement_policy(original, placement/'Ligands.xlsx')
+    _need(original['qualification_current'] and placed['policy_id'] == policy and seed['component'] == placed['component'] == code
           and _read(placement/'source.cif') == _read(original['source'])
           and _read(placement/'numerical.cif') == _read(original['dictionary'])
-          and placed['source_profile'] == _LOCKED and 'ordinary_backbone' in placed
+          and 'ordinary_backbone' in placed
           and 'phosphate_leaving_atom' in placed and 'base_frame_source' in placed,
           'Furanose seed differs from the qualified source, ordinary partners or mapped base')
-    _need(seed['config'] == dict(_FIT, base_b_policy=BASE_B_POLICY),
+    displacement = (dict(base_b_policy=BASE_B_POLICY) if policy == MODEL_BASE_POLICY_ID
+                    else dict(site_b_policy=SITE_MEDIAN_POLICY))
+    _need(seed['config'] == dict(_FIT, **displacement),
           'Furanose seed differs from the supported fit and displacement policy')
     return dict(snapshot=original, model=root/'seed/model.pdb', host_frame=placement/'frame.pdb',
-                context=placed['context'], workbook=placement/'Ligands.xlsx', code=code)
+                context=placed['context'], workbook=placement/'Ligands.xlsx', code=code,
+                **({'unfitted_pairing_edge_seed': True} if policy == MODEL_EDGE_POLICY_ID else {}))

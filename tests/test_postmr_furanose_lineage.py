@@ -154,6 +154,10 @@ def test_new_publication_rechecks_the_frozen_sugar_against_current_mutation_inte
     current = dict(post_mr_plan=dict(mutations={'A:11':{'ligand_code':'Z99'}}))
     with patch('subprocess.Popen',side_effect=AssertionError('Publication started a process')):
         _check_new_mutation_intent(run,current,request,exact)
+        recorded = exact['construction_inputs']
+        seed = dict(recorded['furanose_substitution'], unfitted_pairing_edge_seed=True)
+        with pytest.raises(ValueError,match='local fit'):
+            _check_new_mutation_intent(run,current,request,{'construction_inputs':dict(recorded,furanose_substitution=seed)})
         for mutations in ({'A:11':{'ligand_code':'DT'}}, {'A:12':{'ligand_code':'Z99'}}, {}):
             with pytest.raises((PostMRPreparationError,ValueError)):
                 _check_new_mutation_intent(run,dict(post_mr_plan=dict(mutations=mutations)),request,exact)
@@ -277,3 +281,30 @@ def test_complete_request_binds_the_same_workbook_reaction_and_qualified_compone
         moved = output.rename(tmp_path/'cold-complete')
         state = owner.inspect_dictionary_request(moved)
         assert state['availability']=='AVAILABLE' and not state['attempts'] and not calls
+
+
+def test_explicit_sugar_seed_requires_both_puckers_and_the_compiled_pairing_edge(tmp_path):
+    from nasolve.cif_rna_pucker import ETHER_PUCKER_PERMISSION
+    from nasolve.cif_whole_furanose import MODEL_EDGE_POLICY_ID
+    from nasolve.postmr_furanose import _placement_policy
+    from tests.test_cif_pyrimidine_placement import inputs as edge_inputs
+
+    correct = tmp_path/'current'
+    correct.mkdir()
+    source, _, _, workbook, _ = edge_inputs(correct)
+    tables = {m: dict(anchor='phenix_installation',size=120,sha256='1'*64,
+        path=f'lib/python3.11/site-packages/chem_data/geostd/rna_dna/mod_{m}.cif')
+        for m in ('rna2p','rna3p')}
+    permission = dict(policy_id=ETHER_PUCKER_PERMISSION,tables=tables)
+    request = dict(component='UY1',recipe=dict(rna_pucker_table=permission))
+    selected = dict(source=source,manifest=dict(request=request))
+    assert _placement_policy(selected,workbook) == MODEL_EDGE_POLICY_ID
+    wrong = tmp_path/'other'
+    wrong.mkdir()
+    _, _, _, wrong_workbook, _ = edge_inputs(wrong, wrong_edge=True)
+    with pytest.raises(ValueError,match='pairing'):
+        _placement_policy(selected,wrong_workbook)
+    for insufficient in (None, tables['rna2p'], dict(permission,tables={'rna2p':tables['rna2p']})):
+        request['recipe'] = dict(rna_pucker_table=insufficient) if insufficient is not None else {}
+        with pytest.raises(ValueError,match='pucker|sugar'):
+            _placement_policy(selected,workbook)

@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 27 November 2026, after C635. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 27 November 2026, after C636. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -1287,6 +1287,8 @@ C633 removed the manual choice of pairing frame from the model-bound whole-sugar
 C635 used the ordinary Coot construction and phosphate policy for the first three sites on the fresh four-site card, then placed the fourth sugar using its qualified dictionary. NARestraints 1.1.5 inferred all 19 pairs and 38 stacks from these new coordinates, including UY1 A:19 with adenine D:4. With the already checked four-component library, three site-only Phenix geometry cycles installed all 50 base-pair distance, 86 angle and 57 parallelity requests. Only the 21 UY1 atoms moved. All 839 bystanders stayed fixed, all four sugar hands survived, and the five contacts below 2.2 Å cleared. The final coordinates agreed atom for atom with the earlier local fit. The 0.42 and 0.44 Å overlaps with A:20 remain.
 
 Phenix also wrote the 50 restrained base-pair distances twice each as PDB LINK records. The new return reader carries only the selected sugar’s coordinates into the parent PDB. It verifies the crystal frame, atom identities, occupancies, B values, fixed positions and source stereochemistry, leaving the parent’s own connectivity intact. This was a geometry-only comparison with an explicitly routed fourth site. The ordinary card still needs to acquire and route the fourth site, bind the local fit to its checked preparation and verify the D:1 widths in AutoRefine.
+
+C636 ran the same four-site card through the ordinary PostMR owner with one explicitly retained UY1 dictionary. Coot 1.3.3 built the other three substitutions. With the NARestraints 1.1.5 candidate, both Phenix 2.2.1-6174 reads around ReadySet found 42 residues, 860 atoms and all 193 requested restraints. ReadySet preserved every named coordinate, occupancy and B value. The seed, five selected CIFs and six restraint files exactly matched the C635 local fit inputs. A fresh-process reread verified the result and the refusal to publish this unfitted seed. It did not repeat the minimization or diffraction refinement. The next steps are automatic fourth-site acquisition from the card, an auditable fitted child, and a normal four-site refinement that checks the six protected D:1 phosphate widths.
 
 C601 found the source-preserving generator had introduced a 5.779 Å bond between
 O4′ and ring C2. All 42 source edges were present. The ten bonds of the purine
