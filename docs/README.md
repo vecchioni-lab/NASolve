@@ -10,7 +10,12 @@ current instructions; other branches retain their own status and validation pins
 - **Latest W315:** [coupled-sugar movement comparison](topostitch-periodic.md#w315--coupled-sugars-move-but-the-torsion-does-not-recover)
   moves atoms by up to0.463 Å and reaches the bond target, but fails its
   torsion-progress criterion and remains unconverged. Stop repeat fits;
-  P05 installed review/reopen is the next bounded audit.
+  W316 now passes the P05 installed review/reopen audit.
+
+- **Latest integration, W316:** [installed child/review reopening](topostitch-periodic.md#w316--reopen-a-reviewed-cut-without-selecting-a-scientific-result)
+  preserves the same model, cuts, synthetic review and current selection after
+  relocation. The verified-child composition still needs a thin production caller;
+  no persistent GUI or combined-release qualification is claimed.
 
 - **Latest code, W310:** [registered zero-step observer](topostitch-preview.md)
   exposes full-native baseline and explicit mask projections inside the caller's

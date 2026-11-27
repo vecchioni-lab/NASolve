@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**W315 coupled-sugar motion diagnostic, 2026-11-27.** Latest maintained code:
+**W316 installed child/review lifecycle audit, 2026-11-27.** Latest maintained code:
 `29fded465e95878677670be15d3c8f4999224854`. Latest native movement/endpoint derivative diagnostic: **W315**; latest refinement:
 **W304** (same genuine ordinary PDU parent as W300); latest density audit: **W304**.
 W298 remains the separate endpoint-base/whole-model density audit; do not conflate sources.
@@ -45,6 +45,19 @@ nuisance state were not frozen. This local experimental receiver is not a new
 maintained fixed-weight product mode or recommended production weight.
 
 ## Next decisions
+
+**Immediate P05 step:** W316 passes the installed verified-child/cut/review
+reopening smoke on Willow `6a5e61fd` and Cedar `e1df7ad2`. Synthetic preference,
+contexts, HTML and model/map hashes survive staged relocation; current `postmr`
+stays unchanged while `refine-004` is inspected. No new fit or human approval.
+The caller audit finds W305's composition is still API-only. Propose one thin
+inspection caller for a scientist comparing a refined child's cuts, with explicit
+run/parent/refresh-digest inputs and saved review. It must cold-reopen the same
+result, show viewed versus current checkpoint, and refuse stale context. Trusted
+installed reader composition is a prerequisite: Willow `map_origin` and Cedar
+`preparation_attempt` are distinct additions, not interchangeable metadata.
+No full GUI shell, new registry or implicit checkpoint selection is needed.
+[Exact audit](topostitch-periodic.md#w316--reopen-a-reviewed-cut-without-selecting-a-scientific-result).
 
 1. **Stitching:** W297 is the new unselected endpoint-base comparison against
    W296's sugar-only control. It improves pair tilt but does not recover clear
@@ -124,9 +137,8 @@ maintained fixed-weight product mode or recommended production weight.
    become positive. Three endpoint derivative audits pass;751 full-native calls
    visit both groups.25 science checks plus a corrected receipt manifest;
    three-model/eight-control ChimeraX check. No diffraction or adoption.
-   **Next, agreed with Rowan:** P05 installed source → verified child → cut
-   comparison → saved review → cold reopen, using existing owners and explicit
-   checkpoint selection. Review preference alone must not select a result.
+   **W316** now passes the installed P05 review/reopen audit; the smallest
+   production caller is the next proposal above. Review still cannot select a result.
    Pause D7/C8 fits until spatial density or independently qualified chemistry
    distinguishes a starting-conformer problem from target suitability.
    [Movement evidence](topostitch-periodic.md#w315--coupled-sugars-move-but-the-torsion-does-not-recover).

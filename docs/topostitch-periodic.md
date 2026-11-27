@@ -16556,3 +16556,60 @@ independent same-chemistry/pucker evidence bearing on target suitability.
 The starting-conformer/target question remains open. Next is P05's installed
 source→verified-child→cut-comparison→saved-review→cold-reopen audit using existing
 owners. A review preference cannot select a scientific checkpoint.
+
+
+## W316 — Reopen a reviewed cut without selecting a scientific result
+
+This read-only integration smoke uses **installed Willow `6a5e61fd0aae175f3f83ff4675f99387e87dc6b9`** and
+**installed Cedar `e1df7ad2ea888a8d3ee826efd4a0f3ededd62834`** in isolated namespaces. No branch merge,
+source patch, native fit or new checkpoint. Source is the genuine W300
+`refine-003`→`refine-004` lineage, not W304's three-cycle sibling or W315's
+inspection endpoint. Existing APIs reproduce the exact W301 refresh, compare
+its retained whole-C cut with the original-ASU alternative, and load a clearly
+marked **synthetic integration-test preference**. This is not a person's review.
+
+After moving the staged dataset, packets and both installations, removing their
+old paths and build directories, a new Python process recreates byte-identical
+comparison HTML and identical context/review/model/map/dictionary hashes.
+**20 preparation / 25 cold-reopen checks** pass; 13 independent receipt checks
+then verify the saved results without loading scientific runtimes. All 862 atoms per cut persist, retained-parent versus
+alternative ancestry stays distinct, and `current=postmr` remains unchanged
+while the explicitly requested `refine-004` is viewed. An implicit current request
+cannot masquerade as that child. A changed preference fingerprint refuses before
+HTML creation. All model/map/dictionary paths resolve within the relocated dataset.
+Original scientific evidence is byte-identical; temporary copies are removed.
+
+The installed `nasolve-topostitch-view --help` check passes. All Python owner files
+and the inspector HTML match the two pinned sources. Python 3.11.15,
+Gemmi 0.7.5, using the Phenix2.2.1-6174 Python environment; **no Phenix
+refinement or Coot process was launched**. No browser interaction was tested.
+The earlier W310 full qualification remains unchanged; this is a new read-only
+real-data integration smoke, not a repeated full suite or combined-release audit.
+
+**Failures retained:** the first harness incorrectly required a ligand provenance
+sidecar not declared as package data. The next reached view-profile resolution
+but assumed Cedar exposed Willow's `map_origin`, raising `AttributeError`.
+The successful harness checks shared fields and records their actual owners:
+Willow adds `map_origin`; Cedar adds `preparation_attempt`. It does not synthesize
+either field or claim they have been merged. No runtime source changed.
+
+Local NASolve anchor `branch-artifacts/willow/w316-installed-review-reopen/`
+contains the caller audit, exact source/install commands, initial failure receipts,
+`qualification-v3.json`, `prepare.json`, `reopen.json`, `verification.json`,
+synthetic preference and the saved HTML. Recorded invocation:
+`PYTHONDONTWRITEBYTECODE=1 NASolve/.venv/bin/python -B NASolve/branch-artifacts/willow/w316-installed-review-reopen/launch_v3.py`
+(one-time immutable output writer; preserve failures before another attempt).
+Generated models/review/examples stay local and uncommitted. Docs only; no schema,
+compatibility behavior or migration change. Roadmap and whitespace audits pass.
+
+**Caller audit / proposed next step:** scanning maintained Python source finds no
+production caller of `write_checkpoint_recut_view`; the generic view CLI exposes
+ordinary comparisons, not verified parent/child context. The refresh producer's
+only internal call is its saved-replay path. For a scientist reviewing a refined
+recut, add one thin existing-view caller accepting explicit run, parent preview,
+refreshed-child digest, alternatives and optional saved review. Exit when one
+installed command cold-reopens the exact view, distinguishes viewed from current,
+and refuses stale context before output. Resolve trusted installed-reader ownership
+and both map-profile additions first. Preference cannot dispatch refinement,
+select a checkpoint or confer scientific acceptance. P05 remains partial;
+persistent editing/refinement and complete seam chemistry remain separate gates.

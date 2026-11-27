@@ -700,7 +700,7 @@
         "date": "2026-11-27",
         "code_commit": "29fded465e95878677670be15d3c8f4999224854",
         "reviewer": "Linden",
-        "human_update": 310,
+        "human_update": 315,
         "scope": "W315 coupled-sugar motion complete but progress criterion failed; no convergence or scientific closure"
       }
     },
@@ -1359,7 +1359,7 @@
         "date": "2026-11-27",
         "code_commit": "29fded465e95878677670be15d3c8f4999224854",
         "reviewer": "Linden",
-        "human_update": 310,
+        "human_update": 315,
         "scope": "W315 coupled-sugar motion complete but progress criterion failed; no convergence or scientific closure"
       }
     },
@@ -1378,14 +1378,15 @@
         "W302 rederives saved refreshes and every packet byte through the existing producer before graphical consumption. Real child inspector preserves862 atoms/edges, physical/image movement distinction and fresh-review status. Forged claims, substituted valid cuts and stale contexts refuse; no fit or selection.",
         "W303 compares two cuts of the same genuine refined child with the existing preference owner;862 atoms/two connections retained, no physical movement or invented review. Image-cycle limitation made explicit.",
         "W304 extends genuine ordinary recovery to3 cycles with both complete image force groups;862 identities/Q and124 Free retained. Both bonds/worst angles improve; mixed torsion/map evidence remains explicit. Fresh cut and density/ChimeraX comparisons remain unselected.",
-        "W305 composes verified-child context, existing same-child alternatives and saved preference intake. Retained cut versus alternative explicit; context/packet/preference drift refuses. Current Cedar read-only compatibility checked; no selection or native admission."
+        "W305 composes verified-child context, existing same-child alternatives and saved preference intake. Retained cut versus alternative explicit; context/packet/preference drift refuses. Current Cedar read-only compatibility checked; no selection or native admission.",
+        "W316 installed Willow/Cedar compatibility smoke reproduces the genuine W301 child refresh, compares two cuts, saves explicitly synthetic review input and reopens byte-identically after staged inputs and installations move. Current postmr stays unchanged; stale review and implicit-current/explicit-child mismatch refuse. 20 preparation / 25 cold-reopen checks. No deployed verified-child caller exists yet; branch-specific map_origin/preparation_attempt remain separate."
       ],
       "acceptance": [
         "Use the shared model tree and exact selection/Coot APIs; keep inspect, select and approve distinct, preserve current choice and return refinement diagnostics to the same session.",
         "Graphical actions bind source hashes and show actual nicks/seams/mates. Test stale views, competing choices, interrupted actions, manual imports and relocation without duplicating campaign/checkpoint machinery.",
         "Expose editable Pine periodic connectivity beyond the ASU, preserving prior user choices and exact logical/image mappings across reslicing or explicitly marking unresolved mappings. Keep intent, proximity and enforcement support separate."
       ],
-      "next_action": "Audit the first shared workbench caller against docs/gui.md: use existing model-tree/checkpoint, comparison/preference and Coot APIs for explicit view/edit/refine actions. Backend comparison composition is complete; do not add another registry or infer approval from preference. Physical oligo/entity authority and complete native admission remain separate gates.",
+      "next_action": "Propose the smallest verified-child inspection caller for a scientist reviewing a refined recut: explicit run, parent preview, refreshed-child receipt digest, same-child alternatives and optional saved preference. Exit when one installed command cold-reopens the exact child/cuts/review, distinguishes viewed refine-004 from current postmr, and refuses stale context before output. Reuse existing APIs; first resolve trusted installed reader ownership and preserve both Willow map_origin and Cedar preparation_attempt. No auto-selection, new registry, native fit or full GUI shell.",
       "evidence": [
         "E_WILLOW_PINE_DOC_AUDIT",
         "E_ORDINARY_CHILD_RECUT",
@@ -1393,14 +1394,15 @@
         "E_SAVED_RECUT_READBACK",
         "E_SAME_CHILD_CUT_CHOICE",
         "E_THREE_CYCLE_ORDINARY_RECOVERY",
-        "E_CHECKPOINT_CUT_CHOICE"
+        "E_CHECKPOINT_CUT_CHOICE",
+        "E_INSTALLED_CHILD_REVIEW_REOPEN"
       ],
       "last_audit": {
         "date": "2026-11-27",
-        "code_commit": "5b68471fe4615c543952484c73e0f5a93acc063f",
+        "code_commit": "29fded465e95878677670be15d3c8f4999224854",
         "reviewer": "Linden",
-        "human_update": 305,
-        "scope": "Verified comparison/preference backend substep closed; persistent workbench and seam acceptance remain open"
+        "human_update": 316,
+        "scope": "Installed read-only child/review lifecycle audited; persistent caller and shared-release composition remain open"
       }
     },
     {
@@ -11089,6 +11091,51 @@
           "size": 1618
         }
       ]
+    },
+    "E_INSTALLED_CHILD_REVIEW_REOPEN": {
+      "kind": "Installed verified-child comparison and review cold reopening",
+      "date": "2026-11-27",
+      "human_update": 316,
+      "code_commit": "29fded465e95878677670be15d3c8f4999224854",
+      "reference": "docs/topostitch-periodic.md#w316--reopen-a-reviewed-cut-without-selecting-a-scientific-result",
+      "source_commits": {
+        "willow": "6a5e61fd0aae175f3f83ff4675f99387e87dc6b9",
+        "cedar": "e1df7ad2ea888a8d3ee826efd4a0f3ededd62834"
+      },
+      "result": "20 preparation / 25 cold-reopen checks; identical HTML, contexts, review and Coot model/map/dictionary hashes after relocation. Genuine refresh matches W301. Original science and current selection unchanged. Installed Python owners and inspector HTML match pinned source.",
+      "limitation": "Synthetic test preference, not human approval. No browser/Coot launch, refinement, mixed-branch release qualification or schema migration. Generic CLI lacks verified parent/child binding; map_origin and preparation_attempt have distinct branch owners.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w316-installed-review-reopen/caller-audit.json",
+          "sha256": "9eaab0f8636a76d89f25d67abfd536146dc99765e88243e233b857268d9c6ca1",
+          "size": 4054
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w316-installed-review-reopen/qualification-v3.json",
+          "sha256": "e3f236d7ee4fc13041cec3abe0e2ee4379b0e0b70da1132921c89c8dd2d7d478",
+          "size": 51546
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w316-installed-review-reopen/prepare.json",
+          "sha256": "2a116337afc39497555bfb38fcf17711cdc087c1f40161f903c02d4e23ebe922",
+          "size": 9966
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w316-installed-review-reopen/reopen.json",
+          "sha256": "87ae00779d9735e1d294a2942ecc5caa488b1b36da14202d5575efb12f6c163d",
+          "size": 10218
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w316-installed-review-reopen/verification.json",
+          "sha256": "2aacd1ab405b2a021cb05b48ba6808644c71077bbd0827d06f7d5d6d78dae618",
+          "size": 4365
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -11270,8 +11317,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 315,
-    "next": 316,
+    "current": 316,
+    "next": 317,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -12969,6 +13016,12 @@
       {
         "number": 315,
         "title": "Coupled sugars move but torsion recovery fails its criterion",
+        "state": "RECORDED",
+        "code_commit": "29fded465e95878677670be15d3c8f4999224854"
+      },
+      {
+        "number": 316,
+        "title": "Reopen installed child and cut review without selecting it",
         "state": "RECORDED",
         "code_commit": "29fded465e95878677670be15d3c8f4999224854"
       }

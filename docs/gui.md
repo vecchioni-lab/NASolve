@@ -14,6 +14,28 @@ Coot remains the external atomic modeler. Phenix/NARestraints remain external
 scientific engines. The NASolve GUI orchestrates, visualizes, audits and branches
 the same backend operations that remain available from the CLI.
 
+## Verified-child inspection integration boundary
+
+W316's installed compatibility audit exercises the existing verified-child
+comparison/review APIs against a genuine saved refinement child. The generic
+`nasolve-topostitch-view` command exposes ordinary cut comparison and preference
+reopening, but does not yet bind a run, parent preview and child-refresh digest.
+There is no deployed persistent-workbench caller of that verified composition.
+
+The next proposed caller serves a scientist inspecting alternative cuts of one
+refined child. It should reuse `write_checkpoint_recut_view`, require explicit
+context and receipt bindings, show **viewed checkpoint** separately from **current
+checkpoint**, and reopen the exact saved review without selecting a model. Exit:
+one installed command reproduces that view after relocation and refuses stale
+context before writing. Keep actual adoption a separate existing checkpoint
+operation. No new registry or shell is required for this bounded step.
+
+Shared-owner integration must preserve Willow's `ViewProfile.map_origin` and
+Cedar's `ViewProfile.preparation_attempt` as distinct concepts. The W316 smoke
+checks common model/map/dictionary fields only; it is not a merged-release test,
+Coot editing test or authenticated human review. See the
+[exact evidence](topostitch-periodic.md#w316--reopen-a-reviewed-cut-without-selecting-a-scientific-result).
+
 ## Why a GUI now
 
 The GUI is not justified by wanting buttons. It is justified by information

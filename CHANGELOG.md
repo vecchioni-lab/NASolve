@@ -17,6 +17,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W316 — Audit installed child review and reopening
+
+- Verify the existing parent/child, cut comparison and saved-review owners together
+  after relocation, keeping the current checkpoint unchanged.
+- Record the missing production caller and separate Willow/Cedar map-profile
+  fields. No runtime, schema or migration change; synthetic review only.
+
 ### W315 — Record the coupled-sugar trial and its stopping decision
 
 - Preserve the successful bond shortening and failed torsion-progress criterion,
