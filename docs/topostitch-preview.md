@@ -5420,3 +5420,68 @@ This closes the saved-review reproduction substep. Before writing a separate
 metadata derivative, distinguish explicit image/type edits from the unresolved
 physical-oligo/entity and experimental-sequence decisions. Preserve all unrelated
 categories, and keep chemistry, geometry, export and native admission independent.
+
+
+## Refresh a cut onto its exact refinement child (W301)
+
+`nasolve.topostitch_checkpoint.build_checkpoint_recut_preview` replaces the local
+W282/W300 producer composition with a maintained, opt-in backend operation. Obtain
+both contexts through `inspect_checkpoint_inputs` **after** the child is saved,
+using explicit checkpoint IDs and the trusted Cedar registry reader. The complete
+saved registry participates in each context digest, so a pre-refinement context
+is deliberately stale after child creation.
+
+```python
+refresh = build_checkpoint_recut_preview(
+    run_directory, parent_preview_directory,
+    parent_checkpoint_id="refine-003", child_checkpoint_id="refine-004",
+    expected_parent_context_sha256=parent_inputs["context_sha256"],
+    expected_child_context_sha256=child_inputs["context_sha256"],
+    expected_preview_receipt_sha256=trusted_parent_preview_sha256,
+    registry_reader=trusted_cedar_checkpoints.read_registry,
+    closest_image_reader=trusted_cedar_images.closest_atom_images,
+    image_separation_angstrom=trusted_cedar_image_policy.PDB_IMAGE_SEPARATION_A,
+    output_directory=new_child_preview_directory,
+)
+```
+
+The trusted registry reader authenticates supported checkpoint history; Willow
+checks exact saved schema-2 bytes, input hashes, the **direct refinement-child**
+relationship and the parent-preview source. The existing graph-descent owner
+requires complete unique atom identity, the same cell/space group and unambiguous
+unchanged crystal representatives. Every atom survives, including unregistered
+context. Changed PDB record order is mapped explicitly; fresh node membership is
+compared without mistaking index order for atom identity. Positive numerical
+occupancies and ADPs may change; this is not a scattering-invariance assertion.
+
+The existing registration builder reconstructs only the declared target identity
+and logical-to-coordinate copies. Missing target identity refuses; neither the
+child sequence nor proximity fills it in. Target, copies, identity, semantics and
+summary must remain exact. The original routes, duplex declarations, boundaries,
+extra edges and explicit continuations carry through unchanged. Forest choices
+retain their selected edge/anchor IDs; explicit proposals retain their images.
+Only the new graph binding changes. Existing cut validation runs again.
+
+The output is an ordinary replayable preview, always **UNREVIEWED**, plus an
+additive schema-1 `checkpoint-refresh.json` observation written last. It records
+both exact checkpoint contexts, parent/child preview digests, the complete descent
+observation and an explicit direct-parent check. It does not carry a prior cut
+preference or approval. `load_relabel_preview` and the existing viewer still own
+ordinary packet replay. The new sidecar is producer evidence, **not an independently
+authenticated input**: downstream code must not infer lineage or admission from
+an arbitrary supplied JSON record. A maintained saved-refresh reader and persistent
+human review remain separate work.
+
+Existing output directories refuse. Input drift is checked before and after the
+preview write; interruption can leave a standard preview without the final refresh
+sidecar. That is an incomplete refresh, not a successful checkpoint binding, and
+must not be overwritten. Temporary derivation inputs are removed. No existing
+source model, checkpoint registry, parent preview or current selection is edited.
+Snapshots do not lock a live run; the execution owner still controls lifetimes.
+
+Native group correspondence remains the explicit W299 `bind_recut_phosphates`
+step with fresh trusted Cedar inspections. This refresh neither installs forces
+nor grants chemistry, native restart, preparation, selection or scientific
+admission. It introduces no CLI flag, replacement refinement path or change to
+old packet schemas. Manual children, changed representatives, altered inventories
+and unresolved logical target identities are outside this first supported scope.

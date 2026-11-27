@@ -295,3 +295,145 @@ def _execution_input_context(run, *, execution_reference, child_checkpoint_id,
         parent_checkpoint_id=expected_checkpoint_id,child_checkpoint_id=child_checkpoint_id,
         request_model_role=request_model_role,inputs=inputs,refinement_input_reference=adapter_ref,
         adaptation_sha256=None if adaptation is None else recipe_digest(adaptation))
+
+
+def build_checkpoint_recut_preview(run_directory, preview_directory, *,
+        parent_checkpoint_id, child_checkpoint_id, expected_parent_context_sha256,
+        expected_child_context_sha256, expected_preview_receipt_sha256,
+        registry_reader, closest_image_reader, image_separation_angstrom,
+        output_directory):
+    """Refresh an exact parent's cut onto its direct, usable refinement child.
+
+    Both contexts are the digests returned by ``inspect_checkpoint_inputs`` with
+    explicit checkpoint IDs, after the child is registered. The trusted registry
+    reader authenticates history; the trusted image reader supplies Cedar's
+    closest-image contract. Neither callback may come from an artifact.
+
+    Same crystal representatives and a complete unique atom inventory are
+    required. This preserves declared intent, not chemical validity, scattering
+    equivalence or native restart admission. Numeric ADPs/occupancies may change.
+    The cut is revalidated and always UNREVIEWED; no selection is changed.
+
+    Existing outputs are refused. ``checkpoint-refresh.json`` is written last
+    and binds the returned observation to the ordinary preview. An interrupted
+    refresh may leave an incomplete output; it is never overwritten or adopted.
+    Snapshots detect drift but are not a run lock. The caller owns input lifetime.
+    """
+    from copy import deepcopy
+    import json
+    from tempfile import TemporaryDirectory
+    from .construct_registration import build_construct_registration
+    from .model_assessment import inspect_pdb
+    from .topostitch_graph import build_registered_periodic_graph, observe_registered_graph_descent
+    from .topostitch_recut_bundle import _FILES, build_relabel_preview, load_relabel_preview
+
+    output=Path(output_directory)
+    if output.exists():raise FileExistsError(f'Representative preview already exists: {output}')
+    for pin in (expected_parent_context_sha256,expected_child_context_sha256,expected_preview_receipt_sha256):_pin(pin)
+    if (not isinstance(parent_checkpoint_id,str) or not parent_checkpoint_id.strip()
+            or not isinstance(child_checkpoint_id,str) or not child_checkpoint_id.strip()
+            or parent_checkpoint_id==child_checkpoint_id):
+        raise ValueError('Require distinct explicit parent and child checkpoint IDs')
+    if not callable(registry_reader) or not callable(closest_image_reader):
+        raise ValueError('Require explicit trusted registry and closest-image readers')
+    root=Path(preview_directory)
+    receipt_bytes=(root/'preview.json').read_bytes()
+    if sha256(receipt_bytes).hexdigest()!=expected_preview_receipt_sha256:
+        raise ValueError('Parent preview differs from the expected receipt')
+    packet=load_relabel_preview(root)
+    frozen={name:(root/filename).read_bytes() for name,filename in _FILES.items()}
+    if any(sha256(raw).hexdigest()!=packet['artifacts'][name]['sha256'] for name,raw in frozen.items()):
+        raise ValueError('Parent preview inputs changed during refresh')
+
+    def read_contexts():
+        contexts=[];models=[]
+        for identifier,pin in ((parent_checkpoint_id,expected_parent_context_sha256),
+                               (child_checkpoint_id,expected_child_context_sha256)):
+            context,model=_snapshot(run_directory,identifier,identifier,None,registry_reader=registry_reader)
+            context.pop('preview_receipt_sha256')
+            if recipe_digest(context)!=pin:
+                raise ValueError('Checkpoint input context changed since the requested refresh')
+            contexts.append(context);models.append(model)
+        raw=checkpoints.registry_path(Path(run_directory)).read_bytes()
+        if any(c['registry_sha256']!=sha256(raw).hexdigest() for c in contexts):
+            raise ValueError('Parent/child registry changed during refresh')
+        child=checkpoints.resolve_checkpoint(_json(raw),child_checkpoint_id)
+        if child.get('parent')!=parent_checkpoint_id or child.get('kind')!='refinement':
+            raise ValueError('Require the direct refinement child of the specified parent')
+        if models[0]!=frozen['source']:
+            raise ValueError('Parent preview source does not match the checkpoint model')
+        return contexts,models
+
+    contexts,models=read_contexts()
+    def unchanged():
+        if (read_contexts()!=(contexts,models) or (root/'preview.json').read_bytes()!=receipt_bytes
+                or any((root/_FILES[name]).read_bytes()!=raw for name,raw in frozen.items())):
+            raise ValueError('Checkpoint or preview inputs changed during refresh')
+
+    with TemporaryDirectory(prefix='nasolve-recut-refresh-') as directory:
+        stage=Path(directory)
+        for name,filename in _FILES.items():(stage/filename).write_bytes(frozen[name])
+        child_model=stage/'child.pdb';child_model.write_bytes(models[1])
+        request=_json(frozen['proposal'])
+        options=dict(extra_edges=request['extra_edges'],backbone_continuations=request.get('backbone_continuations',[]))
+        descent=observe_registered_graph_descent(stage/'source.pdb',child_model,stage/'discovery.json',stage/'registration.json',
+            expected_graph_sha256=packet['registered_graph_sha256'],expected_descendant_sha256=sha256(models[1]).hexdigest(),
+            closest_image_reader=closest_image_reader,image_separation_angstrom=image_separation_angstrom,**options)
+        # Reconstruct only the already declared target and mapping; never infer a
+        # partner or label an unrepresented target from the descendant sequence.
+        original=_json(frozen['registration']);codes={};copies={};observed_codes=set()
+        for copy in original['copies']:
+            copies[copy['copy_id']]={row['logical_site']:row['coordinate_site'] for row in copy['mappings']}
+            for row in copy['mappings']:
+                site=row['logical_site'];code=row['target_residue_code']
+                if site in codes and codes[site]!=code:
+                    raise ValueError('Inconsistent declared logical target identity')
+                codes[site]=code;observed_codes.add(row['coordinate_residue_code'])
+        if set(codes)!=set(original['target']['sites']):
+            raise ValueError('Refresh requires explicit identity for every declared target site')
+        target=dict(schema_version=1,kind='sequence-family-target',reference=original['target']['reference'],
+            sites=[dict(site=site,residue_code=codes[site]) for site in original['target']['sites']])
+        assessment=inspect_pdb(child_model,polymer_ligand_codes=observed_codes)
+        derived=build_construct_registration(assessment,target,copies,
+            source='checkpoint recut graph descent '+descent['report_sha256'])
+        for key in ('target','copies','summary','identity','semantics','status'):
+            if derived[key]!=original[key]:
+                raise ValueError('Refreshed registration changed declared '+key)
+        def write_json(path,value):
+            path.write_text(json.dumps(value,sort_keys=True,separators=(',',':'),allow_nan=False)+'\n')
+        reg=stage/'child-registration.json';write_json(reg,derived)
+        discovery=deepcopy(_json(frozen['discovery']))
+        discovery.update(model_sha256=sha256(models[1]).hexdigest(),registration_sha256=sha256(reg.read_bytes()).hexdigest())
+        disc=stage/'child-discovery.json';write_json(disc,discovery)
+        graph=build_registered_periodic_graph(child_model,disc,reg,**options)
+        # Descent retains source atom order, while a freshly parsed node lists
+        # descendant record order. Compare each node's exact membership, not the
+        # incidental order of its indices; keep the explicit bijection in evidence.
+        descended_nodes=[dict(node,atom_indices=sorted(node['atom_indices'])) for node in descent['nodes']]
+        if graph['nodes']!=descended_nodes:
+            raise ValueError('Refreshed graph changed descendant nodes')
+        for key in ('periodic_graph','scope','declared_routes','edge_origins'):
+            if graph[key]!=descent[key]:raise ValueError('Refreshed graph changed descendant '+key)
+        if graph.get('declared_continuations',[])!=descent['declared_continuations']:
+            raise ValueError('Refreshed graph changed declared continuations')
+        request['registered_graph_sha256']=graph['report_sha256']
+        proposal=stage/'child-proposal.json';write_json(proposal,request)
+        unchanged()
+        fresh=build_relabel_preview(child_model,disc,registration_path=reg,proposal_path=proposal,output_directory=output)
+        unchanged()
+        # Native continuation binding remains Cedar/W299's separate, explicit step.
+        result=dict(schema_version=1,kind='topostitch-checkpoint-recut-refresh',
+            parent_checkpoint_id=parent_checkpoint_id,child_checkpoint_id=child_checkpoint_id,
+            parent_context=contexts[0],child_context=contexts[1],
+            parent_context_sha256=expected_parent_context_sha256,child_context_sha256=expected_child_context_sha256,
+            parent_preview_sha256=expected_preview_receipt_sha256,
+            child_preview_sha256=sha256((output/'preview.json').read_bytes()).hexdigest(),
+            child_registered_graph_sha256=fresh['registered_graph_sha256'],graph_descent=descent,
+            history_validation='DELEGATED_TO_EXPLICIT_REGISTRY_READER',direct_parent_link_verified=True,
+            review_state='UNREVIEWED',review_inherited=False,selection_applied=False,
+            native_restart_qualified=False,chemical_admission=False,scientific_acceptance=False,
+            runtime_authority=False,locking=False)
+        result['report_sha256']=recipe_digest(result)
+        with (output/'checkpoint-refresh.json').open('x',encoding='utf-8') as stream:
+            stream.write(json.dumps(result,sort_keys=True,separators=(',',':'),allow_nan=False)+'\n')
+    return result

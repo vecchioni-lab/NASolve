@@ -249,3 +249,166 @@ def test_checkpoint_input_inspection_does_not_admit_selection_or_new_schema(boun
         return run, json.loads(path.read_bytes())
     with pytest.raises(ValueError, match='schema-2'):
         inspect_inputs(bound, registry_reader=reader)
+
+
+@pytest.fixture
+def recut_child(tmp_path):
+    from tests.test_topostitch_continuations import setup, request
+    from tests.test_topostitch_graph import identity_reader
+    from nasolve.topostitch_recut_bundle import build_relabel_preview
+    from nasolve.topostitch_checkpoint import inspect_checkpoint_inputs
+    source=tmp_path/'cut-input';source.mkdir()
+    paths,links=setup(source)
+    args,graph,proposal=request(paths,links,forest=True)
+    preview=tmp_path/'parent-preview';build_relabel_preview(**args,output_directory=preview)
+    run=make_checkpoint_run(tmp_path/'checkpoint-input')
+    report=json.loads((run/'report.json').read_bytes());model=Path(report['postmr']['prepared_model'])
+    model.write_bytes(paths[0].read_bytes());report['postmr']['prepared_sha256']=sha256(model.read_bytes()).hexdigest()
+    (run/'report.json').write_text(json.dumps(report))
+    _,registry=checkpoints.initialize_registry(run)
+    child=run/'child.pdb';lines=model.read_text().splitlines()
+    index=next(i for i,line in enumerate(lines) if line.startswith('ATOM'))
+    line=lines[index];lines[index]=line[:30]+f'{float(line[30:38])+.1:8.3f}'+line[38:]
+    child.write_text('\n'.join(lines)+'\n')
+    row=deepcopy(registry['checkpoints'][0]);row.update(id='refine-001',parent='postmr',kind='refinement',model=checkpoints._file_reference(child,run))
+    registry['checkpoints'].append(row);checkpoints.save_registry(run,registry)
+    def context(identifier):
+        row=checkpoints.resolve_checkpoint(checkpoints.read_registry(run)[1],identifier)
+        return inspect_checkpoint_inputs(run,checkpoint=identifier,expected_checkpoint_id=identifier,
+            expected_model_sha256=row['model']['sha256'],registry_reader=checkpoints.read_registry)['context_sha256']
+    options=dict(parent_checkpoint_id='postmr',child_checkpoint_id='refine-001',
+        expected_parent_context_sha256=context('postmr'),expected_child_context_sha256=context('refine-001'),
+        expected_preview_receipt_sha256=sha256((preview/'preview.json').read_bytes()).hexdigest(),
+        registry_reader=checkpoints.read_registry,closest_image_reader=identity_reader,image_separation_angstrom=.004)
+    return run,preview,child,options
+
+
+def refresh_recut(case,output,**overrides):
+    from nasolve.topostitch_checkpoint import build_checkpoint_recut_preview
+    run,preview,_,options=case
+    return build_checkpoint_recut_preview(run,preview,output_directory=output,**dict(options,**overrides))
+
+
+def test_checkpoint_child_cut_refresh_preserves_intent_and_requires_new_review(recut_child,tmp_path):
+    from nasolve.topostitch_recut_bundle import load_relabel_preview,observe_relabel_backbone_intent
+    run,parent,child,options=recut_child
+    before={p:p.read_bytes() for root in (run.parent.parent,parent) for p in root.rglob('*') if p.is_file()}
+    out=tmp_path/'child-preview';report=refresh_recut(recut_child,out)
+    fresh=load_relabel_preview(out)
+    assert fresh['source_model_sha256']==sha256(child.read_bytes()).hexdigest()
+    assert fresh['workflow']['review_state']=='UNREVIEWED' and not fresh['selection_applied']
+    assert report['parent_checkpoint_id']=='postmr' and report['child_checkpoint_id']=='refine-001'
+    assert report['review_inherited'] is False and report['native_restart_qualified'] is False
+    assert json.loads((out/'checkpoint-refresh.json').read_bytes())==report
+    assert report['child_preview_sha256']==sha256((out/'preview.json').read_bytes()).hexdigest()
+    old_request=json.loads((parent/'proposal.json').read_bytes());new_request=json.loads((out/'proposal.json').read_bytes())
+    assert old_request.pop('registered_graph_sha256')!=new_request.pop('registered_graph_sha256')
+    assert old_request==new_request
+    intent=observe_relabel_backbone_intent(out)
+    assert intent['source_model_sha256']==fresh['source_model_sha256']
+    assert all(p.read_bytes()==raw for p,raw in before.items())
+    assert checkpoints.read_registry(run)[1]['current']=='postmr'
+    assert str(run) not in json.dumps(report)
+
+
+@pytest.mark.parametrize('field',['expected_parent_context_sha256','expected_child_context_sha256','expected_preview_receipt_sha256'])
+def test_child_cut_refresh_refuses_stale_bindings_before_output(recut_child,tmp_path,field):
+    out=tmp_path/'refused'
+    with pytest.raises(ValueError,match='context|preview'):
+        refresh_recut(recut_child,out,**{field:'0'*64})
+    assert not out.exists()
+
+
+def test_child_cut_refresh_refuses_wrong_parent_and_preserves_existing_output(recut_child,tmp_path):
+    out=tmp_path/'existing';out.mkdir();(out/'mine').write_text('owned')
+    with pytest.raises(FileExistsError):refresh_recut(recut_child,out)
+    assert (out/'mine').read_text()=='owned'
+    with pytest.raises(ValueError,match='distinct'):
+        refresh_recut(recut_child,tmp_path/'refused',child_checkpoint_id='postmr')
+
+
+def test_child_cut_refresh_refuses_changed_images_and_late_input_drift(recut_child,tmp_path):
+    from tests.test_topostitch_graph import identity_reader
+    def images(*args):
+        a,b=identity_reader(*args);a['image']['operator_xyz']='x+1,y,z';return a,b
+    with pytest.raises(ValueError,match='representative'):
+        refresh_recut(recut_child,tmp_path/'bad-image',closest_image_reader=images)
+    def drift(*args):
+        recut_child[2].write_bytes(recut_child[2].read_bytes()+b'REMARK changed\n')
+        return identity_reader(*args)
+    with pytest.raises((ValueError,checkpoints.CheckpointError),match='changed'):
+        refresh_recut(recut_child,tmp_path/'drift',closest_image_reader=drift)
+    assert not (tmp_path/'bad-image').exists() and not (tmp_path/'drift').exists()
+
+
+def test_child_cut_refresh_relocates_run_and_replays_without_original_inputs(recut_child,tmp_path):
+    from nasolve.topostitch_recut_bundle import load_relabel_preview
+    run,parent,child,options=recut_child
+    out=tmp_path/'child-preview';report=refresh_recut(recut_child,out)
+    old=run.parent.parent;moved=tmp_path/'relocated-dataset';shutil.move(old,moved)
+    new_parent=tmp_path/'relocated-parent';shutil.move(parent,new_parent)
+    new_run=moved/'AutoMR'/run.name
+    relocated=(new_run,new_parent,new_run/'child.pdb',options)
+    new_out=tmp_path/'second-preview';assert refresh_recut(relocated,new_out)==report
+    assert not old.exists() and not parent.exists()
+    assert load_relabel_preview(out)==load_relabel_preview(new_out)
+
+
+@pytest.mark.parametrize('change',['missing_atom','wrong_parent','reordered_atoms'])
+def test_child_cut_refresh_uses_lineage_and_atom_identity_not_only_model_hash(recut_child,tmp_path,change):
+    from nasolve.topostitch_checkpoint import inspect_checkpoint_inputs
+    run,parent,child,options=recut_child
+    _,registry=checkpoints.read_registry(run);row=checkpoints.resolve_checkpoint(registry,'refine-001')
+    if change=='wrong_parent':row['parent']=None
+    else:
+        lines=child.read_text().splitlines();atoms=[s for s in lines if s.startswith(('ATOM  ','HETATM'))]
+        if change=='missing_atom':atoms.pop()
+        else:atoms.reverse()
+        child.write_text(next(s for s in lines if s.startswith('CRYST1'))+'\n'+'\n'.join(atoms)+'\nEND\n')
+        row['model']=checkpoints._file_reference(child,run)
+    checkpoints.save_registry(run,registry)
+    # Fresh valid hashes do not establish ancestry or complete atom correspondence.
+    for identifier,key in [('postmr','expected_parent_context_sha256'),('refine-001','expected_child_context_sha256')]:
+        cp=checkpoints.resolve_checkpoint(registry,identifier)
+        options[key]=inspect_checkpoint_inputs(run,checkpoint=identifier,expected_checkpoint_id=identifier,
+            expected_model_sha256=cp['model']['sha256'],registry_reader=checkpoints.read_registry)['context_sha256']
+    out=tmp_path/'derived'
+    if change=='reordered_atoms':
+        report=refresh_recut(recut_child,out)
+        assert report['graph_descent']['reordered_atom_count']>0
+        assert report['graph_descent']['source_to_descendant_atom_indices']==list(reversed(range(report['graph_descent']['atom_count'])))
+    else:
+        with pytest.raises(ValueError,match='bijection|direct refinement child'):
+            refresh_recut(recut_child,out)
+        assert not out.exists()
+
+
+def test_child_cut_refresh_preserves_explicit_images_without_rechoosing_forest(recut_child,tmp_path):
+    from nasolve.topostitch_recut_bundle import build_relabel_preview
+    run,parent,child,options=recut_child
+    request=json.loads((parent/'proposal.json').read_bytes())
+    request['kind']='topostitch-representative-proposal'
+    request.pop('selected_edge_ids');request.pop('anchor_node_ids')
+    request['node_images']=[dict(node_id=1,operator_xyz='x+1,y,z')]
+    proposal=tmp_path/'explicit.json';proposal.write_text(json.dumps(request))
+    explicit=tmp_path/'explicit-parent'
+    build_relabel_preview(parent/'source.pdb',parent/'discovery.json',registration_path=parent/'registration.json',proposal_path=proposal,output_directory=explicit)
+    options['expected_preview_receipt_sha256']=sha256((explicit/'preview.json').read_bytes()).hexdigest()
+    out=tmp_path/'explicit-child';refresh_recut((run,explicit,child,options),out)
+    assert json.loads((out/'proposal.json').read_bytes())['node_images']==request['node_images']
+
+
+
+def test_child_cut_refresh_leaves_no_complete_binding_if_inputs_change_during_write(recut_child,tmp_path,monkeypatch):
+    from nasolve import topostitch_recut_bundle as bundle
+    original=bundle.build_relabel_preview
+    def changed(*args,**kwargs):
+        result=original(*args,**kwargs)
+        recut_child[2].write_bytes(recut_child[2].read_bytes()+b'REMARK changed after snapshot\n')
+        return result
+    monkeypatch.setattr(bundle,'build_relabel_preview',changed)
+    out=tmp_path/'partial'
+    with pytest.raises(checkpoints.CheckpointError,match='changed'):
+        refresh_recut(recut_child,out)
+    assert (out/'preview.json').exists() and not (out/'checkpoint-refresh.json').exists()
+    with pytest.raises(FileExistsError):refresh_recut(recut_child,out)

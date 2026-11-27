@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W301 — Refresh an existing cut onto its exact refinement child
+
+- Add a checkpoint-bound child-preview builder through existing input, graph
+  descent, registration and preview owners. Preserve declared links and chosen
+  images, tolerate reordered atom records, and require fresh human review.
+- Reject stale contexts, wrong lineage, lost atoms or changed representatives;
+  preserve parents and current selection. An additive completion observation
+  grants no native admission, forces, inherited approval or model adoption.
+
+
 ### W300 — Audit ordinary two-connection restart and child recut
 
 - Record a complete ordinary inherited refinement child, freshly bound recut and
