@@ -947,8 +947,9 @@ matched an existing strict attachment pattern. UY1 exposed the earlier PSU
 workbook assumption in this new design. URX's bridge and AS's sulfur remained
 outside the ordinary oxygen-phosphate patterns. The default all-eight
 construction plan stopped at LCC. The explicit single locked-sugar route has
-a separate source-state gate. These results qualify the pairing design;
-the eight-site constructed or refined model remains outstanding.
+a separate source-state gate. These results establish that Phenix can resolve the
+requested atoms. C623 subsequently identified an incorrect oxygen on UY1.
+The eight-site constructed and refined models remain outstanding.
 
 C593 compared the complete named atom and bond graphs in wwPDB and Phenix
 2.2.1-6174 for PSU, P2U, B8H and UY1. Each sugar C1′ bonds to C5. NARestraints
@@ -1247,6 +1248,20 @@ folders and Phenix installation unavailable. Changing one byte in the frozen
 and 63.2°, with amplitudes of 40.2° and 39.3°. Phenix chose different numerical
 tables across that modest change. Their choice in an actual polymer remains
 an independent measurement.
+
+C623 found that the wrong pseudouridine carbonyl had been selected in the
+canonical adenine recipe. In the 6I1V and 6I1W NMR duplexes O2 sits 2.92–2.94 Å
+from adenine N6. The 3CGP PSU duplex and the 8PFQ/8PFK N1-methyl analogues
+show the same edge. On 84 unchanged 6I1V atoms, Phenix 2.2.1-6174 installed
+the former PSU O4 contact at 5.33 Å and the corrected O2 contact at 2.94 Å.
+The other three distances, both plane groups and both parallel groups matched.
+A graph check recognizes the discrepancy independently of atom names and of
+the installed writer. Four revised workbook rows agree when used with the
+corrected writer. The other 614 rows retain their values. UY1 and P2U have
+the same source connectivity. Their pairing with adenine is a transfer from
+PSU and B8H. Build the UY1 site on the same design, check both phosphate
+neighbors and the O2 contact, and measure survival in native refinement.
+[NARestraints review and primary evidence](https://github.com/vecchioni-lab/NARestraints/pull/8).
 
 C601 found the source-preserving generator had introduced a 5.779 Å bond between
 O4′ and ring C2. All 42 source edges were present. The ten bonds of the purine

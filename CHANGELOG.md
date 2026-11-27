@@ -8,6 +8,11 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- `nasolve cif-doctor profile --check-at-pair` checks which ring oxygen the
+  source chemistry places toward adenine and which atoms NARestraints actually
+  uses. It recognizes a neutral uracil-like ring through its bonds, including
+  a sugar attached to carbon. A conflict can now be found before refinement.
+
 - Registered symmetry-phosphate refinement can again start from checkpoints
   written with worker versions 10–12. Those jobs now include their qualified
   base-restraint reader. Ordinary preparation continues to read the selected

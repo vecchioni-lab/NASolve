@@ -148,7 +148,7 @@ def _review_base_roles(elements, bonds, neighbors, roles, declared_attachment):
     return result
 
 
-def inspect_attachment_profile(source, code, *, workbook, explain_base_roles=False):
+def inspect_attachment_profile(source, code, *, workbook, explain_base_roles=False, check_at_pair=False):
     """Bind a unique topology and source-state ports without preparing a model.
 
     Exact source and workbook anchors are explicit. This adds no family label,
@@ -182,6 +182,8 @@ def inspect_attachment_profile(source, code, *, workbook, explain_base_roles=Fal
             "The profiles cover declared single-phosphate furanoses and an uncapped aminoethylglycine PNA core only.",
         ],
     }
+    if check_at_pair:
+        report["at_pair_check"] = {"status": "NOT_ASSESSED"}
     if explain_base_roles:
         report["base_role_review"] = {"status": "NOT_RUN"}
     try:
@@ -266,6 +268,10 @@ def inspect_attachment_profile(source, code, *, workbook, explain_base_roles=Fal
                     "loader_atom": declared_attachment, "matches_loader": declared_attachment == binding["base"]}
                 if declared_attachment != binding["base"]:
                     report["review_reasons"].append("NAR_LOADER_ATTACHMENT_DISAGREES_WITH_TOPOLOGY")
+                elif check_at_pair and profile.ports == _SUGAR_PORTS:
+                    from .cif_pyrimidine_edge import inspect_at_pair
+                    report["at_pair_check"] = inspect_at_pair(
+                        record, (elements, bonds, charges, neighbors), binding["base"])
             else:
                 report["review_reasons"].append("TOPOLOGY_" + report["topology_status"])
                 if explain_base_roles and report["topology_status"] == "NO_MATCH":

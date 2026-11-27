@@ -6451,6 +6451,15 @@ boundary remain unchanged. Existing manifests/receipts need no migration.
 
 ### Source attachment topology and ports (C106)
 
+Use `--check-at-pair` to inspect a proposed canonical pair to adenine. Cedar
+looks for a neutral six-membered dioxopyrimidine with one ring double bond,
+two terminal carbonyls and an explicit N–H donor. The carbonyl across the
+ring from the verified sugar attachment accepts from adenine N6. Cedar then
+reads both distance selections emitted by the installed NARestraints writer
+for that workbook. `CONFLICT` names the source and emitted atoms. Other
+chemistry can remain unassessed. The inspection selects no partner, edits
+no model and makes no claim about a different protonation or pairing mode.
+
 Use `--explain-base-roles` when the ordinary profile cannot match a source with
 an unambiguous workbook record. The extra read permits workbook base roles
 to overlap the sugar during a second, bounded search of the two existing
@@ -6461,8 +6470,9 @@ unmatched searches report their own status.
 
 For 2′-O-methylpseudouridine (UY1), the source bonds C1′ to ring C5. The
 workbook used in C106 named N1 for attachment and assigned its C7 role to sugar C1′.
-NARestraints still selects the correct Watson–Crick contacts. Its paired-base
-plane includes C1′, which is nearly coplanar with the ring in the source ideal
+The older NARestraints writer selected N3 and O4 toward adenine. C623 found
+that O2 faces adenine N6 in the experimentally observed canonical pair. The
+earlier paired-base plane included C1′, which is nearly coplanar with the ring in the source ideal
 coordinates. These are distinct decisions about attachment, pairing and plane
 membership. The same source-bond discrepancy is visible in PSU, P2U and B8H.
 The [earlier workbook audit](#broader-evidence-and-remaining-work) documented

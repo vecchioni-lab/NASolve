@@ -8,7 +8,16 @@ claims.
 
 ## Where to resume
 
-C620 is examining the next two sites, SJO and UY1. The same source-order repair
+C623 checked the pairing edge for the C-linked UY1 site. The older NARestraints
+recipe asked adenine to bind the oxygen on the sugar-facing side. On the same
+84 deposited atoms from 6I1V, Phenix installed the old distance at 5.33 Å and
+the corrected one at 2.94 Å. Ordinary U:A stayed at 2.90 Å. An offline source
+graph check now detects that mistake even when every atom is renamed.
+The assignment for UY1 transfers from measured PSU and B8H duplexes. The
+next test is whether a linked UY1 can be placed with both junctions intact
+and the correct face toward its designed adenine. [Upstream correction](https://github.com/vecchioni-lab/NARestraints/pull/8).
+
+C620 examined the next two sites, SJO and UY1. The same source-order repair
 caught two different false native bonds. Phenix then chose the same sugar pucker
 from both SJO starting geometries, but different puckers from the two UY1 starts.
 C621 verified both native choices and both literal coordinate starts. UY1’s
@@ -156,6 +165,10 @@ and 142 focused checks passed. Willow owns the resulting two-link trial. The
 transferable handoff still needs an installed combined-source check. [Integration checks](cif-doctor-completion-queue.md#q16--final-integration-portability-and-retained-artifact-closure).
 
 ## Validation and release
+
+C623 passed 223 focused checks with each of NARestraints 1.1.4 and the 1.1.5
+candidate. Both new package distributions passed 57 tests after relocation.
+Native Phenix read both restraint sets on identical deposited coordinates.
 
 C620 passed 209 focused tests covering the native sugar checks and acquisition.
 C621 passed 264 focused checks, ran four literal Phenix controls and replayed

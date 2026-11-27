@@ -8,7 +8,7 @@ def test_ordinary_5pc_definition_accepts_equivalent_aliases_without_workbook_edi
     assert ligand_definition('5PC').parent_code == 'DC'
 
 
-@pytest.mark.parametrize('change',['description','role','unknown_role','category','sugar','phosphate','attachment','sheet'])
+@pytest.mark.parametrize('change',['description','role','unknown_role','category','sugar','phosphate','attachment','at_acceptor','sheet'])
 def test_shared_resolution_preserves_all_operational_roles_and_context(change):
     from nasolve.component_records import resolve_component_record
     first=deepcopy(next(r for r in load_residue_records() if r['Ligand code']=='PDU'))
@@ -20,6 +20,7 @@ def test_shared_resolution_preserves_all_operational_roles_and_context(change):
     if change=='sugar':second['Sugar Type']='RNA'
     if change=='phosphate':second['Phosphate']='DIFFERENT'
     if change=='attachment':second['Glycosidic atom']='DIFFERENT'
+    if change=='at_acceptor':second['A:T acceptor role']='O2'
     if change=='sheet':second['Source sheet']='DIFFERENT'
     before=deepcopy([first,second])
     if change=='description':
@@ -54,6 +55,10 @@ def test_explicit_backbone_attachment_is_chemical_context_for_aliases():
 
     original = {'Ligand code': 'Z99', 'N1': 'N1', 'Glycosidic atom': 'N1'}
     declared = {**original, 'Backbone attachment atom': "C1'"}
+    assert 'A:T acceptor role' not in role_signature(original)['context']
+    paired = {**declared, 'A:T acceptor role': 'O2'}
+    assert role_signature(paired)['atom_roles'] == role_signature(original)['atom_roles']
+    assert role_signature(paired)['context']['A:T acceptor role'] == 'O2'
     assert 'Backbone attachment atom' not in role_signature(original)['context']
     assert role_signature(declared)['atom_roles'] == role_signature(original)['atom_roles']
     with pytest.raises(ValueError, match='unambiguous'):
