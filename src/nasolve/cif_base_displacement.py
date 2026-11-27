@@ -1,11 +1,13 @@
-"""Starting isotropic B values for two source-equivalent bases in a sugar substitution."""
+"""Starting isotropic B values for source-verified sugar substitutions."""
 from collections import defaultdict
 from math import isfinite
+from statistics import median
 
 from .cif_stereochemistry_audit import _graph, _stereo
-from .cif_whole_furanose import base_fragment_atoms
+from .cif_whole_furanose import _source_phosphate_leaving_atom, base_fragment_atoms
 
 POLICY_ID = 'cif-source-equivalent-base-isotropic-b-v1'
+SITE_MEDIAN_POLICY = 'cif-replacement-host-median-isotropic-b-v1'
 
 
 class _Unavailable(ValueError):
@@ -103,3 +105,39 @@ def inherit_base_displacement(host_profile, target_profile, host_values, target_
     except _Unavailable as exc:
         return model, dict(record,status='RETAINED_SEED',reason=str(exc),atoms=[])
     return ''.join(lines), dict(record,status='MATCHED_HOST_BASE',atoms=applied)
+
+
+def initialize_replacement_displacement(host_text, seed_text, site, *, host_code, target_code,
+                                        host_values, host_roles, target_elements, initial_b):
+    """Give a new heavy-atom residue the median B of its complete occupied host site."""
+    record = dict(policy_id=SITE_MEDIAN_POLICY, site=site, scope='STARTING_ISOTROPIC_B_ONLY')
+    try:
+        leaving = _source_phosphate_leaving_atom(host_values, host_roles)
+        host_elements = {name: element for name, element in _graph(host_values)[0].items()
+                         if element not in {'H', 'D'} and name != leaving}
+        host = _site_lines(host_text.splitlines(), site)
+        lines = seed_text.splitlines(keepends=True)
+        target = _site_lines(lines, site)
+        for atoms, elements, code in ((host, host_elements, host_code), (target, target_elements, target_code)):
+            if not elements or atoms.keys() != elements.keys():
+                raise _Unavailable('The connected heavy-atom residue is incomplete or has extra atoms')
+            for name, (_, line) in atoms.items():
+                if line[17:20].strip() != code or line[76:78].strip().upper() != elements[name]:
+                    raise _Unavailable('Residue identity or element differs from its source')
+                if float(line[54:60]) != 1.0:
+                    raise _Unavailable('Require full occupancy at every host and replacement atom')
+        values = [float(line[60:66]) for _, line in host.values()]
+        if not all(isfinite(v) and v > 0 for v in values):
+            raise _Unavailable('A host isotropic B value is missing, nonpositive or nonfinite')
+        if any(float(line[60:66]) != initial_b for _, line in target.values()):
+            raise _Unavailable('The replacement already has a different initial B value')
+        field = f'{median(values):6.2f}'
+        if len(field) != 6:
+            raise _Unavailable('The host median B exceeds the PDB field')
+    except ValueError as exc:
+        return seed_text, dict(record, status='RETAINED_SEED', reason=str(exc))
+    for index, line in target.values():
+        lines[index] = line[:60] + field + line[66:]
+    return ''.join(lines), dict(record, status='HOST_RESIDUE_MEDIAN', host_atoms=len(host),
+                                replacement_atoms=len(target), starting_b=float(field),
+                                minimum_host_b=min(values), maximum_host_b=max(values))

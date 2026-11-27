@@ -20,10 +20,12 @@ from .cif_fana_component import _digest, _load, _save
 from .cif_fana_junction import _path
 from .cif_stereochemistry_audit import _values, _graph, _coordinates, _volume
 from .cif_whole_furanose import base_fragment_atoms, read_base_anchored_furanose_control, _hand
-from .cif_base_displacement import POLICY_ID as BASE_B_POLICY, inherit_base_displacement
+from .cif_base_displacement import (POLICY_ID as BASE_B_POLICY, SITE_MEDIAN_POLICY,
+                                    inherit_base_displacement, initialize_replacement_displacement)
 
 POLICY_ID = 'cif-graph-furanose-bounded-bridge-seed-v1'
 BASE_B_SEED_POLICY = 'cif-graph-furanose-bounded-bridge-seed-v2'
+SITE_B_SEED_POLICY = 'cif-graph-furanose-bounded-bridge-seed-v3'
 _FILES = {'config.json', 'model.pdb', 'seed.json'}
 
 
@@ -51,8 +53,10 @@ def phosphate_arm_rotors(roles, graph, bonds, *, leaving_atom):
 
 
 def _seed(control, config):
-    if (set(config)-{'base_b_policy'} != {'endpoint_weight', 'max_base_displacement'}
-            or ('base_b_policy' in config and config['base_b_policy'] != BASE_B_POLICY)):
+    if (set(config)-{'base_b_policy', 'site_b_policy'} != {'endpoint_weight', 'max_base_displacement'}
+            or ('base_b_policy' in config and config['base_b_policy'] != BASE_B_POLICY)
+            or ('site_b_policy' in config and
+                (config['site_b_policy'] != SITE_MEDIAN_POLICY or 'base_b_policy' in config))):
         raise ValueError('Require explicit endpoint weight and base displacement limit')
     for key, maximum in [('endpoint_weight', 1000), ('max_base_displacement', 5)]:
         value = config[key]
@@ -160,12 +164,23 @@ def _seed(control, config):
         model, report['base_displacement'] = inherit_base_displacement(host_profile,profile,
             _values(control/'host.cif',host_code),_values(control/'source.cif',code),
             (control/'frame.pdb').read_text(),model,selected)
+    elif 'site_b_policy' in config:
+        if placement['alignment'] != 'CANONICAL_URACIL_EDGE':
+            raise ValueError('Site-median B requires a verified change of glycosidic attachment')
+        report['policy_id'] = SITE_B_SEED_POLICY
+        model, report['site_displacement'] = initialize_replacement_displacement(
+            (control/'frame.pdb').read_text(), model, selected, host_code=host_code, target_code=code,
+            host_values=_values(control/'host.cif', host_code), host_roles=host,
+            target_elements={n: elements[n] for n in retained}, initial_b=placement['selected_b_factor'])
     return report, model
 
 
 def prepare_furanose_bridge_seed(placement, output, *, endpoint_weight, max_base_displacement,
                                  inherit_equivalent_base_b=False):
-    """Freeze a fresh bounded seed, retaining the original placement and chemistry."""
+    """Freeze a bounded seed. A changed C/N pairing frame uses a full-occupancy host median B.
+
+    Explicit equivalent-base transfer retains its atom-by-atom correspondence policy.
+    """
     control = _path(placement, directory=True); out = Path(output).expanduser().absolute()
     if out.exists() or out.is_symlink():raise FileExistsError(out)
     if any(p.is_symlink() for p in out.parents) or out.is_relative_to(control) or control.is_relative_to(out):
@@ -173,7 +188,10 @@ def prepare_furanose_bridge_seed(placement, output, *, endpoint_weight, max_base
     config = {'endpoint_weight':endpoint_weight, 'max_base_displacement':max_base_displacement}
     if type(inherit_equivalent_base_b) is not bool:
         raise ValueError('Require a boolean choice for equivalent-base starting displacement')
-    if inherit_equivalent_base_b: config['base_b_policy'] = BASE_B_POLICY
+    if inherit_equivalent_base_b:
+        config['base_b_policy'] = BASE_B_POLICY
+    elif _load(control/'placement.json').get('alignment') == 'CANONICAL_URACIL_EDGE':
+        config['site_b_policy'] = SITE_MEDIAN_POLICY
     before = {p:p.read_bytes() for p in control.rglob('*') if p.is_file()}
     report, model = _seed(control, config)
     if any(p.read_bytes()!=data for p,data in before.items()):raise ValueError('Seed authority changed during preflight')
@@ -201,7 +219,7 @@ def read_furanose_bridge_seed(directory):
         raise ValueError('Unexpected or missing seed package file')
     r = _load(root/'receipt.json')
     if (set(r) != {'schema_version', 'policy_id', 'files'} or type(r['schema_version']) is not int
-            or r['schema_version']!=1 or r['policy_id'] not in (POLICY_ID,BASE_B_SEED_POLICY) or set(r['files'])!=expected-{'receipt.json'}
+            or r['schema_version']!=1 or r['policy_id'] not in (POLICY_ID,BASE_B_SEED_POLICY,SITE_B_SEED_POLICY) or set(r['files'])!=expected-{'receipt.json'}
             or any(_digest(root/name)!=value for name,value in r['files'].items())):
         raise ValueError('Invalid seed receipt or checksum')
     report, model = _seed(root/'placement', _load(root/'config.json'))

@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 27 November 2026, after C630. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 27 November 2026, after C631. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -1273,6 +1273,10 @@ C628 bound the four isolated Phenix readings to an explicit dictionary recipe fo
 C629 carried both pinned tables with the qualified UY1 dictionary, its source reaction and an explicit internal A:19 site. After moving the 25-file preparation, it reopened offline. Two new Phenix reads selected 2′-endo on the linked site. All six effective dictionary categories and all 37 active-geometry checks passed. The sugar matched 10 bond, 16 angle and 6 torsion rows. All 38 strand connections remained. The shared custom-restraint check stopped on six pre-existing D:1 terminal-phosphate `change` edits. All six appear in the native manager once at the requested targets and weights. The checker currently admits `add` actions only. Keep that restriction until the original terminal-protection owner and its observed native forces can be bound together. The 34 missing native formal-charge attributes remain an explicit limitation. The current evidence is at fixed coordinates and inherits the five-cycle comparison from C627. An ordinary four-site run is still due.
 
 C630 exercised normal source selection on the previously fitted four-substitution frame. The fresh and retained UY1 requests both selected the qualified pair of sugar tables. They froze a single correct replacement at A:19, between A:18 and A:20, with 38 declared backbone links across the structure. Three older substitutions kept their own source choices. A new ordinary four-site mutation card then completed Phenix molecular replacement but stopped before Coot at `DT→UY1` because the canonical parent lookup cannot choose a sugar for `2'-OMETHYL`. The direct C625 fit remains valid. Next qualify the whole-sugar constructor on this ordinary frame, including its immediate steric environment. Keep the older three-site ordinary result as the working control.
+
+C631 replaced the default B of 20 Å² for a verified C/N uracil attachment change with the median over the original fully occupied heavy-atom residue. The 20 host atoms at A:19 gave 228.24 Å² for the 21 new atoms, reproducing the hand-prepared start for C625. All 860 coordinates and 839 bystander records stayed fixed. Missing atoms, partial occupancy or unsuitable B values retain the seed and record the reason. Historical seeds still replay.
+
+Changing rigid-fit weights or starting from the source sugar conformer left four or five contacts shorter than 2.2 Å. When Phenix could see only UY1’s dictionary and site reaction it refused 23 untyped atoms at the distant B:5 6MZ. With every modified residue defined, three geometry-only cycles on UY1 alone cleared the five close contacts. All four sugar hands and 22 source bonds survived. The base-pair distances ended at 3.00 and 2.88 Å and the backbone links at 1.604 and 1.611 Å. Two contacts remained 0.42–0.44 Å inside Phenix’s van der Waals distances. Use the complete library and local pair/stack intent when qualifying the ordinary construction. No new diffraction cycles were needed for this comparison.
 
 C601 found the source-preserving generator had introduced a 5.779 Å bond between
 O4′ and ring C2. All 42 source edges were present. The ten bonds of the purine

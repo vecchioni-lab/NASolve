@@ -97,6 +97,46 @@ def test_canonical_edge_places_a_c_glycoside_and_replays_its_actual_glycosidic_r
         assert read_base_anchored_furanose_control(relocated) == result
 
 
+@pytest.mark.parametrize("bad_host", [False, True])
+def test_pairing_edge_seed_starts_with_the_host_residue_median_b(tmp_path, bad_host):
+    from statistics import median
+    from nasolve.cif_furanose_bridge import read_furanose_bridge_seed
+
+    target, numbers, host, book, frame = inputs(tmp_path)
+    lines = frame.read_text().splitlines(keepends=True)
+    host_b = []
+    for index, line in enumerate(lines):
+        if line.startswith("ATOM  ") and line[21:26] == "A   2":
+            value = 77.5 + len(host_b) * 3.4
+            occupancy = 0.5 if bad_host and not host_b else 1.0
+            host_b.append(value)
+            lines[index] = line[:54] + f"{occupancy:6.2f}{value:6.2f}" + line[66:]
+    frame.write_text("".join(lines))
+    placed = tmp_path / "placement"
+    prepare_base_anchored_furanose_from_model(target, numbers, host, book, frame, placed,
+        code="UY1", site="A:2", postmr_report=report(), canonical_at_edge=True)
+    out = tmp_path / "seed"
+    record = prepare_furanose_bridge_seed(placed, out, endpoint_weight=1000., max_base_displacement=2.)
+    decision = record["site_displacement"]
+    built = (out / "model.pdb").read_text().splitlines()
+    selected = [l for l in built if l[:6] in {"ATOM  ", "HETATM"} and l[21:26] == "A   2"]
+    if bad_host:
+        assert decision["status"] == "RETAINED_SEED" and "occupancy" in decision["reason"]
+        assert {float(l[60:66]) for l in selected} == {20.0}
+    else:
+        assert decision["status"] == "HOST_RESIDUE_MEDIAN"
+        assert decision["host_atoms"] == len(host_b) and decision["replacement_atoms"] == len(selected)
+        assert {float(l[60:66]) for l in selected} == {float(f"{median(host_b):.2f}")}
+    assert {float(l[54:60]) for l in selected} == {1.0}
+
+    def bystanders(lines):
+        return [l for l in lines if not (l[:6] in {"ATOM  ", "HETATM"} and l[21:26] == "A   2")]
+
+    assert bystanders(built) == bystanders((placed / "model.pdb").read_text().splitlines())
+    moved = out.rename(tmp_path / "moved")
+    assert read_furanose_bridge_seed(moved) == record
+
+
 @pytest.mark.parametrize("defect,reason", [("workbook", "pairing contacts"), ("mirror", "sugar hands"),
                                            ("manual", "explicit base frame")])
 def test_ambiguous_or_inconsistent_placement_does_not_allocate_output(tmp_path, defect, reason):
