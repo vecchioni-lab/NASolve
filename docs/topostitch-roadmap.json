@@ -4,7 +4,7 @@
   "updated": "2026-11-27",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
-  "audited_code_commit": "5b68471fe4615c543952484c73e0f5a93acc063f",
+  "audited_code_commit": "29fded465e95878677670be15d3c8f4999224854",
   "runtime_authority": false,
   "finish_lines": {
     "explicit_stitch": "One explicitly chosen canonical connection can be placed, locally qualified, compared against a matched refinement control and inspected as an immutable unselected child (S01, S03-S07). Final altered-arm end-to-end demonstration: pass the frozen geotest panel (B09), including X11_18 in P4_3 and X11_22, after the general geometry/refinement gates.",
@@ -521,14 +521,15 @@
         "W296 adds explicit unphased 19-atom coupled-sugar admission while retaining the six-atom default. One installed five-cycle/100-iteration-cap Phenix 2.2.1-6174 fit closes the 5W6W-derived canonical endpoint gap from 2.82429 to 1.61293 \u00c5; common-subset local angle maximum improves 1.82973 to 0.57094\u03c3. All 862 atoms, six sugar hands, original proxies, 843 held coordinates/BQ and 1909 observations/124 Free-R survive. Rwork/Rfree 0.312951/0.366145, unselected. C1-to-held-base plane distances improve; four own-map FFTs/62 meshes retain weak sugar density. 3073 tests +238 subtests, no skips; 220 relocated-installed checks; installed preflight/fit, three-model ChimeraX1.12 headless and35 cold checks pass.",
         "W297: explicit canonical endpoint-base release through the existing installed receiver;37/825 local scope, preserved BQ/proxies/sugar hands, raw post-exit packing and matched own-map/plane review. Geometry gain does not close density or packing gates.",
         "W306 quantifies fixed-anchor radial reach from saved native targets before another fit. D7 exact epsilon is reachable radially; B7 exact target is not, though one-width alternatives exist. No candidate or refinement; full orientation/chemistry separate.",
-        "W307/W308 distinguish radial reach from severe fixed-sugar orientation strain; W309 identifies the absent registered two-group masked-force boundary before any fit. Both native links remain required; no experimental outcome or scientific closure is inferred."
+        "W307/W308 distinguish radial reach from severe fixed-sugar orientation strain; W309 identifies the absent registered two-group masked-force boundary before any fit. Both native links remain required; no experimental outcome or scientific closure is inferred.",
+        "W310 qualifies a read-only full-native baseline inside both registered image-force groups; raw versus order-corrected differences on fixed bases do not affect the proposed five/six backbone masks. Explicit PDB/MTZ frame distinction, unchanged native packing/state and hook restoration verified; no motion or optimizer admission."
       ],
       "acceptance": [
         "Audit and, where qualified, relax all affected backbone/sugar geometry, chirality, stacking, planes and periodic clashes; retain unchanged/protected regions and intended contacts.",
         "Prove native enforcement for the supported symmetry case. Bond-only constraints, source-relative change limits and successful interpretation cannot substitute for full local qualification.",
         "For advertised explicit sticky-end enforcement modes, qualify exact-image contact geometry and native/additive coverage; independently validate any plane-only mismatch recipe without inventing canonical H-bonds, stacking or covalent closure."
       ],
-      "next_action": "W310 proposed to Rowan: qualify zero displacement on the actual ordinary preflight full manager inside both registered image-force lifetimes; preserve one evaluator/force owner, exact source, native packing and restoration. Held/free-O3 trials and diffraction remain held pending this boundary.",
+      "next_action": "W311: derivative-only five/six-mask checks through the same corrected native evaluator, same source/MTZ frame and both groups. Existing1e-4/1e-5 steps and1e-3 bound; report atom/axis/step and preserve failure. No movement or diffraction fit before the next decision.",
       "evidence": [
         "E_NATIVE_8D93",
         "E_TIGHTER_NATIVE",
@@ -682,14 +683,15 @@
         "E_COUPLED_SUGAR_INSTALLED_RECOVERY",
         "E_ENDPOINT_BASE_INSTALLED_RECOVERY",
         "E_FIXED_ANCHOR_PHOSPHATE_REACH",
-        "E_FIXED_SUGAR_AND_MASKED_BOUNDARY"
+        "E_FIXED_SUGAR_AND_MASKED_BOUNDARY",
+        "E_REGISTERED_ZERO_OBSERVATION"
       ],
       "last_audit": {
         "date": "2026-11-27",
-        "code_commit": "5b68471fe4615c543952484c73e0f5a93acc063f",
+        "code_commit": "29fded465e95878677670be15d3c8f4999224854",
         "reviewer": "Linden",
-        "human_update": 309,
-        "scope": "Saved analytical results reconciled; native interface gap recorded, no new fit or acceptance"
+        "human_update": 310,
+        "scope": "Zero-step source/frame/group/projection and packing observations qualified; derivatives, movement and scientific closure remain open"
       }
     },
     {
@@ -1292,14 +1294,15 @@
         "W304 extends genuine ordinary recovery to3 cycles with both complete image force groups;862 identities/Q and124 Free retained. Both bonds/worst angles improve; mixed torsion/map evidence remains explicit. Fresh cut and density/ChimeraX comparisons remain unselected.",
         "W305 composes verified-child context, existing same-child alternatives and saved preference intake. Retained cut versus alternative explicit; context/packet/preference drift refuses. Current Cedar read-only compatibility checked; no selection or native admission.",
         "W306 quantifies fixed-anchor radial reach from saved native targets before another fit. D7 exact epsilon is reachable radially; B7 exact target is not, though one-width alternatives exist. No candidate or refinement; full orientation/chemistry separate.",
-        "W307/W308 distinguish radial reach from severe fixed-sugar orientation strain; W309 identifies the absent registered two-group masked-force boundary before any fit. Both native links remain required; no experimental outcome or scientific closure is inferred."
+        "W307/W308 distinguish radial reach from severe fixed-sugar orientation strain; W309 identifies the absent registered two-group masked-force boundary before any fit. Both native links remain required; no experimental outcome or scientific closure is inferred.",
+        "W310 qualifies a read-only full-native baseline inside both registered image-force groups; raw versus order-corrected differences on fixed bases do not affect the proposed five/six backbone masks. Explicit PDB/MTZ frame distinction, unchanged native packing/state and hook restoration verified; no motion or optimizer admission."
       ],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
         "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.",
         "Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified."
       ],
-      "next_action": "W310 proposed to Rowan: qualify zero displacement on the actual ordinary preflight full manager inside both registered image-force lifetimes; preserve one evaluator/force owner, exact source, native packing and restoration. Held/free-O3 trials and diffraction remain held pending this boundary.",
+      "next_action": "W311: derivative-only five/six-mask checks through the same corrected native evaluator, same source/MTZ frame and both groups. Existing1e-4/1e-5 steps and1e-3 bound; report atom/axis/step and preserve failure. No movement or diffraction fit before the next decision.",
       "evidence": [
         "E_PINE_TEST_BANK",
         "E_NATIVE_REPRESENTATION_SEAMS",
@@ -1329,14 +1332,15 @@
         "E_THREE_CYCLE_ORDINARY_RECOVERY",
         "E_CHECKPOINT_CUT_CHOICE",
         "E_FIXED_ANCHOR_PHOSPHATE_REACH",
-        "E_FIXED_SUGAR_AND_MASKED_BOUNDARY"
+        "E_FIXED_SUGAR_AND_MASKED_BOUNDARY",
+        "E_REGISTERED_ZERO_OBSERVATION"
       ],
       "last_audit": {
         "date": "2026-11-27",
-        "code_commit": "5b68471fe4615c543952484c73e0f5a93acc063f",
+        "code_commit": "29fded465e95878677670be15d3c8f4999224854",
         "reviewer": "Linden",
-        "human_update": 309,
-        "scope": "Saved analytical results reconciled; native interface gap recorded, no new fit or acceptance"
+        "human_update": 310,
+        "scope": "Zero-step source/frame/group/projection and packing observations qualified; derivatives, movement and scientific closure remain open"
       }
     },
     {
@@ -10783,6 +10787,71 @@
           "size": 421
         }
       ]
+    },
+    "E_REGISTERED_ZERO_OBSERVATION": {
+      "kind": "Registered full-native zero-step observation",
+      "date": "2026-11-27",
+      "human_update": 310,
+      "code_commit": "29fded465e95878677670be15d3c8f4999224854",
+      "reference": "docs/topostitch-periodic.md#w310--observe-both-registered-junctions-before-movement",
+      "result": "345 source/345 relocated-installed checks; full3148+238subtests pass. Fresh W304-child preflight retains both groups,862 identities,8069 directed contacts and fixed state; exact corrected target repeat. Raw/corrected selected projections identical, fixed-base gradient difference retained. Frame precision traced;26 cold checks,restoration confirmed.",
+      "limitation": "Zero displacement only; shared projections are not derivative validation. No NativeMaskedObjective/pair admission, optimizer, packing acceptance or diffraction fit. Original cell-guard failure retained; frame binding explicitly diagnostic.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w310-registered-zero/before.json",
+          "sha256": "5d9138a1dfa452a688f85a0de6081a79e643a2cbecf5459bd85be1311c6d0556",
+          "size": 488
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w310-registered-zero/qualification.json",
+          "sha256": "7722dfcbf121097058b8f9f02fe67a3f05838c8627bc72c68a0322ba78e2ff50",
+          "size": 31420
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w310-registered-zero/verification.json",
+          "sha256": "ad2264b557fbf45bc404ec5ff2de1ee9caf6ef4e57936fb24dcb09d1116e784f",
+          "size": 3999
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w310-registered-zero/native-launch.json",
+          "sha256": "b20698ba140bf31b699eaae6202529246731d62ad9dcad4c0c16b84ede5ff12f",
+          "size": 42651
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w310-registered-zero/frame-observation.json",
+          "sha256": "e6c229cde3cf857eb5980604032a34a5e5f0c7fa28aa2e9ba23662663c3ce8fc",
+          "size": 9394
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w310-registered-zero/frame-restoration.json",
+          "sha256": "96c2c89d94cb42547a3ca9a466619dc1922c9706c9f2038c09ab867d5cf5509e",
+          "size": 1642
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w310-registered-zero/zero-launch.json",
+          "sha256": "c3108c09ac6183f6c69a2d530693e74db9523b1bb2d73dd0a5399a48e4568cff",
+          "size": 2652
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w310-registered-zero/zero-restoration.json",
+          "sha256": "36fb2361e18c355f2a3633895f25ed67221bbb0a20807fcfadcea7cfdb3ad5a2",
+          "size": 1642
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w310-registered-zero/native-zero.json",
+          "sha256": "7497d5a7f031769de164eb8b780258f4d19d3c3bf9f9452b464b76da40555ac4",
+          "size": 9935683
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -10964,8 +11033,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 309,
-    "next": 310,
+    "current": 310,
+    "next": 311,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -12629,6 +12698,12 @@
         "title": "Stop masked trials at the missing registered-force boundary",
         "state": "RECORDED",
         "code_commit": "5b68471fe4615c543952484c73e0f5a93acc063f"
+      },
+      {
+        "number": 310,
+        "title": "Observe both registered junctions before movement",
+        "state": "RECORDED",
+        "code_commit": "29fded465e95878677670be15d3c8f4999224854"
       }
     ]
   },

@@ -1,7 +1,7 @@
 # NASolve development handoff — Willow
 
-**W309 masked-route boundary audit, 2026-11-27.** Latest maintained code:
-`5b68471fe4615c543952484c73e0f5a93acc063f`. Latest native preflight/refinement:
+**W310 registered zero-step observation, 2026-11-27.** Latest maintained code:
+`29fded465e95878677670be15d3c8f4999224854`. Latest native diagnostic preflight: **W310**; latest refinement:
 **W304** (same genuine ordinary PDU parent as W300); latest density audit: **W304**.
 W298 remains the separate endpoint-base/whole-model density audit; do not conflate sources.
 The [audited roadmap](topostitch-roadmap.md) owns status and the next decision;
@@ -98,11 +98,15 @@ maintained fixed-weight product mode or recommended production weight.
    none passing the provisional C4′ screen. Fixed O3′ and exact bond/angle targets
    make this stricter than the existing six-atom soft-restraint route.
    **W309 stopped before fitting:** the masked capture does not retain the two
-   registered phosphate force groups. **Next W310 proposed to Rowan:** a zero-step
-   comparison on the actual ordinary preflight manager, inside its existing
-   two-group force lifetime. No second evaluator, image-force owner or bypass of
-   native guards. [Evidence and boundary](topostitch-periodic.md#w307w309--separate-fixed-sugar-strain-from-native-integration).
-   Native execution awaits the integration decision; diffraction remains held. W216's O5′/C5′-only shoulder proposal
+   registered phosphate force groups. **W310** now verifies a zero-step read on the actual ordinary preflight
+   manager inside both image-force lifetimes. Raw/corrected full gradients differ
+   on fixed bases but agree exactly on the five/six proposed backbone atoms;
+   both groups, 8,069 directed contacts and source state persist. PDB coordinates
+   and the MTZ-derived native cell are bound separately after an explicit frame
+   audit; the first strict-cell failure is preserved. **Next W311:** existing
+   finite-difference checks on both masks, approved by Rowan, before any movement.
+   [Evidence and limits](topostitch-periodic.md#w310--observe-both-registered-junctions-before-movement).
+   NativeMaskedObjective/optimizer admission and diffraction remain held. W216's O5′/C5′-only shoulder proposal
    cannot change C4′–C3′–O3′–P when those four atoms are fixed. Separately, P05's
    remaining work is the shared GUI operation lifecycle, not another preview,
    preference or checkpoint registry. Existing same-source
@@ -144,6 +148,13 @@ references and thermal/TLS semantics. File readback alone cannot prove those.
 
 <a id="validation-and-scientific-interpretation"></a>
 ## Validation and compatibility
+
+**W310:** 345 focused source/345 relocated-installed tests; full **3,148 tests
++238 subtests**, no skips. Exact target repeat and both mask projections pass
+inside the two-group native preflight. All hooks restore; 26 cold checks pass.
+Initial cell refusal, separate frame measurement and successful zero-step are
+retained separately. No movement, optimizer admission or diffraction fit.
+
 
 **W305:** 219 focused source/219 relocated-installed checks and installed CLI help
 pass. Complete suite covers **3,135 tests +238 subtests**: 3,130 passed in the

@@ -16148,3 +16148,100 @@ for six; remaining optimizer allowance is at most 114/78 calls before other
 observations. No restarts, exact ε constraint, weight sweep or analytical seeding.
 Stalling is inconclusive. Diffraction comparison, wider motion and acceptance
 remain separate decisions. S05/P04 remain PARTIAL; original W304 stays unchanged.
+
+
+## W310 — Observe both registered junctions before movement
+
+**2026-11-27; Willow code `29fded465e95878677670be15d3c8f4999224854`, Cedar observation
+phase `7f2461dbd758337846822b86c2bf8949d3854880`.** The additive
+[zero-step API](topostitch-preview.md#observe-registered-forces-at-zero-displacement-w310)
+uses the existing native evaluator and coordinate-mask arithmetic, never a new
+force implementation. Thirteen new controls fail before the change; **345
+focused source and 345 relocated-installed tests** pass. The complete suite
+passes **3,148 tests +238 subtests**, with no skips, in 243.08 s. Python3.10 syntax,
+installed CLI smoke and source/install identity pass; disposable staging removed.
+Pure local Python initially passed 336 tests with nine optional-native skips;
+the qualified native-dependency runs cover those checks. No second full run.
+
+**Native preparation:** a fresh capture and registered request bind the written
+W304 `refine-004` child (model SHA `3a297be5fc30fa7133cce639e3d28ae7666d19893679bd2be09402e361ac1003`).
+The old W304 request binds its input parent and was not misused for the child.
+Use an isolated copied run; no checkpoint publication or current-selection
+change. Full historical Cedar d3d71cde and its verified v12 sibling modules stay
+pinned. Only the trusted diagnostic observation phase is overlaid in a separate
+import package; archived request/worker bytes are unchanged. The observer phase
+SHA is `9555f079c4af742266718060575f2cb4f0a863f4f0d865247200e3b1695030e7`;
+frozen v12 phase remains `b5b92734fb56a29f9a25b36226bfd1ce4d921f91a9f6b63d0e7de688fc23ed14`.
+
+The first dry preflight (**round005**) reaches both groups but stops at strict
+PDB/native cell equality, before the force comparison. Its failure is retained.
+A separate **round006** frame-only observation shows that Phenix uses the input
+MTZ cell; every group/setting is R3:H. PDB a/b=106.218 Å and c=91.636 Å become
+106.21800231933591 and 91.63600158691406 Å in the MTZ. This agrees with the PDB
+cell stored at float32 precision within 2.85e-14; model/scattering match MTZ,
+and geometry differs only by 2.85e-14° arithmetic. No tolerance or native
+admission rule is changed globally. For these specific R3 operators the image
+O3′ shifts are at most **7.17e-15 Å** (B7→B1) and **4.87e-15 Å** (D7→C8).
+All 862 source coordinates match within 1.82e-14 Å. Each frame is explicitly
+recorded; no source coordinates or cell header are rewritten.
+
+With Rowan's approval, **round007** binds PDB coordinate identity and the
+MTZ/native crystal frame separately and completes the zero-step comparison
+in **7.64 s**. Both native junctions retain exactly W304's operators, native
+source definitions/weights, one bond, four angles, three torsions and four
+second-shell exclusions. Each group and the joint counter reports **eight**
+full-gradient calls: one ordinary preflight, one raw read, two packing-before,
+two repeated corrected reads and two packing-after. No minimization occurs.
+
+| Readout at identical coordinates | Result |
+| --- | ---: |
+| Raw and corrected full native target |6243.857291685891, identical|
+| Largest raw versus corrected full-gradient component difference |71.6523143222|
+| Difference on five-atom C8 P/OP1/OP2/O5′/C5′ mask |0, exact|
+| Difference on that mask plus D7 O3′ |0, exact|
+| Actual directed native nonbonded rows |8,069, unchanged|
+| Native nonbonded target |1409.4963683143133, unchanged|
+
+Both raw and corrected reads already include the two registered phosphate
+groups. Their difference is the restored Phenix base-plane derivative versus
+the existing order-safe correction, **not** image forces switched off versus on.
+The fixed bases have a real force difference; the selected backbone masks have
+none. Do not extrapolate that equivalence to wider base movement. Both masks
+project one shared corrected full vector; this is not an independent derivative
+check. The existing pair-requiring `NativeMaskedObjective` remains unqualified
+for this native-only source. No synthetic pair packet is made.
+
+Raw native packing membership, function, policy, targets and gradients repeat
+exactly; no new or altered contacts are introduced by observation. Existing
+contacts remain in the evidence, without assigning chemical/packing acceptance.
+The fixed nonbonded snapshot alone does not describe the registered class-level
+image wrapper; separate Cedar group/force records retain that distinction.
+Native atom/scattering state, original source files and registry stay unchanged.
+Hooks restore, and the diagnostic does not issue a production `phosphate.json`.
+**26 cold checks** recheck the saved evidence without new native evaluations.
+
+All native runs use **Phenix 2.2.1-6174**, one CPU, bounded owned processes and
+fresh diagnostic rounds. They are completed dry preflights, not refinements.
+Local NASolve anchor: `branch-artifacts/willow/w310-registered-zero/`.
+`qualification.json`, `native-launch.json`, `frame-launch.json`, `zero-launch.json`
+and `verification.json` retain exact commands, dependencies, source hashes,
+original failure and later results. Outer commands:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/w310-registered-zero/qualify.py
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/w310-registered-zero/launch_native.py
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/w310-registered-zero/launch_frame.py
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/w310-registered-zero/launch_zero.py
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/w310-registered-zero/cold_check.py
+```
+
+These single-use directories already exist. Source/installed tests use
+`PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`; native bootstrap explicitly binds the
+pinned roots. Raw science, copied runs and diagnostic scripts remain local and
+excluded from Git. Existing trial APIs/schema/behavior are unchanged; the new
+observation is additive and has no migration or runtime authority. S05/P04 stay
+PARTIAL. **Next W311, approved by Rowan:** derivative-only checks on both masks
+with the existing 1e-4/1e-5 Å steps and 1e-3 absolute bound (62+74 evaluator calls,
+plus disclosed packing/preflight, total≤150; 300 s). Preserve both groups and
+source/native frames. Report the worst disagreement with atom, direction and
+step before proposing any actual movement or diffraction trial.

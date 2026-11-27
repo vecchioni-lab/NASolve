@@ -7,6 +7,10 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Latest W310:** [registered zero-step force observation](topostitch-periodic.md#w310--observe-both-registered-junctions-before-movement)
+  retains both image junctions and native contacts. The selected backbone force
+  projections agree; fixed base-plane derivatives differ. Next: derivative checks.
+
 - **Latest audit, W307–W309:** [fixed-sugar strain and native force boundary](topostitch-periodic.md#w307w309--separate-fixed-sugar-strain-from-native-integration)
   distinguish radial reach from acceptable sugar geometry. Held/free-O3 trials
   stop before a missing two-group integration boundary; next is a zero-step check.
