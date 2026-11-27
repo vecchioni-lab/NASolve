@@ -1,12 +1,24 @@
 # NASolve development handoff
 
-Updated 26 November 2026. Cedar is testing the first three Q07 substitutions.
+Updated 27 November 2026. Cedar is testing the first three Q07 substitutions.
 Q06 keeps the PDU B:4 site under review. The aim is for a scientist to use a supported modified nucleotide without hand-editing a CIF. Coot builds the
 residue, NARestraints supplies the intended pairs and stacks, and Cedar checks what
 ReadySet and Phenix actually use. The [completion queue](cif-doctor-completion-queue.md#pipeline-position) owns the work order. The [capability table](cif-doctor.md#current-capability-boundary) owns the support
 claims.
 
 ## Where to resume
+
+C614–C616 traced the stretched RNA rings to a construction choice. Coot set all
+32 transported base atoms to B = 20 Å². The three original host bases had median
+B values of 223–270 Å². With the original dictionaries and five ordinary Phenix
+cycles, starting shared heavy atoms from the host B fields and each added methyl
+carbon from its attachment atom kept all 26 ring bonds within two printed widths.
+Rfree changed from 0.2652 to 0.2423. All twelve sugar hands and 38 backbone links
+survived. Three of 50 pair contacts still exceed three widths. These are hypothetical
+substitutions on the host crystal. The exact-component ring dictionary comparisons
+are controls. First bring the proven starting-value rule into ordinary construction
+with graph evidence and an intact fallback, then test the recovered three-site route.
+The independent OP2-state and remaining Q07 substitutions stay on the queue.
 
 C590 isolated why the PDU at B:4 can leave its base plane during refinement.
 On the same coordinates, diffraction observations, displacement and solvent state,

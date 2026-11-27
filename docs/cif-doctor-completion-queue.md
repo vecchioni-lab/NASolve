@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 26 November 2026, after C613. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 27 November 2026, after C616. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -43,8 +43,10 @@ The next transfer check examines the locked-sugar contacts on a separate mixed s
    including a second partner at the same atom. Check the existing mixed-scaffold
    evidence described below. The eight-residue design and its sulfur side are now fixed.
    Three modified riboses kept their hand in a five-cycle coordinate fit. Two completed
-   ordinary preparation and refinement from a fresh Phaser run. Investigate the ring
-   stretching and distinguish the intended OP2 chemistry before promoting the panel.
+   ordinary preparation and refinement from a fresh Phaser run. C616 isolated the
+   effect of starting all newly placed base atoms at B = 20 Å². Carry the qualified
+   host-based starting values into ordinary construction and check the pair contacts.
+   Resolve the linked OP2 chemistry separately before promoting the panel.
    Carry the proven 6MZ recovery into a fresh ordinary run, then test a different
    attachment and the source-backed internal sulfur linkage. The four pseudouridine attachment corrections ship in NARestraints 1.1.4. Record what was constructed, what Phenix kept after
    refinement, and which sites require review. The known 13-change scaffold and the
@@ -1153,6 +1155,39 @@ were 0.031, 0.024 and 0.028 Å. Their ordinary G, C and A comparisons were
 a weaker restoring force for the same displacement. Keep the modified target lengths and original pair and
 diffraction weights fixed when testing a chemically justified width. Inspect the
 rest of each ring before selecting a change.
+
+C614–C616 kept the three-site coordinates, observations, flags and all 193 supplied
+NARestraints terms fixed. Under a common positive diffraction coefficient of 28.65,
+tightening one ring bond per base brought those bonds closer to target while the
+other ring bonds stretched further. Under ordinary automatic weighting, transferring
+the lengths and widths for all 26 ring bonds from the exact modified-component
+CCP4 references gave good ring geometry, with Rfree rising from 0.2652 to 0.2759.
+The supplied references matched the source atoms, charges, attached hydrogens
+and local bond orders across each base ring and its directly attached groups.
+[Reference dictionaries at the tested revision](https://github.com/MonomerLibrary/monomers/tree/0af022bf6f7c401d59c7bf106e6709fc5f57c3d4).
+
+The earlier C428–C433 and C511 controls separated scaffold and base displacement.
+Here the sugar and phosphate already carried their original B values while the
+32 newly placed base atoms all carried Coot's 20 Å². The corresponding host
+base medians were 270, 223 and 230 Å². Changing only those 32 starting B fields
+and retaining the original chemical dictionaries gave the following five-cycle
+stock Phenix 2.2.1-6174 results with automatic coordinate weighting.
+
+| Starting values on the three bases | 2MG N9–C4 (Å) | 5MC N3–C4 (Å) | 6MZ N9–C4 (Å) | Rwork / Rfree |
+| --- | ---: | ---: | ---: | --- |
+| Coot default | 1.540 | 1.446 | 1.459 | 0.2831 / 0.2652 |
+| Each base's host median | 1.428 | 1.373 | 1.378 | 0.2402 / 0.2450 |
+| Shared atoms from host, added methyl from its bonded atom | 1.428 | 1.364 | 1.378 | 0.2403 / 0.2423 |
+
+In the last run all 26 source ring bonds stayed within two of their **original**
+printed widths. All twelve sugar hands and 38 declared links survived. Three of
+50 supplied pair contacts exceeded three widths, compared with one in the control.
+Under the same fixed high diffraction coefficient the starting-B change also
+reduced distortion, though ring outliers remained. Carry the starting estimate
+into a new ordinary run. These substitutions use observations from their unmodified
+host. Preserve the independent check of pairing, the source chemistry and the
+existing exact-base displacement rule for sugar substitutions.
+
 Phosphate protonation is a separate question. See the Q13 note below.
 
 C601 found the source-preserving generator had introduced a 5.779 Å bond between
