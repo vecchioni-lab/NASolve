@@ -653,11 +653,16 @@ Fresh ordinary PostMR carries isotropic B factors from the original model
 for graph-restored sugar and phosphate atoms of canonical DNA hosts. The
 atoms must match in site, name, element, occupancy and restored coordinates.
 Transfer succeeds for a whole selected scaffold or its existing B values
-are retained with a reason. New base atoms keep their construction values.
-A selected site with an alternate conformation or associated displacement
-records retains its existing values. Historical coordinate-only replay
-remains available. See the [Cedar completion queue](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run)
-for the separate problem of selecting displacement values for new atoms.
+are retained with a reason. A fresh, uniformly seeded base on a reconstructed
+canonical ribose can inherit each shared base atom’s starting isotropic B.
+Both digests, the separated base graphs, atoms, attached hydrogens and formal
+charges must establish one neutral methyl substitution. The new carbon uses
+its attachment atom’s B. Site occupancy and element must match. Alternate
+conformations, associated displacement records and already differentiated
+seed values preserve the original seed. The construction record saves the
+source fingerprints and the decision. The lower-level coordinate-only and
+scaffold-only construction modes remain available for replay.
+[Native RNA comparison](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
 
 The registry also declares exact parent/target atom substitutions. `DE`, `DF`,
 and `S6G` place sulfur along the canonical `C-O` vector, use the transformed

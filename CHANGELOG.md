@@ -8,6 +8,13 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- When Coot gives a new methylated RNA base a single starting B factor, fresh
+  PostMR construction can recover the original site’s atom-by-atom values. The
+  two source dictionaries must establish that one base hydrogen was replaced
+  by a methyl group. Its carbon starts with the B factor of its bonded atom.
+  The construction record identifies every transferred value or explains why
+  the seed was retained.
+
 - Ordinary PostMR can prepare a canonical RNA parent from the
   corresponding deoxy residue. The two source dictionaries must agree on the
   retained chemistry. NASolve adds the 2′ oxygen with the reference ribose hand

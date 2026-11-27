@@ -43,3 +43,6 @@ Both files are the public CCD downloads retrieved on 26 November 2026.
 
 - [DG](https://files.rcsb.org/ligands/download/DG.cif), SHA-256 `87b9c4eddf89edcbc7aba4f77ed2159bb572e9c8092409d893998be426d872f2`.
 - [G](https://files.rcsb.org/ligands/download/G.cif), SHA-256 `4fbcf5b5222d7c7f0a761676cffa9bb997daa8f76d41fdb7657aa59e969b85fa`.
+
+The public 2MG dictionary supplies the N2-methylguanosine graph for the starting
+B-factor check. It was retrieved on 27 November 2026. [2MG](https://files.rcsb.org/ligands/download/2MG.cif), SHA-256 `4350fd6d8e69e76ecf5484979c305acc965d51389c9be1aa4029b8c76e748b37`.

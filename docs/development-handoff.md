@@ -8,6 +8,19 @@ claims.
 
 ## Where to resume
 
+C617 moved the starting-B correction into ordinary Coot construction. It checks the
+two base graphs for one methyl in place of a hydrogen, on carbon or nitrogen.
+For 5MC, 2MG and 6MZ the returned atoms reproduced all 32 independently predicted
+starting B values. A fresh two-site Phaser → Coot → ReadySet → AutoRefine run
+gave 1.427 Å for 2MG N9–C4 and 1.366 Å for 5MC N3–C4 after five cycles.
+All 16 ring bonds were within 1.26 restraint widths. The 38 backbone links and
+eight sugar hands survived. Three of 50 pair contacts still require review.
+Rwork/Rfree were 0.2287/0.2356 (earlier two-site run 0.2213/0.2360).
+Fresh checked construction now saves its base-B decisions and rechecks them
+from the raw Coot model, parent and dictionaries when the run is reopened.
+Next bring the separately qualified 6MZ dictionary into fresh three-site
+preparation without asking the scientist to supply a snapshot.
+
 C614–C616 traced the stretched RNA rings to a construction choice. Coot set all
 32 transported base atoms to B = 20 Å². The three original host bases had median
 B values of 223–270 Å². With the original dictionaries and five ordinary Phenix
@@ -16,8 +29,7 @@ carbon from its attachment atom kept all 26 ring bonds within two printed widths
 Rfree changed from 0.2652 to 0.2423. All twelve sugar hands and 38 backbone links
 survived. Three of 50 pair contacts still exceed three widths. These are hypothetical
 substitutions on the host crystal. The exact-component ring dictionary comparisons
-are controls. First bring the proven starting-value rule into ordinary construction
-with graph evidence and an intact fallback, then test the recovered three-site route.
+are controls. C617 applied the proven starting-value rule in ordinary construction.
 The independent OP2-state and remaining Q07 substitutions stay on the queue.
 
 C590 isolated why the PDU at B:4 can leave its base plane during refinement.

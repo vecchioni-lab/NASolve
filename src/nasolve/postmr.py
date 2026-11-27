@@ -849,6 +849,7 @@ def _restore_shared_parent_coordinates(
     dictionary_paths: Mapping[str, Path] | None = None,
     *, displacement_reference: Path | None = None, site_dictionary_paths: Mapping[str, Path] | None = None,
     ribose_templates: Mapping[str, Path] | None = None, ribose_displacement_reference: Path | None = None,
+    initialize_methylated_base_b: bool = False,
 ) -> dict[str, object]:
     """Restore supported DNA scaffolds without copying partial same-name bases.
 
@@ -908,6 +909,15 @@ def _restore_shared_parent_coordinates(
         else:
             if action.site in (ribose_templates or {}) and ribose_host is not None:
                 replacements = ribose_host.apply(replace(action, before=action.parent_code), replacements, item)
+                if initialize_methylated_base_b:
+                    from .postmr_base_displacement import initialize_methylated_base
+                    starting = replacements
+                    replacements, item["base_displacement"] = initialize_methylated_base(
+                        starting, (ribose_host.original or {}).get((chain, resid), ()), item, action.site,
+                        action.parent_code, ribose_templates[action.site],
+                        (site_dictionary_paths or {}).get(action.site, dictionary_paths[action.after]))
+                    if replacements != starting:
+                        item["metadata_preserved"] = False
             elif host is not None:
                 replacements = host.apply(action, replacements, item)
             for index,line in zip(indices,replacements):
@@ -1958,6 +1968,7 @@ def construct_postmr_model(
     environment: Mapping[str, str] | None = None,
     coot_directory: Path | None = None,
     inherit_scaffold_b: bool = False,
+    initialize_methylated_base_b: bool = False,
     reference_model: Path | None = None,
     timeout_seconds: float | None = None,
     allow_op3_sites: tuple[str, ...] = (),
@@ -1980,8 +1991,12 @@ def construct_postmr_model(
     agree. The same choices feed context/restoration and are returned for lineage.
     Their upstream source/end-state/numerical qualification remains separate.
     Fresh ordinary PostMR sets inherit_scaffold_b to carry isotropic B factors
-    from the original model for coordinate-identical restored DNA scaffold atoms.
+    from the original model for coordinate-identical restored scaffold atoms.
+    initialize_methylated_base_b also initializes a graph-verified newly placed
+    methylated base from its canonical ribose parent.
     """
+    if initialize_methylated_base_b and not inherit_scaffold_b:
+        raise PostMRPreparationError("Base displacement initialization needs the verified host scaffold")
     if any(action.method == FURANOSE_METHOD for action in actions):
         raise PostMRPreparationError("Whole-furanose construction requires the ordinary phosphate-prepared frame")
     input_model, output_model = Path(input_model), Path(output_model)
@@ -2070,6 +2085,8 @@ def construct_postmr_model(
         restoration_options["displacement_reference"] = reference_model
         if ribose_options:
             restoration_options["ribose_displacement_reference"] = native_input
+            if initialize_methylated_base_b:
+                restoration_options["initialize_methylated_base_b"] = True
     restoration_actions = tuple(a for a in overlap_actions if a.site not in passthrough_sites)
     if restoration_actions:
         restoration = _restore_shared_parent_coordinates(restoration_input, geometry_model,
@@ -2510,7 +2527,8 @@ def _prepare_postmr(
         coot_directory=coot_dir, reference_model=original, inherit_scaffold_b=True,
         allow_op3_sites=allowed_op3, passthrough_sites=passthrough_sites,
         **({'site_dictionary_paths':staged['site_dictionary_paths']} if staged is not None else {}),
-        **({'canonical_seed_dictionaries': ribose_choices} if ribose_choices else {}),
+        **({'canonical_seed_dictionaries': ribose_choices, 'initialize_methylated_base_b': True}
+           if ribose_choices else {}),
     )
     coot_actions = tuple(a for a in actions if a.method in {"coot-mutate-base", "coot-parent-overlap"})
     coot_log = construction["coot_log"]

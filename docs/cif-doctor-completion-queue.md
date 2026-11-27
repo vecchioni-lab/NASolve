@@ -1,6 +1,6 @@
 # CIF Doctor completion queue
 
-Updated 27 November 2026, after C616. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
+Updated 27 November 2026, after C617. Use this queue to choose the next experiment, the [handoff](development-handoff.md)
 to resume it, and the [capability table](cif-doctor.md#current-capability-boundary) for supported chemistry. The [historical index](history/README.md#november-26-cedar-roadmap-audit) preserves the exact earlier
 queue, measurements and decisions.
 
@@ -44,8 +44,9 @@ The next transfer check examines the locked-sugar contacts on a separate mixed s
    evidence described below. The eight-residue design and its sulfur side are now fixed.
    Three modified riboses kept their hand in a five-cycle coordinate fit. Two completed
    ordinary preparation and refinement from a fresh Phaser run. C616 isolated the
-   effect of starting all newly placed base atoms at B = 20 Å². Carry the qualified
-   host-based starting values into ordinary construction and check the pair contacts.
+   effect of starting all newly placed base atoms at B = 20 Å². C617 now inherits
+   verified starting values during ordinary construction. Two sites passed a fresh
+   five-cycle run with three of 50 pair distances still outside three widths.
    Resolve the linked OP2 chemistry separately before promoting the panel.
    Carry the proven 6MZ recovery into a fresh ordinary run, then test a different
    attachment and the source-backed internal sulfur linkage. The four pseudouridine attachment corrections ship in NARestraints 1.1.4. Record what was constructed, what Phenix kept after
@@ -1187,6 +1188,20 @@ reduced distortion, though ring outliers remained. Carry the starting estimate
 into a new ordinary run. These substitutions use observations from their unmodified
 host. Preserve the independent check of pairing, the source chemistry and the
 existing exact-base displacement rule for sugar substitutions.
+
+C617 repeated the ordinary two-site workflow from new Phaser coordinates using
+Coot 1.3.3, NARestraints 1.1.4 and Phenix 2.2.1-6174. All 16 ring distances lay
+within 1.26 of their original restraint widths after five AutoRefine cycles.
+The earlier two-site run stretched 2MG N9–C4 to 1.496 Å and 5MC N3–C4 to
+1.439 Å. Their new lengths were 1.427 and 1.366 Å. The same observations and
+Free-R flags gave 0.2287/0.2356 for Rwork/Rfree, compared with 0.2213/0.2360.
+Three pair distances exceeded three widths (previously two). Both 2′ hydroxyls,
+eight sugar hands, four flanking P–O3′ bonds and all 38 printed backbone links
+survived. The separate three-site Coot check reproduced all 32 base B fields
+from the independent C616 experiment, including the added methyl carbons.
+A schema-2 construction record carries and rechecks the per-site starting
+values after relocation. Earlier construction records retain their original
+interpretation.
 
 Phosphate protonation is a separate question. See the Q13 note below.
 
