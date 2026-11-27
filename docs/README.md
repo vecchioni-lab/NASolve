@@ -7,13 +7,19 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Latest code, W301:** [checkpoint-bound child recut](topostitch-preview.md#refresh-a-cut-onto-its-exact-refinement-child-w301)
+  carries the exact parent's chosen cut onto its direct refinement child, always
+  unreviewed. Both W300 links and all 862 atoms reproduce without a new fit.
+  177 source/177 relocated checks and the full suite (3,117 tests + 238 subtests)
+  pass. Saved-refresh readback and persistent scientist review are next.
+
 - **Latest native refinement, W300:** [two-connection restart](topostitch-periodic.md#w300--restart-both-connections-and-refresh-the-child-cut)
   preserves both links and all 862 atoms through an ordinary child and fresh recut.
   Rwork/Rfree 0.199/0.267; local geometry remains mixed, child unselected.
   Cold replay and headless ChimeraX comparison pass. Maintained child-preview
   refresh is next; persistent graphical review and seam acceptance remain open.
 
-- **Latest code, W299:** [joint recut correspondence](topostitch-periodic.md#w299--bind-both-phosphate-links-to-the-recut-preview)
+- **Receiving foundation, W299:** [joint recut correspondence](topostitch-periodic.md#w299--bind-both-phosphate-links-to-the-recut-preview)
   binds both Cedar-inspected phosphate links to an exact preview while retaining
   separate native/display operators. Genuine parent check, 111 source/111 relocated
   checks and the complete Willow suite (3,105 tests + 238 subtests) pass. No fit or

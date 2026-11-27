@@ -15646,3 +15646,73 @@ proposal, never inherited approval. Reject stale input, wrong lineage, lost
 atoms or image changes. Reuse W300 evidence instead of another fit. P04 stays
 PARTIAL; P05 gains bounded restart evidence but its persistent graphical review,
 edit/import and adoption lifecycle remains open.
+
+
+## W301 — Maintain the checkpoint-bound child recut
+
+**2026-11-27; code `ac2d608688e4864810b84aabef4138c0b4db4571`.** The existing
+checkpoint owner now provides `build_checkpoint_recut_preview`, replacing the
+local W282/W300 composition. [API/schema and trust boundaries](topostitch-preview.md#refresh-a-cut-onto-its-exact-refinement-child-w301).
+Before, the experiment manually reconstructed the descendant registration and
+preview; now explicit parent/child contexts, exact parent-preview bytes and a
+trusted history reader bind the complete operation. Both selected-forest and
+explicit-image cuts retain their declared intent. Lost atoms, changed crystal
+representatives, wrong direct lineage and stale inputs refuse. Reordered PDB
+records use explicit atom identity and per-node membership, as required by W282's
+prior finding. No second geometry, registration or refinement engine was added.
+
+A new ordinary preview always has **UNREVIEWED** state. The additive schema-1
+`checkpoint-refresh.json` producer observation is written last. No inherited
+approval, checkpoint selection, native admission or migration of old packets.
+This record is not yet an authenticated saved-input consumer; that is the next
+bounded seam. Snapshot checks are not locking, and an interrupted refresh can
+leave a packet without its completion observation. All original science is kept.
+
+**Real read-only control:** use W300's existing `refine-004`, genuine parent
+`refine-003`, and W282 parent cut. Pinned complete Cedar
+`d3d71cde66ca3fe953c182773672fd5d5dbd3a8a` under Phenix **2.2.1-6174** supplies
+history and image readers. All **862** atoms, displayed coordinates and both
+W299-bound connections reproduce exactly: B7→B1 **1.665991 Å**, D7→C8
+**1.658048 Å**. The native operators remain `-y,x-y,z` and `-x+y,-x,z`; the latter
+is display-local. Run file hashes and selected `postmr` remain unchanged.
+No capture, native fit, Coot or new ChimeraX run occurred; W300's comparison and
+mixed-geometry limits remain the scientific evidence, not new improvement.
+
+**Validation:** seven initial missing-API regressions failed before implementation.
+The first host attempt skipped because Gemmi was absent; native Python supplied
+that dependency and produced the intended failures. A late-drift fixture initially
+expected the wrong exception class; the retained owner refusal was correct.
+The atom-order case then exposed a literal membership-list comparison, corrected
+without weakening the atom bijection. Final **177 source and 177 relocated-installed
+focused checks pass**. The complete Willow suite passes **3,117 tests and 238
+subtests**, no skips, in **226.68 s**. Installed CLI help, Python 3.10 syntax,
+exact source/installed hashes and unchanged tested source pass. Build and original
+install paths were removed before installed tests; temporary staging was removed.
+The relocation case also moves the run and parent preview after deleting the
+original paths, reproducing the same refresh and child preview.
+
+Local NASolve anchor: `branch-artifacts/willow/w301-checkpoint-recut/`.
+`qualification.json` records exact commands, dependency versions, environments,
+source hashes and logs; `audit-command.json` records the read-only native command.
+Outer commands from the main NASolve checkout:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/w301-checkpoint-recut/qualify.py
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/w301-checkpoint-recut/audit_launcher.py
+```
+
+Nested tests use `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src` with explicit Phenix
+import bootstrapping. The full call is `pytest.main(["-q", "-rs", "-p",
+"no:cacheprovider", "tests"])`. The focused files are checkpoint, graph,
+recut-bundle and continuation tests. Exact output inventory is in `audit.json`;
+`binding.json` and `child-preview/checkpoint-refresh.json` bind the connection
+and provenance evidence. `index.html` links the new inspector and W300 comparison.
+
+Committed changes: checkpoint adapter, existing regression file, changelog,
+API/current guides and roadmap. Raw coordinates, native run data, derived local
+views, qualification files and failed attempts are deliberately excluded. No new
+CLI or force policy, and no whole-run portability claim. P04/P05 remain PARTIAL.
+**Next:** maintained saved-refresh readback, rejecting changed receipts, packets
+or run context before any GUI can describe the relationship as verified. Preserve
+the same-source restriction of ordinary cut comparisons; parent/child motion is
+a different comparison. Persistent scientist review and geometry acceptance remain open.
