@@ -286,7 +286,7 @@ def _root_payload(report: Mapping[str, object], run: Path) -> dict[str, object]:
         raise CheckpointError("Run report has no frozen AutoMR inputs")
     model = _required_file(postmr.get("prepared_model"), "PostMR prepared model", run)
     try:
-        validate_model_phosphate_policy(model, report)
+        validate_model_phosphate_policy(model, report, run_directory=run)
     except PhosphateError as exc:
         raise CheckpointError(str(exc)) from exc
     model_sha256 = _sha256(model)
@@ -665,7 +665,7 @@ def add_checkpoint(
         raise CheckpointError(f"Manual checkpoint model does not exist: {source_model}")
     try:
         _, frozen_report = _run_and_report(run)
-        validate_model_phosphate_policy(source_model, frozen_report)
+        validate_model_phosphate_policy(source_model, frozen_report, run_directory=run)
     except PhosphateError as exc:
         raise CheckpointError(f"Manual model phosphate validation failed: {exc}") from exc
     source_reflections: Path | None = None

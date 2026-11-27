@@ -1,6 +1,6 @@
 # Post-merge metal-coordination roadmap
 
-Updated **27 November 2026** after fresh FT construction, owned preparation and archive readback. Working
+Updated **27 November 2026** after registered original publication and relocated readback. Working
 branch **Alder**; the earlier forward-queue audit is retained at `60a1f084`. The feature milestones
 **A01–A09** below remain explicitly post-merge work; A09 follows the main build.
 Merge qualification, scientific acceptance and feature completion are separate.
@@ -139,13 +139,19 @@ readback passes. ReadySet separately preserves all 858 named XYZ/B/Q states.
 **New original-only registered execution now returns through the complete owner**,
 with a cache hit, native registered review, stopped process evidence and archived
 relocated readback (47.79→10.50 MB). The old held request retains zero attempts.
-**Next qualify original-only registered publication/topology**, then deliberate
-fresh AutoSol metal/phase binding and phased numbered image-force execution. The
+**Original-only registered publication/topology now passes on genuine FT inputs**:
+858 unchanged atoms, 38 local links, both image partners and D:1 terminal intent
+survive ordinary checkpoint/Coot/model and relocated installed readers. The
+checkpoint remains REVIEW; the two image bonds are still physically open at
+3.241/3.081 Å. This closes publication mechanics, not A01 science.
+**Next scope deliberate fresh AutoSol metal/phase binding**, followed by phased
+numbered image-force execution. Reuse Cedar's selected-site reference and exact
+phase-label owners, with an explicit free-metal declaration. The
 standard I/Br/Se AutoSol gate is not integrated free-metal screening. Reuse Cedar 025561e1
 for the full-model compiler handoff; do not reimplement or recompile it.
 [Fresh construction evidence](metal-ordinary-receiving.md#genuine-ordinary-ft-construction--27-november-afternoon).
-Input/native review alone provides no ordinary parent, phase admission or
-scientific acceptance.
+The published original supplies an ordinary REVIEW parent; phase admission,
+applied image forces and scientific acceptance remain open.
 [Implementation boundary](metal-ordinary-receiving.md#registered-phosphate-context-before-preparation--27-november).
 
 Only two next decisions govern the near-term work:

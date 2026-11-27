@@ -39,35 +39,37 @@ and cache-retirement evidence: `branch-artifacts/Alder/docs-audit-20261126-01/`.
 <a id="a01-registered-input-and-native-review--27-november"></a>
 <a id="a01-registered-preparation-context--27-november-afternoon"></a>
 
-## Current A01: fresh FT construction and owned preparation
+<a id="current-a01-fresh-ft-construction-and-owned-preparation"></a>
 
-Fresh experimental-data MR/Coot construction produces DF A:12 / DT B:4 without
-borrowing the solved metal endpoint. Its genuine C196 record, C80 full-model
-restraints and registered context now reach one completed, stopped preparation
-request under an explicit original-only policy. The exact DF source was reused
-from cache; the 858-atom original model remains unchanged. Both declared crystal
-links survive native input review, but applied image forces and acceptable
-geometry are not implied. The separate ReadySet diagnostic also preserves all
-named XYZ/B/Q values. The older intake-only request remains BLOCKED/zero attempts.
+## Current A01: registered FT preparation is a review checkpoint
 
-The latest panel passes **223 focused and 37 installed tests**. Actual enclosing
-preparation completed in **128.26 s outer time**, Phenix 2.2.1-6174. Existing durable
-archive/retirement reduced the request **47.79→10.50 MB**, preserving its result,
-public files and recoverable evidence. Installed relocated readback passes with
-old paths denied. No full suite, new diffraction fit or f″ estimate. All source
-changes remain on the isolated receiving candidate; active Alder delivery is separate.
+Fresh experimental-data MR/Coot construction and the completed original-only
+request now publish through the ordinary checkpoint owner. All 858 DF:T atoms
+retain their XYZ/B/Q values; 38 local links, both B:1/C:8 crystal partners and the
+D:1 terminal phosphate remain explicit. Ordinary checkpoint, Coot-view and model
+validators agree, including a relocated installed read with original paths denied.
+The checkpoint is REVIEW. Its image O3′–P distances are still 3.241/3.081 Å; no
+mercury, new coordinate fit or f″ measurement is implied.
 
-**Next:** original-only registered publication/topology, then deliberate fresh
-AutoSol metal/phase binding and a versioned numbered XYZ/DNA group-B child. The
-standard I/Br/Se gate does not yet supply integrated free-metal screening. A01
-remains partial and A02 gated; starting B values cannot feed quantitation.
-Do not repeat the completed native input, cache or archive checks without a
-changed input, relevant code or unresolved question.
+The latest change passes **185 focused cases / 38 subtests** and **81 installed
+cases**; all 14 new regressions fail at the previous candidate. The real cold
+publication took 34.40 s; relocated readback 24.95 s. All 74 source dataset and
+74 source request files remain exact. The 15.43 MB clone reuses compact archived
+native evidence (Phenix 2.2.1-6174); packaging scratch retirement recovered 30.80 MB.
+No full suite. Source changes remain on the isolated receiving candidate, with
+active Alder delivery and reconciliation of Rowan's fitted-evidence hook separate.
 
-Checkout: `ScienceCheckouts/Hazel/2026-11-27_ft-ordinary-construction/index.html`
-under the shared GitHub workspace; six small files, editable constellation figure,
-source references and compact B/Q/R/f″ table. [Evidence, exact commands, compatibility
-and limits](metal-ordinary-receiving.md#current-a01-owned-registered-preparation--27-november-checkout).
+**Next:** explicit fresh free-metal AutoSol/phase binding, then a numbered
+XYZ/DNA group-B child with both image forces. Reuse the existing selected-model
+site-reference and phase-label owners. A01 remains partial and A02 gated;
+starting B values cannot feed quantitation. Do not repeat completed preparation,
+publication or archive checks without a changed input or unresolved question.
+
+[Exact evidence, changed APIs, compatibility and limits](metal-ordinary-receiving.md#current-a01-registered-original-publication--27-november-evening).
+Current checkout: `ScienceCheckouts/Hazel/2026-11-27_ft-registered-publication/index.html`
+under the shared GitHub workspace: six files, 263 KB, a constellation view of both
+open junctions and compact measured/unchanged/not-measured fields. The earlier
+ordinary-construction checkout remains available for the focal-base comparison.
 
 ## A01 compact native worker — 27 November afternoon
 

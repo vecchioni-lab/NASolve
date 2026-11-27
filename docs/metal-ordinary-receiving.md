@@ -4,7 +4,70 @@ Updated 27 November 2026. A01 mechanical integration; A01 science remains partia
 and A02 quantitation is gated. This is a prospective implementation contract,
 not a claim of ordinary numbered-round qualification.
 
-## Current A01: owned registered preparation — 27 November checkout
+## Current A01: registered original publication — 27 November evening
+
+The completed original request/runtime below was reused for this publication
+check. Before this change, local-only publication required `model_context`, which
+registered requests deliberately do not carry, and its phosphate consumer could
+not account for the two image ends. The new distinct anchored topology policy
+reuses the registered context and named-atom frame-transfer owners. It preserves
+original-only selection and REVIEW status without repeating preparation,
+changing image partners, or implying applied image forces. Rowan
+owns a separate fitted-sugar publication route; reconcile the shared payload
+hook before integration.
+
+**The real FT preparation now publishes and rereads as an ordinary REVIEW
+checkpoint.** Its 858 atoms retain exactly the same XYZ/B/Q values. The 38 local
+links, B:7→B:1 and D:7→C:8 crystal links, and D:1 terminal phosphate remain explicit.
+The two O3′–P separations are still **3.241 and 3.081 Å**: these are open junctions
+awaiting coordinate refinement, not completed phosphodiester geometry. No Hg was
+added, no refinement ran and no f″ was measured. A01 is partial; A02 remains gated.
+
+The new `registered-prepared-model-topology-v1` record retains identity/link roles
+plus five checksummed, run-relative input references. Publication admits only the
+existing explicitly qualified original selection and joins it to the complete
+owner's registered native review. Later model validation reconstructs the frozen
+registration and uses the existing same-frame atom transfer; it never chooses a
+new nearest partner. Changed/missing sources, image or endpoint identities,
+crystal frame and conflicting terminal intent require review. Small coordinate
+changes are allowed. New alternatives and repeated publication preserve the
+chosen checkpoint. Applied image forces and geometry acceptance remain separate.
+
+The shared owner hook is `cif_postmr_publication._payload`: registered requests
+choose `cif_registered_topology.publication_topology`; local requests keep
+`prepared_model_topology`. Rowan's optional fitted evidence belongs to
+`checked_preparation` and does not choose topology. The existing phosphate,
+checkpoint, AutoRefine and Refine Doctor validators now accept/pass an optional
+run anchor. Registered records require it; older callers retain local behavior.
+No checkpoint schema number changes; the distinct topology policy is refused by
+older software. No historical request or publication is upgraded in place.
+
+Validation: **14 new cases fail at 0ff79b82**, **185 focused cases / 38 subtests
+pass in 25.30 s**, and **81 installed cases pass in 11.01 s** after build-source
+removal (203 modules from the wheel). The genuine cold publication/checkpoint/
+Coot-view/model-read chain passes in **34.40 s**, without a native process. All
+74 original dataset and 74 original request files remain exact. A relocated
+installed read passes in **24.95 s**, with original project/science paths denied,
+no process launch and 202 modules from the wheel. The carried native evidence is
+Phenix **2.2.1-6174**; this step is a cold read, not a new native execution.
+No full suite; the prior full integration result below remains unchanged.
+
+Evidence and commands: methods **A913–A915** under the usual runner anchor;
+`a01-ordinary-construction-20261127-01/publication-{baseline,focused}.*` and
+`a01-registered-publication-20261127-01/{publication-result,package-result}.json`.
+The 15.43 MB publication clone deliberately reuses the archived request; its
+source intake-only request stays untouched. Installed-test/transport scratch
+retirement recovered **30.80 MB**. Generated structures, reflections, native
+evidence, test captures and checkouts are local-only and excluded from Git.
+
+**Next:** reuse the selected-model AutoSol/phase owners to scope an explicit
+free-metal discovery request, then carry that fresh phase/site source into the
+numbered XYZ/DNA group-B route. Neither the current empty FT frame nor the old
+private Hg control supplies a scientifically accepted phased parent.
+
+<a id="current-a01-owned-registered-preparation--27-november-checkout"></a>
+
+## Owned registered preparation — 27 November afternoon
 
 The fresh DF:T frame now completes one **enclosing preparation request**, using
 `registered_execution_policy="registered-original-preparation-execution-v1"` at

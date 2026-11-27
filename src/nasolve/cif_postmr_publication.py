@@ -47,7 +47,13 @@ def _payload(run, report, checked, exact, *, created, previous_report_sha256):
     from .ligand_profiles import is_modification_only
     _need(checked.model_path is not None, 'Preparation has no independently checked model/restraint combination')
     request = read_record(checked.request_directory/'request.json')
-    _need(_intent(report) == request['configuration']['model_context']['intent'],
+    config = request['configuration']
+    if 'registered_backbone' in config:
+        from .cif_registered_topology import publication_topology
+        topology = publication_topology(run, checked, exact, config)
+    else:
+        topology = prepared_model_topology(config['model_context'])
+    _need(_intent(report) == topology['intent'],
           'Run chemical intent differs from the checked preparation')
     inputs = report.get('inputs')
     _need(isinstance(inputs, dict), 'Require frozen observation inputs')
@@ -66,7 +72,7 @@ def _payload(run, report, checked, exact, *, created, previous_report_sha256):
         refinement_restraints=[_reference(p, run) for p in (*checked.restraint_paths, *checked.dictionary_paths)],
         view_dictionaries=[_reference(p, run) for p in checked.dictionary_paths if not is_modification_only(p)],
         mutation_actions=deepcopy(exact['construction_inputs']['report']['controls']['actions']),
-        checked_model_topology=prepared_model_topology(request['configuration']['model_context']),
+        checked_model_topology=topology,
         phosphate_policy=dict(mode='op3-explicit-opt-in-v1', allow_op3_sites=list(requested_op3_sites(report))),
         anomalous=dict(trigger_elements=sorted(DEFAULT_ANOMALOUS_ELEMENTS), candidates=candidates,
                        autosol_required=bool(candidates), iodine_expectations=audit_iodine_targets(checked.model_path, candidates)),

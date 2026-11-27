@@ -1367,7 +1367,7 @@ def _record_identity(line: str) -> tuple[str, str, str, str] | None:
     )
 
 
-def validate_refined_model(path: Path, report: Mapping[str, object]) -> dict[str, object]:
+def validate_refined_model(path: Path, report: Mapping[str, object], *, run_directory=None) -> dict[str, object]:
     try:
         lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
     except OSError as exc:
@@ -1409,7 +1409,7 @@ def validate_refined_model(path: Path, report: Mapping[str, object]) -> dict[str
             "Refined model is not checkpoint-compatible; missing " + ", ".join(missing)
         )
     try:
-        phosphate_audit = validate_model_phosphate_policy(path, report)
+        phosphate_audit = validate_model_phosphate_policy(path, report, run_directory=run_directory)
     except PhosphateError as exc:
         raise AutoRefineError(f"Refined model phosphate validation failed: {exc}") from exc
     return {"validated": True, "coordinate_record_count": len(records), "required_items": missing,
@@ -1938,7 +1938,7 @@ def execute_autorefine(
                 counted_crystal = declared_crystal
         except (OSError, ValueError, RuntimeError, TypeError) as exc:
             raise AutoRefineError(f'Counted original intent is inconsistent: {exc}') from exc
-    validate_refined_model(model, report)
+    validate_refined_model(model, report, run_directory=run)
     plan = build_reflection_plan(
         report,
         observations,
@@ -2311,7 +2311,7 @@ def execute_autorefine(
     compatibility_error: str | None = None
     if output_model is not None:
         try:
-            compatibility = validate_refined_model(output_model, report)
+            compatibility = validate_refined_model(output_model, report, run_directory=run)
         except AutoRefineError as exc:
             compatibility_error = str(exc)
 

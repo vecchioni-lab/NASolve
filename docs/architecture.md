@@ -1904,6 +1904,15 @@ ordered bundle from the same frozen construction.
 The saved `checked_model_topology` also carries the prepared-model context's
 identities and phosphate connections into ordinary manual/refined model checks;
 coordinates may move without changing those links.
+The opt-in original registered route uses the distinct
+`registered-prepared-model-topology-v1` policy. Five checksummed run-relative
+source roles retain the prepared input and crystal registration. Publication
+joins the complete owner's original runtime review; later coordinate checks
+rederive the same graph and use named-atom frame transfer. Checkpoint import,
+AutoRefine and Refine Doctor supply the run anchor explicitly. No fallback to
+absolute paths, rediscovery of image partners or symmetry-force qualification is
+implied. Local-only records keep their existing policy; old readers refuse the
+new registered topology. Fitted/ReadySet registered selection is not admitted.
 Preparation checks and a REVIEW checkpoint do not establish diffraction-refinement
 success. [Methods and limits](cif-doctor.md#save-a-checked-preparation-for-normal-use-c223).
 The ordinary `postmr --checked-preparation` option composes construction, one owned

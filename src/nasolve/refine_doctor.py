@@ -581,7 +581,7 @@ def execute_refine_doctor(
     except (OSError, json.JSONDecodeError) as exc:
         raise RefineDoctorError(f"Could not read run report: {exc}") from exc
     try:
-        validate_refined_model(model, report)
+        validate_refined_model(model, report, run_directory=run)
     except AutoRefineError as exc:
         raise RefineDoctorError(str(exc)) from exc
     destination = _next_doctor_directory(run)

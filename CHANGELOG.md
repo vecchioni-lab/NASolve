@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Publish original registered preparations with explicit crystal topology
+
+- The explicitly qualified original registered request can now publish a normal
+  REVIEW checkpoint. Retain both local and crystal-image partners through frozen,
+  run-anchored sources; later model checks reuse the same named-atom frame transfer.
+- Checkpoint import, AutoRefine and Refine Doctor pass the run anchor to this
+  validator. Missing sources, changed images, frame or endpoint identities refuse.
+  Local-only preparation behavior and historical intake holds remain unchanged.
+  Publication does not establish applied image forces or acceptable geometry.
+
 ### Execute explicitly registered original preparation requests
 
 - Add an opt-in policy for new complete/prepared requests using the existing
