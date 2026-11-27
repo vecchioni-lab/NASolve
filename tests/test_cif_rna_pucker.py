@@ -454,6 +454,43 @@ def test_linked_pucker_requires_site_modifier_and_paired_table(tmp_path,modifier
         with pytest.raises(ValueError,match="checksum"):linked_pucker_expectations(prepared,native)
 
 
+@pytest.mark.parametrize("observed, qualified", [("rna2p", ("rna2p","rna3p")),
+    ("rna3p", ("rna2p","rna3p")), ("rna3p", ("rna2p",))])
+def test_linked_methyl_ether_uses_only_its_observed_and_verified_table(tmp_path, observed, qualified):
+    from hashlib import sha256
+    from nasolve.cif_rna_pucker import linked_pucker_expectations
+    from nasolve.cif_linked_preparation import _render
+    from nasolve.ligand_profiles import _emit
+
+    values, template = _example()
+    values.update({"_chem_comp.group":["RNA"], "_chem_comp_atom.comp_id":["TST"]*4,
+                   "_chem_comp_atom.atom_id":["AA","BB","CC","DD"], "_chem_comp_atom.type_symbol":["C"]*4})
+    projection = tmp_path/"projected.cif"; projection.write_text(_render(values,"TST"))
+    permitted = {}
+    for modifier in qualified:
+        table = deepcopy(template)
+        table["data_"] = "mod_"+modifier
+        for key in table:
+            if key.endswith(".mod_id"):
+                table[key] = [modifier]
+        table["_chem_mod_bond.new_value_dist"] = ["1.53" if modifier=="rna2p" else "1.51"]
+        path = tmp_path/(modifier+".cif"); path.write_text(_emit(table))
+        pin = dict(anchor="phenix_installation",size=path.stat().st_size,sha256=sha256(path.read_bytes()).hexdigest(),
+                   path=f"lib/site-packages/chem_data/geostd/rna_dna/mod_{modifier}.cif")
+        permitted[modifier] = (path,pin)
+    site="A:2"; mods=["site-reaction",observed]
+    native={"monomer_mappings":{"rows":[{"site":site,"chem_mod_ids":{"status":"RECORDED","ids":mods}}]}}
+    prepared={"preparation":{"sites":[{"site":site,"modification_id":"site-reaction"}]},
+              "projections":{site:(projection,"TST")}, "rna_pucker_tables":{site:permitted}}
+    adjusted=linked_pucker_expectations(prepared,native)
+    if observed in permitted:
+        entry=adjusted[site]
+        assert entry["modifier"]==observed and entry["table_sha256"]==permitted[observed][1]["sha256"]
+        assert entry["values"]["_chem_comp_bond.value_dist"]==["1.53" if observed=="rna2p" else "1.51"]
+    else:
+        assert adjusted=={}
+
+
 @pytest.mark.parametrize("defect", ["none","dictionary-only","force-only","other-bond","ring-force"])
 def test_linked_pucker_checks_definition_and_active_forces_separately(tmp_path,defect):
     from nasolve.cif_linked_control import _heavy_proxy_checks

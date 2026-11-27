@@ -165,19 +165,49 @@ def table_bytes(path,pin, *, modifier="rna2p"):
     return data
 
 
-def bound_pucker_file(reference, root=None, *, site_copy=False):
+def group_pucker_tables(template, entries):
+    """Retain the original single-table representation or the two named ether tables."""
+    if observed_ether_permission(template):
+        return {"policy_id": ETHER_PUCKER_PERMISSION, "tables": entries}
+    return entries["rna2p"]
+
+
+def pucker_references(reference):
+    """Read table names and fingerprints before joining any stored path."""
+    if observed_ether_permission(reference):
+        tables = reference.get("tables")
+        _need(set(reference) == {"policy_id", "tables"} and isinstance(tables, dict)
+              and set(tables) == {"rna2p", "rna3p"}, "Invalid methyl-ether pucker references")
+    else:
+        tables = {"rna2p": reference}
+    for modifier, entry in tables.items():
+        _need(isinstance(entry, dict) and set(entry) == {"path", "pin"}, "Invalid RNA pucker reference")
+        validate_table_pin(entry["pin"], modifier=modifier)
+    return tables
+
+
+def pucker_reference_permission(reference):
+    return group_pucker_tables(reference, {m: r["pin"] for m, r in pucker_references(reference).items()})
+
+
+def bound_pucker_files(reference, root=None, *, site_copy=False):
+    return {m: bound_pucker_file(r, root, site_copy=site_copy, modifier=m)
+            for m, r in pucker_references(reference).items()}
+
+
+def bound_pucker_file(reference, root=None, *, site_copy=False, modifier="rna2p"):
     """Open one declared table, enforcing its relative layout for frozen inputs."""
     _need(isinstance(reference,dict) and set(reference)=={"path","pin"}, "Invalid RNA pucker reference")
     pin=reference["pin"]
-    validate_table_pin(pin)
+    validate_table_pin(pin, modifier=modifier)
     if root is None:
         _need(isinstance(reference["path"],(str,Path)), "Invalid selected RNA table path")
         path=Path(reference["path"])
     else:
-        name="inputs/furanose/rna2p.cif" if site_copy else "furanose/"+pin["sha256"]+".cif"
+        name=f"inputs/furanose/{modifier}.cif" if site_copy else "furanose/"+pin["sha256"]+".cif"
         _need(reference["path"]==name, "Invalid frozen RNA table reference")
         path=Path(root)/name
-    return path,table_bytes(path,pin),pin
+    return path,table_bytes(path,pin,modifier=modifier),pin
 
 
 def _pucker_block(path,pin, *, modifier="rna2p"):
@@ -189,7 +219,7 @@ def _pucker_block(path,pin, *, modifier="rna2p"):
 
 
 def linked_pucker_expectations(prepared,native):
-    """Use the paired table only at a linked site that actually received both modifiers."""
+    """Use an isolated-verified table only when Phenix applies it after this site’s reaction."""
     from .cif_linked_preparation import component_values
     tables=prepared.get("rna_pucker_tables",{})
     if not tables:
@@ -197,14 +227,22 @@ def linked_pucker_expectations(prepared,native):
     plans={p["site"]:p for p in prepared["preparation"]["sites"]}
     observed={r["site"]:r.get("chem_mod_ids") for r in native["monomer_mappings"]["rows"]}
     output={}
-    for site,(path,pin) in tables.items():
-        modifier=plans[site].get("modification_id")
-        if not modifier or observed.get(site)!={"status":"RECORDED","ids":[modifier,"rna2p"]}:
+    for site, table in tables.items():
+        reaction = plans[site].get("modification_id")
+        if not reaction:
             continue
-        projection,code=prepared["projections"][site]
-        values,counts=project_pucker_targets(component_values(projection,code),_pucker_block(path,pin))
-        _need(all(counts.values()),"Linked RNA table has no corresponding targets in a required category")
-        output[site]={"values":values,"matched_rows":counts,"table_sha256":pin["sha256"]}
+        by_seed = isinstance(table, dict)
+        verified = table if by_seed else {"rna2p": table}
+        for modifier, (path, pin) in verified.items():
+            if observed.get(site) != {"status": "RECORDED", "ids": [reaction, modifier]}:
+                continue
+            projection, code = prepared["projections"][site]
+            block = _pucker_block(path, pin, modifier=modifier)
+            values, counts = project_pucker_targets(component_values(projection, code), block, modifier=modifier)
+            _need(all(counts.values()), "Linked RNA table has no corresponding targets in a required category")
+            output[site] = {"values":values, "matched_rows":counts, "table_sha256":pin["sha256"]}
+            if by_seed:
+                output[site]["modifier"] = modifier
     return output
 
 

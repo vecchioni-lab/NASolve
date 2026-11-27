@@ -522,10 +522,9 @@ def continue_checked_postmr(run_directory, phenix, *, after_attempt, store_root=
             configured[key] = configure_dictionary_engine(phenix, **options)
         generation[code] = dict(configured[key].generation)
         if 'rna_pucker_table' in recipe:
-            from .cif_rna_pucker import installed_pucker_table
-            pin = installed_pucker_table(phenix.root)[1]
-            _need(pin == recipe['rna_pucker_table'], 'Selected Phenix pucker table differs from the saved preparation')
-            generation[code]['rna_pucker_table'] = pin
+            from .cif_rna_pucker import verify_installed_pucker_permission
+            verify_installed_pucker_permission(phenix.root, recipe['rna_pucker_table'])
+            generation[code]['rna_pucker_table'] = recipe['rna_pucker_table']
     result = execute_dictionary_request_attempt(root, phenix,
         default_dictionary_store() if store_root is None else store_root,
         generation=generation, after_attempt=after_attempt)

@@ -69,12 +69,15 @@ def _freeze_furanose(item, files, originals):
     files[name] = data
     stored={'workbook':name,'contexts':reaction['contexts']}
     if 'rna_pucker_table' in reaction:
-        from .cif_rna_pucker import bound_pucker_file
-        path,data,pin=bound_pucker_file(reaction['rna_pucker_table'])
-        _need(originals.setdefault(path,data)==data,'Shared RNA table changed during freezing')
-        name='furanose/'+pin['sha256']+'.cif'
-        files[name]=data
-        stored['rna_pucker_table']=dict(path=name,pin=pin)
+        from .cif_rna_pucker import bound_pucker_files, group_pucker_tables
+        reference = reaction['rna_pucker_table']
+        refs = {}
+        for modifier, (path, data, pin) in bound_pucker_files(reference).items():
+            _need(originals.setdefault(path,data)==data,'Shared RNA table changed during freezing')
+            name = 'furanose/'+pin['sha256']+'.cif'
+            files[name] = data
+            refs[modifier] = dict(path=name, pin=pin)
+        stored['rna_pucker_table'] = group_pucker_tables(reference, refs)
     return {'furanose_reaction':stored}
 
 
@@ -96,11 +99,14 @@ def _furanose_inputs(inputs, site, allowed=None):
     if allowed is not None: allowed.add(name)
     reopened={'workbook':path,'contexts':reaction['contexts']}
     if 'rna_pucker_table' in reaction:
-        from .cif_rna_pucker import bound_pucker_file
-        ref=reaction['rna_pucker_table']
-        table,_,pin=bound_pucker_file(ref,inputs)
-        if allowed is not None: allowed.add(ref['path'])
-        reopened['rna_pucker_table']=dict(path=table,pin=pin)
+        from .cif_rna_pucker import bound_pucker_files, group_pucker_tables
+        reference = reaction['rna_pucker_table']
+        refs = {}
+        for modifier, (path, _, pin) in bound_pucker_files(reference, inputs).items():
+            if allowed is not None:
+                allowed.add(path.relative_to(inputs).as_posix())
+            refs[modifier] = dict(path=path, pin=pin)
+        reopened['rna_pucker_table'] = group_pucker_tables(reference, refs)
     return {'furanose_reaction':reopened}
 
 
@@ -189,9 +195,14 @@ def _report(root, intent):
                   and _read(child_root/reaction['workbook'])==_read(declared['workbook']),
                   'Prepared sugar reaction differs from the acquired declaration')
             table=declared.get('rna_pucker_table');local=reaction.get('rna_pucker_table')
-            _need((table is None and local is None) or (table is not None and local is not None
-                  and local['pin']==table['pin'] and _read(child_root/local['path'])==_read(table['path'])),
-                  'Prepared RNA table differs from the acquired declaration')
+            _need((table is None) == (local is None), 'Prepared RNA table differs from the acquired declaration')
+            if table is not None:
+                from .cif_rna_pucker import bound_pucker_files, pucker_reference_permission
+                original = bound_pucker_files(table)
+                child_tables = bound_pucker_files(local, child_root, site_copy=True)
+                _need(pucker_reference_permission(table) == pucker_reference_permission(local)
+                      and all(child_tables[m][1] == data for m, (_, data, _) in original.items()),
+                      'Prepared RNA table differs from the acquired declaration')
     _need([_read(root/name) for name in controls['supplementary_phils']]
         == [_read(root/'bundle'/name) for name in r['supplementary_phils']], 'Prepared shared PHIL bytes differ')
     expected_controls, _ = control_inputs(root, controls)

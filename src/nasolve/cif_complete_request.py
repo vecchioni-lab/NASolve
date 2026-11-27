@@ -314,7 +314,8 @@ def _configuration(inputs, controls, limits, maximum, *, qualify_no_repair=False
             _need(recipe_representation_policy(generation['options']['recipe']) is not None,
                   'Stored furanose chemistry requires an explicit isolated qualification policy')
             table=site['furanose_reaction'].get('rna_pucker_table')
-            _need(table is None or table['pin']==generation['options']['recipe'].get('rna_pucker_table'),
+            from .cif_rna_pucker import pucker_reference_permission
+            _need(table is None or pucker_reference_permission(table)==generation['options']['recipe'].get('rna_pucker_table'),
                   'Linked RNA table differs from the selected acquisition recipe')
         choice = selected['sources'][code]
         components[code] = _component_config(choice['source'],code,choice['source_authority'],controls['consumer'],generation,retained,limits,maximum)

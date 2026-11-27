@@ -147,9 +147,10 @@ def _derive(root, controls, destination):
             and 'phosphate_atom_policy' not in controls and 'construction_targets' not in controls,
             'Stored graph reaction requires qualified numerics and a full internal native context')
         if 'rna_pucker_table' in reaction:
-            from .cif_rna_pucker import bound_pucker_file
-            _,_,pin=bound_pucker_file(reaction['rna_pucker_table'],root,site_copy=True)
-            _need(pin==manifest['request']['recipe'].get('rna_pucker_table'),
+            from .cif_rna_pucker import bound_pucker_files, pucker_reference_permission
+            table = reaction['rna_pucker_table']
+            bound_pucker_files(table, root, site_copy=True)
+            _need(pucker_reference_permission(table)==manifest['request']['recipe'].get('rna_pucker_table'),
                   'Site RNA table differs from the isolated acquisition recipe')
         preparation=prepare_internal_furanose_sites(saved['source'],saved['dictionary'],
             root/reaction['workbook'],model,destination,code=manifest['request']['component'],
@@ -261,11 +262,14 @@ def prepare_dictionary_sites(snapshot, model, contexts, output, *, consumer, exp
             freeze(furanose_reaction['workbook'],root/name)
             controls['furanose_reaction']={'workbook':name,'contexts':furanose_reaction['contexts']}
             if 'rna_pucker_table' in furanose_reaction:
-                from .cif_rna_pucker import bound_pucker_file
-                path,_,pin=bound_pucker_file(furanose_reaction['rna_pucker_table'])
-                name='inputs/furanose/rna2p.cif'
-                freeze(path,root/name)
-                controls['furanose_reaction']['rna_pucker_table']=dict(path=name,pin=pin)
+                from .cif_rna_pucker import bound_pucker_files, group_pucker_tables
+                table = furanose_reaction['rna_pucker_table']
+                refs = {}
+                for modifier, (path, _, pin) in bound_pucker_files(table).items():
+                    name = f'inputs/furanose/{modifier}.cif'
+                    freeze(path, root/name)
+                    refs[modifier] = dict(path=name, pin=pin)
+                controls['furanose_reaction']['rna_pucker_table'] = group_pucker_tables(table, refs)
         if terminal_resource is not None:
             resource=Path(terminal_resource);record=_resource(resource,consumer)
             controls['terminal_resource']='resources/'+resource.name
@@ -318,7 +322,10 @@ def read_dictionary_sites(output):
     allowed={'snapshot/'+name for name in _SNAPSHOT_FILES}|{'inputs/model.pdb'}
     reaction=controls.get('furanose_reaction',{})
     if reaction:allowed.add('inputs/furanose/Ligands.xlsx')
-    if 'rna_pucker_table' in reaction:allowed.add('inputs/furanose/rna2p.cif')
+    table = reaction.get('rna_pucker_table')
+    if table is not None:
+        from .cif_rna_pucker import pucker_references
+        allowed.update(f'inputs/furanose/{m}.cif' for m in pucker_references(table))
     allowed.update(controls['supplementary_dictionaries']);allowed.update(controls['supplementary_phils'])
     resource=controls['terminal_resource']
     if resource is not None:
@@ -341,10 +348,19 @@ def read_dictionary_sites(output):
             else:_need(original==path.read_bytes(), 'Prepared numerical or policy bytes do not replay')
     expected=_report(root,controls,saved,links,policy)
     _need(_bytes(report)==_bytes(expected), 'Site preparation claim differs from frozen evidence')
-    from .cif_rna_pucker import PAIRED_USABILITY
-    table=reaction.get('rna_pucker_table')
-    tables={c['site']:(root/table['path'],table['pin']) for c in controls['contexts']
-            if table is not None and saved['qualification']['policy_id']==PAIRED_USABILITY}
+    from .cif_rna_pucker import ETHER_PAIRED_USABILITY, PAIRED_USABILITY
+    qualification = saved['qualification']
+    tables = {}
+    if table is not None and qualification['policy_id'] == PAIRED_USABILITY:
+        tables = {c['site']:(root/table['path'], table['pin']) for c in controls['contexts']}
+    elif table is not None and qualification['policy_id'] == ETHER_PAIRED_USABILITY:
+        review = qualification['paired_rna']['default']
+        verified = review.get('tables', {'rna2p': review.get('table')})
+        refs = pucker_references(table)
+        _need(all(m in refs and refs[m]['pin'] == pin for m, pin in verified.items()),
+              'Linked site lacks a sugar table verified in the isolated readings')
+        site_tables = {m:(root/refs[m]['path'], pin) for m, pin in verified.items()}
+        tables = {c['site']: site_tables for c in controls['contexts']}
     return {'report':report,'snapshot':saved,'preparation':preparation,**inputs,
         'rna_pucker_tables':tables,
         'four_atom_plane_sites':{c['site'] for c in controls['contexts'] if 'coordinate_plane_policy' in controls},
@@ -466,7 +482,7 @@ def _site_native_checks(before, after, prepared, *, pucker=None):
             expected_modifiers=[plan['modification_id']] if plan.get('modification_id') else []
             adjustment=(pucker or {}).get(site)
             if adjustment is not None:
-                expected_modifiers.append('rna2p')
+                expected_modifiers.append(adjustment.get('modifier', 'rna2p'))
                 check('recorded-rna-pucker:'+site,True,matched_rows=adjustment['matched_rows'],
                       table_sha256=adjustment['table_sha256'])
             check('exact-site-modifier:'+site,mappings[site].get('chem_mod_ids')=={

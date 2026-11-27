@@ -8,6 +8,8 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- An internal RNA methyl ether can carry both fingerprinted sugar-restraint tables from a qualified dictionary into linked-model preparation. The site check compares the table that Phenix actually selected with its active restraints and the earlier isolated readings.
+
 - Explicit dictionary acquisition can qualify a source-declared RNA 2′-O-methyl ether when Phenix chooses different sugar puckers from two starting geometries. It checks each observed set of targets, repeats both readings with the native pucker changes switched off, and retains the exact tables with the acquisition. Previously saved single-table qualifications retain their original scope.
 
 - Fresh whole-sugar placements use standard PDB atom-name columns. Phenix can now recognize a constructed phosphate when it uses the following nucleotide to choose sugar restraints. Existing frozen constructions still reproduce their original files.
