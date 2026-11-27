@@ -852,3 +852,71 @@ def test_failed_proposal_reports_first_mask_order_violation_without_duplicate_co
     assert report['first_exceeding_displacement']['movable_atom_offset'] == 1
     assert report['first_exceeding_displacement']['displacement_angstrom'] == 1.1
     assert report['variable_count'] == 9 and 'displacements' not in report
+
+
+# Registered image-force lifetime is owned by Cedar. These controls exercise
+# only the zero-step observation and projection, without a native SDK.
+def registered_zero_fixture():
+    from nasolve.topostitch_transport import CoordinateMask
+    points=((1.,2.,3.),(4.,5.,6.),(7.,8.,9.))
+    masks={'held':CoordinateMask(points,(1,),3.),'free':CoordinateMask(points,(1,0),3.)}
+    calls=[3,3,3]
+    def counts():
+        return dict(joint_full_gradients=calls[0],groups=[
+            dict(continuation_id=i,full_gradients=calls[j+1]) for j,i in enumerate((7,9))])
+    def evaluate(sites):
+        assert sites==points
+        for i in range(3):calls[i]+=1
+        return dict(target=285.,gradient=[2*v for p in sites for v in p],terms={'bond_residual_sum':5.})
+    return points,masks,calls,counts,evaluate
+
+
+def test_registered_zero_projects_same_full_gradient_without_moving_or_optimizing():
+    from nasolve import topostitch_trial as trial
+    points,masks,calls,counts,evaluate=registered_zero_fixture()
+    report=trial.observe_registered_zero(masks,evaluate_native=evaluate,
+        gradient_counts=counts,continuation_ids=(7,9))
+    assert calls==[5,5,5] and report['evaluation_calls']==2
+    assert report['masks']['held']['gradient']==[8.,10.,12.]
+    assert report['masks']['free']['gradient']==[8.,10.,12.,2.,4.,6.]
+    assert report['baseline']['target']==285. and report['exact_repeat']
+    assert report['full_gradient_shared_by_masks']
+    assert not report['native_masked_objective_admitted']
+    assert not report['optimization'] and not report['scientific_acceptance']
+    assert masks['free'].reference==points
+
+
+@pytest.mark.parametrize('fault',['missing_group','wrong_order','stale_group','extra_call','nonfinite',
+    'short_gradient','changed_target','aliased_result','boolean_counter','bad_id','different_source'])
+def test_registered_zero_refuses_incomplete_or_drifting_observations(fault):
+    from nasolve import topostitch_trial as trial
+    points,masks,calls,counts,evaluate=registered_zero_fixture()
+    original_evaluate=evaluate;original_counts=counts;ids=(7,9);shared={}
+    def damaged(sites):
+        result=original_evaluate(sites)
+        if fault=='stale_group':calls[2]-=1
+        if fault=='extra_call':calls[0]+=1
+        if fault=='nonfinite':result['target']=float('nan')
+        if fault=='short_gradient':result['gradient'].pop()
+        if fault=='changed_target' and calls[0]>4:result['target']+=1
+        if fault=='aliased_result':
+            shared.update(result);shared['target']=float(calls[0]);return shared
+        return result
+    def bad_counts():
+        result=original_counts()
+        if fault=='missing_group':result['groups'].pop()
+        if fault=='wrong_order':result['groups'].reverse()
+        if fault=='boolean_counter':result['groups'][0]['full_gradients']=True
+        return result
+    if fault=='bad_id':ids=(7,7)
+    if fault=='different_source':masks['free']=CoordinateMask(((1.,2.,4.),*points[1:]),(1,0),3.)
+    with pytest.raises(ValueError):trial.observe_registered_zero(masks,evaluate_native=damaged,
+        gradient_counts=bad_counts,continuation_ids=ids)
+
+
+def test_registered_zero_does_not_swallow_native_errors_or_claim_hook_restoration():
+    from nasolve import topostitch_trial as trial
+    _,masks,_,counts,_=registered_zero_fixture()
+    def fail(_):raise RuntimeError('Native force failed')
+    with pytest.raises(RuntimeError,match='Native force failed'):
+        trial.observe_registered_zero(masks,evaluate_native=fail,gradient_counts=counts,continuation_ids=(7,9))

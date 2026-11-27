@@ -17,6 +17,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W310 — Observe a registered full-native gradient before local movement
+
+- Add a read-only zero-step observer using the existing native evaluator and
+  coordinate masks. Require every declared image-force group to be visited
+  together, retain an exact repeated full target/gradient and expose each
+  explicit mask projection without moving coordinates.
+- Keep source/manager/packing authentication and hook restoration with the
+  calling native owner. No optimizer, pair recipe or NativeMaskedObjective
+  admission is introduced; existing trial behavior is unchanged.
+
 ### W307–W309 — Audit local closure strain and the native force boundary
 
 - Preserve fixed-sugar analytical results: no tested one-width ε placement passes

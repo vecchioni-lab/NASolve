@@ -423,3 +423,87 @@ def run_native_motion_trial(evaluate, motion, *, initial_parameters,
                 result['status']='FAILED';result.setdefault('error',type(exc).__name__+': '+str(exc))
         result['callback_evaluations']=calls;result['optimizer_log']=log.getvalue()
     return result
+
+
+def observe_registered_zero(masks, *, evaluate_native, gradient_counts, continuation_ids):
+    """Observe one full native target twice, then project its gradient at zero.
+
+    Trusted callers own exact source/manager/frame binding, native packing and
+    the registered force lifetime. ``gradient_counts`` is Cedar's live counter
+    reader; every evaluation must visit every declared image group together.
+    No native construction, pair recipe, tether, derivative probe or optimizer
+    is introduced. This does not qualify NativeMaskedObjective admission.
+    Exceptions propagate to the caller that owns hook restoration.
+    """
+    from .topostitch_transport import CoordinateMask
+    if (not isinstance(masks, dict) or not masks
+            or any(not isinstance(name, str) or not name or not isinstance(mask, CoordinateMask)
+                   for name, mask in masks.items())):
+        raise ValueError('Require named explicit coordinate masks')
+    masks = dict(masks)
+    points = next(iter(masks.values())).reference
+    if any(mask.reference != points for mask in masks.values()):
+        raise ValueError('Zero-step masks must share the exact source coordinates')
+    ids = tuple(continuation_ids)
+    if (not ids or any(type(i) is not int or i < 1 for i in ids) or len(set(ids)) != len(ids)):
+        raise ValueError('Require distinct positive continuation IDs in native order')
+    if not callable(evaluate_native) or not callable(gradient_counts):
+        raise ValueError('Require trusted native evaluator and live counter reader')
+
+    def counts():
+        value = gradient_counts()
+        if not isinstance(value, dict) or set(value) != {'joint_full_gradients', 'groups'}:
+            raise ValueError('Incomplete registered gradient counters')
+        groups = value['groups']
+        if (not isinstance(groups, list) or len(groups) != len(ids)
+                or any(not isinstance(row, dict) or set(row) != {'continuation_id', 'full_gradients'}
+                       or type(row['continuation_id']) is not int or row['continuation_id'] != identifier
+                       for row, identifier in zip(groups, ids))):
+            raise ValueError('Registered gradient group identity/order changed')
+        numbers = (value['joint_full_gradients'], *(r['full_gradients'] for r in groups))
+        if any(type(n) is not int or n < 1 for n in numbers):
+            raise ValueError('Require prior complete native gradient observations')
+        return numbers
+
+    observations = []
+    counter_trace = []
+    for _ in range(2):
+        before = counts()
+        if counter_trace and before != counter_trace[-1]['after']:
+            raise ValueError('Registered gradient counters changed between evaluations')
+        raw = evaluate_native(points)
+        after = counts()
+        if any(b != a+1 for a, b in zip(before, after)):
+            raise ValueError('Native evaluation did not visit every complete image group exactly once')
+        try:
+            # Detach before repeating: a reused mutable native report cannot
+            # rewrite the first observation and manufacture repeat agreement.
+            value = json.loads(json.dumps(raw, allow_nan=False))
+        except (TypeError, ValueError, OverflowError) as exc:
+            raise ValueError('Native observation must contain finite JSON data') from exc
+        if (not isinstance(value, dict) or type(value.get('target')) not in (int, float)
+                or not isinstance(value.get('gradient'), list) or len(value['gradient']) != 3*len(points)
+                or any(type(v) not in (int, float) for v in value['gradient'])):
+            raise ValueError('Require a complete finite full-native target and gradient')
+        observations.append(value)
+        counter_trace.append(dict(before=before, after=after))
+    if observations[0] != observations[1]:
+        raise ValueError('Full-native zero-step observation changed on repeat')
+    value = observations[0]
+    vectors = tuple(tuple(value['gradient'][3*i:3*i+3]) for i in range(len(points)))
+    projected = {}
+    for name, mask in masks.items():
+        if mask.expand((0.,)*(3*len(mask.indices))) != points:
+            raise ValueError('Zero displacement changed source coordinates')
+        projected[name] = dict(indices=list(mask.indices), gradient=list(mask.project(vectors)),
+                               variable_count=3*len(mask.indices))
+    return dict(schema_version=1, kind='topostitch-registered-zero-observation',
+        baseline=value, masks=projected, continuation_ids=list(ids),
+        counter_order=['joint', *ids], gradient_counter_trace=counter_trace,
+        evaluation_calls=2, exact_repeat=True, full_gradient_shared_by_masks=True,
+        optimization=False, derivative_check=False, native_masked_objective_admitted=False,
+        scientific_acceptance=False, runtime_authority=False,
+        limitations=['Caller owns source/manager/frame authentication and packing evidence.',
+                     'Projections share one full gradient; they are not independent derivative tests.',
+                     'Caller must verify restoration after leaving the native force lifetime.',
+                     'No pair binding or optimizer admission is established.'])

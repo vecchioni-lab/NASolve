@@ -5586,3 +5586,28 @@ input. A saved preference remains unauthenticated review input with
 preference is synthesized for scientific examples; only synthetic regression
 fixtures exercise reopening. Offline HTML is verified at creation, not a live
 monitor of subsequent filesystem changes.
+
+
+## Observe registered forces at zero displacement (W310)
+
+`topostitch_trial.observe_registered_zero(masks, *, evaluate_native,
+gradient_counts, continuation_ids)` composes a trusted existing full-native
+geometry evaluation with named `CoordinateMask` projections. Every mask must
+share exactly the same reference coordinates. It evaluates that source twice,
+requires a complete finite target/gradient with exact repeat agreement, and
+checks that the joint and every ordered group gradient counter advance exactly
+once for each evaluation. Reused mutable reports are detached before repeat.
+It returns the full observation, projections and before/after counters.
+
+The trusted caller authenticates source bytes, actual hierarchy/scattering
+coordinates, native geometry, crystal frame, weights, request and packing, and
+owns the active image-force lifetime and restoration on success or failure.
+The observer does not install hooks, interpret a model, manufacture a pair
+packet, move coordinates or write a candidate. Its mask projections share one
+full gradient; they are not independent derivative checks. Native errors
+propagate to the enclosing owner. `native_masked_objective_admitted` remains
+false: the existing `NativeMaskedObjective` still requires a valid pair binding,
+including when its pair contribution is disabled. No existing admission guard
+is relaxed. A passing projection alone is neither optimizer readiness nor
+chemical/packing acceptance. Native preflight compatibility is qualified
+separately from the pure observer controls.
