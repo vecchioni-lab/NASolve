@@ -8,6 +8,16 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve registered inputs and compiled full-model restraints at ordinary entry
+
+- Validate explicit registered topology sources before ordinary construction and
+  refuse changes through Coot/request freezing. Existing local-only calls remain unchanged.
+- Reuse Cedar's `025561e1` handoff of the full-model compiler artifact instead of
+  sending already compiled restraints through the literal compiler again.
+  Source/model/control checks remain with the existing complete-request owner.
+- Keep registered requests held pending native/result qualification; this change
+  does not publish a checkpoint or enable refinement.
+
 ### Review exact native inputs with registered backbone context
 
 - Add an opt-in read-only join from the frozen registered input role to preserved

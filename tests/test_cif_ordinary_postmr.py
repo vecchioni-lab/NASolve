@@ -13,6 +13,36 @@ def call(run,sdk,data,**kwargs):
     return initialize_ordinary_postmr_request(run,sdk,expected_dialect='CHEMICAL_COMPONENTS_CIF',data_root=data,**kwargs)
 
 
+def test_checked_postmr_binds_the_whole_model_compiler_output_once(tmp_path, monkeypatch):
+    import nasolve.cif_ordinary_postmr as entry
+
+    run, ready, _, data = setup(tmp_path)
+    sdk, _ = sdk_at(tmp_path / 'sdk')
+    sdk.executables['phenix.ready_set'].write_bytes(ready.read_bytes())
+    compiled = run / 'PostMR' / 'Restraints' / 'full_model' / 'compiled'
+    phil = compiled / 'explicit_na_policy.phil'
+    receipt = compiled / 'explicit_na_policy.json'
+
+    def full_model(model, output, **kwargs):
+        assert output == compiled.parent
+        compiled.mkdir(parents=True)
+        phil.write_text("refinement {\n pdb_interpretation {\n  secondary_structure {\n   enabled = False\n  }\n }\n}\n")
+        receipt.write_text('{}')
+        return {'restraint_file': 'compiled/' + phil.name, 'compiler_receipt': 'compiled/' + receipt.name}
+
+    def receive(model, report, components, source_output, output, **kwargs):
+        assert kwargs['explicit_na_policy'] == compiled
+        assert list(kwargs['supplementary_phils']) == [phil]
+        assert kwargs.get('literal_na_inputs') is None
+        return {'test_intake': True}
+
+    monkeypatch.setattr('nasolve.full_model_restraints.prepare_full_model_restraints', full_model)
+    monkeypatch.setattr(entry, 'initialize_postmr_dictionary_request', receive)
+    with patch.object(entry, 'prepare_postmr_literal_inputs', side_effect=AssertionError('Compiled restraints were reinterpreted')):
+        result = call(run, sdk, data, restraint_scope='all')
+    assert result.request == {'test_intake': True}
+
+
 @pytest.mark.parametrize('targets',[False,True])
 @pytest.mark.parametrize('automatic',[False,True])
 @pytest.mark.parametrize('with_phil',[False,True])
@@ -109,3 +139,72 @@ def test_source_selection_reads_frozen_component_before_binding_generation(tmp_p
     monkeypatch.setattr(entry, "initialize_postmr_dictionary_request", freeze)
     result = call(run, sdk, data, generation_options=ordinary_generation_options("source-preserving-v2"))
     assert result.generation == selected and set(selected) == {"DE"}
+
+
+@pytest.mark.parametrize('declaration',[False,{}, {'report':{}}, {'registration_model':'missing'}])
+def test_registered_source_shape_refuses_before_construction(tmp_path,declaration):
+    from nasolve.cif_ordinary_postmr import initialize_ordinary_postmr_request
+    with patch('nasolve.cif_ordinary_postmr.configure_dictionary_engine',side_effect=AssertionError('No tool configuration')):
+        with pytest.raises(ValueError,match='registered|Registered'):
+            initialize_ordinary_postmr_request(tmp_path/'run',object(),expected_dialect='CHEMICAL_COMPONENTS_CIF',
+                                               registered_preparation=declaration)
+
+
+@pytest.mark.parametrize('mutation',[None,'construction','request'])
+def test_registered_sources_survive_ordinary_construction_and_forward_explicitly(tmp_path,monkeypatch,mutation):
+    pytest.importorskip('gemmi')
+    from nasolve import cif_ordinary_postmr as entry, postmr
+    from nasolve.cif_registered_preparation_input import FILES
+    from tests.test_registered_preparation_context import case
+    # This is a transport test; the final real context owner is tested separately.
+    graph=case(tmp_path/'graph');declaration={key:graph[key] for key in FILES}
+    (tmp_path/'ordinary').mkdir()
+    run,ready,_,data=setup(tmp_path/'ordinary');sdk,_=sdk_at(tmp_path/'sdk')
+    sdk.executables['phenix.ready_set'].write_bytes(ready.read_bytes())
+    calls=[]
+    def changed():
+        path=declaration['continuations'];path.write_bytes(path.read_bytes()+b'\n')
+    def initialize(*args,**kwargs):
+        assert kwargs['registered_preparation']==declaration
+        calls.append(kwargs)
+        if mutation=='request':changed()
+        return {'synthetic':True}
+    monkeypatch.setattr(entry,'initialize_postmr_dictionary_request',initialize)
+    original=postmr._prepare_postmr
+    def construct(*args,**kwargs):
+        handler=kwargs['_dictionary_handler']
+        def wrapped(inputs):
+            if mutation=='construction':changed()
+            return handler(inputs)
+        kwargs['_dictionary_handler']=wrapped
+        return original(*args,**kwargs)
+    monkeypatch.setattr(postmr,'_prepare_postmr',construct)
+    if mutation:
+        with pytest.raises(ValueError,match='Registered preparation source changed'):
+            call(run,sdk,data,registered_preparation=declaration)
+        assert len(calls)==int(mutation=='request')
+    else:
+        result=call(run,sdk,data,registered_preparation=declaration)
+        assert result.request=={'synthetic':True} and len(calls)==1
+
+
+def test_registered_bad_graph_refuses_before_tools(tmp_path):
+    pytest.importorskip('gemmi')
+    from nasolve.cif_registered_preparation_input import FILES
+    from tests.test_registered_preparation_context import case
+    graph=case(tmp_path/'graph');declaration={key:graph[key] for key in FILES}
+    declaration['registration_model'].write_bytes(declaration['registration_model'].read_bytes()+b'\n')
+    with patch('nasolve.cif_ordinary_postmr.configure_dictionary_engine',side_effect=AssertionError('No tool configuration')):
+        with pytest.raises(ValueError):call(tmp_path/'run',object(),None,registered_preparation=declaration)
+
+
+def test_registered_source_symlink_cannot_hide_a_changed_input(tmp_path):
+    pytest.importorskip('gemmi')
+    from nasolve.cif_registered_preparation_input import FILES
+    from tests.test_registered_preparation_context import case
+    graph=case(tmp_path/'graph');declaration={key:graph[key] for key in FILES}
+    link=tmp_path/'redirect.json';link.symlink_to(declaration['continuations'])
+    declaration['continuations']=link
+    with patch('nasolve.cif_ordinary_postmr.configure_dictionary_engine',side_effect=AssertionError('No tool configuration')):
+        with pytest.raises(ValueError,match='symlink'):
+            call(tmp_path/'run',object(),None,registered_preparation=declaration)

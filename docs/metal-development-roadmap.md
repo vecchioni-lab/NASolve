@@ -127,9 +127,14 @@ relocated installed checks pass. The complete-request owner now freezes the
 explicit registered role and rederives local component contexts; execution remains
 blocked. Native input review now binds the exact retained FT capture and all
 nine original inputs, with matched local reference terms at both image junctions.
-**Next build genuine ordinary construction from declared sources**, then qualify
-the complete native/result and publication consumers and numbered image-force
-execution. The private neutral control cannot acquire retrospective ancestry.
+**Genuine ordinary construction is now recorded:** fresh MR/Coot DF:T, a C196
+producer record, C80 full-model restraints and frozen registered request intake.
+It contains no Hg yet and does not qualify the earlier private neutral control.
+An exact-source DF acquisition has isolated native usability. **Next qualify
+that dictionary in the fresh linked frame**, then the complete native/result and
+publication consumers and numbered image-force execution. Reuse Cedar 025561e1
+for the full-model compiler handoff; do not reimplement or recompile it.
+[Fresh construction evidence](metal-ordinary-receiving.md#genuine-ordinary-ft-construction--27-november-afternoon).
 Input/native review alone provides no ordinary parent, phase admission or
 scientific acceptance.
 [Implementation boundary](metal-ordinary-receiving.md#registered-phosphate-context-before-preparation--27-november).

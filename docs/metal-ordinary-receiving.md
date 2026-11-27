@@ -4,6 +4,73 @@ Updated 27 November 2026. A01 mechanical integration; A01 science remains partia
 and A02 quantitation is gated. This is a prospective implementation contract,
 not a claim of ordinary numbered-round qualification.
 
+## Genuine ordinary FT construction — 27 November afternoon
+
+The declared FT reflections and 5W6W frame produced a new MR solution (TFZ 10.8),
+then Coot 1.3.3 built **DF A:12 / DT B:4** through the ordinary owner. It wrote its
+own `PostMR/Coot/construction.json` before dictionary execution. This is a new
+neutral frame with 858 heavy atoms and **no inserted Hg**, not retrospective
+ancestry for the private QF1/QT1 metal control. The source DF and private neutral
+QF1 have matching named heavy-atom graphs and declared N3–H bonds; formal-charge
+representation and numerical targets must still be distinguished. Metal donor
+state remains an explicit later hypothesis.
+
+The fresh MR source is registered to the user-declared B:7→B:1 and D:7→C:8
+crystal operators. Both are measurable; their source distances are 3.241 and
+3.081 Å, not accepted bond lengths. Full-model NARestraints compiled 18 detected
+pairs and 38 stacks over 42 nucleotides: 47 bond, 80 angle and 56 parallelity
+requests. A:12/B:4 remains unpaired at this frame stage. The other unpaired
+sites are A:1, A:5, C:11 and D:1; every residue participates in a pairing or
+stacking relationship. Symmetry **base pairing** was not searched. Those facts
+do not replace the separate registered covalent backbone declarations.
+
+The first ordinary call correctly stopped when its callback tried to recompile
+the already compiled C80 PHIL (`secondary_structure.enabled=False`). Cedar had
+already fixed this in **025561e1daf4f7e03a81268151ad3f237ed1ea15**. Its exact
+source/test patch was received instead of writing another compiler. A fresh
+complete request then consumed the genuine retained construction, frozen DF
+source and existing C80 artifact through `initialize_postmr_dictionary_request`.
+All 44 prior run files remained unchanged; Coot/MR were not repeated. The repaired
+whole entry is covered separately by Cedar's forwarding regression. There is no
+claim that the original failed top-level invocation returned successfully.
+
+The ordinary Python initializer now explicitly accepts `registered_preparation`
+with four source paths. It validates their graph before tool configuration and
+checks their bytes again across construction/request freezing; redirected,
+changed or malformed sources refuse. No CLI or saved schema changes were made.
+The existing registered role remains **BLOCKED, zero attempts** pending its
+qualified native/result consumer. The current native-input review does not alone
+establish repair/ReadySet output identity, full chemical qualification, applied
+image forces or ordinary publication.
+
+Validation: four fail-before entry regressions; 37 initial focused passes;
+71 combined source cases in 61.34 s; the final ordinary-entry/runtime panel passes
+54 cases in 2.24 s. The first installed check exposed a repository-relative test
+fixture, not missing package data. Its helper now uses the package resource
+owner. The final relocated wheel check passes **25 cases in 3.22 s**, with build
+source removed and all 170 imported NASolve modules coming from the wheel. Exact
+commands, failures, package hashes and cleanup receipts are retained; no full
+suite was run. No generated models, reflections, native captures or figures are
+included in Git.
+
+Evidence: `branch-artifacts/Alder/a01-ordinary-construction-20261127-01/`, methods
+A881–A893. Source acquisition is a separate diagnostic: exact source/recipe/
+consumer lookup missed; one existing bounded acquisition completed in 32.38 s,
+retaining entry `37fe2c7b…` with isolated native usability. It proves neither the
+linked model nor a metal donor state. Do not regenerate it without a changed
+scientific or runtime input.
+
+The checkout compares the fresh frame with the earlier retained Hg control in a
+common projection. Fresh DF C2–S1 is 1.813 Å and C1′–N1 is 1.602 Å; sulfur angles
+are 123.6°/122.1°. These are constructor measurements, not targets or improved
+refinement. Its base B values (20.0/47.91 Å²) are **not** an environmental estimate
+for f″: that must follow open XYZ/B refinement. A01 remains partial, A02 gated.
+
+**Next:** qualify the acquired DF in the actual linked frame, retain the exact
+native outputs and both registered image roles, then qualify result/publication
+consumers. External AutoSol HL admission and the numbered mixed child follow.
+The complete-request hold must remain until those consumers are exercised.
+
 ## Native review of the frozen registered input — 27 November
 
 The next read-only consumer, `review_registered_native_input` in

@@ -68,7 +68,8 @@ def make_data_root(root: Path) -> Path:
         "_chem_comp_bond.atom_id_1\n_chem_comp_bond.atom_id_2\n"
         "DE C4 S4\nDE P O5'\n#\n"
     )
-    package = Path(__file__).parents[1] / "src" / "nasolve" / "data" / "restraints"
+    from nasolve.frame_postmr import restraint_data_directory
+    package = restraint_data_directory(None)
     for name in ("5W6W_Std_padd.txt", "5W6W_secondary_structure.eff"):
         shutil.copyfile(package / name, restraints / name)
     return data

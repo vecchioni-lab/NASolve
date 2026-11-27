@@ -15,6 +15,28 @@ from .cif_prepared_bond_discovery import bond_discovery_fields
 from .phenix_runtime import PhenixInstallation
 
 
+def _capture_registered_sources(declaration):
+    """Validate explicit graph inputs before construction; retain their bytes."""
+    from .cif_registered_preparation_input import FILES
+    from .cif_dictionary_sites import _need, _read
+    from .cif_phosphate_continuation import inspect_registered_backbone
+    _need(isinstance(declaration, dict) and set(declaration) == set(FILES),
+          'Require exact registered preparation source roles')
+    paths = {key: Path(declaration[key]).absolute() for key in FILES}
+    originals = {path: _read(path) for path in paths.values()}
+    observations = inspect_registered_backbone(paths['registration_model'], paths['registration'],
+                                               paths['discovery'], paths['continuations'])
+    _need(bool(observations) and all(row['registered_continuation']['measurement_status'] == 'MEASURED'
+                                    for row in observations),
+          'Registered preparation requires measured explicit continuations')
+
+    def unchanged():
+        _need(all(_read(path) == raw for path, raw in originals.items()),
+              'Registered preparation source changed during ordinary construction')
+    unchanged()
+    return paths, unchanged
+
+
 def _read_construction_inputs(frozen_sources, choices, consumer):
     """Bind existing source/projection owners, without inventing a stored record."""
     from collections.abc import Mapping
@@ -94,7 +116,7 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
         narestraints_builder=None, modified_pair_builder=None, generation_options=None,
         continuation_options=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False,
         frozen_sources=None, construction_choices=None, furanose_substitution=None,
-        locked_sugar_site=None, store_root=None,
+        locked_sugar_site=None, store_root=None, registered_preparation=None,
         **execution_limits) -> PreparedPostMRRequest:
     """Prepare ordinary inputs once and publish a fresh complete request.
 
@@ -118,6 +140,10 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
     Alternatively, locked_sugar_site reads that site's target from the frozen
     run. After PostMR has reserved its directory, its usual isolated acquisition
     owner reuses or qualifies the original component before Coot runs.
+    Optional registered_preparation supplies the four explicit registered graph
+    inputs. They are validated before tool configuration and must remain unchanged
+    through construction and request freezing. This preserves image-link roles;
+    it does not authorize execution of the resulting registered request.
     """
     from .postmr import _prepare_postmr
     bond_discovery_fields(automatic_bond_targets,bond_targets)
@@ -136,6 +162,7 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
     allowed = {'single_block_steps','timeout_seconds','max_attempts','bond_representation_policy','source_input_policy','multiple_planes'}
     if set(options)-allowed:
         raise ValueError('Unsupported ordinary generation option')
+    registered = None if registered_preparation is None else _capture_registered_sources(registered_preparation)
     configured = configure_dictionary_engine(phenix,expected_dialect=expected_dialect,**options)
     construction = (None if frozen_sources is None and construction_choices is None else
                     _read_construction_inputs(frozen_sources, construction_choices, configured.consumer))
@@ -159,6 +186,8 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
                 raise ValueError('Furanose target is absent from the frozen acquisition sources')
             furanose.verify_source(chosen['source'], chosen['source_authority'])
     def initialize(inputs):
+        if registered is not None:
+            registered[1]()
         root = inputs.run_directory/'PostMR'/'DictionaryEngine'
         sources, literal, request = [root/name for name in ('sources','literal','request')]
         if construction is None:
@@ -177,7 +206,7 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
                   and _bytes(selected['report']) == _bytes(construction['selection']['report']),
                   'Prepared components differ from the captured source selection')
         literal_inputs = None
-        if inputs.supplementary_phils:
+        if inputs.supplementary_phils and inputs.explicit_na_policy is None:
             prepare_postmr_literal_inputs(inputs.model_path,list(inputs.supplementary_phils),sources,literal,
                 data_root=data_root,ready_set_executable=configured.ready_set_executable)
             literal_inputs = literal
@@ -218,11 +247,15 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
         record = initialize_postmr_dictionary_request(inputs.model_path,inputs.run_report,components,None,request,
             consumer=configured.consumer,ready_set_executable=None,supplementary_phils=list(inputs.supplementary_phils),
             literal_na_inputs=literal_inputs,frozen_sources=sources,construction_inputs=inputs.run_directory,
+            **({'explicit_na_policy': inputs.explicit_na_policy} if inputs.explicit_na_policy is not None else {}),
             **({"select_anionic_phosphate":True} if select_representation else {}),
             continuation_options=continuation_options,
             **({'automatic_plane_support':True} if automatic_plane_support else {}),
             **({'bond_targets':bond_targets} if bond_targets is not None else {}),
+            **({'registered_preparation':registered[0]} if registered is not None else {}),
             **({'automatic_bond_targets':True} if automatic_bond_targets else {}),**execution_limits)
+        if registered is not None:
+            registered[1]()
         return PreparedPostMRRequest(inputs.run_directory,request,record,generation)
     result = _prepare_postmr(run_directory,configured.ready_set_executable,phenix_installation=phenix,
         coot_executable=coot_executable,environment=phenix.environment,data_root=data_root,

@@ -5,6 +5,19 @@ Pine and the separate Cedar/Willow branches are not changed by this integration.
 combines the existing metal feature with the qualified shared chemistry, native
 observation and storage owners; it introduces no new scientific policy.
 
+## A01 genuine FT constructor and restrained input — 27 November
+
+Fresh ordinary MR/Coot construction now has genuine C196 provenance and full-model
+C80 restraints: DF A:12, DT B:4, 42 nucleotides, 18 pairs and 38 stacks, no Hg.
+Both explicit crystal connections survive frozen request intake. Reused Cedar
+025561e1 for the already compiled restraint handoff; no duplicate compiler and no
+rerun of the preserved partial construction. Final entry/runtime checks pass 54;
+relocated installed checks pass 25. The earlier combined panel passed 71.
+Registered execution remains held, A01 partial and A02 gated. The new frame is
+unrefined; its starting B values must not feed f″ quantitation. An exact-source DF
+acquisition has isolated native usability; linked-frame qualification is next.
+[Evidence, compatibility, methods and limits](metal-ordinary-receiving.md#genuine-ordinary-ft-construction--27-november-afternoon).
+
 ## A01 registered input and native review — 27 November
 
 The complete-request intake freezes the distinct image-link role; the new native
