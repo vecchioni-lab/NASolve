@@ -1279,14 +1279,15 @@
         "W240 provides an installed opt-in native-phosphate route through existing Cedar image chemistry. Complete preflight/one-cycle fit preserves fixed source-frame context and data;261 source/261 installed checks. Chemical recovery remains unaccepted.",
         "W243 removes reciprocal U* round-off false failures with a six-component Cartesian comparison, unchanged native frame/modes/Uiso and exact source ANISOU/BQ export.293 source/293 installed; both real anisotropic failures and12 real-change refusals replay cold. No whole-ASU or new live-fit qualification.",
         "W244 audits four Cedar-coordinated real-data fits on initially healthy cuts: all eight seam terms within 1.82 sigma, complete anisotropic return and reopened source-byte-preserving export, 84 frozen-input hashes. This closes the W243 fresh local return gate; general damaged-seam repair and whole-ASU scattering remain open.",
-        "W299 binds a complete freshly Cedar-inspected phosphate group to an exactly replayed preview, preserving logical/coordinate sites, strand IDs and separate native/display operators. Genuine two-link parent correspondence, 111 source/111 relocated checks and full Willow regression pass; no new force, fit or checkpoint authority."
+        "W299 binds a complete freshly Cedar-inspected phosphate group to an exactly replayed preview, preserving logical/coordinate sites, strand IDs and separate native/display operators. Genuine two-link parent correspondence, 111 source/111 relocated checks and full Willow regression pass; no new force, fit or checkpoint authority.",
+        "W300 completes ordinary refine-003 to refine-004 with both inherited phosphate groups, exact child descent and freshly bound unreviewed recut. All862 atom identities and original parent survive, child unselected. Local geometry remains mixed; bounded restart evidence only."
       ],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
         "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.",
         "Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified."
       ],
-      "next_action": "Compose the ordinary source-frame refinement child with a freshly bound descendant preview and both declared connections through existing checkpoint/descent/Cedar owners. W299 supplies correspondence, not runtime or chemistry admission. Reuse saved Cedar joint-fit evidence before requesting another run; retain complete interacting geometry/exclusions and changed-reflection limits. Preserve true nicks, unknown partners, P/OP1/OP2 and protected context. Whole-ASU scattering, persistent review, inverse mapping of edits and full seam acceptance remain separate gates; do not build another force/refinement owner.",
+      "next_action": "W301: maintain checkpoint-bound child-preview refresh using existing checkpoint/descent/registration/preview owners; exact lineage and source hashes, all links/strands preserved, changed child always unreviewed. Reject stale source, wrong parent, lost atoms or changed representatives. Reuse W300 successful fit; no new force/refinement engine or automatic adoption. Persistent GUI/edit/import loop, whole-ASU scattering and complete chemical acceptance remain separate gates.",
       "evidence": [
         "E_PINE_TEST_BANK",
         "E_NATIVE_REPRESENTATION_SEAMS",
@@ -1308,40 +1309,45 @@
         "E_REGISTERED_PHOSPHATE_ENTRY",
         "E_CARTESIAN_ADP_RETURN",
         "E_LIVE_ANISOTROPIC_RETURN",
-        "E_JOINT_RECUT_BINDING"
+        "E_JOINT_RECUT_BINDING",
+        "E_ORDINARY_CHILD_RECUT"
       ],
       "last_audit": {
         "date": "2026-11-27",
         "code_commit": "42f9f7ea3d8e2921aab635e3e3af9fdccb8a1ede",
         "reviewer": "Linden",
-        "human_update": 299,
-        "scope": "Two-link receiving correspondence only; P04 remains partial, no new native fit or scientific acceptance"
+        "human_update": 300,
+        "scope": "Complete bounded ordinary child/review composition; persistent graphical lifecycle and full seam acceptance remain open"
       }
     },
     {
       "id": "P05",
       "track": "pine",
       "title": "Complete the persistent Pine surgery/refine GUI loop",
-      "status": "OPEN",
+      "status": "PARTIAL",
       "depends_on": [
         "P04"
       ],
       "goal": "Keep cut, preview, child creation, refinement and review in one usable workbench.",
-      "delivered": [],
+      "delivered": [
+        "W300 completes ordinary refine-003 to refine-004 with both inherited phosphate groups, exact child descent and freshly bound unreviewed recut. All862 atom identities and original parent survive, child unselected. Local geometry remains mixed; bounded restart evidence only."
+      ],
       "acceptance": [
         "Use the shared model tree and exact selection/Coot APIs; keep inspect, select and approve distinct, preserve current choice and return refinement diagnostics to the same session.",
         "Graphical actions bind source hashes and show actual nicks/seams/mates. Test stale views, competing choices, interrupted actions, manual imports and relocation without duplicating campaign/checkpoint machinery.",
         "Expose editable Pine periodic connectivity beyond the ASU, preserving prior user choices and exact logical/image mappings across reslicing or explicitly marking unresolved mappings. Keep intent, proximity and enforcement support separate."
       ],
-      "next_action": "Scheduled phosphate follow-up stage 5: restart the immutable reviewed child through existing checkpoint/process owners with fresh strand/image/input bindings and Cedar's single force owner; reject stale mapping or duplicate force installation. Schedule and ownership: docs/topostitch.md#coordinated-phosphate-recut-follow-up. Planning only; no immediate native rerun. Extend the P02 preview into the real immutable operation/refine loop; GUI completion is a release requirement.",
+      "next_action": "W301: maintain checkpoint-bound child-preview refresh using existing checkpoint/descent/registration/preview owners; exact lineage and source hashes, all links/strands preserved, changed child always unreviewed. Reject stale source, wrong parent, lost atoms or changed representatives. Reuse W300 successful fit; no new force/refinement engine or automatic adoption. Persistent GUI/edit/import loop, whole-ASU scattering and complete chemical acceptance remain separate gates.",
       "evidence": [
-        "E_WILLOW_PINE_DOC_AUDIT"
+        "E_WILLOW_PINE_DOC_AUDIT",
+        "E_ORDINARY_CHILD_RECUT"
       ],
       "last_audit": {
-        "date": "2026-11-13",
-        "code_commit": "ce0a1bfee9d9d63edd09be84fe7a3117c65a6c69",
+        "date": "2026-11-27",
+        "code_commit": "42f9f7ea3d8e2921aab635e3e3af9fdccb8a1ede",
         "reviewer": "Linden",
-        "scope": "Backend implementation and documented evidence; no new scientific approval"
+        "human_update": 300,
+        "scope": "Complete bounded ordinary child/review composition; persistent graphical lifecycle and full seam acceptance remain open"
       }
     },
     {
@@ -10366,6 +10372,65 @@
           "size": 2101
         }
       ]
+    },
+    "E_ORDINARY_CHILD_RECUT": {
+      "kind": "Ordinary inherited refinement and refreshed child recut",
+      "date": "2026-11-27",
+      "human_update": 300,
+      "code_commit": "42f9f7ea3d8e2921aab635e3e3af9fdccb8a1ede",
+      "reference": "docs/topostitch-periodic.md#w300--restart-both-connections-and-refresh-the-child-cut",
+      "result": "Phenix2.2.1-6174 complete preflight/one-cycle child refine-004 from genuine refine-003, Cedar d3d71cde66ca3fe953c182773672fd5d5dbd3a8a. Both complete groups survive; 862 atom identities, 42 nodes/40 edges. Links1.665991/1.658048 A; Rwork/Rfree0.1989/0.2673. Exact cold binding replay, source/parent preserved, child unselected and preview unreviewed. ChimeraX1.12 two-model/six-control headless check passes.",
+      "limitation": "Local geometry mixed, no seam acceptance or persistent GUI lifecycle. Same final work/Free membership; saved filtered F/SIGF differ by common scale. No new product code/schema or repeated full suite/install. Original historical runtime pin retained; failed guard attempts preserved. Raw scientific artifacts local, not whole-run portability.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w300-descendant-recut/result.json",
+          "sha256": "44aecdff3691967e826ae72c51193ddd535078a7e2f842d518c479dbcb94bde7",
+          "size": 2302
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w300-descendant-recut/launch-03.json",
+          "sha256": "bbe2c96cf60d3a3f3ab6b5b4a517a6742d5ce4a2bfb8f8c7442ac261620b89d2",
+          "size": 53583
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w300-descendant-recut/verification.json",
+          "sha256": "cf209b8d65289a787abb2902c17ab3147141827504968b7f2a6c972a81ce508b",
+          "size": 45672
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w300-descendant-recut/verification-command.json",
+          "sha256": "93b9bb7a5c8787c865f58303907268794c1bd83bc4d7c8aadc5c6bad53f4c050",
+          "size": 752
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w300-descendant-recut/reflections.json",
+          "sha256": "076058ffb60dd5b88bada782bf518a480c31b2810017da93a3f5c2cbe3bf55c4",
+          "size": 1858
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w300-descendant-recut/geometry-comparison.json",
+          "sha256": "631f3de90b6ec47d4805fa1bd79d51a86317e93f62ea7b618ad782bb8c752fd6",
+          "size": 60502
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w300-descendant-recut/chimerax-check.json",
+          "sha256": "8536ae2d4ff1e298a7dad4bc27ff8b53e91b1486a8e31cc426bee27c11215dce",
+          "size": 300
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w300-descendant-recut/comparison-manifest.json",
+          "sha256": "9dfa1941a06cdb914b66d43d3937ce173d626e72c0f78e94a9df88cd8995fff2",
+          "size": 3221
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -10547,8 +10612,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 299,
-    "next": 300,
+    "current": 300,
+    "next": 301,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -12150,6 +12215,12 @@
       {
         "number": 299,
         "title": "Bind both phosphate links to a recut with separate native and display operators",
+        "state": "RECORDED",
+        "code_commit": "42f9f7ea3d8e2921aab635e3e3af9fdccb8a1ede"
+      },
+      {
+        "number": 300,
+        "title": "Restart both connections and refresh the child cut",
         "state": "RECORDED",
         "code_commit": "42f9f7ea3d8e2921aab635e3e3af9fdccb8a1ede"
       }

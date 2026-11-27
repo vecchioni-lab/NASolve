@@ -1,8 +1,8 @@
 # NASolve development handoff — Willow
 
-**W299 joint recut correspondence, 2026-11-27.** Latest maintained code:
+**W300 ordinary child/recut audit, 2026-11-27.** Latest maintained code:
 `42f9f7ea3d8e2921aab635e3e3af9fdccb8a1ede`. Latest native preflight/refinement:
-**W297**; latest density audit: **W298**.
+**W300** (separate genuine ordinary parent); latest density audit: **W298**.
 The [audited roadmap](topostitch-roadmap.md) owns status and the next decision;
 [periodic evidence](topostitch-periodic.md) and [API contracts](topostitch-preview.md)
 own exact methods, commands, hashes and limitations. This handoff is not a run diary.
@@ -21,7 +21,7 @@ must work without an AI service. A representation change does not repair a gap.
 | Local native phosphate receiving | Default six-atom route plus explicit unphased sugars or canonical endpoint bases; installed preflight and fit complete with original context/data | Wider paired/base motion, packing acceptance and ordinary campaign adoption |
 | W297 endpoint-base experiment | 37 moving/825 held; join 1.60863 Å, pair angles 17.9→11.3° and 4.0→1.5°; all atoms, B/Q and six sugar hands preserved | Residual torsion 2.683σ, one stack angle worsens and both bases remain weak in maps; Rwork/Rfree 0.313/0.361, unselected |
 | Whole-original-asym diagnostic CIF export | W272–278 preserve qualified source categories, images, tensors and backbone coverage; save/replay/inspect available | Mixed-fragment entity policy, native TLS restart, genuine source/parent join and persistent operation/refine loop |
-| W299 joint recut correspondence | Both fresh Cedar-inspected links bind to the genuine parent/preview, preserving source/display operators and exact site/strand IDs | Ordinary child-to-refreshed-preview workflow and persistent review; no new fit or force authority |
+| W299/W300 joint recut and restart | Both fresh Cedar-inspected links survive an ordinary child, checked descent and refreshed preview; all 862 atom identities retained | Maintain child-preview refresh, persistent human review and full seam acceptance; child unselected |
 | W286/W287 connection review | Source/row/evidence-bound unapplied proposals and independent saved-report replay | Explicit metadata authority, application and separate chemistry/export/native admission |
 | W290 endpoint-map comparison | Same 1,909 indices/124 Free-R; P near 2.52σ in both maps, weak fixed sugar support | Explicit coupled-window chemistry/packing before broader native motion; no map-based acceptance |
 | W292–W296 coupled-sugar scope | Source geometry, native derivatives, actual live definitions, sugar hands/pucker and C1 plane tradeoff checked; no plane removed | Full returned packing-review intake, physical partner authority and whole-duplex motion remain open |
@@ -69,13 +69,15 @@ maintained fixed-weight product mode or recommended production weight.
    window owners, which do not traverse changed images or representation seams.
    Source is the 5W6W-derived central-strand/PDU model, not FT or 8D93.
 
-2. **Pine integration:** W299 now binds both freshly inspected connections to
-   W282's exact preview using Cedar's joint group check. D7→C8 becomes display-local
-   while retaining its source-frame native operator. Next compose the ordinary
-   child-to-refreshed-preview lifecycle through existing checkpoint/descent owners;
-   do not introduce another refinement route or conflate the binding with native
-   force/chemistry admission. Rowan/Linden agree to use the genuine PDU ordinary parent
-   with its proven data/thermal route. Use source-frame native refinement and
+2. **Pine integration:** W300 completes a bounded ordinary `refine-003` →
+   `refine-004` restart with both connections and a freshly checked whole-C cut.
+   Child is unselected, preview unreviewed; Rwork/Rfree improve to 0.199/0.267 but
+   local geometry is mixed. **W301:** maintain the successful composition through
+   existing checkpoint/descent/registration/preview owners, requiring exact
+   lineage and fresh hashes without inherited approval. Reject changed source,
+   missing atoms or changed representatives. Do not build another refinement
+   route. Use the genuine PDU ordinary parent with its proven data/thermal route.
+   Use source-frame native refinement and
    derived views; keep physical strand/entity assignments unresolved without a
    designed-oligo source. Native soft pair restraints do not supply that authority.
    W291 confirms the concrete boundary: four routes, no declared duplex partners;
@@ -111,6 +113,14 @@ references and thermal/TLS semantics. File readback alone cannot prove those.
 
 <a id="validation-and-scientific-interpretation"></a>
 ## Validation and compatibility
+
+**W300:** complete ordinary preflight/one-cycle Phenix 2.2.1-6174 refinement with
+Cedar `d3d71cde66ca3fe953c182773672fd5d5dbd3a8a`; cold replay checks original inputs,
+parent record, both groups, atom inventory and child preview. Same work/Free
+membership; saved F/SIGF differ by one measured common scale. ChimeraX 1.12
+headless comparison and visual figure inspection pass. No product code changes;
+W299 tests/install remain current. [Exact commands, pins, failed attempts and
+limits](topostitch-periodic.md#w300--restart-both-connections-and-refresh-the-child-cut).
 
 **W299:** 111 focused source/111 relocated-installed checks, installed CLI help
 and the complete Willow suite (**3,105 tests + 238 subtests**, no skips) pass for
@@ -152,6 +162,12 @@ is not a current merge or qualification of later branches.
 
 ## Local science checkout
 
+Latest ordinary restart checkout, at the ScienceCheckouts anchor:
+`Linden/2026-11-27_two-connection-restart/index.html`. Its Python-openable
+ChimeraX comparison and fixed-frame phosphate drawing link checksummed science
+under NASolve anchor `branch-artifacts/willow/w300-descendant-recut/`. Both native
+and display operators are explicit; residual angle/torsion strain is shown.
+
 W299's small correspondence report is at NASolve anchor
 `branch-artifacts/willow/w299-joint-recut-binding/index.html`; it links the existing
 3D recut preview and exact validation. No new coordinates were generated.
@@ -162,7 +178,7 @@ figure, saved calculated-map decomposition, exact sources and cold verification.
 Ten FFTs in completed reports; no new refinement, product tests or installation.
 The figure was visually checked; interactive browser use was not newly tested.
 
-Latest checkout, at the ScienceCheckouts anchor:
+Endpoint-base experiment checkout, at the ScienceCheckouts anchor:
 `Linden/2026-11-27_endpoint-bases/index.html`. It links the offline 85-atom density
 comparison, a Python-openable three-model ChimeraX comparison, native PDB, figure
 and exact evidence under NASolve anchor

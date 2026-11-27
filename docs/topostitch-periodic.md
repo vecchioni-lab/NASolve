@@ -15552,3 +15552,97 @@ portability. P04 remains **PARTIAL**: next compose an ordinary refinement child
 with a freshly bound descendant preview and both connections, through existing
 checkpoint/descent/native owners. Persistent human review and full seam acceptance
 remain open. W298's density/B sensitivity gate is unchanged.
+
+## W300 — Restart both connections and refresh the child cut
+
+**2026-11-27; complete ordinary native preflight and refinement, not scientific
+acceptance.** Existing Willow code `42f9f7ea3d8e2921aab635e3e3af9fdccb8a1ede`
+composes with complete pinned Cedar source
+`d3d71cde66ca3fe953c182773672fd5d5dbd3a8a` under **Phenix 2.2.1-6174**.
+In a verified private copy of the genuine PDU dataset, ordinary
+`execute_autorefine` creates `refine-004` from `refine-003`, inheriting both
+registered continuations through Cedar's existing phosphate request. One
+macrocycle, one worker, normal coordinate/real-space/group-ADP/occupancy strategy
+and 18 internal XYZ weight trials complete. Automatic selection is disabled;
+selection remains `postmr` and the usable child remains **REVIEW**.
+
+| Connection | Parent → child O3′–P | Native target image | Child display image |
+| --- | --- | --- | --- |
+| B7 → B1 | 1.670036 → 1.665991 Å | `-y,x-y,z` | `-y,x-y,z` |
+| D7 → C8 | 1.634683 → 1.658048 Å | `-x+y,-x,z` | `x,y,z` |
+
+Both complete groups retain one bond, four angles and three dihedrals each,
+with native-bond replacement and exclusions checked. The joint full-gradient
+hook executes once in preflight and 564 times in refinement; restoration passes.
+All 862 atom identities and occupancies survive. All B values change under
+ordinary group ADP refinement. Maximum physical shift is 0.313700 Å, all-atom
+RMS 0.094789 Å; this is distinct from the large representation-only whole-C move.
+The 42-node/40-edge declared graph, site/strand IDs and both native operators
+survive descent and a freshly built **UNREVIEWED** child preview. The original
+dataset and parent record remain unchanged. In the copy, only checkpoint/report
+registries among pre-existing files change to register the new child.
+
+Rwork/Rfree improve **0.2042/0.2796 → 0.1989/0.2673**, but local strain is mixed:
+maximum angle deviations grow 3.60→4.54 and 1.85→2.30 restraint widths;
+maximum torsion deviations change 1.79→1.94 and 5.06→4.86. Global bond/angle
+RMS are 0.061 Å/4.67°, clashscore 58.25. This demonstrates the bounded restart
+and frame correspondence, not acceptable seam geometry, a new bend, map-based
+selection or complete P04/P05 closure.
+
+**Diffraction audit:** identical initial 1,785 work/124 Free records and removal
+of seven work/zero Free reflections yield the same final 1,778 work/124 Free
+membership. Saved MTZ HKLs, I/SIGI and flags agree exactly. Saved filtered F/SIGF
+are not byte-identical: their ratios match a common scale ≈1.41411185, with
+relative residuals below 3.9e-8. The measured rescaling does not identify its
+native mechanism. No data or checkpoint authority transfers to W296/W297 or FT.
+
+**Failures and pinning:** the first harness stopped before child allocation on
+an absent optional legacy registry envelope hash; the genuine schema-2 reader
+was used without inventing a checksum. A second attempt correctly refused
+Cedar `f72ed894a37c243ceed2fd1e45a660aa2f0df1f6` because the live explicit-NA
+helper differed from the frozen V12 bytes. The complete predecessor above
+matches all 18 V12 modules; Rowan approved that historical source and no guard
+was weakened. Saved capture was reused. Rowan subsequently reported the worker
+restoration at `4f75cefa`; the actual W300 fit remains attributed to `d3d71cde`,
+without another fit to prove equivalent bytes. Failed attempts remain local.
+
+**Validation and reproduction:** cold replay through the pinned registry,
+existing descent, preview and group owners reproduces the exact child binding,
+checks input/parent preservation, atom inventory, reflection membership and
+restored runtime hooks. ChimeraX **1.12 (2026-06-12)** loads both models and all
+six controls headlessly with both symmetry-correct measurements. The static
+figure was visually checked; interactive GUI use was not newly tested. The
+shared Python launcher passes `--check` after anchor rebasing. No Coot run.
+
+Local NASolve anchor: `branch-artifacts/willow/w300-descendant-recut/`.
+`launch-03.json` records exact native command, full source hashes and removed
+scratch; `verification-command.json` records the independent readback command.
+The completed outer commands, from the main NASolve checkout, were:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/w300-descendant-recut/launch.py
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/w300-descendant-recut/verify_launcher.py
+```
+
+These immutable scientific scripts refuse reuse of occupied outputs. `result.json`,
+`verification.json`, `reflections.json`, `geometry-comparison.json` and
+`chimerax-check.json` own detailed results. The small ScienceCheckouts-anchor
+`Linden/2026-11-27_two-connection-restart/index.html` links the parent/child
+ChimeraX comparison, fixed-frame phosphate drawing and exact evidence. Large
+models/maps are linked through declared, checked anchors instead of duplicated.
+
+This is a **documentation/scientific-audit update only**: existing guides,
+changelog and roadmap change; no product code, runtime schema or migration.
+W299's full-suite and relocated-install checks remain the current code evidence;
+no redundant suite/install is claimed for W300. Raw science, local scripts,
+failed attempts and checkouts are deliberately excluded from Git. Cold local
+replay is not whole-run portability.
+
+**Next (W301):** maintain this child-preview refresh composition through the
+existing checkpoint/descent/registration/preview owners. Require exact parent
+and child lineage, source hashes and unchanged crystal representatives; preserve
+all declared links and logical strands. A refined child gets a fresh unreviewed
+proposal, never inherited approval. Reject stale input, wrong lineage, lost
+atoms or image changes. Reuse W300 evidence instead of another fit. P04 stays
+PARTIAL; P05 gains bounded restart evidence but its persistent graphical review,
+edit/import and adoption lifecycle remains open.

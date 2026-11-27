@@ -7,11 +7,17 @@ current instructions; other branches retain their own status and validation pins
 
 ## What's current?
 
+- **Latest native refinement, W300:** [two-connection restart](topostitch-periodic.md#w300--restart-both-connections-and-refresh-the-child-cut)
+  preserves both links and all 862 atoms through an ordinary child and fresh recut.
+  Rwork/Rfree 0.199/0.267; local geometry remains mixed, child unselected.
+  Cold replay and headless ChimeraX comparison pass. Maintained child-preview
+  refresh is next; persistent graphical review and seam acceptance remain open.
+
 - **Latest code, W299:** [joint recut correspondence](topostitch-periodic.md#w299--bind-both-phosphate-links-to-the-recut-preview)
   binds both Cedar-inspected phosphate links to an exact preview while retaining
   separate native/display operators. Genuine parent check, 111 source/111 relocated
   checks and the complete Willow suite (3,105 tests + 238 subtests) pass. No fit or
-  checkpoint adoption; ordinary child/preview refresh remains open.
+  checkpoint adoption in W299; W300 exercises the ordinary child/preview composition.
 
 - **Latest scientific audit, W298:** [whole-model density context](topostitch-periodic.md#w298--audit-whole-model-density-before-wider-motion)
   places weak endpoint bases in a model-wide pattern and reproduces saved
@@ -19,7 +25,7 @@ current instructions; other branches retain their own status and validation pins
   B-only sensitivity is parked pending a genuine ordinary parent; the current
   Refine Doctor cannot admit these standalone experimental outputs.
 
-- **Latest refinement, W297:** [endpoint bases](topostitch-periodic.md#w297--release-endpoint-bases-while-holding-their-partners)
+- **Latest endpoint-base experiment, W297:** [endpoint bases](topostitch-periodic.md#w297--release-endpoint-bases-while-holding-their-partners)
   adds opt-in canonical base release with opposite partners held: 37 moving/825
   held in the diagnostic. Join 1.609 Å; pair angles improve, but both bases remain
   weak in own maps and one stack angle worsens. Rwork/Rfree 0.313/0.361, unselected.

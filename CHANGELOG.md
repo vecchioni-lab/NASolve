@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W300 — Audit ordinary two-connection restart and child recut
+
+- Record a complete ordinary inherited refinement child, freshly bound recut and
+  cold readback: both symmetry connections, 862 atom identities and original
+  parent survive; child remains unselected and preview unreviewed.
+- Preserve mixed local geometry and reflection-rescaling limits despite improved
+  R values. Queue maintained checkpoint-bound refresh; no product/schema change.
+
+
 ### W299 — Keep joint phosphate identity through a recut preview
 
 - Add a read-only binding from the complete Cedar-inspected continuation group
