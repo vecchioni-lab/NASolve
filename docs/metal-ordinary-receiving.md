@@ -4,6 +4,75 @@ Updated 26 November 2026. A01 mechanical integration; A01 science remains partia
 and A02 quantitation is gated. This is a prospective implementation contract,
 not a claim of ordinary numbered-round qualification.
 
+## Compact source-bound worker — 27 November
+
+The mixed guard previously pulled the metal orchestration/checkpoint imports into
+its native helper closure. Reflection and HL audit bodies now live unchanged in
+`metal/_diffraction_audit.py`; `metal.fdp.audit_reflections` and
+`metal.xyz.audit_phases` remain available. An AST comparison against `0c1c0b98`
+confirms both function bodies are identical. No normalization rule or tolerance
+changed. `SourceMixedGuard` extracts the ordinary parent's existing initial-atom,
+source-crystal and before/after input checks; `_ParentGuard` still adds ordinary
+ancestry and the same parent-binding summary. Exact model bytes and a callable
+owning recheck are required before native hooks install.
+
+The new small-bundle regression fails before extraction because
+`native_worker.metal.fdp` is absent, then passes with only declared helpers.
+Focused host checks pass **133 tests / 18 subtests (15 native skips)**. Following
+the source-guard extraction, **80 native-library tests / 53 subtests** pass;
+the final small-bundle case also passes. Earlier 30-case native checks are retained
+as intermediate evidence, not added to these totals. Commands, source hashes,
+logs, XML and the initial failure live in
+`branch-artifacts/Alder/mixed-worker-20261127-01/`.
+
+A separate complete **dry initialization** uses Phenix **2.2.1-6174**, Python
+**3.11.15**, the declared FT inputs, and existing frozen registered-phosphate
+forces. The copied helper package is **15 files / 84,408 bytes**, runs after its
+original bundle location is gone, and imports no full metal orchestration modules.
+It preserves **1,151 observations, 59 Free-R assignments and 1,151 HL quartets**,
+with 859 XYZ atoms / 42 DNA group-B groups and held Hg B/Q/f′/f″. Both crystal-link
+bindings and mixed callbacks restore; all source inputs remain exact and the
+process owner verifies the child stopped. The disposable bundle is then removed.
+There are **zero optimization cycles**, no new maps, no numbered checkpoint and
+no new scientific endpoint. Methods A865–A866 and `thin-execution.json` retain the
+bounded execution and relocation evidence; this does not certify every historical
+run as portable.
+
+Compatibility: public audit imports, historical V3–V12 worker bytes, accepted
+parameter policies and stored schemas keep their meaning; no migration is needed.
+New files are the shared audit/guard and focused tests; existing audit consumers
+and ordinary-parent guard use them. Generated FT inputs, runtime outputs and logs
+remain local, deliberately excluded from Git. No Coot launch or full suite.
+
+### Next A01 milestone: an ordinary FT metal-site child
+
+Success means one immutable, **unselected** numbered child with a genuinely
+admitted FT model, its own original observations/Free-R and explicitly sourced
+AutoSol HL, inherited prepared restraints and both registered crystal links.
+The existing owner must execute reciprocal XYZ plus DNA group B while holding
+Hg B and all Q/f′/f″, validate the exact written return and process closure, and
+provide inspectable maps and a geometry/R assessment. This is mechanical transfer;
+scientific A01 acceptance still needs acceptable geometry and fit. A02 remains gated.
+
+Two implementation boundaries remain: explicit admission of externally produced
+AutoSol phases, and a separately versioned mixed numbered policy. The existing
+owned AutoSol publication cannot be impersonated by changing a legacy report.
+The genuine PDU parent has different observations and no HL; it is an inheritance
+control only. The FT source MTZ/HL equivalence is already established below; do not
+regenerate phases or rerun unchanged fits to compensate for missing metadata.
+
+The numbered child must freeze the input declaration and original ancestry at
+allocation, while retaining ordinary owner validation. Its cold reader must not
+require mutable registry/report bytes to remain at their pre-child hashes after
+legitimate child publication. Resolve that ownership boundary before dispatch;
+do not weaken source checks or make another stand-alone refinement executor.
+
+For historical worker replay, audit the **full transitive helper closure**. The
+morning receiving audit covered named owner files, not all later dependencies.
+Linden identified a later live explicit-NA helper change conflicting with V12;
+Rowan owns that compatibility fix. This candidate uses the exact older Cedar pin
+and is unaffected; do not update historical helper hashes to match new code.
+
 ## Read-only transfer from the maintained ordinary owner
 
 `refinement_parent_transfer.inspect_parent_transfer` reviews a serializable input

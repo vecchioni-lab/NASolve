@@ -109,6 +109,16 @@ model-phased maps do not independently settle current Q/count. That decision is
 parked; do not repeat unchanged trials or transplant their fitted values.
 [Current evidence and small inspection improvement](metal-development-handoff.md#a01-evidence-inventory-and-bounded-inspection-improvement--27-november).
 
+**Chosen next A01 milestone — ordinary FT metal-site handoff.** One unselected,
+numbered child must carry genuinely admitted FT source data/Free-R/AutoSol HL,
+prepared restraints and both crystal links through reciprocal XYZ/DNA group-B
+execution, protected Hg B/Q/f′/f″, exact written return and inspectable maps. The
+compact relocated worker has now passed real zero-cycle initialization; this
+prerequisite does not close the milestone. Explicit external-phase admission and
+a versioned numbered mixed policy remain. Reuse the existing parent, writer and
+process owners, including an immutable input declaration that survives legitimate
+registry updates. [Acceptance boundary and evidence](metal-ordinary-receiving.md#compact-source-bound-worker--27-november).
+
 Only two next decisions govern the near-term work:
 
 1. **Scientifically qualify the inspectable FT_Hg model.** The protected return,

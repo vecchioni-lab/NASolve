@@ -33,6 +33,16 @@ and cache-retirement evidence: `branch-artifacts/Alder/docs-audit-20261126-01/`.
 
 <a id="a01-parameter-scope-2026-11-25"></a>
 
+## A01 compact native worker — 27 November afternoon
+
+The receiving candidate now initializes the real FT model/data/phases through a
+relocated 84 KB mixed helper package with original Free-R/HL, both crystal links,
+restored callbacks and stopped process. This is **zero-cycle initialization**,
+not an improved FT model or ordinary checkpoint. The current scientific endpoint
+remains Rwork/Rfree 0.3098/0.3422; Hg Q/f″ remains unmeasured for that geometry.
+[Exact validation and the next ordinary-child success criterion](metal-ordinary-receiving.md#compact-source-bound-worker--27-november).
+Evidence: `branch-artifacts/Alder/mixed-worker-20261127-01/`, methods A865–A866.
+
 ## A01 evidence inventory and bounded inspection improvement — 27 November
 
 Five explicitly documented older FT trials (`fdp_006`–`fdp_010` under

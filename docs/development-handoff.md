@@ -5,6 +5,17 @@ Pine and the separate Cedar/Willow branches are not changed by this integration.
 combines the existing metal feature with the qualified shared chemistry, native
 observation and storage owners; it introduces no new scientific policy.
 
+## Compact mixed worker qualification — 27 November
+
+The detached receiving candidate now shares unchanged diffraction audit functions
+and the ordinary source-bound guard with a compact native worker. A real relocated
+FT dry initialization preserves all 1,151 observations, 59 free assignments and
+1,151 phase rows; the 84,408-byte helper bundle is retired after verified process
+closure. No cycles, numbered child, scientific fit or acceptance are claimed.
+Final focused native-library checks pass 80 cases / 53 subtests; host audit/runtime
+coverage and the fail-before small-bundle regression are recorded separately.
+[Changed files, validation, compatibility and next A01 milestone](metal-ordinary-receiving.md#compact-source-bound-worker--27-november).
+
 ## Isolated ordinary-owner receiving rehearsal — 27 November
 
 A detached rehearsal combines Alder `1efcd034` with the already-qualified Cedar

@@ -13,6 +13,7 @@ import re
 import signal
 import subprocess
 
+from ._diffraction_audit import audit_phases
 from .binding import AtomKey
 from .context import _reference, parse_pdb
 from .fdp import NATIVE_VERSION, _integer, audit_reflections, make_plan as scattering_plan
@@ -106,23 +107,6 @@ def parameters(plan, resources):
             'output {',' prefix = native',' serial = 1',' overwrite = False','}','']
     return '\n'.join(lines).encode(),['input.pdb','observations.mtz','phases.mtz',*resources,'parameters.phil',
                                      'experimental_phases.file_name=phases.mtz','experimental_phases.labels='+labels]
-
-
-def audit_phases(before, after, reflection_indices):
-    for capture in (before,after):
-        rows=capture['rows'];keys=[]
-        if not rows or type(capture['count'])is not int or capture['count']!=len(rows):
-            raise RecipeError('Missing active phase evidence')
-        for key,values in rows:
-            if (not isinstance(key,list) or len(key)!=3 or any(type(x)is not int for x in key)
-                    or not isinstance(values,list) or len(values)!=4):raise RecipeError('Invalid phase row')
-            for v in values:number(v,'HL coefficient')
-            keys.append(tuple(key))
-        if keys!=sorted(set(keys)) or keys!=reflection_indices:
-            raise RecipeError('Active phases must cover exactly the refinement reflection indices')
-        if digest(rows)!=capture['hash']:raise RecipeError('Phase signature changed')
-    if canonical(before)!=canonical(after):raise RecipeError('Active phase coefficients changed during refinement')
-    return dict(status='UNCHANGED',hash=before['hash'],count=before['count'])
 
 
 def _atom_permutation(expected, actual):

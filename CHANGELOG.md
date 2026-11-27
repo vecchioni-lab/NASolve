@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Keep mixed-refinement workers small and source-bound
+
+- Extract unchanged reflection/HL audits into a small shared module while retaining
+  their existing imports. Native mixed guards no longer import checkpoint, metal
+  orchestration or GUI dependencies just to validate diffraction arrays.
+- Share initial atom/crystal and input-recheck protection between ordinary-parent
+  guards and compact native workers. Refuse a mismatched model before hooks install.
+  Historical frozen workers, scientific policy and stored schemas are unchanged.
+- Qualify the relocated 84 KB helper bundle with real FT native initialization.
+  This is zero-cycle preparation, not a numbered mixed child or a new fitted model.
+
 ### Receive maintained ordinary preparation and phosphate owners
 
 - Combine the pinned prepared-backbone and registered-phosphate dependency chain

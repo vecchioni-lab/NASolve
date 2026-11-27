@@ -12,8 +12,7 @@ import math
 import re
 from types import SimpleNamespace
 
-from .metal.fdp import audit_reflections
-from .metal.xyz import audit_phases
+from .metal._diffraction_audit import audit_reflections, audit_phases
 from .refinement_parameter_scope import scope_digest
 
 POLICY_ID = 'exact-merged-hl-observation-v1'

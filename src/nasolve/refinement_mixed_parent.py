@@ -19,9 +19,9 @@ from .refinement_parameter_scope import ParameterScope, scope_digest
 from .refinement_parameter_files import rebind_miller_files
 from .refinement_parameter_composition import compose_parameters
 from .refinement_diffraction_source import read_source_arrays
-from .refinement_diffraction_observation import (DiffractionReference, make_reference,
-                                                _same_cell)
+from .refinement_diffraction_observation import DiffractionReference, make_reference
 from .refinement_mixed_runtime import MixedRuntimeGuard
+from .refinement_mixed_source_guard import SourceMixedGuard
 
 POLICY_ID = 'ordinary-mixed-parent-binding-v1'
 
@@ -196,41 +196,12 @@ class BoundMixedParent:
         return observe_return(self, driver, guard=guard)
 
 
-class _ParentGuard(MixedRuntimeGuard):
-    """Reuse the runtime lifecycle; add admitted source identity/crystal checks."""
+class _ParentGuard(SourceMixedGuard):
+    """Add ordinary ancestry and receipt identity to the shared source guard."""
     def __init__(self, parent):
         self._parent = parent
-        super().__init__(parent._scope, parent._diffraction, **parent._runtime)
-
-    def __enter__(self):
-        self._parent._recheck()
-        return super().__enter__()
-
-    def _model(self, driver, *, initial=False):
-        if initial:
-            from .refinement_parameter_native import bind_scope
-            record = self.scope.record()
-            expected = [{k:r[k] for k in ('label', 'scattering_type', 'f_prime', 'f_double_prime')}
-                        for r in record['initial_atoms']]
-            bind_scope(self._parent._source, driver.model, expected_scattering=expected,
-                       xyz_indices=record['xyz_indices'], adp_groups=record['adp_groups'])
-        return super()._model(driver, initial=initial)
-
-    def _target(self, fm, target):
-        crystal = self._parent._crystal
-        for obj in (fm.xray_structure, fm.f_obs(), target.core.f_obs):
-            _need(obj.space_group() == crystal.space_group()
-                  and _same_cell(obj.unit_cell().parameters(), crystal.unit_cell().parameters(),
-                                 self._cell_roundoff_ulps), 'Active target crystal differs from admitted source')
-        super()._target(fm, target)
-
-    def finish(self, driver, *, dry_run):
-        try:
-            self._parent._recheck()
-            return super().finish(driver, dry_run=dry_run)
-        except BaseException as exc:
-            self._fail(exc)
-            raise
+        super().__init__(parent._scope, parent._diffraction, source=parent._source,
+                         crystal=parent._crystal, recheck=parent._recheck, **parent._runtime)
 
     def summary(self):
         result = super().summary()

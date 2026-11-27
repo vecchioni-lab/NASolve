@@ -122,6 +122,18 @@ refinement {
         self.request_path.write_text(json.dumps(self.request,allow_nan=False))
         self.request_ref=self.ref(self.request_path)
     def bind(self):return bind_mixed_parent(self.run,request_reference=self.request_ref)
+
+    def test_source_guard_refuses_wrong_model_before_installing_hooks(self):
+        from nasolve.refinement_mixed_source_guard import SourceMixedGuard
+        bound = self.bind()
+        with patch('nasolve.refinement_mixed_runtime._native_bindings', side_effect=AssertionError('No hooks')):
+            with self.assertRaisesRegex(ValueError, 'declared model'):
+                SourceMixedGuard(bound._scope, bound._diffraction, source=bound._source+b'\n',
+                    crystal=bound._crystal, recheck=bound._recheck, **bound._runtime)
+            with self.assertRaisesRegex(ValueError, 'input recheck'):
+                SourceMixedGuard(bound._scope, bound._diffraction, source=bound._source,
+                    crystal=bound._crystal, recheck=None, **bound._runtime)
+
     def snapshot(self):return {str(p.relative_to(self.root)):p.read_bytes() for p in self.root.rglob('*') if p.is_file()}
     def policy_change(self,old,new):
         text=self.policy.read_text();self.assertIn(old,text);self.policy.write_text(text.replace(old,new))

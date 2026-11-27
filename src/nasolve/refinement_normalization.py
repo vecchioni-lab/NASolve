@@ -9,8 +9,7 @@ from copy import deepcopy
 import math
 
 from .refinement_diffraction_observation import DiffractionReference, _require, _validate
-from .metal.fdp import audit_reflections
-from .metal.xyz import audit_phases
+from .metal._diffraction_audit import audit_reflections, audit_phases
 from .refinement_parameter_scope import scope_digest
 
 
