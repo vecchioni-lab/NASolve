@@ -37,7 +37,7 @@ def bind_scope(source, model, *, expected_scattering, xyz_indices, adp_groups,
     from iotbx import pdb
     _need(type(source) is bytes, 'Require exact source PDB bytes')
     source_input = pdb.input(source_info='parameter-scope source', lines=source.decode('ascii').splitlines())
-    hierarchy = source_input.construct_hierarchy()
+    hierarchy = source_input.construct_hierarchy(sort_atoms=False)
     _need(hierarchy.models_size() == 1 and model.get_hierarchy().models_size() == 1,
           'Require one explicit model')
     original = list(hierarchy.atoms())

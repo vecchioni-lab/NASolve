@@ -1,6 +1,6 @@
 # Post-merge metal-coordination roadmap
 
-Updated **27 November 2026** after registered original publication and relocated readback. Working
+Updated **27 November 2026** after registered publication and explicit retained-phase binding. Working
 branch **Alder**; the earlier forward-queue audit is retained at `60a1f084`. The feature milestones
 **A01–A09** below remain explicitly post-merge work; A09 follows the main build.
 Merge qualification, scientific acceptance and feature completion are separate.
@@ -114,8 +114,8 @@ numbered child must carry genuinely admitted FT source data/Free-R/AutoSol HL,
 prepared restraints and both crystal links through reciprocal XYZ/DNA group-B
 execution, protected Hg B/Q/f′/f″, exact written return and inspectable maps. The
 compact relocated worker has now passed real zero-cycle initialization; this
-prerequisite does not close the milestone. Explicit external-phase admission and
-a versioned numbered mixed policy remain. Reuse the existing parent, writer and
+prerequisite does not close the milestone. Explicit external-phase input binding
+is now qualified; a versioned numbered mixed policy remains. Reuse the existing parent, writer and
 process owners, including an immutable input declaration that survives legitimate
 registry updates. [Acceptance boundary and evidence](metal-ordinary-receiving.md#compact-source-bound-worker--27-november).
 
@@ -144,14 +144,22 @@ relocated readback (47.79→10.50 MB). The old held request retains zero attempt
 survive ordinary checkpoint/Coot/model and relocated installed readers. The
 checkpoint remains REVIEW; the two image bonds are still physically open at
 3.241/3.081 Å. This closes publication mechanics, not A01 science.
-**Next scope deliberate fresh AutoSol metal/phase binding**, followed by phased
-numbered image-force execution. Reuse Cedar's selected-site reference and exact
-phase-label owners, with an explicit free-metal declaration. The
-standard I/Br/Se AutoSol gate is not integrated free-metal screening. Reuse Cedar 025561e1
+**Retained Hg AutoSol input binding now passes:** the fresh original MR model,
+observations and sequence exactly match the saved producer. A new explicit
+schema-2 request binds 1,151 HL/observation rows and 59 original Free-R assignments
+while preserving the unphased parent and experimental provenance. Raw HA
+occupancy 1.6 is discovery only. Genuine and relocated installed reads pass;
+source/installed panels each pass 130 cases plus 42 subtests. The 432,745-byte
+input review avoids another dataset clone or identical AutoSol search.
+**Next scope: explicit Hg placement, then phased numbered image-force execution.**
+Reuse Cedar's selected-site reference and exact phase-label owners. The standard
+I/Br/Se AutoSol gate is not integrated free-metal screening for new datasets.
+Mixed-species producer admission needs a later explicit extension. Reuse Cedar 025561e1
 for the full-model compiler handoff; do not reimplement or recompile it.
 [Fresh construction evidence](metal-ordinary-receiving.md#genuine-ordinary-ft-construction--27-november-afternoon).
-The published original supplies an ordinary REVIEW parent; phase admission,
-applied image forces and scientific acceptance remain open.
+The published original supplies an ordinary REVIEW parent; the separate explicit
+phase input binds without upgrading that parent. Numbered execution, applied
+image forces and scientific acceptance remain open.
 [Implementation boundary](metal-ordinary-receiving.md#registered-phosphate-context-before-preparation--27-november).
 
 Only two next decisions govern the near-term work:

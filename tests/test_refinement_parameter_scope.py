@@ -215,7 +215,10 @@ def binding_objects(monkeypatch, scattering_type, element):
         original.append(NS(id_str=lambda r=row: r['label'], element=row['scattering_type'],
             xyz=row['xyz'], b=row['B'], occ=row['Q'], uij_is_defined=lambda: False))
     hierarchy = NS(models_size=lambda: 1, atoms=lambda: original)
-    parser = NS(construct_hierarchy=lambda: hierarchy)
+    def construct_hierarchy(*, sort_atoms):
+        assert sort_atoms is False
+        return hierarchy
+    parser = NS(construct_hierarchy=construct_hierarchy)
     monkeypatch.setitem(sys.modules, 'iotbx', NS(pdb=NS(input=lambda **kw: parser)))
     model = NS(get_hierarchy=lambda: hierarchy, get_xray_structure=lambda: xs)
     refs = [{k: r[k] for k in ('label', 'scattering_type', 'f_prime', 'f_double_prime')}

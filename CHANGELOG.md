@@ -8,6 +8,18 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Bind retained AutoSol evidence without changing an ordinary parent
+
+- Add opt-in mixed-parent request schema 2 with an explicit external AutoSol
+  source policy. Verify the original MR model, observations including Free-R,
+  sequence, recorded controls, HL quartet and heavy-atom output before binding.
+  Preserve the parent's absent phase state and experimental producer scope;
+  raw heavy-atom discovery occupancies are not quantitative Q values.
+- Retain schema-1 approved-parent behavior and all existing execution/default
+  gates. This reader does not place metals, run refinement or approve a result.
+  Native source inspection now preserves original atom order, matching the
+  refinement policy and avoiding false identity failures at unsorted nucleotides.
+
 ### Publish original registered preparations with explicit crystal topology
 
 - The explicitly qualified original registered request can now publish a normal

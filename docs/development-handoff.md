@@ -23,7 +23,7 @@ validators agree, including a relocated installed read with original paths denie
 The checkpoint is REVIEW. Its image O3′–P distances are still 3.241/3.081 Å; no
 mercury, new coordinate fit or f″ measurement is implied.
 
-The latest change passes **185 focused cases / 38 subtests** and **81 installed
+The publication change passes **185 focused cases / 38 subtests** and **81 installed
 cases**; all 14 new regressions fail at the previous candidate. The real cold
 publication took 34.40 s; relocated readback 24.95 s. All 74 source dataset and
 74 source request files remain exact. The 15.43 MB clone reuses compact archived
@@ -31,17 +31,32 @@ native evidence (Phenix 2.2.1-6174); packaging scratch retirement recovered 30.8
 No full suite. Source changes remain on the isolated receiving candidate, with
 active Alder delivery and reconciliation of Rowan's fitted-evidence hook separate.
 
-**Next:** explicit fresh free-metal AutoSol/phase binding, then a numbered
-XYZ/DNA group-B child with both image forces. Reuse the existing selected-model
-site-reference and phase-label owners. A01 remains partial and A02 gated;
-starting B values cannot feed quantitation. Do not repeat completed preparation,
-publication or archive checks without a changed input or unresolved question.
+The retained Hg AutoSol inputs match the fresh original MR/data/sequence exactly,
+so no repeat search is needed for this FT case. Explicit schema-2 external-phase
+binding now passes with 858 atoms, 42 DNA B groups, 1,151 observation/HL rows and
+59 original Free-R assignments. The parent stays unchanged and unphased; the
+new request keeps experimental provenance and raw HA occupancy 1.6 as discovery
+only. Source/installed panels each pass 130 cases plus 42 subtests. Genuine
+binding takes 25.06 s; installed relocation takes 26.90 s with original paths
+denied (223 installed modules). Three positive regressions fail at f7fdc559.
+The order regression fixes a reader sorting 19 D:1 atoms; model bytes are unchanged.
+Only 432,745 bytes of new input-review evidence are retained; 31.24 MB of owned
+package scratch was removed. No optimizer or full suite.
+
+**Next:** declare Hg placement using the retained discovery and selected-model/
+image owners, then a numbered XYZ/DNA group-B child with both image forces.
+Freeze the new policy and output lineage through the existing execution owners.
+A01 remains partial and A02 gated; starting B values cannot feed quantitation.
+Do not repeat completed preparation, publication, phase binding or archive checks
+without a changed input or unresolved question. New-dataset free-metal screening
+and mixed-species external producers remain separate work.
 
 [Exact evidence, changed APIs, compatibility and limits](metal-ordinary-receiving.md#current-a01-registered-original-publication--27-november-evening).
 Current checkout: `ScienceCheckouts/Hazel/2026-11-27_ft-registered-publication/index.html`
-under the shared GitHub workspace: six files, 263 KB, a constellation view of both
+under the shared GitHub workspace: a constellation view of both
 open junctions and compact measured/unchanged/not-measured fields. The earlier
 ordinary-construction checkout remains available for the focal-base comparison.
+The `phasing.html` addendum records the final input-binding result and its limits.
 
 ## Compact mixed worker qualification — 27 November
 

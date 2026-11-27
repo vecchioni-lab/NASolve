@@ -60,10 +60,82 @@ source intake-only request stays untouched. Installed-test/transport scratch
 retirement recovered **30.80 MB**. Generated structures, reflections, native
 evidence, test captures and checkouts are local-only and excluded from Git.
 
-**Next:** reuse the selected-model AutoSol/phase owners to scope an explicit
-free-metal discovery request, then carry that fresh phase/site source into the
-numbered XYZ/DNA group-B route. Neither the current empty FT frame nor the old
-private Hg control supplies a scientifically accepted phased parent.
+### Retained Hg phasing has the same input origin
+
+The subsequent prior-work check (A917) establishes exact agreement between the
+new parent's original Phaser model and the retained Hg AutoSol producer input:
+model `604d480d…b0df5`, observations `500eceff…740a2`, and canonical sequence
+`ecf7fe3c…444d`. Hg identity, wavelength **0.920085 Å**, recorded command and native
+effective settings agree; no site count was supplied. Output checksums match the
+original receipt, including its one discovered Hg. The selected HLAM/HLBM/HLCM/HLDM
+quartet covers exactly **1,151** merged amplitude rows; **59** original FreeR_flag
+test-0 assignments remain authoritative. No flags are imported from AutoSol.
+The native libraries are Phenix 2.2.1-6174; no process or new phase file was needed.
+Evidence: `a01-registered-publication-20261127-01/autosol-source-agreement.json`.
+
+This retires an identical AutoSol repeat. It does not upgrade the old
+`EXPERIMENT_ONLY` result into an ordinary approved run. Its raw HA occupancy
+**1.6** remains discovery provenance and must not initialize quantitative Q as an
+occupancy fraction. MR-assisted phases are not independent anomalous validation.
+The first comparison scripts needed corrections to sequence-origin metadata,
+untyped PHIL scalar extraction and JSON tuple/list normalization; their logs are
+retained and no scientific files were changed.
+
+### Explicit external AutoSol binding — 27 November late evening
+
+The external-phase consumer now implements the previously documented route:
+mixed-parent request schema **2**, policy
+`ordinary-mixed-external-autosol-binding-v2`, with source declaration
+`external-autosol-rehearsal-source-v1`. Schema 1 still requires the parent's
+approved phases. Schema 2 instead requires an unphased parent and seven explicit
+checksummed source roles: producer, effective parameters, original MR model,
+observations, sequence, phases and heavy atoms. Historical command paths remain
+text, never input lookup locations. Conflicting parent phases, changed source
+hashes/Free-R, wrong labels, species, wavelength or native controls refuse.
+
+The genuine 858-atom FT parent now binds its 42 DNA B groups and all
+1,151 observations/HL rows with 59 original free assignments in **25.06 s**.
+The parent report, registry, preparation and request remain byte-identical and
+unphased. Only the new mixed request declares external phases. Its receipt keeps
+`EXPERIMENT_ONLY`, raw HA occupancy 1.6 and unassessed scientific acceptance.
+No Hg was inserted; no optimizer or numbered refinement was run. The new input
+review occupies **432,745 bytes** and reuses the existing parent instead of
+cloning another dataset.
+
+This real read exposed an inspection defect: `construct_hierarchy()` sorted
+19 D:1 atoms while the native x-ray structure and writer preserve source order.
+Both source-inspection readers now use `sort_atoms=False`. A deliberately
+unsorted nucleotide regression fails before and passes after; no stored model
+or atom was changed. Three positive binding/relocation/order regressions fail
+at `f7fdc559`; the focused source and installed panels each pass **130 cases
+plus 42 subtests**. Exact final portability results and commands are retained in
+`a01-external-phasing-20261127-01/package-result.json` and
+`package-commands.json`; methods **A918–A920**. Native libraries are Phenix
+**2.2.1-6174**. Library import makes a macOS memory probe; subprocess access is
+denied during binding. This is input validation, not scientific execution.
+The installed genuine read passes in **26.90 s**, with 223 NASolve modules from
+the wheel, original science/source paths denied and the old transport removed.
+All source dataset files remain exact. The 15.86 MB temporary transport and
+package scratch were removed after verification, retiring **31.24 MB** in total.
+
+Changed code: the new `refinement_external_autosol` reader, the versioned
+`refinement_mixed_parent` join and two native atom-order readers. New regression
+modules cover external source binding and native order; the existing scope mock
+also asserts unsorted construction. No checkpoint schema or default changes;
+old readers refuse the explicit new mixed-request policy, while v1 requests
+retain their behavior. No historical producer is upgraded. Generated science,
+requests, logs, package captures and checkouts remain local and excluded from Git.
+The original failed harness logs are retained: source atom order, then a blocked
+library-import memory probe. Neither failure changed scientific files.
+
+**Next:** use the retained Hg discovery and selected-model/image owners to make
+an explicit metal-placement hypothesis, then freeze a versioned numbered mixed
+child with both image forces, open XYZ/DNA group-B and protected Hg B/Q/f′/f″.
+Its execution/output/process closure and scientific geometry acceptance remain
+open. Do not repeat AutoSol with identical inputs or reread these bindings merely
+to fill time. Mixed-species producer receipts need a later explicit extension.
+Integrated free-metal screening is still needed for new datasets; the standard
+I/Br/Se gate is not broadened by reusing this exact retained source.
 
 <a id="current-a01-owned-registered-preparation--27-november-checkout"></a>
 

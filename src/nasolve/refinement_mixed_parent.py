@@ -24,6 +24,7 @@ from .refinement_mixed_runtime import MixedRuntimeGuard
 from .refinement_mixed_source_guard import SourceMixedGuard
 
 POLICY_ID = 'ordinary-mixed-parent-binding-v1'
+EXTERNAL_POLICY_ID = 'ordinary-mixed-external-autosol-binding-v2'
 
 
 def _need(value, message):
@@ -69,9 +70,13 @@ def _read_parent(run, request):
     sources['report'] = _reference(run / 'report.json', run)
     sources['registry'] = _reference(registry_path(run), run) if before[1] is not None else None
     _check_original_sources(run, report, paths, sources)
-    _need(sources['phases'] is not None, 'Mixed MLHL parent requires approved AutoSol phases')
-    _need(paths['phase_metadata']['labels'] == request['selectors']['phase_labels'],
-          'Request phase labels differ from approved AutoSol source')
+    if request['policy_id'] == EXTERNAL_POLICY_ID:
+        _need(sources['phases'] is None and paths['phase_metadata'] is None,
+              'External AutoSol cannot replace or conflict with parent phases')
+    else:
+        _need(sources['phases'] is not None, 'Mixed MLHL parent requires approved AutoSol phases')
+        _need(paths['phase_metadata']['labels'] == request['selectors']['phase_labels'],
+              'Request phase labels differ from approved AutoSol source')
     # Compare resolved identities as well as bytes; equal bytes at another path
     # do not establish the same parent. Historical provenance fields are ignored.
     declared = request['parent']
@@ -93,11 +98,12 @@ def _read_parent(run, request):
 def bind_mixed_parent(run, *, request_reference):
     """Bind an exact ordinary checkpoint, child policy, scope and source arrays.
 
-    The explicit request has this module's policy ID and schema 1. All files use
+    Schema 1 uses the parent's approved phases; explicit schema 2 verifies a
+    retained AutoSol rehearsal against an otherwise unphased parent. All files use
     existing checksummed run/dataset/repository references. The parent is read
     through the ordinary registry owner, including its checked-execution reader.
     A missing registry is allowed only when that owner derives a valid PostMR
-    root. An absent report, unapproved HL or private fit directory cannot enter.
+    root. An absent report, undeclared HL or private fit directory cannot enter.
 
     Return a BoundMixedParent with derived policy bytes and a guard factory.
     The existing execution owner must freeze these exact inputs/policy and retain
@@ -108,14 +114,25 @@ def bind_mixed_parent(run, *, request_reference):
     raw = request_path.read_bytes()
     _need(sha256(raw).hexdigest() == request_reference['sha256'], 'Mixed request changed during read')
     request = json.loads(raw)
-    _fields(request, 'schema_version policy_id checkpoint_id parent selectors scope policy runtime', 'mixed request')
-    _need(type(request['schema_version']) is int and request['schema_version'] == 1
-          and request['policy_id'] == POLICY_ID, 'Unsupported mixed parent request')
+    external = request.get('policy_id') == EXTERNAL_POLICY_ID
+    _fields(request, 'schema_version policy_id checkpoint_id parent selectors scope policy runtime'
+            + (' external_autosol' if external else ''), 'mixed request')
+    _need(type(request['schema_version']) is int and request['schema_version'] == (2 if external else 1)
+          and request['policy_id'] in {POLICY_ID, EXTERNAL_POLICY_ID}, 'Unsupported mixed parent request')
     _need(isinstance(request['checkpoint_id'], str) and request['checkpoint_id'], 'Require exact parent checkpoint ID')
     _selectors(request['selectors'])
     _fields(request['policy'], 'source bindings', 'child policy')
     _fields(request['runtime'], 'cell_roundoff_ulps witness_native_normalization', 'runtime')
     before, paths, sources = _read_parent(run, request)
+    external_review = None
+    parent_sources = deepcopy(sources)
+    if external:
+        from .refinement_external_autosol import review_external_autosol
+        phase, external_review = review_external_autosol(run, request['external_autosol'],
+            report=json.loads(before[0]), observations=paths['observations'],
+            phase_labels=request['selectors']['phase_labels'])
+        paths = dict(paths, phases=phase)
+        sources = dict(sources, phases=_reference(phase, run))
     scope = ParameterScope(request['scope'], expected_sha256=scope_digest(request['scope']))
     source = paths['model'].read_bytes()
     _need(scope.record()['source_model_sha256'] == sources['model']['sha256'], 'Scope differs from parent model')
@@ -159,8 +176,13 @@ def bind_mixed_parent(run, *, request_reference):
               'Child policy changed')
         _check_import_unchanged(run, before, paths, sources)
         _read_parent(run, request)  # Revalidate checked ancestry as well as its direct files.
+        if external:
+            _, reviewed = review_external_autosol(run, request['external_autosol'],
+                report=json.loads(before[0]), observations=paths['observations'],
+                phase_labels=request['selectors']['phase_labels'])
+            _need(reviewed == external_review, 'External AutoSol evidence changed')
     recheck()
-    receipt = dict(schema_version=1, policy_id=POLICY_ID, status='BOUND_NOT_EXECUTED',
+    receipt = dict(schema_version=request['schema_version'], policy_id=request['policy_id'], status='BOUND_NOT_EXECUTED',
         request=deepcopy(request_reference), checkpoint_id=request['checkpoint_id'], sources=sources,
         selectors=request['selectors'], scope_sha256=scope_digest(scope.record()),
         diffraction_sha256=scope_digest(record), file_derivation=file_receipt, composition=composition,
@@ -168,6 +190,9 @@ def bind_mixed_parent(run, *, request_reference):
         phases=phases['count'], source_cell=list(arrays.crystal.unit_cell().parameters()),
         source_space_group=str(arrays.crystal.space_group_info()), scientific_approval='NOT_RUN',
         limit='Input/guard binding only; existing owner must freeze policy, forces, output and process closure')
+    if external:
+        receipt.update(parent_sources=parent_sources, external_autosol=external_review,
+                       phase_origin='external-declared-autosol')
     return BoundMixedParent(policy, receipt, scope, diffraction, arrays.crystal, source, recheck, request['runtime'])
 
 

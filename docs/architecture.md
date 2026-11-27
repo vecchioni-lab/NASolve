@@ -1922,6 +1922,21 @@ preparation receipt; `PostMRResult.readyset_log` is optional on that route.
 No diagnostic proof is replayed merely to obtain the finished attempt number.
 Default PostMR and campaign preparation keep their existing route.
 
+### Explicit external AutoSol input binding
+
+`refinement_mixed_parent` schema 1 uses approved phases inherited from its
+ordinary checkpoint. Opt-in schema 2 instead binds a separately declared retained
+AutoSol rehearsal to an unphased parent. `refinement_external_autosol` verifies
+seven anchored source roles, exact original MR/observation/sequence checksums,
+recorded/native controls and the saved HL/heavy-atom outputs. Existing indexed
+diffraction readers retain original Free-R assignments. Historical command paths
+are provenance only. The original parent stays unphased; the receipt records
+external phase origin and experimental producer scope. Raw discovery occupancy
+is never converted into quantitative Q. The reader and existing runtime guard do
+not create a numbered child, apply image forces or qualify a scientific endpoint.
+Schema 1/default behavior is unchanged; older readers refuse schema 2. Native
+source inspection preserves atom order to agree with the unsorted writer policy.
+
 
 ### Future graphical checkpoint-tree view
 

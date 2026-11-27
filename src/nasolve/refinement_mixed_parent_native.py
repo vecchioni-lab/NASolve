@@ -29,7 +29,7 @@ def check_policy(policy, source, scope, paths, selectors):
     if p.group_anomalous.find_automatically:
         raise ValueError('Mixed child requires declared fixed scattering groups')
     inp = pdb.input(source_info='ordinary mixed parent', lines=source.decode('ascii').splitlines())
-    hierarchy = inp.construct_hierarchy()
+    hierarchy = inp.construct_hierarchy(sort_atoms=False)
     xs = inp.xray_structure_simple()
     cache = hierarchy.atom_selection_cache()
     seen = set()
