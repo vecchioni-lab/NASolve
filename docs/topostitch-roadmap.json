@@ -1283,14 +1283,15 @@
         "W299 binds a complete freshly Cedar-inspected phosphate group to an exactly replayed preview, preserving logical/coordinate sites, strand IDs and separate native/display operators. Genuine two-link parent correspondence, 111 source/111 relocated checks and full Willow regression pass; no new force, fit or checkpoint authority.",
         "W300 completes ordinary refine-003 to refine-004 with both inherited phosphate groups, exact child descent and freshly bound unreviewed recut. All862 atom identities and original parent survive, child unselected. Local geometry remains mixed; bounded restart evidence only.",
         "W301 maintains exact parent/direct refinement-child cut refresh through existing owners, preserving all declared connections and explicit/forest choices with fresh UNREVIEWED state. Genuine W300 replay reproduces862 atoms and both links; 177 source/installed checks and full Willow regression pass. No new fit or chemical acceptance.",
-        "W302 rederives saved refreshes and every packet byte through the existing producer before graphical consumption. Real child inspector preserves862 atoms/edges, physical/image movement distinction and fresh-review status. Forged claims, substituted valid cuts and stale contexts refuse; no fit or selection."
+        "W302 rederives saved refreshes and every packet byte through the existing producer before graphical consumption. Real child inspector preserves862 atoms/edges, physical/image movement distinction and fresh-review status. Forged claims, substituted valid cuts and stale contexts refuse; no fit or selection.",
+        "W303 compares two cuts of the same genuine refined child with the existing preference owner;862 atoms/two connections retained, no physical movement or invented review. Image-cycle limitation made explicit."
       ],
       "acceptance": [
         "Keep true termini/nicks distinct from ASU seams; preserve continuation phosphates and forbid automatic terminal OP3 chemistry caused only by serialization.",
         "Qualify native bonds, angles, planes and nonbonded behavior at the seam. Separate any required coordinate repair into a new S-track child; successful recutting itself cannot deform the crystal.",
         "Retain declared periodic P/OP1/OP2 chemistry independently of partner resolution; emit no symmetry bond alone while complete phosphate-angle enforcement is unqualified."
       ],
-      "next_action": "W303: reuse existing same-child cut comparison/preference owners for the original-ASU versus retained-cut choice on W300 refine-004. Keep preference distinct from approval/selection, bind exact child context and preserve unchanged chemistry. Audit remaining persistent operation/edit/refine gaps without duplicating producer/readback/view owners. Any further geometry recovery experiment must ask a new question and reuse the saved baseline.",
+      "next_action": "W304: compare a three-cycle ordinary sibling with saved W300 one-cycle control from the same genuine PDU parent; audit inputs, Free membership, local geometry and saved maps. Then specify persistent human operation/edit/refine gap without rebuilding existing preview or comparison owners.",
       "evidence": [
         "E_PINE_TEST_BANK",
         "E_NATIVE_REPRESENTATION_SEAMS",
@@ -1315,14 +1316,15 @@
         "E_JOINT_RECUT_BINDING",
         "E_ORDINARY_CHILD_RECUT",
         "E_CHECKPOINT_RECUT_REFRESH",
-        "E_SAVED_RECUT_READBACK"
+        "E_SAVED_RECUT_READBACK",
+        "E_SAME_CHILD_CUT_CHOICE"
       ],
       "last_audit": {
         "date": "2026-11-27",
         "code_commit": "fe2d158192a7cd53705025fc2fc65078678975ff",
         "reviewer": "Linden",
-        "human_update": 302,
-        "scope": "Saved readback and existing inspector qualified; persistent human workflow and full seam acceptance remain open"
+        "human_update": 303,
+        "scope": "Concrete same-child cut choice; scientific acceptance and persistent operation remain open"
       }
     },
     {
@@ -1337,26 +1339,28 @@
       "delivered": [
         "W300 completes ordinary refine-003 to refine-004 with both inherited phosphate groups, exact child descent and freshly bound unreviewed recut. All862 atom identities and original parent survive, child unselected. Local geometry remains mixed; bounded restart evidence only.",
         "W301 maintains exact parent/direct refinement-child cut refresh through existing owners, preserving all declared connections and explicit/forest choices with fresh UNREVIEWED state. Genuine W300 replay reproduces862 atoms and both links; 177 source/installed checks and full Willow regression pass. No new fit or chemical acceptance.",
-        "W302 rederives saved refreshes and every packet byte through the existing producer before graphical consumption. Real child inspector preserves862 atoms/edges, physical/image movement distinction and fresh-review status. Forged claims, substituted valid cuts and stale contexts refuse; no fit or selection."
+        "W302 rederives saved refreshes and every packet byte through the existing producer before graphical consumption. Real child inspector preserves862 atoms/edges, physical/image movement distinction and fresh-review status. Forged claims, substituted valid cuts and stale contexts refuse; no fit or selection.",
+        "W303 compares two cuts of the same genuine refined child with the existing preference owner;862 atoms/two connections retained, no physical movement or invented review. Image-cycle limitation made explicit."
       ],
       "acceptance": [
         "Use the shared model tree and exact selection/Coot APIs; keep inspect, select and approve distinct, preserve current choice and return refinement diagnostics to the same session.",
         "Graphical actions bind source hashes and show actual nicks/seams/mates. Test stale views, competing choices, interrupted actions, manual imports and relocation without duplicating campaign/checkpoint machinery.",
         "Expose editable Pine periodic connectivity beyond the ASU, preserving prior user choices and exact logical/image mappings across reslicing or explicitly marking unresolved mappings. Keep intent, proximity and enforcement support separate."
       ],
-      "next_action": "W303: reuse existing same-child cut comparison/preference owners for the original-ASU versus retained-cut choice on W300 refine-004. Keep preference distinct from approval/selection, bind exact child context and preserve unchanged chemistry. Audit remaining persistent operation/edit/refine gaps without duplicating producer/readback/view owners. Any further geometry recovery experiment must ask a new question and reuse the saved baseline.",
+      "next_action": "W304: compare a three-cycle ordinary sibling with saved W300 one-cycle control from the same genuine PDU parent; audit inputs, Free membership, local geometry and saved maps. Then specify persistent human operation/edit/refine gap without rebuilding existing preview or comparison owners.",
       "evidence": [
         "E_WILLOW_PINE_DOC_AUDIT",
         "E_ORDINARY_CHILD_RECUT",
         "E_CHECKPOINT_RECUT_REFRESH",
-        "E_SAVED_RECUT_READBACK"
+        "E_SAVED_RECUT_READBACK",
+        "E_SAME_CHILD_CUT_CHOICE"
       ],
       "last_audit": {
         "date": "2026-11-27",
         "code_commit": "fe2d158192a7cd53705025fc2fc65078678975ff",
         "reviewer": "Linden",
-        "human_update": 302,
-        "scope": "Saved readback and existing inspector qualified; persistent human workflow and full seam acceptance remain open"
+        "human_update": 303,
+        "scope": "Concrete same-child cut choice; scientific acceptance and persistent operation remain open"
       }
     },
     {
@@ -10552,6 +10556,35 @@
           "size": 211
         }
       ]
+    },
+    "E_SAME_CHILD_CUT_CHOICE": {
+      "kind": "Same-child ASU cut comparison",
+      "date": "2026-11-27",
+      "human_update": 303,
+      "code_commit": "fe2d158192a7cd53705025fc2fc65078678975ff",
+      "reference": "docs/topostitch-periodic.md#w303--two-cuts-of-the-same-refined-molecule",
+      "result": "Existing comparison/preference owner presents original ASU and retained whole-C on the same862-atom child. D7\u2192C8 display gap32.146 \u00c5 becomes1.658 \u00c5 with unchanged physical image geometry. One nonidentity cycle persists. No fit, selection or fabricated human preference.",
+      "limitation": "Representation only; neither physical gap repair nor assigned physical oligos. Browser interaction not newly executed; persistent edit/refine/adoption still open.",
+      "artifacts": [
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w303-child-cut-choice/audit.json",
+          "sha256": "d96ef360917071c98f7f05216484f61c3c27de21ba9304e2efe0f5145557e13a",
+          "size": 7427
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w303-child-cut-choice/audit-command.json",
+          "sha256": "9aab2c753c8d412251c4d99cbad9506bc7c2558eb33b728f55a55f048bc47222",
+          "size": 749
+        },
+        {
+          "anchor": "NASolve",
+          "path": "branch-artifacts/willow/w303-child-cut-choice/verification.json",
+          "sha256": "fcbd21ab23729bb385b298847a8c4a3318014836793039453fd880410313436a",
+          "size": 1192
+        }
+      ]
     }
   },
   "benchmarks": [
@@ -10733,8 +10766,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 302,
-    "next": 303,
+    "current": 303,
+    "next": 304,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -12354,6 +12387,12 @@
       {
         "number": 302,
         "title": "Verify saved child-cut relationships before inspection",
+        "state": "RECORDED",
+        "code_commit": "fe2d158192a7cd53705025fc2fc65078678975ff"
+      },
+      {
+        "number": 303,
+        "title": "Compare two cuts of the same refined molecule",
         "state": "RECORDED",
         "code_commit": "fe2d158192a7cd53705025fc2fc65078678975ff"
       }

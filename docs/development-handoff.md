@@ -1,6 +1,6 @@
 # NASolve development handoff — Willow
 
-**W302 verified child-cut inspector, 2026-11-27.** Latest maintained code:
+**W303 same-child cut choice, 2026-11-27.** Latest maintained code:
 `fe2d158192a7cd53705025fc2fc65078678975ff`. Latest native preflight/refinement:
 **W300** (separate genuine ordinary parent); latest density audit: **W298**.
 The [audited roadmap](topostitch-roadmap.md) owns status and the next decision;
@@ -78,9 +78,13 @@ maintained fixed-weight product mode or recommended production weight.
    a fresh unreviewed proposal. **W302** now rederives saved refreshes against the
    genuine run and parent/child packets before graphical consumption; a sidecar
    alone remains insufficient. The inspector separates physical movement from
-   image shifts and requires fresh review. **Next:** use the existing same-child
-   cut comparison/preference owner for a scientist-facing choice, keeping
-   preference distinct from approval and selection. Existing same-source
+   image shifts and requires fresh review. **W303** now presents the original
+   ASU and retained whole-C cut of that exact child through the existing
+   comparison/preference owner. A 32.15 Å display gap becomes a local 1.658 Å
+   bond without physical motion; the B7→B1 cycle still needs an image edge.
+   Neither preference nor approval is fabricated. **Next:** audit ordinary
+   recovery beyond one cycle using the same genuine parent, then specify the
+   remaining persistent human edit/re-enter/refine gate. Existing same-source
    comparison restrictions remain unchanged. Do not build
    another refinement route. Use the genuine PDU ordinary parent with its proven data/thermal route.
    Use source-frame native refinement and

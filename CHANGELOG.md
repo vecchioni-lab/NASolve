@@ -17,6 +17,15 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### W303 — Compare two cuts of the same refined molecule
+
+- Reuse the existing comparison/preference inspector for the original ASU and
+  retained whole-C cut of the same genuine refinement child. All 862 atoms and
+  both periodic connections persist; no fit or molecular deformation.
+- Show why a 32.15 Å display gap can represent a 1.658 Å physical image bond,
+  and why a nonidentity cycle leaves an image connection in every vertex cut.
+  Preference remains separate from approval and checkpoint selection.
+
 ### W302 — Verify saved child-cut relationships before inspection
 
 - Recompute saved checkpoint refreshes through the maintained producer and

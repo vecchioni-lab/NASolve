@@ -15777,3 +15777,56 @@ saved preference semantics for a concrete scientist-facing comparison, with
 preference distinct from approval or current model selection. Then audit the
 remaining persistent operation/edit/refine lifecycle; do not duplicate the
 already qualified producer, reader or comparison owner.
+
+
+## W303 — Two cuts of the same refined molecule
+
+**2026-11-27; existing W302 code `fe2d158192a7cd53705025fc2fc65078678975ff`.**
+The original ASU and retained whole-C cut are compared on the exact same W300
+`refine-004` child and registered graph. The ordinary comparison/preference
+owner is reused unchanged. Both contain **862 atoms and 40 graph edges**;
+source run and prior packets remain unchanged and `postmr` stays selected.
+A saved human preference can be exported by the existing inspector, but none
+was fabricated here. Preference is not approval, application or model selection.
+
+| Link | Original ASU direct display gap | Whole-C direct display gap | Physical image distance in both |
+| --- | ---: | ---: | ---: |
+| B7→B1 |23.868201 Å|23.868201 Å|1.665991 Å|
+| D7→C8 |32.146140 Å|1.658048 Å|1.658048 Å|
+
+The declared periodic graph has one nonidentity cycle, root operator
+`-y,x-y,z`; its existing classifier reports ROTATION_AND_TRANSLATION. Changing
+vertex representatives cannot make every edge of that cycle identity at once.
+This is an algebraic property of the supplied periodic graph, **not** proof of a
+physical circular oligo or a newly assigned nick. A cut changes representation,
+not the physical molecule; it does not repair a distant end.
+
+The fixed-projection figure shows C/D backbone representatives and the precise
+D7→C8 image contact without alignment or exaggerated movement. The complete
+interactive comparison preserves both links and the entire atom inventory.
+The figure was visually reviewed, scene payload checked, and all output hashes
+recorded. Browser interaction was not newly executed; the already-qualified
+renderer and its normal Cut 1/Cut 2 controls are reused.
+
+**Validation:** exact checkpoint refresh readback, same-source comparison,
+source/run/packet immutability, embedded scene equality, atom/edge and image
+geometry checks pass. Phenix **2.2.1-6174** with full pinned Cedar
+`d3d71cde66ca3fe953c182773672fd5d5dbd3a8a` supplies read-only image interpretation;
+**no native refinement or new forces**. No code/schema change, so W302's full
+3,125-test qualification and relocated installation remain applicable without
+another identical suite. Local NASolve anchor:
+`branch-artifacts/willow/w303-child-cut-choice/`. Exact commands and hashes are
+in `audit-command.json` and `verification.json`; outer command:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B branch-artifacts/willow/w303-child-cut-choice/audit_launcher.py
+```
+
+`index.html`, `cut-choice.html` and `same-connection.png` are local science
+outputs, deliberately excluded from Git. Existing guides, roadmap and changelog
+are the only committed changes. P04/P05 remain PARTIAL: persistent reviewed
+operations and scientific seam acceptance are not established by this display.
+**Next W304:** a three-cycle ordinary sibling from the same genuine PDU/5W6W
+parent, reusing W300's one-cycle baseline. Keep exact input/runtime/Free context,
+report mixed geometry and maps, and retain both unselected children. Default
+native weight optimization is not a fixed-objective comparison.
