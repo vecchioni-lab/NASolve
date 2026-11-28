@@ -1,6 +1,6 @@
 # Post-merge metal-coordination roadmap
 
-Updated **27 November 2026** after registered publication and explicit retained-phase binding. Working
+Updated **28 November 2026** after released-main integration. Working
 branch **Alder**; the earlier forward-queue audit is retained at `60a1f084`. The feature milestones
 **A01–A09** below remain explicitly post-merge work; A09 follows the main build.
 Merge qualification, scientific acceptance and feature completion are separate.
@@ -14,12 +14,14 @@ No experiment, checkpoint or science checkout was removed by this audit.
 
 ## Current integration gate — 28 November
 
-Receive the released shared owners without losing the original registered
+Released main `c9127dda` is received without losing the original registered
 preparation, frozen workers or phase identities. The focused source checks and
 real retained-input replay are tracked in the [compatibility report](metal-release-compatibility.md).
 The historical assessor reader is repaired and the installed, relocated FT
-read is qualified; receive the actual released-main commit and deliver Alder
-before resuming Hg placement. This is delivery work; A01 remains partial,
+read is qualified. The final main delta is documentation only; 448 installed
+objects remain identical and the public interface checks pass. The local
+delivery receipt records the normal Alder push. Resume explicit Hg placement
+after delivery. This is integration work; A01 remains partial,
 A02 gated, and A01–A09 remain explicitly post-merge feature milestones.
 
 ## Original aim and usable entry points

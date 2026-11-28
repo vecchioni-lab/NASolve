@@ -9,9 +9,13 @@ still the single forward queue.
 The receiving history starts at published Alder `1efcd034`, preserves all 13
 first-parent receiving commits through `b1bb176f`, and integrates Cedar
 `02c61e9b`. Release candidate `29eaba73` is received in `85330f7a`; final Cedar
-`47caea97` is now integrated and qualified. The actual released-main merge and
-normal Alder push remain pending. The installed source matches every packaged
-file byte for byte; this is not yet a delivered-main claim.
+`47caea97` is integrated and qualified. Actual released main
+`c9127dda08b7158455a4f2407a5d643221bc5c41` (tree
+`9096e72a6350e3043ec5779114c20cb5029602ad`) is now received through a merge.
+Its delta from that Cedar candidate is four documentation files only. All 448
+installed code/data objects still match the previously qualified manifest.
+Normal Alder delivery is recorded separately in the local checkout receipt;
+the shared `main`, Pine and Cedar branch references are not changed here.
 
 Before reconciliation, Cedar's fitted-sugar and source-order APIs conflicted with
 Alder's explicit original registered request. The combined paths retain both
@@ -42,6 +46,7 @@ included in Git.
 | Final Cedar changed-owner installed panel | 147 passed, then all 35 public-data fixture cases passed after supplying installed reference data | Same native libraries and NARestraints 1.1.4 |
 | Release guide / inspector / CCD shuttle | 33 passed | Complete Python 3.12.14 release environment |
 | Final installed FT parent, phase and Coot binding after relocation | PASS, 70.49 s; 227 installed modules; 130 unchanged input files | Original NARestraints 1.1.3; original/build paths absent or denied |
+| Released-main guide and installed public interfaces | 2 source guide tests and 31 installed tests passed; all three command help checks passed | Python 3.12.14; NARestraints 1.1.4; disposable build removed |
 
 Each test command uses `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`, one numerical
 thread, `pytest -q -p no:cacheprovider`, an exclusive `--basetemp`, and a retained
@@ -89,7 +94,7 @@ The corrected receipt uses the original XML without rerunning those tests.
 
 The repository-local, ignored `branch-artifacts/Alder/release-compat-20261128-01/`
 contains start/source pins, conflict-resolution decisions, test commands/logs/XML,
-replay matrix and exact leaf differences. Reproducers and packaging continuations are local runners A922–A934
+replay matrix and exact leaf differences. Reproducers and packaging continuations are local runners A922–A936
 in `branch-artifacts/Alder/runners/`. These paths are workspace evidence, not
 operational references required by a committed scientific artifact.
 
@@ -99,10 +104,18 @@ declared dependencies; that relocated read passes there. An unrelated registered
 import was narrowed to its explicit topology role, with a fail-before regression.
 The later ordinary publication import still requires its installed dependencies.
 
-Receive the actual released-main SHA, verify its source delta against the
-qualified candidate, then fast-forward and push Alder with normal history. No
-schema migration, saved evidence rewrite, new refinement or automatic checkpoint
-selection is needed. Older compiler-specific evidence still requires its exact
+The released-main receipt retains Alder's Unreleased history above the shared
+0.2.0 section and keeps the released installation guide intact. Its unchanged
+runtime identity carries the qualified owner, metal and relocated genuine-input
+results; those expensive checks were not repeated. A fresh wheel also passes the
+bounded installed guide, crystal-end inspector and recorded-f″ CLI checks after
+removing its build tree, with no repository `src` fallback. Exact commands,
+module paths, XML, source pins and scratch retirement are retained in
+`released-main/result.json`; the source comparison is
+`released-main-source-equality.json`.
+
+No schema migration, saved evidence rewrite, new refinement or automatic
+checkpoint selection is needed. Older compiler-specific evidence still requires its exact
 recorded provider; current 1.1.4 is intentionally refused with an explanatory
 message on that old C80 record. Scientific follow-up remains explicit Hg placement
 and a numbered open XYZ/DNA group-B child with both crystal-image forces.

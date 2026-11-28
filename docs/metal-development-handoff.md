@@ -1,10 +1,12 @@
 # Metal development handoff — current state
 
-**28 November integration:** Alder now receives final Cedar `47caea97` on
-preserved merge history. Focused source/installed checks pass, including the
+**28 November integration:** Alder receives actual released main `c9127dda`
+after qualified Cedar `47caea97`, preserving its merge history. Focused source/installed checks pass, including the
 relocated FT parent, phase binding and Coot profile with its original provider.
 Cedar's reader fix preserves historical assessor identity; changed compiler
-providers still refuse. [Validation and pending main delivery](metal-release-compatibility.md).
+providers still refuse. The final main delta changes documentation only; all 448
+installed objects remain exact, with 2 guide and 31 installed public-interface
+tests passing. [Validation and delivery evidence](metal-release-compatibility.md).
 A01 remains partial; no new fit or f″ result is implied.
 
 Updated **27 November 2026** (fresh FT construction, owned preparation and archive readback). Active feature branch: **Alder**. The
@@ -26,7 +28,8 @@ invent a phased FT parent or add the missing numbered mixed child. Focused sourc
 checks pass 354 cases and installed checks pass 31 after build-source removal;
 all 215 parent files remain exact. See the [integration handoff](development-handoff.md#isolated-ordinary-owner-receiving-rehearsal--27-november)
 and `branch-artifacts/Alder/owner-integration-20261127-01/` for commands, retained
-failures and limits. A01 remains partial, A02 gated; active-branch delivery is separate.
+failures and limits. A01 remains partial and A02 gated; the later released-main
+receipt is recorded above.
 The roadmap now separates usable entry points, planned metal-screen behavior and
 Cedar/Willow/Alder authority; earlier experiment sections below retain their own
 scope and source pins. The docs-only audit ran no tests or fits. Local inventory
@@ -63,8 +66,8 @@ cases**; all 14 new regressions fail at the previous candidate. The real cold
 publication took 34.40 s; relocated readback 24.95 s. All 74 source dataset and
 74 source request files remain exact. The 15.43 MB clone reuses compact archived
 native evidence (Phenix 2.2.1-6174); packaging scratch retirement recovered 30.80 MB.
-No full suite. Source changes remain on the isolated receiving candidate, with
-active Alder delivery and reconciliation of Rowan's fitted-evidence hook separate.
+No full suite. This publication rehearsal preceded the final shared-owner
+reconciliation and released-main receipt recorded above.
 
 The retained Hg AutoSol inputs match the fresh original MR/data/sequence exactly,
 so no repeat search is needed for this FT case. Explicit schema-2 external-phase

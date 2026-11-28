@@ -3,10 +3,16 @@
 All notable user-visible, compatibility, schema, and reproducibility changes
 to NASolve are recorded here.
 
-The format follows Keep a Changelog. Until the first tagged release, historical
-entries are reconstructed from repository history.
+The format follows Keep a Changelog. Early entries were reconstructed from the
+repository history.
 
 ## [Unreleased]
+
+### Receive the released Pine and Cedar baseline on Alder
+
+- Preserve the metal feature history above the shared NASolve 0.2.0 release.
+  Receive the released installation and historical-provider guidance without
+  changing the qualified runtime objects or metal scientific policies.
 
 ### Keep metal web resources with their owning package
 
@@ -1232,7 +1238,638 @@ entries are reconstructed from repository history.
   regeneration, pruning permission or scientific acceptance. Existing run
   schemas, CLI behavior, source data and native workers remain unchanged.
 
-### Received Cedar source and sugar preparation
+### W145 — Expose the selected map's stage and checkpoint ancestry
+
+- Add optional, keyword-only `ViewProfile.map_origin` with the selected map's
+  stage, associated refinement checkpoint and ordered consuming checkpoints.
+  The existing resolver carries this identity without parsing display labels.
+- Preserve Coot paths, labels, checksum/observation refusals and positional API
+  compatibility, including legacy maps whose ancestor model is unavailable.
+  This is selection provenance, not proof of generating XYZ/ADPs, coefficient
+  policy or frame equivalence. No map generation, schema migration or GUI launch.
+
+
+### Integrate shared chemistry and storage with metal workflows
+
+- Qualify the integration using its completed full runtime execution and
+  reviewed test-only external-scope fixture correction with focused checks.
+  Preserve the original failed full result; no fresh all-green full is claimed.
+- Record exact input-packing feasibility through the shared storage owner;
+  complete-parent, native regeneration and retirement gates remain open.
+
+- Combine the existing qualified shared runtime/storage owners and metal tools
+  on one development base, retaining both replay and viewer package resources.
+- Preserve scoped chemistry/metal handoffs with one root integration queue;
+  retain focused development testing, full integration gates, science checkouts
+  and immutable evidence policies. Scientific acceptance and release remain open.
+- This integration changes no numerical policy or existing artifact schema;
+  historical readers/defaults and explicit opt-in boundaries remain in force.
+
+### Audit generalized ligand restraint delivery
+
+- Record exact source/effective/native local bond, angle and plane transfer in
+  retained FT_Hg controls, independent label-invariance/corruption checks and a
+  compact scientific checkout. Preserve the unresolved A01 geometry gate.
+- Make the chemistry/connectivity-based constructor requirement explicit: PDU
+  and related residues qualify a general mechanism, not residue-specific repairs.
+  This documentation update changes no runtime or native scientific policy.
+- Record a pinned Cedar/Alder compatibility delta: 166 focused tests and installed
+  recorder/compact-record replay, retaining explicit merge and scientific limits.
+
+### Project compact frozen-trial records without retiring evidence
+
+- Add explicit read-only `metal project-fdp-records` and `verify-fdp-records`
+  commands, sharing comparison bases/input descriptors while retaining complete
+  result summaries and distinct attempts in an additive version-1 projection.
+- Require full original source replay, portable references and bounded trial
+  preflight/output. Preserve unqualified science status and prohibit inferred
+  cache, materialization or retirement authority; existing trial files stay intact.
+- Measure single-metal and four-site examples, including the larger-than-target
+  environmental-B record, and record the remaining A04 integration boundary.
+- Qualify the frozen source with 6,432 tests and 276 subtests, installed
+  source-free real-data replay and source/data relocation; retain original science
+  and remove only verified owned test copies after completion.
+
+### Close storage and map-sampling qualification
+
+- Record the exact pinned full regression, installed/relocated Phenix sampling
+  agreement, independent chemistry readback and compact local science checkout.
+- Preserve the open FT_Hg geometry/f″ gates and explicit PDU scaffold limits;
+  qualification changes no capture policy, artifact schema or retention authority.
+
+### Share bounded periodic map sampling
+
+- Reuse one explicit radius/spacing sampler for ordinary and anomalous map
+  captures, with finite inputs and bounded candidate enumeration. Keep the
+  exact legacy sampling neighborhood and standalone native import support.
+- Preserve phase/Free-R/coefficient policies, defaults, evidence schemas and
+  legacy readers. The helper adds no map selection or scientific acceptance.
+
+### Record integration rehearsal and reproducible scientific figures
+
+- Document the pinned Cedar/Alder package rehearsal, affected-test outcomes,
+  independent ordinary-child chemistry review and remaining integration limits.
+- Preserve rendering settings and source provenance for scientific checkout
+  figures intended for later manuscript use. This documentation changes no
+  refinement, acceptance, artifact schema or retention policy.
+
+### Measure frozen anomalous-trial storage without changing runs
+
+- Add `metal inspect-fdp-storage` for explicit, bounded manifest/file integrity
+  inventory, exact repeated-content accounting and optional current-layout
+  campaign forecasts with explicit protected/scratch/reserve allowances.
+- Keep scientific replay, physical allocation, disk reservations and retirement
+  authority explicitly separate. Existing trial schemas and files stay unchanged;
+  the additive portable inventory report is version 1 and requires no migration.
+- Record the A04 implementation boundary and independently reviewed A01/PDU
+  coordination evidence; generated science and local reports remain excluded.
+
+### Document the bounded real-data normalization control
+
+- Record the matched one-cycle geometry-denominator intervention, exact baseline,
+  actual stopping and protected-state audits in the A01 handoff and roadmap.
+- Add a separate small local visual comparison while preserving the earlier
+  checkout. No production refinement, public schema, acceptance or pruning policy
+  changes; raw generated science remains excluded from Git.
+
+### Retain compact native XYZ weight-selection evidence
+
+- Capture actual native trial metrics, masks, fallback and chosen weight without
+  additional geometry/target evaluations or retained trial models. Audit the
+  selection arithmetic and matching native/sidecar evidence offline.
+- Keep native mixed-scope geometry metrics, trial-versus-final R factors and
+  single-trial bypass explicit; no eligibility, refinement, acceptance or pruning
+  policy changes. Legacy trials remain readable; additive schema-1 receipts need
+  the updated reader, with no migration of existing runs.
+- Bind public XYZ selection histories to the declared macrocycles and fixed-weight
+  protocol. Reject mismatched cycles, missing decisions and unexpected searches;
+  saved qualified native results and legacy results without receipts remain valid.
+
+### Record live metal-refinement and selector diagnostics
+
+- Separate the exact real-data evaluator replay from the earlier geometry-only
+  normalization failure; iteration limits and unproven causality remain explicit.
+- Record how pooled pair/covalent bond metrics force native automatic weight
+  selection into its Rfree fallback, with exact saved proxy arithmetic and limits.
+- Compare forced-search and 100/400-step controls, keeping selected versus
+  unselected optimizer failures, matched local maps, B/Q/f″ and held-out human
+  reference limitations explicit. Longer allowance is not monotonic improvement.
+- Record the exact passive selected-trial replay and its numerical limits; publish
+  a small local visual checkout with linked model/map provenance. No repair or
+  scientific acceptance is implied.
+- The scientific controls change no production refinement policy or pruning;
+  generated scientific evidence remains local. The separate passive receipt
+  addition is described above.
+
+
+### Keep lightweight scientific checkout records
+
+- Document small visual/table checkouts after substantial scientific work,
+  in the shared local `ScienceCheckouts/<agent>/` folder with dated entries.
+- Link the local metal inspection pack and preserve its measured/fixed-value
+  distinctions, scientific limits and source references. Generated science stays
+  local; no product behavior, artifact schema or migration changes.
+
+
+### Retain native metal XYZ optimizer stopping evidence
+
+- Record compact per-call native XYZ/ADP stopping reasons, errors, limits and
+  source fingerprints; audit matching sidecar/native evidence offline using the
+  shared conservative stopping classifier.
+- Preserve unknown convergence and internal-trial/selected-endpoint ambiguity.
+  A completed job or lower residual does not erase a native minimizer error.
+- Restore scoped observation on success/failure; keep old trials readable.
+  New additive receipts need the updated reader. No refinement setting, chemistry
+  target, scientific acceptance, automatic checkpoint selection or migration changes.
+- Document matched scale controls, exact same-site normalization history and a
+  bounded geometry-only isolation control; the open-fit scientific gate remains.
+  Generated science and paper extracts remain local; no pruning is enabled.
+
+
+### Record metal map and coordinate-boundary diagnostics
+
+- Compare saved exact maps in explicit endpoint/common frames; retain their
+  model-assisted, correlated-density and normalization limits.
+- Record recipe-off and full-frame preparation controls, protected state,
+  chirality and the subsequent open-fit failure to retain improved geometry.
+- Keep native final scaling and retained source-phosphate state as explicit
+  follow-ups. No public behavior, schema, chemistry target, default, model
+  adoption, pruning or migration changes.
+
+### Record bounded metal-refinement qualification and storage findings
+
+- Document matched iteration, macrocycle, phase-policy and structure-factor
+  controls with their remaining local-geometry and fit limitations; A01 remains
+  open and no fdp endpoint is automatically accepted.
+- Keep the separate geometry-only initialization experiment and its original-
+  profile child explicit. Record actual weights, protected state and lineage;
+  do not promote numerical or restraint-presence checks into scientific approval.
+- Add read-only storage findings to A04 planning: repeated coverage inventories
+  dominate the sampled geometry batch; small map files can remain useful.
+  No pruning, new default, artifact migration or runtime behavior change here.
+
+### Record an explicit minimizer allowance for metal XYZ trials
+
+- Add API-only `refinement_max_iterations` (1–200), separately from macrocycles
+  and anomalous minimization. Save it in the plan, emit native PHIL and audit the
+  actual value before and after refinement.
+- Omission preserves legacy plan/parameter/policy bytes; explicit-option trials
+  require the updated reader. Existing trials need no migration. No refinement
+  strategy, timeout, restraint target, frozen-fdp policy or default changes.
+- Retain scientific review and convergence limits; the option declares a budget
+  rather than choosing or accepting a solution. Generated diagnostics stay local.
+
+
+### Describe explicit metal recipes for shared native coverage review
+
+- Add an API-only declaration adapter for enabled metal-recipe distances and
+  angles. Bind a revalidated preview to the complete native atom inventory;
+  preserve the angle vertex, target, uncertainty and PHIL export precision.
+- Reject incomplete identities, ambiguous model mappings, nonidentity images,
+  segments and mismatched elements. No partner, chemistry or provider inference.
+- Return a schema-1 in-memory declaration, separately from native observation
+  and coverage proof. Shared native policy/observer ownership is unchanged;
+  this adapter never activates restraints or approves a scientific endpoint.
+- Existing stored artifacts, CLI paths and native defaults are unchanged;
+  no migration or automatic rollout is required. Scientific evidence stays local.
+
+
+### Reject contradictory captured metal ligand definitions
+
+- Reject duplicate component definitions that disagree on bond order or atom
+  charge, including conflicting duplicate bond rows or two order columns.
+  Missing metadata cannot silently replace a declared order/charge.
+- Recognize standard bond-order aliases and equivalent finite numeric charge
+  spellings when comparing definitions;
+  keep the original captured values and hashes. Single unambiguous resources,
+  including graph-only inputs, keep their existing representation.
+- No artifact schema or native refinement default changes. Ambiguous inputs
+  formerly resolved by resource order now require an explicit consistent bundle;
+  historical scientific files are not rewritten.
+
+
+### Compare signed cluster responses across matched frozen trials
+
+- Add `metal compare-fdp-count` and `metal verify-fdp-count-comparison` for
+  existing audited trials, with explicit cluster/site groups and no native jobs.
+- Retain Q-weighted and raw response sums, per-element equivalents, positive and
+  negative contributions, cancellation, B ranges and all site/occupancy values.
+  Compare one changed occupancy or fit setting only when other controls match.
+- Save immutable `metal-fdp-count-comparison-v1` schema-1 reports with full
+  offline replay. Changed geometry, B preparation, references, observations or
+  native protocols cannot be silently pooled. Old artifacts need no migration.
+- No count acceptance, convergence claim, checkpoint selection or GUI change is
+  introduced. Scientific data and generated reports remain local.
+
+### Inspect native metal trials with matching maps
+
+- Accept verified native XYZ candidates and individual frozen-fdp trials in the
+  local catalog; retain exact geometry, dataset and result ownership.
+- Add explicit Coot launch with isolated model/dictionary/map copies and load
+  receipts, plus bounded local 2mFo–DFc, mFo–DFc and anomalous map previews.
+- Show summed and occupancy-weighted responses for saved recipe-linked metal
+  groups. Preserve negative values and distinguish coefficient accounting from
+  an inferred atom count.
+- Expose source ligand chemistry, captured-dictionary discrepancies and editable
+  oxidation-state drafts. Automatic numerical target suggestions and persistent
+  scientific recipe edits remain pending qualification.
+- Existing artifacts need no migration. Native refinement, scientific acceptance
+  and checkpoint selection are unchanged; generated data remains local.
+
+### Documentation
+
+- Record the independently audited whole-base construction and matched native
+  comparison. Keep construction repair distinct from endpoint acceptance;
+  no refinement defaults, chemical targets or stored schemas change.
+
+- Audit the metal workspace and document index; separate superseded pause/Cedar
+  snapshots from the current A01 handoff. Preserve diagnostic paths and evidence;
+  no runtime or artifact schema changes.
+
+- Make the metal feature milestones explicitly post-merge and number them
+  A01–A08. Add a dedicated GUI co-design session and a reconstruction gate using
+  experimental inputs and general mechanics, with human solutions reserved for
+  assessment and extra priors/intervention recorded. Runtime behavior is unchanged.
+
+- Add the metal development roadmap and task-specific campaign storage plan:
+  shared pristine parents, lean frozen Q/f″ records, protected branch points,
+  measured map retention, recovery evidence levels and disk-budget gates.
+  These are planned capabilities; no existing scientific payload is removed.
+
+- Record the local open-refinement settings rehearsal and phase/B-export qualification gates; production protocols and schemas are unchanged.
+
+
+### Compare complete metal candidates across geometry branches
+
+- Add API-only grouped reviews of 2–32 verified native-XYZ/frozen-fdp endpoints.
+  Keep all fitted sites from a snapshot together with Q, B, f-double-prime,
+  expected values, signed response ratios and explicit B/environment provenance.
+- Retain separate geometry/anomalous R context, recipe residuals and available
+  source-bound maps. Require shared observations, flags, phases and native
+  protocols; disclose changed candidate assumptions without ranking a winner.
+- Add immutable schema-1 `metal-candidate-review-v1` bundles with offline replay
+  and relocation checks. Matched-geometry sensitivity, native workers, scan
+  seeds, previous artifacts and checkpoint selection remain unchanged.
+- Refine Doctor execution, convergence/count acceptance and GUI integration
+  remain separate work. Generated scientific evidence stays local.
+
+### Retain anomalous maps from frozen metal diagnostics
+
+- Add API-only `capture_anomalous_map=True` to frozen-fdp planning/execution.
+  Export ANOM/PHANOM from the completed native fit with explicit model-phase,
+  observed Bijvoet-difference and work-pair policy. Either free mate excludes
+  its pair from the map; missing mates are omitted. Refinement inputs stay intact.
+- Verify fitted-state invariance, pair membership, coefficient magnitude/MTZ
+  readback, labels, local samples and artifact checksums. No map score selects
+  a checkpoint or supplies an independent atom count.
+- Record optional `metal-fdp-anomalous-map-v1` evidence in schema-1 fdp bundles.
+  Default plans/results are unchanged; new worker fingerprints require current
+  seeds for new scan execution. Old bundles remain replayable without migration.
+- Write the actual dataset wavelength into new ordinary and anomalous map MTZs.
+  Earlier ordinary map files retain their library-default 1-Angstrom header;
+  use their saved plan metadata for wavelength, not that legacy map header.
+  No old artifact is rewritten. Map visualization and native metal Doctor
+  integration remain planned; generated scientific data stay out of Git.
+
+### Capture optional maps from completed metal XYZ refinements
+
+- Add API-only `capture_maps=True` to XYZ planning/execution. Export compact
+  2mFo-DFc and mFo-DFc coefficients from the active completed native fit without
+  reloading a PDB, updating scales or changing refinement. Omission preserves
+  legacy plans/results; failed captures retain their numbered attempt.
+- Audit work-only coefficient membership, native fitted-state invariance, exact
+  site identities, MTZ readback, artifact checksums and bounded local summaries.
+  Include actual amplitude/phase labels when captured; replay older records.
+- Report Rwork < 0.30, Rwork < Rfree and their gap as numerical context, never
+  structural acceptance. Keep Refine Doctor as the triage engine; native metal
+  checkpoint integration and map viewer controls remain planned.
+- Add optional `metal-xyz-maps-v1` evidence/results inside schema-1 XYZ bundles.
+  Frozen-fdp fitting, anomalous-map capture and ordinary AutoRefine/Doctor remain
+  unchanged. No private scientific artifacts are included in Git.
+
+### Declare and audit metal XYZ geometry/data weighting
+
+- Add optional API-only `xyz_weight_scale` to XYZ planning/execution. Explicit
+  scales record and audit the native experimental-weight multiplier plus fixed
+  companion controls before/after refinement; invalid values fail before trial
+  allocation. Omission preserves legacy plans, PHIL and offline replay.
+- Preserve numbered sibling lineages through refined-environment B preparation
+  and frozen-fdp fitting. No automatic weight search, geometry selection or count
+  acceptance is added. Existing fdp and scan policies remain unchanged.
+- Exercise controlled weight and rigid-placement probes on a local cluster;
+  retain residual geometry and mixed-sign f-double-prime concerns. Separate
+  map evaluation remains a private prototype, not an endpoint-map API.
+
+### Explain native metal-fit scaling and endpoint coordination residuals
+
+- Capture final complex Fmodel and native partition scales in new XYZ/fdp trials;
+  replay R factors and show reflection residuals separately from scale leverage.
+  Retain every observation and label leave-group scalar sensitivity as diagnostic
+  only, with no corrected R, automatic exclusion or scientific acceptance.
+- Add final recipe distance/angle measurements and sigma deviations to new XYZ
+  bundles, plus offline inspection of older endpoints. Keep inherited/nonbonded
+  geometry and native proxy qualification outside this report's scope.
+- Add optional `metal-fit-diagnostics-v1` evidence/results and
+  `metal-recipe-endpoint-v1` reports within schema-1 bundles; preserve old replay.
+  Native policies stay unchanged; changed worker fingerprints require a new seed
+  for further scan execution. No generated scientific data is included.
+
+
+### Share refined ligand B across cluster sites and audit native atom sorting
+
+- Add explicit `--metal-b-environments` / `metal_b_environments` declarations
+  for fitted cluster members, including interior metals without direct donors.
+  Retain separate base means and exact atom identities; create no implicit bonds,
+  occupancy ties or anomalous-parameter ties. Reject ambiguous assignments.
+- Capture shared preparation as `metal-environment-b-v2` inside schema-1 fdp
+  plans/results; preserve v1 replay and carry declarations through scans/counts
+  and matching. Native fitting remains unchanged.
+- Match native XYZ/ADP endpoints through exact atom-key bijections when Phenix
+  sorts records. Remap group membership and preserve all fixed-state audits;
+  reordered schema-1 results record the permutation. Keep failed attempts intact.
+- Exercise native cluster discovery and a prior-driven four-site hypothesis;
+  retain geometry, work/free residual and anomalous-response concerns. Do not
+  infer an accepted cluster count or enable automatic expansion.
+
+### Connect refined metal endpoints to frozen anomalous and count diagnostics
+
+- Accept an explicit verified XYZ/ADP endpoint as a frozen-fdp source, using its
+  refined base/donor B, exact coordinates, original anomalous data and phase
+  lineage. Require an explicit B policy for API calls; retain the CLI base-mean
+  default. Existing recipe-geometry inputs and old artifact replay are unchanged.
+- Add the schema-1 fdp parent variant `xyz_trial_id`; existing comparison/scan
+  mechanics preserve endpoint identity, B preparation and exact seed reuse.
+  Native protocol, phase objective and all source acceptance flags are unchanged.
+- Add offline `metal count-fdp` / `verify-fdp-count` and schema-1 count bundles:
+  explicit clusters versus unresolved proxies, Q-weighted coefficient sums,
+  element-specific references and conditional atom equivalents. Retain negative
+  and unavailable values; infer no integer count or automatic site placement.
+- Keep native cluster qualification, optimizer convergence, phase/B sensitivity,
+  shared cluster environments and GUI integration as explicit remaining work.
+
+### Import explicit metal restraint recipes and compact their review
+
+- Add offline `metal import-restraints`: inspect a supported add-only PHIL subset,
+  then explicitly map legacy selectors to immutable logical recipe nodes. Preserve
+  exact source, targets, sigma and ordered angle vertices; reject unsupported
+  semantics instead of guessing. Existing recipe schemas need no migration.
+- Add expandable read-only recipe inspection and term highlighting. Keep primary
+  structure/view controls visible; collapse filters, explanations and secondary
+  details. Collect trial row groups into one compact table per geometry while
+  retaining every source link and the Q/f-double-prime/expected/ratio columns.
+- Keep editing, native launch, scientific acceptance and checkpoint selection
+  outside the viewer. No changes to native refinement or frozen-fdp protocols.
+
+### Capture phase-restrained metal XYZ/ADP review endpoints
+
+- Add the API-only `metal.xyz.run_xyz` / `verify_xyz` adapter and immutable schema-1
+  `metal-xyz-trial` bundles. Preserve the verified hypothesis, original anomalous
+  data, explicit HL source, resources and native evidence; retain failed attempts.
+- Use the qualified Phenix 2.2.1-6174 MLHL geometry route with merged observations,
+  fixed structural Q/reference f-prime and zero f-double-prime for this step only.
+  Audit phase coefficients, reflection/Free-R membership, fixed atomic state,
+  crystal symmetry and full-precision/serialized XYZ-B endpoints.
+- Keep the frozen fdp audit anomalous-only by default; require explicit merged
+  observation mode for the new geometry audit. No prior bundles need migration.
+- Terminate the native process group on completion, timeout or interruption.
+  Expose review results without automatic checkpoint selection, environmental-B
+  application, scientific acceptance or eligibility for a downstream fdp scan.
+
+### Correct AutoSol phase-label provenance
+
+- Record the complete HL coefficient quartet in `refinement_data_phase_labels`
+  instead of the anomalous observation quartet. New checkpoint phase metadata
+  now receives the correct labels. Reject incomplete mixed HL naming families.
+- Preserve AutoRefine's existing coefficient-family preference, native commands,
+  phase acceptance and ordinary AutoSol eligibility. Existing immutable reports
+  are not rewritten; AutoRefine continues to inspect the actual phase MTZ.
+
+### Specify the experimental metal-screen recipe and refined-data handoff
+
+- Record a planned opt-in metal screen using AutoSol-discovered free-metal sites
+  and phases while retaining covalent anomalous anchors. Start from its discovered
+  count and branch toward fewer or more sites; a configurable ratio near 1.3 is
+  a proposed extra-site trigger, not proof of count.
+- Specify symmetry-aware distance lookup and recorded cell/symmetry-copy mapping,
+  preserving coherent clusters and ambiguous alternatives.
+- Specify XYZ/ADP-open refinement as the source of environmental base/donor B
+  before freezing geometry and starting f-double-prime/Q trials. Document the
+  missing refined-endpoint and phase-policy integration explicitly.
+- Plan a campaign “Solve if no metal is found?” toggle, default No, with a separate
+  eligible metal-free fallback and distinct no-site, failed and unresolved outcomes.
+- Record positive revised-viewer feedback. Keep compact multi-site rows in one
+  table per geometry, side-by-side geometry comparison and plots as open design
+  questions pending real data. These design updates add no runtime mode, GUI
+  control or artifact schema; the separate phase-label correction is implemented.
+
+### Prepare environmental metal B and clarify saved trial review
+
+- Prepare metal B after fixed geometry and before f-double-prime/occupancy trials.
+  The CLI defaults to equally weighted nucleobase means, excluding sugar and
+  phosphate; explicit donor means and keep-original are also supported. Retain
+  source atoms, separate base means, applied B and replayable provenance. Accept
+  high B values without a low-B clamp. Require a matching preparation for reuse.
+- Preserve old trial replay and the native frozen-coordinate protocol. Add optional
+  preparation fields to schema-1 plans/results; updated readers handle new trials.
+  Programmatic calls without a policy retain their prior behavior.
+- Auto-fit/orient the coordinate view; simplify three-axis rotation/two-axis pan;
+  add faint connectivity and collision-aware zoom-dependent ligand/metal labels.
+  Distinguish metals in the inspector. Select first available descendants on
+  dataset/structure navigation without changing the shared controller contract.
+- Box metals by actual trial, retain comparison/scan aliases, and prioritize
+  Q (occ), fitted/expected f-double-prime and their ratio. Expand secondary values
+  and show a workflow guide. Initial and revised user visual review received; table organization remains
+  provisional pending representative data. The viewer remains read-only; prepared control values are not qualified
+  experimental occupancy estimates.
+
+### View saved metal results with linked coordinates and modular panels
+
+- Add `metal serve-workbench`, a local read-only viewer over the existing verified
+  controller, with explicit dataset mounts and exact row/candidate/site linkage.
+- Show actual candidate atoms, zoom/rotation/context controls and saved distance
+  restraint overlays. Keep trial q/f-double-prime separate from geometry-model
+  q/B; retain full reports, pending points and source identities.
+- Package browser assets without runtime web dependencies. Keep camera/layout in
+  browser memory and scientific navigation in Python. Add a transient schema-1
+  presentation envelope; existing catalogs and scientific artifacts need no migration.
+- Bind the server to loopback with a random URL, strict origin/route checks and
+  no write/native-job endpoints. User visual review has been received; automated visual testing remains blocked
+  by the host's local-URL policy. Editable GUI and maps remain planned.
+
+### Navigate verified metal evidence across explicit datasets
+
+- Add offline `metal capture-workbench` / `metal inspect-workbench` and a shared
+  immutable controller for dataset, structure, hypothesis, site and result views.
+- Bind every result to its exact geometry; preserve linked original rows, pending
+  scan points and full reports. Support arbitrary overlapping viewing groups.
+- Add schema-1 local catalogs, snapshots, selections and views with explicit
+  dataset mounts and checksummed run references. Parent changes clear dependent
+  selections; row selection opens its exact scope. Keep camera/layout separate.
+- Reopen replays existing artifact verifiers, including after relocation. No
+  native jobs, checkpoint selection, scientific changes or migration are added;
+  production GUI and campaign scheduling remain planned.
+
+### Run bounded occupancy sweeps from audited metal seeds
+
+- Add offline `metal plan-fdp-scan`, bounded sequential `metal run-fdp-scan`
+  and offline `metal verify-fdp-scan`. Explicit per-site values form a Cartesian
+  grid with a caller-selected total limit; each pass has a trial-attempt budget.
+- Reuse exact verified seed/ancestor results, preserve full occupancy vectors
+  and fixed experimental settings, and reject changed native identities.
+  Handled failures stop further jobs; finalized partial passes resume into new
+  immutable artifacts without overwriting earlier runs.
+- Add schema-1 plans, passes, per-point receipts and linked reports with anchored
+  lineage and relocation replay. Existing fitter/worker/formats are unchanged.
+  Adaptive selection, general caching, hard-kill recovery and GUI remain planned.
+
+### Show recorded atomic states in reference comparison text
+
+- Display candidate/reference q and reported B with signed differences, exact
+  atom labels, ADP representations and element/ADP mismatch flags.
+- List unmapped reference scatterers individually and name unmapped candidate
+  nodes; surface recorded reference-field warnings. JSON, saved comparisons,
+  scientific calculations and native execution remain unchanged.
+
+### Preserve human metal endpoints as explicit reference snapshots
+
+- Add `metal inspect-reference`, `metal compare-reference` and
+  `metal verify-reference-comparison` for source-bound human PDB snapshots.
+- Retain exact XYZ/q/reported B/ANISOU and atom identities; ignore stored anomalous
+  parameters. Compare explicitly mapped internal distances and recipe angles,
+  show unmatched scatterers and preserve independent coordinate frames.
+- Add schema-1 immutable reference comparison bundles with captured source bytes,
+  anchored candidate lineage and offline replay after source removal/relocation.
+  Existing fitting, targets, models, checkpoints and artifact formats are unchanged.
+
+### Compare matched frozen metal diagnostics without rerunning refinement
+
+- Add `metal compare-fdp` and `metal verify-fdp-comparison` for explicit audited
+  trials with matching geometry, data, references, groups and native protocol.
+- Preserve complete per-site q vectors and trial-linked rows; report signed
+  reference deviations and matched start/budget/occupancy endpoint ranges.
+  Keep coupled q changes and untested axes explicit, without ranking solutions
+  or treating endpoint agreement as convergence.
+- Add schema-1 immutable comparison bundles referencing existing inputs and
+  evidence, with offline replay and source-removed relocation coverage.
+  Existing trial formats, fitting defaults and checkpoint choices are unchanged.
+
+### Run audited fixed-occupancy metal f-double-prime diagnostics
+
+- Add `metal fdp` and `metal verify-fdp` over verified geometry trials, with
+  independent per-metal fits, actual-wavelength references and fixed f-prime,
+  XYZ, ADPs and occupancy. Initial native support is Phenix 2.2.1-6174.
+- Audit active native atomic state, exact group freedoms, serialized models,
+  original Free-R membership and the declared uniform F/sigma scaling policy.
+  Preserve every numbered attempt and keep checkpoint selection unchanged.
+- Add schema-1 review bundles with anchored lineage, compressed evidence and
+  offline derivation/audit replay. Disable unnecessary map/reflection exports;
+  existing artifact formats and commands require no migration.
+- Keep optimizer convergence and structural acceptance explicitly unassessed.
+  Occupancy scans, decision logic, GUI linkage, caching and pruning remain planned.
+
+### Scope validation to the affected change
+
+- Update the collaboration contract: documentation-only changes use relevant
+  checks; feature changes use focused regression and affected-dependency tests.
+  Run the full suite when broad integration/shared behavior warrants it or when
+  requested, and report the validation scope and remaining gaps.
+
+### Clarify planned metal search, site contexts and storage policy
+
+- Document staged many-job exploration and branchable structural alternatives,
+  with separate count/identity/occupancy/geometry support, provisional auto
+  decisions and final user validation. About 75 jobs is an example, not a cap.
+- Keep inherited ligand chemistry by default; make chi candidate generation an
+  opt-in per-group toggle. Plan arbitrary overlapping site groups beyond the
+  current W mapping and view expansion without implicit parameter changes.
+- Specify optional matched map evidence, wavelength-normalized response plots,
+  iodine controls and independent future validation of decision quality.
+- Plan campaign disk budgets, protected shared inputs, compact result records,
+  reference-aware output pruning and explicit recovery. Existing immutable runs
+  remain unchanged; missing outputs cannot qualify as full-artifact cache hits.
+- Add documentation-contract regressions. These are nonruntime intent changes;
+  no search, GUI, pruning tool or new operational schema is implemented here.
+
+### Prepare bounded metal geometry from explicit recipe targets
+
+- Add `metal geometry` and `metal verify-geometry` over a shared deterministic
+  backend. Move selected restrained metal sites while preserving all other XYZ,
+  occupancies, ADPs, identities, inherited inputs and checkpoint selections.
+- Bound iterations and displacement; report before/after residuals, stopping,
+  and local unconstrained dimensions. Retain parent coordinates when serialized
+  candidates violate the bounds, worsen the objective or have undefined geometry.
+- Store new numbered schema-1 `metal-geometry-trial` review bundles with anchored
+  parent lineage and exact calculation replay after relocation. Existing artifact
+  schemas and commands need no migration.
+- Scope this objective to enabled recipe distances and angles. Whole-model
+  chemistry, clashes, native optimization and anomalous fitting remain separate.
+
+### Construct explicit metal hypotheses without changing the parent model
+
+- Add `metal build` and `metal verify` over a shared source-bound materializer.
+  A schema-1 placement plan supplies positions, q, B and separate formal charge;
+  new numbered review bundles retain exact parent atoms and inherited inputs.
+- Record PDB coordinate rounding and use serialized readback for previews and
+  PHIL proposals. Reject collisions, stale bindings and unsupported PDB identities.
+  Report floating/unrestrained sites without inventing coordination targets.
+- Add schema-1 hypothesis manifests with anchored checksums, captured roles,
+  frozen parent reports and exact derivation replay after relocation. Preserve
+  failed publications and existing checkpoint/workspace selections.
+- Qualify numerical native consumption controls separately from future geometry
+  optimization, scientific acceptance and anomalous fitting. Existing recipes,
+  contexts, run/checkpoint schemas and commands require no migration.
+
+### Connect generated W models to metal recipe inspection and export
+
+- Add read-only `metal inspect` and `metal preview` commands over the existing
+  checkpoint and anchored-input mechanisms, preserving current selection.
+- Import exact single-model PDB identity and atomic state, reuse effective
+  PostMR donor mappings, and bind ordered W sites A:12/B:4.
+- Read wavelength from the selected anomalous observation dataset and obtain
+  explicit local Sasaki/Henke reference values with fixed f-prime policy.
+- Replay resolved previews before proposed PHIL distance/angle export. Preserve
+  incomplete drafts; require new output files and explicit source-bound bindings.
+- Add context schema 1 without migrating recipes, previews or checkpoints.
+  Metal placement, native geometry/f-double-prime execution, PDF input fallback,
+  campaign GUI and automatic proposals remain explicit later milestones.
+
+
+### Add the modular metal-recipe model and geometry preview
+
+- Add `nasolve.metal`: immutable stable-ID donor/metal graphs and named restraint
+  sets, schema-1 JSON save/load, explicit revisions and validated graph edits.
+- Reuse the existing component-record resolver for logical roles; bind exact
+  model/chain/residue/component/atom/alternate/segment identities to a supplied
+  immutable coordinate inventory. Keep actual donor elements and prime marks.
+- Preview measured distances/3D angles separately from requested targets, with
+  per-row missing/ambiguous diagnostics and complete supplied-input fingerprints.
+- Keep panel arrangement, camera and overlay visibility outside recipe state.
+  GUI integration, file import, nonidentity symmetry, native export/refinement,
+  anomalous workflows and chemistry-aware target lookup remain planned.
+- Existing runs, commands and checkpoints require no migration; no scientific
+  input, native process or current-checkpoint pointer is changed.
+
+### Plan metal recipes and frozen anomalous comparisons
+
+- Expand the planned authoring contract to one-, two- and three-metal recipes,
+  mixed species and extensible clusters with explicit atom-role bindings.
+- Define a separate fixed-occupancy f'' diagnostic protocol, verified atomic
+  freezes, bounded trial plans, retained ambiguity and linked per-site tables.
+- Specify Design/Experiment/Compare views with distinct proposed-restraint and
+  selection overlays. Extend the non-runtime development intent and its checks.
+- Extend the design with 3D camera controls, explicit atom-pair draft restraints,
+  broad/focused per-metal occupancy rounds and locks, a separate conditional
+  occupancy fit, and checksum-verified reuse of identical complete experiments.
+- Plan a local chemistry-aware target library using qualified CIF provenance,
+  explicit donor states, source/uncertainty display and recorded overrides.
+- This is design documentation only: no native execution, runtime schema,
+  existing refinement strategy or checkpoint migration changes.
+
+## [0.2.0] - 2026-11-28
+
+This release brings Pine and Cedar into the standard NASolve installation.
+The [user guide](README.md) and [workflow index](docs/current-behavior.json)
+identify the ordinary solve, optional chemistry checks and crystal-end tools.
 
 - Older checked preparation checkpoints can reopen after comparison-only updates to CIF Doctor. Readback verifies the named historical assessor and retains its recorded identity. New chemical comparison rules are maintained separately from the component assessor.
 
@@ -1912,634 +2549,6 @@ entries are reconstructed from repository history.
 - Historical whole-inventory and triple reports, native workers, scientific
   thresholds and ordinary defaults stay unchanged. No new refinement or repair
   runs during inspection; no record migration is required.
-
-
-### W145 — Expose the selected map's stage and checkpoint ancestry
-
-- Add optional, keyword-only `ViewProfile.map_origin` with the selected map's
-  stage, associated refinement checkpoint and ordered consuming checkpoints.
-  The existing resolver carries this identity without parsing display labels.
-- Preserve Coot paths, labels, checksum/observation refusals and positional API
-  compatibility, including legacy maps whose ancestor model is unavailable.
-  This is selection provenance, not proof of generating XYZ/ADPs, coefficient
-  policy or frame equivalence. No map generation, schema migration or GUI launch.
-
-
-### Integrate shared chemistry and storage with metal workflows
-
-- Qualify the integration using its completed full runtime execution and
-  reviewed test-only external-scope fixture correction with focused checks.
-  Preserve the original failed full result; no fresh all-green full is claimed.
-- Record exact input-packing feasibility through the shared storage owner;
-  complete-parent, native regeneration and retirement gates remain open.
-
-- Combine the existing qualified shared runtime/storage owners and metal tools
-  on one development base, retaining both replay and viewer package resources.
-- Preserve scoped chemistry/metal handoffs with one root integration queue;
-  retain focused development testing, full integration gates, science checkouts
-  and immutable evidence policies. Scientific acceptance and release remain open.
-- This integration changes no numerical policy or existing artifact schema;
-  historical readers/defaults and explicit opt-in boundaries remain in force.
-
-### Audit generalized ligand restraint delivery
-
-- Record exact source/effective/native local bond, angle and plane transfer in
-  retained FT_Hg controls, independent label-invariance/corruption checks and a
-  compact scientific checkout. Preserve the unresolved A01 geometry gate.
-- Make the chemistry/connectivity-based constructor requirement explicit: PDU
-  and related residues qualify a general mechanism, not residue-specific repairs.
-  This documentation update changes no runtime or native scientific policy.
-- Record a pinned Cedar/Alder compatibility delta: 166 focused tests and installed
-  recorder/compact-record replay, retaining explicit merge and scientific limits.
-
-### Project compact frozen-trial records without retiring evidence
-
-- Add explicit read-only `metal project-fdp-records` and `verify-fdp-records`
-  commands, sharing comparison bases/input descriptors while retaining complete
-  result summaries and distinct attempts in an additive version-1 projection.
-- Require full original source replay, portable references and bounded trial
-  preflight/output. Preserve unqualified science status and prohibit inferred
-  cache, materialization or retirement authority; existing trial files stay intact.
-- Measure single-metal and four-site examples, including the larger-than-target
-  environmental-B record, and record the remaining A04 integration boundary.
-- Qualify the frozen source with 6,432 tests and 276 subtests, installed
-  source-free real-data replay and source/data relocation; retain original science
-  and remove only verified owned test copies after completion.
-
-### Close storage and map-sampling qualification
-
-- Record the exact pinned full regression, installed/relocated Phenix sampling
-  agreement, independent chemistry readback and compact local science checkout.
-- Preserve the open FT_Hg geometry/f″ gates and explicit PDU scaffold limits;
-  qualification changes no capture policy, artifact schema or retention authority.
-
-### Share bounded periodic map sampling
-
-- Reuse one explicit radius/spacing sampler for ordinary and anomalous map
-  captures, with finite inputs and bounded candidate enumeration. Keep the
-  exact legacy sampling neighborhood and standalone native import support.
-- Preserve phase/Free-R/coefficient policies, defaults, evidence schemas and
-  legacy readers. The helper adds no map selection or scientific acceptance.
-
-### Record integration rehearsal and reproducible scientific figures
-
-- Document the pinned Cedar/Alder package rehearsal, affected-test outcomes,
-  independent ordinary-child chemistry review and remaining integration limits.
-- Preserve rendering settings and source provenance for scientific checkout
-  figures intended for later manuscript use. This documentation changes no
-  refinement, acceptance, artifact schema or retention policy.
-
-### Measure frozen anomalous-trial storage without changing runs
-
-- Add `metal inspect-fdp-storage` for explicit, bounded manifest/file integrity
-  inventory, exact repeated-content accounting and optional current-layout
-  campaign forecasts with explicit protected/scratch/reserve allowances.
-- Keep scientific replay, physical allocation, disk reservations and retirement
-  authority explicitly separate. Existing trial schemas and files stay unchanged;
-  the additive portable inventory report is version 1 and requires no migration.
-- Record the A04 implementation boundary and independently reviewed A01/PDU
-  coordination evidence; generated science and local reports remain excluded.
-
-### Document the bounded real-data normalization control
-
-- Record the matched one-cycle geometry-denominator intervention, exact baseline,
-  actual stopping and protected-state audits in the A01 handoff and roadmap.
-- Add a separate small local visual comparison while preserving the earlier
-  checkout. No production refinement, public schema, acceptance or pruning policy
-  changes; raw generated science remains excluded from Git.
-
-### Retain compact native XYZ weight-selection evidence
-
-- Capture actual native trial metrics, masks, fallback and chosen weight without
-  additional geometry/target evaluations or retained trial models. Audit the
-  selection arithmetic and matching native/sidecar evidence offline.
-- Keep native mixed-scope geometry metrics, trial-versus-final R factors and
-  single-trial bypass explicit; no eligibility, refinement, acceptance or pruning
-  policy changes. Legacy trials remain readable; additive schema-1 receipts need
-  the updated reader, with no migration of existing runs.
-- Bind public XYZ selection histories to the declared macrocycles and fixed-weight
-  protocol. Reject mismatched cycles, missing decisions and unexpected searches;
-  saved qualified native results and legacy results without receipts remain valid.
-
-### Record live metal-refinement and selector diagnostics
-
-- Separate the exact real-data evaluator replay from the earlier geometry-only
-  normalization failure; iteration limits and unproven causality remain explicit.
-- Record how pooled pair/covalent bond metrics force native automatic weight
-  selection into its Rfree fallback, with exact saved proxy arithmetic and limits.
-- Compare forced-search and 100/400-step controls, keeping selected versus
-  unselected optimizer failures, matched local maps, B/Q/f″ and held-out human
-  reference limitations explicit. Longer allowance is not monotonic improvement.
-- Record the exact passive selected-trial replay and its numerical limits; publish
-  a small local visual checkout with linked model/map provenance. No repair or
-  scientific acceptance is implied.
-- The scientific controls change no production refinement policy or pruning;
-  generated scientific evidence remains local. The separate passive receipt
-  addition is described above.
-
-
-### Keep lightweight scientific checkout records
-
-- Document small visual/table checkouts after substantial scientific work,
-  in the shared local `ScienceCheckouts/<agent>/` folder with dated entries.
-- Link the local metal inspection pack and preserve its measured/fixed-value
-  distinctions, scientific limits and source references. Generated science stays
-  local; no product behavior, artifact schema or migration changes.
-
-
-### Retain native metal XYZ optimizer stopping evidence
-
-- Record compact per-call native XYZ/ADP stopping reasons, errors, limits and
-  source fingerprints; audit matching sidecar/native evidence offline using the
-  shared conservative stopping classifier.
-- Preserve unknown convergence and internal-trial/selected-endpoint ambiguity.
-  A completed job or lower residual does not erase a native minimizer error.
-- Restore scoped observation on success/failure; keep old trials readable.
-  New additive receipts need the updated reader. No refinement setting, chemistry
-  target, scientific acceptance, automatic checkpoint selection or migration changes.
-- Document matched scale controls, exact same-site normalization history and a
-  bounded geometry-only isolation control; the open-fit scientific gate remains.
-  Generated science and paper extracts remain local; no pruning is enabled.
-
-
-### Record metal map and coordinate-boundary diagnostics
-
-- Compare saved exact maps in explicit endpoint/common frames; retain their
-  model-assisted, correlated-density and normalization limits.
-- Record recipe-off and full-frame preparation controls, protected state,
-  chirality and the subsequent open-fit failure to retain improved geometry.
-- Keep native final scaling and retained source-phosphate state as explicit
-  follow-ups. No public behavior, schema, chemistry target, default, model
-  adoption, pruning or migration changes.
-
-### Record bounded metal-refinement qualification and storage findings
-
-- Document matched iteration, macrocycle, phase-policy and structure-factor
-  controls with their remaining local-geometry and fit limitations; A01 remains
-  open and no fdp endpoint is automatically accepted.
-- Keep the separate geometry-only initialization experiment and its original-
-  profile child explicit. Record actual weights, protected state and lineage;
-  do not promote numerical or restraint-presence checks into scientific approval.
-- Add read-only storage findings to A04 planning: repeated coverage inventories
-  dominate the sampled geometry batch; small map files can remain useful.
-  No pruning, new default, artifact migration or runtime behavior change here.
-
-### Record an explicit minimizer allowance for metal XYZ trials
-
-- Add API-only `refinement_max_iterations` (1–200), separately from macrocycles
-  and anomalous minimization. Save it in the plan, emit native PHIL and audit the
-  actual value before and after refinement.
-- Omission preserves legacy plan/parameter/policy bytes; explicit-option trials
-  require the updated reader. Existing trials need no migration. No refinement
-  strategy, timeout, restraint target, frozen-fdp policy or default changes.
-- Retain scientific review and convergence limits; the option declares a budget
-  rather than choosing or accepting a solution. Generated diagnostics stay local.
-
-
-### Describe explicit metal recipes for shared native coverage review
-
-- Add an API-only declaration adapter for enabled metal-recipe distances and
-  angles. Bind a revalidated preview to the complete native atom inventory;
-  preserve the angle vertex, target, uncertainty and PHIL export precision.
-- Reject incomplete identities, ambiguous model mappings, nonidentity images,
-  segments and mismatched elements. No partner, chemistry or provider inference.
-- Return a schema-1 in-memory declaration, separately from native observation
-  and coverage proof. Shared native policy/observer ownership is unchanged;
-  this adapter never activates restraints or approves a scientific endpoint.
-- Existing stored artifacts, CLI paths and native defaults are unchanged;
-  no migration or automatic rollout is required. Scientific evidence stays local.
-
-
-### Reject contradictory captured metal ligand definitions
-
-- Reject duplicate component definitions that disagree on bond order or atom
-  charge, including conflicting duplicate bond rows or two order columns.
-  Missing metadata cannot silently replace a declared order/charge.
-- Recognize standard bond-order aliases and equivalent finite numeric charge
-  spellings when comparing definitions;
-  keep the original captured values and hashes. Single unambiguous resources,
-  including graph-only inputs, keep their existing representation.
-- No artifact schema or native refinement default changes. Ambiguous inputs
-  formerly resolved by resource order now require an explicit consistent bundle;
-  historical scientific files are not rewritten.
-
-
-### Compare signed cluster responses across matched frozen trials
-
-- Add `metal compare-fdp-count` and `metal verify-fdp-count-comparison` for
-  existing audited trials, with explicit cluster/site groups and no native jobs.
-- Retain Q-weighted and raw response sums, per-element equivalents, positive and
-  negative contributions, cancellation, B ranges and all site/occupancy values.
-  Compare one changed occupancy or fit setting only when other controls match.
-- Save immutable `metal-fdp-count-comparison-v1` schema-1 reports with full
-  offline replay. Changed geometry, B preparation, references, observations or
-  native protocols cannot be silently pooled. Old artifacts need no migration.
-- No count acceptance, convergence claim, checkpoint selection or GUI change is
-  introduced. Scientific data and generated reports remain local.
-
-### Inspect native metal trials with matching maps
-
-- Accept verified native XYZ candidates and individual frozen-fdp trials in the
-  local catalog; retain exact geometry, dataset and result ownership.
-- Add explicit Coot launch with isolated model/dictionary/map copies and load
-  receipts, plus bounded local 2mFo–DFc, mFo–DFc and anomalous map previews.
-- Show summed and occupancy-weighted responses for saved recipe-linked metal
-  groups. Preserve negative values and distinguish coefficient accounting from
-  an inferred atom count.
-- Expose source ligand chemistry, captured-dictionary discrepancies and editable
-  oxidation-state drafts. Automatic numerical target suggestions and persistent
-  scientific recipe edits remain pending qualification.
-- Existing artifacts need no migration. Native refinement, scientific acceptance
-  and checkpoint selection are unchanged; generated data remains local.
-
-### Documentation
-
-- Record the independently audited whole-base construction and matched native
-  comparison. Keep construction repair distinct from endpoint acceptance;
-  no refinement defaults, chemical targets or stored schemas change.
-
-- Audit the metal workspace and document index; separate superseded pause/Cedar
-  snapshots from the current A01 handoff. Preserve diagnostic paths and evidence;
-  no runtime or artifact schema changes.
-
-- Make the metal feature milestones explicitly post-merge and number them
-  A01–A08. Add a dedicated GUI co-design session and a reconstruction gate using
-  experimental inputs and general mechanics, with human solutions reserved for
-  assessment and extra priors/intervention recorded. Runtime behavior is unchanged.
-
-- Add the metal development roadmap and task-specific campaign storage plan:
-  shared pristine parents, lean frozen Q/f″ records, protected branch points,
-  measured map retention, recovery evidence levels and disk-budget gates.
-  These are planned capabilities; no existing scientific payload is removed.
-
-- Record the local open-refinement settings rehearsal and phase/B-export qualification gates; production protocols and schemas are unchanged.
-
-
-### Compare complete metal candidates across geometry branches
-
-- Add API-only grouped reviews of 2–32 verified native-XYZ/frozen-fdp endpoints.
-  Keep all fitted sites from a snapshot together with Q, B, f-double-prime,
-  expected values, signed response ratios and explicit B/environment provenance.
-- Retain separate geometry/anomalous R context, recipe residuals and available
-  source-bound maps. Require shared observations, flags, phases and native
-  protocols; disclose changed candidate assumptions without ranking a winner.
-- Add immutable schema-1 `metal-candidate-review-v1` bundles with offline replay
-  and relocation checks. Matched-geometry sensitivity, native workers, scan
-  seeds, previous artifacts and checkpoint selection remain unchanged.
-- Refine Doctor execution, convergence/count acceptance and GUI integration
-  remain separate work. Generated scientific evidence stays local.
-
-### Retain anomalous maps from frozen metal diagnostics
-
-- Add API-only `capture_anomalous_map=True` to frozen-fdp planning/execution.
-  Export ANOM/PHANOM from the completed native fit with explicit model-phase,
-  observed Bijvoet-difference and work-pair policy. Either free mate excludes
-  its pair from the map; missing mates are omitted. Refinement inputs stay intact.
-- Verify fitted-state invariance, pair membership, coefficient magnitude/MTZ
-  readback, labels, local samples and artifact checksums. No map score selects
-  a checkpoint or supplies an independent atom count.
-- Record optional `metal-fdp-anomalous-map-v1` evidence in schema-1 fdp bundles.
-  Default plans/results are unchanged; new worker fingerprints require current
-  seeds for new scan execution. Old bundles remain replayable without migration.
-- Write the actual dataset wavelength into new ordinary and anomalous map MTZs.
-  Earlier ordinary map files retain their library-default 1-Angstrom header;
-  use their saved plan metadata for wavelength, not that legacy map header.
-  No old artifact is rewritten. Map visualization and native metal Doctor
-  integration remain planned; generated scientific data stay out of Git.
-
-### Capture optional maps from completed metal XYZ refinements
-
-- Add API-only `capture_maps=True` to XYZ planning/execution. Export compact
-  2mFo-DFc and mFo-DFc coefficients from the active completed native fit without
-  reloading a PDB, updating scales or changing refinement. Omission preserves
-  legacy plans/results; failed captures retain their numbered attempt.
-- Audit work-only coefficient membership, native fitted-state invariance, exact
-  site identities, MTZ readback, artifact checksums and bounded local summaries.
-  Include actual amplitude/phase labels when captured; replay older records.
-- Report Rwork < 0.30, Rwork < Rfree and their gap as numerical context, never
-  structural acceptance. Keep Refine Doctor as the triage engine; native metal
-  checkpoint integration and map viewer controls remain planned.
-- Add optional `metal-xyz-maps-v1` evidence/results inside schema-1 XYZ bundles.
-  Frozen-fdp fitting, anomalous-map capture and ordinary AutoRefine/Doctor remain
-  unchanged. No private scientific artifacts are included in Git.
-
-### Declare and audit metal XYZ geometry/data weighting
-
-- Add optional API-only `xyz_weight_scale` to XYZ planning/execution. Explicit
-  scales record and audit the native experimental-weight multiplier plus fixed
-  companion controls before/after refinement; invalid values fail before trial
-  allocation. Omission preserves legacy plans, PHIL and offline replay.
-- Preserve numbered sibling lineages through refined-environment B preparation
-  and frozen-fdp fitting. No automatic weight search, geometry selection or count
-  acceptance is added. Existing fdp and scan policies remain unchanged.
-- Exercise controlled weight and rigid-placement probes on a local cluster;
-  retain residual geometry and mixed-sign f-double-prime concerns. Separate
-  map evaluation remains a private prototype, not an endpoint-map API.
-
-### Explain native metal-fit scaling and endpoint coordination residuals
-
-- Capture final complex Fmodel and native partition scales in new XYZ/fdp trials;
-  replay R factors and show reflection residuals separately from scale leverage.
-  Retain every observation and label leave-group scalar sensitivity as diagnostic
-  only, with no corrected R, automatic exclusion or scientific acceptance.
-- Add final recipe distance/angle measurements and sigma deviations to new XYZ
-  bundles, plus offline inspection of older endpoints. Keep inherited/nonbonded
-  geometry and native proxy qualification outside this report's scope.
-- Add optional `metal-fit-diagnostics-v1` evidence/results and
-  `metal-recipe-endpoint-v1` reports within schema-1 bundles; preserve old replay.
-  Native policies stay unchanged; changed worker fingerprints require a new seed
-  for further scan execution. No generated scientific data is included.
-
-
-### Share refined ligand B across cluster sites and audit native atom sorting
-
-- Add explicit `--metal-b-environments` / `metal_b_environments` declarations
-  for fitted cluster members, including interior metals without direct donors.
-  Retain separate base means and exact atom identities; create no implicit bonds,
-  occupancy ties or anomalous-parameter ties. Reject ambiguous assignments.
-- Capture shared preparation as `metal-environment-b-v2` inside schema-1 fdp
-  plans/results; preserve v1 replay and carry declarations through scans/counts
-  and matching. Native fitting remains unchanged.
-- Match native XYZ/ADP endpoints through exact atom-key bijections when Phenix
-  sorts records. Remap group membership and preserve all fixed-state audits;
-  reordered schema-1 results record the permutation. Keep failed attempts intact.
-- Exercise native cluster discovery and a prior-driven four-site hypothesis;
-  retain geometry, work/free residual and anomalous-response concerns. Do not
-  infer an accepted cluster count or enable automatic expansion.
-
-### Connect refined metal endpoints to frozen anomalous and count diagnostics
-
-- Accept an explicit verified XYZ/ADP endpoint as a frozen-fdp source, using its
-  refined base/donor B, exact coordinates, original anomalous data and phase
-  lineage. Require an explicit B policy for API calls; retain the CLI base-mean
-  default. Existing recipe-geometry inputs and old artifact replay are unchanged.
-- Add the schema-1 fdp parent variant `xyz_trial_id`; existing comparison/scan
-  mechanics preserve endpoint identity, B preparation and exact seed reuse.
-  Native protocol, phase objective and all source acceptance flags are unchanged.
-- Add offline `metal count-fdp` / `verify-fdp-count` and schema-1 count bundles:
-  explicit clusters versus unresolved proxies, Q-weighted coefficient sums,
-  element-specific references and conditional atom equivalents. Retain negative
-  and unavailable values; infer no integer count or automatic site placement.
-- Keep native cluster qualification, optimizer convergence, phase/B sensitivity,
-  shared cluster environments and GUI integration as explicit remaining work.
-
-### Import explicit metal restraint recipes and compact their review
-
-- Add offline `metal import-restraints`: inspect a supported add-only PHIL subset,
-  then explicitly map legacy selectors to immutable logical recipe nodes. Preserve
-  exact source, targets, sigma and ordered angle vertices; reject unsupported
-  semantics instead of guessing. Existing recipe schemas need no migration.
-- Add expandable read-only recipe inspection and term highlighting. Keep primary
-  structure/view controls visible; collapse filters, explanations and secondary
-  details. Collect trial row groups into one compact table per geometry while
-  retaining every source link and the Q/f-double-prime/expected/ratio columns.
-- Keep editing, native launch, scientific acceptance and checkpoint selection
-  outside the viewer. No changes to native refinement or frozen-fdp protocols.
-
-### Capture phase-restrained metal XYZ/ADP review endpoints
-
-- Add the API-only `metal.xyz.run_xyz` / `verify_xyz` adapter and immutable schema-1
-  `metal-xyz-trial` bundles. Preserve the verified hypothesis, original anomalous
-  data, explicit HL source, resources and native evidence; retain failed attempts.
-- Use the qualified Phenix 2.2.1-6174 MLHL geometry route with merged observations,
-  fixed structural Q/reference f-prime and zero f-double-prime for this step only.
-  Audit phase coefficients, reflection/Free-R membership, fixed atomic state,
-  crystal symmetry and full-precision/serialized XYZ-B endpoints.
-- Keep the frozen fdp audit anomalous-only by default; require explicit merged
-  observation mode for the new geometry audit. No prior bundles need migration.
-- Terminate the native process group on completion, timeout or interruption.
-  Expose review results without automatic checkpoint selection, environmental-B
-  application, scientific acceptance or eligibility for a downstream fdp scan.
-
-### Correct AutoSol phase-label provenance
-
-- Record the complete HL coefficient quartet in `refinement_data_phase_labels`
-  instead of the anomalous observation quartet. New checkpoint phase metadata
-  now receives the correct labels. Reject incomplete mixed HL naming families.
-- Preserve AutoRefine's existing coefficient-family preference, native commands,
-  phase acceptance and ordinary AutoSol eligibility. Existing immutable reports
-  are not rewritten; AutoRefine continues to inspect the actual phase MTZ.
-
-### Specify the experimental metal-screen recipe and refined-data handoff
-
-- Record a planned opt-in metal screen using AutoSol-discovered free-metal sites
-  and phases while retaining covalent anomalous anchors. Start from its discovered
-  count and branch toward fewer or more sites; a configurable ratio near 1.3 is
-  a proposed extra-site trigger, not proof of count.
-- Specify symmetry-aware distance lookup and recorded cell/symmetry-copy mapping,
-  preserving coherent clusters and ambiguous alternatives.
-- Specify XYZ/ADP-open refinement as the source of environmental base/donor B
-  before freezing geometry and starting f-double-prime/Q trials. Document the
-  missing refined-endpoint and phase-policy integration explicitly.
-- Plan a campaign “Solve if no metal is found?” toggle, default No, with a separate
-  eligible metal-free fallback and distinct no-site, failed and unresolved outcomes.
-- Record positive revised-viewer feedback. Keep compact multi-site rows in one
-  table per geometry, side-by-side geometry comparison and plots as open design
-  questions pending real data. These design updates add no runtime mode, GUI
-  control or artifact schema; the separate phase-label correction is implemented.
-
-### Prepare environmental metal B and clarify saved trial review
-
-- Prepare metal B after fixed geometry and before f-double-prime/occupancy trials.
-  The CLI defaults to equally weighted nucleobase means, excluding sugar and
-  phosphate; explicit donor means and keep-original are also supported. Retain
-  source atoms, separate base means, applied B and replayable provenance. Accept
-  high B values without a low-B clamp. Require a matching preparation for reuse.
-- Preserve old trial replay and the native frozen-coordinate protocol. Add optional
-  preparation fields to schema-1 plans/results; updated readers handle new trials.
-  Programmatic calls without a policy retain their prior behavior.
-- Auto-fit/orient the coordinate view; simplify three-axis rotation/two-axis pan;
-  add faint connectivity and collision-aware zoom-dependent ligand/metal labels.
-  Distinguish metals in the inspector. Select first available descendants on
-  dataset/structure navigation without changing the shared controller contract.
-- Box metals by actual trial, retain comparison/scan aliases, and prioritize
-  Q (occ), fitted/expected f-double-prime and their ratio. Expand secondary values
-  and show a workflow guide. Initial and revised user visual review received; table organization remains
-  provisional pending representative data. The viewer remains read-only; prepared control values are not qualified
-  experimental occupancy estimates.
-
-### View saved metal results with linked coordinates and modular panels
-
-- Add `metal serve-workbench`, a local read-only viewer over the existing verified
-  controller, with explicit dataset mounts and exact row/candidate/site linkage.
-- Show actual candidate atoms, zoom/rotation/context controls and saved distance
-  restraint overlays. Keep trial q/f-double-prime separate from geometry-model
-  q/B; retain full reports, pending points and source identities.
-- Package browser assets without runtime web dependencies. Keep camera/layout in
-  browser memory and scientific navigation in Python. Add a transient schema-1
-  presentation envelope; existing catalogs and scientific artifacts need no migration.
-- Bind the server to loopback with a random URL, strict origin/route checks and
-  no write/native-job endpoints. User visual review has been received; automated visual testing remains blocked
-  by the host's local-URL policy. Editable GUI and maps remain planned.
-
-### Navigate verified metal evidence across explicit datasets
-
-- Add offline `metal capture-workbench` / `metal inspect-workbench` and a shared
-  immutable controller for dataset, structure, hypothesis, site and result views.
-- Bind every result to its exact geometry; preserve linked original rows, pending
-  scan points and full reports. Support arbitrary overlapping viewing groups.
-- Add schema-1 local catalogs, snapshots, selections and views with explicit
-  dataset mounts and checksummed run references. Parent changes clear dependent
-  selections; row selection opens its exact scope. Keep camera/layout separate.
-- Reopen replays existing artifact verifiers, including after relocation. No
-  native jobs, checkpoint selection, scientific changes or migration are added;
-  production GUI and campaign scheduling remain planned.
-
-### Run bounded occupancy sweeps from audited metal seeds
-
-- Add offline `metal plan-fdp-scan`, bounded sequential `metal run-fdp-scan`
-  and offline `metal verify-fdp-scan`. Explicit per-site values form a Cartesian
-  grid with a caller-selected total limit; each pass has a trial-attempt budget.
-- Reuse exact verified seed/ancestor results, preserve full occupancy vectors
-  and fixed experimental settings, and reject changed native identities.
-  Handled failures stop further jobs; finalized partial passes resume into new
-  immutable artifacts without overwriting earlier runs.
-- Add schema-1 plans, passes, per-point receipts and linked reports with anchored
-  lineage and relocation replay. Existing fitter/worker/formats are unchanged.
-  Adaptive selection, general caching, hard-kill recovery and GUI remain planned.
-
-### Show recorded atomic states in reference comparison text
-
-- Display candidate/reference q and reported B with signed differences, exact
-  atom labels, ADP representations and element/ADP mismatch flags.
-- List unmapped reference scatterers individually and name unmapped candidate
-  nodes; surface recorded reference-field warnings. JSON, saved comparisons,
-  scientific calculations and native execution remain unchanged.
-
-### Preserve human metal endpoints as explicit reference snapshots
-
-- Add `metal inspect-reference`, `metal compare-reference` and
-  `metal verify-reference-comparison` for source-bound human PDB snapshots.
-- Retain exact XYZ/q/reported B/ANISOU and atom identities; ignore stored anomalous
-  parameters. Compare explicitly mapped internal distances and recipe angles,
-  show unmatched scatterers and preserve independent coordinate frames.
-- Add schema-1 immutable reference comparison bundles with captured source bytes,
-  anchored candidate lineage and offline replay after source removal/relocation.
-  Existing fitting, targets, models, checkpoints and artifact formats are unchanged.
-
-### Compare matched frozen metal diagnostics without rerunning refinement
-
-- Add `metal compare-fdp` and `metal verify-fdp-comparison` for explicit audited
-  trials with matching geometry, data, references, groups and native protocol.
-- Preserve complete per-site q vectors and trial-linked rows; report signed
-  reference deviations and matched start/budget/occupancy endpoint ranges.
-  Keep coupled q changes and untested axes explicit, without ranking solutions
-  or treating endpoint agreement as convergence.
-- Add schema-1 immutable comparison bundles referencing existing inputs and
-  evidence, with offline replay and source-removed relocation coverage.
-  Existing trial formats, fitting defaults and checkpoint choices are unchanged.
-
-### Run audited fixed-occupancy metal f-double-prime diagnostics
-
-- Add `metal fdp` and `metal verify-fdp` over verified geometry trials, with
-  independent per-metal fits, actual-wavelength references and fixed f-prime,
-  XYZ, ADPs and occupancy. Initial native support is Phenix 2.2.1-6174.
-- Audit active native atomic state, exact group freedoms, serialized models,
-  original Free-R membership and the declared uniform F/sigma scaling policy.
-  Preserve every numbered attempt and keep checkpoint selection unchanged.
-- Add schema-1 review bundles with anchored lineage, compressed evidence and
-  offline derivation/audit replay. Disable unnecessary map/reflection exports;
-  existing artifact formats and commands require no migration.
-- Keep optimizer convergence and structural acceptance explicitly unassessed.
-  Occupancy scans, decision logic, GUI linkage, caching and pruning remain planned.
-
-### Scope validation to the affected change
-
-- Update the collaboration contract: documentation-only changes use relevant
-  checks; feature changes use focused regression and affected-dependency tests.
-  Run the full suite when broad integration/shared behavior warrants it or when
-  requested, and report the validation scope and remaining gaps.
-
-### Clarify planned metal search, site contexts and storage policy
-
-- Document staged many-job exploration and branchable structural alternatives,
-  with separate count/identity/occupancy/geometry support, provisional auto
-  decisions and final user validation. About 75 jobs is an example, not a cap.
-- Keep inherited ligand chemistry by default; make chi candidate generation an
-  opt-in per-group toggle. Plan arbitrary overlapping site groups beyond the
-  current W mapping and view expansion without implicit parameter changes.
-- Specify optional matched map evidence, wavelength-normalized response plots,
-  iodine controls and independent future validation of decision quality.
-- Plan campaign disk budgets, protected shared inputs, compact result records,
-  reference-aware output pruning and explicit recovery. Existing immutable runs
-  remain unchanged; missing outputs cannot qualify as full-artifact cache hits.
-- Add documentation-contract regressions. These are nonruntime intent changes;
-  no search, GUI, pruning tool or new operational schema is implemented here.
-
-### Prepare bounded metal geometry from explicit recipe targets
-
-- Add `metal geometry` and `metal verify-geometry` over a shared deterministic
-  backend. Move selected restrained metal sites while preserving all other XYZ,
-  occupancies, ADPs, identities, inherited inputs and checkpoint selections.
-- Bound iterations and displacement; report before/after residuals, stopping,
-  and local unconstrained dimensions. Retain parent coordinates when serialized
-  candidates violate the bounds, worsen the objective or have undefined geometry.
-- Store new numbered schema-1 `metal-geometry-trial` review bundles with anchored
-  parent lineage and exact calculation replay after relocation. Existing artifact
-  schemas and commands need no migration.
-- Scope this objective to enabled recipe distances and angles. Whole-model
-  chemistry, clashes, native optimization and anomalous fitting remain separate.
-
-### Construct explicit metal hypotheses without changing the parent model
-
-- Add `metal build` and `metal verify` over a shared source-bound materializer.
-  A schema-1 placement plan supplies positions, q, B and separate formal charge;
-  new numbered review bundles retain exact parent atoms and inherited inputs.
-- Record PDB coordinate rounding and use serialized readback for previews and
-  PHIL proposals. Reject collisions, stale bindings and unsupported PDB identities.
-  Report floating/unrestrained sites without inventing coordination targets.
-- Add schema-1 hypothesis manifests with anchored checksums, captured roles,
-  frozen parent reports and exact derivation replay after relocation. Preserve
-  failed publications and existing checkpoint/workspace selections.
-- Qualify numerical native consumption controls separately from future geometry
-  optimization, scientific acceptance and anomalous fitting. Existing recipes,
-  contexts, run/checkpoint schemas and commands require no migration.
-
-### Connect generated W models to metal recipe inspection and export
-
-- Add read-only `metal inspect` and `metal preview` commands over the existing
-  checkpoint and anchored-input mechanisms, preserving current selection.
-- Import exact single-model PDB identity and atomic state, reuse effective
-  PostMR donor mappings, and bind ordered W sites A:12/B:4.
-- Read wavelength from the selected anomalous observation dataset and obtain
-  explicit local Sasaki/Henke reference values with fixed f-prime policy.
-- Replay resolved previews before proposed PHIL distance/angle export. Preserve
-  incomplete drafts; require new output files and explicit source-bound bindings.
-- Add context schema 1 without migrating recipes, previews or checkpoints.
-  Metal placement, native geometry/f-double-prime execution, PDF input fallback,
-  campaign GUI and automatic proposals remain explicit later milestones.
-
-
-### Add the modular metal-recipe model and geometry preview
-
-- Add `nasolve.metal`: immutable stable-ID donor/metal graphs and named restraint
-  sets, schema-1 JSON save/load, explicit revisions and validated graph edits.
-- Reuse the existing component-record resolver for logical roles; bind exact
-  model/chain/residue/component/atom/alternate/segment identities to a supplied
-  immutable coordinate inventory. Keep actual donor elements and prime marks.
-- Preview measured distances/3D angles separately from requested targets, with
-  per-row missing/ambiguous diagnostics and complete supplied-input fingerprints.
-- Keep panel arrangement, camera and overlay visibility outside recipe state.
-  GUI integration, file import, nonidentity symmetry, native export/refinement,
-  anomalous workflows and chemistry-aware target lookup remain planned.
-- Existing runs, commands and checkpoints require no migration; no scientific
-  input, native process or current-checkpoint pointer is changed.
-
-### Plan metal recipes and frozen anomalous comparisons
-
-- Expand the planned authoring contract to one-, two- and three-metal recipes,
-  mixed species and extensible clusters with explicit atom-role bindings.
-- Define a separate fixed-occupancy f'' diagnostic protocol, verified atomic
-  freezes, bounded trial plans, retained ambiguity and linked per-site tables.
-- Specify Design/Experiment/Compare views with distinct proposed-restraint and
-  selection overlays. Extend the non-runtime development intent and its checks.
-- Extend the design with 3D camera controls, explicit atom-pair draft restraints,
-  broad/focused per-metal occupancy rounds and locks, a separate conditional
-  occupancy fit, and checksum-verified reuse of identical complete experiments.
-- Plan a local chemistry-aware target library using qualified CIF provenance,
-  explicit donor states, source/uncertainty display and recorded overrides.
-- This is design documentation only: no native execution, runtime schema,
-  existing refinement strategy or checkpoint migration changes.
 
 ### Observe declared modified sites without requiring a triple bond (C406)
 

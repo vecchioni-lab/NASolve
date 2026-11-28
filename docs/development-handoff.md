@@ -1,10 +1,12 @@
 # NASolve development handoff — integrated development base
 
-**28 November integration:** Alder now receives final Cedar `47caea97` on
-preserved merge history. Focused source/installed checks pass, including the
+**28 November integration:** Alder receives actual released main `c9127dda`
+after qualified Cedar `47caea97`, preserving its merge history. Focused source/installed checks pass, including the
 relocated FT parent, phase binding and Coot profile with its original provider.
 Cedar's reader fix preserves historical assessor identity; changed compiler
-providers still refuse. [Validation and pending main delivery](metal-release-compatibility.md).
+providers still refuse. The final main delta changes documentation only; all 448
+installed objects remain exact, with 2 guide and 31 installed public-interface
+tests passing. [Validation and delivery evidence](metal-release-compatibility.md).
 A01 remains partial; no new fit or f″ result is implied.
 
 Received Cedar chemistry checkpoint: Updated 28 November 2026. Four Q07 substitutions have completed five ordinary diffraction cycles from one mutation card.
@@ -41,8 +43,8 @@ cases**; all 14 new regressions fail at the previous candidate. The real cold
 publication took 34.40 s; relocated readback 24.95 s. All 74 source dataset and
 74 source request files remain exact. The 15.43 MB clone reuses compact archived
 native evidence (Phenix 2.2.1-6174); packaging scratch retirement recovered 30.80 MB.
-No full suite. Source changes remain on the isolated receiving candidate, with
-active Alder delivery and reconciliation of Rowan's fitted-evidence hook separate.
+No full suite. This publication rehearsal preceded the final shared-owner
+reconciliation and released-main receipt recorded above.
 
 The retained Hg AutoSol inputs match the fresh original MR/data/sequence exactly,
 so no repeat search is needed for this FT case. Explicit schema-2 external-phase
