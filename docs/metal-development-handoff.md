@@ -1,46 +1,34 @@
 # Metal development handoff — current state
 
-**Current A01 — 28 November:** the retained AutoSol Hg now supplies one
-independent numbered hypothesis on the fresh ordinary DF:T frame. The new
-schema-2 placement checks discovery origin and both anchors' crystal image,
-then preserves every original DNA record: 858→859 atoms, 130 prior files exact.
-A:12/B:4 N3–Hg distances are 2.762/2.220 Å and the angle is 163.9°. These are
-unrefined measurements; Q=1, B=72.95 Å² and Hg(II) are declared initial values.
-The result remains BUILT_REVIEW, unrestrained and unselected as an ordinary
-checkpoint. A01 is partial; A02 remains gated.
+**Current A01 — 28 November evening:** a metal construction can now retain its
+checked ordinary parent, coordination recipe, native preparation evidence and
+external AutoSol experiment together in the ordinary checkpoint registry. The
+new schema-6 `metal-NNN` input is REVIEW, unselected and unusable for refinement;
+publication does not invent an accepted Hg predecessor. The genuine isolated FT
+check retains 859 atoms, six restraints, 1,151 F/HL rows and 59 original Free-R
+assignments in an **8,980-byte** record, without copying model/data/native files.
 
-Validation is **83 focused source / 28 installed cases**, with a real installed
-relocation replay in **0.55 s** (79 installed modules, 138 files unchanged,
-original paths denied). No native fit or full suite. Only two runtime objects
-change; historical workers remain exact. [API, schema, complete commands,
-retained failures and source-specific evidence](metal-ordinary-receiving.md#current-a01-source-backed-hg-placement--28-november).
-Checkout: `ScienceCheckouts/Hazel/2026-11-28_ft-hg-placement/index.html` under
-the shared GitHub workspace. Methods A938–A944 and
-`branch-artifacts/Alder/a01-hg-placement-20261128-01/` retain the evidence.
+**162 focused cases / 18 subtests and 29 installed cases pass.** Installed
+relocation replay takes **15.89 s**, with 226 package modules, all 166 transported
+files exact and original source paths denied. No native optimization or full
+suite. The four changed runtime objects leave all historical workers exact.
+Methods A952–A955 and `branch-artifacts/Alder/a01-metal-input-20261128-01/` retain
+commands, source pins, genuine evidence and harness failures. The original 146
+science files stay exact; 55.03 MB of package/transport scratch was removed.
+[Interface, schema compatibility, evidence and limits](metal-ordinary-receiving.md#held-metal-construction-in-the-ordinary-registry).
 
-**Follow-up input check:** a second sibling hypothesis attaches the pinned
-historical recipe without moving any atom. One 1.698 s Phenix 2.2.1-6174 native
-interpretation receives both 2.1 Å / sigma 0.02 Hg–N3 contacts and the unchanged
-terminal-angle proposal. Its vertex is A:12 N3: measured 7.169° against 0 / 2°;
-the separate Hg-centred angle is 163.899°. A 1.184 s cold review passes, including
-all 138 prior files and the existing coordinate-roundoff checker. The first
-harness's exact-float assertion is retained; it caused no rerun or product change.
-No fit, ordinary checkpoint admission, image-force application or f″ result.
-[Exact recipe, native proof, storage and next boundary](metal-ordinary-receiving.md#retained-hg-recipe-reaches-the-fresh-native-manager).
+The prior source-backed placement and retained recipe remain the scientific
+starting point: N3–Hg distances 2.762/2.220 Å, Hg-centred angle 163.9°, declared
+Q=1/B=72.95 Å²/Hg(II). The historical recipe's zero-degree angle is at A:12 N3,
+not Hg; its two distance and one angle terms reached the native manager once.
+These are preparation measurements, not a new fit. [Retained recipe evidence](metal-ordinary-receiving.md#retained-hg-recipe-reaches-the-fresh-native-manager).
 
-**Admission diagnostic:** ordinary manual import accepts the 859-atom Hg model
-as an unselected REVIEW child on a disposable copy, but inherits only the five
-DNA restraints/no phases and carries no metal evidence. The existing supplement
-transfer also correctly refuses one preparation/execution prefix difference:
-the full-model policy needs the maintained 61→76-byte namespace adaptation.
-The Hg recipe itself is exact. All 146 source files remain unchanged; 18.36 MB of
-scratch was removed. No runtime/schema change, native fit or new pytest panel.
-[Actual owner results, retained failed assumption and next contract](metal-ordinary-receiving.md#next-ordinary-child-implementation-boundary).
-
-**Next:** explicit verified-metal intake and a versioned ordinary mixed XYZ/DNA
-group-B child, carrying preparation/discovery/recipe evidence, both crystal links
-and retained phases. Qualify the final adapted execution inputs before the bounded
-cycle; reuse the existing checkpoint and restraint-transfer owners.
+**Next:** qualify the final ordinary-adapted input capture and both crystal-link
+forces, then implement the versioned ordinary mixed XYZ/DNA group-B consumer.
+The saved preparation capture cannot substitute for execution-input evidence
+because one PHIL needs the existing 61→76-byte namespace adaptation. A01 remains
+partial; A02 quantitation stays gated. Current science checkout:
+`ScienceCheckouts/Hazel/2026-11-28_ft-hg-placement/index.html`.
 The source dictionaries' neutral N3–H3 declarations are known; the completed
 19 November neutral/anion comparison and the investigator's substitution intent
 remain separately recorded. Routine donor-state automation stays deferred and
@@ -56,7 +44,7 @@ installed objects remain exact, with 2 guide and 31 installed public-interface
 tests passing. [Validation and delivery evidence](metal-release-compatibility.md).
 A01 remains partial; no new fit or f″ result is implied.
 
-Updated **28 November 2026** (placement, native recipe delivery and ordinary-intake boundary). Active feature branch: **Alder**. The
+Updated **28 November 2026** (retained ordinary metal input). Active feature branch: **Alder**. The
 [root integration handoff](development-handoff.md) owns the current combined
 source, full validation and delivery. The [A01–A09 roadmap](metal-development-roadmap.md)
 owns feature completion. The earlier chronological diary is preserved as

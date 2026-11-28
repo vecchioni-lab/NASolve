@@ -38,7 +38,7 @@ class CheckpointRecord:
 
 
 SCHEMA_VERSION = 2
-READABLE_SCHEMA_VERSIONS = {1, SCHEMA_VERSION, 3, 4, 5}
+READABLE_SCHEMA_VERSIONS = {1, SCHEMA_VERSION, 3, 4, 5, 6}
 AUTOMATIC_STATUSES = {"READY", "SUCCESS", "USER_APPROVED"}
 REUSABLE_STATUSES = AUTOMATIC_STATUSES | {"REVIEW"}
 
@@ -388,6 +388,8 @@ def _read_registry_with_preparations(run_directory: Path):
         from .refinement_inputs import validate_checkpoint_refinement_inputs
         from .refinement_parallelity import validate_checkpoint_execution
         try:
+            from .metal_checkpoint import validate_metal_checkpoints
+            validate_metal_checkpoints(run, registry)
             for item in checkpoints:
                 if isinstance(item, dict):
                     validate_checkpoint_refinement_inputs(run, item)
@@ -430,8 +432,8 @@ def _initialize_registry_with_preparations(run_directory):
 
 
 def save_registry(run: Path, registry: dict[str, object]) -> Path:
-    checked = registry.get("schema_version") in {3, 4, 5} or any("checked_preparation" in i for i in _items(registry))
-    registry["schema_version"] = (registry["schema_version"] if registry.get("schema_version") in {4, 5} else 3) if checked else SCHEMA_VERSION
+    checked = registry.get("schema_version") in {3, 4, 5, 6} or any("checked_preparation" in i for i in _items(registry))
+    registry["schema_version"] = (registry["schema_version"] if registry.get("schema_version") in {4, 5, 6} else 3) if checked else SCHEMA_VERSION
     registry["run_directory"] = "."
     for item in _items(registry):
         for key in ("model", "observations", "phases"):
@@ -653,6 +655,8 @@ def add_checkpoint(
     if label in bookmarks:
         raise CheckpointError(f"Checkpoint name already exists: {label}")
     base = resolve_checkpoint(registry, parent)
+    if base.get("kind") == "metal-construction":
+        raise CheckpointError("A metal construction requires its qualified mixed consumer; manual import would lose its experiment")
     if model is None:
         if reflections is not None:
             raise CheckpointError("--mtz may be used only when importing --model")

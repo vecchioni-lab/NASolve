@@ -1,8 +1,101 @@
 # Ordinary receiving for mixed XYZ/group-B refinement
 
 Updated 28 November 2026. A01 mechanical integration; A01 science remains partial
-and A02 quantitation is gated. This is a prospective implementation contract,
-not a claim of ordinary numbered-round qualification.
+and A02 quantitation is gated. Verified construction inputs can now be retained
+in the ordinary registry. Numbered mixed refinement remains the next boundary.
+
+## Held metal construction in the ordinary registry
+
+`nasolve.metal_checkpoint.publish_metal_checkpoint` saves a metal model together
+with the evidence needed to refine it later. Previously, generic manual import
+kept the model but inherited only the DNA restraints and absent parent phases;
+the metal recipe, discovery and native receipt were not attached. The new
+explicit input keeps all those roles together without selecting the model or
+describing it as refined.
+
+The API takes `run`, `hypothesis`, `native_receipt`, `selectors` and `label`.
+The hypothesis directory supplies its exact checked ordinary parent and the
+schema-2 source-backed discovery declaration. The caller supplies the complete
+native preparation receipt and explicit original data/Free-R/HL selectors.
+No input is discovered by basename. `inspect_metal_checkpoint(run, checkpoint)`
+reopens the saved evidence without selecting or executing it. This is an opt-in
+Python interface; no CLI or campaign default changes.
+
+Publication reuses the existing hypothesis replay, external AutoSol source
+review, indexed diffraction reader, native-capture reader, phosphate validator
+and guarded registry writer. The native check binds the model and ordered
+inherited dictionaries/PHIL plus metal recipe to the completed preparation
+capture. It does not qualify the final ordinary PHIL adaptation or image forces.
+The original Free-R assignments and HL quartet are joined numerically. Raw
+AutoSol occupancy remains discovery evidence, never quantitative Q. Scientific
+files are rechecked after native review and before registry publication.
+
+Each new `metal-NNN` node has kind `metal-construction`, status `REVIEW`,
+`usable=False`, absent ordinary phases and a reference to
+`AutoRefine/Checkpoints/metal-NNN/input.json`. That record freezes the exact
+ordinary parent payload, hypothesis/native references, selectors, experimental
+review and preparation evidence. It records `execution_ready=False`,
+`refinement=NOT_RUN` and `scientific_acceptance=NOT_ASSESSED`. The existing model,
+reflections and native capture are referenced, not duplicated. This is a retained
+geometry input; it is not a new record for every future occupancy trial.
+
+Explicit publication advances the checkpoint registry to **schema 6**; input
+records use schema 1 and policy `source-backed-metal-checkpoint-v1`. Readers for
+schemas 1–5 refuse the new registry rather than ignoring its meaning. Historical
+registries and workers are unchanged. New readers preserve existing preparation
+alternatives and ordinary AutoSol site-reference validation. No automatic
+migration or historical rewrite occurs. Schema-6 source-backed reads require the
+**Phenix Python environment**, as does existing schema-2 discovery replay; a
+missing library produces an explicit error. Cold review runs no Phenix job.
+
+The ordinary parent remains current and byte-identical. Selection, manual
+descendants and a rehashed attempt to make the held node current refuse.
+Competing registry changes preserve the newer writer and a failed numbered
+bundle. Frozen parent/input evidence survives unrelated later report updates or
+bookmarks; it does not pin the mutable whole registry as scientific ancestry.
+Relocation uses declared run/dataset/repository anchors and checksums.
+
+**Validation:** 162 focused source cases and 18 subtests pass; 29 installed cases
+pass after build-source removal. The source panel is `tests/test_metal_checkpoint.py
+tests/test_checkpoints.py tests/test_cif_postmr_publication.py
+tests/test_registered_postmr_publication.py tests/test_autosol_selected_reference.py
+tests/test_refinement_external_autosol.py`, run with `pytest -q -p no:cacheprovider`
+and `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`. The exact Phenix Python bootstrap,
+dependency path, commands, source hashes, failures and logs are retained in
+`branch-artifacts/Alder/a01-metal-input-20261128-01/`. Two positive cases fail
+before the new API; a separate late-phase-change regression fails before its
+final source recheck. No full suite. The four changed runtime objects are
+`metal_checkpoint.py`, `checkpoints.py`, `cif_postmr_publication.py` and
+`autosol_reference.py`; all other installed objects and historical workers remain
+exact. New tests are in `test_metal_checkpoint.py`; the existing selected-AutoSol
+test also exercises schema-6 preservation.
+
+The genuine isolated FT publication retains 859 atoms, six restraints, 1,151
+matched F/HL rows and 59 original Free-R flags. Its input record is **8,980 bytes**,
+with no copied model, reflections or native capture. The ordinary parent's
+payload and current selection remain exact. Publication/readback/refusal checks
+take 78.84 s; saved-state review takes 15.19 s. The installed relocated read takes
+**15.89 s**, loading 226 NASolve modules from the 450-object package, with all
+166 transported files unchanged and original code/science paths denied. This is
+cold verification using **Phenix 2.2.1-6174**, Python 3.11.15, Gemmi 0.7.5 and
+NARestraints 1.1.3; no native optimization or new crystallographic result.
+
+Methods A952–A955 retain the real-source and installed checks. Two local harness
+failures are preserved: the initial native import needed system-memory discovery
+before subprocess denial, and the publication inventory initially omitted the
+existing registry owner's empty lock file. The saved successful publication was
+reopened rather than repeated. The original 146 science files stay unchanged;
+55.03 MB of package/transport scratch was removed, separately from the first
+failed import's accounted scratch. Generated science and test captures are local
+and excluded from Git.
+
+**Next:** qualify a capture of the final adapted execution inputs and both
+registered crystal-link forces. Then add the versioned mixed consumer using the
+existing numbered writer, source guards and process/return verification. The
+preparation-only receipt cannot stand in for that execution evidence. Keep the
+859-atom XYZ/42 DNA group-B scope explicit, Hg B and all Q/f′/f″ protected, and
+external phases labelled as experimental rather than ordinary AutoSol approval.
+A01 scientific acceptance and A02 quantitation remain separate.
 
 ## Current A01: source-backed Hg placement — 28 November
 

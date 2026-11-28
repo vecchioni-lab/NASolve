@@ -1,30 +1,19 @@
 # NASolve development handoff — integrated development base
 
-**A01 metal update — 28 November:** an explicit source-backed placement policy
-now builds one unselected Hg hypothesis from retained AutoSol evidence on the
-fresh 858-atom DF:T parent. All original atom records and 130 prior files remain
-exact; the new model has 859 atoms. Both declared N3 anchors choose the same
-crystal image (2.762/2.220 Å, 163.9°). Starting Hg Q=1/B=72.95 Å² are not refined
-or environmental values. The result is BUILT_REVIEW and unrestrained, not an
-ordinary accepted refinement parent or child. A01 stays partial and A02 gated.
-Focused source/installed panels pass **83/28 cases**; installed relocation replay
-passes in **0.55 s**, with source paths denied and 138 files unchanged. No native
-refinement or full suite. [Changes, schema compatibility, commands, failures and
-next ordinary-child boundary](metal-ordinary-receiving.md#current-a01-source-backed-hg-placement--28-november).
-The existing donor-state comparison is not repeated; routine state automation
-remains deferred. A subsequent sibling attaches the exact retained recipe without
-coordinate changes; one 1.698 s native interpretation and a 1.184 s cold review
-confirm two Hg–N3 contacts and the original terminal angle at A:12 N3. This is
-input delivery only, not an ordinary refined child or geometry acceptance.
-[Exact angle order, targets, evidence and next boundary](metal-ordinary-receiving.md#retained-hg-recipe-reaches-the-fresh-native-manager).
-A later disposable-copy diagnostic confirms ordinary manual Hg import works,
-but does not carry the recipe/discovery/native evidence. The saved preparation
-capture also differs by the existing 61→76-byte ordinary PHIL adaptation; the
-transfer guard correctly refuses it. All 146 source files stay exact, scratch is
-removed, and no native run or new pytest panel follows. [Precise intake boundary
-and next implementation](metal-ordinary-receiving.md#next-ordinary-child-implementation-boundary).
-Current science checkout:
-`ScienceCheckouts/Hazel/2026-11-28_ft-hg-placement/index.html`.
+**A01 metal update — 28 November evening:** the ordinary registry now has an
+explicit held metal input, keeping the original checked preparation, source-backed
+hypothesis, recipe/native evidence and external AutoSol/Free-R/HL experiment
+together. It is unselected REVIEW and unusable for refinement. Genuine isolated
+FT review retains 859 atoms, six restraints and 1,151 rows/59 Free-R assignments
+in an 8,980-byte record. No model/data/native capture is duplicated by publication.
+**162 focused cases / 18 subtests and 29 installed cases pass**; installed
+relocation replay passes in 15.89 s with original code/science paths denied.
+The four changed runtime objects preserve all historical workers; schema 6 is
+explicit and older readers refuse it. No full suite or new native refinement.
+[API, evidence, failures and compatibility](metal-ordinary-receiving.md#held-metal-construction-in-the-ordinary-registry).
+Next is final adapted native input/registered-force qualification, then the
+versioned numbered mixed XYZ/DNA group-B consumer. A01 science remains partial
+and A02 gated. [Current metal handoff](metal-development-handoff.md).
 
 **28 November integration:** Alder receives actual released main `c9127dda`
 after qualified Cedar `47caea97`, preserving its merge history. Focused source/installed checks pass, including the

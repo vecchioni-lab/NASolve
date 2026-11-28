@@ -47,7 +47,7 @@ def freeze_reference(run, registry, checkpoint, model, candidates, phaser_model,
         candidates=deepcopy(candidates), unit_cell=list(_unit_cell(model)),
         automatic_acceptance_distance=automatic_tolerance, review_distance=review_tolerance))
     reference = _file_reference(path, run)
-    registry['schema_version'] = CHECKPOINT_SCHEMA
+    registry['schema_version'] = max(registry['schema_version'], CHECKPOINT_SCHEMA)
     registry['autosol_site_reference'] = reference
     # A competing selection is not overwritten: the existing guarded save must
     # succeed before any native process starts. Preserve the receipt on failure.
@@ -61,7 +61,10 @@ def validate_reference(run, registry):
     from .autosol import _unit_cell
     from .postmr import scan_anomalous_candidates
     reference = registry.get('autosol_site_reference')
-    if registry.get('schema_version') != CHECKPOINT_SCHEMA:
+    from .metal_checkpoint import CHECKPOINT_SCHEMA as METAL_SCHEMA
+    if registry.get('schema_version') == METAL_SCHEMA and reference is None:
+        return None
+    if registry.get('schema_version') not in (CHECKPOINT_SCHEMA, METAL_SCHEMA):
         _need(reference is None, 'AutoSol site reference requires checkpoint schema 5')
         return None
     _need(isinstance(reference, dict) and reference.get('anchor') == 'run'

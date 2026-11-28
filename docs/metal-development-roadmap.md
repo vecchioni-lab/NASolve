@@ -184,10 +184,18 @@ manual REVIEW child without changing its 858-atom parent. It inherits only the
 five DNA restraints/no phases. The native preparation capture also lacks the
 ordinary full-model PHIL's existing namespace adaptation (one prefix row,
 61→76 bytes); exact Hg recipe delivery alone does not qualify execution.
-**Next scope: explicit verified-metal intake, then phased numbered image-force
-execution.** Bind ordinary preparation ancestry, discovery/construction and
-recipe/native proof; qualify the final adapted inputs using existing owners.
-[Diagnostic, retained failure and validation order](metal-ordinary-receiving.md#next-ordinary-child-implementation-boundary).
+**Verified-metal intake is now retained as a held ordinary input.** Schema-6
+`metal-NNN` keeps the original checked parent, exact hypothesis/recipe, native
+preparation evidence and declared AutoSol/Free-R/HL experiment together. It stays
+unselected and unusable for refinement. Genuine FT review preserves 859 atoms,
+six restraints and the original 1,151 rows/59 Free-R assignments in an 8,980-byte
+record, without duplicating model/data/capture. Focused source and installed
+panels pass 162/29 cases; the installed relocated cold read passes in 15.89 s.
+**Next scope: final execution-input capture, then phased numbered image-force
+execution.** Reuse the existing namespace adapter and independently qualify both
+crystal links; then implement the versioned mixed consumer and bounded cycle.
+No accepted Hg predecessor, repeated discovery or duplicate phase parser is
+needed. [Held-input API, evidence and remaining boundary](metal-ordinary-receiving.md#held-metal-construction-in-the-ordinary-registry).
 The known neutral donor declarations and completed neutral/anion comparison
 remain recorded; routine donor-state automation stays deferred. Do not turn that
 known history into a new prerequisite or repeat the completed comparison.

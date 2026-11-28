@@ -203,9 +203,13 @@ def test_autosol_inspection_uses_saved_model_after_current_choice_changes(select
     assert snapshot(run)==before
 
 
-def test_alternative_and_later_publication_preserve_new_reference_schema(selected_run,tmp_path,monkeypatch):
+@pytest.mark.parametrize('metal_schema',[False,True])
+def test_alternative_and_later_publication_preserve_new_reference_schema(selected_run,tmp_path,monkeypatch,metal_schema):
     from nasolve.cif_postmr_publication import publish_preparation_alternative
     run, first, _, identifier=selected_run
+    if metal_schema:
+        path=checkpoints.registry_path(run);registry=read_record(path)
+        registry['schema_version']=6;write_record(path,registry,replace=True)
     request=run/'PostMR/DictionaryEngine/request'; values={1:first}
     manual=checkpoints.resolve_checkpoint(checkpoints.read_registry(run)[1],identifier)
     selected=checkpoints._ref_path(manual['model'],'model',run)
@@ -224,7 +228,7 @@ def test_alternative_and_later_publication_preserve_new_reference_schema(selecte
     reference=(run/'AutoSol/site-reference.json').read_bytes()
     publish_preparation_alternative(run,attempt_number=3)
     registry=checkpoints.read_registry(run)[1]
-    assert registry['schema_version']==5 and registry['current']=='prepare-002'
+    assert registry['schema_version']==(6 if metal_schema else 5) and registry['current']=='prepare-002'
     assert 'prepare-003' in {item['id'] for item in registry['checkpoints']}
     assert (run/'AutoSol/site-reference.json').read_bytes()==reference
     assert phase_read(run) is not None

@@ -8,6 +8,20 @@ repository history.
 
 ## [Unreleased]
 
+### Retain a metal construction with its experiment in the ordinary registry
+
+- Add an explicit, unselected `metal-construction` REVIEW checkpoint that keeps
+  the verified hypothesis, coordination recipe, preparation-native evidence and
+  declared AutoSol/Free-R/HL experiment attached to its original checked parent.
+  Reuse existing files; publication adds a small immutable input record.
+- Keep this input unusable for ordinary refinement or selection until a qualified
+  mixed execution consumer exists. Reject lossy manual descendants, changed
+  scientific sources, late input changes and competing registry writes.
+- Explicit publication advances the registry to schema 6. Older readers refuse
+  it; existing schemas remain unchanged. Preparation alternatives and ordinary
+  AutoSol references preserve their prior authority. Reopening a source-backed
+  metal input requires Phenix Python for discovery and diffraction replay.
+
 ### Place a retained AutoSol site through explicit source and image checks
 
 - Add opt-in metal placement-plan schema 2 for one source-backed discovered

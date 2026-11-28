@@ -1944,6 +1944,27 @@ not create a numbered child, apply image forces or qualify a scientific endpoint
 Schema 1/default behavior is unchanged; older readers refuse schema 2. Native
 source inspection preserves atom order to agree with the unsorted writer policy.
 
+### Retained metal construction inputs
+
+`metal_checkpoint.publish_metal_checkpoint` joins a verified source-backed
+hypothesis to its independently checked ordinary parent. Its schema-6 registry
+node is an unselected, unusable `metal-construction` REVIEW input, not a refined
+child. A small immutable `AutoRefine/Checkpoints/metal-NNN/input.json` freezes
+the parent payload, exact recipe/hypothesis/native references, explicit selectors
+and indexed external AutoSol experiment. Existing model/data/capture files are
+reused through checksummed anchors. The original parent stays current and
+unphased. No auto migration, CLI default, historical worker or science policy
+changes; readers supporting only schemas 1–5 refuse the new registry.
+
+Ordinary cold reads replay the existing discovery, experiment and native owners
+in Phenix Python, without launching native work. Source changes, forged readiness,
+selection and lossy manual descendants refuse. Existing preparation alternatives
+and ordinary AutoSol references retain their own validators. Publication uses
+the existing guarded save and preserves failed numbers; legitimate unrelated
+registry/report updates do not invalidate frozen input ancestry. A subsequent
+mixed executor must independently qualify final adapted inputs, crystal forces
+and returned state. [Interface, validation and limits](metal-ordinary-receiving.md#held-metal-construction-in-the-ordinary-registry).
+
 
 ### Future graphical checkpoint-tree view
 

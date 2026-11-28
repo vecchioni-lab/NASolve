@@ -1029,6 +1029,13 @@ readable; this does not qualify it for phased geometry refinement. See the
 [ordinary-parent supply steps](docs/metal-ordinary-receiving.md#supply-an-ordinary-parent-for-metal-intake)
 if only a private fit or loose model is available.
 
+An opt-in [held metal-input API](docs/metal-ordinary-receiving.md#held-metal-construction-in-the-ordinary-registry)
+can now retain a source-backed model, coordination recipe, native preparation
+evidence and AutoSol experiment together in the ordinary registry. It keeps the
+original parent selected and adds only a small input record. The new registry
+requires a compatible reader and Phenix Python; it does not yet enable ordinary
+mixed refinement or accept the geometry.
+
 After the W AutoMR/PostMR stages generate a model, inspect its fixed A:12/B:4
 pair and observation-associated wavelength with:
 
