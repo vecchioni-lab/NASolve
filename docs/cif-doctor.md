@@ -658,7 +658,8 @@ identifier. It checks every finding, target, verdict, input hash and recorded
 tool version under the existing numerical comparison rules.
 
 A historical explicit NARestraints recipe also records its compiler modules
-and workbook. The original DF metal-site checkpoint used NARestraints 1.1.3.
+and workbook. The DF:T scaffold used to test this reader came from a mercury
+experiment before metal placement. Its preparation used NARestraints 1.1.3.
 The 1.1.4 release changed two modules and its workbook. To verify that
 checkpoint, use a separate environment matching the recorded Python, Biopython
 and NARestraints versions. When using a newer recipe intentionally, start a
