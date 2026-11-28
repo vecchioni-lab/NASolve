@@ -15,30 +15,10 @@ POLICY_ID='cif-postmr-cached-model-readback-v2'
 NAMED_REQUEST_POLICY_ID='cif-postmr-cached-model-readback-v3'
 
 
-def cached_preparation_replays(recorded,recomputed,path=()):
-    """Allow platform roundoff only in duplicated derived eigensystem notes.
-
-    The construction comparator already permits 1e-12 roundoff in finding
-    measurements. The legacy inspection repeats those measurements under
-    numerical_issues. Apply the same bound there; source targets, coordinates,
-    proxies, hashes, rules and verdicts still compare exactly.
-    """
-    import math
+def cached_preparation_replays(recorded, recomputed, path=()):
+    """Recheck the preparation, including roundoff in duplicated legacy inspection notes."""
     from .cif_construction_native import _preparation_replays
-    if type(recorded) is not type(recomputed):return False
-    if isinstance(recorded,dict):
-        return set(recorded)==set(recomputed) and all(cached_preparation_replays(
-            v,recomputed[k],path+(k,)) for k,v in recorded.items())
-    if isinstance(recorded,list):
-        return len(recorded)==len(recomputed) and all(cached_preparation_replays(
-            v,w,path+(i,)) for i,(v,w) in enumerate(zip(recorded,recomputed)))
-    derived=('numerical_issues' in path and (
-        path[-2:]==('measurements','determinant')
-        or len(path)>=3 and path[-3:-1]==('measurements','eigenvalues') and type(path[-1]) is int))
-    if type(recorded) is float and derived:
-        return math.isfinite(recorded) and math.isfinite(recomputed) and math.isclose(recorded,recomputed,rel_tol=1e-12,abs_tol=1e-12)
-    return _preparation_replays(recorded,recomputed,path)
-
+    return _preparation_replays(recorded, recomputed, path, cached_notes=True)
 
 def qualify_cached_model_roundtrip(before,after,before_model,after_model,*,explicit_request_policy=None):
     """Compare every fixed named restraint, definition and backbone link.

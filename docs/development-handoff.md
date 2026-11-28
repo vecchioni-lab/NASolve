@@ -176,6 +176,14 @@ transferable handoff still needs an installed combined-source check. [Integratio
 
 ## Validation and release
 
+For NASolve 0.2.0, the current release interfaces are indexed in the
+[workflow guide](current-behavior.json). A retained metal-site checkpoint exposed
+a distinction between an update to dictionary comparison and a change in
+the NARestraints compiler. Keep the recorded assessor identity and the
+compiler's workbook and software pins when reopening old work.
+[Historical replay requirements](cif-doctor.md#reopening-older-checked-preparations).
+
+
 C623 passed 223 focused checks with each of NARestraints 1.1.4 and the 1.1.5
 candidate. Both new package distributions passed 57 tests after relocation.
 Native Phenix read both restraint sets on identical deposited coordinates.

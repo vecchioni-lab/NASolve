@@ -96,6 +96,10 @@
       "guide": "docs/pdb-deposition.md"
     }
   },
+  "historical_replay": {
+    "guide": "docs/cif-doctor.md#reopening-older-checked-preparations",
+    "requirements": "Use the recorded compiler and workbook for a historical explicit NARestraints recipe. Fresh installations use the latest stable release."
+  },
   "development": {
     "chemistry_capabilities": "docs/cif-doctor.md#current-capability-boundary",
     "chemistry_queue": "docs/cif-doctor-completion-queue.md#pipeline-position",

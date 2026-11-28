@@ -8,6 +8,8 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- Older checked preparation checkpoints can reopen after comparison-only updates to CIF Doctor. Readback verifies the named historical assessor and retains its recorded identity. New chemical comparison rules are maintained separately from the component assessor.
+
 - NASolve 0.2.0 packages Cedar's checked preparation and registered crystal-phosphate refinement. The installed `nasolve-topostitch-inspect` command reads declared sticky ends and their crystal mates. The Coot view resolver also identifies the source of the selected map while retaining preparation-attempt inspection and the existing positional interface.
 
 - `nasolve cif-doctor catalogue --sulfur-phosphates` can read the sulfur, retained oxygen, leaving oxygen and carbon-linked oxygen directly from component bonds and leaving-atom declarations. The optional report preserves source orders, charges and atom names and distinguishes bridging and multiple sulfurs.
