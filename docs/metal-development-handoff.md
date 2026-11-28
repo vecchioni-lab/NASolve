@@ -18,8 +18,19 @@ Checkout: `ScienceCheckouts/Hazel/2026-11-28_ft-hg-placement/index.html` under
 the shared GitHub workspace. Methods A938–A944 and
 `branch-artifacts/Alder/a01-hg-placement-20261128-01/` retain the evidence.
 
-**Next:** explicit coordination recipe on this exact parent, then a versioned
-ordinary mixed XYZ/DNA group-B child with both crystal links and retained phases.
+**Follow-up input check:** a second sibling hypothesis attaches the pinned
+historical recipe without moving any atom. One 1.698 s Phenix 2.2.1-6174 native
+interpretation receives both 2.1 Å / sigma 0.02 Hg–N3 contacts and the unchanged
+terminal-angle proposal. Its vertex is A:12 N3: measured 7.169° against 0 / 2°;
+the separate Hg-centred angle is 163.899°. A 1.184 s cold review passes, including
+all 138 prior files and the existing coordinate-roundoff checker. The first
+harness's exact-float assertion is retained; it caused no rerun or product change.
+No fit, ordinary checkpoint admission, image-force application or f″ result.
+[Exact recipe, native proof, storage and next boundary](metal-ordinary-receiving.md#retained-hg-recipe-reaches-the-fresh-native-manager).
+
+**Next:** a versioned ordinary mixed XYZ/DNA group-B child with both crystal
+links and retained phases, explicitly carrying the verified construction delta
+and recipe alongside ordinary preparation ancestry.
 The source dictionaries' neutral N3–H3 declarations are known; the completed
 19 November neutral/anion comparison and the investigator's substitution intent
 remain separately recorded. Routine donor-state automation stays deferred and

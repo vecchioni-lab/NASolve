@@ -172,7 +172,16 @@ and no ordinary checkpoint selection. Source/installed panels pass 83/28 cases;
 real installed relocation replay passes in 0.55 s. The 1.17 MB hypothesis is an
 important retained geometry node, not a new f″ trial. [Exact source/schema and
 validation evidence](metal-ordinary-receiving.md#current-a01-source-backed-hg-placement--28-november).
-**Next scope: explicit coordination recipe, then phased numbered image-force execution.**
+**One retained coordination recipe now has native delivery evidence.** A separate
+sibling uses identical 859-atom model bytes, two 2.1 Å / sigma 0.02 Hg–N3 terms,
+and the original terminal Hg–A:12 N3–B:4 N3 angle (0 / 2°). Phenix receives those
+exact terms in 1.698 s; independent cold review takes 1.184 s. The A:12 vertex
+measures 7.169°, distinct from the 163.899° Hg-centred angle. No optimization or
+chemical acceptance follows. Do not rerun the completed native interpretation.
+**Next scope: phased numbered image-force execution with explicit ordinary
+ancestry plus the verified metal-construction delta and recipe.** The ordinary
+858-atom parent cannot silently become a 859-atom checkpoint. [Frozen-input
+boundary and proposed validation order](metal-ordinary-receiving.md#next-ordinary-child-implementation-boundary).
 The known neutral donor declarations and completed neutral/anion comparison
 remain recorded; routine donor-state automation stays deferred. Do not turn that
 known history into a new prerequisite or repeat the completed comparison.

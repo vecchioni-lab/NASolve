@@ -95,8 +95,8 @@ is a retained geometry node; 9,100 bytes hold the discovery plan. Reproducible
 package scratch is removed and separately accounted for. Raw models, reflections,
 test captures and checkouts remain local and are excluded from Git.
 
-**Next:** declare and qualify the explicit Hg coordination recipe on this exact
-parent, then implement/admit the numbered mixed XYZ/DNA group-B child with both
+**Next after placement:** the following native check now delivers one explicit
+existing Hg recipe on this exact parent. Implement/admit the numbered mixed XYZ/DNA group-B child with both
 crystal links and retained AutoSol phase binding. A neutral baseline must be
 labelled as such; a different donor state requires its separate explicit source
 declaration. Willow's same-inventory descent cannot treat this 858→859 placement
@@ -107,6 +107,79 @@ A01 remains partial and A02 gated.
 Checkout: `ScienceCheckouts/Hazel/2026-11-28_ft-hg-placement/index.html`, under
 the shared GitHub workspace. The two panels share one projection and preserve
 the DNA constellation; source component graphs supply the light covalent lines.
+
+### Retained Hg recipe reaches the fresh native manager
+
+One additional bounded check reuses the original DF/DT PHIL pinned by the
+19 November comparison plan, SHA-256
+`87b16de358f76667d98e085f571ba69e8a65225f284ae8235f3c3820630ceb00`.
+The strict existing PHIL importer maps all three exact selectors to logical Hg,
+first-N3 and second-N3 nodes. Targets, widths and atom order are unchanged. The
+later comparison's QF1/QT1 selectors are not copied. No donor-state derivation,
+parameter grid or repeat refinement is needed.
+
+`Metal/hypothesis_002` is a separate sibling on the same 858-atom ordinary
+parent. Its 859-atom model is byte-identical to hypothesis 001, with the recipe
+attached. It has no unrestrained metal nodes, but remains BUILT_REVIEW and
+`native_ready=False`; the independent native receipt does not rewrite its status
+or promote it into an ordinary checkpoint.
+
+| Term in the retained proposal | Target / sigma | Fresh starting measurement |
+| --- | --- | --- |
+| Hg–A:12 DF N3 | 2.10 / 0.02 Å | 2.76159 Å |
+| Hg–B:4 DT N3 | 2.10 / 0.02 Å | 2.21990 Å |
+| Hg–A:12 N3–B:4 N3, **vertex A:12 N3** | 0 / 2° | **7.16935°** |
+| A:12 N3–Hg–B:4 N3, **vertex Hg** | No direct angle term in this recipe | **163.89902°** |
+
+The terminal zero-degree restraint is not replaced by a mercury-centred
+180-degree restraint; their mechanical responses away from collinearity differ.
+This check establishes delivery of the existing proposal, not its chemical
+suitability or superiority to another geometry.
+
+The maintained `inspect_native_bundle` executes once with the exact inherited
+two dictionaries/three PHIL inputs plus the new exported recipe. Phenix
+**2.2.1-6174** finishes native interpretation in **1.698 s**. It records 859 atoms,
+exactly the two requested Hg contacts and one terminal-angle proxy, with edit
+origin 4, bond weights 2,500 and angle weight 0.25. No additional Hg simple/ASU
+bond or angle appears. The existing typed coordination adapter binds both contacts
+and their unique native requests. Whole native counts include 1,007 simple bonds,
+1,552 angles, 42 planes and 56 parallelities; these counts do not prove image
+forces or complete physical topology. No optimization or diffraction run occurs.
+
+The first review harness incorrectly required bit-identical Cartesian floats
+after native fractional/Cartesian conversion. Its maximum displacement is
+**1.24345×10⁻¹⁴ Å**. The saved capture passes the maintained atom/coordinate
+checker and full input/worker checksum reader in a **1.184 s cold review**;
+no native rerun or product tolerance change occurs. All 138 preexisting files
+remain exact. The second hypothesis occupies **1,182,549 bytes** and its complete
+native evidence **9,959,279 bytes**, retained as a geometry-input node. This is
+not authorization for f″-trial retention or deletion.
+
+Methods **A945–A946** and `a01-hg-recipe-native-20261128-01/` under the same local
+artifact anchor retain the exact command, input pins, first harness failure,
+native completion and cold review. No product code or test changed for this
+follow-up; no full suite or repeated test panel. Generated science is excluded
+from Git. The 28 November checkout includes the term table and native result.
+
+### Next ordinary-child implementation boundary
+
+The existing mixed-parent binding still reads the 858-atom ordinary checkpoint;
+it cannot silently substitute a 859-atom hypothesis as that checkpoint's model.
+The next version must explicitly preserve both authorities: ordinary preparation
+and original diffraction ancestry, plus the verified metal-construction delta,
+recipe and native input evidence. Retain the original checkpoint and both
+numbered hypotheses. Freeze the final 859-atom XYZ/DNA group-B input state in the
+new child request rather than fabricating an accepted Hg predecessor.
+
+Reuse the numbered execution, source guard, phosphate image-force and output/
+process owners. The declared recipe must be included with the ordered inherited
+restraints; both original crystal links need their qualified force construction.
+Freeze input/report ancestry at allocation so legitimate later registry changes
+do not invalidate a completed child. First test zero-cycle transfer, then one
+bounded cycle with exact written-state/process evidence and inspectable maps.
+No further discovery, recipe interpretation, donor comparison or unchanged private
+fit is needed to establish these already completed inputs. Ordinary input/child
+admission and scientific A01 acceptance remain separate; A02 stays gated.
 
 <a id="current-a01-registered-original-publication--27-november-evening"></a>
 

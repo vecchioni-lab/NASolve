@@ -12,7 +12,12 @@ passes in **0.55 s**, with source paths denied and 138 files unchanged. No nativ
 refinement or full suite. [Changes, schema compatibility, commands, failures and
 next ordinary-child boundary](metal-ordinary-receiving.md#current-a01-source-backed-hg-placement--28-november).
 The existing donor-state comparison is not repeated; routine state automation
-remains deferred. Current science checkout:
+remains deferred. A subsequent sibling attaches the exact retained recipe without
+coordinate changes; one 1.698 s native interpretation and a 1.184 s cold review
+confirm two Hg–N3 contacts and the original terminal angle at A:12 N3. This is
+input delivery only, not an ordinary refined child or geometry acceptance.
+[Exact angle order, targets, evidence and next boundary](metal-ordinary-receiving.md#retained-hg-recipe-reaches-the-fresh-native-manager).
+Current science checkout:
 `ScienceCheckouts/Hazel/2026-11-28_ft-hg-placement/index.html`.
 
 **28 November integration:** Alder receives actual released main `c9127dda`
