@@ -3,10 +3,16 @@
 All notable user-visible, compatibility, schema, and reproducibility changes
 to NASolve are recorded here.
 
-The format follows Keep a Changelog. Until the first tagged release, historical
-entries are reconstructed from repository history.
+The format follows Keep a Changelog. Early entries were reconstructed from the
+repository history.
 
 ## [Unreleased]
+
+## [0.2.0] - 2026-11-28
+
+This release brings Pine and Cedar into the standard NASolve installation.
+The [user guide](README.md) and [workflow index](docs/current-behavior.json)
+identify the ordinary solve, optional chemistry checks and crystal-end tools.
 
 - Older checked preparation checkpoints can reopen after comparison-only updates to CIF Doctor. Readback verifies the named historical assessor and retains its recorded identity. New chemical comparison rules are maintained separately from the component assessor.
 
