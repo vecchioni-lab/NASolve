@@ -7,7 +7,6 @@ into each run that needs it.
 
 from __future__ import annotations
 
-import shlex
 from dataclasses import dataclass
 from math import dist, isfinite
 from pathlib import Path
@@ -43,6 +42,14 @@ class CuratedLigand:
     forbidden_bonds: tuple[tuple[str, str], ...] = ()
     atom_substitutions: tuple[AtomSubstitution, ...] = ()
     ring_substituents: tuple[RingSubstituent, ...] = ()
+
+
+@dataclass(frozen=True)
+class LigandDictionarySource:
+    code: str
+    path: Path
+    authority: str
+    kind: str
 
 
 CURATED_LIGANDS: dict[str, CuratedLigand] = {
@@ -203,10 +210,8 @@ def construction_parent_code(record: Mapping[str, object]) -> str:
     return _PARENT_CODES[(sugar, base)]
 
 
-def ligand_definition(code: str) -> CuratedLigand:
-    """Return target identity plus a curated or category-selected construction hop."""
-    if code in CURATED_LIGANDS:
-        return CURATED_LIGANDS[code]
+def _registered_record(code: str) -> dict:
+    """Resolve source identity independently of a supported construction route."""
     try:
         from restraints.residue_library import load_residue_records
     except ImportError as exc:  # pragma: no cover - installation error path
@@ -216,11 +221,16 @@ def ligand_definition(code: str) -> CuratedLigand:
         for record in load_residue_records()
         if str(record.get("Ligand code")) == code
     ]
-    if len(matches) != 1:
-        raise ValueError(
-            f"Expected one NARestraints record for {code}, found {len(matches)}"
-        )
-    record = matches[0]
+    from .component_records import resolve_component_record
+    record, _ = resolve_component_record(matches, code)
+    return record
+
+
+def ligand_definition(code: str) -> CuratedLigand:
+    """Return target identity plus a curated or category-selected construction hop."""
+    if code in CURATED_LIGANDS:
+        return CURATED_LIGANDS[code]
+    record = _registered_record(code)
     parent_code = construction_parent_code(record)
     return CuratedLigand(
         code=code,
@@ -252,15 +262,75 @@ def curated_dictionary(code: str, data_root: Path | None = None) -> Path:
     return path
 
 
-def ligand_dictionary(code: str, data_root: Path | None = None) -> Path:
-    """Resolve the reviewed override or a local official CCD dictionary."""
-    ligand = ligand_definition(code)
-    path = ligand_data_directory(data_root) / ligand.dictionary_filename
-    if not path.is_file():
+def ligand_dictionary(
+    code: str,
+    data_root: Path | None = None,
+    *,
+    ready_set_executable: Path | None = None,
+) -> Path:
+    return ligand_source(code, data_root, ready_set_executable=ready_set_executable).path
+
+
+def ligand_source(code: str, data_root: Path | None = None, *,
+                  ready_set_executable: Path | None = None) -> LigandDictionarySource:
+    """Choose a local reviewed dictionary, or a verified installed Phenix CCD.
+
+    Component identity comes from NARestraints independently of whether a
+    Coot construction parent is supported. The Phenix library supplies *source
+    chemistry*, not automatically authoritative numerical restraints:
+    ReadySet must still generate those when the CCD graph lacks parameters.
+
+    Deliberately never fall back from a missing curated dictionary.  Those
+    resources have reviewed chemistry/parameterization which the raw CCD
+    cannot silently replace.
+    """
+    if code in CURATED_LIGANDS:
+        filename = CURATED_LIGANDS[code].dictionary_filename
+    else:
+        from re import fullmatch
+        if not isinstance(code, str) or fullmatch(r"[A-Z0-9]{1,3}", code) is None:
+            raise ValueError(f"Unsafe or non-PDB CCD component code {code!r}")
+        _registered_record(code)
+        filename = f"{code}.cif"
+    path = ligand_data_directory(data_root) / filename
+    if path.is_file():
+        curated = code in CURATED_LIGANDS
+        return LigandDictionarySource(code, path, 'CURATED' if curated else 'EXPLICIT',
+                                      'curated' if curated else 'local-verified')
+    if code in CURATED_LIGANDS:
         raise FileNotFoundError(
-            f"No local CCD dictionary for {code}: expected {path}"
+            f"Curated dictionary for {code} is missing: {path}"
         )
-    return path
+    if ready_set_executable is None:
+        raise FileNotFoundError(
+            f"No local CCD dictionary for {code}: expected {path}; "
+            "Phenix ReadySet executable was not supplied for library lookup"
+        )
+
+    # The configured executable is authoritative for which Phenix installation
+    # is used.  In Phenix 2.2, official CCDs live in the bundled chem_data
+    # package under lib/pythonX.Y/site-packages, not in CODE.cif filenames.
+    from re import fullmatch
+    if fullmatch(r"[A-Z0-9]{1,3}", code) is None:
+        raise ValueError(f"Unsafe or non-PDB CCD component code {code!r}")
+    executable = Path(ready_set_executable).expanduser().resolve()
+    install_root = executable.parent.parent
+    relative = (
+        f"lib/python*/site-packages/chem_data/chemical_components/"
+        f"{code[0].lower()}/data_{code}.cif"
+    )
+    # Phenix may expose one Python library through several symlinked paths.
+    # Count each resolved source once; distinct copies remain ambiguous.
+    candidates = sorted({p.resolve() for p in install_root.glob(relative) if p.is_file()})
+    if len(candidates) != 1:
+        raise FileNotFoundError(
+            f"Expected one Phenix CCD for {code} beside {executable}, "
+            f"found {len(candidates)} in {install_root / relative}"
+        )
+    # The caller validates component identity before using this source;
+    # neither file naming nor NARestraints family classification alone is
+    # authority to change the full chemical graph.
+    return LigandDictionarySource(code, candidates[0], 'NATIVE', 'installed-phenix-ccd')
 
 
 def validate_ligand_dictionary(code: str, path: Path) -> None:
@@ -268,134 +338,95 @@ def validate_ligand_dictionary(code: str, path: Path) -> None:
     if code in CURATED_LIGANDS:
         validate_curated_dictionary(code, path)
         return
-    component_ids: set[str] = set()
-    for raw_line in path.read_text(encoding="utf-8").splitlines():
-        try:
-            fields = shlex.split(raw_line, comments=False)
-        except ValueError:
-            continue
-        if len(fields) >= 2 and fields[0] == "_chem_comp.id":
-            component_ids.add(fields[1])
-    if code not in component_ids:
-        found = ", ".join(sorted(component_ids)) or "none"
+    from .ligand_profiles import _blocks, dictionary_component_codes
+    component_ids = [value for block in _blocks(path)
+                     for value in block.values.get('_chem_comp.id', [])]
+    if component_ids != [code] or dictionary_component_codes(path) != {code}:
+        found = ", ".join(sorted(set(component_ids))) or "none"
         raise ValueError(
-            f"Dictionary {path} does not declare _chem_comp.id {code}; found {found}"
+            f"Dictionary {path} does not declare one exact _chem_comp.id {code}; found {found}"
         )
 
 
-def _dictionary_bonds(path: Path) -> set[frozenset[str]]:
-    """Read the atom pairs from a CIF ``_chem_comp_bond`` loop."""
-    lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
-    for index, line in enumerate(lines):
-        if line.strip() != "loop_":
-            continue
-        headers: list[str] = []
-        cursor = index + 1
-        while cursor < len(lines) and lines[cursor].lstrip().startswith("_"):
-            headers.append(lines[cursor].strip())
-            cursor += 1
-        atom_1 = "_chem_comp_bond.atom_id_1"
-        atom_2 = "_chem_comp_bond.atom_id_2"
-        if atom_1 not in headers or atom_2 not in headers:
-            continue
-        first_index = headers.index(atom_1)
-        second_index = headers.index(atom_2)
-        bonds: set[frozenset[str]] = set()
-        while cursor < len(lines):
-            row = lines[cursor].strip()
-            if not row or row == "#" or row == "loop_" or row.startswith("data_"):
-                break
-            if row.startswith("_"):
-                break
-            # ``posix=False`` preserves unquoted prime atom names such as
-            # O5', which occur in older eLBOW dictionaries.
-            fields = shlex.split(row, comments=True, posix=False)
-            if len(fields) > max(first_index, second_index):
-                atoms = []
-                for field_index in (first_index, second_index):
-                    atom = fields[field_index]
-                    if (
-                        len(atom) >= 2
-                        and atom[0] == atom[-1]
-                        and atom[0] in {"'", '"'}
-                    ):
-                        atom = atom[1:-1]
-                    atoms.append(atom)
-                bonds.add(frozenset(atoms))
-            cursor += 1
-        return bonds
-    raise ValueError(f"Dictionary has no _chem_comp_bond loop: {path}")
+def _dictionary_category(path: Path, category: str, *, component: str | None = None) -> dict[str, list[str]]:
+    """Read one unambiguous component category, independent of physical rows.
+
+    Reuse the existing CIF1 block parser and lexical duplicate-tag check. A
+    component-list block is allowed, but a second matching table or conflicting
+    declared component is not silently selected or merged. Minimal legacy tables
+    without component declarations remain readable; declarations, when present,
+    must agree. This reader never changes or emits the source dictionary.
+    """
+    from .cif_doctor import _duplicate_tags
+    from .ligand_profiles import _blocks
+
+    tables = []
+    identities = set()
+    for block in _blocks(path):
+        if _duplicate_tags(block.text):
+            raise ValueError(f"Dictionary has repeated category fields: {path}")
+        values = {key.lower(): column for key, column in block.values.items() if key != 'data_'}
+        for key, column in values.items():
+            if key == '_chem_comp.id' or (key.startswith('_chem_comp_') and key.endswith('.comp_id')):
+                if not column or any(value in {'', '.', '?'} for value in column):
+                    raise ValueError(f"Dictionary has missing component identity: {path}")
+                identities.update(column)
+        columns = {key[len(category) + 1:]: column for key, column in values.items()
+                   if key.startswith(category + '.')}
+        if columns:
+            lengths = {len(column) for column in columns.values()}
+            if len(lengths) != 1 or 0 in lengths:
+                raise ValueError(f"Dictionary has incomplete {category} rows: {path}")
+            tables.append(columns)
+    if len(identities) > 1 or (component is not None and identities and identities != {component}):
+        raise ValueError(f"Dictionary has conflicting component identities: {path}")
+    if len(tables) != 1:
+        raise ValueError(f"Dictionary requires one unambiguous {category} table: {path}")
+    return tables[0]
+
+
+def _dictionary_bonds(path: Path, *, component: str | None = None) -> set[frozenset[str]]:
+    """Read exact atom pairs from one component's CIF bond category."""
+    columns = _dictionary_category(path, '_chem_comp_bond', component=component)
+    if not {'atom_id_1', 'atom_id_2'} <= columns.keys():
+        raise ValueError(f"Dictionary has no _chem_comp_bond atom pairs: {path}")
+    bonds = set()
+    for first, second in zip(columns['atom_id_1'], columns['atom_id_2']):
+        if first in {'', '.', '?'} or second in {'', '.', '?'} or first == second:
+            raise ValueError(f"Dictionary has invalid bond atom identifiers: {path}")
+        bonds.add(frozenset((first, second)))
+    return bonds
 
 
 def dictionary_ideal_bond_length(path: Path, atom_1: str, atom_2: str) -> float:
     """Return an atom-pair distance from the preferred ideal CIF coordinates."""
-    lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
-    for index, line in enumerate(lines):
-        if line.strip() != "loop_":
-            continue
-        headers: list[str] = []
-        cursor = index + 1
-        while cursor < len(lines) and lines[cursor].lstrip().startswith("_"):
-            headers.append(lines[cursor].strip())
-            cursor += 1
-        atom_header = "_chem_comp_atom.atom_id"
-        coordinate_header_sets = (
-            (
-                "_chem_comp_atom.pdbx_model_Cartn_x_ideal",
-                "_chem_comp_atom.pdbx_model_Cartn_y_ideal",
-                "_chem_comp_atom.pdbx_model_Cartn_z_ideal",
-            ),
-            (
-                "_chem_comp_atom.x",
-                "_chem_comp_atom.y",
-                "_chem_comp_atom.z",
-            ),
-        )
-        if atom_header not in headers:
-            continue
-        coordinate_headers = next(
-            (
-                coordinate_set
-                for coordinate_set in coordinate_header_sets
-                if all(header in headers for header in coordinate_set)
-            ),
-            None,
-        )
-        if coordinate_headers is None:
-            continue
-        atom_index = headers.index(atom_header)
-        coordinate_indices = tuple(headers.index(header) for header in coordinate_headers)
-        coordinates: dict[str, tuple[float, float, float]] = {}
-        while cursor < len(lines):
-            row = lines[cursor].strip()
-            if not row or row == "#" or row == "loop_" or row.startswith("data_"):
-                break
-            if row.startswith("_"):
-                break
-            fields = shlex.split(row, comments=True, posix=False)
-            if len(fields) > max(atom_index, *coordinate_indices):
-                atom = fields[atom_index]
-                # Remove only a matching surrounding quote pair. A prime
-                # belongs to the atom name: C5-prime must never replace C5.
-                if len(atom) >= 2 and atom[0] == atom[-1] and atom[0] in {"\"", "'"}:
-                    atom = atom[1:-1]
-                if atom in {atom_1, atom_2}:
-                    try:
-                        coordinates[atom] = tuple(
-                            float(fields[field_index])
-                            for field_index in coordinate_indices
-                        )
-                    except ValueError as exc:
-                        raise ValueError(
-                            f"Dictionary has invalid ideal coordinates for {atom}: {path}"
-                        ) from exc
-            cursor += 1
-        if atom_1 in coordinates and atom_2 in coordinates:
-            return dist(coordinates[atom_1], coordinates[atom_2])
-        raise ValueError(
-            f"Dictionary ideal-coordinate loop is missing {atom_1} or {atom_2}: {path}"
-        )
-    raise ValueError(f"Dictionary has no usable ideal atom coordinates: {path}")
+    columns = _dictionary_category(path, '_chem_comp_atom')
+    names = columns.get('atom_id', [])
+    if not names or len(set(names)) != len(names) or any(n in {'', '.', '?'} for n in names):
+        raise ValueError(f"Dictionary has missing or duplicate atom identifiers: {path}")
+    coordinate_sets = (
+        tuple('pdbx_model_cartn_' + axis + '_ideal' for axis in 'xyz'),
+        ('x', 'y', 'z'),
+    )
+    fields = next((triplet for triplet in coordinate_sets if all(key in columns for key in triplet)), None)
+    if fields is None:
+        raise ValueError(f"Dictionary has no usable ideal atom coordinates: {path}")
+    coordinates = {}
+    for atom in {atom_1, atom_2}:
+        if atom not in names:
+            raise ValueError(f"Dictionary ideal-coordinate loop is missing {atom_1} or {atom_2}: {path}")
+        index = names.index(atom)
+        try:
+            point = tuple(float(columns[key][index]) for key in fields)
+        except ValueError as exc:
+            raise ValueError(f"Dictionary has invalid ideal coordinates for {atom}: {path}") from exc
+        if not all(isfinite(value) for value in point):
+            raise ValueError(f"Dictionary has invalid ideal coordinates for {atom}: {path}")
+        coordinates[atom] = point
+    distance = dist(coordinates[atom_1], coordinates[atom_2])
+    if not isfinite(distance):
+        raise ValueError(f"Dictionary has nonfinite ideal atom distance: {path}")
+    return distance
 
 
 def validate_curated_dictionary(code: str, path: Path) -> None:
@@ -444,7 +475,7 @@ def validate_curated_dictionary(code: str, path: Path) -> None:
         base = {"N1", "C2", "N2", "N3", "C4", "C5", "C6", "N6", "N7", "C8", "N9"}
         if not base.issubset(set(values.get("_chem_comp_plane_atom.atom_id", []))):
             raise ValueError("1AP base-plane definition is incomplete")
-    bonds = _dictionary_bonds(path)
+    bonds = _dictionary_bonds(path, component=code)
     missing = [pair for pair in ligand.required_bonds if frozenset(pair) not in bonds]
     forbidden = [pair for pair in ligand.forbidden_bonds if frozenset(pair) in bonds]
     if missing or forbidden:

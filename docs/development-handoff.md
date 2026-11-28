@@ -1,155 +1,226 @@
-# NASolve development handoff — current state
+# NASolve development handoff
 
-Updated **2026-10-08**. **Working branch: `pine`.** Finish the bounded
-Pine scientific gates, merge [Pine PR #23](https://github.com/vecchioni-lab/NASolve/pull/23)
-into `main`, then the **blind AlphaFold geometry baseline**, then
-**operational Scout**. No GUI/Topo Net implementation is a prerequisite.
-This is the compact active handoff, not a chronology. The complete previous
-handoff is [archived](history/development-handoff-2026-10-08-pre-consolidation.md).
+Updated 28 November 2026. Four Q07 substitutions have completed five ordinary diffraction cycles from one mutation card.
+Q06 keeps the PDU B:4 site under review. The aim is for a scientist to use a supported modified nucleotide without hand-editing a CIF. Coot builds the
+residue, NARestraints supplies the intended pairs and stacks, and Cedar checks what
+ReadySet and Phenix actually use. The [completion queue](cif-doctor-completion-queue.md#pipeline-position) owns the work order. The [capability table](cif-doctor.md#current-capability-boundary) owns the support
+claims.
 
-## Executive state
+## Where to resume
 
-| Workstream | Verified result | Remaining gate |
-| --- | --- | --- |
-| NARestraints | **v1.1.3 released** ([release](https://github.com/vecchioni-lab/NARestraints/releases/tag/v1.1.3), `main a9264f9`); Python 3.10/3.12/3.14 CI, wheel/sdist and SHA256SUMS passed. Corrected Z:P and K:X role/stacking orientation; B:S and D:T retained. Bundled workbook unchanged. | One combined Z:P/B:S/K:X/D:T native stress run; verify old local .venv version and missing IGU/IMC/CGY/DX CIFs first. |
-| Modified-W Saenger overlay | [NASolve PR #24](https://github.com/vecchioni-lab/NASolve/pull/24) **MERGED into Pine** at `0017081`. Exact reconciled branch `612881d` passed **40 focused + 2 subtests** and **967 full + 226 subtests (85.38 s)**; combined D:T/B:S(IGU:IMC)/Z:P/K:X plus 5CM:G/DF:A workbook regression passed. Earlier native Z:P `run_003/refine-001` SOLVED numerically with user Coot visual PASS. | No combined-family native execution yet. Resolve IGU/IMC/CGY/DX monomer definitions through existing libraries and validated generic preparation before freezing that challenge. |
-| Coot viewing | [PR #25](https://github.com/vecchioni-lab/NASolve/pull/25) **merged** into Pine at `e8613bf`; isolated **59 focused + 30 subtests**, **960 full + 226 subtests**. User fast-forwarded their Pine checkout, manually selected `run_003`, then confirmed **bare `./nasolve show` works in real Coot**, with screenshot. | **USER LIVE PASS** for pathless view of a selected run. Auto-activation following *new* single-dataset execution is regression-tested, not independently live-trialled. |
-| P2 modified-component preparation | Published at `dec56c2`; **276 focused + 20 subtests**, **927 full + 224 subtests** at that code point. Source-derived `1W5→DZ` and `1WA→DP` preparation implemented. | True native source-component/DP preparation and refinement with artifact provenance; fixture-only and W Z:P runs do not close this. |
-| Campaigns / full auto | Ordinary guarded MR→PostMR→conditional AutoSol→refinement and immutable checkpoints work. Separate EA/DiU/Q5cm/QiC full-auto campaign reached numerical SOLVED for all four, preserving EA MR_REVIEW and QiC provisional (not user-approved) selection. | Bounded evidence review and user-veto/resume where still missing; do not rerun passed cohorts merely to refresh docs. |
-| Prepared nonstandard P5 | Explicit per-dataset PDB/sequence and mixed schema-2 campaigns implemented and fixture-tested. | Small **3–5-member real geometry-diverse** native smoke check; W-only successes cannot substitute. |
-| Scout / registration / Topo / GUI | Registration/Scout shadow primitives and earlier scoped checks are recorded. | Operational Scout, symmetry surgery, Topo and GUI remain separate future work, **not** claimed complete. |
+C640 carried the locally fitted A:19 UY1 into ordinary AutoRefine alongside 2MG, 5MC and 6MZ. The review checkpoint reopened after moving the run. Five cycles reproduced the independently assembled four-site control, including both adenine contacts and both phosphate links. All 16 measured sugar stereocentres kept their hand. A:19 C4′ still crowds A:20 OP1 by 0.494 Å against the Phenix contact target. Three of 50 pair distances elsewhere remain long. These observations came from the unmodified host. C641 now obtains that fixed-coordinate Phenix reading at first publication. It recovered the same 42 residue assignments and 193 requested terms after reducing 10.64 MB of output to a 669 kB archive. The relocated checkpoint reopened offline. C642 joined these steps in the ordinary checked PostMR command. With the qualified UY1 dictionary in the local store, a fresh run produced the same 860 coordinates, five dictionaries, six restraint files and observations as the parent of the completed refinement. C643 verified the intended sulfur side against published crystal and NMR models, including AS itself. On the 1D97 crystal duplex, ReadySet gave Phenix only half the angles around each sulfur-bearing phosphate. C644 added an optional source reading to `cif-doctor catalogue`. It identifies the retained and leaving oxygen in the isolated AS source and distinguishes dithio, sulfur-bridged and ambiguous centres. The installed Phenix detector stops when a sulfur takes the place of either named phosphate oxygen. Its normal DG control passes. All six starting D:4 angles fall within the 1D97 crystal ranges. Before constructing D:4, verify the internal monoanion, its sulfur side and an explicit inter-residue definition that this Phenix actually uses. The four-site checkpoint stays available. [Q07 measurements and remaining work](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
 
-**Integrated code regression:** the last pre-merge PR #24 head contained
-PR #25 pathless `show` and the NARestraints v1.1.3 dependency pin; this
-combined head returned **967 tests + 226 subtests PASS** before squash
-merge. The post-merge Pine checkout has not been rerun on the user's terminal.
-One earlier first-pass mixed fixture with S6G instead of Benner IMC correctly
-failed closed as B:G; the reviewed IMC replacement passed. Neither unit
-tests nor numerical `SOLVED` establish experimental chemistry or deposition
-approval.
+C629 carried the cold-acquired UY1 dictionary into the actual 42-residue model. At A:19 Phenix used the 2′-endo table with the internal O3′–P connection. All 37 active geometry checks passed. In that protected input the general bundle check stopped on the six inherited D:1 phosphate angle replacements. The two native reads verified their actual targets and weights. Formal-charge readback remains unavailable. C637–C640 subsequently covered ordinary selection of the fourth site and four-site refinement from a fresh molecular-replacement solution. [Whole-model evidence](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
 
-## Immediate next scientific work — one bounded sequence
+C628 closed the isolated-dictionary step for two differently attached methyl ethers. The ordinary dictionary builder recovered UY1’s false C1′–N1 bond in a new attempt. Phenix chose 3′-endo from source coordinates and 2′-endo from generated coordinates. For the independent N-linked control OMU, both starts selected 2′-endo. All four reads per component qualified. Both six-file snapshots reopened offline. The regenerated UY1 numerical file differed from the fitted dictionary only in its writing-time comment. SJO’s source says DNA linking and marks O1P as leaving, so it remains under review. [Q07 evidence and next step](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
 
-1. **Next engineering slice — library-first generic monomer resolver.**
-   With [PR #24](https://github.com/vecchioni-lab/NASolve/pull/24)
-   merged, the combined-family workbook regression is green, but four
-   monomer dictionaries **IGU, IMC, CGY, DX** are not bundled in NASolve.
-   NASolve currently requires a local `CODE.cif` before Coot parent-overlap,
-   whereas ReadySet normally runs *after* that placement. Resolve existing
-   validated Phenix/CCD monomers before asking for curated overrides, and
-   where supported produce an **audited, frozen derivative**, never
-   fabricate bonds/stereochemistry from NARestraints' atom-role mappings.
-   Keep exceptional local recipes only for demonstrated broken cases.
-   Review prospective HelixWeld/HelixMeld implementations before making
-   them providers; no verified integration yet. Pin/run against released
-   NARestraints v1.1.3 with exact import verification; don't edit the
-   user's dirty workbook or historical native models.
-2. **Attempt one simultaneous four-family W model first**, as explicitly
-   requested by the user on 2026-10-08. Use distinct original W paired sites:
-   **D:T at A:5/C:11** (1AP/DT), **B:S at A:6/C:10** (IGU/IMC),
-   **Z:P at A:12/B:4** (DZ/DP, existing `pair=Z:P` route), and
-   **K:X at A:20/D:3** (CGY/DX). Keep the prior off-pair A:7/C:9
-   **5CM:G** and A:19/D:4 **DF:A** simultaneously. These sites align
-   their source A:T/G:C/C:G templates with reviewed NARestraints roles,
-   but are still **proposed design intent**, not frozen/validated.
-   The Saenger overlay should retain **12 original Saenger blocks and
-   replace 5 with explicit pairs**; the central Z:P stays in Std_padd.
-   **Before any native run**, locate source-verified `IGU`, `IMC`, `CGY`, `DX`
-   monomer dictionaries (absent from committed NASolve resources) and
-   audit the actual W model/42-site sequence targets, restraint interfaces,
-   atom names and phosphate policy. Do not invent CIFs, force chemistry
-   to G:C, or silently downgrade to the old five-independent-matrix plan.
-   One *new* frozen single-member campaign, one stage boundary at a time,
-   with preserved failures and human Coot/.geo checks; independent A:T,
-   D:T, B:S, Z:P, K:X datasets remain a **diagnostic fallback**, not
-   today's required first trial. **D:A is unsupported**; D:T is the
-   reviewed three-hydrogen-bond D-family recipe, while `DA` means
-   ordinary DNA adenine.
-3. **Close the independent P2 source-native gate** (`1W5→DZ`,
-   `1WA→DP`) with actual source components and verified dictionaries,
-   source-to-target atom mapping, raw preservation and native refinement.
-   This is not the same as already successful Z:P synthetic-target model.
-4. **Finish the bounded Pine close-out:** retain existing GZ11 and multi-member
-   saved receipts; resolve remaining exact effective-dictionary evidence (P1),
-   saved normal-GZ11 evidence (P3), and limited campaign human-veto/current-
-   pointer evidence (P4), plus **P5** geometry-diverse real smoke check.
-   Then final integrated tests/review **P6**, followed by [PR #23](https://github.com/vecchioni-lab/NASolve/pull/23)
-   merge/ancestry verification **P7**. Do not clean, reset or prune original
-   scientific artifacts to retire branches.
+C627 tested what happens when the fourth residue receives its full internal-strand dictionary. Phenix stopped expecting a terminal OP3, read O3′ as a bridging oxygen and kept the methyl ether. The other 41 residues and all applied geometry targets were identical. After five matched diffraction cycles, all 860 returned coordinates, occupancies and B factors matched the earlier fit at output precision. This establishes that Cedar can describe the actual backbone chemistry without moving the model in this test. The OP2 protonation question remains with Q13. [Linked chemistry comparison](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
 
-The exact **combined-first site layout**, candidate chain sequences,
-dictionary sourcing gate, optional independent controls, immutable Z:P
-attempt history and human-verdict limits live in the
-[native modified-pair ledger](native-modified-pair-live-validation.md).
-The [modified-component contract](modified-component-preparation.md) owns
-1W5/1WA mapping and source-preservation rules. [Campaign execution](campaign-execution.md)
-owns CLI semantics; [full-auto checkpoint](full-auto-patch-handoff.md) retains
-the completed four-member validation.
+Fresh whole-sugar construction now writes the phosphate where Phenix looks for it in the PDB atom-name field. In a two-residue calibration, moving only two spaces in that label changed the sugar restraint choice from 2′-endo to 3′-endo at identical coordinates. None of the 450 eligible site/conformer observations we screened changed choice. Those include related models and repeated conformers. On the four-site seed, all 860 coordinates were identical after the correction. The older construction still reopens byte for byte. [Phosphate and sugar evidence](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
 
-## Preserved W native evidence and user review
+C624 placed the fourth substitution, 2′-O-methylpseudouridine (UY1), at A:19 opposite adenine D:4. Cedar matched the two pairing atoms and the measured sugar–base twist. Phenix moved only the 21 atoms of UY1, clearing five contacts shorter than 2.2 Å while leaving 839 neighbors fixed. The two base-pair contacts ended at 3.00 and 2.88 Å. Both phosphate links remained 1.60–1.61 Å. Transferring the source sugar pose without matching the host twist left a 2.08 Å clash after the same minimization. This was the geometry-only control. Five diffraction cycles then retained all 22 UY1 bonds and its four sugar hands. The N3–N1 and O2–N6 pair contacts finished at 2.93 and 2.83 Å, and both phosphate links stayed near 1.61 Å. All 125 test reflections kept their assignments. Phenix chose the 2′-endo numerical table with the next phosphate present. In this direct four-site experiment we supplied the repaired dictionary and the host residue’s median starting B. Ordinary four-site PostMR still needs to make those choices and clear the initial sugar clash. [Fourth-site evidence and limits](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
 
-The original frozen synthetic-target dataset is
-`~/NASolve-live-tests/zp-paired-native-oiipj_t2`. It uses **real GZ11
-diffraction observations** but altered target chemistry; it is **not**
-evidence the experimental crystal contained the tested modifications.
+C623 checked the pairing edge for the C-linked UY1 site. The older NARestraints
+recipe asked adenine to bind the oxygen on the sugar-facing side. On the same
+84 deposited atoms from 6I1V, Phenix installed the old distance at 5.33 Å and
+the corrected one at 2.94 Å. Ordinary U:A stayed at 2.90 Å. An offline source
+graph check now detects that mistake even when every atom is renamed.
+The assignment for UY1 transfers from measured PSU and B8H duplexes. [Upstream correction](https://github.com/vecchioni-lab/NARestraints/pull/8).
 
-- **`run_001`:** retained Z:P PostMR **BLOCKED** by the former reversed
-  role mapping (Z lacked G-like N2). Native Phaser TFZ **12.9**, LLG **210**.
-- **`run_002`:** corrected NARestraints Z:P PostMR **PASS**: expected
-  `P.N2/Z.O2`, `P.N1/Z.N3`, `P.O6/Z.N4` contacts, all 42 target
-  identities checked, no `force` override. First AutoRefine **BLOCKED**
-  before refinement by old W Saenger classes at modified 5CM:G and DF:A.
-- **`run_003`:** PR #24 candidate; frozen integrity **OK**, 17 template
-  pairs → **15 unchanged Saenger + 2 explicit modified** (5CM:G GC/3 bonds;
-  DF:A AT/2). D:1 phosphate protection retained, sequence-family
-  mismatches empty, AutoSol correctly skipped; native AutoRefine returned
-  **`SOLVED`, `refine-001`**. User's Coot inspection reported **good bonds
-  and planes**, tolerable nonideal planarity: **INSPECTED_PASS for overall
-  visual software integration**, not site-resolved density or experimental
-  chemistry. Exact Rwork/Rfree, `.geo` and per-site map/clash metrics are
-  still to be recorded if needed.
-- **`./nasolve show`:** after PR #25 integration the user selected
-  `run_003` as their active workspace and confirmed bare `show` launched
-  the expected model in Coot. **Live usability gate passed**.
+C620 examined the next two sites, SJO and UY1. The same source-order repair
+caught two different false native bonds. Phenix then chose the same sugar pucker
+from both SJO starting geometries, but different puckers from the two UY1 starts.
+C621 verified both native choices and both literal coordinate starts. UY1’s
+ring pseudorotation was 58.7° in the source and 63.2° in the generated seed.
+These are isolated dictionaries. The linked model still needs the correct
+attachment at the base and both real phosphate connections.
 
-**Separately parked geometry question:** user noticed tilted/directional
-hydrogen-bond contacts in the displayed modified pair (named N1/N3 and
-O4/N6 sites). First verify the exact donor–H–acceptor assignment, atom
-definitions, existing restraint angular terms and achieved geometry before
-deciding whether directional terms are appropriate. **Do not simply fix a
-heavy-atom angle at 180°, enforce flat base planes, or edit `run_003`.**
-Not a blocker for `show` or for the successful native integration.
+C618–C619 took 2MG, 5MC and 6MZ through ordinary checked PostMR. Starting
+with no 6MZ dictionary, Phenix added an O4′–C2 bond absent from the source.
+Cedar recorded the failed attempt and recovered in one fresh attempt using the
+same source atoms in a different order. The prepared coordinates, observations,
+five parameter files and four dictionaries matched the warm-cache run byte for
+byte. In that run, five ordinary Phenix cycles kept the 26 ring bonds within
+1.98 restraint widths, all twelve sugar hands and all 38 backbone links.
+Rwork/Rfree were 0.2292/0.2338. Three of 50 pairing distances exceeded three
+widths. The unmodified host supplied the diffraction data. Next examine the
+2′-O-methyl sugars on this same eight-site design. Leave the OP2-state question
+with Q13.
 
-## After Pine: blind AlphaFold baseline, then operational Scout
+C617 moved the starting-B correction into ordinary Coot construction. It checks the
+two base graphs for one methyl in place of a hydrogen, on carbon or nitrogen.
+For 5MC, 2MG and 6MZ the returned atoms reproduced all 32 independently predicted
+starting B values. A fresh two-site Phaser → Coot → ReadySet → AutoRefine run
+gave 1.427 Å for 2MG N9–C4 and 1.366 Å for 5MC N3–C4 after five cycles.
+All 16 ring bonds were within 1.26 restraint widths. The 38 backbone links and
+eight sugar hands survived. Three of 50 pair contacts still require review.
+Rwork/Rfree were 0.2287/0.2356 (earlier two-site run 0.2213/0.2360).
+Fresh checked construction now saves its base-B decisions and rechecks them
+from the raw Coot model, parent and dictionaries when the run is reopened.
+The three-site run above extends that result to the third methylated base.
 
-The user requested this order on 2026-10-07. Use the existing prepared-
-nonstandard path with **frozen** supplied predictions, complete chain-labelled
-sequences and untouched diffraction/Free-R; audit chain/residue correspondence,
-coordinate/ASU completeness, model confidence/B factors and input metadata.
-Predicted coordinates are *unseen candidate models*, not solved truth.
-Do not consult outcome structures during blind candidate selection. Preserve
-every success and failure; later hypotheses get new attempts.
+C614–C616 traced the stretched RNA rings to a construction choice. Coot set all
+32 transported base atoms to B = 20 Å². The three original host bases had median
+B values of 223–270 Å². With the original dictionaries and five ordinary Phenix
+cycles, starting shared heavy atoms from the host B fields and each added methyl
+carbon from its attachment atom kept all 26 ring bonds within two printed widths.
+Rfree changed from 0.2652 to 0.2423. All twelve sugar hands and 38 backbone links
+survived. Three of 50 pair contacts still exceed three widths. These are hypothetical
+substitutions on the host crystal. The exact-component ring dictionary comparisons
+are controls. C617 applied the proven starting-value rule in ordinary construction.
+The independent OP2-state and remaining Q07 substitutions stay on the queue.
 
-Then promote Scout along the
-[registration contract](construct-registration.md) and
-[human live-check queue](construct-registration-live-checks.md); keep guided
-ambiguity, symmetry seams and topology edits guarded. A GUI/Topo Net and
-[metal restraint builder](metal-restraint-builder.md) are separate later scopes.
+C590 isolated why the PDU at B:4 can leave its base plane during refinement.
+On the same coordinates, diffraction observations, displacement and solvent state,
+least squares pulled its methyl tip toward the ring plane and maximum likelihood
+pulled it away. Both five-cycle controls and a direct scattering calculation agreed.
+The chemical plane was active. These 4.19 Å data leave the individual carbon
+unresolved. Keep the qualified parent and mark B:4 for review.
+[Measurements and scope](backbone-chemistry.md#two-diffraction-scores-on-the-same-pdu-model).
 
-## Work discipline and doc ownership
+C591 identified both neighboring partners at A:11 in the first ordinary mixed
+round. One contact reaches the preceding sugar, the other the following O5′.
+The second round retains the two ATL-atom overlap values. Its compact record
+omits their opposite endpoints. The new optional printed-contact screen preserves
+every qualifying pair. Use the prior observations when planning the independent
+eight-residue challenge and retain explicit review where sugar or phosphorus
+stereochemistry is unresolved. [Mixed-scaffold evidence and transfer criteria](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
 
-- **One terminal action per user turn** for live NASolve debugging, then
-  inspect the output before proceeding. Prefer isolated Git worktrees
-  for candidates. Preserve the user's dirty `../NARestraints` tree (including
-  unpublished `Ligands.xlsx` and Excel lockfile), the original NASolve
-  untracked files/patches, all immutable numbered runs, maps and Free-R.
-- Do not represent an unrun test as passing. Keep native-tool receipt,
-  chemical identity, numerical statistics and human Coot verdict as
-  separate fields. Confirm environment imports instead of assuming the
-  v1.1.3 metadata pin upgraded a preexisting `.venv`.
-- **This file** owns current priorities/results; the
-  [documentation map](README.md) routes to active subsystem contracts;
-  the [native ledger](native-modified-pair-live-validation.md) owns exact
-  pair-matrix evidence and per-member status. Earlier full chronology
-  is preserved [in history](history/development-handoff-2026-10-08-pre-consolidation.md)
-  and Git. Do not re-append old session logs here.
+The independent eight-substitution W-frame challenge is fixed. Its first three
+sites are C:12 2MG, A:7 5MC and B:5 6MZ. Coot placed all three on correctly handed
+ribose sugars. The six flanking bonds and original displacement values survived
+construction. Removing internal OP3 required proof of both backbone links.
+NARestraints 1.1.4 also corrects the C1′–C5 attachment for four pseudouridines.
+[Pair design and earlier controls](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
+
+ReadySet placed four handed sugar carbons under a tight plane in conventional 6MZ.
+A matched one-cycle experiment reduced base rotation from 38.6° to 8.9° when only
+its dictionary changed. Cedar now screens both recipes for this contradiction with
+the source graph. The source-preserving eLBOW route needed a separate atom-order
+recovery after it introduced a 5.779 Å bond. All 42 declared bonds survived recovery.
+
+Using all three source-derived dictionaries, five cycles preserved all twelve sugar
+hands and six neighboring links. Eight of 50 pair contacts lay beyond three restraint
+widths after one cycle and one after five. The 2MG–C and 6MZ–T contacts reached
+2.46 and 3.37 Å. The diffraction was measured on the original W-frame crystal.
+[Native measurements](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
+
+C611 carried the four independent isolated RNA reads (two with the ordinary Phenix
+sugar pucker and two against the literal dictionary) into the linked model.
+The native site-specific modification and pucker matched at all three sites. All
+148 available checks passed. Phenix exposed no formal charges for the three sites.
+The saved result reopened after relocation with the original run, installed workbook,
+Phenix and local cache inaccessible.
+
+C612–C613 took the actual ReadySet delivery through five native cycles. All three
+sugars retained their hand. Two substitutions also completed the ordinary Phaser,
+Coot, ReadySet and AutoRefine commands from a fresh run with qualified dictionaries.
+Read the ring bonds before advancing the panel. The two-site fit stretched 2MG
+N9–C4 and 5MC N3–C4 to 1.496 and 1.439 Å. The three-site coordinate-only fit
+stretched them further to 1.611 and 1.573 Å. The targets were 1.388 and 1.352 Å.
+6MZ N9–C4 reached 1.530 Å against 1.393 Å. One-cycle controls localized the large
+stretch to the balance with diffraction. Dropping all external pair and stack terms
+left it, while zero coordinate diffraction weight restored all three bonds to within
+two restraint widths with the complete geometry. With the same full restraint set,
+a lower positive weight reduced the three ring discrepancies to 0.9–2.9 widths in
+five stock cycles. Rfree rose from 0.2652 to 0.2767. Test local chemical restraint
+widths and neighboring geometry before recommending a global weight. The printed
+widths were 0.024–0.031 Å for the three modified bonds and 0.006–0.008 Å for their
+ordinary-base comparisons. The source
+OP2 proton also reaches each linked phosphate dictionary. Reuse the Q13 state
+check before changing it. A fresh three-site run still needs to select the
+proven 6MZ recovery through ordinary preparation.
+The C-linked base, distinct sugar bridges and specified sulfur side remain in Q07.
+The catalogue-wide construction sweep follows in Q12. [Queue and scientific boundaries](cif-doctor-completion-queue.md#pipeline-position).
+
+## What already works
+
+- **Preparing and handing off a model.** Q04/Q05 closed on the explicit checked route. A
+  normal campaign on the recorded control completed preparation, phasing and five
+  refinement cycles, then reopened the chosen result after relocation. A separately
+  qualified fallback can survive failed optional chemistry. Unknown or failed attempts
+  retain their files and identity. [Acceptance and limits](cif-doctor-completion-queue.md#q04q05-acceptance-and-supported-boundary-at-c285).
+- **Delivering modified chemistry.** Source-backed PDU and 5PC bond targets and neutral
+  DF–adenine chemistry reached native refinement. Two five-cycle rounds used the known
+  13-change scaffold, including ATL alongside the eight original pairs. Two close ATL
+  contacts and site-dependent PDU/5PC geometry remain. The independent G:5PC C474
+  measurements survive, but its final geometry/report no longer resolve at the original
+  temporary location for a fresh C587 reading. Reuse its recorded evidence with that limit.
+  [Mixed-scaffold requirements](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
+- **Crystal links and deposition.** On the tested 5W6W-derived PDU scaffold, both
+  crossovers survived native restart with the original Free-R set. B:1 has P, OP1 and OP2
+  and connects to B:7 through a crystal copy. D:1 terminal protection is a separate intent.
+  A recut must carry the declared atoms and image into its new numbering. Independent sugar
+  class, torsions and local density still matter even when the O3′–P length recovers. The
+  deposition guide records what the wwPDB actually returned for the locked-DNA models and
+  how to remeasure a reported outlier. [Backbone chemistry](backbone-chemistry.md#the-central-strand-in-the-5w6w-scaffold) · [OneDep checks](pdb-deposition.md).
+- **Transfer beyond the original ligands.** Carry the FANA and mirror-sugar stereochemistry
+  checks, locked-sugar junctions and connected PNA attachment rules into the ordinary
+  route. Census coverage (599 distinct codes in 618 NARestraints rows) identifies the
+  remaining work. Geometric survival on one member qualifies only the tested context. [Coverage and chemical-family gates](cif-doctor-completion-queue.md#chemistry-transfer-and-coverage-packages).
+
+## Boundaries with Willow/Pine and Alder
+
+Willow/Pine identifies the logical strand, the crystallographic copy and what changes when
+the model is recut. Cedar verifies the component graph, the intended covalent versus
+pairing interactions, and the forces and geometry at those endpoints. Alder declares the
+metal site, its donors and protected atoms and the occupancy, displacement and
+anomalous-scattering policy. When a site crosses those boundaries, carry the same chosen
+parent, atom identities, image, dictionaries and Free-R assignments through ordinary
+refinement and its returned model. Reuse the shared map sampling, checkpoint and Phenix
+readers. Linden found that a newer base-restraint reader had stopped the older
+phosphate workers from starting. C622 restored their exact bytes. A relocated
+Cedar wheel emitted all ten worker bundles identically to the original source,
+and 142 focused checks passed. Willow owns the resulting two-link trial. The
+transferable handoff still needs an installed combined-source check. [Integration checks](cif-doctor-completion-queue.md#q16--final-integration-portability-and-retained-artifact-closure).
+
+## Validation and release
+
+For NASolve 0.2.0, the current release interfaces are indexed in the
+[workflow guide](current-behavior.json). A retained metal-site checkpoint exposed
+a distinction between an update to dictionary comparison and a change in
+the NARestraints compiler. Keep the recorded assessor identity and the
+compiler's workbook and software pins when reopening old work.
+[Historical replay requirements](cif-doctor.md#reopening-older-checked-preparations).
+
+
+C623 passed 223 focused checks with each of NARestraints 1.1.4 and the 1.1.5
+candidate. Both new package distributions passed 57 tests after relocation.
+Native Phenix read both restraint sets on identical deposited coordinates.
+
+C620 passed 209 focused tests covering the native sugar checks and acquisition.
+C621 passed 264 focused checks, ran four literal Phenix controls and replayed
+both pairs after moving the evidence and blocking access to the original SDK.
+
+C619 passed 172 focused outer-request, cache and ordinary-PostMR checks, followed
+by 124 acquisition, retention and source-order checks. The two pytest selections
+overlap. Native Phenix 2.2.1-6174 and Coot 1.3.3 completed cold preparation. Its
+compact record reopened after relocation with the original inputs inaccessible.
+
+C587's plane inspection passed 123 focused tests plus seven subtests. C589's AutoRefine
+reporting passed 61 plus 52 subtests. Each set passed from source and from a relocated
+installation. Four PDU logs and a separate FT–Hg log support the target reader. C588's
+relocated full five-cycle replay reproduced the written coordinates, final geometry and all
+140 recorded gradient evaluations for the combined case. These are distinct software and
+native checks. C605 passed 323 focused tests covering qualification execution,
+RNA pucker replay, acquisition, dictionary storage, binding and native usability.
+The 6MZ pair of jobs also reopened identically after both directories moved and
+their previous paths became inaccessible. Phenix 2.2.1-6174 executed the native
+checks. C606 passed 149 focused tests plus seven subtests and ran a fresh
+five-cycle linked Phenix comparison with the same input and Free-R assignments.
+
+The last recorded standalone full Cedar pass is C406 at `58965920`, with 12,043 tests passed, 293
+subtests passed and two native opt-in skips. The later combined C407 experiment had one
+location-dependent fixture failure. The fixture correction has focused coverage.
+C611 passed 419 focused acquisition and linked-chemistry tests and another 108
+focused preparation and sugar tests. C612–C613 used native Phenix 2.2.1-6174,
+Coot 1.3.3 and NARestraints 1.1.4. The trial used the original scaffold observations
+and Free-R flags.
+
+For the 0.2.0 release, publish the full Cedar history through Pine to main.
+The release review records the unfiltered test result and the fresh two-junction
+Phenix restart for the delivered tree. Cedar continues from that tree with its
+existing handoff, tests and queue. The next chemistry gate is the D:4
+phosphorothioate in Q07. Willow and Alder receive the same main commit and
+validate their own interfaces. [Archived commands and receipts](history/README.md#november-26-cedar-roadmap-audit) ·
+[CIF Doctor evidence ledger](cif-linked-native-registration-evidence.json).

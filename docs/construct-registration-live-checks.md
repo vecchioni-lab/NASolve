@@ -10,19 +10,16 @@ implementation moves across branches, chats and campaign work.
 Do not mark a check complete before the relevant layer is actually wired into
 the live pipeline.
 
-**Separate live chemistry/human qualification:** the user has elected
-[one combined D:T+B:S+Z:P+K:X W challenge](native-modified-pair-live-validation.md)
-with four distinct sites plus 5CM:G and DF:A; this **has not yet run**
-natively and requires missing IGU/IMC/CGY/DX dictionary provenance.
-The released NARestraints v1.1.3 workbook/recipe tests do not replace
-that native gate. An earlier **separate** Z:P+5CM:G/DF:A integration
-run reached numerical SOLVED with overall user Coot visual PASS,
-using the Saenger-overlay implementation now merged via NASolve
-PR #24 (Pine `0017081`; **967 full tests + 226 subtests** on the
-tested integrated candidate). Five independent family runs remain a
-**diagnostic fallback**, not a finished matrix. None of this promotes
-registration, Topo Net or GUI tests to complete; the Scout shadow
-evidence retains its original, narrower scope.
+**Separate chemistry status, checked October 10:** the
+[native ledger](native-modified-pair-live-validation.md) records the combined
+42-residue trial's preflight, Phaser, PostMR, generic-linkage diagnostic and
+custom-restraint coverage passes. Effective geometry qualification remains
+pending. These results do not complete any registration/Topo/GUI integration
+check. The [handoff](development-handoff.md) owns development order, including
+the next deterministic restraint assessor, bundled Doctor geometry/connectivity
+module and post-Pine blind AlphaFold baseline before broader operational Scout.
+The corrected GeoTest campaign is wrapped for orchestration only; its geometry
+findings remain examples for the following planned live check.
 
 | Status | Trigger | Human check | Minimum pass condition |
 | --- | --- | --- | --- |
@@ -31,6 +28,7 @@ evidence retains its original, narrower scope.
 | ☑ | **During Oak Scout v2 evaluation** | Re-run the renamed ED `run_011` real-W shadow case with the complete verified `5W6W/C_G.pdb` provider identity set (`A:12=DC`, `A:13=DC`, `B:3=DG`, `B:4=DG`). | **Complete:** exactly one zero-unexplained proposal `A->M, B->N, C->P, D->Q`; 38 exact + 4 provider-explained sites; every alternative retained >=10 unexplained mismatches; `runtime_authority = false`. |
 | ☐ | **Before symmetry-spanning covalent enforcement is automated** | On a disposable ordinary DNA PDB, compare no symmetry bond versus an explicit Phenix symmetry-operation bond across a representation seam; inspect the resulting `.geo`/refinement behavior and nonbonded contacts around the phosphate. | The experiment establishes whether bond-only enforcement keeps P-O3-prime geometry and nearby OP/O3-prime contacts chemically sane without unsupported cross-symmetry angle assumptions. Until then, no automatic symmetry bond policy. |
 | ☐ | **Before Coot seam repair is automated** | Practice several disposable recut cases where a seam leaves the phosphate/O3-prime connection too long; apply only a single-residue Coot RSR repair and audit before/after coordinates plus Phenix interpretation. | The intended local linkage becomes interpretable without moving unrelated model regions, damaging residue identity, or creating new geometry/clash problems. The exact bounded Coot action is repeatable enough to become a reviewed primitive. |
+| ☐ | **When the Doctor geometry/arm-connection module becomes executable** | Assess an exact MR/refined GeoTest checkpoint before extra refinement strategies, including a numerically ready geometry failure. Let the user declare arm pairing, strand routing and symmetry mates; include ambiguous routing and a true nick control. | Doctor presents separate data/flag, restraint and assembly findings without inferring a cause from high Rwork alone. The intended connection is realized after preview and bounded repair; sticky-end pairing is distinguished from covalent continuation, true nicks/5′-OH ends remain intact, identity/copies/chirality and frozen Free-R survive, and native local geometry plus unrelated displacement are audited before child refinement. The October 11 screenshots/user diagnosis motivate this planned check and do not complete it. |
 | ☐ | **When Topo Net / non-identity recut surgery first becomes executable** | Perform the planned **8D93 -> 3GBI-style** blind recut: transformation code receives 8D93 + symmetry + requested cut intent but cannot read 3GBI coordinates; inspect the preview in Topo Net and the materialized result in Coot. | The periodic graph is preserved while ASU ownership, chain decomposition and sticky ends become the requested representation; representation seams remain chemically continuous, true nicks remain distinct, the result is reconstructible from provenance, and only afterward does an independent 3GBI comparison confirm equivalence. |
 | ☐ | **When multiplicity handling first becomes live** | Use an **8D31-like extra-copy** case, plus a partial-copy case when available. | Complete registered copies receive the intended logical sequence/modification actions; a partial copy is visibly classified as partial and is never silently treated as a complete second copy. |
 | ☐ | **When guided ambiguity handling gets a UI/CLI** | Exercise a deliberately ambiguous short repeat / single-base-overhang mapping. | NASolve shows the alternatives instead of guessing; the user can select one minimal mapping decision; that choice freezes/replays exactly and does not silently become a global recipe. |
@@ -193,7 +191,7 @@ observed human/Coot behavior when a check is eventually completed.
   survive, remain `UNRESOLVED` and require an expert choice rather than hiding
   the ambiguity behind one preferred graph.
 
-## Completed shadow live checks
+## Historical completed shadow live checks — September 26–27, 2026
 
 ### Clean W registration semantics — ED run_011
 
@@ -355,13 +353,13 @@ schema-reconstruction caveat. This completes the intended validation for the
 current backend-only Scout v2 scope. It still does not authorize live
 AutoMR/PostMR integration or runtime authority.
 
-## Current validation note
+## Historical backend validation receipts — September 26–27, 2026
 
 The earlier Birch checkpoint at code head
 `4452295c3330de6d55bddd75b01be21f39afb222` had **23 focused registration
 tests passing locally**.
 
-The current Birch focused bundle has **44 tests passing locally** across
+The final Birch focused bundle had **44 tests passing locally** across
 `tests/test_construct_registration.py` and `tests/test_model_candidates.py`.
 The full NASolve regression suite also passed locally with **664 tests and 222
 subtests** in **61.70 s** on checkout
@@ -376,10 +374,13 @@ at checkout/test head
 `507745a0b7166f05229f6c3501d5e1f694db93e2`; the underlying source-behavior
 head remains `c515a37dc41fa8bb1935d2c80c825ebef8153177`.
 
-The current Oak checkout at
+The recorded Oak checkout at
 `316ac43eaf85a63cf675828bb8960a28f0db2773` then passed the **full NASolve
 regression suite: 672 tests locally**. No runtime or subtest count was reported
 for this checkpoint. This is user-local validation, not GitHub CI.
+
+These are completed backend receipts, not current Cedar regression counts.
+See the [handoff](development-handoff.md) for the latest returned validation.
 
 When a live check above is completed, record the dataset/run/checkpoint and code
 commit in the development handoff or the machine-readable intent ledger. Avoid

@@ -82,6 +82,37 @@ sequence = "files/sequence.txt"
         preset.id = "changed"
 
 
+@pytest.mark.parametrize("workflow", ["guarded", "full-auto"])
+def test_schema_two_explicitly_disables_autosol_with_frozen_reason(tmp_path, workflow):
+    path = write_preset(tmp_path, MINIMAL.replace("schema_version = 1", "schema_version = 2") + f'''
+[workflow]
+mode = "{workflow}"
+[autosol]
+policy = "disabled"
+reason = "Synthetic DNA model against donor observations"
+''')
+    preset = load_preset(path)
+    assert preset.to_dict()["autosol"] == {
+        "policy": "disabled", "reason": "Synthetic DNA model against donor observations",
+    }
+    before = preset.config_sha256
+    path.write_text(path.read_text().replace("donor observations", "different donor observations"))
+    assert load_preset(path).config_sha256 != before
+    assert preset.to_dict()["autosol"]["reason"] == "Synthetic DNA model against donor observations"
+
+
+@pytest.mark.parametrize("schema,fields", [
+    (1, 'reason = "Synthetic model"\n'),
+    (2, ''), (2, 'reason = " "\n'), (2, 'reason = true\n'),
+    (2, 'reason = "Synthetic model"\non_unaccepted = "inspect"\n'),
+    (2, 'reason = "Synthetic model"\ncommand = "anything"\n'),
+])
+def test_disabled_autosol_requires_schema_two_and_only_an_explicit_reason(tmp_path, schema, fields):
+    source = MINIMAL.replace("schema_version = 1", f"schema_version = {schema}")
+    with pytest.raises(PresetError, match="schema_version|nonempty reason"):
+        load_preset(write_preset(tmp_path, source + '[autosol]\npolicy = "disabled"\n' + fields))
+
+
 def test_portable_identity_survives_relocation_and_removed_original(tmp_path):
     source = tmp_path / "original"
     path = write_preset(source, MINIMAL + '[resources]\nsequence = "sequence.txt"\n')
@@ -243,3 +274,44 @@ def test_rejects_resource_symlink_replacement_before_open(tmp_path, monkeypatch,
     monkeypatch.setattr(presets, "_open_snapshot", replace_then_open)
     with pytest.raises(PresetError, match="Cannot read Resource"):
         load_preset(path)
+
+
+@pytest.mark.parametrize("value", [True, False])
+def test_checked_preparation_is_explicit_frozen_schema_two_policy(tmp_path, value):
+    text = MINIMAL.replace("schema_version = 1", "schema_version = 2")
+    path = write_preset(tmp_path, text + "[postmr]\nchecked_preparation = " + str(value).lower() + "\n")
+    preset = load_preset(path)
+    assert preset.to_dict()["postmr"] == {"modified_pairs_only": False, "checked_preparation": value}
+    frozen = preset.config_sha256
+    path.write_text(text)
+    assert preset.config_sha256 == frozen
+    assert load_preset(path).config_sha256 != frozen
+    assert load_preset(path).to_dict()["postmr"] == {"modified_pairs_only": False}
+
+
+@pytest.mark.parametrize("schema,value", [(1, "true"), (1, "false"), (2, "1"), (2, '\"true\"')])
+def test_checked_preparation_refuses_unversioned_or_nonboolean_policy(tmp_path, schema, value):
+    text = MINIMAL.replace("schema_version = 1", f"schema_version = {schema}")
+    with pytest.raises(PresetError):
+        load_preset(write_preset(tmp_path, text + f"[postmr]\nchecked_preparation = {value}\n"))
+
+
+@pytest.mark.parametrize('enabled', [False, True])
+def test_automatic_plane_support_frozen_policy_is_explicit(tmp_path, enabled):
+    text = MINIMAL.replace('schema_version = 1', 'schema_version = 2')
+    path = write_preset(tmp_path, text + '[postmr]\nchecked_preparation = true\nautomatic_plane_support = ' + str(enabled).lower() + '\n')
+    preset = load_preset(path)
+    assert preset.to_dict()['postmr'] == {'modified_pairs_only': False,
+        'checked_preparation': True, 'automatic_plane_support': enabled}
+    frozen = preset.config_sha256
+    path.write_text(text + '[postmr]\nchecked_preparation = true\n')
+    old = load_preset(path)
+    assert 'automatic_plane_support' not in old.to_dict()['postmr']
+    assert old.config_sha256 != frozen
+
+
+@pytest.mark.parametrize('schema,checked,value', [(1, 'true', 'true'), (2, 'false', 'true'), (2, 'true', '1'), (2, 'true', '"true"')])
+def test_invalid_automatic_plane_support_policy_refuses(tmp_path, schema, checked, value):
+    text = MINIMAL.replace('schema_version = 1', f'schema_version = {schema}')
+    with pytest.raises(PresetError):
+        load_preset(write_preset(tmp_path, text + f'[postmr]\nchecked_preparation = {checked}\nautomatic_plane_support = {value}\n'))

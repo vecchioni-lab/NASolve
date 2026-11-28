@@ -12,7 +12,7 @@ from .campaign_records import (
     ACCEPTED, EXECUTION, STAGES, artifact, job_relative, now, path_in, read_job,
     read_receipt, read_record, run_path, write_record,
 )
-from .campaigns import CampaignError, campaign_status
+from .campaigns import CampaignError, campaign_status, _stage_plan
 from .campaign_policy import workflow_policy, default_endpoint, continuation_warning, INSPECTION_WARNING
 
 
@@ -111,7 +111,7 @@ def _recover_completions(root: Path, plan: dict[str, Any], state: dict[str, Any]
 
 def _inspect_attempt(root: Path, plan: dict[str, Any], item: dict[str, Any]) -> list[dict[str, str]]:
     item.update(run=None, checkpoint=None, next_stage="preflight", numerical_success=False,
-                inspection_required=False, live_process=False, scientific_warnings=[],
+                inspection_required=False, live_process=False, scientific_warnings=[], preparation_notes=[],
                 provisional=workflow_policy(plan["preset"]["policy"])["mode"] == "full-auto",
                 provisional_selection=None)
     if not item["attempts"]:
@@ -193,6 +193,9 @@ def _inspect_attempt(root: Path, plan: dict[str, Any], item: dict[str, Any]) -> 
                 raise CampaignError("Worker exited unsuccessfully despite an accepted stage receipt")
         item.update(run=receipt.get("run"), checkpoint=receipt.get("checkpoint"), diagnostic=receipt["message"])
         item["attempts"][-1]["run"] = item["run"]
+        for note in receipt.get("preparation_notes", []):
+            if note not in item["preparation_notes"]:
+                item["preparation_notes"].append(note)
         for warning in receipt.get("scientific_warnings", []):
             if warning not in item["scientific_warnings"]:
                 item["scientific_warnings"].append(warning)
@@ -251,17 +254,21 @@ def _inspect_attempt(root: Path, plan: dict[str, Any], item: dict[str, Any]) -> 
     return dependencies
 
 
-def _reconcile(root: Path, plan: dict[str, Any], state: dict[str, Any]) -> None:
-    for entry, item in zip(plan["datasets"], state["datasets"]):
-        try:
-            _inspect_attempt(root, plan, item)
-            if entry["status"] == "BLOCKED":
-                item.update(status="BLOCKED", diagnostic=entry["diagnostic"], next_stage=None)
-            elif plan["integrity_issues"] or entry["integrity"] != "OK":
-                item.update(status="BLOCKED", diagnostic="Frozen input integrity failed: " + "; ".join(
-                    plan["integrity_issues"] + entry["integrity_issues"]), next_stage=None)
-        except (CampaignError, OSError, ValueError, KeyError, TypeError) as exc:
-            item.update(status="BLOCKED", next_stage=None, diagnostic=str(exc), inspection_required=True)
+def _reconcile_entry(root: Path, plan: dict[str, Any], entry: dict[str, Any], item: dict[str, Any]) -> None:
+    if entry["id"] != item["id"]:
+        raise CampaignError("Campaign integrity scope differs from the execution dataset")
+    try:
+        _inspect_attempt(root, plan, item)
+        if entry["status"] == "BLOCKED":
+            item.update(status="BLOCKED", diagnostic=entry["diagnostic"], next_stage=None)
+        elif plan["integrity_issues"] or entry["integrity"] != "OK":
+            item.update(status="BLOCKED", diagnostic="Frozen input integrity failed: " + "; ".join(
+                plan["integrity_issues"] + entry["integrity_issues"]), next_stage=None)
+    except (CampaignError, OSError, ValueError, KeyError, TypeError) as exc:
+        item.update(status="BLOCKED", next_stage=None, diagnostic=str(exc), inspection_required=True)
+
+
+def _summarize_state(state: dict[str, Any]) -> None:
     statuses = {item["status"] for item in state["datasets"]}
     state["state"] = (
         "RUNNING" if "RUNNING" in statuses else
@@ -269,6 +276,14 @@ def _reconcile(root: Path, plan: dict[str, Any], state: dict[str, Any]) -> None:
         "COMPLETE_WITH_FLAGS" if (statuses - {"SOLVED"} or
             any(item.get("scientific_warnings") for item in state["datasets"])) else "COMPLETE"
     )
+
+
+def _reconcile(root: Path, plan: dict[str, Any], state: dict[str, Any]) -> None:
+    if [entry["id"] for entry in plan["datasets"]] != [item["id"] for item in state["datasets"]]:
+        raise CampaignError("Full campaign reconciliation requires the complete dataset list")
+    for entry, item in zip(plan["datasets"], state["datasets"]):
+        _reconcile_entry(root, plan, entry, item)
+    _summarize_state(state)
 
 
 def execution_status(root: Path) -> dict[str, Any]:
@@ -394,9 +409,11 @@ def execute_campaign(
                 if pause_path.exists():
                     stopped = True
                     break
-                # Recheck frozen inputs and every completed stage at each boundary.
-                plan = campaign_status(root)
-                _reconcile(root, plan, state)
+                # Recheck this dataset, its dependencies and all shared resources.
+                # Full collection audits remain at entry/exit and explicit status.
+                plan = _stage_plan(root, item["id"])
+                _reconcile_entry(root, plan, plan["datasets"][0], item)
+                _summarize_state(state)
                 if not _runnable(item, through):
                     break
                 stage = item["next_stage"]
@@ -442,7 +459,8 @@ def execute_campaign(
                                 diagnostic=str(exc), inspection_required=True)
                     tell(f"{item['id']}: {exc}")
                     break
-                _reconcile(root, plan, state)
+                _reconcile_entry(root, plan, plan["datasets"][0], item)
+                _summarize_state(state)
                 _save(root, state)
                 tell(f"{item['id']}: {item['status']}; {item['diagnostic']}")
                 # Honor the same endpoint-aware eligibility as entry/resume:

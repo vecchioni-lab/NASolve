@@ -9,7 +9,9 @@
 ## Validation
 
 <!-- Include exact commands, test counts, external-tool versions, and whether
-validation was a dry-run/preflight or a complete execution. -->
+validation was a dry-run/preflight or a complete execution. State focused versus
+full scope, the last full-tested revision, and any outstanding integration gate.
+The final combined source/test/configuration state needs full regression before merge. -->
 
 ## Compatibility and migration
 

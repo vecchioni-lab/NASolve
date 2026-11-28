@@ -77,6 +77,8 @@
     "raw sources and frozen attempts",
     "observations/Free-R",
     "existing checkpoint choice",
-    "current Pine/Scout priority"
-  ]
+    "development order recorded in docs/development-handoff.md"
+  ],
+  "last_reconciled": "2026-10-10",
+  "development_order": "docs/development-handoff.md#roadmap-after-the-combined-geometry-test"
 }

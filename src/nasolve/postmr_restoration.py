@@ -1,0 +1,368 @@
+"""Source-graph-selected ordinary PostMR base transport.
+
+The original rule restores a standard deoxy scaffold from its Coot parent.
+An explicitly proven canonical ribose can also supply the complete ribose scaffold.
+Both routes transport the whole attached base by a proper rotation.
+It does not optimize, infer chemistry, edit dictionaries, or certify geometry.
+Unsupported or ambiguous sites are retained intact by the caller.
+"""
+from __future__ import annotations
+
+from hashlib import sha256
+from math import atan2, degrees, dist, isfinite, sqrt
+from pathlib import Path
+import re
+
+from .cif_linked_preparation import atom_rows, component_values
+from .cif_stereochemistry_audit import _coordinates, _graph, _stereo, _values, _volume
+
+POLICY_ID = 'postmr-source-graph-fragment-restoration-v1'
+_FRAME = ("C1'", "O4'", "C2'")
+_SUGAR = {"C1'": 'C', "C2'": 'C', "C3'": 'C', "C4'": 'C', "O4'": 'O',
+          "C5'": 'C', "O5'": 'O', "O3'": 'O'}
+_SUGAR_EDGES = {frozenset(p) for p in [("C1'", "O4'"), ("C1'", "C2'"),
+    ("C2'", "C3'"), ("C3'", "C4'"), ("C4'", "O4'"), ("C4'", "C5'"),
+    ("C5'", "O5'"), ("C3'", "O3'")]}
+RNA_ROLES = {"A": ("N9", "C4", "C8"), "G": ("N9", "C4", "C8"),
+             "C": ("N1", "C2", "C6"), "U": ("N1", "C2", "C6")}
+MATCH_TOLERANCE_DEGREES = 0.1
+_RIBOSE_EDGE = frozenset(("C2'", "O2'"))
+_SINGLE = {'SINGLE', 'SING', '1'}
+_ALIASES = {'O1P': 'OP1', 'O2P': 'OP2', 'O3P': 'OP3'}
+
+
+def canonical_name(name):
+    return _ALIASES.get(name, name)
+
+
+def ribose_hydroxyl(graph):
+    """Return the explicit C2′ and O2′ hydrogens of a neutral, unbridged ribose."""
+    elements, bonds, charges, neighbors = graph
+    if elements.get("O2'") != "O" or elements.get("C2'") != "C":
+        raise ValueError("Ribose requires explicit O2′ and C2′")
+    hydrogens = []
+    for center, heavy in (("C2'", {"C1'", "C3'", "O2'"}), ("O2'", {"C2'"})):
+        attached = neighbors[center]
+        hydrogen = {n for n in attached if elements[n] == "H"}
+        if (len(hydrogen) != 1 or attached - hydrogen != heavy or charges[center] != 0
+                or any(neighbors[h] != {center} or charges[h] != 0 for h in hydrogen)
+                or any(bonds[tuple(sorted((center, n)))] != "SINGLE" for n in attached)):
+            raise ValueError("Require a neutral, singly bonded, unbridged ribose 2′ hydroxyl")
+        hydrogens.append(hydrogen)
+    return tuple(hydrogens)
+
+
+def ribose_methyl_ether(graph):
+    """Identify a neutral 2′-O-methyl group on the ribose atoms recognized by Phenix."""
+    elements, bonds, charges, neighbors = graph
+    message = "Require a complete neutral ribose 2′ methyl ether"
+    if (elements.get("C2'") != "C" or elements.get("O2'") != "O"
+            or any(elements.get(a) != "C" for a in ("C1'", "C3'"))):
+        raise ValueError(message)
+    attached = neighbors["O2'"] - {"C2'"}
+    if len(attached) != 1:
+        raise ValueError(message)
+    methyl, = attached
+    if elements[methyl] != "C" or methyl in {"C1'", "C2'", "C3'"}:
+        raise ValueError(message)
+    for atom, heavy, h_count in (("C2'", {"C1'", "C3'", "O2'"}, 1),
+                                  ("O2'", {"C2'", methyl}, 0), (methyl, {"O2'"}, 3)):
+        adjacent = neighbors[atom]
+        hydrogens = {a for a in adjacent if elements[a] in {"H", "D"}}
+        if (adjacent - hydrogens != heavy or len(hydrogens) != h_count or charges[atom] != 0
+                or any(charges[h] != 0 or neighbors[h] != {atom} for h in hydrogens)
+                or any(bonds[tuple(sorted((atom, a)))] != "SINGLE" for a in adjacent)):
+            raise ValueError(message)
+    return methyl
+
+
+def _ribose_hands(xyz, anchor):
+    arms = {"C1'": ("O4'", "C2'", anchor), "C2'": ("C1'", "C3'", "O2'"),
+            "C3'": ("C2'", "C4'", "O3'"), "C4'": ("C3'", "O4'", "C5'")}
+    signed = {center: _volume(xyz, center, names) for center, names in arms.items()}
+    if any(v is None or abs(v) < .01 for v in signed.values()):
+        raise ValueError("Missing or degenerate ribose stereocentre")
+    if signed["C2'"] * signed["C3'"] <= 0:
+        raise ValueError("The 2′ and 3′ oxygens have inconsistent ribose stereochemistry")
+    return signed
+
+
+def _ribose_reference(values, anchor, template, parent):
+    if parent not in RNA_ROLES or RNA_ROLES[parent][0] != anchor:
+        raise ValueError("Ribose transport requires a shared canonical N-glycosidic attachment")
+    path = Path(template)
+    original = path.read_bytes()
+    canonical = _values(path, parent)
+    def evidence(component):
+        declarations = {v.strip().upper() for k in ('_chem_comp.type', '_chem_comp.group')
+                        for v in component.get(k, ()) if v.strip() not in {'', '.', '?'}}
+        if not declarations or not declarations <= {'RNA', 'RNA LINKING'}:
+            raise ValueError("Require an explicitly declared RNA reference")
+        graph = _graph(component)
+        ribose_hydroxyl(graph)
+        elements, bonds, charges, neighbors = graph
+        markers = _stereo(component)
+        family, xyz = _coordinates(component, source=True)
+        if family != "SOURCE_IDEAL":
+            raise ValueError("Require source ideal coordinates for ribose transport")
+        hands = _ribose_hands(xyz, anchor)
+        chemistry = {}
+        for atom in (*_SUGAR, "O2'"):
+            hydrogen = {n for n in neighbors[atom] if elements[n] in {'H', 'D'}}
+            if any(charges[n] != 0 or neighbors[n] != {atom} for n in hydrogen):
+                raise ValueError("Ambiguous hydrogen on the source sugar")
+            # Hydrogen names can differ. Compare the actual neighbours and bond orders.
+            edges = sorted((elements[n] if n in hydrogen else n, bonds[tuple(sorted((atom, n)))])
+                           for n in neighbors[atom])
+            chemistry[atom] = (elements[atom], charges[atom], markers[atom], edges)
+        return hands, chemistry
+
+    expected, canonical_sugar = evidence(canonical)
+    hands, target_sugar = evidence({tag.lower(): column for tag, column in values.items()})
+    if (canonical_sugar["C2'"][2] != "R" or any(canonical_sugar[n][2] not in {"R", "S"} for n in expected)
+            or target_sugar != canonical_sugar or any(hands[n] * v <= 0 for n, v in expected.items())):
+        raise ValueError("Source and canonical template disagree on protected ribose chemistry or stereochemistry")
+    if path.read_bytes() != original:
+        raise ValueError("Canonical ribose template changed during graph selection")
+    return {"template_sha256": sha256(original).hexdigest(), "hands": hands}
+
+
+def source_graph_fragment(dictionary: Path, component: str, *, ribose_parent=None) -> dict:
+    """Partition an explicit source graph, refusing bridges and sugar branches.
+
+    Phosphate-bound terminal oxygens belong to the protected backbone; explicit
+    source H/D are ignored for this heavy-atom construction rule. No component
+    name, NARestraints class or base atom-name list selects the fragment.
+    """
+    dictionary = Path(dictionary)
+    before = dictionary.read_bytes()
+    values = component_values(dictionary, component)
+    declarations = [str(v).strip().upper() for k in ('_chem_comp.group', '_chem_comp.type')
+                    for v in values.get(k, []) if str(v).strip() not in {'', '.', '?'}]
+    family = 'RNA' if ribose_parent is not None else 'DNA'
+    if not declarations or any(v not in {family, family + ' LINKING'} for v in declarations):
+        raise ValueError(f'Require explicit consistent source {family} classification')
+    sugar, sugar_edges = _SUGAR, _SUGAR_EDGES
+    if ribose_parent is not None:
+        sugar = {**_SUGAR, "O2'": 'O'}
+        sugar_edges = _SUGAR_EDGES | {_RIBOSE_EDGE}
+    original = atom_rows(values)
+    atoms = {canonical_name(name): row['type_symbol'].strip().upper() for name,row in original.items()}
+    if len(atoms) != len(original):
+        raise ValueError('Duplicate source phosphate aliases')
+    if any(atoms.get(name) != element for name,element in sugar.items()):
+        raise ValueError(f'Require the complete explicit {family} sugar/backbone graph')
+    heavy = {name for name,element in atoms.items() if element not in {'H', 'D'}}
+    adjacency = {name: set() for name in heavy}
+    a = values.get('_chem_comp_bond.atom_id_1', [])
+    b = values.get('_chem_comp_bond.atom_id_2', [])
+    orders = values.get('_chem_comp_bond.type', values.get('_chem_comp_bond.value_order', []))
+    if not a or len(a) != len(b) or len(a) != len(orders):
+        raise ValueError('Incomplete source bond graph')
+    edges = {}
+    for x,y,order in zip(a,b,orders):
+        x,y = canonical_name(x),canonical_name(y); edge = frozenset((x,y))
+        if x not in atoms or y not in atoms or x == y or edge in edges:
+            raise ValueError('Ambiguous or invalid source bond graph')
+        edges[edge] = order.strip().upper()
+        if x in heavy and y in heavy:
+            adjacency[x].add(y); adjacency[y].add(x)
+    if {e for e in edges if e <= sugar.keys()} != sugar_edges or any(edges[e] not in _SINGLE for e in sugar_edges):
+        raise ValueError(f'Unsupported {family} sugar connectivity or bond orders')
+    scaffold = set(sugar)
+    phosphate = set()
+    if 'P' in heavy:
+        if atoms['P'] != 'P' or "O5'" not in adjacency['P'] or edges[frozenset(('P', "O5'"))] not in _SINGLE:
+            raise ValueError('Unsupported phosphate attachment')
+        oxygen = adjacency['P']-{"O5'"}
+        if not 2 <= len(oxygen) <= 3 or any(atoms[n] != 'O' or adjacency[n] != {'P'} for n in oxygen):
+            raise ValueError('Unsupported phosphate branch')
+        phosphate = {'P', *oxygen}; scaffold |= phosphate
+    fragment = heavy-scaffold
+    boundary = [(x,y) for x in scaffold for y in adjacency[x] if y in fragment]
+    if len(boundary) != 1 or boundary[0][0] != "C1'" or edges[frozenset(boundary[0])] not in _SINGLE:
+        raise ValueError('Require one unbridged base-fragment attachment at C1 prime')
+    anchor = boundary[0][1]; reached = set(); pending = [anchor]
+    while pending:
+        name = pending.pop()
+        if name in reached: continue
+        reached.add(name); pending.extend((adjacency[name]&fragment)-reached)
+    if reached != fragment:
+        raise ValueError('Disconnected source base fragment')
+    ribose = _ribose_reference(values, anchor, *ribose_parent) if ribose_parent is not None else None
+    if dictionary.read_bytes() != before:
+        raise ValueError('Source dictionary changed during graph selection')
+    return {'policy_id': POLICY_ID, 'component': component, 'scaffold_atoms': sorted(scaffold),
+            'sugar_atoms': sorted(sugar), 'phosphate_atoms': sorted(phosphate),
+            'fragment_atoms': sorted(fragment), 'attachment_atom': anchor,
+            'frame_atoms': list(_FRAME), 'elements': {n: atoms[n] for n in heavy},
+            'source_sha256': sha256(before).hexdigest(), **({'ribose_reference': ribose} if ribose else {})}
+
+
+def _atom_records(lines, expected_code):
+    records = {}
+    for line in lines:
+        if line[:6].strip() not in {'ATOM','HETATM'}: continue
+        if len(line) < 54 or line[16:17].strip():
+            raise ValueError('Alternate or malformed atom context requires intact raw-site fallback')
+        if line[17:20].strip() != expected_code:
+            raise ValueError('Selected site component differs from its declared construction identity')
+        name = canonical_name(line[12:16].strip())
+        if name in records:
+            raise ValueError('Duplicate atom names or phosphate aliases')
+        element = line[76:78].strip().upper() if len(line) >= 78 else ''
+        if not element:
+            letters = ''.join(c for c in line[12:16] if c.isalpha()).upper()
+            element = next((e for e in ('BR','SE') if letters.startswith(e)), letters[:1])
+        if element in {'H','D'}:
+            raise ValueError('Hydrogen-bearing coordinate transport requires intact raw-site fallback')
+        try: point = tuple(float(line[i:i+8]) for i in (30,38,46))
+        except ValueError as exc: raise ValueError('Invalid selected atom coordinates') from exc
+        if not all(isfinite(v) for v in point): raise ValueError('Nonfinite selected atom coordinates')
+        records[name] = {'line': line, 'xyz': point, 'element': element}
+    if not records: raise ValueError('Selected coordinate site is absent')
+    return records
+
+
+def _model_records(data, site, component):
+    match = re.fullmatch(r'([^\s:]):(-?[0-9]+)', site) if isinstance(site, str) else None
+    if match is None:
+        raise ValueError('Require one explicit PDB chain and integer residue site')
+    chain, number = match[1], int(match[2])
+    lines = data.decode('ascii').splitlines(keepends=True)
+    indices, serials = [], set()
+    for i, line in enumerate(lines):
+        kind = line[:6].strip()
+        if kind in {'MODEL', 'ENDMDL', 'CONECT', 'ANISOU', 'SIGATM', 'SIGUIJ'}:
+            raise ValueError('Model/atom-reference records require a separate construction owner')
+        if kind not in {'ATOM', 'HETATM', 'TER'}:
+            continue
+        if kind == 'TER' and not line[6:].strip():
+            continue
+        field = line[6:11].strip()
+        if not field.isascii() or not field.isdecimal() or not 0 < int(field) <= 99999:
+            raise ValueError('Require positive decimal PDB atom/TER serials')
+        serial = int(field)
+        if serial in serials:
+            raise ValueError('Duplicate PDB atom/TER serial')
+        serials.add(serial)
+        if kind == 'TER' and len(line.rstrip()) < 26:
+            continue
+        try:
+            residue = int(line[22:26])
+        except ValueError as exc:
+            raise ValueError('Malformed PDB residue number') from exc
+        if line[21:22] == chain and residue == number:
+            if line[26:27].strip():
+                raise ValueError('Insertion-coded construction site is ambiguous')
+            if line[17:20].strip() != component:
+                raise ValueError('Selected atom/TER component differs from the declared source')
+            indices.append(i)
+    atoms = _atom_records([lines[i] for i in indices], component)
+    return lines, indices, atoms, max(serials)
+
+
+def _dot(a,b): return sum(x*y for x,y in zip(a,b))
+def _sub(a,b): return [x-y for x,y in zip(a,b)]
+def _cross(a,b): return [a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]]
+
+
+def _chi(xyz, names):
+    a, b, c, d = [xyz[n] for n in names]
+    axis = _sub(c, b)
+    length = sqrt(_dot(axis, axis))
+    if length < .5:
+        raise ValueError('Degenerate glycosidic axis')
+    axis = [v / length for v in axis]
+    vectors = [_sub(a, b), _sub(d, c)]
+    v, w = [[x - _dot(p, axis) * y for x, y in zip(p, axis)] for p in vectors]
+    if min(_dot(v, v), _dot(w, w)) < .01:
+        raise ValueError('Degenerate glycosidic torsion frame')
+    return degrees(atan2(_dot(_cross(axis, v), w), _dot(v, w)))
+
+
+def _frame(points):
+    origin,a,b = points; x = _sub(a,origin); size = sqrt(_dot(x,x))
+    if size < .5: raise ValueError('Degenerate sugar frame')
+    x = [v/size for v in x]; b = _sub(b,origin)
+    y = [v-_dot(b,x)*u for v,u in zip(b,x)]; size = sqrt(_dot(y,y))
+    if size < .5: raise ValueError('Degenerate sugar frame')
+    y = [v/size for v in y]
+    return [x,y,_cross(x,y)]
+
+
+def restore_graph_site(raw_lines, parent_lines, dictionary, component, parent_code, *, ribose_template=None):
+    """Return same ordered records with only supported site's XYZ replaced."""
+    graph = source_graph_fragment(dictionary, component,
+        ribose_parent=(ribose_template, parent_code) if ribose_template is not None else None)
+    raw = _atom_records(raw_lines, component); parent = _atom_records(parent_lines, parent_code)
+    scaffold, fragment = set(graph['scaffold_atoms']), set(graph['fragment_atoms'])
+    # A free 5' hydroxyl may omit the entire phosphate branch; an internal site
+    # may omit terminal source oxygen leaves. Neither changes the source graph.
+    names = set(raw)
+    if not set(graph['sugar_atoms']) <= names or not fragment <= names or names-(scaffold|fragment):
+        family = 'RNA' if ribose_template is not None else 'DNA'
+        raise ValueError(f'Raw site does not contain the complete source base and {family} sugar')
+    phosphate = set(graph['phosphate_atoms'])
+    if phosphate and names&phosphate and ('P' not in names or len(names&phosphate) < 3):
+        raise ValueError('Incomplete raw phosphate context')
+    selected_scaffold = names&scaffold
+    if not selected_scaffold <= parent.keys():
+        raise ValueError('Parent lacks selected sugar/backbone atom correspondence')
+    if any(raw[n]['element'] != graph['elements'][n] for n in names) or any(
+        parent[n]['element'] != graph['elements'][n] for n in selected_scaffold):
+        raise ValueError('Source, raw and parent elements differ')
+    source = [raw[n]['xyz'] for n in _FRAME]; target = [parent[n]['xyz'] for n in _FRAME]
+    observed_hands = {}
+    if ribose_template is not None:
+        expected = graph['ribose_reference']['hands']
+        for label, atoms in (('raw', raw), ('parent', parent)):
+            hands = _ribose_hands({n: row['xyz'] for n, row in atoms.items()}, graph['attachment_atom'])
+            if any(v * expected[n] <= 0 for n, v in hands.items()):
+                raise ValueError(f'{label} sugar disagrees with the source ribose stereochemistry')
+            for n, v in hands.items():
+                observed_hands.setdefault(n, {'source': expected[n]})[label] = v
+    left,right = _frame(source),_frame(target)
+    rotation = [[sum(left[k][i]*right[k][j] for k in range(3)) for j in range(3)] for i in range(3)]
+    determinant = _dot(rotation[0],_cross(rotation[1],rotation[2]))
+    if abs(determinant-1.) > 1e-10: raise ValueError('Require proper rigid base rotation')
+    moved = {n: parent[n]['xyz'] for n in selected_scaffold}
+    for n in fragment:
+        local = [_dot(_sub(raw[n]['xyz'],source[0]),axis) for axis in left]
+        moved[n] = tuple(round(target[0][i]+sum(local[j]*right[j][i] for j in range(3)),3) for i in range(3))
+    torsion = None
+    if ribose_template is not None:
+        anchor, adjacent, _ = RNA_ROLES[parent_code]
+        chi_names = ("O4'", "C1'", anchor, adjacent)
+        parent_chi = _chi({n: a['xyz'] for n, a in parent.items()}, chi_names)
+        final_chi = _chi(moved, chi_names)
+        difference = abs((final_chi - parent_chi + 180) % 360 - 180)
+        if difference > MATCH_TOLERANCE_DEGREES:
+            raise ValueError("Returned glycosidic torsion differs from the verified ribose parent")
+        torsion = {'atoms': list(chi_names), 'parent_degrees': parent_chi,
+                   'restored_degrees': final_chi, 'difference_degrees': difference}
+    attached = ["C1'", *sorted(fragment)]
+    maximum = max(abs(dist(raw[a]['xyz'],raw[b]['xyz'])-dist(moved[a],moved[b]))
+                  for i,a in enumerate(attached) for b in attached[i+1:])
+    if maximum > .002: raise ValueError('PDB serialization changed rigid fragment distances')
+    def hand(points,anchor): return _dot(_cross(_sub(points[1],points[0]),_sub(points[2],points[0])),_sub(anchor,points[0]))
+    before,after = hand(source,raw[graph['attachment_atom']]['xyz']),hand(target,moved[graph['attachment_atom']])
+    if abs(before) < .01 or abs(after) < .01 or before*after <= 0:
+        raise ValueError('Degenerate or changed C1 attachment orientation')
+    output = []
+    for line in raw_lines:
+        if line[:6].strip() in {'ATOM','HETATM'}:
+            fields = [f'{v:8.3f}' for v in moved[canonical_name(line[12:16].strip())]]
+            if any(len(v) != 8 for v in fields): raise ValueError('Coordinates exceed PDB field width')
+            line = line[:30]+''.join(fields)+line[54:]
+        output.append(line)
+    report = {k: graph[k] for k in ('policy_id','component','fragment_atoms','attachment_atom','frame_atoms','source_sha256')}
+    report.update(status='GRAPH_FRAGMENT_RESTORED', scaffold_atoms=sorted(selected_scaffold),
+        count=len(selected_scaffold), atoms=sorted(selected_scaffold), parent_atom_count=len(parent),
+        substitutions=[], rotation_determinant=determinant, max_fragment_distance_change=maximum,
+        attachment_orientation_preserved=True, metadata_preserved=True, requires_cif_review=False,
+        notes=['The complete raw base was transported rigidly; its internal geometry was not optimized.'])
+    if observed_hands:
+        report.update(ribose_hands=observed_hands, glycosidic_torsion=torsion,
+                      canonical_ribose_sha256=graph['ribose_reference']['template_sha256'])
+    return output,report

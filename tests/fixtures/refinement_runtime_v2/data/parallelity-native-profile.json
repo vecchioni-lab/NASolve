@@ -1,0 +1,33 @@
+{
+  "profile_id": "phenix-2.2.1-6174-local-darwin-arm64-output-v2",
+  "system": "Darwin",
+  "machine": "arm64",
+  "qualification": [
+    "C294 actual five-cycle full-objective/fork/replacement-manager control",
+    "C296 complete parameters and synthetic capability controls",
+    "C297 native program-wrapper control required for the added entry-point source bindings",
+    "C317 isolated final-output ADP synchronization; v2 writer and relocation acceptance recorded separately in the evidence ledger"
+  ],
+  "distribution_attestation": false,
+  "modules": {
+    "phenix.programs.phenix_refine": "86a2bfe8ca994aec6f3a97a70d7609b0ea53ea4c21f4e9c9a9940e313d95a088",
+    "phenix.refinement.driver": "efd97e5cc7f9b38c7bc6904dcaacd3c04c50cfa58b13d5747403469f1328a5aa",
+    "phenix.refinement.macro_cycle": "d1803d0256e09de48c5f7069af680625db35cfe11ddb7d6e19b3fad09590c868",
+    "mmtbx.model.model": "e35c7cdffa57ee3a6dac73c0dbdc46f382faf69780ba7a71c16aa6d58aa359ee",
+    "mmtbx.restraints": "6da98bb07effda0952773e825cb2d07214dbe5ba2e7b2b64d6760c72dca5d167",
+    "mmtbx.refinement.minimization": "3f96adc487ae6c238fc925725b09363f428e40a68cc942e9130ae05e644c069e",
+    "cctbx.geometry_restraints.manager": "0682c95825e49aeb3f911f364599b2f56694707cde889ebc671ff8c836089c39",
+    "cctbx.geometry_restraints.energies": "7b9472eaf58b2083f545fe98b3331205974956d9ca26acb38f021876e279055f",
+    "cctbx_geometry_restraints_ext": "496677a82712ef7e8488ef675b98d0bb4f06741c12489f8a3d5fc15058b7612c",
+    "phenix.refinement.xyz_reciprocal_space": "1407159a3f392466e92537048fc9cd5ea2c43f6a93c63a7c5a277837b18d7f17",
+    "libtbx.easy_mp": "bcdbbe705a2a1d9f73edc9c7878c4f139675b3f824e341688bc5305e13e2ca73",
+    "phenix.refinement.fsr.preprocess": "6cdd7a0ae669a03c0869e4e49c9d4eee45f83d820b9b2e784eb8f5a8b49f826c",
+    "iotbx.cli_parser": "4d21181bf453fd6fc9ffe84b305ce4ba828a7261d9f9ebe6cf2fdd2475fc340d",
+    "cctbx.geometry_restraints": "49b1a2f97978b74e416f763417d6a76f2ce6e00c1496afb7b24fe51072120950",
+    "cctbx.array_family.flex": "2344b006d5e9cc096b45e2e38da82d3c1fc6fbfc8626f59349887d46652da2fb",
+    "iotbx.pdb.hierarchy": "005a30625ce111c87275bdc1d09a8e4b4576e2ba51dc4ea11f93a351bca70b15",
+    "iotbx_pdb_hierarchy_ext": "6765fd7eeef41ef54abddf4ff14b722fdd9e125fbcd9c680cd1530315e243c36",
+    "cctbx.xray.structure": "7ae793fd96a8b96837c685ebe012c6d13cc090c06102e2cc5f9919c92ec21963",
+    "cctbx_xray_ext": "094a2ccc234048ce36d0324566d976582758a077dc52d37fd11b06e7bc4ba56b"
+  }
+}

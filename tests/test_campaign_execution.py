@@ -87,6 +87,47 @@ class CampaignExecutionTests(unittest.TestCase):
     def directory(self, dataset, stage, attempt=1):
         return self.root / job_relative(dataset, attempt, stage)
 
+    def test_preparation_notes_survive_later_stages_and_read_only_status(self):
+        import io
+        from contextlib import redirect_stdout
+        from nasolve.cli import main
+        ordinary = self.stage
+        note = "PDU: optional plane generation timed out; independently checked result retained."
+        def with_notes(*args, **kwargs):
+            result = ordinary(*args, **kwargs)
+            if args[3] == "postmr":
+                result["preparation_notes"] = [note]
+            return result
+        with patch("nasolve.campaign_worker.execute_stage", side_effect=with_notes):
+            result = execute_campaign(self.root, datasets=("A",))
+        item = self.items(result)["A"]
+        self.assertEqual(item["preparation_notes"], [note])
+        self.assertEqual(item["status"], "SOLVED")
+        self.assertEqual(item["scientific_warnings"], [])
+        before = {str(p.relative_to(self.root)): (p.read_bytes(), p.stat().st_mtime_ns)
+                  for p in self.root.rglob("*") if p.is_file()}
+        with patch("subprocess.Popen", side_effect=AssertionError("Read only")):
+            again = execution_status(self.root)
+            self.assertEqual(self.items(again)["A"]["preparation_notes"], [note])
+            output = io.StringIO()
+            with redirect_stdout(output):
+                self.assertEqual(main(["campaign", "status", str(self.root)]), 0)
+        self.assertIn("Preparation note: " + note, output.getvalue())
+        self.assertEqual(before, {str(p.relative_to(self.root)): (p.read_bytes(), p.stat().st_mtime_ns)
+                                 for p in self.root.rglob("*") if p.is_file()})
+
+    def test_receipt_rejects_malformed_preparation_notes_even_after_rehash(self):
+        from nasolve.campaign_records import read_receipt
+        execute_campaign(self.root, datasets=("A",), through="postmr")
+        directory = self.directory("A", "postmr")
+        job = read_record(directory/"job.json")
+        receipt = read_record(directory/"result.json")
+        for notes in ("not a list", [None], [1], [""], {"PDU": "note"}):
+            with self.subTest(notes=notes):
+                write_record(directory/"result.json", dict(receipt, preparation_notes=notes), replace=True)
+                with self.assertRaisesRegex(CampaignError, "preparation notes"):
+                    read_receipt(self.root, directory, job)
+
     def test_read_only_status_does_not_create_execution(self):
         self.assertIsNone(execution_status(self.root)["execution"])
         self.assertFalse((self.root / EXECUTION).exists())
