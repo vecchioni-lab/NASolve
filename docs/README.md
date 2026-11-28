@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-11-26**. Use the subsystem contract for actual behavior, the
+Updated **2026-11-28**. Use the subsystem contract for actual behavior, the
 [development handoff](development-handoff.md) for the current implementation and
 validation edge, and linked evidence for exact scientific claims. Historical
 milestone statements preserve their original scope; they are not a second queue.
@@ -31,10 +31,11 @@ milestone statements preserve their original scope; they are not a second queue.
 - **Campaign orchestration:** the [full-auto checkpoint](full-auto-patch-handoff.md)
   preserves completed GeoTest execution evidence; orchestration success does not
   settle its scientific reviews. [Campaign contracts](campaigns.md) define runtime.
-- **Integration:** work continues on cedar, with pine as the proposed integration
-  target. A provisional merge can ship bounded, explicit functionality before the
-  whole catalogue programme is complete, but needs its own integration review.
-  No document update authorizes a merge or promotes diagnostic chemistry.
+- **NASolve 0.2.0** brings the Cedar checkpoint through Pine to main. The
+  [worked examples](../README.md#inspect-a-sticky-end-or-a-phosphate-across-symmetry)
+  cover inspection of complementary ends and an explicitly declared crystal
+  phosphate. Cedar continues the chemistry programme from this shared baseline.
+  Willow and Alder keep their own development milestones.
 - **Future inputs:** ChemDraw-derived chemical references/restraint bundles remain
   planned. Exact packaged chemical references and explicit DNA source composition
   are implemented; explicit ordinary DY target/per-site construction is connected. Automatic

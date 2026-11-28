@@ -20,6 +20,18 @@ def inputs(tmp_path):
     return model,manifest,value
 
 
+def test_installer_exposes_the_read_only_inspector():
+    from pathlib import Path
+    try:
+        import tomllib
+    except ModuleNotFoundError:
+        import tomli as tomllib
+
+    project_file = Path(__file__).resolve().parents[1] / "pyproject.toml"
+    project = tomllib.loads(project_file.read_text(encoding="utf-8"))["project"]
+    assert project["scripts"]["nasolve-topostitch-inspect"] == "nasolve.topostitch_inspect:main"
+
+
 def test_nonperiodic_command_prints_verified_report_without_writes(tmp_path,capsys):
     model,manifest,_=inputs(tmp_path)
     before={p.name:p.read_bytes() for p in tmp_path.iterdir()}

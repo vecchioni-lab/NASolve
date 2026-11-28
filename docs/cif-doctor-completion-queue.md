@@ -1828,6 +1828,11 @@ radius target. [mmDNA](https://doi.org/10.1002/adma.202210938) ·
 
 ### Q16 — Final integration, portability and retained-artifact closure
 
+The 0.2.0 checkpoint makes the existing checked preparation, declared phosphate
+refinement and read-only sticky-end inspection available together. Keep Cedar
+open for Q07 and the remaining chemistry work. The full-programme release gate
+below still owns catalogue breadth, platform and campaign capacity.
+
 For NASolve completion, verify the [Q15 helix analysis](#regional-helix-analysis-for-publication) and publication export on the integrated build.
 
 The specific C171 diagnostic-masking follow-up is resolved in

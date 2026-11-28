@@ -1,6 +1,6 @@
 # NASolve development handoff
 
-Updated 27 November 2026. Four Q07 substitutions have completed five ordinary diffraction cycles from one mutation card.
+Updated 28 November 2026. Four Q07 substitutions have completed five ordinary diffraction cycles from one mutation card.
 Q06 keeps the PDU B:4 site under review. The aim is for a scientist to use a supported modified nucleotide without hand-editing a CIF. Coot builds the
 residue, NARestraints supplies the intended pairs and stacks, and Cedar checks what
 ReadySet and Phenix actually use. The [completion queue](cif-doctor-completion-queue.md#pipeline-position) owns the work order. The [capability table](cif-doctor.md#current-capability-boundary) owns the support
@@ -207,6 +207,12 @@ location-dependent fixture failure. The fixture correction has focused coverage.
 C611 passed 419 focused acquisition and linked-chemistry tests and another 108
 focused preparation and sugar tests. C612–C613 used native Phenix 2.2.1-6174,
 Coot 1.3.3 and NARestraints 1.1.4. The trial used the original scaffold observations
-and Free-R flags. Cedar and any combined integration revision still require their own full qualification.
-Provisional integration into Pine and eventual main review are separate decisions. [Archived commands and receipts](history/README.md#november-26-cedar-roadmap-audit) ·
+and Free-R flags.
+
+For the 0.2.0 release, publish the full Cedar history through Pine to main.
+The release review records the unfiltered test result and the fresh two-junction
+Phenix restart for the delivered tree. Cedar continues from that tree with its
+existing handoff, tests and queue. The next chemistry gate is the D:4
+phosphorothioate in Q07. Willow and Alder receive the same main commit and
+validate their own interfaces. [Archived commands and receipts](history/README.md#november-26-cedar-roadmap-audit) ·
 [CIF Doctor evidence ledger](cif-linked-native-registration-evidence.json).
