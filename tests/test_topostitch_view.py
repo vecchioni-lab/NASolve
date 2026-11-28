@@ -256,3 +256,85 @@ def test_verified_child_choice_relocates_without_original_paths(recut_child,tmp_
     after=refreshed_view(case,fresh,tmp_path/'after.html',comparison_directories=[alt],preference_path=note)
     assert before==after and (tmp_path/'before.html').read_bytes()==(tmp_path/'after.html').read_bytes()
     assert not any(p.exists() for p in (old,recut_child[1],preview,other,preference))
+
+
+def installed_image_case(case):
+    """Reuse the existing child fixture with the actual installed image owners."""
+    from nasolve.topostitch_images import closest_atom_images
+    from nasolve.cif_phosphate_image import PDB_IMAGE_SEPARATION_A
+    return (*case[:3],dict(case[3],closest_image_reader=closest_atom_images,
+                          image_separation_angstrom=PDB_IMAGE_SEPARATION_A))
+
+
+def test_checkpoint_view_cli_reopens_relocated_choice_without_changing_current(recut_child,tmp_path,capsys):
+    from hashlib import sha256
+    from nasolve import checkpoints
+    from nasolve.topostitch_view import main
+    case=installed_image_case(recut_child)
+    preview,other,preference,plain=refreshed_choice(case,tmp_path)
+    digest=sha256((preview/'checkpoint-refresh.json').read_bytes()).hexdigest()
+    old=case[0].parent.parent;moved=tmp_path/'moved-run-input';shutil.move(old,moved)
+    parent=tmp_path/'moved-parent';shutil.move(case[1],parent)
+    fresh=tmp_path/'moved-refresh';shutil.move(preview,fresh)
+    alternative=tmp_path/'moved-alternative';shutil.move(other,alternative)
+    note=tmp_path/'moved-note.json';shutil.move(preference,note)
+    assert not any(p.exists() for p in (old,case[1],preview,other,preference))
+    run=moved/'AutoMR'/case[0].name;out=tmp_path/'child-choice.html'
+    frozen={p:p.read_bytes() for root in (moved,parent,fresh,alternative) for p in root.rglob('*') if p.is_file()}
+    frozen[note]=note.read_bytes()
+    assert main([str(fresh),'--run',str(run),'--parent-preview',str(parent),
+        '--refresh-sha256',digest,'--compare',str(alternative),'--preference',str(note),'--out',str(out)])==0
+    html=out.read_text();scene=json.loads(re.search(r'<script id="scene" type="application/json">(.*?)</script>',html,re.S).group(1))
+    assert scene['comparison_sha256']==plain['comparison_sha256']
+    for row in scene['alternatives']:
+        context=row['scene']['verified_checkpoint_refresh']
+        assert context['child_checkpoint_id']=='refine-001'
+        assert context['current_checkpoint_id']=='postmr'
+        assert context['review_state']=='UNREVIEWED' and not context['selection_applied']
+    assert 'Viewed:' in html and 'Current at creation:' in html
+    assert checkpoints.read_registry(run)[1]['current']=='postmr'
+    assert all(p.read_bytes()==raw for p,raw in frozen.items())
+    assert str(tmp_path) not in html
+    console=capsys.readouterr().out
+    assert 'refine-001' in console and 'postmr' in console and 'unchanged' in console
+
+
+@pytest.mark.parametrize('options',[
+    ['--run','run'], ['--parent-preview','parent'], ['--refresh-sha256','0'*64],
+    ['--run','run','--parent-preview','parent'],
+    ['--run','run','--parent-preview','parent','--refresh-sha256','0'*64,'--periodic'],
+    ['--run','run','--parent-preview','parent','--refresh-sha256','0'*64,'--cedar-source','neighbor'],
+    ['--run','run','--parent-preview','parent','--refresh-sha256','0'*64,'--export-sha256','0'*64],
+])
+def test_checkpoint_view_cli_requires_complete_unmixed_context(tmp_path,monkeypatch,capsys,options):
+    from nasolve import topostitch_view as view
+    def forbidden(*args,**kwargs):raise AssertionError('Do not read or render an incomplete request')
+    monkeypatch.setattr(view,'write_checkpoint_recut_view',forbidden)
+    monkeypatch.setattr(view,'write_preview_view',forbidden)
+    out=tmp_path/'none.html'
+    with pytest.raises(SystemExit) as exc:view.main(['missing','--out',str(out),*options])
+    assert exc.value.code==2 and not out.exists()
+    assert 'unrecognized arguments' not in capsys.readouterr().err
+
+
+@pytest.mark.parametrize('fault',['digest','current','owner'])
+def test_checkpoint_view_cli_refuses_stale_or_unverified_run(recut_child,tmp_path,monkeypatch,capsys,fault):
+    from hashlib import sha256
+    from nasolve import checkpoints
+    from nasolve.topostitch_view import main
+    case=installed_image_case(recut_child);preview=tmp_path/'fresh'
+    refresh_recut(case,preview)
+    digest=sha256((preview/'checkpoint-refresh.json').read_bytes()).hexdigest()
+    if fault=='digest':digest='0'*64
+    elif fault=='current':checkpoints.select_checkpoint(case[0],'refine-001')
+    else:
+        def refuse(*args,**kwargs):raise ValueError('Authenticated history refused')
+        monkeypatch.setattr(checkpoints,'read_registry',refuse)
+    out=tmp_path/'refused.html'
+    with pytest.raises(SystemExit) as exc:
+        main([str(preview),'--run',str(case[0]),'--parent-preview',str(case[1]),
+              '--refresh-sha256',digest,'--out',str(out)])
+    assert exc.value.code==2 and not out.exists()
+    error=capsys.readouterr().err
+    assert 'unrecognized arguments' not in error
+    if fault=='owner':assert 'Authenticated history refused' in error

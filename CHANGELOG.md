@@ -8,6 +8,13 @@ repository history.
 
 ## [Unreleased]
 
+- Willow's installed `nasolve-topostitch-view` can reopen a saved cut on a verified
+  refinement child using explicit run, parent-preview and refresh-digest inputs.
+  It reuses the existing history, image and preference checks and displays the
+  viewed child separately from the current model at creation. Inspection leaves
+  selection and scientific approval unchanged; existing packet schemas and
+  comparison fingerprints are preserved.
+
 - Willow’s movement-summary API now coexists with Cedar’s qualified counted
   and crystal-phosphate workers. Those workers retain their exact transport
   source bytes and existing fingerprints; saved requests need no migration.

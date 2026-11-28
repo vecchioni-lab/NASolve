@@ -1416,8 +1416,25 @@ nasolve-topostitch-view new-cut-preview --out cut.html
 
 Switch Original / Proposed / Overlay, inspect atoms and exact graph-edge images,
 and optionally show the unit cell. Declared boundaries and missing anchors remain
-visible. Cut alternatives, persistent review choices and materialization are still
-under development. No bend-search options are needed for this packet.
+visible. Add `--compare another-cut` for alternatives on the same exact model
+and declared graph, and `--preference review.json` to reopen a saved comparison
+preference. No bend-search options are needed for these packets.
+
+To inspect a cut already refreshed onto a registered refinement child, supply
+its run, exact parent cut and the refresh digest recorded by its producer:
+
+```bash
+nasolve-topostitch-view child-preview --run /path/to/run_001 \
+  --parent-preview parent-cut --refresh-sha256 "$REFRESH_SHA256" \
+  --compare alternative-child-cut --preference review.json --out child-cuts.html
+```
+
+Omit `--compare` and `--preference` for one cut. The view identifies the **viewed
+refined child**, **current model at creation**, and parent. It verifies saved
+history and both cut packets before writing HTML. A changed run context or review
+binding requires a fresh explicit refresh/review; the command does not select
+or approve a model. Use the run's recorded dependency environment for historical
+checked preparations. [Refined-child inspection contract](docs/topostitch-preview.md#installed-refined-child-cut-inspection-w319).
 
 ## Problems and reproducibility
 

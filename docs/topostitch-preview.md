@@ -5597,6 +5597,53 @@ fixtures exercise reopening. Offline HTML is verified at creation, not a live
 monitor of subsequent filesystem changes.
 
 
+## Installed refined-child cut inspection (W319)
+
+The existing `nasolve-topostitch-view` command exposes W302/W305's checked
+refinement-child inspection. Install the Willow branch with `.[topology]` and
+provide all three context options together:
+
+```sh
+nasolve-topostitch-view child-preview --run /path/to/run_001 \
+  --parent-preview parent-preview --refresh-sha256 "$REFRESH_SHA256" \
+  --compare alternative-on-same-child --preference saved-review.json \
+  --out child-cuts.html
+```
+
+`REFRESH_SHA256` is the trusted digest of `child-preview/checkpoint-refresh.json`
+recorded when that refresh was produced. Supply the explicit parent and child
+paths even after relocation; a digest is not a file locator. The existing refresh
+record carries exact parent/child IDs, input-context pins and packet digests.
+The command reads that record through `load_checkpoint_recut_preview`; it does
+not create a refresh, infer missing metadata or convert an arbitrary model into a
+registered refinement child. Use the recorded compiler/workbook environment when
+reopening a historical checked run.
+
+Omit the optional comparison and preference arguments for a single cut. Up to
+seven additional explicit cuts may be supplied. The existing comparison owner
+requires the same child source/graph; a saved preference binds the exact ordered
+comparison. The first cut retains the parent's chosen images, while other cuts
+are identified as alternatives on the same refined child. Review remains fresh
+and unauthenticated; it does not become chemical approval or checkpoint selection.
+
+The caller uses the installed `checkpoints.read_registry`,
+`topostitch_images.closest_atom_images` and
+`cif_phosphate_image.PDB_IMAGE_SEPARATION_A`. It accepts no alternate source-tree
+reader and does not duplicate history, image or preference logic. Bend-search,
+export, native-capture and original-CIF options cannot be mixed into this mode.
+Incomplete context is refused before reading a packet.
+
+The existing verified-refresh display annotation now includes
+`current_checkpoint_id`, read only from registry bytes matching the verified child
+context. Each scene shows **Viewed**, **Current at creation**, and **Parent**;
+the final input/context checks still run after rendering. This optional display
+field is outside the canonical comparison fingerprint, so old preference files
+remain valid for unchanged packets/order. Old packets, refresh records and
+checkpoint schemas are unchanged. HTML is a checked snapshot at creation, not a
+live monitor, and never changes the run's current selection. Browser interaction
+qualification remains a separate gate.
+
+
 ## Observe registered forces at zero displacement (W310)
 
 `topostitch_trial.observe_registered_zero(masks, *, evaluate_native,

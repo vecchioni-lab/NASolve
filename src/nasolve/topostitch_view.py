@@ -436,6 +436,13 @@ def write_checkpoint_recut_view(run_directory, parent_preview_directory, directo
     record=load_checkpoint_recut_preview(run_directory,parent,root,
         expected_refresh_sha256=expected_refresh_sha256,registry_reader=registry_reader,
         closest_image_reader=closest_image_reader,image_separation_angstrom=image_separation_angstrom)
+    # Display selection only from the same authenticated registry snapshot.
+    # This annotation is outside the comparison/preference fingerprint.
+    from .checkpoints import registry_path
+    registry_bytes=registry_path(Path(run_directory)).read_bytes()
+    if sha256(registry_bytes).hexdigest()!=record['child_context']['registry_sha256']:
+        raise ValueError('Checkpoint selection changed during view construction')
+    current_checkpoint_id=_json(registry_bytes).get('current')
     scene=(representative_comparison(roots,backbone_intent=True) if comparison_directories
            else representative_scene(root,backbone_intent=True))
     displayed=([row['scene'] for row in scene['alternatives']] if comparison_directories else [scene])
@@ -450,6 +457,7 @@ def write_checkpoint_recut_view(run_directory, parent_preview_directory, directo
             cut_relation=('retained_parent_cut' if item['preview_receipt_sha256']==record['child_preview_sha256']
                           else 'alternative_same_child'),
             parent_checkpoint_id=record['parent_checkpoint_id'],child_checkpoint_id=record['child_checkpoint_id'],
+            current_checkpoint_id=current_checkpoint_id,
             parent_preview_sha256=record['parent_preview_sha256'],
             parent_context_sha256=record['parent_context_sha256'],child_context_sha256=record['child_context_sha256'],
             max_atom_shift_angstrom=record['graph_descent']['max_atom_shift_angstrom'],
@@ -510,6 +518,9 @@ def main(argv=None):
     parser.add_argument('--out',type=Path,required=True,help='New standalone HTML file outside the frozen preview')
     parser.add_argument('--compare',type=Path,action='append',default=[],help='Additional explicit cut packet from the same source/graph (repeat up to seven times)')
     parser.add_argument('--preference',type=Path,help='Reopen a saved preference bound to this exact comparison; never selects a model')
+    parser.add_argument('--run',type=Path,help='Saved run for a verified refined-child cut; requires --parent-preview and --refresh-sha256')
+    parser.add_argument('--parent-preview',type=Path,help='Exact parent cut packet used to create the saved child refresh')
+    parser.add_argument('--refresh-sha256',help='Trusted SHA-256 of the child checkpoint-refresh.json; verifies saved lineage without selecting it')
     parser.add_argument('--candidate',type=int,help='Explicit candidate index in the original model search')
     parser.add_argument('--radius',type=float,help='Exact source search radius when choosing a candidate')
     parser.add_argument('--periodic',action='store_true',help='Show the exact chosen symmetry mate (requires topology extra)')
@@ -523,6 +534,32 @@ def main(argv=None):
     parser.add_argument('--assembly-bounds',type=Path,help='Optional JSON with all three assembly rounding bounds; requires original CIF binding')
     parser.add_argument('--export-sha256',help='Inspect a saved whole-asym export using the trusted producer receipt file digest')
     args=parser.parse_args(argv)
+    checkpoint_options=(args.run,args.parent_preview,args.refresh_sha256)
+    if any(value is not None for value in checkpoint_options):
+        if any(value is None for value in checkpoint_options):
+            parser.error('Refined-child inspection requires --run, --parent-preview and --refresh-sha256 together')
+        if (args.candidate is not None or args.radius is not None or args.periodic
+                or args.max_pairs!=100_000 or args.max_image_tests!=100_000
+                or args.native_receipt is not None or args.cedar_source is not None
+                or args.original_cif is not None or args.cif_binding is not None
+                or args.assembly_bounds is not None or args.export_sha256 is not None
+                or args.backbone_intent):
+            parser.error('Refined-child inspection uses installed owners and declared backbone intent; only --compare and --preference may accompany its context')
+        try:
+            from .checkpoints import read_registry
+            from .topostitch_images import closest_atom_images
+            from .cif_phosphate_image import PDB_IMAGE_SEPARATION_A
+            scene=write_checkpoint_recut_view(args.run,args.parent_preview,args.preview,args.out,
+                expected_refresh_sha256=args.refresh_sha256,registry_reader=read_registry,
+                closest_image_reader=closest_atom_images,image_separation_angstrom=PDB_IMAGE_SEPARATION_A,
+                comparison_directories=args.compare,preference_path=args.preference)
+        except (OSError,ValueError,RuntimeError,ImportError) as exc:parser.exit(2,f'{parser.prog}: {exc}\n')
+        displayed=scene['alternatives'][0]['scene'] if 'alternatives' in scene else scene
+        context=displayed['verified_checkpoint_refresh']
+        current=context['current_checkpoint_id'] or 'none selected'
+        print(f'Read-only refined-child view: {args.out}\nViewed: {context["child_checkpoint_id"]}; '
+              f'current at creation: {current} (unchanged). Fresh review required.')
+        return 0
     if args.export_sha256 is not None:
         if (args.cedar_source is None or args.compare or args.preference is not None
                 or args.candidate is not None or args.radius is not None or args.periodic
