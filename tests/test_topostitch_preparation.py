@@ -61,13 +61,21 @@ def test_same_bytes_different_checkpoint_and_wrong_hash_refused(prepared):
 
 
 def test_refined_descendants_are_not_preparation_inputs(prepared):
-    p=checkpoints.registry_path(prepared['run']);r=json.loads(p.read_text());r['checkpoints'][0].update(id='refine-001',kind='refine');r['current']='refine-001';p.write_text(json.dumps(r))
+    p=checkpoints.registry_path(prepared['run']);r=json.loads(p.read_text())
+    child=deepcopy(r['checkpoints'][0])
+    child.update(id='refine-001',kind='refinement',parent='postmr')
+    r['checkpoints'].append(child);r['current']='refine-001';p.write_text(json.dumps(r))
     with pytest.raises(ValueError,match='descendant'):load(prepared,expected_checkpoint_id='refine-001')
 
 
 def test_explicit_preparation_alternative_uses_its_own_publication(prepared):
     run=prepared['run'];p=run/'PostMR/alternative.json';p.write_text(json.dumps({'preparation':json.loads((run/'PostMR/report.json').read_text())}))
-    rp=checkpoints.registry_path(run);r=json.loads(rp.read_text());r['schema_version']=4;r['checkpoints'][0].update(id='prepare-001',kind='preparation',checked_preparation=checkpoints._file_reference(p,run));r['current']='prepare-001';rp.write_text(json.dumps(r))
+    rp=checkpoints.registry_path(run);r=json.loads(rp.read_text());r['schema_version']=4
+    child=deepcopy(r['checkpoints'][0])
+    child.update(id='prepare-001',kind='preparation',parent='postmr',
+        preparation_relation='SAME_FROZEN_CONSTRUCTION',
+        checked_preparation=checkpoints._file_reference(p,run))
+    r['checkpoints'].append(child);r['current']='prepare-001';rp.write_text(json.dumps(r))
     assert load(prepared,expected_checkpoint_id='prepare-001')['context']['checkpoint_id']=='prepare-001'
 
 
