@@ -8,6 +8,10 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+- Willow’s movement-summary API now coexists with Cedar’s qualified counted
+  and crystal-phosphate workers. Those workers retain their exact transport
+  source bytes and existing fingerprints; saved requests need no migration.
+
 - Willow compatibility integration preserves its five TopoStitch commands, fit
   extra and inspection resources alongside Cedar chemistry. Refinement summaries
   retain both the native final-log reader and final-PDB geometry fallback.

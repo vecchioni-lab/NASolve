@@ -385,7 +385,8 @@ def test_frozen_historical_and_current_sources_are_independently_pinned(tmp_path
     assert {n:sha256(v).hexdigest() for n,v in module._code(module.V4_POLICY_ID).items()}==module._expected_code(module.V4_POLICY_ID)
     # A damaged legacy payload cannot be hidden behind unchanged current sources.
     copied=tmp_path/'package';copied.mkdir()
-    for name in {*module._V6_SOURCE_DIGESTS,'data/refinement-runtime-v3-sources.json','data/refinement-runtime-v5-sources.json','data/refinement-runtime-v6-sources.json'}:
+    for name in {*module._V6_SOURCE_DIGESTS,'data/refinement-runtime-v3-sources.json','data/refinement-runtime-v5-sources.json','data/refinement-runtime-v6-sources.json',
+                 'data/refinement-runtime-transport-sources.json'}:
         target=copied/name;target.parent.mkdir(exist_ok=True,parents=True);target.write_bytes((package/name).read_bytes())
     monkeypatch.setattr(module,'__file__',str(copied/'refinement_parallelity.py'))
     archive=copied/'data/refinement-runtime-v3-sources.json';saved=archive.read_bytes();value=json.loads(saved)
@@ -400,6 +401,15 @@ def test_frozen_historical_and_current_sources_are_independently_pinned(tmp_path
     for policy in (module.V4_POLICY_ID,module.V5_POLICY_ID):
         with pytest.raises(ValueError,match='qualified runtime'):module._code(policy)
     historical.write_bytes(old)
+    transport = copied/'data/refinement-runtime-transport-sources.json'
+    original_transport = transport.read_bytes()
+    altered_transport = json.loads(original_transport)
+    altered_transport['topostitch_transport.py'] += '\n# changed frozen transport\n'
+    transport.write_text(json.dumps(altered_transport))
+    with pytest.raises(ValueError, match='qualified runtime'):
+        module._code(module.V5_POLICY_ID)
+    assert module._code() == default
+    transport.write_bytes(original_transport)
     (copied/'cif_refinement_runtime.py').write_text('# changed current runtime')
     assert module._code()==default
     assert module._code(module.V4_POLICY_ID) and module._code(module.V5_POLICY_ID)
@@ -509,3 +519,24 @@ def test_direct_freezer_checks_source_before_creating_runtime_directory(tmp_path
             command=['phenix.refine',str(model),'output.prefix=refined'],
             python_executable=sys.executable,macro_cycles=1)
     assert not (directory/'parallelity_runtime').exists()
+
+
+@pytest.mark.parametrize("policy", [
+    "round-local-counted-execution-v5", "round-local-counted-execution-v6",
+    "round-local-counted-execution-v7", "round-local-counted-execution-v8",
+    "round-local-registered-phosphate-execution-v10",
+    "round-local-registered-phosphate-execution-v11",
+    "round-local-registered-phosphate-set-execution-v12",
+])
+def test_qualified_workers_preserve_transport_bytes_with_willow_api(policy):
+    import hashlib
+    from nasolve import refinement_parallelity as execution
+    from nasolve.topostitch_transport import CoordinateMask
+
+    assert callable(CoordinateMask.displacement_summary)
+    code = execution._code(policy)
+    transport = code["code/_nasolve_refinement/topostitch_transport.py"]
+    assert hashlib.sha256(transport).hexdigest() == (
+        "8a641d8f067b594e8ea446156b0252583a0d6178c967148a6b86214f9f8cfbfc"
+    )
+    assert {name: hashlib.sha256(raw).hexdigest() for name, raw in code.items()} == execution._expected_code(policy)

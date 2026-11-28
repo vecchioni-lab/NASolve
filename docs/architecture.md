@@ -229,6 +229,18 @@ remain authoritative; no CLI/default activation or new executor. See the
 [discovery contract](cif-doctor.md#source-aware-bond-target-discovery-c332) and
 [request binding](cif-doctor.md#automatic-bond-discovery-in-fresh-preparation-c333).
 
+## Qualified worker transport across Willow integration
+
+Cedar's counted v5–v8 and registered-phosphate v10–v12 workers retain the
+transport helper qualified with their original policy. The packaged
+`data/refinement-runtime-transport-sources.json` freezes that exact source,
+whose SHA-256 is `8a641d8f067b594e8ea446156b0252583a0d6178c967148a6b86214f9f8cfbfc`.
+`refinement_parallelity._code` validates it against the unchanged policy digest
+before creating a round. The public `topostitch_transport` module can therefore
+retain Willow's displacement summaries without altering a native worker or
+invalidating saved requests. No policy identifier, request schema, force kernel
+or scientific qualification changes. W318 records the combined-package checks.
+
 ## Captured reader settings at prepared intake
 
 The explicit [W186 control handoff](cif-doctor.md#explicit-captured-control-handoff-w186)

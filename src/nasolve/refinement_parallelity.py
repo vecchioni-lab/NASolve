@@ -249,6 +249,13 @@ def _code(policy=None):
         _need(isinstance(legacy, dict) and set(legacy) == {'cif_phosphate_restraints.py'}
               and isinstance(legacy['cif_phosphate_restraints.py'], str), 'Invalid frozen v10 phosphate source')
         frozen.update(legacy)
+    if policy in (*_COUNTED_POLICIES, *PHOSPHATE_POLICIES):
+        # Willow's public movement summaries do not change qualified worker bytes.
+        original = json.loads((package / 'data/refinement-runtime-transport-sources.json').read_text())
+        _need(isinstance(original, dict) and set(original) == {'topostitch_transport.py'}
+              and isinstance(original['topostitch_transport.py'], str),
+              'Invalid frozen refinement transport source')
+        frozen.update(original)
     expected=_SOURCES[policy]
     values={name:frozen[name].encode('utf-8') if name in frozen else (package/name).read_bytes()
             for name in expected}
