@@ -8,6 +8,11 @@
     "check_argv": ["nasolve", "check", "--offline"],
     "dependency": "Latest stable NARestraints from the laboratory GitHub release",
     "optional_extra": {"topology": "Gemmi for crystal images and coordinate mmCIF inspection"},
+    "upgrade_editable_topology": {
+      "working_directory": "repository root after updating the checkout",
+      "argv": ["python", "-m", "pip", "install", "-e", ".[topology]"],
+      "effect": "Use the intended environment’s Python to install Gemmi and register the sticky-end inspector. Keep the recorded provider environment for historical checked runs."
+    },
     "entry_points": ["nasolve", "nasolve-topostitch-inspect"]
   },
   "workflows": {
