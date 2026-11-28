@@ -17,6 +17,12 @@ coordinate changes; one 1.698 s native interpretation and a 1.184 s cold review
 confirm two Hg–N3 contacts and the original terminal angle at A:12 N3. This is
 input delivery only, not an ordinary refined child or geometry acceptance.
 [Exact angle order, targets, evidence and next boundary](metal-ordinary-receiving.md#retained-hg-recipe-reaches-the-fresh-native-manager).
+A later disposable-copy diagnostic confirms ordinary manual Hg import works,
+but does not carry the recipe/discovery/native evidence. The saved preparation
+capture also differs by the existing 61→76-byte ordinary PHIL adaptation; the
+transfer guard correctly refuses it. All 146 source files stay exact, scratch is
+removed, and no native run or new pytest panel follows. [Precise intake boundary
+and next implementation](metal-ordinary-receiving.md#next-ordinary-child-implementation-boundary).
 Current science checkout:
 `ScienceCheckouts/Hazel/2026-11-28_ft-hg-placement/index.html`.
 

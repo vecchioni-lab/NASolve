@@ -178,10 +178,16 @@ and the original terminal Hg–A:12 N3–B:4 N3 angle (0 / 2°). Phenix receives
 exact terms in 1.698 s; independent cold review takes 1.184 s. The A:12 vertex
 measures 7.169°, distinct from the 163.899° Hg-centred angle. No optimization or
 chemical acceptance follows. Do not rerun the completed native interpretation.
-**Next scope: phased numbered image-force execution with explicit ordinary
-ancestry plus the verified metal-construction delta and recipe.** The ordinary
-858-atom parent cannot silently become a 859-atom checkpoint. [Frozen-input
-boundary and proposed validation order](metal-ordinary-receiving.md#next-ordinary-child-implementation-boundary).
+**Ordinary model registration works; full metal evidence intake remains.**
+A disposable real-input check imports the 859-atom Hg model as an unselected
+manual REVIEW child without changing its 858-atom parent. It inherits only the
+five DNA restraints/no phases. The native preparation capture also lacks the
+ordinary full-model PHIL's existing namespace adaptation (one prefix row,
+61→76 bytes); exact Hg recipe delivery alone does not qualify execution.
+**Next scope: explicit verified-metal intake, then phased numbered image-force
+execution.** Bind ordinary preparation ancestry, discovery/construction and
+recipe/native proof; qualify the final adapted inputs using existing owners.
+[Diagnostic, retained failure and validation order](metal-ordinary-receiving.md#next-ordinary-child-implementation-boundary).
 The known neutral donor declarations and completed neutral/anion comparison
 remain recorded; routine donor-state automation stays deferred. Do not turn that
 known history into a new prerequisite or repeat the completed comparison.

@@ -28,9 +28,19 @@ harness's exact-float assertion is retained; it caused no rerun or product chang
 No fit, ordinary checkpoint admission, image-force application or f″ result.
 [Exact recipe, native proof, storage and next boundary](metal-ordinary-receiving.md#retained-hg-recipe-reaches-the-fresh-native-manager).
 
-**Next:** a versioned ordinary mixed XYZ/DNA group-B child with both crystal
-links and retained phases, explicitly carrying the verified construction delta
-and recipe alongside ordinary preparation ancestry.
+**Admission diagnostic:** ordinary manual import accepts the 859-atom Hg model
+as an unselected REVIEW child on a disposable copy, but inherits only the five
+DNA restraints/no phases and carries no metal evidence. The existing supplement
+transfer also correctly refuses one preparation/execution prefix difference:
+the full-model policy needs the maintained 61→76-byte namespace adaptation.
+The Hg recipe itself is exact. All 146 source files remain unchanged; 18.36 MB of
+scratch was removed. No runtime/schema change, native fit or new pytest panel.
+[Actual owner results, retained failed assumption and next contract](metal-ordinary-receiving.md#next-ordinary-child-implementation-boundary).
+
+**Next:** explicit verified-metal intake and a versioned ordinary mixed XYZ/DNA
+group-B child, carrying preparation/discovery/recipe evidence, both crystal links
+and retained phases. Qualify the final adapted execution inputs before the bounded
+cycle; reuse the existing checkpoint and restraint-transfer owners.
 The source dictionaries' neutral N3–H3 declarations are known; the completed
 19 November neutral/anion comparison and the investigator's substitution intent
 remain separately recorded. Routine donor-state automation stays deferred and
@@ -46,7 +56,7 @@ installed objects remain exact, with 2 guide and 31 installed public-interface
 tests passing. [Validation and delivery evidence](metal-release-compatibility.md).
 A01 remains partial; no new fit or f″ result is implied.
 
-Updated **28 November 2026** (discovery-backed starting placement). Active feature branch: **Alder**. The
+Updated **28 November 2026** (placement, native recipe delivery and ordinary-intake boundary). Active feature branch: **Alder**. The
 [root integration handoff](development-handoff.md) owns the current combined
 source, full validation and delivery. The [A01–A09 roadmap](metal-development-roadmap.md)
 owns feature completion. The earlier chronological diary is preserved as

@@ -163,23 +163,64 @@ from Git. The 28 November checkout includes the term table and native result.
 
 ### Next ordinary-child implementation boundary
 
-The existing mixed-parent binding still reads the 858-atom ordinary checkpoint;
-it cannot silently substitute a 859-atom hypothesis as that checkpoint's model.
-The next version must explicitly preserve both authorities: ordinary preparation
-and original diffraction ancestry, plus the verified metal-construction delta,
-recipe and native input evidence. Retain the original checkpoint and both
-numbered hypotheses. Freeze the final 859-atom XYZ/DNA group-B input state in the
-new child request rather than fabricating an accepted Hg predecessor.
+**The public manual-checkpoint route accepts the new Hg model.** A bounded
+28 November diagnostic invokes `add_checkpoint` on a disposable copy of the real
+FT dataset, importing hypothesis 002 as a distinct, unselected `manual-001`
+REVIEW child of `postmr`. It retains the exact 859-atom model, observations and
+five inherited DNA restraints; phases remain absent and validation remains false.
+An unchanged-DNA import and explicit selection/restoration control also pass.
+Thus the added Hg does not trigger a registered-DNA topology refusal. No record
+was added to the original science run, and selection is not scientific admission.
 
-Reuse the numbered execution, source guard, phosphate image-force and output/
-process owners. The declared recipe must be included with the ordered inherited
-restraints; both original crystal links need their qualified force construction.
-Freeze input/report ancestry at allocation so legitimate later registry changes
-do not invalidate a completed child. First test zero-cycle transfer, then one
-bounded cycle with exact written-state/process evidence and inspectable maps.
-No further discovery, recipe interpretation, donor comparison or unchanged private
-fit is needed to establish these already completed inputs. Ordinary input/child
-admission and scientific A01 acceptance remain separate; A02 stays gated.
+The missing part is **explicit metal-construction evidence in ordinary intake**.
+`add_checkpoint(run_directory, name, model, reflections, parent)` has no inputs
+for the hypothesis manifest, discovery declaration, Hg recipe or native receipt;
+none is present in the resulting manual node. Its generic registry writer is not
+an alternative scientific producer. Do not fabricate an accepted Hg predecessor
+or change the original 858-atom checkpoint in place.
+
+A direct call to the existing `refinement_prepared_backbone.supplemental_inputs`
+also exposes the exact execution-input boundary. The saved preparation capture
+has the original 61-byte full-model NCS PHIL. Ordinary refinement's existing
+`refinement-full-model-namespace-v1` adapter wraps that exact policy in
+`refinement` scope, producing 76 bytes. This is the **only mismatched prefix row**;
+the model, two dictionaries, other two PHIL inputs and 1,240-byte Hg recipe tail
+are exact. The helper correctly refuses that preparation-only capture. Reuse the
+existing adapter; do not rewrite the saved capture, relax its prefix check, or
+create a second PHIL parser. This does not invalidate the completed recipe
+interpretation. It requires a capture of the final ordinary execution inputs.
+
+The next opt-in producer/consumer must freeze ordinary preparation and original
+diffraction ancestry together with the verified construction delta, recipe and
+native evidence. Retain the original checkpoint and both numbered hypotheses.
+The prepared-backbone owner additionally requires qualified Coot/registered
+candidate ancestry; a copied model or exact supplemental PHIL alone cannot
+supply that proof. Define this metal extension explicitly with the shared owner.
+
+Then reuse numbered execution, exact input adaptation, source guards, phosphate
+image-force and output/process owners. Freeze the 859-atom XYZ/DNA group-B scope,
+retained AutoSol/Free-R binding and ordered inherited-plus-metal restraints in the
+new request, with both crystal-link force constructions. Freeze input/report
+ancestry at allocation so legitimate later registry updates do not invalidate a
+completed child. Qualify that final input capture, then zero-cycle transfer and
+one bounded cycle with exact written-state/process evidence and inspectable maps.
+No further discovery, donor comparison or unchanged private fit is needed.
+Ordinary admission and scientific A01 acceptance remain separate; A02 stays gated.
+
+**Evidence and validation:** method A948 completes the public-owner diagnostic
+in **98.124 s**; A950 reviews its saved registry and the exact transfer boundary
+in **0.057 s**. Both use `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src` with the
+recorded Phenix 2.2.1-6174 Python 3.11.15 environment, Gemmi 0.7.5 and NARestraints
+1.1.3. These are cold diagnostics, with subprocess creation denied; no Phenix/Coot
+execution, native optimization or pytest panel. Exact commands, owner hashes,
+receipts and the failed A949 transfer assumption are retained in
+`a01-hg-admission-20261128-01/{commands,cold-review,result}.json` under the local
+Alder artifact anchor. A950 explicitly corrects A948's provisional topology-gap
+wording. All **146 source files remain byte-exact**; all original-path accesses
+were denied during copied-run owner calls. The **18,361,748-byte** disposable
+copy was removed. No runtime/schema/default or migration change, no accepted
+science checkpoint, and no generated model/data committed. The existing checkout
+has a compact admission table; no new scientific figure or R/f″ value is implied.
 
 <a id="current-a01-registered-original-publication--27-november-evening"></a>
 
