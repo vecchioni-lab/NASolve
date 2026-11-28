@@ -1226,6 +1226,8 @@ entries are reconstructed from repository history.
 
 ### Received Cedar source and sugar preparation
 
+- NASolve 0.2.0 packages Cedar's checked preparation and registered crystal-phosphate refinement. The installed `nasolve-topostitch-inspect` command reads declared sticky ends and their crystal mates. The Coot view resolver also identifies the source of the selected map while retaining preparation-attempt inspection and the existing positional interface.
+
 - `nasolve cif-doctor catalogue --sulfur-phosphates` can read the sulfur, retained oxygen, leaving oxygen and carbon-linked oxygen directly from component bonds and leaving-atom declarations. The optional report preserves source orders, charges and atom names and distinguishes bridging and multiple sulfurs.
 
 - `nasolve postmr RUN --checked-preparation --dictionary-input-policy source-preserving-v2` can take one source-qualified C-linked sugar on a mutation card through local fitting and into the normal review checkpoint alongside ordinary substitutions. If the fit or its Phenix reading is interrupted, the diagnostic identifies the saved work and the command for inspecting or resuming it.

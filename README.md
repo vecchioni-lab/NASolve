@@ -102,11 +102,35 @@ python3 -m venv .venv
 .venv/bin/python -m pip install -e ".[test]"
 ```
 
-The explicit TopoStitch recipe/geometry Python interface additionally uses
-`.venv/bin/python -m pip install -e ".[topology]"` (Gemmi). Its maintained library
-is packaged for refinement integration; this does not enable automatic sticky-end
-restraints or add TopoStitch commands to the main CLI. See the
-[counted-refinement boundary](docs/architecture.md#owned-counted-pair-contribution-c368-direct-calls-only).
+### Inspect a sticky end or a phosphate across symmetry
+
+Install the topology extra for crystal-image searches. From the checkout, the
+following example measures the distance from B:1 P to the nearest crystal copy
+of B:7 O3′ in the supplied 5W6W model.
+
+```bash
+.venv/bin/python -m pip install -e ".[topology]"
+.venv/bin/nasolve cif-doctor phosphate-image MR_frames/5W6W/C_G.pdb --phosphate B:1 --o3 B:7 --nearest-image --json
+```
+
+The nearest distance is 2.795 Å in this starting frame. The construct design
+establishes which ends continue through symmetry. For a refinement that carries
+those bonds, angles and torsions into the next round, follow the
+[registered-phosphate example](docs/cif-doctor.md#carrying-crystal-phosphates-through-a-numbered-refinement).
+
+To inspect a sticky end, supply the exact PDB and a manifest describing the
+overhangs. From the same environment, run
+
+```bash
+.venv/bin/nasolve-topostitch-inspect model.pdb ends.json --radius 20 --periodic --contacts --pairings
+```
+
+The radius is in ångströms. The schema-1 coordinate manifest records the
+model's SHA-256 and each end's 5′ or 3′ polarity, overhang residues and two
+paired steps that orient the helix. The report lists candidate crystal
+copies, canonical base contacts and possible pairings. The command only
+reads its inputs. The [two-end example](tests/test_topostitch_inspect.py)
+shows a complete manifest built from synthetic coordinates.
 
 ### Check the runtime
 
