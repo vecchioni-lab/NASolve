@@ -11,6 +11,11 @@ milestone statements preserve their original scope; they are not a second queue.
 - [Metal handoff](metal-development-handoff.md) and [A01–A09 roadmap](metal-development-roadmap.md): metal science and feature milestones.
 - [Chemistry handoff](chemistry-development-handoff.md) and [completion queue](cif-doctor-completion-queue.md): shared construction/native chemistry.
 
+Start with the [user guide](../README.md) for a first solve or the
+[current behavior JSON](current-behavior.json) for the installed commands,
+their inputs and which operations change a model. Use the chemistry table
+to check support for a particular modification. [Chemistry capability table](cif-doctor.md#current-capability-boundary).
+
 ## What's current?
 
 - **CIF Doctor.** The checked PostMR route constructs the model through Coot and
@@ -96,9 +101,11 @@ is an explanation, not an independent status ledger.
 | Metal development queue and storage | [Post-merge roadmap A01–A09](metal-development-roadmap.md), [campaign storage plan](metal-campaign-storage.md) — FT_Hg foundation, GUI co-design, experimental-input reconstruction and [explicit parent transport](metal-campaign-storage.md#implemented-fourth-step-explicit-parent-layout-transport) before large campaigns; scientific retirement remains unqualified |
 | Metal anomalous diagnostics and planned search | [Metal anomalous workflow](metal-anomalous-doctor.md) — frozen occupancy profiles, [budgeted solution search](metal-anomalous-doctor.md#solution-space-search-and-provisional-decisions), optional chi branches, overlapping site groups and [recoverable trial retention](metal-anomalous-doctor.md#disk-budgets-and-recoverable-trial-retention) planned; **single frozen trials, [matched cluster response comparisons](metal-anomalous-doctor.md#implemented-matched-cluster-response-comparisons), [grouped cross-geometry reviews](metal-anomalous-doctor.md#implemented-grouped-reviews-across-geometry-branches), [completed-state XYZ maps and numerical context](metal-anomalous-doctor.md#implemented-completed-state-xyz-map-capture), [frozen-fdp anomalous maps](metal-anomalous-doctor.md#implemented-frozen-fdp-anomalous-map-capture), [native fit and endpoint recipe diagnostics](metal-anomalous-doctor.md#implemented-native-fit-and-endpoint-recipe-diagnostics), [shared cluster B environments](metal-anomalous-doctor.md#implemented-shared-cluster-b-environments), [refined endpoints and cluster count evidence](metal-anomalous-doctor.md#implemented-refined-endpoint-diagnostics-and-cluster-accounting), matched endpoint comparisons, [bounded occupancy sweeps](metal-anomalous-doctor.md#implemented-bounded-occupancy-sweeps), [human reference snapshots](metal-anomalous-doctor.md#implemented-human-reference-snapshots), [offline workbench navigation](metal-anomalous-doctor.md#implemented-offline-workbench-controller) and offline replay implemented; adaptive scan orchestration, convergence qualification and decision logic planned** |
 
-Implementation-intent JSON records design decisions. Verify installed support
-on the branch that owns the feature. Cedar's release scope and the checks
-needed before integrating into Pine are recorded in Q16.
+The release guide lists commands available on main. The implementation blueprints
+and experiment ledgers record design decisions and observations. Willow's additional
+recut tools and Alder's metal-site tools have their own branch guides. The
+[completion queue](cif-doctor-completion-queue.md#pipeline-position) tracks the
+remaining Cedar chemistry.
 
 ## Older evidence, not an action queue
 

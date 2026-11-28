@@ -1,9 +1,10 @@
 # NASolve development handoff — integrated development base
 
-**28 November integration:** Cedar release compatibility is being qualified on
-an isolated Alder receiving history. Focused owner and protected refinement
-panels pass; the retained FT read exposed separate dependency and assessor-source
-replay boundaries. [Current integration evidence and pending delivery](metal-release-compatibility.md).
+**28 November integration:** Alder now receives final Cedar `47caea97` on
+preserved merge history. Focused source/installed checks pass, including the
+relocated FT parent, phase binding and Coot profile with its original provider.
+Cedar's reader fix preserves historical assessor identity; changed compiler
+providers still refuse. [Validation and pending main delivery](metal-release-compatibility.md).
 A01 remains partial; no new fit or f″ result is implied.
 
 Received Cedar chemistry checkpoint: Updated 28 November 2026. Four Q07 substitutions have completed five ordinary diffraction cycles from one mutation card.
@@ -174,6 +175,18 @@ indexed diffraction observer passes 25 source/25 installed native cases and a
 exact XYZ/B selections and protected Hg values. Focused tests give 100 passed,
 11 native skips and 18 subtests; 117 cold evidence checks pass. No scientific fit
 or ordinary parent adoption follows. See the [current metal handoff](metal-development-handoff.md#a01-parameter-scope-2026-11-25).
+
+For NASolve 0.2.0, the current release interfaces are indexed in the
+[workflow guide](current-behavior.json). A retained metal-site checkpoint exposed
+a distinction between an update to dictionary comparison and a change in
+the NARestraints compiler. Keep the recorded assessor identity and the
+compiler's workbook and software pins when reopening old work.
+[Historical replay requirements](cif-doctor.md#reopening-older-checked-preparations).
+
+
+C623 passed 223 focused checks with each of NARestraints 1.1.4 and the 1.1.5
+candidate. Both new package distributions passed 57 tests after relocation.
+Native Phenix read both restraint sets on identical deposited coordinates.
 
 The explicit
 [mixed XYZ/group-B observer and scoped writer](metal-development-handoff.md#a01-parameter-scope-2026-11-25)

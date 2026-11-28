@@ -214,3 +214,15 @@ def test_relocated_explicit_recipe_uses_its_matching_frozen_workbook(tmp_path, m
     (moved / relative).write_bytes(b"substituted workbook")
     with pytest.raises(ValueError, match="workbook differs"):
         _read_owned_compiler("explicit_na_policy", moved, controls)
+
+def test_replay_names_the_changed_recipe_provider_without_adopting_it(tmp_path, monkeypatch):
+    import nasolve.cif_explicit_na_policy as compiler
+
+    report = compile_fixture(tmp_path)
+    root = tmp_path / "policy"
+    saved = (root / "explicit_na_policy.json").read_bytes()
+    changed = dict(report["implementation_sha256"], **{"restraints.builder": "f" * 64})
+    monkeypatch.setattr(compiler, "_implementation", lambda workbook=None: changed)
+    with pytest.raises(ValueError, match=r"recorded NARestraints.*restraints\.builder"):
+        compiler.read_explicit_na_policy(root)
+    assert (root / "explicit_na_policy.json").read_bytes() == saved

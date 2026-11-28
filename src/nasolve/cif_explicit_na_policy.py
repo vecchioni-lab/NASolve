@@ -375,6 +375,11 @@ def read_explicit_na_policy(directory: Path, *, frozen_workbooks=None) -> dict:
         raise ValueError('Frozen workbook differs from the explicit NARestraints compiler')
     fresh, files = _payload(model, report['pairs'], report['stacks'], sources,
                             report['orientation_control_pairs'], workbook=workbook)
+    current_pins = fresh['implementation_sha256']
+    if pins.keys() == current_pins.keys() and pins != current_pins:
+        changed = ', '.join(sorted(name for name in pins if pins[name] != current_pins[name]))
+        raise ValueError('Explicit-policy maintained reconstruction differs. Reopen with the recorded '
+                         'NARestraints compiler and workbook. Changed inputs: ' + changed)
     if fresh != report or any((root / name).read_bytes() != data for name, data in files.items()):
         raise ValueError('Explicit-policy maintained reconstruction differs')
     return report

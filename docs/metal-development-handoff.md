@@ -1,9 +1,10 @@
 # Metal development handoff — current state
 
-**28 November integration:** Cedar release compatibility is being qualified on
-an isolated Alder receiving history. Focused owner and protected refinement
-panels pass; the retained FT read exposed separate dependency and assessor-source
-replay boundaries. [Current integration evidence and pending delivery](metal-release-compatibility.md).
+**28 November integration:** Alder now receives final Cedar `47caea97` on
+preserved merge history. Focused source/installed checks pass, including the
+relocated FT parent, phase binding and Coot profile with its original provider.
+Cedar's reader fix preserves historical assessor identity; changed compiler
+providers still refuse. [Validation and pending main delivery](metal-release-compatibility.md).
 A01 remains partial; no new fit or f″ result is implied.
 
 Updated **27 November 2026** (fresh FT construction, owned preparation and archive readback). Active feature branch: **Alder**. The

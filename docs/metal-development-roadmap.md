@@ -17,8 +17,9 @@ No experiment, checkpoint or science checkout was removed by this audit.
 Receive the released shared owners without losing the original registered
 preparation, frozen workers or phase identities. The focused source checks and
 real retained-input replay are tracked in the [compatibility report](metal-release-compatibility.md).
-Resolve the ordinary-reader compatibility question and qualify the installed
-package before resuming Hg placement. This is delivery work; A01 remains partial,
+The historical assessor reader is repaired and the installed, relocated FT
+read is qualified; receive the actual released-main commit and deliver Alder
+before resuming Hg placement. This is delivery work; A01 remains partial,
 A02 gated, and A01–A09 remain explicitly post-merge feature milestones.
 
 ## Original aim and usable entry points
