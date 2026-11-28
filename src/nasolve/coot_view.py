@@ -632,6 +632,7 @@ def _preparation_profile(run: Path, report: Mapping[str, object], attempt: int) 
         source=(f"Preparation attempt {attempt}: {result.message} ReadySet: {result.readyset_status}. "
                 "Diagnostic inspection; no refinement or checkpoint adoption."),
         map_source="Phaser MR map (not recalculated for this preparation)",
+        map_origin=MapOrigin("automr"),
         preparation_attempt=attempt,
     )
 

@@ -4,9 +4,10 @@
 checkout is reconciling Cedar `02c61e9b2bf18795690483bd10cce0b0d827c08a`
 with Willow `2b6c46c4db6dbbdad51bedaad38661707d65fa75`. Initial shared-reader,
 endpoint, graph and transport checks pass (259 tests + 64 subtests); this is
-not full-suite or installed-release qualification. Next incorporate Rowan’s
-release candidate `29eaba7339f45680ffd46e5eef7742383061da6e`, preserve the combined
-Coot resolver, then reconcile the actual published main and validate installation.
+not full-suite or installed-release qualification. Rowan’s release candidate
+`29eaba7339f45680ffd46e5eef7742383061da6e` is now incorporated, including the exact
+combined Coot resolver. Next qualify this combined tree and its installation,
+then reconcile the actual published main.
 Rowan owns Cedar/Pine/main release validation; Linden owns Willow compatibility.
 The scientific status below is unchanged. No source model, map or run is included.
 

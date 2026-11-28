@@ -779,6 +779,10 @@ class MapOriginTests(unittest.TestCase):
         from nasolve.coot_view import ViewProfile
         profile = ViewProfile("automr", Path("model"), Path("map"), (), (), "source", "map source", None, ())
         self.assertIsNone(profile.map_origin)
+        older = ViewProfile("preparation", Path("model"), Path("map"), (), (), "source", "map source", None, (), 4)
+        self.assertEqual(older.preparation_attempt, 4)
+        self.assertIsNone(older.map_origin)
+
 
 
 if __name__ == "__main__":

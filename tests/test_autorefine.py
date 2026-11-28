@@ -1467,8 +1467,15 @@ class AutoRefineTests(unittest.TestCase):
 
     def test_statistics_parser_preserves_log_geometry_precedence(self):
         model = "REMARK   3  DEVIATIONS FROM IDEAL VALUES - RMSD, RMSZ FOR BONDS AND ANGLES.\nREMARK   3    BOND : 0.012 0.097 956 Z=0.729\nREMARK   3    ANGLE : 2.622 19.186 1467 Z=1.263\n"
-        stats = parse_refinement_statistics("bonds=0.009 angles=1.2\n", model)
-        self.assertEqual((stats["bond_rmsd"], stats["angle_rmsd"]), (0.009, 1.2))
+        logs = (
+            "bonds=0.009 angles=1.2\n",
+            "stage r-work r-free bonds angles b_min b_max b_ave n_water shift\n"
+            "end: 0.20 0.25 0.009 1.2 10 30 20 0 0.1\n",
+        )
+        for log in logs:
+            with self.subTest(log=log):
+                stats = parse_refinement_statistics(log, model)
+                self.assertEqual((stats["bond_rmsd"], stats["angle_rmsd"]), (0.009, 1.2))
 
     def test_statistics_parser_requires_a_complete_named_rmsd_summary(self):
         header = "REMARK   3  DEVIATIONS FROM IDEAL VALUES - RMSD, RMSZ FOR BONDS AND ANGLES.\n"
