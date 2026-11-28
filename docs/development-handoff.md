@@ -11,6 +11,13 @@ checks: two 862-atom cuts, identical HTML after relocation, `refine-004` viewed
 while `postmr` stays current, wrong digest refused and all original inputs unchanged.
 [Exact evidence and limits](topostitch-periodic.md#w319--reopen-cuts-of-the-refined-child-through-the-installed-command).
 
+**W320 shared Alder boundary:** the real 858→859 Hg insertion is a separate
+`BUILT_REVIEW` hypothesis, not refinement descent or a registry child. Seven
+manifest files verify and the original DNA-only parent remains byte-identical
+and current. [Responsibility handoff](topostitch-preview.md#metal-containing-parent-handoff-w320)
+requires Alder/ordinary admission of the metal-containing parent before Willow
+binds a fresh cut and follows its same-inventory child. No new code or refinement.
+
 **W318 remains the release foundation:** published main `c9127dda` is integrated;
 the last full suite at `48319ea3` passes 14,738 tests and 328 subtests with 18
 scoped skips. W319 is a focused read-only caller patch, not a new full-suite or
@@ -70,8 +77,9 @@ maintained fixed-weight product mode or recommended production weight.
 ## Next decisions
 
 **Checkout queue, 28 November:** W319 delivers the installed P05 inspection
-caller. Next, audit the concrete parent/atom-inventory boundary for a shared Alder
-metal-containing child before a recut handoff. Preserve
+caller. W320 identifies the parent/atom-inventory boundary with Alder. Next,
+receive an explicitly admitted metal-containing parent and genuine first child
+before building one fresh cut; do not treat the hypothesis as a checkpoint. Preserve
 W316 as the settled joint lifecycle experiment and park P02's browser exercise.
 Before another D7/C8 fit, obtain discriminating spatial-density or chemistry-context
 evidence. Broader motion and physical oligo/entity assignment still need reviewed
@@ -94,9 +102,10 @@ saved-run replay pass. The scene explicitly separates viewed child, current
 selection at creation, retained-parent cut and alternative cut. No selection,
 review approval or chemistry authority is synthesized. [Contract](topostitch-preview.md#installed-refined-child-cut-inspection-w319).
 The full GUI action/refine loop and actual browser interaction remain separate
-open gates. Before extending the caller for Alder, resolve which registered
-metal-containing parent owns the cut and whether atom inventories are unchanged;
-reuse the existing descent checks and coordinate that boundary with Hazel.
+open gates. W320 resolves responsibility for the next Alder seam: placement/admission remains
+Alder/ordinary-owned; Willow waits for explicit qualified parent/child references
+and keeps the complete-inventory descent checks. An unregistered metal retains
+its source image; no coordination bond or anomalous-scattering claim is inferred.
 
 1. **Stitching:** W297 is the new unselected endpoint-base comparison against
    W296's sugar-only control. It improves pair tilt but does not recover clear

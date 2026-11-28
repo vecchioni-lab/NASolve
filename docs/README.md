@@ -12,6 +12,8 @@ to check support for a particular modification. [Chemistry capability table](cif
 
 ## What's current?
 
+- **W320 metal-parent boundary:** [Alder/Willow responsibility handoff](topostitch-preview.md#metal-containing-parent-handoff-w320) distinguishes the real 859-atom Hg hypothesis from its original 858-atom registered parent. No cut refresh across insertion, guessed coordination or new refinement. Explicit metal-parent/child admission is next.
+
 - **W319 refined-child inspection:** [installed command and exact-model labels](topostitch-preview.md#installed-refined-child-cut-inspection-w319) reopens saved alternative cuts through the existing history/image/preference checks. 123 source/123 installed checks and the declared 862-atom real example pass. Viewed child and current selection stay distinct; no new refinement or approval.
 
 - **W318 release compatibility:** [combined package and qualified worker preservation](topostitch-periodic.md#w318--release-compatibility-without-changing-qualified-worker-bytes) retains all five Willow commands alongside Cedar 0.2.0. Published main is integrated; the full suite passes 14,738 tests and 328 subtests, with 18 scoped skips. The fixture-only follow-up passes 89 source and 89 installed checks. No new fit or scientific acceptance.

@@ -16843,3 +16843,51 @@ is delivered, but browser interaction, integrated reviewed action/adoption and
 the full surgery/refine loop remain unqualified. Next, audit the concrete parent
 and atom-inventory boundary for a shared Alder metal-containing child before any
 recut handoff; do not repeat a viewer or native refinement to fill that gap.
+
+## W320 — Separate metal insertion from refinement descent
+
+**Read-only responsibility audit, 28 November 2026.** Rowan requested the concrete
+prerequisite for a shared Alder/Willow metal-containing recut child. Current
+Willow code is `65765a4bdd6b3c0716c4cd68869304152a5c8621`; reviewed Alder base is
+`37c158f641ab4a5d36aad0c02bc8f77fd228be6c`. Hazel's new placement extension and its
+installed qualification remain Alder-owned. No source code, tests, native job,
+model, cut packet or checkpoint changes in this audit.
+
+Hazel supplied exact run-relative parent/model/manifest references. All seven
+hypothesis file hashes and sizes match its manifest. The ordinary source has
+858 atom records, the separate Hg hypothesis 859; removing the one added record
+reproduces the full original source bytes. At the recorded observation the registry
+has only `postmr`, still current. The hypothesis is `BUILT_REVIEW` and explicitly
+not native-ready; its recipe contains no restraints or sets. This is an independent
+file/hash observation, not a new `verify_hypothesis` or chemistry qualification.
+
+The incompatibility follows directly from maintained contracts: a hypothesis
+cannot satisfy the required direct refinement-child lineage, and an 858→859 atom
+change cannot satisfy the complete identity bijection. A fresh cut must instead
+bind to an explicitly admitted metal-containing parent, before following its
+first same-inventory refinement child. Alder/ordinary owners own that admission
+and metal/scattering/data policy. Willow owns subsequent cut/descendant image
+correspondence. The original DNA-only parent remains immutable.
+
+Existing tests already cover retained unregistered HETATM context, atom reorder,
+missing/duplicate atoms, occupancy-status changes, crystal changes and ambiguous
+images (`test_topostitch_graph.py`, `test_topostitch_recut_bundle.py` and
+`test_topostitch_checkpoint.py`). They were inspected; no redundant Hg-named test
+or suite rerun was added for this documentation-only audit. Generic atom retention
+is not proof of anomalous scattering or coordination transport.
+
+Current recut leaves an unregistered Hg at its source image. Moving it independently
+or defining its donor-image connections needs an explicit owner, never an inferred
+covalent bond. Numeric positive Q/ADPs may vary under graph descent, while their
+physical/scattering validity remains separately owned. The neutral scattering
+checker does not qualify nonzero-f″ recovery; that earlier planned stress test
+remains deferred. [Handoff contract](topostitch-preview.md#metal-containing-parent-handoff-w320).
+
+Local NASolve receipt `branch-artifacts/willow/w320-metal-recut-boundary/audit.json`
+records the declared run anchor, file hashes, registry snapshot, owner boundaries
+and limitations (5,880 bytes; SHA-256
+`95a65ab43ad0a339007e1af9aded3cc43e525c9d37033cf9096aaaab3e268de5`).
+No scientific payload is committed. The audit stops at the currently absent
+admitted metal-containing checkpoint/child; it does not synthesize that history
+or run another refinement. Next intake is Hazel's explicit qualified parent/child
+references when available, followed by one fresh parent cut and read-only descent.

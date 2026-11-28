@@ -5644,6 +5644,47 @@ live monitor, and never changes the run's current selection. Browser interaction
 qualification remains a separate gate.
 
 
+## Metal-containing parent handoff (W320)
+
+A metal-placement hypothesis is a chemistry proposal, not automatically a
+registered refinement checkpoint. A saved DNA-only cut cannot be refreshed onto
+an input with an added metal as though only coordinates had changed.
+`build_checkpoint_recut_preview` requires a direct, usable refinement child of
+the explicit parent; `observe_registered_graph_descent` separately requires a
+complete, unique ATOM/HETATM identity bijection and the same crystal frame.
+Those checks remain independent of a model file's location or freshly computed hash.
+
+The current Alder example establishes the concrete boundary: its original
+858-atom DF:T `postmr` remains the only registered checkpoint. A separate
+859-atom `Metal/hypothesis_001` adds one Hg and is `BUILT_REVIEW`,
+`native_ready=False`. Removing that one added record reproduces the original
+parent bytes exactly. The hypothesis declares a metal image and starting
+occupancy/B/charge, but no coordination restraints or refined-child authority.
+The local W320 receipt binds the exact files; this observation does not replace
+Alder's source/chemistry replay or installed qualification.
+
+| Responsibility | Required before the shared recut/refinement demonstration |
+| --- | --- |
+| Alder and ordinary chemistry/execution owners | Explicitly admit the metal-containing input, retaining the DNA-only parent; own placement provenance, donor identities/images, chemistry, data/phases and B/Q/f′/f″ policy. |
+| Existing checkpoint owner | Record genuine parent/child identity and complete execution/input lineage. A hypothesis folder cannot substitute for that record. |
+| Willow | Bind a fresh cut to the actually admitted metal-containing parent, then refresh onto its direct child with the same atom inventory through existing history/image readers. |
+
+Current graph descent permits numeric positive occupancies and ADPs to change,
+but refuses changes of atom identity, element, charge, positive-occupancy status,
+crystal frame or unambiguous representative. It does not validate anomalous
+scattering, thermal policy or chemistry. If an ion disappears or its representative
+changes, explicit new ownership is needed; do not relax the check or invent ancestry.
+
+An unregistered Hg is retained at its source image by the existing recut code,
+just like other explicitly unrepresented context atoms. Its presence and image
+are distinct from a coordination edge. Independently re-imaging Hg or transporting
+its donor connections needs explicit metal/atom ownership; DNA O3′ graph edges
+cannot supply it by proximity. Existing neutral-atom scattering observations
+exclude anomalous addends. The planned nonzero-f″ B/occupancy/f″ recovery stress
+test remains deferred until Alder qualifies those tools and the identifiability
+question; this unrefined placement is not a substitute.
+
+
 ## Observe registered forces at zero displacement (W310)
 
 `topostitch_trial.observe_registered_zero(masks, *, evaluate_native,

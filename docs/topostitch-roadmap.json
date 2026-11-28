@@ -1383,14 +1383,15 @@
         "W305 composes verified-child context, existing same-child alternatives and saved preference intake. Retained cut versus alternative explicit; context/packet/preference drift refuses. Current Cedar read-only compatibility checked; no selection or native admission.",
         "W316 installed Willow/Cedar compatibility smoke reproduces the genuine W301 child refresh, compares two cuts, saves explicitly synthetic review input and reopens byte-identically after staged inputs and installations move. Current postmr stays unchanged; stale review and implicit-current/explicit-child mismatch refuse. 20 preparation / 25 cold-reopen checks. No deployed verified-child caller exists yet; branch-specific map_origin/preparation_attempt remain separate.",
         "W318 qualifies composed Cedar authenticated history/image owners, distinct Coot map_origin/preparation_attempt fields, all Willow commands and exact historical worker bytes against published main. Full14738/328subtests and installed/focused checks pass with scoped skips. No production caller or scientific gate is claimed.",
-        "W319 exposes the existing verified-child/cut/preference API through nasolve-topostitch-view with installed authenticated owners. Explicit viewed/current labels and fresh-review state survive relocation.123 source/123 installed checks and13 declared real-case checks pass. No model selection or native refinement."
+        "W319 exposes the existing verified-child/cut/preference API through nasolve-topostitch-view with installed authenticated owners. Explicit viewed/current labels and fresh-review state survive relocation.123 source/123 installed checks and13 declared real-case checks pass. No model selection or native refinement.",
+        "W320 audits the actual Alder858\u2192859 added-Hg hypothesis and unchanged original parent. Placement is not checkpoint/refinement descent; explicit admitted metal parent must precede a fresh cut and same-inventory child. No new run or capability claimed."
       ],
       "acceptance": [
         "Use the shared model tree and exact selection/Coot APIs; keep inspect, select and approve distinct, preserve current choice and return refinement diagnostics to the same session.",
         "Graphical actions bind source hashes and show actual nicks/seams/mates. Test stale views, competing choices, interrupted actions, manual imports and relocation without duplicating campaign/checkpoint machinery.",
         "Expose editable Pine periodic connectivity beyond the ASU, preserving prior user choices and exact logical/image mappings across reslicing or explicitly marking unresolved mappings. Keep intent, proximity and enforcement support separate."
       ],
-      "next_action": "Audit the concrete registered parent and atom-inventory boundary for a shared Alder metal-containing child, coordinating with Hazel. Preserve the W319 installed read-only caller and existing descent/image/preference owners. Browser interaction and integrated reviewed action/adoption remain separate gates; no new viewer, guessed ancestry or repeated native fit.",
+      "next_action": "Receive Alder/ordinary-owned admission of the actual metal-containing parent and first genuine same-inventory child, then bind one fresh parent cut and use existing read-only refresh/view owners. Preserve DNA-only parent; no hypothesis-as-checkpoint, guessed metal bond/image ownership or neutral-to-anomalous claim. Browser interaction and integrated reviewed action/adoption remain separate gates.",
       "evidence": [
         "E_WILLOW_PINE_DOC_AUDIT",
         "E_ORDINARY_CHILD_RECUT",
@@ -1401,14 +1402,15 @@
         "E_CHECKPOINT_CUT_CHOICE",
         "E_INSTALLED_CHILD_REVIEW_REOPEN",
         "E_CEDAR_RELEASE_COMPATIBILITY",
-        "E_INSTALLED_CHILD_VIEW_CLI"
+        "E_INSTALLED_CHILD_VIEW_CLI",
+        "E_METAL_RECUT_PARENT_BOUNDARY"
       ],
       "last_audit": {
         "date": "2026-11-28",
         "code_commit": "65765a4bdd6b3c0716c4cd68869304152a5c8621",
         "reviewer": "Linden",
-        "human_update": 319,
-        "scope": "Installed verified-child caller and real saved-model relocation pass; P05 stays partial until browser and reviewed action/refinement lifecycle gates close."
+        "human_update": 320,
+        "scope": "Real added-Hg hypothesis/registered-parent boundary audited with Hazel; no metal parent/child admission or scientific gate claimed. P05 stays partial."
       }
     },
     {
@@ -11196,6 +11198,15 @@
       "reference": "docs/topostitch-periodic.md#w319--reopen-cuts-of-the-refined-child-through-the-installed-command",
       "result": "Existing viewer exposes explicit run/parent-preview/refresh digest with same-child alternatives and saved preference through installed owners. Viewed child/current-at-creation labels remain distinct.11 fail-before regressions;123 source/123 relocated-installed checks;13 real W316 replay checks preserve two862-atom cuts, identical cold HTML,currentpostmr/viewedrefine004 and unchanged inputs.399 installed objects exact,10 worker policies unchanged. Rowan reviewed the boundary.",
       "limitation": "Read-only snapshot, not persistent GUI action/adoption or browser interaction qualification. Synthetic saved preference only; no native refinement, changed checkpoint schema, scientific selection or new full-suite claim. Historical dependencies still required."
+    },
+    "E_METAL_RECUT_PARENT_BOUNDARY": {
+      "kind": "Read-only Alder/Willow parent and atom-inventory handoff",
+      "date": "2026-11-28",
+      "human_update": 320,
+      "code_commit": "65765a4bdd6b3c0716c4cd68869304152a5c8621",
+      "reference": "docs/topostitch-periodic.md#w320--separate-metal-insertion-from-refinement-descent",
+      "result": "Seven manifest files verify; removing the added Hg record reproduces the original858-atom parent byte-for-byte.859-atom hypothesis is BUILT_REVIEW/native_readyFalse, no coordination restraints, while registry contains only originalpostmr. Existing direct-child/bijection contracts identify the missing admission boundary without new code/tests/refinement. Fresh cut must start on actually admitted metal parent before same-inventory child descent.",
+      "limitation": "File/hash and contract audit, not Alder chemistry/installed qualification or an admitted metal checkpoint. No independent Hg-image ownership, coordination-edge inference or anomalous-recovery qualification. Existing neutral-scattering controls do not satisfy the deferred nonzero-fdp stress test."
     }
   },
   "benchmarks": [
@@ -11377,8 +11388,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 319,
-    "next": 320,
+    "current": 320,
+    "next": 321,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -13100,6 +13111,12 @@
       {
         "number": 319,
         "title": "Expose verified refined-child cut inspection through the installed viewer",
+        "state": "RECORDED",
+        "code_commit": "65765a4bdd6b3c0716c4cd68869304152a5c8621"
+      },
+      {
+        "number": 320,
+        "title": "Separate the added-Hg hypothesis from genuine refinement descent",
         "state": "RECORDED",
         "code_commit": "65765a4bdd6b3c0716c4cd68869304152a5c8621"
       }
