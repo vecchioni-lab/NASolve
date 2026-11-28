@@ -1,25 +1,27 @@
 # NASolve documentation map
 
-Updated **2026-11-27** for **`willow`**. Start with the
+Updated **2026-11-28** for **`willow`**. Start with the
 [current development handoff](development-handoff.md) for the proven edge,
 remaining gates and next bounded task. Historical handoffs are evidence, not
 current instructions; other branches retain their own status and validation pins.
 
 ## What's current?
 
+- **W318 release compatibility:** [combined package and qualified worker preservation](topostitch-periodic.md#w318--release-compatibility-without-changing-qualified-worker-bytes) retains all five Willow commands alongside Cedar 0.2.0. Installed checks pass after correcting two lineage fixtures; final unfiltered qualification and published-main reconciliation are in progress. No new fit or scientific acceptance.
+
 - **Latest W315:** [coupled-sugar movement comparison](topostitch-periodic.md#w315--coupled-sugars-move-but-the-torsion-does-not-recover)
   moves atoms by up to0.463 Å and reaches the bond target, but fails its
   torsion-progress criterion and remains unconverged. Stop repeat fits;
   W316 now passes the P05 installed review/reopen audit.
 
-- **Latest integration, W316:** [installed child/review reopening](topostitch-periodic.md#w316--reopen-a-reviewed-cut-without-selecting-a-scientific-result)
+- **Prior lifecycle qualification, W316:** [installed child/review reopening](topostitch-periodic.md#w316--reopen-a-reviewed-cut-without-selecting-a-scientific-result)
   preserves the same model, cuts, synthetic review and current selection after
   relocation. The verified-child composition still needs a thin production caller;
   no persistent GUI or combined-release qualification is claimed. W317's actual
   browser check stopped before page load on a local-file protocol refusal;
   rotation/download remain unqualified.
 
-- **Latest code, W310:** [registered zero-step observer](topostitch-preview.md)
+- **Scientific receiver, W310:** [registered zero-step observer](topostitch-preview.md)
   exposes full-native baseline and explicit mask projections inside the caller's
   authenticated force lifetime. Existing verified child-cut comparison remains
   available; no new checkpoint or preference registry.
