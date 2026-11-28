@@ -677,7 +677,7 @@ sections below retain exact methods, failures and evidence-time next steps.
 | Ordinary supported DNA/modified bases | Connected-base construction, source audits and qualified cached dictionaries feed ordinary PostMR. If Coot turns a source-defined base away from its parent, ordinary construction can now rotate that base as a rigid body and recheck the named angle. DP and IMC both exercise this recovery in the mixed model. The full-model L-DNA recipe has an ordinary native-membership control. | A recipe/membership pass is not complete refinement or scientific validation. Explicit v3 policies now survive isolated storage, source requalification and opt-in current-site preparation/native binding. Checked preparation and cache-miss recovery have an explicit PostMR/campaign route (C219–C225); C251 adds explicit later alternatives. C270–C272 qualify chosen-model phasing and inspection; default enablement and real refinement qualification remain separate. |
 | Two 2′-O-methyl sugars in the held-out scaffold design | In isolation, the same source-order recovery removed an unlisted C1′–P bond for SJO and an unlisted C1′–N1 bond for UY1. `cif-doctor explain-pucker` checked each native starting geometry against its observed Phenix table. | SJO selected the same pucker twice. UY1 selected different puckers from the source and generated coordinates. Four separate literal Phenix controls passed. The two UY1 tables and original native choices reopen from the retained files. One checked PostMR command now constructs and fits UY1 from the four-site card. Its exact parent completed five diffraction cycles with the adenine pair and both phosphate links preserved. The host supplied the diffraction data. A residual A:20 phosphate contact and SJO’s different source chemistry remain under review. [Two-sugar measurements](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run). |
 | Internal RNA with a free 2′ hydroxyl | Ordinary Coot, checked ReadySet and five Phenix cycles retained all twelve sugar hands, 38 backbone links and all 26 ring bonds within two restraint widths for 2MG, 5MC and 6MZ. A genuine 6MZ cache miss recovered the source graph after the native builder added one false bond. It produced exactly the same refinement inputs as the cache hit. | Three of 50 pairing distances still exceeded three widths. The unmodified host supplied the diffraction data. The source OP2 proton remains in each linked chemical definition. C-linked bases, locked sugars and a specified phosphorothioate have separate checks. Phenix did not expose formal charges in this comparison. [Three-site native measurements](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run). |
-| Internal phosphorothioates | The optional catalogue reading identifies which source atoms carry sulfur and which oxygen can leave. Crystal models of opposite hand distinguish the two sulfur placements. | At D:4 the intended monoanion and signed phosphorus geometry still need an explicit linked definition. On a reference duplex, Phenix omitted all three angles that involve the preceding O3′. [Sulfur controls and next test](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run). |
+| Internal phosphorothioates | The catalogue identifies source atom roles. The optional `sulfur-links` command measures a declared crystal link and distinguishes the sulfur side. Explicit links restored 18 incoming angles and six signed phosphorus restraints in a published duplex. | A D:4 sulfur model kept its sugar, phosphorus hand and both flanking links after one diagnostic Phenix cycle. The ordinary DNA control fit the host diffraction better. Automatic preparation of a fifth substituted site remains under review. [Sulfur controls and next test](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run). |
 | Catalogue and source chemistry | All 618 rows / 599 codes of the pinned NAR workbook are inventoried; graph-defined ports and exact atom/H/charge/stereo comparisons are reusable. | Catalogue coverage is not native support. Source intent, missing mappings and unqualified families remain explicit. |
 | FANA | Source-defined arabino/ribo distinction; isolated A/C/T/U candidates and explicit-policy GFL controls pass native checks. | This does not automatically insert any FANA into an arbitrary model. Whole-sugar construction is a separate operation. |
 | L-FANA | One explicitly derived L-FANA-C identity has native component, NAR-binding, three-site placement, exact topology, sampled derivative and bounded geometry evidence. C133 qualifies source-projected L-DNA flank definitions around it. | The geometry trial remains at its iteration limit. Phosphate state, formal-charge readback and ordinary whole-model mutation remain open; L-FANA A/G/T/U are not all established by the C control. |
@@ -6476,6 +6476,36 @@ No native-support count is inferred. `native_qualification=NOT_ASSESSED` means
 this census did not perform qualification, not that earlier specific proofs
 ceased to exist. The current PDU inventory proof and open energy/derivative
 boundary remain unchanged. Existing manifests/receipts need no migration.
+
+### Measure a declared phosphorothioate link
+
+Available on the main branch after v0.2.0. Install the `topology` extra for
+coordinate mmCIF and crystal-image support.
+
+```sh
+nasolve cif-doctor sulfur-links MODEL.cif SOURCE_COMPONENT.cif --code AS --json
+```
+
+Supply a coordinate mmCIF and the exact source component dictionary with its
+leaving-atom declarations. Cedar follows the explicit covalent O3′ connection,
+transforms the donor into the phosphorus atom’s crystal image and reports each
+model separately. The six O–P–O and O–P–S angles and four bond lengths describe
+the occupied tetrahedron. Signed volumes use the atom orders printed in the
+report. Reversing the physical sulfur side reverses their signs. Absolute
+Rp/Sp naming additionally requires the chemical priority assignment.
+
+Use the original component CIF even when an isolated Phenix dictionary has passed
+its geometry checks. In 8PSH, AS declares OP3 as the leaving oxygen and PST
+declares OP2. Both generated dictionaries kept all four phosphorus neighbours
+but dropped the leaving-atom flags. Cedar returned `UNRESOLVED_SOURCE_ROLES` for
+both generated files and measured both sites with the original definitions.
+
+Exit 0 means every matching polymer site was measured. Exit 2 requests review,
+for example when atoms have ambiguous alternate positions, the donor image is
+unknown or the specified leaving oxygen remains. An unreadable input returns 1.
+The default maximum incoming O3′–P distance is 2.2 Å, adjustable with
+`--max-step`. The JSON includes both input hashes. The command measures existing
+coordinates and performs no refinement. [Worked sulfur comparison](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
 
 ### Source attachment topology and ports (C106)
 

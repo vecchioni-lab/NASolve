@@ -37,3 +37,18 @@ def test_documented_sticky_end_inspection(tmp_path, capsys):
     result = json.loads(capsys.readouterr().out)
     assert result["periodic_screening"]["candidates"]
     assert result["changes"] == []
+
+
+def test_documented_sulfur_link_inspection(tmp_path, capsys):
+    pytest.importorskip("gemmi")
+    from nasolve.cli import main
+    from .test_cif_sulfur_links import inputs
+
+    guide = json.loads((ROOT / "docs/current-behavior.json").read_text(encoding="utf-8"))
+    workflow = guide["workflows"]["sulfur_link_measurement"]
+    model, source = inputs(tmp_path)
+    arguments = {"MODEL.cif": str(model), "SOURCE_COMPONENT.cif": str(source), "CODE": "PDU"}
+    assert main([arguments.get(word, word) for word in workflow["argv"][1:]]) == 0
+    site, = json.loads(capsys.readouterr().out)["sites"]
+    assert site["status"] == "MEASURED"
+    assert len(site["angles_deg"]) == 6

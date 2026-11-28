@@ -8,7 +8,9 @@ claims.
 
 ## Where to resume
 
-C640 carried the locally fitted A:19 UY1 into ordinary AutoRefine alongside 2MG, 5MC and 6MZ. The review checkpoint reopened after moving the run. Five cycles reproduced the independently assembled four-site control, including both adenine contacts and both phosphate links. All 16 measured sugar stereocentres kept their hand. A:19 C4′ still crowds A:20 OP1 by 0.494 Å against the Phenix contact target. Three of 50 pair distances elsewhere remain long. These observations came from the unmodified host. C641 now obtains that fixed-coordinate Phenix reading at first publication. It recovered the same 42 residue assignments and 193 requested terms after reducing 10.64 MB of output to a 669 kB archive. The relocated checkpoint reopened offline. C642 joined these steps in the ordinary checked PostMR command. With the qualified UY1 dictionary in the local store, a fresh run produced the same 860 coordinates, five dictionaries, six restraint files and observations as the parent of the completed refinement. C643 verified the intended sulfur side against published crystal and NMR models, including AS itself. On the 1D97 crystal duplex, ReadySet gave Phenix only half the angles around each sulfur-bearing phosphate. C644 added an optional source reading to `cif-doctor catalogue`. It identifies the retained and leaving oxygen in the isolated AS source and distinguishes dithio, sulfur-bridged and ambiguous centres. The installed Phenix detector stops when a sulfur takes the place of either named phosphate oxygen. Its normal DG control passes. All six starting D:4 angles fall within the 1D97 crystal ranges. Before constructing D:4, verify the internal monoanion, its sulfur side and an explicit inter-residue definition that this Phenix actually uses. The four-site checkpoint stays available. [Q07 measurements and remaining work](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
+NASolve 0.2.0 is tagged at `c9127dda`. Cedar continues on the same branch. Four of the eight unfamiliar substitutions have completed five ordinary diffraction cycles together. The fifth is an internal phosphorothioate at D:4. Cedar now measures its sulfur side from a declared crystal connection. On 1D97 an explicit link restored all 18 incoming phosphate angles and six signed phosphorus restraints to Phenix.
+
+The D:4 ReadySet dictionary actually flattened the unmodified part of the sugar during local fitting. Its C1′ chiral volume fell from 2.41 to 0.05 Å³ while retaining its sign. A maintained CCP4 phosphorothioate definition combined with the unchanged DA sugar and adenine geometry preserved that centre. After one real Phenix cycle the sugar bond was 1.513 Å and P–S was 1.934 Å. The ordinary DA control fit the host diffraction better. The existing sugar check rejected the faulty ReadySet output, and ordinary acquisition qualified the isolated AS. In the strand that isolated dictionary still expected OP3 and set P–S to 1.868 Å. Keep the four-site parent selected. Next teach ordinary preparation to bind the intended sulfur side, dictionary and two explicit links together. The backbone reader sees their separate Phenix origin and requests review. Compare the source, its actual native forces and the written model before qualifying a fifth ordinary site. [Measurements and current decision](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
 
 C629 carried the cold-acquired UY1 dictionary into the actual 42-residue model. At A:19 Phenix used the 2′-endo table with the internal O3′–P connection. All 37 active geometry checks passed. In that protected input the general bundle check stopped on the six inherited D:1 phosphate angle replacements. The two native reads verified their actual targets and weights. Formal-charge readback remains unavailable. C637–C640 subsequently covered ordinary selection of the fourth site and four-site refinement from a fresh molecular-replacement solution. [Whole-model evidence](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
 
@@ -209,18 +211,17 @@ their previous paths became inaccessible. Phenix 2.2.1-6174 executed the native
 checks. C606 passed 149 focused tests plus seven subtests and ran a fresh
 five-cycle linked Phenix comparison with the same input and Free-R assignments.
 
-The last recorded standalone full Cedar pass is C406 at `58965920`, with 12,043 tests passed, 293
-subtests passed and two native opt-in skips. The later combined C407 experiment had one
-location-dependent fixture failure. The fixture correction has focused coverage.
+The post-release sulfur-link code at `10caadc7` passed the unfiltered Cedar suite
+on Python 3.12.14 with 13,186 tests, 319 subtests and two optional native modules
+skipped. The installed reader reproduced seven deposited-model reports after relocation.
 C611 passed 419 focused acquisition and linked-chemistry tests and another 108
 focused preparation and sugar tests. C612–C613 used native Phenix 2.2.1-6174,
 Coot 1.3.3 and NARestraints 1.1.4. The trial used the original scaffold observations
 and Free-R flags.
 
-For the 0.2.0 release, publish the full Cedar history through Pine to main.
-The release review records the unfiltered test result and the fresh two-junction
-Phenix restart for the delivered tree. Cedar continues from that tree with its
-existing handoff, tests and queue. The next chemistry gate is the D:4
-phosphorothioate in Q07. Willow and Alder receive the same main commit and
-validate their own interfaces. [Archived commands and receipts](history/README.md#november-26-cedar-roadmap-audit) ·
+The 0.2.0 release brought the full Cedar history through Pine to main. Its two
+ordinary Phenix restarts retained both crystal junctions. The next small
+integration adds read-only sulfur-link inspection. Cedar's Q07 work continues
+with the unselected D:4 trial and the four-site parent.
+[Archived commands and receipts](history/README.md#november-26-cedar-roadmap-audit) ·
 [CIF Doctor evidence ledger](cif-linked-native-registration-evidence.json).

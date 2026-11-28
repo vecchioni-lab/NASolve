@@ -40,6 +40,13 @@
       "result": "Surveys the supplied NARestraints workbook and component-source directory. Consult the chemistry capability table for evidence of construction or refinement.",
       "guide": "docs/cif-doctor.md#current-capability-boundary"
     },
+    "sulfur_link_measurement": {
+      "mode": "inspection",
+      "availability": "main after v0.2.0, with the topology extra",
+      "argv": ["nasolve", "cif-doctor", "sulfur-links", "MODEL.cif", "SOURCE_COMPONENT.cif", "--code", "CODE", "--json"],
+      "guide": "docs/cif-doctor.md#measure-a-declared-phosphorothioate-link",
+      "result": "Measures each explicitly linked phosphorothioate from its source atom roles and crystal image. Exit 2 identifies a site or source that needs review."
+    },
     "whole_model_restraints": {
       "mode": "opt_in",
       "argv": ["nasolve", "postmr", "RUN", "--restraint-scope", "all"],
@@ -108,6 +115,7 @@
   "development": {
     "chemistry_capabilities": "docs/cif-doctor.md#current-capability-boundary",
     "chemistry_queue": "docs/cif-doctor-completion-queue.md#pipeline-position",
+    "unreleased_on_cedar": {},
     "separate_branch_work": {"willow": "Advanced ASU recutting, diagnosis and backbone export", "Alder": "Metal-site recipe building and inspection"},
     "planned": {"AutoPhase public name": "docs/autophase-rename-plan.json", "Helix analysis for publication": "docs/helical-geometry-plan.json"}
   }

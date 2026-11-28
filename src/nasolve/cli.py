@@ -333,6 +333,13 @@ def build_parser() -> argparse.ArgumentParser:
     cif_catalogue.add_argument("--sulfur-phosphates", action="store_true",
                                help="read the source bond orders, leaving atoms and roles at phosphorus bonded to sulfur")
     cif_catalogue.add_argument("--json", action="store_true", help="print the complete coverage census")
+    sulfur_links = cif_sub.add_parser("sulfur-links", help="measure a declared phosphorothioate backbone link and its sulfur side")
+    sulfur_links.add_argument("model", type=Path, help="coordinate mmCIF with an explicit covalent O3′–phosphorus connection")
+    sulfur_links.add_argument("dictionary", type=Path, help="source CCD containing the exact component and its leaving-atom declarations")
+    sulfur_links.add_argument("--code", required=True, help="exact component ID to measure")
+    sulfur_links.add_argument("--max-step", type=float, default=2.2, metavar="ANGSTROMS",
+                             help="longest incoming O3′–P bond for measuring the hand (default 2.2 Å)")
+    sulfur_links.add_argument("--json", action="store_true", help="include atom roles, crystal images, four lengths and six angles")
     deposition_geometry = cif_sub.add_parser("deposition-geometry", help="remeasure nucleic-acid bond and angle findings from a wwPDB validation CIF")
     deposition_geometry.add_argument("model", type=Path, help="exact coordinate mmCIF assessed by the report")
     deposition_geometry.add_argument("--validation", type=Path, required=True, help="matching wwPDB validation-data mmCIF")
@@ -2268,6 +2275,26 @@ def _cif_deposition_links(args: argparse.Namespace) -> int:
 
 def _cif_doctor(args: argparse.Namespace) -> int:
     """Offline assessment/preparation and explicitly requested native candidates."""
+    if args.cif_action == "sulfur-links":
+        from .cif_sulfur_links import inspect_sulfur_links
+        try:
+            result = inspect_sulfur_links(args.model, args.dictionary, args.code, maximum=args.max_step)
+        except (OSError, ValueError, RuntimeError) as exc:
+            print(f"CIF Doctor: {exc}", file=sys.stderr)
+            return 1
+        if args.json:
+            print(json.dumps(result, indent=2, allow_nan=False))
+        else:
+            print(f"{result['component']} sulfur links: {result['status']}.")
+            for site in result["sites"]:
+                label = f"Model {site['model']} {site['label_asym_id']}/{site['label_seq_id']}"
+                if site["status"] == "MEASURED":
+                    print(f"{label}: P–S {site['lengths_A']['sulfur']:.3f} Å, ordered volume {site['ordered_volume_A3']:+.2f} Å³.")
+                else:
+                    print(f"{label}: {site['status']}.")
+            if result.get("review_reasons"):
+                print("Review: " + ", ".join(result["review_reasons"]))
+        return 0 if result["status"] == "MEASURED" else 2
     if args.cif_action == "deposition-geometry":
         from .cif_deposition_geometry import inspect_deposition_geometry, print_deposition_geometry
         try:

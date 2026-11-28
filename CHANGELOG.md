@@ -8,6 +8,16 @@ repository history.
 
 ## [Unreleased]
 
+- `nasolve cif-doctor sulfur-links MODEL.cif COMPONENT.cif --code CODE`
+  reads an explicitly linked phosphorothioate in its crystal image. The report
+  identifies the sulfur side and measures four bond lengths, six phosphate
+  angles and the donor-side angle when its carbon is present. Ambiguous atoms
+  and undeclared connections go to review. The command reads both input files
+  without changing them.
+- The deposition-link and sulfur-link readers accept either spelling of the
+  connection's alternate-conformer field. Conflicting identifiers now produce
+  an explicit input error.
+
 ## [0.2.0] - 2026-11-28
 
 This release brings Pine and Cedar into the standard NASolve installation.
