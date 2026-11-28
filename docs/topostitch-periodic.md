@@ -16757,3 +16757,89 @@ refusal. It is not implemented here. GUI, inference, density-guided repair,
 chemical-acceptance and browser-interaction gates remain open. W315 stays an
 unaccepted, iteration-limited movement experiment. No new model, native refinement,
 scientist preference or scientific selection is claimed.
+
+## W319 — Reopen cuts of the refined child through the installed command
+
+**Recorded, 28 November 2026.** Code `65765a4bdd6b3c0716c4cd68869304152a5c8621`
+answers one P05 question: can a collaborator revisit another cut of the same
+refined model and always distinguish the model being viewed from the current
+run selection? W318 first qualified the installed Cedar/Pine/Willow owner
+composition. W301/302/305/316 already supplied the producer, exact readback,
+same-child alternatives and saved preference; W319 exposes those through the
+existing viewer rather than creating another registry or GUI.
+
+Before this patch, verified-child rendering required a Python API caller.
+`nasolve-topostitch-view` now accepts `--run`, `--parent-preview` and
+`--refresh-sha256` together, optionally with `--compare` and `--preference`.
+It uses installed history/image owners and preserves the producer's exact
+parent/child/context/packet bindings. The output identifies **Viewed**, **Current
+at creation**, and **Parent**. Current selection is read only from the registry
+bytes matching the verified context and rechecked before writing. A saved note
+is review input, not approval or model selection. [Usage and contract](topostitch-preview.md#installed-refined-child-cut-inspection-w319).
+
+Only `topostitch_view.py`, its existing HTML asset and the existing viewer test
+module change implementation behavior. Shared history, image, checkpoint and
+native owners are unchanged. Optional display metadata adds
+`verified_checkpoint_refresh.current_checkpoint_id` outside the canonical
+comparison fingerprint. Existing packet, refresh, preference and checkpoint
+schemas remain unchanged; no migration or new dependency. The public main
+branch is unchanged; this remains a Willow feature.
+
+**Validation:** eleven regressions fail before the caller exists. The six-module
+source panel passes **123 tests in 44.20 s**; the same panel passes from a relocated
+export against the installed wheel (**123 tests in 45.74 s**). It covers the
+viewer, cut comparison/preference, export view, recut view and checkpoint modules.
+The new checks use the existing child fixture with the actual installed image
+owners, preserve all input bytes/current selection, reopen after relocation and
+refuse incomplete/mixed options, wrong digest, stale current context and rejected
+history. Existing late-drift and corrupted-preference tests remain in the panel.
+Two public-guide tests also pass.
+
+Source command, with the independent Python 3.12.14 task environment:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src "$TEST_PYTHON" -m pytest -p no:cacheprovider --basetemp="$TASK_TMP/source-tests" -q -ra --tb=short tests/test_topostitch_view.py tests/test_topostitch_cut_comparison.py tests/test_topostitch_cut_preference.py tests/test_topostitch_export_view.py tests/test_topostitch_recut_view.py tests/test_topostitch_checkpoint.py
+```
+
+The installed command uses the same modules from the relocated export, the
+independent installed environment, no `PYTHONPATH`, and a fresh task basetemp.
+All **399 package files** match the committed source and the final wheel;
+`pip check`, installed command help and all **ten original worker policy hashes**
+pass. The final wheel hash is
+`dd772321eaeaa09acdb028696b40376971816e94d636c7072b54c42dbce97690`.
+The last full suite remains W318 at `48319ea3` (14,738 passes, 328 subtests,
+18 scoped skips). No new full-suite claim is made for this focused caller patch.
+
+**Real saved-model exercise:** use only the exact W316 input manifest and its
+checksums: W300's genuine `refine-003`→`refine-004` lineage, W301's saved refresh,
+W303's alternative and W316's explicitly synthetic test preference. The installed
+console script runs with recorded NARestraints **1.1.3** and Phenix **2.2.1-6174
+Python 3.11.15**, solely for read-only history/preview replay. No Phenix refinement
+or Coot process launches. The new single installed package replaces the old
+smoke's separately loaded branch namespaces without changing those owners.
+
+Thirteen checks pass in **89.39 s**: two complete **862-atom** cuts, viewed
+`refine-004` versus unchanged current `postmr`, identical HTML in a fresh process
+after input and installed-package paths move, wrong digest refused before output,
+exact original/staged scientific bytes, and no authority granted by the synthetic
+preference. No new preference is invented. Original/Proposed/Overlay compare
+representations of this same refined child, not pre/post-refinement coordinates.
+
+Local NASolve anchor `branch-artifacts/willow/w319-refined-child-cli/` retains the
+compact `validation.json`, immutable real-case `verification.json`, command logs,
+source/installed test logs, final wheel and `refined-child-cuts.html`. Validation
+receipt SHA-256:
+`409d5a1396c06348d06ff694cb2777222117f6e941e0f6a91afeb54afdbf4e66`.
+Its references carry declared anchors, relative paths and checksums. The one-time
+local runner is `branch-artifacts/willow/runners/w319_cli_reopen.py`; invocation
+`PYTHONDONTWRITEBYTECODE=1 python w319_cli_reopen.py TASK_TMP` requires the explicitly
+staged installed wheel and recorded pure dependencies described by its receipt.
+Private models/maps and generated packets remain uncommitted. This is not a
+portable-scientific-run claim based merely on archived files.
+
+Rowan reviewed the registry binding, final context rechecks and unchanged
+comparison fingerprint. P05 remains **PARTIAL**: the installed read-only caller
+is delivered, but browser interaction, integrated reviewed action/adoption and
+the full surgery/refine loop remain unqualified. Next, audit the concrete parent
+and atom-inventory boundary for a shared Alder metal-containing child before any
+recut handoff; do not repeat a viewer or native refinement to fill that gap.

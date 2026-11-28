@@ -1,16 +1,21 @@
 # NASolve development handoff — Willow
 
-**W318 release compatibility complete, 2026-11-28.** Willow receives published
-main `c9127dda08b7158455a4f2407a5d643221bc5c41` while retaining all five
-TopoStitch commands, exact qualified worker bytes and the combined Coot reader.
-The complete suite at `48319ea3c21fbd2b5237180c08c8553f4763c114` passes
-14,738 tests and 328 subtests, with 18 explicitly scoped skips. The subsequent
-main merge changes documentation only; fixture convergence at
-`72c5aa1323f798e21b5e710fefa52ad2086c6722` passes 89 source and 89 relocated
-installed checks. All 399 installed package files still match the fully tested
-source. [Exact scope, commands and evidence](topostitch-periodic.md#w318--release-compatibility-without-changing-qualified-worker-bytes).
-Default Pine and scientific inputs/results are unchanged. No new native refinement,
-scientific selection or GUI caller. Rowan owns Cedar/Pine/main; Linden owns Willow.
+**W319 installed refined-child inspection, 2026-11-28.**
+`nasolve-topostitch-view` now opens the exact saved child refresh through installed
+history/image owners. Supply `--run`, `--parent-preview` and `--refresh-sha256`,
+plus optional alternatives and saved preference. Each cut shows the viewed child,
+current model at creation and parent; opening it changes neither selection nor
+review authority. Code `65765a4bdd6b3c0716c4cd68869304152a5c8621` passes 123 source
+and 123 relocated-installed checks. The declared W316 real example passes 13
+checks: two 862-atom cuts, identical HTML after relocation, `refine-004` viewed
+while `postmr` stays current, wrong digest refused and all original inputs unchanged.
+[Exact evidence and limits](topostitch-periodic.md#w319--reopen-cuts-of-the-refined-child-through-the-installed-command).
+
+**W318 remains the release foundation:** published main `c9127dda` is integrated;
+the last full suite at `48319ea3` passes 14,738 tests and 328 subtests with 18
+scoped skips. W319 is a focused read-only caller patch, not a new full-suite or
+native-refinement qualification. Default Pine and main are unchanged. Rowan owns
+Cedar/Pine/main; Linden owns Willow.
 
 The [0.2.0 public workflow guide](current-behavior.json) describes the commands
 released on main; this branch retains its additional TopoStitch commands.
@@ -41,7 +46,7 @@ must work without an AI service. A representation change does not repair a gap.
 | Local native phosphate receiving | Default six-atom route plus explicit unphased sugars or canonical endpoint bases; installed preflight and fit complete with original context/data | Wider paired/base motion, packing acceptance and ordinary campaign adoption |
 | W297 endpoint-base experiment | 37 moving/825 held; join 1.60863 Å, pair angles 17.9→11.3° and 4.0→1.5°; all atoms, B/Q and six sugar hands preserved | Residual torsion 2.683σ, one stack angle worsens and both bases remain weak in maps; Rwork/Rfree 0.313/0.361, unselected |
 | Whole-original-asym diagnostic CIF export | W272–278 preserve qualified source categories, images, tensors and backbone coverage; save/replay/inspect available | Mixed-fragment entity policy, native TLS restart, genuine source/parent join and persistent operation/refine loop |
-| W299–W302 joint recut and restart | Exact-parent/direct-child refresh, saved readback and existing-inspector integration preserve both links and 862 atom identities; W300 ordinary restart verified | Persistent human review/edit/adoption and full seam acceptance; child unselected |
+| W299–W302 joint recut and restart | Exact-parent/direct-child refresh, saved readback and existing-inspector integration preserve both links and 862 atom identities; W300 ordinary restart verified | Installed read-only child/cut caller delivered in W319; integrated human review/edit/adoption and full seam acceptance remain open |
 | W286/W287 connection review | Source/row/evidence-bound unapplied proposals and independent saved-report replay | Explicit metadata authority, application and separate chemistry/export/native admission |
 | W290 endpoint-map comparison | Same 1,909 indices/124 Free-R; P near 2.52σ in both maps, weak fixed sugar support | Explicit coupled-window chemistry/packing before broader native motion; no map-based acceptance |
 | W292–W296 coupled-sugar scope | Source geometry, native derivatives, actual live definitions, sugar hands/pucker and C1 plane tradeoff checked; no plane removed | Full returned packing-review intake, physical partner authority and whole-duplex motion remain open |
@@ -64,8 +69,9 @@ maintained fixed-weight product mode or recommended production weight.
 
 ## Next decisions
 
-**Checkout queue, 28 November:** W318 release composition is qualified. Next,
-scope one thin P05 inspection caller using those installed owners. Preserve
+**Checkout queue, 28 November:** W319 delivers the installed P05 inspection
+caller. Next, audit the concrete parent/atom-inventory boundary for a shared Alder
+metal-containing child before a recut handoff. Preserve
 W316 as the settled joint lifecycle experiment and park P02's browser exercise.
 Before another D7/C8 fit, obtain discriminating spatial-density or chemistry-context
 evidence. Broader motion and physical oligo/entity assignment still need reviewed
@@ -80,27 +86,17 @@ preference remains installed-backend evidence only. No new viewer or repeat fit.
 A later user-driven local interaction or independently authorized supported
 environment can close this specific browser gap.
 
-**P05 joint audit and integration gate:** W316 passes the installed verified-child/cut/review
-reopening smoke on Willow `6a5e61fd` and Cedar `e1df7ad2`. Synthetic preference,
-contexts, HTML and model/map hashes survive staged relocation; current `postmr`
-stays unchanged while `refine-004` is inspected. No new fit or human approval.
-The caller audit finds W305's composition is still API-only. Propose one thin
-inspection caller for a scientist comparing a refined child's cuts, with explicit
-run/parent/refresh-digest inputs and saved review. It must cold-reopen the same
-result, show viewed versus current checkpoint, and refuse stale context. Trusted
-installed reader composition is a prerequisite: Willow `map_origin` and Cedar
-`preparation_attempt` are distinct additions, not interchangeable metadata.
-**Owner composition qualified by W318:** Cedar's authenticated
-preparation/history readers and image policy are installed alongside Willow's
-APIs. The Coot resolver retains distinct `map_origin` and `preparation_attempt`
-fields. The combined full suite, installed checks and published-main ancestry
-now qualify that software foundation; the production caller still needs its own
-bounded implementation and validation. Do not replace
-those owners with the old shape-only reader, copy policy constants or import a
-neighboring checkout. W316 remains the settled joint lifecycle test; this release
-integration does not invent a scientist's approval or new physical result.
-No full GUI shell, new registry or implicit checkpoint selection is needed.
-[Exact audit](topostitch-periodic.md#w316--reopen-a-reviewed-cut-without-selecting-a-scientific-result).
+**P05 delivered read-only caller:** W319 connects W316's verified-child, alternative
+cut and saved-preference lifecycle to the existing installed command. W318's
+history/image owners remain unchanged, and `map_origin`/`preparation_attempt`
+retain distinct meanings. Source and installed checks plus the declared real
+saved-run replay pass. The scene explicitly separates viewed child, current
+selection at creation, retained-parent cut and alternative cut. No selection,
+review approval or chemistry authority is synthesized. [Contract](topostitch-preview.md#installed-refined-child-cut-inspection-w319).
+The full GUI action/refine loop and actual browser interaction remain separate
+open gates. Before extending the caller for Alder, resolve which registered
+metal-containing parent owns the cut and whether atom inventories are unchanged;
+reuse the existing descent checks and coordinate that boundary with Hazel.
 
 1. **Stitching:** W297 is the new unselected endpoint-base comparison against
    W296's sugar-only control. It improves pair tilt but does not recover clear
