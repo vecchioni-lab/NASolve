@@ -20,9 +20,11 @@ catalogue establishes its recorded identity and roles. Evidence that a
 particular sugar, base or backbone keeps its geometry during refinement is
 reported separately for each supported case. [Chemistry capability table](docs/cif-doctor.md#current-capability-boundary).
 
-The installed commands, their inputs, and which steps change a model are
-indexed in the [current behavior JSON](docs/current-behavior.json). The
-[documentation map](docs/README.md) links the methods, evidence and development queue.
+The public release commands, their inputs, and which steps change a model are
+indexed in the [current behavior JSON](docs/current-behavior.json). This Willow
+branch also provides the [experimental preview and recut commands](#experimental-topostitch-inspection-and-previews)
+described below. The [documentation map](docs/README.md) links methods, evidence
+and the development queue.
 
 ## Quick start
 
@@ -1327,8 +1329,9 @@ and [GUI placement](docs/gui.md#shared-dynamic-modeldensity-inspector).
 
 ## Experimental TopoStitch inspection and previews
 
-The following extra entry points are available when installed from the `willow`
-branch; the inspected local Pine checkout does not include them. See the
+The `willow` branch adds `nasolve-topostitch-preview`, `nasolve-topostitch-fit`,
+`nasolve-topostitch-cut-preview` and `nasolve-topostitch-view` alongside the
+read-only inspector shared with the 0.2.0 release. See the
 [current scope and integration gates](docs/topostitch.md). Explicit whole-asym
 CIF exports remain diagnostics, and the opt-in `native-phosphate` route is bounded
 local receiving through compatible Cedar owners, not automatic sticky-end repair.
