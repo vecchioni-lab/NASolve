@@ -284,7 +284,7 @@ the exact source pin, counts, commands and remaining integration boundaries.
 
 | Milestone | Current evidence | Post-merge completion gate | Dependencies |
 | --- | --- | --- | --- |
-| **A01 — Ligand geometry and open XYZ/B foundation** | PARTIAL; complete protected one-cycle XYZ/group-B return and paired maps; FT_Hg geometry and ordinary admission remain | Qualify exact source chemistry, linkage/terminal context, all intended NARestraints and metal recipe terms; demonstrate open XYZ/B refinement, explicit phase/Free-R policy, active-state B export and inspectable maps. FT_Hg first, then mixed Au/Ag. | Merged development base |
+| **A01 — Ligand geometry and open XYZ/B foundation** | PARTIAL; complete protected one-cycle XYZ/group-B return and paired maps; FT_Hg geometry and numbered mixed-refinement admission remain | Qualify exact source chemistry, linkage/terminal context, all intended NARestraints and metal recipe terms; demonstrate open XYZ/B refinement, explicit phase/Free-R policy, active-state B export and inspectable maps. FT_Hg first, then mixed Au/Ag. | Merged development base |
 | **A02 — Controlled f″/Q quantitation** | PARTIAL; frozen fits, B environments and matched comparisons implemented | Use qualified endpoints; freeze XYZ/all ADPs/f′, prepare metal B from the refined environment, and qualify Q/start/budget responses, mixed elements, cluster sums/cancellation and anomalous-background controls. | A01 |
 | **A03 — Editable recipes and structural alternatives** | PARTIAL; recipe core and candidate comparisons implemented | Source-backed ligand/metal-state targets, saved editable recipes, count/identity alternatives, optional chi flips and multiple/adjacent sites; preserve ambiguity and human choice. | A01–A02 |
 | **A04 — Lean storage and regeneration** | PARTIAL; [inventory/forecast, compact projection and exact input transport](metal-campaign-storage.md) implemented; explicit parent transport, retained execution/cold review and compact publication with declared protected references qualified on bounded controls; v1 one-shot admission and opt-in mixed-scope ledger admission qualified on small controls; ordinary parent closure and retained-child budget admission qualified; owned native preflight qualified; whole audited-session admission and successful/verified-stopped-failure settlement qualified; sealed partial-preflight settlement, read-only held-session diagnosis and forward session/reservation process binding qualified; unsealed-attempt recovery, accepted scientific regeneration, scheduler-wide accounting and pruning pending | Shared pristine parents, compact frozen-trial records, protected important nodes, size-capped map retention, cold native regeneration, crash-safe retirement and campaign disk reservations. | Qualified A01–A02 examples; before large fan-out |
@@ -298,6 +298,13 @@ replay of a longer geometry-only preparation. None supplies an accepted f″ par
 The native stopping receipt is a reporting mechanism, not an automated repair or
 new acceptance gate. Source-phosphate-state and open-fit geometry questions remain
 with their owners. See the current handoff before extending these controls.
+
+The 28 November replay audit adds one concrete **A04** requirement: regeneration
+records must bind the compiler/workbook provider and establish that the recorded
+provider remains available. Deduplicate those shared dependency resources across
+trials and campaign nodes. A software upgrade that changes those fingerprints
+requires an explicit new derivation; original evidence keeps its original meaning.
+[Observed compiler boundary](metal-release-compatibility.md#two-distinct-frozen-reader-boundaries).
 
 Statuses describe evidence already available, not completed post-merge work.
 A01–A03 feed both the storage controls and GUI session. A04 must be qualified

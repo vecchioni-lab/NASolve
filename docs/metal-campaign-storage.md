@@ -7,6 +7,18 @@ before large f″ campaigns. It is a feature milestone after merge, not a
 prerequisite for merging the current experimental implementation.
 This document does not enable cleanup or change an existing immutable run.
 
+## Recorded-provider availability (28 November)
+
+The retained FT compiler produces byte-identical PHIL under NARestraints 1.1.4,
+but its original 1.1.3 workbook and module fingerprints remain part of the input
+contract. Reopening correctly requires that recorded provider. A04 regeneration
+receipts must therefore record dependency identity and availability alongside
+pristine model, observations and parameter values. Keep validated shared provider
+resources once per software identity and deduplicate them across trial records.
+An explicit new derivation can use an upgraded provider while preserving the old
+checkpoint. This is a post-merge design requirement; it grants no new retirement
+or automatic migration. [Compatibility evidence](metal-release-compatibility.md#two-distinct-frozen-reader-boundaries).
+
 ## Native final-state replay observation (22 November)
 
 A01's local retained-state diagnostic distinguishes a replayable final fmodel
