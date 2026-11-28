@@ -22,10 +22,8 @@ def test_old_counted_payload_keeps_exact_native_recipe(policy):
 @pytest.mark.parametrize('damage', ['bytes','extra','missing'])
 def test_frozen_recipe_damage_cannot_fall_back_to_live_module(tmp_path,monkeypatch,damage):
     package=Path(runtime.__file__).parent
-    for name in {*runtime._V8_SOURCE_DIGESTS,
-                 'data/refinement-runtime-v6-sources.json',
-                 'data/refinement-runtime-v7-sources.json',
-                 'data/refinement-runtime-native-recipe-sources.json'}:
+    archives = {str(path.relative_to(package)) for path in (package/'data').glob('refinement-runtime-*.json')}
+    for name in {*runtime._V8_SOURCE_DIGESTS, *archives}:
         target=tmp_path/name;target.parent.mkdir(parents=True,exist_ok=True)
         target.write_bytes((package/name).read_bytes())
     archive=tmp_path/'data/refinement-runtime-native-recipe-sources.json'

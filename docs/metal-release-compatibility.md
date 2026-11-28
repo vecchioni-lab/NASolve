@@ -130,3 +130,20 @@ All generated experimental inputs remain local and excluded from Git. Completed
 synthetic-test scratch retirement recovered 540,159,720 bytes after checking host
 processes and recorded simulated child PIDs. Disposable package trees are also
 retired after their retained wheel/source hash and relocated-input receipts.
+
+
+## Future Willow join: package ownership
+
+The common copied-package test fixture and the native-recipe damage fixture now
+copy actual `refinement-runtime-*.json` archives rather than an enumerated subset.
+This permits the frozen Willow transport resource to coexist with Alder's frozen
+native-recipe and explicit-NA resources without hiding a deliberate damage check
+behind an unrelated missing-file error. All tamper assertions remain in force.
+
+The three metal web patterns now belong to `nasolve.metal` in package data.
+The rebuilt installed namespace contains exactly the same 448 code/data objects
+as the prior qualified manifest. No runtime source, policy, saved evidence or
+scientific parameter changes. The two affected suites pass **87 source cases** (20.33 s) and **87 installed
+cases** (19.07 s); all four metal web objects remain exact. Their commands, object hashes and
+retired scratch size are in `package-ownership/result.json` in the same local
+compatibility evidence folder.

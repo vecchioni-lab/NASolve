@@ -8,6 +8,14 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Keep metal web resources with their owning package
+
+- Declare the existing HTML, CSS and module assets under `nasolve.metal` in
+  package data. The installed object inventory remains unchanged.
+- Historical-runtime test fixtures copy all packaged runtime archives before
+  applying their deliberate damage checks, including future transport archives.
+  Runtime policies, scientific inputs and worker identities are unchanged.
+
 ### Preserve explicit metal preparation controls when receiving Cedar
 
 - Avoid loading registered-topology chemistry when an ordinary model declares
