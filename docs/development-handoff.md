@@ -1,14 +1,16 @@
 # NASolve development handoff — Willow
 
-**W318 release compatibility, 2026-11-28 — full qualification in progress.**
-Willow now contains Cedar candidate `29eaba7339f45680ffd46e5eef7742383061da6e`.
-The compatibility code is `85bb0c2d6cbae108031ecf55eada430577affe93`; the corrected
-lineage fixtures are `ef5d21d018e4aeaea19a53a38de2c78e5fc2f71a`. The 0.2.0 wheel,
-all five TopoStitch commands, exact qualified worker bytes and combined Coot
-resolver pass installed checks. The final unfiltered suite awaits the stable released-main composition; Rowan’s
-newer candidate `47caea97785637311b715d0fa94b9d218472a151` is incorporated. [Exact scope and validation](topostitch-periodic.md#w318--release-compatibility-without-changing-qualified-worker-bytes).
-No new native refinement or scientific selection. Rowan owns Cedar/Pine/main;
-Linden owns this Willow reconciliation.
+**W318 release compatibility complete, 2026-11-28.** Willow receives published
+main `c9127dda08b7158455a4f2407a5d643221bc5c41` while retaining all five
+TopoStitch commands, exact qualified worker bytes and the combined Coot reader.
+The complete suite at `48319ea3c21fbd2b5237180c08c8553f4763c114` passes
+14,738 tests and 328 subtests, with 18 explicitly scoped skips. The subsequent
+main merge changes documentation only; fixture convergence at
+`72c5aa1323f798e21b5e710fefa52ad2086c6722` passes 89 source and 89 relocated
+installed checks. All 399 installed package files still match the fully tested
+source. [Exact scope, commands and evidence](topostitch-periodic.md#w318--release-compatibility-without-changing-qualified-worker-bytes).
+Default Pine and scientific inputs/results are unchanged. No new native refinement,
+scientific selection or GUI caller. Rowan owns Cedar/Pine/main; Linden owns Willow.
 
 The [0.2.0 public workflow guide](current-behavior.json) describes the commands
 released on main; this branch retains its additional TopoStitch commands.
@@ -47,10 +49,10 @@ must work without an AI service. A representation change does not repair a gap.
 | Offline model/density and cut inspection | Installed renderers, map/model roles, saved preference and trusted export views | General stage/campaign integration and supported human edit/re-enter/refine lifecycle |
 
 **Availability is branch-specific.** Willow retains all five
-`nasolve-topostitch-*` entry points alongside the Cedar 0.2.0 candidate.
+`nasolve-topostitch-*` entry points alongside the published Cedar/Pine 0.2.0 code.
 The default local Pine worktree has not been changed by this reconciliation.
-Actual public-main ancestry and branch compatibility remain release checks;
-installed Willow tests do not by themselves qualify Alder or a scientific repair.
+Published-main ancestry and this Willow composition are verified; these checks
+do not by themselves qualify another branch or a scientific repair.
 
 The [W288 result](topostitch-periodic.md#w288--the-original-pose-catches-up-under-matched-coordinate-weights)
 weakens the earlier unique-initialization/basin interpretation of W241: much of
@@ -62,8 +64,8 @@ maintained fixed-weight product mode or recommended production weight.
 
 ## Next decisions
 
-**Checkout queue, 28 November:** finish W318 release qualification and receive
-Rowan's published main before exposing the thin P05 inspection caller. Preserve
+**Checkout queue, 28 November:** W318 release composition is qualified. Next,
+scope one thin P05 inspection caller using those installed owners. Preserve
 W316 as the settled joint lifecycle experiment and park P02's browser exercise.
 Before another D7/C8 fit, obtain discriminating spatial-density or chemistry-context
 evidence. Broader motion and physical oligo/entity assignment still need reviewed
@@ -88,11 +90,12 @@ run/parent/refresh-digest inputs and saved review. It must cold-reopen the same
 result, show viewed versus current checkpoint, and refuse stale context. Trusted
 installed reader composition is a prerequisite: Willow `map_origin` and Cedar
 `preparation_attempt` are distinct additions, not interchangeable metadata.
-**Owner composition now present in the W318 candidate:** Cedar's authenticated
+**Owner composition qualified by W318:** Cedar's authenticated
 preparation/history readers and image policy are installed alongside Willow's
 APIs. The Coot resolver retains distinct `map_origin` and `preparation_attempt`
-fields. Complete the combined full-suite and actual-main checks before treating
-that composition as the production caller's qualified foundation. Do not replace
+fields. The combined full suite, installed checks and published-main ancestry
+now qualify that software foundation; the production caller still needs its own
+bounded implementation and validation. Do not replace
 those owners with the old shape-only reader, copy policy constants or import a
 neighboring checkout. W316 remains the settled joint lifecycle test; this release
 integration does not invent a scientist's approval or new physical result.

@@ -16656,14 +16656,14 @@ suite repetition or schema change. Roadmap/whitespace checks pass.
 
 ## W318 — Release compatibility without changing qualified worker bytes
 
-**Release qualification in progress, 28 November 2026.** Rowan owns the public
-Cedar/Pine/main release; Linden reconciles only Willow. Foundation merge
-`6c963f6a` preserves Willow `2b6c46c4` and Cedar `02c61e9b` histories. Merge
-`ffa9251641f91086a399a6d94428a8f544904ce7` incorporates release candidate
-`29eaba7339f45680ffd46e5eef7742383061da6e`. Compatibility code is
-`85bb0c2d6cbae108031ecf55eada430577affe93`; fixture-only follow-up is
-`ef5d21d018e4aeaea19a53a38de2c78e5fc2f71a`. Actual published-main reconciliation
-is pending. Default Pine and scientific inputs/results remain untouched.
+**Recorded, 28 November 2026.** Willow incorporates published main
+`c9127dda08b7158455a4f2407a5d643221bc5c41` through history-preserving merge
+`28dc1f1`. The qualified runtime is unchanged from full-tested Willow
+`48319ea3c21fbd2b5237180c08c8553f4763c114`; final fixture convergence is
+`72c5aa1323f798e21b5e710fefa52ad2086c6722`. Rowan owns the public release;
+Linden reconciles only Willow. Default Pine and all scientific inputs/results
+remain untouched. Willow-only changelog history remains under Unreleased;
+the published 0.2.0 release body is retained exactly.
 
 Before integration, Willow and Cedar had different geometry readers, map-profile
 fields and worker-helper bytes. The combined package preserves the final native
@@ -16675,52 +16675,85 @@ native endpoint mapping, graph descent and displacement summaries remain present
 
 Willow's displacement-summary method changed the public transport source bytes.
 The qualified counted v5–v8 and phosphate v10–v12 workers correctly refused that
-changed file. The existing frozen-source mechanism now supplies their original
-transport source from `data/refinement-runtime-transport-sources.json`, matching
-SHA-256 `8a641d8f067b594e8ea446156b0252583a0d6178c967148a6b86214f9f8cfbfc`.
+changed file. Compatibility commit `85bb0c2d6cbae108031ecf55eada430577affe93`
+uses the existing frozen-source mechanism to supply their original transport
+source from `data/refinement-runtime-transport-sources.json`, matching SHA-256
+`8a641d8f067b594e8ea446156b0252583a0d6178c967148a6b86214f9f8cfbfc`.
 All ten supported new-request bundles match every original policy digest.
 No policy ID, native force implementation, request schema or saved-request
-migration changes. The checksum guard is retained, including tamper refusal.
+migration changes. Historical compiler/workbook pins still apply. The checksum
+guard, including tamper refusal, remains intact.
 
-Validation so far:
+### Validation and exact scope
 
-- Initial shared-reader/endpoint/graph/transport panel: 259 tests and 64 subtests.
-- Historical parser-body check: Willow alone misses the native end-table result;
-  Cedar alone lacks the PDB fallback. The combined reader passes both examples.
-- Seven worker coexistence regressions fail before the freeze and pass after it.
-  The targeted consumer panel has 301 passes plus one copied-package fixture
-  failure; adding the new resource to that fixture yields eight passing
-  resource/coexistence checks, including corruption refusal.
-- Clean 0.2.0 wheel installation passes `pip check`, `nasolve --help` and all five
-  TopoStitch command helps. Inspection assets, replay resource and frozen worker
-  source are present. The original exported checkout path is gone before the
-  installed checks; imported NASolve comes from the installed environment.
-- The 74-module installed panel has 2,434 passes, 66 subtests, three skips and two
-  invalid-lineage fixture failures. Correcting only those fixtures preserves
-  `postmr` ancestry; the entire 84-test preparation module passes from source and
-  relocated installation, with one deliberate absent-Cedar-reader test skipped.
-  Product code and wheel bytes are unchanged by that fixture correction.
-- The host-only Phenix PHIL test passes separately under Phenix 2.2.1-6174,
-  Python 3.11.15, against the installed pure package. This is parameter parsing,
-  not a dry-run or full refinement. The other two installed skips deliberately
-  exercise absent-Cedar owners and are inapplicable to this combined package.
-- The unfiltered source run at `ef5d21d0` was stopped when Rowan supplied final
-  candidate `47caea97785637311b715d0fa94b9d218472a151`. It is a partial run.
-  Final unfiltered qualification waits for the stable released-main composition;
-  interrupted logs and earlier failures remain preserved. No full PASS claimed.
+| Check | Result |
+| --- | --- |
+| Full unfiltered Willow suite at `48319ea3` | 14,738 passed, 328 subtests, 18 skipped; exit 0, 3,207.46 seconds |
+| Final-candidate relocated installed panel, 19 modules | 617 passed, 73 subtests, one intentionally inapplicable absent-reader skip |
+| Post-main fixture and public-guide checks | 89 source passes (19.60 s), 89 installed passes (19.85 s) |
+| Installed package/source/wheel equality | All 399 package objects identical; ten worker policies retain exact original digests |
+| Installation and command smoke | `pip check`, `nasolve --help`, all five TopoStitch helps and resource checks pass |
+| Native PHIL parsing | One pass under Phenix 2.2.1-6174 / Python 3.11.15; parsing only, no refinement |
 
-Host checks use Python 3.12.14, NARestraints 1.1.4 from the exact official archive
-shared by Rowan, Gemmi 0.7.5, SciPy 1.18.1, NumPy 2.5.5 and pytest 9.2.0.
-Source execution uses `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src` and
-`python -m pytest -p no:cacheprovider --basetemp=<independent-task-directory> -q -ra --tb=short`.
-Installed scope is every `test_topostitch*.py`, `test_helical*.py`,
-`test_density_inspection*.py`, `test_model_inspection*.py`, plus AutoRefine, Coot,
-counted/parallelity and phosphate runtime/restraint/image consumers. The exact
-module list, commands, environment, wheel hash and logs belong to the local W318
-verification packet when qualification is complete.
+The full run skips two opt-in native modules, thirteen native diffraction-library
+cases, two deliberately absent-Cedar-reader cases (inapplicable to the combined
+package), and the PHIL case separately exercised above. This is a completed
+ordinary full suite, not a claim that every native opt-in ran under Willow.
+Rowan separately owns the release's native qualification.
 
-This removes a software-composition obstacle to P05's thin reviewed-child caller;
-it does not implement that caller or close the GUI, inference, density-guided
-repair, chemical-acceptance or browser-interaction gates. W315 remains an
-unaccepted, iteration-limited movement experiment. No new model, map, dataset,
-native refinement or user preference is published with this integration.
+Source checks use Python 3.12.14, NARestraints 1.1.4 from the exact official
+archive shared by Rowan, Gemmi 0.7.5, SciPy 1.18.1, NumPy 2.5.5 and pytest 9.2.0.
+From the dedicated Willow repository, the full command is:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src "$TEST_PYTHON" -m pytest -p no:cacheprovider --basetemp="$TASK_TMP/source-pytest-release" -q -ra --tb=short
+```
+
+`TEST_PYTHON` is the independent task environment recorded in the local receipt;
+`TASK_TMP` is its task-owned temporary anchor. The post-main source command uses
+the same environment and arguments, a fresh `post-main-focused` basetemp, and
+`tests/test_refinement_parallelity.py tests/test_release_guide.py`. The installed
+command uses those same two modules from the relocated exported checkout,
+the independent installed environment, a fresh `post-main-installed` basetemp,
+and no `PYTHONPATH`. The original export path is absent and package imports are
+verified to resolve to the installed environment.
+
+Main changes only four documentation files relative to the frozen candidate.
+The merge's source, tests, scripts, packaging and MR-frame trees equal the full-run
+pin. The only later test delta replaces a hard-coded copied-resource list with
+all packaged `refinement-runtime-*.json` archives, as agreed with Rowan and Hazel;
+all deliberate corruption assertions remain. This permits transport, native-recipe
+and explicit-NA archives to coexist in future branch composition without weakening
+source validation. No production code changed after the full run.
+
+Earlier evidence remains retained: the parser-body regression detects both lost
+reader paths; seven worker regressions fail before the source freeze and pass
+afterward. The initial 74-module installed panel had 2,434 passes, 66 subtests,
+three skips and two invalid-lineage fixture failures. Commit `ef5d21d0` preserves
+the original root in those test fixtures; all 84 preparation tests then pass from
+source and installed package, with one inapplicable absent-reader skip. Interrupted
+full runs and original failures are preserved as partial/failed evidence, not
+counted as full passes.
+
+The local verification receipt uses repository-relative artifact references and
+checksums. It is deliberately ignored, not published with private run material:
+`branch-artifacts/willow/w318-release-compatibility/candidate-verification.json`,
+SHA-256 `e419a5378ef4ba63e1df042504a5be698ee0fd8f9fdcf3daf9398dad74d99bfb`, `9177` bytes. It references exact commands,
+module scopes, environment, wheel, source-identity comparison and logs. Archive
+checksums were rechecked after copying; this software evidence does not certify
+portability of unrelated generated crystallographic runs.
+
+Changed compatibility surfaces are the geometry/Coot readers, TopoStitch discovery,
+endpoint, graph and transport APIs, and frozen-worker source loading. Runtime
+request schemas and policy IDs are unchanged; no migration is required. Human and
+machine-readable roadmap/handoff documents reflect the release composition.
+Generated models, maps, datasets, test scratch trees and local evidence packets
+are deliberately excluded from Git.
+
+W318 removes the software-composition obstacle to P05's thin reviewed-child caller.
+Next is one existing-view caller with explicit parent/child/context/digest/cut
+inputs, viewed-versus-current labels, saved review, cold reopening and stale-context
+refusal. It is not implemented here. GUI, inference, density-guided repair,
+chemical-acceptance and browser-interaction gates remain open. W315 stays an
+unaccepted, iteration-limited movement experiment. No new model, native refinement,
+scientist preference or scientific selection is claimed.

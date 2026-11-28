@@ -12,7 +12,7 @@ to check support for a particular modification. [Chemistry capability table](cif
 
 ## What's current?
 
-- **W318 release compatibility:** [combined package and qualified worker preservation](topostitch-periodic.md#w318--release-compatibility-without-changing-qualified-worker-bytes) retains all five Willow commands alongside Cedar 0.2.0. Installed checks pass after correcting two lineage fixtures; final unfiltered qualification and published-main reconciliation are in progress. No new fit or scientific acceptance.
+- **W318 release compatibility:** [combined package and qualified worker preservation](topostitch-periodic.md#w318--release-compatibility-without-changing-qualified-worker-bytes) retains all five Willow commands alongside Cedar 0.2.0. Published main is integrated; the full suite passes 14,738 tests and 328 subtests, with 18 scoped skips. The fixture-only follow-up passes 89 source and 89 installed checks. No new fit or scientific acceptance.
 
 - **Latest W315:** [coupled-sugar movement comparison](topostitch-periodic.md#w315--coupled-sugars-move-but-the-torsion-does-not-recover)
   moves atoms by up to0.463 Å and reaches the bond target, but fails its

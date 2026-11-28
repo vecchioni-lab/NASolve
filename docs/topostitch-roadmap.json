@@ -1382,14 +1382,14 @@
         "W304 extends genuine ordinary recovery to3 cycles with both complete image force groups;862 identities/Q and124 Free retained. Both bonds/worst angles improve; mixed torsion/map evidence remains explicit. Fresh cut and density/ChimeraX comparisons remain unselected.",
         "W305 composes verified-child context, existing same-child alternatives and saved preference intake. Retained cut versus alternative explicit; context/packet/preference drift refuses. Current Cedar read-only compatibility checked; no selection or native admission.",
         "W316 installed Willow/Cedar compatibility smoke reproduces the genuine W301 child refresh, compares two cuts, saves explicitly synthetic review input and reopens byte-identically after staged inputs and installations move. Current postmr stays unchanged; stale review and implicit-current/explicit-child mismatch refuse. 20 preparation / 25 cold-reopen checks. No deployed verified-child caller exists yet; branch-specific map_origin/preparation_attempt remain separate.",
-        "W318 candidate integrates installed Cedar authenticated history/image owners, distinct Coot map_origin/preparation_attempt fields, all Willow commands and exact historical worker bytes. Full-suite qualification and published-main reconciliation remain pending; no production caller or scientific gate is claimed."
+        "W318 qualifies composed Cedar authenticated history/image owners, distinct Coot map_origin/preparation_attempt fields, all Willow commands and exact historical worker bytes against published main. Full14738/328subtests and installed/focused checks pass with scoped skips. No production caller or scientific gate is claimed."
       ],
       "acceptance": [
         "Use the shared model tree and exact selection/Coot APIs; keep inspect, select and approve distinct, preserve current choice and return refinement diagnostics to the same session.",
         "Graphical actions bind source hashes and show actual nicks/seams/mates. Test stale views, competing choices, interrupted actions, manual imports and relocation without duplicating campaign/checkpoint machinery.",
         "Expose editable Pine periodic connectivity beyond the ASU, preserving prior user choices and exact logical/image mappings across reslicing or explicitly marking unresolved mappings. Keep intent, proximity and enforcement support separate."
       ],
-      "next_action": "Finish W318 unfiltered qualification and reconcile Rowan\u2019s actual published main. Then reuse the composed authenticated history/image owners for one thin existing-view caller: explicit parent/child/context/digest/cuts, viewed versus current labels, cold reopening and stale-context refusal. Preserve W316 lifecycle evidence and separate map_origin/preparation_attempt meanings. No local-checkout import, implicit selection, new registry, repeated fit or invented human review.",
+      "next_action": "Reuse the W318-qualified authenticated history/image owners for one thin existing-view caller: explicit parent/child/context/digest/cuts, viewed versus current labels, saved review, cold reopening and stale-context refusal. Preserve W316 lifecycle evidence and separate map_origin/preparation_attempt meanings. No local-checkout import, implicit selection, new registry, repeated fit or invented human review.",
       "evidence": [
         "E_WILLOW_PINE_DOC_AUDIT",
         "E_ORDINARY_CHILD_RECUT",
@@ -1403,10 +1403,10 @@
       ],
       "last_audit": {
         "date": "2026-11-28",
-        "code_commit": "85bb0c2d6cbae108031ecf55eada430577affe93",
+        "code_commit": "72c5aa1323f798e21b5e710fefa52ad2086c6722",
         "reviewer": "Linden",
         "human_update": 318,
-        "scope": "Candidate API and frozen-worker integration; final unfiltered suite and actual main pending. P05 remains partial."
+        "scope": "Published-main compatibility, full suite and installed source/worker identity verified. Thin production caller remains next; P05 stays partial."
       }
     },
     {
@@ -11168,15 +11168,23 @@
       "kind": "Willow and Cedar release API/qualified-worker composition",
       "date": "2026-11-28",
       "human_update": 318,
-      "code_commit": "85bb0c2d6cbae108031ecf55eada430577affe93",
-      "test_commit": "ef5d21d018e4aeaea19a53a38de2c78e5fc2f71a",
+      "code_commit": "72c5aa1323f798e21b5e710fefa52ad2086c6722",
+      "test_commit": "72c5aa1323f798e21b5e710fefa52ad2086c6722",
       "reference": "docs/topostitch-periodic.md#w318--release-compatibility-without-changing-qualified-worker-bytes",
       "source_commits": {
         "willow": "2b6c46c4db6dbbdad51bedaad38661707d65fa75",
-        "cedar_candidate": "29eaba7339f45680ffd46e5eef7742383061da6e"
+        "cedar_candidate": "47caea97785637311b715d0fa94b9d218472a151",
+        "published_main": "c9127dda08b7158455a4f2407a5d643221bc5c41",
+        "full_tested_willow": "48319ea3c21fbd2b5237180c08c8553f4763c114"
       },
-      "result": "Candidate includes both geometry-reader paths, all five Topo commands, exact combined Coot resolver and original native worker bundle bytes. Clean wheel/CLI/dependency/resource checks pass. Installed panel:2434 pass/66 subtests/3 skips, two invalid-lineage fixtures corrected and their84-test module passes source/installed. Phenix PHIL parsing passes separately. Prior unfiltered run stopped on receipt of newer final candidate47caea; final full qualification awaits the stable released-main composition.",
-      "limitation": "Published main not yet supplied. No full PASS; final candidate47caea and actual main still need integration and qualification. Installed panel required two test-only ancestry corrections. No new native refinement, browser approval, scientific selection, GUI caller or schema migration."
+      "result": "Published main c9127dda is integrated with all five Topo commands, both geometry readers, combined Coot resolver and exact original worker bytes. Full Willow suite at48319ea3:14738 passed/328 subtests/18 scoped skips. Candidate installed panel617 pass/73 subtests/1 inapplicable skip; post-main fixture/guide89 source and89 installed pass. All399 package objects and10 worker policies match. Main changes docs only; subsequent fixture is test-only.",
+      "limitation": "No new native refinement, browser qualification, scientist approval, GUI caller or scientific selection. Native opt-ins remain separately scoped. Compiler/workbook pins remain required; no runtime/request-schema migration. Public release does not include Willow-only experimental commands.",
+      "verification_receipt": {
+        "anchor": "repository",
+        "relative_path": "branch-artifacts/willow/w318-release-compatibility/candidate-verification.json",
+        "sha256": "e419a5378ef4ba63e1df042504a5be698ee0fd8f9fdcf3daf9398dad74d99bfb",
+        "size": 9177
+      }
     }
   },
   "benchmarks": [
@@ -13075,8 +13083,8 @@
       {
         "number": 318,
         "title": "Reconcile Willow with the Cedar release while preserving scientific gates",
-        "state": "IN_PROGRESS",
-        "code_commit": null
+        "state": "RECORDED",
+        "code_commit": "72c5aa1323f798e21b5e710fefa52ad2086c6722"
       }
     ]
   },
