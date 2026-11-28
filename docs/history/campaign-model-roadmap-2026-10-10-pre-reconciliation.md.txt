@@ -1,0 +1,775 @@
+# Campaign model, sequence, and recovery roadmap
+
+Status: design addendum for the campaign architecture. This document narrows the next development direction without replacing `campaigns.md`. It is deliberately broader than the current single-scaffold 5W6W execution slice.
+
+## Goal
+
+Campaigns must support both closely related construct series and genuinely heterogeneous structure families. NASolve must not assume that every dataset in a campaign differs only by sequence or chemistry. A campaign may contain:
+
+- one search scaffold with many sequence or modified-site variants;
+- several related search models with small geometric changes;
+- different space groups or copy-number expectations;
+- per-dataset models generated externally from sequence/design and imported with
+  explicit provider provenance;
+- experimentally solved models that later become useful search models for unsolved siblings; or
+- mixtures of these cases within one campaign.
+
+The human-facing configuration should stay simple even when the frozen internal record is rich.
+
+## Experimental families and scientific extension boundaries
+
+A campaign groups related experiments; shared sequence is one possible family
+relationship, not a required campaign property. Explicit design metadata may
+instead identify shared geometry, topology or discrete construction parameters.
+Different family types may coexist in a campaign under an applicable project
+policy. The current sequential executor remains its narrower implemented slice.
+
+Keep three responsibilities separate:
+
+- experiment definition: declared invariants, variable parameters and explicit
+  dataset/thread membership;
+- model provision: how candidate coordinates are selected, generated or
+  transformed for a member;
+- reuse eligibility: what permits an artifact from one member to seed another.
+
+Family membership is not evidence of MR-model compatibility. Sequence-defined
+families use explicit chain/residue correspondence; geometry/topology-defined
+families may use other reviewed providers and compatibility rules without a
+shared sequence or coordinate template. Compact design metadata identifies
+intent, not proof that generated coordinates satisfy it.
+
+The immediate sequence-defined case is the W-scaffold chemistry series:
+compile a reviewed scaffold sequence and dataset/thread site declarations into
+one effective residue target. Using the metal-adapted W reference does not
+request metal atoms or validate metal coordination. Watson-Crick-like
+proof-of-principle restraint policies and explicit metal-pair hypotheses belong
+to distinct reviewed project policies; component identity alone establishes
+neither pairing geometry nor metal occupancy.
+
+A separate metal-pair project can later add declared metal-site construction,
+coordination candidates, restraints and evidence checks. Existing multi-candidate
+budgets and inspection rules apply; the ordinary WC-like path must not silently
+become a metal-site inference engine. Broader geometry/topology providers remain
+later extensions, not prerequisites for the present sequence-family work.
+
+[Sequence-family target assembly](sequence-family-targets.md) records the
+compiler, explicit opt-in standalone AutoMR/PostMR integration, live validation,
+dataset-level campaign reference snapshots, and explicit named sequence-thread
+binding from root `nasolve-campaign.toml`. Thread sequence/site overlays are
+frozen into dataset target intent with dataset overrides retaining higher
+precedence. This binding still does not establish search-model compatibility or
+cross-dataset model reuse; broader family/model orchestration remains separate.
+
+## Three scientific state layers
+
+For sequence and chemistry, NASolve should reason in three layers.
+
+### 1. Search-model state
+
+This is what the actual MR model contains. It is the lowest-authority starting state and must be recorded exactly. It may have a different sequence from the intended construct and may lack chemistry that PostMR is expected to install.
+
+The search model is not silently edited before Phaser merely to resemble the target construct. Differences are recorded and reconciled after MR unless a reviewed MR-model-generation policy says otherwise.
+
+### 2. Frame/reference state
+
+A frame or model-family recipe may provide a reference sequence and other expected scaffold properties. This describes the baseline construct family, not necessarily the literal sequence of every search-model PDB.
+
+For a shared family, the campaign may optionally provide a campaign-level reference sequence. A dataset may override it. Neither is mandatory for campaigns whose datasets use unrelated models.
+
+Reference-sequence information is strongly recommended where available because it enables model validation, explicit mutation planning, and later deposition checks.
+
+### 3. Dataset target state
+
+This is the authoritative intended construct for one dataset. It may be assembled from:
+
+- a dataset sequence;
+- an inherited campaign/reference sequence;
+- explicit site mutations;
+- modified-residue identities;
+- terminal chemistry such as 5-prime phosphate;
+- backbone chemistry declarations; and
+- other reviewed site-specific chemistry.
+
+Ordinary sequence and explicit site chemistry are one authority layer. When both address the same site, the explicit site declaration wins because it contains more chemical information.
+
+NASolve should compile these inputs into one effective target before PostMR and then execute only the delta between the actual MR model and that effective target. It should not blindly mutate through several intermediate sequence layers.
+
+Every overridden value remains visible in provenance, for example:
+
+```text
+MR model: DA
+frame/reference: DA
+dataset sequence: DG
+explicit site chemistry: 1AP
+effective PostMR target: 1AP
+```
+
+## Simple human-facing sequence input
+
+The common case should require almost no path configuration.
+
+A dataset directory may contain a conventionally named sequence file, discovered automatically. A campaign may also declare a shared/reference sequence for a family of datasets. Dataset sequence input overrides the inherited campaign/reference sequence.
+
+The exact filename and syntax remain to be finalized, but users should not normally need to point each campaign entry at a text file. Large campaigns can be organized by ordinary external scripting rather than turning NASolve into a file-management system.
+
+Chain-labelled sequence is preferred in the durable schema. Existing unlabeled frame resources such as `MR_frames/5W6W/seq_base.txt` may remain provenance inputs, but a reviewed preset should resolve them to explicit chain identities before execution.
+
+## Sequence comparison policy
+
+Before Phaser, NASolve compares a selected search model against a complete
+explicit residue target when one is available and records:
+
+- chain inventory and residue IDs;
+- literal residue identities;
+- missing or unexpected sites;
+- exact identity mismatches and the winning target source layer; and
+- whether a mismatch is expected to be corrected after MR.
+
+This comparison is now implemented for complete explicit targets and frozen as
+run-local provenance. It deliberately does not infer a complete target from a
+filename, an unlabeled frame sequence, family membership, or a related model.
+A residue-identity mismatch is not automatically a bad MR model. A model may be
+a valid scaffold with the wrong construct sequence. Missing/extra sites remain
+a stronger correspondence error and are not silently aligned or renumbered.
+
+`expected_postmr_correction` is descriptive target intent, not proof that the
+mutation route is supported. PostMR continues to validate and apply the
+authoritative target only after MR succeeds.
+
+## Construct registration and ASU representation
+
+Literal `CHAIN:RESID` correspondence is not sufficient for real crystallographic
+models. Equivalent constructs may use different chain labels, numbering,
+chain splits, ASU cuts, symmetry mates or copy counts. NASolve should therefore
+reason in **logical construct coordinates** and register each coordinate
+realization onto that construct.
+
+The detailed design lives in
+[construct registration and the Registration Net](construct-registration.md).
+
+The planned flow deliberately avoids expensive coordinate surgery before it is
+needed:
+
+```text
+logical construct manifest
+        -> AutoMR Registration Scout (cheap, non-mutating)
+        -> ordinary MR when the candidate is plausible
+        -> authoritative ASU Registration on the MR solution
+        -> PostMR logical-site chemistry
+```
+
+A successful MR solution is often the most useful coordinate registry. NASolve
+should therefore try preserved plausible candidates before investing heavily in
+recutting/mutating them.
+
+If MR fails, or a reviewed representation problem is already known, MR
+Doctor/AutoMR may create a bounded **Registration/Recut Rescue** candidate:
+split/join/relabel chains, materialize an equivalent crystallographic cut,
+adjust a reviewed sticky-end/boundary representation, or apply explicitly
+reviewed boundary chemistry. The source model remains immutable and every
+transform receives its own manifest/checksum.
+
+A normal W run should take the fast path: identity-like registration, complete
+single copy, no user interaction.
+
+Guided mode becomes appropriate when registration itself is crystallographically
+interesting: alternative cuts, unexpected multiplicity, partial copies, or
+non-equivalent mappings. These decisions are frozen as provenance and rendered
+through a simple interactive **Registration Net**, with Coot remaining the
+coordinate editor.
+
+For explicitly declared periodic self-assembling frameworks, a separate
+**Topo Net** extension of Registration Net is planned. Topo Net reasons over a
+periodic molecular graph and lets the user preview symmetry-aware ASU reslicing,
+chain split/join/relabel/renumber operations, representation seams ("false
+nicks"), true chemical nicks, and newly exposed sticky ends before any
+coordinates are changed. Framework mode is opt-in user/campaign intent, never a
+guess from coordinates.
+
+A representation seam is not a chemical nick: the coordinate serialization may
+break the chain at the ASU boundary while logical phosphodiester continuity
+persists through a symmetry operation. Continuation-phosphate intent must remain
+internal-backbone chemistry and must not be mistaken for an ordinary free
+5-prime terminus merely because a new coordinate chain starts there.
+
+Materialization remains downstream of the preview: exact symmetry transforms
+and chain operations are recorded in an immutable manifest, Coot performs the
+coordinate surgery/local repair, and Phenix audits the resulting geometry.
+Automatic symmetry-spanning bond restraints and automated single-residue Coot
+RSR repair are deliberately deferred until dedicated live experiments establish
+safe repeatable behavior.
+
+### Topology-informed automation
+
+The working umbrella for this future layer is **topology-informed automation**.
+Topology may inform candidate generation, junction/net hypotheses, recutting,
+repair choices, refinement diagnostics and branch comparison, but it does not
+override chemistry, diffraction evidence, fail-closed registration policy or
+expert review. This label is intentionally weaker than "topology-authoritative"
+automation.
+
+For the first Topo Net generation, model the problem explicitly as **3-D DNA
+lattice tessellation under crystallographic symmetry**, rather than trying to
+solve generic crystallographic topology. Keep four layers distinct:
+
+```text
+full input strands / synthesis intent
+        -> tile hypothesis
+        -> observed periodic crystal graph
+        -> ASU serialization
+```
+
+The tile hypothesis is normally declared but may be reconstructed from full
+strand lists and the solved periodic graph. It may also become `EMERGENT` when
+the observed structure cannot be represented faithfully by the declared tile,
+or `UNRESOLVED` when several non-equivalent finite decompositions remain. ASU
+multiplicity must not redefine the tile: for example, a P4_132 ASU containing
+two copies of a triangular tile should report two realized copies while
+retaining the triangle as the tile hypothesis.
+
+Full synthesized strand lists are higher-authority design evidence than ASU
+chain fragments, but they are still experimental intent rather than a command
+to nature. The periodic structure may omit a declared strand, use unexpected
+copy numbers/stoichiometry, or realize a more abstract assembly. Those
+disagreements must remain visible rather than being repaired by inference.
+
+Tile sequence/design sheets should therefore preserve **intended per-strand
+stoichiometry** explicitly. They should also support repeat-bearing/root
+strands with an optional declared internal repeat order and repeated-domain
+ranges. Intended strand copies per tile and internal repeat order are separate
+dimensions and neither is an observed-crystal invariant.
+
+The net finder should be repeat-aware. When a root/center strand with repeated
+domains is declared, preserve that annotation directly. When it is not
+declared, candidate repeats may be detected only as descriptive hypotheses and
+must not force a mapping from low-complexity sequence alone. The periodic graph
+should record residue/domain coverage, observed repeat phases when
+distinguishable, and the number of crystallographic symmetry/unit-cell steps
+needed for the repeat phase to return to itself.
+
+This supports long-period/frustrated cases in which local lattice symmetry and
+the designed repeat order do not coincide. A known lab-style fivefold
+repeat-bearing object in a fourfold/screw lattice closed its repeat phase only
+after twenty unit-cell steps; the correct description is a long topological
+closure, not a stoichiometry error. Likewise, an intended incomplete triangle
+may crystallize as a cuboctahedral emergent assembly whose root-strand use no
+longer obeys the declared tile copy model. Partial use of one strand must also
+be representable at residue/repeat-domain level rather than only as
+present/absent.
+
+Junctions should become explicit tile/topology records rather than being
+reconstructed from incidental ASU chain adjacency. Their primitive identity is
+a local directed-backbone passage/connection, not a fixed arm count; four-,
+six- or eight-arm neighborhoods are derived context. A declared junction may
+retain its strand/residue membership, routing, true nicks/termini, sticky ends,
+optional coaxial pairing/stacking expectations and root/repeat roles even when
+crystallographic symmetry slices that junction across ASU fragments. Undeclared
+junctions may be proposed from the periodic graph only as provenance-rich
+candidates until uniquely supported or user-confirmed; false/packing candidates
+must remain rejectable.
+
+Topo Net should also remain open as a persistent checkpoint workbench. Surgery,
+optional Coot repair and a bounded Refine action should each create immutable
+children and return their results to the same GUI rather than forcing the user
+through repeated terminal/Coot setup cycles. The first refine action should
+reuse a short ordinary audited AutoRefine path; local-selection refinement is a
+later validation problem.
+
+This reveals a broader GUI seam rather than a Topo-only one. NASolve already
+has an immutable checkpoint graph; a generic **model-tree / checkpoint-tree
+view** should render that lineage for ordinary work as well. It should show MR,
+PostMR, AutoSol, refinement chains, Doctor siblings, manual imports, topology
+surgery and later re-MR-from-refined-model branches in one traversable graph.
+Important models can be pinned as comparison panels, long runs of repetitive
+refines can collapse, and any eligible historical node can become an explicit
+new branch source without deleting descendants. Topo Net should embed this same
+graph component rather than inventing its own history model.
+
+The full GUI shell is specified in [the GUI design contract](gui.md): one main
+window with Navigator / Workspace / Inspector / Activity drawer, optional
+Campaign -> Design -> Dataset -> Run scientific hierarchy, semantic
+color+shape status tokens, root/recent-workspace selection, current-versus-viewed
+separation, and a capability-driven action/Inspector/view registry. Existing CLI
+operations should become GUI actions through backend descriptors so future
+NASolve features normally register into the shell instead of forcing layout
+redesign.
+
+The GUI should keep diagnostics compact by default: current checkpoint,
+Rwork/Rfree, refinement state and a local-warning indicator. Selecting a
+residue, seam or junction should populate focused Phenix bond/angle outliers,
+phosphate connectivity/clashes, base-plane and sugar/backbone geometry,
+reviewed pairing/stacking deviations, mutation/registration state and later
+reviewed residue-density metrics. Diagnostic selections should round-trip to
+the same atoms in Coot.
+
+A future bounded **Topo Surgeon/Doctor** should sit between Topo Net preview and
+expert manual repair. It may try a small immutable budget of reviewed local
+materialization/mutation/Coot-repair variants, compare local Phenix geometry,
+phosphate/clash behavior, base planes, stacking/pair restraints and unintended
+coordinate motion, and retain every attempt. If no candidate passes hard
+chemical gates, the expected fallback is to open the exact seam in Coot for an
+expert user, then import the manually repaired PDB as a provenance-rich
+checkpoint.
+
+## Mirroring
+
+`mirror = true` remains the simple human-facing D/L chirality switch.
+
+Mirroring is orthogonal to sequence and chemistry. It changes the chirality of the selected search scaffold before Phaser; it does not itself change the intended sequence, modified-residue identity, terminal chemistry, or dataset target.
+
+Configuration precedence remains dataset-specific: a dataset may override a campaign or preset mirror default in either direction.
+
+## Model-provider hierarchy
+
+Campaigns must not assume one catalogue model for all datasets. A dataset may obtain its MR candidate from a reviewed model provider. The first provider seam is now implemented: standard-frame runs can use the ordinary reviewed catalogue selection or one explicit forced PDB from the dataset/frame catalogue while retaining the same frame policy.
+
+Provider classes include:
+
+- fixed reviewed catalogue model (implemented);
+- explicit dataset/frame-catalogue model override (implemented);
+- bounded catalogue/model library;
+- campaign-shared model;
+- externally generated/imported model with explicit provider provenance;
+- model generated or transformed from a reviewed crystallographic template; and
+- model promoted from a solved sibling dataset by Campaign Doctor.
+
+NASolve does **not** invoke AlphaFold. Design/model-generation workflows belong
+upstream in NAPrep or another provider tool. NASolve consumes the resulting
+candidate coordinates plus their provenance.
+
+Every provider must record the source sequence/model, provider version or
+identity, transformation, checksums, and the exact model submitted to Phaser.
+
+Different datasets in one campaign may use different providers.
+
+## Geometry-rich campaigns
+
+A future campaign may contain related assemblies whose differences are geometric rather than merely sequence-based. One planned example is a family of triangular DNA constructs with different shapes, space groups, and small geometric adjustments.
+
+For such campaigns NASolve should support:
+
+```text
+sequence / construct specification
+        -> model provider
+        -> dataset-specific search model
+        -> AutoMR
+        -> PostMR target chemistry
+```
+
+The campaign may share design logic while each dataset has its own model, expected symmetry, and MR state. The campaign schema must therefore avoid encoding "one frame model plus mutations" as a universal assumption.
+
+### Pine: executable geometry-diverse campaign slice
+
+Pine now implements the deliberately conservative prepared-model slice for a
+curated campaign in which each dataset already contains its own PDB search model
+and associated sequence definition.
+
+Implemented backend behavior:
+
+- new plans use schema 2 while existing schema-1 W plans remain executable;
+- one explicit or uniquely discovered nonstandard PDB provider may be frozen per
+  dataset;
+- exact provider-model bytes/checksum/provider provenance are frozen;
+- both the original sequence-source bytes/checksum and parsed chain-labelled
+  effective sequence target are frozen;
+- nonstandard requests reconstruct AutoMR input only from campaign resources,
+  without source-folder or catalogue rediscovery;
+- standard W and nonstandard members may coexist under one sequential
+  coordinator;
+- nonstandard members do not inherit W frame/pair, W sequence-thread overlays or
+  W recipe D:1 phosphate intent;
+- fixture-backed execution reaches the existing
+  AutoMR -> PostMR -> conditional AutoSol -> AutoRefine spine, including
+  relocation; and
+- one blocked/inspection dataset continues not to stop unrelated members.
+
+The first slice still requires the prepared model to have an unambiguous
+correspondence to its supplied sequence. Registration ambiguity, chain
+splits/recuts, unexpected multiplicity or other nontrivial representation
+problems stop that dataset for inspection rather than being guessed.
+
+This milestone explicitly does **not** infer a shared geometry family from
+campaign membership, rank models across datasets, transfer solved coordinates
+between siblings, score topology/geometry similarity or authorize Campaign
+Doctor rescue. Geometry-aware family reasoning and cross-dataset reuse remain
+later reviewed layers.
+
+The next Pine-specific live gate is a small real campaign of roughly 3-5
+geometry-diverse datasets with curated per-dataset PDB + sequence inputs using
+the user's actual Phenix/Coot installations.
+
+Before those geometry-diverse inputs are supplied, an **intermediate real W
+orchestration validation is in progress** on a disposable four-member sandbox:
+`DOHU`, `QiC_120325_0513`, `QE_120325_0607`, and
+`EG_091325-0302`. This test is intentionally easier scientifically and does
+not satisfy the prepared-nonstandard geometry-diverse live gate.
+
+That W validation has now passed:
+
+- real runtime discovery (`nasolve check`) under Python 3.12.14,
+  NARestraints 1.1.2, Phenix 2.2.1 and Coot 1.3.3;
+- campaign planning with 4/4 `DISCOVERED`, 0 blocked and frozen integrity
+  `OK`;
+- real campaign preflight/Phaser/PostMR on all four datasets;
+- exact campaign-owned `AutoMR/run_001` ownership for each member; and
+- clean pause at the next conditional AutoSol gate with campaign/status exit
+  code 0.
+
+The unattended resume has now completed. DOHU, EG and QE reached `SOLVED` at
+`refine-001` with AutoSol correctly `SKIPPED`; QiC reached
+`AUTOSOL_READY` and then stopped at `refine-001` as
+`AWAITING_INSPECTION` because its numerical refinement gate failed. Campaign
+state was `COMPLETE_WITH_FLAGS`, frozen integrity remained `OK`, and exit
+code 3 correctly reflected the one review case.
+
+This closes the real W orchestration smoke test and is useful evidence for the
+coordinator and solution-list UX, but the real
+prepared-nonstandard/geometry-diverse live gate remains pending.
+
+The QiC outcome also exposes the next workflow seam: Refine Doctor should become
+a **campaign-owned recipe transition**. Standalone Doctor is deliberately
+checkpoint-preserving/non-auto-selecting, but it appends history to the run
+report after the campaign AutoRefine receipt has frozen that report checksum.
+Invoking it out of band would therefore appear as drift. Campaign integration
+must give Doctor its own job/receipt/dependency provenance rather than weakening
+the receipt check.
+
+### CLI-first implementation runway and GUI fork point
+
+Do not begin GUI implementation by compensating for missing campaign backend
+semantics. The next campaign work should remain CLI-first until one real
+geometry-diverse campaign can execute end-to-end from frozen per-dataset inputs.
+
+The recommended sequence is:
+
+1. **Completed:** Oak/PR #22 was merged to `main` with merge commit
+   `fec66ebeddbd525684824576b705460324ec0a14`. Scout v2 remains
+   backend-only/non-runtime. Pine then merged the new mainline history without
+   changing its campaign tree, preserving a clean campaign branch above the
+   merged registration baseline.
+2. **Implemented on Pine:** backward-compatible schema-2 campaign plans admit
+   one explicit or uniquely discovered nonstandard dataset PDB and freeze exact
+   model/raw-sequence/parsed-target provenance while schema-1 W remains
+   executable.
+3. **Implemented on Pine:** frozen campaign preflight materialization now
+   reconstructs standard W or nonstandard `ResolvedAutoMRInput` only from
+   checksum-bound campaign resources, with no catalogue/source rediscovery.
+4. **Implemented as the current guardrail:** the heterogeneous slice requires
+   one prepared model with simple/unambiguous correspondence to its own target;
+   nontrivial registration, recutting, multiplicity or topology remain local
+   inspection stops. Scout v2 is still not runtime authority.
+5. **Implemented in fixture-backed regression:** standard-W, nonstandard and
+   mixed campaigns exercise relocation plus existing campaign failure/isolation
+   semantics. The easier four-member real W campaign has independently passed
+   planning plus real preflight/Phaser/PostMR; its unattended AutoRefine resume
+   is the current live orchestration check.
+6. **Campaign-owned Refine Doctor explicit path is now regression + live
+   validated; add workflow-recipe semantics next.** The explicit
+   `AUTOREFINE_REVIEW -> refine-doctor` continuation now has its own immutable
+   job/receipt/dependency provenance and preserves non-auto-selection. The next
+   semantic step is freezing the intended endpoint and conditional transition
+   graph as recipe data, including optional Doctor-as-needed behavior.
+7. **Next Pine-specific live gate: run a real 3-5 dataset geometry-diverse CLI
+   campaign** through AutoMR -> PostMR -> conditional AutoSol -> AutoRefine.
+   Inspect exact run ownership/checkpoints and at least one blocked/review case.
+   This completes the first **basic heterogeneous campaign** milestone.
+8. **Add minimal explicit Design identity/grouping.** Let a campaign manifest
+   bind datasets to a stable `design_id` and optional shared design metadata;
+   do not infer shared design from filenames, sequence similarity or campaign
+   co-membership. This creates the backend object the future GUI Design level
+   will display and gives later donor policy a reviewed relationship primitive.
+
+**GUI branch point:** after steps 1-8 are green, the campaign is sufficiently
+functional and semantically stable to begin the generic GUI shell without
+making the GUI invent missing campaign concepts. GUI work may then proceed in
+parallel with later Campaign Doctor backend work.
+
+### Campaign Doctor-ready backend runway
+
+Before broad automatic Campaign Doctor rescue, preserve these additional backend
+milestones as a CLI/read-only progression:
+
+9. **Campaign-wide donor/recipient candidate view.** Enumerate verified solved
+   checkpoint candidates and compare each against explicitly related unsolved
+   recipients using the already implemented descriptor/comparison primitives.
+   Emit structured facts only—no rank, score or rescue authorization.
+10. **Reviewed donor eligibility policy.** Define a conservative project/preset
+   policy over explicit Design/family relationship, checkpoint status/review,
+   target/site coverage, residue identity or explicitly supported
+   transformation, mirror/chirality constraints, chemistry and rescue budget.
+   Eligibility must be explainable as categorical gates rather than a hidden
+   similarity score.
+11. **Attempt-local derived-provider provenance.** A rescue candidate must be
+    frozen beneath a new recipient attempt with donor dataset/checkpoint/model
+    checksum, compatibility evidence, transformations and policy identity.
+    Never rewrite the campaign plan, recipient observations/Free-R flags or the
+    failed original attempt.
+12. **First explicit-donor rescue CLI.** Require the user to name one eligible
+    donor checkpoint and one recipient. Start with direct donor-model MR only
+    under the strictest policy; do not rank several donors or mutate/ensemble
+    them yet. Continue successful MR through the ordinary recipient PostMR /
+    AutoSol / AutoRefine gates.
+13. **Bounded Campaign Doctor mode.** Only after explicit-donor rescue is
+    validated, allow the Doctor to enumerate a small policy-eligible donor set
+    under a declared attempt budget. Preserve every rescue candidate/attempt and
+    stop for inspection when alternatives imply materially different
+    interpretations.
+14. **Later expansions:** donor-to-recipient mutation, model libraries,
+    ensembles, geometry/topology-aware provider transforms and cross-design
+    rescue remain separate reviewed increments.
+
+This sequence intentionally makes "Campaign Doctor" an orchestration layer over
+validated campaign/provider/checkpoint primitives rather than a monolithic model
+ranking system.
+
+## Campaign Doctor: cross-dataset model rescue
+
+Campaign Doctor policy and rescue execution remain future work above the
+existing stage-specific Doctors. Its first two read-only prerequisites are now
+implemented: verified checkpoint-candidate descriptors and descriptive
+donor-checkpoint versus recipient-run comparisons. The future execution layer
+will use those facts under a separate reviewed eligibility policy to generate
+bounded rescue candidates for related unsolved datasets.
+
+Potential reviewed operations include:
+
+- use a solved sibling structure directly as an MR model when construct compatibility permits;
+- mutate a solved sibling toward the failed dataset's effective target before using it as a search model;
+- use several solved siblings as a bounded MR library;
+- build an ensemble from structurally related solved siblings;
+- prefer a solved model with matching geometry, space group family, or construct class;
+- feed a solved model back into a model-provider pipeline for a nearby design; and
+- retry MR under a preset-declared budget.
+
+This must be provenance-rich and bounded. Campaign Doctor must record which solved dataset supplied the parent model, what sequence/geometry transformations were applied, how many rescue candidates were tried, and why each candidate was eligible.
+
+It must never silently treat one dataset's solution as ground truth for another.
+
+A donor solution supplies a search candidate, not recipient evidence. A rescue
+must record the exact donor dataset/checkpoint and model checksum, the recipient
+identity, compatibility checks, transformations and search budget. The recipient
+retains its own authoritative observations, Free-R flags, effective construct
+target and scientific gates; donor occupancy, metal assignment or approval must
+not be inherited as experimentally established facts about the recipient.
+
+A solved related model may therefore prime a fresh MR attempt for a failed
+dataset, but must not rewrite that failed branch or replace the recipient's
+intended construct. Numerical success alone is not universal donor eligibility;
+the applicable project rule determines which source checkpoints may be used.
+
+The first donor-side prerequisite is now implemented as a **read-only checkpoint
+candidate descriptor**. Given a checkpoint (or the current checkpoint), NASolve
+can report its exact lineage, status/usability, verified model bytes, literal
+polymer inventory, source-observation provenance, frozen run chemistry and
+complete target comparison when available. It rechecks the checkpoint model
+itself against the frozen target; it does not inherit target identity merely
+from its parent. The descriptor does not choose a donor, compare against a
+recipient dataset, authorize reuse or launch MR.
+
+The second prerequisite is now implemented as a **read-only donor/recipient
+comparison**. NASolve re-verifies the Fern checkpoint candidate, loads the
+recipient run's own frozen target/provenance, and compares the donor model's
+literal site/residue inventory directly against that recipient target. Source
+mode/frame/target-reference/mirror facts are preserved as context rather than
+converted into donor-family or chirality claims. Recipient symmetry/copy number
+remains recipient evidence only. The comparison emits no score, rank,
+eligibility verdict or rescue authorization.
+
+## Cross-dataset compatibility
+
+The first compatibility-fact layer is now implemented for fresh AutoMR runs.
+It freezes named, provenance-bound dimensions without deciding whether a model
+is reusable:
+
+- exact candidate chain/residue inventory;
+- provider/recipient frame declarations;
+- complete-target site-set and residue-identity relations when available;
+- explicit provider-side construct-family identity when a named model declares
+  `model_family`, compared literally with an explicit recipient reference when
+  both exist; missing declarations remain unknown;
+- the explicit mirror-transform fact while absolute D/L chirality remains
+  unknown;
+- recipient terminal-phosphate and backbone intent; and
+- recipient symmetry class and requested MR copy number while the coordinate
+  model makes no symmetry claim.
+
+The schema deliberately fixes score, overall compatibility and donor eligibility
+to null and automatic reuse authorization to false. `SAME` and `DIFFERENT`
+are literal per-dimension relations, not acceptance/rejection labels;
+`UNKNOWN` is not permissive.
+
+Before reusing a solved model for another dataset, Campaign Doctor still needs
+a separate reviewed eligibility policy. Future dimensions may include explicit
+absolute chirality, richer/possibly versioned construct-family metadata,
+oligomeric or geometric class, candidate-coordinate chemistry evidence and
+other project-specific relationships. The exact hard gates/ranking rules remain
+deferred until a real heterogeneous campaign is available.
+
+## DAG implications
+
+The campaign execution graph must permit both shared and dataset-specific parents.
+
+Examples:
+
+```text
+shared reference sequence
+├── dataset A -> model A -> MR -> solved A
+├── dataset B -> model B -> MR failed
+└── dataset C -> model C -> MR -> solved C
+
+Campaign Doctor:
+solved A ----\
+              -> bounded rescue candidates for B
+solved C ----/
+```
+
+A successful upstream artifact may be shared only when scientifically compatible. Immutable run/checkpoint lineage remains mandatory.
+
+## NAPrep handoff and collection hierarchy
+
+NAPrep is a separate upstream design/data-management package, analogous in
+separation to NARestraints. It may reconcile laboratory experiment-facing
+records into curated dataset folders/manifests without rewriting the raw
+archive.
+
+NASolve remains the campaign manager and crystallographic decision engine.
+Campaign planning imports the curated dataset/model/design intent from NAPrep
+(or equivalent manually prepared inputs) and then owns the complete downstream
+decision tree: AutoMR, registration, PostMR, AutoSol, refinement, Campaign
+Doctor, reporting/curation and deposition.
+
+NASolve must not require NAPrep; carefully prepared folders/manifests remain a
+valid direct input path.
+
+The input side may include:
+
+- XRD spreadsheets containing sample, puck, pin, beam-date, sequence/design, anomalous, expected-space-group, and note fields;
+- design slide decks or other design records that map construct names to sequences and modified sites;
+- beamline/raw-data directories organized by date, puck, pin, and collection; and
+- autoPROC outputs or other processing results.
+
+NAPrep should create explicit provenance-rich relationships rather than assuming one folder equals one dataset. The core hierarchy is:
+
+```text
+design -> sequence/chemistry -> physical sample -> pin -> collection -> processing result
+```
+
+A single physical pin may have many collections: point collects, vector collects, weak or radiation-damaged collects, repeats, alternate wedges, and other attempts of very different quality. Therefore **sample, collection, processed dataset, and refinement result are distinct objects** in the durable campaign model.
+
+NAPrep should preserve the original pin/puck/date organization as immutable source data and create only a curated handoff containing metadata, checksums, references/symlinks, generated inputs, and unresolved-match queues. Ambiguous sample/design/collection joins should go to an upstream NAPrep review queue rather than being guessed silently.
+
+## Collection triage within a sample
+
+One sample may legitimately enter NASolve through several processed collections. The default policy should be bounded rather than exhaustive:
+
+1. begin with the most promising processed collection, usually the highest-resolution candidate that passes basic processing/statistical gates;
+2. run the normal AutoMR/PostMR/AutoRefine path;
+3. if refinement, validation, or map quality is unsatisfactory, consider alternate collections from the same physical sample;
+4. compare resulting checkpoints using descriptive statistics and model-quality evidence; and
+5. either select a preferred branch automatically under reviewed hard rules or place the shortlist into a human inspection queue.
+
+Campaign execution must therefore allow multiple collection branches to share one sample/design parent while preserving immutable provenance. It should not assume that the first or nominally highest-resolution collection is scientifically best.
+
+## autoPROC automation and Doctor
+
+A future upstream autoPROC runner should read frozen experiment metadata and construct the appropriate processing intent, including reviewed settings such as anomalous handling, expected/candidate space group, global phasing-related options, and other beamline-specific flags.
+
+The runner should be paired with an AutoProc Doctor that can recognize common technical/statistical failure modes and retry a bounded set of reviewed recipes. Every processing attempt should remain inspectable and attributable to its input collection and parameter set.
+
+Processing automation should not silently reinterpret user-declared chemistry/symmetry intent; disagreements between metadata and processing evidence should be surfaced explicitly.
+
+## Dataset merging / combination search
+
+A later autoPROC-side feature should explore merging multiple equivalent or near-equivalent collections from the same sample/design family when a single collection is incomplete or statistically poor despite high nominal resolution.
+
+This is intentionally a search problem. A collection reaching, for example, 0.7 A may still be unusable because completeness, redundancy, radiation damage, scaling consistency, or other statistics are poor. Combining several compatible collections may improve the usable dataset, but the best subset may not be obvious in advance.
+
+The merger should therefore:
+
+- define explicit compatibility gates before attempting a merge;
+- generate bounded candidate subsets rather than blindly trying every power-set combination;
+- run autoPROC/scaling on those candidates with frozen provenance;
+- compare merged-data statistics to the best individual parent datasets;
+- retain only scientifically meaningful improvements for downstream NASolve testing;
+- permit Campaign/AutoProc Doctor to expand the search budget when early candidates fail; and
+- preserve the exact parent collections and merge parameters for every derived dataset.
+
+A successful merged dataset becomes another processed-dataset candidate under the same physical-sample parent, not a replacement for the original raw collections.
+
+## Roadmap insertion
+
+The existing campaign roadmap remains valid but should be interpreted with the following additions.
+
+### Near-term: before broad campaign Doctor work
+
+1. Generalize sequence handling into search-model, reference, and dataset-target layers.
+2. Add simple campaign/reference sequence inheritance plus dataset override.
+3. **Implemented for complete explicit targets:** add search-model sequence comparison and mismatch provenance.
+4. **Implemented as descriptive facts:** freeze compatibility dimensions without scoring or donor eligibility.
+5. Keep `mirror` as an orthogonal inherited/overridable token.
+6. **Implemented:** allow explicit forced search-model selection for validation and unusual datasets.
+7. Preserve one effective PostMR target compiled from sequence plus site-specific chemistry.
+
+### Multi-candidate / model-provider stage
+
+8. **Partially implemented backend-only:** Construct Registration core, fast identity/renumbering Scout v1, frozen Scout provenance, registration transition facts, guided simple-chain resolution, and read-only multi-PDB candidate scouting exist. Authoritative post-MR registration, multiplicity inference, Registration Net UI, and live AutoMR/PostMR wiring remain future work.
+9. **Experimental on Oak:** the design-aware Scout v2 proposal rule passes the renamed-real-W shadow case for the intended reason. With the complete verified `5W6W/C_G.pdb` provider identity set A:12/A:13=DC and B:3/B:4=DG, exactly one complete mapping has zero unexplained mismatches: A->M/B->N/C->P/D->Q, with 38 exact and 4 provider-explained sites; every alternative retains at least 10 unexplained mismatches. Oak removes caller-supplied provider residue dictionaries: the helper derives provider identities from an assessed standard frame-catalogue model and binds them to the provider record plus source-model SHA-256. This provenance-bound code passes **43 focused tests locally**, including explicit rejection of incomplete provider coverage and provider-selector/source mismatch. The renamed-real-W shadow case passed first through a verified historical-provider bridge and then through a fresh current-schema ED `run_013` with native structured `model_provider` provenance, reproducing the same unique zero-unexplained mapping with provider binding true, caller codes false and runtime authority false. The current Oak checkout also passed the **full NASolve regression suite: 672 tests locally**. The current backend-only Scout v2 scope is therefore fully validated for its stated purpose; live AutoMR/PostMR integration and runtime authority remain separate future work.
+10. Add reviewed registration/cut recipes and bounded Registration/Recut Rescue for MR candidates, including opt-in Topo Net framework surgery. Before automation, validate symmetry-spanning phosphate bond/restraint behavior on a disposable ordinary PDB and establish a bounded repeatable Coot single-residue RSR repair primitive. The first blind end-to-end topology fixture is 8D93 -> 3GBI-style representation, with 3GBI coordinates withheld until post-transform validation.
+11. **Partially implemented:** dataset PDB candidate inventory/scouting, provider provenance, explicit model-family declarations, and frozen model/target comparison hooks exist; broader multi-provider candidate generation/selection remains future work. External model generation (including AlphaFold) is upstream, not a NASolve provider-execution responsibility.
+12. Extend the campaign DAG to represent shared references, per-dataset models, reusable solved sibling models, and multiple processed collections for one physical sample.
+
+### Campaign Doctor stage
+
+13. **Implemented as read-only provenance:** describe checkpoint models as immutable candidate inputs without donor eligibility.
+14. **Implemented as descriptive comparison:** compare a verified checkpoint candidate with a recipient run's frozen target/context without scoring or rescue authorization.
+15. Add bounded cross-dataset model rescue using solved siblings and explicit compatibility rules.
+16. Add campaign-level model libraries/ensembles derived from solved structures under declared budgets.
+17. Keep failed MR branches and every rescue attempt immutable and inspectable.
+
+### Upstream NAPrep / processing boundary
+
+18. Define a stable optional NAPrep -> NASolve handoff for design, sequence/chemistry, sample, pin, collection and externally generated candidate-model metadata. NAPrep remains a separate package.
+19. Add autoPROC runner + AutoProc Doctor with frozen processing intent and bounded recovery recipes inside NASolve's crystallographic campaign workflow.
+20. Add within-sample collection triage so a sample can try alternate processed collections when the leading candidate fails or refines poorly.
+21. Add bounded multi-collection autoPROC merging/subset search, retaining only provenance-rich derived datasets that improve useful statistics.
+
+### Later validation and curation
+
+22. Reuse the effective target sequence/chemistry/registration record for Final Model Doctor, model completeness checks, curate/Table 1, and deposition sequence validation.
+
+## Immediate validation fixture
+
+`MR_frames/5W6W/5W6W_noPO4.pdb` is intended as a forced test model, not a default catalogue choice. It is the original 5W6W PDB sequence rather than the Lu-Vecchioni metal-pair scaffold sequence used by the current project models. It also lacks the designed D:1 5-prime phosphate.
+
+This fixture now exercises the implemented explicit-provider seam:
+
+1. forced alternate MR-model selection without changing the W default;
+2. literal search-model versus frame/reference sequence comparison;
+3. PostMR normalization to the effective dataset target;
+4. explicit dataset/site chemistry overriding inherited sequence intent; and
+5. whole D:1 5-prime-phosphate construction through the ordinary PostMR path.
+
+The provider record deliberately does not infer compatibility from the
+`5W6W_noPO4.pdb` filename. The model must not become the normal W catalogue
+fallback merely because it exists in the frame directory. Automatic sibling
+reuse and provider ranking remain Campaign Doctor work.
+
+## Design rule
+
+The campaign layer should know enough to answer five questions for every dataset:
+
+1. **What construct did the user intend?**
+2. **What search model did we actually use?**
+3. **How did that model differ from the intended/reference construct?**
+4. **What did PostMR change to reach the effective target?**
+5. **If ordinary MR failed, what bounded related-model evidence was tried next, and why?**
+
+For campaign preparation and processing, it must also be possible to answer:
+
+- which physical sample/pin produced this collection;
+- which raw collection(s) produced this processed dataset;
+- whether this result came from one collection or a merge;
+- which processing/Doctor parameters generated it; and
+- which alternate collections or merged candidates were tested before selecting the downstream branch.
+
+If those answers remain explicit, NASolve can grow from simple 5W6W sequence variants to heterogeneous geometric campaigns without changing its fundamental provenance model.

@@ -26,10 +26,14 @@ from .coot_runtime import CootDiscoveryError, discover_coot
 from .phenix_runtime import PhenixInstallation, discover_phenix
 from .phaser import execute_phaser
 from .postmr import prepare_postmr
+from .refine_doctor import execute_refine_doctor
 from .residue_aliases import ResolvedLigand
+from .campaign_policy import (autosol_policy, autorefine_policy, workflow_policy, postmr_policy, continuation_warning,
+    select_provisional_recommendation, record_runtime_policy)
+from .anomalous_expectations import iodine_refinement_audit
 
 
-STAGES = ("preflight", "phaser", "postmr", "autosol", "autorefine")
+STAGES = ("preflight", "phaser", "postmr", "autosol", "autorefine", "refine-doctor")
 
 
 class CampaignStageError(CampaignError):
@@ -89,29 +93,39 @@ def _pair(value: object) -> tuple[ResolvedLigand, ResolvedLigand]:
 
 
 def _frozen_selection(root: Path, dataset: dict[str, Any], attempt: Path) -> ResolvedAutoMRInput:
-    """Materialize the chosen model without consulting the original catalogue."""
+    """Materialize one checksum-bound campaign selection without rediscovery."""
     if dataset.get("status") != "DISCOVERED":
         raise CampaignStageError("Only a discovered campaign dataset can enter preflight")
     name = dataset["id"]
     effective = _object(dataset.get("effective_config"), "Frozen effective configuration")
     inputs = _object(dataset.get("inputs"), "Frozen inputs")
-    if effective.get("mode") != "standard" or effective.get("frame") != "W":
-        raise CampaignStageError("Campaign execution supports only frozen standard W selections")
+    mode = effective.get("mode")
+    if mode not in {"standard", "nonstandard"}:
+        raise CampaignStageError("Frozen campaign selection has an unsupported mode")
+
     model_name = Path(_safe_relative(effective.get("model_name"), "Frozen model name"))
     if len(model_name.parts) != 1 or model_name.suffix.lower() != ".pdb":
         raise CampaignStageError("Frozen model name must be one PDB filename")
     if effective.get("model") != inputs.get("model"):
         raise CampaignStageError("Frozen selected model and input reference disagree")
-    if effective.get("frame_sequence") != inputs.get("frame_sequence"):
-        raise CampaignStageError("Frozen frame sequence references disagree")
+
     frozen = attempt / "frozen"
     frozen.mkdir()
     model = frozen / model_name
     _copy_resource(root, inputs.get("model"), model)
+
     frame_sequence_source = None
-    if inputs.get("frame_sequence") is not None:
-        frame_sequence_source = frozen / "seq_base.txt"
-        _copy_resource(root, inputs["frame_sequence"], frame_sequence_source)
+    if mode == "standard":
+        if effective.get("frame") != "W":
+            raise CampaignStageError("Campaign execution currently supports standard W or nonstandard selections")
+        if effective.get("frame_sequence") != inputs.get("frame_sequence"):
+            raise CampaignStageError("Frozen frame sequence references disagree")
+        if inputs.get("frame_sequence") is not None:
+            frame_sequence_source = frozen / "seq_base.txt"
+            _copy_resource(root, inputs["frame_sequence"], frame_sequence_source)
+    elif effective.get("frame_sequence") is not None or inputs.get("frame_sequence") is not None:
+        raise CampaignStageError("Nonstandard frozen selection cannot carry a frame sequence")
+
     sequence_reference_label = effective.get("sequence_reference")
     sequence_reference_record = inputs.get("sequence_reference")
     if (sequence_reference_label is None) != (sequence_reference_record is None):
@@ -126,36 +140,108 @@ def _frozen_selection(root: Path, dataset: dict[str, Any], attempt: Path) -> Res
             raise CampaignStageError("Frozen sequence-reference selector is malformed")
         sequence_reference = frozen / "sequence_reference.json"
         _copy_resource(root, sequence_reference_record, sequence_reference)
+
+    sequence_file = None
+    sequence_source = effective.get("sequence_source")
+    if mode == "nonstandard":
+        if not isinstance(effective.get("sequences"), dict) or not effective["sequences"]:
+            raise CampaignStageError("Nonstandard frozen selection requires explicit sequences")
+        if not isinstance(sequence_source, dict):
+            raise CampaignStageError("Nonstandard frozen selection lacks sequence-source provenance")
+        if sequence_source.get("artifact") != inputs.get("sequence_source"):
+            raise CampaignStageError("Frozen sequence-source provenance disagrees with inputs")
+        source_kind = sequence_source.get("kind")
+        selector = _safe_relative(sequence_source.get("selector"), "Frozen sequence source")
+        if source_kind == "sequence-file":
+            suffix = Path(selector).suffix or ".txt"
+            sequence_file = frozen / f"sequence_source{suffix}"
+            _copy_resource(root, inputs["sequence_source"], sequence_file)
+        elif source_kind == "inline-config":
+            if selector != "nasolve.txt":
+                raise CampaignStageError("Frozen inline sequence source must be nasolve.txt")
+        else:
+            raise CampaignStageError("Frozen sequence source has an unsupported kind")
+    elif sequence_source is not None or inputs.get("sequence_source") is not None:
+        raise CampaignStageError("Standard frozen selection cannot carry nonstandard sequence-source provenance")
+
     files = DatasetFiles(
         root=root / name,
         reflections=_reference(root, inputs.get("reflections"), dataset=name),
         metadata=_reference(root, inputs.get("metadata"), dataset=name),
         summary=_reference(root, inputs.get("summary"), dataset=name),
     )
-    resolved = ResolvedAutoMRInput(
-        dataset=files, mode="standard", frame=normalize_frame("W"),
-        pair_text=effective["pair"], pair=_pair(effective["pair_ligands"]),
-        model=model, model_source=effective["model_source"],
-        model_pair=(
+    provider = (
+        dict(effective["model_provider"])
+        if effective.get("model_provider") is not None else None
+    )
+    if mode == "standard":
+        pair = _pair(effective["pair_ligands"])
+        force_text = effective.get("force")
+        force_pair_value = effective.get("force_pair")
+        if force_pair_value is None:
+            force_pair = None
+            if force_text is not None:
+                raise CampaignStageError("Frozen restraint force lacks its base-class pair")
+        else:
+            if (
+                not isinstance(force_pair_value, list)
+                or len(force_pair_value) != 2
+                or not all(
+                    isinstance(value, str)
+                    and re.fullmatch(r"[ATGCDBSZPKXI]", value) is not None
+                    for value in force_pair_value
+                )
+            ):
+                raise CampaignStageError("Frozen restraint force pair is malformed")
+            force_pair = (force_pair_value[0], force_pair_value[1])
+            if force_text != ":".join(force_pair):
+                raise CampaignStageError("Frozen restraint force text and pair disagree")
+        model_pair = (
             _pair(effective["model_pair"])
             if effective.get("model_pair") is not None else None
-        ),
-        exact_pair_model=effective["exact_pair_model"],
-        catalogue_warnings=tuple(effective["catalogue_warnings"]),
-        allow_p1_standard=effective["allow_p1_standard"], mirror=effective["mirror"],
-        sequences=dict(effective["sequences"]), sequence_file=None,
-        sequence_reference=sequence_reference,
-        sequence_reference_label=sequence_reference_label,
-        sequence_thread=(
+        )
+        frame = normalize_frame("W")
+        exact_pair_model = effective["exact_pair_model"]
+        catalogue_warnings = tuple(effective["catalogue_warnings"])
+        sequence_thread = (
             dict(effective["sequence_thread"])
             if effective.get("sequence_thread") is not None else None
-        ),
+        )
+    else:
+        if any(effective.get(field) is not None for field in (
+            "frame", "pair", "pair_ligands", "model_pair", "exact_pair_model",
+        )):
+            raise CampaignStageError("Nonstandard frozen selection contains standard-frame pair context")
+        if effective.get("sequence_thread") is not None:
+            raise CampaignStageError("Nonstandard frozen selection cannot use a W sequence thread")
+        if effective.get("force") is not None or effective.get("force_pair") is not None:
+            raise CampaignStageError("Nonstandard frozen selection cannot carry restraint force")
+        pair = None
+        force_text = None
+        force_pair = None
+        model_pair = None
+        frame = None
+        exact_pair_model = None
+        catalogue_warnings = ()
+        sequence_thread = None
+
+    resolved = ResolvedAutoMRInput(
+        dataset=files, mode=mode, frame=frame,
+        pair_text=effective.get("pair"), pair=pair,
+        force_text=force_text, force_pair=force_pair,
+        restraint_scope=effective.get("restraint_scope"),
+        model=model, model_source=effective["model_source"],
+        model_pair=model_pair,
+        exact_pair_model=exact_pair_model,
+        catalogue_warnings=catalogue_warnings,
+        allow_p1_standard=effective["allow_p1_standard"], mirror=effective["mirror"],
+        sequences=dict(effective["sequences"]), sequence_file=sequence_file,
+        sequence_reference=sequence_reference,
+        sequence_reference_label=sequence_reference_label,
+        sequence_thread=sequence_thread,
         model_selector=effective.get("model_selector"),
         model_family=effective.get("model_family"),
-        model_provider=(
-            dict(effective["model_provider"])
-            if effective.get("model_provider") is not None else None
-        ),
+        model_provider=provider,
         frame_sequence_source=frame_sequence_source,
         mutations={site: _ligand(ligand) for site, ligand in effective["mutations"].items()},
         config_source=None,
@@ -164,6 +250,7 @@ def _frozen_selection(root: Path, dataset: dict[str, Any], attempt: Path) -> Res
         backbone_sites=dict(effective.get("backbones", {})),
         allow_unreviewed_backbone=bool(effective.get("allow_unreviewed_backbone", False)),
     )
+
     config = frozen / "nasolve.input.txt"
     with config.open("x", encoding="utf-8") as handle:
         handle.write(format_intent(resolved))
@@ -214,6 +301,38 @@ def _tree_files(root: Path, directory: Path) -> list[str]:
     return paths
 
 
+def _require_first_refinement(run: Path, report: dict[str, Any]) -> str | None:
+    """Admit the checked preparation registry, never an earlier refinement.
+
+    This is a small directory/history admission check, not scientific validation.
+    AutoRefine's existing reader still validates the complete saved registry,
+    preparation and selected inputs before any native work; do not replay it here.
+    """
+    from .campaign_records import read_record
+    try:
+        directory = path_in(run, "AutoRefine")
+        if "autorefine" in report or "autorefine_history" in report:
+            raise ValueError("prior refinement history is present")
+        if not directory.exists():
+            return None
+        names = {path.name for path in directory.iterdir()}
+        postmr = report.get("postmr")
+        if (not isinstance(postmr, dict) or "checked_preparation" not in postmr
+                or "checkpoints.json" not in names
+                or names - {"checkpoints.json", "checkpoints.lock"}
+                or any(not path_in(run, "AutoRefine/" + name).is_file() for name in names)):
+            raise ValueError("existing refinement work or unknown directory contents")
+        registry = read_record(directory / "checkpoints.json")
+        entries = registry.get("checkpoints")
+        if (registry.get("current") != "postmr" or not isinstance(entries, list)
+                or len(entries) != 1 or not isinstance(entries[0], dict)
+                or entries[0].get("id") != "postmr"):
+            raise ValueError("existing checkpoint choices beyond the initial preparation")
+        return registry["record_sha256"]
+    except (OSError, ValueError, CampaignError) as exc:
+        raise CampaignStageError("Campaign first refinement refuses existing AutoRefine work: " + str(exc)) from exc
+
+
 def _snapshot_report(root: Path, attempt: Path, run: Path) -> str:
     snapshot = attempt / "run-report.json"
     with snapshot.open("xb") as handle:
@@ -256,23 +375,97 @@ def execute_stage(
         run = _contained(root / name / "AutoMR", run, "Campaign run")
         if run.parent != root / name / "AutoMR" or not re.fullmatch(r"run_\d{3,}", run.name):
             raise CampaignStageError("Campaign run must be one numbered AutoMR directory")
+    workflow = workflow_policy(policy)
+    preparation_policy = None
+    if stage == "postmr":
+        try:
+            preparation_policy = postmr_policy(policy)
+        except ValueError as exc:
+            raise CampaignStageError(str(exc)) from exc
+    phase_policy = None
+    if stage in {"autosol", "autorefine"}:
+        try:
+            phase_policy = autosol_policy(policy)
+        except ValueError as exc:
+            raise CampaignStageError(str(exc)) from exc
+    refine_policy = None
+    if stage in {"autorefine", "refine-doctor"}:
+        try:
+            refine_policy = autorefine_policy(policy)
+        except ValueError as exc:
+            raise CampaignStageError(str(exc)) from exc
     config = load_config()
     report = _read_report(run / "report.json") if run is not None else None
     if report is not None and report.get("workflow") != "automr":
         raise CampaignStageError("Campaign stage requires an AutoMR run")
-    if stage == "autosol" and not _autosol_required(report):
+    if stage in {"autosol", "autorefine"}:
+        anomalous_required = _autosol_required(report)
+    disabled = None
+    if phase_policy is not None and phase_policy["policy"] == "disabled":
+        disabled = {
+            "status": "SKIPPED", "policy": "disabled",
+            "reason": phase_policy["reason"], "use_for_refinement": False,
+            "nucleotide_candidates_present": anomalous_required,
+        }
+    if stage == "autosol" and phase_policy["policy"] == "disabled":
+        # Preserve candidate classification and observation bytes. This is an
+        # explicit phase-stage opt-out, not a claim that anomalous atoms vanished.
+        if ((run / "AutoSol").exists()
+                or (report.get("autosol") is not None and report["autosol"] != disabled)):
+            raise CampaignStageError("Disabled AutoSol refuses an existing AutoSol execution/report")
+        report["autosol"] = disabled
+        path = run / "report.json"
+        temporary = path.with_name("campaign-autosol-disabled.tmp")
+        with temporary.open("x", encoding="utf-8") as handle:
+            json.dump(report, handle, indent=2, sort_keys=True, allow_nan=False)
+            handle.write("\n")
+        temporary.replace(path)
+        warnings = list((_postmr_report(report).get("anomalous", {}).get("iodine_expectations") or {}).get("warnings", []))
+        outcome = {
+            "status": "SKIPPED",
+            "message": f"AutoSol disabled by frozen recipe: {phase_policy['reason']}; refinement uses no experimental phases",
+            "autosol_policy": phase_policy, "use_for_refinement": False,
+            "nucleotide_candidates_present": anomalous_required,
+            "scientific_warnings": warnings,
+        }
+        automation = record_runtime_policy(run, policy, stage, outcome)
         snapshot = _snapshot_report(root, attempt, run)
-        return {
-            "status": "SKIPPED", "message": "PostMR found no nucleotide heavy atom; AutoSol is not required",
+        return {**outcome,
             "run": run.relative_to(root).as_posix(), "artifacts": [snapshot],
             "run_report_snapshot": snapshot, "tool_versions": {},
+            **({"automation_policy": workflow} if automation is not None else {}),
         }
-    if stage == "autorefine" and _autosol_required(report):
+    if stage == "autosol" and not anomalous_required:
+        warnings = list((_postmr_report(report).get("anomalous", {}).get("iodine_expectations") or {}).get("warnings", []))
+        outcome = {"status": "SKIPPED", "message": (
+            "No detected nucleotide anomalous candidate; inspect iodine warnings"
+            if warnings else "PostMR found no nucleotide heavy atom; AutoSol is not required"),
+            "scientific_warnings": warnings}
+        automation = record_runtime_policy(run, policy, stage, outcome)
+        snapshot = _snapshot_report(root, attempt, run)
+        return {**outcome,
+            "run": run.relative_to(root).as_posix(), "artifacts": [snapshot],
+            "run_report_snapshot": snapshot, "tool_versions": {},
+            **({"automation_policy": workflow} if automation is not None else {}),
+        }
+    if stage == "autorefine" and disabled is not None:
+        if (report.get("autosol") != disabled or (run / "AutoSol").exists()):
+            raise CampaignStageError("Phase-disabled refinement requires the frozen AutoSol skip and no AutoSol execution")
+    if (stage == "autorefine" and phase_policy["policy"] != "disabled"
+            and anomalous_required):
         autosol = _object(report.get("autosol"), "Accepted AutoSol report")
         if (autosol.get("status") != "AUTOSOL_READY"
                 or autosol.get("use_for_refinement") is not True):
-            raise CampaignStageError("The anomalous branch requires AUTOSOL_READY before refinement")
+            if (continuation_warning(policy, "autosol", autosol) is None
+                    or autosol.get("use_for_refinement") is True):
+                raise CampaignStageError("The anomalous branch requires AUTOSOL_READY before refinement")
+            # Native AutoRefine may use anomalous observations without importing
+            # unaccepted phases. It still requires usable observations and Free-R.
     phenix = discover_phenix(config, explicit=phenix_root)
+    runtime_options = {}
+    if refine_policy is not None and refine_policy.get("checked_plane_forces", False):
+        runtime_options = dict(correct_native_parallelity=True,
+                               phenix_python_executable=_program(phenix, "phenix.python"))
     versions = {"phenix": phenix.version}
     extra: dict[str, Any] = {}
     if stage == "preflight":
@@ -299,7 +492,8 @@ def execute_stage(
             required.extend([stage_directory / "mr_solution.pdb", stage_directory / "mr_solution.mtz"])
         extra.update(tfz=result.tfz, llg=result.llg)
     elif stage == "postmr":
-        if report.get("status") != "MR_SUCCESS":
+        mr_trial = report.get("status") == "MR_REVIEW" and workflow["mode"] == "full-auto"
+        if report.get("status") != "MR_SUCCESS" and not mr_trial:
             raise CampaignStageError("Campaign PostMR requires MR_SUCCESS; review is an inspection stop")
         coot = None
         try:
@@ -308,21 +502,36 @@ def execute_stage(
             pass  # The engine requires Coot only if its mutation plan needs it.
         if coot is not None:
             versions["coot"] = coot.version
-        postmr_policy = _object(policy.get("postmr"), "PostMR policy")
-        if set(postmr_policy) != {"modified_pairs_only"} or type(postmr_policy["modified_pairs_only"]) is not bool:
-            raise CampaignStageError("Unsupported campaign PostMR policy")
         result = prepare_postmr(
             run, _program(phenix, "phenix.ready_set"),
+            phenix_installation=phenix,
             coot_executable=coot.executable if coot else None,
             environment=phenix.environment,
-            modified_pairs_only=postmr_policy["modified_pairs_only"],
+            modified_pairs_only=preparation_policy["modified_pairs_only"],
+            **({"checked_preparation": preparation_policy["checked_preparation"]}
+               if "checked_preparation" in preparation_policy else {}),
+            **({"automatic_plane_support": preparation_policy["automatic_plane_support"]}
+               if "automatic_plane_support" in preparation_policy else {}),
+            **({"dictionary_input_policy": preparation_policy["dictionary_input_policy"]}
+               if "dictionary_input_policy" in preparation_policy else {}),
+            allow_mr_review=mr_trial,
         )
         stage_directory = result.postmr_directory
-        required = [result.model_path, result.readyset_log, *result.restraint_paths]
+        required = [result.model_path, *result.restraint_paths]
+        if preparation_policy.get("checked_preparation", False):
+            # The publisher has verified the exact bundle. Its real immutable
+            # report and request closure are collected below; no invented log or
+            # second expensive proof replay is needed here.
+            extra.update(preparation_mode="checked", readyset_status=result.readyset_status)
+            if getattr(result, "preparation_notes", ()):
+                extra["preparation_notes"] = list(result.preparation_notes)
+            if result.readyset_log is not None:
+                required.append(result.readyset_log)
+        else:
+            if result.readyset_log is None:
+                raise CampaignStageError("Legacy campaign PostMR requires its ReadySet log")
+            required.append(result.readyset_log)
     elif stage == "autosol":
-        autosol_policy = _object(policy.get("autosol"), "AutoSol policy")
-        if autosol_policy != {"policy": "when-anomalous", "on_unaccepted": "inspect"}:
-            raise CampaignStageError("Unsupported campaign AutoSol policy")
         result = execute_autosol(
             run, _program(phenix, "phenix.autosol"), _program(phenix, "phenix.mtz.dump"),
             environment=phenix.environment,
@@ -333,7 +542,9 @@ def execute_stage(
             warning = _read_report(result.report_path)
             extra["message"] = (
                 f"AutoSol phases were not accepted: {warning.get('failure_reason', result.message)}; "
-                "campaign stopped for inspection"
+                + ("full-auto will try refinement without these phases"
+                   if continuation_warning(policy, "autosol", warning) is not None
+                   else "campaign stopped for inspection")
             )
         elif not required:
             raise CampaignStageError("Completed AutoSol stage has no console log")
@@ -342,17 +553,16 @@ def execute_stage(
                 raise CampaignStageError("AUTOSOL_READY has no heavy-atom model or refinement data")
             required.extend([result.heavy_atom_model, result.refinement_data])
         extra["matched_distance"] = result.matched_distance
-    else:
-        refine_policy = _object(policy.get("autorefine"), "AutoRefine policy")
-        if refine_policy != {"recipe": "AutoRefine/default", "cycles": 5}:
-            raise CampaignStageError("Unsupported campaign AutoRefine recipe")
-        if (run / "AutoRefine").exists():
-            raise CampaignStageError("Campaign first refinement refuses an existing AutoRefine directory")
+    elif stage == "autorefine":
+        expected_registry = _require_first_refinement(run, report)
         result = execute_autorefine(
             run, _program(phenix, "phenix.refine"), _program(phenix, "phenix.mtz.dump"),
             phenix_version=phenix.version, environment=phenix.environment,
             from_checkpoint="postmr", recipe=refine_policy["recipe"],
             macro_cycles=refine_policy["cycles"],
+            **runtime_options,
+            **({"expected_registry_sha256": expected_registry} if expected_registry is not None else {}),
+            **({"use_experimental_phases": False} if phase_policy["policy"] == "disabled" else {}),
         )
         stage_directory = result.round_directory
         required = [result.log_path]
@@ -366,11 +576,91 @@ def execute_stage(
         required.append(registry_snapshot)
         extra.update(checkpoint=result.checkpoint_id, selected_as_current=result.selected_as_current,
                      statistics=result.statistics)
+    else:
+        autorefine = _object(report.get("autorefine"), "AutoRefine review report")
+        if autorefine.get("status") != "AUTOREFINE_REVIEW":
+            raise CampaignStageError(
+                "Campaign Refine Doctor requires an AUTOREFINE_REVIEW source"
+            )
+        source_checkpoint = autorefine.get("checkpoint")
+        if not isinstance(source_checkpoint, str) or not source_checkpoint:
+            raise CampaignStageError("AutoRefine review has no source checkpoint")
+        if autorefine.get("selected_as_current") is not False:
+            raise CampaignStageError(
+                "Campaign Refine Doctor requires the review checkpoint to remain non-current"
+            )
+        result = execute_refine_doctor(
+            run,
+            _program(phenix, "phenix.refine"),
+            _program(phenix, "phenix.mtz.dump"),
+            phenix_version=phenix.version,
+            environment=phenix.environment,
+            from_checkpoint=source_checkpoint,
+            macro_cycles=3,
+            max_trials=5,
+            **runtime_options,
+        )
+        if result.current_checkpoint_preserved is not True:
+            raise CampaignStageError("Refine Doctor changed the current checkpoint")
+        stage_directory = result.doctor_directory
+        required = [result.report_path, result.audit.log_path]
+        trial_artifacts: list[str] = []
+        for trial in result.trials:
+            trial_artifacts.extend(_tree_files(root, trial.round_directory))
+        selection = select_provisional_recommendation(run, result, policy)
+        registry_snapshot = attempt / "refine-doctor-checkpoints.json"
+        with registry_snapshot.open("xb") as handle:
+            handle.write((run / "AutoRefine" / "checkpoints.json").read_bytes())
+        required.append(registry_snapshot)
+        inspection_checkpoint = result.recommended_checkpoint or result.source_checkpoint
+        extra.update(
+            checkpoint=inspection_checkpoint,
+            source_checkpoint=result.source_checkpoint,
+            recommended_checkpoint=result.recommended_checkpoint,
+            current_checkpoint_preserved=result.current_checkpoint_preserved,
+            recommendation=result.recommendation,
+            doctor_exit_code=result.exit_code,
+            artifacts=trial_artifacts,
+            message=f"{result.message}: {result.recommendation}",
+        )
+        selected_trial = next((trial for trial in result.trials
+                               if trial.checkpoint_id == inspection_checkpoint), None)
+        if selected_trial is not None:
+            audit = iodine_refinement_audit(_read_report(run / "report.json"), _read_report(selected_trial.report_path))
+            audit["checkpoint"] = inspection_checkpoint
+            extra["iodine_anomalous_audit"] = audit
+            extra["scientific_warnings"] = audit["warnings"]
+        if selection is not None:
+            extra.update(provisional_selection=selection,
+                         doctor_current_checkpoint_preserved=True,
+                         current_checkpoint_preserved=selection["previous_current"] == selection["selected_checkpoint"])
+    if stage == "postmr":
+        postmr_result = _read_report(result.report_path)
+        extra["scientific_warnings"] = list((postmr_result.get("anomalous", {}).get("iodine_expectations") or {}).get("warnings", []))
+    if stage == "autorefine":
+        audit = iodine_refinement_audit(_read_report(run / "report.json"), _read_report(result.report_path))
+        extra["iodine_anomalous_audit"] = audit
+        extra["scientific_warnings"] = audit["warnings"]
+    outcome = {**extra, "status": result.status}
+    automation = record_runtime_policy(run, policy, stage, outcome)
+    if automation is not None:
+        extra["automation_policy"] = workflow
+        extra["scientific_warnings"] = automation["warnings"]
     required.append(result.report_path)
     # report.json changes in later stages. Preserve its exact boundary contents
     # for the coordinator rather than treating the live report as immutable.
     snapshot = _snapshot_report(root, attempt, run)
     artifacts = _tree_files(root, stage_directory)
+    if stage == "postmr" and preparation_policy.get("checked_preparation", False):
+        from .cif_attempt_retention import archived_working_paths
+        # The normal caller already qualified this result. Reuse archive transport
+        # checks, not another scientific replay. Partial cleanup can finish later
+        # without deleting a file on which this campaign receipt depends.
+        duplicates = archived_working_paths(
+            run / "PostMR/DictionaryEngine/request",
+            postmr_result["checked_preparation"]["attempt_number"],
+        )
+        artifacts = [name for name in artifacts if root/name not in duplicates]
     artifacts.extend(extra.pop("artifacts", []))
     artifacts.extend(_relative_file(root, path) for path in required if path != run / "report.json")
     artifacts.append(snapshot)

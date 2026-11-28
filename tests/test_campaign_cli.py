@@ -115,6 +115,58 @@ class CampaignCLITests(unittest.TestCase):
             self.assertEqual((code, error), (0, ""))
             self.assertIn("Model override: alternate.pdb (dataset)", output)
 
+    def test_nonstandard_plan_and_status_show_frozen_provider_and_sequence_source(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            campaign = root / "campaign"
+            dataset = make_dataset(campaign / "custom", include_model=False)
+            models = dataset / "models"
+            models.mkdir()
+            (models / "search.pdb").write_text(model_text())
+            (dataset / "construct.fasta").write_text(">A\nAC\n")
+            (dataset / "nasolve.txt").write_text(
+                "[automr]\n"
+                "mode = nonstandard\n"
+                "model = models/search.pdb\n"
+                "sequence_file = construct.fasta\n"
+            )
+
+            code, output, error = self.invoke([
+                "campaign", "plan", str(campaign), "--json",
+            ])
+            self.assertEqual((code, error), (0, ""))
+            planned = json.loads(output)
+            self.assertEqual(planned["schema_version"], 2)
+            self.assertEqual(planned["datasets"][0]["effective_config"]["mode"], "nonstandard")
+            self.assertEqual(
+                planned["datasets"][0]["effective_config"]["model_provider"]["kind"],
+                "explicit-nonstandard-model",
+            )
+
+            code, output, error = self.invoke(["campaign", "status", str(campaign)])
+            self.assertEqual((code, error), (0, ""))
+            self.assertIn("Mode: nonstandard prepared-model", output)
+            self.assertIn("Model: models/search.pdb (explicit; dataset)", output)
+            self.assertIn("Sequence source: construct.fasta (frozen file)", output)
+
+    def test_discovered_nonstandard_status_preserves_discovery_wording(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            campaign = root / "campaign"
+            dataset = make_dataset(campaign / "custom", include_model=False)
+            (dataset / "search.pdb").write_text(model_text())
+            (dataset / "nasolve.txt").write_text(
+                "[automr]\nmode = nonstandard\n\n"
+                "[sequences]\nA = AC\n"
+            )
+
+            code, _, error = self.invoke(["campaign", "plan", str(campaign)])
+            self.assertEqual((code, error), (0, ""))
+            code, output, error = self.invoke(["campaign", "status", str(campaign)])
+            self.assertEqual((code, error), (0, ""))
+            self.assertIn("Model: search.pdb (discovered; dataset)", output)
+            self.assertIn("Sequence source: nasolve.txt [sequences]", output)
+
     def test_blocked_dataset_is_visible_and_returns_review_exit_code(self):
         with tempfile.TemporaryDirectory() as directory:
             campaign, frames, _ = self.fixture(Path(directory).resolve())

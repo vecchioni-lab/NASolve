@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "kind": "nasolve-autophase-compatibility-audit-and-plan",
+  "date": "2026-11-13",
+  "author": "Rowan",
+  "status": "queued_not_implemented",
+  "runtime_authority": false,
+  "queue": {
+    "document": "docs/cif-doctor-completion-queue.md",
+    "job": "Q16",
+    "position": "Final Cedar implementation task after the agreed chemistry, integration and reporting scope; before final combined regression and merge review.",
+    "immediate_work_unchanged": [
+      "Q04",
+      "Q05"
+    ],
+    "merge_authorized": false
+  },
+  "purpose": "Name the NASolve workflow AutoPhase while explicitly crediting Phenix AutoSol as its phasing engine.",
+  "proposed_description": "AutoPhase — NASolve’s guarded MR-SAD workflow using Phenix AutoSol.",
+  "audit_scope": {
+    "repository": "vecchioni-lab/NASolve",
+    "branch_heads": {
+      "main": "fec66ebeddbd525684824576b705460324ec0a14",
+      "pine": "d7913ddd95336fddb7cb266b0bc707ffd768d9ab",
+      "cedar": "e7081d1394543dec5a6f405d699ff62d6fbb86d4",
+      "Alder": "9a1b2ceb9cceb667fcc6c7daf09914aa3782a53c"
+    },
+    "remote_verification": "GitHub compare_commits returned identical for each local head versus its named branch during the audit; recheck before implementation.",
+    "search_paths": [
+      "src",
+      "tests",
+      "docs",
+      "README.md",
+      "CHANGELOG.md",
+      "scripts",
+      "pyproject.toml"
+    ],
+    "search_expression": "autosol|autophase (case insensitive)",
+    "matches": {
+      "main": {
+        "lines": 634,
+        "files": 44
+      },
+      "pine": {
+        "lines": 771,
+        "files": 58
+      },
+      "cedar": {
+        "lines": 961,
+        "files": 88
+      },
+      "Alder": {
+        "lines": 1019,
+        "files": 92
+      }
+    },
+    "count_caveat": "Search hits, not required edits; historical and native-tool references intentionally retain AutoSol.",
+    "autophase_matches": 0,
+    "excluded": [
+      "Untracked patches and datasets",
+      "Unrelated unpublished scientific inputs",
+      "Historical artifact contents beyond source references"
+    ]
+  },
+  "boundaries": [
+    {
+      "id": "public_name",
+      "action": "Add autophase command and display naming; retain autosol as an alias to the same implementation. Normalize show/campaign stage aliases once at input boundaries.",
+      "files": [
+        "src/nasolve/cli.py",
+        "src/nasolve/coot_view.py",
+        "README.md",
+        "docs/architecture.md",
+        "docs/campaign-planning.md",
+        "docs/campaign-execution.md",
+        "docs/campaign-full-auto.md"
+      ],
+      "constraints": [
+        "No second executor or duplicate stage",
+        "Do not describe planned commands as already available",
+        "Preserve historical notes and accurate Phenix attribution"
+      ]
+    },
+    {
+      "id": "phenix_protocol",
+      "action": "Keep vendor executable, PHIL keys and native filenames unchanged.",
+      "files": [
+        "src/nasolve/phenix_runtime.py",
+        "src/nasolve/autosol.py",
+        "src/nasolve/cli.py"
+      ],
+      "preserve": [
+        "phenix.autosol",
+        "autosol.data",
+        "autosol.seq_file",
+        "autosol.labels",
+        "autosol.atom_type",
+        "autosol.lambda",
+        "autosol.phasing.input_partpdb_file",
+        "autosol.model_building.build",
+        "autosol.model_building.phase_improve_and_build",
+        "autosol.general.nproc",
+        "autosol.eff"
+      ],
+      "constraints": [
+        "Do not invent phenix.autophase",
+        "Preserve original Phaser-model guidance, build=False, phase_improve_and_build=False, site and processor checks, and scientific acceptance thresholds"
+      ]
+    },
+    {
+      "id": "saved_identity",
+      "action": "Retain existing internal and on-disk identifiers for the initial rename. No migration of immutable runs or rehashing of frozen policy/receipts.",
+      "files": [
+        "src/nasolve/autosol.py",
+        "src/nasolve/postmr.py",
+        "src/nasolve/campaign_records.py",
+        "src/nasolve/campaign_stages.py",
+        "src/nasolve/campaign_execution.py",
+        "src/nasolve/campaigns.py",
+        "src/nasolve/campaign_policy.py",
+        "src/nasolve/presets.py",
+        "src/nasolve/data/presets/5w6w.toml",
+        "src/nasolve/cif_postmr_publication.py"
+      ],
+      "preserve": [
+        "AutoSol/",
+        "autosol.console.log",
+        "stage=autosol",
+        "report.autosol",
+        "AUTOSOL_READY",
+        "AUTOSOL_REVIEW",
+        "AUTOSOL_WARNING",
+        "anomalous.autosol_required",
+        "[autosol]",
+        "config_sha256"
+      ],
+      "constraints": [
+        "Persisted messages may be recomputed during receipt validation: display-only wording must not invalidate old publications",
+        "Existing AutoSol directories still prevent overwrite through either command alias"
+      ]
+    },
+    {
+      "id": "downstream_consumers",
+      "action": "Preserve approved-phase, wavelength, map and checkpoint references and disabled-policy behavior.",
+      "files": [
+        "src/nasolve/checkpoints.py",
+        "src/nasolve/autorefine.py",
+        "src/nasolve/coot_view.py",
+        "src/nasolve/refine_doctor.py",
+        "src/nasolve/synthetic_dna.py",
+        "src/nasolve/anomalous_expectations.py",
+        "scripts/build_synthetic_dna_shuttle.py",
+        "scripts/synthetic_dna_shuttle_template.py"
+      ],
+      "preserve": [
+        "validated-autosol",
+        "autosol.wavelength",
+        "Bounded legacy AutoSol map discovery",
+        "Disabled synthetic controls never launch native phasing"
+      ]
+    }
+  ],
+  "branch_reconciliation": [
+    {
+      "id": "hl_phase_labels",
+      "classification": "Pre-existing correctness discrepancy; separate from naming",
+      "fix_branch": "Alder",
+      "fix_commit_prefix": "5561bfb",
+      "affected_at_audit": [
+        "main",
+        "pine",
+        "cedar"
+      ],
+      "source": "src/nasolve/autosol.py",
+      "symbols": [
+        "_hl_labels",
+        "_discover_refinement_data"
+      ],
+      "regression": "tests/test_autosol_phase_labels.py",
+      "finding": "Alder returns an exact complete HL quartet; other audited heads return anomalous observation labels into refinement_data_phase_labels.",
+      "action": "Reconcile as its own reviewed correctness change; preserve exact-quartet, family-priority and anomalous-observation checks. Do not blindly cherry-pick the entire mixed-purpose commit.",
+      "cedar_reconciliation": {
+        "status": "IMPLEMENTED_AND_FOCUSED_VALIDATED_C255",
+        "date": "2026-11-13",
+        "source_commit": "5561bfb007c098f5d349b1f167e7461131593696",
+        "method": "Reuse only the two named functions and unchanged exact regression file; preserve all other Cedar AutoSol functions from C253/f337660. No naming or metal-GUI changes.",
+        "validation": "89 tests + 15 subtests; complete native phenix.mtz.dump read on documented DiU output; see phase_label_reconciliation_2026_11_13 in the evidence ledger.",
+        "other_branches": "Historical affected_at_audit list is preserved; do not infer current Pine/Willow/main status.",
+        "remaining": "Carry both exact HL labels and Cedar chosen-reference checks through final Q16 branch reconciliation."
+      }
+    },
+    {
+      "id": "checked_preparation_validation",
+      "branch": "cedar",
+      "source": "src/nasolve/autosol.py",
+      "symbol": "_read_run_report",
+      "finding": "Cedar validates checked preparation through checkpoints._validate_preparation and translates CheckpointError; the other audited implementations lack this addition.",
+      "action": "Preserve this check alongside the phase-label fix. Do not replace whole files across branches."
+    }
+  ],
+  "audit_validation": {
+    "mode": "Read-only source/history comparison plus isolated synthetic function probe",
+    "native_execution": false,
+    "full_regression": false,
+    "synthetic_phase_probe": {
+      "method": "Extract _contains_label, anomalous_labels, _hl_labels and _discover_refinement_data via Python AST from git show REF:src/nasolve/autosol.py; stub _run_mtz_dump and use a temporary placeholder overall_best_refine_data.mtz.",
+      "mtz_dump_text": "I(+) 1 K\nSIGI(+) 1 M\nI(-) 1 K\nSIGI(-) 1 M\nHLA 1 A\nHLB 1 A\nHLC 1 A\nHLD 1 A\n",
+      "observed_returned_labels": {
+        "main": [
+          "I(+)",
+          "SIGI(+)",
+          "I(-)",
+          "SIGI(-)"
+        ],
+        "pine": [
+          "I(+)",
+          "SIGI(+)",
+          "I(-)",
+          "SIGI(-)"
+        ],
+        "cedar": [
+          "I(+)",
+          "SIGI(+)",
+          "I(-)",
+          "SIGI(-)"
+        ],
+        "Alder": [
+          "HLA",
+          "HLB",
+          "HLC",
+          "HLD"
+        ]
+      },
+      "limitation": "Confirms column selection in the isolated source functions, not a native Phenix refinement result."
+    }
+  },
+  "implementation_order": [
+    "Recheck current branch heads and prior fixes; retain one shared reviewed naming implementation with branch-specific adaptations.",
+    "Introduce public AutoPhase attribution and command/display aliases without changing saved identities or native protocol.",
+    "Review all public stage/configuration surfaces. If adding an autophase recipe alias, normalize new input before freezing and reject simultaneous aliases; preserve old policy bytes/hashes. Keep old Python imports callable.",
+    "Run focused compatibility checks on affected branches, then final combined-source regression and integration review."
+  ],
+  "acceptance_checks": [
+    "Old/new CLI aliases dispatch exactly once and build identical phenix.autosol argv with unchanged autosol.* keys and effective-settings validation.",
+    "Show and campaign endpoint aliases resolve to one canonical stage; discovery does not mistake a stage directory for a dataset.",
+    "Historical reports, checkpoints, receipts and frozen policies replay without byte, timestamp or digest rewrites.",
+    "Existing partial AutoSol output remains immutable through the new alias.",
+    "Ready/review/warning/skipped/disabled outcomes keep their existing refinement and phase-approval gates.",
+    "If configuration aliases are added, conflicting aliases refuse explicitly rather than silently winning.",
+    "Preserve Cedar preparation validation and Alder exact HL quartet regression coverage.",
+    "Relocated runs remain usable through declared anchors/checksums, with original paths unavailable; record platform coverage.",
+    "Final combined source passes the full suite before integration; no merge follows automatically."
+  ],
+  "deferred_optional_work": [
+    "Physical AutoPhase directories or renamed persisted schema keys need a separate versioned migration/dual-reader design; not required for attribution.",
+    "A new Python module facade is optional; avoid moving implementation merely to match branding."
+  ],
+  "non_goals": [
+    "Change chemistry, phosphates/OP3, Free-R, NARestraints ownership or crystallographic thresholds",
+    "Rewrite old scientific runs or historical evidence",
+    "Merge experimental branches as part of documentation",
+    "Start rename implementation ahead of Q04/Q05"
+  ]
+}

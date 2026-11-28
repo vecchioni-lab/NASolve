@@ -1,6 +1,9 @@
 # Campaign model, sequence, and recovery roadmap
 
-Status: design addendum for the campaign architecture. This document narrows the next development direction without replacing `campaigns.md`. It is deliberately broader than the current single-scaffold 5W6W execution slice.
+Status: durable design addendum for the campaign architecture, broader than the
+current W/5W6W execution slice. The [development handoff](development-handoff.md)
+owns current ordering and validation status; this document is not a second
+active work queue.
 
 ## Goal
 
@@ -337,10 +340,38 @@ NASolve does **not** invoke AlphaFold. Design/model-generation workflows belong
 upstream in NAPrep or another provider tool. NASolve consumes the resulting
 candidate coordinates plus their provenance.
 
-Every provider must record the source sequence/model, provider version or
-identity, transformation, checksums, and the exact model submitted to Phaser.
+Every provider must record the source model, any supplied sequence, provider
+version or identity, transformation, checksums, and the exact model submitted
+to Phaser. Missing independent sequence evidence must remain explicit.
 
 Different datasets in one campaign may use different providers.
+
+### Planned coordinate mmCIF and trusted-model input
+
+The requested MR input contract is **PDB or coordinate mmCIF**, including
+externally generated AlphaFold models. This is a planned extension; the current
+prepared-nonstandard campaign path still requires a PDB and an explicit complete
+chain-labelled target. A coordinate mmCIF is a model input, distinct from a
+chemical-component dictionary CIF or a diffraction/processing CIF.
+
+Add an explicit **trust the supplied model without a sequence file** mode.
+The option's CLI/config spelling is not yet fixed. In that mode, preserve and
+record the supplied coordinate model's residue identities, chain identifiers,
+numbering and atom inventory as the user's accepted starting model. If downstream
+preparation derives a target inventory from those coordinates, label it
+coordinate-derived. Neither the opt-in nor comparison with that same inventory
+establishes independent sequence verification, complete construct coverage,
+absolute chirality or experimentally validated chemistry. No separate sequence
+file should be invented or required merely to enter MR in this mode.
+
+Freeze the original bytes and format, trust-mode intent, available sequence
+evidence, and exact submitted MR model. If an external stage needs a PDB
+derivative, preserve a reversible identity mapping and checksum-bound conversion
+provenance; do not truncate long chain/component identifiers or silently lose
+atoms. If lossless representation is unavailable, report that specific stage
+limitation. Keep the ordinary model, diffraction and Free-R checks, and apply
+only explicitly supported post-MR chemistry. Trusting a search model does not
+authorize guessed sequence repairs or make it an approved final structure.
 
 ## Geometry-rich campaigns
 
@@ -358,29 +389,35 @@ sequence / construct specification
 
 The campaign may share design logic while each dataset has its own model, expected symmetry, and MR state. The campaign schema must therefore avoid encoding "one frame model plus mutations" as a universal assumption.
 
-### Near-horizon executable geometry-diverse campaign slice
+### Pine: executable geometry-diverse campaign slice
 
-A concrete forthcoming validation case is now available: a curated campaign in
-which each dataset directory already contains its own prepared PDB search model
-and associated sequence definition, while the constructs differ substantially
-in geometry.
+Pine now implements the deliberately conservative prepared-model slice for a
+curated campaign in which each dataset already contains its own PDB search model
+and associated sequence definition.
 
-This is a **near-horizon milestone, not the immediate Oak task**. The first
-executable slice should remain deliberately conservative:
+Implemented backend behavior:
 
-- admit one explicit or uniquely discovered nonstandard PDB provider per dataset
-  into campaign planning/execution;
-- freeze the exact provider-model bytes/checksum and provider provenance;
-- freeze both the original sequence-source bytes/checksum and the parsed
-  chain-labelled effective sequence target;
-- run each dataset independently through the existing guarded
-  AutoMR -> PostMR -> conditional AutoSol -> AutoRefine spine;
-- require the prepared model to have an unambiguous correspondence to its own
-  supplied sequence for the first slice; registration ambiguity, chain
-  splits/recuts, unexpected multiplicity or other nontrivial representation
-  problems stop that dataset for inspection rather than being guessed; and
-- preserve the existing campaign behavior that one blocked/inspection dataset
-  does not stop unrelated members.
+- new plans use schema 2 while existing schema-1 W plans remain executable;
+- one explicit or uniquely discovered nonstandard PDB provider may be frozen per
+  dataset;
+- exact provider-model bytes/checksum/provider provenance are frozen;
+- both the original sequence-source bytes/checksum and parsed chain-labelled
+  effective sequence target are frozen;
+- nonstandard requests reconstruct AutoMR input only from campaign resources,
+  without source-folder or catalogue rediscovery;
+- standard W and nonstandard members may coexist under one sequential
+  coordinator;
+- nonstandard members do not inherit W frame/pair, W sequence-thread overlays or
+  W recipe D:1 phosphate intent;
+- fixture-backed execution reaches the existing
+  AutoMR -> PostMR -> conditional AutoSol -> AutoRefine spine, including
+  relocation; and
+- one blocked/inspection dataset continues not to stop unrelated members.
+
+The first slice still requires the prepared model to have an unambiguous
+correspondence to its supplied sequence. Registration ambiguity, chain
+splits/recuts, unexpected multiplicity or other nontrivial representation
+problems stop that dataset for inspection rather than being guessed.
 
 This milestone explicitly does **not** infer a shared geometry family from
 campaign membership, rank models across datasets, transfer solved coordinates
@@ -388,9 +425,17 @@ between siblings, score topology/geometry similarity or authorize Campaign
 Doctor rescue. Geometry-aware family reasoning and cross-dataset reuse remain
 later reviewed layers.
 
-A small real campaign of roughly 3-5 geometry-diverse datasets with curated
-per-dataset PDB + sequence inputs is the preferred live validation fixture once
-those data are mature enough to serve as a stable test set.
+The next Pine-specific live gate is a small real campaign of roughly 3-5
+geometry-diverse datasets with curated per-dataset PDB + sequence inputs using
+the user's actual Phenix/Coot installations.
+
+The real W orchestration smoke test and campaign-owned explicit Refine Doctor
+continuation have passed. A later schema-2 full-auto campaign also returned four
+numerical SOLVED outcomes, including a recipe-authorized provisional Doctor
+selection. These are distinct returned validations, preserved in the
+[full-auto checkpoint](full-auto-patch-handoff.md); they do not close the real
+prepared-nonstandard/geometry-diverse gate. The complete earlier roadmap wording
+is [archived](history/campaign-model-roadmap-2026-10-10-pre-reconciliation.md.txt).
 
 ### CLI-first implementation runway and GUI fork point
 
@@ -400,42 +445,45 @@ geometry-diverse campaign can execute end-to-end from frozen per-dataset inputs.
 
 The recommended sequence is:
 
-1. **Close the current Oak registration branch cleanly.** Keep Scout v2
-   backend-only/non-runtime unless a separate reviewed integration task is
-   opened. Campaign generalization should start from a stable merged baseline
-   rather than expanding PR #22 again.
-2. **Introduce a backward-compatible campaign-plan schema for nonstandard
-   per-dataset providers.** Keep existing schema-1 W plans readable/executable.
-   A newer plan schema should admit one explicit or uniquely discovered
-   nonstandard dataset PDB, freeze its exact bytes/checksum/provider provenance,
-   and freeze both the original sequence-source bytes and parsed effective
-   chain-labelled target.
-3. **Generalize frozen campaign preflight materialization.** The current
-   `campaign_stages._frozen_selection()` hard-stops unless
-   `mode=standard, frame=W`. Preserve that exact W branch, then add a
-   nonstandard branch that reconstructs ordinary standalone
-   `ResolvedAutoMRInput` only from frozen campaign resources—no catalogue or
-   source-folder rediscovery.
-4. **Keep the first heterogeneous slice deliberately boring.** Require one
-   prepared model with simple/unambiguous correspondence to its own supplied
-   target. Nontrivial registration, chain recutting, multiplicity surprises or
-   topology stop only that dataset for inspection. Do not make Scout v2 runtime
-   authority merely to unblock this milestone.
-5. **Regression-test mixed and failure behavior.** Cover standard-W plans,
-   nonstandard plans, optionally mixed campaigns, relocation, pause/resume,
-   explicit retry, blocked/inspection members, model/sequence checksum drift,
-   and the rule that one failed dataset does not stop unrelated members.
-6. **Run a real 3-5 dataset geometry-diverse CLI campaign** through
-   AutoMR -> PostMR -> conditional AutoSol -> AutoRefine. Inspect exact run
-   ownership/checkpoints and at least one blocked/review case. This completes
-   the first **basic heterogeneous campaign** milestone.
-7. **Add minimal explicit Design identity/grouping.** Let a campaign manifest
+1. **Completed:** Oak/PR #22 was merged to `main` with merge commit
+   `fec66ebeddbd525684824576b705460324ec0a14`. Scout v2 remains
+   backend-only/non-runtime. Pine then merged the new mainline history without
+   changing its campaign tree, preserving a clean campaign branch above the
+   merged registration baseline.
+2. **Implemented on Pine:** backward-compatible schema-2 campaign plans admit
+   one explicit or uniquely discovered nonstandard dataset PDB and freeze exact
+   model/raw-sequence/parsed-target provenance while schema-1 W remains
+   executable.
+3. **Implemented on Pine:** frozen campaign preflight materialization now
+   reconstructs standard W or nonstandard `ResolvedAutoMRInput` only from
+   checksum-bound campaign resources, with no catalogue/source rediscovery.
+4. **Implemented as the current guardrail:** the heterogeneous slice requires
+   one prepared model with simple/unambiguous correspondence to its own target;
+   nontrivial registration, recutting, multiplicity or topology remain local
+   inspection stops. Scout v2 is still not runtime authority.
+5. **Implemented in fixture-backed regression:** standard-W, nonstandard and
+   mixed campaigns exercise relocation plus existing campaign failure/isolation
+   semantics. The easier four-member real W campaign completed its unattended
+   refinement path, and the later full-auto campaign completed separately.
+6. **Campaign-owned Refine Doctor explicit path is now regression + live
+   validated; bounded full-auto recipe policy is also implemented and live
+   checked.** The explicit
+   `AUTOREFINE_REVIEW -> refine-doctor` continuation now has its own immutable
+   job/receipt/dependency provenance. Guarded execution preserves non-selection;
+   schema-2 full auto may authorize bounded Doctor escalation and provisional
+   selection under its frozen policy. A general configurable stage graph remains
+   separate future work; see [the full-auto contract](campaign-full-auto.md).
+7. **Next Pine-specific live gate: run a real 3-5 dataset geometry-diverse CLI
+   campaign** through AutoMR -> PostMR -> conditional AutoSol -> AutoRefine.
+   Inspect exact run ownership/checkpoints and at least one blocked/review case.
+   This completes the first **basic heterogeneous campaign** milestone.
+8. **Add minimal explicit Design identity/grouping.** Let a campaign manifest
    bind datasets to a stable `design_id` and optional shared design metadata;
    do not infer shared design from filenames, sequence similarity or campaign
    co-membership. This creates the backend object the future GUI Design level
    will display and gives later donor policy a reviewed relationship primitive.
 
-**GUI branch point:** after steps 1-7 are green, the campaign is sufficiently
+**GUI branch point:** after steps 1-8 are green, the campaign is sufficiently
 functional and semantically stable to begin the generic GUI shell without
 making the GUI invent missing campaign concepts. GUI work may then proceed in
 parallel with later Campaign Doctor backend work.
@@ -445,32 +493,32 @@ parallel with later Campaign Doctor backend work.
 Before broad automatic Campaign Doctor rescue, preserve these additional backend
 milestones as a CLI/read-only progression:
 
-8. **Campaign-wide donor/recipient candidate view.** Enumerate verified solved
+9. **Campaign-wide donor/recipient candidate view.** Enumerate verified solved
    checkpoint candidates and compare each against explicitly related unsolved
    recipients using the already implemented descriptor/comparison primitives.
    Emit structured facts only—no rank, score or rescue authorization.
-9. **Reviewed donor eligibility policy.** Define a conservative project/preset
+10. **Reviewed donor eligibility policy.** Define a conservative project/preset
    policy over explicit Design/family relationship, checkpoint status/review,
    target/site coverage, residue identity or explicitly supported
    transformation, mirror/chirality constraints, chemistry and rescue budget.
    Eligibility must be explainable as categorical gates rather than a hidden
    similarity score.
-10. **Attempt-local derived-provider provenance.** A rescue candidate must be
+11. **Attempt-local derived-provider provenance.** A rescue candidate must be
     frozen beneath a new recipient attempt with donor dataset/checkpoint/model
     checksum, compatibility evidence, transformations and policy identity.
     Never rewrite the campaign plan, recipient observations/Free-R flags or the
     failed original attempt.
-11. **First explicit-donor rescue CLI.** Require the user to name one eligible
+12. **First explicit-donor rescue CLI.** Require the user to name one eligible
     donor checkpoint and one recipient. Start with direct donor-model MR only
     under the strictest policy; do not rank several donors or mutate/ensemble
     them yet. Continue successful MR through the ordinary recipient PostMR /
     AutoSol / AutoRefine gates.
-12. **Bounded Campaign Doctor mode.** Only after explicit-donor rescue is
+13. **Bounded Campaign Doctor mode.** Only after explicit-donor rescue is
     validated, allow the Doctor to enumerate a small policy-eligible donor set
     under a declared attempt budget. Preserve every rescue candidate/attempt and
     stop for inspection when alternatives imply materially different
     interpretations.
-13. **Later expansions:** donor-to-recipient mutation, model libraries,
+14. **Later expansions:** donor-to-recipient mutation, model libraries,
     ensembles, geometry/topology-aware provider transforms and cross-design
     rescue remain separate reviewed increments.
 
@@ -626,6 +674,56 @@ One sample may legitimately enter NASolve through several processed collections.
 
 Campaign execution must therefore allow multiple collection branches to share one sample/design parent while preserving immutable provenance. It should not assume that the first or nominally highest-resolution collection is scientifically best.
 
+### Planned shared-model folders and processing alternatives
+
+**Requested 2026-10-10; not implemented.** Support a parent folder containing
+shared candidate PDB/coordinate-mmCIF models and one or more processing
+subfolders, each with its own STARANISO MTZ, `Data_1*.cif` and `summary.html`.
+The same layout should work as a campaign root or as a group within a larger
+campaign. Example paths describe input ownership, not finalized config syntax:
+
+| Path | Role |
+| --- | --- |
+| `sample/model_A.cif`, `sample/model_B.pdb` | Shared candidate models |
+| `sample/processing_1/` | First complete processing input set |
+| `sample/processing_2/` | Alternative processing input set, possibly another space group |
+
+Current discovery already inventories direct-child dataset folders. This
+extension adds nested group discovery, explicit parent-model scope and grouped
+MR comparison; it must not be described as already supported by shallow
+campaign discovery.
+
+The parser should inventory each declared group and report total, usable and
+blocked processing candidates before freezing the plan. With no usable dataset,
+report the exact missing/ambiguous inputs for that group. With one, use the
+ordinary dataset path. With several, schedule separate bounded MR trials for
+all selected valid alternatives; incomplete siblings remain visible without
+blocking the valid ones. Multiple shared models need an explicit model selection
+or bounded trial set, not an arbitrary first-file choice.
+
+Bind every candidate to a stable group ID, processing ID, exact relative input
+paths and hashes, validated symmetry and its own outputs/checkpoints. Resolve
+shared models only from the declared parent scope, with explicit per-candidate
+overrides and recorded precedence; never search arbitrary ancestors. Keep each
+MTZ/metadata/summary set together and preserve each dataset's observations and
+Free-R. Do not mix identically named files across siblings, merge observations
+or treat alternate processing results as independent experiments. Record known
+sample/collection relationships explicitly; folder grouping alone does not prove
+a shared physical collection. Existing stage/output/environment directories must
+remain excluded, and new files cannot silently join a frozen campaign.
+
+For alternative space-group processings, compare the MR outcomes for the
+selected common model candidates, retaining TFZ, LLG, symmetry, observation/
+resolution context, model/copy assumptions, completion status and diagnostics.
+Show a preferred candidate only under a declared comparison policy; ambiguous
+outcomes stay shortlisted. The largest TFZ or LLG alone must not silently
+establish the correct space group or final structure. Preserve all trials and
+allow reviewed downstream refinement/geometry evidence to inform selection.
+Model-format/trust-mode support remains the
+[separate planned input extension](#planned-coordinate-mmcif-and-trusted-model-input).
+This discovery/comparison work follows the current geometry priority and does
+not enlarge the bounded Cedar/Pine merge gates.
+
 ## autoPROC automation and Doctor
 
 A future upstream autoPROC runner should read frozen experiment metadata and construct the appropriate processing intent, including reviewed settings such as anomalous handling, expected/candidate space group, global phasing-related options, and other beamline-specific flags.
@@ -654,7 +752,13 @@ A successful merged dataset becomes another processed-dataset candidate under th
 
 ## Roadmap insertion
 
-The existing campaign roadmap remains valid but should be interpreted with the following additions.
+The existing campaign roadmap remains valid but should be interpreted with the
+following additions. Current sequencing is owned by the
+[development handoff](development-handoff.md): finish the combined modified-W
+geometry test, then develop the assessment-only SMILES/CIF graph auditor before
+the Topo slicer/operational Scout work. Preserve the post-Pine blind AlphaFold
+geometry baseline before operational Scout. These future features do not add
+Cedar or Pine merge gates.
 
 ### Near-term: before broad campaign Doctor work
 
@@ -669,10 +773,10 @@ The existing campaign roadmap remains valid but should be interpreted with the f
 ### Multi-candidate / model-provider stage
 
 8. **Partially implemented backend-only:** Construct Registration core, fast identity/renumbering Scout v1, frozen Scout provenance, registration transition facts, guided simple-chain resolution, and read-only multi-PDB candidate scouting exist. Authoritative post-MR registration, multiplicity inference, Registration Net UI, and live AutoMR/PostMR wiring remain future work.
-9. **Experimental on Oak:** the design-aware Scout v2 proposal rule passes the renamed-real-W shadow case for the intended reason. With the complete verified `5W6W/C_G.pdb` provider identity set A:12/A:13=DC and B:3/B:4=DG, exactly one complete mapping has zero unexplained mismatches: A->M/B->N/C->P/D->Q, with 38 exact and 4 provider-explained sites; every alternative retains at least 10 unexplained mismatches. Oak removes caller-supplied provider residue dictionaries: the helper derives provider identities from an assessed standard frame-catalogue model and binds them to the provider record plus source-model SHA-256. This provenance-bound code passes **43 focused tests locally**, including explicit rejection of incomplete provider coverage and provider-selector/source mismatch. The renamed-real-W shadow case passed first through a verified historical-provider bridge and then through a fresh current-schema ED `run_013` with native structured `model_provider` provenance, reproducing the same unique zero-unexplained mapping with provider binding true, caller codes false and runtime authority false. The current Oak checkout also passed the **full NASolve regression suite: 672 tests locally**. The current backend-only Scout v2 scope is therefore fully validated for its stated purpose; live AutoMR/PostMR integration and runtime authority remain separate future work.
+9. **Merged backend-only Scout v2:** the design-aware proposal helper binds assessed provider identities and source-model hashes, and passed its scoped renamed-W shadow checks. It remains experimental/non-runtime; live AutoMR/PostMR authority is future work. Exact historical mappings and test counts are preserved in the [registration live checks](construct-registration-live-checks.md) and the archived roadmap above, rather than serving as today's regression receipt.
 10. Add reviewed registration/cut recipes and bounded Registration/Recut Rescue for MR candidates, including opt-in Topo Net framework surgery. Before automation, validate symmetry-spanning phosphate bond/restraint behavior on a disposable ordinary PDB and establish a bounded repeatable Coot single-residue RSR repair primitive. The first blind end-to-end topology fixture is 8D93 -> 3GBI-style representation, with 3GBI coordinates withheld until post-transform validation.
 11. **Partially implemented:** dataset PDB candidate inventory/scouting, provider provenance, explicit model-family declarations, and frozen model/target comparison hooks exist; broader multi-provider candidate generation/selection remains future work. External model generation (including AlphaFold) is upstream, not a NASolve provider-execution responsibility.
-12. Extend the campaign DAG to represent shared references, per-dataset models, reusable solved sibling models, and multiple processed collections for one physical sample.
+12. Extend the campaign DAG to represent shared references, per-dataset models, reusable solved sibling models, and [grouped processing alternatives with parent-folder models](#planned-shared-model-folders-and-processing-alternatives).
 
 ### Campaign Doctor stage
 

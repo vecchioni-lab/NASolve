@@ -8,6 +8,8 @@ from __future__ import annotations
 import re
 from typing import Any
 
+from .sequence_syntax import SequenceSyntaxError, canonical_sequence
+
 try:
     import tomllib
 except ModuleNotFoundError:  # Python 3.10
@@ -83,7 +85,12 @@ def parse_sequence_threads(data: bytes) -> dict[str, dict[str, object]]:
                 or not isinstance(sequence, str) or not sequence.strip()
             ):
                 _fail(f"Sequence thread {thread_id!r} has an invalid chain sequence")
-            normalized_sequences[chain] = "".join(sequence.split()).upper()
+            try:
+                normalized_sequences[chain] = canonical_sequence(
+                    sequence, context=f"Sequence thread {thread_id} chain {chain}"
+                )
+            except SequenceSyntaxError as exc:
+                raise SequenceThreadError(str(exc)) from exc
 
         site_codes = raw.get("site_codes", {})
         if not isinstance(site_codes, dict):

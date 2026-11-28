@@ -422,11 +422,17 @@ def _candidate(
         isinstance(terminal_audit, Mapping)
         and terminal_audit.get("requires_review") is True
     )
+    bond_audit = statistics.get("inter_residue_bonds")
+    has_bond_audit = "inter_residue_bonds" in statistics
+    bond_review = has_bond_audit and (
+        not isinstance(bond_audit, Mapping) or bond_audit.get("requires_review") is not False
+    )
     eligible = (
         usable
         and work is not None
         and free is not None
         and not terminal_geometry_review
+        and not bond_review
     )
     gap = free - work if work is not None and free is not None else None
     return {
@@ -437,6 +443,7 @@ def _candidate(
         "r_free_minus_r_work": gap,
         "usable": usable,
         "terminal_geometry_review": terminal_geometry_review,
+        **({"inter_residue_bond_review": bond_review} if has_bond_audit else {}),
         "eligible_for_inspection": eligible,
         "strict_success": bool(eligible and accepted and work < .30 and work < free),
     }
@@ -462,7 +469,7 @@ def _recommend(
         return (
             "REFINE_DOCTOR_GOOD_ENOUGH",
             source_checkpoint,
-            "The selected checkpoint already meets the numerical gate; no replacement is needed",
+            f"Source checkpoint {source_checkpoint} meets the numerical gate. Inspect its model and maps.",
             0,
         )
     successes = [candidate for candidate in candidates[1:] if candidate.get("strict_success")]
@@ -518,9 +525,28 @@ def execute_refine_doctor(
     processor_count: int | None = None,
     trial_recipes: Sequence[RefineDoctorTrial] | None = None,
     max_trials: int = 5,
+    correct_native_parallelity: bool = False,
+    phenix_python_executable: Path | None = None,
+    observe_declared_sites: bool = False,
     progress: Callable[[str, str, Path], None] | None = None,
 ) -> RefineDoctorResult:
     """Audit and run a finite set of sibling refinements without selecting one."""
+    from .refinement_parallelity import (
+        V9_POLICY_ID, require_runtime_continuation, validate_declared_site_choice, validate_runtime_choice,
+    )
+    try:
+        validate_declared_site_choice(observe_declared_sites, checked=correct_native_parallelity)
+        validate_runtime_choice(correct_native_parallelity, phenix_python_executable,
+                                runtime_policy=V9_POLICY_ID if observe_declared_sites else None)
+    except ValueError as exc:
+        raise RefineDoctorError(str(exc)) from exc
+    runtime_options = (dict(correct_native_parallelity=True,
+                            phenix_python_executable=phenix_python_executable)
+                       if correct_native_parallelity else {})
+    report_options = {"checked_plane_forces": True} if correct_native_parallelity else {}
+    if observe_declared_sites:
+        runtime_options["observe_declared_sites"] = True
+        report_options["observe_declared_sites_requested"] = True
     if isinstance(max_trials, bool) or not isinstance(max_trials, int) or not 1 <= max_trials <= 10:
         raise RefineDoctorError("Doctor max_trials must be an integer from 1 to 10")
     if isinstance(macro_cycles, bool) or not isinstance(macro_cycles, int) or not 1 <= macro_cycles <= 10:
@@ -534,6 +560,11 @@ def execute_refine_doctor(
         source = resolve_checkpoint(registry, from_checkpoint)
         if source.get("usable") is not True:
             raise RefineDoctorError(f"Checkpoint {source.get('id')} is not reusable")
+        try:
+            require_runtime_continuation(registry, source, correct_native_parallelity, run=run,
+                                         observe_declared_sites=observe_declared_sites)
+        except ValueError as exc:
+            raise RefineDoctorError(str(exc)) from exc
         inherited = inherited_paths(source, run)
     except CheckpointError as exc:
         raise RefineDoctorError(str(exc)) from exc
@@ -543,7 +574,7 @@ def execute_refine_doctor(
     observations = inherited.get("observations")
     model = inherited.get("model")
     if not isinstance(observations, Path) or not isinstance(model, Path):
-        raise RefineDoctorError("Selected checkpoint has incomplete crystallographic inputs")
+        raise RefineDoctorError(f"Source checkpoint {source['id']} has incomplete crystallographic inputs")
     try:
         report = json.loads((run / "report.json").read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
@@ -559,7 +590,8 @@ def execute_refine_doctor(
         )
     except AutoRefineError as exc:
         raise RefineDoctorError(str(exc)) from exc
-    phenix_python = refine_executable.expanduser().resolve().parent / "phenix.python"
+    phenix_python = (phenix_python_executable if correct_native_parallelity else
+                     refine_executable.expanduser().resolve().parent / "phenix.python")
     audit = audit_free_r_flags(
         observations,
         plan.free_r_label,
@@ -583,6 +615,7 @@ def execute_refine_doctor(
             "phenix_version": selector_policy.phenix_version,
             "reflection_selector_mode": selector_policy.mode,
             "source_checkpoint": source_id,
+            **report_options,
             "current_checkpoint_preserved": True,
             "audit": {**audit.details, "status": audit.status, "warnings": list(audit.warnings)},
             "benchmark": [],
@@ -766,6 +799,7 @@ def execute_refine_doctor(
                 ),
                 auto_select_success=False,
                 progress=trial_progress,
+                **runtime_options,
             )
         except AutoRefineError as exc:
             record.update(state="failed", reason=str(exc))
@@ -826,6 +860,7 @@ def execute_refine_doctor(
         "phenix_version": selector_policy.phenix_version,
         "reflection_selector_mode": selector_policy.mode,
         "source_checkpoint": source_id,
+        **report_options,
         "current_checkpoint_preserved": current_preserved,
         "audit": {**audit.details, "status": audit.status, "warnings": list(audit.warnings)},
         "benchmark": benchmark,

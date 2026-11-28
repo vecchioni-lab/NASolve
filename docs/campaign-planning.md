@@ -48,12 +48,87 @@ directories and symbolic-link directories do not become datasets. Repeat
 `--dataset NAME` to select exact direct children rather than discovering the
 whole root. The names must stay within that root.
 
-Dataset discovery reuses the ordinary AutoMR rules: one authoritative MTZ,
-one processing metadata CIF, and one summary. The first planner supports the
-standard W/5W6W frame. Catalogue selection remains the default, but a dataset may
-explicitly force one PDB from its own directory or the selected frame catalogue.
-Unsupported modes or frames are reported as blocked. Automatic/shared/sibling
-model providers remain later roadmap steps.
+Dataset discovery currently reuses the ordinary AutoMR rules: one authoritative
+MTZ, one `Data_1*.cif` processing-metadata file, and one `summary.html`.
+This is the **current AutoPROC/STARANISO input profile**, not the intended
+universal campaign format. New campaign plans use **schema 2** and support both
+the existing standard W/5W6W route and a deliberately conservative
+prepared-nonstandard route. Existing schema-1 W plans remain readable and
+executable without migration.
+
+Shared parent-folder models, nested sample/processing folders and grouped
+comparison of alternative space-group processings are a
+[planned extension](campaign-model-roadmap.md#planned-shared-model-folders-and-processing-alternatives).
+Current shallow discovery does not provide shared-model inheritance or select
+the best processing result across those groups.
+
+### Future reflection-input compatibility profiles
+
+Campaign setup should separate **what crystallographic work the available input
+can support** from **which processing package produced it**.
+
+The intended capability ladder is:
+
+1. **MR-ready** — a reflection dataset contains enough validated cell/symmetry
+   and observation information for molecular replacement.
+2. **Refinement-ready** — MR-ready plus a stable refinement observation array
+   and an authoritative Free-R set. NASolve must not silently regenerate Free-R
+   flags merely because a generic input omitted them; any future one-time
+   Free-R creation policy must be explicit, frozen and separately validated.
+3. **Anomalous-ready** — refinement-ready plus the anomalous arrays and
+   wavelength/element context required for the guarded AutoSol/anomalous path.
+4. **Deposition-ready** — the solved/refined dataset also has the processing,
+   collection and experiment metadata required for deposition/reporting. Missing
+   deposition metadata should lock deposition/curation features rather than
+   preventing otherwise valid MR/refinement work.
+
+The first compatibility expansion should admit **generic MTZ and SCA/Scalepack
+reflection input** based on capability rather than processing-vendor filenames.
+A validated SCA file can be passed directly to Phenix for molecular replacement,
+so MR support should not require an artificial pre-conversion step. NASolve's
+current runtime does not yet discover SCA, but a future SCA input adapter may
+freeze and pass the original SCA directly into the MR stage. If a later stage
+requires an MTZ-style array container, that stage may create a separately
+checksummed derived MTZ with explicit conversion provenance rather than treating
+conversion as part of the scientific identity of the source dataset.
+
+The GUI/campaign planner should therefore report capability badges and missing
+requirements (for example `MR READY`, `REFINEMENT BLOCKED: no Free-R set`,
+`DEPOSITION LOCKED: processing metadata incomplete`) instead of treating
+absence of AutoPROC/STARANISO files as a universal dataset failure.
+
+For standard W datasets, catalogue selection remains the default and a dataset
+may explicitly force one PDB from its own directory or the selected frame
+catalogue.
+
+A separate historical input, `[automr] force = FIRST:SECOND`, describes
+**restraint geometry**, not model selection. Campaign planning freezes it
+independently from `pair`. The effective pair remains the target chemical
+identity; `force` supplies only the ordered NARestraints base classes for the
+frame's designated standard pair. Example: GZ11 uses `pair = G:Z` and
+`force = G:C`. Campaign status/provenance should make both visible so a
+scientist can distinguish "what residues were built" from "what pair geometry
+was restrained."
+
+For a prepared nonstandard dataset, `nasolve.txt` must explicitly set
+`mode = nonstandard`. Planning then accepts either one named dataset-relative
+PDB or exactly one discovered top-level PDB. The dataset must also supply an
+explicit complete chain-labelled target, either inline under `[sequences]` or
+through `[automr] sequence_file`. Planning freezes:
+
+- the exact model bytes/checksum and provider provenance;
+- the exact raw sequence-source bytes/checksum;
+- the parsed effective chain-labelled sequence target; and
+- the ordinary observations/metadata/configuration provenance.
+
+The raw model/sequence source may later disappear without changing the frozen
+campaign authority. Nonstandard datasets do not inherit the W frame/pair,
+W sequence-thread overlays, or the W recipe's D:1 terminal-phosphate intent.
+Nontrivial construct registration, split/recut chains, unexpected multiplicity
+and topology remain inspection stops rather than inferred fixes.
+
+3GBI campaign execution, shared/sibling model providers and automatic
+cross-dataset model reuse remain later roadmap steps.
 
 `DISCOVERED` means input and model selection succeeded. It does **not** assert
 that the MTZ contains usable arrays, symmetry agrees, the model passes its full
@@ -76,14 +151,115 @@ unsupported policies and unsafe resource paths. Optional named resources are
 relative to the preset directory and must resolve within it. Presets contain
 typed settings; they cannot supply shell commands.
 
-For the settings supported here, precedence is NASolve defaults, then preset,
-then explicitly supplied `nasolve.txt` values. An explicitly written `false`
+For standard W members, precedence is NASolve defaults, then preset, then
+explicitly supplied `nasolve.txt` values. An explicitly written `false`
 overrides a preset's `true`; an omitted value inherits the preset. Sequences
 and explicit mutations use the existing dataset intent parser. An explicit
 dataset `[automr] sequence_reference` is also resolved during planning. Its
 selector remains visible in the effective configuration while the exact
-reference bytes are copied into the campaign resource store. The resolved
-configuration is stored per dataset, while the original input file is preserved.
+reference bytes are copied into the campaign resource store.
+
+An explicitly nonstandard dataset is different: its own model/sequence request
+is authoritative, so W-specific AutoMR defaults from the selected preset are
+not applied. The preset still supplies the bounded shared stage policy
+(PostMR/AutoSol/AutoRefine settings). For a geometry-diverse real campaign, a
+small project-local preset with a neutral project ID is preferable to displaying
+the built-in `5w6w` name even though the nonstandard datasets would not inherit
+W chemistry. The resolved configuration is stored per dataset while the
+original input file is preserved.
+
+Preset schema 1 retains the guarded policy and defaults through AutoRefine.
+Schema 2 adds the frozen `workflow.mode`, `run_doctor` and
+`select_recommendation` settings described in [full auto](campaign-full-auto.md).
+Guarded mode remains the default. An explicit full-auto recipe may run bounded
+Refine Doctor and provisionally select its verified usable SUCCESS recommendation;
+neither action approves the structure. Without `--through`, the endpoint is
+Refine Doctor when `run_doctor` is true and AutoRefine otherwise. An explicit
+`--through` overrides that endpoint without adding selection permission.
+
+These settings control existing bounded transitions. A general configurable
+stage graph remains future work; recipes cannot request arbitrary recovery
+operations.
+
+Schema 2 also accepts an explicit `[autosol]` table with `policy = "disabled"`
+and a nonempty `reason`, for example a synthetic modified-DNA mechanics test
+against donor diffraction. The resolved table contains only those two fields;
+`on_unaccepted` is incompatible with a disabled stage. Planning freezes the
+reason in the policy hash. This option preserves anomalous-atom classification
+and observation data while preventing AutoSol execution and experimental-phase
+use downstream; see [the phase-stage opt-out](campaign-full-auto.md#explicitly-omit-autosol).
+It does not migrate existing plans or change the default conditional phase path.
+
+The future GUI recipe builder must construct this same backend recipe, not a
+parallel GUI configuration. It may show sensible defaults and only currently
+supported/validated options; unavailable future capabilities stay absent or
+clearly disabled rather than being simulated in UI state.
+
+### Prepared nonstandard providers
+
+A first-slice nonstandard member may use:
+
+```ini
+[automr]
+mode = nonstandard
+model = models/search.pdb
+sequence_file = construct.fasta
+model_family = triangle-v1
+```
+
+or omit `model =` when exactly one top-level PDB exists. The optional
+`model_family` is explicit provenance only; it does not authorize sibling
+reuse or Campaign Doctor rescue.
+
+The sequence file may be chain-labelled FASTA or `CHAIN = SEQUENCE` text.
+Inline `[sequences]` is also accepted. Planning rejects a nonstandard member
+without a complete explicit target, and currently rejects W-family sequence
+threads on nonstandard members.
+
+The frozen effective target is the parsed chain map. The frozen raw sequence
+source remains separate provenance so later code can verify what user input
+produced that target without reparsing an unfrozen file.
+
+PDB or coordinate mmCIF input and an explicit trusted-model mode without a
+sequence file are [planned extensions](campaign-model-roadmap.md#planned-coordinate-mmcif-and-trusted-model-input),
+not capabilities of this current campaign path.
+
+### Modified ligands in chain-labelled sequences
+
+Sequence text now supports literal parenthesized component codes in addition to
+ordinary A/C/G/T/U letters. Each `(CODE)` token occupies **one** residue, not
+its character count. For example, a 12-residue DNA target is:
+
+```text
+>A
+CCGC(5CM)AA(DZ)TGC(A1AAZ)
+```
+
+This notation also works in `CHAIN = SEQUENCE` files and inline `[sequences]`,
+including explicit sequence-reference and campaign-thread overlays. Canonical
+letters retain their ordinary DNA/RNA meaning; `(CODE)` is a **literal**
+NARestraints/curated ligand identifier, not a one-letter alias. So `(DZ)` means
+DZ; the W-frame `pair = Z:P` setting is a separate two-site shorthand, not a
+FASTA convention. Component-token validity is checked against the installed
+ligand registry, with unknown/malformed/nested tokens rejected at input time.
+Whitespaces/FASTA wrapping do not introduce positions. Every new campaign keeps
+the complete annotated string and checksum-frozen original input. Its
+one-code-per-residue target is resolved deterministically from those tokens at
+execution, using the frozen chain/residue inventory rather than guessing
+numbering from the sequence.
+
+An accepted ligand **identifier** is not proof that the current PDB/Coot/
+ReadySet/Phenix route can construct or refine it. Parenthetical 4- or 5-character
+codes are parseable and retain their logical identity. The reviewed `A1AAZ→DF`
+bridge supplies a compatible short runtime label with source/target provenance;
+it does not authorize arbitrary truncation. Other long codes without a reviewed
+compatible mapping still stop before writing the three-character PDB field.
+See [component preparation](modified-component-preparation.md) for the standing
+bridges and distinct chemical-state overrides.
+Existing `[mutations]` sites already accept any registered ligand code and
+remain the most-specific explicit site overrides. Their ordinary construction,
+dictionary, phosphate and chemistry guards still apply. No old frozen plan,
+completed model or scientific checkpoint is retroactively changed.
 
 ### Explicit standard-model providers
 
@@ -255,9 +431,57 @@ or the numerical and structural acceptance gates.
 
 ## Execute the saved plan
 
-The [campaign executor](campaign-execution.md) composes one standard W/5W6W
-candidate per dataset using the existing scientific stages. It verifies this
-same schema-1 plan before running and stores durable progress separately.
-Existing plans remain compatible; do not delete or regenerate a plan to use
-the executor. Automatic Doctor selection, approval, reporting PDFs and
+The [campaign executor](campaign-execution.md) composes one frozen candidate
+per dataset using the existing scientific stages. Schema-2 plans may mix
+standard W and prepared nonstandard members; existing schema-1 W plans remain
+compatible and need no regeneration. Durable execution progress is stored
+separately from the immutable plan. Recipe-authorized provisional Doctor
+selection is available in full auto; explicit approval, reporting PDFs and
 deposition remain later work.
+
+
+## Opt-in checked model preparation (Cedar C225)
+
+A schema-2 project preset can request the same checked preparation used by
+`nasolve postmr --checked-preparation`:
+
+```toml
+schema_version = 2
+id = "checked-preparation"
+version = "1"
+
+[postmr]
+checked_preparation = true
+```
+
+Planning freezes this boolean with the recipe. Omission retains legacy PostMR;
+older recipes and their fingerprints are unchanged. Schema 1 refuses the new
+field. Older stage implementations refuse this expanded PostMR policy.
+
+For bounded missing-plane support (C246), add `automatic_plane_support = true`
+to that same `[postmr]` table. It requires `checked_preparation = true` and a real
+boolean in schema 2. The choice is frozen before execution; omission leaves old
+policies and hashes unchanged. Explicit false is retained in the campaign policy
+but does not enable support in the preparation request. Older readers reject the
+new optional field. Continuation uses the saved request; it cannot change this
+choice or repeat construction. Generated support alone does not establish final
+plane adoption or diffraction-refinement success.
+
+The campaign reuses the existing constructor, bounded request owner and publisher.
+It records the exact model/restraints, genuine preparation receipt and actual
+ReadySet outcome. A checked fallback remains a REVIEW checkpoint available for
+trial refinement; it does not establish successful diffraction refinement.
+Unqualified preparation stops its dependent stage, preserving the failed attempt.
+
+C247 carries verified generation notes into the PostMR stage receipt and subsequent
+text/JSON campaign status. These describe generated support or excluded failed
+output without changing the scientific continuation gate. Status reads do not
+rewrite old receipts; absent notes on historical stages remain absent evidence.
+
+Completed receipts use ordinary campaign continuation. An interrupted stage without
+a completed receipt stays awaiting inspection; explicit campaign retry starts a
+fresh numbered run only after prior processes are known stopped. The standalone
+exact preparation continuation/publication commands can recover the preserved run,
+but do not retrospectively complete its campaign job. No new in-place retry or
+adoption of manually recovered work is enabled. Later preparation children, broader
+plane-recovery coverage and complete-restraint refinement remain open.

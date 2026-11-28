@@ -1,692 +1,226 @@
 # NASolve development handoff
 
-Status: **current working state — updated 2026-09-26**.
-
-This file records the implementation edge: what is validated now, what is
-scientifically blocked, and what should happen next.
-
-Durable behavior belongs in `architecture.md` or the relevant subsystem
-document. Superseded handoffs and validation diaries live under `docs/history/`.
-
-## Current pipeline
-
-The guarded standalone spine is operational:
-
-```text
-AutoMR -> PostMR -> conditional AutoSol -> AutoRefine
-       -> conditional Refine Doctor -> inspection / explicit selection
-```
-
-Numbered runs and checkpoint branches are immutable. Free-R flags are not
-regenerated for convenience. Refine Doctor preserves the current checkpoint
-unless a user explicitly selects another one.
-
-Latest local code regression baseline:
-
-- **664 tests passed** in the full suite;
-- **222 subtests passed**;
-- full-suite runtime: **61.70 s**.
-
-This was reported from the active Python 3.12 development environment on Birch
-checkout `cc0ad6ab537cc61e17e13bc562e4ae8667461e8d`. Registration source/test
-code was unchanged after code head
-`686830beb64907f2a1ba73fa1bdbff97f6dcc38d`; later Birch commits before the
-full run were documentation-only validation bookkeeping. This is a user-local
-test result, not GitHub CI.
-
-## Terminal-phosphate chemistry
-
-The W/5W6W recipe explicitly declares the designed D:1 5-prime phosphate.
-
-PostMR treats a requested standard 5-prime terminal phosphate as the complete
-P/OP1/OP2/OP3 group:
-
-- preserve a complete valid group;
-- complete P/OP1/OP2 by adding OP3;
-- construct a wholly missing group from the local O5'-C5'-C4' sugar frame;
-- fail closed on ambiguous partial groups, incoming/internal O3'-P conflicts,
-  cyclic-like geometry, or other contradictory chemistry.
-
-`MR_frames/5W6W/5W6W_noPO4.pdb` is a forced validation fixture, not a normal
-catalogue fallback.
-
-Live ED `run_010` validation confirmed that a wholly missing D:1 phosphate can
-be constructed, survive ReadySet, pass Phenix interpretation, and enter
-refinement.
-
-### Geometry ownership
-
-Keep these responsibilities separate:
-
-- **Phenix** supplies authoritative native terminal-phosphate geometry.
-- **NASolve** owns terminal intent, construction, provenance, geometry audit,
-  and local protection policy.
-- **NARestraints** owns reviewed pairing/stacking geometry and must not
-  duplicate Phenix's native terminal-phosphate geometry.
-
-Constructor coordinates are starting geometry only, not a second native
-refinement target.
-
-### Refinement audit and Doctor rescue
-
-An unprotected refinement exposed a real low-information failure: one native
-P-centered phosphate angle moved to approximately 7 sigma from its Phenix
-target while the global R factors remained superficially reasonable.
-
-AutoRefine now audits declared terminal phosphates from Phenix's final geometry
-output. Eleven restraints are expected per site:
-
-- four P-O bonds;
-- six P-centered angles;
-- one P-O5'-C5' angle.
-
-A >=5-sigma local violation forces `AUTOREFINE_REVIEW` independently of the
-global numerical gate.
-
-Refine Doctor was live-validated from `refine-003`. It branched from the clean
-`postmr` parent, generated six local Phenix `action = change` angle protections
-using Phenix-derived ideals, and created `refine-004`.
-
-`refine-004` reported:
-
-- Rwork/Rfree = 0.1735 / 0.1707;
-- terminal audit `PASS`;
-- 11/11 expected restraints found;
-- zero severe restraints.
-
-It remained a numerical user-review case because Rwork was still slightly above
-Rfree. Chemical validity and numerical acceptance are intentionally separate.
-
-## Proactive terminal protection: live-validated
-
-Production AutoRefine now protects a declared standard terminal phosphate from
-**refinement #1** rather than deliberately allowing an unprotected refinement
-before Doctor rescue.
-
-For a declared site on an unprotected lineage, AutoRefine now:
-
-1. runs `phenix.pdb_interpretation ... write_geo=True` on the inherited
-   model/restraint bundle before creating the numbered refinement round;
-2. requires a complete native Phenix geometry snapshot with all 11 expected
-   terminal-phosphate restraints per site;
-3. derives the six P-centered angle ideals from that Phenix geometry rather
-   than from a NASolve hard-coded target table;
-4. writes local `action = change` protection at sigma = 1 degree;
-5. stores the source `.geo`, interpretation log, and protection PHIL inside the
-   new AutoRefine round;
-6. attaches schema-1 semantic protection provenance to the checkpoint;
-7. passes the protection restraint to the first coordinate refinement;
-8. inherits the same protection through AutoRefine/manual descendants without
-   stacking duplicate protection files; and
-9. retains the final 11-restraint geometry audit after every refinement.
-
-Preparation fails closed before `round_00N` is created if Phenix interpretation
-is unavailable or the declared terminal geometry is incomplete.
-
-Live ED `run_010` validation from the clean `postmr` parent created
-`refine-005` with proactive protection already present in the actual
-`phenix.refine` command. It reported:
-
-- Rwork/Rfree = 0.1735 / 0.1707;
-- semantic protection for D:1 with six angles at sigma = 1 degree;
-- ideal source = pre-refinement `phenix.pdb_interpretation` geometry;
-- final terminal audit `PASS`;
-- 11/11 expected restraints found;
-- maximum final normalized deviation = 4.27 sigma under the tightened
-  1-degree protection;
-- zero severe restraints.
-
-`refine-005` therefore reached the same protected endpoint as the earlier
-Doctor rescue `refine-004` without requiring an unprotected sacrificial
-refinement first. Its `AUTOREFINE_REVIEW` status is numerical only because
-Rwork remains slightly above Rfree; the terminal chemistry itself passes.
-
-A future advanced opt-out may disable proactive protection deliberately, but it
-must remain explicit, visible in provenance, and must not disable the final
-geometry audit.
-
-## Unsupported backbone chemistry
-
-Ordinary DNA/RNA-like phosphodiester chemistry is the automatic default.
-
-Unsupported GNA/PNA/TNA/other linkage chemistry is never guessed.
-`experimental_passthrough` bypasses only the standard linkage validator at the
-declared site and remains visibly unreviewed until a human Coot review is
-recorded.
-
-The interactive passthrough review path has now been live-validated on a
-disposable copy of ED `run_010` using a synthetic A:12
-`experimental_passthrough` declaration. NASolve opened the intended
-`refine-005` model/maps in real Coot, waited for human confirmation, and wrote a
-portable `USER_REVIEWED` record containing the run-anchored model reference,
-model SHA-256, flagged site, timestamp, and preserved passthrough provenance.
-This validated the review UX/provenance path only; it does not assert
-non-standard chemistry at A:12.
-
-## Campaign provenance and Doctor groundwork
-
-Sequential campaign execution from immutable plans is operational for the
-current standard W path. Planning freezes explicit dataset/model/reference
-choices, supports root `nasolve-campaign.toml` sequence threads, and keeps
-run/checkpoint lineage immutable.
-
-The donor/recipient provenance stack is now implemented in read-only layers:
-
-- complete explicit sequence-family targets and search-model mismatch
-  provenance when a target is available;
-- checksum-bound model compatibility fact sheets for every fresh AutoMR run;
-- explicit provider-side `model_family` declarations bound to a named model,
-  never inferred from frame, filename, sequence thread, or similarity;
-- checkpoint-candidate descriptors that re-verify the selected checkpoint
-  model, observations, lineage, literal residue inventory, chemistry context,
-  and frozen target comparison; and
-- donor-checkpoint versus recipient-run comparisons that re-verify both sides
-  and compare literal donor site/residue inventory against the recipient's own
-  frozen target while keeping source frame/reference/mirror facts as context.
-
-These layers are deliberately **descriptive only**. They do not rank donors,
-declare donor eligibility, declare recipient compatibility, authorize rescue,
-or reuse a solved sibling automatically. Source observations remain donor
-provenance rather than recipient evidence.
-
-The next campaign orchestration edge is therefore a separate reviewed
-eligibility/rescue policy that consumes these facts under a bounded budget.
-That future layer must record the exact donor checkpoint, recipient, applicable
-hard gates, transformations, attempts and stopping reason without rewriting the
-recipient's authoritative observations, Free-R set, target chemistry or failed
-branch.
-
-### Next CLI milestone: geometry-diverse campaign before GUI implementation
-
-A forthcoming real validation case contains geometry-diverse datasets with one
-prepared PDB search model and associated sequence definition per dataset. Once
-the current Oak Scout-v2 branch is closed/merged, this should become the **next
-campaign implementation milestone**, still on the CLI/backend rather than in the
-GUI.
-
-The first executable slice should generalize the existing campaign
-planner/executor to admit frozen nonstandard per-dataset model providers and
-their exact sequence sources while preserving the normal guarded stage engines.
-Keep existing schema-1 W plans readable/executable; introduce a
-backward-compatible newer plan schema rather than redefining old frozen plans.
-The current concrete executor choke point is
-`campaign_stages._frozen_selection()`, which still rejects anything except
-`mode=standard, frame=W`.
-
-Each dataset remains scientifically independent: no geometry-family inference,
-cross-dataset model ranking, solved-sibling reuse or Campaign Doctor rescue is
-authorized merely because the datasets share a campaign.
-
-For the first live slice, model-to-sequence correspondence must be simple and
-unambiguous. Nontrivial registration, recuts, split chains, unexpected
-multiplicity or other representation ambiguity should stop only that dataset
-for inspection. A real 3-5 dataset geometry-diverse campaign should then run
-through AutoMR -> PostMR -> conditional AutoSol -> AutoRefine with pause/resume,
-retry, relocation and frozen-input integrity still intact.
-
-After that live campaign is green, add minimal explicit `design_id` grouping
-for datasets sharing a stable construct/design record. Do not infer design
-membership from filenames or sequence similarity.
-
-**GUI branch point:** only after the basic heterogeneous campaign and Design
-identity are CLI-functional should implementation attention split into the GUI.
-The GUI then visualizes stable backend concepts rather than inventing them.
-
-The Campaign Doctor runway after that branch point is already mapped in the
-campaign roadmap: read-only campaign-wide donor/recipient facts -> reviewed
-eligibility policy -> attempt-local derived-provider provenance -> one explicit
-donor rescue -> bounded automatic donor enumeration. None of those should be
-smuggled into the first heterogeneous campaign milestone.
-
-This work remains intentionally outside PR #22's implementation scope.
-
-## Construct registration: next structural robustness layer
-
-The next planned scientific infrastructure is **Construct Registration**:
-logical construct sites must be separated from incidental PDB chain names,
-residue numbering and ASU cuts.
-
-The design contract is
-[`construct-registration.md`](construct-registration.md). It now records the
-full expected failure-mode inventory, automatic-versus-guided triage matrix,
-user-escalation rules, reporting escalation, Registration Net interaction model,
-reviewed recipe promotion rules, and the rationale for preferring Scout -> MR
--> authoritative ASU registration over heavy pre-MR coordinate surgery.
-
-The intended timing is:
-
-```text
-logical construct manifest
-    -> AutoMR Registration Scout (cheap, non-mutating)
-    -> ordinary MR first when plausible
-    -> authoritative ASU Registration on the MR solution
-    -> PostMR logical-site sequence/chemistry
-```
-
-MR itself is often the most useful coordinate registry. NASolve should not
-require heavy recutting, renumbering or mutation of a plausible search model
-before learning whether it solves.
-
-If MR fails, or a reviewed representation problem is known, a separate bounded
-**Registration/Recut Rescue** may build a transformed candidate with frozen
-provenance. Planned reviewed transforms include equivalent ASU cuts,
-split/join/relabel/renumber operations, sticky-end/boundary changes and
-explicitly reviewed boundary chemistry.
-
-The common W path must stay cheap: an identity-like single-copy registration
-should pass automatically without user interaction.
-
-Guided mode is reserved for crystallographically interesting cases such as:
-
-- equivalent but nontrivial ASU cuts;
-- renamed/renumbered/split logical strands;
-- unexpected complete copy multiplicity;
-- one complete plus a partial copy;
-- sticky-end/arm coverage differences; or
-- several non-equivalent registrations.
-
-The **Registration Net** remains the general 2-D SVG/HTML mapping view for
-logical strands, coordinate fragments, symmetry/ASU seams, complete/partial
-copies, sticky ends, important logical sites and mapping bands. It is not a
-second molecular viewer; Coot remains the coordinate editor.
-
-A separate opt-in **Topo Net** extension is now planned for explicitly declared
-periodic self-assembling frameworks. Topo Net should show the current ASU plus
-only connected symmetry mates and operate on a periodic molecular graph rather
-than treating the current PDB chain serialization as chemistry. It should let a
-user preview moving an ASU seam past residues, moving symmetry-equivalent
-fragments across the chosen ASU, split/join/relabel/renumber operations and
-newly exposed sticky ends before coordinates are materialized.
-
-Critical semantic distinction: an ASU seam may create a coordinate-file
-"false nick" while the logical strand remains chemically continuous through a
-symmetry operation. Such a representation seam keeps continuation-phosphate
-intent and must not be reinterpreted as a true free 5-prime terminus merely
-because the PDB starts a new chain there. A true chemical nick remains a
-different, stronger edit that changes the covalent graph and terminus chemistry.
-
-Materialization should write an immutable surgery manifest, use exact symmetry
-transforms/chain operations in Coot, then re-run Phenix interpretation. Two
-later empirical gates are required before automation: (1) determine whether a
-Phenix symmetry-operation bond can safely enforce the seam connection without
-uncontrolled phosphate-angle/clash behavior; and (2) practice bounded
-single-residue Coot RSR on several disposable recuts where a phosphate/O3-prime
-connection is initially too long, auditing which atoms move and whether Phenix
-then interprets the linkage cleanly.
-
-The umbrella term for this planned family is **topology-informed automation**:
-topology may inform hypotheses, recuts, local repairs and branch diagnostics,
-but it never overrides chemistry, diffraction evidence, fail-closed rules or
-expert review.
-
-Topo Net should also preserve a stronger design hierarchy than ASU chain
-serialization. For framework work, keep four layers separate:
-
-- complete synthesized/input strand inventory;
-- tile hypothesis (usually declared, but possibly inferred/emergent);
-- observed periodic crystal graph under symmetry; and
-- one incidental ASU/PDB serialization of that periodic object.
-
-Input strands are high-authority experimental intent, not guaranteed observed
-content. A strand may be absent from the solved structure; copy number may
-differ from the synthesis recipe; one strand may be split among symmetry/ASU
-fragments; and the scientifically useful tile can become more abstract than
-the original design. Tile status should therefore permit `DECLARED`, `INFERRED`,
-`EMERGENT` and `UNRESOLVED` outcomes while retaining the original declared tile
-for provenance.
-
-This distinction matters for known lab-style multiplicity cases: a P4_132
-structure may place two complete triangular tile copies in one ASU without
-making the ASU itself the tile. Tile multiplicity, ASU multiplicity and
-coordinate-chain decomposition must remain separate reported dimensions.
-
-Repeat-bearing/root strands need their own design facts. Many tile families
-contain one central/root strand with an internal n-fold repeated role while
-other strands occur at higher per-tile copy number. Preserve intended
-copies-per-tile and internal repeat order separately in the tile sequence
-sheet; neither should be inferred from incidental ASU chain counts.
-
-The observed periodic graph may violate both expectations. Record repeat-domain
-coverage and repeat phase when possible, including cases where only part of a
-root strand is ordered/used. Also allow a long topological closure: a known
-fivefold repeat-bearing object embedded in a fourfold/screw lattice returned
-to its original repeat phase only after twenty unit-cell steps. That is not a
-missing-copy failure. It is an observed periodic organization in which the
-nominal root-strand copy/repeat count is no longer a local tile invariant.
-
-The net finder should explicitly consume declared root/repeat annotations and
-may propose repeats from full sequences only as non-authoritative hypotheses.
-It should map repeat domains into the periodic graph, follow phase changes
-through symmetry, and report local closure, long-period closure, partial use,
-reorganization or unresolved phase as separate descriptive facts. It must not
-force the designed n-fold order onto the structure.
-
-Junctions are now part of the intended Topo model as first-class topological
-objects, but **junction arity is not the definition**. The minimal primitive is
-a local directed-backbone passage/connection at a node; a single backbone can
-be sufficient (the semi-junction is the motivating example). Four-, six- or
-eight-arm junctions are contextual neighborhoods around one or more such
-passages. ASU recutting may split that realization across symmetry fragments
-without changing the underlying junction.
-
-Junction declarations/hypotheses should therefore preserve stable logical
-strand/residue participation, routing, true nicks/termini, sticky ends and
-optional reviewed stacking/pairing expectations while treating observed arm
-count as derived metadata. Net-finder discoveries remain `CANDIDATE` until
-uniquely supported or user-confirmed; emergent high-valence nodes such as the
-cuboctahedral case must be allowed, while apparent packing contacts may be
-`REJECTED`.
-
-Topo Net should be a persistent workbench above the checkpoint graph rather
-than a one-shot cutter. A user should be able to operate on a seam/junction,
-materialize a child, optionally perform bounded Coot repair, press Refine, and
-receive the resulting refinement child plus diagnostics back into the same GUI
-without closing/restarting the topology session. The first Refine action should
-use a short ordinary audited AutoRefine path; selection-restricted refinement
-is intentionally later work.
-
-This work exposes a useful **generic NASolve GUI** seam. The existing immutable
-checkpoint graph should become a reusable model-tree view for normal workflows:
-MR, PostMR, AutoSol, long refinement chains, Doctor siblings, manual imports,
-topology surgery and later re-MR-from-refined-model attempts should all appear
-in one traversable lineage. Important checkpoints can be pinned as panels,
-repetitive refine chains can collapse, and historical nodes can be selected or
-used as explicit new branch sources without deleting descendants. Topo Net
-should embed this same component rather than maintain a private history.
-
-The dedicated [GUI design contract](gui.md) now records the broader shell:
-Campaign -> optional Design -> Dataset -> Run scientific navigation; one-window
-Navigator / Workspace / Inspector / Activity layout; root/recent-workspace
-selection; explicit viewed/current/pinned separation; semantic colors with
-redundant shape/fill cues; and GUI coverage for existing CLI operations
-(environment/config, workspace, presets, campaign actions, AutoMR/PostMR,
-backbone review, AutoSol, AutoRefine/Doctor, checkpoints and Coot inspection).
-The shell is capability-driven: future backend actions/metadata/views should
-register into existing surfaces rather than require a new window or bespoke
-history model.
-
-Live campaigns should update the Navigator/tree from authoritative execution
-records with restrained running-node/edge activity. The bottom Activity drawer
-has a human-readable Events/Notifications stream (for example "refinement 21
-passed", "PostMR needs your review", "current checkpoint changed") plus
-expandable exact backend tokens, metrics, diagnostics and logs. Repeated
-heartbeats are coalesced; reduced-motion mode uses static activity markers.
-
-The corresponding [GUI human live-check queue](gui-live-checks.md) covers shell
-navigation, live campaign/event reconciliation, long model trees,
-color/accessibility semantics, campaign/design scope changes, CLI/GUI
-interoperability, Coot round-trip and a "register one new action without shell
-redesign" extensibility test.
-
-Keep the workbench display sparse. Global chips may show current checkpoint,
-Rwork/Rfree and refinement/local-warning state. Selecting a residue, seam or
-junction expands only the relevant local diagnostics: Phenix bond/angle
-outliers, phosphate connectivity and clashes, base-plane/sugar/backbone
-geometry, reviewed pairing/stacking deviations, mutation/registration state,
-and later validated residue-density metrics. Selections should round-trip to
-Coot so abstract Topo operations and atomic inspection stay coupled.
-
-Topo surgery also needs a bounded local repair layer rather than assuming one
-Coot action always works. A future **Topo Surgeon/Doctor** may branch a small
-declared set of materialization/mutation/RSR strategies, then compare Phenix
-local geometry, phosphate/clash behavior, base planes, pairing/stacking
-restraints and unintended coordinate movement. Every attempt remains immutable.
-If automated repair cannot produce a trustworthy local model, expert manual
-Coot work is an expected Topo-mode fallback; NASolve should open the exact
-model/maps/seam, then import the user's repaired PDB as a new user-reviewed
-checkpoint without erasing failed automated attempts.
-
-The first planned blind topology-surgery fixture is **8D93 -> 3GBI-style
-representation without coordinate cheating**: the transform receives 8D93,
-symmetry and requested cut intent, while 3GBI coordinates are withheld until
-the post-transform comparison. Ordinary W identity registration, chain
-renaming/numbering offsets, multicopy/partial-copy ASUs and bounded multi-PDB MR
-checks remain separate validation rungs.
-
-### Birch implementation checkpoint
-
-The first backend-only slice is now implemented on the `birch` development
-branch without changing any existing AutoMR/PostMR call path.
-
-Implemented:
-
-- strict logical-site -> coordinate-site registration records;
-- complete, multicopy and partial-copy representation;
-- complete-copy-only logical mutation/chemistry expansion;
-- checksum-bound freeze/load provenance and semantic revalidation;
-- exact accounting for mapped and unmapped polymer residues;
-- read-only logical inventories for later Hemlock/Moss/Campaign Doctor use;
-- conservative Registration Scout v1 for identity, same-name constant residue
-  offsets, unique whole-chain rename, and rename-plus-offset cases;
-- descriptive per-candidate design-identity evidence that is explicitly barred
-  from Scout assignment/ranking;
-- checksum-bound `Model/registration_scout.json` freeze/load with semantic
-  revalidation; and
-- a non-decisional registration-transition comparison for later
-  Scout-versus-authoritative-MR reporting;
-- UI-independent guided resolution for ambiguous simple chain assignments,
-  restricted to explicit user selections among already enumerated Scout
-  candidates;
-- read-only top-level dataset PDB candidate inventory with valid/invalid
-  diagnostics, per-file SHA-256/size and a stable candidate-set fingerprint;
-  and
-- read-only conservative Registration Scout across every valid discovered PDB,
-  with no ranking, selection or MR authorization.
-
-Scout v1 deliberately does not use sequence-similarity ranking, modified-site
-similarity, symmetry expansion, split-chain inference, copy-number inference or
-topology. Ambiguous renamed chains remain ambiguous rather than being selected
-by a hidden score.
-
-The primary inference regime is designed self-assembling nucleic-acid crystals:
-input construct sequence/modification/boundary intent is normally known and
-short designed strands are usually less repetitive than generic polymers.
-Repeated short motifs and single-base overhangs remain explicit ambiguity
-hazards rather than ignored corner cases.
-
-The machine-readable development policy is
-[`construct-registration-intent.json`](construct-registration-intent.json).
-Policy changes should update that file alongside the human design contract so
-real-data testing can intentionally backtrack or revise inference behavior
-without losing why an earlier rule existed.
-
-The minimum human/real-workflow validation queue is maintained separately in
-[`construct-registration-live-checks.md`](construct-registration-live-checks.md).
-Keep the top-level queue trigger-based, with project-scoped banks beneath it;
-it exists so clean-W wiring, blind 8D93 -> 3GBI surgery, 8D31-like multiplicity,
-repeat/root-strand closure, emergent-tile cases, guided ambiguity and bounded
-multi-PDB checks are not forgotten as implementation context moves across chats.
-
-Validation history is preserved rather than overwritten:
-
-- the earlier Birch checkpoint at code head
-  `4452295c3330de6d55bddd75b01be21f39afb222` had **23 focused registration
-  tests passing locally**;
-- the current Birch bundle at code head
-  `686830beb64907f2a1ba73fa1bdbff97f6dcc38d` has **44 focused tests passing locally** across
-  `tests/test_construct_registration.py` and
-  `tests/test_model_candidates.py`.
-
-Both are user-local checkpoints, not GitHub CI. The full NASolve regression
-suite subsequently passed with **664 tests and 222 subtests**, satisfying the
-remaining merge gate for PR #17.
-
-### Renamed-chain real-W ambiguity check
-
-A second read-only ED `run_011` test renamed coordinate chains
-`A/B/C/D -> M/N/P/Q` without changing coordinates/residue identities.
-
-Scout v1 returned `AMBIGUOUS`, as designed, because multiple equal-length
-one-to-one chain assignments satisfied its current length/offset rules. Its non-decisional
-design evidence strongly identified the intended mapping (A->M 19/2, B->N 5/2,
-C->P 7/0, D->Q 7/0; alternatives carried many more mismatches). Explicit guided
-selection of A->M, B->N, C->P, D->Q yielded `REGISTERED_COMPLETE`, one copy,
-4 target-identity mismatches and no coordinate edit.
-
-This validates both the conservative refusal-to-guess behavior and the guided
-resolution primitive on real W coordinates. It also suggests the next reviewed
-inference experiment: classify mismatches as **declared construct-change sites**
-versus **unexpected mismatches**, and allow automatic disambiguation only when
-one complete one-to-one chain mapping has zero unexpected mismatches and every alternative has
-at least one. This is recorded as proposed policy, not runtime authority.
-
-### Oak: experimental design-aware Scout v2
-
-Following the renamed-chain real-W result, Oak prototypes a **proposal-only**
-design-aware helper. It enumerates bounded complete one-to-one chain mappings
-and classifies differences using explicit target assignment history plus an
-optional reviewed-provider baseline map.
-
-The hard proposal rule is intentionally non-scoring: exactly one mapping must
-have **zero unexplained mismatches**, and every alternative must have at least
-one. A mapping with merely fewer unexplained mismatches is still ambiguous.
-
-The helper is not runtime authority, cannot apply a mapping, and is not called
-by AutoMR/PostMR. Provider-baseline evidence is now derived from an assessed
-standard frame-catalogue model plus NASolve's existing provider provenance;
-free-floating caller residue dictionaries are no longer accepted. The original
-Oak v2 checkpoint had **41 focused tests passing locally** at code head
-`189fd4589a8c8f2a0191e21e99cec22b428e6a1c`.
-
-The first renamed real-W v2 shadow case supplied only A:13=DC and B:3=DG as
-provider evidence and correctly stayed `AMBIGUOUS`: 6 complete mappings,
-0 zero-unexplained mappings; the intended mapping had 38 exact,
-2 provider-explained and 2 unexplained sites. Direct inspection of
-`MR_frames/5W6W/C_G.pdb` verified that the missing provider-pair identities
-were A:12=DC and B:4=DG.
-
-The same case was then repeated with all four verified provider identities
-(A:12/A:13=DC; B:3/B:4=DG). v2 returned `PROPOSED` with exactly one
-zero-unexplained mapping: A->M, B->N, C->P, D->Q. That mapping had 38 exact,
-0 target-history, 4 provider-explained and 0 unexplained sites; the five
-alternatives retained 12, 11, 16, 17 and 10 unexplained mismatches.
-`runtime_authority` remained false.
-
-This validates the experimental zero-unexplained uniqueness rule on the real-W
-rename nuisance case without promoting it into runtime authority.
-
-Oak has now implemented the next provenance slice at code head
-`c515a37dc41fa8bb1935d2c80c825ebef8153177`: Scout v2 no longer accepts an
-ad hoc provider residue dictionary. Optional provider evidence is derived from
-an actual `ModelAssessment` of a standard frame-catalogue model plus NASolve's
-existing `model_provider` record. The helper requires frame-catalogue
-provenance, exact target-site coverage and provider-selector/source-model
-agreement, and returns the derived residue baseline bound to the source model's
-SHA-256. Runtime authority remains false and AutoMR/PostMR still do not call it.
-
-The provenance-bound helper plus its new fail-closed coverage now passes
-**43 focused tests locally** at checkout/test head
-`507745a0b7166f05229f6c3501d5e1f694db93e2`; the source-behavior head remains
-`c515a37dc41fa8bb1935d2c80c825ebef8153177`. The two added tests explicitly
-reject incomplete provider target coverage and provider-selector/source-model
-mismatch. The result is user-local, not GitHub CI.
-
-The real renamed-W case has now also passed through the new
-`provider_assessment + model_provider` interface. Because ED `run_011`
-predates structured `model_provider` provenance, the shadow script reconstructed
-only the standard-frame fallback provider facts already proven by the old run's
-model path, `model_source`, and source-model SHA-256, then asserted that checksum
-against the current `C_G.pdb` before Scout ran. No residue-code dictionary was
-supplied. The result remained exactly one zero-unexplained proposal
-A->M/B->N/C->P/D->Q (38 exact + 4 provider-explained; alternatives
-12/11/16/17/10 unexplained), with provider provenance bound and
-`runtime_authority = false`.
-
-Scout v2 therefore remains experimental/non-runtime, but its focused tests and
-intended real-W provenance-bound shadow gate are now green. The current Oak
-checkout `316ac43eaf85a63cf675828bb8960a28f0db2773` also passed the **full
-NASolve regression suite: 672 tests locally**. No runtime or subtest count was
-reported for this checkpoint; it is user-local validation, not GitHub CI.
-
-The merge-grade regression gate is therefore green. The remaining confidence
-check has also now passed: a fresh current-schema ED `run_013` preflight was
-created from the same run_011 scientific intent, and the renamed-W shadow case
-was repeated using its native structured `model_provider` record plus a fresh
-assessment of the referenced `C_G.pdb`. The result was identical: provider
-bound true, caller codes false, exactly one zero-unexplained
-A->M/B->N/C->P/D->Q proposal (38 exact + 4 provider-explained; alternatives
-12/11/16/17/10 unexplained), with `runtime_authority = false`.
-
-The current backend-only Scout v2 scope is therefore fully validated for its
-stated purpose. AutoMR/PostMR integration, automatic application, authoritative
-registration and any promotion of Scout v2 into runtime decision-making remain
-separate future work and are not implied by this validation.
-
-### Oak branch-readiness sweep
-
-A final user-local readiness sweep on the current Oak checkout reported:
-
-- authority audit: no live callers of
-  `propose_design_aware_chain_mapping` outside its defining module;
-- patch hygiene: `git diff --check main...oak` produced no output;
-- runtime health: `./nasolve check` passed with Python 3.12.14,
-  NARestraints 1.1.2, Phenix 2.2.1 and Coot 1.3.3.
-
-This sweep changes no scientific behavior. It confirms that the experimental
-Scout v2 helper remains isolated from the live pipeline, the branch diff is
-whitespace-clean, and the configured local crystallographic runtime is healthy.
-
-### First real-data registration shadow check
-
-The new registration core was then exercised read-only against existing ED
-`run_011` using its frozen 42-site target:
-
-- search model: `REGISTERED` by `identity-site-map`, 4 identity mismatches;
-- PostMR ReadySet model: `REGISTERED` by `identity-site-map`, 0 mismatches;
-- transition: copy structure `SAME`, multiplicity `SAME`, complete-copy
-  identity classes `DIFFERENT`, single-copy coordinate realization `SAME`.
-
-This is the expected scientific behavior: PostMR changed logical residue
-identity while the coordinate registration itself remained stable. It is a
-useful real-W validation of the abstraction, but **not** yet a live pipeline
-integration test because registration was invoked manually against an already
-completed run.
-
-## NAPrep boundary
-
-NAPrep is a separate optional upstream design/data-management package, analogous
-in separation to NARestraints. It may organize design records, sequences,
-sample/collection metadata, folders and externally generated model candidates.
-
-NASolve does **not** invoke AlphaFold.
-
-NASolve remains responsible for the crystallographic/campaign decision tree
-once a curated handoff exists: AutoMR, Construct Registration, PostMR, AutoSol,
-refinement, Campaign Doctor, reporting/curation and deposition. NAPrep must not
-become a second campaign manager that re-infers NASolve's downstream decisions.
-
-Direct manually prepared NASolve inputs remain supported; NAPrep is not a
-runtime requirement.
-
-## Separate scientific follow-up
-
-These are not blockers for proactive terminal-phosphate protection:
-
-- **DE dictionary** remains defective/unapproved for production refinement.
-- sulfur-containing pair target geometry still needs a reviewed source/target
-  audit;
-- provisional `force = G:C` should change pair restraint geometry only, never
-  residue or deposition identity;
-- a future MR Doctor may add preset-specific checks such as 5W6W sticky-end
-  packing, but must not globally redefine TFZ 7 as success;
-- Final Model Doctor / curate / deposition should preserve explicit evidence
-  provenance rather than assuming every artifact comes from the selected
-  coordinate checkpoint;
-- Construct Registration/Registration Net and bounded recut rescue are the next
-  structural robustness layer before broad automatic Campaign Doctor rescue;
-- reviewed Campaign Doctor eligibility and bounded rescue execution remain a
-  major orchestration layer; donor provenance and donor-to-recipient descriptive
-  comparison prerequisites are already implemented.
-
-## Documentation rule
-
-Use:
-
-- `README.md` for human workflow;
-- `docs/README.md` as the documentation map;
-- `docs/architecture.md` for durable invariants;
-- subsystem docs for active scientific/technical contracts;
-- this file for immediate implementation state;
-- `docs/history/` for archaeology only.
-
-Future work should not require chat history to recover the active design.
+Updated 28 November 2026. Four Q07 substitutions have completed five ordinary diffraction cycles from one mutation card.
+Q06 keeps the PDU B:4 site under review. The aim is for a scientist to use a supported modified nucleotide without hand-editing a CIF. Coot builds the
+residue, NARestraints supplies the intended pairs and stacks, and Cedar checks what
+ReadySet and Phenix actually use. The [completion queue](cif-doctor-completion-queue.md#pipeline-position) owns the work order. The [capability table](cif-doctor.md#current-capability-boundary) owns the support
+claims.
+
+## Where to resume
+
+C640 carried the locally fitted A:19 UY1 into ordinary AutoRefine alongside 2MG, 5MC and 6MZ. The review checkpoint reopened after moving the run. Five cycles reproduced the independently assembled four-site control, including both adenine contacts and both phosphate links. All 16 measured sugar stereocentres kept their hand. A:19 C4′ still crowds A:20 OP1 by 0.494 Å against the Phenix contact target. Three of 50 pair distances elsewhere remain long. These observations came from the unmodified host. C641 now obtains that fixed-coordinate Phenix reading at first publication. It recovered the same 42 residue assignments and 193 requested terms after reducing 10.64 MB of output to a 669 kB archive. The relocated checkpoint reopened offline. C642 joined these steps in the ordinary checked PostMR command. With the qualified UY1 dictionary in the local store, a fresh run produced the same 860 coordinates, five dictionaries, six restraint files and observations as the parent of the completed refinement. C643 verified the intended sulfur side against published crystal and NMR models, including AS itself. On the 1D97 crystal duplex, ReadySet gave Phenix only half the angles around each sulfur-bearing phosphate. C644 added an optional source reading to `cif-doctor catalogue`. It identifies the retained and leaving oxygen in the isolated AS source and distinguishes dithio, sulfur-bridged and ambiguous centres. The installed Phenix detector stops when a sulfur takes the place of either named phosphate oxygen. Its normal DG control passes. All six starting D:4 angles fall within the 1D97 crystal ranges. Before constructing D:4, verify the internal monoanion, its sulfur side and an explicit inter-residue definition that this Phenix actually uses. The four-site checkpoint stays available. [Q07 measurements and remaining work](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
+
+C629 carried the cold-acquired UY1 dictionary into the actual 42-residue model. At A:19 Phenix used the 2′-endo table with the internal O3′–P connection. All 37 active geometry checks passed. In that protected input the general bundle check stopped on the six inherited D:1 phosphate angle replacements. The two native reads verified their actual targets and weights. Formal-charge readback remains unavailable. C637–C640 subsequently covered ordinary selection of the fourth site and four-site refinement from a fresh molecular-replacement solution. [Whole-model evidence](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
+
+C628 closed the isolated-dictionary step for two differently attached methyl ethers. The ordinary dictionary builder recovered UY1’s false C1′–N1 bond in a new attempt. Phenix chose 3′-endo from source coordinates and 2′-endo from generated coordinates. For the independent N-linked control OMU, both starts selected 2′-endo. All four reads per component qualified. Both six-file snapshots reopened offline. The regenerated UY1 numerical file differed from the fitted dictionary only in its writing-time comment. SJO’s source says DNA linking and marks O1P as leaving, so it remains under review. [Q07 evidence and next step](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
+
+C627 tested what happens when the fourth residue receives its full internal-strand dictionary. Phenix stopped expecting a terminal OP3, read O3′ as a bridging oxygen and kept the methyl ether. The other 41 residues and all applied geometry targets were identical. After five matched diffraction cycles, all 860 returned coordinates, occupancies and B factors matched the earlier fit at output precision. This establishes that Cedar can describe the actual backbone chemistry without moving the model in this test. The OP2 protonation question remains with Q13. [Linked chemistry comparison](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
+
+Fresh whole-sugar construction now writes the phosphate where Phenix looks for it in the PDB atom-name field. In a two-residue calibration, moving only two spaces in that label changed the sugar restraint choice from 2′-endo to 3′-endo at identical coordinates. None of the 450 eligible site/conformer observations we screened changed choice. Those include related models and repeated conformers. On the four-site seed, all 860 coordinates were identical after the correction. The older construction still reopens byte for byte. [Phosphate and sugar evidence](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
+
+C624 placed the fourth substitution, 2′-O-methylpseudouridine (UY1), at A:19 opposite adenine D:4. Cedar matched the two pairing atoms and the measured sugar–base twist. Phenix moved only the 21 atoms of UY1, clearing five contacts shorter than 2.2 Å while leaving 839 neighbors fixed. The two base-pair contacts ended at 3.00 and 2.88 Å. Both phosphate links remained 1.60–1.61 Å. Transferring the source sugar pose without matching the host twist left a 2.08 Å clash after the same minimization. This was the geometry-only control. Five diffraction cycles then retained all 22 UY1 bonds and its four sugar hands. The N3–N1 and O2–N6 pair contacts finished at 2.93 and 2.83 Å, and both phosphate links stayed near 1.61 Å. All 125 test reflections kept their assignments. Phenix chose the 2′-endo numerical table with the next phosphate present. In this direct four-site experiment we supplied the repaired dictionary and the host residue’s median starting B. Ordinary four-site PostMR still needs to make those choices and clear the initial sugar clash. [Fourth-site evidence and limits](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
+
+C623 checked the pairing edge for the C-linked UY1 site. The older NARestraints
+recipe asked adenine to bind the oxygen on the sugar-facing side. On the same
+84 deposited atoms from 6I1V, Phenix installed the old distance at 5.33 Å and
+the corrected one at 2.94 Å. Ordinary U:A stayed at 2.90 Å. An offline source
+graph check now detects that mistake even when every atom is renamed.
+The assignment for UY1 transfers from measured PSU and B8H duplexes. [Upstream correction](https://github.com/vecchioni-lab/NARestraints/pull/8).
+
+C620 examined the next two sites, SJO and UY1. The same source-order repair
+caught two different false native bonds. Phenix then chose the same sugar pucker
+from both SJO starting geometries, but different puckers from the two UY1 starts.
+C621 verified both native choices and both literal coordinate starts. UY1’s
+ring pseudorotation was 58.7° in the source and 63.2° in the generated seed.
+These are isolated dictionaries. The linked model still needs the correct
+attachment at the base and both real phosphate connections.
+
+C618–C619 took 2MG, 5MC and 6MZ through ordinary checked PostMR. Starting
+with no 6MZ dictionary, Phenix added an O4′–C2 bond absent from the source.
+Cedar recorded the failed attempt and recovered in one fresh attempt using the
+same source atoms in a different order. The prepared coordinates, observations,
+five parameter files and four dictionaries matched the warm-cache run byte for
+byte. In that run, five ordinary Phenix cycles kept the 26 ring bonds within
+1.98 restraint widths, all twelve sugar hands and all 38 backbone links.
+Rwork/Rfree were 0.2292/0.2338. Three of 50 pairing distances exceeded three
+widths. The unmodified host supplied the diffraction data. Next examine the
+2′-O-methyl sugars on this same eight-site design. Leave the OP2-state question
+with Q13.
+
+C617 moved the starting-B correction into ordinary Coot construction. It checks the
+two base graphs for one methyl in place of a hydrogen, on carbon or nitrogen.
+For 5MC, 2MG and 6MZ the returned atoms reproduced all 32 independently predicted
+starting B values. A fresh two-site Phaser → Coot → ReadySet → AutoRefine run
+gave 1.427 Å for 2MG N9–C4 and 1.366 Å for 5MC N3–C4 after five cycles.
+All 16 ring bonds were within 1.26 restraint widths. The 38 backbone links and
+eight sugar hands survived. Three of 50 pair contacts still require review.
+Rwork/Rfree were 0.2287/0.2356 (earlier two-site run 0.2213/0.2360).
+Fresh checked construction now saves its base-B decisions and rechecks them
+from the raw Coot model, parent and dictionaries when the run is reopened.
+The three-site run above extends that result to the third methylated base.
+
+C614–C616 traced the stretched RNA rings to a construction choice. Coot set all
+32 transported base atoms to B = 20 Å². The three original host bases had median
+B values of 223–270 Å². With the original dictionaries and five ordinary Phenix
+cycles, starting shared heavy atoms from the host B fields and each added methyl
+carbon from its attachment atom kept all 26 ring bonds within two printed widths.
+Rfree changed from 0.2652 to 0.2423. All twelve sugar hands and 38 backbone links
+survived. Three of 50 pair contacts still exceed three widths. These are hypothetical
+substitutions on the host crystal. The exact-component ring dictionary comparisons
+are controls. C617 applied the proven starting-value rule in ordinary construction.
+The independent OP2-state and remaining Q07 substitutions stay on the queue.
+
+C590 isolated why the PDU at B:4 can leave its base plane during refinement.
+On the same coordinates, diffraction observations, displacement and solvent state,
+least squares pulled its methyl tip toward the ring plane and maximum likelihood
+pulled it away. Both five-cycle controls and a direct scattering calculation agreed.
+The chemical plane was active. These 4.19 Å data leave the individual carbon
+unresolved. Keep the qualified parent and mark B:4 for review.
+[Measurements and scope](backbone-chemistry.md#two-diffraction-scores-on-the-same-pdu-model).
+
+C591 identified both neighboring partners at A:11 in the first ordinary mixed
+round. One contact reaches the preceding sugar, the other the following O5′.
+The second round retains the two ATL-atom overlap values. Its compact record
+omits their opposite endpoints. The new optional printed-contact screen preserves
+every qualifying pair. Use the prior observations when planning the independent
+eight-residue challenge and retain explicit review where sugar or phosphorus
+stereochemistry is unresolved. [Mixed-scaffold evidence and transfer criteria](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
+
+The independent eight-substitution W-frame challenge is fixed. Its first three
+sites are C:12 2MG, A:7 5MC and B:5 6MZ. Coot placed all three on correctly handed
+ribose sugars. The six flanking bonds and original displacement values survived
+construction. Removing internal OP3 required proof of both backbone links.
+NARestraints 1.1.4 also corrects the C1′–C5 attachment for four pseudouridines.
+[Pair design and earlier controls](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
+
+ReadySet placed four handed sugar carbons under a tight plane in conventional 6MZ.
+A matched one-cycle experiment reduced base rotation from 38.6° to 8.9° when only
+its dictionary changed. Cedar now screens both recipes for this contradiction with
+the source graph. The source-preserving eLBOW route needed a separate atom-order
+recovery after it introduced a 5.779 Å bond. All 42 declared bonds survived recovery.
+
+Using all three source-derived dictionaries, five cycles preserved all twelve sugar
+hands and six neighboring links. Eight of 50 pair contacts lay beyond three restraint
+widths after one cycle and one after five. The 2MG–C and 6MZ–T contacts reached
+2.46 and 3.37 Å. The diffraction was measured on the original W-frame crystal.
+[Native measurements](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
+
+C611 carried the four independent isolated RNA reads (two with the ordinary Phenix
+sugar pucker and two against the literal dictionary) into the linked model.
+The native site-specific modification and pucker matched at all three sites. All
+148 available checks passed. Phenix exposed no formal charges for the three sites.
+The saved result reopened after relocation with the original run, installed workbook,
+Phenix and local cache inaccessible.
+
+C612–C613 took the actual ReadySet delivery through five native cycles. All three
+sugars retained their hand. Two substitutions also completed the ordinary Phaser,
+Coot, ReadySet and AutoRefine commands from a fresh run with qualified dictionaries.
+Read the ring bonds before advancing the panel. The two-site fit stretched 2MG
+N9–C4 and 5MC N3–C4 to 1.496 and 1.439 Å. The three-site coordinate-only fit
+stretched them further to 1.611 and 1.573 Å. The targets were 1.388 and 1.352 Å.
+6MZ N9–C4 reached 1.530 Å against 1.393 Å. One-cycle controls localized the large
+stretch to the balance with diffraction. Dropping all external pair and stack terms
+left it, while zero coordinate diffraction weight restored all three bonds to within
+two restraint widths with the complete geometry. With the same full restraint set,
+a lower positive weight reduced the three ring discrepancies to 0.9–2.9 widths in
+five stock cycles. Rfree rose from 0.2652 to 0.2767. Test local chemical restraint
+widths and neighboring geometry before recommending a global weight. The printed
+widths were 0.024–0.031 Å for the three modified bonds and 0.006–0.008 Å for their
+ordinary-base comparisons. The source
+OP2 proton also reaches each linked phosphate dictionary. Reuse the Q13 state
+check before changing it. A fresh three-site run still needs to select the
+proven 6MZ recovery through ordinary preparation.
+The C-linked base, distinct sugar bridges and specified sulfur side remain in Q07.
+The catalogue-wide construction sweep follows in Q12. [Queue and scientific boundaries](cif-doctor-completion-queue.md#pipeline-position).
+
+## What already works
+
+- **Preparing and handing off a model.** Q04/Q05 closed on the explicit checked route. A
+  normal campaign on the recorded control completed preparation, phasing and five
+  refinement cycles, then reopened the chosen result after relocation. A separately
+  qualified fallback can survive failed optional chemistry. Unknown or failed attempts
+  retain their files and identity. [Acceptance and limits](cif-doctor-completion-queue.md#q04q05-acceptance-and-supported-boundary-at-c285).
+- **Delivering modified chemistry.** Source-backed PDU and 5PC bond targets and neutral
+  DF–adenine chemistry reached native refinement. Two five-cycle rounds used the known
+  13-change scaffold, including ATL alongside the eight original pairs. Two close ATL
+  contacts and site-dependent PDU/5PC geometry remain. The independent G:5PC C474
+  measurements survive, but its final geometry/report no longer resolve at the original
+  temporary location for a fresh C587 reading. Reuse its recorded evidence with that limit.
+  [Mixed-scaffold requirements](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
+- **Crystal links and deposition.** On the tested 5W6W-derived PDU scaffold, both
+  crossovers survived native restart with the original Free-R set. B:1 has P, OP1 and OP2
+  and connects to B:7 through a crystal copy. D:1 terminal protection is a separate intent.
+  A recut must carry the declared atoms and image into its new numbering. Independent sugar
+  class, torsions and local density still matter even when the O3′–P length recovers. The
+  deposition guide records what the wwPDB actually returned for the locked-DNA models and
+  how to remeasure a reported outlier. [Backbone chemistry](backbone-chemistry.md#the-central-strand-in-the-5w6w-scaffold) · [OneDep checks](pdb-deposition.md).
+- **Transfer beyond the original ligands.** Carry the FANA and mirror-sugar stereochemistry
+  checks, locked-sugar junctions and connected PNA attachment rules into the ordinary
+  route. Census coverage (599 distinct codes in 618 NARestraints rows) identifies the
+  remaining work. Geometric survival on one member qualifies only the tested context. [Coverage and chemical-family gates](cif-doctor-completion-queue.md#chemistry-transfer-and-coverage-packages).
+
+## Boundaries with Willow/Pine and Alder
+
+Willow/Pine identifies the logical strand, the crystallographic copy and what changes when
+the model is recut. Cedar verifies the component graph, the intended covalent versus
+pairing interactions, and the forces and geometry at those endpoints. Alder declares the
+metal site, its donors and protected atoms and the occupancy, displacement and
+anomalous-scattering policy. When a site crosses those boundaries, carry the same chosen
+parent, atom identities, image, dictionaries and Free-R assignments through ordinary
+refinement and its returned model. Reuse the shared map sampling, checkpoint and Phenix
+readers. Linden found that a newer base-restraint reader had stopped the older
+phosphate workers from starting. C622 restored their exact bytes. A relocated
+Cedar wheel emitted all ten worker bundles identically to the original source,
+and 142 focused checks passed. Willow owns the resulting two-link trial. The
+transferable handoff still needs an installed combined-source check. [Integration checks](cif-doctor-completion-queue.md#q16--final-integration-portability-and-retained-artifact-closure).
+
+## Validation and release
+
+For NASolve 0.2.0, the current release interfaces are indexed in the
+[workflow guide](current-behavior.json). A retained metal-site checkpoint exposed
+a distinction between an update to dictionary comparison and a change in
+the NARestraints compiler. Keep the recorded assessor identity and the
+compiler's workbook and software pins when reopening old work.
+[Historical replay requirements](cif-doctor.md#reopening-older-checked-preparations).
+
+
+C623 passed 223 focused checks with each of NARestraints 1.1.4 and the 1.1.5
+candidate. Both new package distributions passed 57 tests after relocation.
+Native Phenix read both restraint sets on identical deposited coordinates.
+
+C620 passed 209 focused tests covering the native sugar checks and acquisition.
+C621 passed 264 focused checks, ran four literal Phenix controls and replayed
+both pairs after moving the evidence and blocking access to the original SDK.
+
+C619 passed 172 focused outer-request, cache and ordinary-PostMR checks, followed
+by 124 acquisition, retention and source-order checks. The two pytest selections
+overlap. Native Phenix 2.2.1-6174 and Coot 1.3.3 completed cold preparation. Its
+compact record reopened after relocation with the original inputs inaccessible.
+
+C587's plane inspection passed 123 focused tests plus seven subtests. C589's AutoRefine
+reporting passed 61 plus 52 subtests. Each set passed from source and from a relocated
+installation. Four PDU logs and a separate FT–Hg log support the target reader. C588's
+relocated full five-cycle replay reproduced the written coordinates, final geometry and all
+140 recorded gradient evaluations for the combined case. These are distinct software and
+native checks. C605 passed 323 focused tests covering qualification execution,
+RNA pucker replay, acquisition, dictionary storage, binding and native usability.
+The 6MZ pair of jobs also reopened identically after both directories moved and
+their previous paths became inaccessible. Phenix 2.2.1-6174 executed the native
+checks. C606 passed 149 focused tests plus seven subtests and ran a fresh
+five-cycle linked Phenix comparison with the same input and Free-R assignments.
+
+The last recorded standalone full Cedar pass is C406 at `58965920`, with 12,043 tests passed, 293
+subtests passed and two native opt-in skips. The later combined C407 experiment had one
+location-dependent fixture failure. The fixture correction has focused coverage.
+C611 passed 419 focused acquisition and linked-chemistry tests and another 108
+focused preparation and sugar tests. C612–C613 used native Phenix 2.2.1-6174,
+Coot 1.3.3 and NARestraints 1.1.4. The trial used the original scaffold observations
+and Free-R flags.
+
+For the 0.2.0 release, publish the full Cedar history through Pine to main.
+The release review records the unfiltered test result and the fresh two-junction
+Phenix restart for the delivered tree. Cedar continues from that tree with its
+existing handoff, tests and queue. The next chemistry gate is the D:4
+phosphorothioate in Q07. Willow and Alder receive the same main commit and
+validate their own interfaces. [Archived commands and receipts](history/README.md#november-26-cedar-roadmap-audit) ·
+[CIF Doctor evidence ledger](cif-linked-native-registration-evidence.json).

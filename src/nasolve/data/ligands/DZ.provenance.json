@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "component": "DZ",
+  "source_repository": "MonomerLibrary/monomers",
+  "source_path": "d/DZ.cif",
+  "source_git_blob": "9e6151658d2887ef3902d170c77752ccc90159d4",
+  "source_sha256": "5405c71d3bf22c9d47b737cc155902e98a2af97e3890bf85dc1f27d9121c57e4",
+  "packaged_sha256": "707d3ab77b2c2f86c71f6659f398235101cf5dbaab65a451140a4052fdabdaf1",
+  "adaptation": "_chem_comp.group NON-POLYMER -> DNA; provenance comments only otherwise",
+  "numerical_geometry_changed": false,
+  "runtime_download": false,
+  "construction_parent": "DC",
+  "not_a_protonation_adjustment": true,
+  "live_validation": "experimental PostMR passed; patched production refinement pending"
+}

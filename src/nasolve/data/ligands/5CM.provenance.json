@@ -1,0 +1,9 @@
+{
+  "source_repository": "MonomerLibrary/monomers",
+  "source_path": "5/5CM.cif",
+  "source_git_blob": "a8a590f15f0b50c42ed9ad46d59eec3aab11d583",
+  "sha256": "f28b283aeb22173d9cf211a893bb45e22974fac18ebadadf318f5d88ed0335df",
+  "adaptations": [],
+  "scope": "Unchanged parameterized DNA component; runtime torsion/profile derivatives remain run-local",
+  "runtime_download": false
+}

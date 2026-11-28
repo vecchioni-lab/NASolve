@@ -15,6 +15,10 @@ from dataclasses import dataclass
 from hashlib import sha256
 from pathlib import Path
 
+from .sequence_syntax import (
+    SequenceSyntaxError, parse_sequence_tokens, sequence_residue_codes,
+)
+
 
 class SequenceReferenceError(ValueError):
     """A sequence reference or an overlay cannot be resolved unambiguously."""
@@ -51,15 +55,13 @@ def _text(value: object, context: str) -> str:
 
 
 def _sequence(value: object, polymer: str, length: int, context: str) -> str:
-    if not isinstance(value, str):
-        _fail(f"{context} must be a sequence string")
-    sequence = "".join(value.split()).upper()
-    if len(sequence) != length:
-        _fail(f"{context}: expected {length} bases, found {len(sequence)}")
-    invalid = sorted(set(sequence) - set(_SEQUENCE_CODES[polymer]))
-    if invalid:
-        _fail(f"{context}: unsupported {polymer} sequence symbols: {', '.join(invalid)}")
-    return sequence
+    try:
+        tokens = parse_sequence_tokens(value, polymer=polymer, context=context)
+    except SequenceSyntaxError as exc:
+        _fail(str(exc))
+    if len(tokens) != length:
+        _fail(f"{context}: expected {length} residues, found {len(tokens)}")
+    return "".join(tokens)
 
 
 @dataclass(frozen=True)
@@ -206,10 +208,12 @@ def compile_sequence_family_targets(
     assignments: dict[str, list[dict[str, str]]] = {site: [] for site in checked.sites}
 
     def assign_sequence(chain: ReferenceChain, sequence: str, source: str) -> None:
-        codes = _SEQUENCE_CODES[chain.polymer]
-        for resid, base in zip(chain.residue_ids, sequence):
+        # An explicit (CCD) token is one site and retains its literal identity.
+        for resid, code in zip(
+            chain.residue_ids, sequence_residue_codes(sequence, chain.polymer)
+        ):
             assignments[f"{chain.chain}:{resid}"].append({
-                "source": source, "residue_code": codes[base],
+                "source": source, "residue_code": code,
             })
 
     for chain in checked.chains:

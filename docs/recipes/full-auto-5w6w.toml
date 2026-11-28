@@ -1,0 +1,16 @@
+schema_version = 2
+id = "5w6w-full-auto"
+version = "1.0.0"
+description = "Bounded full-auto W campaign; provisional results require model/map review"
+
+[chemistry]
+terminal_phosphate_sites = ["D:1"]
+
+[workflow]
+mode = "full-auto"
+run_doctor = true
+select_recommendation = true
+
+[autosol]
+policy = "when-anomalous"
+on_unaccepted = "continue-without-phases"

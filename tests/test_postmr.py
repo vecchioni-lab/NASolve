@@ -1,5 +1,6 @@
 import json
 import shutil
+from dataclasses import dataclass
 import sys
 import tempfile
 import types
@@ -256,6 +257,95 @@ class PostMRTests(unittest.TestCase):
             self.assertEqual(seen["path"], model)
             self.assertEqual(seen["stretches"], "parsed")
             self.assertTrue(seen["include_stacking"])
+            self.assertTrue(output.is_file())
+
+    def test_forced_restraint_geometry_changes_recipe_class_not_identity(self):
+        @dataclass(frozen=True)
+        class PairResidue:
+            chain: str
+            resid: str
+            base_class: str
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            model = root / "model.pdb"
+            model.write_text(
+                pdb_record("ATOM", 1, "P", "DG", "A", 12, element="P")
+                + pdb_record("HETATM", 2, "P", "DZ", "B", 4, element="P")
+                + "END\n"
+            )
+            pairs = root / "pairs.txt"
+            pairs.write_text("A 11:13\nB 5:3\n")
+            output = root / "restraints.phil"
+
+            calls: list[tuple[str, str, str, str]] = []
+            builder = types.ModuleType("restraints.builder")
+            base_pairs = types.ModuleType("restraints.base_pairs")
+            residue_library = types.ModuleType("restraints.residue_library")
+            builder.load_residue_records = lambda: []
+            residue_library.load_residue_records = lambda: []
+            base_pairs.read_base_pair_file = lambda _path: "parsed"
+
+            def generate_pair_restraints(first, second, **kwargs):
+                calls.append((
+                    f"{first.chain}:{first.resid}",
+                    first.base_class,
+                    f"{second.chain}:{second.resid}",
+                    second.base_class,
+                ))
+                return "pair-block"
+
+            builder.generate_pair_restraints = generate_pair_restraints
+
+            def build_phil_from_pdb(
+                path: Path, stretches: object, destination: Path, *,
+                include_stacking: bool,
+            ) -> None:
+                self.assertEqual(stretches, "parsed")
+                for first, second in (
+                    (PairResidue("A", "11", "C"), PairResidue("B", "5", "G")),
+                    (PairResidue("A", "12", "G"), PairResidue("B", "4", "Z")),
+                    (PairResidue("A", "13", "C"), PairResidue("B", "3", "G")),
+                ):
+                    builder.generate_pair_restraints(first, second)
+                destination.write_text("geometry_restraints.edits {}\n")
+
+            builder.build_phil_from_pdb = build_phil_from_pdb
+            package = types.ModuleType("restraints")
+            package.builder = builder
+            modules = {
+                "restraints": package,
+                "restraints.builder": builder,
+                "restraints.base_pairs": base_pairs,
+                "restraints.residue_library": residue_library,
+            }
+
+            with patch.dict(sys.modules, modules):
+                result = _default_narestraints_builder(
+                    model,
+                    pairs,
+                    output,
+                    force_classes_by_site={"A:12": "G", "B:4": "C"},
+                )
+
+            self.assertEqual(
+                calls,
+                [
+                    ("A:11", "C", "B:5", "G"),
+                    ("A:12", "G", "B:4", "C"),
+                    ("A:13", "C", "B:3", "G"),
+                ],
+            )
+            self.assertEqual(
+                result["force_application"],
+                {
+                    "sites": ["A:12", "B:4"],
+                    "actual_base_classes": ["G", "Z"],
+                    "forced_base_classes": ["G", "C"],
+                },
+            )
+            self.assertEqual(result["compatibility_corrections"], [])
+            self.assertIs(builder.generate_pair_restraints, generate_pair_restraints)
             self.assertTrue(output.is_file())
 
     def test_mirrored_canonical_targets_do_not_revert_to_d_dna(self):

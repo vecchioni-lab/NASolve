@@ -1,0 +1,590 @@
+{
+  "schema_version": 1,
+  "document_kind": "CIF_LINKED_SOURCE_RECOVERY_RETURN_AND_OFFLINE_REANALYSIS",
+  "recorded_date": "2026-10-14",
+  "archive": {
+    "name": "06_Cedar_rkmjesl4_cif_linked_review.zip",
+    "sha256": "869432b07c45c7de48fc0c6fec95e8e802f2dbe897f9394ebfb3aca739be464e",
+    "payloads": 87,
+    "manifest_verification": "ALL_SHA256_AND_BYTES_MATCH"
+  },
+  "reported_status": "SOURCE_RECOVERY_REVIEW",
+  "nasolve_source": {
+    "commit": "f433102f5fddca49a323ba27ad099d4ebd094c2c",
+    "working_tree_has_changes": false
+  },
+  "narestraints_source": {
+    "commit": "a7b6a0c93365f7a480b7eee9cc4e860b13f702de",
+    "working_tree_has_changes": false
+  },
+  "delivered_runner_sha256": "9f9fa3fae89421e38cd6ca2143325c757003cfc144fd13443ca1a869b757bc45",
+  "baseline_archive": {
+    "sha256": "7ab8f0dee87a5490539017e2af006f23b4c989f6794f1670db8db821da9d3db4",
+    "size": 678326,
+    "verified_payloads": 57
+  },
+  "installed_generation": {
+    "installation": "Phenix 2.2.1-6174",
+    "dispatcher_version_recorded": "2.2.1",
+    "backend_from_log": "RM1",
+    "optimizer_from_log": "GDIIS",
+    "source_retention_option": "--pH=low",
+    "experimental_ph": "UNASSESSED",
+    "components": {
+      "IMC": {
+        "reported_generation_policy": "cif-independent-elbow-candidate-v3",
+        "reported_status": "CANDIDATE_REVIEW",
+        "rejection_reasons": [],
+        "command_arguments": [
+          "source.cif",
+          "--id=IMC",
+          "--output=candidate",
+          "--template=source_ideal.pdb",
+          "--initial_geometry=source_ideal.pdb",
+          "--add_hydrogens=False",
+          "--pH=low",
+          "--chiral=retain",
+          "--opt"
+        ],
+        "executable_reference": "Selected installation bin/phenix.elbow",
+        "execution": {
+          "elapsed_seconds": 13.774458,
+          "finished_at": "2026-10-14T15:00:04.864592+00:00",
+          "returncode": 0,
+          "started_at": "2026-10-14T14:59:51.088962+00:00",
+          "status": "COMPLETED",
+          "timeout_seconds": 600
+        },
+        "source": {
+          "anchor": "review_archive",
+          "relative_path": "baseline/inputs/sources/8_IMC.cif",
+          "sha256": "c3e62ba98565139cf13b9bcab4a977193f28e2c05e83455ec5fb72721732664c",
+          "bytes": 8049
+        },
+        "candidate": {
+          "anchor": "review_archive",
+          "relative_path": "generation/cif-generation-cnx536yx/candidate.cif",
+          "sha256": "b82edcb3e6db55d5dbfc94df4f2027f09accff66973ac7d715a2e8820db63ee1",
+          "bytes": 13382
+        },
+        "source_inventory": {
+          "atom_count": 37,
+          "heavy_atom_count": 21,
+          "bond_count": 38
+        },
+        "generated_inventory": {
+          "atom_count": 37,
+          "heavy_atom_count": 21,
+          "bond_count": 38,
+          "angle_count": 66
+        },
+        "hydrogen_attachments_unchanged": true,
+        "hydrogen_attachment_count": 16,
+        "numerical_reviews": [
+          [
+            "PLANE-01",
+            "plane-angle-compatibility",
+            "REVIEW"
+          ],
+          [
+            "PLANE-01",
+            "plane-angle-compatibility",
+            "REVIEW"
+          ]
+        ]
+      },
+      "CGY": {
+        "reported_generation_policy": "cif-independent-elbow-candidate-v3",
+        "reported_status": "REJECTED",
+        "rejection_reasons": [
+          "generated-atom-bond-or-hydrogen-identity-changed"
+        ],
+        "command_arguments": [
+          "source.cif",
+          "--id=CGY",
+          "--output=candidate",
+          "--template=source_ideal.pdb",
+          "--initial_geometry=source_ideal.pdb",
+          "--add_hydrogens=False",
+          "--pH=low",
+          "--chiral=retain",
+          "--opt"
+        ],
+        "executable_reference": "Selected installation bin/phenix.elbow",
+        "execution": {
+          "elapsed_seconds": 18.797596,
+          "finished_at": "2026-10-14T15:00:23.934911+00:00",
+          "returncode": 0,
+          "started_at": "2026-10-14T15:00:05.137339+00:00",
+          "status": "COMPLETED",
+          "timeout_seconds": 600
+        },
+        "source": {
+          "anchor": "review_archive",
+          "relative_path": "baseline/inputs/sources/2_CGY.cif",
+          "sha256": "14a94801736e8a86d9b123e58e1dcef52b3f5e61475b87870f55f181f122466d",
+          "bytes": 8772
+        },
+        "candidate": {
+          "anchor": "review_archive",
+          "relative_path": "generation/cif-generation-hssg4rqp/candidate.cif",
+          "sha256": "1c1b5ea7c89dce891fb30c1b5e3259d788d5b9aa88a6b9ad3530cd51e821ee9c",
+          "bytes": 13878
+        },
+        "source_inventory": {
+          "atom_count": 38,
+          "heavy_atom_count": 23,
+          "bond_count": 39
+        },
+        "generated_inventory": {
+          "atom_count": 38,
+          "heavy_atom_count": 23,
+          "bond_count": 39,
+          "angle_count": 66
+        },
+        "hydrogen_attachments_unchanged": true,
+        "hydrogen_attachment_count": 15,
+        "numerical_reviews": [
+          [
+            "PLANE-01",
+            "plane-angle-compatibility",
+            "REVIEW"
+          ],
+          [
+            "PLANE-01",
+            "plane-angle-compatibility",
+            "REVIEW"
+          ],
+          [
+            "PLANE-01",
+            "plane-angle-compatibility",
+            "REVIEW"
+          ],
+          [
+            "PLANE-01",
+            "plane-angle-compatibility",
+            "REVIEW"
+          ],
+          [
+            "PLANE-01",
+            "plane-angle-compatibility",
+            "REVIEW"
+          ]
+        ]
+      },
+      "DX": {
+        "reported_generation_policy": "cif-independent-elbow-candidate-v3",
+        "reported_status": "CANDIDATE_REVIEW",
+        "rejection_reasons": [],
+        "command_arguments": [
+          "source.cif",
+          "--id=DX",
+          "--output=candidate",
+          "--template=source_ideal.pdb",
+          "--initial_geometry=source_ideal.pdb",
+          "--add_hydrogens=False",
+          "--pH=low",
+          "--chiral=retain",
+          "--opt"
+        ],
+        "executable_reference": "Selected installation bin/phenix.elbow",
+        "execution": {
+          "elapsed_seconds": 12.487223,
+          "finished_at": "2026-10-14T15:00:36.495004+00:00",
+          "returncode": 0,
+          "started_at": "2026-10-14T15:00:24.007804+00:00",
+          "status": "COMPLETED",
+          "timeout_seconds": 600
+        },
+        "source": {
+          "anchor": "review_archive",
+          "relative_path": "baseline/inputs/sources/5_DX.cif",
+          "sha256": "6bcf650c0dabdabc1b95b99354b91cc8f4874f112703f871e85211dd40ea6fb0",
+          "bytes": 7597
+        },
+        "candidate": {
+          "anchor": "review_archive",
+          "relative_path": "generation/cif-generation-nngp50y0/candidate.cif",
+          "sha256": "07d37e39e23cd4ca918e3d64951803d35c127ceaa352ef0b20c260801170c4c9",
+          "bytes": 13551
+        },
+        "source_inventory": {
+          "atom_count": 36,
+          "heavy_atom_count": 23,
+          "bond_count": 38
+        },
+        "generated_inventory": {
+          "atom_count": 36,
+          "heavy_atom_count": 23,
+          "bond_count": 38,
+          "angle_count": 66
+        },
+        "hydrogen_attachments_unchanged": true,
+        "hydrogen_attachment_count": 13,
+        "numerical_reviews": []
+      }
+    }
+  },
+  "reused_IGU_candidate": {
+    "status": "EXISTING_SOURCE_PRESERVING_CANDIDATE",
+    "source": {
+      "anchor": "review_archive",
+      "relative_path": "baseline/inputs/sources/7_IGU.cif",
+      "sha256": "1ddaaef74adafd0e989679ec9cf2197d7a8590002c472f8d6b764f52202e3a8f",
+      "bytes": 8191
+    },
+    "candidate": {
+      "anchor": "review_archive",
+      "relative_path": "baseline/inputs/candidate/candidate.cif",
+      "sha256": "875826476e9c3adee3b22b87ac6748eb94829e4382a1b40efc6aef8bbcbc9fb6",
+      "bytes": 13757
+    }
+  },
+  "offline_reanalysis": {
+    "generation_policy": "cif-independent-elbow-candidate-v4",
+    "representation_policy": "cif-source-declared-six-member-aromatic-v1",
+    "native_execution": "NOT_RUN",
+    "candidates": {
+      "IGU": {
+        "status": "CANDIDATE_REVIEW",
+        "bond_representation": {
+          "policy_id": "cif-source-declared-six-member-aromatic-v1",
+          "status": "EXACT",
+          "connectivity_unchanged": true,
+          "equivalent_rings": [],
+          "unresolved_bonds": []
+        },
+        "prepared_status": "PREPARED_REVIEW",
+        "deleted_atoms": [
+          "HO3'",
+          "HOP3",
+          "OP3"
+        ],
+        "retained_op2_hydrogens": [
+          "HOP2"
+        ],
+        "numerical_reviews": [
+          [
+            "PLANE-01",
+            "plane-angle-compatibility",
+            "REVIEW"
+          ],
+          [
+            "PLANE-01",
+            "plane-angle-compatibility",
+            "REVIEW"
+          ],
+          [
+            "PLANE-01",
+            "plane-angle-compatibility",
+            "REVIEW"
+          ],
+          [
+            "PLANE-01",
+            "plane-angle-compatibility",
+            "REVIEW"
+          ],
+          [
+            "PLANE-01",
+            "plane-angle-compatibility",
+            "REVIEW"
+          ]
+        ],
+        "source_sha256": "1ddaaef74adafd0e989679ec9cf2197d7a8590002c472f8d6b764f52202e3a8f",
+        "candidate_sha256": "875826476e9c3adee3b22b87ac6748eb94829e4382a1b40efc6aef8bbcbc9fb6"
+      },
+      "IMC": {
+        "status": "CANDIDATE_REVIEW",
+        "bond_representation": {
+          "policy_id": "cif-source-declared-six-member-aromatic-v1",
+          "status": "EXACT",
+          "connectivity_unchanged": true,
+          "equivalent_rings": [],
+          "unresolved_bonds": []
+        },
+        "prepared_status": "PREPARED_REVIEW",
+        "deleted_atoms": [
+          "HO3'",
+          "HOP3",
+          "OP3"
+        ],
+        "retained_op2_hydrogens": [
+          "HOP2"
+        ],
+        "numerical_reviews": [
+          [
+            "PLANE-01",
+            "plane-angle-compatibility",
+            "REVIEW"
+          ],
+          [
+            "PLANE-01",
+            "plane-angle-compatibility",
+            "REVIEW"
+          ]
+        ],
+        "source_sha256": "c3e62ba98565139cf13b9bcab4a977193f28e2c05e83455ec5fb72721732664c",
+        "candidate_sha256": "b82edcb3e6db55d5dbfc94df4f2027f09accff66973ac7d715a2e8820db63ee1"
+      },
+      "CGY": {
+        "status": "CANDIDATE_REVIEW",
+        "bond_representation": {
+          "policy_id": "cif-source-declared-six-member-aromatic-v1",
+          "status": "SOURCE_DECLARED_EQUIVALENT",
+          "connectivity_unchanged": true,
+          "equivalent_rings": [
+            {
+              "atoms": [
+                "C1",
+                "C2",
+                "C4",
+                "C5",
+                "C6",
+                "N3"
+              ],
+              "bonds": [
+                {
+                  "atoms": [
+                    "C1",
+                    "C2"
+                  ],
+                  "source_order": "SINGLE",
+                  "generated_order": "AROMATIC",
+                  "source_aromatic_declaration": "Y"
+                },
+                {
+                  "atoms": [
+                    "C1",
+                    "C6"
+                  ],
+                  "source_order": "DOUBLE",
+                  "generated_order": "AROMATIC",
+                  "source_aromatic_declaration": "Y"
+                },
+                {
+                  "atoms": [
+                    "C2",
+                    "N3"
+                  ],
+                  "source_order": "DOUBLE",
+                  "generated_order": "AROMATIC",
+                  "source_aromatic_declaration": "Y"
+                },
+                {
+                  "atoms": [
+                    "C4",
+                    "C5"
+                  ],
+                  "source_order": "DOUBLE",
+                  "generated_order": "AROMATIC",
+                  "source_aromatic_declaration": "Y"
+                },
+                {
+                  "atoms": [
+                    "C4",
+                    "N3"
+                  ],
+                  "source_order": "SINGLE",
+                  "generated_order": "AROMATIC",
+                  "source_aromatic_declaration": "Y"
+                },
+                {
+                  "atoms": [
+                    "C5",
+                    "C6"
+                  ],
+                  "source_order": "SINGLE",
+                  "generated_order": "AROMATIC",
+                  "source_aromatic_declaration": "Y"
+                }
+              ]
+            }
+          ],
+          "unresolved_bonds": []
+        },
+        "prepared_status": "PREPARED_REVIEW",
+        "deleted_atoms": [
+          "H3'2",
+          "HO3'",
+          "OP3"
+        ],
+        "retained_op2_hydrogens": [
+          "H1"
+        ],
+        "numerical_reviews": [
+          [
+            "PLANE-01",
+            "plane-angle-compatibility",
+            "REVIEW"
+          ],
+          [
+            "PLANE-01",
+            "plane-angle-compatibility",
+            "REVIEW"
+          ],
+          [
+            "PLANE-01",
+            "plane-angle-compatibility",
+            "REVIEW"
+          ],
+          [
+            "PLANE-01",
+            "plane-angle-compatibility",
+            "REVIEW"
+          ],
+          [
+            "PLANE-01",
+            "plane-angle-compatibility",
+            "REVIEW"
+          ]
+        ],
+        "source_sha256": "14a94801736e8a86d9b123e58e1dcef52b3f5e61475b87870f55f181f122466d",
+        "candidate_sha256": "1c1b5ea7c89dce891fb30c1b5e3259d788d5b9aa88a6b9ad3530cd51e821ee9c"
+      },
+      "DX": {
+        "status": "CANDIDATE_REVIEW",
+        "bond_representation": {
+          "policy_id": "cif-source-declared-six-member-aromatic-v1",
+          "status": "EXACT",
+          "connectivity_unchanged": true,
+          "equivalent_rings": [],
+          "unresolved_bonds": []
+        },
+        "prepared_status": "PREPARED_REVIEW",
+        "deleted_atoms": [
+          "H1",
+          "H6",
+          "OP3"
+        ],
+        "retained_op2_hydrogens": [
+          "H14"
+        ],
+        "numerical_reviews": [],
+        "source_sha256": "6bcf650c0dabdabc1b95b99354b91cc8f4874f112703f871e85211dd40ea6fb0",
+        "candidate_sha256": "07d37e39e23cd4ca918e3d64951803d35c127ceaa352ef0b20c260801170c4c9"
+      }
+    }
+  },
+  "software_validation": {
+    "full_suite": {
+      "passed": 1370,
+      "skipped": 2,
+      "subtests_passed": 276,
+      "seconds": 97.41,
+      "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short"
+    },
+    "first_focused": {
+      "passed": 192,
+      "seconds": 38.98,
+      "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short --maxfail=2 tests/test_cif_aromatic_representation.py tests/test_cif_generation.py tests/test_cif_generation_cli.py tests/test_cif_generation_probe.py tests/test_cif_native_probe.py tests/test_cif_linked_preparation.py tests/test_cif_linked_probe.py tests/test_cif_linked_qualification.py tests/test_cif_native_validation.py"
+    },
+    "final_aromatic_and_orchestration_focus": {
+      "passed": 36,
+      "seconds": 1.84,
+      "command": "env PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src ../check-venv/bin/python -m pytest -q --tb=short --maxfail=2 tests/test_cif_aromatic_representation.py tests/test_cif_linked_probe.py"
+    },
+    "regression_before_fix": "Both invented source-declared six-ring cases were incorrectly REJECTED; the same assertions pass after the change.",
+    "figure": "SVG regenerated, rendered to PNG and visually inspected."
+  },
+  "boundaries": {
+    "reported_receipts_rewritten": false,
+    "raw_candidate_files_rewritten": false,
+    "dictionary_adoption": false,
+    "readyset_retry": "NOT_RUN",
+    "refinement": "NOT_RUN",
+    "new_native_bundle_interpretation": "NOT_RUN",
+    "same_code_control_native": "NOT_RUN",
+    "native_linked_qualification": "PENDING_CEDAR_07",
+    "experimental_protonation": "UNASSESSED",
+    "generated_stereochemical_metadata": "REVIEW_REQUIRED",
+    "numerical_geometry": "REVIEW_REQUIRED",
+    "achieved_model_geometry": "NOT_RUN",
+    "unpublished_payloads_committed": false
+  },
+  "primary_reference_definitions": [
+    {
+      "url": "https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_chem_comp_bond.pdbx_aromatic_flag.html",
+      "checked_date": "2026-10-14",
+      "meaning": "Y explicitly declares an aromatic bond; missing or contradictory flags are not affirmative evidence."
+    },
+    {
+      "url": "https://mmcif.wwpdb.org/dictionaries/mmcif_pdbx_v50.dic/Items/_chem_comp_bond.value_order.html",
+      "checked_date": "2026-10-14",
+      "meaning": "Bond-order representation includes single, double and aromatic values; equality is checked only under the bounded source-declaration policy."
+    }
+  ],
+  "CGY_bond_representation": {
+    "policy_id": "cif-source-declared-six-member-aromatic-v1",
+    "status": "SOURCE_DECLARED_EQUIVALENT",
+    "connectivity_unchanged": true,
+    "equivalent_rings": [
+      {
+        "atoms": [
+          "C1",
+          "C2",
+          "C4",
+          "C5",
+          "C6",
+          "N3"
+        ],
+        "bonds": [
+          {
+            "atoms": [
+              "C1",
+              "C2"
+            ],
+            "source_order": "SINGLE",
+            "generated_order": "AROMATIC",
+            "source_aromatic_declaration": "Y"
+          },
+          {
+            "atoms": [
+              "C1",
+              "C6"
+            ],
+            "source_order": "DOUBLE",
+            "generated_order": "AROMATIC",
+            "source_aromatic_declaration": "Y"
+          },
+          {
+            "atoms": [
+              "C2",
+              "N3"
+            ],
+            "source_order": "DOUBLE",
+            "generated_order": "AROMATIC",
+            "source_aromatic_declaration": "Y"
+          },
+          {
+            "atoms": [
+              "C4",
+              "C5"
+            ],
+            "source_order": "DOUBLE",
+            "generated_order": "AROMATIC",
+            "source_aromatic_declaration": "Y"
+          },
+          {
+            "atoms": [
+              "C4",
+              "N3"
+            ],
+            "source_order": "SINGLE",
+            "generated_order": "AROMATIC",
+            "source_aromatic_declaration": "Y"
+          },
+          {
+            "atoms": [
+              "C5",
+              "C6"
+            ],
+            "source_order": "SINGLE",
+            "generated_order": "AROMATIC",
+            "source_aromatic_declaration": "Y"
+          }
+        ]
+      }
+    ],
+    "unresolved_bonds": []
+  }
+}

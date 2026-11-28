@@ -9,12 +9,48 @@ defaults and existing frozen runs remain unchanged. Explicit campaign
 sequence-thread inheritance is supported; thread membership remains target
 metadata and does not imply model compatibility or reuse.
 
+This receipt concerns the earlier sequence-family integration, not the later
+combined D:T/B:S/Z:P/K:X geometry challenge. The combined trial has passed
+identity, linkage-mechanics and restraint-coverage checks; its effective
+geometry qualification remains pending in the
+[native ledger](native-modified-pair-live-validation.md).
+
+## Reviewed A1AAZ / DF bridge for native PDB targets
+
+The exact parenthetical token `(A1AAZ)` is preserved as requested CCD/deposition
+identity through the annotated sequence, campaign freeze and family target.
+At **new PostMR preparation**, only this explicitly reviewed name is mapped to
+lab-compatible **DF** (the curated 2-thiothymidine), with a separate requested-
+versus-prepared record and `basis=reviewed-deposition-to-pdb-code`. The DF
+package lists `deposition_code=A1AAZ`; the constructed PDB uses DF, never a
+five-letter truncation. This does not infer chemical equivalence for arbitrary
+CCD names; any other unreviewed 4/5-character PDB target still stops.
+
+A paired W sequence-level test uses `GAGCAG(5CM)CTGTATGGACA(A1AAZ)CA` for chain A
+(21 residues), and `G(DG)CTGCT` for chain C (7 residues). The
+explicit targets are A:7 5CM/C:9 DG, A:19 A1AAZ->DF/D:4 DA,
+and the independent standard A:12 DZ/B:4 DP pair. A:4 DC/C:12
+DG remains the ordinary C:G pair. B and D retain their frozen
+reference sequences. C:9 `(DG)` tests two-letter token parsing,
+A:7 `(5CM)` three-letter, and A:19 `(A1AAZ)` five-letter. All
+target pairs are design hypotheses; a native refinement result
+does not prove the synthetic chemistry of the diffraction data. All such native tests
+are explicit synthetic **target chemistry challenges**, not claims about the
+unknown measured chemistry of the chosen diffraction set. Do not replace the
+real original dataset's coordinates, observations or historical runs.
+
 ## Scope and scientific boundary
 
 A sequence-defined construct family is one supported design model, not the
 meaning of a campaign. Other experiments may be related by geometry, topology,
 or declared design parameters without sharing a sequence or an MR scaffold.
 Family membership never establishes search-model interchangeability.
+
+The separately requested PDB/coordinate-mmCIF adapter and explicit trust-model
+mode are [planned input capabilities](architecture.md#proposed-model-input-contract).
+Trust-model mode would record independent sequence agreement as unverified and
+skip sequence-driven mutation; it would not fabricate a sequence-family target
+or silently opt into this reference contract when a sequence file is absent.
 
 The reference `w-metal-scaffold` describes the reviewed W-family **sequence**.
 The name does not request a metal atom, metal occupancy, coordination geometry,
@@ -66,6 +102,15 @@ preceding assignments, including assignments that retain the same identity.
 Component-code overlays must already be resolved by the existing identity/alias
 layer. Checking their syntax here does not certify dictionary availability,
 connectivity, handedness, or a supported mutation route.
+
+Sequence-reference chains, thread sequences and dataset sequence overlays now
+share the parenthetical literal-CCD syntax, e.g. `AC(5CM)GT(DZ)` is six residues.
+Each source layer assigns one **resolved component code** per explicitly numbered
+site; the stored sequence remains legible and the layer-specific assignment
+history remains intact. A later `[mutations]` / site-chemistry override retains
+its existing higher precedence. Long registered CCD tokens remain representable
+in this abstract target contract even when the current PDB-only PostMR emitter
+requires a separately reviewed short refinement representation.
 
 The primitive has no dependency on a mutable workspace, a current checkpoint,
 Phenix/Coot, or inferred dataset grouping. It does not build coordinates.
@@ -213,3 +258,41 @@ AutoRefine continuation. That validation does not make the reference a default:
 a future versioned recipe may consider doing so explicitly. The metal-pair
 project, automatic cross-dataset model reuse, and geometry/topology-defined
 campaign families remain separate work.
+
+## Planned eight-pair synthetic live test
+
+The requested follow-on, **after current construction/recovery work is ready**,
+is one fresh ordinary NASolve run containing all eight ordered pair families:
+
+| Requested family | Explicit component identities |
+| --- | --- |
+| K:X | CGY:DX |
+| D:T | 1AP:DT |
+| Z:P | DZ:DP |
+| B:S | IGU:IMC (existing reviewed family mapping) |
+| PDU:A | PDU:DA |
+| 5PC:G | 5PC:DG |
+| 5CM:Q | 5CM:S6G |
+| F:A | DF:DA |
+
+This is a **planned integration test, not a staged sequence or native result**.
+The alias registry already maps Q to S6G and F to DF. B:S uses the earlier
+synthetic recipe's explicit IGU:IMC identities; it does not create a bare S
+alias. Preserve the earlier six-pair recipe and its immutable results. The
+complete annotated sequences, nonconflicting chain/residue pair map, scaffold,
+terminal-phosphate policy and frozen source hashes will be explicit at staging.
+
+Use a new test directory with selected donor observations and preserved Free-R.
+The hypothetical modifications are software test intent, not a claim about the
+donor crystal's chemistry. Keep synthetic AutoSol disabled. NARestraints owns
+declared pairing/stacking, with competing Phenix secondary-structure guesses
+disabled. Check exact identities, ordinary construction/backbone links,
+effective PDU/5PC triple/linear terms, chemical-state/stereochemical findings,
+numerical stopping and achieved geometry, then refinement and human model/map
+review. Completion of one layer does not certify another.
+
+The exact requested coverage and execution boundary are recorded under
+`post_build_mixed_sequence_live_test_2026_10_21` in the
+[native evidence ledger](cif-linked-native-registration-evidence.json), mirrored
+in the [implementation map](cif-restraint-doctor-implementation.json). Future
+live command passage retains the pinned Git delivery block joined by `&&`.

@@ -13,6 +13,7 @@ from .phosphate import PhosphateError, validate_op3_sites, validate_phosphate_in
 from .backbone import BackboneError, validate_backbone_sites
 from .presets import PresetError, ProjectPreset, load_preset
 from .residue_aliases import LigandCodeError, ResolvedLigand, resolve_ligand, resolve_pair
+from .sequence_syntax import SequenceSyntaxError, canonical_sequence
 
 
 class AutoMRInputError(RuntimeError):
@@ -40,6 +41,7 @@ class AutoMRIntent:
     mode: str | None = None
     frame: str | None = None
     pair: str | None = None
+    force: str | None = None
     model: str | None = None
     model_family: str | None = None
     sequence_file: str | None = None
@@ -53,6 +55,7 @@ class AutoMRIntent:
     backbone_sites: dict[str, str] = field(default_factory=dict)
     allow_unreviewed_backbone: bool = False
     sequence_reference: str | None = None
+    restraint_scope: str | None = None
 
 
 @dataclass(frozen=True)
@@ -92,6 +95,9 @@ class ResolvedAutoMRInput:
     model_family: str | None = None
     model_provider: dict[str, object] | None = None
     frame_sequence_source: Path | None = None
+    force_text: str | None = None
+    force_pair: tuple[str, str] | None = None
+    restraint_scope: str | None = None
 
 
 _ALLOWED_SECTIONS = {"automr", "sequences", "mutations", "backbones"}
@@ -99,6 +105,7 @@ _ALLOWED_AUTOMR_KEYS = {
     "mode",
     "frame",
     "pair",
+    "force",
     "model",
     "model_family",
     "sequence_file",
@@ -108,7 +115,14 @@ _ALLOWED_AUTOMR_KEYS = {
     "allow_op3_sites",
     "five_prime_phosphate_sites",
     "allow_unreviewed_backbone",
+    "restraint_scope",
 }
+
+
+def validate_restraint_scope(value: object) -> str | None:
+    if value is not None and value != "all":
+        raise AutoMRInputError("restraint_scope must be 'all' or omitted for the existing recipe")
+    return value
 
 
 def _validated_model_family(value: object) -> str | None:
@@ -124,28 +138,58 @@ def _validated_model_family(value: object) -> str | None:
     return family
 
 
+_RESTRAINT_BASE_CLASSES = frozenset({
+    "A", "T", "G", "C", "D", "B", "S", "Z", "P", "K", "X", "I",
+})
+
+
+def _validated_force_pair(value: object) -> tuple[str, str] | None:
+    """Validate an explicit NARestraints base-class recipe override."""
+    if value is None:
+        return None
+    if not isinstance(value, str):
+        raise AutoMRInputError("force must be an ordered base-class pair such as G:C")
+    text = value.strip()
+    if not text:
+        return None
+    parts = [part.strip().upper() for part in text.split(":")]
+    if (
+        len(parts) != 2
+        or any(len(part) != 1 or part not in _RESTRAINT_BASE_CLASSES for part in parts)
+    ):
+        allowed = ", ".join(sorted(_RESTRAINT_BASE_CLASSES))
+        raise AutoMRInputError(
+            "force must contain exactly two NARestraints base classes "
+            f"(FIRST:SECOND; allowed classes: {allowed})"
+        )
+    return parts[0], parts[1]
+
+
 def _validated_sequences(
     sequences: Mapping[str, str],
     context: str,
+    valid_ligand_codes: Collection[str] | None = None,
 ) -> dict[str, str]:
     validated: dict[str, str] = {}
     for raw_chain, raw_sequence in sequences.items():
+        if not isinstance(raw_chain, str):
+            raise AutoMRInputError(f"{context} chain names must be text")
         chain = raw_chain.strip()
-        sequence = "".join(raw_sequence.split()).upper()
-        if not chain or not sequence:
+        if not chain:
             raise AutoMRInputError(f"{context} chain names and sequences cannot be empty")
         if len(chain) != 1:
             raise AutoMRInputError(
                 f"{context} chain {chain!r} must be one PDB chain identifier"
             )
-        invalid = sorted(set(sequence) - set("ACGTU"))
-        if invalid:
-            raise AutoMRInputError(
-                f"{context} chain {chain} contains unsupported sequence symbol(s): "
-                + ", ".join(invalid)
-            )
         if chain in validated:
             raise AutoMRInputError(f"{context} contains duplicate chain {chain!r}")
+        try:
+            sequence = canonical_sequence(
+                raw_sequence, context=f"{context} chain {chain}",
+                valid_ligand_codes=valid_ligand_codes,
+            )
+        except SequenceSyntaxError as exc:
+            raise AutoMRInputError(str(exc)) from exc
         validated[chain] = sequence
     return validated
 
@@ -263,10 +307,9 @@ def read_intent(path: Path | None) -> AutoMRIntent:
         raise AutoMRInputError(
             "[automr] allow_unreviewed_backbone must be true or false"
         ) from exc
-    sequences = _validated_sequences({
-        chain.strip(): "".join(sequence.split())
-        for chain, sequence in parser["sequences"].items()
-    } if "sequences" in parser else {}, "[sequences]")
+    sequences = _validated_sequences(
+        dict(parser["sequences"]) if "sequences" in parser else {}, "[sequences]"
+    )
     mutations = {
         site.strip(): residue.strip()
         for site, residue in parser["mutations"].items()
@@ -297,6 +340,8 @@ def read_intent(path: Path | None) -> AutoMRIntent:
         mode=automr.get("mode") or None,
         frame=automr.get("frame") or None,
         pair=automr.get("pair") or None,
+        force=automr.get("force") or None,
+        restraint_scope=validate_restraint_scope(automr.get("restraint_scope")),
         model=automr.get("model") or None,
         model_family=_validated_model_family(automr.get("model_family")),
         sequence_file=automr.get("sequence_file") or None,
@@ -617,6 +662,7 @@ def resolve_automr_input(
         raise AutoMRInputError(str(exc)) from exc
     if type(intent.allow_unreviewed_backbone) is not bool:
         raise AutoMRInputError("allow_unreviewed_backbone must be true or false")
+    restraint_scope = validate_restraint_scope(intent.restraint_scope)
     dataset = discover_dataset(root)
     configured_mode = intent.mode.strip().casefold() if intent.mode else None
     if configured_mode not in {None, "standard", "nonstandard"}:
@@ -635,6 +681,10 @@ def resolve_automr_input(
         mode = "nonstandard"
 
     pair_text = pair_override or intent.pair
+    force_pair = _validated_force_pair(intent.force)
+    force_text = (
+        ":".join(force_pair) if force_pair is not None else None
+    )
     frame: FrameSpec | None = None
     pair: tuple[ResolvedLigand, ResolvedLigand] | None = None
     model_pair: tuple[ResolvedLigand, ResolvedLigand] | None = None
@@ -704,6 +754,11 @@ def resolve_automr_input(
             raise AutoMRInputError(
                 "pair = is only valid in standard mode; use exact [mutations] sites for nonstandard models"
             )
+        if force_pair is not None:
+            raise AutoMRInputError(
+                "force = is only valid for a standard-frame pair; it changes "
+                "restraint geometry, not residue identity"
+            )
         model, model_source = _resolve_dataset_model(dataset.root, model_selector)
         model_provider = {
             "kind": (
@@ -720,7 +775,7 @@ def resolve_automr_input(
         model_provider["construct_family"] = model_family
 
     sequence_file: Path | None = None
-    sequences = dict(intent.sequences)
+    sequences = _validated_sequences(intent.sequences, "Sequence", valid_ligand_codes)
     if intent.sequence_file:
         if mode != "nonstandard":
             raise AutoMRInputError("sequence_file is currently supported only in nonstandard mode")
@@ -794,6 +849,9 @@ def resolve_automr_input(
         frame=frame,
         pair_text=pair_text,
         pair=pair,
+        force_text=force_text,
+        force_pair=force_pair,
+        restraint_scope=restraint_scope,
         model=model,
         model_source=model_source,
         model_pair=model_pair,
@@ -824,6 +882,8 @@ def format_intent(resolved: ResolvedAutoMRInput) -> str:
     if resolved.mode == "standard":
         assert resolved.frame is not None and resolved.pair_text is not None
         lines.extend([f"frame = {resolved.frame.name}", f"pair = {resolved.pair_text}"])
+        if resolved.force_text is not None:
+            lines.append(f"force = {resolved.force_text}")
         if resolved.model_selector is not None:
             lines.append(f"model = {resolved.model_selector}")
         if resolved.model_family is not None:
@@ -831,11 +891,42 @@ def format_intent(resolved: ResolvedAutoMRInput) -> str:
         if resolved.allow_p1_standard:
             lines.append("allow_p1_standard = true")
     else:
-        relative_model = (
-            resolved.model_selector
-            if resolved.model_selector is not None
-            else resolved.model.relative_to(resolved.dataset.root).as_posix()
-        )
+        if resolved.model_selector is not None:
+            relative_model = resolved.model_selector
+        elif (
+            isinstance(resolved.model_provider, Mapping)
+            and resolved.model_provider.get("kind") == "discovered-nonstandard-model"
+        ):
+            selector = resolved.model_provider.get("selector")
+            if (
+                not isinstance(selector, str)
+                or not selector
+                or "\\" in selector
+                or any(char in selector for char in "\r\n\x00")
+            ):
+                raise AutoMRInputError(
+                    "Discovered nonstandard model provider has a malformed selector"
+                )
+            selector_path = Path(selector)
+            if (
+                selector_path.is_absolute()
+                or len(selector_path.parts) != 1
+                or any(part in {"", ".", ".."} for part in selector_path.parts)
+                or selector_path.suffix.casefold() != ".pdb"
+            ):
+                raise AutoMRInputError(
+                    "Discovered nonstandard model provider must name one top-level PDB"
+                )
+            relative_model = selector
+        else:
+            try:
+                relative_model = resolved.model.relative_to(
+                    resolved.dataset.root
+                ).as_posix()
+            except ValueError as exc:
+                raise AutoMRInputError(
+                    "Nonstandard model is outside the dataset and has no portable selector provenance"
+                ) from exc
         lines.append(f"model = {relative_model}")
         if resolved.model_family is not None:
             lines.append(f"model_family = {resolved.model_family}")
@@ -855,6 +946,8 @@ def format_intent(resolved: ResolvedAutoMRInput) -> str:
                 except ValueError as exc:
                     raise AutoMRInputError("Sequence reference must be built-in or dataset-relative") from exc
         lines.append(f"sequence_reference = {reference_text}")
+    if resolved.restraint_scope is not None:
+        lines.append("restraint_scope = " + validate_restraint_scope(resolved.restraint_scope))
     if resolved.mirror:
         lines.append("mirror = true")
     if resolved.allow_unreviewed_backbone:

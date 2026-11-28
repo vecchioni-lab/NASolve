@@ -1,3 +1,4 @@
+import hashlib
 import json
 import shutil
 import tempfile
@@ -53,6 +54,7 @@ class CampaignExecutionTests(unittest.TestCase):
         status = self.outcomes.get((dataset["id"], stage), {
             "preflight": "READY", "phaser": "MR_SUCCESS", "postmr": "POSTMR_READY",
             "autosol": "SKIPPED", "autorefine": "AUTOREFINE_READY",
+            "refine-doctor": "REFINE_DOCTOR_RECOMMEND",
         }[stage])
         report = run / "report.json"
         report.write_text(json.dumps({"stage": stage, "status": status}))
@@ -63,6 +65,14 @@ class CampaignExecutionTests(unittest.TestCase):
                   "run_report_snapshot": snapshot.relative_to(root).as_posix()}
         if stage == "autorefine":
             result.update(checkpoint="refine-001", selected_as_current=status == "AUTOREFINE_READY")
+        elif stage == "refine-doctor":
+            result.update(
+                checkpoint="refine-002",
+                source_checkpoint="refine-001",
+                recommended_checkpoint="refine-002",
+                current_checkpoint_preserved=True,
+                recommendation="Inspect refine-002 before selecting it",
+            )
         if self.after_stage is not None:
             self.after_stage(dataset["id"], stage)
         return result
@@ -77,9 +87,69 @@ class CampaignExecutionTests(unittest.TestCase):
     def directory(self, dataset, stage, attempt=1):
         return self.root / job_relative(dataset, attempt, stage)
 
+    def test_preparation_notes_survive_later_stages_and_read_only_status(self):
+        import io
+        from contextlib import redirect_stdout
+        from nasolve.cli import main
+        ordinary = self.stage
+        note = "PDU: optional plane generation timed out; independently checked result retained."
+        def with_notes(*args, **kwargs):
+            result = ordinary(*args, **kwargs)
+            if args[3] == "postmr":
+                result["preparation_notes"] = [note]
+            return result
+        with patch("nasolve.campaign_worker.execute_stage", side_effect=with_notes):
+            result = execute_campaign(self.root, datasets=("A",))
+        item = self.items(result)["A"]
+        self.assertEqual(item["preparation_notes"], [note])
+        self.assertEqual(item["status"], "SOLVED")
+        self.assertEqual(item["scientific_warnings"], [])
+        before = {str(p.relative_to(self.root)): (p.read_bytes(), p.stat().st_mtime_ns)
+                  for p in self.root.rglob("*") if p.is_file()}
+        with patch("subprocess.Popen", side_effect=AssertionError("Read only")):
+            again = execution_status(self.root)
+            self.assertEqual(self.items(again)["A"]["preparation_notes"], [note])
+            output = io.StringIO()
+            with redirect_stdout(output):
+                self.assertEqual(main(["campaign", "status", str(self.root)]), 0)
+        self.assertIn("Preparation note: " + note, output.getvalue())
+        self.assertEqual(before, {str(p.relative_to(self.root)): (p.read_bytes(), p.stat().st_mtime_ns)
+                                 for p in self.root.rglob("*") if p.is_file()})
+
+    def test_receipt_rejects_malformed_preparation_notes_even_after_rehash(self):
+        from nasolve.campaign_records import read_receipt
+        execute_campaign(self.root, datasets=("A",), through="postmr")
+        directory = self.directory("A", "postmr")
+        job = read_record(directory/"job.json")
+        receipt = read_record(directory/"result.json")
+        for notes in ("not a list", [None], [1], [""], {"PDU": "note"}):
+            with self.subTest(notes=notes):
+                write_record(directory/"result.json", dict(receipt, preparation_notes=notes), replace=True)
+                with self.assertRaisesRegex(CampaignError, "preparation notes"):
+                    read_receipt(self.root, directory, job)
+
     def test_read_only_status_does_not_create_execution(self):
         self.assertIsNone(execution_status(self.root)["execution"])
         self.assertFalse((self.root / EXECUTION).exists())
+
+    def test_schema1_w_plan_remains_executable(self):
+        plan_path = self.root / "NASolveCampaign" / "plan.json"
+        plan = json.loads(plan_path.read_text())
+        plan["schema_version"] = 1
+        for entry in plan["datasets"]:
+            entry["effective_config"].pop("sequence_source", None)
+        plan.pop("fingerprint", None)
+        plan["fingerprint"] = hashlib.sha256(json.dumps(
+            plan, sort_keys=True, separators=(",", ":"), allow_nan=False,
+        ).encode()).hexdigest()
+        plan_path.write_text(json.dumps(plan, sort_keys=True, indent=2) + "\n")
+
+        result = execute_campaign(self.root, datasets=("A",), through="preflight")
+        self.assertEqual(self.calls, [("A", "preflight")])
+        item = self.items(result)["A"]
+        self.assertEqual(item["status"], "PAUSED")
+        self.assertEqual(item["next_stage"], "phaser")
+
 
     def test_sequential_execution_freezes_receipts_and_preserves_plan_workspace_and_existing_run(self):
         old = self.root / "A" / "AutoMR" / "run_007"
@@ -88,7 +158,10 @@ class CampaignExecutionTests(unittest.TestCase):
         planbytes = (self.root / "NASolveCampaign" / "plan.json").read_bytes()
         result = execute_campaign(self.root)
         self.assertEqual(result["execution"]["state"], "COMPLETE")
-        self.assertEqual(self.calls, [(name, stage) for name in ("A", "B") for stage in STAGES])
+        self.assertEqual(
+            self.calls,
+            [(name, stage) for name in ("A", "B") for stage in STAGES if stage != "refine-doctor"],
+        )
         for item in self.items(result).values():
             self.assertEqual(item["status"], "SOLVED")
             self.assertTrue(item["inspection_required"])
@@ -141,6 +214,70 @@ class CampaignExecutionTests(unittest.TestCase):
                 self.assertEqual(len(self.calls), count)
                 self.outcomes.clear()
                 retry_dataset(self.root, "A")
+
+    def test_explicit_campaign_doctor_continues_only_refinement_review(self):
+        self.outcomes[("A", "autorefine")] = "AUTOREFINE_REVIEW"
+
+        result = execute_campaign(self.root)
+        a, b = self.items(result)["A"], self.items(result)["B"]
+        self.assertEqual(a["status"], "AWAITING_INSPECTION")
+        self.assertEqual(a["next_stage"], "refine-doctor")
+        self.assertEqual(a["checkpoint"], "refine-001")
+        self.assertFalse(a["numerical_success"])
+        self.assertEqual(b["status"], "SOLVED")
+        self.assertNotIn(("A", "refine-doctor"), self.calls)
+
+        count = len(self.calls)
+        execute_campaign(self.root)
+        self.assertEqual(len(self.calls), count, "Default autorefine endpoint must not auto-run Doctor")
+
+        result = execute_campaign(
+            self.root, datasets=("A",), through="refine-doctor"
+        )
+        a = self.items(result)["A"]
+        self.assertEqual(self.calls[-1], ("A", "refine-doctor"))
+        self.assertEqual(a["status"], "AWAITING_INSPECTION")
+        self.assertIsNone(a["next_stage"])
+        self.assertEqual(a["checkpoint"], "refine-002")
+        self.assertFalse(a["numerical_success"])
+        self.assertTrue(a["inspection_required"])
+        self.assertEqual(self.items(result)["B"]["status"], "SOLVED")
+
+        doctor = read_record(self.directory("A", "refine-doctor") / "result.json")
+        autorefine = read_record(self.directory("A", "autorefine") / "result.json")
+        self.assertEqual(doctor["source_checkpoint"], "refine-001")
+        self.assertEqual(doctor["recommended_checkpoint"], "refine-002")
+        self.assertTrue(doctor["current_checkpoint_preserved"])
+        self.assertEqual(
+            doctor["dependencies"] if "dependencies" in doctor else None,
+            None,
+        )
+        job = read_record(self.directory("A", "refine-doctor") / "job.json")
+        self.assertEqual(
+            job["dependencies"][-1]["receipt_sha256"],
+            autorefine["record_sha256"],
+        )
+        self.assertEqual(len(job["dependencies"]), 5)
+
+        count = len(self.calls)
+        execute_campaign(self.root, datasets=("A",), through="refine-doctor")
+        self.assertEqual(len(self.calls), count, "Doctor receipt must never execute twice")
+
+    def test_out_of_band_report_change_blocks_campaign_doctor(self):
+        self.outcomes[("A", "autorefine")] = "AUTOREFINE_REVIEW"
+        result = execute_campaign(self.root, datasets=("A",))
+        a = self.items(result)["A"]
+        self.assertEqual(a["next_stage"], "refine-doctor")
+        report = self.root / a["run"] / "report.json"
+        report.write_text('{"mutated":"outside-campaign"}\n')
+
+        result = execute_campaign(
+            self.root, datasets=("A",), through="refine-doctor"
+        )
+        a = self.items(result)["A"]
+        self.assertEqual(a["status"], "BLOCKED")
+        self.assertIn("Run report changed", a["diagnostic"])
+        self.assertNotIn(("A", "refine-doctor"), self.calls)
 
     def test_mr_failed_does_not_reach_postmr(self):
         self.outcomes[("A", "phaser")] = "MR_FAILED"

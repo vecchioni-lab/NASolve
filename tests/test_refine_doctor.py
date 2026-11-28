@@ -62,6 +62,22 @@ class RefineDoctorTests(unittest.TestCase):
             self.assertEqual(result.recommended_checkpoint, source.checkpoint_id)
             self.assertEqual(result.trials, ())
 
+            select_checkpoint(run, "postmr")
+            named = execute_refine_doctor(
+                run,
+                make_refine(root),
+                mtz_dump,
+                phenix_version=PHENIX_21,
+                environment={"PATH": "/usr/bin:/bin"},
+                from_checkpoint=source.checkpoint_id,
+            )
+            self.assertEqual(named.status, "REFINE_DOCTOR_GOOD_ENOUGH")
+            self.assertEqual(named.recommended_checkpoint, source.checkpoint_id)
+            self.assertIn(f"Source checkpoint {source.checkpoint_id}", named.recommendation)
+            self.assertEqual(json.loads(named.report_path.read_text())["recommendation"], named.recommendation)
+            _, current, _ = list_checkpoints(run)
+            self.assertEqual(current, "postmr")
+
     def test_bounded_trials_preserve_current_and_recommend_sibling(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

@@ -14,7 +14,7 @@ import shutil
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Mapping, Sequence
+from typing import Mapping
 
 from .phosphate import PhosphateError
 from .ligand_profiles import validate_model_phosphate_policy
@@ -38,7 +38,7 @@ class CheckpointRecord:
 
 
 SCHEMA_VERSION = 2
-READABLE_SCHEMA_VERSIONS = {1, SCHEMA_VERSION}
+READABLE_SCHEMA_VERSIONS = {1, SCHEMA_VERSION, 3, 4, 5}
 AUTOMATIC_STATUSES = {"READY", "SUCCESS", "USER_APPROVED"}
 REUSABLE_STATUSES = AUTOMATIC_STATUSES | {"REVIEW"}
 
@@ -223,6 +223,11 @@ def _phase_reference(report: Mapping[str, object], run: Path) -> dict[str, objec
     autosol = report.get("autosol")
     if not isinstance(autosol, Mapping) or autosol.get("use_for_refinement") is not True:
         return None
+    from .autosol_reference import validate_result_reference
+    try:
+        validate_result_reference(run, report)
+    except (OSError, ValueError, RuntimeError) as exc:
+        raise CheckpointError(str(exc)) from exc
     outputs = autosol.get("outputs")
     if not isinstance(outputs, Mapping):
         raise CheckpointError("Approved AutoSol result has no output references")
@@ -244,6 +249,33 @@ def _phase_reference(report: Mapping[str, object], run: Path) -> dict[str, objec
         "labels": list(labels) if isinstance(labels, list) else [],
         "source": "validated-autosol",
     }
+
+
+def _required_observations(report: Mapping[str, object], run: Path) -> Path:
+    """Use a checked preparation's declared anchor, retaining the frozen checksum.
+
+    Legacy input strings keep their resolver. Checked receipts already carry an
+    explicit run/dataset/repository reference; do not fall back to a historical
+    dataset name or host path when that declared reference is missing or changed.
+    Both callers hash the resolved bytes against inputs.reflections_sha256.
+    """
+    inputs = report.get("inputs")
+    if not isinstance(inputs, Mapping):
+        raise CheckpointError("Run report has no frozen AutoMR inputs")
+    postmr = report.get("postmr")
+    if isinstance(postmr, Mapping) and "checked_preparation" in postmr:
+        meta = postmr["checked_preparation"]
+        reference = meta.get("observations") if isinstance(meta, Mapping) else None
+        if not isinstance(reference, Mapping) or reference.get("anchor") not in ("run", "dataset", "repository"):
+            raise CheckpointError("Checked preparation requires declared observation anchors")
+        expected = inputs.get("reflections_sha256")
+        actual = reference.get("sha256")
+        if not isinstance(expected,str) or not isinstance(actual,str) or expected.casefold() != actual.casefold():
+            raise CheckpointError("Checked observation reference differs from frozen input checksum")
+        path = _ref_path(reference, "authoritative reflections", run, verify_checksum=False)
+        assert path is not None
+        return path
+    return _required_file(inputs.get("reflections"), "authoritative reflections", run)
 
 
 def _root_payload(report: Mapping[str, object], run: Path) -> dict[str, object]:
@@ -271,9 +303,7 @@ def _root_payload(report: Mapping[str, object], run: Path) -> dict[str, object]:
         raise CheckpointError(
             "Rebased PostMR prepared model does not match its frozen checksum"
         )
-    reflections = _required_file(
-        inputs.get("reflections"), "authoritative reflections", run
-    )
+    reflections = _required_observations(report, run)
     reflections_sha256 = _sha256(reflections)
     expected_reflections_sha256 = inputs.get("reflections_sha256")
     if expected_reflections_sha256 is not None and not isinstance(
@@ -295,11 +325,13 @@ def _root_payload(report: Mapping[str, object], run: Path) -> dict[str, object]:
         "id": "postmr",
         "parent": None,
         "kind": "postmr",
-        "status": "READY",
+        "status": "REVIEW" if "checked_preparation" in postmr else "READY",
         "usable": True,
         "created_utc": str(postmr.get("created_utc") or _now()),
-        "recipe": "PostMR/ReadySet",
-        "label": "ReadySet model",
+        "recipe": "PostMR/checked-preparation" if "checked_preparation" in postmr else "PostMR/ReadySet",
+        "label": str(postmr["message"]) if "checked_preparation" in postmr else "ReadySet model",
+        **({"checked_preparation": _file_reference(run / "PostMR/report.json", run)}
+           if "checked_preparation" in postmr else {}),
         "model": _file_reference(model, run, sha256=model_sha256),
         "observations": _file_reference(
             reflections, run, sha256=reflections_sha256
@@ -309,7 +341,9 @@ def _root_payload(report: Mapping[str, object], run: Path) -> dict[str, object]:
         "metrics": {},
         "compatibility": {
             "validated": True,
-            "source": "POSTMR_READY",
+            "source": "CHECKED_PREPARATION" if "checked_preparation" in postmr else "POSTMR_READY",
+            **({"review_required": True, "refinement_validation": "NOT_RUN"}
+               if "checked_preparation" in postmr else {}),
             "model_checksum": (
                 "verified" if model_verified else "legacy-unverified"
             ),
@@ -320,8 +354,16 @@ def _root_payload(report: Mapping[str, object], run: Path) -> dict[str, object]:
     }
 
 
-def read_registry(run_directory: Path) -> tuple[Path, dict[str, object]]:
-    """Read a registry or derive its validated PostMR root without writing files."""
+def _validate_preparation(run, report, registry=None):
+    from .cif_postmr_publication import validate_published_preparation
+    try:
+        return validate_published_preparation(run, report, registry)
+    except (OSError, ValueError, RuntimeError) as exc:
+        raise CheckpointError(str(exc)) from exc
+
+
+def _read_registry_with_preparations(run_directory: Path):
+    """Keep call-local preparation results from the same validated registry read."""
     run, report = _run_and_report(run_directory)
     path = registry_path(run)
     if path.is_file():
@@ -342,7 +384,17 @@ def read_registry(run_directory: Path) -> tuple[Path, dict[str, object]]:
             isinstance(item, Mapping) and item.get("id") == "postmr" for item in checkpoints
         ):
             raise CheckpointError("Checkpoint registry has no PostMR root")
-        return run, registry
+        verified = _validate_preparation(run, report, registry)
+        from .refinement_inputs import validate_checkpoint_refinement_inputs
+        from .refinement_parallelity import validate_checkpoint_execution
+        try:
+            for item in checkpoints:
+                if isinstance(item, dict):
+                    validate_checkpoint_refinement_inputs(run, item)
+                    validate_checkpoint_execution(run, item, registry)
+        except (OSError, ValueError, RuntimeError) as exc:
+            raise CheckpointError(str(exc)) from exc
+        return run, registry, verified
     registry = {
         "schema_version": SCHEMA_VERSION,
         "run_directory": ".",
@@ -352,21 +404,34 @@ def read_registry(run_directory: Path) -> tuple[Path, dict[str, object]]:
         "bookmarks": {},
         "checkpoints": [_root_payload(report, run)],
     }
+    verified = _validate_preparation(run, report, registry)
+    return run, registry, verified
+
+
+def read_registry(run_directory: Path) -> tuple[Path, dict[str, object]]:
+    """Read a registry or derive its validated PostMR root without writing files."""
+    run, registry, _ = _read_registry_with_preparations(run_directory)
     return run, registry
 
 
 def initialize_registry(run_directory: Path) -> tuple[Path, dict[str, object]]:
     """Persist the root PostMR checkpoint when a modifying operation needs it."""
-    run, registry = read_registry(run_directory)
+    run, registry, _ = _initialize_registry_with_preparations(run_directory)
+    return run, registry
+
+
+def _initialize_registry_with_preparations(run_directory):
+    run, registry, verified = _read_registry_with_preparations(run_directory)
     path = registry_path(run)
     if not path.is_file():
         path.parent.mkdir(parents=True, exist_ok=True)
         _write_json(path, registry)
-    return run, registry
+    return run, registry, verified
 
 
 def save_registry(run: Path, registry: dict[str, object]) -> Path:
-    registry["schema_version"] = SCHEMA_VERSION
+    checked = registry.get("schema_version") in {3, 4, 5} or any("checked_preparation" in i for i in _items(registry))
+    registry["schema_version"] = (registry["schema_version"] if registry.get("schema_version") in {4, 5} else 3) if checked else SCHEMA_VERSION
     registry["run_directory"] = "."
     for item in _items(registry):
         for key in ("model", "observations", "phases"):
@@ -427,7 +492,36 @@ def save_registry(run: Path, registry: dict[str, object]) -> Path:
     registry["updated_utc"] = _now()
     path = registry_path(run)
     path.parent.mkdir(parents=True, exist_ok=True)
-    _write_json(path, registry)
+    if checked:
+        from .campaign_records import read_record, write_record
+        from .campaign_process import exclusive_lock
+        from .campaigns import CampaignError
+        from .cif_dictionary_sites import _read
+        try:
+            expected = registry.get("record_sha256")
+            if not isinstance(expected, str) or not re.fullmatch("[0-9a-f]{64}", expected):
+                raise CheckpointError("Checked registry save requires its original record checksum")
+            # Validate parent traversal before opening the persistent lock inode.
+            _read(path)
+            with exclusive_lock(path.with_name("checkpoints.lock")):
+                _read(path)
+                saved = read_record(path)
+                if saved["record_sha256"] != expected:
+                    raise CheckpointError(
+                        "Checkpoint registry changed since it was read; preserve completed "
+                        "outputs, reread the registry and reconcile the pending edit"
+                    )
+                if saved.get("schema_version", 0) > registry["schema_version"]:
+                    raise CheckpointError("Cannot downgrade a checked checkpoint registry")
+                record = write_record(path, registry, replace=True)
+            # Some callers intentionally save the same live object twice (for
+            # example manual import followed by its bookmark). Advance that
+            # object's identity only after the atomic save succeeds.
+            registry["record_sha256"] = record["record_sha256"]
+        except (OSError, ValueError, CampaignError) as exc:
+            raise CheckpointError(str(exc)) from exc
+    else:
+        _write_json(path, registry)
     return path
 
 
@@ -449,6 +543,11 @@ def resolve_checkpoint(
         requested = bookmarks[requested]
     for item in _items(registry):
         if item.get("id") == requested:
+            from .cif_postmr_publication import validate_preparation_lineage
+            try:
+                validate_preparation_lineage(registry, item)
+            except ValueError as exc:
+                raise CheckpointError(str(exc)) from exc
             return item
     raise CheckpointError(f"Unknown checkpoint or bookmark: {requested}")
 
@@ -638,11 +737,11 @@ def _inherited_paths(
         verify_checksum=verify_phase_checksum,
     )
     restraint_values = item.get("restraints")
-    restraints = [
-        _ref_path(value, "restraint", run)
-        for value in restraint_values
-        if isinstance(restraint_values, Sequence) and isinstance(value, Mapping)
-    ] if isinstance(restraint_values, list) else []
+    if restraint_values is None:
+        restraint_values = []
+    if not isinstance(restraint_values, list) or not all(isinstance(value, Mapping) for value in restraint_values):
+        raise CheckpointError("Malformed checkpoint restraint list")
+    restraints = [_ref_path(value, "restraint", run) for value in restraint_values]
     return {
         "model": model,
         "observations": observations,
