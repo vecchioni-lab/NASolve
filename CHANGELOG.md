@@ -8,6 +8,20 @@ repository history.
 
 ## [Unreleased]
 
+### Place a retained AutoSol site through explicit source and image checks
+
+- Add opt-in metal placement-plan schema 2 for one source-backed discovered
+  metal. Reuse the external AutoSol input review and bounded crystal-image
+  search; require explicit anchors to agree on one unambiguous image. Recheck
+  source pins and original atom state during build and replay.
+- Retain raw discovery occupancy separately from declared starting Q/B/charge.
+  Publish an independent numbered review hypothesis while preserving the parent
+  atom records and selected checkpoint. No geometry, phases or refinement are
+  automatically accepted. Multiple sites and clusters require a later policy.
+- Existing schema-1 manual placement and outer hypothesis schema 1 remain
+  unchanged. Schema-2 replay needs the native crystallographic libraries and
+  verified source closure; older readers refuse the new placement schema.
+
 ### Receive the released Pine and Cedar baseline on Alder
 
 - Preserve the metal feature history above the shared NASolve 0.2.0 release.

@@ -62,8 +62,10 @@ def _sources(context, *, report=None):
 
 def _plan(value, context, recipe):
     doc = _json(canonical(value))
-    _fields(doc, {'kind', 'schema_version', 'context_id', 'recipe_sha256', 'sites', 'atoms'}, set(), 'placement')
-    if doc['kind'] != 'metal-placement-plan' or type(doc['schema_version']) is not int or doc['schema_version'] != 1:
+    discovered = doc.get('schema_version') == 2
+    required = {'kind', 'schema_version', 'context_id', 'recipe_sha256', 'sites', 'atoms'}
+    _fields(doc, required | ({'discovery'} if discovered else set()), set(), 'placement')
+    if doc['kind'] != 'metal-placement-plan' or type(doc['schema_version']) is not int or doc['schema_version'] not in (1, 2):
         raise RecipeError('Unsupported placement schema')
     if doc['context_id'] != context.to_dict()['context_id'] or doc['recipe_sha256'] != recipe.sha256:
         raise RecipeError('Placement belongs to a different context or recipe')
@@ -167,6 +169,9 @@ def _prepare(context, recipe, value, *, report=None):
     if imported.to_dict() != context.imported.to_dict() or any(parent[k] != imported.to_dict()[k] for k in ('model', 'atomic_state')):
         raise RecipeError('Parent inventory differs from captured source')
     plan = _plan(value, context, recipe)
+    if plan['schema_version'] == 2:
+        from .discovery import verify_autosol_plan
+        verify_autosol_plan(context, recipe, plan, report=report)
     model = _render(raw, plan, recipe)
     derived = parse_pdb(model)
     n = len(imported.snapshot.atoms)
@@ -198,6 +203,9 @@ def _prepare(context, recipe, value, *, report=None):
     unrestrained = sorted(row['node_id'] for row in sites if row['node_id'] not in coverage)
     content = {'context': _json_bytes(parent), 'report': report, 'recipe': recipe.to_json().encode(),
                'placement': _json_bytes(plan), 'model': model, 'preview': _json_bytes(result), 'restraints': phil.encode()}
+    if plan['schema_version'] == 2:
+        from .discovery import recheck_autosol_sources
+        recheck_autosol_sources(context, plan)
     return content, sites, unrestrained
 
 
@@ -242,6 +250,10 @@ def build_hypothesis(context: MetalContext, recipe: Recipe, placement: dict) -> 
             with (directory / name).open('xb') as handle:
                 handle.write(content[key])
         _sources(context)  # Recheck parent inputs immediately before publication.
+        plan = _json(content['placement'])
+        if plan['schema_version'] == 2:
+            from .discovery import recheck_autosol_sources
+            recheck_autosol_sources(context, plan)
         result = _manifest(context, directory, sites, unrestrained)
         with (directory / 'manifest.json').open('xb') as handle:
             handle.write(_json_bytes(result))

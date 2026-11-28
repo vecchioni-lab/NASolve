@@ -1,10 +1,116 @@
 # Ordinary receiving for mixed XYZ/group-B refinement
 
-Updated 27 November 2026. A01 mechanical integration; A01 science remains partial
+Updated 28 November 2026. A01 mechanical integration; A01 science remains partial
 and A02 quantitation is gated. This is a prospective implementation contract,
 not a claim of ordinary numbered-round qualification.
 
-## Current A01: registered original publication — 27 November evening
+## Current A01: source-backed Hg placement — 28 November
+
+The existing materializer accepted manually declared positions but did not
+derive them from retained discovery evidence. The new
+`nasolve.metal.discovery.plan_autosol_site` returns an explicit schema-2
+`metal-placement-plan`, consumed by the existing `build_hypothesis` and
+`verify_hypothesis` owners. It reuses `review_external_autosol` for the seven
+declared producer/input/output roles and `closest_atom_images` for bounded
+crystal-image search. It does not launch AutoSol, choose a chemical geometry,
+register a refinement checkpoint or select a result.
+
+The caller supplies the existing `MetalContext` and `Recipe`, external AutoSol
+declaration, one to eight distinct `anchor_nodes`, optional concrete `atoms`, and
+one `site` declaring node/key/Q/B/charge/source note. Coordinates come from the
+verified discovery image. Exactly one recipe metal and one discovered site must
+agree in element; every resolved anchor must independently prefer the same
+unambiguous full symmetry operator. The default per-anchor image budget is
+100,000 and image-gap ambiguity tolerance is 0.01 Å. This is an image-choice
+tolerance, not a chemical bond-length or angle acceptance criterion. An ambiguous
+image, conflicting frame, extra discovered site, changed source or forged parent
+inventory refuses. The raw discovery occupancy is never clamped into quantitative Q.
+
+The genuine FT result is `Metal/hypothesis_001` under the retained ordinary
+run (`a01-registered-publication-20261127-01/FT_Hg/AutoMR/run_001` under the
+local Alder artifact anchor). Its Hg at **−12.512, 0.552, 8.228 Å** retains
+the identity image: both A:12 DF N3 and B:4 DT N3 choose it independently.
+Their distances are **2.76159 and 2.21990 Å**, with N3–Hg–N3 **163.899°**.
+The next images are 19.164 and 23.388 Å away. These are measurements of the
+starting model, not restraints or a scientific endpoint.
+
+One 81-byte Hg record adds the 859th atom; removing it reproduces the entire
+70,150-byte original model. All original XYZ/B/Q/order and all 130 preexisting
+files remain exact. The new 70,231-byte model has SHA-256
+`60304d8063c977573148aa52d5f1bc4aa2ff36491468cf7f77bc0f1a17287ac8`.
+The manifest is **BUILT_REVIEW**, `native_ready=False`, and declares `m1`
+unrestrained. Q=1, B=72.95 Å² and Hg(II) are explicit starting hypotheses;
+raw AutoSol occupancy 1.6 remains discovery provenance. No refined R, B, Q,
+f″ or map values follow. The ordinary parent remains unphased and selected as
+before; the external phase binding retains its experimental scope separately.
+
+The declared full-model compiler sources confirm known neutral DF/DT N3–H3,
+and the compiler lists A:12/B:4 as unpaired (18 other detected pairs, 38 stacks).
+This is not a new donor-state blocker. The investigator confirmed substitution
+of both N3 hydrogens and the 19 November matched neutral/anion comparison is
+already complete. [Prior intent, evidence and deferral](metal-development-handoff.md#new-readbacks-and-declared-donor-state)
+remain authoritative: routine donor-state automation is deferred, not an A01
+prerequisite. Do not repeat that comparison or silently transplant its private
+aliases/targets into this fresh ordinary parent.
+
+### Compatibility, validation and next boundary
+
+Changed runtime files are `metal/discovery.py` and `metal/materialize.py`;
+regression coverage is `tests/test_metal_discovery.py`. Manual placement schema 1,
+outer hypothesis schema 1 and historical workers remain unchanged. Older readers
+refuse placement schema 2. Its replay additionally needs native crystallographic
+libraries and the declared AutoSol source closure. No migration or historical
+artifact rewrite occurs. Rechecks before allocation and immediately before
+manifest publication reject source changes; a failed write retains its numbered
+failure bundle without publishing a completed manifest.
+
+**83 focused source cases pass in 8.394 s; 28 installed cases pass in 2.325 s.**
+Two positive cases fail against `37c158f6` for the absent discovery API. Two
+later source-window/inventory cases also fail before their guards are added.
+The initial two baseline fixture attempts failed too early (legacy report fields
+were supplied references instead of strings); these are retained as harness
+failures, not regression proof. The first 80-case panel had one public-error-type
+failure, corrected before final validation. Exact commands and logs are retained.
+
+Commands, run with `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src`, are captured by
+methods **A939**, **A941–A942** in `branch-artifacts/Alder/runners/`. Final source
+selection is `tests/test_metal_discovery.py tests/test_metal_materialize.py
+tests/test_refinement_external_autosol.py`, with `pytest -q -p no:cacheprovider`.
+Installed selection is all 26 discovery cases plus two existing positive
+materialization/lineage cases, with build source removed. The exact native Python
+bootstrap and dependency path are retained in `focused-final-result.json` and
+`package-final/commands.json`; only the declared native libraries provide cctbx.
+The 449-object installed inventory differs from released Alder only in the two
+runtime files above; all other objects and historical workers remain exact.
+
+The genuine build/replay took **13.54 s**. Final installed relocation replay
+took **0.55 s**, with 79 NASolve modules from the wheel, original paths denied,
+the original transport removed and all 138 transported files unchanged. This is
+cold verification, not native refinement: Phenix **2.2.1-6174**, Python 3.11.15,
+Gemmi 0.7.5 and original NARestraints 1.1.3. No full suite or new native process.
+Evidence is `a01-hg-placement-20261128-01/` under the local Alder artifact
+anchor; methods A938–A944 retain the image review, genuine construction,
+declared-source chemistry and reproducible figure. The 1,170,309-byte hypothesis
+is a retained geometry node; 9,100 bytes hold the discovery plan. Reproducible
+package scratch is removed and separately accounted for. Raw models, reflections,
+test captures and checkouts remain local and are excluded from Git.
+
+**Next:** declare and qualify the explicit Hg coordination recipe on this exact
+parent, then implement/admit the numbered mixed XYZ/DNA group-B child with both
+crystal links and retained AutoSol phase binding. A neutral baseline must be
+labelled as such; a different donor state requires its separate explicit source
+declaration. Willow's same-inventory descent cannot treat this 858→859 placement
+as an ordinary refined return. Its next intake is an explicitly qualified Hg
+parent and genuinely matched child; no proximity-derived metal edge is implied.
+A01 remains partial and A02 gated.
+
+Checkout: `ScienceCheckouts/Hazel/2026-11-28_ft-hg-placement/index.html`, under
+the shared GitHub workspace. The two panels share one projection and preserve
+the DNA constellation; source component graphs supply the light covalent lines.
+
+<a id="current-a01-registered-original-publication--27-november-evening"></a>
+
+## Registered original publication — 27 November evening
 
 The completed original request/runtime below was reused for this publication
 check. Before this change, local-only publication required `model_context`, which

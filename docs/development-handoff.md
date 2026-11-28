@@ -1,5 +1,20 @@
 # NASolve development handoff — integrated development base
 
+**A01 metal update — 28 November:** an explicit source-backed placement policy
+now builds one unselected Hg hypothesis from retained AutoSol evidence on the
+fresh 858-atom DF:T parent. All original atom records and 130 prior files remain
+exact; the new model has 859 atoms. Both declared N3 anchors choose the same
+crystal image (2.762/2.220 Å, 163.9°). Starting Hg Q=1/B=72.95 Å² are not refined
+or environmental values. The result is BUILT_REVIEW and unrestrained, not an
+ordinary accepted refinement parent or child. A01 stays partial and A02 gated.
+Focused source/installed panels pass **83/28 cases**; installed relocation replay
+passes in **0.55 s**, with source paths denied and 138 files unchanged. No native
+refinement or full suite. [Changes, schema compatibility, commands, failures and
+next ordinary-child boundary](metal-ordinary-receiving.md#current-a01-source-backed-hg-placement--28-november).
+The existing donor-state comparison is not repeated; routine state automation
+remains deferred. Current science checkout:
+`ScienceCheckouts/Hazel/2026-11-28_ft-hg-placement/index.html`.
+
 **28 November integration:** Alder receives actual released main `c9127dda`
 after qualified Cedar `47caea97`, preserving its merge history. Focused source/installed checks pass, including the
 relocated FT parent, phase binding and Coot profile with its original provider.
@@ -28,7 +43,9 @@ observation and storage owners; it introduces no new scientific policy.
 
 <a id="current-a01-fresh-ft-construction-and-owned-preparation"></a>
 
-## Current A01: registered FT preparation is a review checkpoint
+<a id="current-a01-registered-ft-preparation-is-a-review-checkpoint"></a>
+
+## Registered FT preparation — retained 27 November evidence
 
 Fresh experimental-data MR/Coot construction and the completed original-only
 request now publish through the ordinary checkpoint owner. All 858 DF:T atoms
@@ -58,8 +75,8 @@ The order regression fixes a reader sorting 19 D:1 atoms; model bytes are unchan
 Only 432,745 bytes of new input-review evidence are retained; 31.24 MB of owned
 package scratch was removed. No optimizer or full suite.
 
-**Next:** declare Hg placement using the retained discovery and selected-model/
-image owners, then a numbered XYZ/DNA group-B child with both image forces.
+**At that boundary:** Hg placement remained next; the 28 November result above
+now completes it. A numbered XYZ/DNA group-B child with both image forces remains.
 Freeze the new policy and output lineage through the existing execution owners.
 A01 remains partial and A02 gated; starting B values cannot feed quantitation.
 Do not repeat completed preparation, publication, phase binding or archive checks
@@ -67,7 +84,7 @@ without a changed input or unresolved question. New-dataset free-metal screening
 and mixed-species external producers remain separate work.
 
 [Exact evidence, changed APIs, compatibility and limits](metal-ordinary-receiving.md#current-a01-registered-original-publication--27-november-evening).
-Current checkout: `ScienceCheckouts/Hazel/2026-11-27_ft-registered-publication/index.html`
+Prior checkout: `ScienceCheckouts/Hazel/2026-11-27_ft-registered-publication/index.html`
 under the shared GitHub workspace: a constellation view of both
 open junctions and compact measured/unchanged/not-measured fields. The earlier
 ordinary-construction checkout remains available for the focal-base comparison.

@@ -1,5 +1,31 @@
 # Metal development handoff — current state
 
+**Current A01 — 28 November:** the retained AutoSol Hg now supplies one
+independent numbered hypothesis on the fresh ordinary DF:T frame. The new
+schema-2 placement checks discovery origin and both anchors' crystal image,
+then preserves every original DNA record: 858→859 atoms, 130 prior files exact.
+A:12/B:4 N3–Hg distances are 2.762/2.220 Å and the angle is 163.9°. These are
+unrefined measurements; Q=1, B=72.95 Å² and Hg(II) are declared initial values.
+The result remains BUILT_REVIEW, unrestrained and unselected as an ordinary
+checkpoint. A01 is partial; A02 remains gated.
+
+Validation is **83 focused source / 28 installed cases**, with a real installed
+relocation replay in **0.55 s** (79 installed modules, 138 files unchanged,
+original paths denied). No native fit or full suite. Only two runtime objects
+change; historical workers remain exact. [API, schema, complete commands,
+retained failures and source-specific evidence](metal-ordinary-receiving.md#current-a01-source-backed-hg-placement--28-november).
+Checkout: `ScienceCheckouts/Hazel/2026-11-28_ft-hg-placement/index.html` under
+the shared GitHub workspace. Methods A938–A944 and
+`branch-artifacts/Alder/a01-hg-placement-20261128-01/` retain the evidence.
+
+**Next:** explicit coordination recipe on this exact parent, then a versioned
+ordinary mixed XYZ/DNA group-B child with both crystal links and retained phases.
+The source dictionaries' neutral N3–H3 declarations are known; the completed
+19 November neutral/anion comparison and the investigator's substitution intent
+remain separately recorded. Routine donor-state automation stays deferred and
+does not become a new A01 prerequisite. Do not repeat the completed comparison,
+preparation, phase binding or discovery search without a changed question/input.
+
 **28 November integration:** Alder receives actual released main `c9127dda`
 after qualified Cedar `47caea97`, preserving its merge history. Focused source/installed checks pass, including the
 relocated FT parent, phase binding and Coot profile with its original provider.
@@ -9,7 +35,7 @@ installed objects remain exact, with 2 guide and 31 installed public-interface
 tests passing. [Validation and delivery evidence](metal-release-compatibility.md).
 A01 remains partial; no new fit or f″ result is implied.
 
-Updated **27 November 2026** (fresh FT construction, owned preparation and archive readback). Active feature branch: **Alder**. The
+Updated **28 November 2026** (discovery-backed starting placement). Active feature branch: **Alder**. The
 [root integration handoff](development-handoff.md) owns the current combined
 source, full validation and delivery. The [A01–A09 roadmap](metal-development-roadmap.md)
 owns feature completion. The earlier chronological diary is preserved as
@@ -51,7 +77,9 @@ and cache-retirement evidence: `branch-artifacts/Alder/docs-audit-20261126-01/`.
 
 <a id="current-a01-fresh-ft-construction-and-owned-preparation"></a>
 
-## Current A01: registered FT preparation is a review checkpoint
+<a id="current-a01-registered-ft-preparation-is-a-review-checkpoint"></a>
+
+## Registered FT preparation — retained 27 November evidence
 
 Fresh experimental-data MR/Coot construction and the completed original-only
 request now publish through the ordinary checkpoint owner. All 858 DF:T atoms
@@ -81,8 +109,8 @@ The order regression fixes a reader sorting 19 D:1 atoms; model bytes are unchan
 Only 432,745 bytes of new input-review evidence are retained; 31.24 MB of owned
 package scratch was removed. No optimizer or full suite.
 
-**Next:** declare Hg placement using the retained discovery and selected-model/
-image owners, then a numbered XYZ/DNA group-B child with both image forces.
+**At that boundary:** Hg placement remained next; the 28 November result above
+now completes it. A numbered XYZ/DNA group-B child with both image forces remains.
 Freeze the new policy and output lineage through the existing execution owners.
 A01 remains partial and A02 gated; starting B values cannot feed quantitation.
 Do not repeat completed preparation, publication, phase binding or archive checks
@@ -90,7 +118,7 @@ without a changed input or unresolved question. New-dataset free-metal screening
 and mixed-species external producers remain separate work.
 
 [Exact evidence, changed APIs, compatibility and limits](metal-ordinary-receiving.md#current-a01-registered-original-publication--27-november-evening).
-Current checkout: `ScienceCheckouts/Hazel/2026-11-27_ft-registered-publication/index.html`
+Prior checkout: `ScienceCheckouts/Hazel/2026-11-27_ft-registered-publication/index.html`
 under the shared GitHub workspace: a constellation view of both
 open junctions and compact measured/unchanged/not-measured fields. The earlier
 ordinary-construction checkout remains available for the focal-base comparison.

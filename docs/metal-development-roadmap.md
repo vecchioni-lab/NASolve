@@ -1,6 +1,6 @@
 # Post-merge metal-coordination roadmap
 
-Updated **28 November 2026** after released-main integration. Working
+Updated **28 November 2026** after released-main integration and source-backed Hg placement. Working
 branch **Alder**; the earlier forward-queue audit is retained at `60a1f084`. The feature milestones
 **A01–A09** below remain explicitly post-merge work; A09 follows the main build.
 Merge qualification, scientific acceptance and feature completion are separate.
@@ -20,8 +20,8 @@ real retained-input replay are tracked in the [compatibility report](metal-relea
 The historical assessor reader is repaired and the installed, relocated FT
 read is qualified. The final main delta is documentation only; 448 installed
 objects remain identical and the public interface checks pass. The local
-delivery receipt records the normal Alder push. Resume explicit Hg placement
-after delivery. This is integration work; A01 remains partial,
+delivery receipt records the normal Alder push at `37c158f6`. The subsequent
+Hg-placement step is recorded below. This is integration work; A01 remains partial,
 A02 gated, and A01–A09 remain explicitly post-merge feature milestones.
 
 ## Original aim and usable entry points
@@ -40,7 +40,7 @@ and `src/nasolve/metal/cli.py` own their exact options.
 
 | Intended step | Available now | Remaining delivery |
 | --- | --- | --- |
-| Build explicit metal hypotheses on generated DNA | `metal inspect`, `preview`, `build`, `geometry`, verification and legacy-restraint import | General construction across multiple site contexts; source-qualified chemistry and whole-model optimization. W A:12/B:4 is the current importer, not a universal site rule. A01/A03. |
+| Build explicit metal hypotheses on generated DNA | `metal inspect`, `preview`, `build`, `geometry`, verification and legacy-restraint import; source-backed single-site placement API with bounded image choice | General construction across multiple site contexts; source-qualified chemistry and whole-model optimization. W A:12/B:4 is the current importer, not a universal site rule. A01/A03. |
 | Discover sites from anomalous data and retain phases | Declared phase-restrained XYZ API and existing upstream AutoSol mechanisms | Integrated free-metal screen, covalent I/Br/Se anchors, coherent cluster image mapping, evidence-led count alternatives and explicit no-metal continuation. A03/A06/A07. |
 | Obtain an open XYZ/B model | Existing XYZ API and historical returned controls; explicit mixed-scope writer/guard and timing | Current reciprocal XYZ/group-B route now returns checked output and paired maps with process closure; scientific geometry/fit and ordinary admission remain. Historical controls do not qualify a later guard. A01. |
 | Quantify anomalous response | `metal fdp`, explicit occupancy scans, comparisons and signed cluster atom-equivalent summaries | Scientifically qualified parents, response/convergence controls, adaptive branching and ambiguity handling. f″ fits hold Q fixed per point; sibling trials vary Q. A02/A03. |
@@ -49,8 +49,8 @@ and `src/nasolve/metal/cli.py` own their exact options.
 
 ## Current A01 evidence and protected-site boundary
 
-**A01 is partial; A02 scientific quantitation remains gated.** The current
-protected reciprocal route completes one cycle with both crystal links: 573 XYZ
+**A01 is partial; A02 scientific quantitation remains gated.** The retained
+private protected reciprocal route completes one cycle with both crystal links: 573 XYZ
 and 81 group-B observations, exact returned/written state, restored hooks and
 verified process closure. One output replay reproduces that state exactly and
 captures paired work-only, nonfilled MLHL maps without changing it. This closes
@@ -74,7 +74,7 @@ support throughout (+3.81 to +5.43σ). It does not isolate Hg excess or justify
 changing metal count/Q. This question is closed for the retained model; it is not
 a new fit or geometry acceptance. [Evidence and contour-level implications](metal-development-handoff.md#a01-retained-ft-pocket-density-interpretation--late-26-november).
 
-The [current handoff](metal-development-handoff.md#current-a01--complete-protected-return-and-paired-maps)
+The [retained endpoint handoff](metal-development-handoff.md#current-a01--complete-protected-return-and-paired-maps)
 owns exact validation and retained failures. Checkout:
 `ScienceCheckouts/Hazel/2026-11-26_ft-protected-return/index.html`.
 The previous timing stops and storage audit stay preserved at their original pins.
@@ -141,7 +141,7 @@ blocked. Native input review now binds the exact retained FT capture and all
 nine original inputs, with matched local reference terms at both image junctions.
 **Genuine ordinary construction is now recorded:** fresh MR/Coot DF:T, a C196
 producer record, C80 full-model restraints and frozen registered request intake.
-It contains no Hg yet and does not qualify the earlier private neutral control.
+That initial preparation contains no Hg and does not qualify the earlier private neutral control.
 The exact-source DF acquisition now has linked-frame native/derivative
 qualification as an unchanged original diagnostic runtime. Its compact embedded
 capture passes registered review after relocation without old source access.
@@ -163,7 +163,19 @@ while preserving the unphased parent and experimental provenance. Raw HA
 occupancy 1.6 is discovery only. Genuine and relocated installed reads pass;
 source/installed panels each pass 130 cases plus 42 subtests. The 432,745-byte
 input review avoids another dataset clone or identical AutoSol search.
-**Next scope: explicit Hg placement, then phased numbered image-force execution.**
+**Source-backed Hg placement is now complete as a review hypothesis.** One
+retained AutoSol Hg uses the same closest image at both explicit N3 anchors;
+all 858 original DNA records are retained in the 859-atom model. The 2.762/2.220 Å
+distances and 163.9° angle are unrefined. Q=1/B=72.95 Å²/Hg(II) are explicit initial
+states, not quantitative results. It is BUILT_REVIEW with no active Hg restraints
+and no ordinary checkpoint selection. Source/installed panels pass 83/28 cases;
+real installed relocation replay passes in 0.55 s. The 1.17 MB hypothesis is an
+important retained geometry node, not a new f″ trial. [Exact source/schema and
+validation evidence](metal-ordinary-receiving.md#current-a01-source-backed-hg-placement--28-november).
+**Next scope: explicit coordination recipe, then phased numbered image-force execution.**
+The known neutral donor declarations and completed neutral/anion comparison
+remain recorded; routine donor-state automation stays deferred. Do not turn that
+known history into a new prerequisite or repeat the completed comparison.
 Reuse Cedar's selected-site reference and exact phase-label owners. The standard
 I/Br/Se AutoSol gate is not integrated free-metal screening for new datasets.
 Mixed-species producer admission needs a later explicit extension. Reuse Cedar 025561e1
