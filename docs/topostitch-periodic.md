@@ -16851,7 +16851,10 @@ prerequisite for a shared Alder/Willow metal-containing recut child. Current
 Willow code is `65765a4bdd6b3c0716c4cd68869304152a5c8621`; reviewed Alder base is
 `37c158f641ab4a5d36aad0c02bc8f77fd228be6c`. Hazel's new placement extension and its
 installed qualification remain Alder-owned. No source code, tests, native job,
-model, cut packet or checkpoint changes in this audit.
+model, cut packet or checkpoint changes in this audit. The final roadmap sweep also
+removes obsolete S05/P04 references to the now-delivered installed-reader/viewer
+dependency. W304 already supplies fixed-map spatial contours; repeat rendering
+or fitting is not new evidence for the unresolved conformer/target question.
 
 Hazel supplied exact run-relative parent/model/manifest references. All seven
 hypothesis file hashes and sizes match its manifest. The ordinary source has
