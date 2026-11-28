@@ -16864,6 +16864,15 @@ has only `postmr`, still current. The hypothesis is `BUILT_REVIEW` and explicitl
 not native-ready; its recipe contains no restraints or sets. This is an independent
 file/hash observation, not a new `verify_hypothesis` or chemistry qualification.
 
+**Subsequent owner handoff:** Hazel published source-backed single-site placement
+at Alder `cd5a75e021608ab492d9a6484167fc5bf8cfa075`. The fetched source delta changes
+only `metal/discovery.py` and `metal/materialize.py`; it reuses the existing
+closest-image owner. Hazel reports 83 source/28 installed passes and relocated
+real-hypothesis replay in 0.55 s. This qualifies placement replay, not an ordinary
+metal-containing parent, refinement child or coordination edge. The earlier local
+audit remains immutable at its observation time. No Alder code is merged into
+Willow by this handoff.
+
 The incompatibility follows directly from maintained contracts: a hypothesis
 cannot satisfy the required direct refinement-child lineage, and an 858→859 atom
 change cannot satisfy the complete identity bijection. A fresh cut must instead
