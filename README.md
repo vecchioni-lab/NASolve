@@ -38,8 +38,13 @@ python3 -m venv .venv
 
 ### Inspect a sticky end or a phosphate across symmetry
 
-Install the topology extra for crystal-image searches. From the checkout, the
-following example measures the distance from B:1 P to the nearest crystal copy
+Install the topology extra for crystal-image searches. If you already use a
+0.1.0 checkout, pull the new revision and rerun the first command below. It
+installs Gemmi and creates the sticky-end inspector in that environment. To
+reproduce an older checked run, keep an environment with its recorded
+NARestraints version and workbook. [Reopening older preparations](docs/cif-doctor.md#reopening-older-checked-preparations).
+
+From the checkout, the following example measures the distance from B:1 P to the nearest crystal copy
 of B:7 O3′ in the supplied 5W6W model.
 
 ```bash
