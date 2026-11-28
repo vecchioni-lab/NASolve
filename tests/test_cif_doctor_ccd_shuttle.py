@@ -49,7 +49,8 @@ def launch(script, archive, output):
 
 def test_delivered_runner_audits_offline_after_original_checkout_is_gone(tmp_path):
     origin = tmp_path / "original-checkout"
-    for relative in ("src/nasolve/cif_doctor.py", "src/nasolve/dictionary_compatibility.py",
+    for relative in ("src/nasolve/cif_doctor.py", "src/nasolve/cif_dictionary_comparison.py",
+                     "src/nasolve/dictionary_compatibility.py",
                      "src/nasolve/ligand_profiles.py", "src/nasolve/phosphate.py",
                      "scripts/cif_doctor_ccd_shuttle_template.py"):
         target = origin / relative

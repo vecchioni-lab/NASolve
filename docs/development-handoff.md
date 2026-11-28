@@ -6,9 +6,16 @@ The compatibility code is `85bb0c2d6cbae108031ecf55eada430577affe93`; the correc
 lineage fixtures are `ef5d21d018e4aeaea19a53a38de2c78e5fc2f71a`. The 0.2.0 wheel,
 all five TopoStitch commands, exact qualified worker bytes and combined Coot
 resolver pass installed checks. The final unfiltered suite awaits the stable released-main composition; Rowan’s
-newer candidate `47caea97785637311b715d0fa94b9d218472a151` is next to integrate. [Exact scope and validation](topostitch-periodic.md#w318--release-compatibility-without-changing-qualified-worker-bytes).
+newer candidate `47caea97785637311b715d0fa94b9d218472a151` is incorporated. [Exact scope and validation](topostitch-periodic.md#w318--release-compatibility-without-changing-qualified-worker-bytes).
 No new native refinement or scientific selection. Rowan owns Cedar/Pine/main;
 Linden owns this Willow reconciliation.
+
+The [0.2.0 public workflow guide](current-behavior.json) describes the commands
+released on main; this branch retains its additional TopoStitch commands.
+The final Cedar candidate also separates dictionary comparison from assessment
+and recognizes three proven-equivalent historical assessor identities during
+readback. Historical NARestraints/compiler and workbook pins still apply; see
+[reopening old preparations](cif-doctor.md#reopening-older-checked-preparations).
 
 **Prior science-support edge, W317/W316:** maintained receiver at W310
 `29fded465e95878677670be15d3c8f4999224854`. Latest native movement/endpoint derivative diagnostic: **W315**; latest refinement:

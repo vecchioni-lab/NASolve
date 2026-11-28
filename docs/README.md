@@ -5,6 +5,11 @@ Updated **2026-11-28** for **`willow`**. Start with the
 remaining gates and next bounded task. Historical handoffs are evidence, not
 current instructions; other branches retain their own status and validation pins.
 
+Start with the [user guide](../README.md) for a first solve or the
+[current behavior JSON](current-behavior.json) for the installed commands,
+their inputs and which operations change a model. Use the chemistry table
+to check support for a particular modification. [Chemistry capability table](cif-doctor.md#current-capability-boundary).
+
 ## What's current?
 
 - **W318 release compatibility:** [combined package and qualified worker preservation](topostitch-periodic.md#w318--release-compatibility-without-changing-qualified-worker-bytes) retains all five Willow commands alongside Cedar 0.2.0. Installed checks pass after correcting two lineage fixtures; final unfiltered qualification and published-main reconciliation are in progress. No new fit or scientific acceptance.
@@ -161,6 +166,11 @@ separate scientific evidence; a branch merge does not qualify new chemistry.
 
 Implementation-intent JSON is **not** runtime registration authority. Check each subsystem’s audited status and owning branch before treating a design
 as implemented or a diagnostic as production qualification.
+The release guide lists commands available on main. The implementation blueprints
+and experiment ledgers record design decisions and observations. Willow's additional
+recut tools and Alder's metal-site tools have their own branch guides. The
+[completion queue](cif-doctor-completion-queue.md#pipeline-position) tracks the
+remaining Cedar chemistry.
 
 ## Older evidence, not an action queue
 

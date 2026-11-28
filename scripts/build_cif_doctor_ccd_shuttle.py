@@ -40,7 +40,7 @@ def build(root: Path, corpus_zip: Path, output: Path) -> dict:
     if output.exists() or output.is_symlink():
         raise FileExistsError("Shuttle output already exists: " + str(output))
     sources = {name: (root / "src" / "nasolve" / name).read_bytes() for name in
-               ("cif_doctor.py", "dictionary_compatibility.py", "ligand_profiles.py", "phosphate.py")}
+               ("cif_doctor.py", "cif_dictionary_comparison.py", "dictionary_compatibility.py", "ligand_profiles.py", "phosphate.py")}
     # These definitions retain their exact source lines, including decorators.
     reader = ("from __future__ import annotations\nimport io\nimport re\n"
               "from dataclasses import dataclass\nfrom pathlib import Path\n"
@@ -49,6 +49,7 @@ def build(root: Path, corpus_zip: Path, output: Path) -> dict:
     exception = _definitions(sources["phosphate.py"].decode("utf-8"), ("PhosphateError",)).encode("utf-8")
     payload_files = {"__init__.py": b'"""Private, hash-bound NASolve CCD shuttle runtime."""\n',
                      "cif_doctor.py": sources["cif_doctor.py"],
+                     "cif_dictionary_comparison.py": sources["cif_dictionary_comparison.py"],
                      "dictionary_compatibility.py": sources["dictionary_compatibility.py"],
                      "ligand_profiles.py": reader, "phosphate.py": exception}
     runtime = io.BytesIO()

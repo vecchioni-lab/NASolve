@@ -1,94 +1,28 @@
 # NASolve
 
-NASolve is a guarded command-line workflow for nucleic-acid molecular
-replacement and post-MR model preparation. It discovers autoPROC/STARANISO
-inputs, selects and validates an approved search model, runs Phenix Phaser with
-reproducible settings, preserves modified residues and other heteroatoms, and
-classifies the solution by TFZ.
+NASolve takes a nucleic-acid diffraction dataset from molecular replacement
+through model preparation and checkpointed Phenix refinement. Each numbered run
+keeps its search model, original observations, Free-R assignments and refinement
+history. You can open any named checkpoint in Coot.
 
-The current workflow provides **AutoMR**, **PostMR**, a conditional
-**AutoSol** branch, checkpointed **AutoRefine**, bounded **Refine Doctor**
-triage, and sequential campaign execution from frozen plans with per-dataset
-review isolation. PostMR constructs
-supported modified nucleotides through Coot, restores the parent DNA scaffold
-while moving each supported connected modified base rigidly, can apply complete
-chain sequences, generates either the 5W6W
-restraint stack or modification-scoped pair restraints, supplies curated,
-supported local or configured-Phenix CCD dictionaries, and runs ReadySet without
-hydrogens. When PostMR finds iodine, bromine, or selenium in a nucleotide,
-AutoSol performs guarded MR-SAD phasing
-and verifies a corresponding anomalous site. AutoRefine runs Phenix quietly,
-surfaces the crystallographic statistics normally shown by the GUI, and
-preserves successful, review, failed, and manually imported models as
-branchable checkpoints. Refine Doctor audits the frozen Free-R set, preserves
-an anomalous-strength benchmark, and compares a small number of controlled
-refinement branches without silently selecting one. Final structural
-validation remains a user gate.
+| What do you want to do? | Start here |
+| --- | --- |
+| Install NASolve and check Phenix, Coot and NARestraints | [Install](#install) · [Check the runtime](#check-the-runtime) |
+| Solve one dataset, inspect a model or return to an earlier refinement | [Run AutoMR through AutoRefine](#run-automr-through-autorefine) · [Inspect a checkpoint](#inspect-the-prepared-model-in-coot) |
+| Prepare a modified nucleotide or restrain a whole duplex | [Checked chemistry and demonstrated support](docs/cif-doctor.md#current-capability-boundary) · [Whole-model recipe](docs/full-model-restraints.md) |
+| Inspect complementary sticky ends or refine a declared bond across symmetry | [Worked example](#inspect-a-sticky-end-or-a-phosphate-across-symmetry) · [Two real phosphate connections](docs/backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold) |
+| Run several datasets or prepare a deposition | [Campaigns](#plan-and-run-a-dataset-campaign) · [OneDep file checks](docs/pdb-deposition.md) |
 
-CIF Doctor adds read-only dictionary assessment and report-only PostMR audits.
-To inspect an existing run, use `./nasolve cif-doctor assess --run RUN --json`.
-Qualified component numerics can be stored locally and reused before ReadySet;
-cache acquisition and supported connected-base construction are ordinary runtime
-features. The opt-in engine below also attempts supported graph repairs and
-selects independently qualified preparation. General modified-sugar mutation,
-full refinement qualification remains separate work. Automatic plane support
-can be requested explicitly through checked PostMR or schema-2 campaigns. The checked command
-`nasolve postmr RUN --checked-preparation --automatic-plane-support` obtains missing supported plane evidence
-through the existing bounded owner and reports its generation outcome.
+Ordinary PostMR uses Coot, NARestraints and ReadySet. Add
+`--checked-preparation` to check the dictionaries and retain a qualified
+model and restraint bundle for review. A residue appearing in the NARestraints
+catalogue establishes its recorded identity and roles. Evidence that a
+particular sugar, base or backbone keeps its geometry during refinement is
+reported separately for each supported case. [Chemistry capability table](docs/cif-doctor.md#current-capability-boundary).
 
-The opt-in [complete-request engine](docs/cif-doctor.md#complete-request-continuation-and-recovery-c184)
-freezes source, model/site context, ordered restraints and bounded execution intent.
-It joins cache-first acquisition, independent qualification, site preparation and
-graph-selected repair to optional ReadySet/native continuation under one durable
-request. Each call creates a fresh immutable attempt; component/generation history
-and the shared allowance persist. Unknown process ownership blocks recovery.
-Only independently qualified model/CIF/PHIL bundles can be selected; a result may
-truthfully contain no usable bundle. Failed optional improvement retains the exact
-qualified parent and all partial evidence. Historical artifacts keep their meaning.
-[New context-bound inputs](docs/cif-doctor.md#scoped-atom-selections-at-new-restraint-intake-c190)
-require grouped atom-name alternatives so their site scope agrees with Phenix;
-ambiguous historical inputs remain readable but cannot start fresh attempts.
-
-[Current Phenix configuration](docs/cif-doctor.md#current-selected-phenix-configuration-c182)
-and the [prepared-model entry](docs/cif-doctor.md#prepared-postmr-request-entry-c177)
-provide supported inputs without borrowing settings from old test runs. The checked
-route remains opt-in. Explicit checked PostMR/campaign preparation can publish its
-exact selected result as an initial review checkpoint. Explicit NAR planes now have
-[qualified intake](docs/cif-doctor.md#exact-planarity-intake-c186), and the explicit
-[literal-input bridge](docs/cif-doctor.md#original-literal-input-provenance-c187)
-preserves pair/stack intent and compiler/native evidence through owned requests.
-The alternative [source-bound compiler intake](docs/cif-doctor.md#existing-source-bound-compiler-intake-c188)
-retains an existing C80 artifact without requiring a prior native capture or re-guessing pairs.
-Prepared intake can also [reuse an already frozen source selection](docs/cif-doctor.md#frozen-source-selection-at-prepared-intake-c189)
-without rediscovery. The explicit
-[ordinary counted-coordinate control](docs/architecture.md#ordinary-counted-control-c386)
-can now carry an original pair recipe through AutoRefine's Python owner, retaining
-exact written-model evidence and leaving the result unselected for review.
-Broader protocols, CLI/campaign activation and actual modified-residue
-refinement qualification remain separate gates. No source chemical state, terminal
-phosphate or requested restraint may be changed merely to obtain a numerical pass.
-
-The catalogue programme includes every selected NARestraints ligand, including
-FANA, L-FANA, PNA and ATL; coverage and isolated controls do not establish universal
-construction or refinement support. Start with the
-[current pipeline position](docs/cif-doctor-completion-queue.md#pipeline-position)
-for remaining work, the [support matrix](docs/cif-doctor.md#current-capability-boundary)
-for demonstrated chemistry, and the [command/methods guide](docs/cif-doctor.md)
-for exact interfaces. The [human overview](docs/cif-doctor-human-overview.md)
-explains the methods and editable figure. The
-[continuation contract](docs/cif-doctor.md#automatic-continuation-and-student-facing-decisions)
-keeps routine users out of CIF editing; exact results and original verdicts live in
-the [evidence ledger](docs/cif-linked-native-registration-evidence.json).
-
-For the explicit Cedar checked-preparation workflow, see
-[prepare a model, read its checked result, or continue interrupted work](docs/cif-doctor.md#checked-preparation-and-honest-recovery-c220).
-This route can save an initial review checkpoint with matching model/restraints;
-later attempts can be saved explicitly with `publish-preparation --as-alternative`,
-leaving the current selection unchanged. Chosen-model anomalous-site phasing now has native and relocated acceptance
-for an explicit control; a normal campaign also completes five real refinement
-cycles with the full selected input set. Effective chemical behavior, including PDU
-surviving refinement, remains Q06. The [scientific work map](docs/cif-doctor-completion-queue.md#pipeline-position)
-explains the remaining work.
+The installed commands, their inputs, and which steps change a model are
+indexed in the [current behavior JSON](docs/current-behavior.json). The
+[documentation map](docs/README.md) links the methods, evidence and development queue.
 
 ## Quick start
 
@@ -1269,10 +1203,13 @@ Current validation state is summarized in
   sequence file in prepared-nonstandard campaigns; these are
   [proposed input modes](docs/architecture.md#proposed-model-input-contract);
 - perform mirror-side sequence changes through an unmirror/Coot/remirror cycle;
-- prepare the 3GBI frame, whose standard-site manifest is not yet defined;
+- assign a standard 3GBI mutation site automatically. The supplied-model,
+  explicit-sequence route supports the documented [mirrored L-3GBI control](docs/full-model-restraints.md#l-3gbi-evidence);
 - search unbounded refinement recipes or run several campaign jobs concurrently;
 - apply the final H3/R3 notation patch;
-- perform construct/ASU registration or registration-aware recut rescue; or
+- automatically choose an ASU recut or a covalent partner across symmetry.
+  Registration Scout can record supported logical-to-coordinate mappings, and
+  AutoRefine can use an explicitly registered continuation; or
 - search multiple catalogue/dataset models automatically or reuse solved sibling
   structures automatically.
 

@@ -550,3 +550,41 @@ def test_model_correspondence_retains_complete_pdb_site_identity(tmp_path):
     assert report["status"] == "PASS"
     model.write_text(model.read_text().replace(" C5'", " BAD"))
     assert findings(assess_dictionaries([path], model=model), "model-dictionary-identity-mismatch")
+
+
+@pytest.mark.parametrize("producer", [
+    "f3b0285b878aec8261df3380835fb3f1beff4af1dc9a23f52857a0ddfdc96828",
+    "2afa7e95c28cbe5b60a6838ed6934aac39aa65a25efcfc7eaca3e0d3c6eb8ec6",
+    "076398ed767ee65cb9bf67be3422fef8570a91979c6a0e30a1c5bba22d143500",
+])
+def test_historical_assessment_replays_without_changing_its_producer(tmp_path, producer):
+    from nasolve.cif_construction_native import _preparation_replays
+    from nasolve.cif_postmr_cached_model import cached_preparation_replays
+
+    report = assess_dictionaries([write(tmp_path, component())])
+    original = deepcopy(report)
+    original["provenance"]["assessor_source_sha256"] = producer
+    for replay in (_preparation_replays, cached_preparation_replays):
+        assert replay({"assessment": original}, {"assessment": report})
+        changed = deepcopy(original)
+        changed["status"] = "CHANGED"
+        assert not replay(changed, report)
+        changed = deepcopy(original)
+        changed["provenance"]["tools"][0]["version"] = "changed"
+        assert not replay(changed, report)
+        for unknown in ("0" * 64, "7eb53fb2b8c1782fae9f3785a9ae2295baa664982237c01b5a5edf86ec496798"):
+            changed["provenance"] = dict(original["provenance"], assessor_source_sha256=unknown)
+            assert not replay(changed, report)
+        assert not replay(original["provenance"], report["provenance"])
+    assert original["provenance"]["assessor_source_sha256"] == producer
+
+
+def test_replay_recognizes_only_the_audited_assessment_code():
+    import nasolve.cif_doctor as doctor
+    from nasolve.cif_construction_native import _SEPARATE_ASSESSMENT_PRODUCER
+
+    source = Path(doctor.__file__).read_bytes()
+    assert hashlib.sha256(source).hexdigest() == _SEPARATE_ASSESSMENT_PRODUCER
+    assessment, marker, _ = source.partition(b"\n\ndef _comparison_inventory(")
+    assert marker
+    assert hashlib.sha256(assessment).hexdigest() == "09792dba990f1690b4ac118d5be68347b7f727f0c5b0004f43e63d1c644110ae"

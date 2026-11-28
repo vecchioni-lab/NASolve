@@ -39,25 +39,55 @@ ORDINARY_CONSTRUCTION_CONTEXTS = {
 SAVED_POLICY_ID = 'cif-saved-constructed-native-replay-v1'
 
 
-def _preparation_replays(recorded, recomputed, path=()):
-    """Only derived finding eigenvalues/determinants admit machine roundoff.
+# These full producer files have identical imports, rules and executable source
+# through assess_dictionaries (SHA-256 09792dba990f1690b4ac118d5be68347b7f727f0c5b0004f43e63d1c644110ae).
+# Their differences are in the subsequent dictionary-comparison functions.
+_LEGACY_ASSESSMENT_PRODUCERS = frozenset({
+    "f3b0285b878aec8261df3380835fb3f1beff4af1dc9a23f52857a0ddfdc96828",  # 630d6f95
+    "2afa7e95c28cbe5b60a6838ed6934aac39aa65a25efcfc7eaca3e0d3c6eb8ec6",  # 04d055fe
+    "076398ed767ee65cb9bf67be3422fef8570a91979c6a0e30a1c5bba22d143500",  # 2d6de758
+})
+_SEPARATE_ASSESSMENT_PRODUCER = "c56d6f00f585932d86f0a4bffbf41d0beb41c5c763e1026a181d1ae1bbd1439e"
 
-    Source/target values, findings, rules and every other field remain exact.
-    This does not apply to CIF/PHIL/model bytes or native proxy comparisons.
-    """
-    if type(recorded) is not type(recomputed): return False
+
+def _assessment_for_replay(recorded, recomputed):
+    """Compare proven equivalent assessment producers without rewriting saved evidence."""
+    if (recomputed.get("audit_kind") != "cif_restraint_assessment"
+            or recomputed.get("policy_id") != "cif-doctor-graph-numerics-v2"
+            or recomputed.get("schema_version") != 1):
+        return recorded
+    saved = recorded.get("provenance")
+    current = recomputed.get("provenance")
+    if not isinstance(saved, dict) or not isinstance(current, dict):
+        return recorded
+    old_hash = saved.get("assessor_source_sha256")
+    if (not isinstance(old_hash, str) or old_hash not in _LEGACY_ASSESSMENT_PRODUCERS
+            or current.get("assessor_source_sha256") != _SEPARATE_ASSESSMENT_PRODUCER):
+        return recorded
+    return dict(recorded, provenance=dict(saved, assessor_source_sha256=_SEPARATE_ASSESSMENT_PRODUCER))
+
+
+def _preparation_replays(recorded, recomputed, path=(), *, cached_notes=False):
+    """Verify every field, with roundoff confined to derived eigenvalues and determinants."""
+    if type(recorded) is not type(recomputed):
+        return False
     if isinstance(recorded, dict):
-        return set(recorded) == set(recomputed) and all(
-            _preparation_replays(v, recomputed[k], path + (k,)) for k, v in recorded.items())
+        recorded = _assessment_for_replay(recorded, recomputed)
+        return recorded.keys() == recomputed.keys() and all(
+            _preparation_replays(v, recomputed[k], path + (k,), cached_notes=cached_notes)
+            for k, v in recorded.items())
     if isinstance(recorded, list):
         return len(recorded) == len(recomputed) and all(
-            _preparation_replays(v, w, path + (i,)) for i, (v, w) in enumerate(zip(recorded, recomputed)))
-    derived = ('findings' in path and (path[-2:] == ('measurements', 'determinant')
-        or len(path) >= 3 and path[-3:-1] == ('measurements', 'eigenvalues') and type(path[-1]) is int))
-    if type(recorded) is float and derived:
-        return math.isfinite(recorded) and math.isfinite(recomputed) and math.isclose(recorded, recomputed, rel_tol=1e-12, abs_tol=1e-12)
+            _preparation_replays(v, w, path + (i,), cached_notes=cached_notes)
+            for i, (v, w) in enumerate(zip(recorded, recomputed)))
+    if type(recorded) is float and ("findings" in path or (cached_notes and "numerical_issues" in path)):
+        derived = (path[-2:] == ("measurements", "determinant")
+                   or (len(path) >= 3 and path[-3:-1] == ("measurements", "eigenvalues")
+                       and type(path[-1]) is int))
+        if derived:
+            return (math.isfinite(recorded) and math.isfinite(recomputed)
+                    and math.isclose(recorded, recomputed, rel_tol=1e-12, abs_tol=1e-12))
     return recorded == recomputed
-
 
 def _saved_artifact(members, prefix, ref, anchor):
     from .cif_scaffold_return import _need, _safe
