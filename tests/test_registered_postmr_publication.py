@@ -67,6 +67,16 @@ def test_registered_publication_preserves_both_images_and_original_choice(tmp_pa
     frozen=snapshot(run); publish(run); assert snapshot(run)==frozen
 
 
+def test_registered_original_cannot_acquire_an_unrequested_sugar_fit(tmp_path,monkeypatch,entry_case):
+    from nasolve.cif_postmr_publication import publish_checked_preparation
+    run,exact,_=prepared(tmp_path,monkeypatch,entry_case)
+    before=snapshot(run)
+    with patch('subprocess.Popen',side_effect=AssertionError('No native execution')):
+        with pytest.raises(ValueError,match='did not request a sugar fit'):
+            publish_checked_preparation(run,attempt_number=1,sugar_fit=2)
+    assert snapshot(run)==before
+
+
 @pytest.mark.parametrize('defect',['held','readyset','missing_review','different_review'])
 def test_unqualified_registered_selection_cannot_publish(tmp_path,monkeypatch,entry_case,defect):
     run,exact,_=prepared(tmp_path,monkeypatch,entry_case)

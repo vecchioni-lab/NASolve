@@ -41,6 +41,122 @@ def case(tmp_path, monkeypatch):
     return m,args,calls,native
 
 
+def test_literal_rna_pair_has_a_distinct_immutable_policy_and_native_phil(case):
+    m,args,calls,native=case
+    native["monomer_mappings"]["rows"][0]["chem_mod_ids"]={"status":"RECORDED","ids":[]}
+    basis="c"*64
+    report=m.execute_candidate_qualification(*args,native_timeout_seconds=5,total_timeout_seconds=20,
+                                              _literal_rna_basis=basis)
+    protocol,_,_,phil=m._inputs(args[-1])
+    assert protocol["literal_rna"]["default_review_sha256"]==basis
+    assert report["policy_id"]==m.LITERAL_EXECUTION
+    assert all(q["policy_id"]==m.LITERAL_USABILITY for q in report["seed_qualifications"])
+    assert report["qualification"]["native_usable"]
+    assert len(calls)==2 and b"rna_sugar_pucker_analysis.enable = False" in phil.read_bytes()
+    assert m.read_candidate_qualification(args[-1])==report
+    phil.write_bytes(m._PHIL)
+    with pytest.raises(ValueError):
+        m.read_candidate_qualification(args[-1])
+
+
+def test_literal_rna_check_cannot_start_with_an_unbound_basis(case):
+    m,args,calls,native=case
+    with pytest.raises(ValueError):
+        m.execute_candidate_qualification(*args,_literal_rna_basis="not-a-record-digest")
+    assert not calls and not args[-1].exists()
+
+
+@pytest.mark.parametrize("defect", ["none","different-basis","overlay-present","unexplained-before-start"])
+def test_paired_literal_read_requires_the_exact_original_explanation(case,monkeypatch,defect):
+    from nasolve import cif_rna_pucker as r
+    m,args,calls,native=case
+    native["monomer_mappings"]["rows"][0]["chem_mod_ids"]={"status":"RECORDED","ids":[]}
+    m.execute_candidate_qualification(*args,native_timeout_seconds=5,total_timeout_seconds=20)
+    default=args[-1]; literal=default.with_name("literal")
+    relative="lib/python3/site-packages/chem_data/geostd/rna_dna/mod_rna2p.cif"
+    table=args[-2].root/relative
+    table.parent.mkdir(parents=True);table.write_bytes(b"synthetic pucker table")
+    pin=dict(anchor="phenix_installation",path=relative,size=table.stat().st_size,
+             sha256=sha256(table.read_bytes()).hexdigest())
+    comparison={"status":"ADJUSTED_TARGETS_EXPLAINED","component":"Q17","table":pin}
+    monkeypatch.setattr(r,"installed_pucker_table",lambda root:(table,pin))
+    monkeypatch.setattr(r,"verify_current_consumer",lambda *a:True)
+    monkeypatch.setattr(r,"_review_default",lambda *a:dict(comparison))
+    if defect=="unexplained-before-start":
+        comparison["status"]="REVIEW"
+        with pytest.raises(ValueError,match="unexplained"):
+            r.verify_literal_pucker(default,literal,args[-2])
+        assert not literal.exists() and len(calls)==2
+        return
+    if defect=="overlay-present":
+        native["monomer_mappings"]["rows"][0]["chem_mod_ids"]["ids"]=["rna2p"]
+        with pytest.raises(ValueError,match="no_native_pucker_overlay"):
+            r.verify_literal_pucker(default,literal,args[-2])
+        assert not (literal/m.REPORT).exists() and len(calls)==4
+        return
+    result=r.verify_literal_pucker(default,literal,args[-2])
+    assert result["status"]=="LITERAL_AND_NATIVE_TARGETS_VERIFIED" and len(calls)==4
+    assert result["literal_seeds"]==["source","candidate"] and not result["automatic_adoption"]
+    if defect=="different-basis":
+        comparison["table"]={"sha256":"d"*64}
+        with pytest.raises(ValueError,match="another"):
+            r.read_literal_pucker(default,literal,args[-2])
+    else:
+        assert r.read_literal_pucker(default,literal,args[-2])==result
+        table.unlink()
+        assert r.read_literal_pucker(default,literal)==result
+        assert len(calls)==4
+    for conflicting in (default,default/"child",default.parent):
+        with pytest.raises(ValueError,match="separate"):
+            r.verify_literal_pucker(default,conflicting,args[-2])
+
+
+def test_literal_control_can_bind_two_distinct_observed_pucker_tables(case):
+    from nasolve.cif_rna_pucker import table_bytes
+    m, args, calls, native = case
+    native["monomer_mappings"]["rows"][0]["chem_mod_ids"] = {"status":"RECORDED","ids":[]}
+    sdk = args[-2].root
+    tables = {}
+    for name in ("rna2p","rna3p"):
+        relative = f"lib/python3/site-packages/chem_data/geostd/rna_dna/mod_{name}.cif"
+        path = sdk / relative
+        path.parent.mkdir(parents=True,exist_ok=True)
+        data = ("example "+name).encode()
+        path.write_bytes(data)
+        tables[name] = path, dict(anchor="phenix_installation",path=relative,size=len(data),
+                                  sha256=sha256(data).hexdigest())
+    result = m.execute_candidate_qualification(*args,_literal_rna_basis="b"*64,_literal_rna_tables=tables)
+    saved = result["qualification"]["literal_rna"]
+    assert set(saved["tables"]) == {"rna2p","rna3p"} and "table" not in saved
+    for name,(path,pin) in tables.items():
+        assert table_bytes(args[-1]/"inputs"/(name+".cif"),saved["tables"][name],modifier=name) == path.read_bytes()
+        path.unlink()
+    assert m.read_candidate_qualification(args[-1]) == result
+    (args[-1]/"inputs/rna3p.cif").write_bytes(b"wrong bytes")
+    with pytest.raises(ValueError):
+        m.read_candidate_qualification(args[-1])
+    assert len(calls) == 2
+
+
+@pytest.mark.parametrize("defect", ("empty","only_two","foreign","swapped","mixed_modes","no_basis"))
+def test_observed_table_permission_is_specific_before_start(case, defect):
+    m, args, calls, _ = case
+    def entry(modifier):
+        relative = f"lib/python3/site-packages/chem_data/geostd/rna_dna/mod_{modifier}.cif"
+        return args[-2].root/relative, dict(anchor="phenix_installation",path=relative,size=10,sha256="e"*64)
+    tables = {m:entry(m) for m in ("rna2p","rna3p")}
+    extra = {"_literal_rna_basis":"b"*64}
+    if defect=="empty": tables.clear()
+    if defect=="only_two": del tables["rna3p"]
+    if defect=="foreign": tables["rna4p"]=entry("rna4p")
+    if defect=="swapped": tables["rna2p"],tables["rna3p"]=tables["rna3p"],tables["rna2p"]
+    if defect=="mixed_modes": extra["_literal_rna_table"]=tables["rna2p"]
+    if defect=="no_basis": extra.clear()
+    with pytest.raises(ValueError):
+        m.execute_candidate_qualification(*args,_literal_rna_tables=tables,**extra)
+    assert not calls and not args[-1].exists()
+
+
 def test_both_seeds_qualified_and_non_mutating_readback(case):
     m,args,calls,native=case;report=m.execute_candidate_qualification(*args,native_timeout_seconds=5,total_timeout_seconds=20)
     assert len(calls)==2 and report['qualification']['native_usable'] and report['same_covalent_proxies']
@@ -104,6 +220,22 @@ def test_each_seed_must_be_independently_usable(case,monkeypatch,seed):
     monkeypatch.setattr(m,'inspect_native_bundle',run)
     with pytest.raises(ValueError,match='not natively usable'):m.execute_candidate_qualification(*args)
     assert not (args[-1]/m.REPORT).exists()
+
+
+def test_unusable_seeds_identify_failed_measurements_and_native_modifications(case):
+    m, args, calls, native = case
+    native["geometry"]["proxy_details"]["bond_simple"][0]["distance_ideal"] = 9.0
+    native["monomer_mappings"]["rows"][0]["chem_mod_ids"] = {
+        "status": "RECORDED", "ids": ["rna2p"],
+    }
+    with pytest.raises(ValueError) as error:
+        m.execute_candidate_qualification(*args)
+
+    message = str(error.value)
+    for seed in ("source", "candidate"):
+        assert f"{seed}: exact_active_bonds (Phenix modifications: rna2p)" in message
+    assert len(calls) == 2
+    assert not (args[-1] / m.REPORT).exists()
 
 
 def test_two_usable_seeds_with_different_proxy_identity_are_refused(case,monkeypatch):

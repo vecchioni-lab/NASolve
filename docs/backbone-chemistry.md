@@ -516,9 +516,240 @@ optimization used free-set scores. The common supplied-phase and 37-atom
 omit maps gave small opposite differences (−0.09 and +0.05 map standard
 deviations respectively, released minus anchored). The data extend to
 5.06 Å. Keep both shapes for review. Preserve the native sugar and base
-targets. A fair future comparison can hold the relative coordinate weight
-fixed across both starts and include an independent junction. The existing
-PDU fixed-weight comparison is documented above.
+targets. The matched weight comparison follows below. The independent PDU
+fixed-weight comparison is documented above.
+
+**C580, can the sugar angle survive refinement?** Both starting models were
+fitted for five cycles with a common coordinate weight of 1, taken from the
+earlier PDU control, and again at 12, within the 11–14 range used by the
+ordinary FT fit. Between these two controls only the relative reciprocal
+coordinate weight changed. Both used the original observations, flags,
+phase coefficients, metal scattering, base-pair and crystal-bond restraints.
+The native coordinate minimizer confirmed the requested weight at every
+evaluation. The 42 DNA groups continued to refine their displacement factors.
+
+| B:7 C2′–C1′–N9, target 114.3° ± 1.4° | Built | Standard Phenix | Fixed 12 | Fixed 1 |
+| --- | ---: | ---: | ---: | ---: |
+| Bases held during construction | 119.1° | 122.8° | 122.9° | 118.3° |
+| Bases free during construction | 115.1° | 122.5° | 121.4° | 116.8° |
+
+At weight 1 the bases-free model kept both crystal bonds at 1.61–1.62 Å,
+and its two base pairs had plane differences of 2.8° and 3.8°. Both Hg–N3
+distances were 2.08–2.09 Å. All six sugar stereocentres kept their hand.
+None of the 1,319 checked within-residue angles exceeded four restraint
+widths, compared with twelve at weight 12. R-work/R-free increased from
+0.3081/0.3328 to 0.3282/0.3400. This establishes sensitivity to the
+diffraction weight at 5.06 Å. It leaves the choice of conformation open.
+The two-scaffold experiment below keeps the working diffraction weight.
+
+**C581, keeping diffraction weight and changing one local angle.** The FT–Hg
+test used the same built coordinates, experimental phases, fixed Hg and
+working coordinate weight of 12 as C580. The only chemical change halved the
+B:7 sugar-to-base angle width. A second test used the previously chosen
+D:2–D:3 start on the PDU:PDU scaffold. Two fresh five-cycle fits used the
+same global weights and differed only in the width of the D:7 sugar angle.
+Both scaffolds descend from 5W6W and use different diffraction observations.
+
+| After five Phenix cycles | Control | Local change | Original ideal and width | R-work / R-free, control → changed |
+| --- | ---: | ---: | --- | --- |
+| FT–Hg B:7 C2′–C1′–N9 | 121.41° | 116.60° | 114.3° ± 1.4° | 0.3081 / 0.3328 → 0.3077 / 0.3306 |
+| PDU:PDU D:7 O3′–C3′–C2′ | 99.08° | 106.45° | 109.4° ± 2.5° | 0.2041 / 0.2762 → 0.2041 / 0.2740 |
+
+The FT sugar moved from 5.08 to 1.64 original widths from its target. The
+PDU sugar moved from 4.13 to 1.18. Both fits kept the original free sets and
+two registered crystal links. The FT Hg–N3 contacts stayed at 2.00 and
+2.03 Å, and both sugar hands were retained at the PDU junction. The FT B:1
+sugar still has an angle 5.81 widths from its target. On PDU the other
+crystal bond, B:7→B:1, grew from 1.671 to 1.684 Å. The largest reported
+local overlap at D:7 grew by 0.03 Å and the second PDU tip remained 0.67 Å
+from its ring plane. Both small working-only map differences in FT were
+under 0.02 map standard deviations and had opposite signs. These controls
+justify checking the entire junction before retaining a local correction.
+Transferable library widths and the crossover conformation remain open.
+
+**C583, what happened to the five-membered rings.** The same four endpoints
+gave 42 occupied, covalently closed sugar rings per fit. At FT–Hg B:7 (DA)
+the local correction changed the phase from 126.7° to 128.6° and the amplitude
+from 43.1° to 44.1°. At D:7 on the PDU scaffold the residue is **ordinary
+thymidine**. Its phase changed from 3.7° to 6.4° while the amplitude fell from
+20.8° to 15.0°. Tightening that angle flattened the sugar. The actual PDU
+at B:4 retained a large amplitude, 65.1° and 64.0° in the two fits. These
+are readings of written models. The diffraction evidence for choosing a
+sugar conformation remains open. At low resolution a measured pucker alone
+cannot establish the right reference for a new restraint.
+[Measurement](cif-doctor.md#seeing-how-a-sugar-ring-changed) ·
+[NA Valence Geometry Working Group](https://pmc.ncbi.nlm.nih.gov/articles/PMC12791123/).
+
+**C584, comparing two crystal junctions with independent DNA ranges.**
+The four C581 five-cycle models supplied two declared phosphodiesters each.
+Each comparison measured 53 sugar, glycosidic and phosphate dimensions.
+The two scaffolds use opposite crystal operations for the equivalent named
+links. The measurements used each scaffold's own recorded operation.
+
+| Change at fixed diffraction weight | Control | Local change | Published DNA outer interval |
+| --- | ---: | ---: | --- |
+| FT–Hg B:7 DA, N9–C1′–C2′ | 121.41° | 116.60° | 107.12–123.10° |
+| PDU scaffold D:7 DT, C2′–C3′–O3′ | 99.08° | 106.45° | 101.17–120.02° |
+| PDU scaffold B:7 O3′ to B:1 P | 1.671 Å | 1.684 Å | 1.539–1.640 Å |
+
+The FT angle stayed inside the published interval even when it lay five
+widths from the restraint Phenix used. The PDU scaffold's D:7 sugar angle
+crossed into the interval as the ring flattened. Its other crystal bond was
+already long and lengthened further. Four out of 53 terms around D:7 and
+seven around B:7 fell outside the published ranges in the changed PDU model.
+This comparison supplies an independent screen for canonical sugars beside
+modified sites. Choosing a transferable correction still requires evidence
+for the whole junction and its fit to diffraction.
+[Reference and reading instructions](cif-doctor.md#inspecting-a-phosphate-at-a-crystal-boundary).
+
+### How Phenix labels base-pair restraints in the PDU scaffold
+
+**C585.** The two Watson–Crick pairs flanking PDU are A:11 DT with B:5 DA,
+and A:13 DC with B:3 DG. Willow traced five inter-base rows labeled
+`covale` in the native coordinate mmCIF. In the saved refinement, the
+five rows came from the NARestraints hydrogen-bond distances. Both the
+printed Phenix restraints and the actual source recipe were checked.
+
+Five new five-cycle Phenix 2.2.1-6174 fits used the same start, displacement
+model, PDU dictionaries, two registered crystal phosphates, 1,778
+working and 124 held-out reflections. The original C581 local fit supplied
+the matched control. Halving the five distance widths from 0.20 to 0.10 Å
+while retaining the 2.80 Å targets brought the shortest contact from 1.816
+to 2.032 Å. It remained compressed.
+
+For a separate comparison we obtained the five atom-specific target lengths
+and widths from Phenix. One fit supplied those values as distance edits.
+The other supplied just the five native secondary-structure hydrogen bonds,
+preserving the original pair angles and planes in both. All 7,924 initial
+nonbonded contacts and their distance limits agreed. After refinement, all
+862 written atom positions agreed to PDB precision. Both fits gave
+R-work/R-free of 0.2078/0.2693. All five rows were `covale` for distance
+edits and `hydrog` for native hydrogen bonds. This separates the chemical
+meaning of the exported rows from the quality of the coordinates.
+
+Changing just the working diffraction weight gave the following results.
+Weight 4 was chosen as the integer nearest the geometric midpoint of 1 and
+12. The test set was kept out of the weight choice.
+
+| Weight | A:11 O4···B:5 N6 | B:7 O3′···B:1 P | B:4 PDU tip to ring plane | R-work / R-free |
+| ---: | ---: | ---: | ---: | ---: |
+| 12 | 2.352 Å | 1.683 Å | 0.590 Å | 0.2078 / 0.2693 |
+| 4 | 2.564 Å | 1.627 Å | 0.009 Å | 0.2287 / 0.2873 |
+| 1 | 2.711 Å | 1.609 Å | 0.028 Å | 0.2554 / 0.3125 |
+
+At weights 4 and 1, all 53 independently referenced dimensions at each
+crystal junction lay within the published outer ranges. At weight 4 the
+A:13 O2···B:3 N2 contact remained short at 2.447 Å. The second crystal
+phosphodiester measured 1.609 Å. Both PDU tips approached their ring planes.
+The better geometry costs 0.0209 in R-work relative to weight 12. This leaves
+the uniform weight and the whole-arm correction open.
+
+For the earlier C581 sugar-width comparison, rebuilding its two fixed
+19-atom omit maps reproduced the archived parent and starting-position
+samples. Both maps excluded all 124 test reflections. At 4.19 Å, changing
+the D:7 sugar width shifted the mean sampled density over the 19 omitted
+atoms by less than 0.003 map standard deviations in every map and solvent
+comparison. The density gives little leverage between these two sugar fits.
+These omit comparisons concern the original C581 siblings.
+
+### How far local restraints carry the PDU arms at the original diffraction weight
+
+C586 kept the working diffraction weight at 12. It reused C585's atom-specific
+hydrogen-bond targets and strengthened only the five contacts flanking PDU by
+a factor of three. A second comparison transferred the C470 soft plane to
+each PDU, using the six ring atoms and the terminal carbon from its dictionary
+graph at a width of 0.10 Å. The three new five-cycle fits and the saved
+reference have identical starting coordinates and the same 1,778 working
+and 124 held-out reflections. The starting native geometry tables differ only
+in the declared contacts or planes. All 7,924 nonbonded contacts are shared.
+
+| Local treatment | A:11 O4···B:5 N6 (Å) | B:4 tip above ring (Å) | B:7 O3′···B:1 P (Å) | R-work |
+| --- | ---: | ---: | ---: | ---: |
+| Reference | 2.352 | 0.590 | 1.683 | 0.2078 |
+| Five stronger contacts | 2.705 | 0.543 | 1.672 | 0.2026 |
+| Two extra arm planes | 2.360 | 0.419 | 1.660 | 0.2077 |
+| Both changes | 2.703 | 0.510 | 1.683 | 0.2036 |
+
+Four of the five contacts moved closer to their targets when strengthened.
+The second crystal bond stayed between 1.612 and 1.627 Å in all four fits.
+Combining the changes gave less improvement in the B:4 tip than the planes
+alone. Phenix placed this tip only 0.061 Å from the seven-atom plane in the
+plane-only fit, while the height above the six ring atoms was 0.419 Å.
+Adding the tip lets the fitted plane tilt toward it. With the C587
+inspection, leaving the tip out rotated the B:4 plane by 3.72° in the
+plane-only fit and 4.53° with both changes. The corresponding A:12 rotations
+were 0.41° and 0.80°. Across all four measured planes, the distances
+recalculated from written coordinates agreed with the printed table to
+within 0.001 Å. No tip plane was found in either control that omitted it.
+
+The PDU dictionary matches C569's adjusted Cartesian template byte for byte.
+It supplies a 1.431 Å C5–C5A target, a 1.470 Å C5B–C5M target and a base
+plane containing C5A. This identifies the exact PDU input behind C581,
+C585 and C586. The earlier C581 replay note described it as a legacy arm.
+The two phosphates retained their image restraints and the terminal D:1
+retained its eleven native terms in all new fits. Each fit remains unselected.
+
+### When the B:4 tip left the ring plane
+
+C588 observed the forces during the same two five-cycle fits that had the
+extra planes. The Phenix 2.2.1-6174 working diffraction score used least
+squares for cycles 1–2 and maximum likelihood for cycles 3–5. Its numerical
+weight stayed at 12. The same 1,778 working reflections and 124 held-out
+reflections appeared in the live target in every cycle.
+
+| B:4 tip height above the six ring atoms (Å) | End of cycle 2 | End of cycle 3 | Final written model |
+| --- | ---: | ---: | ---: |
+| Two extra arm planes | 0.032 | 0.631 | 0.419 |
+| The same planes and five stronger flanking contacts | 0.027 | 0.634 | 0.510 |
+
+The first two columns use unrounded coordinates at the last gradient call
+of the indicated cycle. Moving the six ring atoms changes their fitted
+plane. The projection accounts for that movement as well as movement of
+the terminal carbon. At B:4 the working diffraction term favored a smaller
+height in all 109 evaluations during cycles 1–2 and a larger height in all
+166 during cycles 3–5. The added plane favored flattening at all 275
+evaluations. By the end of cycle five the rest of the chemical restraints
+also favored flattening in both models. A:12 ended at 0.047 and 0.094 Å in
+the written models.
+
+Both replays reproduced the 862-atom coordinate file and final GEO from
+their respective uninstrumented fits byte for byte. These are local changes
+in the refinement score. The maps at 4.19 Å do not resolve an individual
+terminal carbon reliably in this comparison. Atomic displacement, solvent and scale estimates also changed between cycles.
+
+### Two diffraction scores on the same PDU model
+
+C590 compared least squares and maximum likelihood on each saved molecular
+state. At the last coordinate evaluation of cycle two and the first of cycle
+three, least squares pulled the B:4 tip toward the base plane and maximum
+likelihood pulled it away. Both the arm-plane control and the control with
+five tighter flanking hydrogen bonds showed this reversal. Changing the
+diffraction score alone was sufficient to reverse the local pull. The chemical
+plane remained active throughout both original five-cycle fits.
+
+Each comparison kept all atom positions, occupancies and displacement factors,
+complex model and calculated structure factors, solvent masks, scale arrays,
+Miller indices and Free-R labels identical. Phenix 2.2.1-6174 fitted its
+least-squares scale on the working observations. Its likelihood treatment used
+its own uncertainty estimates. With 124 free reflections and a largest spacing
+of 41.1 Å the installed estimator used the working set for those estimates.
+The original cached likelihood and a freshly estimated likelihood are recorded
+separately. The size of a derivative has meaning within its scoring function.
+
+Both original five-cycle trajectories, their written 862-atom models and
+printed geometry reproduced exactly. A separate check displaced the seven
+atoms defining the tip height by 0.0005 and 0.0015 Å along the normalized
+height direction and summed their diffraction contributions directly. The
+change in score and the projection calculated independently in reciprocal
+space agreed to within 0.00000007 in the weighted derivative. The first test,
+which recalculated the whole model by FFT at those tiny steps, gave unstable
+slopes. It is retained as a failed numerical check.
+
+Keep the qualified parent and flag B:4 for inspection. The 4.19 Å observations
+leave the methyl position unresolved. This comparison establishes why the
+diffraction term can oppose the plane on this scaffold. It gives no general
+choice of automatic refinement target or restraint width. The next independent
+check is the locked-sugar neighborhood in the registered mixed scaffold.
 
 ## Building a requested 5'-terminal phosphate
 

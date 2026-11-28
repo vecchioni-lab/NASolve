@@ -56,6 +56,19 @@ def test_ordinary_intake_freezes_registered_role_and_holds_execution(entry_case)
     for name,value in before.items():assert inventory(args['model'].parent)[name]==value
 
 
+@pytest.mark.parametrize('allow_source_recovery', [False, True])
+def test_registered_hold_survives_independent_source_recovery_permission(entry_case, allow_source_recovery):
+    m,args,*_=registered_case(entry_case)
+    with patch('subprocess.Popen',side_effect=AssertionError('No native execution')):
+        request=initialize_postmr_dictionary_request(**args,automatic_connected_order=allow_source_recovery)
+        saved=m.inspect_dictionary_request(args['output'])
+    config=request['configuration']
+    assert ('connected_order_policy' in config) is allow_source_recovery
+    assert 'registered_backbone' in config and 'registered_execution_policy' not in config
+    assert saved['availability']=='BLOCKED' and saved['attempts']==[]
+    assert saved['retry_authorized'] is False
+
+
 def test_registered_request_relocates_without_original_source(entry_case,tmp_path):
     m,args,*_=registered_case(entry_case);request=initialize_postmr_dictionary_request(**args)
     destination=tmp_path/'relocated';shutil.move(args['output'],destination)

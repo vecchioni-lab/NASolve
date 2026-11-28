@@ -61,6 +61,10 @@ before allocating PostMR output.
    and one mapped parallelity per stack; disable competing native
    secondary-structure guessing. This prevents a second pairing/stacking source.
 5. Freeze the source model, dictionaries, compiled PHIL and compiler receipt.
+   Checked PostMR preparation passes that receipt to the dictionary engine. It
+   verifies the original inputs and compiled output together. Automatic
+   secondary structure is disabled in the compiled PHIL because the individual
+   pairing and stacking restraints are already present.
    PostMR records run-relative references and checksums, then follows ordinary
    ReadySet and checkpoint preparation. The recipe changes no coordinates.
 

@@ -1,5 +1,11 @@
 # Metal development handoff — current state
 
+**28 November integration:** Cedar release compatibility is being qualified on
+an isolated Alder receiving history. Focused owner and protected refinement
+panels pass; the retained FT read exposed separate dependency and assessor-source
+replay boundaries. [Current integration evidence and pending delivery](metal-release-compatibility.md).
+A01 remains partial; no new fit or f″ result is implied.
+
 Updated **27 November 2026** (fresh FT construction, owned preparation and archive readback). Active feature branch: **Alder**. The
 [root integration handoff](development-handoff.md) owns the current combined
 source, full validation and delivery. The [A01–A09 roadmap](metal-development-roadmap.md)

@@ -1243,12 +1243,47 @@ def _weight_table(lines: list[str], start: int) -> list[list[str]]:
     return rows
 
 
+_PRINTED_REFINEMENT_SECTION = re.compile(r"(?m)^[ \t]*={3,}[ \t]+([^=\r\n]+?)[ \t]+={3,}[ \t]*\r?$")
+
+
+def _reported_diffraction_targets(log_text: str) -> list[dict[str, object]]:
+    """Read the target announcement within each named Phenix macrocycle."""
+    if "using refinement target" not in log_text:
+        return []
+    cycles = re.split(r"(?m)^[ \t]*\*{3,}[ \t]+REFINEMENT MACRO_CYCLE\b([^*\r\n]*)\*{3,}[ \t]*\r?$", log_text)
+    reported = []
+    for banner, body in zip(cycles[1::2], cycles[2::2]):
+        numbers = re.fullmatch(r"([1-9][0-9]*)[ \t]+OF[ \t]+([1-9][0-9]*)", banner.strip())
+        if not numbers:
+            continue
+        try:
+            cycle, total = map(int, numbers.groups())
+        except ValueError:
+            continue
+        if cycle > total:
+            continue
+        body = re.split(r"(?m)^[ \t]*Job complete[ \t]*\r?$", body, maxsplit=1)[0]
+        sections = _PRINTED_REFINEMENT_SECTION.split(body)
+        announcements = [
+            part for title, part in zip(sections[1::2], sections[2::2]) if title == "Set refinement target"
+        ]
+        if len(announcements) != 1:
+            continue
+        lines = [line.strip() for line in announcements[0].splitlines()]
+        lines = [line for line in lines if line.startswith("using refinement target")]
+        if len(lines) == 1:
+            target = re.fullmatch(r"using refinement target[ \t]+([A-Za-z0-9_][A-Za-z0-9_.-]*)", lines[0])
+            if target:
+                reported.append({"macro_cycle": cycle, "total_cycles": total, "target": target[1]})
+    return reported
+
+
 def _reported_coordinate_weights(log_text: str) -> list[dict[str, object]]:
     """Read the chosen XYZ weight at printed precision, without recreating Phenix's selector."""
     heading = "XYZ individual (reciprocal space)"
     if heading not in log_text:
         return []
-    sections = re.split(r"(?m)^[ \t]*={3,}[ \t]+([^=\r\n]+?)[ \t]+={3,}[ \t]*\r?$", log_text)
+    sections = _PRINTED_REFINEMENT_SECTION.split(log_text)
     steps = []
     for title, body in zip(sections[1::2], sections[2::2]):
         if title != heading:
@@ -1318,6 +1353,9 @@ def parse_refinement_statistics(log_text: str, model_text: str = "") -> dict[str
     coordinate_weights = _reported_coordinate_weights(log_text)
     if coordinate_weights:
         statistics["coordinate_weight_steps"] = coordinate_weights
+    diffraction_targets = _reported_diffraction_targets(history)
+    if diffraction_targets:
+        statistics["diffraction_target_steps"] = diffraction_targets
     return statistics
 
 
@@ -2514,7 +2552,7 @@ def execute_autorefine(
         "metrics": {
             key: value
             for key, value in statistics.items()
-            if key not in {"cycle_series", "coordinate_weight_steps", "diagnostics"}
+            if key not in {"cycle_series", "coordinate_weight_steps", "diffraction_target_steps", "diagnostics"}
         },
         "compatibility": {
             **compatibility,

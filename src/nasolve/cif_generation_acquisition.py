@@ -17,7 +17,7 @@ from .campaign_records import path_in
 from .failure_reporting import add_failure_note
 from .cif_dictionary_store import (_identity, _regular, _snapshot_destination,
     make_dictionary_request, resolve_qualified_dictionary, lookup_dictionary,
-    resolve_dictionary_snapshot, recipe_representation_policy)
+    resolve_dictionary_snapshot, same_qualification_permissions)
 from .cif_generation_attempt import _pins, _root, generate_source_candidate_attempt, inspect_source_generation_request
 
 POLICY_ID = 'cif-source-generation-acquisition-v1'
@@ -42,7 +42,7 @@ def generation_dictionary_options(generation):
     """
     required = {'installation_root', 'python_executable', 'elbow_executable', 'api_sources',
                 'environment', 'expected_dialect', 'prior_sources', 'phenix_version'}
-    optional = {'single_block_steps', 'timeout_seconds', 'max_attempts', 'bond_representation_policy', 'multiple_planes', 'source_input_policy'}
+    optional = {'single_block_steps', 'timeout_seconds', 'max_attempts', 'bond_representation_policy', 'multiple_planes', 'source_input_policy', 'rna_pucker_table'}
     _need(isinstance(generation, dict) and required <= generation.keys()
           and generation.keys() <= required | optional, 'Require explicit supported generation configuration')
     steps = generation.get('single_block_steps', 180)
@@ -68,6 +68,11 @@ def generation_dictionary_options(generation):
     validate_policy(policy)
     if policy is not None:
         recipe['bond_representation_policy'] = policy
+    if 'rna_pucker_table' in generation:
+        from .cif_rna_pucker import permitted_pucker_tables
+        _need(policy is not None, 'Paired RNA reading requires an explicit chemical representation')
+        permitted_pucker_tables(generation['rna_pucker_table'])
+        recipe['rna_pucker_table'] = generation['rna_pucker_table']
     generator = {'name': 'phenix.elbow.source-preserving', 'version': generation['phenix_version'],
                  'api_sources': _pins(generation['api_sources']), 'prior_sources': _pins(generation['prior_sources'])}
     _identity(generator)
@@ -138,7 +143,7 @@ def resolve_generated_dictionary(source, code, store_root, output, request_direc
     def acquire():
         _need(_regular(source) == original, 'Selected source changed before generation')
         result = (generate_source_candidate_attempt if _generate is None else _generate)(source=source, code=code,
-            request_directory=request_directory, **generation)
+            request_directory=request_directory, **{k:v for k,v in generation.items() if k!='rna_pucker_table'})
         state = inspect_source_generation_request(request_directory)
         attempt = state['attempts'][result['attempt_number']-1]
         _need(attempt['state'] == 'STOPPED' and attempt['intent']['attempt_id'] == result['attempt_id']
@@ -215,7 +220,7 @@ def resolve_generated_dictionary(source, code, store_root, output, request_direc
         current = make_dictionary_request(source, code, source_authority=source_authority, **prior_options)
         _need(current == prior and _regular(source) == original,
               'Retained snapshot differs from the exact selected source or authority')
-        _need(recipe_representation_policy(prior['recipe']) == recipe_representation_policy(options['recipe']),
+        _need(same_qualification_permissions(prior['recipe'],options['recipe']),
               'Retained snapshot representation permission differs')
         names = ('resolution.json', 'entry/manifest.json', 'entry/source.cif',
                  'entry/dictionary.cif', 'entry/qualification.json', 'entry/provenance.json')

@@ -234,11 +234,24 @@ def _code(policy=None):
               and isinstance(legacy['topostitch_native_recipe.py'],str),
               'Invalid frozen native-recipe helper source set')
         frozen.update(legacy)
+    if policy in (V10_POLICY_ID, V11_POLICY_ID, V12_POLICY_ID):
+        # These workers predate workbook selection in ordinary preparation.
+        name = "cif_explicit_na_policy.py"
+        original = json.loads((package / "data/refinement-runtime-phosphate-na-reader.json").read_text())
+        _need(isinstance(original, dict) and set(original) == {name} and isinstance(original[name], str),
+              "Invalid frozen phosphate worker base-restraint reader")
+        frozen.update(original)
     if policy in (V10_POLICY_ID, V11_POLICY_ID):
         single = json.loads((package / 'data/refinement-runtime-single-phosphate-sources.json').read_text())
         _need(isinstance(single, dict) and set(single) == {'cif_phosphate_runtime.py', 'cif_phosphate_phase.py'}
               and all(isinstance(text, str) for text in single.values()), 'Invalid frozen single-phosphate runtime')
         frozen.update(single)
+    if policy == V12_POLICY_ID:
+        name = 'cif_phosphate_phase.py'
+        grouped = json.loads((package/'data/refinement-runtime-grouped-phosphate-phase.json').read_text())
+        _need(isinstance(grouped, dict) and set(grouped) == {name} and isinstance(grouped[name], str),
+              'Invalid frozen grouped phosphate phase')
+        frozen.update(grouped)
     if policy == V10_POLICY_ID:
         legacy = json.loads((package / 'data/refinement-runtime-v10-sources.json').read_text())
         _need(isinstance(legacy, dict) and set(legacy) == {'cif_phosphate_restraints.py'}

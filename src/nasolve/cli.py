@@ -125,7 +125,8 @@ def build_parser() -> argparse.ArgumentParser:
     campaign_retry.add_argument("root", nargs="?", type=Path, default=Path("."), help="campaign parent directory")
     campaign_retry.add_argument("--dataset", required=True, action="append", help="one exact planned dataset name")
     campaign_retry.add_argument("--json", action="store_true", help="print structured status")
-    subparsers.add_parser("check", help="validate NASolve's runtime without solving a structure")
+    check = subparsers.add_parser("check", help="validate NASolve's runtime without solving a structure")
+    check.add_argument("--offline", action="store_true", help="check the installed tools without contacting GitHub")
     automr = subparsers.add_parser(
         "automr", help="validate and freeze molecular-replacement inputs"
     )
@@ -305,9 +306,19 @@ def build_parser() -> argparse.ArgumentParser:
     prepared = cif_sub.add_parser("prepared-result", help="read one exact checked preparation without running Coot or Phenix")
     prepared.add_argument("run", type=Path)
     prepared.add_argument("--attempt", required=True, type=int, help="exact completed preparation attempt number")
+    sugar_fit = cif_sub.add_parser("fit-sugar", help="fit one checked sugar locally with Phenix and keep the result for review")
+    sugar_fit.add_argument("run", type=Path, help="AutoMR run with a completed checked preparation")
+    sugar_fit.add_argument("--attempt", type=int, required=True, help="exact checked preparation attempt")
+    fit_action = sugar_fit.add_mutually_exclusive_group()
+    fit_action.add_argument("--read-fit", type=int, metavar="N", help="read a saved local fit without running Phenix")
+    fit_action.add_argument("--after-fit", type=int, metavar="N", help="start a fresh fit after this stopped unsuccessful fit")
     publish = cif_sub.add_parser("publish-preparation", help="save one exact checked preparation as the run's review checkpoint; no refinement is run")
     publish.add_argument("run", type=Path)
     publish.add_argument("--attempt", required=True, type=int, help="exact completed preparation attempt; also resumes an interrupted save of that same choice")
+    publish.add_argument("--sugar-fit", type=int, metavar="M", help="publish this preparation’s numbered, locally fitted sugar")
+    proof_source = publish.add_mutually_exclusive_group()
+    proof_source.add_argument("--native-receipt", type=Path, help="reuse this Phenix reading of the fitted model and its exact preparation restraints")
+    proof_source.add_argument("--after-native-read", type=int, metavar="N", help="retry a failed fitted-model interpretation once its named worker has stopped")
     publish.add_argument("--as-alternative", action="store_true", help="save a later attempt as a separate REVIEW checkpoint from the same frozen construction; preserve the current selection")
     preparation_status = cif_sub.add_parser("preparation-status", help="read saved preparation attempts and whether work is still running")
     preparation_status.add_argument("run", type=Path)
@@ -321,7 +332,16 @@ def build_parser() -> argparse.ArgumentParser:
     cif_catalogue.add_argument("--workbook", required=True, type=Path, help="explicit NARestraints Ligands.xlsx")
     cif_catalogue.add_argument("--ccd-root", required=True, type=Path,
                                help="explicit CCD directory containing a/data_CODE.cif etc.; no discovery")
+    cif_catalogue.add_argument("--sulfur-phosphates", action="store_true",
+                               help="read the source bond orders, leaving atoms and roles at phosphorus bonded to sulfur")
     cif_catalogue.add_argument("--json", action="store_true", help="print the complete coverage census")
+    deposition_geometry = cif_sub.add_parser("deposition-geometry", help="remeasure nucleic-acid bond and angle findings from a wwPDB validation CIF")
+    deposition_geometry.add_argument("model", type=Path, help="exact coordinate mmCIF assessed by the report")
+    deposition_geometry.add_argument("--validation", type=Path, required=True, help="matching wwPDB validation-data mmCIF")
+    deposition_geometry.add_argument("--candidate", type=Path, help="revised coordinate mmCIF with the same atom and residue identities")
+    deposition_geometry.add_argument("--family", choices=("all", "standard", "mogul"), default="all",
+                                     help="reported reference family to reproduce (default: both)")
+    deposition_geometry.add_argument("--json", action="store_true", help="include source hashes, atom identities, targets and coordinate measurements")
     deposition_links = cif_sub.add_parser("deposition-links", help="check ordinary nucleic-acid steps and declared O3'–P crystal links in a coordinate mmCIF")
     deposition_links.add_argument("model", type=Path, help="exact coordinate mmCIF (requires NASolve[topology])")
     deposition_links.add_argument("--processed", type=Path, help="optional returned coordinate mmCIF to check for missing covalent declarations")
@@ -334,6 +354,8 @@ def build_parser() -> argparse.ArgumentParser:
     residue_sites.add_argument("--site", action="append", metavar="CHAIN:NUMBER", help="residue to inspect (repeatable)")
     residue_sites.add_argument("--all-sites", action="store_true", help="screen every modeled residue and summarize the largest discrepancies")
     residue_geometry.add_argument("--geometry", type=Path, metavar="FINAL_GEO", help="matching final Phenix geometry for an explicit PDB")
+    residue_geometry.add_argument("--sugar-pucker", action="store_true",
+                                  help="measure sugar ring phase and amplitude from occupied atoms and five native bonds")
     residue_geometry.add_argument("--checkpoint", help="explicit checkpoint ID or bookmark and its recorded final geometry")
     reference = residue_geometry.add_mutually_exclusive_group()
     reference.add_argument("--reference-pdb", type=Path, metavar="PDB", help="compare with this earlier PDB and its --reference-geometry")
@@ -342,6 +364,8 @@ def build_parser() -> argparse.ArgumentParser:
     residue_geometry.add_argument("--json", action="store_true", help="print all observed rows, their origins and file hashes")
     phosphate_image = cif_sub.add_parser("phosphate-image", help="inspect a named O3' crystal image at a phosphate (requires NASolve[topology])")
     phosphate_image.add_argument("model", type=Path, metavar="PDB_OR_RUN", help="exact written PDB with CRYST1, or a numbered run with --checkpoint")
+    phosphate_image.add_argument("--na-val-2026", action="store_true",
+                                help="compare standard DNA or RNA junction bonds and angles with published outer limits")
     phosphate_image.add_argument("--checkpoint", help="read this checkpoint ID or bookmark and its recorded final geometry")
     phosphate_image.add_argument("--phosphate", metavar="CHAIN:NUMBER", help="coordinate site containing P for an explicit or nearest-image inspection")
     phosphate_image.add_argument("--o3", metavar="CHAIN:NUMBER", help="coordinate site containing O3' for an explicit or nearest-image inspection")
@@ -397,6 +421,10 @@ def build_parser() -> argparse.ArgumentParser:
     cif_profile.add_argument("dictionary", type=Path, help="explicit source component dictionary")
     cif_profile.add_argument("--code", required=True, help="exact component and NARestraints code")
     cif_profile.add_argument("--workbook", required=True, type=Path, help="explicit NARestraints Ligands.xlsx")
+    cif_profile.add_argument("--check-at-pair", action="store_true",
+                             help="compare canonical pairing contacts to adenine with the source ring chemistry")
+    cif_profile.add_argument("--explain-base-roles", action="store_true",
+                             help="check whether a workbook base role covers part of an unmatched sugar")
     cif_profile.add_argument("--json", action="store_true", help="print complete topology and source-state evidence")
     cif_assess = cif_sub.add_parser("assess", help="read-only dictionary/effective-bundle assessment")
     cif_assess.add_argument("dictionaries", nargs="*", type=Path)
@@ -415,16 +443,28 @@ def build_parser() -> argparse.ArgumentParser:
     )
     cif_assess.add_argument(
         "--refined-links", action="store_true",
-        help="compare inter-residue bonds at Phenix preflight and after refinement with the checked preparation (requires --run)",
+        help="compare inter-residue bonds with the checked preparation and show the most compressed and extended supplied distances before and after refinement (requires --run)",
     )
     cif_assess.add_argument(
         "--contacts-at", action="append", metavar="CHAIN:NUMBER",
         help="read Phenix nonbonded contacts for this residue before and after refinement; may be repeated (requires --run)",
     )
+    cif_assess.add_argument(
+        "--min-contact-overlap", type=float, metavar="ANGSTROMS",
+        help="list every printed contact at the chosen sites whose overlap reaches this value (requires --contacts-at)",
+    )
     cif_assess.add_argument("--model", type=Path, help="optional PDB atom inventory (standalone only)")
     cif_assess.add_argument("--stage", choices=("source", "effective", "standalone"), default="standalone")
     cif_assess.add_argument("--output", type=Path, help="new JSON receipt; existing files are refused")
     cif_assess.add_argument("--json", action="store_true", help="print the full JSON receipt")
+    pucker = cif_sub.add_parser("explain-pucker", help="compare an isolated Phenix sugar adjustment with the installed targets")
+    pucker.add_argument("qualification", type=Path, help="completed two-seed native job directory")
+    pucker.add_argument("--json", action="store_true", help="show the component, native inputs and exact checks")
+    verify_pucker = cif_sub.add_parser("verify-pucker", help="verify both native and literal isolated RNA targets")
+    verify_pucker.add_argument("qualification", type=Path, help="original two-seed qualification with the recorded adjustment")
+    verify_pucker.add_argument("literal", type=Path, help="fresh directory for the two literal native reads, or existing directory with --replay")
+    verify_pucker.add_argument("--replay", action="store_true", help="check both saved jobs without executing refinement or new native reads")
+    verify_pucker.add_argument("--json", action="store_true", help="show the source, candidate and receipt bindings")
     cif_compare = cif_sub.add_parser("compare", help="compare exact same-code source/candidate chemistry")
     cif_compare.add_argument("source", type=Path)
     cif_compare.add_argument("candidate", type=Path)
@@ -890,10 +930,13 @@ def _configure_coot(path: str | None) -> int:
     return 0
 
 
-def _check(explicit: str | None) -> int:
+def _check(explicit: str | None, *, offline: bool = False) -> int:
     print(f"Python {sys.version.split()[0]}: OK")
     na_version = _narestraints_version()
     print(f"NARestraints {na_version}: " + ("OK" if na_version != "not installed" else "MISSING"))
+    if not offline:
+        from .narestraints_release import release_status
+        print(release_status(na_version))
     try:
         config = load_config()
         installation = discover_phenix(config, explicit=explicit)
@@ -1706,7 +1749,7 @@ def _cif_catalogue(args: argparse.Namespace) -> int:
     from .cif_catalogue import audit_catalogue
 
     try:
-        report = audit_catalogue(args.workbook, args.ccd_root)
+        report = audit_catalogue(args.workbook, args.ccd_root, sulfur_phosphates=args.sulfur_phosphates)
         if args.json:
             print(json.dumps(report, indent=2, sort_keys=True, allow_nan=False))
         else:
@@ -1715,6 +1758,9 @@ def _cif_catalogue(args: argparse.Namespace) -> int:
             for label, key in (("Source availability", "source_status"), ("Graph checks", "graph_status"),
                                ("NAR records", "record_resolution"), ("Mapped atom names", "mapped_roles")):
                 print(label + ": " + ", ".join(f"{name}={count}" for name, count in summary[key].items()))
+            if args.sulfur_phosphates:
+                counts = summary["sulfur_phosphate_centers"]
+                print(f"Found {sum(counts.values())} source phosphorus centres bonded to sulfur.")
             print("Native qualification: not assessed; no linkage profile assigned or chemistry changed.")
             print("Use --json for exact worksheet rows, source hashes, findings and next actions.")
         return 2  # A completed census is review evidence, never a support certificate.
@@ -1747,7 +1793,8 @@ def _cif_profile(args: argparse.Namespace) -> int:
     from .cif_attachment_profiles import inspect_attachment_profile
 
     try:
-        report = inspect_attachment_profile(args.dictionary, args.code, workbook=args.workbook)
+        report = inspect_attachment_profile(args.dictionary, args.code, workbook=args.workbook,
+                                            explain_base_roles=args.explain_base_roles, check_at_pair=args.check_at_pair)
         if args.json:
             print(json.dumps(report, indent=2, sort_keys=True, allow_nan=False))
         else:
@@ -1756,6 +1803,18 @@ def _cif_profile(args: argparse.Namespace) -> int:
                 print(f"  {name}: {port['atom_id']} ({port['element']}); declared charge={port['formal_charge']}")
             if report["review_reasons"]:
                 print("Review: " + ", ".join(report["review_reasons"]))
+            if check := report.get("at_pair_check"):
+                print("Canonical pairing contacts to adenine", check["status"])
+                if check["status"] == "CONFLICT":
+                    print("  From source chemistry", check["source_atoms_by_adenine_contact"])
+                    print("  Emitted by NARestraints", check["narestraints_atoms_by_adenine_contact"])
+            if review := report.get("base_role_review"):
+                print("Base-role cross-check:", review["status"])
+                if review["status"] == "UNIQUE_ROLE_CONFLICT":
+                    print("Source sugar–base bond:", "–".join(review["source_bond"]))
+                    print("Workbook glycosidic atom:", review["workbook_glycosidic_atom"])
+                    for item in review["shared_roles"]:
+                        print(f"  {item['atom']} is mapped as {item['base_role']} and belongs to the {item['backbone_role']} position.")
             print("No linkage, leaving atoms or terminal state selected; native qualification not assessed.")
             print("Use --json for source hashes, NAR roles, stereo and bounded-search evidence.")
         return 2  # A topology match remains review evidence, not permission to edit chemistry.
@@ -1799,7 +1858,7 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
             raise ValueError("Topology input files require --registered-continuation ID")
         options = dict(phosphate=args.phosphate, o3=args.o3, o3_image=args.o3_image,
                        nearest_image=args.nearest_image, native_receipt=args.native_receipt, registered=registered,
-                       duplex_partners=args.duplex_partners, partner_images=args.partner_images)
+                       duplex_partners=args.duplex_partners, partner_images=args.partner_images, na_val_2026=args.na_val_2026)
         if args.registration_checkpoint is not None:
             if args.checkpoint is None or registered is None:
                 raise ValueError("--registration-checkpoint needs a numbered run, --checkpoint and --registered-continuation")
@@ -1827,9 +1886,23 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
     except (OSError, ValueError, RuntimeError) as exc:
         print(f"CIF Doctor: {exc}", file=sys.stderr)
         return 1
+    population = result.get("na_val_2026")
+    partial = population is not None and population["status"] != "MEASURED"
     if args.json:
         print(json.dumps(result, indent=2, sort_keys=True, allow_nan=False))
     else:
+        if population is not None:
+            print(f"Population reference {population['source']}")
+            if population["status"] == "UNASSESSED":
+                print(f"Published junction comparison unavailable. {population['reason']}.")
+            else:
+                print(f"Published {population['family']} junction ranges. {population['measured_count']} measurements, "
+                      f"{population['outside_count']} outside the outer limits, {population['missing_count']} unavailable.")
+                for row in population["terms"]:
+                    if row["outside"]:
+                        low, high = row["interval"]
+                        print(f"  {row['group']} {row['feature']}  {row['observed']:.3f}{row['unit']} "
+                              f"(published {low:.3f} to {high:.3f}{row['unit']})")
         if "checkpoint" in result:
             print(f"Checkpoint {result['checkpoint']['id']}.")
             fit = result.get("numbered_refinement")
@@ -1880,14 +1953,14 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
                   f"to {acceptor['logical_site']} P in image {declared['target_operator_xyz']}.")
             if declared["measurement_status"] == "UNRESOLVED":
                 print(f"Coordinate measurement unavailable. {declared['reason']}.")
-                return 0
+                return 2 if partial else 0
         ranking = result.get("image_ranking")
         if ranking is not None:
             for label, row in zip(("Nearest", "Next nearest"), ranking["closest_two"]):
                 print(f"{label} copy of {args.o3} O3'  {row['image']['operator_xyz']}  {row['distance_A']:.3f} Å")
             if result["o3_image"] is None:
                 print("The saved coordinate precision leaves the image ambiguous. Supply --o3-image to inspect a chosen copy.")
-                return 0
+                return 2 if partial else 0
         print(f"{result['phosphate'][0]} P to {result['o3'][0]} O3' in image {result['o3_image']} measures {result['distance_A']:.3f} Å.")
         present = [name for name, atom in result["phosphate_atoms"].items() if atom is not None]
         print("Phosphate site contains " + ", ".join(present) + ".")
@@ -1934,7 +2007,7 @@ def _cif_phosphate_image(args: argparse.Namespace) -> int:
                 pairs = ", ".join(source + " to " + target for source, target in group["links"])
                 print(f"  {pairs} share {len(group['terms'])} recorded covalent terms")
     flanks = result.get("numbered_refinement", {}).get("flanking_residue_geometry")
-    return 2 if flanks and flanks["status"] != "OBSERVED" else 0
+    return 2 if partial or (flanks and flanks["status"] != "OBSERVED") else 0
 
 
 def _cif_link_native(args: argparse.Namespace) -> int:
@@ -2100,10 +2173,33 @@ def _cif_checked_preparation(args: argparse.Namespace) -> int:
             "--preparation-attempt", str(result.attempt_number)]))
     for limitation in result.limitations:
         print(limitation)
+    if result.model_path is not None and getattr(result, 'local_fit_site', None) is not None:
+        print("Fit this sugar for review: " + shlex.join([
+            "nasolve", "cif-doctor", "fit-sugar", str(result.run_directory), "--attempt", str(result.attempt_number)]))
     print("Read this result again: " + shlex.join([
         "nasolve", "cif-doctor", "prepared-result", str(result.run_directory),
         "--attempt", str(result.attempt_number)]))
     return 0 if result.model_path is not None else 2
+
+
+def _cif_fit_sugar(args: argparse.Namespace) -> int:
+    from subprocess import TimeoutExpired
+    from .campaigns import CampaignError
+    from .cif_furanose_fit_attempt import fit_checked_sugar, read_checked_sugar_fit
+
+    try:
+        if args.read_fit is not None:
+            fit = read_checked_sugar_fit(args.run, attempt_number=args.attempt, fit_number=args.read_fit)
+        else:
+            fit = fit_checked_sugar(args.run, lambda: discover_phenix(load_config(), explicit=args.phenix_root),
+                                    attempt_number=args.attempt, after_fit=args.after_fit)
+    except (OSError, ValueError, ConfigError, PhenixDiscoveryError, PostMRPreparationError, CampaignError, TimeoutExpired) as exc:
+        print(f"Local sugar fit could not complete: {exc}", file=sys.stderr)
+        return 2
+    print(f"Geometry-only fit {fit.number} for {fit.observations['site']} {fit.observations['component']}.")
+    print(f"Review model: {fit.model}")
+    print(f"Fit measurements: {fit.report}")
+    return 0
 
 
 def _cif_publish_preparation(args: argparse.Namespace) -> int:
@@ -2111,8 +2207,14 @@ def _cif_publish_preparation(args: argparse.Namespace) -> int:
     from .campaigns import CampaignError
     alternative = getattr(args, "as_alternative", False)
     try:
-        result, notes = (publish_preparation_alternative if alternative else publish_checked_preparation_with_notes)(args.run, attempt_number=args.attempt)
-    except (OSError, ValueError, CampaignError, CheckpointError, PostMRPreparationError) as exc:
+        fit_options = {k: v for k, v in (("sugar_fit", args.sugar_fit), ("native_receipt", args.native_receipt)) if v is not None}
+        if args.sugar_fit is not None and args.native_receipt is None:
+            fit_options['discover_phenix'] = lambda: discover_phenix(load_config(), explicit=args.phenix_root)
+        if args.after_native_read is not None:
+            fit_options['after_native_read'] = args.after_native_read
+        publish = publish_preparation_alternative if alternative else publish_checked_preparation_with_notes
+        result, notes = publish(args.run, attempt_number=args.attempt, **fit_options)
+    except (OSError, ValueError, ConfigError, PhenixDiscoveryError, CampaignError, CheckpointError, PostMRPreparationError) as exc:
         print(f"Preparation handoff could not complete: {exc}", file=sys.stderr)
         print("Preserve saved work; retry the same attempt to finish an interrupted publication.", file=sys.stderr)
         return 2
@@ -2168,6 +2270,18 @@ def _cif_deposition_links(args: argparse.Namespace) -> int:
 
 def _cif_doctor(args: argparse.Namespace) -> int:
     """Offline assessment/preparation and explicitly requested native candidates."""
+    if args.cif_action == "deposition-geometry":
+        from .cif_deposition_geometry import inspect_deposition_geometry, print_deposition_geometry
+        try:
+            result = inspect_deposition_geometry(args.model, args.validation, candidate=args.candidate, family=args.family)
+        except (OSError, ValueError, RuntimeError) as exc:
+            print(str(exc), file=sys.stderr)
+            return 1
+        if args.json:
+            print(json.dumps(result, indent=2, allow_nan=False))
+        else:
+            print_deposition_geometry(result)
+        return 0 if result["status"] == "REMEASURED" else 2
     if args.cif_action == "deposition-links":
         return _cif_deposition_links(args)
     if args.cif_action == "residue-geometry":
@@ -2175,7 +2289,7 @@ def _cif_doctor(args: argparse.Namespace) -> int:
         try:
             result = inspect_residue_geometry(args.model, args.site, geometry=args.geometry, checkpoint=args.checkpoint,
                                              reference_pdb=args.reference_pdb, reference_geometry=args.reference_geometry,
-                                             reference_checkpoint=args.reference_checkpoint)
+                                             reference_checkpoint=args.reference_checkpoint, sugar_pucker=args.sugar_pucker)
         except (OSError, ValueError, CheckpointError) as exc:
             print(str(exc), file=sys.stderr)
             return 1
@@ -2186,17 +2300,70 @@ def _cif_doctor(args: argparse.Namespace) -> int:
             print_geometry_change(result)
         else:
             print_residue_geometry(result)
-        return 0 if result["status"] == "OBSERVED" else 2
+        readings = (result["reference"], result["current"]) if "reference" in result else (result,)
+        rings_ready = all(r.get("sugar_puckers", {}).get("status", "MEASURED") == "MEASURED" for r in readings)
+        return 0 if result["status"] == "OBSERVED" and rings_ready else 2
     if args.cif_action == "phosphate-image":
         return _cif_phosphate_image(args)
     if args.cif_action == "prepared-backbone":
         return _cif_prepared_backbone(args.run.expanduser(), registration=args.registration,
             discovery=args.discovery_input, continuations=args.backbone_continuations, as_json=args.json,
             candidate_model=args.candidate_model, native_receipt=args.native_receipt)
+    if args.cif_action == "fit-sugar":
+        return _cif_fit_sugar(args)
     if args.cif_action == "publish-preparation":
         return _cif_publish_preparation(args)
     if args.cif_action in {"prepare-run", "continue-preparation", "prepared-result", "preparation-status"}:
         return _cif_checked_preparation(args)
+    if args.cif_action == "verify-pucker":
+        from .cif_rna_pucker import ArchivedPuckerTableUnavailable, read_literal_pucker, verify_literal_pucker
+        try:
+            if args.replay and args.phenix_root is None:
+                try:
+                    result = read_literal_pucker(args.qualification, args.literal)
+                except ArchivedPuckerTableUnavailable:
+                    result = read_literal_pucker(args.qualification, args.literal, discover_phenix(load_config()))
+            else:
+                installation = discover_phenix(load_config(), explicit=args.phenix_root)
+                if args.replay:
+                    result = read_literal_pucker(args.qualification, args.literal, installation)
+                else:
+                    result = verify_literal_pucker(args.qualification, args.literal, installation, include_observed_states=True)
+        except (OSError, ValueError, RuntimeError) as exc:
+            print(str(exc), file=sys.stderr)
+            return 1
+        if args.json:
+            print(json.dumps(result, indent=2, allow_nan=False))
+        else:
+            print(f"{result['component']}: both coordinate seeds match the literal dictionary "
+                  "and the native pucker targets.")
+        return 0
+    if args.cif_action == "explain-pucker":
+        from .cif_rna_pucker import review_pucker_adjustment
+        try:
+            installation = discover_phenix(load_config(), explicit=args.phenix_root)
+            result = review_pucker_adjustment(args.qualification, installation)
+        except (OSError, ValueError, RuntimeError) as exc:
+            print(str(exc), file=sys.stderr)
+            return 1
+        if args.json:
+            print(json.dumps(result, indent=2, allow_nan=False))
+        else:
+            if "tables" in result:
+                print(f"{result['component']} {result['status']}")
+                for seed in result["seeds"]:
+                    counts = seed["matched_rows"]
+                    print(f"  {seed['seed']} selected {seed['modifier']} with {counts['bonds']} bonds, "
+                          f"{counts['angles']} angles and {counts['torsions']} torsions.")
+            else:
+                rows = result["matched_rows"]
+                print(f"{result['component']} {result['modifier']}: {result['status']}. "
+                      f"Matched rows for bonds ({rows['bonds']}), angles ({rows['angles']}) "
+                      f"and torsions ({rows['torsions']}).")
+            for seed in result["seeds"]:
+                if seed["adjusted_checks_failed"]:
+                    print(f"  {seed['seed']}: " + ", ".join(seed["adjusted_checks_failed"]))
+        return 0 if result["status"] in {"ADJUSTED_TARGETS_EXPLAINED", "SEED_TARGETS_EXPLAINED"} else 2
     if args.cif_action == "link-native":
         return _cif_link_native(args)
     if args.cif_action == "link-plan":
@@ -2241,7 +2408,7 @@ def _cif_doctor(args: argparse.Namespace) -> int:
 
             source = args.source.expanduser().resolve()
             candidate = args.candidate.expanduser().resolve()
-            payload = compare_dictionaries([source], [candidate])
+            payload = compare_dictionaries([source], [candidate], compare_stereo_planes=True, compare_stereo_bonds=True)
             root = Path(os.path.commonpath([str(source.parent), str(candidate.parent)]))
             for key, path in (("source_assessment", source), ("effective_assessment", candidate)):
                 payload[key]["inputs"][0].update({
@@ -2255,6 +2422,8 @@ def _cif_doctor(args: argparse.Namespace) -> int:
         else:
             if args.refined_planes is True and args.run is None:
                 raise ValueError("--refined-planes requires --run or an explicit GEO path with --model PDB")
+            if args.min_contact_overlap is not None and not args.contacts_at:
+                raise ValueError("--min-contact-overlap requires --contacts-at")
             if args.contacts_at and args.run is None:
                 raise ValueError("--contacts-at requires --run")
             if args.b_factors_at and args.run is None:
@@ -2279,6 +2448,7 @@ def _cif_doctor(args: argparse.Namespace) -> int:
                     raise ValueError("--run selects its frozen model/bundle; omit dictionaries, --model and --stage")
                 payload = assess_run(args.run, checkpoint=args.checkpoint, refined_planes=bool(args.refined_planes),
                                      refined_links=args.refined_links, contact_sites=args.contacts_at,
+                                     minimum_contact_overlap=args.min_contact_overlap,
                                      b_factor_sites=args.b_factors_at, bond_targets=args.bond_targets is True,
                                      template_bonds=args.template_bonds)
             else:
@@ -2425,6 +2595,18 @@ def _cif_doctor(args: argparse.Namespace) -> int:
                         shorter = sum(values["shorter_than_vdw"] > 0 for values in atoms.values())
                         print(f"{stage} {site} {group['component']}: {shorter} of {len(atoms)} atoms have a "
                               "reported distance below the Phenix van der Waals distance.")
+                    screen = contacts.get("overlap_screen")
+                    if screen is not None:
+                        matches = screen["contacts"]
+                        print(f"{stage} has {len(matches)} printed contacts with overlap of at least "
+                              f"{screen['minimum_overlap_A']:g} Å at the chosen sites.")
+                        for row in matches[:8]:
+                            left, right = (" ".join(end) for end in row["endpoints"])
+                            image = row["image_of_second_atom"]
+                            suffix = f" (second atom at {image})" if image else ""
+                            print(f"  {left} to {right}{suffix}  {row['overlap_A']:.3f} Å overlap")
+                        if len(matches) > 8:
+                            print("  Use --json for the complete contact list.")
             for field, stage in (("preflight_links", "Preflight"), ("refined_links", "Refined")):
                 if field not in payload:
                     continue
@@ -2442,6 +2624,16 @@ def _cif_doctor(args: argparse.Namespace) -> int:
                     if links["matched_backbone"] is not None:
                         print(f"  Matched {links['matched_backbone']} backbone bonds and "
                               f"{links['matched_supplied']} explicitly supplied distances.")
+                    fit = links.get("supplied_distance_fit")
+                    if fit is not None:
+                        for key, description in (("most_compressed", "Most compressed"), ("most_extended", "Most extended")):
+                            row = fit[key]
+                            if row is not None:
+                                pair = " to ".join(" ".join(atom) for atom in row["endpoints"])
+                                print(f"  {description}: {pair}, {row['model_A']:.3f} Å for a {row['target_A']:.3f} Å target "
+                                      f"({row['signed_widths']:+.2f} restraint widths).")
+                        if fit["ambiguous"]:
+                            print(f"  {fit['ambiguous']} matched distances have multiple same-image terms and cannot be ranked.")
                     for row in links["links"]:
                         if row["classification"] in {"OUTSIDE_DECLARATION", "SYMMETRY_REVIEW"}:
                             pair = " to ".join(" ".join(atom) for atom in row["endpoints"])
@@ -2530,7 +2722,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "campaign":
         return _campaign(args)
     if args.command == "check":
-        return _check(args.phenix_root)
+        return _check(args.phenix_root, offline=args.offline)
     if args.command == "automr":
         return _automr(args)
     if args.command == "postmr":

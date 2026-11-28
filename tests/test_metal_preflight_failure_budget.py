@@ -18,7 +18,7 @@ def failed_preflight(tmp_path,values,native,parent,options,name='session'):
 
 
 @pytest.mark.parametrize('defect',['metadata','timeout','before-launch','scattering','free-r','lost-inspection'])
-def test_stopped_partial_preflight_releases_only_explicit_session_headroom(tmp_path,monkeypatch,defect):
+def test_stopped_partial_preflight_releases_only_explicit_session_headroom(tmp_path,tmp_path_factory,monkeypatch,defect):
     values,native,parent_options,options=setup(tmp_path,monkeypatch,defect)
     if defect=='before-launch':monkeypatch.setattr(m,'_fresh_scattering',lambda *a,**k:(_ for _ in ()).throw(RecipeError('Before launch')))
     if defect=='scattering':monkeypatch.setattr(m,'_check_scattering_record',lambda *a:(_ for _ in ()).throw(RecipeError('Scattering comparison failed')))
@@ -46,7 +46,7 @@ def test_stopped_partial_preflight_releases_only_explicit_session_headroom(tmp_p
         assert inventory(tmp_path/'session')==before
         assert inspect(options)['outstanding_bytes']==parent_options['allowance_bytes']
     assert inspect(options)['outstanding_bytes']==0
-    moved=tmp_path.with_name(tmp_path.name+'-relocated');tmp_path.rename(moved);assert not tmp_path.exists()
+    moved=tmp_path_factory.mktemp('preflight-relocation')/'moved';tmp_path.rename(moved);assert not tmp_path.exists()
     with patch('subprocess.Popen',side_effect=AssertionError('No native calls')):
         with patch('nasolve.cif_repair_process.process_alive',side_effect=AssertionError('No historical PID queries')):
             read=m.inspect_failed_audited_child(moved/'session',failure_id=failure['record_sha256'])

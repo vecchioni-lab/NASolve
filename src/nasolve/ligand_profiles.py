@@ -351,14 +351,15 @@ def validate_model_phosphate_policy(model: Path, report: Mapping[str, object], *
     postmr = report.get("postmr")
     profile = postmr.get("linked_phosphate_profile") if isinstance(postmr, Mapping) else None
     topology = postmr.get("checked_model_topology") if isinstance(postmr, Mapping) else None
-    from .cif_registered_topology import POLICY_ID as REGISTERED_TOPOLOGY, validate_registered_model_topology
-    if isinstance(topology, Mapping) and topology.get('policy_id') == REGISTERED_TOPOLOGY:
-        if profile is not None:
-            raise PhosphateError('Registered topology with a separate linked-phosphate profile requires review')
-        try:
-            return validate_registered_model_topology(model, topology, report, run_directory=run_directory)
-        except (ValueError, OSError) as exc:
-            raise PhosphateError(f"Checked registered preparation topology: {exc}") from exc
+    if isinstance(topology, Mapping):
+        from .cif_registered_topology import POLICY_ID as REGISTERED_TOPOLOGY, validate_registered_model_topology
+        if topology.get('policy_id') == REGISTERED_TOPOLOGY:
+            if profile is not None:
+                raise PhosphateError('Registered topology with a separate linked-phosphate profile requires review')
+            try:
+                return validate_registered_model_topology(model, topology, report, run_directory=run_directory)
+            except (ValueError, OSError) as exc:
+                raise PhosphateError(f"Checked registered preparation topology: {exc}") from exc
     modifications = []
     if profile is not None:
         if not isinstance(profile, Mapping) or profile.get("schema_version") != 1:

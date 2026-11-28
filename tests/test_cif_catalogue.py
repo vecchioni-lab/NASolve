@@ -63,6 +63,67 @@ def test_catalogue_cli_exists_before_implementation(tmp_path, capsys):
     process.assert_not_called()
 
 
+def test_sulfur_catalogue_reads_source_roles_independently_of_atom_names(tmp_path, capsys):
+    from nasolve.cif_linked_preparation import component_values, _render
+
+    base = tmp_path / 'original'
+    base.mkdir()
+    book = workbook(base, [('thymine', row())])
+    ccd = base / 'ccd'
+    path = source(ccd)
+    values = component_values(path, 'PDU')
+    index = values['_chem_comp_atom.atom_id'].index('OP2')
+    values['_chem_comp_atom.type_symbol'][index] = 'S'
+    names = {'P': 'PX', 'OP2': 'TIP', 'OP1': 'KEEP', 'OP3': 'GO', "O5'": 'ARM'}
+    for key, column in values.items():
+        if 'atom_id' in key:
+            values[key] = [names.get(atom, atom) for atom in column]
+    path.write_text(_render(values, 'PDU'))
+    original = snapshot(tmp_path)
+    cmd = ['cif-doctor', 'catalogue', '--workbook', str(book), '--ccd-root', str(ccd), '--json']
+    assert main(cmd) == 2
+    ordinary = json.loads(capsys.readouterr().out)
+    assert 'sulfur_phosphates' not in ordinary['components'][0]['source']['declarations']
+    assert main(cmd + ['--sulfur-phosphates']) == 2
+    report = json.loads(capsys.readouterr().out)
+    center, = report['components'][0]['source']['declarations']['sulfur_phosphates']
+    assert center['status'] == 'SOURCE_ROLES_IDENTIFIED' and center['phosphorus'] == 'PX'
+    assert center['roles'] == {'sulfur': 'TIP', 'retained_oxygen': 'KEEP',
+                               'leaving_oxygen': 'GO', 'carbon_linked_oxygen': 'ARM'}
+    assert center['neighbors']['TIP']['hydrogens'] == ['HOP2']
+    assert report['components'][0]['linkage_profile'] == 'NOT_ASSIGNED'
+    assert snapshot(tmp_path) == original
+    moved = tmp_path / 'moved'
+    base.rename(moved)
+    assert not base.exists()
+    path = moved / path.relative_to(base)
+    cmd = ['cif-doctor', 'catalogue', '--workbook', str(moved / book.name), '--ccd-root', str(moved / 'ccd'), '--json']
+    assert main(cmd + ['--sulfur-phosphates']) == 2
+    assert json.loads(capsys.readouterr().out) == report
+
+    values['_chem_comp_atom.pdbx_leaving_atom_flag'][values['_chem_comp_atom.atom_id'].index('GO')] = '?'
+    path.write_text(_render(values, 'PDU'))
+    assert main(cmd + ['--sulfur-phosphates']) == 2
+    missing = json.loads(capsys.readouterr().out)['components'][0]['source']['declarations']['sulfur_phosphates'][0]
+    assert missing['status'] == 'UNRESOLVED_SOURCE_ROLES' and 'roles' not in missing
+
+
+@pytest.mark.parametrize(('sulfur_names', 'status'), [
+    (["O5'"], 'BRIDGING_SULFUR'),
+    (['OP1', 'OP2'], 'MULTIPLE_SULFURS'),
+])
+def test_other_sulfur_connectivities_have_no_single_substitution_roles(sulfur_names, status):
+    from nasolve.cif_linked_preparation import component_values
+    from nasolve.cif_sulfur_phosphate import source_sulfur_phosphates
+
+    values = component_values(PUBLIC / 'PDU.cif', 'PDU')
+    for atom in sulfur_names:
+        i = values['_chem_comp_atom.atom_id'].index(atom)
+        values['_chem_comp_atom.type_symbol'][i] = 'S'
+    center, = source_sulfur_phosphates(values, ['P'])
+    assert center['status'] == status and 'roles' not in center
+
+
 def test_rows_aliases_blanks_and_nonstandard_backbones_are_not_lost(tmp_path):
     from nasolve.cif_catalogue import audit_catalogue
     entries = [('thymine', row()), ('thymine', row(Name='descriptive alias', **{'C5-mod': 'propynyl'})),
@@ -168,13 +229,14 @@ def test_relocation_original_gone_is_exact_and_read_only(tmp_path):
 
 
 @pytest.mark.parametrize('target', ['source', 'workbook', 'missing'])
-def test_mutation_during_audit_is_rejected(tmp_path, target):
+@pytest.mark.parametrize('with_sulfur', [False, True])
+def test_mutation_during_audit_is_rejected(tmp_path, target, with_sulfur):
     import nasolve.cif_catalogue as catalogue
     book = workbook(tmp_path, [('thymine', row()), ('adenine', row('X99'))])
     ccd = tmp_path / 'ccd'; path = source(ccd)
     original = catalogue._source
-    def mutate(root, code):
-        result = original(root, code)
+    def mutate(root, code, **options):
+        result = original(root, code, **options)
         if code == 'X99':
             if target == 'missing':
                 new = ccd / 'x' / 'data_X99.cif'; new.parent.mkdir(); new.write_text('changed')
@@ -183,7 +245,7 @@ def test_mutation_during_audit_is_rejected(tmp_path, target):
                 changed.write_bytes(changed.read_bytes() + b'\n')
         return result
     with patch.object(catalogue, '_source', mutate), pytest.raises(ValueError, match='changed'):
-        catalogue.audit_catalogue(book, ccd)
+        catalogue.audit_catalogue(book, ccd, sulfur_phosphates=with_sulfur)
 
 
 def test_loader_row_mismatch_is_rejected(tmp_path):

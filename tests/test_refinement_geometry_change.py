@@ -51,6 +51,52 @@ def test_target_or_weight_change_is_explained_without_scoring_it_as_motion(tmp_p
     e, = (r for r in d["unmatched"] if r["kind"] == "angles")
     assert e["reference"][0]["target"] == 108 and e["current"][0]["target"] == 100
     assert all(r["kind"] != "angles" for r in d["changes"])
+    bond, = d["reweighted"]
+    assert bond["kind"] == "bonds" and bond["slack"] == 0
+    assert bond["reference"]["sigma"] == 0.01 and bond["current"]["sigma"] == 0.02
+
+
+def test_reweighted_angle_measured_on_one_scale_across_native_origins(tmp_path, capsys):
+    args, _, _, _, final = reference_comparison(tmp_path)
+    final.write_text(final.read_text().replace("Bond angle | covalent geometry", "Bond angle | User supplied")
+                     .replace("2.00e+00 2.50e-01", "1.00e+00 1.00e+00"))
+    assert main(args) == 2
+    d = json.loads(capsys.readouterr().out)
+    assert {r["status"] for r in d["unmatched"]} == {"REMOVED_RESTRAINT", "ADDED_RESTRAINT"}
+    assert d["matched"] == {"angles": 0, "bonds": 3}
+    row, = d["reweighted"]
+    assert row["site"] == "B:4" and row["target"] == 108
+    assert row["reference"]["origin"] == "covalent geometry" and row["current"]["origin"] == "User supplied"
+    assert row["reference"]["sigma"] == 2 and row["current"]["sigma"] == 1
+    assert row["reference"]["measured"] == 90 and 99.98 < row["current"]["measured"] < 100.01
+    assert row["reference"]["in_reference_widths"] == -9
+    assert -4.01 < row["current"]["in_reference_widths"] < -3.99
+    assert main([v for v in args if v != "--json"]) == 2
+    assert "original width" in capsys.readouterr().out
+
+
+def test_a_common_width_comparison_requires_one_active_term_and_the_same_ideal(tmp_path):
+    from copy import deepcopy
+    from nasolve.refinement_geometry_change import geometry_change
+    from nasolve.refinement_residue_geometry import inspect_residue_geometry
+
+    model, geometry = with_angle(tmp_path)
+    original = inspect_residue_geometry(model, None, geometry=geometry)
+    for change in ("target", "inactive", "overlap", "overlap in reference"):
+        before, after = deepcopy(original), deepcopy(original)
+        earlier = before["sites"][0]["angles"]["rows"]
+        later = after["sites"][0]["angles"]["rows"]
+        later[0].update(origin="User supplied", sigma=1.0, weight=1.0)
+        if change == "target":
+            later[0]["target"] += 1
+        elif change == "inactive":
+            later[0]["weight"] = 0
+        elif change == "overlap":
+            later.append(dict(later[0], origin="another origin"))
+        else:
+            earlier.append(dict(earlier[0], origin="another origin"))
+        result = geometry_change(before, after)
+        assert result["status"] == "PARTIAL" and not result["reweighted"]
 
 
 def test_reference_arguments_are_paired_and_stale_geometry_never_looks_clean(tmp_path, capsys):

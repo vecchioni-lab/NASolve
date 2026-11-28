@@ -102,6 +102,8 @@ qualified SHA-256. Modern direct callers retain the newer explicit native-crysta
 binding. Existing policy identifiers/digests and saved payloads are unchanged;
 this repairs new preparation of old policies without adopting new helper behavior.
 
+A grouped crystal-phosphate preflight can lend its live Phenix model to a trusted, synchronous Python observation. Use a fresh diagnostic round. Verify its original v12 request and input files and keep the frozen worker dependencies, including the original NA restraint reader. Stage the observed phase separately and record its fingerprint. After ordinary Phenix setup, the parallelity and writer hooks have returned and the registered phosphate forces are still active. The observer receives the model, detached bond and reflection evidence, and a callable that reports joint and per-connection full-gradient counts. Returning requires unchanged atom identities, coordinates, displacement, occupancies, scattering state, crystal frame, geometry manager, image proxies and phosphate bond exclusions. The diagnostic returns its evidence after hook restoration without issuing a refinement preflight receipt. Ordinary v12 execution retains its original frozen phase.
+
 Explicit ordinary `observe_declared_sites=True` uses graph-valid projections from
 checked preparation to record non-triple modified sites as well as triples. The
 v9 request retains exact frozen v3 native code and all established execution/source/
@@ -753,11 +755,16 @@ Fresh ordinary PostMR carries isotropic B factors from the original model
 for graph-restored sugar and phosphate atoms of canonical DNA hosts. The
 atoms must match in site, name, element, occupancy and restored coordinates.
 Transfer succeeds for a whole selected scaffold or its existing B values
-are retained with a reason. New base atoms keep their construction values.
-A selected site with an alternate conformation or associated displacement
-records retains its existing values. Historical coordinate-only replay
-remains available. See the [Cedar completion queue](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run)
-for the separate problem of selecting displacement values for new atoms.
+are retained with a reason. A fresh, uniformly seeded base on a reconstructed
+canonical ribose can inherit each shared base atom’s starting isotropic B.
+Both digests, the separated base graphs, atoms, attached hydrogens and formal
+charges must establish one neutral methyl substitution. The new carbon uses
+its attachment atom’s B. Site occupancy and element must match. Alternate
+conformations, associated displacement records and already differentiated
+seed values preserve the original seed. The construction record saves the
+source fingerprints and the decision. The lower-level coordinate-only and
+scaffold-only construction modes remain available for replay.
+[Native RNA comparison](cif-doctor-completion-queue.md#q07--one-mixed-scaffold-ordinary-acceptance-run).
 
 The registry also declares exact parent/target atom substitutions. `DE`, `DF`,
 and `S6G` place sulfur along the canonical `C-O` vector, use the transformed

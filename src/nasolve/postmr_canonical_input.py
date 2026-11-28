@@ -11,10 +11,46 @@ from .campaign_records import path_in, read_record, write_record
 from .cif_dictionary_sites import _read
 from .cif_dictionary_store import _snapshot_destination
 from .postmr_canonical_seed import canonical_parent_seed
+from .postmr_ribose import RNA_PARENTS
 
 POLICY_ID = 'postmr-explicit-canonical-parent-input-v1'
 ANCHOR = 'canonical_parent_input'
 REPORT = 'canonical_input.json'
+
+
+def ordinary_ribose_inputs(actions, dictionaries, *, data_root=None, ready_set_executable=None,
+                          passthrough_sites=(), site_dictionary_paths=None, mirrored=False):
+    """Choose a same-base deoxy→ribose parent only when the modified source supports its scaffold."""
+    from .curated_ligands import ligand_dictionary, validate_ligand_dictionary
+    from .postmr_conformation import parent_conformation_plan
+    chosen, review = {}, {}
+    if mirrored:
+        return chosen, review
+    corresponding = {"DA": "A", "DC": "C", "DG": "G", "DU": "U"}
+    cached = {}
+
+    def source(code):
+        if code not in cached:
+            path = ligand_dictionary(code, data_root, ready_set_executable=ready_set_executable)
+            validate_ligand_dictionary(code, path)
+            cached[code] = path
+        return cached[code]
+
+    for action in actions:
+        if (action.method != 'coot-parent-overlap' or action.site in passthrough_sites
+                or action.parent_code not in RNA_PARENTS
+                or corresponding.get(action.before) != action.parent_code):
+            continue
+        try:
+            effective = (site_dictionary_paths or {}).get(action.site, dictionaries[action.after])
+            template = source(action.parent_code)
+            plan = parent_conformation_plan(effective, action.after, action.parent_code, ribose_template=template)
+            if plan['status'] != 'MATCH_PARENT_CHI':
+                raise ValueError(plan['reason'])
+            chosen[action.site] = (source(action.before), template)
+        except (OSError, ValueError, KeyError) as exc:
+            review[action.site] = str(exc)
+    return chosen, review
 
 
 def canonical_input_plan(actions, dictionaries, passthrough_sites=()):
@@ -26,7 +62,7 @@ def canonical_input_plan(actions, dictionaries, passthrough_sites=()):
     for action in actions:
         if action.site not in dictionaries:
             continue
-        if (action.method != 'coot-parent-overlap' or action.parent_code not in {'DA', 'DC', 'DG', 'DT'}
+        if (action.method != 'coot-parent-overlap' or action.parent_code not in {'DA', 'DC', 'DG', 'DT'} | RNA_PARENTS
                 or action.before == action.parent_code or action.site in passthrough_sites):
             raise ValueError('Canonical seed choice requires an eligible modified-parent overlap')
         paths = dictionaries[action.site]
@@ -49,6 +85,36 @@ def _resolve(root, reference):
     if _reference(root, path) != reference:
         raise ValueError('Canonical seed input checksum differs')
     return path
+
+
+def frozen_ribose_templates(saved):
+    """Select only template bytes whose canonical 2′ hydroxyl was proved at this site."""
+    from .postmr_ribose import POLICY_ID as RIBOSE_SEED
+    return {s['action']['site']: _resolve(saved['directory'], s['template'])
+            for s in saved['receipt']['steps'] if s['proof']['policy_id'] == RIBOSE_SEED}
+
+
+def verify_native_ribose_parents(saved, parent_models):
+    """The native parent snapshot must still contain the exact chemistry and coordinates Coot received."""
+    from .postmr import _coordinate_records, _record_identity, _site_parts
+    from .postmr_restoration import _atom_records
+    from .postmr_ribose import POLICY_ID as RIBOSE_SEED
+    initial = _coordinate_records(saved['model'])
+    for step in saved['receipt']['steps']:
+        if step['proof']['policy_id'] != RIBOSE_SEED:
+            continue
+        action = step['action']
+        site, parent = action['site'], action['parent_code']
+        identity = _site_parts(site)
+
+        def atoms(lines):
+            selected = [line for line in lines
+                        if (key := _record_identity(line)) is not None and key[:2] == identity]
+            return {n: (row['element'], row['xyz'], row['line'][54:66])
+                    for n, row in _atom_records(selected, parent).items()}
+
+        if atoms(initial) != atoms(_coordinate_records(parent_models[site])):
+            raise ValueError(f'Coot parent {site} differs from its frozen canonical ribose input')
 
 
 def prepare_canonical_parent_input(model, plan, output):

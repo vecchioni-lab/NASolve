@@ -26,3 +26,43 @@ def test_three_explicit_public_controls_bundle_exact_sources_without_nar_edits(t
     assert set(controls)=={'PDU','5PC','ATL'} and controls['ATL']['sha256']=='2c42f8acb1ba85ca16ee63e6c4cddc9cc85032db13b0d0674791da2350e66a9b'
     assert controls['PDU']['sha256']=='cd192f18964a28c628544ae1c0b4b1f2aed124e1b90a21b9c6ca0aa4458c0292'
     assert controls['5PC']['sha256']=='cea88a7236f4775310e0d997a063c00c4dfc5982d89f1dc27c59593fb4c71650'
+
+
+def test_shuttle_records_an_installed_workbook_independently_of_an_enclosing_repository(tmp_path):
+    import base64
+    import importlib.util
+    import shutil
+    import pytest
+    import restraints
+    from .test_synthetic_dna_shuttle import _initialize_git
+
+    # A wheel can be installed beneath an unrelated Git checkout, as in a project venv.
+    root = tmp_path / "outer"
+    root.mkdir()
+    (root / "note").write_text("unrelated project")
+    _initialize_git(root)
+    library = root / "site-packages"
+    package = library / "restraints"
+    shutil.copytree(Path(restraints.__file__).parent, package, ignore=shutil.ignore_patterns("__pycache__"))
+    dist = library / "narestraints-1.2.3.dist-info"
+    dist.mkdir()
+    (dist / "METADATA").write_text("Metadata-Version: 2.1\nName: NARestraints\nVersion: 1.2.3\n")
+    records = []
+    for path in sorted(package.rglob("*")):
+        if path.is_file():
+            data = path.read_bytes()
+            encoded = base64.urlsafe_b64encode(sha256(data).digest()).rstrip(b"=").decode("ascii")
+            records.append(f"{path.relative_to(library).as_posix()},sha256={encoded},{len(data)}")
+    (dist / "RECORD").write_text("\n".join(records) + "\n")
+    spec = importlib.util.spec_from_file_location("shuttle_release_fixture", ROOT/"scripts/build_synthetic_dna_shuttle.py")
+    builder = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(builder)
+    result = builder.build(ROOT, library, tmp_path / "checked.py")
+    assert result["narestraints_source"]["source_kind"] == "installed-distribution"
+    assert result["narestraints_source"]["version"] == "1.2.3"
+    assert result["narestraints_source"].get("commit") is None
+    workbook = package / "data/Ligands.xlsx"
+    workbook.write_bytes(workbook.read_bytes() + b"changed")
+    with pytest.raises(ValueError, match="installed NARestraints"):
+        builder.build(ROOT, library, tmp_path / "refused.py")
+    assert not (tmp_path / "refused.py").exists()

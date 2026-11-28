@@ -1,5 +1,11 @@
 # NASolve development handoff — integrated development base
 
+**28 November integration:** Cedar release compatibility is being qualified on
+an isolated Alder receiving history. Focused owner and protected refinement
+panels pass; the retained FT read exposed separate dependency and assessor-source
+replay boundaries. [Current integration evidence and pending delivery](metal-release-compatibility.md).
+A01 remains partial; no new fit or f″ result is implied.
+
 Updated **27 November 2026**. Active integration target: **Alder**. The everyday
 Pine and the separate Cedar/Willow branches are not changed by this integration. This base
 combines the existing metal feature with the qualified shared chemistry, native

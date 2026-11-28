@@ -72,13 +72,15 @@ PROFILES = (
 )
 
 
-def _embeddings(profile, elements, bonds, neighbors, base_atoms):
+def _embeddings(profile, elements, bonds, neighbors, base_atoms, *, allow_role_overlap=False):
     """Injective induced heavy-graph embeddings with explicit work limits."""
     heavy = {a for a, e in elements.items() if e not in {"H", "D"}}
     degree = {a: len(neighbors[a] & heavy) for a in heavy}
-    domains = {role: sorted(a for a in heavy if elements[a] in allowed
-                           and lo <= degree[a] <= hi and ((a in base_atoms) == (role == "base")))
-               for role, allowed, lo, hi in profile.nodes}
+    backbone_atoms = heavy if allow_role_overlap else heavy - base_atoms
+    domains = {}
+    for role, allowed, lo, hi in profile.nodes:
+        candidates = (heavy & base_atoms) if role == "base" else backbone_atoms
+        domains[role] = sorted(a for a in candidates if elements[a] in allowed and lo <= degree[a] <= hi)
     edges = {frozenset((a, b)): order for a, b, order in profile.edges}
     matches, assigned = [], {}
     steps = 0
@@ -123,7 +125,30 @@ def _embeddings(profile, elements, bonds, neighbors, base_atoms):
             "search_complete": not limited}
 
 
-def inspect_attachment_profile(source, code, *, workbook):
+def _review_base_roles(elements, bonds, neighbors, roles, declared_attachment):
+    """Explain mapped sugar atoms on an otherwise recognizable furanose."""
+    base_atoms = set(roles.values())
+    searches = [_embeddings(p, elements, bonds, neighbors, base_atoms, allow_role_overlap=True)
+                for p in PROFILES if p.ports == _SUGAR_PORTS]
+    result = {"status": "NO_MATCH", "search_steps": {s["profile"]: s["search_steps"] for s in searches}}
+    if not all(s["search_complete"] for s in searches):
+        return {**result, "status": "SEARCH_LIMIT"}
+    matches = [(s["profile"], binding) for s in searches for binding in s["matches"]]
+    if len(matches) > 1:
+        return {**result, "status": "AMBIGUOUS"}
+    if matches:
+        profile, binding = matches[0]
+        shared = [{"base_role": role, "atom": atom, "backbone_role": backbone}
+                  for role, atom in sorted(roles.items()) for backbone, bound in binding.items()
+                  if backbone != "base" and atom == bound]
+        if shared:
+            result.update(status="UNIQUE_ROLE_CONFLICT", profile=profile, shared_roles=shared,
+                          source_bond=[binding["anomeric"], binding["base"]],
+                          workbook_glycosidic_atom=declared_attachment)
+    return result
+
+
+def inspect_attachment_profile(source, code, *, workbook, explain_base_roles=False, check_at_pair=False):
     """Bind a unique topology and source-state ports without preparing a model.
 
     Exact source and workbook anchors are explicit. This adds no family label,
@@ -157,6 +182,10 @@ def inspect_attachment_profile(source, code, *, workbook):
             "The profiles cover declared single-phosphate furanoses and an uncapped aminoethylglycine PNA core only.",
         ],
     }
+    if check_at_pair:
+        report["at_pair_check"] = {"status": "NOT_ASSESSED"}
+    if explain_base_roles:
+        report["base_role_review"] = {"status": "NOT_RUN"}
     try:
         record, resolution = resolve_component_record(records, code)
     except ValueError:
@@ -197,6 +226,23 @@ def inspect_attachment_profile(source, code, *, workbook):
             if report["topology_status"] == "MATCH":
                 identifier, binding = matches[0]
                 profile = next(p for p in PROFILES if p.identifier == identifier)
+                if record.get("Backbone attachment atom") is not None:
+                    # Every supported profile has one edge from the ring into its backbone.
+                    backbone_role, = [
+                        right if left == "base" else left
+                        for left, right, _ in profile.edges if "base" in (left, right)
+                    ]
+                    source_bond = [binding[backbone_role], binding["base"]]
+                    workbook_bond = [record["Backbone attachment atom"], record.get("Glycosidic atom")]
+                    report["declared_attachment_check"] = {
+                        "profile": identifier,
+                        "source_bond": source_bond,
+                        "workbook_bond": workbook_bond,
+                        "agrees": source_bond == workbook_bond,
+                    }
+                    if source_bond != workbook_bond:
+                        report["topology_status"] = "DECLARED_ATTACHMENT_CONFLICT"
+            if report["topology_status"] == "MATCH":
                 report.update(matched_profile=identifier, bindings=binding)
                 inventory = {a["atom_id"]: a for a in selected[0]["inventory"]["atoms"]}
                 def atom_evidence(atom):
@@ -222,8 +268,15 @@ def inspect_attachment_profile(source, code, *, workbook):
                     "loader_atom": declared_attachment, "matches_loader": declared_attachment == binding["base"]}
                 if declared_attachment != binding["base"]:
                     report["review_reasons"].append("NAR_LOADER_ATTACHMENT_DISAGREES_WITH_TOPOLOGY")
+                elif check_at_pair and profile.ports == _SUGAR_PORTS:
+                    from .cif_pyrimidine_edge import inspect_at_pair
+                    report["at_pair_check"] = inspect_at_pair(
+                        record, (elements, bonds, charges, neighbors), binding["base"])
             else:
                 report["review_reasons"].append("TOPOLOGY_" + report["topology_status"])
+                if explain_base_roles and report["topology_status"] == "NO_MATCH":
+                    report["base_role_review"] = _review_base_roles(
+                        elements, bonds, neighbors, roles, record.get("Glycosidic atom"))
     if (source.read_bytes() != original or workbook.read_bytes() != workbook_bytes
             or assessment["input_integrity"] != "UNCHANGED"
             or assessment["inputs"][0]["sha256"] != sha256(original).hexdigest()):

@@ -240,6 +240,25 @@ def test_purine_graph_match_that_swaps_ring_roles_is_refused(tmp_path, monkeypat
     assert fake.matches and not fake.overlap_chi and not args[1].exists()
 
 
+@pytest.mark.parametrize("message, expected", [
+    ("NASOLVE_PARENT_MUTATE A:12 DT 1\nNASOLVE_MUTATION_IDENTITY A:12 DT DC\n",
+     "requested DT at A:12, but Coot read back DC"),
+    ("NASOLVE_RESULT A:12 DC\n", "requested PDU at A:12, but Coot read back DC"),
+    ("NASOLVE_MUTATION_IDENTITY X:99 DT DC\n", "Coot exited with status 0 without writing"),
+    ("NASOLVE_MUTATION_IDENTITY A:12 DT DT\n", "Coot exited with status 0 without writing"),
+    ("", "Coot exited with status 0 without writing"),
+])
+def test_native_zero_exit_without_model_reports_the_verified_stage(tmp_path, monkeypatch, message, expected):
+    _, args = case(tmp_path, monkeypatch)
+    monkeypatch.setattr("nasolve.postmr.subprocess.run",
+                        lambda cmd, **kw: subprocess.CompletedProcess(cmd, 0, message))
+    with pytest.raises(PostMRPreparationError, match=expected) as failure:
+        _run_coot(*args)
+    assert str(args[4] / "coot.log") in str(failure.value)
+    assert (args[4] / "coot.log").read_text() == message
+    assert not args[1].exists()
+
+
 @pytest.mark.parametrize("method", ["coot-parent-overlap", "coot-mutate-base"])
 @pytest.mark.parametrize("observed", ["PDU", "DC", "", None, True])
 def test_native_success_with_wrong_canonical_identity_stops_before_use(tmp_path, monkeypatch, method, observed):

@@ -64,7 +64,8 @@ def test_read_only_run_uses_selected_checkpoint_without_runtime_discovery(tmp_pa
         assert main(['cif-doctor', 'assess', '--run', str(tmp_path),
                      '--checkpoint', 'refine-002', '--json']) == 2
     assess.assert_called_once_with(tmp_path, checkpoint='refine-002', refined_planes=False, refined_links=False,
-                                   contact_sites=None, b_factor_sites=None, bond_targets=False, template_bonds=False)
+                                   contact_sites=None, minimum_contact_overlap=None, b_factor_sites=None,
+                                   bond_targets=False, template_bonds=False)
     discover.assert_not_called()
     assert json.loads(stream.getvalue()) == audit
 
@@ -89,10 +90,43 @@ def test_refinement_measurements_need_a_run(tmp_path, capsys, mode, option):
     assert option + " requires --run" in capsys.readouterr().err
 
 
+def test_link_assessment_reports_distance_even_when_its_restraint_matched(tmp_path, capsys):
+    from nasolve.refinement_link_geometry import read_refined_links
+    from .test_refinement_link_geometry import geometry
+
+    model, geo, _, intent = geometry(tmp_path)
+    phil, = intent["restraint_phils"]
+    phil.write_text(phil.read_text().replace("distance_ideal = 2.8", "distance_ideal = 2.4"))
+    geo.write_text(geo.read_text().replace("2.800 2.800", "2.400 2.800"))
+    audit = {"status": "PASS", "run_context": {"checkpoint": {"id": "refine-002"}},
+             "refined_links": read_refined_links(model, geo, **intent)}
+    with patch("nasolve.cif_doctor_run.assess_run", return_value=audit):
+        assert main(["cif-doctor", "assess", "--run", str(tmp_path), "--refined-links"]) == 0
+    output = capsys.readouterr().out
+    assert "reported as MATCH" in output
+    assert "Most extended: A:2 DC N3 to B:4 Z99 N2T, 2.800 Å for a 2.400 Å target (+1.00 restraint widths)" in output
+    assert "Most compressed" not in output
+
+
 def test_nonbonded_contacts_need_a_run(tmp_path, capsys):
     source = _graph(tmp_path / "source.cif")
     assert main(["cif-doctor", "assess", str(source), "--contacts-at", "B:4"]) == 1
     assert "--contacts-at requires --run" in capsys.readouterr().err
+
+
+def test_contact_overlap_requires_sites_and_names_the_crystal_partner(tmp_path, capsys):
+    assert main(["cif-doctor", "assess", "--run", str(tmp_path), "--min-contact-overlap", "0.4"]) == 1
+    assert "requires --contacts-at" in capsys.readouterr().err
+    row = {"endpoints": [["A:2", "DC", "N4"], ["B:4", "Z99", "N2T"]],
+           "overlap_A": .45, "image_of_second_atom": "-x+y,-x,z"}
+    audit = {"status": "REVIEW", "refined_contacts": {"status": "OBSERVED", "sites": {},
+             "overlap_screen": {"minimum_overlap_A": .4, "contacts": [row]}}}
+    with patch("nasolve.cif_doctor_run.assess_run", return_value=audit) as assess:
+        assert main(["cif-doctor", "assess", "--run", str(tmp_path), "--contacts-at", "B:4",
+                     "--min-contact-overlap", "0.4"]) == 2
+    assert assess.call_args.kwargs["minimum_contact_overlap"] == .4
+    text = capsys.readouterr().out
+    assert "at least 0.4 Å" in text and "A:2 DC N4 to B:4 Z99 N2T (second atom at -x+y,-x,z)" in text
 
 
 def test_b_factors_require_a_run_and_use_the_selected_sites(tmp_path, capsys):

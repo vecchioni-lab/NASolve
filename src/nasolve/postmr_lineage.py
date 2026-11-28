@@ -288,8 +288,23 @@ def finish_postmr_construction(run, started, prepared_model, construction):
         _furanose_closure(root, record['furanose_substitution'], record)
     else:
         _need(not (root/'PostMR/Coot/furanose').exists(), 'Furanose construction cannot be silently omitted')
+    decisions = {site: item['base_displacement'] for site, item in construction.get('coordinate_restoration', {}).items()
+                 if 'base_displacement' in item}
+    if decisions:
+        _need('canonical_parent_input' in record, 'Base displacement requires the canonical input')
+        record.update(schema_version=2, base_displacement=decisions)
+        _verify_base_displacement(root, record, saved)
     write_record(path,record)
     return read_postmr_construction(root)['report']
+
+
+def _verify_base_displacement(root, record, canonical):
+    from .postmr_base_displacement import verify_starting_values
+    _need(record['evidence']['raw_model'] is not None, 'Base displacement requires the raw Coot model')
+    components = {code: _resolve(ref, root) for code, ref in record['inputs']['dictionaries'].items()}
+    sites = {site: _resolve(ref, root) for site, ref in record.get('site_dictionaries', {}).items()}
+    verify_starting_values(canonical, record['base_displacement'], components, sites,
+                          _resolve(record['evidence']['raw_model'], root), _resolve(record['outputs']['after_coot'], root))
 
 
 def read_postmr_construction(run):
@@ -307,11 +322,14 @@ def read_postmr_construction(run):
     fields = {'schema_version','policy_id','status','scientific_qualification','native_interpretation',
               'automatic_adoption','inputs','outputs','controls','evidence','record_sha256'}
     if canonical: fields.add('canonical_parent_input')
+    base_displacement = 'base_displacement' in r
+    if base_displacement: fields.add('base_displacement')
     if site_choices: fields.add('site_dictionaries')
     if projections: fields.add('construction_projections')
     if furanose: fields.add('furanose_substitution')
     _need(set(r)==fields
-          and type(r['schema_version']) is int and r['schema_version']==1
+          and type(r['schema_version']) is int and r['schema_version']==(2 if base_displacement else 1)
+          and (not base_displacement or canonical)
           and r['policy_id']==(FURANOSE_POLICY_ID if furanose else PROJECTION_POLICY_ID if projections else
                                SITE_DICTIONARY_POLICY_ID if site_choices else
                                CANONICAL_POLICY_ID if canonical else POLICY_ID)
@@ -335,8 +353,10 @@ def read_postmr_construction(run):
     files={RECORD_PATH:raw}
     for ref in references:files[ref['path']]=_read(_resolve(ref,root))
     if canonical:
-        _, seed_files = _canonical_closure(root, r['canonical_parent_input'], r['inputs'], r['controls'])
+        saved, seed_files = _canonical_closure(root, r['canonical_parent_input'], r['inputs'], r['controls'])
         files.update(seed_files)
+        if base_displacement:
+            _verify_base_displacement(root, r, saved)
     selected = None
     if site_choices:
         selected, site_files = _site_dictionary_closure(root, r['site_dictionaries'], r['inputs'], r['controls'])

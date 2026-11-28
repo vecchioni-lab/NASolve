@@ -14,7 +14,7 @@ from .cif_doctor import _comparison_inventory,_ORDERS
 from .cif_generation import inspect_component_generation,_explicit_formal_charges
 from .cif_source_candidate import complete_candidate_stereo
 from .cif_stereochemistry_audit import _values,_graph,reader_stereo_inventory
-from .cif_terminal_qualification import definition_projection_checks,_rows
+from .cif_terminal_qualification import definition_projection_checks,definition_value_checks,_rows
 
 POLICY_ID='cif-isolated-candidate-native-usability-v2'
 ENERGY_POLICY_ID='cif-fixed-native-usability-energy-v1'
@@ -125,11 +125,17 @@ def energy_inventory_checks(native):
 
 def qualify_candidate_native(source,candidate,model,code,native,*,bond_representation_policy=None):
     """Require isolated exact definitions, essential proxies and usable numbers."""
+    return _check_native_targets(source,candidate,model,code,native,bond_representation_policy=bond_representation_policy)
+
+
+def _check_native_targets(source,candidate,model,code,native,*,bond_representation_policy,projected=None):
+    """Use the same definition and live-proxy checks for a separate numerical comparison."""
     from .cif_fragment_restoration import _model
     from .cif_fixed_geometry import _fixed_policy
     options={} if bond_representation_policy is None else {'bond_representation_policy':bond_representation_policy}
     candidate=Path(candidate);assessment=reassess_complete_candidate(source,candidate,code,**options);checks={};evidence={}
     values=_values(candidate,code);elements,orders,_,neighbors=_graph(values)
+    targets = values if projected is None else projected
     checks['source_chemistry_and_configuration']=assessment['candidate_status']=='CANDIDATE_REVIEW'
     checks['native_completed']=native.get('status')=='REVIEW' and native.get('inventory_detail')=='linked'
     checks['no_native_fatal_or_unused']=native.get('fatal_problems') is None and native.get('unused_definitions')==[] and native.get('unsupported_fields')==[]
@@ -146,12 +152,24 @@ def qualify_candidate_native(source,candidate,model,code,native,*,bond_represent
         mappings=native['monomer_mappings']['rows'];checks['one_complete_monomer']=(len(mappings)==1 and mappings[0]['resname'].strip()==code
             and all(mappings[0].get(k,{}).get('status')=='RECORDED' and mappings[0][k].get('atom_ids')==[]
                     for k in ['missing_non_hydrogen_atoms','missing_hydrogen_atoms','unexpected_atoms']))
-        projections=definition_projection_checks(native,{mappings[0]['site']:(candidate,code)}) if len(mappings)==1 else []
+        if projected is not None and len(mappings)==1:
+            from .dictionary_compatibility import normalize_torsion_block
+            normalized_targets,_=normalize_torsion_block(projected)
+            projections=definition_value_checks(normalized_targets,mappings[0]['metadata']['effective_definition'],mappings[0]['site'])
+        else:
+            projections=definition_projection_checks(native,{mappings[0]['site']:(candidate,code)}) if len(mappings)==1 else []
         checks['exact_effective_definitions']=bool(projections) and all(r['status']=='PASS' for r in projections);evidence['definition_checks']=projections
         definition=mappings[0]['metadata']['effective_definition'] if len(mappings)==1 else {}
         expected_charges=_graph(values)[2]
         checks['no_contradictory_native_formal_charges']=all(r.get('charge') is None or _close(float(r['charge']),expected_charges[r['atom_id']]) for r in definition.get('atoms',[]))
         actual_orders={tuple(sorted([r['atom_id_1'],r['atom_id_2']])):_ORDERS.get(str(r['type']).upper()) for r in definition.get('bonds',[])}
+        if projected is not None:
+            target_orders=_graph(targets)[1]
+            for row in definition.get('bonds',[]):
+                edge=tuple(sorted((row['atom_id_1'],row['atom_id_2'])))
+                if target_orders.get(edge)=='COVAL' and str(row['type']).upper()=='COVAL':
+                    actual_orders[edge]='COVAL'
+            orders=target_orders
         checks['effective_declared_bond_orders']=actual_orders==orders
         details=native['geometry']['proxy_details'];checks['no_competing_native_ss']=_fixed_policy(native)
         kinds={'bond_simple','bond_asu','angle','dihedral','const_dihedral','chirality','planarity','parallelity'}
@@ -174,13 +192,13 @@ def qualify_candidate_native(source,candidate,model,code,native,*,bond_represent
                     if kind=='chirality':valid &= type(row.get('both_signs')) is bool and abs(row.get('volume_ideal',0))>0
                 checks['finite_active_proxy_parameters'] &= valid
         def matching(kind,category,size,target,source_target,esd):
-            expected=Counter((key(tuple(r['atom_id_'+str(i)] for i in range(1,size+1))),format(float(r[source_target]),'.10g'),format(1/float(r[esd])**2,'.10g')) for r in _rows(values,category))
+            expected=Counter((key(tuple(r['atom_id_'+str(i)] for i in range(1,size+1))),format(float(r[source_target]),'.10g'),format(1/float(r[esd])**2,'.10g')) for r in _rows(targets,category))
             actual=Counter((key(names(r)),format(float(r[target]),'.10g'),format(float(r['weight']),'.10g')) for r in details[kind])
             return expected==actual
         checks['exact_active_bonds']=not details['bond_asu'] and matching('bond_simple','_chem_comp_bond',2,'distance_ideal','value_dist','value_dist_esd')
         checks['exact_active_angles']=matching('angle','_chem_comp_angle',3,'angle_ideal','value_angle','value_angle_esd')
         from .dictionary_compatibility import normalize_torsion_block
-        normalized,_=normalize_torsion_block(values)
+        normalized,_=normalize_torsion_block(targets)
         torsions=Counter(('const_dihedral' if int(r['period'])==0 else 'dihedral',
             _torsion_signature(tuple(r['atom_id_'+str(i)] for i in range(1,5)),r['value_angle'],r['period'],r.get('alt_value_angle')),
             format(_torsion_weight(r),'.10g'))

@@ -216,6 +216,28 @@ def test_active_site_checks_include_selected_endpoints_and_manager_evidence(tmp_
     assert all(r['status']=='PASS' for r in checks) is (defect is None),checks
 
 
+@pytest.mark.parametrize("observed, qualified", [("rna3p", "rna3p"), ("rna3p", "rna2p")])
+def test_active_site_binds_the_specific_sugar_pucker(tmp_path, observed, qualified):
+    from nasolve.cif_dictionary_sites import _site_native_checks
+    from nasolve.cif_linked_preparation import component_values
+    from tests.test_cif_candidate_usability import native_case
+
+    _, candidate, _, original = native_case(tmp_path)
+    original["geometry"]["simple_bonds"] = deepcopy(original["geometry"]["proxy_details"]["bond_simple"])
+    original["geometry"]["asu_bonds"] = []
+    current = deepcopy(original)
+    site = "A:1"
+    current["monomer_mappings"]["rows"][0]["chem_mod_ids"] = {"status": "RECORDED", "ids": ["site-reaction", observed]}
+    prepared = {"report": {"contexts": [{"site": site, "incoming_site": None}]},
+                "projections": {site: (candidate, "Q17")},
+                "preparation": {"sites": [{"site": site, "modification_id": "site-reaction"}]}}
+    adjustment = {site: {"values": component_values(candidate, "Q17"), "modifier": qualified,
+                         "matched_rows": {"bonds": 1, "angles": 1, "torsions": 1}, "table_sha256": "1"*64}}
+    checks = _site_native_checks(original, current, prepared, pucker=adjustment)
+    record, = [r for r in checks if r["check"] == "exact-site-modifier:"+site]
+    assert (record["status"] == "PASS") == (qualified == observed)
+
+
 @pytest.mark.parametrize('allowed',[False,True])
 def test_baseline_may_lack_only_the_explicitly_deleted_source_atoms(tmp_path,allowed):
     from nasolve.cif_dictionary_sites import _site_native_checks

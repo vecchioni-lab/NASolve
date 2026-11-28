@@ -12,7 +12,7 @@ from dataclasses import asdict, dataclass, replace
 from datetime import datetime, timezone
 from math import dist, isfinite, sqrt
 from pathlib import Path
-from typing import Callable, Mapping, TypeVar
+from typing import Callable, Mapping, Sequence, TypeVar
 
 from .curated_ligands import (
     CURATED_LIGANDS,
@@ -21,7 +21,7 @@ from .curated_ligands import (
     ligand_dictionary,
     validate_ligand_dictionary,
 )
-from .cif_doctor import assess_dictionaries
+from .cif_doctor import assess_dictionaries, source_stereocentre_conflicts
 from .component_normalization import (
     POLICY as COMPONENT_POLICY, PREFERRED_COMPONENTS,
     normalize_model as normalize_component_model, preparation_targets,
@@ -54,6 +54,14 @@ from .sequence_family import (
 
 class PostMRPreparationError(RuntimeError):
     """Raised when a Phaser solution cannot be prepared safely."""
+
+
+class MissingMutationParent(PostMRPreparationError):
+    """The ordinary base-change route could not choose a parent for this site."""
+
+    def __init__(self, site, current, target, message):
+        super().__init__(message)
+        self.site, self.current, self.target = site, current, target
 
 
 @dataclass(frozen=True)
@@ -470,11 +478,11 @@ def build_mutation_plan(
             try:
                 ligand = ligand_definition(target)
             except (KeyError, ValueError) as exc:
-                raise PostMRPreparationError(
+                raise MissingMutationParent(site, current, target,
                     f"Mutation {site} {current}->{target} has no usable canonical parent: {exc}"
                 ) from exc
             if ligand.parent_code is None:
-                raise PostMRPreparationError(
+                raise MissingMutationParent(site, current, target,
                     f"Mutation {site} {current}->{target} has no canonical parent"
                 )
             method = "coot-parent-overlap"
@@ -632,6 +640,29 @@ def _coot_script(
     return "\n".join(lines)
 
 
+def _coot_identity_failure(transcript: str, actions: tuple[MutationAction, ...]) -> str | None:
+    """Explain a verified residue mismatch from our own native script."""
+    planned = {action.site: action for action in actions}
+    for line in transcript.splitlines():
+        fields = line.split()
+        if len(fields) not in (3, 4) or fields[1] not in planned:
+            continue
+        marker, site = fields[:2]
+        action = planned[site]
+        if marker == "NASOLVE_MUTATION_IDENTITY" and len(fields) == 4:
+            expected = action.parent_code if action.method == "coot-parent-overlap" else action.after
+            if fields[2] != expected:
+                continue
+        elif marker == "NASOLVE_RESULT" and len(fields) == 3:
+            expected = action.after
+        else:
+            continue
+        observed = fields[-1]
+        if observed != expected and re.fullmatch(r"[A-Za-z0-9_+-]{1,8}", observed):
+            return f"NASolve requested {expected} at {site}, but Coot read back {observed}"
+    return None
+
+
 def _run_coot(
     input_model: Path,
     output_model: Path,
@@ -644,6 +675,7 @@ def _run_coot(
     *,
     timeout_seconds: float | None = None,
     site_dictionary_paths: Mapping[str, Path] | None = None,
+    ribose_templates: Mapping[str, Path] | None = None,
 ) -> tuple[Path, Path]:
     if timeout_seconds is not None and (isinstance(timeout_seconds, bool) or not isfinite(timeout_seconds) or timeout_seconds <= 0):
         raise PostMRPreparationError("Coot timeout must be finite and positive")
@@ -651,7 +683,9 @@ def _run_coot(
     log = coot_directory / "coot.log"
     from .postmr_conformation import parent_conformation_plan
     plans = {action.site: parent_conformation_plan((site_dictionary_paths or {}).get(action.site, dictionary_paths[action.after]),
-        action.after, action.parent_code, recover_named_chi=True) for action in actions
+        action.after, action.parent_code, recover_named_chi=True,
+        **({"ribose_template": ribose_templates[action.site]} if action.site in (ribose_templates or {}) else {}))
+        for action in actions
         if action.method == "coot-parent-overlap"}
     backups = coot_directory / "backups"
     backups.mkdir()
@@ -705,9 +739,14 @@ def _run_coot(
         raise PostMRPreparationError(f"Could not launch Coot: {exc}") from exc
     log.write_text(completed.stdout, encoding="utf-8")
     if completed.returncode or not output_model.is_file():
-        raise PostMRPreparationError(
-            f"Coot mutation failed with status {completed.returncode}; inspect {log}"
-        )
+        identity_failure = _coot_identity_failure(completed.stdout, actions)
+        if identity_failure:
+            raise PostMRPreparationError(f"{identity_failure}. Inspect {log}")
+        if not output_model.is_file():
+            raise PostMRPreparationError(
+                f"Coot exited with status {completed.returncode} without writing the requested model. Inspect {log}"
+            )
+        raise PostMRPreparationError(f"Coot mutation failed with status {completed.returncode}. Inspect {log}")
     return script, log
 
 
@@ -817,6 +856,8 @@ def _restore_shared_parent_coordinates(
     parent_models: Mapping[str, Path],
     dictionary_paths: Mapping[str, Path] | None = None,
     *, displacement_reference: Path | None = None, site_dictionary_paths: Mapping[str, Path] | None = None,
+    ribose_templates: Mapping[str, Path] | None = None, ribose_displacement_reference: Path | None = None,
+    initialize_methylated_base_b: bool = False,
 ) -> dict[str, object]:
     """Restore supported DNA scaffolds without copying partial same-name bases.
 
@@ -836,6 +877,8 @@ def _restore_shared_parent_coordinates(
     records = _coordinate_records(raw_model)
     from .postmr_scaffold_displacement import HostDisplacement
     host = HostDisplacement(displacement_reference, records) if displacement_reference is not None else None
+    ribose_host = (HostDisplacement(ribose_displacement_reference, records, canonical_ribose=True)
+                   if ribose_displacement_reference is not None else None)
     report: dict[str, object] = {}
     special = tuple(a for a in modified if (ligand := CURATED_LIGANDS.get(a.after)) is not None
                     and (ligand.atom_substitutions or ligand.ring_substituents))
@@ -865,14 +908,25 @@ def _restore_shared_parent_coordinates(
                 if (identity := _record_identity(line)) is not None and identity[:2] == (chain,resid)]
             replacements, item = restore_graph_site([records[i] for i in indices], parent_records,
                 (site_dictionary_paths or {}).get(action.site, dictionary_paths[action.after]),
-                action.after, action.parent_code)
+                action.after, action.parent_code, ribose_template=(ribose_templates or {}).get(action.site))
         except (OSError, ValueError, KeyError, PostMRPreparationError) as exc:
             item = {"policy_id": POLICY_ID, "component": action.after,
                 "status": "RAW_SITE_RETAINED", "count": 0, "atoms": [],
                 "substitutions": [], "reason": str(exc), "requires_cif_review": False,
                 "notes": ["The complete raw Coot site was retained because this DNA transport rule does not support its graph or coordinate context."]}
         else:
-            if host is not None:
+            if action.site in (ribose_templates or {}) and ribose_host is not None:
+                replacements = ribose_host.apply(replace(action, before=action.parent_code), replacements, item)
+                if initialize_methylated_base_b:
+                    from .postmr_base_displacement import initialize_methylated_base
+                    starting = replacements
+                    replacements, item["base_displacement"] = initialize_methylated_base(
+                        starting, (ribose_host.original or {}).get((chain, resid), ()), item, action.site,
+                        action.parent_code, ribose_templates[action.site],
+                        (site_dictionary_paths or {}).get(action.site, dictionary_paths[action.after]))
+                    if replacements != starting:
+                        item["metadata_preserved"] = False
+            elif host is not None:
                 replacements = host.apply(action, replacements, item)
             for index,line in zip(indices,replacements):
                 records[index] = line
@@ -1697,6 +1751,7 @@ def _require_generic_parameterization(
     readyset_log: Path,
     *,
     failure_report: Path | None = None,
+    source_components: Sequence[dict] = (),
 ) -> None:
     """Quarantine unusable generated numerics for generic source-only graphs.
 
@@ -1721,12 +1776,17 @@ def _require_generic_parameterization(
     assessment = assess_dictionaries([generated_cif], stage="postmr-generated") if generated_cif else None
     findings = assessment["findings"] if assessment else []
     components = {component["component_id"] for component in assessment["components"]} if assessment else set()
+    conflicts = source_stereocentre_conflicts(source_components, assessment["components"],
+                                               planes=True, bonds=True) if assessment else []
+    stereo_failures = {code: [r for r in conflicts if r["component_id"] == code and
+                              (r["code"] == "aromatic-bond-at-source-stereocentre" or
+                               r["measurements"].get("plane_as_tight_as_local_bonds"))] for code in required}
     affected = []
     for code in required:
         selected = [finding for finding in findings if finding.get("component_id") == code
                     and finding["rule_id"] == "NUM-01"]
         failures = [finding for finding in selected if finding["status"] in {"FAIL", "ERROR"}]
-        if code in generated and not failures:
+        if code in generated and not failures and not stereo_failures[code]:
             continue
         reasons = failures
         if code not in generated:
@@ -1741,12 +1801,18 @@ def _require_generic_parameterization(
                         "measurements": {"component_id": code, "parse_error_type": parse_error}},
                        *reasons]
         affected.append({"component_id": code, "legacy_parameterization_passed": code in generated,
-                         "reasons": reasons})
+                         "reasons": reasons + stereo_failures[code]})
     if not affected:
         return
     if failure_report is not None:
+        policy = "generic-generated-numerics-v2"
+        if any(stereo_failures.values()):
+            policy = "generic-generated-source-planes-v3"
+        if any(r["code"] == "aromatic-bond-at-source-stereocentre"
+               for rows in stereo_failures.values() for r in rows):
+            policy = "generic-generated-source-stereochemistry-v4"
         payload = {"schema_version": 1, "audit_kind": "readyset_generic_generation_failure",
-                   "status": "QUARANTINED", "policy": "generic-generated-numerics-v2",
+                   "status": "QUARANTINED", "policy": policy,
                    "affected_components": affected, "assessment": assessment,
                    "action": "regenerate-whole-component-from-frozen-chemical-source",
                    "input_handling": "Original source and generated CIFs are preserved; no target numbers were patched."}
@@ -1772,6 +1838,8 @@ def _require_generic_parameterization(
                 description = "generated dictionary omits the component"
             elif key == "coincident-bonded-heavy-atoms":
                 description = f"coincident bonded heavy atoms {atoms} in {details['coordinate_set']}"
+            elif key in {"plane-through-source-stereocentre", "aromatic-bond-at-source-stereocentre"}:
+                description = finding["message"]
             elif key in {"numeric-domain-violation", "invalid-numeric-value"}:
                 raw = details.get("value")
                 try:
@@ -1908,6 +1976,7 @@ def construct_postmr_model(
     environment: Mapping[str, str] | None = None,
     coot_directory: Path | None = None,
     inherit_scaffold_b: bool = False,
+    initialize_methylated_base_b: bool = False,
     reference_model: Path | None = None,
     timeout_seconds: float | None = None,
     allow_op3_sites: tuple[str, ...] = (),
@@ -1930,8 +1999,12 @@ def construct_postmr_model(
     agree. The same choices feed context/restoration and are returned for lineage.
     Their upstream source/end-state/numerical qualification remains separate.
     Fresh ordinary PostMR sets inherit_scaffold_b to carry isotropic B factors
-    from the original model for coordinate-identical restored DNA scaffold atoms.
+    from the original model for coordinate-identical restored scaffold atoms.
+    initialize_methylated_base_b also initializes a graph-verified newly placed
+    methylated base from its canonical ribose parent.
     """
+    if initialize_methylated_base_b and not inherit_scaffold_b:
+        raise PostMRPreparationError("Base displacement initialization needs the verified host scaffold")
     if any(action.method == FURANOSE_METHOD for action in actions):
         raise PostMRPreparationError("Whole-furanose construction requires the ordinary phosphate-prepared frame")
     input_model, output_model = Path(input_model), Path(output_model)
@@ -1986,16 +2059,24 @@ def construct_postmr_model(
     coot_dictionaries = {a.after: Path(dictionary_paths[a.after]) for a in overlap_actions}
     coot_directory.mkdir(parents=True, exist_ok=True)
     native_input, native_actions, seeded = input_model, coot_actions, None
+    ribose_options = {}
     if seed_plan is not None:
         from .postmr_canonical_input import prepare_canonical_parent_input
         seeded = prepare_canonical_parent_input(input_model, seed_plan, coot_directory / "canonical_seeds")
         native_input = seeded["model"]
+        from .postmr_canonical_input import frozen_ribose_templates
+        ribose_templates = frozen_ribose_templates(seeded)
+        if ribose_templates:
+            ribose_options["ribose_templates"] = ribose_templates
         selected = {a.site for a, _, _ in seed_plan}
         native_actions = tuple(replace(a, before=a.parent_code) if a.site in selected else a
                                for a in coot_actions)
     _, coot_log = _run_coot(native_input, raw_model, native_actions, coot_executable,
         coot_directory, environment, coot_dictionaries, parent_models,
-        **({"timeout_seconds": timeout_seconds} if timeout_seconds is not None else {}), **site_options)
+        **({"timeout_seconds": timeout_seconds} if timeout_seconds is not None else {}), **site_options, **ribose_options)
+    if ribose_options:
+        from .postmr_canonical_input import verify_native_ribose_parents
+        verify_native_ribose_parents(seeded, parent_models)
     if site_dictionary_paths is not None:
         _check_constructed_site_dictionaries(raw_model, coot_actions, dictionary_paths,
             site_dictionary_paths, site_snapshots)
@@ -2005,11 +2086,15 @@ def construct_postmr_model(
         dictionary_paths, parent_models, output_model.with_name(output_model.stem + "_context.pdb"),
         allow_op3_sites=allow_op3_sites, passthrough_sites=passthrough_sites,
         serial_identity_policy=COMPONENT_PADDING_POLICY_ID,
-        canonical_serial_policy=CANONICAL_SERIAL_POLICY_ID, **site_options)
+        canonical_serial_policy=CANONICAL_SERIAL_POLICY_ID, **site_options, **ribose_options)
     restoration_input = context["model"]
-    restoration_options = dict(site_options)
+    restoration_options = {**site_options, **ribose_options}
     if inherit_scaffold_b:
         restoration_options["displacement_reference"] = reference_model
+        if ribose_options:
+            restoration_options["ribose_displacement_reference"] = native_input
+            if initialize_methylated_base_b:
+                restoration_options["initialize_methylated_base_b"] = True
     restoration_actions = tuple(a for a in overlap_actions if a.site not in passthrough_sites)
     if restoration_actions:
         restoration = _restore_shared_parent_coordinates(restoration_input, geometry_model,
@@ -2226,6 +2311,7 @@ def _prepare_postmr(
     _dictionary_handler: Callable[[_PreparedDictionaryInputs], _PostMRReturn] | None = None,
     _construction_inputs: dict | None = None,
     _furanose_input=None,
+    _missing_parent_selector=None,
 ) -> PostMRResult | _PostMRReturn:
     """Prepare a completed Phaser solution without modifying the MR outputs.
 
@@ -2235,7 +2321,7 @@ def _prepare_postmr(
     existing cache adapter consumes that same installation without rediscovery.
     This does not enable the separate owned repair/adoption engine.
     """
-    if (_construction_inputs is not None or _furanose_input is not None) and _dictionary_handler is None:
+    if any(v is not None for v in (_construction_inputs, _furanose_input, _missing_parent_selector)) and _dictionary_handler is None:
         raise PostMRPreparationError("Explicit projected construction requires the owned dictionary request")
     environment = _selected_postmr_environment(ready_set_executable, phenix_installation, environment)
     run, report = _read_report(run_directory)
@@ -2292,10 +2378,23 @@ def _prepare_postmr(
         explicit_planning['construction_sources'] = {
             code: (_construction_inputs['selection']['sources'][code]['source'], row['parent'])
             for code, row in _construction_inputs['choices'].items()}
-    family_actions = (
-        build_mutation_plan(report, source_model, run_directory=run, **explicit_planning)
-        if family is not None or explicit_planning else None
-    )
+    family_actions = None
+    if family is not None or explicit_planning or _missing_parent_selector is not None:
+        try:
+            family_actions = build_mutation_plan(report, source_model, run_directory=run, **explicit_planning)
+        except MissingMutationParent as missing:
+            if _missing_parent_selector is None:
+                raise
+            if missing.site in set(allowed_op3) | set(passthrough_sites):
+                raise PostMRPreparationError("Furanose substitution requires two ordinary internal backbone links") from missing
+            # The constructor currently supports one internal site. Check the rest of
+            # the frozen card before opening a dictionary or reserving an attempt.
+            family_actions = build_mutation_plan(report, source_model, run_directory=run,
+                furanose_target=(missing.site, missing.target))
+            try:
+                _furanose_input = _missing_parent_selector(missing)
+            except (OSError, KeyError, ValueError) as exc:
+                raise PostMRPreparationError(f"{missing}. The source-checked sugar route also stopped: {exc}") from exc
     postmr = run / "PostMR"
     try:
         postmr.mkdir()
@@ -2439,16 +2538,25 @@ def _prepare_postmr(
     if _furanose_input is not None:
         coot_plan = tuple(action for action in actions if action.method != FURANOSE_METHOD)
         coot_sources = {c:p for c,p in construction_sources.items() if c != _furanose_input.code}
+    from .postmr_canonical_input import ordinary_ribose_inputs
+    ribose_choices, ribose_review = ordinary_ribose_inputs(coot_plan, coot_sources,
+        data_root=data_root, ready_set_executable=ready_set_executable, passthrough_sites=passthrough_sites,
+        site_dictionary_paths=staged['site_dictionary_paths'] if staged is not None else None,
+        mirrored=isinstance(report.get('inputs'), Mapping) and report['inputs'].get('mirror') is True)
     construction = construct_postmr_model(
         coot_input, coot_plan, coot_sources, after_coot,
         coot_executable=coot_executable, environment=environment,
         coot_directory=coot_dir, reference_model=original, inherit_scaffold_b=True,
         allow_op3_sites=allowed_op3, passthrough_sites=passthrough_sites,
         **({'site_dictionary_paths':staged['site_dictionary_paths']} if staged is not None else {}),
+        **({'canonical_seed_dictionaries': ribose_choices, 'initialize_methylated_base_b': True}
+           if ribose_choices else {}),
     )
     coot_actions = tuple(a for a in actions if a.method in {"coot-mutate-base", "coot-parent-overlap"})
     coot_log = construction["coot_log"]
     coordinate_restoration = construction["coordinate_restoration"]
+    for site, reason in ribose_review.items():
+        coordinate_restoration[site]["ribose_parent_review"] = reason
 
     terminal_ready = model_dir / "terminal_phosphate_model.pdb"
     try:
@@ -2819,6 +2927,7 @@ def _prepare_postmr(
     _require_generic_parameterization(
         dictionary_source_provenance, generated_cif, readyset_log,
         failure_report=readyset_dir / "cif_doctor_generation_failure.json",
+        source_components=source_assessment["components"],
     )
     final_model = model_dir / "readyset_model.pdb"
     shutil.copyfile(updated, final_model)

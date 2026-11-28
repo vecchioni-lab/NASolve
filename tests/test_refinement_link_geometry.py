@@ -65,6 +65,29 @@ def geometry(root, extra=False):
     return model, path, labels, dict(preparation_model=model, backbone_links=[("A:1", "A:2")], restraint_phils=[phil])
 
 
+def test_geometry_declaration_can_match_while_achieved_distances_depart_both_ways(tmp_path):
+    model, path, labels, intent = geometry(tmp_path)
+    frame, = intent["restraint_phils"]
+    first = frame.read_text().replace("distance_ideal = 2.8", "distance_ideal = 2.4")
+    second = tmp_path / "second.phil"
+    second.write_text(first.replace("name N3", "name N4").replace("name N2T", "name C5T")
+                      .replace("distance_ideal = 2.4", "distance_ideal = 1.836").replace("sigma = 0.4", "sigma = 0.2"))
+    frame.write_text(first)
+    intent["restraint_phils"].append(second)
+    backbone = bond(labels, 0, 1, "1.607", "1.610", "1.20e-02", "6.94e+03")
+    extended = bond(labels, 5, 3, "2.400", "2.800", "4.00e-01", "6.25e+00")
+    compressed = bond(labels, 2, 4, "1.836", "1.436", "2.00e-01", "2.50e+01")
+    path.write_text(section("covalent geometry", backbone) + section("User supplied", extended, compressed))
+    result = read_refined_links(model, path, **intent)
+    fit = result["supplied_distance_fit"]
+    assert result["status"] == "MATCH" and fit["count"] == 2 and fit["ambiguous"] == 0
+    assert fit["most_compressed"]["signed_widths"] == pytest.approx(-2)
+    assert fit["most_extended"]["signed_widths"] == pytest.approx(1)
+    assert fit["most_compressed"]["endpoints"] == [["A:2", "DC", "N4"], ["B:4", "Z99", "C5T"]]
+    assert fit["most_extended"]["model_A"] == 2.8
+    assert read_refined_links(model, path)["supplied_distance_fit"] is None
+
+
 def test_unexpected_link_named_even_next_to_declared_bonds(tmp_path):
     model, path, _, intent = geometry(tmp_path, extra=True)
     report = read_refined_links(model, path, **intent)
@@ -82,6 +105,7 @@ def test_checked_bonds_match_and_without_authority_only_observed(tmp_path):
     report = read_refined_links(model, path, **intent)
     assert report["status"] == "MATCH" and len(report["links"]) == 2
     informal = read_refined_links(model, path)
+    assert report["supplied_distance_fit"] == dict(count=1, ambiguous=0, most_compressed=None, most_extended=None)
     assert informal["status"] == "OBSERVED" and informal["matched_supplied"] is None
     assert {r["classification"] for r in informal["links"]} == {"OBSERVED"}
 
@@ -106,6 +130,7 @@ def test_duplicate_edge_and_missing_backbone_remain_visible(tmp_path):
     assert report["status"] == "REVIEW" and report["matched_supplied"] == 1
     assert len(report["missing_backbone"]) == 1
     assert [r["classification"] for r in report["links"]].count("OUTSIDE_DECLARATION") == 1
+    assert report["supplied_distance_fit"] == dict(count=0, ambiguous=1, most_compressed=None, most_extended=None)
     assert json.loads(json.dumps(report)) == report
 
 
@@ -173,6 +198,39 @@ def test_contact_environment_keeps_signed_gaps_and_images_of_the_second_atom(tmp
     assert a["N3"]["largest_image_contacts"][0]["image_of_second_atom"] == "x,y+1,z"
     assert a["P"]["printed_contacts"] == 0 and a["P"]["largest_overlap_A"] is None
     assert result["scientific_approval"] == "NOT_ASSESSED"
+
+
+def test_contact_cutoff_keeps_weaker_neighbours_once_in_printed_atom_order(tmp_path):
+    from nasolve.refinement_contact_geometry import read_refined_contacts
+
+    model, path, labels, _ = geometry(tmp_path)
+    pairs = [
+        nonbonded(labels[3], labels[5], "2.800", "3.200"),
+        nonbonded(labels[5], labels[2], "4.200", "4.800", "-x+y,-x,z"),
+        nonbonded(labels[5], labels[4], "3.501", "3.900", "x+1,y,z"),
+    ]
+    with path.open("a") as f:
+        f.write("Nonbonded | unspecified | interactions: 3\n" + "".join(pairs))
+    sites = ["A:2", "B:4"]
+    old = read_refined_contacts(model, path, sites)
+    assert "overlap_screen" not in old
+    result = read_refined_contacts(model, path, sites, minimum_overlap=.4)
+    assert old["sites"] == result["sites"]
+    assert result["sites"]["B:4"]["atoms"]["N2T"]["largest_overlap_A"] == .6
+    screen = result["overlap_screen"]
+    assert screen["minimum_overlap_A"] == .4
+    assert [(r["overlap_A"], r["image_of_second_atom"]) for r in screen["contacts"]] == [
+        (.6, "-x+y,-x,z"), (.4, None)]
+    assert screen["contacts"][0]["endpoints"] == [["B:4", "Z99", "N2T"], ["A:2", "DC", "N4"]]
+    assert screen["contacts"][1]["endpoints"] == [["A:2", "DC", "N3"], ["B:4", "Z99", "N2T"]]
+    assert read_refined_contacts(model, path, sites, minimum_overlap=.61)["overlap_screen"]["contacts"] == []
+
+    path.write_text(path.read_text().replace("interactions: 3", "interactions: 4"))
+    invalid = read_refined_contacts(model, path, sites, minimum_overlap=.4)
+    assert invalid["status"] == "UNASSESSED" and invalid["overlap_screen"]["contacts"] is None
+    for cutoff in (float("nan"), float("inf"), -0.1, True):
+        with pytest.raises(ValueError, match="overlap"):
+            read_refined_contacts(model, path, sites, minimum_overlap=cutoff)
 
 
 @pytest.mark.parametrize("change", ["missing", "empty", "truncated", "wrong-distance", "wrong-label", "bad-image"])
@@ -338,6 +396,8 @@ def test_checked_autorefine_retains_a_model_and_accounts_for_both_native_tables(
     cold = cif_doctor_run.assess_run(run, checkpoint=child["id"], refined_links=True)
     assert cold["preflight_links"]["status"] == report["preflight"]["status"]
     assert cold["refined_links"]["status"] == report["refined"]["status"]
+    assert (cold["refined_links"]["supplied_distance_fit"] is None) is (final == "unknown")
+    assert (cold["preflight_links"]["supplied_distance_fit"] is None) is (initial == "unknown")
     if initial == "unknown":
         assert cold["preflight_links"]["reason"] == report["preflight"]["reason"]
     if outcome == "SUCCESS":

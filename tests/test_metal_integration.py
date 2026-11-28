@@ -111,6 +111,23 @@ def test_context_uses_generated_pair_and_does_not_create_registry(tmp_path):
     assert doc['sources']['model']['anchor'] == 'run'
 
 
+def test_ordinary_context_does_not_load_unrequested_registered_chemistry(tmp_path, monkeypatch):
+    import builtins
+    original = builtins.__import__
+
+    def declared_only(name, *args, **kwargs):
+        if name.endswith('cif_registered_topology'):
+            raise AssertionError('No registered topology was declared')
+        return original(name, *args, **kwargs)
+
+    run = write_run(tmp_path)
+    monkeypatch.setattr(builtins, '__import__', declared_only)
+    context = load_run_context(run, records=[{'Ligand code': 'DF', 'O2': 'S2'},
+                                             {'Ligand code': 'DT', 'N3': 'N3'}])
+    assert context.to_dict()['sources']['model']['anchor'] == 'run'
+    assert not (run / 'AutoRefine').exists()
+
+
 def test_context_relocation_uses_declared_anchors_and_keeps_identity(tmp_path):
     original = tmp_path / 'original'
     run = write_run(original)

@@ -31,6 +31,7 @@ class _Coordinates:
     unlabelled: int
     sequence_tables: list
     sequence_conflicts: set
+    atom_elements: dict
 
     def locate(self, site, atom, component=None, alt=None):
         candidates = [(key, xyz) for key, xyz in self.sites.get(site, {}).items()
@@ -50,7 +51,7 @@ def _number(value, gemmi):
     return n
 
 
-def _coordinates(block, gemmi):
+def _coordinates(block, gemmi, *, requested_atoms=None):
     polymers = {r.get("entity_id") for r in _rows(block, "_entity_poly.") if r.get("entity_id")
                 if str(r.get("type")).lower() in _NA_TYPES}
     chains = {r.get("id"): r.get("entity_id") for r in _rows(block, "_struct_asym.") if r.get("id")}
@@ -64,6 +65,8 @@ def _coordinates(block, gemmi):
             sequences[cat] = declared
     conflicts = set()
     sites, authors, models, unlabelled = {}, defaultdict(set), set(), 0
+    atom_elements = {}
+    wanted = _ELEMENTS if requested_atoms is None else requested_atoms
     for row in _rows(block, "_atom_site."):
         ch, n, comp = (row.get(k) for k in ("label_asym_id", "label_seq_id", "label_comp_id"))
         entity = row.get("label_entity_id") or chains.get(ch)
@@ -88,17 +91,20 @@ def _coordinates(block, gemmi):
         if row.get("auth_asym_id") and row.get("auth_seq_id"):
             authors[site].add((row["auth_asym_id"], row["auth_seq_id"], row.get("pdbx_PDB_ins_code") or ""))
         name = str(row.get("label_atom_id")).replace("*", "'")
-        if name not in _ELEMENTS:
+        if name not in wanted:
             continue
         occ = _number(row.get("occupancy"), gemmi)
         if not 0 <= occ <= 1:
             raise ValueError("Backbone atom occupancy is outside [0,1]")
-        if not occ or str(row.get("type_symbol")).upper() != _ELEMENTS[name]:
+        element = str(row.get("type_symbol") or "").upper()
+        if not occ or (requested_atoms is None and element != _ELEMENTS[name]):
             continue
         key = comp, name, row.get("label_alt_id") or ""
         if key in atoms:
             raise ValueError(f"Ambiguous atom {key} at {model}/{ch}/{n}")
         atoms[key] = tuple(_number(row.get("Cartn_" + a), gemmi) for a in "xyz")
+        if requested_atoms is not None:
+            atom_elements[site, key] = element
 
     cell_row = next(_rows(block, "_cell."), {})
     cell = None
@@ -119,7 +125,7 @@ def _coordinates(block, gemmi):
             ops[key] = op
         if ops:
             break
-    return _Coordinates(sites, authors, sorted(models), cell, ops, unlabelled, list(sequences), conflicts)
+    return _Coordinates(sites, authors, sorted(models), cell, ops, unlabelled, list(sequences), conflicts, atom_elements)
 
 
 def _ordinary_step(c, step, left, right, maximum):
@@ -264,17 +270,21 @@ def _declared(block, c, gemmi):
     return found, keys
 
 
-def _inspect(path, maximum, gemmi, include_ordinary_steps):
+def _cif_block(path, tag, description, gemmi):
     raw = Path(path).read_bytes()
     try:
         data = gzip.decompress(raw) if raw.startswith(b"\x1f\x8b") else raw
     except EOFError as exc:
-        raise ValueError("Truncated gzip coordinate file") from exc
+        raise ValueError(f"Truncated gzip {description} file") from exc
     doc = gemmi.cif.read_string(data)
-    blocks = [b for b in doc if len(b.find_values("_atom_site.id"))]
+    blocks = [b for b in doc if len(b.find_values(tag))]
     if len(blocks) != 1:
-        raise ValueError("Supply a coordinate mmCIF with one atom_site data block")
-    block = blocks[0]
+        raise ValueError(f"Supply a {description} mmCIF with one {tag.split('.')[0][1:]} data block")
+    return sha256(raw).hexdigest(), blocks[0]
+
+
+def _inspect(path, maximum, gemmi, include_ordinary_steps):
+    digest, block = _cif_block(path, "_atom_site.id", "coordinate", gemmi)
     c = _coordinates(block, gemmi)
     ordinary = _ordinary(c, maximum, include_ordinary_steps)
     declared, keys = _declared(block, c, gemmi)
@@ -287,7 +297,7 @@ def _inspect(path, maximum, gemmi, include_ordinary_steps):
     review = bool(c.unlabelled or not ordinary["measured"] or ordinary["long_steps"] or ordinary["sequence_gaps"]
                   or any(s["status"] != "MEASURED" for s in ordinary.get("steps", ()))
                   or ordinary["unmeasured"] or unresolved or extended or missing_oxygen_angles or c.sequence_conflicts)
-    return {"sha256": sha256(raw).hexdigest(), "status": "REVIEW" if review else "CHECKED",
+    return {"sha256": digest, "status": "REVIEW" if review else "CHECKED",
             "ordinary": ordinary, "declared": declared, "unmeasured_declarations": unresolved,
             "long_declarations": extended, "missing_declared_OP_angles": missing_oxygen_angles,
             "unlabelled_polymer_atom_rows": c.unlabelled, "sequence_tables_checked": c.sequence_tables,

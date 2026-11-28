@@ -68,9 +68,61 @@ Compare the **exact upload** to the processed **coordinate** mmCIF from the same
 
 Keep each submitted pair, its checksums, the matching processed coordinates and validation report together by revision. Record which warnings cleared, which need a curator, and which revisions have only local checks. Read the standard polymer geometry table as well as the modified-residue section. A satisfactory diffraction check can accompany local sugar or base outliers.
 
+## Check the chemical type of a base-pair contact
+
+Phenix 2.2.1-6174 can write a base-pair hydrogen bond as `covale` in
+`_struct_conn.conn_type_id` when its distance came from a geometry edit.
+On a PDU test scaffold, five such contacts were written as `hydrog` when
+the same atom-specific distances and widths were supplied as native
+Watson–Crick restraints. The two five-cycle fits had identical written
+coordinates. For deposition, trace an apparent inter-base covalent bond to
+the pair recipe and the model atoms. Preserve separately declared chemical
+bonds, including the O3′–P links across crystal symmetry. The measured
+distance and restraint origin alone cannot identify the chemistry.
+[Five-contact comparison](backbone-chemistry.md#how-phenix-labels-base-pair-restraints-in-the-pdu-scaffold).
+
 ## What the locked-DNA depositions established
 
 The depositor confirmed that 3LNA (9Z65) passed OneDep on 24 November 2026. The preliminary report has zero standard outliers among 1,348 bonds and 2,065 angles, no chain breaks, and DCC Rwork/Rfree of 0.2008/0.2124. Two expected 1.61 Å symmetry phosphodiesters appear as close contacts. The separate ligand table retains observations on the two locked thymines, including their cage angles. The deposited R factors in the XML and the reported ligand geometry support the phosphate-repaired revision. The later reference-guided cage fit remains a local comparison. The separate 5LNA (9ZS1) return also had zero standard bond-length or bond-angle outliers and no chain breaks.
+
+## Remeasuring a returned geometry table
+
+Give CIF Doctor the coordinate mmCIF assessed by OneDep and the validation-data
+CIF from that pass. Add a revised model to compare the same atoms with the
+observations, means and standard deviations that OneDep originally printed.
+
+```sh
+nasolve cif-doctor deposition-geometry upload.cif --validation returned_val-data.cif --candidate revised.cif
+```
+
+The default reads both standard polymer and Mogul within-residue bond and
+angle findings for nucleic acids. `--family standard` or `--family mogul`
+requests one table. A source measurement must agree to half the last printed
+digit. If any requested source finding disagrees, the output gives the source
+measurements and withholds candidate scores. Missing atoms, alternate
+conformers and changed residue labels are identified for review. The JSON
+includes the hashes of the supplied files, the exact sites, each observation
+and the source difference in Å or degrees. The returned Z-score and the
+residual calculated from the rounded reference values are reported separately.
+
+Exit 0 means the requested observations could be remeasured. Exit 2 means
+there were no applicable findings or the comparison needs review. Exit 1
+identifies an invalid input. Agreement establishes which observations the
+files share. The processed coordinates or an upload hash are needed to
+identify exact file bytes. A later revision can introduce new outliers or
+change a reference class. Examine the new OneDep return for those changes.
+An upload-screen finding may be absent from the downloadable validation table.
+
+In the earlier 5LNA return, the three standard bonds and three standard
+angles reproduced from the uploaded coordinates. The revised values were
+0.70–2.18 original standard deviations from their references. Six of twenty
+Mogul findings differed in the source comparison by under 0.010° each,
+enough to distinguish the printed numbers. On the 9CKB V12 return, all 29
+Mogul observations reproduced, and all 29 coordinate measurements stayed
+identical after the off-site sugar and phosphate repair. The five separate
+upload-screen angles needed their own measurement.
+
+### Other checks before resubmission
 
 Three checks from these entries are useful for future modified nucleotides.
 

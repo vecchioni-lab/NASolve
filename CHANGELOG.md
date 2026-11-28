@@ -8,6 +8,17 @@ entries are reconstructed from repository history.
 
 ## [Unreleased]
 
+### Preserve explicit metal preparation controls when receiving Cedar
+
+- Avoid loading registered-topology chemistry when an ordinary model declares
+  no checked topology. Keep ordinary and relocated reads on their declared inputs.
+- Keep original registered-preparation permission and source-order recovery as
+  independent opt-ins. Receiving fitted-sugar support does not authorize fitting
+  an original-only registered preparation or release its historical intake hold.
+- Retain both historical native helper and explicit-NA reader resources when
+  combining the shared refinement owners. Existing worker fingerprints, external
+  AutoSol identity checks and metal execution gates remain unchanged.
+
 ### Bind retained AutoSol evidence without changing an ordinary parent
 
 - Add opt-in mixed-parent request schema 2 with an explicit external AutoSol
@@ -1212,6 +1223,191 @@ entries are reconstructed from repository history.
 - This is input transport only: no execution, complete parent retention, native
   regeneration, pruning permission or scientific acceptance. Existing run
   schemas, CLI behavior, source data and native workers remain unchanged.
+
+### Received Cedar source and sugar preparation
+
+- `nasolve cif-doctor catalogue --sulfur-phosphates` can read the sulfur, retained oxygen, leaving oxygen and carbon-linked oxygen directly from component bonds and leaving-atom declarations. The optional report preserves source orders, charges and atom names and distinguishes bridging and multiple sulfurs.
+
+- `nasolve postmr RUN --checked-preparation --dictionary-input-policy source-preserving-v2` can take one source-qualified C-linked sugar on a mutation card through local fitting and into the normal review checkpoint alongside ordinary substitutions. If the fit or its Phenix reading is interrupted, the diagnostic identifies the saved work and the command for inspecting or resuming it.
+
+- `nasolve cif-doctor publish-preparation RUN --attempt N --sugar-fit M` can give AutoRefine a locally fitted sugar. The first publication can obtain its own fixed-coordinate Phenix reading or reuse a named one. It verifies the original residue assignments and restraints. A retry preserves the previous reading and the completed fit. The saved checkpoint reopens offline after moving the run.
+
+- `nasolve cif-doctor fit-sugar RUN --attempt N` fits the selected sugar against the restraints Phenix actually read. The fitted coordinates and geometry measurements belong to a numbered attempt. A saved fit reopens offline after moving the run. The original model remains available for comparison.
+
+- `nasolve cif-doctor prepare-run --dictionary-input-policy source-preserving-v2` can recognize one unsupported Coot mutation as a C-linked, 2′-O-methyl uracil analogue from its source, host and restraint workbook. It acquires the required dictionary from the frozen card. A proven extra eLBOW bond can trigger one fresh source-order attempt within the original time allowance.
+
+- Checked PostMR preparation can use a retained dictionary to build a C-linked uracil analogue on a 2′-O-methyl ribose alongside ordinary Coot mutations. It requires both qualified sugar-pucker tables and the NARestraints pairing edge. The raw seed stays available for a local fit and cannot become a refinement checkpoint.
+
+- A local sugar fit can return its coordinates to the original PDB after checks on the crystal frame, fixed atoms, occupancies, B values and stereochemistry. Base-pair distance restraints that Phenix writes as `LINK` records stay out of the returned model.
+
+- A trusted diagnostic can read the live Phenix geometry and gradient counters for a registered set of crystal phosphates during a zero-cycle preflight. NASolve checks that the observation preserves the model, phosphate forces and bonded exclusions. Existing refinement workers retain their original fingerprints.
+
+- The whole-sugar builder can select the adenine-pairing face from the source and host uracil rings when their sugar attachment changes between carbon and nitrogen. It checks the NARestraints pairing atoms and sugar hand and records the resolved placement for replay.
+
+- When a whole-sugar substitution changes the uracil attachment between C and N, its new atoms can start with the median isotropic B of the fully occupied host residue. The constructor checks the connected heavy-atom inventory and records the starting value. Older frozen seeds reproduce their original B values.
+
+- Source-preserving PostMR requests can now recognize a neutral 2′-O-methyl ribose at an already constructed internal RNA site and select the appropriate Phenix sugar tables. The source graph, workbook attachment, methyl group in the model and both backbone connections must agree. Historical retained dictionaries keep their original permissions.
+
+- An internal RNA methyl ether can carry both fingerprinted sugar-restraint tables from a qualified dictionary into linked-model preparation. The site check compares the table that Phenix actually selected with its active restraints and the earlier isolated readings.
+
+- Explicit dictionary acquisition can qualify a source-declared RNA 2′-O-methyl ether when Phenix chooses different sugar puckers from two starting geometries. It checks each observed set of targets, repeats both readings with the native pucker changes switched off, and retains the exact tables with the acquisition. Previously saved single-table qualifications retain their original scope.
+
+- Fresh whole-sugar placements use standard PDB atom-name columns. Phenix can now recognize a constructed phosphate when it uses the following nucleotide to choose sugar restraints. Existing frozen constructions still reproduce their original files.
+
+- The explicit furanose constructor can place a C-linked uracil-like residue
+  using its adenine-pairing face and the host sugar–base torsion. It checks the
+  source bonds, compiled pairing restraints and sugar hand. Frozen placement
+  and phosphate-arm construction can reproduce the result after relocation.
+
+- `nasolve cif-doctor profile --check-at-pair` checks which ring oxygen the
+  source chemistry places toward adenine and which atoms NARestraints actually
+  uses. It recognizes a neutral uracil-like ring through its bonds, including
+  a sugar attached to carbon. A conflict can now be found before refinement.
+
+- Registered symmetry-phosphate refinement can again start from checkpoints
+  written with worker versions 10–12. Those jobs now include their qualified
+  base-restraint reader. Ordinary preparation continues to read the selected
+  NARestraints workbook.
+
+- CIF Doctor’s `explain-pucker` can read which sugar pucker Phenix selected for
+  each of two starting geometries and check the corresponding bond, angle and
+  torsion targets. It can report when the two choices differ. Existing stored
+  qualifications retain their original numerical checks. The separate
+  `verify-pucker` control can freeze both observed tables and compare both
+  starts again with only the pucker adjustment disabled. Those controls can
+  be reopened without the original Phenix installation.
+
+- On the source-preserving path, checked PostMR can recover when Phenix adds
+  a bond absent from the chemical source. It first checks for an exact qualified
+  dictionary. With an empty cache, the stopped native attempt must prove the
+  extra bond before NASolve retries once with the same atoms in a different
+  order. Both attempts remain in the run and share the original time budget.
+  The selected dictionary and whole model go through their normal checks.
+
+- When Coot gives a new methylated RNA base a single starting B factor, fresh
+  PostMR construction can recover the original site’s atom-by-atom values. The
+  two source dictionaries must establish that one base hydrogen was replaced
+  by a methyl group. Its carbon starts with the B factor of its bonded atom.
+  The construction record identifies every transferred value or explains why
+  the seed was retained.
+
+- Ordinary PostMR can prepare a canonical RNA parent from the
+  corresponding deoxy residue. The two source dictionaries must agree on the
+  retained chemistry. NASolve adds the 2′ oxygen with the reference ribose hand
+  and records the local geometry for replay. With a matching N-linked ribose
+  dictionary, Coot places the modified base at the parent orientation. NASolve
+  preserves the sugar, backbone and their displacement values and checks any
+  internal OP3 removal against both neighboring links.
+
+- The source-preserving PostMR recipe can now recognize an internal N-linked
+  ribose with a neutral 2′ hydroxyl from its source graph, workbook roles and
+  two declared backbone links. All qualifying sites share one frozen copy of
+  the workbook. Reopening the complete request uses that copy for the pairing
+  recipe when its fingerprint matches the original compiler record.
+
+- Fresh linked-site checks follow the Phenix requirement for four modeled atoms
+  in a component planarity restraint. An omitted hydrogen can leave three points
+  and no active plane. Missing heavy atoms, changed plane membership or weights,
+  and unexpected planes require review. Saved site checks retain their original
+  interpretation. Base-pair parallelity is a separate restraint.
+
+- For source-backed internal RNA, ordinary dictionary acquisition can now verify
+  the source and candidate coordinates twice, with Phenix's normal RNA pucker
+  adjustment and with the literal dictionary. Each returned restraint must match
+  its selected numerical target. The recorded Phenix table and consumer identify
+  the cache entry. The linked-model check uses the same table only when Phenix
+  reports both the selected site modification and the native pucker. The effective
+  dictionary and active forces must independently agree. Earlier requests retain
+  their original qualification rules.
+
+- Newly recorded `cif-doctor verify-pucker` comparisons keep the small native RNA
+  target table with the literal read. `--replay` can reconstruct both coordinate
+  seeds after relocation with the Phenix installation offline. An explicitly
+  selected installation is also checked. Earlier comparisons keep their original
+  readback against the matching installation.
+
+- Checked PostMR preparation now reuses the verified whole-model NARestraints
+  output when `restraint_scope = all`. The saved request binds the original model,
+  compiled restraints and sources through the existing compiler receipt.
+
+- Before refinement, the ordinary ReadySet check compares a generated plane with
+  the source atom connections and stereochemistry. It requests a fresh dictionary
+  when a plane pulls a handed carbon and three bonded neighbors together as tightly
+  as their bond restraints. The same check flags an explicit aromatic bond at
+  such a carbon even in a plane-free dictionary. `nasolve cif-doctor compare`
+  also reports looser planes.
+
+- `cif-doctor assess --run RUN --refined-links` also names the most compressed
+  and most extended supplied inter-residue distances, in units of the actual
+  restraint width. It measures bonds whose targets match the checked preparation
+  and identifies ambiguous duplicate terms separately.
+
+- When an isolated component fails native checking, the diagnostic lists the
+  affected coordinate seeds, failed checks and any recorded Phenix modifications.
+  `nasolve cif-doctor explain-pucker QUALIFICATION` can reread both jobs and
+  compare the actual bond, angle and torsion targets with the selected Phenix
+  `rna2p` table. `nasolve cif-doctor verify-pucker` can then run two separate
+  isolated Phenix reads with the pucker adjustment disabled and recheck all four
+  reads with `--replay`. Whole-model refinement keeps its usual pucker handling.
+  Historical qualification and cache entries retain their original scope.
+
+- An extra bond reported by eLBOW can now qualify for a fresh atom-order
+  recovery after a verified whole-ring aromatic conversion. The recovery binds
+  the observed conversion to the original source and preserves exact-order
+  historical records.
+
+- Diagnostic runners assembled from a wheel installation verify the captured
+  NARestraints package against its installed file record. A virtual environment
+  inside another repository can no longer give the runner the wrong Git revision.
+
+- New installations use the latest stable NARestraints GitHub release. `nasolve check`
+  compares the installed and published versions and offers an upgrade command.
+  `nasolve check --offline` checks the local tools without a network request.
+
+- When Coot exits without producing a PostMR model, NASolve reports the
+  requested and observed residue at the failed site when the native transcript
+  supplies them. The retained Coot log remains available for inspection.
+
+- CIF Doctor compares a workbook's explicit sugar and base attachment atoms
+  with the bond in the component dictionary. A disagreement identifies both
+  assignments and withholds the candidate linkage sites. Workbooks that lack
+  the optional backbone atom retain their previous behavior.
+
+- `cif-doctor profile --explain-base-roles` can show the source sugar–base
+  bond and which workbook role overlaps the sugar when a furanose profile
+  fails. The optional inspection preserves the original admission decision.
+
+- With `cif-doctor assess --run RUN --contacts-at SITE`, an optional
+  `--min-contact-overlap ANGSTROMS` lists all local contacts meeting that
+  cutoff in the saved Phenix tables, including additional partners at the
+  same atom and the printed crystal image of the second atom.
+
+- AutoRefine round reports record which diffraction target Phenix
+  announced in each numbered cycle when the native log identifies it.
+  This can reveal a change from least squares to maximum likelihood at a
+  constant coordinate weight.
+
+- `cif-doctor assess --refined-planes` shows how far a ring-attached
+  alkynyl tip lies from the fitted restraint plane and how much that
+  plane tilts toward the tip. It uses the written coordinates and the
+  weights Phenix reports for that residue.
+
+- `cif-doctor phosphate-image --na-val-2026` compares a named standard DNA
+  or RNA phosphodiester and its two sugars with published population ranges.
+  The comparison uses the specified crystal copy and reports individual
+  measurements, coverage and the original reference.
+
+- `cif-doctor residue-geometry --sugar-pucker` measures the shape of a
+  five-membered nucleotide sugar ring in a written refinement. It shows
+  the phase and amplitude for comparisons between two models or checkpoints.
+
+- `cif-doctor deposition-geometry` remeasures nucleic-acid bonds and angles
+  listed in a returned wwPDB validation CIF. It can compare the same atoms
+  in a revised coordinate file against the original reported references.
+
+- `cif-doctor residue-geometry` now shows how far the atoms actually moved
+  when a refinement changed a bond or angle restraint's width. Both models
+  can be read on the original scale even if Phenix changed the term's origin.
 
 - Numbered refinements now reopen across Python versions when the same
   coordinates reproduce their four crystal-phosphate angles to seven

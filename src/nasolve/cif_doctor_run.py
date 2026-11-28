@@ -104,10 +104,10 @@ def read_checkpoint_phosphate_image(run: Path, *, checkpoint: str, phosphate: st
                                    saved_continuation: bool = False, saved_continuation_id: int | None = None,
                                    restraint_deviations: bool = False, torsion_response: bool = False,
                                    flanking_geometry: bool = False,
-                                   duplex_partners=None, partner_images=None):
+                                   duplex_partners=None, partner_images=None, na_val_2026: bool = False):
     """Inspect only the named checkpoint's model and its own optional final GEO."""
     from .cif_numerical_replay import numerical_replay_scope
-    from .cif_phosphate_image import inspect_phosphate_image, with_duplex_direction
+    from .cif_phosphate_image import inspect_phosphate_image, with_duplex_direction, with_population_reference
 
     if not isinstance(checkpoint, str) or not checkpoint.strip():
         raise CheckpointError("Phosphate inspection needs an explicit checkpoint ID or bookmark")
@@ -164,6 +164,7 @@ def read_checkpoint_phosphate_image(run: Path, *, checkpoint: str, phosphate: st
         if construction_hash is not None:
             transfer["postmr_construction_sha256"] = construction_hash
     result = with_duplex_direction(model, result, duplex_partners, partner_images)
+    result = with_population_reference(model, result, na_val_2026)
     model_ref = _reference(model, run)
     geometry_ref = _reference(geo, run) if geo is not None else None
     if result["model_sha256"] != model_ref["sha256"] or (expected_model is not None and model_ref["sha256"] != expected_model.casefold()):
@@ -183,6 +184,7 @@ def read_checkpoint_phosphate_image(run: Path, *, checkpoint: str, phosphate: st
 def assess_run(
     run: Path, *, checkpoint: str | None = None, refined_planes: bool = False,
     refined_links: bool = False, contact_sites: list[str] | tuple[str, ...] | None = None,
+    minimum_contact_overlap: float | None = None,
     b_factor_sites: list[str] | tuple[str, ...] | None = None, bond_targets: bool = False,
     template_bonds: bool = False,
 ) -> dict[str, object]:
@@ -201,6 +203,11 @@ def assess_run(
         raise ValueError("The refined link option must be boolean")
     if type(bond_targets) is not bool:
         raise ValueError("The bond target option must be boolean")
+    if minimum_contact_overlap is not None:
+        from .refinement_contact_geometry import validate_contact_overlap
+        if not contact_sites:
+            raise ValueError("A minimum overlap requires sites selected with --contacts-at")
+        validate_contact_overlap(minimum_contact_overlap)
     if contact_sites is not None:
         from .refinement_contact_geometry import read_refined_contacts, validate_contact_sites
         validate_contact_sites(contact_sites)
@@ -312,7 +319,8 @@ def assess_run(
             if refined_links:
                 observations_at_stage["links"] = read_prepared_link_geometry(context, coords, geo, allow_unassessed=recorded)
             if contact_sites:
-                observations_at_stage["contacts"] = read_refined_contacts(coords, geo, contact_sites)
+                observations_at_stage["contacts"] = read_refined_contacts(
+                    coords, geo, contact_sites, minimum_overlap=minimum_contact_overlap)
             if bond_targets:
                 from .refinement_component_bonds import read_component_bond_targets
                 observations_at_stage["bond_targets"] = read_component_bond_targets(

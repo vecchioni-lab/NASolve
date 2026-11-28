@@ -1075,3 +1075,81 @@ def test_shared_sugar_workbook_is_bound_once_and_refuses_stale_bytes(furanose_re
     with pytest.raises(ValueError,match='workbook differs'):_furanose_inputs(local,controls)
     frozen['furanose_reaction']['workbook']='../second.xlsx'
     with pytest.raises(ValueError,match='workbook reference'):_furanose_inputs(local,controls)
+
+
+def test_two_sugar_tables_travel_with_the_exact_site_request(furanose_request, tmp_path):
+    from hashlib import sha256
+    from nasolve.cif_acquisition_preparation import _freeze_furanose, _furanose_inputs
+    from nasolve.cif_rna_pucker import ETHER_PUCKER_PERMISSION
+
+    api, args, request, *_ = furanose_request
+    item, = args["components"]
+    refs = {}
+    for modifier in ("rna2p", "rna3p"):
+        path = tmp_path / (modifier + ".cif")
+        data = ("data_mod_" + modifier + "\n").encode()
+        path.write_bytes(data)
+        pin = dict(anchor="phenix_installation", size=len(data), sha256=sha256(data).hexdigest(),
+                   path="lib/site-packages/chem_data/geostd/rna_dna/mod_" + modifier + ".cif")
+        refs[modifier] = dict(path=path, pin=pin)
+    item["furanose_reaction"]["rna_pucker_table"] = dict(policy_id=ETHER_PUCKER_PERMISSION, tables=refs)
+    files, sources = {}, {}
+    frozen = _freeze_furanose(item, files, sources)
+    assert _freeze_furanose(deepcopy(item), files, sources) == frozen and len(files) == 3
+    # A two-table reaction cannot travel under a single-table or unpermitted request.
+    with pytest.raises(ValueError, match="acquisition recipe"):
+        api.initialize_dictionary_request(output=request, **args)
+    item["generation"]["rna_pucker_table"] = dict(policy_id=ETHER_PUCKER_PERMISSION,
+                                                 tables={m:r["pin"] for m,r in refs.items()})
+    with pytest.raises(ValueError, match="permission differs"):
+        api.initialize_dictionary_request(output=tmp_path/"different-retained-permission", **args)
+    item.pop("retained_snapshot")
+    api.initialize_dictionary_request(output=tmp_path/"both-tables", **args)
+    local = tmp_path / "old-location"
+    for name, data in files.items():
+        p = local / name; p.parent.mkdir(parents=True, exist_ok=True); p.write_bytes(data)
+    for ref in refs.values():
+        ref["path"].unlink()
+    moved = local.rename(tmp_path / "new-location")
+    controls = dict(contexts=item["contexts"], **frozen); allowed = set()
+    selected = _furanose_inputs(moved, controls, allowed)["furanose_reaction"]["rna_pucker_table"]
+    assert allowed == set(files) and selected["policy_id"] == ETHER_PUCKER_PERMISSION
+    for modifier, ref in selected["tables"].items():
+        assert ref == dict(pin=refs[modifier]["pin"], path=moved/("furanose/" + refs[modifier]["pin"]["sha256"] + ".cif"))
+    ref = selected["tables"]["rna3p"]["path"]
+    ref.write_bytes(b"X" + ref.read_bytes()[1:])
+    with pytest.raises(ValueError, match="checksum"):
+        _furanose_inputs(moved, controls)
+
+
+def test_linked_rna_table_travels_once_and_must_match_acquisition(furanose_request,tmp_path):
+    from hashlib import sha256
+    from nasolve.cif_acquisition_preparation import _freeze_furanose, _furanose_inputs
+    m,args,request,_,_,_,_,_ = furanose_request
+    item,=args['components']
+    path=tmp_path/'numerical-table.cif'
+    original=b'data_mod_rna2p\n'
+    path.write_bytes(original)
+    digest=sha256(original).hexdigest()
+    pin={'anchor':'phenix_installation','path':'lib/python3.11/site-packages/chem_data/geostd/rna_dna/mod_rna2p.cif',
+         'size':len(original),'sha256':digest}
+    item['furanose_reaction']['rna_pucker_table']=dict(path=path,pin=pin)
+    files={};sources={};frozen=_freeze_furanose(item,files,sources)
+    assert _freeze_furanose(deepcopy(item),files,sources)==frozen and len(files)==2
+    ref=frozen['furanose_reaction']['rna_pucker_table']
+    assert ref==dict(path='furanose/'+digest+'.cif',pin=pin)
+    with pytest.raises(ValueError,match='acquisition recipe'):
+        m.initialize_dictionary_request(output=request,**args)
+    assert not (request/'request.json').exists()
+    incoming=tmp_path/'inputs'
+    for name,data in files.items():
+        dest=incoming/name;dest.parent.mkdir(exist_ok=True,parents=True);dest.write_bytes(data)
+    path.unlink(); moved=incoming.rename(tmp_path/'moved')
+    controls={'contexts':item['contexts'],**frozen};allowed=set()
+    read=_furanose_inputs(moved,controls,allowed)['furanose_reaction']
+    assert allowed==set(files)
+    assert read['rna_pucker_table']==dict(path=moved/ref['path'],pin=pin)
+    (moved/ref['path']).write_bytes(b'X'+original[1:])
+    with pytest.raises(ValueError,match='checksum'):_furanose_inputs(moved,controls)
+    ref['path']='../numerical-table.cif'
+    with pytest.raises(ValueError,match='reference'):_furanose_inputs(moved,controls)

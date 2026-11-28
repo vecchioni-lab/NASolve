@@ -6,6 +6,8 @@ It does not run ReadySet, replace a checkpoint or infer missing chemical intent.
 """
 from copy import deepcopy
 from pathlib import Path
+from contextlib import nullcontext
+from tempfile import TemporaryDirectory
 
 from .cif_acquisition_sources import _codes, freeze_acquisition_sources, read_acquisition_sources
 from .cif_complete_request import CAPTURE_ARTIFACT_POLICY, STAGED_ARTIFACT_POLICY, _LIMITS, _compiler_input, _compiler_references, _continuation_fields, _construction_input, initialize_dictionary_request
@@ -21,12 +23,17 @@ from .cif_restraint_context import derive_restraint_context
 
 
 def initialize_postmr_dictionary_request(model, report, components, source_output, output, *,
-        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, frozen_sources=None, construction_inputs=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, select_anionic_phosphate=False, reader_control_policy=None, registered_preparation=None, registered_execution_policy=None, **execution_limits):
+        consumer, ready_set_executable, supplementary_phils, data_root=None, continuation_options=None, literal_na_inputs=None, explicit_na_policy=None, frozen_sources=None, construction_inputs=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False, select_anionic_phosphate=False, reader_control_policy=None, source_ribose_workbook=None, select_native_rna_pucker=False, saved_connected_order_store=None, automatic_connected_order=False, registered_preparation=None, registered_execution_policy=None, **execution_limits):
     """Freeze ordinary sources and derived contexts for one existing request.
 
     Components specify code/generation and optional retained_snapshot,
     terminal_resource, phosphate_atom_policy or an explicit furanose_reaction.
     The latter's port declarations must agree with the derived site links.
+    source_ribose_workbook can select that same reaction for source-declared
+    internal RNA. It binds the workbook, source leaving flag and two model links.
+    saved_connected_order_store may supply already qualified reordered-source numerics
+    when the exact ordinary recipe is absent. A match is frozen in the existing
+    retained-snapshot role. No external program runs during selection.
     Site/link declarations are
     derived, never supplied as overrides. supplementary_phils is an explicit
     ordered sequence; an empty sequence declares absent custom restraints.
@@ -80,10 +87,14 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     """
     _need(type(select_anionic_phosphate) is bool, "Require an explicit phosphate selection choice")
     bond_discovery_fields(automatic_bond_targets,bond_targets)
+    from .cif_complete_order_recovery import permission as order_permission
+    order_permission(automatic_connected_order)
     bond_targets = _bond_target_declarations(bond_targets)
     _need(type(automatic_plane_support) is bool, 'automatic_plane_support must be a boolean')
     _need(isinstance(components, (list, tuple)) and components,
           'Require explicit PostMR component generation settings')
+    _need(type(select_native_rna_pucker) is bool and (not select_native_rna_pucker or source_ribose_workbook is not None),
+          'Native RNA pucker selection requires source-backed ribose preparation')
     components = deepcopy(components)
     for item in components:
         _need(isinstance(item, dict) and {'code', 'generation'} <= item.keys()
@@ -167,7 +178,7 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
     if frozen_sources is None:
         freeze_acquisition_sources(codes, sources, data_root=data_root,
                                    ready_set_executable=ready_set_executable)
-    if frozen_sources is not None or select_anionic_phosphate:
+    if frozen_sources is not None or select_anionic_phosphate or source_ribose_workbook is not None or saved_connected_order_store is not None:
         selected = read_acquisition_sources(sources)
         _need(selected['report']['components'] == codes,
               'Frozen source components differ from the complete prepared-model request')
@@ -178,6 +189,33 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
             policy = select_state(selected["sources"][code]["source"], code, item["contexts"])
             if policy is not None:
                 item["phosphate_atom_policy"] = policy
+    if source_ribose_workbook is not None:
+        from hashlib import sha256
+        from .cif_furanose_reaction import select_internal_ribose_reaction
+        model_bytes = _read(model)
+        _need(sha256(model_bytes).hexdigest() == model_context['model_sha256'], 'Prepared RNA model changed')
+        for item in components:
+            if (any(item.get(k) is not None for k in ('furanose_reaction','terminal_resource','phosphate_atom_policy'))
+                    or not item['generation'].get('bond_representation_policy')):
+                continue
+            code = item['code']
+            installation = item['generation']['installation_root']
+            reaction = select_internal_ribose_reaction(selected['sources'][code]['source'], code,
+                source_ribose_workbook, model_bytes, item['contexts'],
+                methyl_ether_installation=installation if select_native_rna_pucker else None)
+            if reaction is None:
+                continue
+            if select_native_rna_pucker:
+                from .cif_dictionary_store import resolve_dictionary_snapshot
+                from .cif_rna_pucker import pucker_reference_permission, select_reaction_pucker
+                retained = item.get('retained_snapshot')
+                prior = None if retained is None else resolve_dictionary_snapshot(retained)['manifest']['request']['recipe']
+                reaction = select_reaction_pucker(reaction, installation, retained_recipe=prior)
+                if reaction is None:
+                    continue
+                if 'rna_pucker_table' in reaction:
+                    item['generation']['rna_pucker_table'] = pucker_reference_permission(reaction['rna_pucker_table'])
+            item['furanose_reaction'] = reaction
     _need(all(_read(p) == data for p,data in literal_originals),
           'Literal original PHIL changed during source freezing')
     # Each independently verified repair in a mixture has its own working proof.
@@ -186,17 +224,33 @@ def initialize_postmr_dictionary_request(model, report, components, source_outpu
         policy = (STAGED_ARTIFACT_POLICY if len(codes) > 1 and automatic_plane_support
                   and automatic_bond_targets else CAPTURE_ARTIFACT_POLICY)
         artifact_options['artifact_policy'] = policy
-    return initialize_dictionary_request(sources, components, model, request,
-        consumer=consumer, expected_links=model_context['expected_links'], native_context=native_context,
-        supplementary_phils=phils, model_context=model_context if registered_input is None else None,
-        registered_preparation=registered_input, registered_execution_policy=registered_execution_policy, restraint_context=restraint_context,
-        continuation_options=continuation_options, literal_na_inputs=literal_na_inputs, explicit_na_policy=explicit_na_policy, construction_inputs=construction_inputs,
-        **({'automatic_plane_support':True} if automatic_plane_support else {}),
-        **({'bond_targets':bond_targets} if bond_targets is not None else {}),
-        **({'automatic_bond_targets':True} if automatic_bond_targets else {}),
-        **({'reader_control_policy':reader_control_policy} if reader_control_policy is not None else {}),
-        **artifact_options,
-        **execution_limits)
+    staging = (TemporaryDirectory(prefix='nasolve-checked-source-order-')
+               if saved_connected_order_store is not None else nullcontext())
+    with staging as temporary:
+        if temporary is not None:
+            from .cif_acquisition_recovery import freeze_connected_order_snapshot
+            for item in components:
+                if item.get('retained_snapshot') is not None:
+                    continue
+                code = item['code']
+                choice = selected['sources'][code]
+                snapshot = freeze_connected_order_snapshot(
+                    choice['source'], code, choice['source_authority'], item['generation'], consumer,
+                    saved_connected_order_store, Path(temporary).resolve() / code)
+                if snapshot is not None:
+                    item['retained_snapshot'] = snapshot
+        return initialize_dictionary_request(sources, components, model, request,
+            consumer=consumer, expected_links=model_context['expected_links'], native_context=native_context,
+            supplementary_phils=phils, model_context=model_context if registered_input is None else None,
+            registered_preparation=registered_input, registered_execution_policy=registered_execution_policy, restraint_context=restraint_context,
+            continuation_options=continuation_options, literal_na_inputs=literal_na_inputs, explicit_na_policy=explicit_na_policy, construction_inputs=construction_inputs,
+            **({'automatic_plane_support':True} if automatic_plane_support else {}),
+            **({'bond_targets':bond_targets} if bond_targets is not None else {}),
+            **({'automatic_bond_targets':True} if automatic_bond_targets else {}),
+            **({'reader_control_policy':reader_control_policy} if reader_control_policy is not None else {}),
+            **({'automatic_connected_order':True} if automatic_connected_order else {}),
+            **artifact_options,
+            **execution_limits)
 
 def prepare_postmr_literal_inputs(model, supplementary_phils, frozen_sources, output, *,
                                  data_root=None, ready_set_executable=None):

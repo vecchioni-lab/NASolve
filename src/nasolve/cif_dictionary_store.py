@@ -80,6 +80,10 @@ def recipe_representation_policy(recipe):
     """
     from .cif_purine_representation import validate_policy
     _need(isinstance(recipe, dict), 'Require repair recipe')
+    if 'rna_pucker_table' in recipe:
+        from .cif_rna_pucker import permitted_pucker_tables
+        _need('bond_representation_policy' in recipe, 'Paired RNA reading requires source-bound chemistry')
+        permitted_pucker_tables(recipe['rna_pucker_table'])
     if 'bond_representation_policy' not in recipe:
         return None
     policy = recipe['bond_representation_policy']
@@ -92,6 +96,22 @@ def _qualification_policy(recipe):
     from .cif_candidate_usability import POLICY_ID as legacy_policy
     return ('cif-isolated-candidate-native-usability-v3'
         if recipe_representation_policy(recipe) is not None else legacy_policy)
+
+
+def _current_qualification(recipe, policy):
+    if policy == _qualification_policy(recipe):
+        return True
+    if 'rna_pucker_table' in recipe:
+        from .cif_rna_pucker import ETHER_PAIRED_USABILITY, PAIRED_USABILITY, observed_ether_permission
+        expected = ETHER_PAIRED_USABILITY if observed_ether_permission(recipe['rna_pucker_table']) else PAIRED_USABILITY
+        return policy == expected
+    return False
+
+
+def same_qualification_permissions(first, second):
+    """A retained dictionary cannot inherit a different representation or pucker permission."""
+    return (recipe_representation_policy(first)==recipe_representation_policy(second)
+            and first.get('rna_pucker_table')==second.get('rna_pucker_table'))
 
 
 def _request_key(request):
@@ -144,14 +164,18 @@ def make_dictionary_request(source, code, *, source_authority, recipe, generator
 def _payload(request, source, candidate, qualification, consumer, provenance, *, allow_stale_qualification=False):
     from .cif_candidate_usability import reassess_complete_candidate
     policy = recipe_representation_policy(request['recipe'])
-    qualification_policy = _qualification_policy(request['recipe'])
     _identity(consumer); _bytes(qualification); _bytes(provenance)
     fresh_request = make_dictionary_request(source, request['component'], **{
         k:request[k] for k in ('source_authority','recipe','generator')})
     _need(fresh_request == request, 'Source, state or request policy changed')
     source_data, candidate_data = _regular(source), _regular(candidate)
     q = qualification; assessment = q.get('source_assessment', {}); stereo = assessment.get('finished_stereo', {})
-    current = q.get('policy_id') == qualification_policy
+    current = _current_qualification(request['recipe'], q.get('policy_id'))
+    if 'rna_pucker_table' in request['recipe'] and q.get('policy_id') != _qualification_policy(request['recipe']):
+        from .cif_rna_pucker import validate_paired_qualification
+        validate_paired_qualification(q,source_sha256=sha256(source_data).hexdigest(),
+            candidate_sha256=sha256(candidate_data).hexdigest(),code=request['component'],
+            consumer=consumer,table=request['recipe']['rna_pucker_table'])
     # Only known legacy versions can request requalification. Future/explicit
     # policies cannot be guessed from a version-shaped string.
     stale = (allow_stale_qualification and policy is None and q.get('policy_id') in {
@@ -207,7 +231,7 @@ def _read_entry(directory, entry_id, request=None):
         allow_stale_qualification=True)
     _need(manifest == recomputed, 'Dictionary entry policy or qualification changed')
     return {'entry_id':entry_id, 'directory':directory, 'manifest':manifest, 'qualification':q, 'provenance':p,
-        'qualification_current':q['policy_id'] == _qualification_policy(r['recipe'])}
+        'qualification_current':_current_qualification(r['recipe'],q['policy_id'])}
 
 
 def _write(path, data):

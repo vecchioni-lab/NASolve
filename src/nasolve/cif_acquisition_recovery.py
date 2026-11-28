@@ -3,18 +3,60 @@ from hashlib import sha256
 import math
 
 from .campaign_records import path_in, read_record
-from .cif_connected_atom_order import _ordered_values, unlisted_builder_bond
+from .cif_connected_atom_order import _ordered_values, confirmed_aromatic_systems, unlisted_builder_bond
 from .cif_dictionary_store import _bytes, _hash, _json, _regular
 from .cif_generation_input import CONNECTED_INPUT_POLICY, POLICY_ID as SOURCE_INPUT_POLICY, generation_source
-from .cif_source_representation import read_representation_candidate
+from .cif_source_representation import generation_representation_contract, read_representation_candidate
 from .cif_stereochemistry_audit import _graph, _values
 
 POLICY_ID = 'cif-unlisted-builder-bond-recovery-v1'
+REPRESENTATION_POLICY = 'cif-unlisted-builder-bond-recovery-v2'
 EVIDENCE = 'connected_order_failure.json'
 
 
 def _fingerprint(record):
     return sha256(_bytes(record)).hexdigest()
+
+
+def freeze_connected_order_snapshot(source, code, authority, generation, consumer, store, output):
+    """Reuse a qualified reordered source only on a miss for the ordinary recipe.
+
+    No generator or native executable is invoked. Compare the actual reader input
+    with a fresh permutation of the authoritative source before freezing the entry.
+    """
+    from .cif_dictionary_store import lookup_dictionary, make_dictionary_request, resolve_qualified_dictionary
+    from .cif_generation_acquisition import POLICY_ID as ACQUISITION_POLICY, generation_dictionary_options
+    from .cif_generation_input import source_input_files
+
+    if (generation.get('source_input_policy') != SOURCE_INPUT_POLICY
+            or not generation.get('bond_representation_policy') or generation.get('multiple_planes')):
+        return None
+    options = generation_dictionary_options(generation)
+    request = make_dictionary_request(source, code, source_authority=authority, **options)
+    if lookup_dictionary(store, request, consumer)['status'] != 'MISS':
+        return None
+    recipe = dict(request['recipe'], source_input_policy=CONNECTED_INPUT_POLICY)
+    alternate = dict(request, recipe=recipe)
+    hit = lookup_dictionary(store, alternate, consumer)
+    if hit['status'] != 'HIT' or hit['manifest']['request'] != alternate:
+        return None
+    origin = hit['provenance'].get('generation_acquisition')
+    if (not isinstance(origin, dict) or origin.get('policy_id') != ACQUISITION_POLICY
+            or origin.get('consumer') != consumer or origin.get('request') != alternate
+            or origin.get('generation_status') != 'CANDIDATE_REVIEW'
+            or not isinstance(origin.get('execution'), dict) or origin['execution'].get('status') != 'COMPLETED'):
+        return None
+    try:
+        projection, _ = source_input_files(_regular(source), code, policy=CONNECTED_INPUT_POLICY)
+    except ValueError:
+        return None
+    if origin.get('source_preparation') != projection:
+        return None
+    saved = resolve_qualified_dictionary(source, code, store, output, source_authority=authority,
+                                         recipe=recipe, generator=options['generator'], consumer=consumer)
+    if saved['status'] == 'REUSED' and saved['entry_id'] == hit['entry_id']:
+        return output
+    return None
 
 
 def select_failure(selection, generation, root, store):
@@ -40,7 +82,7 @@ def validate_connected_order_failure(proof, source, request, consumer):
             'generation_attempt', 'generation_completion', 'generation_receipt'}
     if (not isinstance(proof, dict) or set(proof) !=
             {'policy_id', 'component', 'previous_dictionary_request', 'consumer', 'attempt', 'records', 'bond'}
-            or proof['policy_id'] != POLICY_ID or proof['component'] != request['component']
+            or proof['policy_id'] not in (POLICY_ID, REPRESENTATION_POLICY) or proof['component'] != request['component']
             or request['recipe'].get('source_input_policy') != CONNECTED_INPUT_POLICY
             or not request['recipe'].get('bond_representation_policy') or request['recipe'].get('multiple_planes')
             or type(proof['attempt']) is not int or not 1 <= proof['attempt'] <= 5
@@ -58,8 +100,16 @@ def validate_connected_order_failure(proof, source, request, consumer):
         raise ValueError('Connected-order recovery would repeat the same atom order')
     elements, bonds, _, _ = _graph(values)
     bond = proof['bond']
-    if not isinstance(bond, dict) or set(bond) != {'atoms', 'native_length_angstrom', 'source_bonds_matched'}:
+    fields = {'atoms', 'native_length_angstrom', 'source_bonds_matched'}
+    if proof['policy_id'] == REPRESENTATION_POLICY:
+        fields.add('converted_systems')
+    if not isinstance(bond, dict) or set(bond) != fields:
         raise ValueError('Invalid recorded extra bond')
+    if 'converted_systems' in bond:
+        contract = generation_representation_contract(source, request['component'],
+                                                     request['recipe']['bond_representation_policy'])
+        if not confirmed_aromatic_systems(contract['allowed_systems'], bond['converted_systems']):
+            raise ValueError('Recorded ring conversion differs from the source chemistry')
     pair = bond['atoms']
     if (not isinstance(pair, list) or len(pair) != 2 or not all(isinstance(n, str) for n in pair)
             or pair[0] >= pair[1] or tuple(pair) in bonds
@@ -111,15 +161,19 @@ def read_connected_order_failure(directory, attempt_number):
             or report['representation_validation']['status'] != 'SOURCE_REPRESENTATION_PASS'):
         return None
     source = path_in(root, 'inputs/source.cif')
+    contract = report['source_representation_contract']
+    converted = report['result']['representation_conversion']['converted_systems']
     bond = unlisted_builder_bond(_values(source, request['component']), request['component'],
-                                report['diagnostic'], _regular(work/'candidate_worker.log').decode(errors='replace'))
+        report['diagnostic'], _regular(work/'candidate_worker.log').decode(errors='replace'),
+        allowed_systems=contract['allowed_systems'], converted_systems=converted)
     if bond is None:
         return None
     after = inspect_acquisition_request(root)
     if (after['request'] != state['request'] or after['attempts'][attempt_number-1] != row
             or after['availability'] == 'BLOCKED'):
         raise ValueError('Acquisition changed during connected-order review')
-    proof = dict(policy_id=POLICY_ID, component=request['component'], attempt=attempt_number,
+    policy = REPRESENTATION_POLICY if 'converted_systems' in bond else POLICY_ID
+    proof = dict(policy_id=policy, component=request['component'], attempt=attempt_number,
         previous_dictionary_request=_fingerprint(request), consumer=_fingerprint(config['consumer']), bond=bond,
         records=dict(acquisition_request=state['request']['record_sha256'],
             acquisition_attempt=row['intent']['record_sha256'], acquisition_completion=row['finished']['record_sha256'],

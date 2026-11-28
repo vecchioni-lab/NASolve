@@ -108,6 +108,7 @@ class PreparedPostMRRequest:
     request_directory: Path
     request: dict
     generation: dict = field(repr=False)
+    local_fit_site: str | None = None
 
 
 def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation, *,
@@ -116,7 +117,7 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
         narestraints_builder=None, modified_pair_builder=None, generation_options=None,
         continuation_options=None, automatic_plane_support=False, bond_targets=None, automatic_bond_targets=False,
         frozen_sources=None, construction_choices=None, furanose_substitution=None,
-        locked_sugar_site=None, store_root=None, registered_preparation=None,
+        locked_sugar_site=None, store_root=None, registered_preparation=None, _select_unresolved_sugar=False,
         **execution_limits) -> PreparedPostMRRequest:
     """Prepare ordinary inputs once and publish a fresh complete request.
 
@@ -137,6 +138,8 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
     complete request or enable automatic mutation/selection. An explicit
     furanose_substitution binds one internal site to its qualified component,
     host dictionary and NARestraints workbook before the restraint builder runs.
+    A C-linked uracil on a methyl-ether ribose requires source-selected generation
+    and its two observed native pucker tables. Its unfitted seed is diagnostic.
     Alternatively, locked_sugar_site reads that site's target from the frozen
     run. After PostMR has reserved its directory, its usual isolated acquisition
     owner reuses or qualifies the original component before Coot runs.
@@ -167,6 +170,19 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
     construction = (None if frozen_sources is None and construction_choices is None else
                     _read_construction_inputs(frozen_sources, construction_choices, configured.consumer))
     furanose = None
+    def select_missing_parent(missing):
+        nonlocal furanose
+        from .cif_dictionary_store import default_dictionary_store
+        from .cif_whole_furanose import MODEL_EDGE_POLICY_ID
+        from .postmr_furanose import plan_sugar_sources
+        store = default_dictionary_store() if store_root is None else store_root
+        furanose = plan_sugar_sources(missing.site, missing.target, missing.current, configured, phenix,
+            store, data_root, execution_limits, placement_policy=MODEL_EDGE_POLICY_ID)
+        return furanose
+
+    if _select_unresolved_sugar and (not select_representation or construction is not None
+                                    or furanose_substitution is not None or locked_sugar_site is not None):
+        raise ValueError('Automatic sugar selection requires a source-selected card without explicit construction choices')
     if locked_sugar_site is not None:
         from .cif_dictionary_store import default_dictionary_store
         from .postmr_furanose import plan_catalogue_substitution
@@ -176,6 +192,9 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
     if furanose_substitution is not None:
         from .postmr_furanose import capture_substitution
         furanose = capture_substitution(furanose_substitution, configured.consumer)
+        from .cif_whole_furanose import MODEL_EDGE_POLICY_ID
+        if furanose.placement_policy == MODEL_EDGE_POLICY_ID and not select_representation:
+            raise ValueError('A C-linked sugar seed requires source-selected chemistry and both native pucker tables')
         if construction is None:
             from .curated_ligands import ligand_source
             current = ligand_source(furanose.code, data_root, ready_set_executable=configured.ready_set_executable)
@@ -233,22 +252,35 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
                     item['retained_snapshot'] = projected/'snapshot'
                     if saved['report']['terminal_resource'] is not None:
                         item['terminal_resource'] = projected/saved['report']['terminal_resource']
+        local_fit_site = None
         if furanose is not None:
             from .postmr_furanose import DIRECTORY, read_substitution
             stage = inputs.run_directory/DIRECTORY
             built = read_substitution(stage)
+            if built.get('unfitted_pairing_edge_seed') is True:
+                local_fit_site = built['context']['site']
             source = selected['sources'][furanose.code]
             furanose.verify_source(source['source'], source['source_authority'])
             if built['snapshot']['entry_id'] != inputs.furanose_entry_id:
                 raise ValueError('Furanose construction retained a different dictionary entry')
             item, = [c for c in components if c['code'] == furanose.code]
-            item.update(retained_snapshot=stage/'snapshot',
-                        furanose_reaction=dict(workbook=built['workbook'], contexts=[built['context']]))
+            item['retained_snapshot'] = stage/'snapshot'
+            if not built.get('unfitted_pairing_edge_seed'):
+                item['furanose_reaction'] = dict(workbook=built['workbook'], contexts=[built['context']])
+            # For the C-linked ether the source selector below binds these same ports,
+            # the installed workbook and both observed Phenix pucker tables.
+        source_chemistry = {}
+        if select_representation:
+            from restraints import residue_library
+            from .cif_dictionary_store import default_dictionary_store
+            source_chemistry = dict(select_anionic_phosphate=True, select_native_rna_pucker=True, automatic_connected_order=True,
+                                    saved_connected_order_store=default_dictionary_store() if store_root is None else store_root,
+                                    source_ribose_workbook=Path(residue_library.__file__).parent/'data/Ligands.xlsx')
         record = initialize_postmr_dictionary_request(inputs.model_path,inputs.run_report,components,None,request,
             consumer=configured.consumer,ready_set_executable=None,supplementary_phils=list(inputs.supplementary_phils),
             literal_na_inputs=literal_inputs,frozen_sources=sources,construction_inputs=inputs.run_directory,
             **({'explicit_na_policy': inputs.explicit_na_policy} if inputs.explicit_na_policy is not None else {}),
-            **({"select_anionic_phosphate":True} if select_representation else {}),
+            **source_chemistry,
             continuation_options=continuation_options,
             **({'automatic_plane_support':True} if automatic_plane_support else {}),
             **({'bond_targets':bond_targets} if bond_targets is not None else {}),
@@ -256,13 +288,20 @@ def initialize_ordinary_postmr_request(run_directory, phenix: PhenixInstallation
             **({'automatic_bond_targets':True} if automatic_bond_targets else {}),**execution_limits)
         if registered is not None:
             registered[1]()
-        return PreparedPostMRRequest(inputs.run_directory,request,record,generation)
+        if select_representation:
+            # Intake freezes a private copy after it has seen the model, sources and workbook.
+            for code,component in record['configuration']['components'].items():
+                pin=component['dictionary_request']['recipe'].get('rna_pucker_table')
+                if pin is not None:
+                    generation[code]=dict(generation[code],rna_pucker_table=pin)
+        return PreparedPostMRRequest(inputs.run_directory, request, record, generation, local_fit_site)
     result = _prepare_postmr(run_directory,configured.ready_set_executable,phenix_installation=phenix,
         coot_executable=coot_executable,environment=phenix.environment,data_root=data_root,
         allow_mr_review=allow_mr_review,modified_pairs_only=modified_pairs_only,restraint_scope=restraint_scope,
         allow_unreviewed_backbone=allow_unreviewed_backbone,narestraints_builder=narestraints_builder,
         modified_pair_builder=modified_pair_builder,_dictionary_handler=initialize,
         **({'_furanose_input':furanose} if furanose is not None else {}),
+        **({'_missing_parent_selector':select_missing_parent} if _select_unresolved_sugar else {}),
         **({"_construction_inputs":construction} if construction is not None else {}))
     if not isinstance(result,PreparedPostMRRequest):raise ValueError('Ordinary request boundary was not reached')
     return result
@@ -287,6 +326,7 @@ class CheckedPostMRResult:
     readyset_status: str
     report_path: Path
     limitations: tuple[str, ...]
+    local_fit_site: str | None = None
     refinement_ready: bool = field(default=False, init=False)
 
 
@@ -386,9 +426,17 @@ def _read_ordinary_postmr_results(run_directory, attempt_numbers):
             for number,exact in read_dictionary_request_results(request, attempt_numbers).items()}
 
 
+def local_sugar_seed_note(site, code):
+    return f'{site} {code} is a construction seed. Its local sugar fit is still required before checkpoint publication.'
+
+
 def _ordinary_result_from_exact(request, attempt_number, exact):
     from .cif_dictionary_sites import _need
     _need(exact.get('construction_inputs') is not None, 'Require recorded ordinary construction evidence')
+    sugar = exact['construction_inputs'].get('furanose_substitution', {})
+    seed_notes = ()
+    if sugar.get('unfitted_pairing_edge_seed'):
+        seed_notes = (local_sugar_seed_note(sugar['context']['site'], sugar['code']),)
     runtime = exact['runtime']
     continued = exact.get('continuation')
     selected = None if runtime is None else runtime['manifest']['decision']['selected']
@@ -411,8 +459,12 @@ def _ordinary_result_from_exact(request, attempt_number, exact):
         restraint_paths=() if runtime is None else tuple(runtime['phils']),
         readyset_status=readyset_status,
         report_path=request/'attempts'/f'attempt-{attempt_number:04d}'/'result.json',
+        local_fit_site=sugar['context']['site'] if sugar.get('unfitted_pairing_edge_seed') else None,
         limitations=(
             'These preparation checks do not establish diffraction-refinement success.',
+            *seed_notes,
+            *(f'{code}: the builder introduced an unlisted bond. A fresh source-order attempt supplied the checked dictionary.'
+              for code in sorted(exact['result'].get('source_order_recoveries', {}))),
             *_plane_support_limitations(exact['result'], exact.get('execution')),
             *_selected_plane_limitations(exact),
         ),
@@ -427,7 +479,7 @@ def read_ordinary_postmr_result(run_directory, *, attempt_number) -> CheckedPost
 
 
 def _execute_ordinary_postmr(run_directory, phenix, *, store_root=None, **preparation_options):
-    """Construct once, execute one owned attempt, and return its run and attempt ID.
+    """Construct once and return the prepared request and its completed attempt number.
 
     This explicit route does not replace the default PostMR/campaign path yet.
     After interruption use continue_checked_postmr with the recorded attempt
@@ -436,22 +488,26 @@ def _execute_ordinary_postmr(run_directory, phenix, *, store_root=None, **prepar
     from .cif_complete_request import execute_dictionary_request_attempt
     from .cif_dictionary_store import default_dictionary_store
     options = dict(preparation_options)
+    explicit = ('locked_sugar_site', 'furanose_substitution', 'frozen_sources', 'construction_choices')
+    if ((options.get('generation_options') or {}).get('select_source_representation')
+            and all(options.get(k) is None for k in explicit)):
+        options.setdefault('_select_unresolved_sugar', True)
     options.setdefault('expected_dialect', 'CHEMICAL_COMPONENTS_CIF')
     options.setdefault('continuation_options', dict(readyset_timeout_seconds=120, restore_serialization=True))
-    if options.get('locked_sugar_site') is not None:
+    if options.get('locked_sugar_site') is not None or (options.get('generation_options') or {}).get('select_source_representation'):
         options['store_root'] = store_root
     prepared = initialize_ordinary_postmr_request(run_directory, phenix, **options)
     result = execute_dictionary_request_attempt(prepared.request_directory, phenix,
         default_dictionary_store() if store_root is None else store_root,
         generation=prepared.generation, after_attempt=0)
-    return prepared.run_directory, result['attempt_number']
+    return prepared, result['attempt_number']
 
 
 def prepare_checked_postmr(run_directory, phenix, *, store_root=None, **preparation_options) -> CheckedPostMRResult:
     """Construct/execute once and read the diagnostic result without adoption."""
-    run, attempt = _execute_ordinary_postmr(run_directory, phenix,
+    prepared, attempt = _execute_ordinary_postmr(run_directory, phenix,
         store_root=store_root, **preparation_options)
-    return read_ordinary_postmr_result(run, attempt_number=attempt)
+    return read_ordinary_postmr_result(prepared.run_directory, attempt_number=attempt)
 
 
 def _retire_new_preparation(request_directory, attempt_number):
@@ -481,6 +537,34 @@ def _retire_new_preparation(request_directory, attempt_number):
             'and restraints remain in place.')
 
 
+def _publish_after_sugar_fit(prepared, attempt, phenix):
+    """Pass a source-declared seed through its existing fit and fixed-coordinate evidence owners."""
+    import shlex
+    from subprocess import TimeoutExpired
+    from .campaigns import CampaignError
+    from .checkpoints import CheckpointError
+    from .cif_furanose_fit_attempt import fit_checked_sugar
+    from .cif_postmr_publication import publish_checked_preparation_with_notes
+    from .postmr import PostMRPreparationError
+
+    run = prepared.run_directory
+    location = [str(run), '--attempt', str(attempt)]
+    try:
+        fit = fit_checked_sugar(run, lambda: phenix, attempt_number=attempt)
+    except (OSError, ValueError, TimeoutExpired, CampaignError) as exc:
+        command = shlex.join(['nasolve', 'cif-doctor', 'fit-sugar', *location])
+        raise PostMRPreparationError(f'Local fit at {prepared.local_fit_site} could not complete. '
+                                     f'Check its numbered fit with {command}. {exc}') from exc
+    if fit.observations['site'] != prepared.local_fit_site:
+        raise PostMRPreparationError('The numbered sugar fit and the constructed site differ')
+    try:
+        return publish_checked_preparation_with_notes(run, attempt_number=attempt, sugar_fit=fit.number,
+                                                       discover_phenix=lambda: phenix)
+    except (OSError, ValueError, CampaignError, CheckpointError) as exc:
+        command = shlex.join(['nasolve', 'cif-doctor', 'publish-preparation', *location, '--sugar-fit', str(fit.number)])
+        raise PostMRPreparationError(f'The local sugar fit is saved. Resume its checkpoint with {command}. {exc}') from exc
+
+
 def prepare_published_postmr(run_directory, phenix, **preparation_options):
     """Use the same owner, then publish its exact result as an ordinary review root.
 
@@ -494,8 +578,12 @@ def prepare_published_postmr(run_directory, phenix, **preparation_options):
     from .cif_postmr_publication import publish_checked_preparation_with_notes
     from .checkpoints import _required_file, _ref_path
     from .postmr import PostMRResult
-    run, attempt = _execute_ordinary_postmr(run_directory, phenix, **preparation_options)
-    record, notes = publish_checked_preparation_with_notes(run, attempt_number=attempt)
+    prepared, attempt = _execute_ordinary_postmr(run_directory, phenix, **preparation_options)
+    run = prepared.run_directory
+    if prepared.local_fit_site is None:
+        record, notes = publish_checked_preparation_with_notes(run, attempt_number=attempt)
+    else:
+        record, notes = _publish_after_sugar_fit(prepared, attempt, phenix)
     storage_note = _retire_new_preparation(_ordinary_request_directory(run), attempt)
     if storage_note is not None:
         notes = (*notes, storage_note)
@@ -538,6 +626,10 @@ def continue_checked_postmr(run_directory, phenix, *, after_attempt, store_root=
         if key not in configured:
             configured[key] = configure_dictionary_engine(phenix, **options)
         generation[code] = dict(configured[key].generation)
+        if 'rna_pucker_table' in recipe:
+            from .cif_rna_pucker import verify_installed_pucker_permission
+            verify_installed_pucker_permission(phenix.root, recipe['rna_pucker_table'])
+            generation[code]['rna_pucker_table'] = recipe['rna_pucker_table']
     result = execute_dictionary_request_attempt(root, phenix,
         default_dictionary_store() if store_root is None else store_root,
         generation=generation, after_attempt=after_attempt)

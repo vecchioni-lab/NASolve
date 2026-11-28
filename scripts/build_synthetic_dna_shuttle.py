@@ -10,11 +10,15 @@ import argparse
 import base64
 import hashlib
 import io
+from importlib import metadata
 import json
 from pathlib import Path
 import re
 import subprocess
 import zipfile
+
+
+RUNTIME_SUFFIXES = {".py", ".toml", ".json", ".cif", ".phil", ".eff", ".txt", ".xlsx", ".pdb"}
 
 
 def _sha(data: bytes) -> str:
@@ -26,6 +30,37 @@ def _revision(root: Path) -> dict:
         return subprocess.check_output(["git", "-C", str(root), *args], text=True).strip()
     return {"commit": git("rev-parse", "HEAD"),
             "working_tree_has_changes": bool(git("status", "--porcelain"))}
+
+
+def _narestraints_revision(root: Path, members: dict[str, bytes]) -> dict:
+    """Identify the supplied checkout or verify the captured package bytes against its wheel RECORD."""
+    # Editable installs and explicit source trees retain their original Git provenance.
+    tracked = subprocess.run(
+        ["git", "-C", str(root), "ls-files", "--error-unmatch", "--", "restraints/data/Ligands.xlsx"],
+        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+    )
+    if tracked.returncode == 0:
+        return _revision(root)
+    installed = list(metadata.distributions(name="NARestraints", path=[str(root)]))
+    if len(installed) != 1:
+        raise ValueError("Supply an NARestraints Git worktree root or one installed NARestraints distribution")
+    distribution = installed[0]
+    files = {str(f): f for f in distribution.files or ()}
+    for name, data in members.items():
+        if not name.startswith("restraints/"):
+            continue
+        item = files.get(name)
+        actual = base64.urlsafe_b64encode(hashlib.sha256(data).digest()).rstrip(b"=").decode("ascii")
+        if item is None or item.hash is None or item.hash.mode != "sha256" or item.hash.value != actual:
+            raise ValueError(f"File differs from the installed NARestraints distribution record: {name}")
+    # Detect deleted package resources as well as changed or additional bytes.
+    for name in files:
+        path = Path(name)
+        if (name.startswith("restraints/") and "__pycache__" not in path.parts
+                and path.suffix in RUNTIME_SUFFIXES and name not in members):
+            raise ValueError(f"File missing from the installed NARestraints package: {name}")
+    return {"source_kind": "installed-distribution", "distribution": "NARestraints",
+            "version": distribution.version}
 
 
 def prepare_branch_runner_destination(checkout: Path, output: Path) -> None:
@@ -125,7 +160,7 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
                 continue
             if path.is_symlink():
                 raise ValueError(f"Runtime resource must be a regular file: {path}")
-            if path.suffix not in {".py", ".toml", ".json", ".cif", ".phil", ".eff", ".txt", ".xlsx", ".pdb"}:
+            if path.suffix not in RUNTIME_SUFFIXES:
                 continue
             members[prefix + "/" + relative.as_posix()] = path.read_bytes()
     recipe = "docs/recipes/synthetic-dna-combined.toml"
@@ -165,7 +200,7 @@ def build(root: Path, narestraints_root: Path, output: Path, *,
             handle.writestr(info, data)
     metadata = {
         "schema_version": 1, "kind": "synthetic-dna-mechanics-shuttle",
-        "nasolve_source": _revision(root), "narestraints_source": _revision(narestraints_root),
+        "nasolve_source": _revision(root), "narestraints_source": _narestraints_revision(narestraints_root, members),
         "runtime_archive_sha256": _sha(archive.getvalue()),
         "runtime_files": {name: {"sha256": _sha(data), "size": len(data)}
                           for name, data in sorted(members.items())},

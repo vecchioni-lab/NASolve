@@ -1,6 +1,6 @@
 # NASolve documentation map
 
-Updated **2026-11-23**. Use the subsystem contract for actual behavior, the
+Updated **2026-11-26**. Use the subsystem contract for actual behavior, the
 [development handoff](development-handoff.md) for the current implementation and
 validation edge, and linked evidence for exact scientific claims. Historical
 milestone statements preserve their original scope; they are not a second queue.
@@ -13,26 +13,20 @@ milestone statements preserve their original scope; they are not a second queue.
 
 ## What's current?
 
-- **CIF Doctor:** start with the [scientific work map](cif-doctor-completion-queue.md#pipeline-position).
-  The explicit checked route uses ordinary Coot/NARestraints construction, owned
-  dictionary repair/ReadySet, independently checked fallback and immutable review
-  checkpoints. Later alternatives preserve the selected choice. Q04/Q05 now have
-  supported-route recovery, successful-working retention, repeated-failure and
-  serial coordinator acceptance. One normal campaign reaches actual refinement
-  and cold relocated inspection. Q06 still owns effective restraints/derivatives
-  and chemical survival, including PDU. The explicit ordinary counted control
-  carries intended pair forces through one real coordinate cycle and can explicitly
-  retain measurements from the actual final model; broader protocols
-  and modified-residue survival remain open. One 5IU control does not qualify the
-  whole catalogue. Native 100-dataset capacity, default activation, historical migration
-  and receiving-branch release qualification remain open limits. Use the
-  [short handoff](development-handoff.md) for the active task,
-  [human overview](cif-doctor-human-overview.md) for the explanation, and
-  [capability table](cif-doctor.md#current-capability-boundary) for exact support.
-- **Captured reader settings:** the explicit [typed-control handoff](cif-doctor.md#explicit-captured-control-handoff-w186)
-  carries four reviewed False settings separately from geometric restraints into
-  the existing preparation/native workflow. Default intake still refuses typed
-  controls. Real ordinary-parent and refinement qualification remain separate.
+- **CIF Doctor.** The checked PostMR route constructs the model through Coot and
+  NARestraints, checks ReadySet's effective dictionaries and gives ordinary
+  refinement the chosen model and restraints. Supported-route preparation,
+  failure recovery and handoff have passed their Q04/Q05 controls. Q06 now asks
+  which chemical features survive in the returned model. Two PDU replays locate
+  the bend in cycle three. The known mixed scaffold has also completed native
+  refinement. Held-out chemistry, automatic use across the catalogue and native
+  100-dataset capacity remain open. [Current handoff](development-handoff.md) ·
+  [Work order](cif-doctor-completion-queue.md#pipeline-position) ·
+  [Support by chemistry](cif-doctor.md#current-capability-boundary).
+- **Captured reader settings.** Cedar can carry four reviewed Phenix settings
+  separately from geometric restraints. Consult the scope for the particular
+  parent and consumer before transferring a canonical result to a modified or
+  metal-containing site. [Explicit captured settings](cif-doctor.md#explicit-captured-control-handoff-w186).
 - **Whole-model restraints:** the [full-model recipe](full-model-restraints.md)
   implements `restraint_scope = all`. The L-3GBI control passes mirror/round-trip,
   MR and ordinary PostMR native membership. Chemical-state/refinement and symmetry
@@ -101,9 +95,9 @@ is an explanation, not an independent status ledger.
 | Metal development queue and storage | [Post-merge roadmap A01–A09](metal-development-roadmap.md), [campaign storage plan](metal-campaign-storage.md) — FT_Hg foundation, GUI co-design, experimental-input reconstruction and [explicit parent transport](metal-campaign-storage.md#implemented-fourth-step-explicit-parent-layout-transport) before large campaigns; scientific retirement remains unqualified |
 | Metal anomalous diagnostics and planned search | [Metal anomalous workflow](metal-anomalous-doctor.md) — frozen occupancy profiles, [budgeted solution search](metal-anomalous-doctor.md#solution-space-search-and-provisional-decisions), optional chi branches, overlapping site groups and [recoverable trial retention](metal-anomalous-doctor.md#disk-budgets-and-recoverable-trial-retention) planned; **single frozen trials, [matched cluster response comparisons](metal-anomalous-doctor.md#implemented-matched-cluster-response-comparisons), [grouped cross-geometry reviews](metal-anomalous-doctor.md#implemented-grouped-reviews-across-geometry-branches), [completed-state XYZ maps and numerical context](metal-anomalous-doctor.md#implemented-completed-state-xyz-map-capture), [frozen-fdp anomalous maps](metal-anomalous-doctor.md#implemented-frozen-fdp-anomalous-map-capture), [native fit and endpoint recipe diagnostics](metal-anomalous-doctor.md#implemented-native-fit-and-endpoint-recipe-diagnostics), [shared cluster B environments](metal-anomalous-doctor.md#implemented-shared-cluster-b-environments), [refined endpoints and cluster count evidence](metal-anomalous-doctor.md#implemented-refined-endpoint-diagnostics-and-cluster-accounting), matched endpoint comparisons, [bounded occupancy sweeps](metal-anomalous-doctor.md#implemented-bounded-occupancy-sweeps), [human reference snapshots](metal-anomalous-doctor.md#implemented-human-reference-snapshots), [offline workbench navigation](metal-anomalous-doctor.md#implemented-offline-workbench-controller) and offline replay implemented; adaptive scan orchestration, convergence qualification and decision logic planned** |
 
-Implementation-intent JSON is **not** runtime registration authority. The
-GUI/Topo/metal-builder designs are future scopes and do not enlarge the
-current Pine merge gate.
+Implementation-intent JSON records design decisions. Verify installed support
+on the branch that owns the feature. Cedar's release scope and the checks
+needed before integrating into Pine are recorded in Q16.
 
 ## Older evidence, not an action queue
 
@@ -111,8 +105,7 @@ current Pine merge gate.
   preserves the earlier four-member real Phenix/Coot results. Its old
   implementation/recovery wording is **not** the current next step.
 - [History index](history/README.md) preserves earlier failures, handoffs
-  and provenance, including **exact October 8 and October 10 pre-reconciliation
-  snapshots**. Read these only for forensic questions.
+  and provenance, including verified Git originals and local snapshots from October, and the full November 25 handoff and queue. Read these only for forensic questions.
 - [October 1 compatibility redirect](development-handoff-2026-10-01-addendum.md),
   [old DOHU validation](validation-dohu.md),
   [old 1AP integration](1ap-phosphate-integration.md) and

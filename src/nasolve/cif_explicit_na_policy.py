@@ -123,18 +123,18 @@ def _wrap(blocks):
             ' geometry_restraints {\n  edits {\n' + '\n\n'.join(blocks) + '\n  }\n }\n}\n')
 
 
-def _implementation():
+def _implementation(workbook=None):
     from restraints import builder, phenix, recipe_library, residue_library, stacking
     rows = {}
     for module in [builder, phenix, recipe_library, residue_library, stacking]:
         path = _regular(module.__file__)
         rows[module.__name__] = sha256(path.read_bytes()).hexdigest()
-    workbook = _regular(Path(residue_library.__file__).parent / 'data/Ligands.xlsx')
+    workbook = _regular(workbook if workbook is not None else Path(residue_library.__file__).parent / 'data/Ligands.xlsx')
     rows['restraints/data/Ligands.xlsx'] = sha256(workbook.read_bytes()).hexdigest()
     return rows
 
 
-def _source_roles(residues, site_codes, by_key, sites, sources):
+def _source_roles(residues, site_codes, by_key, sites, sources, *, workbook=None):
     """Bind existing NAR roles to actual atoms and declared source graphs.
 
     Shared by explicit-site and literal-declaration compilation. This establishes
@@ -161,7 +161,8 @@ def _source_roles(residues, site_codes, by_key, sites, sources):
         if path.read_bytes() != before:
             raise ValueError('Source changed while compiling policy')
         source_data[code] = before; source_elements[code] = elements
-    records, corrections = _patch_narestraints_records(load_residue_records(), codes)
+    records = load_residue_records() if workbook is None else load_residue_records(workbook)
+    records, corrections = _patch_narestraints_records(records, codes)
     mappings = {}; role_evidence = {}
     for site in sorted(sites):
         code = site_codes[site]; record, proof = resolve_component_record(records, code)
@@ -183,7 +184,7 @@ def _source_roles(residues, site_codes, by_key, sites, sources):
     return mappings, role_evidence, source_data, corrections
 
 
-def _payload(model, pairs, stacks, sources, orientation_controls):
+def _payload(model, pairs, stacks, sources, orientation_controls, *, workbook=None):
     from .cif_na_policy import _requests, _signature
     from restraints.phenix import generate_pair_restraints
     from restraints.recipe_library import recipe_for
@@ -210,7 +211,7 @@ def _payload(model, pairs, stacks, sources, orientation_controls):
         raise ValueError('Duplicate or reversed duplicate stack')
     sites = set(used_pairs) | {s for edge in edges for s in edge}
     mappings, role_evidence, source_data, corrections = _source_roles(
-        residues, site_codes, by_key, sites, sources)
+        residues, site_codes, by_key, sites, sources, workbook=workbook)
     codes = set(source_data)
     files = {'inputs/model.pdb': raw,
              **{f'inputs/sources/{code}.cif': data for code,data in source_data.items()}}
@@ -284,7 +285,7 @@ def _payload(model, pairs, stacks, sources, orientation_controls):
         'requested_request_counts': dict(sorted(Counter(q['kind'] for q in requested).items())),
         'orientation_controls': orientation_rows, 'site_roles': role_evidence,
         'atom_identities': atoms, 'record_corrections': corrections,
-        'implementation_sha256': _implementation(),
+        'implementation_sha256': _implementation(workbook),
         'inputs': {'model': _ref('inputs/model.pdb', raw),
                    'sources': {c: _ref(f'inputs/sources/{c}.cif', d) for c, d in sorted(source_data.items())}},
         'compiled_phil': _ref('explicit_na_policy.phil', files['explicit_na_policy.phil']),
@@ -319,8 +320,8 @@ def compile_explicit_na_policy(model: Path, pairs: list[dict], stacks: list[tupl
     return report
 
 
-def read_explicit_na_policy(directory: Path) -> dict:
-    """Verify portable inputs, outputs and maintained compiler reconstruction."""
+def read_explicit_na_policy(directory: Path, *, frozen_workbooks=None) -> dict:
+    """Rebuild the policy, using a frozen copy of its recorded workbook when supplied."""
     root = Path(directory).absolute()
     if any(p.is_symlink() for p in [root, *root.parents]):
         raise ValueError('Explicit-policy directory cannot traverse a symlink')
@@ -365,7 +366,15 @@ def read_explicit_na_policy(directory: Path) -> dict:
         raise ValueError('Explicit-policy operational inputs differ from checked inventory')
     model = root / 'inputs/model.pdb'
     sources = {c: root / f'inputs/sources/{c}.cif' for c in source_refs}
-    fresh, files = _payload(model, report['pairs'], report['stacks'], sources, report['orientation_control_pairs'])
+    pins = report.get('implementation_sha256')
+    digest = pins.get('restraints/data/Ligands.xlsx') if isinstance(pins, dict) else None
+    if not isinstance(digest, str) or not re.fullmatch(r'[0-9a-f]{64}', digest):
+        raise ValueError('Explicit-policy workbook fingerprint is missing or invalid')
+    workbook = (frozen_workbooks or {}).get(digest)
+    if workbook is not None and sha256(_regular(workbook).read_bytes()).hexdigest() != digest:
+        raise ValueError('Frozen workbook differs from the explicit NARestraints compiler')
+    fresh, files = _payload(model, report['pairs'], report['stacks'], sources,
+                            report['orientation_control_pairs'], workbook=workbook)
     if fresh != report or any((root / name).read_bytes() != data for name, data in files.items()):
         raise ValueError('Explicit-policy maintained reconstruction differs')
     return report

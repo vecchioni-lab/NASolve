@@ -4,6 +4,7 @@ Only an explicit source supplies chemical connectivity and named PHIL distances.
 A printed symmetry operation acts on the second atom. Its chemical intent and
 image coordinates need a separate crystal contact declaration.
 """
+from collections import Counter
 from decimal import Decimal
 from hashlib import sha256
 from math import dist, isfinite, sqrt, ulp
@@ -150,6 +151,29 @@ def _model_labels(model):
     return raw, labels
 
 
+def _supplied_distance_fit(rows):
+    """Give both extremes among uniquely matched same-image inter-residue edits."""
+    occurrences = Counter(_edge(row["endpoints"]) for row in rows if row["image_of_second_atom"] is None)
+    ranked = []
+    ambiguous = 0
+    for row in rows:
+        if row["classification"] != "DECLARED_SUPPLIED_DISTANCE":
+            continue
+        ends = _edge(row["endpoints"])
+        if occurrences[ends] != 1:
+            ambiguous += 1
+            continue
+        measured, target, sigma = (Decimal(str(row[k])) for k in ("model_A", "target_A", "sigma_A"))
+        widths = float((measured - target) / sigma)
+        ranked.append(dict(endpoints=[list(atom) for atom in ends], target_A=row["target_A"],
+                           model_A=row["model_A"], sigma_A=row["sigma_A"], signed_widths=widths))
+    short = min((r for r in ranked if r["signed_widths"] < 0),
+                key=lambda r: (r["signed_widths"], r["endpoints"]), default=None)
+    long = min((r for r in ranked if r["signed_widths"] > 0),
+               key=lambda r: (-r["signed_widths"], r["endpoints"]), default=None)
+    return dict(count=len(ranked), ambiguous=ambiguous, most_compressed=short, most_extended=long)
+
+
 def read_refined_links(model, geometry, *, preparation_model=None, backbone_links=None, restraint_phils=(),
                        allow_unassessed=False):
     """Account for every printed cross-site bond or crystal-image bond in a final GEO.
@@ -220,6 +244,7 @@ def read_refined_links(model, geometry, *, preparation_model=None, backbone_link
                 **({"reason": reason} if reason is not None else {}),
                 model_sha256=sha256(raw).hexdigest(), geometry_sha256=sha256(data).hexdigest(),
                 preparation_model_sha256=source, restraint_input_sha256=frame_hashes,
+                supplied_distance_fit=_supplied_distance_fit(rows) if compared else None,
                 matched_backbone=len(backbone)-len(remaining_backbone) if compared else None,
                 matched_supplied=len(supplied)-len(remaining_supplied) if compared else None,
                 missing_backbone=_endpoint_rows(remaining_backbone) if compared else None,
