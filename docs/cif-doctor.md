@@ -6491,6 +6491,12 @@ the occupied tetrahedron. Signed volumes use the atom orders printed in the
 report. Reversing the physical sulfur side reverses their signs. Absolute
 Rp/Sp naming additionally requires the chemical priority assignment.
 
+Use the original component CIF even when an isolated Phenix dictionary has passed
+its geometry checks. In 8PSH, AS declares OP3 as the leaving oxygen and PST
+declares OP2. Both generated dictionaries kept all four phosphorus neighbours
+but dropped the leaving-atom flags. Cedar returned `UNRESOLVED_SOURCE_ROLES` for
+both generated files and measured both sites with the original definitions.
+
 Exit 0 means every matching polymer site was measured. Exit 2 requests review,
 for example when atoms have ambiguous alternate positions, the donor image is
 unknown or the specified leaving oxygen remains. An unreadable input returns 1.
