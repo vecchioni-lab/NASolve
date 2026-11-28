@@ -26,6 +26,7 @@ from .backbone import requested_backbone_policy
 # their frozen inventory when adding another supported component.
 AUTHORITATIVE_CODES = frozenset({"1AP"})
 LINKED_PROFILE_CODES = AUTHORITATIVE_CODES | {"DZ", "DP", "5CM"}
+COMPONENT_LIST_POLICY = "cif-native-component-list-loop-v1"
 MOD_ID = "NASnoOP3"
 MOD_CIF = """data_mod_NASnoOP3
 loop_
@@ -81,6 +82,24 @@ def _emit(values: dict) -> str:
     writer.set_dict(values)
     writer.save(output)
     return output.getvalue()
+
+
+def _emit_component_list(metadata: dict, *, block_name: str = "comp_list") -> str:
+    """Retain the native reader's category loop, including a single row.
+
+    Reuse C09 quoting and singleton bytes; multiple rows keep MMCIFIO output.
+    Values remain source evidence, including missing group/charge fields.
+    """
+    if (not metadata or any(not key.startswith("_chem_comp.") for key in metadata)
+            or len({len(column) for column in metadata.values()}) != 1
+            or not next(iter(metadata.values()))):
+        raise ValueError("Require a rectangular nonempty component metadata list")
+    if len(next(iter(metadata.values()))) != 1:
+        return _emit({"data_": block_name, **metadata})
+    writer = MMCIFIO()
+    return ('data_' + block_name + '\n#\nloop_\n' + '\n'.join(metadata) + '\n'
+            + '\n'.join(writer._format_mmcif_col(column[0], 0)
+                         for column in metadata.values()) + '\n#\n')
 
 
 def _component_ids(block: _Block) -> set[str]:
@@ -196,8 +215,15 @@ def freeze_dictionary_audits(records: Sequence[dict], run: Path) -> list[dict]:
             for record in records]
 
 
-def combine_dictionary_inputs(paths: Sequence[Path], output: Path) -> None:
-    """Merge component lists; never concatenate duplicate data_comp_list blocks."""
+def combine_dictionary_inputs(paths: Sequence[Path], output: Path, *,
+                              component_list_policy: str | None = COMPONENT_LIST_POLICY) -> None:
+    """Merge lists with native-readable metadata; retain explicit legacy replay.
+
+    None reproduces the historical scalar singleton serialization byte for byte.
+    New consumers retain the loop required by native convert_list_block.
+    """
+    if component_list_policy is not None and component_list_policy != COMPONENT_LIST_POLICY:
+        raise ValueError("Unknown component-list serialization policy")
     blocks = []
     names = set()
     list_rows: list[dict[str, str]] = []
@@ -228,9 +254,9 @@ def combine_dictionary_inputs(paths: Sequence[Path], output: Path) -> None:
                 blocks.append(block.text)
     prefix = ""
     if list_rows:
-        prefix = _emit({"data_": "comp_list", **{
-            k: [row.get(k, "?") for row in list_rows] for k in keys
-        }})
+        metadata = {k: [row.get(k, "?") for row in list_rows] for k in keys}
+        prefix = (_emit_component_list(metadata) if component_list_policy is not None
+                  else _emit({"data_": "comp_list", **metadata}))
     with output.open("x", encoding="utf-8") as handle:
         handle.write(prefix + "\n" + "\n".join(blocks))
 
@@ -255,7 +281,9 @@ def _exclude_components(source: Path, codes: set[str], output: Path) -> tuple[Pa
                     raise PhosphateError("Mixed-category component list requires review")
                 values = {k: ([v[i] for i in keep] if k != "data_" else v)
                           for k, v in values.items()}
-                retained.append(_emit(values))
+                retained.append(_emit_component_list(
+                    {k: v for k, v in values.items() if k != "data_"},
+                    block_name=values["data_"]))
                 continue
         retained.append(block.text)
         present.update(ids)
@@ -348,6 +376,13 @@ def validate_model_phosphate_policy(model: Path, report: Mapping[str, object]) -
     if any(actual.get(item["site"]) != (item["incoming_site"], item.get("outgoing_site"))
            for item in modifications):
         raise PhosphateError("Phosphate backbone link differs from the frozen site modification")
+    topology = postmr.get("checked_model_topology") if isinstance(postmr, Mapping) else None
+    if topology is not None:
+        from .cif_model_context import validate_prepared_model_topology
+        try:
+            validate_prepared_model_topology(model, topology)
+        except (ValueError, OSError) as exc:
+            raise PhosphateError(f"Checked preparation topology: {exc}") from exc
     return result
 
 

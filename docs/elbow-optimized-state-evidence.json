@@ -1,0 +1,569 @@
+{
+  "schema_version": 1,
+  "kind": "nasolve-elbow-optimized-source-state-evidence",
+  "updated_date": "2026-10-12",
+  "scientific_scope": "Successful independent whole-component numerical generation relieved the prior collapsed IGU bond, but produced source-state differences and remains rejected; no adoption or polymer/experimental qualification.",
+  "previous_evidence": [
+    "docs/igu-readyset-generation-evidence.json",
+    "docs/elbow-cli-compatibility-evidence.json"
+  ],
+  "evidence": {
+    "archive": {
+      "name": "cif_generation_review(1).zip",
+      "sha256": "7e2b9a50118773b638b066c649217b5e877706bc2cbd2bd645b478c9e502ba37"
+    },
+    "manifest": {
+      "relative_path": "manifest.json",
+      "sha256": "6053a94fec7d4028487acf7470542a14f7a7dda2462b9e5f13cde5be82e73077",
+      "entry_count": 22,
+      "all_entries_sha256_verified": true
+    },
+    "files": {
+      "candidates/cif-generation-6rk5wkm1/candidate.cif": {
+        "sha256": "3049dd5b5d79e2b6961d70a87e8b2c16c793a6078f4122d824697ffda43ed27b",
+        "bytes": 13291
+      },
+      "candidates/cif-generation-6rk5wkm1/candidate.elbow_opt.xyz": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "candidates/cif-generation-6rk5wkm1/candidate.pdb": {
+        "sha256": "e8e875efc29458a68a122fc6e481c64cef7adc7efda9af80184c934464f26186",
+        "bytes": 4359
+      },
+      "candidates/cif-generation-6rk5wkm1/elbow.log": {
+        "sha256": "d8b1d9f3a83d23a5bfc1519eea48a7ea86c991bdb5980742558f01d053877331",
+        "bytes": 8693
+      },
+      "candidates/cif-generation-6rk5wkm1/elbow_help.log": {
+        "sha256": "acb6a8944f43e4a733478586b9d439580e1f4275f6e9919f7956a2d57eebd248",
+        "bytes": 8860
+      },
+      "candidates/cif-generation-6rk5wkm1/generation_receipt.json": {
+        "sha256": "af723d8cb28814074e8137efb3c3da51c39a09d4b7377d35297523e89620e800",
+        "bytes": 506946
+      },
+      "candidates/cif-generation-6rk5wkm1/source.cif": {
+        "sha256": "1ddaaef74adafd0e989679ec9cf2197d7a8590002c472f8d6b764f52202e3a8f",
+        "bytes": 8191
+      },
+      "candidates/cif-generation-6rk5wkm1/source_ideal.pdb": {
+        "sha256": "6c8df07a3dffafc445845f019568813dfe4ccf37dd0f0f0530fe9ad734aae068",
+        "bytes": 3073
+      },
+      "component_inspections.json": {
+        "sha256": "f7497e85bd26e61cb69815cce73b8c42d6fe3ae43f66f4bb9b94c8f97bad6105",
+        "bytes": 9265740
+      },
+      "failed_readyset_assessment.json": {
+        "sha256": "4597700571b1226ee2763e9e5c7d5e8522c6380eb8f210575f191d4a1639d6c5",
+        "bytes": 878679
+      },
+      "inputs/failed_readyset.cif": {
+        "sha256": "1533ec9cf52fabc212f9ea59163f5a0db289311e38de0ef149762dc07db5da2e",
+        "bytes": 90493
+      },
+      "inputs/source_audit.json": {
+        "sha256": "31ff002a4794a011c4470b6dd294a4cfea5f29bdc5f280742eb20cbfa71b6fb1",
+        "bytes": 1370223
+      },
+      "inputs/sources/0_1AP.cif": {
+        "sha256": "0774cce5f0401d09bc2429482f0bb0ff04995dadded8140bd0199e3d1f4daea6",
+        "bytes": 11138
+      },
+      "inputs/sources/1_5CM.cif": {
+        "sha256": "f28b283aeb22173d9cf211a893bb45e22974fac18ebadadf318f5d88ed0335df",
+        "bytes": 16108
+      },
+      "inputs/sources/2_CGY.cif": {
+        "sha256": "14a94801736e8a86d9b123e58e1dcef52b3f5e61475b87870f55f181f122466d",
+        "bytes": 8772
+      },
+      "inputs/sources/3_DF.cif": {
+        "sha256": "27f83c85e89605b5a0b3b02f062da62d7a348b3b346e5df5774a65c7c143e55e",
+        "bytes": 8941
+      },
+      "inputs/sources/4_DP.cif": {
+        "sha256": "d04e7bc2d3854e7ae0b7d0735bd9a9258fc121ddfa685e256606b3c20b6227fc",
+        "bytes": 10766
+      },
+      "inputs/sources/5_DX.cif": {
+        "sha256": "6bcf650c0dabdabc1b95b99354b91cc8f4874f112703f871e85211dd40ea6fb0",
+        "bytes": 7597
+      },
+      "inputs/sources/6_DZ.cif": {
+        "sha256": "707d3ab77b2c2f86c71f6659f398235101cf5dbaab65a451140a4052fdabdaf1",
+        "bytes": 10620
+      },
+      "inputs/sources/7_IGU.cif": {
+        "sha256": "1ddaaef74adafd0e989679ec9cf2197d7a8590002c472f8d6b764f52202e3a8f",
+        "bytes": 8191
+      },
+      "inputs/sources/8_IMC.cif": {
+        "sha256": "c3e62ba98565139cf13b9bcab4a977193f28e2c05e83455ec5fb72721732664c",
+        "bytes": 8049
+      },
+      "probe_receipt.json": {
+        "sha256": "cada42aa2fd902fba6232e29ff05e801d3ef0e7c55dc6976523e0f38d3344500",
+        "bytes": 593792
+      }
+    },
+    "private_input_seed_and_candidate_payloads_committed": false,
+    "analysis_native_tools_run": false
+  },
+  "historical_anchors": {
+    "live": "User NASolve-live-tests directory",
+    "probe": {
+      "anchor": "live",
+      "relative_path": "cif-generation-probe-le2ki6f4"
+    },
+    "candidate_directory": {
+      "anchor": "probe",
+      "relative_path": "candidates/cif-generation-6rk5wkm1"
+    },
+    "original_session": {
+      "anchor": "live",
+      "relative_path": "synthetic-dna-mechanics-om4jv7qq"
+    },
+    "original_campaign": {
+      "anchor": "original_session",
+      "relative_path": "synthetic-dna-combined-2n4kszi5"
+    },
+    "original_run": {
+      "anchor": "original_campaign",
+      "relative_path": "dataset/AutoMR/run_001"
+    },
+    "operational_configuration": false
+  },
+  "runtime": {
+    "nasolve_source_commit": "586d748ea04d516c4d6f4e6942d78abc6d6887f3",
+    "narestraints_source_commit": "a1fdaa8561f0889834283174d42bdcbbfd2fc5db",
+    "runtime_archive_sha256": "db5234484701b2c44f897b3072420bd8f3b498570eabec94821bfc40c4928a2a",
+    "candidate_policy_id": "cif-independent-elbow-candidate-v2",
+    "phenix_reported_version": "2.2.1",
+    "phenix_installation_version": "2.2.1-6174",
+    "actual_optimization_backend": "Recife Model 1 (RM1)",
+    "actual_backend_evidence": {
+      "anchor": "candidate_directory",
+      "relative_path": "elbow.log",
+      "sha256": "d8b1d9f3a83d23a5bfc1519eea48a7ea86c991bdb5980742558f01d053877331"
+    },
+    "AM1_claim_for_this_attempt": false
+  },
+  "installed_interface": {
+    "status": "SUPPORTED",
+    "native_help_returncode": 0,
+    "definition_parser": "exact-installed-help-option-definitions-v1",
+    "help_artifact": {
+      "anchor": "candidate_directory",
+      "relative_path": "elbow_help.log",
+      "sha256": "acb6a8944f43e4a733478586b9d439580e1f4275f6e9919f7956a2d57eebd248"
+    },
+    "executable_sha256": "ea22e77c4d9a90f6e1dcfa6e18a35fb7a9dddb43063946f1c941179b26c2ae34",
+    "required_semantics": [
+      "id",
+      "output",
+      "template",
+      "initial_geometry",
+      "add_hydrogens",
+      "chiral",
+      "opt"
+    ],
+    "selected_aliases": {
+      "add_hydrogens": "--add_hydrogens",
+      "chiral": "--chiral",
+      "id": "--id",
+      "initial_geometry": "--initial_geometry",
+      "opt": "--opt",
+      "output": "--output",
+      "template": "--template"
+    },
+    "unsupported_semantics": [],
+    "cli_failure_from_first_probe_resolved": true,
+    "advertised_source_preservation_option": "--pH=low",
+    "source_preservation_help": "specify --pH=low to retain exact input chemistry",
+    "source_preservation_option_used_in_this_attempt": false
+  },
+  "native_attempt": {
+    "command": {
+      "executable_anchor": "phenix_installation",
+      "executable_relative_path": "bin/phenix.elbow",
+      "working_directory_anchor": "candidate_directory",
+      "arguments": [
+        "source.cif",
+        "--id=IGU",
+        "--output=candidate",
+        "--template=source_ideal.pdb",
+        "--initial_geometry=source_ideal.pdb",
+        "--add_hydrogens=False",
+        "--chiral=retain",
+        "--opt"
+      ]
+    },
+    "status": "COMPLETED",
+    "returncode": 0,
+    "elapsed_seconds": 24.107482,
+    "started_at": "2026-10-11T22:19:14.961767+00:00",
+    "finished_at": "2026-10-11T22:19:39.069461+00:00",
+    "timeout_seconds": 600,
+    "error": null,
+    "candidate_artifact": {
+      "anchor": "candidate_directory",
+      "relative_path": "candidate.cif",
+      "sha256": "3049dd5b5d79e2b6961d70a87e8b2c16c793a6078f4122d824697ffda43ed27b",
+      "present": true
+    },
+    "scientific_convergence_qualified": false
+  },
+  "numerical_recovery": {
+    "component": "IGU",
+    "generated_atom_count": 35,
+    "bond_terms": 37,
+    "angle_terms": 65,
+    "torsion_terms": 55,
+    "all_bond_targets_positive": true,
+    "selected_bond_targets": [
+      {
+        "atoms": [
+          "C2",
+          "N3"
+        ],
+        "target_angstrom": 1.387,
+        "sigma_angstrom": 0.029
+      },
+      {
+        "atoms": [
+          "C1'",
+          "N9"
+        ],
+        "target_angstrom": 1.473,
+        "sigma_angstrom": 0.035
+      },
+      {
+        "atoms": [
+          "C2",
+          "O2"
+        ],
+        "target_angstrom": 1.229,
+        "sigma_angstrom": 0.023
+      },
+      {
+        "atoms": [
+          "C2",
+          "N1"
+        ],
+        "target_angstrom": 1.469,
+        "sigma_angstrom": 0.034
+      },
+      {
+        "atoms": [
+          "C4",
+          "N3"
+        ],
+        "target_angstrom": 1.353,
+        "sigma_angstrom": 0.027
+      }
+    ],
+    "C2_N3_generated_coordinate_distance_angstrom": 1.3870696089237913,
+    "C2_N3_coordinates_distinct": true,
+    "prior_zero_target_and_coincident_bonded_atoms_relieved_in_this_candidate": true,
+    "dictionary_geometry_verdict": "PASS",
+    "numerical_verdict_in_returned_receipt": "REVIEW",
+    "achieved_model_geometry_qualification": "NOT_RUN"
+  },
+  "chemical_state_rejection": {
+    "source_atom_count": 37,
+    "candidate_atom_count": 35,
+    "source_bond_count": 39,
+    "candidate_bond_count": 37,
+    "source_formal_charge_sum": 0,
+    "candidate_formal_charge_sum": -2,
+    "removed_atoms": [
+      "HOP2",
+      "HOP3"
+    ],
+    "removed_bonds": [
+      [
+        "HOP2",
+        "OP2"
+      ],
+      [
+        "HOP3",
+        "OP3"
+      ]
+    ],
+    "added_atoms": [],
+    "added_bonds": [],
+    "formal_charge_changes": [
+      {
+        "atom": "OP2",
+        "before": 0,
+        "after": -1
+      },
+      {
+        "atom": "OP3",
+        "before": 0,
+        "after": -1
+      }
+    ],
+    "bond_order_changes": [
+      {
+        "atoms": [
+          "OP1",
+          "P"
+        ],
+        "before": "DOUBLE",
+        "after": "DELOC"
+      },
+      {
+        "atoms": [
+          "OP2",
+          "P"
+        ],
+        "before": "SINGLE",
+        "after": "DELOC"
+      },
+      {
+        "atoms": [
+          "OP3",
+          "P"
+        ],
+        "before": "SINGLE",
+        "after": "DELOC"
+      }
+    ],
+    "other_retained_bond_order_changes_after_spelling_normalization": [],
+    "candidate_status_in_returned_receipt": "REJECTED",
+    "probe_status_in_returned_receipt": "CANDIDATES_REJECTED",
+    "rejection_reasons_in_returned_receipt": [
+      "generated-restraints-invalid-or-incomplete",
+      "generated-atom-bond-or-hydrogen-identity-changed",
+      "generated-explicit-formal-charge-changed"
+    ],
+    "chemical_state_change_approved": false,
+    "verified_polymer_linkage_edit": false
+  },
+  "soft_plane_review": {
+    "finding_count": 4,
+    "findings": [
+      {
+        "code": "plane-angle-compatibility",
+        "component_id": "IGU",
+        "measurements": {
+          "algebra_tolerance": 1e-10,
+          "angle_esds": [
+            2.459,
+            2.735,
+            2.466
+          ],
+          "angles_degrees": [
+            126.52,
+            120.63,
+            112.77
+          ],
+          "centre": "C8",
+          "determinant": 0.0017784125154575725,
+          "displayed_rounding_bound_degrees": 0.015,
+          "eigenvalues": [
+            0.0007960351302758184,
+            1.378283695832808,
+            1.620920269036916
+          ],
+          "exterior_branch_delta_degrees": 106.87999999999997,
+          "interior_branch_delta_degrees": 0.08000000000004093,
+          "limitations": [
+            "Finite plane weights and correlations are excluded.",
+            "No calibrated source-defect threshold or replacement angles."
+          ],
+          "neighbors": [
+            "H8",
+            "N7",
+            "N9"
+          ],
+          "plane": "plan-1",
+          "positive_semidefinite": true,
+          "rank": 3,
+          "rounded_planar_compatible": false,
+          "sigma_adjustment_lower_bound": 0.018066442836491076
+        },
+        "message": "Exact central angle targets and the shared plane conflict; material strain is uncalibrated.",
+        "role": "generated",
+        "rule_id": "PLANE-01",
+        "status": "REVIEW"
+      },
+      {
+        "code": "plane-angle-compatibility",
+        "component_id": "IGU",
+        "measurements": {
+          "algebra_tolerance": 1e-10,
+          "angle_esds": [
+            2.321,
+            2.298,
+            2.596
+          ],
+          "angles_degrees": [
+            121.93,
+            117.94,
+            120.07
+          ],
+          "centre": "N1",
+          "determinant": 0.0013577389335441281,
+          "displayed_rounding_bound_degrees": 0.015,
+          "eigenvalues": [
+            0.0006040095641270948,
+            1.4648048789286727,
+            1.5345911115071997
+          ],
+          "exterior_branch_delta_degrees": 116.07999999999998,
+          "interior_branch_delta_degrees": 0.060000000000002274,
+          "limitations": [
+            "Finite plane weights and correlations are excluded.",
+            "No calibrated source-defect threshold or replacement angles."
+          ],
+          "neighbors": [
+            "C2",
+            "C6",
+            "HN1"
+          ],
+          "plane": "plan-1",
+          "positive_semidefinite": true,
+          "rank": 3,
+          "rounded_planar_compatible": false,
+          "sigma_adjustment_lower_bound": 0.014380981406342723
+        },
+        "message": "Exact central angle targets and the shared plane conflict; material strain is uncalibrated.",
+        "role": "generated",
+        "rule_id": "PLANE-01",
+        "status": "REVIEW"
+      },
+      {
+        "code": "plane-angle-compatibility",
+        "component_id": "IGU",
+        "measurements": {
+          "algebra_tolerance": 1e-10,
+          "angle_esds": [
+            2.688,
+            2.418,
+            3.0
+          ],
+          "angles_degrees": [
+            118.93,
+            121.39,
+            119.58
+          ],
+          "centre": "N6",
+          "determinant": 0.002264605283893467,
+          "displayed_rounding_bound_degrees": 0.015,
+          "eigenvalues": [
+            0.0010073870660484152,
+            1.47736019281845,
+            1.5216324201155014
+          ],
+          "exterior_branch_delta_degrees": 117.11999999999998,
+          "interior_branch_delta_degrees": 0.10000000000002274,
+          "limitations": [
+            "Finite plane weights and correlations are excluded.",
+            "No calibrated source-defect threshold or replacement angles."
+          ],
+          "neighbors": [
+            "C6",
+            "HN61",
+            "HN62"
+          ],
+          "plane": "plan-1",
+          "positive_semidefinite": true,
+          "rank": 3,
+          "rounded_planar_compatible": false,
+          "sigma_adjustment_lower_bound": 0.021285236857389915
+        },
+        "message": "Exact central angle targets and the shared plane conflict; material strain is uncalibrated.",
+        "role": "generated",
+        "rule_id": "PLANE-01",
+        "status": "REVIEW"
+      },
+      {
+        "code": "plane-angle-compatibility",
+        "component_id": "IGU",
+        "measurements": {
+          "algebra_tolerance": 1e-10,
+          "angle_esds": [
+            2.424,
+            2.716,
+            2.439
+          ],
+          "angles_degrees": [
+            125.2,
+            127.31,
+            107.36
+          ],
+          "centre": "N9",
+          "determinant": 0.0028092610811888824,
+          "displayed_rounding_bound_degrees": 0.015,
+          "eigenvalues": [
+            0.0012726030534265798,
+            1.2978705637349055,
+            1.700856833211668
+          ],
+          "exterior_branch_delta_degrees": 105.25,
+          "interior_branch_delta_degrees": 0.12999999999999545,
+          "limitations": [
+            "Finite plane weights and correlations are excluded.",
+            "No calibrated source-defect threshold or replacement angles."
+          ],
+          "neighbors": [
+            "C1'",
+            "C4",
+            "C8"
+          ],
+          "plane": "plan-1",
+          "positive_semidefinite": true,
+          "rank": 3,
+          "rounded_planar_compatible": false,
+          "sigma_adjustment_lower_bound": 0.02966741441654717
+        },
+        "message": "Exact central angle targets and the shared plane conflict; material strain is uncalibrated.",
+        "role": "generated",
+        "rule_id": "PLANE-01",
+        "status": "REVIEW"
+      }
+    ],
+    "returned_wrapper_promoted_review_to_hard_invalidity": true,
+    "required_correction": "Keep uncalibrated PLANE-01 REVIEW separate from hard numerical invalidity; retain the review findings without approving independent hydrogen, charge or graph differences.",
+    "sigma_adjustment_values_are_calibrated_rejection_thresholds": false,
+    "force_360_degrees_or_patch_angles": false,
+    "scientific_limits": [
+      "Correlated restraint errors and finite plane weights are excluded.",
+      "The lower bound is a deterministic diagnostic, not scientific significance or a calibrated source-defect threshold."
+    ]
+  },
+  "preservation_and_unassessed_layers": {
+    "probe_reported_preserved_inputs": "UNCHANGED",
+    "selected_source_preserved": true,
+    "frozen_source_preserved": true,
+    "original_failed_run_mutated": false,
+    "whole_original_run_rehashed_by_this_analysis": false,
+    "automatic_adoption": false,
+    "readyset_retry": "NOT_RUN",
+    "native_proxy_validation": "NOT_RUN",
+    "linked_site_validation": "NOT_RUN",
+    "autorefine": "NOT_RUN",
+    "experimental_identity": "UNASSESSED"
+  },
+  "next_source_state_preservation_contract": {
+    "module": "src/nasolve/cif_generation.py",
+    "required_control": "--pH=low",
+    "authority": "Exact installed help advertises retaining exact input chemistry.",
+    "meaning": "Generator source-preservation mode, not an experimental pH selection, preferred protonation state or global nucleotide policy.",
+    "required_capability_evidence": "Advertised option and preserve-input semantics; refuse missing or unsupported required semantics before generation.",
+    "candidate_policy": "Fresh whole-component generation, then exact graph, hydrogen, charge and stereochemical comparison; do not relabel this rejected candidate.",
+    "soft_numerical_review": "Retain nonfatal angle/plane review independently from hard invalidity.",
+    "next_native_attempt": "PENDING",
+    "automatic_adoption": false,
+    "automatic_linkage_approval": false
+  },
+  "human_documents": [
+    "docs/synthetic-dna-mechanics-test.md",
+    "docs/native-modified-pair-live-validation.md",
+    "docs/cif-doctor-human-overview.md"
+  ]
+}

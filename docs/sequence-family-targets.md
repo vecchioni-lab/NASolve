@@ -9,6 +9,12 @@ defaults and existing frozen runs remain unchanged. Explicit campaign
 sequence-thread inheritance is supported; thread membership remains target
 metadata and does not imply model compatibility or reuse.
 
+This receipt concerns the earlier sequence-family integration, not the later
+combined D:T/B:S/Z:P/K:X geometry challenge. The combined trial has passed
+identity, linkage-mechanics and restraint-coverage checks; its effective
+geometry qualification remains pending in the
+[native ledger](native-modified-pair-live-validation.md).
+
 ## Reviewed A1AAZ / DF bridge for native PDB targets
 
 The exact parenthetical token `(A1AAZ)` is preserved as requested CCD/deposition
@@ -39,6 +45,12 @@ A sequence-defined construct family is one supported design model, not the
 meaning of a campaign. Other experiments may be related by geometry, topology,
 or declared design parameters without sharing a sequence or an MR scaffold.
 Family membership never establishes search-model interchangeability.
+
+The separately requested PDB/coordinate-mmCIF adapter and explicit trust-model
+mode are [planned input capabilities](architecture.md#proposed-model-input-contract).
+Trust-model mode would record independent sequence agreement as unverified and
+skip sequence-driven mutation; it would not fabricate a sequence-family target
+or silently opt into this reference contract when a sequence file is absent.
 
 The reference `w-metal-scaffold` describes the reviewed W-family **sequence**.
 The name does not request a metal atom, metal occupancy, coordination geometry,
@@ -246,3 +258,41 @@ AutoRefine continuation. That validation does not make the reference a default:
 a future versioned recipe may consider doing so explicitly. The metal-pair
 project, automatic cross-dataset model reuse, and geometry/topology-defined
 campaign families remain separate work.
+
+## Planned eight-pair synthetic live test
+
+The requested follow-on, **after current construction/recovery work is ready**,
+is one fresh ordinary NASolve run containing all eight ordered pair families:
+
+| Requested family | Explicit component identities |
+| --- | --- |
+| K:X | CGY:DX |
+| D:T | 1AP:DT |
+| Z:P | DZ:DP |
+| B:S | IGU:IMC (existing reviewed family mapping) |
+| PDU:A | PDU:DA |
+| 5PC:G | 5PC:DG |
+| 5CM:Q | 5CM:S6G |
+| F:A | DF:DA |
+
+This is a **planned integration test, not a staged sequence or native result**.
+The alias registry already maps Q to S6G and F to DF. B:S uses the earlier
+synthetic recipe's explicit IGU:IMC identities; it does not create a bare S
+alias. Preserve the earlier six-pair recipe and its immutable results. The
+complete annotated sequences, nonconflicting chain/residue pair map, scaffold,
+terminal-phosphate policy and frozen source hashes will be explicit at staging.
+
+Use a new test directory with selected donor observations and preserved Free-R.
+The hypothetical modifications are software test intent, not a claim about the
+donor crystal's chemistry. Keep synthetic AutoSol disabled. NARestraints owns
+declared pairing/stacking, with competing Phenix secondary-structure guesses
+disabled. Check exact identities, ordinary construction/backbone links,
+effective PDU/5PC triple/linear terms, chemical-state/stereochemical findings,
+numerical stopping and achieved geometry, then refinement and human model/map
+review. Completion of one layer does not certify another.
+
+The exact requested coverage and execution boundary are recorded under
+`post_build_mixed_sequence_live_test_2026_10_21` in the
+[native evidence ledger](cif-linked-native-registration-evidence.json), mirrored
+in the [implementation map](cif-restraint-doctor-implementation.json). Future
+live command passage retains the pinned Git delivery block joined by `&&`.

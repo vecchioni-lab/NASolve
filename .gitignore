@@ -223,3 +223,6 @@ __marimo__/
 # NASolve machine-local graphical scratch (portable run artifacts remain visible)
 **/CootGUI/
 **/PostMR/Coot/backups/
+
+# Generated branch runners and their local archive; maintained builders stay tracked.
+/branch-artifacts/

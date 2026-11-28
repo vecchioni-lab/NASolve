@@ -1,5 +1,15 @@
 # NASolve development handoff — Willow
 
+**W318 release compatibility in progress, 2026-11-28.** The dedicated Willow
+checkout is reconciling Cedar `02c61e9b2bf18795690483bd10cce0b0d827c08a`
+with Willow `2b6c46c4db6dbbdad51bedaad38661707d65fa75`. Initial shared-reader,
+endpoint, graph and transport checks pass (259 tests + 64 subtests); this is
+not full-suite or installed-release qualification. Next incorporate Rowan’s
+release candidate `29eaba7339f45680ffd46e5eef7742383061da6e`, preserve the combined
+Coot resolver, then reconcile the actual published main and validate installation.
+Rowan owns Cedar/Pine/main release validation; Linden owns Willow compatibility.
+The scientific status below is unchanged. No source model, map or run is included.
+
 **W317 browser boundary / W316 installed lifecycle audit, 2026-11-27.** Latest maintained code:
 `29fded465e95878677670be15d3c8f4999224854`. Latest native movement/endpoint derivative diagnostic: **W315**; latest refinement:
 **W304** (same genuine ordinary PDU parent as W300); latest density audit: **W304**.

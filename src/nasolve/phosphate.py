@@ -20,6 +20,19 @@ class PhosphateError(ValueError):
     """A phosphate cannot be classified or cleaned without guessing."""
 
 
+class UnverifiedIncomingPhosphate(PhosphateError):
+    """Local measurements succeeded but one or more incoming partners are missing."""
+
+    def __init__(self, sites, audit):
+        self.sites = tuple(sites)
+        self.audit = audit
+        first, *others = sites
+        message = f"Phosphate {first}: absent OP3 without a verified incoming O3'-P link; terminal dictionary profile requires review"
+        if others:
+            message += ". The same finding applies at " + ", ".join(others) + "."
+        super().__init__(message)
+
+
 _ALIASES = {"O1P": "OP1", "O2P": "OP2", "O3P": "OP3"}
 _MIN_PO = 1.2
 _MAX_PO = 2.1
@@ -327,6 +340,7 @@ def _process_phosphates(
             for site in sorted(passthrough)
         ]}
     removed_atoms = []
+    unverified_incoming = []
     seen_sites: set[str] = set()
     for group in targets:
         site = group[0].site
@@ -367,8 +381,6 @@ def _process_phosphates(
                 raise PhosphateError(f"Phosphate {site}: possible incoming link across a chain/TER boundary requires review")
         elif extra is not None and incoming is None:
             raise PhosphateError(f"Phosphate {site}: unrequested terminal/unlinked OP3; review the chemistry or explicitly set allow_op3_sites for a valid 5'-phosphate")
-        if site in inspect_sites and incoming is None and extra is None:
-            raise PhosphateError(f"Phosphate {site}: absent OP3 without a verified incoming O3'-P link; terminal dictionary profile requires review")
         if incoming is not None:
             oxygens.append(incoming)
         elif extra is not None:
@@ -400,6 +412,9 @@ def _process_phosphates(
                 raise PhosphateError(f"Phosphate {site}: ambiguous outgoing O3'-P connection")
             if outgoing:
                 outgoing_site = outgoing[0].site
+        if site in inspect_sites and incoming is None and extra is None:
+            # An open incoming bond does not excuse the three local oxygens or the outgoing link.
+            unverified_incoming.append(site)
         details = {"site": site, "residue": p.line[17:20].strip(),
             "incoming_site": incoming.site if incoming else None, "outgoing_site": outgoing_site,
             "p_o_distances_angstrom": lengths, "o_p_o_angles_degrees": angles}
@@ -411,6 +426,8 @@ def _process_phosphates(
         elif extra is not None:
             report["retained"].append({**details, "atom": extra.line[12:16].strip(),
                 "reason": "explicitly-requested-unlinked-phosphate"})
+    if unverified_incoming:
+        raise UnverifiedIncomingPhosphate(unverified_incoming, report)
     removed_indices = {a.index for a in removed_atoms}
     removed_serials = {a.serial for a in removed_atoms}
     # Coot model merges can retain per-monomer serials. Coordinate selection

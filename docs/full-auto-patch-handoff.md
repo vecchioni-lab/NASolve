@@ -173,7 +173,7 @@ sugar C5'-I5=8.843030419488558 A. No workbook or supplier 5IU coordinate edit
 was required. Do not mistake those ideal-coordinate distances for measurements
 from the final native refined model.
 
-## Preserved context and next priorities
+## Preserved context and current-status boundary
 
 The old guarded campaign remains at
 `~/NASolve-live-tests/TestSets-dd59b4f-jjra04s9`. Its GZ11 run_002/refine-001
@@ -183,12 +183,13 @@ that is distinct from the NEW campaign's provisional automatic selection.
 
 The P2 candidate now implements standing 1W5->DZ and 1WA->DP preparation,
 including the DP resource and mapped-derivative provenance. Returned full-checkout
-and native conversion validation remain pending; this is not another full-auto
-rerun. The component contract owns the exact P2 behavior.
-Complete the remaining prepared-nonstandard and campaign inspection/resume
-checks and final-candidate review under the finite Pine gates, merge to main,
-then Simon's new blind AlphaFold/PDB + sequence geometry campaign, followed
-by operational Scout. No main merge is authorized by this note.
+regression subsequently passed at `dec56c2` (276 focused + 20 subtests;
+927 full + 224 subtests). Source-native conversion/refinement validation remains
+separate and pending; this is not another full-auto rerun. The
+[component contract](modified-component-preparation.md) owns exact P2 behavior.
+The [development handoff](development-handoff.md) owns current remaining gates
+and ordering. This dated checkpoint does not authorize a merge or create
+another active queue.
 
 The [metal-restraint builder](metal-restraint-builder.md) and its
 [machine intent](metal-restraint-builder-intent.json) are published future

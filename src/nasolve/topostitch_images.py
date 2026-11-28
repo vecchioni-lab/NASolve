@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from dataclasses import asdict
 from hashlib import sha256
+from heapq import nsmallest
 from itertools import combinations_with_replacement, product
 import json
 import math
@@ -50,6 +51,26 @@ def _fractional(xyz, cell, gemmi):
     return point
 
 
+def _fractional_bounds(cell, radius):
+    """Bound each fractional component of a displacement inside a Cartesian sphere."""
+    bounds = [(radius + _PADDING) * math.hypot(*row) + 1e-9 for row in cell.frac.mat.tolist()]
+    if any(not math.isfinite(b) for b in bounds):
+        raise ValueError("Search radius exceeds the supported numerical range")
+    return bounds
+
+
+def _lattice_box(fixed, transformed, bounds):
+    """Count possible translations before evaluating distances for this atom pair."""
+    ranges = []
+    count = 1
+    for a, b, bound in zip(fixed, transformed, bounds, strict=True):
+        centre = a - b
+        lo, hi = math.ceil(centre - bound), math.floor(centre + bound)
+        count *= max(0, hi - lo + 1)
+        ranges.append(range(lo, hi + 1))
+    return ranges, count
+
+
 def _append(rows, value):
     if len(rows) >= _MAX_COINCIDENCES:
         raise ValueError('Atom image coincidence record budget exceeded; no partial audit returned')
@@ -68,16 +89,16 @@ def _orbit_contacts(points, cell, group, gemmi, tolerance, budget):
     # Count each atom-pair/operator screening and each exact distance evaluation.
     # Reserve screening work before any potentially large output is accumulated.
     budget.spend(len(points)*(len(points)+1)//2*len(ops))
-    bounds = [(tolerance+_PADDING)*math.hypot(*row)+1e-9 for row in cell.frac.mat.tolist()]
+    bounds = _fractional_bounds(cell, tolerance)
     transformed = [[op.apply_to_xyz(p) for p in fractions] for op in ops]
     contacts = []
     for i,j in combinations_with_replacement(range(len(points)),2):
         for k,op in enumerate(ops):
-            center = [a-b for a,b in zip(fractions[i],transformed[k][j])]
-            intervals = [(math.ceil(c-b),math.floor(c+b)) for c,b in zip(center,bounds)]
-            count = math.prod(max(0,hi-lo+1) for lo,hi in intervals)
+            ranges, count = _lattice_box(fractions[i], transformed[k][j], bounds)
             budget.spend(count)
-            for shift in product(*(range(lo,hi+1) for lo,hi in intervals)):
+            if not count:
+                continue
+            for shift in product(*ranges):
                 full = op.translated([op.DEN*n for n in shift])
                 if i == j and full.triplet() == 'x,y,z':
                     continue
@@ -89,6 +110,54 @@ def _orbit_contacts(points, cell, group, gemmi, tolerance, budget):
                         'distance_angstrom':distance,
                         'relation':'SELF_STABILIZER_OBSERVATION' if i==j else 'DISTINCT_SOURCE_ORBITS_COINCIDE'})
     return contacts
+
+
+def closest_atom_images(fixed_xyz, moving_xyz, cell, group, gemmi, *, max_image_tests=100_000):
+    """Find the closest two full operators for named atoms, including lattice translations.
+
+    Two actual copies give an upper bound for the second-nearest distance. The
+    final search includes every translation within that radius under each group
+    operation. Distinct operators can place an atom at the same coordinates.
+    """
+    fixed = _fractional(fixed_xyz, cell, gemmi)
+    moving = _fractional(moving_xyz, cell, gemmi)
+    transformed = [(op, op.apply_to_xyz(moving)) for op in group.operations()]
+    budget = _Budget(max_image_tests)
+    short_axis = min(range(3), key=lambda axis: cell.parameters[axis])
+
+    def distance(image, shift):
+        point = _cartesian([v + n for v, n in zip(image, shift)], cell, gemmi)
+        return math.dist(fixed_xyz, point)
+
+    # Rounded fractional shifts only supply a search radius. They can miss the
+    # closest lattice point in an oblique cell.
+    seed_distances = []
+    budget.spend(3 * len(transformed))
+    for _, image in transformed:
+        shift = [round(a-b) for a, b in zip(fixed, image)]
+        centre = shift[short_axis]
+        for delta in (-1, 0, 1):
+            shift[short_axis] = centre + delta
+            seed_distances.append(distance(image, shift))
+    radius = nsmallest(2, seed_distances)[1]
+    bounds = _fractional_bounds(cell, radius)
+
+    def within_radius():
+        for op, image in transformed:
+            ranges, count = _lattice_box(fixed, image, bounds)
+            budget.spend(count)
+            if not count:
+                continue
+            for shift in product(*ranges):
+                separation = distance(image, shift)
+                if separation <= radius + _PADDING:
+                    full = op.translated([n * op.DEN for n in shift])
+                    yield separation, _op_key(full), full
+
+    closest = nsmallest(2, within_radius(), key=lambda row: row[:2])
+    if len(closest) != 2:
+        raise ValueError("The image search did not recover its two bounding copies")
+    return [dict(distance_A=d, image=_image_record(op, gemmi)) for d, _, op in closest]
 
 
 def _selected_overlap(points, left, right, op, cell, gemmi, tolerance, budget):

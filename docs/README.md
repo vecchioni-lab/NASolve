@@ -111,24 +111,46 @@ records A2T7 rotation, ASU recuts combined with bending, standard test data
 including DOHU, and metal cases coordinated with Hazel. These are downstream
 demonstration goals with explicit evidence gates, not completed-result claims.
 
+Cedar chemistry and ordinary refinement are being reconciled into this Willow
+checkout. Consult the [CIF Doctor work order](cif-doctor-completion-queue.md) and
+[implemented chemistry scope](cif-doctor.md#current-capability-boundary) for their
+separate scientific evidence; a branch merge does not qualify new chemistry.
+
+
 ## User and contributor reading
 
 - [User guide](../README.md): installed commands, run/view workflows,
   outputs and safeguards.
+- [Preparing an X-ray deposition for OneDep](pdb-deposition.md) covers the
+  paired Phenix CIFs, Free-R checks, modified components and returned coordinates.
 - [Architecture](architecture.md): stable MR, PostMR, refinement, checkpoint
   and provenance contracts.
 - [Collaboration](collaboration.md) and [agent contract](../AGENTS.md):
-  workspace, Git safety, artifact handling and one-change review.
+  workspace, Git safety, artifact handling and one-change review; default
+  [one-block conditional Git delivery](collaboration.md#git-delivery-and-terminal-handoffs)
+  and separate install one-liners.
+- [CIF Doctor completion queue](cif-doctor-completion-queue.md): dependency-ordered
+  integration, chemistry-transfer, reporting and release jobs, with the C00–C150
+  orphan-work audit and explicitly deferred extensions.
+- [Development test profiles](collaboration.md#testing-cadence-and-development-profiles):
+  focused smoke/chemistry/workflow checks, retained delivery compatibility and
+  the unfiltered full integration gate.
 - [Changelog](../CHANGELOG.md): changes by implementation date; it does not
   independently authorize experimental chemistry or validate a live run.
+- [CIF Doctor human/manuscript overview](cif-doctor-human-overview.md): purpose,
+  algorithm/tools, pipeline placement, methods wording and an editable figure.
+  Human feature descriptors and their figures are maintained alongside feature
+  changes under the [documentation convention](collaboration.md#documentation-roles).
 
 ## Active subsystem contracts
 
 | Work area | Read here |
 | --- | --- |
 | Modified residues, CCD aliases and terminal phosphate | [Modified-component preparation](modified-component-preparation.md), [backbone chemistry](backbone-chemistry.md), [sequence-family targets](sequence-family-targets.md) |
-| Pair recipes and historical modified-pair native evidence | [Native modified-pair validation](native-modified-pair-live-validation.md) |
+| CIF Doctor runtime and planned extensions | [Human/manuscript overview and figure](cif-doctor-human-overview.md), [commands and implemented scope](cif-doctor.md), [public CCD controls](cif-doctor-ccd-controls.json), [audit methods and review boundaries](cif-restraint-audit-methods.md), [machine-readable implementation map](cif-restraint-doctor-implementation.json) |
+| Pair recipes, successful Z:P run, combined four-family native evidence | [Native modified-pair validation](native-modified-pair-live-validation.md) |
 | Campaigns and stages | [Campaign architecture](campaigns.md), [planning](campaign-planning.md), [execution](campaign-execution.md), [full-auto recipe](campaign-full-auto.md) |
+| Fresh synthetic DNA challenge | [Human overview, recipe, shuttle and evidence limits](synthetic-dna-mechanics-test.md) |
 | Other-family model selection and proposed providers | [Campaign model roadmap](campaign-model-roadmap.md), [model compatibility facts](model-compatibility-facts.md) |
 | Operational Scout and eventual ASU/Topo surgery | [Construct registration](construct-registration.md), [registration intent](construct-registration-intent.json), [Scout/Topo live checks](construct-registration-live-checks.md) |
 | TopoStitch recut and connection repair | [Audited completion roadmap](topostitch-roadmap.md), [design contract](topostitch.md), [development intent](topostitch-intent.json) — [candidate screen](topostitch-backend.md) and [coordinate adapter](topostitch-coordinates.md), [periodic inspector, saved proposals and read-only representative views](topostitch-periodic.md) and [explicit bend previews and offline comparison](topostitch-preview.md); campaign inference, scheme transfer and repair remain planned |
@@ -144,15 +166,16 @@ as implemented or a diagnostic as production qualification.
   preserves the earlier four-member real Phenix/Coot results. Its old
   implementation/recovery wording is **not** the current next step.
 - [History index](history/README.md) preserves earlier failures, handoffs
-  and provenance, including the **exact October 8 pre-prune handoff and
-  native pair ledger**. Read these only for forensic questions.
+  and provenance, including verified Git originals and local snapshots from October, and the full November 25 handoff and queue. Read these only for forensic questions.
 - [October 1 compatibility redirect](development-handoff-2026-10-01-addendum.md),
   [old DOHU validation](validation-dohu.md),
   [old 1AP integration](1ap-phosphate-integration.md) and
   [old Refine Doctor triage](refine-doctor-triage.md) are archived pointers,
   not duplicate sources of live status.
 
-**Status ownership:** handoff = current priorities; native ledger = exact
-pair-matrix progress; subsystem contract = actual behavior and safety;
-history/Git = how we arrived here. Updating documentation does **not**
-change scientific data, frozen inputs, user approvals or runtime capability.
+**Status ownership:** completion queue = remaining priorities and acceptance;
+handoff = current implementation/validation/publication edge; subsystem contract
+and support matrix = actual behavior; evidence ledgers = exact results;
+history/Git = how we arrived here. Dated milestone methods and old `Next` paragraphs
+are evidence-time snapshots, not additional task queues. Documentation updates
+change no scientific data, frozen inputs, user approvals or runtime capability.

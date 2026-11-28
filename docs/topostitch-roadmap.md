@@ -1,6 +1,6 @@
 # TopoStitch and Pine completion roadmap
 
-**Current audited work queue: 2026-11-27.** Generated from
+**Current audited work queue: 2026-11-28.** Generated from
 [the machine-readable ledger](topostitch-roadmap.json); edit that ledger and run
 `python scripts/audit_topostitch_roadmap.py --write`, then `--check`.
 This is one queue with two linked tracks, not two competing implementations.
@@ -9,7 +9,7 @@ owns the current code/validation edge, and cited evidence owns scientific claims
 A recut changes representation; a bend changes the physical structure. Neither
 operation authorizes a chemical nick or chemistry change.
 
-**Current update: W317 — Record browser protocol limit without claiming interaction.** Next: W318.
+**Current update: W318 — Reconcile Willow with the Cedar release while preserving scientific gates.** Next: W319.
 
 Use these numbers in human updates. Exact commits remain in the machine ledger;
 earlier history is not renumbered. An update number does not close a scientific gate.
@@ -18,7 +18,6 @@ earlier history is not renumbered. An update number does not close a scientific 
 
 | Update | Work | Record |
 | --- | --- | --- |
-| W308 | Audit fixed-sugar closure across one epsilon width | RECORDED |
 | W309 | Stop masked trials at the missing registered-force boundary | RECORDED |
 | W310 | Observe both registered junctions before movement | RECORDED |
 | W311 | Verify the five and six atom native derivatives | RECORDED |
@@ -28,6 +27,7 @@ earlier history is not renumbered. An update number does not close a scientific 
 | W315 | Coupled sugars move but torsion recovery fails its criterion | RECORDED |
 | W316 | Reopen installed child and cut review without selecting it | RECORDED |
 | W317 | Record browser protocol limit without claiming interaction | RECORDED |
+| W318 | Reconcile Willow with the Cedar release while preserving scientific gates | IN_PROGRESS |
 
 ## Finish lines
 

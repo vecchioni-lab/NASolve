@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "topostitch-development-roadmap",
-  "updated": "2026-11-27",
+  "updated": "2026-11-28",
   "status_authority": "This JSON is the single work/status source; the Markdown is its generated human view.",
   "branch": "willow",
   "audited_code_commit": "29fded465e95878677670be15d3c8f4999224854",
@@ -11342,8 +11342,8 @@
   "human_updates": {
     "prefix": "W",
     "starts_at": 33,
-    "current": 317,
-    "next": 318,
+    "current": 318,
+    "next": 319,
     "rule": "One number per substantial audited Willow update; corrections retain their number. Earlier history is not renumbered. Git commits remain machine provenance.",
     "entries": [
       {
@@ -13055,6 +13055,12 @@
         "title": "Record browser protocol limit without claiming interaction",
         "state": "RECORDED",
         "code_commit": "29fded465e95878677670be15d3c8f4999224854"
+      },
+      {
+        "number": 318,
+        "title": "Reconcile Willow with the Cedar release while preserving scientific gates",
+        "state": "IN_PROGRESS",
+        "code_commit": null
       }
     ]
   },

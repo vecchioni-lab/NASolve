@@ -56,6 +56,12 @@ the existing standard W/5W6W route and a deliberately conservative
 prepared-nonstandard route. Existing schema-1 W plans remain readable and
 executable without migration.
 
+Shared parent-folder models, nested sample/processing folders and grouped
+comparison of alternative space-group processings are a
+[planned extension](campaign-model-roadmap.md#planned-shared-model-folders-and-processing-alternatives).
+Current shallow discovery does not provide shared-model inheritance or select
+the best processing result across those groups.
+
 ### Future reflection-input compatibility profiles
 
 Campaign setup should separate **what crystallographic work the available input
@@ -162,20 +168,27 @@ the built-in `5w6w` name even though the nonstandard datasets would not inherit
 W chemistry. The resolved configuration is stored per dataset while the
 original input file is preserved.
 
-Current preset schema 1 freezes the conditional AutoSol policy and AutoRefine
-recipe/cycle count, but it does **not** yet declare the campaign workflow
-endpoint/transition graph itself. Today a plain `campaign run ROOT` uses the
-executor's fixed stage order and defaults through AutoRefine; `--through` is an
-explicit stop boundary.
+Preset schema 1 retains the guarded policy and defaults through AutoRefine.
+Schema 2 adds the frozen `workflow.mode`, `run_doctor` and
+`select_recommendation` settings described in [full auto](campaign-full-auto.md).
+Guarded mode remains the default. An explicit full-auto recipe may run bounded
+Refine Doctor and provisionally select its verified usable SUCCESS recommendation;
+neither action approves the structure. Without `--through`, the endpoint is
+Refine Doctor when `run_doctor` is true and AutoRefine otherwise. An explicit
+`--through` overrides that endpoint without adding selection permission.
 
-A future preset/workflow schema should freeze the intended endpoint and
-conditional transitions as versioned recipe data so the same one-command
-unattended behavior is project-declared rather than executor-implicit. One
-important optional policy is conceptually **"apply Doctor as needed"**. The exact
-field name is intentionally deferred. Absence means an eligible review stops for
-inspection; enabling it authorizes only the specific bounded Doctor transitions
-that the installed backend exposes and the recipe validates. It is not blanket
-permission for arbitrary recovery search or automatic checkpoint selection.
+These settings control existing bounded transitions. A general configurable
+stage graph remains future work; recipes cannot request arbitrary recovery
+operations.
+
+Schema 2 also accepts an explicit `[autosol]` table with `policy = "disabled"`
+and a nonempty `reason`, for example a synthetic modified-DNA mechanics test
+against donor diffraction. The resolved table contains only those two fields;
+`on_unaccepted` is incompatible with a disabled stage. Planning freezes the
+reason in the policy hash. This option preserves anomalous-atom classification
+and observation data while preventing AutoSol execution and experimental-phase
+use downstream; see [the phase-stage opt-out](campaign-full-auto.md#explicitly-omit-autosol).
+It does not migrate existing plans or change the default conditional phase path.
 
 The future GUI recipe builder must construct this same backend recipe, not a
 parallel GUI configuration. It may show sensible defaults and only currently
@@ -207,6 +220,10 @@ The frozen effective target is the parsed chain map. The frozen raw sequence
 source remains separate provenance so later code can verify what user input
 produced that target without reparsing an unfrozen file.
 
+PDB or coordinate mmCIF input and an explicit trusted-model mode without a
+sequence file are [planned extensions](campaign-model-roadmap.md#planned-coordinate-mmcif-and-trusted-model-input),
+not capabilities of this current campaign path.
+
 ### Modified ligands in chain-labelled sequences
 
 Sequence text now supports literal parenthesized component codes in addition to
@@ -233,11 +250,12 @@ numbering from the sequence.
 
 An accepted ligand **identifier** is not proof that the current PDB/Coot/
 ReadySet/Phenix route can construct or refine it. Parenthetical 4- or 5-character
-codes (such as `A1AAZ` when registered) are parseable and retain their exact
-logical identity; the current PDB-only PostMR backend explicitly stops before
-writing a target whose literal code exceeds the three-character PDB field.
-Only an independently reviewed compatible refinement code or a future mmCIF
-adapter can extend that boundary—never truncation or guessed equivalence.
+codes are parseable and retain their logical identity. The reviewed `A1AAZ→DF`
+bridge supplies a compatible short runtime label with source/target provenance;
+it does not authorize arbitrary truncation. Other long codes without a reviewed
+compatible mapping still stop before writing the three-character PDB field.
+See [component preparation](modified-component-preparation.md) for the standing
+bridges and distinct chemical-state overrides.
 Existing `[mutations]` sites already accept any registered ligand code and
 remain the most-specific explicit site overrides. Their ordinary construction,
 dictionary, phosphate and chemistry guards still apply. No old frozen plan,
@@ -417,5 +435,53 @@ The [campaign executor](campaign-execution.md) composes one frozen candidate
 per dataset using the existing scientific stages. Schema-2 plans may mix
 standard W and prepared nonstandard members; existing schema-1 W plans remain
 compatible and need no regeneration. Durable execution progress is stored
-separately from the immutable plan. Automatic Doctor selection, approval,
-reporting PDFs and deposition remain later work.
+separately from the immutable plan. Recipe-authorized provisional Doctor
+selection is available in full auto; explicit approval, reporting PDFs and
+deposition remain later work.
+
+
+## Opt-in checked model preparation (Cedar C225)
+
+A schema-2 project preset can request the same checked preparation used by
+`nasolve postmr --checked-preparation`:
+
+```toml
+schema_version = 2
+id = "checked-preparation"
+version = "1"
+
+[postmr]
+checked_preparation = true
+```
+
+Planning freezes this boolean with the recipe. Omission retains legacy PostMR;
+older recipes and their fingerprints are unchanged. Schema 1 refuses the new
+field. Older stage implementations refuse this expanded PostMR policy.
+
+For bounded missing-plane support (C246), add `automatic_plane_support = true`
+to that same `[postmr]` table. It requires `checked_preparation = true` and a real
+boolean in schema 2. The choice is frozen before execution; omission leaves old
+policies and hashes unchanged. Explicit false is retained in the campaign policy
+but does not enable support in the preparation request. Older readers reject the
+new optional field. Continuation uses the saved request; it cannot change this
+choice or repeat construction. Generated support alone does not establish final
+plane adoption or diffraction-refinement success.
+
+The campaign reuses the existing constructor, bounded request owner and publisher.
+It records the exact model/restraints, genuine preparation receipt and actual
+ReadySet outcome. A checked fallback remains a REVIEW checkpoint available for
+trial refinement; it does not establish successful diffraction refinement.
+Unqualified preparation stops its dependent stage, preserving the failed attempt.
+
+C247 carries verified generation notes into the PostMR stage receipt and subsequent
+text/JSON campaign status. These describe generated support or excluded failed
+output without changing the scientific continuation gate. Status reads do not
+rewrite old receipts; absent notes on historical stages remain absent evidence.
+
+Completed receipts use ordinary campaign continuation. An interrupted stage without
+a completed receipt stays awaiting inspection; explicit campaign retry starts a
+fresh numbered run only after prior processes are known stopped. The standalone
+exact preparation continuation/publication commands can recover the preserved run,
+but do not retrospectively complete its campaign job. No new in-place retry or
+adoption of manually recovered work is enabled. Later preparation children, broader
+plane-recovery coverage and complete-restraint refinement remain open.

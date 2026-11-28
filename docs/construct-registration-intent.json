@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "kind": "construct-registration-development-intent",
-  "version": "2026-09-29-pine-36",
+  "version": "2026-10-10-reconciled",
   "status": "development-policy-not-runtime-authority",
   "primary_domain": {
     "system": "designed self-assembling nucleic-acid crystals",
@@ -92,22 +92,6 @@
     "successful_local_behavior_does_not_silently_change_global_policy": true,
     "backtracking_after_real_data_validation_is_expected": true
   },
-  "validation_checkpoint": {
-    "date": "2026-09-26",
-    "branch": "birch",
-    "validated_code_head": "4452295c3330de6d55bddd75b01be21f39afb222",
-    "focused_test_file": "tests/test_construct_registration.py",
-    "reported_pass_count": 23,
-    "reported_by": "user-local-run",
-    "github_ci": false,
-    "scope": "construct registration core, artifact provenance and conservative Scout synthetic tests",
-    "note": "This checkpoint predates the descriptive chain-evidence and frozen Scout artifact additions."
-  },
-  "pending_validation": {
-    "branch": "oak",
-    "status": "none-for-current-experimental-scope",
-    "remaining_gate": "No further validation gate is required for the current backend-only experimental Scout v2 scope. AutoMR/PostMR runtime integration and any promotion to authority remain separate future work."
-  },
   "stage_transition_policy": {
     "implemented": true,
     "kind": "construct-registration-transition",
@@ -125,129 +109,6 @@
       "recut authorization"
     ]
   },
-  "validation_history": [
-    {
-      "date": "2026-09-26",
-      "status": "PASSED",
-      "branch": "birch",
-      "code_head": "4452295c3330de6d55bddd75b01be21f39afb222",
-      "focused_test_file": "tests/test_construct_registration.py",
-      "reported_pass_count": 23,
-      "reported_by": "user-local-run",
-      "github_ci": false,
-      "scope": "construct registration core, artifact provenance and conservative Scout v1 synthetic tests"
-    },
-    {
-      "date": "2026-09-26",
-      "status": "PASSED",
-      "branch": "birch",
-      "code_head": "686830beb64907f2a1ba73fa1bdbff97f6dcc38d",
-      "focused_test_file": "tests/test_construct_registration.py",
-      "reported_by": "user-local-run",
-      "github_ci": false,
-      "scope": "registration core/Scout/evidence/guided/transition plus read-only multi-PDB candidate inventory/scouting",
-      "reported_pass_count": 44,
-      "focused_test_files": [
-        "tests/test_construct_registration.py",
-        "tests/test_model_candidates.py"
-      ],
-      "note": "Focused bundle passed locally; full NASolve regression suite remains pending before merge."
-    },
-    {
-      "date": "2026-09-26",
-      "status": "PASSED",
-      "branch": "birch",
-      "checkout_head": "cc0ad6ab537cc61e17e13bc562e4ae8667461e8d",
-      "code_head": "686830beb64907f2a1ba73fa1bdbff97f6dcc38d",
-      "passed_tests": 664,
-      "passed_subtests": 222,
-      "elapsed_seconds": 61.7,
-      "reported_by": "user-local-run",
-      "github_ci": false,
-      "scope": "full NASolve regression suite"
-    },
-    {
-      "date": "2026-09-26",
-      "status": "PASSED",
-      "branch": "oak",
-      "code_head": "189fd4589a8c8f2a0191e21e99cec22b428e6a1c",
-      "focused_test_file": "tests/test_construct_registration.py",
-      "reported_pass_count": 41,
-      "reported_by": "user-local-run",
-      "github_ci": false,
-      "scope": "experimental design-aware Scout v2 proposal helper plus existing Construct Registration tests"
-    },
-    {
-      "date": "2026-09-26",
-      "status": "PASSED",
-      "branch": "oak",
-      "checkout_head": "28e8dee96b6458d25733f296f8e83d03c229a014",
-      "code_head": "189fd4589a8c8f2a0191e21e99cec22b428e6a1c",
-      "reported_by": "user-local-run",
-      "github_ci": false,
-      "scope": "renamed ED run_011 real-W Scout v2 shadow rerun with complete verified C_G provider identity set",
-      "result": "PROPOSED; 6 complete mappings; exactly 1 zero-unexplained mapping A->M/B->N/C->P/D->Q; intended mapping 38 exact + 4 provider-explained + 0 unexplained; alternatives retained 12/11/16/17/10 unexplained mismatches; runtime_authority=false"
-    },
-    {
-      "date": "2026-09-26",
-      "status": "PASSED",
-      "branch": "oak",
-      "checkout_head": "36c369bdfd75602340882805a6dc03f2c193c58d",
-      "code_head": "c515a37dc41fa8bb1935d2c80c825ebef8153177",
-      "focused_test_file": "tests/test_construct_registration.py",
-      "reported_pass_count": 41,
-      "reported_by": "user-local-run",
-      "github_ci": false,
-      "scope": "provenance-bound Scout v2 provider evidence interface plus existing Construct Registration tests"
-    },
-    {
-      "date": "2026-09-27",
-      "status": "PASSED",
-      "branch": "oak",
-      "checkout_head": "507745a0b7166f05229f6c3501d5e1f694db93e2",
-      "source_code_head": "c515a37dc41fa8bb1935d2c80c825ebef8153177",
-      "test_code_head": "507745a0b7166f05229f6c3501d5e1f694db93e2",
-      "focused_test_file": "tests/test_construct_registration.py",
-      "reported_pass_count": 43,
-      "reported_by": "user-local-run",
-      "github_ci": false,
-      "scope": "provenance-bound Scout v2 provider evidence plus explicit rejection tests for incomplete provider coverage and provider-selector/source mismatch"
-    },
-    {
-      "date": "2026-09-27",
-      "status": "PASSED",
-      "branch": "oak",
-      "checkout_head": "b1ee6847fea998d1003efe674ddd3052c2fcf58f",
-      "source_code_head": "c515a37dc41fa8bb1935d2c80c825ebef8153177",
-      "reported_by": "user-local-run",
-      "github_ci": false,
-      "scope": "renamed ED run_011 real-W Scout v2 shadow rerun through provider_assessment + model_provider provenance-bound interface, with historical provider record reconstructed only from verified model path/source/SHA facts",
-      "result": "PROPOSED; 6 complete mappings; exactly 1 zero-unexplained mapping A->M/B->N/C->P/D->Q; intended mapping 38 exact + 4 provider-explained + 0 unexplained; alternatives retained 12/11/16/17/10 unexplained; provider_bound=true; caller_codes=false; runtime_authority=false"
-    },
-    {
-      "date": "2026-09-27",
-      "status": "PASSED",
-      "branch": "oak",
-      "checkout_head": "316ac43eaf85a63cf675828bb8960a28f0db2773",
-      "passed_tests": 672,
-      "reported_by": "user-local-run",
-      "github_ci": false,
-      "scope": "full NASolve regression suite after provenance-bound Scout v2 source/test/docs changes",
-      "note": "User reported 672 passed. No runtime or subtest count was reported in this checkpoint."
-    },
-    {
-      "date": "2026-09-27",
-      "status": "PASSED",
-      "branch": "oak",
-      "checkout_head": "62a1acddf2940b3a5e651fe79aeeeab21627fe53",
-      "source_code_head": "c515a37dc41fa8bb1935d2c80c825ebef8153177",
-      "reported_by": "user-local-run",
-      "github_ci": false,
-      "scope": "fresh ED run_013 native structured model_provider provenance shadow test through provider_assessment + model_provider Scout v2 interface",
-      "result": "PROPOSED; provider_bound=true; caller_codes=false; 6 mappings; exactly 1 zero-unexplained mapping A->M/B->N/C->P/D->Q; intended mapping 38 exact + 4 provider-explained + 0 unexplained; alternatives 12/11/16/17/10 unexplained; runtime_authority=false"
-    }
-  ],
-  "current_validation_status": "OAK_V2_VALIDATION_COMPLETE_BACKEND_ONLY_NON_RUNTIME",
   "guided_resolution_v1": {
     "implemented": true,
     "scope": "simple ambiguous whole-chain Scout candidates only",
@@ -314,137 +175,6 @@
       "GUI extensibility validation using one newly registered backend action without shell redesign"
     ]
   },
-  "latest_focused_validation": {
-    "date": "2026-09-27",
-    "branch": "oak",
-    "checkout_head": "507745a0b7166f05229f6c3501d5e1f694db93e2",
-    "source_code_head": "c515a37dc41fa8bb1935d2c80c825ebef8153177",
-    "test_code_head": "507745a0b7166f05229f6c3501d5e1f694db93e2",
-    "reported_pass_count": 43,
-    "files": [
-      "tests/test_construct_registration.py"
-    ],
-    "reported_by": "user-local-run",
-    "github_ci": false,
-    "note": "Includes explicit fail-closed coverage for incomplete provider target coverage and provider-selector/source mismatch."
-  },
-  "latest_full_validation": {
-    "date": "2026-09-27",
-    "branch": "oak",
-    "checkout_head": "316ac43eaf85a63cf675828bb8960a28f0db2773",
-    "command_scope": "full NASolve pytest suite",
-    "passed_tests": 672,
-    "reported_by": "user-local-run",
-    "github_ci": false,
-    "note": "Current Oak full-suite checkpoint after provenance-bound Scout v2 changes."
-  },
-  "shadow_live_validation": {
-    "date": "2026-09-26",
-    "mode": "manual-read-only-existing-run",
-    "dataset_context": "ED",
-    "run_id": "run_011",
-    "logical_target_site_count": 42,
-    "search_model": {
-      "scout_status": "REGISTERED",
-      "method": "identity-site-map",
-      "identity_mismatch_count": 4
-    },
-    "postmr_model": {
-      "scout_status": "REGISTERED",
-      "method": "identity-site-map",
-      "identity_mismatch_count": 0
-    },
-    "transition": {
-      "copy_structure": "SAME",
-      "copy_multiplicity": "SAME",
-      "complete_copy_identity_classes": "DIFFERENT",
-      "single_copy_coordinate_realization": "SAME"
-    },
-    "interpretation": "Registration remained stable while PostMR normalized residue identities to the logical target.",
-    "pipeline_wiring_validated": false,
-    "human_live_check_completed": false,
-    "reason_not_completed": "Registration was invoked manually/read-only against existing run artifacts rather than through live AutoMR/PostMR integration."
-  },
-  "renamed_real_w_shadow_validation": {
-    "date": "2026-09-26",
-    "mode": "temporary-read-only-chain-rename",
-    "dataset_context": "ED",
-    "run_id": "run_011",
-    "rename_map": {
-      "A": "M",
-      "B": "N",
-      "C": "P",
-      "D": "Q"
-    },
-    "scout": {
-      "status": "AMBIGUOUS",
-      "method": null,
-      "reason": "multiple simple one-to-one chain assignments satisfy length/offset rules; Scout v1 refuses sequence-similarity ranking"
-    },
-    "design_evidence": {
-      "A": {
-        "M": {
-          "matches": 19,
-          "mismatches": 2
-        }
-      },
-      "B": {
-        "N": {
-          "matches": 5,
-          "mismatches": 2
-        },
-        "P": {
-          "matches": 1,
-          "mismatches": 6
-        },
-        "Q": {
-          "matches": 1,
-          "mismatches": 6
-        }
-      },
-      "C": {
-        "N": {
-          "matches": 1,
-          "mismatches": 6
-        },
-        "P": {
-          "matches": 7,
-          "mismatches": 0
-        },
-        "Q": {
-          "matches": 1,
-          "mismatches": 6
-        }
-      },
-      "D": {
-        "N": {
-          "matches": 2,
-          "mismatches": 5
-        },
-        "P": {
-          "matches": 1,
-          "mismatches": 6
-        },
-        "Q": {
-          "matches": 7,
-          "mismatches": 0
-        }
-      }
-    },
-    "guided_selection": {
-      "selection": {
-        "A": "M",
-        "B": "N",
-        "C": "P",
-        "D": "Q"
-      },
-      "registration_status": "REGISTERED_COMPLETE",
-      "complete_copy_count": 1,
-      "identity_mismatch_count": 4,
-      "coordinate_edit_performed": false
-    },
-    "interpretation": "Current conservative ambiguity is scientifically safe; known design intent contains strong discriminating evidence, but that evidence remains non-decisional under Scout v1."
-  },
   "proposed_design_aware_inference_v2": {
     "status": "IMPLEMENTED_EXPERIMENTAL_NOT_RUNTIME_AUTHORITY",
     "principle": "Prefer categorical consistency with declared construct intent over generic sequence-similarity scoring.",
@@ -491,72 +221,6 @@
     "provider_baseline_runtime_requirement": "Caller-supplied residue-code dictionaries are no longer accepted. The experimental helper derives provider identities from the exact assessed frame-catalogue model plus NASolve model-provider provenance; runtime promotion remains separately unreviewed.",
     "weighted_sequence_score_used": false,
     "live_pipeline_changed": false,
-    "real_w_attempt_1": {
-      "status": "AMBIGUOUS_EXPECTED_FAIL_CLOSED",
-      "dataset_context": "ED run_011 renamed A/B/C/D -> M/N/P/Q",
-      "supplied_provider_codes": {
-        "A:13": "DC",
-        "B:3": "DG"
-      },
-      "assignment_count": 6,
-      "eligible_zero_unexplained_count": 0,
-      "intended_mapping": {
-        "selection": {
-          "A": "M",
-          "B": "N",
-          "C": "P",
-          "D": "Q"
-        },
-        "exact_match_count": 38,
-        "declared_target_history_difference_count": 0,
-        "reviewed_provider_difference_count": 2,
-        "unexplained_mismatch_count": 2
-      },
-      "root_cause": "Experimental provider evidence was incomplete, not that the intended chain mapping was wrong."
-    },
-    "verified_provider_identity_set": {
-      "source": "MR_frames/5W6W/C_G.pdb",
-      "codes": {
-        "A:12": "DC",
-        "A:13": "DC",
-        "B:3": "DG",
-        "B:4": "DG"
-      },
-      "note": "A:13/B:3 are known family-baseline differences; A:12/B:4 are provider-pair identities. Production inference must bind these facts to reviewed/versioned provider provenance."
-    },
-    "real_w_attempt_2": {
-      "status": "PROPOSED_UNIQUE_ZERO_UNEXPLAINED",
-      "dataset_context": "ED run_011 renamed A/B/C/D -> M/N/P/Q",
-      "supplied_provider_codes": {
-        "A:12": "DC",
-        "A:13": "DC",
-        "B:3": "DG",
-        "B:4": "DG"
-      },
-      "assignment_count": 6,
-      "eligible_zero_unexplained_count": 1,
-      "runtime_authority": false,
-      "proposed_mapping": {
-        "selection": {
-          "A": "M",
-          "B": "N",
-          "C": "P",
-          "D": "Q"
-        },
-        "exact_match_count": 38,
-        "declared_target_history_difference_count": 0,
-        "reviewed_provider_difference_count": 4,
-        "unexplained_mismatch_count": 0
-      },
-      "alternative_unexplained_mismatch_counts": [
-        12,
-        11,
-        16,
-        17,
-        10
-      ],
-      "interpretation": "Exactly one complete mapping achieved zero unexplained mismatches only after the complete verified provider identity set was supplied; the helper remained proposal-only and non-runtime."
-    },
     "provenance_binding_slice": {
       "code_head": "c515a37dc41fa8bb1935d2c80c825ebef8153177",
       "validation_status": "PASSED_43_FOCUSED_LOCAL_TESTS",
@@ -575,101 +239,11 @@
       "full_regression_status": "PASSED_672_LOCAL_TESTS",
       "fresh_native_provider_validation_status": "PASSED_RUN_013"
     },
-    "real_w_attempt_3": {
-      "status": "PROPOSED_UNIQUE_ZERO_UNEXPLAINED_PROVENANCE_BOUND",
-      "dataset_context": "ED run_011 renamed A/B/C/D -> M/N/P/Q",
-      "interface": "provider_assessment + model_provider",
-      "historical_run_provider_bridge": {
-        "structured_model_provider_present": false,
-        "reconstruction_mode": "manual-read-only-from-explicit-historical-run-facts",
-        "verified_inputs": {
-          "model_path": "MR_frames/5W6W/C_G.pdb",
-          "model_source": "standard frame catalogue (W; fallback C_G.pdb)",
-          "model_sha256": "d26ebf248a0a597a3884a6d6b2c6ec8f9bba27c9cad9f0604da136e13bfb1817"
-        },
-        "reconstructed_provider": {
-          "kind": "standard-frame-catalogue",
-          "selection": "fallback",
-          "frame": "W",
-          "location": "frame-catalogue",
-          "selector": "C_G.pdb"
-        },
-        "note": "The provider record was reconstructed only after exact path/source/SHA assertions against the current provider model; no residue identities were supplied by the caller."
-      },
-      "provider_baseline_bound": true,
-      "provider_codes_caller_supplied": false,
-      "assignment_count": 6,
-      "eligible_zero_unexplained_count": 1,
-      "runtime_authority": false,
-      "proposed_mapping": {
-        "selection": {
-          "A": "M",
-          "B": "N",
-          "C": "P",
-          "D": "Q"
-        },
-        "exact_match_count": 38,
-        "declared_target_history_difference_count": 0,
-        "reviewed_provider_difference_count": 4,
-        "unexplained_mismatch_count": 0
-      },
-      "alternative_unexplained_mismatch_counts": [
-        12,
-        11,
-        16,
-        17,
-        10
-      ],
-      "interpretation": "The provenance-bound provider interface reproduced the same unique zero-unexplained mapping from the real renamed-W nuisance case without a caller-supplied residue dictionary. Historical provider provenance was bridged only from explicit verified run facts."
-    },
-    "real_w_attempt_4": {
-      "status": "PROPOSED_UNIQUE_ZERO_UNEXPLAINED_FRESH_NATIVE_PROVIDER",
-      "dataset_context": "ED fresh run_013 preflight reproduced from run_011 intent",
-      "interface": "provider_assessment + native structured model_provider",
-      "source_run": "run_013",
-      "model_provider": {
-        "frame": "W",
-        "kind": "standard-frame-catalogue",
-        "location": "frame-catalogue",
-        "selection": "fallback",
-        "selector": "C_G.pdb"
-      },
-      "provider_model_sha256": "d26ebf248a0a597a3884a6d6b2c6ec8f9bba27c9cad9f0604da136e13bfb1817",
-      "provider_baseline_bound": true,
-      "provider_codes_caller_supplied": false,
-      "assignment_count": 6,
-      "eligible_zero_unexplained_count": 1,
-      "runtime_authority": false,
-      "proposed_mapping": {
-        "selection": {
-          "A": "M",
-          "B": "N",
-          "C": "P",
-          "D": "Q"
-        },
-        "exact_match_count": 38,
-        "declared_target_history_difference_count": 0,
-        "reviewed_provider_difference_count": 4,
-        "unexplained_mismatch_count": 0
-      },
-      "alternative_unexplained_mismatch_counts": [
-        12,
-        11,
-        16,
-        17,
-        10
-      ],
-      "interpretation": "Fresh current-schema AutoMR preflight supplied native structured model_provider provenance. The provenance-bound Scout v2 interface reproduced the same unique zero-unexplained mapping without historical-schema reconstruction or caller-supplied residue codes."
+    "historical_validation": {
+      "evidence": "docs/construct-registration-live-checks.md",
+      "exact_records": "docs/history/construct-registration-intent-2026-10-10-pre-reconciliation.json",
+      "result": "Fresh ED run_013 provider provenance reproduced one zero-unexplained A->M/B->N/C->P/D->Q proposal; 38 exact + 4 provider-explained identities; alternatives 12/11/16/17/10 unexplained; runtime_authority=false."
     }
-  },
-  "active_development_branch": {
-    "name": "oak",
-    "pull_request": 22,
-    "purpose": "Experimental design-aware Registration Scout v2 proposal helper.",
-    "status": "MERGED_TO_MAIN_BACKEND_ONLY_NON_RUNTIME",
-    "merge_commit": "fec66ebeddbd525684824576b705460324ec0a14",
-    "merged_at": "2026-09-28T13:34:35Z",
-    "note": "Oak/PR #22 is complete on main; Scout v2 remains backend-only/non-runtime authority."
   },
   "documentation_sync_policy": {
     "required_on_meaningful_inference_changes": true,
@@ -829,6 +403,20 @@
     ],
     "topo_surgeon": {
       "status": "PLANNED_BOUNDED_REPAIR_LAYER",
+      "geotest_guided_arm_connection": {
+        "status": "REQUESTED_2026_10_11_NOT_IMPLEMENTED",
+        "entry_points": ["placed MR model", "explicit refined checkpoint"],
+        "required_intent": "User-reviewed arm/domain pairing and strand routing with residue ranges and symmetry-mate identities; retain ambiguity until resolved.",
+        "connection_types": ["sticky-end/base-pair association", "covalent continuation across a representation seam", "true nick or terminus"],
+        "terminal_policy": "Preserve declared free 5-prime-OH ends; an apparent visual gap does not authorize covalent joining.",
+        "execution": "Freeze preview, exact symmetry materialization where needed, separate bounded local repair, native Phenix interpretation, then short refinement as immutable children.",
+        "controls": ["real GeoTest arm connection", "ambiguous routing requiring a user decision", "true nick retained unjoined"],
+        "doctor_coordination": "Planned geometry/connectivity module of one coordinated Doctor workflow alongside existing data/Free-R diagnostics and the next generalized CIF/effective-restraint assessor; separate evidence and repair authority, shared entry/orchestration.",
+        "assessment_trigger": "Inspect exact MR/refined model, maps, symmetry, effective restraints and intended assembly before further refinement strategies, including numerically ready models with geometry findings.",
+        "geotest_motivation": "User attributes high Rwork to arms fractured at sticky ends; treat as reported diagnosis, not proof from Rwork alone or automatic authorization to join atoms.",
+        "free_r_policy": "Preserve the same observations and frozen Free-R through bounded immutable repair children and refinement; do not regenerate flags to improve statistics.",
+        "development_order": "Deterministic CIF/restraint assessment first, coordinated geometry checking and guided stitching next; no new gate on closed GeoTest orchestration or current integration."
+      },
       "position": "Between Topo Net preview/materialization and expert manual Coot fallback.",
       "purpose": "Repair locally awkward geometry caused by reslicing, mutation, chain reconstruction or imperfect MR coordinates without hiding uncertainty.",
       "candidate_operations": [
@@ -1135,61 +723,8 @@
     }
   },
   "cli_first_campaign_runway": {
-    "status": "PINE_REAL_W_ORCHESTRATION_VALIDATED_NONSTANDARD_LIVE_PENDING",
+    "status": "DURABLE_FUTURE_INTENT_CURRENT_PROGRESS_IN_LINKED_HANDOFF",
     "gui_branch_condition": "Do not begin GUI implementation until the real prepared-nonstandard/geometry-diverse campaign gate passes and minimal explicit Design grouping is CLI-functional. The easier W live campaign validates orchestration only.",
-    "steps": [
-      {
-        "id": 1,
-        "name": "close_oak",
-        "goal": "Close/merge the validated Scout v2 backend-only branch without promoting Scout v2 to runtime authority.",
-        "status": "COMPLETED_MERGED_TO_MAIN",
-        "note": "Oak/PR #22 merged with fec66ebeddbd525684824576b705460324ec0a14; Pine reconciled the mainline merge with aa56e9b."
-      },
-      {
-        "id": 2,
-        "name": "nonstandard_campaign_plan_schema",
-        "goal": "Backward-compatible schema-2 campaign plans admit one explicit/uniquely discovered nonstandard PDB plus frozen raw sequence source and parsed target per dataset; schema-1 W remains readable/executable.",
-        "status": "IMPLEMENTED_ON_PINE_FIXTURE_BACKED"
-      },
-      {
-        "id": 3,
-        "name": "generalize_frozen_selection",
-        "goal": "Preserve standard-W frozen selection and add nonstandard reconstruction only from checksum-bound campaign resources with no source/catalogue rediscovery.",
-        "status": "IMPLEMENTED_ON_PINE_FIXTURE_BACKED"
-      },
-      {
-        "id": 4,
-        "name": "conservative_heterogeneous_gate",
-        "goal": "Require simple/unambiguous prepared-model correspondence; recuts, split chains, multiplicity surprises or topology ambiguity stop only that dataset.",
-        "status": "IMPLEMENTED_ON_PINE_FIXTURE_BACKED"
-      },
-      {
-        "id": 5,
-        "name": "campaign_regression_and_real_w_orchestration",
-        "goal": "Validate W compatibility, nonstandard/mixed fixture behavior, relocation/pause/retry/isolation, plus an easier real multi-dataset W campaign under actual Phenix/Coot.",
-        "status": "COMPLETE_FIXTURE_AND_REAL_W_VALIDATION",
-        "note": "Four-member W campaign completed under real Phenix/Coot: DOHU/EG/QE SOLVED with AutoSol SKIPPED; QiC AUTOSOL_READY then AWAITING_INSPECTION after numerical refinement failure; campaign COMPLETE_WITH_FLAGS, integrity OK."
-      },
-      {
-        "id": 6,
-        "name": "explicit_workflow_recipe",
-        "goal": "Validate campaign-owned Refine Doctor continuation, then freeze campaign endpoint/conditional graph as versioned recipe data with optional human semantic policy 'apply Doctor as needed'.",
-        "status": "CAMPAIGN_DOCTOR_EXPLICIT_PATH_REGRESSION_AND_LIVE_VALIDATED_WORKFLOW_RECIPE_NEXT",
-        "note": "QiC live Doctor succeeded; CLI 9+4 subtests, campaign family 132+85 subtests, full suite 688+224 subtests all passed. Next semantic is recipe-declared Doctor-as-needed policy."
-      },
-      {
-        "id": 7,
-        "name": "real_geometry_diverse_campaign",
-        "goal": "Run 3-5 curated prepared-nonstandard/geometry-diverse datasets through AutoMR/PostMR/conditional AutoSol/AutoRefine with exact run/checkpoint ownership and at least one inspection/block case.",
-        "status": "PREPARED_NONSTANDARD_LIVE_GATE_PENDING_INPUTS"
-      },
-      {
-        "id": 8,
-        "name": "explicit_design_identity",
-        "goal": "Add stable explicit design_id/shared design metadata grouping; never infer membership from filenames, sequence similarity or mere campaign co-membership.",
-        "status": "FUTURE_AFTER_REAL_GEOMETRY_DIVERSE_LIVE_GATE"
-      }
-    ],
     "campaign_doctor_ready_steps": [
       {
         "id": 9,
@@ -1222,250 +757,18 @@
         "goal": "Donor mutation, ensembles/libraries, geometry/topology provider transforms and broader cross-design rescue remain separate reviewed increments."
       }
     ],
-    "current_backend_facts": [
-      "new campaign plans use schema 2",
-      "schema-1 W plans remain readable and executable",
-      "one explicit or uniquely discovered nonstandard PDB provider per dataset",
-      "raw sequence-source bytes/checksum and parsed effective target frozen separately",
-      "frozen nonstandard preflight reconstructs ResolvedAutoMRInput without source/catalogue rediscovery",
-      "standard W and nonstandard members may coexist under one sequential coordinator",
-      "nonstandard members do not inherit W frame/pair, W sequence-thread overlays or W D:1 phosphate intent",
-      "fixture-backed nonstandard execution reaches AutoMR/PostMR/conditional AutoSol/AutoRefine and survives relocation",
-      "mixed W/nonstandard fixture execution preserves separate scientific contexts",
-      "plain campaign run currently defaults through AutoRefine",
-      "AutoSol is a conditional campaign stage: no anomalous candidate -> accepted SKIPPED without launching phenix.autosol",
-      "real four-member W campaign passed planning/integrity and real preflight/Phaser/PostMR 4/4",
-      "workflow endpoint/conditional graph is not yet first-class frozen recipe data",
-      "merged Scout v2 remains experimental proposal-only and non-runtime",
-      "real four-member W campaign completed: 3 SOLVED + 1 AWAITING_INSPECTION, COMPLETE_WITH_FLAGS, integrity OK",
-      "DOHU/EG/QE AutoSol SKIPPED; QiC AUTOSOL_READY then refinement review",
-      "standalone Refine Doctor must not mutate a campaign-owned completed run report outside campaign receipt provenance",
-      "QiC live review fingerprint: Rwork/Rfree 0.1646/0.1561, gap -0.0085; terminal geometry PASS max 1.74 sigma; B:4 iodine f'' 7.51547; refine-001 REVIEW/non-current, current postmr",
-      "campaign-owned Refine Doctor bridge implemented on Pine but not yet validated by current local/live run",
-      "default campaign endpoint remains autorefine; refine-doctor continuation is explicit",
-      "future workflow recipe semantic option: 'apply Doctor as needed' (exact schema spelling deferred)",
-      "future GUI visually builds the same backend recipe from supported capabilities/defaults",
-      "all CLI interaction decisions must have GUI-equivalent backend actions",
-      "public scientist-facing name is Scout; v1/v2 are internal implementation-provenance labels only",
-      "campaign-owned QiC Refine Doctor live run succeeded: refine-002 fixed-scattering Rwork/Rfree 0.1500/0.1502; postmr current preserved; no auto-selection",
-      "full regression validation remains pending rerun after stale CLI expectation fix",
-      "campaign-owned explicit Refine Doctor continuation is full-regression + live validated",
-      "current validation baseline: 688 tests + 224 subtests; campaign family 132 + 85 subtests",
-      "next stress test is user-local examples/TestSets as one campaign through explicit refine-doctor boundary"
+    "implementation_status": "docs/development-handoff.md",
+    "campaign_contracts": [
+      "docs/campaign-full-auto.md",
+      "docs/campaign-execution.md",
+      "docs/campaign-model-roadmap.md"
     ],
-    "next_live_stress_test": {
-      "root": "examples/TestSets",
-      "datasets": [
-        "DOHU",
-        "DT",
-        "DiU",
-        "EA",
-        "ED",
-        "FA",
-        "GZ11",
-        "Q5cm",
-        "QiC"
-      ],
-      "status": "INVENTORIED_BLOCKED_ON_FORCE_VALIDATION",
-      "execution_goal": "After force regression is green, create a disposable campaign and run MR through explicit refine-doctor boundary.",
-      "edge_case": "GZ11 pair=G:Z with force=G:C restraint geometry; preserve literal source intent.",
-      "success_semantics": "Maximum scientifically valid solved/recommended/inspection outcomes, with blockers preserved."
-    }
-  },
-  "campaign_development_branch": {
-    "name": "pine",
-    "base": "oak",
-    "purpose": "Schema-2 prepared nonstandard and mixed campaign planning/execution before GUI implementation.",
-    "status": "REAL_W_ORCHESTRATION_VALIDATED_NONSTANDARD_LIVE_PENDING",
-    "registration_boundary": "Oak/PR #22 remains the separate backend-only Scout-v2 registration branch; Pine does not promote Scout v2 to runtime authority.",
-    "mainline_merge_commit": "fec66ebeddbd525684824576b705460324ec0a14",
-    "pine_reconciliation_commit": "aa56e9b",
-    "note": "Synthetic heterogeneous backend is closed and the four-member real W campaign is validated end-to-end through conditional AutoSol/AutoRefine with one correct review stop. Next backend semantic is explicit workflow recipe + campaign-owned Refine Doctor transition; real prepared-nonstandard geometry-diverse live gate remains pending."
-  },
-  "local_validation_baseline": {
-    "tested_branch": "pine",
-    "tested_commit": "8c2c42311cc5497721da70360453a9d7acab0ffa",
-    "history_reconciliation_commit": "aa56e9b",
-    "full_suite": {
-      "tests_passed": 684,
-      "subtests_passed": 226,
-      "runtime_seconds": 51.35
-    },
-    "campaign_bundle": {
-      "tests_passed": 150,
-      "subtests_passed": 90,
-      "runtime_seconds": 21.31
-    },
-    "newest_mixed_cli_slice": {
-      "tests_passed": 5,
-      "runtime_seconds": 3.39
-    },
-    "patch_hygiene": "git diff --check oak...pine clean before Oak/mainline reconciliation",
-    "source": "user-local Python 3.12 development environment; not GitHub CI"
-  },
-  "current_live_validation": {
-    "id": "pine-real-w-orchestration-2026-09-28",
-    "status": "COMPLETE_W_ORCHESTRATION_VALIDATED",
-    "purpose": "Validate real multi-dataset campaign orchestration and campaign-level solution reporting with actual Phenix/Coot before the prepared-nonstandard geometry-diverse datasets are available.",
-    "sandbox": "/tmp/NASolve-W-live-20260928",
-    "datasets": [
-      "DOHU",
-      "QiC_120325_0513",
-      "QE_120325_0607",
-      "EG_091325-0302"
-    ],
-    "current_phase": [
-      "real four-member W orchestration validation complete",
-      "campaign-owned QiC Refine Doctor regression + live validation complete",
-      "forced restraint-geometry support implemented on Pine; local validation pending",
-      "nine-dataset TestSets inventoried; no campaign plan created yet"
-    ],
-    "does_not_satisfy": "prepared-nonstandard geometry-diverse Pine live gate",
-    "completion_rule": "Satisfied for W orchestration only; does not satisfy prepared-nonstandard geometry-diverse live gate.",
-    "planning_result": {
-      "runtime": {
-        "python": "3.12.14",
-        "narestraints": "1.1.2",
-        "phenix": "2.2.1",
-        "coot": "1.3.3"
-      },
-      "total": 4,
-      "discovered": 4,
-      "blocked": 0,
-      "frozen_input_integrity": "OK",
-      "chemistry": "All four members froze W recipe 5w6w@1.1.0 with D:1 as explicit 5-prime-phosphate/OP3 intent."
-    },
-    "postmr_result": {
-      "campaign_exit_code": 0,
-      "status_exit_code": 0,
-      "integrity": "OK",
-      "datasets": {
-        "DOHU": {
-          "run": "DOHU/AutoMR/run_001",
-          "status": "PAUSED",
-          "next_stage": "autosol"
-        },
-        "EG_091325-0302": {
-          "run": "EG_091325-0302/AutoMR/run_001",
-          "status": "PAUSED",
-          "next_stage": "autosol"
-        },
-        "QE_120325_0607": {
-          "run": "QE_120325_0607/AutoMR/run_001",
-          "status": "PAUSED",
-          "next_stage": "autosol"
-        },
-        "QiC_120325_0513": {
-          "run": "QiC_120325_0513/AutoMR/run_001",
-          "status": "PAUSED",
-          "next_stage": "autosol"
-        }
-      },
-      "interpretation": "All four completed real preflight, Phaser and PostMR. next_stage=autosol is a conditional stage boundary; AutoSol is skipped without launching phenix.autosol when PostMR reports no anomalous candidate."
-    },
-    "workflow_recipe_requirement": {
-      "status": "NEXT_BACKEND_SEMANTIC",
-      "principle": "A selected/frozen campaign workflow recipe should explicitly declare the intended endpoint and conditional stage graph so one command advances each eligible dataset autonomously until a recipe-declared terminal state; current plain campaign run already behaves unattended through AutoRefine, but the journey is executor-defined.",
-      "current_partial_support": [
-        "plain campaign run already defaults through AutoRefine",
-        "preset freezes AutoSol when-anomalous policy",
-        "preset freezes AutoRefine recipe and cycle count",
-        "dataset scientific stops remain independent"
-      ],
-      "missing_first_class_semantics": [
-        "recipe-declared workflow endpoint",
-        "recipe-declared conditional stage graph instead of hard-coded order/default endpoint",
-        "campaign-owned bounded Refine Doctor transition with job/receipt/dependency provenance",
-        "later broader bounded Doctor escalation policy"
-      ],
-      "doctor_integration_guardrail": "Standalone Refine Doctor preserves current checkpoint and never auto-selects, but it updates RUN/report.json. Completed campaign AutoRefine receipts checksum that report, so out-of-band Doctor would be detected as drift. Integrate Doctor as a campaign-owned transition rather than weakening receipt integrity."
-    },
-    "final_result": {
-      "campaign_state": "COMPLETE_WITH_FLAGS",
-      "campaign_exit_code": 3,
-      "status_exit_code": 3,
-      "frozen_integrity": "OK",
-      "datasets": {
-        "DOHU": {
-          "run": "DOHU/AutoMR/run_001",
-          "autosol": "SKIPPED",
-          "final_status": "SOLVED",
-          "checkpoint": "refine-001"
-        },
-        "EG_091325-0302": {
-          "run": "EG_091325-0302/AutoMR/run_001",
-          "autosol": "SKIPPED",
-          "final_status": "SOLVED",
-          "checkpoint": "refine-001"
-        },
-        "QE_120325_0607": {
-          "run": "QE_120325_0607/AutoMR/run_001",
-          "autosol": "SKIPPED",
-          "final_status": "SOLVED",
-          "checkpoint": "refine-001"
-        },
-        "QiC_120325_0513": {
-          "run": "QiC_120325_0513/AutoMR/run_001",
-          "autosol": "AUTOSOL_READY",
-          "final_status": "AWAITING_INSPECTION",
-          "checkpoint": "refine-001",
-          "diagnostic": "Refinement completed, but numerical acceptance criteria were not met",
-          "numerical_fingerprint": {
-            "r_work": 0.1646,
-            "r_free": 0.1561,
-            "r_free_minus_r_work": -0.0085,
-            "clashscore": 32.23,
-            "terminal_geometry_audit": {
-              "status": "PASS",
-              "requires_review": false,
-              "expected_restraint_count": 11,
-              "restraint_count": 11,
-              "max_sigma_deviation": 1.74
-            },
-            "anomalous_site": {
-              "site": "B:4",
-              "element": "I",
-              "wavelength": 1.377618,
-              "refined_f_double_prime": 7.51547,
-              "refined_f_prime": -5.98383,
-              "autosol_status": "AUTOSOL_READY",
-              "use_for_refinement": true
-            },
-            "checkpoint_state": {
-              "refine_001_status": "REVIEW",
-              "refine_001_selected_as_current": false,
-              "current": "postmr"
-            },
-            "doctor_state": "NONE; campaign-owned run remains untouched by standalone Refine Doctor"
-          },
-          "interpretation": "Numerical/statistical review case, not terminal-phosphate chemistry failure; ideal live target for future campaign-owned Refine Doctor transition."
-        }
-      },
-      "interpretation": "Real W campaign orchestration is validated: one-command continuation, conditional AutoSol skip/run, independent dataset review isolation, exact run/checkpoint ownership, COMPLETE_WITH_FLAGS summary and integrity-preserving exit status all behaved as intended."
-    },
-    "doctor_live_result": {
-      "dataset": "QiC_120325_0513",
-      "status": "REFINE_DOCTOR_RECOMMEND",
-      "source_checkpoint": "refine-001",
-      "recommended_checkpoint": "refine-002",
-      "recipe": "RefineDoctor/ML-fixed-scattering",
-      "r_work": 0.15,
-      "r_free": 0.1502,
-      "strict_success": true,
-      "current_checkpoint_preserved": true,
-      "actual_current_checkpoint": "postmr",
-      "free_r_audit": {
-        "status": "NOISY",
-        "fraction": 0.04456448345712356,
-        "independent_groups": 66
-      },
-      "auto_selected": false
-    }
+    "design_identity_intent": "Future explicit design_id/shared design metadata grouping; never infer membership from filenames, sequence similarity or campaign co-membership."
   },
   "documentation_continuity": {
-    "status": "AUDITED_RECONCILED_AND_INCREMENTAL_SYNC_RULE_RECORDED",
-    "purpose": "Keep current runtime behavior, live validation, merged Oak registration scope, future workflow recipe, geometry-diverse gate, Design/GUI fork and Campaign Doctor runway consistent across durable docs.",
-    "read_first": "docs/development-handoff.md#read-this-first-current-development-edge",
+    "status": "STATUS_CONSOLIDATED_2026_10_10",
+    "purpose": "Keep current runtime behavior, live validation, merged Oak registration scope, implemented workflow recipe, geometry-diverse gate, Design/GUI fork and Campaign Doctor runway consistent across durable docs.",
+    "read_first": "docs/development-handoff.md",
     "audited_documents": [
       "docs/development-handoff.md",
       "docs/campaign-execution.md",
@@ -1480,84 +783,12 @@
     ],
     "update_rule": "Propagate material intent changes immediately to the smallest authoritative doc set; do not broaden README/architecture unless their scope actually changed; promote validation status in a small follow-up after evidence arrives."
   },
-  "current_position": {
-    "status": "FORCED_RESTRAINT_GEOMETRY_IMPLEMENTED_UNVALIDATED_TESTSETS_PENDING",
-    "date": "2026-09-29",
-    "runtime_behavior_head": "93a85edeaed357302fb4952ada760b1855b57b3a",
-    "current_branch": "pine",
-    "completed_now": [
-      "Oak/PR #22 merged to main without promoting Scout v2 to runtime authority",
-      "schema-2 prepared-nonstandard/mixed campaign backend fixture validation",
-      "real four-member W campaign orchestration smoke validation",
-      "conditional AutoSol skip/run behavior under real Phenix/Coot",
-      "independent dataset review isolation",
-      "QiC numerical review fingerprint capture",
-      "documentation continuity audit"
-    ],
-    "preserved_live_review_case": {
-      "dataset": "QiC_120325_0513",
-      "campaign": "/tmp/NASolve-W-live-20260928",
-      "run": "QiC_120325_0513/AutoMR/run_001",
-      "original_current_checkpoint": "postmr",
-      "original_review_checkpoint": "refine-001",
-      "doctor_invoked": true,
-      "doctor_result": "REFINE_DOCTOR_RECOMMEND",
-      "recommended_checkpoint": "refine-002",
-      "actual_current_checkpoint_after_doctor": "postmr",
-      "auto_selected": false,
-      "guardrail": "Recommendation remains inspection-only; explicit selection is still required."
-    },
-    "next_order": [
-      "pull latest Pine and run forced-restraint-geometry focused regression",
-      "run campaign/full regression needed to validate the new force path",
-      "verify GZ11 DZ dictionary/construction provenance from prior standalone success if PostMR requires it",
-      "plan disposable nine-dataset examples/TestSets campaign without editing the source folder",
-      "if planning is clean, run all eligible datasets from MR through explicit refine-doctor boundary",
-      "summarize dataset/status/run/AutoSol/AutoRefine/Doctor/recommended checkpoint/diagnostic",
-      "implement first-class frozen workflow recipe endpoint/conditional graph including optional 'apply Doctor as needed'",
-      "generalize reflection-input adapters/capabilities for generic MTZ and direct SCA MR",
-      "run dedicated prepared-nonstandard/geometry-diverse live campaign",
-      "add explicit stable design_id grouping",
-      "fork generic GUI with visual recipe builder and CLI interaction parity",
-      "later Campaign Doctor donor-rescue runway"
-    ],
-    "local_worktree_guardrail": "Known untracked scientific data, patches, bundles, old environments and example runs are user-local and must not be staged/deleted/renamed without explicit instruction.",
-    "in_progress": {
-      "feature": "GZ11 forced NARestraints geometry plus nine-dataset TestSets stress campaign",
-      "implementation_status": "FORCE_IMPLEMENTED_UNVALIDATED",
-      "remaining_gate": "Local force-focused regression, then campaign/full regression as warranted, then disposable TestSets planning/live execution."
-    },
-    "validation_baseline": {
-      "full_suite": {
-        "tests_passed": 688,
-        "subtests_passed": 224,
-        "runtime_seconds": 58.19
-      },
-      "campaign_family": {
-        "tests_passed": 132,
-        "subtests_passed": 85,
-        "runtime_seconds": 24.08
-      },
-      "campaign_executor_cli": {
-        "tests_passed": 9,
-        "subtests_passed": 4,
-        "runtime_seconds": 0.24
-      },
-      "campaign_doctor_focused": {
-        "tests_passed": 4,
-        "subtests_passed": 4,
-        "runtime_seconds": 4.77
-      },
-      "hygiene": "git diff --check + machine-intent JSON parse passed",
-      "source": "user-local Python 3.12 environment; not GitHub CI"
-    }
-  },
   "workflow_recipe_product_intent": {
-    "status": "PLANNED_CONTRACT_FIELD_NAMES_DEFERRED",
+    "status": "PRODUCT_INTENT_RUNTIME_SUPPORT_DEFINED_BY_CAMPAIGN_CONTRACTS",
     "principle": "One frozen campaign recipe should declare the endpoint and conditional graph used by both CLI and GUI.",
     "doctor_policy": {
       "human_semantics": "apply Doctor as needed",
-      "exact_schema_spelling": "DEFERRED",
+      "exact_schema_spelling": "See docs/campaign-full-auto.md for implemented fields; this intent is not a runtime schema.",
       "absent": "Eligible review states stop for inspection.",
       "enabled": "Only backend-supported, separately validated, bounded stage-specific Doctors may run automatically when their eligibility gate is met.",
       "does_not_authorize": [
@@ -1580,7 +811,8 @@
       "checkpoint selection / Make Current",
       "keep current / decline selection"
     ],
-    "interaction_rule": "GUI may change presentation (buttons/cards/popovers/tree actions) but not eligibility, defaults, provenance or scientific consequence."
+    "interaction_rule": "GUI may change presentation (buttons/cards/popovers/tree actions) but not eligibility, defaults, provenance or scientific consequence.",
+    "runtime_contract": "docs/campaign-full-auto.md"
   },
   "documentation_update_discipline": {
     "status": "ACTIVE_PROJECT_RULE",
@@ -1589,7 +821,7 @@
       "relevant subsystem contract",
       "architecture.md only for durable invariant/system-boundary changes",
       "development-handoff.md for immediate implementation edge",
-      "construct-registration-intent.json when future Aster/automation continuity depends on the distinction",
+      "construct-registration-intent.json when future contributor/automation continuity depends on the distinction",
       "gui.md when interaction semantics change",
       "README.md only when current user-facing workflow changes"
     ],
@@ -1660,7 +892,7 @@
     "gui": "Campaign setup shows capability badges and exact missing requirements instead of one universal valid/invalid result."
   },
   "forced_restraint_geometry": {
-    "status": "IMPLEMENTED_UNVALIDATED_PENDING_LOCAL_REGRESSION",
+    "status": "IMPLEMENTED_CONTRACT_CURRENT_VALIDATION_IN_HANDOFF",
     "input_key": "force",
     "semantics": "Ordered NARestraints base-class recipe override for the designed standard pair; does not change residue identity or search-model selection.",
     "scope": "Standard frame designated pair only; W currently maps to A:12/B:4.",
@@ -1678,43 +910,47 @@
       "missing forced recipe fails closed",
       "coordinate residue identities are never rewritten by force"
     ],
-    "live_edge_case": {
-      "dataset": "GZ11",
-      "pair": "G:Z",
-      "force": "G:C",
-      "condition": "pH 11; Z deprotonated/C-like for intended H-bond geometry",
-      "dictionary_followup": "Verify reviewed DZ construction/dictionary provenance from prior standalone success before live campaign PostMR; NASolve package currently has no DZ.cif."
-    },
-    "validation_note": "Parser/AutoMR/campaign/PostMR implementation and focused tests are present on Pine; Simon has not yet returned a local regression run for this feature."
+    "validation_note": "Current evidence and remaining component gates belong to docs/development-handoff.md and docs/native-modified-pair-live-validation.md; the September 29 unvalidated/DZ-missing statements are historical only."
   },
-  "testsets_live_stress_test": {
-    "status": "INVENTORIED_NOT_PLANNED",
-    "root": "examples/TestSets",
-    "source_state": "user-local untracked folder; do not edit/clean without explicit instruction",
-    "datasets": [
-      "DOHU",
-      "DT",
-      "DiU",
-      "EA",
-      "ED",
-      "FA",
-      "GZ11",
-      "Q5cm",
-      "QiC"
+  "status_ownership": {
+    "current_priorities": "docs/development-handoff.md",
+    "native_chemistry_evidence": "docs/native-modified-pair-live-validation.md",
+    "registration_live_checks": "docs/construct-registration-live-checks.md",
+    "campaign_roadmap": "docs/campaign-model-roadmap.md",
+    "superseded_status_and_exact_receipts": "docs/history/construct-registration-intent-2026-10-10-pre-reconciliation.json",
+    "rule": "This file records durable development intent, not a second current branch, test-count or campaign queue."
+  },
+  "backend_validation": {
+    "status": "COMPLETED_BACKEND_ONLY_NOT_RUNTIME_AUTHORITY",
+    "historical_dates": "2026-09-26/2026-09-27",
+    "birch": "44 focused; 664 full + 222 subtests",
+    "oak": "43 focused; 672 full; no full-suite subtest count or runtime reported",
+    "merged_oak_pull_request": 22,
+    "merge_commit": "fec66ebeddbd525684824576b705460324ec0a14",
+    "runtime_integration_validated": false,
+    "evidence": "docs/construct-registration-live-checks.md",
+    "exact_machine_receipts": "docs/history/construct-registration-intent-2026-10-10-pre-reconciliation.json"
+  },
+  "model_input_policy": {
+    "status": "PLANNED_NOT_IMPLEMENTED",
+    "contract": "docs/architecture.md#proposed-model-input-contract",
+    "formats": [
+      "PDB",
+      "coordinate mmCIF"
     ],
-    "count": 9,
-    "current_input_profile": "All nine currently contain one STARANISO/all-data MTZ, Data_1*.cif, summary.html and nasolve.txt.",
-    "historical_outputs": "EA and ED contain pre-existing AutoMR directories; campaign must allocate its own new numbered runs and not adopt/overwrite historical runs.",
-    "campaign_state": "No NASolveCampaign directory and no nasolve-campaign.toml at inventory time.",
-    "edge_case": {
-      "dataset": "GZ11",
-      "pair": "G:Z",
-      "force": "G:C",
-      "semantics": "Actual G/Z chemistry with G:C NARestraints recipe geometry at the designated standard pair only.",
-      "validation_gate": "Run force-focused/local regression before planning the nine-dataset campaign.",
-      "chemistry_followup": "Verify reviewed DZ dictionary/construction provenance from prior standalone success before live PostMR if packaged support is absent."
-    },
-    "intended_run": "After regression and planning gates, execute one disposable campaign from MR through explicit refine-doctor boundary.",
-    "success_semantics": "Maximize scientifically valid solved/recommended/inspection outcomes; preserve honest blockers."
+    "optional_mode": "explicit trust-model without independent sequence file",
+    "sequence_agreement": "independently unverified in trust-model mode",
+    "sequence_driven_mutation": "skipped in trust-model mode",
+    "registration_boundary": "Do not invent absent logical construct intent or treat coordinate labels as independent sequence evidence."
+  },
+  "development_order": {
+    "authority": "docs/development-handoff.md#roadmap-after-the-combined-geometry-test",
+    "constraints": [
+      "Current combined geometry trial before planned SMILES-assisted CIF audit.",
+      "SMILES-assisted CIF audit before operational Scout / Topo slicing.",
+      "Bounded Pine close-out before blind AlphaFold geometry baseline; blind baseline before operational Scout.",
+      "PDB/coordinate-mmCIF and explicit trust-model/no-sequence support requested before that blind baseline.",
+      "Future SMILES, Scout, Topo and GUI work do not enlarge existing Cedar/Pine merge gates."
+    ]
   }
 }
