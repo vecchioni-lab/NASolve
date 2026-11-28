@@ -203,12 +203,13 @@ def test_selection_validation_and_result_site_sibling_behavior(tmp_path,monkeypa
 
 def test_catalog_replays_after_source_tree_move_in_fresh_interpreter(tmp_path,monkeypatch):
     import os,shutil,subprocess,sys
+    import nasolve
     original=tmp_path/'original'
     run,request,mounts=fixture(original,monkeypatch)
     catalog=capture_catalog(request,mounts)
     before=open_workbench(catalog,mounts).to_dict()
     (original/'catalog.json').write_text(json.dumps(catalog))
-    shutil.copytree(Path(__file__).resolve().parents[1]/'src',original/'src',ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
+    shutil.copytree(Path(nasolve.__file__).resolve().parent,original/'src/nasolve',ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
     moved=tmp_path/'moved';original.rename(moved);assert not original.exists()
     code='''import json,sys,subprocess
 from pathlib import Path
