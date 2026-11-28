@@ -215,8 +215,11 @@ def _image(code, ops):
 def _endpoint(row, side):
     group = f"ptnr{side}_"
     number = row.get(group + "label_seq_id")
+    alternates = {row.get(key) for key in (group + "label_alt_id", "pdbx_" + group + "label_alt_id") if row.get(key)}
+    if len(alternates) > 1:
+        raise ValueError("Conflicting alternate identifiers on a declared covalent connection")
     return (row.get(group + "label_asym_id") or "", str(int(number)) if number else "",
-            row.get(group + "label_comp_id") or "", row.get(f"pdbx_ptnr{side}_label_alt_id") or "")
+            row.get(group + "label_comp_id") or "", next(iter(alternates), ""))
 
 
 def _phosphate_geometry(o3, phosphorus, image):
@@ -244,17 +247,22 @@ def _observe(c, model, oxygen, phosphorus, relative, gemmi):
     return {"model": model, **_phosphate_geometry(o3, p, image)}
 
 
-def _declared(block, c, gemmi):
-    found, keys = [], set()
-    identity = gemmi.Op("x,y,z")
+def _covalent_o3_connections(block, phosphorus_atom):
+    """Yield both sides of explicit backbone bonds in chemical order."""
     for row in _rows(block, "_struct_conn."):
         if not str(row.get("conn_type_id")).lower().startswith("covale"):
             continue
         atoms = [str(row.get(f"ptnr{i}_label_atom_id")).replace("*", "'") for i in (1, 2)]
-        if set(atoms) != {"P", "O3'"}:
+        if set(atoms) != {phosphorus_atom, "O3'"}:
             continue
         i = atoms.index("O3'") + 1
-        j = 3 - i
+        yield row, i, 3 - i
+
+
+def _declared(block, c, gemmi):
+    found, keys = [], set()
+    identity = gemmi.Op("x,y,z")
+    for row, i, j in _covalent_o3_connections(block, "P"):
         o, p = _endpoint(row, i), _endpoint(row, j)
         a, b = (resolve_deposition_image(row.get(f"ptnr{s}_symmetry"), c.ops) for s in (i, j))
         relative = _compose(_inverse(a, identity), b) if a is not None and b is not None else None

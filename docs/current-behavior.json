@@ -108,6 +108,13 @@
   "development": {
     "chemistry_capabilities": "docs/cif-doctor.md#current-capability-boundary",
     "chemistry_queue": "docs/cif-doctor-completion-queue.md#pipeline-position",
+    "unreleased_on_cedar": {
+      "sulfur_link_measurement": {
+        "argv": ["nasolve", "cif-doctor", "sulfur-links", "MODEL.cif", "SOURCE_COMPONENT.cif", "--code", "AS", "--json"],
+        "guide": "docs/cif-doctor.md#measure-a-declared-phosphorothioate-link",
+        "result": "Per-model distances, angles and ordered hand of a declared phosphorothioate in its crystal image. Exit 2 marks an unresolved reading."
+      }
+    },
     "separate_branch_work": {"willow": "Advanced ASU recutting, diagnosis and backbone export", "Alder": "Metal-site recipe building and inspection"},
     "planned": {"AutoPhase public name": "docs/autophase-rename-plan.json", "Helix analysis for publication": "docs/helical-geometry-plan.json"}
   }
