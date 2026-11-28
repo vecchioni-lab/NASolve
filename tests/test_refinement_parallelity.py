@@ -385,8 +385,8 @@ def test_frozen_historical_and_current_sources_are_independently_pinned(tmp_path
     assert {n:sha256(v).hexdigest() for n,v in module._code(module.V4_POLICY_ID).items()}==module._expected_code(module.V4_POLICY_ID)
     # A damaged legacy payload cannot be hidden behind unchanged current sources.
     copied=tmp_path/'package';copied.mkdir()
-    for name in {*module._V6_SOURCE_DIGESTS,'data/refinement-runtime-v3-sources.json','data/refinement-runtime-v5-sources.json','data/refinement-runtime-v6-sources.json',
-                 'data/refinement-runtime-transport-sources.json'}:
+    archives = {str(path.relative_to(package)) for path in (package/'data').glob('refinement-runtime-*.json')}
+    for name in {*module._V6_SOURCE_DIGESTS, *archives}:
         target=copied/name;target.parent.mkdir(exist_ok=True,parents=True);target.write_bytes((package/name).read_bytes())
     monkeypatch.setattr(module,'__file__',str(copied/'refinement_parallelity.py'))
     archive=copied/'data/refinement-runtime-v3-sources.json';saved=archive.read_bytes();value=json.loads(saved)
