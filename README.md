@@ -10,6 +10,7 @@ history. You can open any named checkpoint in Coot.
 | Install NASolve and check Phenix, Coot and NARestraints | [Install](#install) · [Check the runtime](#check-the-runtime) |
 | Solve one dataset, inspect a model or return to an earlier refinement | [Run AutoMR through AutoRefine](#run-automr-through-autorefine) · [Inspect a checkpoint](#inspect-the-prepared-model-in-coot) |
 | Prepare a modified nucleotide or restrain a whole duplex | [Checked chemistry and demonstrated support](docs/cif-doctor.md#current-capability-boundary) · [Whole-model recipe](docs/full-model-restraints.md) |
+| Measure a phosphorothioate in a deposited structure | [Inspect the sulfur side and phosphate geometry](docs/cif-doctor.md#measure-a-declared-phosphorothioate-link) |
 | Inspect complementary sticky ends or refine a declared bond across symmetry | [Worked example](#inspect-a-sticky-end-or-a-phosphate-across-symmetry) · [Two real phosphate connections](docs/backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold) |
 | Run several datasets or prepare a deposition | [Campaigns](#plan-and-run-a-dataset-campaign) · [OneDep file checks](docs/pdb-deposition.md) |
 

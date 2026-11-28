@@ -6479,6 +6479,9 @@ boundary remain unchanged. Existing manifests/receipts need no migration.
 
 ### Measure a declared phosphorothioate link
 
+Available on the main branch after v0.2.0. Install the `topology` extra for
+coordinate mmCIF and crystal-image support.
+
 ```sh
 nasolve cif-doctor sulfur-links MODEL.cif SOURCE_COMPONENT.cif --code AS --json
 ```
