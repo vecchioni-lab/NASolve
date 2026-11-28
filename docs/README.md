@@ -5,6 +5,11 @@ Updated **2026-11-28**. Use the subsystem contract for actual behavior, the
 validation edge, and linked evidence for exact scientific claims. Historical
 milestone statements preserve their original scope; they are not a second queue.
 
+Start with the [user guide](../README.md) for a first solve or the
+[current behavior JSON](current-behavior.json) for the installed commands,
+their inputs and which operations change a model. Use the chemistry table
+to check support for a particular modification. [Chemistry capability table](cif-doctor.md#current-capability-boundary).
+
 ## What's current?
 
 - **CIF Doctor.** The checked PostMR route constructs the model through Coot and
@@ -86,9 +91,11 @@ is an explanation, not an independent status ledger.
 | Future GUI | [GUI contract](gui.md), [GUI live checks](gui-live-checks.md) |
 | Metal-coordination builder | [Design used by this Cedar checkout](metal-restraint-builder.md), [development intent](metal-restraint-builder-intent.json). Alder implements separate recipe and inspection entry points. Combined protected-site refinement and integration have their own acceptance gates. |
 
-Implementation-intent JSON records design decisions. Verify installed support
-on the branch that owns the feature. Cedar's release scope and the checks
-needed before integrating into Pine are recorded in Q16.
+The release guide lists commands available on main. The implementation blueprints
+and experiment ledgers record design decisions and observations. Willow's additional
+recut tools and Alder's metal-site tools have their own branch guides. The
+[completion queue](cif-doctor-completion-queue.md#pipeline-position) tracks the
+remaining Cedar chemistry.
 
 ## Older evidence, not an action queue
 

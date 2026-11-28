@@ -335,7 +335,7 @@ handoff must first install the same `/branch-artifacts/` rule in that clone's
 local Git exclude file, without changing tracked files. Verify the rule with
 `git check-ignore` before writing a runner. Never use `git add -f` for this tree.
 
-**Cedar merge cleanup is an explicit outstanding task.** Before retiring Cedar,
+**Cedar continues after the 0.2.0 integration.** If its development branch is eventually retired,
 inventory the earlier root-level numbered runners and the ignored branch
 directory, including each file's original relative path, byte count, SHA-256,
 delivery prefix and available build commit/runner receipt. Preserve the
@@ -356,13 +356,12 @@ perform broad directory deletion or a blanket `git clean` as merge cleanup.
 
 ## Branch and worktree lifecycle
 
-Prefer **one active development branch and one everyday checkout**. Arboreal
-branch names are welcome. Integrate completed, reviewed work into its parent
-branch, and the development branch into `main`, as soon as its bounded scientific
-and software acceptance gates support it. A longer-lived branch is acceptable;
-parallel branches and worktrees need a concrete isolation reason, a named
-integration target and a retirement point recorded in the current handoff.
-Future features must not become new gates for an otherwise complete change.
+Use `main` as the shared release baseline. Cedar continues the chemistry work,
+Pine/Willow owns strand topology and ASU assembly, and Alder owns metal-site
+work. Each uses its own checkout. Bring the released main commit into each
+active line and test its shared interfaces. Preserve merge ancestry so the next
+integration can identify work already delivered. The current handoff records
+the next scientific milestone for each continuing line.
 
 Retire completed or explicitly abandoned branches, PRs and disposable worktrees
 promptly. Verify exact local and remote heads, integration (including file-tree

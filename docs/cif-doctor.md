@@ -386,8 +386,9 @@ Phenix's geometry terms from matching intact links. For an image position
 rotated back to its stored atom as `Rᵀ F′`. The native bond retains its
 symmetry operation and covalent exclusions. These operations apply to a
 declared chain continuation. Even in P1, a strand can cross into an adjacent
-unit cell by a translation. The recorded native refinements test one junction
-at a time.
+unit cell by a translation. Single-junction controls and a [two-junction, five-cycle restart](backbone-chemistry.md#two-crossovers-in-the-pdupdu-test-scaffold)
+show how these terms act on written models. A declared connection still needs
+local geometry and density review in its own crystal.
 
 The opt-in refinement can use models with anisotropic atoms. Phenix may
 recalculate the equivalent B factor from the six displacement

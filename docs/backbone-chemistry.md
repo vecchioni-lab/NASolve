@@ -117,15 +117,18 @@ native restraints; it must not assume that a hydrogen-free coordinate model has
 an unprotonated dictionary. Exact evidence and remaining checks are in the
 [native ledger](native-modified-pair-live-validation.md).
 
-## Declared symmetry continuation — planned shared contract
+<a id="declared-symmetry-continuation--planned-shared-contract"></a>
 
-A chain boundary in the asymmetric unit need not be a chemical terminus. Pine
-will carry editable declared connections, including exact atom identities,
-symmetry operations and lattice shifts, separately from current coordinate
-support and refinement capability. TopoStitch previews those connections; Cedar
-checks the chemistry and whether native restraints actually enforce it. Reslicing
-or an edit must preserve previous choices and explicitly remap endpoints/images
-or mark them unresolved. Missing local neighbors must not silently change intent.
+## Declared phosphate connections across crystal symmetry
+
+An asymmetric-unit boundary can cut a continuous strand. In 0.2.0 the
+construct registration identifies the donor and receiving atoms, symmetry
+operation and lattice shift. CIF Doctor measures the named crystal image.
+With that declaration and a native chemistry receipt, AutoRefine can fit the
+bond, angles and torsions and carry them into a child refinement. The two-link
+example below follows both junctions through a restart. When the model is recut,
+the endpoints and their crystal images must be mapped to its new coordinates
+before the declaration is used again. [Command and required inputs](cif-doctor.md#carrying-crystal-phosphates-through-a-numbered-refinement).
 
 ### The central strand in the 5W6W scaffold
 

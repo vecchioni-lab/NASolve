@@ -1,0 +1,105 @@
+{
+  "kind": "nasolve-release-guide",
+  "schema_version": 1,
+  "nasolve_version": "0.2.0",
+  "usage": "Commands are argument lists. Replace uppercase input names with your own paths or identifiers. Guide paths are relative to the repository root.",
+  "install": {
+    "python": ">=3.10",
+    "check_argv": ["nasolve", "check", "--offline"],
+    "dependency": "Latest stable NARestraints from the laboratory GitHub release",
+    "optional_extra": {"topology": "Gemmi for crystal images and coordinate mmCIF inspection"},
+    "entry_points": ["nasolve", "nasolve-topostitch-inspect"]
+  },
+  "workflows": {
+    "molecular_replacement": {
+      "mode": "standard",
+      "argv": ["nasolve", "automr", "DATASET", "--execute"],
+      "result": "Freezes inputs in a numbered run and launches Phenix Phaser. Omitting --execute prepares the run only.",
+      "guide": "README.md#run-automr-through-autorefine"
+    },
+    "model_preparation": {
+      "mode": "standard",
+      "argv": ["nasolve", "postmr", "RUN"],
+      "result": "Prepares an accepted solution using the recorded construct, supported Coot mutations, NARestraints and Phenix ReadySet.",
+      "guide": "README.md#preparing-an-accepted-mr-solution"
+    },
+    "checked_chemistry": {
+      "mode": "opt_in",
+      "argv": ["nasolve", "postmr", "RUN", "--checked-preparation"],
+      "result": "Checks the effective dictionaries and matching model and restraints. A qualified preparation can become a review checkpoint. Scientific support depends on the component, backbone and site.",
+      "guide": "docs/cif-doctor.md#current-capability-boundary"
+    },
+    "modified_residue_catalogue": {
+      "mode": "inspection",
+      "argv": ["nasolve", "cif-doctor", "catalogue", "--workbook", "WORKBOOK.xlsx", "--ccd-root", "CCD_DIRECTORY", "--json"],
+      "result": "Surveys the supplied NARestraints workbook and component-source directory. Consult the chemistry capability table for evidence of construction or refinement.",
+      "guide": "docs/cif-doctor.md#current-capability-boundary"
+    },
+    "whole_model_restraints": {
+      "mode": "opt_in",
+      "argv": ["nasolve", "postmr", "RUN", "--restraint-scope", "all"],
+      "result": "Builds pairing and chain-order stacking restraints across the supplied nucleotide model. Strand ends and actual partners still require the correct construct.",
+      "guide": "docs/full-model-restraints.md"
+    },
+    "anomalous_phasing": {
+      "mode": "conditional",
+      "argv": ["nasolve", "autosol", "RUN"],
+      "result": "Uses Phenix AutoSol on eligible nucleotide-bound iodine, bromine or selenium sites.",
+      "guide": "README.md#run-automr-through-autorefine"
+    },
+    "refinement": {
+      "mode": "standard",
+      "argv": ["nasolve", "autorefine", "RUN"],
+      "result": "Starts from the selected checkpoint and uses the frozen observations and Free-R set. A compatible numerical pass can become current. Review children remain available for inspection.",
+      "guide": "README.md#autorefine-and-checkpoints"
+    },
+    "checkpoint_list": {
+      "mode": "inspection",
+      "argv": ["nasolve", "checkpoints", "list", "RUN"],
+      "result": "Reads the recorded branches and identifies the selected checkpoint.",
+      "guide": "README.md#autorefine-and-checkpoints"
+    },
+    "refinement_review": {
+      "mode": "opt_in",
+      "argv": ["nasolve", "refine-doctor", "RUN"],
+      "result": "Checks the existing Free-R set and compares eligible refinement trials from the reviewed parent. The operator can inspect and explicitly select a candidate.",
+      "guide": "README.md#run-automr-through-autorefine"
+    },
+    "checkpoint_inspection": {
+      "mode": "inspection",
+      "argv": ["nasolve", "show", "RUN", "--checkpoint", "ID"],
+      "result": "Opens the exact model and resolved map in Coot. Listing or viewing a checkpoint preserves the current selection.",
+      "guide": "README.md#inspect-the-prepared-model-in-coot"
+    },
+    "sticky_end_candidates": {
+      "mode": "inspection",
+      "argv": ["nasolve-topostitch-inspect", "MODEL.pdb", "ENDS.json", "--radius", "20", "--periodic", "--contacts", "--pairings"],
+      "result": "Compares declared overhangs and crystal images. Candidates, contacts and alternative pairings are observations for review. Coordinates and topology stay as supplied.",
+      "guide": "README.md#inspect-a-sticky-end-or-a-phosphate-across-symmetry"
+    },
+    "crystal_phosphate_refinement": {
+      "mode": "opt_in",
+      "argv": ["nasolve", "autorefine", "RUN", "--from", "PARENT", "--registration-checkpoint", "REGISTERED_ID", "--registered-continuations", "1", "2", "--registration", "REGISTRATION.json", "--discovery-input", "DISCOVERY.json", "--backbone-continuations", "LINKS.json", "--native-receipt", "RECEIPT.json"],
+      "result": "Fits the declared O3′–P bonds and their crossing angles and torsions using chemically matching intact links. A later round requires a fresh native chemistry receipt for the written parent.",
+      "guide": "docs/cif-doctor.md#carrying-crystal-phosphates-through-a-numbered-refinement"
+    },
+    "campaign": {
+      "mode": "opt_in",
+      "argv": ["nasolve", "campaign", "run", "ROOT"],
+      "result": "Runs or resumes datasets from an existing frozen campaign plan, one at a time. The configured stage endpoint and review state determine where each stops.",
+      "guide": "README.md#plan-and-run-a-dataset-campaign"
+    },
+    "deposition_checks": {
+      "mode": "inspection",
+      "argv": ["nasolve", "cif-doctor", "deposition-links", "MODEL.cif", "--processed", "RETURNED.cif", "--json"],
+      "result": "Compares ordinary backbone steps and declared symmetry links with the coordinates returned by wwPDB. The separate deposition-geometry command remeasures bond and angle findings from a validation-data CIF.",
+      "guide": "docs/pdb-deposition.md"
+    }
+  },
+  "development": {
+    "chemistry_capabilities": "docs/cif-doctor.md#current-capability-boundary",
+    "chemistry_queue": "docs/cif-doctor-completion-queue.md#pipeline-position",
+    "separate_branch_work": {"willow": "Advanced ASU recutting, diagnosis and backbone export", "Alder": "Metal-site recipe building and inspection"},
+    "planned": {"AutoPhase public name": "docs/autophase-rename-plan.json", "Helix analysis for publication": "docs/helical-geometry-plan.json"}
+  }
+}
